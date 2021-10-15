@@ -36,6 +36,8 @@ class AnsibleFactsRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
+        'public_key_path': 'str',
+        'private_key_path': 'str',
         'public_key': 'str',
         'public_key_checksum': 'str',
         'fingerprint': 'str',
@@ -43,28 +45,86 @@ class AnsibleFactsRequest(object):
     }
 
     attribute_map = {
+        'public_key_path': 'public_key_path',
+        'private_key_path': 'private_key_path',
         'public_key': 'public_key',
         'public_key_checksum': 'public_key_checksum',
         'fingerprint': 'fingerprint',
         'appliance': 'appliance'
     }
 
-    def __init__(self, public_key=None, public_key_checksum=None, fingerprint=None, appliance=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, public_key_path=None, private_key_path=None, public_key=None, public_key_checksum=None, fingerprint=None, appliance=None, local_vars_configuration=None):  # noqa: E501
         """AnsibleFactsRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
+        self._public_key_path = None
+        self._private_key_path = None
         self._public_key = None
         self._public_key_checksum = None
         self._fingerprint = None
         self._appliance = None
         self.discriminator = None
 
+        self.public_key_path = public_key_path
+        self.private_key_path = private_key_path
         self.public_key = public_key
         self.public_key_checksum = public_key_checksum
         self.fingerprint = fingerprint
         self.appliance = appliance
+
+    @property
+    def public_key_path(self):
+        """Gets the public_key_path of this AnsibleFactsRequest.  # noqa: E501
+
+
+        :return: The public_key_path of this AnsibleFactsRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._public_key_path
+
+    @public_key_path.setter
+    def public_key_path(self, public_key_path):
+        """Sets the public_key_path of this AnsibleFactsRequest.
+
+
+        :param public_key_path: The public_key_path of this AnsibleFactsRequest.  # noqa: E501
+        :type public_key_path: str
+        """
+        if self.local_vars_configuration.client_side_validation and public_key_path is None:  # noqa: E501
+            raise ValueError("Invalid value for `public_key_path`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                public_key_path is not None and len(public_key_path) > 255):
+            raise ValueError("Invalid value for `public_key_path`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._public_key_path = public_key_path
+
+    @property
+    def private_key_path(self):
+        """Gets the private_key_path of this AnsibleFactsRequest.  # noqa: E501
+
+
+        :return: The private_key_path of this AnsibleFactsRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._private_key_path
+
+    @private_key_path.setter
+    def private_key_path(self, private_key_path):
+        """Sets the private_key_path of this AnsibleFactsRequest.
+
+
+        :param private_key_path: The private_key_path of this AnsibleFactsRequest.  # noqa: E501
+        :type private_key_path: str
+        """
+        if self.local_vars_configuration.client_side_validation and private_key_path is None:  # noqa: E501
+            raise ValueError("Invalid value for `private_key_path`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                private_key_path is not None and len(private_key_path) > 255):
+            raise ValueError("Invalid value for `private_key_path`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._private_key_path = private_key_path
 
     @property
     def public_key(self):

@@ -29,6 +29,8 @@ import java.io.Serializable
  *
  * @param id 
  * @param deleted 
+ * @param publicKeyPath 
+ * @param privateKeyPath 
  * @param publicKey 
  * @param publicKeyChecksum 
  * @param fingerprint 
@@ -42,6 +44,12 @@ data class AnsibleFacts (
 
     @Json(name = "deleted")
     val deleted: java.time.OffsetDateTime,
+
+    @Json(name = "public_key_path")
+    val publicKeyPath: kotlin.String,
+
+    @Json(name = "private_key_path")
+    val privateKeyPath: kotlin.String,
 
     @Json(name = "public_key")
     val publicKey: kotlin.String,

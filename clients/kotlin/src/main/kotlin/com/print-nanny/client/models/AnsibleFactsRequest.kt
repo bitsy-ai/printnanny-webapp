@@ -27,6 +27,8 @@ import java.io.Serializable
 /**
  * 
  *
+ * @param publicKeyPath 
+ * @param privateKeyPath 
  * @param publicKey 
  * @param publicKeyChecksum 
  * @param fingerprint 
@@ -34,6 +36,12 @@ import java.io.Serializable
  */
 
 data class AnsibleFactsRequest (
+
+    @Json(name = "public_key_path")
+    val publicKeyPath: kotlin.String,
+
+    @Json(name = "private_key_path")
+    val privateKeyPath: kotlin.String,
 
     @Json(name = "public_key")
     val publicKey: kotlin.String,

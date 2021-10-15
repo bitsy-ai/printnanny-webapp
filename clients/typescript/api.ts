@@ -214,6 +214,18 @@ export interface AnsibleFacts {
      * @type {string}
      * @memberof AnsibleFacts
      */
+    'public_key_path': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnsibleFacts
+     */
+    'private_key_path': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnsibleFacts
+     */
     'public_key': string;
     /**
      * 
@@ -240,6 +252,18 @@ export interface AnsibleFacts {
  * @interface AnsibleFactsRequest
  */
 export interface AnsibleFactsRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof AnsibleFactsRequest
+     */
+    'public_key_path': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnsibleFactsRequest
+     */
+    'private_key_path': string;
     /**
      * 
      * @type {string}
@@ -355,6 +379,18 @@ export interface AppliancePKI {
      * @type {string}
      * @memberof AppliancePKI
      */
+    'public_key_path': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AppliancePKI
+     */
+    'private_key_path': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AppliancePKI
+     */
     'public_key': string;
     /**
      * 
@@ -381,6 +417,18 @@ export interface AppliancePKI {
  * @interface AppliancePKIRequest
  */
 export interface AppliancePKIRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof AppliancePKIRequest
+     */
+    'public_key_path': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AppliancePKIRequest
+     */
+    'private_key_path': string;
     /**
      * 
      * @type {string}

@@ -4,6 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**public_key_path** | **str** |  | 
+**private_key_path** | **str** |  | 
 **public_key** | **str** |  | 
 **public_key_checksum** | **str** |  | 
 **fingerprint** | **str** |  | 
