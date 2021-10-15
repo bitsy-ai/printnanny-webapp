@@ -53,8 +53,33 @@ class ApplianceViewSet(
             202: ApplianceSerializer,
         },
     )
-    def create(self, request: Request, *args: Any, **kwargs: Any) -> Response:
-        return super().create(request, *args, **kwargs)
+    @action(methods=["post"], detail=False, url_path="update-or-create")
+    def update_or_create(self, request: Request, *args: Any, **kwargs: Any) -> Response:
+        serializer = CreateApplianceSerializer(data=request.data)
+        if serializer.is_valid():
+            validated_data = serializer.validated_data.copy()
+            del validated_data["hostname"]
+            instance, created = serializer.update_or_create(
+                request.user, serializer.validated_data.get("hostname"), validated_data
+            )
+
+            context = {"request": self.request}
+            context.update(self.get_serializer_context())
+
+            response_serializer = ApplianceSerializer(
+                instance=instance, context=context
+            )
+
+            if not created:
+                return Response(
+                    response_serializer.data, status=status.HTTP_202_ACCEPTED
+                )
+            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 
 class CameraViewSet(
