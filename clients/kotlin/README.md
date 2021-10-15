@@ -57,6 +57,7 @@ Class | Method | HTTP request | Description
 *AppliancesApi* | [**appliancesPrinterControllersUpdate**](docs/AppliancesApi.md#appliancesprintercontrollersupdate) | **PUT** /api/appliances/{appliance_id}/printer-controllers/{id}/ | 
 *AppliancesApi* | [**appliancesRetrieve**](docs/AppliancesApi.md#appliancesretrieve) | **GET** /api/appliances/{id}/ | 
 *AppliancesApi* | [**appliancesUpdate**](docs/AppliancesApi.md#appliancesupdate) | **PUT** /api/appliances/{id}/ | 
+*AppliancesApi* | [**appliancesUpdateOrCreateCreate**](docs/AppliancesApi.md#appliancesupdateorcreatecreate) | **POST** /api/appliances/update-or-create/ | 
 *AuthApi* | [**authEmailCreate**](docs/AuthApi.md#authemailcreate) | **POST** /auth/email/ | 
 *AuthApi* | [**authMobileCreate**](docs/AuthApi.md#authmobilecreate) | **POST** /auth/mobile/ | 
 *AuthApi* | [**authTokenCreate**](docs/AuthApi.md#authtokencreate) | **POST** /auth/token/ | 

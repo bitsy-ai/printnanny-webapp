@@ -19,6 +19,7 @@ Method | HTTP request | Description
 [**appliancesPrinterControllersUpdate**](AppliancesApi.md#appliancesPrinterControllersUpdate) | **PUT** /api/appliances/{appliance_id}/printer-controllers/{id}/ | 
 [**appliancesRetrieve**](AppliancesApi.md#appliancesRetrieve) | **GET** /api/appliances/{id}/ | 
 [**appliancesUpdate**](AppliancesApi.md#appliancesUpdate) | **PUT** /api/appliances/{id}/ | 
+[**appliancesUpdateOrCreateCreate**](AppliancesApi.md#appliancesUpdateOrCreateCreate) | **POST** /api/appliances/update-or-create/ | 
 
 
 <a name="appliancesCamerasCreate"></a>
@@ -287,7 +288,7 @@ Configure tokenAuth:
 
 <a name="appliancesCreate"></a>
 # **appliancesCreate**
-> Appliance appliancesCreate(createApplianceRequest)
+> Appliance appliancesCreate(applianceRequest)
 
 
 
@@ -300,9 +301,9 @@ All-in-one Print Nanny installation via print-nanny-main-&lt;platform&gt;-&lt;cp
 //import com.print-nanny.client.models.*
 
 val apiInstance = AppliancesApi()
-val createApplianceRequest : CreateApplianceRequest =  // CreateApplianceRequest | 
+val applianceRequest : ApplianceRequest =  // ApplianceRequest | 
 try {
-    val result : Appliance = apiInstance.appliancesCreate(createApplianceRequest)
+    val result : Appliance = apiInstance.appliancesCreate(applianceRequest)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling AppliancesApi#appliancesCreate")
@@ -317,7 +318,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createApplianceRequest** | [**CreateApplianceRequest**](CreateApplianceRequest.md)|  |
+ **applianceRequest** | [**ApplianceRequest**](ApplianceRequest.md)|  |
 
 ### Return type
 
@@ -794,6 +795,58 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **kotlin.Int**| A unique integer value identifying this appliance. |
  **applianceRequest** | [**ApplianceRequest**](ApplianceRequest.md)|  |
+
+### Return type
+
+[**Appliance**](Appliance.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+<a name="appliancesUpdateOrCreateCreate"></a>
+# **appliancesUpdateOrCreateCreate**
+> Appliance appliancesUpdateOrCreateCreate(createApplianceRequest)
+
+
+
+All-in-one Print Nanny installation via print-nanny-main-&lt;platform&gt;-&lt;cpu&gt;.img
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = AppliancesApi()
+val createApplianceRequest : CreateApplianceRequest =  // CreateApplianceRequest | 
+try {
+    val result : Appliance = apiInstance.appliancesUpdateOrCreateCreate(createApplianceRequest)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling AppliancesApi#appliancesUpdateOrCreateCreate")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling AppliancesApi#appliancesUpdateOrCreateCreate")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createApplianceRequest** | [**CreateApplianceRequest**](CreateApplianceRequest.md)|  |
 
 ### Return type
 

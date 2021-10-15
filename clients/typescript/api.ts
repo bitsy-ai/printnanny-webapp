@@ -6645,13 +6645,13 @@ export const AppliancesApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-         * @param {CreateApplianceRequest} createApplianceRequest 
+         * @param {ApplianceRequest} applianceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        appliancesCreate: async (createApplianceRequest: CreateApplianceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'createApplianceRequest' is not null or undefined
-            assertParamExists('appliancesCreate', 'createApplianceRequest', createApplianceRequest)
+        appliancesCreate: async (applianceRequest: ApplianceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceRequest' is not null or undefined
+            assertParamExists('appliancesCreate', 'applianceRequest', applianceRequest)
             const localVarPath = `/api/appliances/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -6677,7 +6677,7 @@ export const AppliancesApiAxiosParamCreator = function (configuration?: Configur
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(createApplianceRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(applianceRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -7079,6 +7079,47 @@ export const AppliancesApiAxiosParamCreator = function (configuration?: Configur
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+         * @param {CreateApplianceRequest} createApplianceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesUpdateOrCreateCreate: async (createApplianceRequest: CreateApplianceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'createApplianceRequest' is not null or undefined
+            assertParamExists('appliancesUpdateOrCreateCreate', 'createApplianceRequest', createApplianceRequest)
+            const localVarPath = `/api/appliances/update-or-create/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(createApplianceRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -7148,12 +7189,12 @@ export const AppliancesApiFp = function(configuration?: Configuration) {
         },
         /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-         * @param {CreateApplianceRequest} createApplianceRequest 
+         * @param {ApplianceRequest} applianceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async appliancesCreate(createApplianceRequest: CreateApplianceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Appliance>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesCreate(createApplianceRequest, options);
+        async appliancesCreate(applianceRequest: ApplianceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Appliance>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesCreate(applianceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -7255,6 +7296,16 @@ export const AppliancesApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesUpdate(id, applianceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+         * @param {CreateApplianceRequest} createApplianceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesUpdateOrCreateCreate(createApplianceRequest: CreateApplianceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Appliance>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesUpdateOrCreateCreate(createApplianceRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
     }
 };
 
@@ -7319,12 +7370,12 @@ export const AppliancesApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-         * @param {CreateApplianceRequest} createApplianceRequest 
+         * @param {ApplianceRequest} applianceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        appliancesCreate(createApplianceRequest: CreateApplianceRequest, options?: any): AxiosPromise<Appliance> {
-            return localVarFp.appliancesCreate(createApplianceRequest, options).then((request) => request(axios, basePath));
+        appliancesCreate(applianceRequest: ApplianceRequest, options?: any): AxiosPromise<Appliance> {
+            return localVarFp.appliancesCreate(applianceRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
@@ -7416,6 +7467,15 @@ export const AppliancesApiFactory = function (configuration?: Configuration, bas
         appliancesUpdate(id: number, applianceRequest: ApplianceRequest, options?: any): AxiosPromise<Appliance> {
             return localVarFp.appliancesUpdate(id, applianceRequest, options).then((request) => request(axios, basePath));
         },
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+         * @param {CreateApplianceRequest} createApplianceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesUpdateOrCreateCreate(createApplianceRequest: CreateApplianceRequest, options?: any): AxiosPromise<Appliance> {
+            return localVarFp.appliancesUpdateOrCreateCreate(createApplianceRequest, options).then((request) => request(axios, basePath));
+        },
     };
 };
 
@@ -7479,12 +7539,12 @@ export interface AppliancesApiInterface {
 
     /**
      * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-     * @param {CreateApplianceRequest} createApplianceRequest 
+     * @param {ApplianceRequest} applianceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AppliancesApiInterface
      */
-    appliancesCreate(createApplianceRequest: CreateApplianceRequest, options?: AxiosRequestConfig): AxiosPromise<Appliance>;
+    appliancesCreate(applianceRequest: ApplianceRequest, options?: AxiosRequestConfig): AxiosPromise<Appliance>;
 
     /**
      * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
@@ -7576,6 +7636,15 @@ export interface AppliancesApiInterface {
      */
     appliancesUpdate(id: number, applianceRequest: ApplianceRequest, options?: AxiosRequestConfig): AxiosPromise<Appliance>;
 
+    /**
+     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+     * @param {CreateApplianceRequest} createApplianceRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesUpdateOrCreateCreate(createApplianceRequest: CreateApplianceRequest, options?: AxiosRequestConfig): AxiosPromise<Appliance>;
+
 }
 
 /**
@@ -7649,13 +7718,13 @@ export class AppliancesApi extends BaseAPI implements AppliancesApiInterface {
 
     /**
      * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-     * @param {CreateApplianceRequest} createApplianceRequest 
+     * @param {ApplianceRequest} applianceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AppliancesApi
      */
-    public appliancesCreate(createApplianceRequest: CreateApplianceRequest, options?: AxiosRequestConfig) {
-        return AppliancesApiFp(this.configuration).appliancesCreate(createApplianceRequest, options).then((request) => request(this.axios, this.basePath));
+    public appliancesCreate(applianceRequest: ApplianceRequest, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesCreate(applianceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7764,6 +7833,17 @@ export class AppliancesApi extends BaseAPI implements AppliancesApiInterface {
      */
     public appliancesUpdate(id: number, applianceRequest: ApplianceRequest, options?: AxiosRequestConfig) {
         return AppliancesApiFp(this.configuration).appliancesUpdate(id, applianceRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+     * @param {CreateApplianceRequest} createApplianceRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesUpdateOrCreateCreate(createApplianceRequest: CreateApplianceRequest, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesUpdateOrCreateCreate(createApplianceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
