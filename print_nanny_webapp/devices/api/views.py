@@ -45,6 +45,7 @@ class ApplianceViewSet(
     lookup_field = "id"
 
     @extend_schema(
+        operation_id="appliances_update_or_create",
         request=CreateApplianceSerializer,
         responses={
             400: ApplianceSerializer,
