@@ -74,12 +74,14 @@ class ApplianceViewSet(
     def create(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         hostname = request.data.get("hostname")
         try:
-            super().create(request, *args, **kwargs)
+            return super().create(request, *args, **kwargs)
         except IntegrityError:
             raise ValidationError(
                 code=rest_framework.status.HTTP_409_CONFLICT,
                 detail=f"HTTP_409_CONFLICT: Appliance with hostname={hostname} already exists for user={self.request.user.id}",
             )
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 
 class CameraViewSet(

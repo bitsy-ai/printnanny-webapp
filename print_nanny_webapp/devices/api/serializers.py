@@ -73,8 +73,8 @@ class AnsibleFactsSerializer(serializers.ModelSerializer):
 
 
 class ApplianceSerializer(serializers.ModelSerializer):
-    pki = AppliancePKISerializer(read_only=True, required=False)
-    ansible_facts = AnsibleFactsSerializer(read_only=True, required=False)
+    pki = AppliancePKISerializer(read_only=True, required=False, allow_null=True)
+    ansible_facts = AnsibleFactsSerializer(read_only=True, required=False, allow_null=True)
     cameras = CameraSerializer(read_only=True, many=True)
     printer_controllers = PrinterControllerSerializer(read_only=True, many=True)
     user = serializers.PrimaryKeyRelatedField(read_only=True)
