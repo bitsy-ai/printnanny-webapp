@@ -37,12 +37,16 @@ class TestCreateAppliancePKIRequest(unittest.TestCase):
         if include_optional :
             return CreateAppliancePKIRequest(
                 public_key = '', 
+                public_key_path = '', 
+                private_key_path = '', 
                 public_key_checksum = '', 
                 fingerprint = ''
             )
         else :
             return CreateAppliancePKIRequest(
                 public_key = '',
+                public_key_path = '',
+                private_key_path = '',
                 public_key_checksum = '',
                 fingerprint = '',
         )

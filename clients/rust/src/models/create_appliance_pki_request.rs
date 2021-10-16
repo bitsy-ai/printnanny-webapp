@@ -13,6 +13,10 @@
 pub struct CreateAppliancePkiRequest {
     #[serde(rename = "public_key")]
     pub public_key: String,
+    #[serde(rename = "public_key_path")]
+    pub public_key_path: String,
+    #[serde(rename = "private_key_path")]
+    pub private_key_path: String,
     #[serde(rename = "public_key_checksum")]
     pub public_key_checksum: String,
     #[serde(rename = "fingerprint")]
@@ -20,9 +24,11 @@ pub struct CreateAppliancePkiRequest {
 }
 
 impl CreateAppliancePkiRequest {
-    pub fn new(public_key: String, public_key_checksum: String, fingerprint: String) -> CreateAppliancePkiRequest {
+    pub fn new(public_key: String, public_key_path: String, private_key_path: String, public_key_checksum: String, fingerprint: String) -> CreateAppliancePkiRequest {
         CreateAppliancePkiRequest {
             public_key,
+            public_key_path,
+            private_key_path,
             public_key_checksum,
             fingerprint,
         }
