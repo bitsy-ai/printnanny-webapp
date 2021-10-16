@@ -831,6 +831,18 @@ export interface CreateAppliancePKIRequest {
      * @type {string}
      * @memberof CreateAppliancePKIRequest
      */
+    'public_key_path': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateAppliancePKIRequest
+     */
+    'private_key_path': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateAppliancePKIRequest
+     */
     'public_key_checksum': string;
     /**
      * 
