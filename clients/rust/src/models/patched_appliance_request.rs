@@ -11,29 +11,14 @@
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PatchedApplianceRequest {
-    #[serde(rename = "pki", skip_serializing_if = "Option::is_none")]
-    pub pki: Option<Box<crate::models::AppliancePkiRequest>>,
-    #[serde(rename = "ansible_facts", skip_serializing_if = "Option::is_none")]
-    pub ansible_facts: Option<Box<crate::models::AnsibleFactsRequest>>,
-    #[serde(rename = "cameras", skip_serializing_if = "Option::is_none")]
-    pub cameras: Option<Box<crate::models::CameraRequest>>,
-    #[serde(rename = "printer_controllers", skip_serializing_if = "Option::is_none")]
-    pub printer_controllers: Option<Box<crate::models::PrinterControllerRequest>>,
     #[serde(rename = "hostname", skip_serializing_if = "Option::is_none")]
     pub hostname: Option<String>,
-    #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
-    pub user: Option<i32>,
 }
 
 impl PatchedApplianceRequest {
     pub fn new() -> PatchedApplianceRequest {
         PatchedApplianceRequest {
-            pki: None,
-            ansible_facts: None,
-            cameras: None,
-            printer_controllers: None,
             hostname: None,
-            user: None,
         }
     }
 }

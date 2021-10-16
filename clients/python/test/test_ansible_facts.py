@@ -37,6 +37,8 @@ class TestAnsibleFacts(unittest.TestCase):
         if include_optional :
             return AnsibleFacts(
                 id = 56, 
+                user = '', 
+                appliance = 56, 
                 deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 os_version = '', 
                 os = '', 
@@ -53,12 +55,13 @@ class TestAnsibleFacts(unittest.TestCase):
                 release_channel = 'main', 
                 json = {
                     'key' : null
-                    }, 
-                appliance = 56
+                    }
             )
         else :
             return AnsibleFacts(
                 id = 56,
+                user = '',
+                appliance = 56,
                 deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 os_version = '',
                 os = '',
@@ -71,7 +74,6 @@ class TestAnsibleFacts(unittest.TestCase):
                 json = {
                     'key' : null
                     },
-                appliance = 56,
         )
 
     def testAnsibleFacts(self):

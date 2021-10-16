@@ -36,34 +36,24 @@ class PatchedPrinterControllerRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'software': 'SoftwareEnum',
-        'user': 'int',
-        'appliance': 'int'
+        'software': 'SoftwareEnum'
     }
 
     attribute_map = {
-        'software': 'software',
-        'user': 'user',
-        'appliance': 'appliance'
+        'software': 'software'
     }
 
-    def __init__(self, software=None, user=None, appliance=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, software=None, local_vars_configuration=None):  # noqa: E501
         """PatchedPrinterControllerRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._software = None
-        self._user = None
-        self._appliance = None
         self.discriminator = None
 
         if software is not None:
             self.software = software
-        if user is not None:
-            self.user = user
-        if appliance is not None:
-            self.appliance = appliance
 
     @property
     def software(self):
@@ -85,48 +75,6 @@ class PatchedPrinterControllerRequest(object):
         """
 
         self._software = software
-
-    @property
-    def user(self):
-        """Gets the user of this PatchedPrinterControllerRequest.  # noqa: E501
-
-
-        :return: The user of this PatchedPrinterControllerRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._user
-
-    @user.setter
-    def user(self, user):
-        """Sets the user of this PatchedPrinterControllerRequest.
-
-
-        :param user: The user of this PatchedPrinterControllerRequest.  # noqa: E501
-        :type user: int
-        """
-
-        self._user = user
-
-    @property
-    def appliance(self):
-        """Gets the appliance of this PatchedPrinterControllerRequest.  # noqa: E501
-
-
-        :return: The appliance of this PatchedPrinterControllerRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._appliance
-
-    @appliance.setter
-    def appliance(self, appliance):
-        """Sets the appliance of this PatchedPrinterControllerRequest.
-
-
-        :param appliance: The appliance of this PatchedPrinterControllerRequest.  # noqa: E501
-        :type appliance: int
-        """
-
-        self._appliance = appliance
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

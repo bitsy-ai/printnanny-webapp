@@ -42,60 +42,37 @@ class TestPaginatedApplianceList(unittest.TestCase):
                 results = [
                     print_nanny_client.models.appliance.Appliance(
                         id = 56, 
-                        pki = print_nanny_client.models.appliance_pki.AppliancePKI(
-                            id = 56, 
-                            deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                            public_key_path = '', 
-                            private_key_path = '', 
-                            public_key = '', 
-                            public_key_checksum = '', 
-                            fingerprint = '', 
-                            appliance = 56, ), 
-                        ansible_facts = print_nanny_client.models.ansible_facts.AnsibleFacts(
-                            id = 56, 
-                            deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                            os_version = '', 
-                            os = '', 
-                            kernel_version = '', 
-                            hardware = '', 
-                            revision = '', 
-                            model = '', 
-                            serial = '', 
-                            cores = -2147483648, 
-                            ram = -9223372036854775808, 
-                            cpu_flags = [
-                                ''
-                                ], 
-                            release_channel = 'main', 
-                            json = {
-                                'key' : null
-                                }, 
-                            appliance = 56, ), 
-                        cameras = print_nanny_client.models.camera.Camera(
-                            id = 56, 
-                            deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                            created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                            updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                            name = '', 
-                            camera_type = 'Raspberry Pi Camera Module', 
-                            camera_source = '', 
-                            camera_source_type = 'MJPG Streamer', 
-                            user = 56, 
-                            appliance = 56, ), 
-                        printer_controllers = print_nanny_client.models.printer_controller.PrinterController(
-                            id = 56, 
-                            deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                            created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                            updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                            software = 'OctoPrint', 
-                            polymorphic_ctype = 56, 
-                            user = 56, 
-                            appliance = 56, ), 
+                        pki = null, 
+                        ansible_facts = null, 
+                        cameras = [
+                            print_nanny_client.models.camera.Camera(
+                                id = 56, 
+                                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                user = 56, 
+                                appliance = 56, 
+                                name = '', 
+                                camera_type = null, 
+                                camera_source = '', 
+                                url = '', )
+                            ], 
+                        printer_controllers = [
+                            print_nanny_client.models.printer_controller.PrinterController(
+                                id = 56, 
+                                user = 56, 
+                                appliance = 56, 
+                                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                software = 'OctoPrint', 
+                                polymorphic_ctype = 56, )
+                            ], 
+                        user = 56, 
                         deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        hostname = '', 
-                        user = 56, )
+                        hostname = '', )
                     ]
             )
         else :

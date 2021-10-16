@@ -36,11 +36,11 @@ import java.io.Serializable
  * @param ansibleFacts 
  * @param cameras 
  * @param printerControllers 
+ * @param user 
  * @param deleted 
  * @param createdDt 
  * @param updatedDt 
  * @param hostname 
- * @param user 
  */
 
 data class Appliance (
@@ -49,16 +49,19 @@ data class Appliance (
     val id: kotlin.Int,
 
     @Json(name = "pki")
-    val pki: AppliancePKI,
+    val pki: AppliancePKI?,
 
     @Json(name = "ansible_facts")
-    val ansibleFacts: AnsibleFacts,
+    val ansibleFacts: AnsibleFacts?,
 
     @Json(name = "cameras")
-    val cameras: Camera,
+    val cameras: kotlin.collections.List<Camera>,
 
     @Json(name = "printer_controllers")
-    val printerControllers: PrinterController,
+    val printerControllers: kotlin.collections.List<PrinterController>,
+
+    @Json(name = "user")
+    val user: kotlin.Int,
 
     @Json(name = "deleted")
     val deleted: java.time.OffsetDateTime,
@@ -70,10 +73,7 @@ data class Appliance (
     val updatedDt: java.time.OffsetDateTime,
 
     @Json(name = "hostname")
-    val hostname: kotlin.String,
-
-    @Json(name = "user")
-    val user: kotlin.Int
+    val hostname: kotlin.String
 
 ) : Serializable {
     companion object {

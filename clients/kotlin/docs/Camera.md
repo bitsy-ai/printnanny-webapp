@@ -8,12 +8,12 @@ Name | Type | Description | Notes
 **deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
 **createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
 **updatedDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
+**user** | **kotlin.Int** |  |  [readonly]
+**appliance** | **kotlin.Int** |  |  [readonly]
 **name** | **kotlin.String** |  | 
-**cameraType** | [**CameraTypeEnum**](CameraTypeEnum.md) |  | 
 **cameraSource** | **kotlin.String** |  | 
-**cameraSourceType** | [**CameraSourceTypeEnum**](CameraSourceTypeEnum.md) |  | 
-**user** | **kotlin.Int** |  | 
-**appliance** | **kotlin.Int** |  | 
+**url** | [**java.net.URI**](java.net.URI.md) |  |  [readonly]
+**cameraType** | [**CameraTypeEnum**](CameraTypeEnum.md) |  |  [optional]
 
 
 

@@ -19,33 +19,33 @@ pub struct Camera {
     pub created_dt: String,
     #[serde(rename = "updated_dt")]
     pub updated_dt: String,
-    #[serde(rename = "name")]
-    pub name: String,
-    #[serde(rename = "camera_type")]
-    pub camera_type: crate::models::CameraTypeEnum,
-    #[serde(rename = "camera_source")]
-    pub camera_source: String,
-    #[serde(rename = "camera_source_type")]
-    pub camera_source_type: crate::models::CameraSourceTypeEnum,
     #[serde(rename = "user")]
     pub user: i32,
     #[serde(rename = "appliance")]
     pub appliance: i32,
+    #[serde(rename = "name")]
+    pub name: String,
+    #[serde(rename = "camera_type", skip_serializing_if = "Option::is_none")]
+    pub camera_type: Option<Box<crate::models::CameraTypeEnum>>,
+    #[serde(rename = "camera_source")]
+    pub camera_source: String,
+    #[serde(rename = "url")]
+    pub url: String,
 }
 
 impl Camera {
-    pub fn new(id: i32, deleted: String, created_dt: String, updated_dt: String, name: String, camera_type: crate::models::CameraTypeEnum, camera_source: String, camera_source_type: crate::models::CameraSourceTypeEnum, user: i32, appliance: i32) -> Camera {
+    pub fn new(id: i32, deleted: String, created_dt: String, updated_dt: String, user: i32, appliance: i32, name: String, camera_source: String, url: String) -> Camera {
         Camera {
             id,
             deleted,
             created_dt,
             updated_dt,
-            name,
-            camera_type,
-            camera_source,
-            camera_source_type,
             user,
             appliance,
+            name,
+            camera_type: None,
+            camera_source,
+            url,
         }
     }
 }

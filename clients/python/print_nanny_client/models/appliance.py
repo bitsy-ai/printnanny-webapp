@@ -39,13 +39,13 @@ class Appliance(object):
         'id': 'int',
         'pki': 'AppliancePKI',
         'ansible_facts': 'AnsibleFacts',
-        'cameras': 'Camera',
-        'printer_controllers': 'PrinterController',
+        'cameras': 'list[Camera]',
+        'printer_controllers': 'list[PrinterController]',
+        'user': 'int',
         'deleted': 'datetime',
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
-        'hostname': 'str',
-        'user': 'int'
+        'hostname': 'str'
     }
 
     attribute_map = {
@@ -54,14 +54,14 @@ class Appliance(object):
         'ansible_facts': 'ansible_facts',
         'cameras': 'cameras',
         'printer_controllers': 'printer_controllers',
+        'user': 'user',
         'deleted': 'deleted',
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
-        'hostname': 'hostname',
-        'user': 'user'
+        'hostname': 'hostname'
     }
 
-    def __init__(self, id=None, pki=None, ansible_facts=None, cameras=None, printer_controllers=None, deleted=None, created_dt=None, updated_dt=None, hostname=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, pki=None, ansible_facts=None, cameras=None, printer_controllers=None, user=None, deleted=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
         """Appliance - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -72,11 +72,11 @@ class Appliance(object):
         self._ansible_facts = None
         self._cameras = None
         self._printer_controllers = None
+        self._user = None
         self._deleted = None
         self._created_dt = None
         self._updated_dt = None
         self._hostname = None
-        self._user = None
         self.discriminator = None
 
         self.id = id
@@ -84,11 +84,11 @@ class Appliance(object):
         self.ansible_facts = ansible_facts
         self.cameras = cameras
         self.printer_controllers = printer_controllers
+        self.user = user
         self.deleted = deleted
         self.created_dt = created_dt
         self.updated_dt = updated_dt
         self.hostname = hostname
-        self.user = user
 
     @property
     def id(self):
@@ -131,8 +131,6 @@ class Appliance(object):
         :param pki: The pki of this Appliance.  # noqa: E501
         :type pki: AppliancePKI
         """
-        if self.local_vars_configuration.client_side_validation and pki is None:  # noqa: E501
-            raise ValueError("Invalid value for `pki`, must not be `None`")  # noqa: E501
 
         self._pki = pki
 
@@ -154,8 +152,6 @@ class Appliance(object):
         :param ansible_facts: The ansible_facts of this Appliance.  # noqa: E501
         :type ansible_facts: AnsibleFacts
         """
-        if self.local_vars_configuration.client_side_validation and ansible_facts is None:  # noqa: E501
-            raise ValueError("Invalid value for `ansible_facts`, must not be `None`")  # noqa: E501
 
         self._ansible_facts = ansible_facts
 
@@ -165,7 +161,7 @@ class Appliance(object):
 
 
         :return: The cameras of this Appliance.  # noqa: E501
-        :rtype: Camera
+        :rtype: list[Camera]
         """
         return self._cameras
 
@@ -175,7 +171,7 @@ class Appliance(object):
 
 
         :param cameras: The cameras of this Appliance.  # noqa: E501
-        :type cameras: Camera
+        :type cameras: list[Camera]
         """
         if self.local_vars_configuration.client_side_validation and cameras is None:  # noqa: E501
             raise ValueError("Invalid value for `cameras`, must not be `None`")  # noqa: E501
@@ -188,7 +184,7 @@ class Appliance(object):
 
 
         :return: The printer_controllers of this Appliance.  # noqa: E501
-        :rtype: PrinterController
+        :rtype: list[PrinterController]
         """
         return self._printer_controllers
 
@@ -198,12 +194,35 @@ class Appliance(object):
 
 
         :param printer_controllers: The printer_controllers of this Appliance.  # noqa: E501
-        :type printer_controllers: PrinterController
+        :type printer_controllers: list[PrinterController]
         """
         if self.local_vars_configuration.client_side_validation and printer_controllers is None:  # noqa: E501
             raise ValueError("Invalid value for `printer_controllers`, must not be `None`")  # noqa: E501
 
         self._printer_controllers = printer_controllers
+
+    @property
+    def user(self):
+        """Gets the user of this Appliance.  # noqa: E501
+
+
+        :return: The user of this Appliance.  # noqa: E501
+        :rtype: int
+        """
+        return self._user
+
+    @user.setter
+    def user(self, user):
+        """Sets the user of this Appliance.
+
+
+        :param user: The user of this Appliance.  # noqa: E501
+        :type user: int
+        """
+        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
+            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
+
+        self._user = user
 
     @property
     def deleted(self):
@@ -299,29 +318,6 @@ class Appliance(object):
             raise ValueError("Invalid value for `hostname`, length must be less than or equal to `255`")  # noqa: E501
 
         self._hostname = hostname
-
-    @property
-    def user(self):
-        """Gets the user of this Appliance.  # noqa: E501
-
-
-        :return: The user of this Appliance.  # noqa: E501
-        :rtype: int
-        """
-        return self._user
-
-    @user.setter
-    def user(self, user):
-        """Sets the user of this Appliance.
-
-
-        :param user: The user of this Appliance.  # noqa: E501
-        :type user: int
-        """
-        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
-            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
-
-        self._user = user
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

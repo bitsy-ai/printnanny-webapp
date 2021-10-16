@@ -17,7 +17,6 @@ use super::{Error, configuration};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesCamerasCreateError {
-    Status400(crate::models::Camera),
     UnknownValue(serde_json::Value),
 }
 
@@ -53,6 +52,9 @@ pub enum AppliancesCamerasUpdateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesCreateError {
+    Status403(crate::models::InlineResponse403),
+    Status409(crate::models::InlineResponse403),
+    Status500(crate::models::InlineResponse403),
     UnknownValue(serde_json::Value),
 }
 
@@ -60,6 +62,8 @@ pub enum AppliancesCreateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesListError {
+    Status403(crate::models::InlineResponse403),
+    Status500(crate::models::InlineResponse403),
     UnknownValue(serde_json::Value),
 }
 
@@ -74,7 +78,6 @@ pub enum AppliancesPartialUpdateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesPrinterControllersCreateError {
-    Status400(crate::models::PrinterController),
     UnknownValue(serde_json::Value),
 }
 
@@ -117,14 +120,9 @@ pub enum AppliancesRetrieveError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesUpdateError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`appliances_update_or_create`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum AppliancesUpdateOrCreateError {
-    Status400(crate::models::Appliance),
+    Status403(crate::models::InlineResponse403),
+    Status409(crate::models::InlineResponse403),
+    Status500(crate::models::InlineResponse403),
     UnknownValue(serde_json::Value),
 }
 
@@ -597,38 +595,6 @@ pub async fn appliances_update(configuration: &configuration::Configuration, id:
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<AppliancesUpdateError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-/// All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-pub async fn appliances_update_or_create(configuration: &configuration::Configuration, create_appliance_request: crate::models::CreateApplianceRequest) -> Result<crate::models::Appliance, Error<AppliancesUpdateOrCreateError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/api/appliances/update-or-create/", local_var_configuration.base_path);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    local_var_req_builder = local_var_req_builder.json(&create_appliance_request);
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<AppliancesUpdateOrCreateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }

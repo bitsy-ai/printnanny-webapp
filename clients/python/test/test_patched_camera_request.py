@@ -37,11 +37,8 @@ class TestPatchedCameraRequest(unittest.TestCase):
         if include_optional :
             return PatchedCameraRequest(
                 name = '', 
-                camera_type = 'Raspberry Pi Camera Module', 
-                camera_source = '', 
-                camera_source_type = 'MJPG Streamer', 
-                user = 56, 
-                appliance = 56
+                camera_type = None, 
+                camera_source = ''
             )
         else :
             return PatchedCameraRequest(

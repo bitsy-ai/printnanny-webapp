@@ -29,19 +29,25 @@ import java.io.Serializable
  * 
  *
  * @param id 
+ * @param user 
+ * @param appliance 
  * @param deleted 
  * @param createdDt 
  * @param updatedDt 
  * @param software 
  * @param polymorphicCtype 
- * @param user 
- * @param appliance 
  */
 
 data class PrinterController (
 
     @Json(name = "id")
     val id: kotlin.Int,
+
+    @Json(name = "user")
+    val user: kotlin.Int,
+
+    @Json(name = "appliance")
+    val appliance: kotlin.Int,
 
     @Json(name = "deleted")
     val deleted: java.time.OffsetDateTime,
@@ -56,13 +62,7 @@ data class PrinterController (
     val software: SoftwareEnum,
 
     @Json(name = "polymorphic_ctype")
-    val polymorphicCtype: kotlin.Int,
-
-    @Json(name = "user")
-    val user: kotlin.Int,
-
-    @Json(name = "appliance")
-    val appliance: kotlin.Int
+    val polymorphicCtype: kotlin.Int
 
 ) : Serializable {
     companion object {

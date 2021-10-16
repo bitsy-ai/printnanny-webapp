@@ -14,13 +14,15 @@ pub struct Appliance {
     #[serde(rename = "id")]
     pub id: i32,
     #[serde(rename = "pki")]
-    pub pki: Box<crate::models::AppliancePki>,
+    pub pki: Option<Box<crate::models::AppliancePki>>,
     #[serde(rename = "ansible_facts")]
-    pub ansible_facts: Box<crate::models::AnsibleFacts>,
+    pub ansible_facts: Option<Box<crate::models::AnsibleFacts>>,
     #[serde(rename = "cameras")]
-    pub cameras: Box<crate::models::Camera>,
+    pub cameras: Vec<crate::models::Camera>,
     #[serde(rename = "printer_controllers")]
-    pub printer_controllers: Box<crate::models::PrinterController>,
+    pub printer_controllers: Vec<crate::models::PrinterController>,
+    #[serde(rename = "user")]
+    pub user: i32,
     #[serde(rename = "deleted")]
     pub deleted: String,
     #[serde(rename = "created_dt")]
@@ -29,23 +31,21 @@ pub struct Appliance {
     pub updated_dt: String,
     #[serde(rename = "hostname")]
     pub hostname: String,
-    #[serde(rename = "user")]
-    pub user: i32,
 }
 
 impl Appliance {
-    pub fn new(id: i32, pki: crate::models::AppliancePki, ansible_facts: crate::models::AnsibleFacts, cameras: crate::models::Camera, printer_controllers: crate::models::PrinterController, deleted: String, created_dt: String, updated_dt: String, hostname: String, user: i32) -> Appliance {
+    pub fn new(id: i32, pki: Option<crate::models::AppliancePki>, ansible_facts: Option<crate::models::AnsibleFacts>, cameras: Vec<crate::models::Camera>, printer_controllers: Vec<crate::models::PrinterController>, user: i32, deleted: String, created_dt: String, updated_dt: String, hostname: String) -> Appliance {
         Appliance {
             id,
-            pki: Box::new(pki),
-            ansible_facts: Box::new(ansible_facts),
-            cameras: Box::new(cameras),
-            printer_controllers: Box::new(printer_controllers),
+            pki: None,
+            ansible_facts: None,
+            cameras,
+            printer_controllers,
+            user,
             deleted,
             created_dt,
             updated_dt,
             hostname,
-            user,
         }
     }
 }

@@ -29,6 +29,8 @@ import java.io.Serializable
  * 
  *
  * @param id 
+ * @param user 
+ * @param appliance 
  * @param deleted 
  * @param osVersion 
  * @param os 
@@ -37,7 +39,6 @@ import java.io.Serializable
  * @param ram 
  * @param cpuFlags 
  * @param json 
- * @param appliance 
  * @param hardware 
  * @param revision 
  * @param model 
@@ -49,6 +50,12 @@ data class AnsibleFacts (
 
     @Json(name = "id")
     val id: kotlin.Int,
+
+    @Json(name = "user")
+    val user: kotlin.String,
+
+    @Json(name = "appliance")
+    val appliance: kotlin.Int,
 
     @Json(name = "deleted")
     val deleted: java.time.OffsetDateTime,
@@ -73,9 +80,6 @@ data class AnsibleFacts (
 
     @Json(name = "json")
     val json: kotlin.collections.Map<kotlin.String, kotlin.Any>,
-
-    @Json(name = "appliance")
-    val appliance: kotlin.Int,
 
     @Json(name = "hardware")
     val hardware: kotlin.String? = null,

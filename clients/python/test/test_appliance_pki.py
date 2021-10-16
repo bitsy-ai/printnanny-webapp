@@ -37,24 +37,26 @@ class TestAppliancePKI(unittest.TestCase):
         if include_optional :
             return AppliancePKI(
                 id = 56, 
+                user = '', 
+                appliance = 56, 
                 deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 public_key_path = '', 
                 private_key_path = '', 
                 public_key = '', 
                 public_key_checksum = '', 
-                fingerprint = '', 
-                appliance = 56
+                fingerprint = ''
             )
         else :
             return AppliancePKI(
                 id = 56,
+                user = '',
+                appliance = 56,
                 deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 public_key_path = '',
                 private_key_path = '',
                 public_key = '',
                 public_key_checksum = '',
                 fingerprint = '',
-                appliance = 56,
         )
 
     def testAppliancePKI(self):

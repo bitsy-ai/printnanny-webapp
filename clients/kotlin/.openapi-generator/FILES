@@ -20,12 +20,8 @@ docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
 docs/Camera.md
 docs/CameraRequest.md
-docs/CameraSourceTypeEnum.md
 docs/CameraTypeEnum.md
 docs/CommandEnum.md
-docs/CreateAnsibleFactsRequest.md
-docs/CreateAppliancePKIRequest.md
-docs/CreateApplianceRequest.md
 docs/DetailResponse.md
 docs/DeviceCalibration.md
 docs/DeviceCalibrationRequest.md
@@ -36,6 +32,7 @@ docs/EventTypeD9eEnum.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
+docs/InlineResponse403.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
@@ -182,12 +179,8 @@ src/main/kotlin/com/print-nanny/client/models/CallbackTokenVerification.kt
 src/main/kotlin/com/print-nanny/client/models/CallbackTokenVerificationRequest.kt
 src/main/kotlin/com/print-nanny/client/models/Camera.kt
 src/main/kotlin/com/print-nanny/client/models/CameraRequest.kt
-src/main/kotlin/com/print-nanny/client/models/CameraSourceTypeEnum.kt
 src/main/kotlin/com/print-nanny/client/models/CameraTypeEnum.kt
 src/main/kotlin/com/print-nanny/client/models/CommandEnum.kt
-src/main/kotlin/com/print-nanny/client/models/CreateAnsibleFactsRequest.kt
-src/main/kotlin/com/print-nanny/client/models/CreateAppliancePKIRequest.kt
-src/main/kotlin/com/print-nanny/client/models/CreateApplianceRequest.kt
 src/main/kotlin/com/print-nanny/client/models/DetailResponse.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceCalibration.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceCalibrationRequest.kt
@@ -198,6 +191,7 @@ src/main/kotlin/com/print-nanny/client/models/EventTypeD9eEnum.kt
 src/main/kotlin/com/print-nanny/client/models/Experiment.kt
 src/main/kotlin/com/print-nanny/client/models/ExperimentDeviceConfig.kt
 src/main/kotlin/com/print-nanny/client/models/GcodeFile.kt
+src/main/kotlin/com/print-nanny/client/models/InlineResponse403.kt
 src/main/kotlin/com/print-nanny/client/models/MobileAuthRequest.kt
 src/main/kotlin/com/print-nanny/client/models/ModelArtifact.kt
 src/main/kotlin/com/print-nanny/client/models/OctoPrintDevice.kt

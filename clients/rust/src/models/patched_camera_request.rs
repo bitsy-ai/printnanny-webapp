@@ -14,15 +14,9 @@ pub struct PatchedCameraRequest {
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
     #[serde(rename = "camera_type", skip_serializing_if = "Option::is_none")]
-    pub camera_type: Option<crate::models::CameraTypeEnum>,
+    pub camera_type: Option<Box<crate::models::CameraTypeEnum>>,
     #[serde(rename = "camera_source", skip_serializing_if = "Option::is_none")]
     pub camera_source: Option<String>,
-    #[serde(rename = "camera_source_type", skip_serializing_if = "Option::is_none")]
-    pub camera_source_type: Option<crate::models::CameraSourceTypeEnum>,
-    #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
-    pub user: Option<i32>,
-    #[serde(rename = "appliance", skip_serializing_if = "Option::is_none")]
-    pub appliance: Option<i32>,
 }
 
 impl PatchedCameraRequest {
@@ -31,9 +25,6 @@ impl PatchedCameraRequest {
             name: None,
             camera_type: None,
             camera_source: None,
-            camera_source_type: None,
-            user: None,
-            appliance: None,
         }
     }
 }

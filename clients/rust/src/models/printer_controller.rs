@@ -13,6 +13,10 @@
 pub struct PrinterController {
     #[serde(rename = "id")]
     pub id: i32,
+    #[serde(rename = "user")]
+    pub user: i32,
+    #[serde(rename = "appliance")]
+    pub appliance: i32,
     #[serde(rename = "deleted")]
     pub deleted: String,
     #[serde(rename = "created_dt")]
@@ -23,23 +27,19 @@ pub struct PrinterController {
     pub software: crate::models::SoftwareEnum,
     #[serde(rename = "polymorphic_ctype")]
     pub polymorphic_ctype: i32,
-    #[serde(rename = "user")]
-    pub user: i32,
-    #[serde(rename = "appliance")]
-    pub appliance: i32,
 }
 
 impl PrinterController {
-    pub fn new(id: i32, deleted: String, created_dt: String, updated_dt: String, software: crate::models::SoftwareEnum, polymorphic_ctype: i32, user: i32, appliance: i32) -> PrinterController {
+    pub fn new(id: i32, user: i32, appliance: i32, deleted: String, created_dt: String, updated_dt: String, software: crate::models::SoftwareEnum, polymorphic_ctype: i32) -> PrinterController {
         PrinterController {
             id,
+            user,
+            appliance,
             deleted,
             created_dt,
             updated_dt,
             software,
             polymorphic_ctype,
-            user,
-            appliance,
         }
     }
 }

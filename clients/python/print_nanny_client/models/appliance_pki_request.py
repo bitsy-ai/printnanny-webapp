@@ -40,8 +40,7 @@ class AppliancePKIRequest(object):
         'private_key_path': 'str',
         'public_key': 'str',
         'public_key_checksum': 'str',
-        'fingerprint': 'str',
-        'appliance': 'int'
+        'fingerprint': 'str'
     }
 
     attribute_map = {
@@ -49,11 +48,10 @@ class AppliancePKIRequest(object):
         'private_key_path': 'private_key_path',
         'public_key': 'public_key',
         'public_key_checksum': 'public_key_checksum',
-        'fingerprint': 'fingerprint',
-        'appliance': 'appliance'
+        'fingerprint': 'fingerprint'
     }
 
-    def __init__(self, public_key_path=None, private_key_path=None, public_key=None, public_key_checksum=None, fingerprint=None, appliance=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, public_key_path=None, private_key_path=None, public_key=None, public_key_checksum=None, fingerprint=None, local_vars_configuration=None):  # noqa: E501
         """AppliancePKIRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -64,7 +62,6 @@ class AppliancePKIRequest(object):
         self._public_key = None
         self._public_key_checksum = None
         self._fingerprint = None
-        self._appliance = None
         self.discriminator = None
 
         self.public_key_path = public_key_path
@@ -72,7 +69,6 @@ class AppliancePKIRequest(object):
         self.public_key = public_key
         self.public_key_checksum = public_key_checksum
         self.fingerprint = fingerprint
-        self.appliance = appliance
 
     @property
     def public_key_path(self):
@@ -200,29 +196,6 @@ class AppliancePKIRequest(object):
             raise ValueError("Invalid value for `fingerprint`, length must be less than or equal to `255`")  # noqa: E501
 
         self._fingerprint = fingerprint
-
-    @property
-    def appliance(self):
-        """Gets the appliance of this AppliancePKIRequest.  # noqa: E501
-
-
-        :return: The appliance of this AppliancePKIRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._appliance
-
-    @appliance.setter
-    def appliance(self, appliance):
-        """Sets the appliance of this AppliancePKIRequest.
-
-
-        :param appliance: The appliance of this AppliancePKIRequest.  # noqa: E501
-        :type appliance: int
-        """
-        if self.local_vars_configuration.client_side_validation and appliance is None:  # noqa: E501
-            raise ValueError("Invalid value for `appliance`, must not be `None`")  # noqa: E501
-
-        self._appliance = appliance
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

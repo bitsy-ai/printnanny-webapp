@@ -24,12 +24,8 @@ docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
 docs/Camera.md
 docs/CameraRequest.md
-docs/CameraSourceTypeEnum.md
 docs/CameraTypeEnum.md
 docs/CommandEnum.md
-docs/CreateAnsibleFactsRequest.md
-docs/CreateAppliancePKIRequest.md
-docs/CreateApplianceRequest.md
 docs/DetailResponse.md
 docs/DeviceCalibration.md
 docs/DeviceCalibrationRequest.md
@@ -40,6 +36,7 @@ docs/EventTypeD9eEnum.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
+docs/InlineResponse403.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
@@ -173,12 +170,8 @@ print_nanny_client/models/callback_token_verification.py
 print_nanny_client/models/callback_token_verification_request.py
 print_nanny_client/models/camera.py
 print_nanny_client/models/camera_request.py
-print_nanny_client/models/camera_source_type_enum.py
 print_nanny_client/models/camera_type_enum.py
 print_nanny_client/models/command_enum.py
-print_nanny_client/models/create_ansible_facts_request.py
-print_nanny_client/models/create_appliance_pki_request.py
-print_nanny_client/models/create_appliance_request.py
 print_nanny_client/models/detail_response.py
 print_nanny_client/models/device_calibration.py
 print_nanny_client/models/device_calibration_request.py
@@ -189,6 +182,7 @@ print_nanny_client/models/event_type_d9e_enum.py
 print_nanny_client/models/experiment.py
 print_nanny_client/models/experiment_device_config.py
 print_nanny_client/models/gcode_file.py
+print_nanny_client/models/inline_response403.py
 print_nanny_client/models/mobile_auth_request.py
 print_nanny_client/models/model_artifact.py
 print_nanny_client/models/octo_print_device.py
@@ -308,12 +302,8 @@ test/test_callback_token_verification.py
 test/test_callback_token_verification_request.py
 test/test_camera.py
 test/test_camera_request.py
-test/test_camera_source_type_enum.py
 test/test_camera_type_enum.py
 test/test_command_enum.py
-test/test_create_ansible_facts_request.py
-test/test_create_appliance_pki_request.py
-test/test_create_appliance_request.py
 test/test_detail_response.py
 test/test_device_calibration.py
 test/test_device_calibration_request.py
@@ -324,6 +314,7 @@ test/test_event_type_d9e_enum.py
 test/test_experiment.py
 test/test_experiment_device_config.py
 test/test_gcode_file.py
+test/test_inline_response403.py
 test/test_ml_ops_api.py
 test/test_mobile_auth_request.py
 test/test_model_artifact.py

@@ -20,8 +20,6 @@
 
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.CreateAnsibleFactsRequest
-import com.print-nanny.client.models.CreateAppliancePKIRequest
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -29,21 +27,13 @@ import java.io.Serializable
 /**
  * 
  *
- * @param ansibleFacts 
- * @param hostname 
- * @param pki 
+ * @param detail 
  */
 
-data class CreateApplianceRequest (
+data class InlineResponse403 (
 
-    @Json(name = "ansible_facts")
-    val ansibleFacts: CreateAnsibleFactsRequest,
-
-    @Json(name = "hostname")
-    val hostname: kotlin.String,
-
-    @Json(name = "pki")
-    val pki: CreateAppliancePKIRequest
+    @Json(name = "detail")
+    val detail: kotlin.String? = null
 
 ) : Serializable {
     companion object {

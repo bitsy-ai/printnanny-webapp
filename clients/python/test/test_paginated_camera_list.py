@@ -45,12 +45,12 @@ class TestPaginatedCameraList(unittest.TestCase):
                         deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        name = '', 
-                        camera_type = 'Raspberry Pi Camera Module', 
-                        camera_source = '', 
-                        camera_source_type = 'MJPG Streamer', 
                         user = 56, 
-                        appliance = 56, )
+                        appliance = 56, 
+                        name = '', 
+                        camera_type = null, 
+                        camera_source = '', 
+                        url = '', )
                     ]
             )
         else :

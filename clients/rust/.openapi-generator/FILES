@@ -22,12 +22,8 @@ docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
 docs/Camera.md
 docs/CameraRequest.md
-docs/CameraSourceTypeEnum.md
 docs/CameraTypeEnum.md
 docs/CommandEnum.md
-docs/CreateAnsibleFactsRequest.md
-docs/CreateAppliancePkiRequest.md
-docs/CreateApplianceRequest.md
 docs/DetailResponse.md
 docs/DeviceCalibration.md
 docs/DeviceCalibrationRequest.md
@@ -38,6 +34,7 @@ docs/EventTypeD9eEnum.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
+docs/InlineResponse403.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
@@ -167,12 +164,8 @@ src/models/callback_token_verification.rs
 src/models/callback_token_verification_request.rs
 src/models/camera.rs
 src/models/camera_request.rs
-src/models/camera_source_type_enum.rs
 src/models/camera_type_enum.rs
 src/models/command_enum.rs
-src/models/create_ansible_facts_request.rs
-src/models/create_appliance_pki_request.rs
-src/models/create_appliance_request.rs
 src/models/detail_response.rs
 src/models/device_calibration.rs
 src/models/device_calibration_request.rs
@@ -183,6 +176,7 @@ src/models/event_type_d9e_enum.rs
 src/models/experiment.rs
 src/models/experiment_device_config.rs
 src/models/gcode_file.rs
+src/models/inline_response_403.rs
 src/models/mobile_auth_request.rs
 src/models/mod.rs
 src/models/model_artifact.rs

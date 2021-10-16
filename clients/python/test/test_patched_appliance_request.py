@@ -36,44 +36,7 @@ class TestPatchedApplianceRequest(unittest.TestCase):
         # model = print_nanny_client.models.patched_appliance_request.PatchedApplianceRequest()  # noqa: E501
         if include_optional :
             return PatchedApplianceRequest(
-                pki = print_nanny_client.models.appliance_pki_request.AppliancePKIRequest(
-                    public_key_path = '', 
-                    private_key_path = '', 
-                    public_key = '', 
-                    public_key_checksum = '', 
-                    fingerprint = '', 
-                    appliance = 56, ), 
-                ansible_facts = print_nanny_client.models.ansible_facts_request.AnsibleFactsRequest(
-                    os_version = '', 
-                    os = '', 
-                    kernel_version = '', 
-                    hardware = '', 
-                    revision = '', 
-                    model = '', 
-                    serial = '', 
-                    cores = -2147483648, 
-                    ram = -9223372036854775808, 
-                    cpu_flags = [
-                        ''
-                        ], 
-                    release_channel = 'main', 
-                    json = {
-                        'key' : null
-                        }, 
-                    appliance = 56, ), 
-                cameras = print_nanny_client.models.camera_request.CameraRequest(
-                    name = '', 
-                    camera_type = 'Raspberry Pi Camera Module', 
-                    camera_source = '', 
-                    camera_source_type = 'MJPG Streamer', 
-                    user = 56, 
-                    appliance = 56, ), 
-                printer_controllers = print_nanny_client.models.printer_controller_request.PrinterControllerRequest(
-                    software = 'OctoPrint', 
-                    user = 56, 
-                    appliance = 56, ), 
-                hostname = '', 
-                user = 56
+                hostname = ''
             )
         else :
             return PatchedApplianceRequest(

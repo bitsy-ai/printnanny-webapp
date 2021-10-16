@@ -10,15 +10,15 @@
 
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-pub struct ApplianceRequest {
-    #[serde(rename = "hostname")]
-    pub hostname: String,
+pub struct InlineResponse403 {
+    #[serde(rename = "detail", skip_serializing_if = "Option::is_none")]
+    pub detail: Option<String>,
 }
 
-impl ApplianceRequest {
-    pub fn new(hostname: String) -> ApplianceRequest {
-        ApplianceRequest {
-            hostname,
+impl InlineResponse403 {
+    pub fn new() -> InlineResponse403 {
+        InlineResponse403 {
+            detail: None,
         }
     }
 }

@@ -16,7 +16,6 @@ Name | Type | Description | Notes
 **cpu_flags** | **Vec<String>** |  | 
 **release_channel** | Option<[**crate::models::ReleaseChannelEnum**](ReleaseChannelEnum.md)> |  | [optional]
 **json** | [**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md) |  | 
-**appliance** | **i32** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

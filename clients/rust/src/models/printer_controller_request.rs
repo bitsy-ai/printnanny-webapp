@@ -13,18 +13,12 @@
 pub struct PrinterControllerRequest {
     #[serde(rename = "software")]
     pub software: crate::models::SoftwareEnum,
-    #[serde(rename = "user")]
-    pub user: i32,
-    #[serde(rename = "appliance")]
-    pub appliance: i32,
 }
 
 impl PrinterControllerRequest {
-    pub fn new(software: crate::models::SoftwareEnum, user: i32, appliance: i32) -> PrinterControllerRequest {
+    pub fn new(software: crate::models::SoftwareEnum) -> PrinterControllerRequest {
         PrinterControllerRequest {
             software,
-            user,
-            appliance,
         }
     }
 }

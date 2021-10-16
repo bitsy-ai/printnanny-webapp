@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.create_appliance_pki_request import CreateAppliancePKIRequest  # noqa: E501
+from print_nanny_client.models.inline_response403 import InlineResponse403  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestCreateAppliancePKIRequest(unittest.TestCase):
-    """CreateAppliancePKIRequest unit test stubs"""
+class TestInlineResponse403(unittest.TestCase):
+    """InlineResponse403 unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,30 +29,21 @@ class TestCreateAppliancePKIRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test CreateAppliancePKIRequest
+        """Test InlineResponse403
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.create_appliance_pki_request.CreateAppliancePKIRequest()  # noqa: E501
+        # model = print_nanny_client.models.inline_response403.InlineResponse403()  # noqa: E501
         if include_optional :
-            return CreateAppliancePKIRequest(
-                public_key = '', 
-                public_key_path = '', 
-                private_key_path = '', 
-                public_key_checksum = '', 
-                fingerprint = ''
+            return InlineResponse403(
+                detail = ''
             )
         else :
-            return CreateAppliancePKIRequest(
-                public_key = '',
-                public_key_path = '',
-                private_key_path = '',
-                public_key_checksum = '',
-                fingerprint = '',
+            return InlineResponse403(
         )
 
-    def testCreateAppliancePKIRequest(self):
-        """Test CreateAppliancePKIRequest"""
+    def testInlineResponse403(self):
+        """Test InlineResponse403"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

@@ -1,10 +1,10 @@
 
-# ApplianceRequest
+# InlineResponse403
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**hostname** | **kotlin.String** |  | 
+**detail** | **kotlin.String** |  |  [optional]
 
 
 
