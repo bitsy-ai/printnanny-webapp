@@ -25,8 +25,8 @@ impl PaginatedPrintNannyPluginEventList {
     pub fn new() -> PaginatedPrintNannyPluginEventList {
         PaginatedPrintNannyPluginEventList {
             count: None,
-            next: NoneSome(,
-            previous: NoneSome(,
+            next: None,
+            previous: None,
             results: None,
         }
     }

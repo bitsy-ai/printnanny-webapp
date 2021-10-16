@@ -25,8 +25,8 @@ impl PaginatedDeviceCalibrationList {
     pub fn new() -> PaginatedDeviceCalibrationList {
         PaginatedDeviceCalibrationList {
             count: None,
-            next: NoneSome(,
-            previous: NoneSome(,
+            next: None,
+            previous: None,
             results: None,
         }
     }

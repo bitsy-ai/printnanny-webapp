@@ -37,8 +37,8 @@ impl Appliance {
     pub fn new(id: i32, pki: Option<crate::models::AppliancePki>, ansible_facts: Option<crate::models::AnsibleFacts>, cameras: Vec<crate::models::Camera>, printer_controllers: Vec<crate::models::PrinterController>, user: i32, deleted: String, created_dt: String, updated_dt: String, hostname: String) -> Appliance {
         Appliance {
             id,
-            pkiSome(: pkiSome(,
-            ansible_factsSome(: Box::new(ansible_facts)Some(,
+            pki: pki,
+            ansible_facts: Box::new(ansible_facts),
             cameras,
             printer_controllers,
             user,

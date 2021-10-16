@@ -28,7 +28,7 @@ impl PatchedDeviceCalibrationRequest {
         PatchedDeviceCalibrationRequest {
             octoprint_device: None,
             fps: None,
-            xy: NoneSome(,
+            xy: None,
             height: None,
             width: None,
         }

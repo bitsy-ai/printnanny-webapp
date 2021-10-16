@@ -25,8 +25,8 @@ impl PaginatedAlertList {
     pub fn new() -> PaginatedAlertList {
         PaginatedAlertList {
             count: None,
-            next: NoneSome(,
-            previous: NoneSome(,
+            next: None,
+            previous: None,
             results: None,
         }
     }

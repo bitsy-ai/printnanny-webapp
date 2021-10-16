@@ -44,7 +44,7 @@ impl RemoteControlCommand {
             user,
             device,
             received: None,
-            success: NoneSome(,
+            success: None,
             iotcore_response: None,
             metadata: None,
             url,

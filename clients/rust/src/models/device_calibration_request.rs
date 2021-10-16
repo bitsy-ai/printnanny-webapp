@@ -28,7 +28,7 @@ impl DeviceCalibrationRequest {
         DeviceCalibrationRequest {
             octoprint_device,
             fps: None,
-            xy: NoneSome(,
+            xy: None,
             height: None,
             width: None,
         }

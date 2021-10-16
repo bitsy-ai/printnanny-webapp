@@ -25,8 +25,8 @@ impl PaginatedOctoPrintEventList {
     pub fn new() -> PaginatedOctoPrintEventList {
         PaginatedOctoPrintEventList {
             count: None,
-            next: NoneSome(,
-            previous: NoneSome(,
+            next: None,
+            previous: None,
             results: None,
         }
     }

@@ -41,17 +41,17 @@ impl TelemetryEventRequest {
     pub fn new(octoprint_environment: crate::models::OctoprintEnvironmentRequest, octoprint_printer_data: crate::models::OctoprintPrinterDataRequest, print_nanny_plugin_version: String, print_nanny_client_version: String, octoprint_version: String, octoprint_device: i32) -> TelemetryEventRequest {
         TelemetryEventRequest {
             ts: None,
-            event_source: NoneSome(,
-            event_type: NoneSome(,
+            event_source: None,
+            event_type: None,
             octoprint_environment: Box::new(octoprint_environment),
             octoprint_printer_data: Box::new(octoprint_printer_data),
-            event_data: NoneSome(,
+            event_data: None,
             temperature: None,
             print_nanny_plugin_version,
             print_nanny_client_version,
             octoprint_version,
             octoprint_device,
-            print_session: NoneSome(,
+            print_session: None,
         }
     }
 }

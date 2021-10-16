@@ -32,7 +32,7 @@ impl OctoprintPrinterData {
         OctoprintPrinterData {
             job: Box::new(job),
             state: Box::new(state),
-            user: NoneSome(,
+            user: None,
             current_z: None,
             progress: Box::new(progress),
             resends,

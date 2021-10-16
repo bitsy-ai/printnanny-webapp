@@ -25,8 +25,8 @@ impl PaginatedRemoteControlCommandList {
     pub fn new() -> PaginatedRemoteControlCommandList {
         PaginatedRemoteControlCommandList {
             count: None,
-            next: NoneSome(,
-            previous: NoneSome(,
+            next: None,
+            previous: None,
             results: None,
         }
     }

@@ -25,8 +25,8 @@ impl PaginatedApplianceList {
     pub fn new() -> PaginatedApplianceList {
         PaginatedApplianceList {
             count: None,
-            next: NoneSome(,
-            previous: NoneSome(,
+            next: None,
+            previous: None,
             results: None,
         }
     }
