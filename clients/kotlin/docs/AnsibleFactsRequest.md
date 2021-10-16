@@ -11,7 +11,6 @@ Name | Type | Description | Notes
 **ram** | **kotlin.Long** |  | 
 **cpuFlags** | **kotlin.collections.List&lt;kotlin.String&gt;** |  | 
 **json** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt;**](kotlin.Any.md) |  | 
-**appliance** | **kotlin.Int** |  | 
 **hardware** | **kotlin.String** |  |  [optional]
 **revision** | **kotlin.String** |  |  [optional]
 **model** | **kotlin.String** |  |  [optional]

@@ -57,7 +57,6 @@ Class | Method | HTTP request | Description
 *AppliancesApi* | [**appliancesPrinterControllersUpdate**](docs/AppliancesApi.md#appliancesprintercontrollersupdate) | **PUT** /api/appliances/{appliance_id}/printer-controllers/{id}/ | 
 *AppliancesApi* | [**appliancesRetrieve**](docs/AppliancesApi.md#appliancesretrieve) | **GET** /api/appliances/{id}/ | 
 *AppliancesApi* | [**appliancesUpdate**](docs/AppliancesApi.md#appliancesupdate) | **PUT** /api/appliances/{id}/ | 
-*AppliancesApi* | [**appliancesUpdateOrCreate**](docs/AppliancesApi.md#appliancesupdateorcreate) | **POST** /api/appliances/update-or-create/ | 
 *AuthApi* | [**authEmailCreate**](docs/AuthApi.md#authemailcreate) | **POST** /auth/email/ | 
 *AuthApi* | [**authMobileCreate**](docs/AuthApi.md#authmobilecreate) | **POST** /auth/mobile/ | 
 *AuthApi* | [**authTokenCreate**](docs/AuthApi.md#authtokencreate) | **POST** /auth/token/ | 
@@ -143,12 +142,8 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.CallbackTokenVerificationRequest](docs/CallbackTokenVerificationRequest.md)
  - [com.print-nanny.client.models.Camera](docs/Camera.md)
  - [com.print-nanny.client.models.CameraRequest](docs/CameraRequest.md)
- - [com.print-nanny.client.models.CameraSourceTypeEnum](docs/CameraSourceTypeEnum.md)
  - [com.print-nanny.client.models.CameraTypeEnum](docs/CameraTypeEnum.md)
  - [com.print-nanny.client.models.CommandEnum](docs/CommandEnum.md)
- - [com.print-nanny.client.models.CreateAnsibleFactsRequest](docs/CreateAnsibleFactsRequest.md)
- - [com.print-nanny.client.models.CreateAppliancePKIRequest](docs/CreateAppliancePKIRequest.md)
- - [com.print-nanny.client.models.CreateApplianceRequest](docs/CreateApplianceRequest.md)
  - [com.print-nanny.client.models.DetailResponse](docs/DetailResponse.md)
  - [com.print-nanny.client.models.DeviceCalibration](docs/DeviceCalibration.md)
  - [com.print-nanny.client.models.DeviceCalibrationRequest](docs/DeviceCalibrationRequest.md)
@@ -159,6 +154,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.Experiment](docs/Experiment.md)
  - [com.print-nanny.client.models.ExperimentDeviceConfig](docs/ExperimentDeviceConfig.md)
  - [com.print-nanny.client.models.GcodeFile](docs/GcodeFile.md)
+ - [com.print-nanny.client.models.InlineResponse403](docs/InlineResponse403.md)
  - [com.print-nanny.client.models.MobileAuthRequest](docs/MobileAuthRequest.md)
  - [com.print-nanny.client.models.ModelArtifact](docs/ModelArtifact.md)
  - [com.print-nanny.client.models.OctoPrintDevice](docs/OctoPrintDevice.md)

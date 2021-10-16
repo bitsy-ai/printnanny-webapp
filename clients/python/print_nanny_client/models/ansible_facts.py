@@ -37,6 +37,8 @@ class AnsibleFacts(object):
     """
     openapi_types = {
         'id': 'int',
+        'user': 'str',
+        'appliance': 'int',
         'deleted': 'datetime',
         'os_version': 'str',
         'os': 'str',
@@ -49,12 +51,13 @@ class AnsibleFacts(object):
         'ram': 'int',
         'cpu_flags': 'list[str]',
         'release_channel': 'ReleaseChannelEnum',
-        'json': 'dict(str, object)',
-        'appliance': 'int'
+        'json': 'dict(str, object)'
     }
 
     attribute_map = {
         'id': 'id',
+        'user': 'user',
+        'appliance': 'appliance',
         'deleted': 'deleted',
         'os_version': 'os_version',
         'os': 'os',
@@ -67,17 +70,18 @@ class AnsibleFacts(object):
         'ram': 'ram',
         'cpu_flags': 'cpu_flags',
         'release_channel': 'release_channel',
-        'json': 'json',
-        'appliance': 'appliance'
+        'json': 'json'
     }
 
-    def __init__(self, id=None, deleted=None, os_version=None, os=None, kernel_version=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, cpu_flags=None, release_channel=None, json=None, appliance=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, user=None, appliance=None, deleted=None, os_version=None, os=None, kernel_version=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, cpu_flags=None, release_channel=None, json=None, local_vars_configuration=None):  # noqa: E501
         """AnsibleFacts - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
+        self._user = None
+        self._appliance = None
         self._deleted = None
         self._os_version = None
         self._os = None
@@ -91,10 +95,11 @@ class AnsibleFacts(object):
         self._cpu_flags = None
         self._release_channel = None
         self._json = None
-        self._appliance = None
         self.discriminator = None
 
         self.id = id
+        self.user = user
+        self.appliance = appliance
         self.deleted = deleted
         self.os_version = os_version
         self.os = os
@@ -109,7 +114,6 @@ class AnsibleFacts(object):
         if release_channel is not None:
             self.release_channel = release_channel
         self.json = json
-        self.appliance = appliance
 
     @property
     def id(self):
@@ -133,6 +137,52 @@ class AnsibleFacts(object):
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
+
+    @property
+    def user(self):
+        """Gets the user of this AnsibleFacts.  # noqa: E501
+
+
+        :return: The user of this AnsibleFacts.  # noqa: E501
+        :rtype: str
+        """
+        return self._user
+
+    @user.setter
+    def user(self, user):
+        """Sets the user of this AnsibleFacts.
+
+
+        :param user: The user of this AnsibleFacts.  # noqa: E501
+        :type user: str
+        """
+        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
+            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
+
+        self._user = user
+
+    @property
+    def appliance(self):
+        """Gets the appliance of this AnsibleFacts.  # noqa: E501
+
+
+        :return: The appliance of this AnsibleFacts.  # noqa: E501
+        :rtype: int
+        """
+        return self._appliance
+
+    @appliance.setter
+    def appliance(self, appliance):
+        """Sets the appliance of this AnsibleFacts.
+
+
+        :param appliance: The appliance of this AnsibleFacts.  # noqa: E501
+        :type appliance: int
+        """
+        if self.local_vars_configuration.client_side_validation and appliance is None:  # noqa: E501
+            raise ValueError("Invalid value for `appliance`, must not be `None`")  # noqa: E501
+
+        self._appliance = appliance
 
     @property
     def deleted(self):
@@ -455,29 +505,6 @@ class AnsibleFacts(object):
             raise ValueError("Invalid value for `json`, must not be `None`")  # noqa: E501
 
         self._json = json
-
-    @property
-    def appliance(self):
-        """Gets the appliance of this AnsibleFacts.  # noqa: E501
-
-
-        :return: The appliance of this AnsibleFacts.  # noqa: E501
-        :rtype: int
-        """
-        return self._appliance
-
-    @appliance.setter
-    def appliance(self, appliance):
-        """Sets the appliance of this AnsibleFacts.
-
-
-        :param appliance: The appliance of this AnsibleFacts.  # noqa: E501
-        :type appliance: int
-        """
-        if self.local_vars_configuration.client_side_validation and appliance is None:  # noqa: E501
-            raise ValueError("Invalid value for `appliance`, must not be `None`")  # noqa: E501
-
-        self._appliance = appliance
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

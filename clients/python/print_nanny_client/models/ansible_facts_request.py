@@ -47,8 +47,7 @@ class AnsibleFactsRequest(object):
         'ram': 'int',
         'cpu_flags': 'list[str]',
         'release_channel': 'ReleaseChannelEnum',
-        'json': 'dict(str, object)',
-        'appliance': 'int'
+        'json': 'dict(str, object)'
     }
 
     attribute_map = {
@@ -63,11 +62,10 @@ class AnsibleFactsRequest(object):
         'ram': 'ram',
         'cpu_flags': 'cpu_flags',
         'release_channel': 'release_channel',
-        'json': 'json',
-        'appliance': 'appliance'
+        'json': 'json'
     }
 
-    def __init__(self, os_version=None, os=None, kernel_version=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, cpu_flags=None, release_channel=None, json=None, appliance=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, os_version=None, os=None, kernel_version=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, cpu_flags=None, release_channel=None, json=None, local_vars_configuration=None):  # noqa: E501
         """AnsibleFactsRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -85,7 +83,6 @@ class AnsibleFactsRequest(object):
         self._cpu_flags = None
         self._release_channel = None
         self._json = None
-        self._appliance = None
         self.discriminator = None
 
         self.os_version = os_version
@@ -101,7 +98,6 @@ class AnsibleFactsRequest(object):
         if release_channel is not None:
             self.release_channel = release_channel
         self.json = json
-        self.appliance = appliance
 
     @property
     def os_version(self):
@@ -401,29 +397,6 @@ class AnsibleFactsRequest(object):
             raise ValueError("Invalid value for `json`, must not be `None`")  # noqa: E501
 
         self._json = json
-
-    @property
-    def appliance(self):
-        """Gets the appliance of this AnsibleFactsRequest.  # noqa: E501
-
-
-        :return: The appliance of this AnsibleFactsRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._appliance
-
-    @appliance.setter
-    def appliance(self, appliance):
-        """Sets the appliance of this AnsibleFactsRequest.
-
-
-        :param appliance: The appliance of this AnsibleFactsRequest.  # noqa: E501
-        :type appliance: int
-        """
-        if self.local_vars_configuration.client_side_validation and appliance is None:  # noqa: E501
-            raise ValueError("Invalid value for `appliance`, must not be `None`")  # noqa: E501
-
-        self._appliance = appliance
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

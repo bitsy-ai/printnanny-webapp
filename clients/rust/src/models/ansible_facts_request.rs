@@ -35,12 +35,10 @@ pub struct AnsibleFactsRequest {
     pub release_channel: Option<crate::models::ReleaseChannelEnum>,
     #[serde(rename = "json")]
     pub json: ::std::collections::HashMap<String, serde_json::Value>,
-    #[serde(rename = "appliance")]
-    pub appliance: i32,
 }
 
 impl AnsibleFactsRequest {
-    pub fn new(os_version: String, os: String, kernel_version: String, cores: i32, ram: i64, cpu_flags: Vec<String>, json: ::std::collections::HashMap<String, serde_json::Value>, appliance: i32) -> AnsibleFactsRequest {
+    pub fn new(os_version: String, os: String, kernel_version: String, cores: i32, ram: i64, cpu_flags: Vec<String>, json: ::std::collections::HashMap<String, serde_json::Value>) -> AnsibleFactsRequest {
         AnsibleFactsRequest {
             os_version,
             os,
@@ -54,7 +52,6 @@ impl AnsibleFactsRequest {
             cpu_flags,
             release_channel: None,
             json,
-            appliance,
         }
     }
 }

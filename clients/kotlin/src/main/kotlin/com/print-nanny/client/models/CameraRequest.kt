@@ -20,7 +20,6 @@
 
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.CameraSourceTypeEnum
 import com.print-nanny.client.models.CameraTypeEnum
 
 import com.squareup.moshi.Json
@@ -30,11 +29,8 @@ import java.io.Serializable
  * 
  *
  * @param name 
- * @param cameraType 
  * @param cameraSource 
- * @param cameraSourceType 
- * @param user 
- * @param appliance 
+ * @param cameraType 
  */
 
 data class CameraRequest (
@@ -42,20 +38,11 @@ data class CameraRequest (
     @Json(name = "name")
     val name: kotlin.String,
 
-    @Json(name = "camera_type")
-    val cameraType: CameraTypeEnum,
-
     @Json(name = "camera_source")
     val cameraSource: kotlin.String,
 
-    @Json(name = "camera_source_type")
-    val cameraSourceType: CameraSourceTypeEnum,
-
-    @Json(name = "user")
-    val user: kotlin.Int,
-
-    @Json(name = "appliance")
-    val appliance: kotlin.Int
+    @Json(name = "camera_type")
+    val cameraType: CameraTypeEnum? = null
 
 ) : Serializable {
     companion object {

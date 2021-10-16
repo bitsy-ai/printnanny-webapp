@@ -19,7 +19,6 @@ Method | HTTP request | Description
 [**appliancesPrinterControllersUpdate**](AppliancesApi.md#appliancesPrinterControllersUpdate) | **PUT** /api/appliances/{appliance_id}/printer-controllers/{id}/ | 
 [**appliancesRetrieve**](AppliancesApi.md#appliancesRetrieve) | **GET** /api/appliances/{id}/ | 
 [**appliancesUpdate**](AppliancesApi.md#appliancesUpdate) | **PUT** /api/appliances/{id}/ | 
-[**appliancesUpdateOrCreate**](AppliancesApi.md#appliancesUpdateOrCreate) | **POST** /api/appliances/update-or-create/ | 
 
 
 <a name="appliancesCamerasCreate"></a>
@@ -795,58 +794,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **kotlin.Int**| A unique integer value identifying this appliance. |
  **applianceRequest** | [**ApplianceRequest**](ApplianceRequest.md)|  |
-
-### Return type
-
-[**Appliance**](Appliance.md)
-
-### Authorization
-
-
-Configure cookieAuth:
-    ApiClient.apiKey["sessionid"] = ""
-    ApiClient.apiKeyPrefix["sessionid"] = ""
-Configure tokenAuth:
-    ApiClient.accessToken = ""
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
-
-<a name="appliancesUpdateOrCreate"></a>
-# **appliancesUpdateOrCreate**
-> Appliance appliancesUpdateOrCreate(createApplianceRequest)
-
-
-
-All-in-one Print Nanny installation via print-nanny-main-&lt;platform&gt;-&lt;cpu&gt;.img
-
-### Example
-```kotlin
-// Import classes:
-//import com.print-nanny.client.infrastructure.*
-//import com.print-nanny.client.models.*
-
-val apiInstance = AppliancesApi()
-val createApplianceRequest : CreateApplianceRequest =  // CreateApplianceRequest | 
-try {
-    val result : Appliance = apiInstance.appliancesUpdateOrCreate(createApplianceRequest)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling AppliancesApi#appliancesUpdateOrCreate")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling AppliancesApi#appliancesUpdateOrCreate")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **createApplianceRequest** | [**CreateApplianceRequest**](CreateApplianceRequest.md)|  |
 
 ### Return type
 

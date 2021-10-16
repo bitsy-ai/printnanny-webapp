@@ -51,8 +51,7 @@ class TestAnsibleFactsRequest(unittest.TestCase):
                 release_channel = 'main', 
                 json = {
                     'key' : null
-                    }, 
-                appliance = 56
+                    }
             )
         else :
             return AnsibleFactsRequest(
@@ -67,7 +66,6 @@ class TestAnsibleFactsRequest(unittest.TestCase):
                 json = {
                     'key' : null
                     },
-                appliance = 56,
         )
 
     def testAnsibleFactsRequest(self):

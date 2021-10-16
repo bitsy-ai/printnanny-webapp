@@ -32,7 +32,6 @@ import java.io.Serializable
  * @param publicKey 
  * @param publicKeyChecksum 
  * @param fingerprint 
- * @param appliance 
  */
 
 data class AppliancePKIRequest (
@@ -50,10 +49,7 @@ data class AppliancePKIRequest (
     val publicKeyChecksum: kotlin.String,
 
     @Json(name = "fingerprint")
-    val fingerprint: kotlin.String,
-
-    @Json(name = "appliance")
-    val appliance: kotlin.Int
+    val fingerprint: kotlin.String
 
 ) : Serializable {
     companion object {

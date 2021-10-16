@@ -40,12 +40,12 @@ class Camera(object):
         'deleted': 'datetime',
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
+        'user': 'int',
+        'appliance': 'int',
         'name': 'str',
         'camera_type': 'CameraTypeEnum',
         'camera_source': 'str',
-        'camera_source_type': 'CameraSourceTypeEnum',
-        'user': 'int',
-        'appliance': 'int'
+        'url': 'str'
     }
 
     attribute_map = {
@@ -53,15 +53,15 @@ class Camera(object):
         'deleted': 'deleted',
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
+        'user': 'user',
+        'appliance': 'appliance',
         'name': 'name',
         'camera_type': 'camera_type',
         'camera_source': 'camera_source',
-        'camera_source_type': 'camera_source_type',
-        'user': 'user',
-        'appliance': 'appliance'
+        'url': 'url'
     }
 
-    def __init__(self, id=None, deleted=None, created_dt=None, updated_dt=None, name=None, camera_type=None, camera_source=None, camera_source_type=None, user=None, appliance=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, deleted=None, created_dt=None, updated_dt=None, user=None, appliance=None, name=None, camera_type=None, camera_source=None, url=None, local_vars_configuration=None):  # noqa: E501
         """Camera - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -71,24 +71,24 @@ class Camera(object):
         self._deleted = None
         self._created_dt = None
         self._updated_dt = None
+        self._user = None
+        self._appliance = None
         self._name = None
         self._camera_type = None
         self._camera_source = None
-        self._camera_source_type = None
-        self._user = None
-        self._appliance = None
+        self._url = None
         self.discriminator = None
 
         self.id = id
         self.deleted = deleted
         self.created_dt = created_dt
         self.updated_dt = updated_dt
+        self.user = user
+        self.appliance = appliance
         self.name = name
         self.camera_type = camera_type
         self.camera_source = camera_source
-        self.camera_source_type = camera_source_type
-        self.user = user
-        self.appliance = appliance
+        self.url = url
 
     @property
     def id(self):
@@ -183,104 +183,6 @@ class Camera(object):
         self._updated_dt = updated_dt
 
     @property
-    def name(self):
-        """Gets the name of this Camera.  # noqa: E501
-
-
-        :return: The name of this Camera.  # noqa: E501
-        :rtype: str
-        """
-        return self._name
-
-    @name.setter
-    def name(self, name):
-        """Sets the name of this Camera.
-
-
-        :param name: The name of this Camera.  # noqa: E501
-        :type name: str
-        """
-        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and len(name) > 255):
-            raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
-
-        self._name = name
-
-    @property
-    def camera_type(self):
-        """Gets the camera_type of this Camera.  # noqa: E501
-
-
-        :return: The camera_type of this Camera.  # noqa: E501
-        :rtype: CameraTypeEnum
-        """
-        return self._camera_type
-
-    @camera_type.setter
-    def camera_type(self, camera_type):
-        """Sets the camera_type of this Camera.
-
-
-        :param camera_type: The camera_type of this Camera.  # noqa: E501
-        :type camera_type: CameraTypeEnum
-        """
-        if self.local_vars_configuration.client_side_validation and camera_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `camera_type`, must not be `None`")  # noqa: E501
-
-        self._camera_type = camera_type
-
-    @property
-    def camera_source(self):
-        """Gets the camera_source of this Camera.  # noqa: E501
-
-
-        :return: The camera_source of this Camera.  # noqa: E501
-        :rtype: str
-        """
-        return self._camera_source
-
-    @camera_source.setter
-    def camera_source(self, camera_source):
-        """Sets the camera_source of this Camera.
-
-
-        :param camera_source: The camera_source of this Camera.  # noqa: E501
-        :type camera_source: str
-        """
-        if self.local_vars_configuration.client_side_validation and camera_source is None:  # noqa: E501
-            raise ValueError("Invalid value for `camera_source`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                camera_source is not None and len(camera_source) > 255):
-            raise ValueError("Invalid value for `camera_source`, length must be less than or equal to `255`")  # noqa: E501
-
-        self._camera_source = camera_source
-
-    @property
-    def camera_source_type(self):
-        """Gets the camera_source_type of this Camera.  # noqa: E501
-
-
-        :return: The camera_source_type of this Camera.  # noqa: E501
-        :rtype: CameraSourceTypeEnum
-        """
-        return self._camera_source_type
-
-    @camera_source_type.setter
-    def camera_source_type(self, camera_source_type):
-        """Sets the camera_source_type of this Camera.
-
-
-        :param camera_source_type: The camera_source_type of this Camera.  # noqa: E501
-        :type camera_source_type: CameraSourceTypeEnum
-        """
-        if self.local_vars_configuration.client_side_validation and camera_source_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `camera_source_type`, must not be `None`")  # noqa: E501
-
-        self._camera_source_type = camera_source_type
-
-    @property
     def user(self):
         """Gets the user of this Camera.  # noqa: E501
 
@@ -325,6 +227,102 @@ class Camera(object):
             raise ValueError("Invalid value for `appliance`, must not be `None`")  # noqa: E501
 
         self._appliance = appliance
+
+    @property
+    def name(self):
+        """Gets the name of this Camera.  # noqa: E501
+
+
+        :return: The name of this Camera.  # noqa: E501
+        :rtype: str
+        """
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        """Sets the name of this Camera.
+
+
+        :param name: The name of this Camera.  # noqa: E501
+        :type name: str
+        """
+        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                name is not None and len(name) > 255):
+            raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._name = name
+
+    @property
+    def camera_type(self):
+        """Gets the camera_type of this Camera.  # noqa: E501
+
+
+        :return: The camera_type of this Camera.  # noqa: E501
+        :rtype: CameraTypeEnum
+        """
+        return self._camera_type
+
+    @camera_type.setter
+    def camera_type(self, camera_type):
+        """Sets the camera_type of this Camera.
+
+
+        :param camera_type: The camera_type of this Camera.  # noqa: E501
+        :type camera_type: CameraTypeEnum
+        """
+
+        self._camera_type = camera_type
+
+    @property
+    def camera_source(self):
+        """Gets the camera_source of this Camera.  # noqa: E501
+
+
+        :return: The camera_source of this Camera.  # noqa: E501
+        :rtype: str
+        """
+        return self._camera_source
+
+    @camera_source.setter
+    def camera_source(self, camera_source):
+        """Sets the camera_source of this Camera.
+
+
+        :param camera_source: The camera_source of this Camera.  # noqa: E501
+        :type camera_source: str
+        """
+        if self.local_vars_configuration.client_side_validation and camera_source is None:  # noqa: E501
+            raise ValueError("Invalid value for `camera_source`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                camera_source is not None and len(camera_source) > 255):
+            raise ValueError("Invalid value for `camera_source`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._camera_source = camera_source
+
+    @property
+    def url(self):
+        """Gets the url of this Camera.  # noqa: E501
+
+
+        :return: The url of this Camera.  # noqa: E501
+        :rtype: str
+        """
+        return self._url
+
+    @url.setter
+    def url(self, url):
+        """Sets the url of this Camera.
+
+
+        :param url: The url of this Camera.  # noqa: E501
+        :type url: str
+        """
+        if self.local_vars_configuration.client_side_validation and url is None:  # noqa: E501
+            raise ValueError("Invalid value for `url`, must not be `None`")  # noqa: E501
+
+        self._url = url
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

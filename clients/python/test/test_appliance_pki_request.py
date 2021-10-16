@@ -40,8 +40,7 @@ class TestAppliancePKIRequest(unittest.TestCase):
                 private_key_path = '', 
                 public_key = '', 
                 public_key_checksum = '', 
-                fingerprint = '', 
-                appliance = 56
+                fingerprint = ''
             )
         else :
             return AppliancePKIRequest(
@@ -50,7 +49,6 @@ class TestAppliancePKIRequest(unittest.TestCase):
                 public_key = '',
                 public_key_checksum = '',
                 fingerprint = '',
-                appliance = 56,
         )
 
     def testAppliancePKIRequest(self):

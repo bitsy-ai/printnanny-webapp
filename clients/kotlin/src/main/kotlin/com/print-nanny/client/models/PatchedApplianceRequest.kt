@@ -20,10 +20,6 @@
 
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.AnsibleFactsRequest
-import com.print-nanny.client.models.AppliancePKIRequest
-import com.print-nanny.client.models.CameraRequest
-import com.print-nanny.client.models.PrinterControllerRequest
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -31,33 +27,13 @@ import java.io.Serializable
 /**
  * 
  *
- * @param pki 
- * @param ansibleFacts 
- * @param cameras 
- * @param printerControllers 
  * @param hostname 
- * @param user 
  */
 
 data class PatchedApplianceRequest (
 
-    @Json(name = "pki")
-    val pki: AppliancePKIRequest? = null,
-
-    @Json(name = "ansible_facts")
-    val ansibleFacts: AnsibleFactsRequest? = null,
-
-    @Json(name = "cameras")
-    val cameras: CameraRequest? = null,
-
-    @Json(name = "printer_controllers")
-    val printerControllers: PrinterControllerRequest? = null,
-
     @Json(name = "hostname")
-    val hostname: kotlin.String? = null,
-
-    @Json(name = "user")
-    val user: kotlin.Int? = null
+    val hostname: kotlin.String? = null
 
 ) : Serializable {
     companion object {

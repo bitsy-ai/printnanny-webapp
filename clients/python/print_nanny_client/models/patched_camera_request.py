@@ -38,22 +38,16 @@ class PatchedCameraRequest(object):
     openapi_types = {
         'name': 'str',
         'camera_type': 'CameraTypeEnum',
-        'camera_source': 'str',
-        'camera_source_type': 'CameraSourceTypeEnum',
-        'user': 'int',
-        'appliance': 'int'
+        'camera_source': 'str'
     }
 
     attribute_map = {
         'name': 'name',
         'camera_type': 'camera_type',
-        'camera_source': 'camera_source',
-        'camera_source_type': 'camera_source_type',
-        'user': 'user',
-        'appliance': 'appliance'
+        'camera_source': 'camera_source'
     }
 
-    def __init__(self, name=None, camera_type=None, camera_source=None, camera_source_type=None, user=None, appliance=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, camera_type=None, camera_source=None, local_vars_configuration=None):  # noqa: E501
         """PatchedCameraRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -62,23 +56,13 @@ class PatchedCameraRequest(object):
         self._name = None
         self._camera_type = None
         self._camera_source = None
-        self._camera_source_type = None
-        self._user = None
-        self._appliance = None
         self.discriminator = None
 
         if name is not None:
             self.name = name
-        if camera_type is not None:
-            self.camera_type = camera_type
+        self.camera_type = camera_type
         if camera_source is not None:
             self.camera_source = camera_source
-        if camera_source_type is not None:
-            self.camera_source_type = camera_source_type
-        if user is not None:
-            self.user = user
-        if appliance is not None:
-            self.appliance = appliance
 
     @property
     def name(self):
@@ -148,69 +132,6 @@ class PatchedCameraRequest(object):
             raise ValueError("Invalid value for `camera_source`, length must be less than or equal to `255`")  # noqa: E501
 
         self._camera_source = camera_source
-
-    @property
-    def camera_source_type(self):
-        """Gets the camera_source_type of this PatchedCameraRequest.  # noqa: E501
-
-
-        :return: The camera_source_type of this PatchedCameraRequest.  # noqa: E501
-        :rtype: CameraSourceTypeEnum
-        """
-        return self._camera_source_type
-
-    @camera_source_type.setter
-    def camera_source_type(self, camera_source_type):
-        """Sets the camera_source_type of this PatchedCameraRequest.
-
-
-        :param camera_source_type: The camera_source_type of this PatchedCameraRequest.  # noqa: E501
-        :type camera_source_type: CameraSourceTypeEnum
-        """
-
-        self._camera_source_type = camera_source_type
-
-    @property
-    def user(self):
-        """Gets the user of this PatchedCameraRequest.  # noqa: E501
-
-
-        :return: The user of this PatchedCameraRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._user
-
-    @user.setter
-    def user(self, user):
-        """Sets the user of this PatchedCameraRequest.
-
-
-        :param user: The user of this PatchedCameraRequest.  # noqa: E501
-        :type user: int
-        """
-
-        self._user = user
-
-    @property
-    def appliance(self):
-        """Gets the appliance of this PatchedCameraRequest.  # noqa: E501
-
-
-        :return: The appliance of this PatchedCameraRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._appliance
-
-    @appliance.setter
-    def appliance(self, appliance):
-        """Sets the appliance of this PatchedCameraRequest.
-
-
-        :param appliance: The appliance of this PatchedCameraRequest.  # noqa: E501
-        :type appliance: int
-        """
-
-        self._appliance = appliance
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

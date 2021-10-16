@@ -37,50 +37,54 @@ class AppliancePKI(object):
     """
     openapi_types = {
         'id': 'int',
+        'user': 'str',
+        'appliance': 'int',
         'deleted': 'datetime',
         'public_key_path': 'str',
         'private_key_path': 'str',
         'public_key': 'str',
         'public_key_checksum': 'str',
-        'fingerprint': 'str',
-        'appliance': 'int'
+        'fingerprint': 'str'
     }
 
     attribute_map = {
         'id': 'id',
+        'user': 'user',
+        'appliance': 'appliance',
         'deleted': 'deleted',
         'public_key_path': 'public_key_path',
         'private_key_path': 'private_key_path',
         'public_key': 'public_key',
         'public_key_checksum': 'public_key_checksum',
-        'fingerprint': 'fingerprint',
-        'appliance': 'appliance'
+        'fingerprint': 'fingerprint'
     }
 
-    def __init__(self, id=None, deleted=None, public_key_path=None, private_key_path=None, public_key=None, public_key_checksum=None, fingerprint=None, appliance=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, user=None, appliance=None, deleted=None, public_key_path=None, private_key_path=None, public_key=None, public_key_checksum=None, fingerprint=None, local_vars_configuration=None):  # noqa: E501
         """AppliancePKI - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
+        self._user = None
+        self._appliance = None
         self._deleted = None
         self._public_key_path = None
         self._private_key_path = None
         self._public_key = None
         self._public_key_checksum = None
         self._fingerprint = None
-        self._appliance = None
         self.discriminator = None
 
         self.id = id
+        self.user = user
+        self.appliance = appliance
         self.deleted = deleted
         self.public_key_path = public_key_path
         self.private_key_path = private_key_path
         self.public_key = public_key
         self.public_key_checksum = public_key_checksum
         self.fingerprint = fingerprint
-        self.appliance = appliance
 
     @property
     def id(self):
@@ -104,6 +108,52 @@ class AppliancePKI(object):
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
+
+    @property
+    def user(self):
+        """Gets the user of this AppliancePKI.  # noqa: E501
+
+
+        :return: The user of this AppliancePKI.  # noqa: E501
+        :rtype: str
+        """
+        return self._user
+
+    @user.setter
+    def user(self, user):
+        """Sets the user of this AppliancePKI.
+
+
+        :param user: The user of this AppliancePKI.  # noqa: E501
+        :type user: str
+        """
+        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
+            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
+
+        self._user = user
+
+    @property
+    def appliance(self):
+        """Gets the appliance of this AppliancePKI.  # noqa: E501
+
+
+        :return: The appliance of this AppliancePKI.  # noqa: E501
+        :rtype: int
+        """
+        return self._appliance
+
+    @appliance.setter
+    def appliance(self, appliance):
+        """Sets the appliance of this AppliancePKI.
+
+
+        :param appliance: The appliance of this AppliancePKI.  # noqa: E501
+        :type appliance: int
+        """
+        if self.local_vars_configuration.client_side_validation and appliance is None:  # noqa: E501
+            raise ValueError("Invalid value for `appliance`, must not be `None`")  # noqa: E501
+
+        self._appliance = appliance
 
     @property
     def deleted(self):
@@ -254,29 +304,6 @@ class AppliancePKI(object):
             raise ValueError("Invalid value for `fingerprint`, length must be less than or equal to `255`")  # noqa: E501
 
         self._fingerprint = fingerprint
-
-    @property
-    def appliance(self):
-        """Gets the appliance of this AppliancePKI.  # noqa: E501
-
-
-        :return: The appliance of this AppliancePKI.  # noqa: E501
-        :rtype: int
-        """
-        return self._appliance
-
-    @appliance.setter
-    def appliance(self, appliance):
-        """Sets the appliance of this AppliancePKI.
-
-
-        :param appliance: The appliance of this AppliancePKI.  # noqa: E501
-        :type appliance: int
-        """
-        if self.local_vars_configuration.client_side_validation and appliance is None:  # noqa: E501
-            raise ValueError("Invalid value for `appliance`, must not be `None`")  # noqa: E501
-
-        self._appliance = appliance
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

@@ -37,50 +37,50 @@ class PrinterController(object):
     """
     openapi_types = {
         'id': 'int',
+        'user': 'int',
+        'appliance': 'int',
         'deleted': 'datetime',
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
         'software': 'SoftwareEnum',
-        'polymorphic_ctype': 'int',
-        'user': 'int',
-        'appliance': 'int'
+        'polymorphic_ctype': 'int'
     }
 
     attribute_map = {
         'id': 'id',
+        'user': 'user',
+        'appliance': 'appliance',
         'deleted': 'deleted',
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
         'software': 'software',
-        'polymorphic_ctype': 'polymorphic_ctype',
-        'user': 'user',
-        'appliance': 'appliance'
+        'polymorphic_ctype': 'polymorphic_ctype'
     }
 
-    def __init__(self, id=None, deleted=None, created_dt=None, updated_dt=None, software=None, polymorphic_ctype=None, user=None, appliance=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, user=None, appliance=None, deleted=None, created_dt=None, updated_dt=None, software=None, polymorphic_ctype=None, local_vars_configuration=None):  # noqa: E501
         """PrinterController - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
+        self._user = None
+        self._appliance = None
         self._deleted = None
         self._created_dt = None
         self._updated_dt = None
         self._software = None
         self._polymorphic_ctype = None
-        self._user = None
-        self._appliance = None
         self.discriminator = None
 
         self.id = id
+        self.user = user
+        self.appliance = appliance
         self.deleted = deleted
         self.created_dt = created_dt
         self.updated_dt = updated_dt
         self.software = software
         self.polymorphic_ctype = polymorphic_ctype
-        self.user = user
-        self.appliance = appliance
 
     @property
     def id(self):
@@ -104,6 +104,52 @@ class PrinterController(object):
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
+
+    @property
+    def user(self):
+        """Gets the user of this PrinterController.  # noqa: E501
+
+
+        :return: The user of this PrinterController.  # noqa: E501
+        :rtype: int
+        """
+        return self._user
+
+    @user.setter
+    def user(self, user):
+        """Sets the user of this PrinterController.
+
+
+        :param user: The user of this PrinterController.  # noqa: E501
+        :type user: int
+        """
+        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
+            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
+
+        self._user = user
+
+    @property
+    def appliance(self):
+        """Gets the appliance of this PrinterController.  # noqa: E501
+
+
+        :return: The appliance of this PrinterController.  # noqa: E501
+        :rtype: int
+        """
+        return self._appliance
+
+    @appliance.setter
+    def appliance(self, appliance):
+        """Sets the appliance of this PrinterController.
+
+
+        :param appliance: The appliance of this PrinterController.  # noqa: E501
+        :type appliance: int
+        """
+        if self.local_vars_configuration.client_side_validation and appliance is None:  # noqa: E501
+            raise ValueError("Invalid value for `appliance`, must not be `None`")  # noqa: E501
+
+        self._appliance = appliance
 
     @property
     def deleted(self):
@@ -219,52 +265,6 @@ class PrinterController(object):
             raise ValueError("Invalid value for `polymorphic_ctype`, must not be `None`")  # noqa: E501
 
         self._polymorphic_ctype = polymorphic_ctype
-
-    @property
-    def user(self):
-        """Gets the user of this PrinterController.  # noqa: E501
-
-
-        :return: The user of this PrinterController.  # noqa: E501
-        :rtype: int
-        """
-        return self._user
-
-    @user.setter
-    def user(self, user):
-        """Sets the user of this PrinterController.
-
-
-        :param user: The user of this PrinterController.  # noqa: E501
-        :type user: int
-        """
-        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
-            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
-
-        self._user = user
-
-    @property
-    def appliance(self):
-        """Gets the appliance of this PrinterController.  # noqa: E501
-
-
-        :return: The appliance of this PrinterController.  # noqa: E501
-        :rtype: int
-        """
-        return self._appliance
-
-    @appliance.setter
-    def appliance(self, appliance):
-        """Sets the appliance of this PrinterController.
-
-
-        :param appliance: The appliance of this PrinterController.  # noqa: E501
-        :type appliance: int
-        """
-        if self.local_vars_configuration.client_side_validation and appliance is None:  # noqa: E501
-            raise ValueError("Invalid value for `appliance`, must not be `None`")  # noqa: E501
-
-        self._appliance = appliance
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

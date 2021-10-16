@@ -13,6 +13,10 @@
 pub struct AnsibleFacts {
     #[serde(rename = "id")]
     pub id: i32,
+    #[serde(rename = "user")]
+    pub user: String,
+    #[serde(rename = "appliance")]
+    pub appliance: i32,
     #[serde(rename = "deleted")]
     pub deleted: String,
     #[serde(rename = "os_version")]
@@ -39,14 +43,14 @@ pub struct AnsibleFacts {
     pub release_channel: Option<crate::models::ReleaseChannelEnum>,
     #[serde(rename = "json")]
     pub json: ::std::collections::HashMap<String, serde_json::Value>,
-    #[serde(rename = "appliance")]
-    pub appliance: i32,
 }
 
 impl AnsibleFacts {
-    pub fn new(id: i32, deleted: String, os_version: String, os: String, kernel_version: String, cores: i32, ram: i64, cpu_flags: Vec<String>, json: ::std::collections::HashMap<String, serde_json::Value>, appliance: i32) -> AnsibleFacts {
+    pub fn new(id: i32, user: String, appliance: i32, deleted: String, os_version: String, os: String, kernel_version: String, cores: i32, ram: i64, cpu_flags: Vec<String>, json: ::std::collections::HashMap<String, serde_json::Value>) -> AnsibleFacts {
         AnsibleFacts {
             id,
+            user,
+            appliance,
             deleted,
             os_version,
             os,
@@ -60,7 +64,6 @@ impl AnsibleFacts {
             cpu_flags,
             release_channel: None,
             json,
-            appliance,
         }
     }
 }

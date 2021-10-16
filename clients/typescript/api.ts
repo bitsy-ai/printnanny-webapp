@@ -208,6 +208,18 @@ export interface AnsibleFacts {
      * @type {string}
      * @memberof AnsibleFacts
      */
+    'user': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof AnsibleFacts
+     */
+    'appliance': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnsibleFacts
+     */
     'deleted': string;
     /**
      * 
@@ -281,12 +293,6 @@ export interface AnsibleFacts {
      * @memberof AnsibleFacts
      */
     'json': { [key: string]: any; };
-    /**
-     * 
-     * @type {number}
-     * @memberof AnsibleFacts
-     */
-    'appliance': number;
 }
 /**
  * 
@@ -366,12 +372,6 @@ export interface AnsibleFactsRequest {
      * @memberof AnsibleFactsRequest
      */
     'json': { [key: string]: any; };
-    /**
-     * 
-     * @type {number}
-     * @memberof AnsibleFactsRequest
-     */
-    'appliance': number;
 }
 /**
  * 
@@ -399,16 +399,22 @@ export interface Appliance {
     'ansible_facts': AnsibleFacts;
     /**
      * 
-     * @type {Camera}
+     * @type {Array<Camera>}
      * @memberof Appliance
      */
-    'cameras': Camera;
+    'cameras': Array<Camera>;
     /**
      * 
-     * @type {PrinterController}
+     * @type {Array<PrinterController>}
      * @memberof Appliance
      */
-    'printer_controllers': PrinterController;
+    'printer_controllers': Array<PrinterController>;
+    /**
+     * 
+     * @type {number}
+     * @memberof Appliance
+     */
+    'user': number;
     /**
      * 
      * @type {string}
@@ -433,12 +439,6 @@ export interface Appliance {
      * @memberof Appliance
      */
     'hostname': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof Appliance
-     */
-    'user': number;
 }
 /**
  * 
@@ -452,6 +452,18 @@ export interface AppliancePKI {
      * @memberof AppliancePKI
      */
     'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof AppliancePKI
+     */
+    'user': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof AppliancePKI
+     */
+    'appliance': number;
     /**
      * 
      * @type {string}
@@ -488,12 +500,6 @@ export interface AppliancePKI {
      * @memberof AppliancePKI
      */
     'fingerprint': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof AppliancePKI
-     */
-    'appliance': number;
 }
 /**
  * 
@@ -531,12 +537,6 @@ export interface AppliancePKIRequest {
      * @memberof AppliancePKIRequest
      */
     'fingerprint': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof AppliancePKIRequest
-     */
-    'appliance': number;
 }
 /**
  * 
@@ -546,40 +546,10 @@ export interface AppliancePKIRequest {
 export interface ApplianceRequest {
     /**
      * 
-     * @type {AppliancePKIRequest}
-     * @memberof ApplianceRequest
-     */
-    'pki': AppliancePKIRequest;
-    /**
-     * 
-     * @type {AnsibleFactsRequest}
-     * @memberof ApplianceRequest
-     */
-    'ansible_facts': AnsibleFactsRequest;
-    /**
-     * 
-     * @type {CameraRequest}
-     * @memberof ApplianceRequest
-     */
-    'cameras': CameraRequest;
-    /**
-     * 
-     * @type {PrinterControllerRequest}
-     * @memberof ApplianceRequest
-     */
-    'printer_controllers': PrinterControllerRequest;
-    /**
-     * 
      * @type {string}
      * @memberof ApplianceRequest
      */
     'hostname': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ApplianceRequest
-     */
-    'user': number;
 }
 /**
  * 
@@ -701,30 +671,6 @@ export interface Camera {
     'updated_dt': string;
     /**
      * 
-     * @type {string}
-     * @memberof Camera
-     */
-    'name': string;
-    /**
-     * 
-     * @type {CameraTypeEnum}
-     * @memberof Camera
-     */
-    'camera_type': CameraTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof Camera
-     */
-    'camera_source': string;
-    /**
-     * 
-     * @type {CameraSourceTypeEnum}
-     * @memberof Camera
-     */
-    'camera_source_type': CameraSourceTypeEnum;
-    /**
-     * 
      * @type {number}
      * @memberof Camera
      */
@@ -735,6 +681,30 @@ export interface Camera {
      * @memberof Camera
      */
     'appliance': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Camera
+     */
+    'name': string;
+    /**
+     * 
+     * @type {CameraTypeEnum}
+     * @memberof Camera
+     */
+    'camera_type'?: CameraTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof Camera
+     */
+    'camera_source': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Camera
+     */
+    'url': string;
 }
 /**
  * 
@@ -753,43 +723,14 @@ export interface CameraRequest {
      * @type {CameraTypeEnum}
      * @memberof CameraRequest
      */
-    'camera_type': CameraTypeEnum;
+    'camera_type'?: CameraTypeEnum;
     /**
      * 
      * @type {string}
      * @memberof CameraRequest
      */
     'camera_source': string;
-    /**
-     * 
-     * @type {CameraSourceTypeEnum}
-     * @memberof CameraRequest
-     */
-    'camera_source_type': CameraSourceTypeEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof CameraRequest
-     */
-    'user': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CameraRequest
-     */
-    'appliance': number;
 }
-/**
- * 
- * @export
- * @enum {string}
- */
-
-export enum CameraSourceTypeEnum {
-    MjpgStreamer = 'MJPG Streamer',
-    Gstreamer = 'Gstreamer'
-}
-
 /**
  * 
  * @export
@@ -819,147 +760,6 @@ export enum CommandEnum {
     ConnectTestMqttPong = 'connect_test_mqtt_pong'
 }
 
-/**
- * 
- * @export
- * @interface CreateAnsibleFactsRequest
- */
-export interface CreateAnsibleFactsRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateAnsibleFactsRequest
-     */
-    'os_version': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateAnsibleFactsRequest
-     */
-    'os': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateAnsibleFactsRequest
-     */
-    'kernel_version': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateAnsibleFactsRequest
-     */
-    'hardware'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateAnsibleFactsRequest
-     */
-    'revision'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateAnsibleFactsRequest
-     */
-    'model'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateAnsibleFactsRequest
-     */
-    'serial'?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateAnsibleFactsRequest
-     */
-    'cores': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateAnsibleFactsRequest
-     */
-    'ram': number;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof CreateAnsibleFactsRequest
-     */
-    'cpu_flags': Array<string>;
-    /**
-     * 
-     * @type {ReleaseChannelEnum}
-     * @memberof CreateAnsibleFactsRequest
-     */
-    'release_channel'?: ReleaseChannelEnum;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof CreateAnsibleFactsRequest
-     */
-    'json': { [key: string]: any; };
-}
-/**
- * 
- * @export
- * @interface CreateAppliancePKIRequest
- */
-export interface CreateAppliancePKIRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateAppliancePKIRequest
-     */
-    'public_key': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateAppliancePKIRequest
-     */
-    'public_key_path': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateAppliancePKIRequest
-     */
-    'private_key_path': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateAppliancePKIRequest
-     */
-    'public_key_checksum': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateAppliancePKIRequest
-     */
-    'fingerprint': string;
-}
-/**
- * 
- * @export
- * @interface CreateApplianceRequest
- */
-export interface CreateApplianceRequest {
-    /**
-     * 
-     * @type {CreateAnsibleFactsRequest}
-     * @memberof CreateApplianceRequest
-     */
-    'ansible_facts': CreateAnsibleFactsRequest;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateApplianceRequest
-     */
-    'hostname': string;
-    /**
-     * 
-     * @type {CreateAppliancePKIRequest}
-     * @memberof CreateApplianceRequest
-     */
-    'pki': CreateAppliancePKIRequest;
-}
 /**
  * Generic auth response serializer
  * @export
@@ -1274,6 +1074,19 @@ export interface GcodeFile {
      * @memberof GcodeFile
      */
     'url': string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse403
+ */
+export interface InlineResponse403 {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse403
+     */
+    'detail'?: string;
 }
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
@@ -3572,40 +3385,10 @@ export interface PatchedAlertRequest {
 export interface PatchedApplianceRequest {
     /**
      * 
-     * @type {AppliancePKIRequest}
-     * @memberof PatchedApplianceRequest
-     */
-    'pki'?: AppliancePKIRequest;
-    /**
-     * 
-     * @type {AnsibleFactsRequest}
-     * @memberof PatchedApplianceRequest
-     */
-    'ansible_facts'?: AnsibleFactsRequest;
-    /**
-     * 
-     * @type {CameraRequest}
-     * @memberof PatchedApplianceRequest
-     */
-    'cameras'?: CameraRequest;
-    /**
-     * 
-     * @type {PrinterControllerRequest}
-     * @memberof PatchedApplianceRequest
-     */
-    'printer_controllers'?: PrinterControllerRequest;
-    /**
-     * 
      * @type {string}
      * @memberof PatchedApplianceRequest
      */
     'hostname'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedApplianceRequest
-     */
-    'user'?: number;
 }
 /**
  * 
@@ -3631,24 +3414,6 @@ export interface PatchedCameraRequest {
      * @memberof PatchedCameraRequest
      */
     'camera_source'?: string;
-    /**
-     * 
-     * @type {CameraSourceTypeEnum}
-     * @memberof PatchedCameraRequest
-     */
-    'camera_source_type'?: CameraSourceTypeEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedCameraRequest
-     */
-    'user'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedCameraRequest
-     */
-    'appliance'?: number;
 }
 /**
  * 
@@ -3887,18 +3652,6 @@ export interface PatchedPrinterControllerRequest {
      * @memberof PatchedPrinterControllerRequest
      */
     'software'?: SoftwareEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedPrinterControllerRequest
-     */
-    'user'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedPrinterControllerRequest
-     */
-    'appliance'?: number;
 }
 /**
  * 
@@ -4717,6 +4470,18 @@ export interface PrinterController {
     'id': number;
     /**
      * 
+     * @type {number}
+     * @memberof PrinterController
+     */
+    'user': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterController
+     */
+    'appliance': number;
+    /**
+     * 
      * @type {string}
      * @memberof PrinterController
      */
@@ -4745,18 +4510,6 @@ export interface PrinterController {
      * @memberof PrinterController
      */
     'polymorphic_ctype': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrinterController
-     */
-    'user': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrinterController
-     */
-    'appliance': number;
 }
 /**
  * 
@@ -4770,18 +4523,6 @@ export interface PrinterControllerRequest {
      * @memberof PrinterControllerRequest
      */
     'software': SoftwareEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrinterControllerRequest
-     */
-    'user': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrinterControllerRequest
-     */
-    'appliance': number;
 }
 /**
  * 
@@ -7223,47 +6964,6 @@ export const AppliancesApiAxiosParamCreator = function (configuration?: Configur
                 options: localVarRequestOptions,
             };
         },
-        /**
-         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-         * @param {CreateApplianceRequest} createApplianceRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        appliancesUpdateOrCreate: async (createApplianceRequest: CreateApplianceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'createApplianceRequest' is not null or undefined
-            assertParamExists('appliancesUpdateOrCreate', 'createApplianceRequest', createApplianceRequest)
-            const localVarPath = `/api/appliances/update-or-create/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(createApplianceRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
     }
 };
 
@@ -7440,16 +7140,6 @@ export const AppliancesApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesUpdate(id, applianceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
-        /**
-         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-         * @param {CreateApplianceRequest} createApplianceRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async appliancesUpdateOrCreate(createApplianceRequest: CreateApplianceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Appliance>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesUpdateOrCreate(createApplianceRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
     }
 };
 
@@ -7611,15 +7301,6 @@ export const AppliancesApiFactory = function (configuration?: Configuration, bas
         appliancesUpdate(id: number, applianceRequest: ApplianceRequest, options?: any): AxiosPromise<Appliance> {
             return localVarFp.appliancesUpdate(id, applianceRequest, options).then((request) => request(axios, basePath));
         },
-        /**
-         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-         * @param {CreateApplianceRequest} createApplianceRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        appliancesUpdateOrCreate(createApplianceRequest: CreateApplianceRequest, options?: any): AxiosPromise<Appliance> {
-            return localVarFp.appliancesUpdateOrCreate(createApplianceRequest, options).then((request) => request(axios, basePath));
-        },
     };
 };
 
@@ -7779,15 +7460,6 @@ export interface AppliancesApiInterface {
      * @memberof AppliancesApiInterface
      */
     appliancesUpdate(id: number, applianceRequest: ApplianceRequest, options?: AxiosRequestConfig): AxiosPromise<Appliance>;
-
-    /**
-     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-     * @param {CreateApplianceRequest} createApplianceRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AppliancesApiInterface
-     */
-    appliancesUpdateOrCreate(createApplianceRequest: CreateApplianceRequest, options?: AxiosRequestConfig): AxiosPromise<Appliance>;
 
 }
 
@@ -7977,17 +7649,6 @@ export class AppliancesApi extends BaseAPI implements AppliancesApiInterface {
      */
     public appliancesUpdate(id: number, applianceRequest: ApplianceRequest, options?: AxiosRequestConfig) {
         return AppliancesApiFp(this.configuration).appliancesUpdate(id, applianceRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-     * @param {CreateApplianceRequest} createApplianceRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AppliancesApi
-     */
-    public appliancesUpdateOrCreate(createApplianceRequest: CreateApplianceRequest, options?: AxiosRequestConfig) {
-        return AppliancesApiFp(this.configuration).appliancesUpdateOrCreate(createApplianceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
