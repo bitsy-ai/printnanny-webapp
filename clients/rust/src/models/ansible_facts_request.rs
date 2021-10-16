@@ -11,28 +11,49 @@
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct AnsibleFactsRequest {
-    #[serde(rename = "public_key_path")]
-    pub public_key_path: String,
-    #[serde(rename = "private_key_path")]
-    pub private_key_path: String,
-    #[serde(rename = "public_key")]
-    pub public_key: String,
-    #[serde(rename = "public_key_checksum")]
-    pub public_key_checksum: String,
-    #[serde(rename = "fingerprint")]
-    pub fingerprint: String,
+    #[serde(rename = "os_version")]
+    pub os_version: String,
+    #[serde(rename = "os")]
+    pub os: String,
+    #[serde(rename = "kernel_version")]
+    pub kernel_version: String,
+    #[serde(rename = "hardware", skip_serializing_if = "Option::is_none")]
+    pub hardware: Option<String>,
+    #[serde(rename = "revision", skip_serializing_if = "Option::is_none")]
+    pub revision: Option<String>,
+    #[serde(rename = "model", skip_serializing_if = "Option::is_none")]
+    pub model: Option<String>,
+    #[serde(rename = "serial", skip_serializing_if = "Option::is_none")]
+    pub serial: Option<String>,
+    #[serde(rename = "cores")]
+    pub cores: i32,
+    #[serde(rename = "ram")]
+    pub ram: i64,
+    #[serde(rename = "cpu_flags")]
+    pub cpu_flags: Vec<String>,
+    #[serde(rename = "release_channel", skip_serializing_if = "Option::is_none")]
+    pub release_channel: Option<crate::models::ReleaseChannelEnum>,
+    #[serde(rename = "json")]
+    pub json: ::std::collections::HashMap<String, serde_json::Value>,
     #[serde(rename = "appliance")]
     pub appliance: i32,
 }
 
 impl AnsibleFactsRequest {
-    pub fn new(public_key_path: String, private_key_path: String, public_key: String, public_key_checksum: String, fingerprint: String, appliance: i32) -> AnsibleFactsRequest {
+    pub fn new(os_version: String, os: String, kernel_version: String, cores: i32, ram: i64, cpu_flags: Vec<String>, json: ::std::collections::HashMap<String, serde_json::Value>, appliance: i32) -> AnsibleFactsRequest {
         AnsibleFactsRequest {
-            public_key_path,
-            private_key_path,
-            public_key,
-            public_key_checksum,
-            fingerprint,
+            os_version,
+            os,
+            kernel_version,
+            hardware: None,
+            revision: None,
+            model: None,
+            serial: None,
+            cores,
+            ram,
+            cpu_flags,
+            release_channel: None,
+            json,
             appliance,
         }
     }

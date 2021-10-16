@@ -46,7 +46,7 @@ class AppliancePKISerializer(serializers.ModelSerializer):
 
 class AnsibleFactsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = AppliancePKI
+        model = AnsibleFacts
         fields = "__all__"
 
 

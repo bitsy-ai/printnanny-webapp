@@ -49,11 +49,22 @@ class TestAppliance(unittest.TestCase):
                 ansible_facts = print_nanny_client.models.ansible_facts.AnsibleFacts(
                     id = 56, 
                     deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    public_key_path = '', 
-                    private_key_path = '', 
-                    public_key = '', 
-                    public_key_checksum = '', 
-                    fingerprint = '', 
+                    os_version = '', 
+                    os = '', 
+                    kernel_version = '', 
+                    hardware = '', 
+                    revision = '', 
+                    model = '', 
+                    serial = '', 
+                    cores = -2147483648, 
+                    ram = -9223372036854775808, 
+                    cpu_flags = [
+                        ''
+                        ], 
+                    release_channel = 'main', 
+                    json = {
+                        'key' : null
+                        }, 
                     appliance = 56, ), 
                 cameras = print_nanny_client.models.camera.Camera(
                     id = 56, 
@@ -96,11 +107,22 @@ class TestAppliance(unittest.TestCase):
                 ansible_facts = print_nanny_client.models.ansible_facts.AnsibleFacts(
                     id = 56, 
                     deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    public_key_path = '', 
-                    private_key_path = '', 
-                    public_key = '', 
-                    public_key_checksum = '', 
-                    fingerprint = '', 
+                    os_version = '', 
+                    os = '', 
+                    kernel_version = '', 
+                    hardware = '', 
+                    revision = '', 
+                    model = '', 
+                    serial = '', 
+                    cores = -2147483648, 
+                    ram = -9223372036854775808, 
+                    cpu_flags = [
+                        ''
+                        ], 
+                    release_channel = 'main', 
+                    json = {
+                        'key' : null
+                        }, 
                     appliance = 56, ),
                 cameras = print_nanny_client.models.camera.Camera(
                     id = 56, 

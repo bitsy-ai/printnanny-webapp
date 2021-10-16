@@ -36,20 +36,37 @@ class TestAnsibleFactsRequest(unittest.TestCase):
         # model = print_nanny_client.models.ansible_facts_request.AnsibleFactsRequest()  # noqa: E501
         if include_optional :
             return AnsibleFactsRequest(
-                public_key_path = '', 
-                private_key_path = '', 
-                public_key = '', 
-                public_key_checksum = '', 
-                fingerprint = '', 
+                os_version = '', 
+                os = '', 
+                kernel_version = '', 
+                hardware = '', 
+                revision = '', 
+                model = '', 
+                serial = '', 
+                cores = -2147483648, 
+                ram = -9223372036854775808, 
+                cpu_flags = [
+                    ''
+                    ], 
+                release_channel = 'main', 
+                json = {
+                    'key' : null
+                    }, 
                 appliance = 56
             )
         else :
             return AnsibleFactsRequest(
-                public_key_path = '',
-                private_key_path = '',
-                public_key = '',
-                public_key_checksum = '',
-                fingerprint = '',
+                os_version = '',
+                os = '',
+                kernel_version = '',
+                cores = -2147483648,
+                ram = -9223372036854775808,
+                cpu_flags = [
+                    ''
+                    ],
+                json = {
+                    'key' : null
+                    },
                 appliance = 56,
         )
 
