@@ -219,6 +219,9 @@ ts-client: clean-ts-client
 		-g typescript-axios \
 		-o /local/clients/typescript \
 		-c /local/clients/typescript.yaml
+	
+	sed -i "s/: Box::new(pki)//g" clients/rust/src/models/appliance.rs
+	sed -i "s/: Box::new(ansible_facts)//g" clients/rust/src/models/appliance.rs
 
 # sed blocks in rust-client target replace a bug in openapi's generated code
 # Compiling print-nanny-client v0.8.14
@@ -241,6 +244,7 @@ rust-client: clean-rust-client
 		-o /local/clients/rust \
 		-c /local/clients/rust.yaml \
 		-t /local/client-templates/rust
+	
 
 clean-python-client: ## remove build artifacts
 	rm -fr build/
