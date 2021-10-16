@@ -1,8 +1,4 @@
-from collections.abc import Mapping
 from rest_framework import serializers
-from rest_polymorphic.serializers import PolymorphicSerializer
-from drf_spectacular.utils import extend_schema_field
-from drf_spectacular.types import OpenApiTypes
 
 from print_nanny_webapp.devices.models import (
     Appliance,
@@ -15,15 +11,32 @@ from print_nanny_webapp.devices.models import (
     # OctoprintPrinterProfile,
 )
 from print_nanny_webapp.devices.services import CACerts
+from print_nanny_webapp.users.api.serializers import UserSerializer
 
 
 class CameraSerializer(serializers.ModelSerializer):
+    user = serializers.PrimaryKeyRelatedField(read_only=True)
+    appliance = serializers.PrimaryKeyRelatedField(read_only=True)
+    camera_type = serializers.ChoiceField(
+        choices=Camera.CameraType.choices,
+        default=Camera.CameraType.RPI_CAMERA,
+    )
+
     class Meta:
         model = Camera
-        fields = "__all__"
+        fields = [field.name for field in Camera._meta.fields] + [
+            "url",
+            "camera_type",
+        ]
+        extra_kwargs = {
+            "url": {"view_name": "api:devices:camera-detail", "lookup_field": "id"},
+        }
 
 
 class PrinterControllerSerializer(serializers.ModelSerializer):
+    user = serializers.PrimaryKeyRelatedField(read_only=True)
+    appliance = serializers.PrimaryKeyRelatedField(read_only=True)
+
     class Meta:
         model = PrinterController
         fields = "__all__"
@@ -33,78 +46,39 @@ class PrinterControllerSerializer(serializers.ModelSerializer):
 # v1 Appliance Identity Provisioning (distributed via rpi-imager)
 ##
 class CloudIoTDeviceSerializer(serializers.ModelSerializer):
+    user = serializers.PrimaryKeyRelatedField(read_only=True)
+    appliance = serializers.PrimaryKeyRelatedField(read_only=True)
+
     class Meta:
         model = CloudIoTDevice
         fields = "__all__"
 
 
 class AppliancePKISerializer(serializers.ModelSerializer):
+    user = serializers.PrimaryKeyRelatedField(read_only=True)
+    appliance = serializers.PrimaryKeyRelatedField(read_only=True)
+
     class Meta:
         model = AppliancePKI
         fields = "__all__"
 
 
 class AnsibleFactsSerializer(serializers.ModelSerializer):
+    user = serializers.PrimaryKeyRelatedField(read_only=True)
+    appliance = serializers.PrimaryKeyRelatedField(read_only=True)
+
     class Meta:
         model = AnsibleFacts
         fields = "__all__"
 
 
 class ApplianceSerializer(serializers.ModelSerializer):
-    pki = AppliancePKISerializer()
-    ansible_facts = AnsibleFactsSerializer()
-    cameras = CameraSerializer()
-    printer_controllers = PrinterControllerSerializer()
+    pki = AppliancePKISerializer(read_only=True)
+    ansible_facts = AnsibleFactsSerializer(read_only=True)
+    cameras = CameraSerializer(read_only=True, many=True)
+    printer_controllers = PrinterControllerSerializer(read_only=True, many=True)
+    user = serializers.PrimaryKeyRelatedField(read_only=True)
 
     class Meta:
         model = Appliance
         fields = "__all__"
-
-
-class CreateAppliancePKISerializer(serializers.ModelSerializer):
-    class Meta:
-        model = AppliancePKI
-        fields = (
-            "public_key",
-            "public_key_path",
-            "private_key_path",
-            "public_key_checksum",
-            "fingerprint",
-        )
-
-
-class CreateAnsibleFactsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = AnsibleFacts
-        fields = (
-            "os_version",
-            "os",
-            "kernel_version",
-            "hardware",
-            "revision",
-            "model",
-            "serial",
-            "cores",
-            "ram",
-            "cpu_flags",
-            "release_channel",
-            "json",
-        )
-
-
-class CreateApplianceSerializer(serializers.ModelSerializer):
-    pki = CreateAppliancePKISerializer()
-    ansible_facts = CreateAnsibleFactsSerializer()
-
-    class Meta:
-        model = Appliance
-        fields = (
-            "ansible_facts",
-            "hostname",
-            "pki",
-        )
-
-    def update_or_create(self, user, hostname, validated_data):
-        return Appliance.objects.update_or_create(
-            user=user, hostname=hostname, defaults=validated_data
-        )

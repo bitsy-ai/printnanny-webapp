@@ -126,10 +126,6 @@ class Camera(SafeDeleteModel):
         )
         IP_CAMERA = "Generic RTSP/RTMP IP Camera", "Generic RTSP/RTMP IP Camera"
 
-    class CameraSourceType(models.TextChoices):
-        MJPG_STREAMER = "MJPG Streamer", "Software-encoded JPG frames over HTTP"
-        GSTREAMER = "Gstreamer", "Hardware-encoded h264"
-
     _safedelete_policy = SOFT_DELETE
 
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
@@ -141,9 +137,6 @@ class Camera(SafeDeleteModel):
     name = models.CharField(max_length=255)
     camera_type = models.CharField(max_length=255, choices=CameraType.choices)
     camera_source = models.CharField(max_length=255)
-    camera_source_type = models.CharField(
-        max_length=255, choices=CameraSourceType.choices
-    )
 
 
 class PrinterController(PolymorphicModel, SafeDeleteModel):

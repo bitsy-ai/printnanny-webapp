@@ -1,8 +1,11 @@
 import logging
 
 from typing import Any
-from drf_spectacular.utils import extend_schema
-from rest_framework import status
+from drf_spectacular.utils import extend_schema, extend_schema_view
+from django.db.utils import IntegrityError
+
+import rest_framework.status
+from rest_framework.serializers import ValidationError
 from rest_framework.decorators import action
 from rest_framework.mixins import (
     ListModelMixin,
@@ -16,7 +19,6 @@ from rest_framework.viewsets import GenericViewSet
 
 from .serializers import (
     ApplianceSerializer,
-    CreateApplianceSerializer,
     CameraSerializer,
     PrinterControllerSerializer,
 )
@@ -28,6 +30,31 @@ logger = logging.getLogger(__name__)
 ##
 # v1 Appliance Identity Provisioning (distributed via rpi-imager)
 ##
+list_appliances_schema = extend_schema(
+    responses={
+        403: {"type": "object", "properties": {"detail": {"type": "string"}}},
+        500: {"type": "object", "properties": {"detail": {"type": "string"}}},
+        200: ApplianceSerializer(many=True),
+    },
+)
+modify_appliances_schema = extend_schema(
+    request=ApplianceSerializer,
+    responses={
+        403: {"type": "object", "properties": {"detail": {"type": "string"}}},
+        409: {"type": "object", "properties": {"detail": {"type": "string"}}},
+        500: {"type": "object", "properties": {"detail": {"type": "string"}}},
+        200: ApplianceSerializer,
+        201: ApplianceSerializer,
+        202: ApplianceSerializer,
+    },
+)
+
+
+@extend_schema_view(
+    list=list_appliances_schema,
+    create=modify_appliances_schema,
+    update=modify_appliances_schema,
+)
 class ApplianceViewSet(
     GenericViewSet,
     CreateModelMixin,
@@ -44,43 +71,15 @@ class ApplianceViewSet(
     queryset = Appliance.objects.all()
     lookup_field = "id"
 
-    @extend_schema(
-        operation_id="appliances_update_or_create",
-        request=CreateApplianceSerializer,
-        responses={
-            400: ApplianceSerializer,
-            200: ApplianceSerializer,
-            201: ApplianceSerializer,
-            202: ApplianceSerializer,
-        },
-    )
-    @action(methods=["post"], detail=False, url_path="update-or-create")
-    def update_or_create(self, request: Request, *args: Any, **kwargs: Any) -> Response:
-        serializer = CreateApplianceSerializer(data=request.data)
-        if serializer.is_valid():
-            validated_data = serializer.validated_data.copy()
-            del validated_data["hostname"]
-            instance, created = serializer.update_or_create(
-                request.user, serializer.validated_data.get("hostname"), validated_data
+    def create(self, request: Request, *args: Any, **kwargs: Any) -> Response:
+        hostname = request.data.get("hostname")
+        try:
+            super().create(request, *args, **kwargs)
+        except IntegrityError:
+            raise ValidationError(
+                code=rest_framework.status.HTTP_409_CONFLICT,
+                detail=f"HTTP_409_CONFLICT: Appliance with hostname={hostname} already exists for user={self.request.user.id}",
             )
-
-            context = {"request": self.request}
-            context.update(self.get_serializer_context())
-
-            response_serializer = ApplianceSerializer(
-                instance=instance, context=context
-            )
-
-            if not created:
-                return Response(
-                    response_serializer.data, status=status.HTTP_202_ACCEPTED
-                )
-            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
 
 
 class CameraViewSet(
@@ -94,17 +93,8 @@ class CameraViewSet(
     queryset = Camera.objects.all()
     lookup_field = "id"
 
-    @extend_schema(
-        request=CameraSerializer,
-        responses={
-            400: CameraSerializer,
-            200: CameraSerializer,
-            201: CameraSerializer,
-            202: CameraSerializer,
-        },
-    )
-    def create(self, request: Request, *args: Any, **kwargs: Any) -> Response:
-        return super().create(request, *args, **kwargs)
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 
 class PrinterControllerViewSet(
@@ -118,14 +108,5 @@ class PrinterControllerViewSet(
     queryset = PrinterController.objects.all()
     lookup_field = "id"
 
-    @extend_schema(
-        request=PrinterControllerSerializer,
-        responses={
-            400: PrinterControllerSerializer,
-            200: PrinterControllerSerializer,
-            201: PrinterControllerSerializer,
-            202: PrinterControllerSerializer,
-        },
-    )
-    def create(self, request: Request, *args: Any, **kwargs: Any) -> Response:
-        return super().create(request, *args, **kwargs)
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
