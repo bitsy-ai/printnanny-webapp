@@ -390,13 +390,13 @@ export interface Appliance {
      * @type {AppliancePKI}
      * @memberof Appliance
      */
-    'pki': AppliancePKI;
+    'pki': AppliancePKI | null;
     /**
      * 
      * @type {AnsibleFacts}
      * @memberof Appliance
      */
-    'ansible_facts': AnsibleFacts;
+    'ansible_facts': AnsibleFacts | null;
     /**
      * 
      * @type {Array<Camera>}
