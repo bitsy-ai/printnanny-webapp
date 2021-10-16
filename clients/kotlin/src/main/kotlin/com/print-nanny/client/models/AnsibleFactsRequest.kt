@@ -20,6 +20,7 @@
 
 package com.print-nanny.client.models
 
+import com.print-nanny.client.models.ReleaseChannelEnum
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -27,33 +28,61 @@ import java.io.Serializable
 /**
  * 
  *
- * @param publicKeyPath 
- * @param privateKeyPath 
- * @param publicKey 
- * @param publicKeyChecksum 
- * @param fingerprint 
+ * @param osVersion 
+ * @param os 
+ * @param kernelVersion 
+ * @param cores 
+ * @param ram 
+ * @param cpuFlags 
+ * @param json 
  * @param appliance 
+ * @param hardware 
+ * @param revision 
+ * @param model 
+ * @param serial 
+ * @param releaseChannel 
  */
 
 data class AnsibleFactsRequest (
 
-    @Json(name = "public_key_path")
-    val publicKeyPath: kotlin.String,
+    @Json(name = "os_version")
+    val osVersion: kotlin.String,
 
-    @Json(name = "private_key_path")
-    val privateKeyPath: kotlin.String,
+    @Json(name = "os")
+    val os: kotlin.String,
 
-    @Json(name = "public_key")
-    val publicKey: kotlin.String,
+    @Json(name = "kernel_version")
+    val kernelVersion: kotlin.String,
 
-    @Json(name = "public_key_checksum")
-    val publicKeyChecksum: kotlin.String,
+    @Json(name = "cores")
+    val cores: kotlin.Int,
 
-    @Json(name = "fingerprint")
-    val fingerprint: kotlin.String,
+    @Json(name = "ram")
+    val ram: kotlin.Long,
+
+    @Json(name = "cpu_flags")
+    val cpuFlags: kotlin.collections.List<kotlin.String>,
+
+    @Json(name = "json")
+    val json: kotlin.collections.Map<kotlin.String, kotlin.Any>,
 
     @Json(name = "appliance")
-    val appliance: kotlin.Int
+    val appliance: kotlin.Int,
+
+    @Json(name = "hardware")
+    val hardware: kotlin.String? = null,
+
+    @Json(name = "revision")
+    val revision: kotlin.String? = null,
+
+    @Json(name = "model")
+    val model: kotlin.String? = null,
+
+    @Json(name = "serial")
+    val serial: kotlin.String? = null,
+
+    @Json(name = "release_channel")
+    val releaseChannel: ReleaseChannelEnum? = null
 
 ) : Serializable {
     companion object {

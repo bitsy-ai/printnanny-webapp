@@ -214,31 +214,73 @@ export interface AnsibleFacts {
      * @type {string}
      * @memberof AnsibleFacts
      */
-    'public_key_path': string;
+    'os_version': string;
     /**
      * 
      * @type {string}
      * @memberof AnsibleFacts
      */
-    'private_key_path': string;
+    'os': string;
     /**
      * 
      * @type {string}
      * @memberof AnsibleFacts
      */
-    'public_key': string;
+    'kernel_version': string;
     /**
      * 
      * @type {string}
      * @memberof AnsibleFacts
      */
-    'public_key_checksum': string;
+    'hardware'?: string | null;
     /**
      * 
      * @type {string}
      * @memberof AnsibleFacts
      */
-    'fingerprint': string;
+    'revision'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnsibleFacts
+     */
+    'model'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnsibleFacts
+     */
+    'serial'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof AnsibleFacts
+     */
+    'cores': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AnsibleFacts
+     */
+    'ram': number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof AnsibleFacts
+     */
+    'cpu_flags': Array<string>;
+    /**
+     * 
+     * @type {ReleaseChannelEnum}
+     * @memberof AnsibleFacts
+     */
+    'release_channel'?: ReleaseChannelEnum;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof AnsibleFacts
+     */
+    'json': { [key: string]: any; };
     /**
      * 
      * @type {number}
@@ -257,31 +299,73 @@ export interface AnsibleFactsRequest {
      * @type {string}
      * @memberof AnsibleFactsRequest
      */
-    'public_key_path': string;
+    'os_version': string;
     /**
      * 
      * @type {string}
      * @memberof AnsibleFactsRequest
      */
-    'private_key_path': string;
+    'os': string;
     /**
      * 
      * @type {string}
      * @memberof AnsibleFactsRequest
      */
-    'public_key': string;
+    'kernel_version': string;
     /**
      * 
      * @type {string}
      * @memberof AnsibleFactsRequest
      */
-    'public_key_checksum': string;
+    'hardware'?: string | null;
     /**
      * 
      * @type {string}
      * @memberof AnsibleFactsRequest
      */
-    'fingerprint': string;
+    'revision'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnsibleFactsRequest
+     */
+    'model'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnsibleFactsRequest
+     */
+    'serial'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof AnsibleFactsRequest
+     */
+    'cores': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AnsibleFactsRequest
+     */
+    'ram': number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof AnsibleFactsRequest
+     */
+    'cpu_flags': Array<string>;
+    /**
+     * 
+     * @type {ReleaseChannelEnum}
+     * @memberof AnsibleFactsRequest
+     */
+    'release_channel'?: ReleaseChannelEnum;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof AnsibleFactsRequest
+     */
+    'json': { [key: string]: any; };
     /**
      * 
      * @type {number}

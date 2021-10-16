@@ -38,26 +38,40 @@ class AnsibleFacts(object):
     openapi_types = {
         'id': 'int',
         'deleted': 'datetime',
-        'public_key_path': 'str',
-        'private_key_path': 'str',
-        'public_key': 'str',
-        'public_key_checksum': 'str',
-        'fingerprint': 'str',
+        'os_version': 'str',
+        'os': 'str',
+        'kernel_version': 'str',
+        'hardware': 'str',
+        'revision': 'str',
+        'model': 'str',
+        'serial': 'str',
+        'cores': 'int',
+        'ram': 'int',
+        'cpu_flags': 'list[str]',
+        'release_channel': 'ReleaseChannelEnum',
+        'json': 'dict(str, object)',
         'appliance': 'int'
     }
 
     attribute_map = {
         'id': 'id',
         'deleted': 'deleted',
-        'public_key_path': 'public_key_path',
-        'private_key_path': 'private_key_path',
-        'public_key': 'public_key',
-        'public_key_checksum': 'public_key_checksum',
-        'fingerprint': 'fingerprint',
+        'os_version': 'os_version',
+        'os': 'os',
+        'kernel_version': 'kernel_version',
+        'hardware': 'hardware',
+        'revision': 'revision',
+        'model': 'model',
+        'serial': 'serial',
+        'cores': 'cores',
+        'ram': 'ram',
+        'cpu_flags': 'cpu_flags',
+        'release_channel': 'release_channel',
+        'json': 'json',
         'appliance': 'appliance'
     }
 
-    def __init__(self, id=None, deleted=None, public_key_path=None, private_key_path=None, public_key=None, public_key_checksum=None, fingerprint=None, appliance=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, deleted=None, os_version=None, os=None, kernel_version=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, cpu_flags=None, release_channel=None, json=None, appliance=None, local_vars_configuration=None):  # noqa: E501
         """AnsibleFacts - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -65,21 +79,36 @@ class AnsibleFacts(object):
 
         self._id = None
         self._deleted = None
-        self._public_key_path = None
-        self._private_key_path = None
-        self._public_key = None
-        self._public_key_checksum = None
-        self._fingerprint = None
+        self._os_version = None
+        self._os = None
+        self._kernel_version = None
+        self._hardware = None
+        self._revision = None
+        self._model = None
+        self._serial = None
+        self._cores = None
+        self._ram = None
+        self._cpu_flags = None
+        self._release_channel = None
+        self._json = None
         self._appliance = None
         self.discriminator = None
 
         self.id = id
         self.deleted = deleted
-        self.public_key_path = public_key_path
-        self.private_key_path = private_key_path
-        self.public_key = public_key
-        self.public_key_checksum = public_key_checksum
-        self.fingerprint = fingerprint
+        self.os_version = os_version
+        self.os = os
+        self.kernel_version = kernel_version
+        self.hardware = hardware
+        self.revision = revision
+        self.model = model
+        self.serial = serial
+        self.cores = cores
+        self.ram = ram
+        self.cpu_flags = cpu_flags
+        if release_channel is not None:
+            self.release_channel = release_channel
+        self.json = json
         self.appliance = appliance
 
     @property
@@ -129,131 +158,303 @@ class AnsibleFacts(object):
         self._deleted = deleted
 
     @property
-    def public_key_path(self):
-        """Gets the public_key_path of this AnsibleFacts.  # noqa: E501
+    def os_version(self):
+        """Gets the os_version of this AnsibleFacts.  # noqa: E501
 
 
-        :return: The public_key_path of this AnsibleFacts.  # noqa: E501
+        :return: The os_version of this AnsibleFacts.  # noqa: E501
         :rtype: str
         """
-        return self._public_key_path
+        return self._os_version
 
-    @public_key_path.setter
-    def public_key_path(self, public_key_path):
-        """Sets the public_key_path of this AnsibleFacts.
+    @os_version.setter
+    def os_version(self, os_version):
+        """Sets the os_version of this AnsibleFacts.
 
 
-        :param public_key_path: The public_key_path of this AnsibleFacts.  # noqa: E501
-        :type public_key_path: str
+        :param os_version: The os_version of this AnsibleFacts.  # noqa: E501
+        :type os_version: str
         """
-        if self.local_vars_configuration.client_side_validation and public_key_path is None:  # noqa: E501
-            raise ValueError("Invalid value for `public_key_path`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and os_version is None:  # noqa: E501
+            raise ValueError("Invalid value for `os_version`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
-                public_key_path is not None and len(public_key_path) > 255):
-            raise ValueError("Invalid value for `public_key_path`, length must be less than or equal to `255`")  # noqa: E501
+                os_version is not None and len(os_version) > 255):
+            raise ValueError("Invalid value for `os_version`, length must be less than or equal to `255`")  # noqa: E501
 
-        self._public_key_path = public_key_path
+        self._os_version = os_version
 
     @property
-    def private_key_path(self):
-        """Gets the private_key_path of this AnsibleFacts.  # noqa: E501
+    def os(self):
+        """Gets the os of this AnsibleFacts.  # noqa: E501
 
 
-        :return: The private_key_path of this AnsibleFacts.  # noqa: E501
+        :return: The os of this AnsibleFacts.  # noqa: E501
         :rtype: str
         """
-        return self._private_key_path
+        return self._os
 
-    @private_key_path.setter
-    def private_key_path(self, private_key_path):
-        """Sets the private_key_path of this AnsibleFacts.
+    @os.setter
+    def os(self, os):
+        """Sets the os of this AnsibleFacts.
 
 
-        :param private_key_path: The private_key_path of this AnsibleFacts.  # noqa: E501
-        :type private_key_path: str
+        :param os: The os of this AnsibleFacts.  # noqa: E501
+        :type os: str
         """
-        if self.local_vars_configuration.client_side_validation and private_key_path is None:  # noqa: E501
-            raise ValueError("Invalid value for `private_key_path`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and os is None:  # noqa: E501
+            raise ValueError("Invalid value for `os`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
-                private_key_path is not None and len(private_key_path) > 255):
-            raise ValueError("Invalid value for `private_key_path`, length must be less than or equal to `255`")  # noqa: E501
+                os is not None and len(os) > 255):
+            raise ValueError("Invalid value for `os`, length must be less than or equal to `255`")  # noqa: E501
 
-        self._private_key_path = private_key_path
+        self._os = os
 
     @property
-    def public_key(self):
-        """Gets the public_key of this AnsibleFacts.  # noqa: E501
+    def kernel_version(self):
+        """Gets the kernel_version of this AnsibleFacts.  # noqa: E501
 
 
-        :return: The public_key of this AnsibleFacts.  # noqa: E501
+        :return: The kernel_version of this AnsibleFacts.  # noqa: E501
         :rtype: str
         """
-        return self._public_key
+        return self._kernel_version
 
-    @public_key.setter
-    def public_key(self, public_key):
-        """Sets the public_key of this AnsibleFacts.
+    @kernel_version.setter
+    def kernel_version(self, kernel_version):
+        """Sets the kernel_version of this AnsibleFacts.
 
 
-        :param public_key: The public_key of this AnsibleFacts.  # noqa: E501
-        :type public_key: str
+        :param kernel_version: The kernel_version of this AnsibleFacts.  # noqa: E501
+        :type kernel_version: str
         """
-        if self.local_vars_configuration.client_side_validation and public_key is None:  # noqa: E501
-            raise ValueError("Invalid value for `public_key`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and kernel_version is None:  # noqa: E501
+            raise ValueError("Invalid value for `kernel_version`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                kernel_version is not None and len(kernel_version) > 255):
+            raise ValueError("Invalid value for `kernel_version`, length must be less than or equal to `255`")  # noqa: E501
 
-        self._public_key = public_key
+        self._kernel_version = kernel_version
 
     @property
-    def public_key_checksum(self):
-        """Gets the public_key_checksum of this AnsibleFacts.  # noqa: E501
+    def hardware(self):
+        """Gets the hardware of this AnsibleFacts.  # noqa: E501
 
 
-        :return: The public_key_checksum of this AnsibleFacts.  # noqa: E501
+        :return: The hardware of this AnsibleFacts.  # noqa: E501
         :rtype: str
         """
-        return self._public_key_checksum
+        return self._hardware
 
-    @public_key_checksum.setter
-    def public_key_checksum(self, public_key_checksum):
-        """Sets the public_key_checksum of this AnsibleFacts.
+    @hardware.setter
+    def hardware(self, hardware):
+        """Sets the hardware of this AnsibleFacts.
 
 
-        :param public_key_checksum: The public_key_checksum of this AnsibleFacts.  # noqa: E501
-        :type public_key_checksum: str
+        :param hardware: The hardware of this AnsibleFacts.  # noqa: E501
+        :type hardware: str
         """
-        if self.local_vars_configuration.client_side_validation and public_key_checksum is None:  # noqa: E501
-            raise ValueError("Invalid value for `public_key_checksum`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
-                public_key_checksum is not None and len(public_key_checksum) > 255):
-            raise ValueError("Invalid value for `public_key_checksum`, length must be less than or equal to `255`")  # noqa: E501
+                hardware is not None and len(hardware) > 255):
+            raise ValueError("Invalid value for `hardware`, length must be less than or equal to `255`")  # noqa: E501
 
-        self._public_key_checksum = public_key_checksum
+        self._hardware = hardware
 
     @property
-    def fingerprint(self):
-        """Gets the fingerprint of this AnsibleFacts.  # noqa: E501
+    def revision(self):
+        """Gets the revision of this AnsibleFacts.  # noqa: E501
 
 
-        :return: The fingerprint of this AnsibleFacts.  # noqa: E501
+        :return: The revision of this AnsibleFacts.  # noqa: E501
         :rtype: str
         """
-        return self._fingerprint
+        return self._revision
 
-    @fingerprint.setter
-    def fingerprint(self, fingerprint):
-        """Sets the fingerprint of this AnsibleFacts.
+    @revision.setter
+    def revision(self, revision):
+        """Sets the revision of this AnsibleFacts.
 
 
-        :param fingerprint: The fingerprint of this AnsibleFacts.  # noqa: E501
-        :type fingerprint: str
+        :param revision: The revision of this AnsibleFacts.  # noqa: E501
+        :type revision: str
         """
-        if self.local_vars_configuration.client_side_validation and fingerprint is None:  # noqa: E501
-            raise ValueError("Invalid value for `fingerprint`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
-                fingerprint is not None and len(fingerprint) > 255):
-            raise ValueError("Invalid value for `fingerprint`, length must be less than or equal to `255`")  # noqa: E501
+                revision is not None and len(revision) > 255):
+            raise ValueError("Invalid value for `revision`, length must be less than or equal to `255`")  # noqa: E501
 
-        self._fingerprint = fingerprint
+        self._revision = revision
+
+    @property
+    def model(self):
+        """Gets the model of this AnsibleFacts.  # noqa: E501
+
+
+        :return: The model of this AnsibleFacts.  # noqa: E501
+        :rtype: str
+        """
+        return self._model
+
+    @model.setter
+    def model(self, model):
+        """Sets the model of this AnsibleFacts.
+
+
+        :param model: The model of this AnsibleFacts.  # noqa: E501
+        :type model: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                model is not None and len(model) > 255):
+            raise ValueError("Invalid value for `model`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._model = model
+
+    @property
+    def serial(self):
+        """Gets the serial of this AnsibleFacts.  # noqa: E501
+
+
+        :return: The serial of this AnsibleFacts.  # noqa: E501
+        :rtype: str
+        """
+        return self._serial
+
+    @serial.setter
+    def serial(self, serial):
+        """Sets the serial of this AnsibleFacts.
+
+
+        :param serial: The serial of this AnsibleFacts.  # noqa: E501
+        :type serial: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                serial is not None and len(serial) > 255):
+            raise ValueError("Invalid value for `serial`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._serial = serial
+
+    @property
+    def cores(self):
+        """Gets the cores of this AnsibleFacts.  # noqa: E501
+
+
+        :return: The cores of this AnsibleFacts.  # noqa: E501
+        :rtype: int
+        """
+        return self._cores
+
+    @cores.setter
+    def cores(self, cores):
+        """Sets the cores of this AnsibleFacts.
+
+
+        :param cores: The cores of this AnsibleFacts.  # noqa: E501
+        :type cores: int
+        """
+        if self.local_vars_configuration.client_side_validation and cores is None:  # noqa: E501
+            raise ValueError("Invalid value for `cores`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                cores is not None and cores > 2147483647):  # noqa: E501
+            raise ValueError("Invalid value for `cores`, must be a value less than or equal to `2147483647`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                cores is not None and cores < -2147483648):  # noqa: E501
+            raise ValueError("Invalid value for `cores`, must be a value greater than or equal to `-2147483648`")  # noqa: E501
+
+        self._cores = cores
+
+    @property
+    def ram(self):
+        """Gets the ram of this AnsibleFacts.  # noqa: E501
+
+
+        :return: The ram of this AnsibleFacts.  # noqa: E501
+        :rtype: int
+        """
+        return self._ram
+
+    @ram.setter
+    def ram(self, ram):
+        """Sets the ram of this AnsibleFacts.
+
+
+        :param ram: The ram of this AnsibleFacts.  # noqa: E501
+        :type ram: int
+        """
+        if self.local_vars_configuration.client_side_validation and ram is None:  # noqa: E501
+            raise ValueError("Invalid value for `ram`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                ram is not None and ram > 9223372036854775807):  # noqa: E501
+            raise ValueError("Invalid value for `ram`, must be a value less than or equal to `9223372036854775807`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                ram is not None and ram < -9223372036854775808):  # noqa: E501
+            raise ValueError("Invalid value for `ram`, must be a value greater than or equal to `-9223372036854775808`")  # noqa: E501
+
+        self._ram = ram
+
+    @property
+    def cpu_flags(self):
+        """Gets the cpu_flags of this AnsibleFacts.  # noqa: E501
+
+
+        :return: The cpu_flags of this AnsibleFacts.  # noqa: E501
+        :rtype: list[str]
+        """
+        return self._cpu_flags
+
+    @cpu_flags.setter
+    def cpu_flags(self, cpu_flags):
+        """Sets the cpu_flags of this AnsibleFacts.
+
+
+        :param cpu_flags: The cpu_flags of this AnsibleFacts.  # noqa: E501
+        :type cpu_flags: list[str]
+        """
+        if self.local_vars_configuration.client_side_validation and cpu_flags is None:  # noqa: E501
+            raise ValueError("Invalid value for `cpu_flags`, must not be `None`")  # noqa: E501
+
+        self._cpu_flags = cpu_flags
+
+    @property
+    def release_channel(self):
+        """Gets the release_channel of this AnsibleFacts.  # noqa: E501
+
+
+        :return: The release_channel of this AnsibleFacts.  # noqa: E501
+        :rtype: ReleaseChannelEnum
+        """
+        return self._release_channel
+
+    @release_channel.setter
+    def release_channel(self, release_channel):
+        """Sets the release_channel of this AnsibleFacts.
+
+
+        :param release_channel: The release_channel of this AnsibleFacts.  # noqa: E501
+        :type release_channel: ReleaseChannelEnum
+        """
+
+        self._release_channel = release_channel
+
+    @property
+    def json(self):
+        """Gets the json of this AnsibleFacts.  # noqa: E501
+
+
+        :return: The json of this AnsibleFacts.  # noqa: E501
+        :rtype: dict(str, object)
+        """
+        return self._json
+
+    @json.setter
+    def json(self, json):
+        """Sets the json of this AnsibleFacts.
+
+
+        :param json: The json of this AnsibleFacts.  # noqa: E501
+        :type json: dict(str, object)
+        """
+        if self.local_vars_configuration.client_side_validation and json is None:  # noqa: E501
+            raise ValueError("Invalid value for `json`, must not be `None`")  # noqa: E501
+
+        self._json = json
 
     @property
     def appliance(self):

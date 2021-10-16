@@ -44,11 +44,22 @@ class TestApplianceRequest(unittest.TestCase):
                     fingerprint = '', 
                     appliance = 56, ), 
                 ansible_facts = print_nanny_client.models.ansible_facts_request.AnsibleFactsRequest(
-                    public_key_path = '', 
-                    private_key_path = '', 
-                    public_key = '', 
-                    public_key_checksum = '', 
-                    fingerprint = '', 
+                    os_version = '', 
+                    os = '', 
+                    kernel_version = '', 
+                    hardware = '', 
+                    revision = '', 
+                    model = '', 
+                    serial = '', 
+                    cores = -2147483648, 
+                    ram = -9223372036854775808, 
+                    cpu_flags = [
+                        ''
+                        ], 
+                    release_channel = 'main', 
+                    json = {
+                        'key' : null
+                        }, 
                     appliance = 56, ), 
                 cameras = print_nanny_client.models.camera_request.CameraRequest(
                     name = '', 
@@ -74,11 +85,22 @@ class TestApplianceRequest(unittest.TestCase):
                     fingerprint = '', 
                     appliance = 56, ),
                 ansible_facts = print_nanny_client.models.ansible_facts_request.AnsibleFactsRequest(
-                    public_key_path = '', 
-                    private_key_path = '', 
-                    public_key = '', 
-                    public_key_checksum = '', 
-                    fingerprint = '', 
+                    os_version = '', 
+                    os = '', 
+                    kernel_version = '', 
+                    hardware = '', 
+                    revision = '', 
+                    model = '', 
+                    serial = '', 
+                    cores = -2147483648, 
+                    ram = -9223372036854775808, 
+                    cpu_flags = [
+                        ''
+                        ], 
+                    release_channel = 'main', 
+                    json = {
+                        'key' : null
+                        }, 
                     appliance = 56, ),
                 cameras = print_nanny_client.models.camera_request.CameraRequest(
                     name = '', 
