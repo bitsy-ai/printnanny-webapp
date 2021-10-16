@@ -9,7 +9,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Appliance {
     #[serde(rename = "id")]
     pub id: i32,
@@ -37,8 +37,8 @@ impl Appliance {
     pub fn new(id: i32, pki: Option<crate::models::AppliancePki>, ansible_facts: Option<crate::models::AnsibleFacts>, cameras: Vec<crate::models::Camera>, printer_controllers: Vec<crate::models::PrinterController>, user: i32, deleted: String, created_dt: String, updated_dt: String, hostname: String) -> Appliance {
         Appliance {
             id,
-            pki: Box::new(pki),
-            ansible_facts: Box::new(ansible_facts),
+            pki,
+            ansible_facts,
             cameras,
             printer_controllers,
             user,

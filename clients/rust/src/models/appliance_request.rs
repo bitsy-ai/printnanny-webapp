@@ -9,7 +9,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ApplianceRequest {
     #[serde(rename = "hostname")]
     pub hostname: String,
