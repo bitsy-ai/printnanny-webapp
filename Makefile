@@ -241,8 +241,8 @@ rust-client: clean-rust-client
 		-o /local/clients/rust \
 		-c /local/clients/rust.yaml \
 		-t /local/client-templates/rust
-	sed -i "s/: Box::new(pki)//g" clients/rust/src/models/appliance.rs
-	sed -i "s/: Box::new(ansible_facts)//g" clients/rust/src/models/appliance.rs
+	sed -i "s/Box::new(pki)/Some(Box::new(pki))/g" clients/rust/src/models/appliance.rs
+	sed -i "s/Box::new(ansible_facts)/Some(Box::new(ansible_facts))/g" clients/rust/src/models/appliance.rs
 	
 
 clean-python-client: ## remove build artifacts
@@ -297,7 +297,7 @@ python-client-release: dist ## package and upload a release
 	cd clients/python && twine upload dist/* && cd -
 
 rust-client-release: rust-client
-	git add -A && git commit -m "0.8.35 client codegen ✨"
+	git add -A && git commit -m ""0.8.34 client codegen ✨" client codegen ✨"
 	cd clients/rust && cargo publish
 
 clients-release: python-client-release ts-client kotlin-client rust-client-release
