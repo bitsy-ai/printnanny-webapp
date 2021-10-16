@@ -241,9 +241,10 @@ rust-client: clean-rust-client
 		-o /local/clients/rust \
 		-c /local/clients/rust.yaml \
 		-t /local/client-templates/rust
-	sed -i "s/Box::new(pki)/Some(Box::new(pki))/g" clients/rust/src/models/appliance.rs
-	sed -i "s/Box::new(ansible_facts)/Some(Box::new(ansible_facts))/g" clients/rust/src/models/appliance.rs
-	
+
+# sed -i "s/Box::new(pki)/Some(Box::new(pki))/g" clients/rust/src/models/appliance.rs
+# sed -i "s/Box::new(ansible_facts)/Some(Box::new(ansible_facts))/g" clients/rust/src/models/appliance.rs
+
 
 clean-python-client: ## remove build artifacts
 	rm -fr build/
