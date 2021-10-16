@@ -25,8 +25,8 @@ impl PaginatedOctoPrintDeviceList {
     pub fn new() -> PaginatedOctoPrintDeviceList {
         PaginatedOctoPrintDeviceList {
             count: None,
-            next: None,
-            previous: None,
+            next: NoneSome(,
+            previous: NoneSome(,
             results: None,
         }
     }

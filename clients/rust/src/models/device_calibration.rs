@@ -39,7 +39,7 @@ impl DeviceCalibration {
             updated_dt,
             octoprint_device,
             fps: None,
-            xy: None,
+            xy: NoneSome(,
             height: None,
             width: None,
             url,

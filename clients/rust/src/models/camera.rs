@@ -43,7 +43,7 @@ impl Camera {
             user,
             appliance,
             name,
-            camera_type: None,
+            camera_type: NoneSome(,
             camera_source,
             url,
         }

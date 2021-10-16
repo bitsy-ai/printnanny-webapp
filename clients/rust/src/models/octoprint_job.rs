@@ -26,11 +26,11 @@ pub struct OctoprintJob {
 impl OctoprintJob {
     pub fn new(filament: Option<::std::collections::HashMap<String, serde_json::Value>>) -> OctoprintJob {
         OctoprintJob {
-            file: None,
-            estimated_print_time: None,
-            average_print_time: None,
-            last_print_time: None,
-            filament,
+            file: NoneSome(,
+            estimated_print_time: NoneSome(,
+            average_print_time: NoneSome(,
+            last_print_time: NoneSome(,
+            filamentSome(Some(,
         }
     }
 }

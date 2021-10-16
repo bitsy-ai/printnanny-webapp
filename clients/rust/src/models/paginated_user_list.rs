@@ -25,8 +25,8 @@ impl PaginatedUserList {
     pub fn new() -> PaginatedUserList {
         PaginatedUserList {
             count: None,
-            next: None,
-            previous: None,
+            next: NoneSome(,
+            previous: NoneSome(,
             results: None,
         }
     }

@@ -25,8 +25,8 @@ impl PaginatedPrintJobEventList {
     pub fn new() -> PaginatedPrintJobEventList {
         PaginatedPrintJobEventList {
             count: None,
-            next: None,
-            previous: None,
+            next: NoneSome(,
+            previous: NoneSome(,
             results: None,
         }
     }

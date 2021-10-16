@@ -24,8 +24,8 @@ pub struct AlertRequest {
 impl AlertRequest {
     pub fn new() -> AlertRequest {
         AlertRequest {
-            octoprint_device: None,
-            event_type: None,
+            octoprint_device: NoneSome(,
+            event_type: NoneSome(,
             seen: None,
             sent: None,
         }

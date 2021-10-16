@@ -23,7 +23,7 @@ impl CameraRequest {
     pub fn new(name: String, camera_source: String) -> CameraRequest {
         CameraRequest {
             name,
-            camera_type: None,
+            camera_type: NoneSome(,
             camera_source,
         }
     }

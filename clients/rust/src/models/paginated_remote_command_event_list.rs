@@ -25,8 +25,8 @@ impl PaginatedRemoteCommandEventList {
     pub fn new() -> PaginatedRemoteCommandEventList {
         PaginatedRemoteCommandEventList {
             count: None,
-            next: None,
-            previous: None,
+            next: NoneSome(,
+            previous: NoneSome(,
             results: None,
         }
     }

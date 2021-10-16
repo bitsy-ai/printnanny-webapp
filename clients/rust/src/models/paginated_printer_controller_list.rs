@@ -25,8 +25,8 @@ impl PaginatedPrinterControllerList {
     pub fn new() -> PaginatedPrinterControllerList {
         PaginatedPrinterControllerList {
             count: None,
-            next: None,
-            previous: None,
+            next: NoneSome(,
+            previous: NoneSome(,
             results: None,
         }
     }

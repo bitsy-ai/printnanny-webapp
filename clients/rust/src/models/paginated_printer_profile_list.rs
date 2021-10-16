@@ -25,8 +25,8 @@ impl PaginatedPrinterProfileList {
     pub fn new() -> PaginatedPrinterProfileList {
         PaginatedPrinterProfileList {
             count: None,
-            next: None,
-            previous: None,
+            next: NoneSome(,
+            previous: NoneSome(,
             results: None,
         }
     }

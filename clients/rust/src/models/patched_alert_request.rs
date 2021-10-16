@@ -24,8 +24,8 @@ pub struct PatchedAlertRequest {
 impl PatchedAlertRequest {
     pub fn new() -> PatchedAlertRequest {
         PatchedAlertRequest {
-            octoprint_device: None,
-            event_type: None,
+            octoprint_device: NoneSome(,
+            event_type: NoneSome(,
             seen: None,
             sent: None,
         }
