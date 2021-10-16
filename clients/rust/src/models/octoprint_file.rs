@@ -28,12 +28,12 @@ pub struct OctoprintFile {
 impl OctoprintFile {
     pub fn new(name: Option<String>, path: Option<String>, origin: Option<String>, size: Option<i32>, date: Option<i32>) -> OctoprintFile {
         OctoprintFile {
-            nameOption<>,
-            pathOption<>,
+            name,
+            path,
             display: None,
-            originOption<>,
-            sizeOption<>,
-            dateOption<>,
+            origin,
+            size,
+            date,
         }
     }
 }

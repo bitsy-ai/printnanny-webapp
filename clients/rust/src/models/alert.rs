@@ -52,7 +52,7 @@ impl Alert {
             print_progress,
             time_elapsed,
             time_remaining,
-            manage_device_urlOption<>,
+            manage_device_url,
             user,
             octoprint_device: None,
             event_type: None,
