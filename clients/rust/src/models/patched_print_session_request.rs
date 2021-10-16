@@ -9,7 +9,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct PatchedPrintSessionRequest {
     #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
     pub created_dt: Option<String>,

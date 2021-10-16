@@ -9,7 +9,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct OctoprintEnvironmentRequest {
     #[serde(rename = "os")]
     pub os: Box<crate::models::OctoprintPlatformRequest>,

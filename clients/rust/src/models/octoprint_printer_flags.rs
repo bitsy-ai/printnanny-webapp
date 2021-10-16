@@ -9,7 +9,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct OctoprintPrinterFlags {
     #[serde(rename = "operational")]
     pub operational: bool,

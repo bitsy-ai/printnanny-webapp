@@ -9,7 +9,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct OctoprintHardwareRequest {
     #[serde(rename = "cores")]
     pub cores: i32,
