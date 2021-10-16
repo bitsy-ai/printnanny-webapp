@@ -102,7 +102,6 @@ class AnsibleFacts(SafeDeleteModel):
     # /proc/cpuinfo MAX PROCESSOR
     cores = models.IntegerField()
     ram = models.BigIntegerField()
-    cpu_flags = ArrayField(models.CharField(max_length=255))
 
     release_channel = models.CharField(
         max_length=8,
