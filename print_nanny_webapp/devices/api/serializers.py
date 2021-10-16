@@ -66,6 +66,8 @@ class CreateAppliancePKISerializer(serializers.ModelSerializer):
         model = AppliancePKI
         fields = (
             "public_key",
+            "public_key_path",
+            "private_key_path",
             "public_key_checksum",
             "fingerprint",
         )
