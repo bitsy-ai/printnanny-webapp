@@ -9,7 +9,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct DeviceCalibrationRequest {
     #[serde(rename = "octoprint_device")]
     pub octoprint_device: i32,

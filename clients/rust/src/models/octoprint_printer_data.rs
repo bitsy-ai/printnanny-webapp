@@ -9,7 +9,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct OctoprintPrinterData {
     #[serde(rename = "job")]
     pub job: Box<crate::models::OctoprintJob>,
