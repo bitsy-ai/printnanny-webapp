@@ -10,173 +10,295 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('devices', '0001_initial'),
+        ("devices", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='AnsibleFacts',
+            name="AnsibleFacts",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('deleted', models.DateTimeField(editable=False, null=True)),
-                ('created_dt', models.DateTimeField(auto_now_add=True, db_index=True)),
-                ('os_version', models.CharField(max_length=255)),
-                ('os', models.CharField(max_length=255)),
-                ('kernel_version', models.CharField(max_length=255)),
-                ('hardware', models.CharField(max_length=255, null=True)),
-                ('revision', models.CharField(max_length=255, null=True)),
-                ('model', models.CharField(max_length=255, null=True)),
-                ('serial', models.CharField(max_length=255, null=True)),
-                ('cores', models.IntegerField()),
-                ('ram', models.BigIntegerField()),
-                ('cpu_flags', django.contrib.postgres.fields.ArrayField(base_field=models.CharField(max_length=255), size=None)),
-                ('release_channel', models.CharField(choices=[('main', 'Stable mainline release channel'), ('devel', 'Unstable developer release channel')], default='main', max_length=8)),
-                ('json', models.JSONField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("deleted", models.DateTimeField(editable=False, null=True)),
+                ("created_dt", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("os_version", models.CharField(max_length=255)),
+                ("os", models.CharField(max_length=255)),
+                ("kernel_version", models.CharField(max_length=255)),
+                ("hardware", models.CharField(max_length=255, null=True)),
+                ("revision", models.CharField(max_length=255, null=True)),
+                ("model", models.CharField(max_length=255, null=True)),
+                ("serial", models.CharField(max_length=255, null=True)),
+                ("cores", models.IntegerField()),
+                ("ram", models.BigIntegerField()),
+                (
+                    "cpu_flags",
+                    django.contrib.postgres.fields.ArrayField(
+                        base_field=models.CharField(max_length=255), size=None
+                    ),
+                ),
+                (
+                    "release_channel",
+                    models.CharField(
+                        choices=[
+                            ("main", "Stable mainline release channel"),
+                            ("devel", "Unstable developer release channel"),
+                        ],
+                        default="main",
+                        max_length=8,
+                    ),
+                ),
+                ("json", models.JSONField()),
             ],
             options={
-                'ordering': ['-created_dt'],
+                "ordering": ["-created_dt"],
             },
         ),
         migrations.CreateModel(
-            name='Appliance',
+            name="Appliance",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('deleted', models.DateTimeField(editable=False, null=True)),
-                ('created_dt', models.DateTimeField(auto_now_add=True, db_index=True)),
-                ('updated_dt', models.DateTimeField(auto_now=True, db_index=True)),
-                ('hostname', models.CharField(max_length=255)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='appliances', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("deleted", models.DateTimeField(editable=False, null=True)),
+                ("created_dt", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("updated_dt", models.DateTimeField(auto_now=True, db_index=True)),
+                ("hostname", models.CharField(max_length=255)),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="appliances",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='AppliancePublicKey',
+            name="AppliancePublicKey",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('deleted', models.DateTimeField(editable=False, null=True)),
-                ('public_key', models.TextField()),
-                ('public_key_checksum', models.CharField(max_length=255)),
-                ('fingerprint', models.CharField(max_length=255)),
-                ('appliance', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='public_keys', to='devices.appliance')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("deleted", models.DateTimeField(editable=False, null=True)),
+                ("public_key", models.TextField()),
+                ("public_key_checksum", models.CharField(max_length=255)),
+                ("fingerprint", models.CharField(max_length=255)),
+                (
+                    "appliance",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="public_keys",
+                        to="devices.appliance",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Camera',
+            name="Camera",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('deleted', models.DateTimeField(editable=False, null=True)),
-                ('created_dt', models.DateTimeField(auto_now_add=True, db_index=True)),
-                ('updated_dt', models.DateTimeField(auto_now=True, db_index=True)),
-                ('name', models.CharField(max_length=255)),
-                ('camera_type', models.CharField(choices=[('Raspberry Pi Camera Module', 'Raspberry Pi Camera Module'), ('Raspberry Pi USB Camera', 'Raspberry Pi USB Camera'), ('Generic RTSP/RTMP IP Camera', 'Generic RTSP/RTMP IP Camera')], max_length=255)),
-                ('camera_source', models.CharField(max_length=255)),
-                ('appliance', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='cameras', to='devices.appliance')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("deleted", models.DateTimeField(editable=False, null=True)),
+                ("created_dt", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("updated_dt", models.DateTimeField(auto_now=True, db_index=True)),
+                ("name", models.CharField(max_length=255)),
+                (
+                    "camera_type",
+                    models.CharField(
+                        choices=[
+                            (
+                                "Raspberry Pi Camera Module",
+                                "Raspberry Pi Camera Module",
+                            ),
+                            ("Raspberry Pi USB Camera", "Raspberry Pi USB Camera"),
+                            (
+                                "Generic RTSP/RTMP IP Camera",
+                                "Generic RTSP/RTMP IP Camera",
+                            ),
+                        ],
+                        max_length=255,
+                    ),
+                ),
+                ("camera_source", models.CharField(max_length=255)),
+                (
+                    "appliance",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="cameras",
+                        to="devices.appliance",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='CloudIoTDevice',
+            name="CloudIoTDevice",
             fields=[
-                ('deleted', models.DateTimeField(editable=False, null=True)),
-                ('numId', models.BigIntegerField(primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=255)),
-                ('id', models.CharField(max_length=255)),
-                ('appliance', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='cloudiot_devices', to='devices.appliance')),
+                ("deleted", models.DateTimeField(editable=False, null=True)),
+                ("numId", models.BigIntegerField(primary_key=True, serialize=False)),
+                ("name", models.CharField(max_length=255)),
+                ("id", models.CharField(max_length=255)),
+                (
+                    "appliance",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="cloudiot_devices",
+                        to="devices.appliance",
+                    ),
+                ),
             ],
         ),
         migrations.AlterUniqueTogether(
-            name='device',
+            name="device",
             unique_together=None,
         ),
         migrations.RemoveField(
-            model_name='device',
-            name='user',
+            model_name="device",
+            name="user",
         ),
         migrations.RemoveField(
-            model_name='octoprintcontroller',
-            name='printercontroller_ptr',
+            model_name="octoprintcontroller",
+            name="printercontroller_ptr",
         ),
         migrations.RemoveField(
-            model_name='octoprintprinterprofile',
-            name='octoprint_controller',
+            model_name="octoprintprinterprofile",
+            name="octoprint_controller",
         ),
         migrations.RemoveField(
-            model_name='octoprintprinterprofile',
-            name='printerprofile_ptr',
+            model_name="octoprintprinterprofile",
+            name="printerprofile_ptr",
         ),
         migrations.AlterUniqueTogether(
-            name='printerprofile',
+            name="printerprofile",
             unique_together=None,
         ),
         migrations.RemoveField(
-            model_name='printerprofile',
-            name='controller',
+            model_name="printerprofile",
+            name="controller",
         ),
         migrations.RemoveField(
-            model_name='printerprofile',
-            name='device',
+            model_name="printerprofile",
+            name="device",
         ),
         migrations.RemoveField(
-            model_name='printerprofile',
-            name='polymorphic_ctype',
+            model_name="printerprofile",
+            name="polymorphic_ctype",
         ),
         migrations.RemoveField(
-            model_name='printerprofile',
-            name='user',
+            model_name="printerprofile",
+            name="user",
         ),
         migrations.RemoveField(
-            model_name='printercontroller',
-            name='cli_version',
+            model_name="printercontroller",
+            name="cli_version",
         ),
         migrations.RemoveField(
-            model_name='printercontroller',
-            name='device',
+            model_name="printercontroller",
+            name="device",
         ),
         migrations.AddField(
-            model_name='printercontroller',
-            name='software',
-            field=models.CharField(choices=[('OctoPrint', 'OctoPrint printer controller')], default=1, max_length=12),
+            model_name="printercontroller",
+            name="software",
+            field=models.CharField(
+                choices=[("OctoPrint", "OctoPrint printer controller")],
+                default=1,
+                max_length=12,
+            ),
             preserve_default=False,
         ),
         migrations.DeleteModel(
-            name='CameraController',
+            name="CameraController",
         ),
         migrations.DeleteModel(
-            name='Device',
+            name="Device",
         ),
         migrations.DeleteModel(
-            name='OctoprintController',
+            name="OctoprintController",
         ),
         migrations.DeleteModel(
-            name='OctoprintPrinterProfile',
+            name="OctoprintPrinterProfile",
         ),
         migrations.DeleteModel(
-            name='PrinterProfile',
+            name="PrinterProfile",
         ),
         migrations.AddField(
-            model_name='ansiblefacts',
-            name='appliance',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='ansible_facts', to='devices.appliance'),
+            model_name="ansiblefacts",
+            name="appliance",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="ansible_facts",
+                to="devices.appliance",
+            ),
         ),
         migrations.AddField(
-            model_name='printercontroller',
-            name='appliance',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, related_name='printer_controllers', to='devices.appliance'),
+            model_name="printercontroller",
+            name="appliance",
+            field=models.ForeignKey(
+                default=1,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="printer_controllers",
+                to="devices.appliance",
+            ),
             preserve_default=False,
         ),
         migrations.AddConstraint(
-            model_name='cloudiotdevice',
-            constraint=models.UniqueConstraint(condition=models.Q(('deleted', None)), fields=('appliance',), name='unique_cloud_iot_device_per_appliance'),
+            model_name="cloudiotdevice",
+            constraint=models.UniqueConstraint(
+                condition=models.Q(("deleted", None)),
+                fields=("appliance",),
+                name="unique_cloud_iot_device_per_appliance",
+            ),
         ),
         migrations.AlterUniqueTogether(
-            name='camera',
-            unique_together={('user', 'name')},
+            name="camera",
+            unique_together={("user", "name")},
         ),
         migrations.AddConstraint(
-            model_name='appliancepublickey',
-            constraint=models.UniqueConstraint(condition=models.Q(('deleted', None)), fields=('appliance',), name='unique_public_key_per_appliance'),
+            model_name="appliancepublickey",
+            constraint=models.UniqueConstraint(
+                condition=models.Q(("deleted", None)),
+                fields=("appliance",),
+                name="unique_public_key_per_appliance",
+            ),
         ),
         migrations.AddConstraint(
-            model_name='appliance',
-            constraint=models.UniqueConstraint(condition=models.Q(('deleted', None)), fields=('user', 'hostname'), name='unique_appliance_hostname_per_user'),
+            model_name="appliance",
+            constraint=models.UniqueConstraint(
+                condition=models.Q(("deleted", None)),
+                fields=("user", "hostname"),
+                name="unique_appliance_hostname_per_user",
+            ),
         ),
     ]
