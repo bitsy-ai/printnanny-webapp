@@ -1,6 +1,6 @@
 [package]
 name = "print-nanny-client"
-version = "0.8.39"
+version = "0.8.40"
 authors = ["Leigh Johnson <leigh@bitsy.ai>"]
 homepage = "https://print-nanny.com"
 repository = "https://github.com/bitsy-ai/octoprint-nanny-webapp"
@@ -18,3 +18,4 @@ version = "^0.11"
 features = ["json", "multipart"]
 
 [dev-dependencies]
+thiserror = "1.0.30"
