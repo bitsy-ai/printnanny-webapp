@@ -11,7 +11,7 @@ pub struct ResponseContent<T> {
 
 #[derive(Debug)]
 pub enum Error<T> {
-    Reqwest(),
+    Reqwest(reqwest::Error),
     Serde(serde_json::Error),
     Io(std::io::Error),
     ResponseError(ResponseContent<T>),
