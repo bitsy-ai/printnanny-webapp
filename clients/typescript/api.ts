@@ -933,6 +933,19 @@ export interface EmailAuthRequest {
 /**
  * 
  * @export
+ * @interface ErrorDetail
+ */
+export interface ErrorDetail {
+    /**
+     * 
+     * @type {string}
+     * @memberof ErrorDetail
+     */
+    'detail': string;
+}
+/**
+ * 
+ * @export
  * @enum {string}
  */
 
@@ -1104,19 +1117,6 @@ export interface GcodeFile {
      * @memberof GcodeFile
      */
     'url'?: string;
-}
-/**
- * 
- * @export
- * @interface InlineResponseDefault
- */
-export interface InlineResponseDefault {
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponseDefault
-     */
-    'detail'?: string;
 }
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.

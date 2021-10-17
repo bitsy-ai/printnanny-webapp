@@ -30,10 +30,10 @@ import java.io.Serializable
  * @param detail 
  */
 
-data class InlineResponseDefault (
+data class ErrorDetail (
 
     @Json(name = "detail")
-    val detail: kotlin.String? = null
+    val detail: kotlin.String
 
 ) : Serializable {
     companion object {

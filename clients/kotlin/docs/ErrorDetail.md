@@ -1,10 +1,10 @@
 
-# InlineResponseDefault
+# ErrorDetail
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**detail** | **kotlin.String** |  |  [optional]
+**detail** | **kotlin.String** |  | 
 
 
 

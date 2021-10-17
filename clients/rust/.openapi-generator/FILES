@@ -30,12 +30,12 @@ docs/DetailResponse.md
 docs/DeviceCalibration.md
 docs/DeviceCalibrationRequest.md
 docs/EmailAuthRequest.md
+docs/ErrorDetail.md
 docs/EventSourceEnum.md
 docs/EventType0c4Enum.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
-docs/InlineResponseDefault.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
@@ -179,12 +179,12 @@ src/models/detail_response.rs
 src/models/device_calibration.rs
 src/models/device_calibration_request.rs
 src/models/email_auth_request.rs
+src/models/error_detail.rs
 src/models/event_source_enum.rs
 src/models/event_type0c4_enum.rs
 src/models/experiment.rs
 src/models/experiment_device_config.rs
 src/models/gcode_file.rs
-src/models/inline_response_default.rs
 src/models/mobile_auth_request.rs
 src/models/mod.rs
 src/models/model_artifact.rs

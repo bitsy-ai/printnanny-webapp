@@ -28,12 +28,12 @@ docs/DetailResponse.md
 docs/DeviceCalibration.md
 docs/DeviceCalibrationRequest.md
 docs/EmailAuthRequest.md
+docs/ErrorDetail.md
 docs/EventSourceEnum.md
 docs/EventType0c4Enum.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
-docs/InlineResponseDefault.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
@@ -194,12 +194,12 @@ src/main/kotlin/com/print-nanny/client/models/DetailResponse.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceCalibration.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceCalibrationRequest.kt
 src/main/kotlin/com/print-nanny/client/models/EmailAuthRequest.kt
+src/main/kotlin/com/print-nanny/client/models/ErrorDetail.kt
 src/main/kotlin/com/print-nanny/client/models/EventSourceEnum.kt
 src/main/kotlin/com/print-nanny/client/models/EventType0c4Enum.kt
 src/main/kotlin/com/print-nanny/client/models/Experiment.kt
 src/main/kotlin/com/print-nanny/client/models/ExperimentDeviceConfig.kt
 src/main/kotlin/com/print-nanny/client/models/GcodeFile.kt
-src/main/kotlin/com/print-nanny/client/models/InlineResponseDefault.kt
 src/main/kotlin/com/print-nanny/client/models/MobileAuthRequest.kt
 src/main/kotlin/com/print-nanny/client/models/ModelArtifact.kt
 src/main/kotlin/com/print-nanny/client/models/OctoPrintDevice.kt

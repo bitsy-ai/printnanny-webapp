@@ -17,7 +17,7 @@ use super::{Error, configuration};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesAnsibleFactsCreateError {
-    DefaultResponse(crate::models::InlineResponseDefault),
+    DefaultResponse(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -25,7 +25,7 @@ pub enum AppliancesAnsibleFactsCreateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesAnsibleFactsListError {
-    DefaultResponse(crate::models::InlineResponseDefault),
+    DefaultResponse(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -47,7 +47,7 @@ pub enum AppliancesAnsibleFactsRetrieveError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesAnsibleFactsUpdateError {
-    DefaultResponse(crate::models::InlineResponseDefault),
+    DefaultResponse(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -55,7 +55,7 @@ pub enum AppliancesAnsibleFactsUpdateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesCamerasCreateError {
-    DefaultResponse(crate::models::InlineResponseDefault),
+    DefaultResponse(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -63,7 +63,7 @@ pub enum AppliancesCamerasCreateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesCamerasListError {
-    DefaultResponse(crate::models::InlineResponseDefault),
+    DefaultResponse(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -85,7 +85,7 @@ pub enum AppliancesCamerasRetrieveError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesCamerasUpdateError {
-    DefaultResponse(crate::models::InlineResponseDefault),
+    DefaultResponse(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -93,7 +93,7 @@ pub enum AppliancesCamerasUpdateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesCloudIotDevicesCreateError {
-    DefaultResponse(crate::models::InlineResponseDefault),
+    DefaultResponse(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -101,7 +101,7 @@ pub enum AppliancesCloudIotDevicesCreateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesCloudIotDevicesListError {
-    DefaultResponse(crate::models::InlineResponseDefault),
+    DefaultResponse(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -123,7 +123,7 @@ pub enum AppliancesCloudIotDevicesRetrieveError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesCloudIotDevicesUpdateError {
-    DefaultResponse(crate::models::InlineResponseDefault),
+    DefaultResponse(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -131,7 +131,7 @@ pub enum AppliancesCloudIotDevicesUpdateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesCreateError {
-    DefaultResponse(crate::models::InlineResponseDefault),
+    DefaultResponse(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -139,7 +139,7 @@ pub enum AppliancesCreateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesListError {
-    DefaultResponse(crate::models::InlineResponseDefault),
+    DefaultResponse(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -154,7 +154,7 @@ pub enum AppliancesPartialUpdateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesPrinterControllersCreateError {
-    DefaultResponse(crate::models::InlineResponseDefault),
+    DefaultResponse(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -162,7 +162,7 @@ pub enum AppliancesPrinterControllersCreateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesPrinterControllersListError {
-    DefaultResponse(crate::models::InlineResponseDefault),
+    DefaultResponse(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -184,7 +184,7 @@ pub enum AppliancesPrinterControllersRetrieveError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesPrinterControllersUpdateError {
-    DefaultResponse(crate::models::InlineResponseDefault),
+    DefaultResponse(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -192,7 +192,7 @@ pub enum AppliancesPrinterControllersUpdateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesPublicKeysCreateError {
-    DefaultResponse(crate::models::InlineResponseDefault),
+    DefaultResponse(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -200,7 +200,7 @@ pub enum AppliancesPublicKeysCreateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesPublicKeysListError {
-    DefaultResponse(crate::models::InlineResponseDefault),
+    DefaultResponse(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -222,7 +222,7 @@ pub enum AppliancesPublicKeysRetrieveError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesPublicKeysUpdateError {
-    DefaultResponse(crate::models::InlineResponseDefault),
+    DefaultResponse(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -237,7 +237,7 @@ pub enum AppliancesRetrieveError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesUpdateError {
-    DefaultResponse(crate::models::InlineResponseDefault),
+    DefaultResponse(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
