@@ -25,8 +25,8 @@ impl PaginatedPrintSessionList {
     pub fn new() -> PaginatedPrintSessionList {
         PaginatedPrintSessionList {
             count: None,
-            next: None,
-            previous: None,
+            next: NoneSome(,
+            previous: NoneSome(,
             results: None,
         }
     }

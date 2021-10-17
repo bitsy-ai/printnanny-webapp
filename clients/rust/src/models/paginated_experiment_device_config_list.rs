@@ -25,8 +25,8 @@ impl PaginatedExperimentDeviceConfigList {
     pub fn new() -> PaginatedExperimentDeviceConfigList {
         PaginatedExperimentDeviceConfigList {
             count: None,
-            next: None,
-            previous: None,
+            next: NoneSome(,
+            previous: NoneSome(,
             results: None,
         }
     }

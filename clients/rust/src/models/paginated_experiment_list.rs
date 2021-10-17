@@ -25,8 +25,8 @@ impl PaginatedExperimentList {
     pub fn new() -> PaginatedExperimentList {
         PaginatedExperimentList {
             count: None,
-            next: None,
-            previous: None,
+            next: NoneSome(,
+            previous: NoneSome(,
             results: None,
         }
     }

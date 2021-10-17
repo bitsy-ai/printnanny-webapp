@@ -23,7 +23,7 @@ impl PatchedCameraRequest {
     pub fn new() -> PatchedCameraRequest {
         PatchedCameraRequest {
             name: None,
-            camera_type: None,
+            camera_type: NoneSome(,
             camera_source: None,
         }
     }
