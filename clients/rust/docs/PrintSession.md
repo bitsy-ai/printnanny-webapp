@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **gcode_file** | Option<**i32**> |  | [optional]
 **gcode_filename** | Option<**String**> |  | [optional]
 **octoprint_job** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
-**print_job_status** | Option<[**crate::models::PrintJobStatusEnum**](PrintJobStatusEnum.md)> |  | [optional]
+**print_job_status** | Option<[**crate::models::PrintJobEventType**](PrintJobEventType.md)> |  | [optional]
 **url** | Option<**String**> |  | [optional][readonly]
 **datesegment** | Option<**String**> |  | [optional][readonly]
 

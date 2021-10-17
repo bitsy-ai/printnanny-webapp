@@ -12,7 +12,7 @@
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct PatchedPrinterControllerRequest {
     #[serde(rename = "software", skip_serializing_if = "Option::is_none")]
-    pub software: Option<crate::models::SoftwareEnum>,
+    pub software: Option<Box<crate::models::SoftwareEnum>>,
 }
 
 impl PatchedPrinterControllerRequest {

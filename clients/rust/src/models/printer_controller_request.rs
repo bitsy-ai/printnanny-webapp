@@ -11,14 +11,14 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct PrinterControllerRequest {
-    #[serde(rename = "software")]
-    pub software: crate::models::SoftwareEnum,
+    #[serde(rename = "software", skip_serializing_if = "Option::is_none")]
+    pub software: Option<Box<crate::models::SoftwareEnum>>,
 }
 
 impl PrinterControllerRequest {
-    pub fn new(software: crate::models::SoftwareEnum) -> PrinterControllerRequest {
+    pub fn new() -> PrinterControllerRequest {
         PrinterControllerRequest {
-            software,
+            software: None,
         }
     }
 }

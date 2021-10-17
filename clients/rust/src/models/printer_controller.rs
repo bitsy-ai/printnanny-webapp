@@ -17,28 +17,28 @@ pub struct PrinterController {
     pub user: Option<i32>,
     #[serde(rename = "appliance", skip_serializing_if = "Option::is_none")]
     pub appliance: Option<i32>,
+    #[serde(rename = "software", skip_serializing_if = "Option::is_none")]
+    pub software: Option<Box<crate::models::SoftwareEnum>>,
     #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
     pub deleted: Option<String>,
     #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
     pub created_dt: Option<String>,
     #[serde(rename = "updated_dt", skip_serializing_if = "Option::is_none")]
     pub updated_dt: Option<String>,
-    #[serde(rename = "software")]
-    pub software: crate::models::SoftwareEnum,
     #[serde(rename = "polymorphic_ctype", skip_serializing_if = "Option::is_none")]
     pub polymorphic_ctype: Option<i32>,
 }
 
 impl PrinterController {
-    pub fn new(software: crate::models::SoftwareEnum) -> PrinterController {
+    pub fn new() -> PrinterController {
         PrinterController {
             id: None,
             user: None,
             appliance: None,
+            software: None,
             deleted: None,
             created_dt: None,
             updated_dt: None,
-            software,
             polymorphic_ctype: None,
         }
     }

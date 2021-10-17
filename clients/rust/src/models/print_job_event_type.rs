@@ -9,7 +9,7 @@
 
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum PrintJobStatusEnum {
+pub enum PrintJobEventType {
     #[serde(rename = "PrintCancelled")]
     PrintCancelled,
     #[serde(rename = "PrintCancelling")]
@@ -27,7 +27,7 @@ pub enum PrintJobStatusEnum {
 
 }
 
-impl ToString for PrintJobStatusEnum {
+impl ToString for PrintJobEventType {
     fn to_string(&self) -> String {
         match self {
             Self::PrintCancelled => String::from("PrintCancelled"),

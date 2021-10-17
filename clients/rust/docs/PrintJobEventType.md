@@ -1,4 +1,4 @@
-# EventTypeD9eEnum
+# PrintJobEventType
 
 ## Properties
 

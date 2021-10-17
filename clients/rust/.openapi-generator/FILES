@@ -32,7 +32,6 @@ docs/DeviceCalibrationRequest.md
 docs/EmailAuthRequest.md
 docs/EventSourceEnum.md
 docs/EventType0c4Enum.md
-docs/EventTypeD9eEnum.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
@@ -110,7 +109,7 @@ docs/PatchedRemoteControlCommandRequest.md
 docs/PatchedUserRequest.md
 docs/PrintJobEvent.md
 docs/PrintJobEventRequest.md
-docs/PrintJobStatusEnum.md
+docs/PrintJobEventType.md
 docs/PrintNannyPluginEvent.md
 docs/PrintNannyPluginEventEventTypeEnum.md
 docs/PrintNannyPluginEventRequest.md
@@ -182,7 +181,6 @@ src/models/device_calibration_request.rs
 src/models/email_auth_request.rs
 src/models/event_source_enum.rs
 src/models/event_type0c4_enum.rs
-src/models/event_type_d9e_enum.rs
 src/models/experiment.rs
 src/models/experiment_device_config.rs
 src/models/gcode_file.rs
@@ -258,7 +256,7 @@ src/models/patched_remote_control_command_request.rs
 src/models/patched_user_request.rs
 src/models/print_job_event.rs
 src/models/print_job_event_request.rs
-src/models/print_job_status_enum.rs
+src/models/print_job_event_type.rs
 src/models/print_nanny_plugin_event.rs
 src/models/print_nanny_plugin_event_event_type_enum.rs
 src/models/print_nanny_plugin_event_request.rs
