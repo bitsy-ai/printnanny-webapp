@@ -26,13 +26,31 @@ import com.squareup.moshi.Json
 /**
  * 
  *
- * Values: `null`
+ * Values: printCancelled,printCancelling,printDone,printFailed,printPaused,printResumed,printStarted
  */
 
-enum class NullEnum(val value: kotlin.String) {
+enum class PrintJobEventType(val value: kotlin.String) {
 
-    @Json(name = "null")
-    `null`("null");
+    @Json(name = "PrintCancelled")
+    printCancelled("PrintCancelled"),
+
+    @Json(name = "PrintCancelling")
+    printCancelling("PrintCancelling"),
+
+    @Json(name = "PrintDone")
+    printDone("PrintDone"),
+
+    @Json(name = "PrintFailed")
+    printFailed("PrintFailed"),
+
+    @Json(name = "PrintPaused")
+    printPaused("PrintPaused"),
+
+    @Json(name = "PrintResumed")
+    printResumed("PrintResumed"),
+
+    @Json(name = "PrintStarted")
+    printStarted("PrintStarted");
 
     /**
      * Override toString() to avoid using the enum variable name as the value, and instead use
@@ -47,12 +65,12 @@ enum class NullEnum(val value: kotlin.String) {
         /**
          * Converts the provided [data] to a [String] on success, null otherwise.
          */
-        fun encode(data: Any?): kotlin.String? = if (data is NullEnum) "$data" else null
+        fun encode(data: Any?): kotlin.String? = if (data is PrintJobEventType) "$data" else null
 
         /**
-         * Returns a valid [NullEnum] for [data], null otherwise.
+         * Returns a valid [PrintJobEventType] for [data], null otherwise.
          */
-        fun decode(data: Any?): NullEnum? = data?.let {
+        fun decode(data: Any?): PrintJobEventType? = data?.let {
           val normalizedData = "$it".lowercase()
           values().firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()

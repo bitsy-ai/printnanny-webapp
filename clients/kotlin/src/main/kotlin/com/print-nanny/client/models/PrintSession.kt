@@ -20,7 +20,7 @@
 
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.OneOfLessThanPrintJobStatusEnumCommaNullEnumGreaterThan
+import com.print-nanny.client.models.PrintJobEventType
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -96,7 +96,7 @@ data class PrintSession (
     val octoprintJob: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,
 
     @Json(name = "print_job_status")
-    val printJobStatus: OneOfLessThanPrintJobStatusEnumCommaNullEnumGreaterThan? = null,
+    val printJobStatus: PrintJobEventType? = null,
 
     @Json(name = "url")
     val url: java.net.URI? = null,

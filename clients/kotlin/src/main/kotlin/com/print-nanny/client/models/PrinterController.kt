@@ -28,10 +28,10 @@ import java.io.Serializable
 /**
  * 
  *
- * @param software 
  * @param id 
  * @param user 
  * @param appliance 
+ * @param software 
  * @param deleted 
  * @param createdDt 
  * @param updatedDt 
@@ -39,9 +39,6 @@ import java.io.Serializable
  */
 
 data class PrinterController (
-
-    @Json(name = "software")
-    val software: SoftwareEnum,
 
     @Json(name = "id")
     val id: kotlin.Int? = null,
@@ -51,6 +48,9 @@ data class PrinterController (
 
     @Json(name = "appliance")
     val appliance: kotlin.Int? = null,
+
+    @Json(name = "software")
+    val software: SoftwareEnum? = null,
 
     @Json(name = "deleted")
     val deleted: java.time.OffsetDateTime? = null,

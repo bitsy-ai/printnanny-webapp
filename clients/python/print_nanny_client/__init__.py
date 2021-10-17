@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.8.38"
+__version__ = "0.8.39"
 
 # import apis into sdk package
 from print_nanny_client.api.alerts_api import AlertsApi
@@ -65,14 +65,12 @@ from print_nanny_client.models.device_calibration_request import DeviceCalibrati
 from print_nanny_client.models.email_auth_request import EmailAuthRequest
 from print_nanny_client.models.event_source_enum import EventSourceEnum
 from print_nanny_client.models.event_type0c4_enum import EventType0c4Enum
-from print_nanny_client.models.event_type_d9e_enum import EventTypeD9eEnum
 from print_nanny_client.models.experiment import Experiment
 from print_nanny_client.models.experiment_device_config import ExperimentDeviceConfig
 from print_nanny_client.models.gcode_file import GcodeFile
 from print_nanny_client.models.inline_response_default import InlineResponseDefault
 from print_nanny_client.models.mobile_auth_request import MobileAuthRequest
 from print_nanny_client.models.model_artifact import ModelArtifact
-from print_nanny_client.models.null_enum import NullEnum
 from print_nanny_client.models.octo_print_device import OctoPrintDevice
 from print_nanny_client.models.octo_print_device_key import OctoPrintDeviceKey
 from print_nanny_client.models.octo_print_device_request import OctoPrintDeviceRequest
@@ -141,7 +139,7 @@ from print_nanny_client.models.patched_remote_control_command_request import Pat
 from print_nanny_client.models.patched_user_request import PatchedUserRequest
 from print_nanny_client.models.print_job_event import PrintJobEvent
 from print_nanny_client.models.print_job_event_request import PrintJobEventRequest
-from print_nanny_client.models.print_job_status_enum import PrintJobStatusEnum
+from print_nanny_client.models.print_job_event_type import PrintJobEventType
 from print_nanny_client.models.print_nanny_plugin_event import PrintNannyPluginEvent
 from print_nanny_client.models.print_nanny_plugin_event_event_type_enum import PrintNannyPluginEventEventTypeEnum
 from print_nanny_client.models.print_nanny_plugin_event_request import PrintNannyPluginEventRequest

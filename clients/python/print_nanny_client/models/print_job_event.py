@@ -39,7 +39,7 @@ class PrintJobEvent(object):
         'id': 'int',
         'ts': 'float',
         'event_source': 'EventSourceEnum',
-        'event_type': 'EventTypeD9eEnum',
+        'event_type': 'PrintJobEventType',
         'octoprint_environment': 'OctoprintEnvironment',
         'octoprint_printer_data': 'OctoprintPrinterData',
         'event_data': 'dict(str, object)',
@@ -184,7 +184,7 @@ class PrintJobEvent(object):
 
 
         :return: The event_type of this PrintJobEvent.  # noqa: E501
-        :rtype: EventTypeD9eEnum
+        :rtype: PrintJobEventType
         """
         return self._event_type
 
@@ -194,7 +194,7 @@ class PrintJobEvent(object):
 
 
         :param event_type: The event_type of this PrintJobEvent.  # noqa: E501
-        :type event_type: EventTypeD9eEnum
+        :type event_type: PrintJobEventType
         """
 
         self._event_type = event_type

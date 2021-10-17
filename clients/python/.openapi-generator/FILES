@@ -34,7 +34,6 @@ docs/DeviceCalibrationRequest.md
 docs/EmailAuthRequest.md
 docs/EventSourceEnum.md
 docs/EventType0c4Enum.md
-docs/EventTypeD9eEnum.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
@@ -42,7 +41,6 @@ docs/InlineResponseDefault.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
-docs/NullEnum.md
 docs/OctoPrintDevice.md
 docs/OctoPrintDeviceKey.md
 docs/OctoPrintDeviceRequest.md
@@ -113,7 +111,7 @@ docs/PatchedRemoteControlCommandRequest.md
 docs/PatchedUserRequest.md
 docs/PrintJobEvent.md
 docs/PrintJobEventRequest.md
-docs/PrintJobStatusEnum.md
+docs/PrintJobEventType.md
 docs/PrintNannyPluginEvent.md
 docs/PrintNannyPluginEventEventTypeEnum.md
 docs/PrintNannyPluginEventRequest.md
@@ -189,14 +187,12 @@ print_nanny_client/models/device_calibration_request.py
 print_nanny_client/models/email_auth_request.py
 print_nanny_client/models/event_source_enum.py
 print_nanny_client/models/event_type0c4_enum.py
-print_nanny_client/models/event_type_d9e_enum.py
 print_nanny_client/models/experiment.py
 print_nanny_client/models/experiment_device_config.py
 print_nanny_client/models/gcode_file.py
 print_nanny_client/models/inline_response_default.py
 print_nanny_client/models/mobile_auth_request.py
 print_nanny_client/models/model_artifact.py
-print_nanny_client/models/null_enum.py
 print_nanny_client/models/octo_print_device.py
 print_nanny_client/models/octo_print_device_key.py
 print_nanny_client/models/octo_print_device_request.py
@@ -265,7 +261,7 @@ print_nanny_client/models/patched_remote_control_command_request.py
 print_nanny_client/models/patched_user_request.py
 print_nanny_client/models/print_job_event.py
 print_nanny_client/models/print_job_event_request.py
-print_nanny_client/models/print_job_status_enum.py
+print_nanny_client/models/print_job_event_type.py
 print_nanny_client/models/print_nanny_plugin_event.py
 print_nanny_client/models/print_nanny_plugin_event_event_type_enum.py
 print_nanny_client/models/print_nanny_plugin_event_request.py
@@ -330,7 +326,6 @@ test/test_device_calibration_request.py
 test/test_email_auth_request.py
 test/test_event_source_enum.py
 test/test_event_type0c4_enum.py
-test/test_event_type_d9e_enum.py
 test/test_experiment.py
 test/test_experiment_device_config.py
 test/test_gcode_file.py
@@ -338,7 +333,6 @@ test/test_inline_response_default.py
 test/test_ml_ops_api.py
 test/test_mobile_auth_request.py
 test/test_model_artifact.py
-test/test_null_enum.py
 test/test_octo_print_device.py
 test/test_octo_print_device_key.py
 test/test_octo_print_device_request.py
@@ -409,7 +403,7 @@ test/test_patched_remote_control_command_request.py
 test/test_patched_user_request.py
 test/test_print_job_event.py
 test/test_print_job_event_request.py
-test/test_print_job_status_enum.py
+test/test_print_job_event_type.py
 test/test_print_nanny_plugin_event.py
 test/test_print_nanny_plugin_event_event_type_enum.py
 test/test_print_nanny_plugin_event_request.py

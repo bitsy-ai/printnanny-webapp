@@ -1,5 +1,5 @@
 
-# PrintJobStatusEnum
+# PrintJobEventType
 
 ## Enum
 

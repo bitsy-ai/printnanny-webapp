@@ -4,11 +4,11 @@
 ## Enum
 
 
-    * `test` (value: `"Test"`)
-
-    * `videoDone` (value: `"VideoDone"`)
-
     * `printHealth` (value: `"PrintHealth"`)
+
+    * `printStatus` (value: `"PrintStatus"`)
+
+    * `printNannyWebapp` (value: `"PrintNannyWebapp"`)
 
     * `printProgress` (value: `"PrintProgress"`)
 
@@ -23,14 +23,6 @@
     * `printStarted` (value: `"PrintStarted"`)
 
     * `printCancelled` (value: `"PrintCancelled"`)
-
-    * `shutdown` (value: `"Shutdown"`)
-
-    * `startup` (value: `"Startup"`)
-
-    * `connected` (value: `"Connected"`)
-
-    * `disconnected` (value: `"Disconnected"`)
 
 
 

@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **gcodeFile** | **kotlin.Int** |  |  [optional]
 **gcodeFilename** | **kotlin.String** |  |  [optional]
 **octoprintJob** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt;**](kotlin.Any.md) |  |  [optional]
-**printJobStatus** | [**OneOfLessThanPrintJobStatusEnumCommaNullEnumGreaterThan**](OneOfLessThanPrintJobStatusEnumCommaNullEnumGreaterThan.md) |  |  [optional]
+**printJobStatus** | [**PrintJobEventType**](PrintJobEventType.md) |  |  [optional]
 **url** | [**java.net.URI**](java.net.URI.md) |  |  [optional] [readonly]
 **datesegment** | **kotlin.String** |  |  [optional] [readonly]
 

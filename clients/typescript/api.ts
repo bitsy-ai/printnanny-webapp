@@ -83,10 +83,10 @@ export interface Alert {
     'octoprint_device'?: number | null;
     /**
      * 
-     * @type {AlertEventTypeEnum | NullEnum}
+     * @type {AlertEventTypeEnum}
      * @memberof Alert
      */
-    'event_type'?: AlertEventTypeEnum | NullEnum | null;
+    'event_type'?: AlertEventTypeEnum;
     /**
      * 
      * @type {boolean}
@@ -144,20 +144,16 @@ export interface AlertBulkResponse {
  */
 
 export enum AlertEventTypeEnum {
-    Test = 'Test',
-    VideoDone = 'VideoDone',
     PrintHealth = 'PrintHealth',
+    PrintStatus = 'PrintStatus',
+    PrintNannyWebapp = 'PrintNannyWebapp',
     PrintProgress = 'PrintProgress',
     PrintDone = 'PrintDone',
     PrintFailed = 'PrintFailed',
     PrintPaused = 'PrintPaused',
     PrintResumed = 'PrintResumed',
     PrintStarted = 'PrintStarted',
-    PrintCancelled = 'PrintCancelled',
-    Shutdown = 'Shutdown',
-    Startup = 'Startup',
-    Connected = 'Connected',
-    Disconnected = 'Disconnected'
+    PrintCancelled = 'PrintCancelled'
 }
 
 /**
@@ -174,10 +170,10 @@ export interface AlertRequest {
     'octoprint_device'?: number | null;
     /**
      * 
-     * @type {AlertEventTypeEnum | NullEnum}
+     * @type {AlertEventTypeEnum}
      * @memberof AlertRequest
      */
-    'event_type'?: AlertEventTypeEnum | NullEnum | null;
+    'event_type'?: AlertEventTypeEnum;
     /**
      * 
      * @type {boolean}
@@ -977,22 +973,6 @@ export enum EventType0c4Enum {
 /**
  * 
  * @export
- * @enum {string}
- */
-
-export enum EventTypeD9eEnum {
-    PrintCancelled = 'PrintCancelled',
-    PrintCancelling = 'PrintCancelling',
-    PrintDone = 'PrintDone',
-    PrintFailed = 'PrintFailed',
-    PrintPaused = 'PrintPaused',
-    PrintResumed = 'PrintResumed',
-    PrintStarted = 'PrintStarted'
-}
-
-/**
- * 
- * @export
  * @interface Experiment
  */
 export interface Experiment {
@@ -1206,16 +1186,6 @@ export interface ModelArtifact {
      */
     'url'?: string;
 }
-/**
- * 
- * @export
- * @enum {string}
- */
-
-export enum NullEnum {
-    Null = 'null'
-}
-
 /**
  * 
  * @export
@@ -3513,10 +3483,10 @@ export interface PatchedAlertRequest {
     'octoprint_device'?: number | null;
     /**
      * 
-     * @type {AlertEventTypeEnum | NullEnum}
+     * @type {AlertEventTypeEnum}
      * @memberof PatchedAlertRequest
      */
-    'event_type'?: AlertEventTypeEnum | NullEnum | null;
+    'event_type'?: AlertEventTypeEnum;
     /**
      * 
      * @type {boolean}
@@ -3917,10 +3887,10 @@ export interface PatchedPrintSessionRequest {
     'octoprint_job'?: { [key: string]: any; } | null;
     /**
      * 
-     * @type {PrintJobStatusEnum | NullEnum}
+     * @type {PrintJobEventType}
      * @memberof PatchedPrintSessionRequest
      */
-    'print_job_status'?: PrintJobStatusEnum | NullEnum | null;
+    'print_job_status'?: PrintJobEventType;
 }
 /**
  * 
@@ -4168,10 +4138,10 @@ export interface PrintJobEvent {
     'event_source'?: EventSourceEnum;
     /**
      * 
-     * @type {EventTypeD9eEnum}
+     * @type {PrintJobEventType}
      * @memberof PrintJobEvent
      */
-    'event_type'?: EventTypeD9eEnum;
+    'event_type'?: PrintJobEventType;
     /**
      * 
      * @type {OctoprintEnvironment}
@@ -4259,10 +4229,10 @@ export interface PrintJobEventRequest {
     'event_source'?: EventSourceEnum;
     /**
      * 
-     * @type {EventTypeD9eEnum}
+     * @type {PrintJobEventType}
      * @memberof PrintJobEventRequest
      */
-    'event_type'?: EventTypeD9eEnum;
+    'event_type'?: PrintJobEventType;
     /**
      * 
      * @type {OctoprintEnvironmentRequest}
@@ -4324,7 +4294,7 @@ export interface PrintJobEventRequest {
  * @enum {string}
  */
 
-export enum PrintJobStatusEnum {
+export enum PrintJobEventType {
     PrintCancelled = 'PrintCancelled',
     PrintCancelling = 'PrintCancelling',
     PrintDone = 'PrintDone',
@@ -4636,10 +4606,10 @@ export interface PrintSession {
     'octoprint_job'?: { [key: string]: any; } | null;
     /**
      * 
-     * @type {PrintJobStatusEnum | NullEnum}
+     * @type {PrintJobEventType}
      * @memberof PrintSession
      */
-    'print_job_status'?: PrintJobStatusEnum | NullEnum | null;
+    'print_job_status'?: PrintJobEventType;
     /**
      * 
      * @type {string}
@@ -4733,10 +4703,10 @@ export interface PrintSessionRequest {
     'octoprint_job'?: { [key: string]: any; } | null;
     /**
      * 
-     * @type {PrintJobStatusEnum | NullEnum}
+     * @type {PrintJobEventType}
      * @memberof PrintSessionRequest
      */
-    'print_job_status'?: PrintJobStatusEnum | NullEnum | null;
+    'print_job_status'?: PrintJobEventType;
 }
 /**
  * 
@@ -4764,6 +4734,12 @@ export interface PrinterController {
     'appliance'?: number;
     /**
      * 
+     * @type {SoftwareEnum}
+     * @memberof PrinterController
+     */
+    'software'?: SoftwareEnum;
+    /**
+     * 
      * @type {string}
      * @memberof PrinterController
      */
@@ -4782,12 +4758,6 @@ export interface PrinterController {
     'updated_dt'?: string;
     /**
      * 
-     * @type {SoftwareEnum}
-     * @memberof PrinterController
-     */
-    'software': SoftwareEnum;
-    /**
-     * 
      * @type {number}
      * @memberof PrinterController
      */
@@ -4804,7 +4774,7 @@ export interface PrinterControllerRequest {
      * @type {SoftwareEnum}
      * @memberof PrinterControllerRequest
      */
-    'software': SoftwareEnum;
+    'software'?: SoftwareEnum;
 }
 /**
  * 

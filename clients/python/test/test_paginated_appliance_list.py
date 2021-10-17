@@ -62,10 +62,10 @@ class TestPaginatedApplianceList(unittest.TestCase):
                                 id = 56, 
                                 user = 56, 
                                 appliance = 56, 
+                                software = null, 
                                 deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                software = 'OctoPrint', 
                                 polymorphic_ctype = 56, )
                             ], 
                         user = 56, 
