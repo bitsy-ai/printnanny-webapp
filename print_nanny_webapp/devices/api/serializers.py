@@ -10,6 +10,7 @@ from print_nanny_webapp.devices.models import (
     # PrinterProfile,
     # OctoprintPrinterProfile,
 )
+from ..choices import ApplianceReleaseChannel, PrinterSoftwareType
 from print_nanny_webapp.devices.services import CACerts
 from print_nanny_webapp.users.api.serializers import UserSerializer
 
@@ -36,6 +37,10 @@ class CameraSerializer(serializers.ModelSerializer):
 class PrinterControllerSerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(read_only=True)
     appliance = serializers.PrimaryKeyRelatedField(read_only=True)
+    software = serializers.ChoiceField(
+        choices=PrinterSoftwareType.choices,
+        default=PrinterSoftwareType.OCTOPRINT,
+    )
 
     class Meta:
         model = PrinterController
@@ -73,6 +78,7 @@ class AnsibleFactsSerializer(serializers.ModelSerializer):
 
 
 class ApplianceSerializer(serializers.ModelSerializer):
+
     public_key = AppliancePublicKeySerializer(
         read_only=True, required=False, allow_null=True
     )

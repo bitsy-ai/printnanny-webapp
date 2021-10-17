@@ -29,6 +29,7 @@ class PrintSessionSerializer(serializers.ModelSerializer):
         choices=PrintJobEventType.choices,
         default=PrintJobEventType.PRINT_STARTED,
     )
+
     class Meta:
         model = PrintSession
         fields = [field.name for field in PrintSession._meta.fields] + [
