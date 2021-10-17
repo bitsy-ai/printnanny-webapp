@@ -2,14 +2,14 @@ use std::error;
 use std::fmt;
 use thiserror::Error;
 
-#[derive(Debug, Clone, Error)]
+#[derive(Error, Debug, Clone)]
 pub struct ResponseContent<T> {
     pub status: reqwest::StatusCode,
     pub content: String,
     pub entity: Option<T>,
 }
 
-#[derive(Debug, Error)]
+#[derive(Error, Debug)]
 pub enum Error<T> {
     Reqwest(reqwest::Error),
     Serde(serde_json::Error),
