@@ -141,7 +141,7 @@ class Migration(migrations.Migration):
             name="user",
         ),
         migrations.RemoveField(
-            model_name="appliancepki",
+            model_name="AppliancePublicKey",
             name="private_key_checksum",
         ),
         migrations.DeleteModel(
