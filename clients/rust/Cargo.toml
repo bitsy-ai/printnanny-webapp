@@ -16,6 +16,5 @@ url = "^2.2"
 [dependencies.reqwest]
 version = "^0.11"
 features = ["json", "multipart"]
-
-[dev-dependencies]
 thiserror = "1.0.30"
+[dev-dependencies]
