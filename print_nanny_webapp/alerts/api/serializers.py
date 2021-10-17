@@ -14,6 +14,7 @@ Alert = apps.get_model("alerts", "AlertMessage")
 AlertSettings = apps.get_model("alerts", "AlertSettings")
 from ..models import GenericAlertEventType
 
+
 class AlertSerializer(serializers.ModelSerializer):
 
     event_type = serializers.ChoiceField(

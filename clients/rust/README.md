@@ -163,7 +163,6 @@ Class | Method | HTTP request | Description
  - [InlineResponseDefault](docs/InlineResponseDefault.md)
  - [MobileAuthRequest](docs/MobileAuthRequest.md)
  - [ModelArtifact](docs/ModelArtifact.md)
- - [NullEnum](docs/NullEnum.md)
  - [OctoPrintDevice](docs/OctoPrintDevice.md)
  - [OctoPrintDeviceKey](docs/OctoPrintDeviceKey.md)
  - [OctoPrintDeviceRequest](docs/OctoPrintDeviceRequest.md)
