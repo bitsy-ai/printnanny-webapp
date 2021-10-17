@@ -30,7 +30,7 @@ impl OctoprintJob {
             estimated_print_time: None,
             average_print_time: None,
             last_print_time: None,
-            filamentSome(,
+            filament,
         }
     }
 }

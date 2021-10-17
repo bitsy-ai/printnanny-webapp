@@ -43,7 +43,7 @@ impl Partner3DGeeksAlert {
             current_time,
             time_left,
             percent,
-            imageSome(,
+            image,
             action,
         }
     }

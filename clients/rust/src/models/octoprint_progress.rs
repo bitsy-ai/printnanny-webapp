@@ -26,10 +26,10 @@ pub struct OctoprintProgress {
 impl OctoprintProgress {
     pub fn new(completion: Option<f32>, filepos: Option<i32>, print_time: Option<i32>, print_time_left: Option<i32>) -> OctoprintProgress {
         OctoprintProgress {
-            completionSome(,
-            fileposSome(,
-            print_timeSome(,
-            print_time_leftSome(,
+            completion,
+            filepos,
+            print_time,
+            print_time_left,
             print_time_origin: None,
         }
     }
