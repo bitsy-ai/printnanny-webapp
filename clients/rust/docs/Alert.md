@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **manage_device_url** | Option<**String**> |  | [optional][readonly]
 **user** | Option<**i32**> |  | [optional][readonly]
 **octoprint_device** | Option<**i32**> |  | [optional]
-**event_type** | Option<[**crate::models::OneOfAlertEventTypeEnumNullEnum**](oneOf<AlertEventTypeEnum,NullEnum>.md)> |  | [optional]
+**event_type** | Option<[**crate::models::AlertEventTypeEnum**](AlertEventTypeEnum.md)> |  | [optional]
 **seen** | Option<**bool**> |  | [optional]
 **sent** | Option<**bool**> |  | [optional]
 **created_dt** | Option<**String**> |  | [optional][readonly]

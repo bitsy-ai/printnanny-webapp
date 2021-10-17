@@ -29,6 +29,29 @@ def _upload_to(instance, filename):
 # Base Polymorphic models
 ##
 
+class GenericAlertEventType(models.TextChoices):
+    """
+        Required for rust client generator
+    """
+    PRINT_HEALTH = "PrintHealth", "Print health alerts"
+    PRINT_STATUS = (
+        "PrintStatus",
+        "Print status updates (percent progress, paused, resumed, failed)",
+    )
+    PRINT_NANNY_WEBAPP = (
+        "PrintNannyWebapp",
+        "Test triggered via Print Nanny UI or webapp",
+    )
+    PRINT_PROGRESS = (
+        "PrintProgress",
+        "{{ GCODE_FILE }} - {{ PRINT_PROGRESS }}% complete ⏳",
+    )
+    PRINT_DONE = "PrintDone", "{{ GCODE_FILE }} - job finished ✅"
+    PRINT_FAILED = "PrintFailed", "{{ GCODE_FILE }} - job failed ❌"
+    PRINT_PAUSED = "PrintPaused", "{{ GCODE_FILE }} - job paused ⏸️"
+    PRINT_RESUMED = "PrintResumed", "{{ GCODE_FILE }} - job resumed ⏯️"
+    PRINT_STARTED = "PrintStarted", "{{ GCODE_FILE }} - job started 🏁"
+    PRINT_CANCELLED = "PrintCancelled", "{{ GCODE_FILE }} - job cancelled ❌"
 
 class AlertSettings(models.Model):
     class AlertSettingsEventType(models.TextChoices):

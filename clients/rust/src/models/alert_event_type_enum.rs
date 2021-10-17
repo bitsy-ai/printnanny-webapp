@@ -10,12 +10,12 @@
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum AlertEventTypeEnum {
-    #[serde(rename = "Test")]
-    Test,
-    #[serde(rename = "VideoDone")]
-    VideoDone,
     #[serde(rename = "PrintHealth")]
     PrintHealth,
+    #[serde(rename = "PrintStatus")]
+    PrintStatus,
+    #[serde(rename = "PrintNannyWebapp")]
+    PrintNannyWebapp,
     #[serde(rename = "PrintProgress")]
     PrintProgress,
     #[serde(rename = "PrintDone")]
@@ -30,23 +30,15 @@ pub enum AlertEventTypeEnum {
     PrintStarted,
     #[serde(rename = "PrintCancelled")]
     PrintCancelled,
-    #[serde(rename = "Shutdown")]
-    Shutdown,
-    #[serde(rename = "Startup")]
-    Startup,
-    #[serde(rename = "Connected")]
-    Connected,
-    #[serde(rename = "Disconnected")]
-    Disconnected,
 
 }
 
 impl ToString for AlertEventTypeEnum {
     fn to_string(&self) -> String {
         match self {
-            Self::Test => String::from("Test"),
-            Self::VideoDone => String::from("VideoDone"),
             Self::PrintHealth => String::from("PrintHealth"),
+            Self::PrintStatus => String::from("PrintStatus"),
+            Self::PrintNannyWebapp => String::from("PrintNannyWebapp"),
             Self::PrintProgress => String::from("PrintProgress"),
             Self::PrintDone => String::from("PrintDone"),
             Self::PrintFailed => String::from("PrintFailed"),
@@ -54,10 +46,6 @@ impl ToString for AlertEventTypeEnum {
             Self::PrintResumed => String::from("PrintResumed"),
             Self::PrintStarted => String::from("PrintStarted"),
             Self::PrintCancelled => String::from("PrintCancelled"),
-            Self::Shutdown => String::from("Shutdown"),
-            Self::Startup => String::from("Startup"),
-            Self::Connected => String::from("Connected"),
-            Self::Disconnected => String::from("Disconnected"),
         }
     }
 }

@@ -438,6 +438,7 @@ SPECTACULAR_SETTINGS = {
     'COMPONENT_SPLIT_REQUEST': True,
     'ENUM_ADD_EXPLICIT_BLANK_NULL_CHOICE': True,
     'ENUM_NAME_OVERRIDES': {
+        'PrintProgressAlertEventType': 'print_nanny_webapp.alerts.models.PrintProgressAlert.PrintProgressAlertEventType.choices',
         'AlertMessageType': 'print_nanny_webapp.alerts.models.AlertMessage.AlertMessageType.choices',
         'AlertSettingsEventType': 'print_nanny_webapp.alerts.models.AlertSettings.AlertSettingsEventType.choices'
     },
