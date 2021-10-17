@@ -9,9 +9,9 @@ pub struct ResponseContent<T> {
     pub entity: Option<T>,
 }
 
-#[derive(ThisError, Debug)]
+#[derive(Debug)]
 pub enum Error<T> {
-    Reqwest(reqwest::Error),
+    Reqwest(),
     Serde(serde_json::Error),
     Io(std::io::Error),
     ResponseError(ResponseContent<T>),
