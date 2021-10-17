@@ -11,13 +11,13 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AddField(
-            model_name="appliancepki",
+            model_name="AppliancePublicKey",
             name="private_key_path",
             field=models.CharField(default="None", max_length=255),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name="appliancepki",
+            model_name="AppliancePublicKey",
             name="public_key_path",
             field=models.CharField(default="None", max_length=255),
             preserve_default=False,

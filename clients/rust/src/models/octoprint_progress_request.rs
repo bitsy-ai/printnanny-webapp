@@ -9,7 +9,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct OctoprintProgressRequest {
     #[serde(rename = "completion")]
     pub completion: Option<f32>,

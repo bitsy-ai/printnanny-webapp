@@ -10,7 +10,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Partner3DGeeksAlert {
     #[serde(rename = "event")]
     pub event: String,

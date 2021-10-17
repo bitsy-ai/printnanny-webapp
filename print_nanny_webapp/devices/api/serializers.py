@@ -4,7 +4,7 @@ from print_nanny_webapp.devices.models import (
     Appliance,
     Camera,
     CloudIoTDevice,
-    AppliancePKI,
+    AppliancePublicKey,
     AnsibleFacts,
     PrinterController,
     # PrinterProfile,
@@ -54,12 +54,12 @@ class CloudIoTDeviceSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class AppliancePKISerializer(serializers.ModelSerializer):
+class AppliancePublicKeySerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(read_only=True)
     appliance = serializers.PrimaryKeyRelatedField(read_only=True)
 
     class Meta:
-        model = AppliancePKI
+        model = AppliancePublicKey
         fields = "__all__"
 
 
@@ -73,9 +73,14 @@ class AnsibleFactsSerializer(serializers.ModelSerializer):
 
 
 class ApplianceSerializer(serializers.ModelSerializer):
-    pki = AppliancePKISerializer(read_only=True, required=False, allow_null=True)
-    ansible_facts = AnsibleFactsSerializer(
+    public_key = AppliancePublicKeySerializer(
         read_only=True, required=False, allow_null=True
+    )
+
+    last_ansible_facts = AnsibleFactsSerializer(
+        read_only=True,
+        required=False,
+        allow_null=True,
     )
     cameras = CameraSerializer(read_only=True, many=True)
     printer_controllers = PrinterControllerSerializer(read_only=True, many=True)

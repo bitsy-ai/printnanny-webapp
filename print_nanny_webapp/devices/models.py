@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 from google.cloud import iot_v1 as cloudiot_v1
 from google.protobuf.json_format import MessageToDict
 from django.conf import settings
+from django.db.models import UniqueConstraint
 
 from polymorphic.models import PolymorphicModel
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
@@ -35,16 +36,27 @@ pre_softdelete.connect(pre_softdelete_cloudiot_device)
 class Appliance(SafeDeleteModel):
     """ """
 
-    class Meta:
-        unique_together = ("user", "hostname")
-
     _safedelete_policy = SOFT_DELETE
+
+    class Meta:
+        constraints = [
+            UniqueConstraint(
+                fields=["user", "hostname"],
+                condition=models.Q(deleted=None),
+                name="unique_appliance_hostname_per_user",
+            )
+        ]
+
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     updated_dt = models.DateTimeField(db_index=True, auto_now=True)
     user = models.ForeignKey(
         UserModel, on_delete=models.CASCADE, related_name="appliances"
     )
     hostname = models.CharField(max_length=255)
+
+    @property
+    def last_ansible_facts(self):
+        return self.ansible_facts.first()
 
 
 class CloudIoTDevice(SafeDeleteModel):
@@ -53,6 +65,17 @@ class CloudIoTDevice(SafeDeleteModel):
     https://cloud.google.com/iot/docs/reference/cloudiot/rest/v1/projects.locations.registries.devices#Device
     """
 
+    _safedelete_policy = SOFT_DELETE
+
+    class Meta:
+        constraints = [
+            UniqueConstraint(
+                fields=["appliance"],
+                condition=models.Q(deleted=None),
+                name="unique_cloud_iot_device_per_appliance",
+            )
+        ]
+
     def pre_softdelete(self):
         return delete_cloudiot_device(self.numId)
 
@@ -60,30 +83,42 @@ class CloudIoTDevice(SafeDeleteModel):
     name = models.CharField(max_length=255)
     id = models.CharField(max_length=255)
 
-    appliance = models.OneToOneField(
+    appliance = models.ForeignKey(
         Appliance,
         on_delete=models.CASCADE,
-        related_name="cloudiot_device",
+        related_name="cloudiot_devices",
         db_index=True,
     )
 
 
-class AppliancePKI(SafeDeleteModel):
+class AppliancePublicKey(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
-    public_key_path = models.CharField(max_length=255)
-    private_key_path = models.CharField(max_length=255)
+
+    class Meta:
+        constraints = [
+            UniqueConstraint(
+                fields=["appliance"],
+                condition=models.Q(deleted=None),
+                name="unique_public_key_per_appliance",
+            )
+        ]
+
     public_key = models.TextField()
     public_key_checksum = models.CharField(max_length=255)
     fingerprint = models.CharField(max_length=255)
-    appliance = models.OneToOneField(
-        Appliance, on_delete=models.CASCADE, related_name="pki", db_index=True
+    appliance = models.ForeignKey(
+        Appliance, on_delete=models.CASCADE, related_name="public_keys", db_index=True
     )
 
 
 class AnsibleFacts(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
 
-    appliance = models.OneToOneField(
+    class Meta:
+        ordering = ["-created_dt"]
+
+    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
+    appliance = models.ForeignKey(
         Appliance, on_delete=models.CASCADE, related_name="ansible_facts", db_index=True
     )
     # platform info

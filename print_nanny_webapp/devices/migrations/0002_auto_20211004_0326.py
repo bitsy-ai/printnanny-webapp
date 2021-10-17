@@ -88,7 +88,7 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name="AppliancePKI",
+            name="AppliancePublicKey",
             fields=[
                 (
                     "id",
