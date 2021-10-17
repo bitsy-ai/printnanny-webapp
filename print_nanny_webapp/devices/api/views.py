@@ -31,7 +31,8 @@ from ..models import (
     CloudIoTDevice,
     PrinterController,
 )
-from print_nanny_webapp.utils.exceptions import AlreadyExistsException
+from print_nanny_webapp.utils.api.exceptions import AlreadyExists
+from print_nanny_webapp.utils.api.serializers import ErrorDetailSerializer
 
 logger = logging.getLogger(__name__)
 
@@ -40,14 +41,14 @@ logger = logging.getLogger(__name__)
 ##
 list_ansible_facts_schema = extend_schema(
     responses={
-        "default": {"type": "object", "properties": {"detail": {"type": "string"}}},
+        "default": ErrorDetailSerializer,
         200: AnsibleFactsSerializer(many=True),
     },
 )
 modify_ansible_facts_schema = extend_schema(
     request=AnsibleFactsSerializer,
     responses={
-        "default": {"type": "object", "properties": {"detail": {"type": "string"}}},
+        "default": ErrorDetailSerializer,
         201: AnsibleFactsSerializer,
         202: AnsibleFactsSerializer,
     },
@@ -79,14 +80,14 @@ class AnsibleFactsViewSet(
 ##
 list_appliances_schema = extend_schema(
     responses={
-        "default": {"type": "object", "properties": {"detail": {"type": "string"}}},
+        "default": ErrorDetailSerializer,
         200: ApplianceSerializer(many=True),
     },
 )
 modify_appliances_schema = extend_schema(
     request=ApplianceSerializer,
     responses={
-        "default": {"type": "object", "properties": {"detail": {"type": "string"}}},
+        "default": ErrorDetailSerializer,
         201: ApplianceSerializer,
         202: ApplianceSerializer,
     },
@@ -119,7 +120,7 @@ class ApplianceViewSet(
         try:
             return super().create(request, *args, **kwargs)
         except IntegrityError:
-            raise AlreadyExistsException(
+            raise AlreadyExists(
                 detail=f"Appliance with hostname={hostname} already exists for user={self.request.user.id}.",
             )
 
@@ -132,14 +133,14 @@ class ApplianceViewSet(
 ##
 list_appliance_public_keys_schema = extend_schema(
     responses={
-        "default": {"type": "object", "properties": {"detail": {"type": "string"}}},
+        "default": ErrorDetailSerializer,
         200: AppliancePublicKeySerializer(many=True),
     },
 )
 modify_appliance_public_keys_schema = extend_schema(
     request=AppliancePublicKeySerializer,
     responses={
-        "default": {"type": "object", "properties": {"detail": {"type": "string"}}},
+        "default": ErrorDetailSerializer,
         201: AppliancePublicKeySerializer,
         202: AppliancePublicKeySerializer,
     },
@@ -173,7 +174,7 @@ class AppliancePublicKeyViewSet(
         try:
             return super().create(request, *args, **kwargs)
         except IntegrityError:
-            raise AlreadyExistsException(
+            raise AlreadyExists(
                 detail=f"AppliancePublicKey already exists for appliance_id={appliance} already exists.",
             )
 
@@ -186,14 +187,14 @@ class AppliancePublicKeyViewSet(
 ##
 list_cloud_iot_devices_schema = extend_schema(
     responses={
-        "default": {"type": "object", "properties": {"detail": {"type": "string"}}},
+        "default": ErrorDetailSerializer,
         200: CloudIoTDeviceSerializer(many=True),
     },
 )
 modify_cloud_iot_devices_schema = extend_schema(
     request=CloudIoTDeviceSerializer,
     responses={
-        "default": {"type": "object", "properties": {"detail": {"type": "string"}}},
+        "default": ErrorDetailSerializer,
         201: CloudIoTDeviceSerializer,
         202: CloudIoTDeviceSerializer,
     },
@@ -225,14 +226,14 @@ class CloudIoTDeviceViewSet(
 ##
 list_cameras_schema = extend_schema(
     responses={
-        "default": {"type": "object", "properties": {"detail": {"type": "string"}}},
+        "default": ErrorDetailSerializer,
         200: CameraSerializer(many=True),
     },
 )
 modify_cameras_schema = extend_schema(
     request=CameraSerializer,
     responses={
-        "default": {"type": "object", "properties": {"detail": {"type": "string"}}},
+        "default": ErrorDetailSerializer,
         201: CameraSerializer,
         202: CameraSerializer,
     },
@@ -264,14 +265,14 @@ class CameraViewSet(
 ##
 list_printer_controllers_schema = extend_schema(
     responses={
-        "default": {"type": "object", "properties": {"detail": {"type": "string"}}},
+        "default": ErrorDetailSerializer,
         200: PrinterControllerSerializer(many=True),
     },
 )
 modify_printer_controllers_schema = extend_schema(
     request=ApplianceSerializer,
     responses={
-        "default": {"type": "object", "properties": {"detail": {"type": "string"}}},
+        "default": ErrorDetailSerializer,
         201: PrinterControllerSerializer,
         202: PrinterControllerSerializer,
     },
