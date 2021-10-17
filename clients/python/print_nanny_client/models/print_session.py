@@ -51,7 +51,7 @@ class PrintSession(object):
         'gcode_file': 'int',
         'gcode_filename': 'str',
         'octoprint_job': 'dict(str, object)',
-        'print_job_status': 'PrintJobStatusEnum',
+        'print_job_status': 'OneOfPrintJobStatusEnumNullEnum',
         'url': 'str',
         'datesegment': 'str'
     }
@@ -103,9 +103,11 @@ class PrintSession(object):
         self._datesegment = None
         self.discriminator = None
 
-        self.id = id
+        if id is not None:
+            self.id = id
         self.created_dt = created_dt
-        self.updated_dt = updated_dt
+        if updated_dt is not None:
+            self.updated_dt = updated_dt
         self.octoprint_device = octoprint_device
         if active is not None:
             self.active = active
@@ -114,14 +116,17 @@ class PrintSession(object):
         self.print_progress = print_progress
         self.time_elapsed = time_elapsed
         self.time_remaining = time_remaining
-        self.user = user
+        if user is not None:
+            self.user = user
         self.printer_profile = printer_profile
         self.gcode_file = gcode_file
         self.gcode_filename = gcode_filename
         self.octoprint_job = octoprint_job
         self.print_job_status = print_job_status
-        self.url = url
-        self.datesegment = datesegment
+        if url is not None:
+            self.url = url
+        if datesegment is not None:
+            self.datesegment = datesegment
 
     @property
     def id(self):
@@ -141,8 +146,6 @@ class PrintSession(object):
         :param id: The id of this PrintSession.  # noqa: E501
         :type id: int
         """
-        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
-            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -187,8 +190,6 @@ class PrintSession(object):
         :param updated_dt: The updated_dt of this PrintSession.  # noqa: E501
         :type updated_dt: datetime
         """
-        if self.local_vars_configuration.client_side_validation and updated_dt is None:  # noqa: E501
-            raise ValueError("Invalid value for `updated_dt`, must not be `None`")  # noqa: E501
 
         self._updated_dt = updated_dt
 
@@ -388,8 +389,6 @@ class PrintSession(object):
         :param user: The user of this PrintSession.  # noqa: E501
         :type user: int
         """
-        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
-            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
 
         self._user = user
 
@@ -486,7 +485,7 @@ class PrintSession(object):
 
 
         :return: The print_job_status of this PrintSession.  # noqa: E501
-        :rtype: PrintJobStatusEnum
+        :rtype: OneOfPrintJobStatusEnumNullEnum
         """
         return self._print_job_status
 
@@ -496,7 +495,7 @@ class PrintSession(object):
 
 
         :param print_job_status: The print_job_status of this PrintSession.  # noqa: E501
-        :type print_job_status: PrintJobStatusEnum
+        :type print_job_status: OneOfPrintJobStatusEnumNullEnum
         """
 
         self._print_job_status = print_job_status
@@ -519,8 +518,6 @@ class PrintSession(object):
         :param url: The url of this PrintSession.  # noqa: E501
         :type url: str
         """
-        if self.local_vars_configuration.client_side_validation and url is None:  # noqa: E501
-            raise ValueError("Invalid value for `url`, must not be `None`")  # noqa: E501
 
         self._url = url
 
@@ -542,8 +539,6 @@ class PrintSession(object):
         :param datesegment: The datesegment of this PrintSession.  # noqa: E501
         :type datesegment: str
         """
-        if self.local_vars_configuration.client_side_validation and datesegment is None:  # noqa: E501
-            raise ValueError("Invalid value for `datesegment`, must not be `None`")  # noqa: E501
 
         self._datesegment = datesegment
 

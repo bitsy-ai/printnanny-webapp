@@ -21,7 +21,7 @@
 package com.print-nanny.client.models
 
 import com.print-nanny.client.models.AnsibleFacts
-import com.print-nanny.client.models.AppliancePKI
+import com.print-nanny.client.models.AppliancePublicKey
 import com.print-nanny.client.models.Camera
 import com.print-nanny.client.models.PrinterController
 
@@ -31,49 +31,49 @@ import java.io.Serializable
 /**
  * 
  *
+ * @param hostname 
  * @param id 
- * @param pki 
- * @param ansibleFacts 
+ * @param publicKey 
+ * @param lastAnsibleFacts 
  * @param cameras 
  * @param printerControllers 
  * @param user 
  * @param deleted 
  * @param createdDt 
  * @param updatedDt 
- * @param hostname 
  */
 
 data class Appliance (
 
+    @Json(name = "hostname")
+    val hostname: kotlin.String,
+
     @Json(name = "id")
-    val id: kotlin.Int,
+    val id: kotlin.Int? = null,
 
-    @Json(name = "pki")
-    val pki: AppliancePKI?,
+    @Json(name = "public_key")
+    val publicKey: AppliancePublicKey? = null,
 
-    @Json(name = "ansible_facts")
-    val ansibleFacts: AnsibleFacts?,
+    @Json(name = "last_ansible_facts")
+    val lastAnsibleFacts: AnsibleFacts? = null,
 
     @Json(name = "cameras")
-    val cameras: kotlin.collections.List<Camera>,
+    val cameras: kotlin.collections.List<Camera>? = null,
 
     @Json(name = "printer_controllers")
-    val printerControllers: kotlin.collections.List<PrinterController>,
+    val printerControllers: kotlin.collections.List<PrinterController>? = null,
 
     @Json(name = "user")
-    val user: kotlin.Int,
+    val user: kotlin.Int? = null,
 
     @Json(name = "deleted")
-    val deleted: java.time.OffsetDateTime,
+    val deleted: java.time.OffsetDateTime? = null,
 
     @Json(name = "created_dt")
-    val createdDt: java.time.OffsetDateTime,
+    val createdDt: java.time.OffsetDateTime? = null,
 
     @Json(name = "updated_dt")
-    val updatedDt: java.time.OffsetDateTime,
-
-    @Json(name = "hostname")
-    val hostname: kotlin.String
+    val updatedDt: java.time.OffsetDateTime? = null
 
 ) : Serializable {
     companion object {

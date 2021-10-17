@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [readonly] 
+**id** | **int** |  | [optional] [readonly] 
 **ts** | **float** |  | [optional] 
 **event_source** | [**EventSourceEnum**](EventSourceEnum.md) |  | [optional] 
 **event_type** | [**EventTypeD9eEnum**](EventTypeD9eEnum.md) |  | [optional] 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 **print_nanny_plugin_version** | **str** |  | 
 **print_nanny_client_version** | **str** |  | 
 **octoprint_version** | **str** |  | 
-**polymorphic_ctype** | **int** |  | [readonly] 
+**polymorphic_ctype** | **int** |  | [optional] [readonly] 
 **octoprint_device** | **int** |  | 
-**user** | **int** |  | [readonly] 
+**user** | **int** |  | [optional] [readonly] 
 **print_session** | **int** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

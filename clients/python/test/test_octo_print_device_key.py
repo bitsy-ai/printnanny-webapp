@@ -100,35 +100,18 @@ class TestOctoPrintDeviceKey(unittest.TestCase):
                 ca_certs = {
                     'key' : ''
                     },
-                cloudiot_device_configs = '',
-                cloudiot_device_name = '',
-                cloudiot_device_num_id = 56,
-                cloudiot_device_path = '',
-                cloudiot_device = {
-                    'key' : null
-                    },
                 cores = -2147483648,
-                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                fingerprint = '',
-                id = 56,
-                manage_url = '',
                 model = '',
-                monitoring_active = True,
                 name = '',
                 octoprint_version = '',
                 pip_version = '',
                 platform = '',
                 plugin_version = '',
                 print_nanny_client_version = '',
-                private_key_checksum = '',
-                private_key = '',
                 public_key_checksum = '',
-                public_key = '',
                 python_version = '',
                 ram = -2147483648,
                 serial = '',
-                user = 56,
-                url = '',
         )
 
     def testOctoPrintDeviceKey(self):

@@ -4,10 +4,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **kotlin.Int** |  |  [readonly]
-**user** | **kotlin.String** |  |  [readonly]
-**appliance** | **kotlin.Int** |  |  [readonly]
-**deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
 **osVersion** | **kotlin.String** |  | 
 **os** | **kotlin.String** |  | 
 **kernelVersion** | **kotlin.String** |  | 
@@ -15,6 +11,11 @@ Name | Type | Description | Notes
 **ram** | **kotlin.Long** |  | 
 **cpuFlags** | **kotlin.collections.List&lt;kotlin.String&gt;** |  | 
 **json** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt;**](kotlin.Any.md) |  | 
+**id** | **kotlin.Int** |  |  [optional] [readonly]
+**user** | **kotlin.String** |  |  [optional] [readonly]
+**appliance** | **kotlin.Int** |  |  [optional] [readonly]
+**deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
+**createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **hardware** | **kotlin.String** |  |  [optional]
 **revision** | **kotlin.String** |  |  [optional]
 **model** | **kotlin.String** |  |  [optional]

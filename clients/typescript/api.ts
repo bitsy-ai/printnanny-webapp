@@ -32,49 +32,49 @@ export interface Alert {
      * @type {number}
      * @memberof Alert
      */
-    'id': number;
+    'id'?: number;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    'time': string;
+    'time'?: string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    'gcode_file': string;
+    'gcode_file'?: string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    'print_progress': string;
+    'print_progress'?: string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    'time_elapsed': string;
+    'time_elapsed'?: string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    'time_remaining': string;
+    'time_remaining'?: string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    'manage_device_url': string | null;
+    'manage_device_url'?: string | null;
     /**
      * 
      * @type {number}
      * @memberof Alert
      */
-    'user': number;
+    'user'?: number;
     /**
      * 
      * @type {number}
@@ -83,10 +83,10 @@ export interface Alert {
     'octoprint_device'?: number | null;
     /**
      * 
-     * @type {AlertEventTypeEnum}
+     * @type {AlertEventTypeEnum | NullEnum}
      * @memberof Alert
      */
-    'event_type'?: AlertEventTypeEnum | null;
+    'event_type'?: AlertEventTypeEnum | NullEnum | null;
     /**
      * 
      * @type {boolean}
@@ -104,19 +104,19 @@ export interface Alert {
      * @type {string}
      * @memberof Alert
      */
-    'created_dt': string;
+    'created_dt'?: string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    'updated_dt': string;
+    'updated_dt'?: string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    'message': string;
+    'message'?: string;
 }
 /**
  * Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests
@@ -174,10 +174,10 @@ export interface AlertRequest {
     'octoprint_device'?: number | null;
     /**
      * 
-     * @type {AlertEventTypeEnum}
+     * @type {AlertEventTypeEnum | NullEnum}
      * @memberof AlertRequest
      */
-    'event_type'?: AlertEventTypeEnum | null;
+    'event_type'?: AlertEventTypeEnum | NullEnum | null;
     /**
      * 
      * @type {boolean}
@@ -202,25 +202,31 @@ export interface AnsibleFacts {
      * @type {number}
      * @memberof AnsibleFacts
      */
-    'id': number;
+    'id'?: number;
     /**
      * 
      * @type {string}
      * @memberof AnsibleFacts
      */
-    'user': string;
+    'user'?: string;
     /**
      * 
      * @type {number}
      * @memberof AnsibleFacts
      */
-    'appliance': number;
+    'appliance'?: number;
     /**
      * 
      * @type {string}
      * @memberof AnsibleFacts
      */
-    'deleted': string;
+    'deleted'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnsibleFacts
+     */
+    'created_dt'?: string;
     /**
      * 
      * @type {string}
@@ -384,55 +390,55 @@ export interface Appliance {
      * @type {number}
      * @memberof Appliance
      */
-    'id': number;
+    'id'?: number;
     /**
      * 
-     * @type {AppliancePKI}
+     * @type {AppliancePublicKey}
      * @memberof Appliance
      */
-    'pki': AppliancePKI | null;
+    'public_key'?: AppliancePublicKey | null;
     /**
      * 
      * @type {AnsibleFacts}
      * @memberof Appliance
      */
-    'ansible_facts': AnsibleFacts | null;
+    'last_ansible_facts'?: AnsibleFacts | null;
     /**
      * 
      * @type {Array<Camera>}
      * @memberof Appliance
      */
-    'cameras': Array<Camera>;
+    'cameras'?: Array<Camera>;
     /**
      * 
      * @type {Array<PrinterController>}
      * @memberof Appliance
      */
-    'printer_controllers': Array<PrinterController>;
+    'printer_controllers'?: Array<PrinterController>;
     /**
      * 
      * @type {number}
      * @memberof Appliance
      */
-    'user': number;
+    'user'?: number;
     /**
      * 
      * @type {string}
      * @memberof Appliance
      */
-    'deleted': string;
+    'deleted'?: string;
     /**
      * 
      * @type {string}
      * @memberof Appliance
      */
-    'created_dt': string;
+    'created_dt'?: string;
     /**
      * 
      * @type {string}
      * @memberof Appliance
      */
-    'updated_dt': string;
+    'updated_dt'?: string;
     /**
      * 
      * @type {string}
@@ -443,98 +449,74 @@ export interface Appliance {
 /**
  * 
  * @export
- * @interface AppliancePKI
+ * @interface AppliancePublicKey
  */
-export interface AppliancePKI {
+export interface AppliancePublicKey {
     /**
      * 
      * @type {number}
-     * @memberof AppliancePKI
+     * @memberof AppliancePublicKey
      */
-    'id': number;
+    'id'?: number;
     /**
      * 
      * @type {string}
-     * @memberof AppliancePKI
+     * @memberof AppliancePublicKey
      */
-    'user': string;
+    'user'?: string;
     /**
      * 
      * @type {number}
-     * @memberof AppliancePKI
+     * @memberof AppliancePublicKey
      */
-    'appliance': number;
+    'appliance'?: number;
     /**
      * 
      * @type {string}
-     * @memberof AppliancePKI
+     * @memberof AppliancePublicKey
      */
-    'deleted': string;
+    'deleted'?: string;
     /**
      * 
      * @type {string}
-     * @memberof AppliancePKI
-     */
-    'public_key_path': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AppliancePKI
-     */
-    'private_key_path': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AppliancePKI
+     * @memberof AppliancePublicKey
      */
     'public_key': string;
     /**
      * 
      * @type {string}
-     * @memberof AppliancePKI
+     * @memberof AppliancePublicKey
      */
     'public_key_checksum': string;
     /**
      * 
      * @type {string}
-     * @memberof AppliancePKI
+     * @memberof AppliancePublicKey
      */
     'fingerprint': string;
 }
 /**
  * 
  * @export
- * @interface AppliancePKIRequest
+ * @interface AppliancePublicKeyRequest
  */
-export interface AppliancePKIRequest {
+export interface AppliancePublicKeyRequest {
     /**
      * 
      * @type {string}
-     * @memberof AppliancePKIRequest
-     */
-    'public_key_path': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AppliancePKIRequest
-     */
-    'private_key_path': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AppliancePKIRequest
+     * @memberof AppliancePublicKeyRequest
      */
     'public_key': string;
     /**
      * 
      * @type {string}
-     * @memberof AppliancePKIRequest
+     * @memberof AppliancePublicKeyRequest
      */
     'public_key_checksum': string;
     /**
      * 
      * @type {string}
-     * @memberof AppliancePKIRequest
+     * @memberof AppliancePublicKeyRequest
      */
     'fingerprint': string;
 }
@@ -650,37 +632,37 @@ export interface Camera {
      * @type {number}
      * @memberof Camera
      */
-    'id': number;
+    'id'?: number;
     /**
      * 
      * @type {string}
      * @memberof Camera
      */
-    'deleted': string;
+    'deleted'?: string;
     /**
      * 
      * @type {string}
      * @memberof Camera
      */
-    'created_dt': string;
+    'created_dt'?: string;
     /**
      * 
      * @type {string}
      * @memberof Camera
      */
-    'updated_dt': string;
+    'updated_dt'?: string;
     /**
      * 
      * @type {number}
      * @memberof Camera
      */
-    'user': number;
+    'user'?: number;
     /**
      * 
      * @type {number}
      * @memberof Camera
      */
-    'appliance': number;
+    'appliance'?: number;
     /**
      * 
      * @type {string}
@@ -704,7 +686,7 @@ export interface Camera {
      * @type {string}
      * @memberof Camera
      */
-    'url': string;
+    'url'?: string;
 }
 /**
  * 
@@ -746,6 +728,74 @@ export enum CameraTypeEnum {
 /**
  * 
  * @export
+ * @interface CloudIoTDevice
+ */
+export interface CloudIoTDevice {
+    /**
+     * 
+     * @type {number}
+     * @memberof CloudIoTDevice
+     */
+    'numId': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CloudIoTDevice
+     */
+    'user'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CloudIoTDevice
+     */
+    'appliance'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CloudIoTDevice
+     */
+    'deleted'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CloudIoTDevice
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CloudIoTDevice
+     */
+    'id': string;
+}
+/**
+ * 
+ * @export
+ * @interface CloudIoTDeviceRequest
+ */
+export interface CloudIoTDeviceRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof CloudIoTDeviceRequest
+     */
+    'numId': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CloudIoTDeviceRequest
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CloudIoTDeviceRequest
+     */
+    'id': string;
+}
+/**
+ * 
+ * @export
  * @enum {string}
  */
 
@@ -784,19 +834,19 @@ export interface DeviceCalibration {
      * @type {number}
      * @memberof DeviceCalibration
      */
-    'id': number;
+    'id'?: number;
     /**
      * 
      * @type {string}
      * @memberof DeviceCalibration
      */
-    'created_dt': string;
+    'created_dt'?: string;
     /**
      * 
      * @type {string}
      * @memberof DeviceCalibration
      */
-    'updated_dt': string;
+    'updated_dt'?: string;
     /**
      * 
      * @type {number}
@@ -832,7 +882,7 @@ export interface DeviceCalibration {
      * @type {string}
      * @memberof DeviceCalibration
      */
-    'url': string;
+    'url'?: string;
 }
 /**
  * 
@@ -951,13 +1001,13 @@ export interface Experiment {
      * @type {number}
      * @memberof Experiment
      */
-    'id': number;
+    'id'?: number;
     /**
      * 
      * @type {string}
      * @memberof Experiment
      */
-    'created_dt': string;
+    'created_dt'?: string;
     /**
      * 
      * @type {boolean}
@@ -1006,13 +1056,13 @@ export interface ExperimentDeviceConfig {
      * @type {number}
      * @memberof ExperimentDeviceConfig
      */
-    'id': number;
+    'id'?: number;
     /**
      * 
      * @type {string}
      * @memberof ExperimentDeviceConfig
      */
-    'created_dt': string;
+    'created_dt'?: string;
     /**
      * 
      * @type {number}
@@ -1037,13 +1087,13 @@ export interface GcodeFile {
      * @type {number}
      * @memberof GcodeFile
      */
-    'id': number;
+    'id'?: number;
     /**
      * 
      * @type {number}
      * @memberof GcodeFile
      */
-    'user': number;
+    'user'?: number;
     /**
      * 
      * @type {string}
@@ -1073,18 +1123,18 @@ export interface GcodeFile {
      * @type {string}
      * @memberof GcodeFile
      */
-    'url': string;
+    'url'?: string;
 }
 /**
  * 
  * @export
- * @interface InlineResponse403
+ * @interface InlineResponseDefault
  */
-export interface InlineResponse403 {
+export interface InlineResponseDefault {
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse403
+     * @memberof InlineResponseDefault
      */
     'detail'?: string;
 }
@@ -1112,50 +1162,60 @@ export interface ModelArtifact {
      * @type {number}
      * @memberof ModelArtifact
      */
-    'id': number;
+    'id'?: number;
     /**
      * 
      * @type {string}
      * @memberof ModelArtifact
      */
-    'created_dt': string;
+    'created_dt'?: string;
     /**
      * 
      * @type {string}
      * @memberof ModelArtifact
      */
-    'version': string;
+    'version'?: string;
     /**
      * 
      * @type {string}
      * @memberof ModelArtifact
      */
-    'labels': string;
+    'labels'?: string;
     /**
      * 
      * @type {string}
      * @memberof ModelArtifact
      */
-    'artifacts': string;
+    'artifacts'?: string;
     /**
      * 
      * @type {Array<ArtifactTypesEnum>}
      * @memberof ModelArtifact
      */
-    'artifact_types': Array<ArtifactTypesEnum>;
+    'artifact_types'?: Array<ArtifactTypesEnum>;
     /**
      * 
      * @type {{ [key: string]: any; }}
      * @memberof ModelArtifact
      */
-    'metadata': { [key: string]: any; };
+    'metadata'?: { [key: string]: any; };
     /**
      * 
      * @type {string}
      * @memberof ModelArtifact
      */
-    'url': string;
+    'url'?: string;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export enum NullEnum {
+    Null = 'null'
+}
+
 /**
  * 
  * @export
@@ -1167,13 +1227,13 @@ export interface OctoPrintDevice {
      * @type {number}
      * @memberof OctoPrintDevice
      */
-    'id': number;
+    'id'?: number;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    'created_dt': string;
+    'created_dt'?: string;
     /**
      * 
      * @type {string}
@@ -1185,43 +1245,43 @@ export interface OctoPrintDevice {
      * @type {number}
      * @memberof OctoPrintDevice
      */
-    'user': number;
+    'user'?: number;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    'public_key': string;
+    'public_key'?: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    'fingerprint': string;
+    'fingerprint'?: string;
     /**
      * 
      * @type {{ [key: string]: any; }}
      * @memberof OctoPrintDevice
      */
-    'cloudiot_device': { [key: string]: any; };
+    'cloudiot_device'?: { [key: string]: any; };
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    'cloudiot_device_name': string;
+    'cloudiot_device_name'?: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    'cloudiot_device_path': string;
+    'cloudiot_device_path'?: string;
     /**
      * 
      * @type {number}
      * @memberof OctoPrintDevice
      */
-    'cloudiot_device_num_id': number;
+    'cloudiot_device_num_id'?: number;
     /**
      * 
      * @type {string}
@@ -1311,19 +1371,19 @@ export interface OctoPrintDevice {
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    'cloudiot_device_configs': string;
+    'cloudiot_device_configs'?: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    'manage_url': string;
+    'manage_url'?: string;
     /**
      * 
      * @type {boolean}
      * @memberof OctoPrintDevice
      */
-    'monitoring_active': boolean;
+    'monitoring_active'?: boolean;
     /**
      * 
      * @type {PrintSession}
@@ -1354,31 +1414,31 @@ export interface OctoPrintDeviceKey {
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    'cloudiot_device_configs': string;
+    'cloudiot_device_configs'?: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    'cloudiot_device_name': string;
+    'cloudiot_device_name'?: string;
     /**
      * 
      * @type {number}
      * @memberof OctoPrintDeviceKey
      */
-    'cloudiot_device_num_id': number;
+    'cloudiot_device_num_id'?: number;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    'cloudiot_device_path': string;
+    'cloudiot_device_path'?: string;
     /**
      * 
      * @type {{ [key: string]: any; }}
      * @memberof OctoPrintDeviceKey
      */
-    'cloudiot_device': { [key: string]: any; };
+    'cloudiot_device'?: { [key: string]: any; };
     /**
      * 
      * @type {number}
@@ -1396,13 +1456,13 @@ export interface OctoPrintDeviceKey {
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    'created_dt': string;
+    'created_dt'?: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    'fingerprint': string;
+    'fingerprint'?: string;
     /**
      * 
      * @type {string}
@@ -1414,13 +1474,13 @@ export interface OctoPrintDeviceKey {
      * @type {number}
      * @memberof OctoPrintDeviceKey
      */
-    'id': number;
+    'id'?: number;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    'manage_url': string;
+    'manage_url'?: string;
     /**
      * 
      * @type {string}
@@ -1432,7 +1492,7 @@ export interface OctoPrintDeviceKey {
      * @type {boolean}
      * @memberof OctoPrintDeviceKey
      */
-    'monitoring_active': boolean;
+    'monitoring_active'?: boolean;
     /**
      * 
      * @type {string}
@@ -1474,13 +1534,13 @@ export interface OctoPrintDeviceKey {
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    'private_key_checksum': string;
+    'private_key_checksum'?: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    'private_key': string;
+    'private_key'?: string;
     /**
      * 
      * @type {string}
@@ -1492,7 +1552,7 @@ export interface OctoPrintDeviceKey {
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    'public_key': string;
+    'public_key'?: string;
     /**
      * 
      * @type {string}
@@ -1522,13 +1582,13 @@ export interface OctoPrintDeviceKey {
      * @type {number}
      * @memberof OctoPrintDeviceKey
      */
-    'user': number;
+    'user'?: number;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    'url': string;
+    'url'?: string;
 }
 /**
  * 
@@ -1644,7 +1704,7 @@ export interface OctoPrintEvent {
      * @type {number}
      * @memberof OctoPrintEvent
      */
-    'id': number;
+    'id'?: number;
     /**
      * 
      * @type {number}
@@ -1710,7 +1770,7 @@ export interface OctoPrintEvent {
      * @type {number}
      * @memberof OctoPrintEvent
      */
-    'polymorphic_ctype': number;
+    'polymorphic_ctype'?: number;
     /**
      * 
      * @type {number}
@@ -1722,7 +1782,7 @@ export interface OctoPrintEvent {
      * @type {number}
      * @memberof OctoPrintEvent
      */
-    'user': number;
+    'user'?: number;
     /**
      * 
      * @type {number}
@@ -2668,6 +2728,37 @@ export interface PaginatedAlertList {
 /**
  * 
  * @export
+ * @interface PaginatedAnsibleFactsList
+ */
+export interface PaginatedAnsibleFactsList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedAnsibleFactsList
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedAnsibleFactsList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedAnsibleFactsList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<AnsibleFacts>}
+     * @memberof PaginatedAnsibleFactsList
+     */
+    'results'?: Array<AnsibleFacts>;
+}
+/**
+ * 
+ * @export
  * @interface PaginatedApplianceList
  */
 export interface PaginatedApplianceList {
@@ -2699,6 +2790,37 @@ export interface PaginatedApplianceList {
 /**
  * 
  * @export
+ * @interface PaginatedAppliancePublicKeyList
+ */
+export interface PaginatedAppliancePublicKeyList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedAppliancePublicKeyList
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedAppliancePublicKeyList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedAppliancePublicKeyList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<AppliancePublicKey>}
+     * @memberof PaginatedAppliancePublicKeyList
+     */
+    'results'?: Array<AppliancePublicKey>;
+}
+/**
+ * 
+ * @export
  * @interface PaginatedCameraList
  */
 export interface PaginatedCameraList {
@@ -2726,6 +2848,37 @@ export interface PaginatedCameraList {
      * @memberof PaginatedCameraList
      */
     'results'?: Array<Camera>;
+}
+/**
+ * 
+ * @export
+ * @interface PaginatedCloudIoTDeviceList
+ */
+export interface PaginatedCloudIoTDeviceList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedCloudIoTDeviceList
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedCloudIoTDeviceList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedCloudIoTDeviceList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<CloudIoTDevice>}
+     * @memberof PaginatedCloudIoTDeviceList
+     */
+    'results'?: Array<CloudIoTDevice>;
 }
 /**
  * 
@@ -3234,55 +3387,55 @@ export interface Partner3DGeeksAlert {
      * @type {string}
      * @memberof Partner3DGeeksAlert
      */
-    'event': string;
+    'event'?: string;
     /**
      * 
      * @type {string}
      * @memberof Partner3DGeeksAlert
      */
-    'token': string;
+    'token'?: string;
     /**
      * 
      * @type {string}
      * @memberof Partner3DGeeksAlert
      */
-    'printer': string;
+    'printer'?: string;
     /**
      * 
      * @type {string}
      * @memberof Partner3DGeeksAlert
      */
-    'print': string;
+    'print'?: string;
     /**
      * 
      * @type {number}
      * @memberof Partner3DGeeksAlert
      */
-    'currentTime': number;
+    'currentTime'?: number;
     /**
      * 
      * @type {number}
      * @memberof Partner3DGeeksAlert
      */
-    'timeLeft': number;
+    'timeLeft'?: number;
     /**
      * 
      * @type {number}
      * @memberof Partner3DGeeksAlert
      */
-    'percent': number;
+    'percent'?: number;
     /**
      * 
      * @type {string}
      * @memberof Partner3DGeeksAlert
      */
-    'image': string | null;
+    'image'?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Partner3DGeeksAlert
      */
-    'action': string;
+    'action'?: string;
 }
 /**
  * Please do not include any personally-identifying info or sensitive info in partner serializers
@@ -3319,7 +3472,7 @@ export interface Partner3DGeeksMetadata {
      * @type {string}
      * @memberof Partner3DGeeksMetadata
      */
-    'print_nanny_plugin_version': string;
+    'print_nanny_plugin_version'?: string;
     /**
      * 
      * @type {string}
@@ -3331,7 +3484,7 @@ export interface Partner3DGeeksMetadata {
      * @type {string}
      * @memberof Partner3DGeeksMetadata
      */
-    'verified': string;
+    'verified'?: string;
 }
 /**
  * Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests
@@ -3360,10 +3513,10 @@ export interface PatchedAlertRequest {
     'octoprint_device'?: number | null;
     /**
      * 
-     * @type {AlertEventTypeEnum}
+     * @type {AlertEventTypeEnum | NullEnum}
      * @memberof PatchedAlertRequest
      */
-    'event_type'?: AlertEventTypeEnum | null;
+    'event_type'?: AlertEventTypeEnum | NullEnum | null;
     /**
      * 
      * @type {boolean}
@@ -3376,6 +3529,110 @@ export interface PatchedAlertRequest {
      * @memberof PatchedAlertRequest
      */
     'sent'?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface PatchedAnsibleFactsRequest
+ */
+export interface PatchedAnsibleFactsRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedAnsibleFactsRequest
+     */
+    'os_version'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedAnsibleFactsRequest
+     */
+    'os'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedAnsibleFactsRequest
+     */
+    'kernel_version'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedAnsibleFactsRequest
+     */
+    'hardware'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedAnsibleFactsRequest
+     */
+    'revision'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedAnsibleFactsRequest
+     */
+    'model'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedAnsibleFactsRequest
+     */
+    'serial'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedAnsibleFactsRequest
+     */
+    'cores'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedAnsibleFactsRequest
+     */
+    'ram'?: number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof PatchedAnsibleFactsRequest
+     */
+    'cpu_flags'?: Array<string>;
+    /**
+     * 
+     * @type {ReleaseChannelEnum}
+     * @memberof PatchedAnsibleFactsRequest
+     */
+    'release_channel'?: ReleaseChannelEnum;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PatchedAnsibleFactsRequest
+     */
+    'json'?: { [key: string]: any; };
+}
+/**
+ * 
+ * @export
+ * @interface PatchedAppliancePublicKeyRequest
+ */
+export interface PatchedAppliancePublicKeyRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedAppliancePublicKeyRequest
+     */
+    'public_key'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedAppliancePublicKeyRequest
+     */
+    'public_key_checksum'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedAppliancePublicKeyRequest
+     */
+    'fingerprint'?: string;
 }
 /**
  * 
@@ -3414,6 +3671,31 @@ export interface PatchedCameraRequest {
      * @memberof PatchedCameraRequest
      */
     'camera_source'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface PatchedCloudIoTDeviceRequest
+ */
+export interface PatchedCloudIoTDeviceRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedCloudIoTDeviceRequest
+     */
+    'numId'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedCloudIoTDeviceRequest
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedCloudIoTDeviceRequest
+     */
+    'id'?: string;
 }
 /**
  * 
@@ -3635,10 +3917,10 @@ export interface PatchedPrintSessionRequest {
     'octoprint_job'?: { [key: string]: any; } | null;
     /**
      * 
-     * @type {PrintJobStatusEnum}
+     * @type {PrintJobStatusEnum | NullEnum}
      * @memberof PatchedPrintSessionRequest
      */
-    'print_job_status'?: PrintJobStatusEnum | null;
+    'print_job_status'?: PrintJobStatusEnum | NullEnum | null;
 }
 /**
  * 
@@ -3871,7 +4153,7 @@ export interface PrintJobEvent {
      * @type {number}
      * @memberof PrintJobEvent
      */
-    'id': number;
+    'id'?: number;
     /**
      * 
      * @type {number}
@@ -3937,7 +4219,7 @@ export interface PrintJobEvent {
      * @type {number}
      * @memberof PrintJobEvent
      */
-    'polymorphic_ctype': number;
+    'polymorphic_ctype'?: number;
     /**
      * 
      * @type {number}
@@ -3949,7 +4231,7 @@ export interface PrintJobEvent {
      * @type {number}
      * @memberof PrintJobEvent
      */
-    'user': number;
+    'user'?: number;
     /**
      * 
      * @type {number}
@@ -4063,7 +4345,7 @@ export interface PrintNannyPluginEvent {
      * @type {number}
      * @memberof PrintNannyPluginEvent
      */
-    'id': number;
+    'id'?: number;
     /**
      * 
      * @type {number}
@@ -4129,7 +4411,7 @@ export interface PrintNannyPluginEvent {
      * @type {number}
      * @memberof PrintNannyPluginEvent
      */
-    'polymorphic_ctype': number;
+    'polymorphic_ctype'?: number;
     /**
      * 
      * @type {number}
@@ -4141,7 +4423,7 @@ export interface PrintNannyPluginEvent {
      * @type {number}
      * @memberof PrintNannyPluginEvent
      */
-    'user': number;
+    'user'?: number;
     /**
      * 
      * @type {number}
@@ -4267,7 +4549,7 @@ export interface PrintSession {
      * @type {number}
      * @memberof PrintSession
      */
-    'id': number;
+    'id'?: number;
     /**
      * 
      * @type {string}
@@ -4279,7 +4561,7 @@ export interface PrintSession {
      * @type {string}
      * @memberof PrintSession
      */
-    'updated_dt': string;
+    'updated_dt'?: string;
     /**
      * 
      * @type {number}
@@ -4327,7 +4609,7 @@ export interface PrintSession {
      * @type {number}
      * @memberof PrintSession
      */
-    'user': number;
+    'user'?: number;
     /**
      * 
      * @type {number}
@@ -4354,22 +4636,22 @@ export interface PrintSession {
     'octoprint_job'?: { [key: string]: any; } | null;
     /**
      * 
-     * @type {PrintJobStatusEnum}
+     * @type {PrintJobStatusEnum | NullEnum}
      * @memberof PrintSession
      */
-    'print_job_status'?: PrintJobStatusEnum | null;
+    'print_job_status'?: PrintJobStatusEnum | NullEnum | null;
     /**
      * 
      * @type {string}
      * @memberof PrintSession
      */
-    'url': string;
+    'url'?: string;
     /**
      * 
      * @type {string}
      * @memberof PrintSession
      */
-    'datesegment': string;
+    'datesegment'?: string;
 }
 /**
  * 
@@ -4451,10 +4733,10 @@ export interface PrintSessionRequest {
     'octoprint_job'?: { [key: string]: any; } | null;
     /**
      * 
-     * @type {PrintJobStatusEnum}
+     * @type {PrintJobStatusEnum | NullEnum}
      * @memberof PrintSessionRequest
      */
-    'print_job_status'?: PrintJobStatusEnum | null;
+    'print_job_status'?: PrintJobStatusEnum | NullEnum | null;
 }
 /**
  * 
@@ -4467,37 +4749,37 @@ export interface PrinterController {
      * @type {number}
      * @memberof PrinterController
      */
-    'id': number;
+    'id'?: number;
     /**
      * 
      * @type {number}
      * @memberof PrinterController
      */
-    'user': number;
+    'user'?: number;
     /**
      * 
      * @type {number}
      * @memberof PrinterController
      */
-    'appliance': number;
+    'appliance'?: number;
     /**
      * 
      * @type {string}
      * @memberof PrinterController
      */
-    'deleted': string;
+    'deleted'?: string;
     /**
      * 
      * @type {string}
      * @memberof PrinterController
      */
-    'created_dt': string;
+    'created_dt'?: string;
     /**
      * 
      * @type {string}
      * @memberof PrinterController
      */
-    'updated_dt': string;
+    'updated_dt'?: string;
     /**
      * 
      * @type {SoftwareEnum}
@@ -4509,7 +4791,7 @@ export interface PrinterController {
      * @type {number}
      * @memberof PrinterController
      */
-    'polymorphic_ctype': number;
+    'polymorphic_ctype'?: number;
 }
 /**
  * 
@@ -4535,7 +4817,7 @@ export interface PrinterEvent {
      * @type {number}
      * @memberof PrinterEvent
      */
-    'id': number;
+    'id'?: number;
     /**
      * 
      * @type {number}
@@ -4607,7 +4889,7 @@ export interface PrinterEvent {
      * @type {number}
      * @memberof PrinterEvent
      */
-    'polymorphic_ctype': number;
+    'polymorphic_ctype'?: number;
     /**
      * 
      * @type {number}
@@ -4619,7 +4901,7 @@ export interface PrinterEvent {
      * @type {number}
      * @memberof PrinterEvent
      */
-    'user': number;
+    'user'?: number;
     /**
      * 
      * @type {number}
@@ -4723,13 +5005,13 @@ export interface PrinterProfile {
      * @type {number}
      * @memberof PrinterProfile
      */
-    'id': number;
+    'id'?: number;
     /**
      * 
      * @type {number}
      * @memberof PrinterProfile
      */
-    'user': number;
+    'user'?: number;
     /**
      * 
      * @type {number}
@@ -4873,7 +5155,7 @@ export interface PrinterProfile {
      * @type {string}
      * @memberof PrinterProfile
      */
-    'url': string;
+    'url'?: string;
 }
 /**
  * 
@@ -5070,7 +5352,7 @@ export interface RemoteCommandEvent {
      * @type {number}
      * @memberof RemoteCommandEvent
      */
-    'id': number;
+    'id'?: number;
     /**
      * 
      * @type {number}
@@ -5136,7 +5418,7 @@ export interface RemoteCommandEvent {
      * @type {number}
      * @memberof RemoteCommandEvent
      */
-    'polymorphic_ctype': number;
+    'polymorphic_ctype'?: number;
     /**
      * 
      * @type {number}
@@ -5148,7 +5430,7 @@ export interface RemoteCommandEvent {
      * @type {number}
      * @memberof RemoteCommandEvent
      */
-    'user': number;
+    'user'?: number;
     /**
      * 
      * @type {number}
@@ -5258,13 +5540,13 @@ export interface RemoteControlCommand {
      * @type {number}
      * @memberof RemoteControlCommand
      */
-    'id': number;
+    'id'?: number;
     /**
      * 
      * @type {string}
      * @memberof RemoteControlCommand
      */
-    'created_dt': string;
+    'created_dt'?: string;
     /**
      * 
      * @type {CommandEnum}
@@ -5312,13 +5594,13 @@ export interface RemoteControlCommand {
      * @type {string}
      * @memberof RemoteControlCommand
      */
-    'url': string;
+    'url'?: string;
     /**
      * 
      * @type {string}
      * @memberof RemoteControlCommand
      */
-    'octoprint_event_type': string;
+    'octoprint_event_type'?: string;
 }
 /**
  * 
@@ -5390,7 +5672,7 @@ export interface TelemetryEvent {
      * @type {number}
      * @memberof TelemetryEvent
      */
-    'id': number;
+    'id'?: number;
     /**
      * 
      * @type {number}
@@ -5456,7 +5738,7 @@ export interface TelemetryEvent {
      * @type {number}
      * @memberof TelemetryEvent
      */
-    'polymorphic_ctype': number;
+    'polymorphic_ctype'?: number;
     /**
      * 
      * @type {number}
@@ -5468,7 +5750,7 @@ export interface TelemetryEvent {
      * @type {number}
      * @memberof TelemetryEvent
      */
-    'user': number;
+    'user'?: number;
     /**
      * 
      * @type {number}
@@ -5679,13 +5961,13 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    'url': string;
+    'url'?: string;
     /**
      * 
      * @type {number}
      * @memberof User
      */
-    'id': number;
+    'id'?: number;
 }
 /**
  * 
@@ -6303,6 +6585,234 @@ export const AppliancesApiAxiosParamCreator = function (configuration?: Configur
         /**
          * 
          * @param {number} applianceId 
+         * @param {AnsibleFactsRequest} ansibleFactsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesAnsibleFactsCreate: async (applianceId: number, ansibleFactsRequest: AnsibleFactsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceId' is not null or undefined
+            assertParamExists('appliancesAnsibleFactsCreate', 'applianceId', applianceId)
+            // verify required parameter 'ansibleFactsRequest' is not null or undefined
+            assertParamExists('appliancesAnsibleFactsCreate', 'ansibleFactsRequest', ansibleFactsRequest)
+            const localVarPath = `/api/appliances/{appliance_id}/ansible-facts/`
+                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(ansibleFactsRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesAnsibleFactsList: async (applianceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceId' is not null or undefined
+            assertParamExists('appliancesAnsibleFactsList', 'applianceId', applianceId)
+            const localVarPath = `/api/appliances/{appliance_id}/ansible-facts/`
+                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this ansible facts.
+         * @param {PatchedAnsibleFactsRequest} [patchedAnsibleFactsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesAnsibleFactsPartialUpdate: async (applianceId: number, id: number, patchedAnsibleFactsRequest?: PatchedAnsibleFactsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceId' is not null or undefined
+            assertParamExists('appliancesAnsibleFactsPartialUpdate', 'applianceId', applianceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('appliancesAnsibleFactsPartialUpdate', 'id', id)
+            const localVarPath = `/api/appliances/{appliance_id}/ansible-facts/{id}/`
+                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedAnsibleFactsRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this ansible facts.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesAnsibleFactsRetrieve: async (applianceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceId' is not null or undefined
+            assertParamExists('appliancesAnsibleFactsRetrieve', 'applianceId', applianceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('appliancesAnsibleFactsRetrieve', 'id', id)
+            const localVarPath = `/api/appliances/{appliance_id}/ansible-facts/{id}/`
+                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this ansible facts.
+         * @param {AnsibleFactsRequest} ansibleFactsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesAnsibleFactsUpdate: async (applianceId: number, id: number, ansibleFactsRequest: AnsibleFactsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceId' is not null or undefined
+            assertParamExists('appliancesAnsibleFactsUpdate', 'applianceId', applianceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('appliancesAnsibleFactsUpdate', 'id', id)
+            // verify required parameter 'ansibleFactsRequest' is not null or undefined
+            assertParamExists('appliancesAnsibleFactsUpdate', 'ansibleFactsRequest', ansibleFactsRequest)
+            const localVarPath = `/api/appliances/{appliance_id}/ansible-facts/{id}/`
+                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(ansibleFactsRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} applianceId 
          * @param {CameraRequest} cameraRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6529,6 +7039,234 @@ export const AppliancesApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
+         * 
+         * @param {number} applianceId 
+         * @param {CloudIoTDeviceRequest} cloudIoTDeviceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesCloudIotDevicesCreate: async (applianceId: number, cloudIoTDeviceRequest: CloudIoTDeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceId' is not null or undefined
+            assertParamExists('appliancesCloudIotDevicesCreate', 'applianceId', applianceId)
+            // verify required parameter 'cloudIoTDeviceRequest' is not null or undefined
+            assertParamExists('appliancesCloudIotDevicesCreate', 'cloudIoTDeviceRequest', cloudIoTDeviceRequest)
+            const localVarPath = `/api/appliances/{appliance_id}/cloud-iot-devices/`
+                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(cloudIoTDeviceRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesCloudIotDevicesList: async (applianceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceId' is not null or undefined
+            assertParamExists('appliancesCloudIotDevicesList', 'applianceId', applianceId)
+            const localVarPath = `/api/appliances/{appliance_id}/cloud-iot-devices/`
+                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {string} id 
+         * @param {PatchedCloudIoTDeviceRequest} [patchedCloudIoTDeviceRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesCloudIotDevicesPartialUpdate: async (applianceId: number, id: string, patchedCloudIoTDeviceRequest?: PatchedCloudIoTDeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceId' is not null or undefined
+            assertParamExists('appliancesCloudIotDevicesPartialUpdate', 'applianceId', applianceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('appliancesCloudIotDevicesPartialUpdate', 'id', id)
+            const localVarPath = `/api/appliances/{appliance_id}/cloud-iot-devices/{id}/`
+                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedCloudIoTDeviceRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesCloudIotDevicesRetrieve: async (applianceId: number, id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceId' is not null or undefined
+            assertParamExists('appliancesCloudIotDevicesRetrieve', 'applianceId', applianceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('appliancesCloudIotDevicesRetrieve', 'id', id)
+            const localVarPath = `/api/appliances/{appliance_id}/cloud-iot-devices/{id}/`
+                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {string} id 
+         * @param {CloudIoTDeviceRequest} cloudIoTDeviceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesCloudIotDevicesUpdate: async (applianceId: number, id: string, cloudIoTDeviceRequest: CloudIoTDeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceId' is not null or undefined
+            assertParamExists('appliancesCloudIotDevicesUpdate', 'applianceId', applianceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('appliancesCloudIotDevicesUpdate', 'id', id)
+            // verify required parameter 'cloudIoTDeviceRequest' is not null or undefined
+            assertParamExists('appliancesCloudIotDevicesUpdate', 'cloudIoTDeviceRequest', cloudIoTDeviceRequest)
+            const localVarPath = `/api/appliances/{appliance_id}/cloud-iot-devices/{id}/`
+                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(cloudIoTDeviceRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {ApplianceRequest} applianceRequest 
          * @param {*} [options] Override http request option.
@@ -6655,15 +7393,15 @@ export const AppliancesApiAxiosParamCreator = function (configuration?: Configur
         /**
          * 
          * @param {number} applianceId 
-         * @param {PrinterControllerRequest} printerControllerRequest 
+         * @param {ApplianceRequest} applianceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        appliancesPrinterControllersCreate: async (applianceId: number, printerControllerRequest: PrinterControllerRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        appliancesPrinterControllersCreate: async (applianceId: number, applianceRequest: ApplianceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'applianceId' is not null or undefined
             assertParamExists('appliancesPrinterControllersCreate', 'applianceId', applianceId)
-            // verify required parameter 'printerControllerRequest' is not null or undefined
-            assertParamExists('appliancesPrinterControllersCreate', 'printerControllerRequest', printerControllerRequest)
+            // verify required parameter 'applianceRequest' is not null or undefined
+            assertParamExists('appliancesPrinterControllersCreate', 'applianceRequest', applianceRequest)
             const localVarPath = `/api/appliances/{appliance_id}/printer-controllers/`
                 .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -6690,7 +7428,7 @@ export const AppliancesApiAxiosParamCreator = function (configuration?: Configur
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(printerControllerRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(applianceRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -6835,17 +7573,17 @@ export const AppliancesApiAxiosParamCreator = function (configuration?: Configur
          * 
          * @param {number} applianceId 
          * @param {number} id A unique integer value identifying this printer controller.
-         * @param {PrinterControllerRequest} printerControllerRequest 
+         * @param {ApplianceRequest} applianceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        appliancesPrinterControllersUpdate: async (applianceId: number, id: number, printerControllerRequest: PrinterControllerRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        appliancesPrinterControllersUpdate: async (applianceId: number, id: number, applianceRequest: ApplianceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'applianceId' is not null or undefined
             assertParamExists('appliancesPrinterControllersUpdate', 'applianceId', applianceId)
             // verify required parameter 'id' is not null or undefined
             assertParamExists('appliancesPrinterControllersUpdate', 'id', id)
-            // verify required parameter 'printerControllerRequest' is not null or undefined
-            assertParamExists('appliancesPrinterControllersUpdate', 'printerControllerRequest', printerControllerRequest)
+            // verify required parameter 'applianceRequest' is not null or undefined
+            assertParamExists('appliancesPrinterControllersUpdate', 'applianceRequest', applianceRequest)
             const localVarPath = `/api/appliances/{appliance_id}/printer-controllers/{id}/`
                 .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)))
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
@@ -6873,7 +7611,235 @@ export const AppliancesApiAxiosParamCreator = function (configuration?: Configur
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(printerControllerRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(applianceRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+         * @param {number} applianceId 
+         * @param {AppliancePublicKeyRequest} appliancePublicKeyRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesPublicKeysCreate: async (applianceId: number, appliancePublicKeyRequest: AppliancePublicKeyRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceId' is not null or undefined
+            assertParamExists('appliancesPublicKeysCreate', 'applianceId', applianceId)
+            // verify required parameter 'appliancePublicKeyRequest' is not null or undefined
+            assertParamExists('appliancesPublicKeysCreate', 'appliancePublicKeyRequest', appliancePublicKeyRequest)
+            const localVarPath = `/api/appliances/{appliance_id}/public-keys/`
+                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(appliancePublicKeyRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+         * @param {number} applianceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesPublicKeysList: async (applianceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceId' is not null or undefined
+            assertParamExists('appliancesPublicKeysList', 'applianceId', applianceId)
+            const localVarPath = `/api/appliances/{appliance_id}/public-keys/`
+                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this appliance public key.
+         * @param {PatchedAppliancePublicKeyRequest} [patchedAppliancePublicKeyRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesPublicKeysPartialUpdate: async (applianceId: number, id: number, patchedAppliancePublicKeyRequest?: PatchedAppliancePublicKeyRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceId' is not null or undefined
+            assertParamExists('appliancesPublicKeysPartialUpdate', 'applianceId', applianceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('appliancesPublicKeysPartialUpdate', 'id', id)
+            const localVarPath = `/api/appliances/{appliance_id}/public-keys/{id}/`
+                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedAppliancePublicKeyRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this appliance public key.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesPublicKeysRetrieve: async (applianceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceId' is not null or undefined
+            assertParamExists('appliancesPublicKeysRetrieve', 'applianceId', applianceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('appliancesPublicKeysRetrieve', 'id', id)
+            const localVarPath = `/api/appliances/{appliance_id}/public-keys/{id}/`
+                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this appliance public key.
+         * @param {AppliancePublicKeyRequest} appliancePublicKeyRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesPublicKeysUpdate: async (applianceId: number, id: number, appliancePublicKeyRequest: AppliancePublicKeyRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceId' is not null or undefined
+            assertParamExists('appliancesPublicKeysUpdate', 'applianceId', applianceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('appliancesPublicKeysUpdate', 'id', id)
+            // verify required parameter 'appliancePublicKeyRequest' is not null or undefined
+            assertParamExists('appliancesPublicKeysUpdate', 'appliancePublicKeyRequest', appliancePublicKeyRequest)
+            const localVarPath = `/api/appliances/{appliance_id}/public-keys/{id}/`
+                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(appliancePublicKeyRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -6977,6 +7943,63 @@ export const AppliancesApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} applianceId 
+         * @param {AnsibleFactsRequest} ansibleFactsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesAnsibleFactsCreate(applianceId: number, ansibleFactsRequest: AnsibleFactsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AnsibleFacts>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesAnsibleFactsCreate(applianceId, ansibleFactsRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesAnsibleFactsList(applianceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedAnsibleFactsList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesAnsibleFactsList(applianceId, page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this ansible facts.
+         * @param {PatchedAnsibleFactsRequest} [patchedAnsibleFactsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesAnsibleFactsPartialUpdate(applianceId: number, id: number, patchedAnsibleFactsRequest?: PatchedAnsibleFactsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AnsibleFacts>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesAnsibleFactsPartialUpdate(applianceId, id, patchedAnsibleFactsRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this ansible facts.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesAnsibleFactsRetrieve(applianceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AnsibleFacts>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesAnsibleFactsRetrieve(applianceId, id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this ansible facts.
+         * @param {AnsibleFactsRequest} ansibleFactsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesAnsibleFactsUpdate(applianceId: number, id: number, ansibleFactsRequest: AnsibleFactsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AnsibleFacts>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesAnsibleFactsUpdate(applianceId, id, ansibleFactsRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} applianceId 
          * @param {CameraRequest} cameraRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -7032,6 +8055,63 @@ export const AppliancesApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * 
+         * @param {number} applianceId 
+         * @param {CloudIoTDeviceRequest} cloudIoTDeviceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesCloudIotDevicesCreate(applianceId: number, cloudIoTDeviceRequest: CloudIoTDeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CloudIoTDevice>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesCloudIotDevicesCreate(applianceId, cloudIoTDeviceRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesCloudIotDevicesList(applianceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedCloudIoTDeviceList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesCloudIotDevicesList(applianceId, page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {string} id 
+         * @param {PatchedCloudIoTDeviceRequest} [patchedCloudIoTDeviceRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesCloudIotDevicesPartialUpdate(applianceId: number, id: string, patchedCloudIoTDeviceRequest?: PatchedCloudIoTDeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CloudIoTDevice>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesCloudIotDevicesPartialUpdate(applianceId, id, patchedCloudIoTDeviceRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesCloudIotDevicesRetrieve(applianceId: number, id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CloudIoTDevice>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesCloudIotDevicesRetrieve(applianceId, id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {string} id 
+         * @param {CloudIoTDeviceRequest} cloudIoTDeviceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesCloudIotDevicesUpdate(applianceId: number, id: string, cloudIoTDeviceRequest: CloudIoTDeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CloudIoTDevice>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesCloudIotDevicesUpdate(applianceId, id, cloudIoTDeviceRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {ApplianceRequest} applianceRequest 
          * @param {*} [options] Override http request option.
@@ -7065,12 +8145,12 @@ export const AppliancesApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} applianceId 
-         * @param {PrinterControllerRequest} printerControllerRequest 
+         * @param {ApplianceRequest} applianceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async appliancesPrinterControllersCreate(applianceId: number, printerControllerRequest: PrinterControllerRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterController>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesPrinterControllersCreate(applianceId, printerControllerRequest, options);
+        async appliancesPrinterControllersCreate(applianceId: number, applianceRequest: ApplianceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterController>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesPrinterControllersCreate(applianceId, applianceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -7111,12 +8191,69 @@ export const AppliancesApiFp = function(configuration?: Configuration) {
          * 
          * @param {number} applianceId 
          * @param {number} id A unique integer value identifying this printer controller.
-         * @param {PrinterControllerRequest} printerControllerRequest 
+         * @param {ApplianceRequest} applianceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async appliancesPrinterControllersUpdate(applianceId: number, id: number, printerControllerRequest: PrinterControllerRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterController>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesPrinterControllersUpdate(applianceId, id, printerControllerRequest, options);
+        async appliancesPrinterControllersUpdate(applianceId: number, id: number, applianceRequest: ApplianceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterController>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesPrinterControllersUpdate(applianceId, id, applianceRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+         * @param {number} applianceId 
+         * @param {AppliancePublicKeyRequest} appliancePublicKeyRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesPublicKeysCreate(applianceId: number, appliancePublicKeyRequest: AppliancePublicKeyRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AppliancePublicKey>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesPublicKeysCreate(applianceId, appliancePublicKeyRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+         * @param {number} applianceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesPublicKeysList(applianceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedAppliancePublicKeyList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesPublicKeysList(applianceId, page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this appliance public key.
+         * @param {PatchedAppliancePublicKeyRequest} [patchedAppliancePublicKeyRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesPublicKeysPartialUpdate(applianceId: number, id: number, patchedAppliancePublicKeyRequest?: PatchedAppliancePublicKeyRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AppliancePublicKey>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesPublicKeysPartialUpdate(applianceId, id, patchedAppliancePublicKeyRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this appliance public key.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesPublicKeysRetrieve(applianceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AppliancePublicKey>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesPublicKeysRetrieve(applianceId, id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this appliance public key.
+         * @param {AppliancePublicKeyRequest} appliancePublicKeyRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesPublicKeysUpdate(applianceId: number, id: number, appliancePublicKeyRequest: AppliancePublicKeyRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AppliancePublicKey>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesPublicKeysUpdate(applianceId, id, appliancePublicKeyRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -7150,6 +8287,58 @@ export const AppliancesApiFp = function(configuration?: Configuration) {
 export const AppliancesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = AppliancesApiFp(configuration)
     return {
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {AnsibleFactsRequest} ansibleFactsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesAnsibleFactsCreate(applianceId: number, ansibleFactsRequest: AnsibleFactsRequest, options?: any): AxiosPromise<AnsibleFacts> {
+            return localVarFp.appliancesAnsibleFactsCreate(applianceId, ansibleFactsRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesAnsibleFactsList(applianceId: number, page?: number, options?: any): AxiosPromise<PaginatedAnsibleFactsList> {
+            return localVarFp.appliancesAnsibleFactsList(applianceId, page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this ansible facts.
+         * @param {PatchedAnsibleFactsRequest} [patchedAnsibleFactsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesAnsibleFactsPartialUpdate(applianceId: number, id: number, patchedAnsibleFactsRequest?: PatchedAnsibleFactsRequest, options?: any): AxiosPromise<AnsibleFacts> {
+            return localVarFp.appliancesAnsibleFactsPartialUpdate(applianceId, id, patchedAnsibleFactsRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this ansible facts.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesAnsibleFactsRetrieve(applianceId: number, id: number, options?: any): AxiosPromise<AnsibleFacts> {
+            return localVarFp.appliancesAnsibleFactsRetrieve(applianceId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this ansible facts.
+         * @param {AnsibleFactsRequest} ansibleFactsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesAnsibleFactsUpdate(applianceId: number, id: number, ansibleFactsRequest: AnsibleFactsRequest, options?: any): AxiosPromise<AnsibleFacts> {
+            return localVarFp.appliancesAnsibleFactsUpdate(applianceId, id, ansibleFactsRequest, options).then((request) => request(axios, basePath));
+        },
         /**
          * 
          * @param {number} applianceId 
@@ -7203,6 +8392,58 @@ export const AppliancesApiFactory = function (configuration?: Configuration, bas
             return localVarFp.appliancesCamerasUpdate(applianceId, id, cameraRequest, options).then((request) => request(axios, basePath));
         },
         /**
+         * 
+         * @param {number} applianceId 
+         * @param {CloudIoTDeviceRequest} cloudIoTDeviceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesCloudIotDevicesCreate(applianceId: number, cloudIoTDeviceRequest: CloudIoTDeviceRequest, options?: any): AxiosPromise<CloudIoTDevice> {
+            return localVarFp.appliancesCloudIotDevicesCreate(applianceId, cloudIoTDeviceRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesCloudIotDevicesList(applianceId: number, page?: number, options?: any): AxiosPromise<PaginatedCloudIoTDeviceList> {
+            return localVarFp.appliancesCloudIotDevicesList(applianceId, page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {string} id 
+         * @param {PatchedCloudIoTDeviceRequest} [patchedCloudIoTDeviceRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesCloudIotDevicesPartialUpdate(applianceId: number, id: string, patchedCloudIoTDeviceRequest?: PatchedCloudIoTDeviceRequest, options?: any): AxiosPromise<CloudIoTDevice> {
+            return localVarFp.appliancesCloudIotDevicesPartialUpdate(applianceId, id, patchedCloudIoTDeviceRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesCloudIotDevicesRetrieve(applianceId: number, id: string, options?: any): AxiosPromise<CloudIoTDevice> {
+            return localVarFp.appliancesCloudIotDevicesRetrieve(applianceId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {string} id 
+         * @param {CloudIoTDeviceRequest} cloudIoTDeviceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesCloudIotDevicesUpdate(applianceId: number, id: string, cloudIoTDeviceRequest: CloudIoTDeviceRequest, options?: any): AxiosPromise<CloudIoTDevice> {
+            return localVarFp.appliancesCloudIotDevicesUpdate(applianceId, id, cloudIoTDeviceRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {ApplianceRequest} applianceRequest 
          * @param {*} [options] Override http request option.
@@ -7233,12 +8474,12 @@ export const AppliancesApiFactory = function (configuration?: Configuration, bas
         /**
          * 
          * @param {number} applianceId 
-         * @param {PrinterControllerRequest} printerControllerRequest 
+         * @param {ApplianceRequest} applianceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        appliancesPrinterControllersCreate(applianceId: number, printerControllerRequest: PrinterControllerRequest, options?: any): AxiosPromise<PrinterController> {
-            return localVarFp.appliancesPrinterControllersCreate(applianceId, printerControllerRequest, options).then((request) => request(axios, basePath));
+        appliancesPrinterControllersCreate(applianceId: number, applianceRequest: ApplianceRequest, options?: any): AxiosPromise<PrinterController> {
+            return localVarFp.appliancesPrinterControllersCreate(applianceId, applianceRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7275,12 +8516,64 @@ export const AppliancesApiFactory = function (configuration?: Configuration, bas
          * 
          * @param {number} applianceId 
          * @param {number} id A unique integer value identifying this printer controller.
-         * @param {PrinterControllerRequest} printerControllerRequest 
+         * @param {ApplianceRequest} applianceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        appliancesPrinterControllersUpdate(applianceId: number, id: number, printerControllerRequest: PrinterControllerRequest, options?: any): AxiosPromise<PrinterController> {
-            return localVarFp.appliancesPrinterControllersUpdate(applianceId, id, printerControllerRequest, options).then((request) => request(axios, basePath));
+        appliancesPrinterControllersUpdate(applianceId: number, id: number, applianceRequest: ApplianceRequest, options?: any): AxiosPromise<PrinterController> {
+            return localVarFp.appliancesPrinterControllersUpdate(applianceId, id, applianceRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+         * @param {number} applianceId 
+         * @param {AppliancePublicKeyRequest} appliancePublicKeyRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesPublicKeysCreate(applianceId: number, appliancePublicKeyRequest: AppliancePublicKeyRequest, options?: any): AxiosPromise<AppliancePublicKey> {
+            return localVarFp.appliancesPublicKeysCreate(applianceId, appliancePublicKeyRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+         * @param {number} applianceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesPublicKeysList(applianceId: number, page?: number, options?: any): AxiosPromise<PaginatedAppliancePublicKeyList> {
+            return localVarFp.appliancesPublicKeysList(applianceId, page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this appliance public key.
+         * @param {PatchedAppliancePublicKeyRequest} [patchedAppliancePublicKeyRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesPublicKeysPartialUpdate(applianceId: number, id: number, patchedAppliancePublicKeyRequest?: PatchedAppliancePublicKeyRequest, options?: any): AxiosPromise<AppliancePublicKey> {
+            return localVarFp.appliancesPublicKeysPartialUpdate(applianceId, id, patchedAppliancePublicKeyRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this appliance public key.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesPublicKeysRetrieve(applianceId: number, id: number, options?: any): AxiosPromise<AppliancePublicKey> {
+            return localVarFp.appliancesPublicKeysRetrieve(applianceId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this appliance public key.
+         * @param {AppliancePublicKeyRequest} appliancePublicKeyRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesPublicKeysUpdate(applianceId: number, id: number, appliancePublicKeyRequest: AppliancePublicKeyRequest, options?: any): AxiosPromise<AppliancePublicKey> {
+            return localVarFp.appliancesPublicKeysUpdate(applianceId, id, appliancePublicKeyRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
@@ -7310,6 +8603,58 @@ export const AppliancesApiFactory = function (configuration?: Configuration, bas
  * @interface AppliancesApi
  */
 export interface AppliancesApiInterface {
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {AnsibleFactsRequest} ansibleFactsRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesAnsibleFactsCreate(applianceId: number, ansibleFactsRequest: AnsibleFactsRequest, options?: AxiosRequestConfig): AxiosPromise<AnsibleFacts>;
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesAnsibleFactsList(applianceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedAnsibleFactsList>;
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {number} id A unique integer value identifying this ansible facts.
+     * @param {PatchedAnsibleFactsRequest} [patchedAnsibleFactsRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesAnsibleFactsPartialUpdate(applianceId: number, id: number, patchedAnsibleFactsRequest?: PatchedAnsibleFactsRequest, options?: AxiosRequestConfig): AxiosPromise<AnsibleFacts>;
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {number} id A unique integer value identifying this ansible facts.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesAnsibleFactsRetrieve(applianceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<AnsibleFacts>;
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {number} id A unique integer value identifying this ansible facts.
+     * @param {AnsibleFactsRequest} ansibleFactsRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesAnsibleFactsUpdate(applianceId: number, id: number, ansibleFactsRequest: AnsibleFactsRequest, options?: AxiosRequestConfig): AxiosPromise<AnsibleFacts>;
+
     /**
      * 
      * @param {number} applianceId 
@@ -7363,6 +8708,58 @@ export interface AppliancesApiInterface {
     appliancesCamerasUpdate(applianceId: number, id: number, cameraRequest: CameraRequest, options?: AxiosRequestConfig): AxiosPromise<Camera>;
 
     /**
+     * 
+     * @param {number} applianceId 
+     * @param {CloudIoTDeviceRequest} cloudIoTDeviceRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesCloudIotDevicesCreate(applianceId: number, cloudIoTDeviceRequest: CloudIoTDeviceRequest, options?: AxiosRequestConfig): AxiosPromise<CloudIoTDevice>;
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesCloudIotDevicesList(applianceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedCloudIoTDeviceList>;
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {string} id 
+     * @param {PatchedCloudIoTDeviceRequest} [patchedCloudIoTDeviceRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesCloudIotDevicesPartialUpdate(applianceId: number, id: string, patchedCloudIoTDeviceRequest?: PatchedCloudIoTDeviceRequest, options?: AxiosRequestConfig): AxiosPromise<CloudIoTDevice>;
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesCloudIotDevicesRetrieve(applianceId: number, id: string, options?: AxiosRequestConfig): AxiosPromise<CloudIoTDevice>;
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {string} id 
+     * @param {CloudIoTDeviceRequest} cloudIoTDeviceRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesCloudIotDevicesUpdate(applianceId: number, id: string, cloudIoTDeviceRequest: CloudIoTDeviceRequest, options?: AxiosRequestConfig): AxiosPromise<CloudIoTDevice>;
+
+    /**
      * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
      * @param {ApplianceRequest} applianceRequest 
      * @param {*} [options] Override http request option.
@@ -7393,12 +8790,12 @@ export interface AppliancesApiInterface {
     /**
      * 
      * @param {number} applianceId 
-     * @param {PrinterControllerRequest} printerControllerRequest 
+     * @param {ApplianceRequest} applianceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AppliancesApiInterface
      */
-    appliancesPrinterControllersCreate(applianceId: number, printerControllerRequest: PrinterControllerRequest, options?: AxiosRequestConfig): AxiosPromise<PrinterController>;
+    appliancesPrinterControllersCreate(applianceId: number, applianceRequest: ApplianceRequest, options?: AxiosRequestConfig): AxiosPromise<PrinterController>;
 
     /**
      * 
@@ -7435,12 +8832,64 @@ export interface AppliancesApiInterface {
      * 
      * @param {number} applianceId 
      * @param {number} id A unique integer value identifying this printer controller.
-     * @param {PrinterControllerRequest} printerControllerRequest 
+     * @param {ApplianceRequest} applianceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AppliancesApiInterface
      */
-    appliancesPrinterControllersUpdate(applianceId: number, id: number, printerControllerRequest: PrinterControllerRequest, options?: AxiosRequestConfig): AxiosPromise<PrinterController>;
+    appliancesPrinterControllersUpdate(applianceId: number, id: number, applianceRequest: ApplianceRequest, options?: AxiosRequestConfig): AxiosPromise<PrinterController>;
+
+    /**
+     * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+     * @param {number} applianceId 
+     * @param {AppliancePublicKeyRequest} appliancePublicKeyRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesPublicKeysCreate(applianceId: number, appliancePublicKeyRequest: AppliancePublicKeyRequest, options?: AxiosRequestConfig): AxiosPromise<AppliancePublicKey>;
+
+    /**
+     * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+     * @param {number} applianceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesPublicKeysList(applianceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedAppliancePublicKeyList>;
+
+    /**
+     * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+     * @param {number} applianceId 
+     * @param {number} id A unique integer value identifying this appliance public key.
+     * @param {PatchedAppliancePublicKeyRequest} [patchedAppliancePublicKeyRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesPublicKeysPartialUpdate(applianceId: number, id: number, patchedAppliancePublicKeyRequest?: PatchedAppliancePublicKeyRequest, options?: AxiosRequestConfig): AxiosPromise<AppliancePublicKey>;
+
+    /**
+     * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+     * @param {number} applianceId 
+     * @param {number} id A unique integer value identifying this appliance public key.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesPublicKeysRetrieve(applianceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<AppliancePublicKey>;
+
+    /**
+     * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+     * @param {number} applianceId 
+     * @param {number} id A unique integer value identifying this appliance public key.
+     * @param {AppliancePublicKeyRequest} appliancePublicKeyRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesPublicKeysUpdate(applianceId: number, id: number, appliancePublicKeyRequest: AppliancePublicKeyRequest, options?: AxiosRequestConfig): AxiosPromise<AppliancePublicKey>;
 
     /**
      * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
@@ -7470,6 +8919,68 @@ export interface AppliancesApiInterface {
  * @extends {BaseAPI}
  */
 export class AppliancesApi extends BaseAPI implements AppliancesApiInterface {
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {AnsibleFactsRequest} ansibleFactsRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesAnsibleFactsCreate(applianceId: number, ansibleFactsRequest: AnsibleFactsRequest, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesAnsibleFactsCreate(applianceId, ansibleFactsRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesAnsibleFactsList(applianceId: number, page?: number, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesAnsibleFactsList(applianceId, page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {number} id A unique integer value identifying this ansible facts.
+     * @param {PatchedAnsibleFactsRequest} [patchedAnsibleFactsRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesAnsibleFactsPartialUpdate(applianceId: number, id: number, patchedAnsibleFactsRequest?: PatchedAnsibleFactsRequest, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesAnsibleFactsPartialUpdate(applianceId, id, patchedAnsibleFactsRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {number} id A unique integer value identifying this ansible facts.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesAnsibleFactsRetrieve(applianceId: number, id: number, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesAnsibleFactsRetrieve(applianceId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {number} id A unique integer value identifying this ansible facts.
+     * @param {AnsibleFactsRequest} ansibleFactsRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesAnsibleFactsUpdate(applianceId: number, id: number, ansibleFactsRequest: AnsibleFactsRequest, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesAnsibleFactsUpdate(applianceId, id, ansibleFactsRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @param {number} applianceId 
@@ -7533,6 +9044,68 @@ export class AppliancesApi extends BaseAPI implements AppliancesApiInterface {
     }
 
     /**
+     * 
+     * @param {number} applianceId 
+     * @param {CloudIoTDeviceRequest} cloudIoTDeviceRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesCloudIotDevicesCreate(applianceId: number, cloudIoTDeviceRequest: CloudIoTDeviceRequest, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesCloudIotDevicesCreate(applianceId, cloudIoTDeviceRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesCloudIotDevicesList(applianceId: number, page?: number, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesCloudIotDevicesList(applianceId, page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {string} id 
+     * @param {PatchedCloudIoTDeviceRequest} [patchedCloudIoTDeviceRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesCloudIotDevicesPartialUpdate(applianceId: number, id: string, patchedCloudIoTDeviceRequest?: PatchedCloudIoTDeviceRequest, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesCloudIotDevicesPartialUpdate(applianceId, id, patchedCloudIoTDeviceRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesCloudIotDevicesRetrieve(applianceId: number, id: string, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesCloudIotDevicesRetrieve(applianceId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {string} id 
+     * @param {CloudIoTDeviceRequest} cloudIoTDeviceRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesCloudIotDevicesUpdate(applianceId: number, id: string, cloudIoTDeviceRequest: CloudIoTDeviceRequest, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesCloudIotDevicesUpdate(applianceId, id, cloudIoTDeviceRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
      * @param {ApplianceRequest} applianceRequest 
      * @param {*} [options] Override http request option.
@@ -7569,13 +9142,13 @@ export class AppliancesApi extends BaseAPI implements AppliancesApiInterface {
     /**
      * 
      * @param {number} applianceId 
-     * @param {PrinterControllerRequest} printerControllerRequest 
+     * @param {ApplianceRequest} applianceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AppliancesApi
      */
-    public appliancesPrinterControllersCreate(applianceId: number, printerControllerRequest: PrinterControllerRequest, options?: AxiosRequestConfig) {
-        return AppliancesApiFp(this.configuration).appliancesPrinterControllersCreate(applianceId, printerControllerRequest, options).then((request) => request(this.axios, this.basePath));
+    public appliancesPrinterControllersCreate(applianceId: number, applianceRequest: ApplianceRequest, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesPrinterControllersCreate(applianceId, applianceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7619,13 +9192,75 @@ export class AppliancesApi extends BaseAPI implements AppliancesApiInterface {
      * 
      * @param {number} applianceId 
      * @param {number} id A unique integer value identifying this printer controller.
-     * @param {PrinterControllerRequest} printerControllerRequest 
+     * @param {ApplianceRequest} applianceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AppliancesApi
      */
-    public appliancesPrinterControllersUpdate(applianceId: number, id: number, printerControllerRequest: PrinterControllerRequest, options?: AxiosRequestConfig) {
-        return AppliancesApiFp(this.configuration).appliancesPrinterControllersUpdate(applianceId, id, printerControllerRequest, options).then((request) => request(this.axios, this.basePath));
+    public appliancesPrinterControllersUpdate(applianceId: number, id: number, applianceRequest: ApplianceRequest, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesPrinterControllersUpdate(applianceId, id, applianceRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+     * @param {number} applianceId 
+     * @param {AppliancePublicKeyRequest} appliancePublicKeyRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesPublicKeysCreate(applianceId: number, appliancePublicKeyRequest: AppliancePublicKeyRequest, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesPublicKeysCreate(applianceId, appliancePublicKeyRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+     * @param {number} applianceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesPublicKeysList(applianceId: number, page?: number, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesPublicKeysList(applianceId, page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+     * @param {number} applianceId 
+     * @param {number} id A unique integer value identifying this appliance public key.
+     * @param {PatchedAppliancePublicKeyRequest} [patchedAppliancePublicKeyRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesPublicKeysPartialUpdate(applianceId: number, id: number, patchedAppliancePublicKeyRequest?: PatchedAppliancePublicKeyRequest, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesPublicKeysPartialUpdate(applianceId, id, patchedAppliancePublicKeyRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+     * @param {number} applianceId 
+     * @param {number} id A unique integer value identifying this appliance public key.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesPublicKeysRetrieve(applianceId: number, id: number, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesPublicKeysRetrieve(applianceId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+     * @param {number} applianceId 
+     * @param {number} id A unique integer value identifying this appliance public key.
+     * @param {AppliancePublicKeyRequest} appliancePublicKeyRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesPublicKeysUpdate(applianceId: number, id: number, appliancePublicKeyRequest: AppliancePublicKeyRequest, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesPublicKeysUpdate(applianceId, id, appliancePublicKeyRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

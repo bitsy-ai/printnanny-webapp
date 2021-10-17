@@ -41,28 +41,28 @@ import java.io.Serializable
 data class ModelArtifact (
 
     @Json(name = "id")
-    val id: kotlin.Int,
+    val id: kotlin.Int? = null,
 
     @Json(name = "created_dt")
-    val createdDt: java.time.OffsetDateTime,
+    val createdDt: java.time.OffsetDateTime? = null,
 
     @Json(name = "version")
-    val version: kotlin.String,
+    val version: kotlin.String? = null,
 
     @Json(name = "labels")
-    val labels: java.net.URI,
+    val labels: java.net.URI? = null,
 
     @Json(name = "artifacts")
-    val artifacts: java.net.URI,
+    val artifacts: java.net.URI? = null,
 
     @Json(name = "artifact_types")
-    val artifactTypes: kotlin.collections.List<ArtifactTypesEnum>,
+    val artifactTypes: kotlin.collections.List<ArtifactTypesEnum>? = null,
 
     @Json(name = "metadata")
-    val metadata: kotlin.collections.Map<kotlin.String, kotlin.Any>,
+    val metadata: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,
 
     @Json(name = "url")
-    val url: java.net.URI
+    val url: java.net.URI? = null
 
 ) : Serializable {
     companion object {

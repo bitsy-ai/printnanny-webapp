@@ -20,7 +20,7 @@
 
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.AlertEventTypeEnum
+import com.print-nanny.client.models.OneOfLessThanAlertEventTypeEnumCommaNullEnumGreaterThan
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -36,61 +36,61 @@ import java.io.Serializable
  * @param timeRemaining 
  * @param manageDeviceUrl 
  * @param user 
- * @param createdDt 
- * @param updatedDt 
- * @param message 
  * @param octoprintDevice 
  * @param eventType 
  * @param seen 
  * @param sent 
+ * @param createdDt 
+ * @param updatedDt 
+ * @param message 
  */
 
 data class Alert (
 
     @Json(name = "id")
-    val id: kotlin.Int,
+    val id: kotlin.Int? = null,
 
     @Json(name = "time")
-    val time: kotlin.String,
+    val time: kotlin.String? = null,
 
     @Json(name = "gcode_file")
-    val gcodeFile: kotlin.String,
+    val gcodeFile: kotlin.String? = null,
 
     @Json(name = "print_progress")
-    val printProgress: kotlin.String,
+    val printProgress: kotlin.String? = null,
 
     @Json(name = "time_elapsed")
-    val timeElapsed: kotlin.String,
+    val timeElapsed: kotlin.String? = null,
 
     @Json(name = "time_remaining")
-    val timeRemaining: kotlin.String,
+    val timeRemaining: kotlin.String? = null,
 
     @Json(name = "manage_device_url")
-    val manageDeviceUrl: kotlin.String?,
+    val manageDeviceUrl: kotlin.String? = null,
 
     @Json(name = "user")
-    val user: kotlin.Int,
-
-    @Json(name = "created_dt")
-    val createdDt: java.time.OffsetDateTime,
-
-    @Json(name = "updated_dt")
-    val updatedDt: java.time.OffsetDateTime,
-
-    @Json(name = "message")
-    val message: kotlin.String,
+    val user: kotlin.Int? = null,
 
     @Json(name = "octoprint_device")
     val octoprintDevice: kotlin.Int? = null,
 
     @Json(name = "event_type")
-    val eventType: AlertEventTypeEnum? = null,
+    val eventType: OneOfLessThanAlertEventTypeEnumCommaNullEnumGreaterThan? = null,
 
     @Json(name = "seen")
     val seen: kotlin.Boolean? = null,
 
     @Json(name = "sent")
-    val sent: kotlin.Boolean? = null
+    val sent: kotlin.Boolean? = null,
+
+    @Json(name = "created_dt")
+    val createdDt: java.time.OffsetDateTime? = null,
+
+    @Json(name = "updated_dt")
+    val updatedDt: java.time.OffsetDateTime? = null,
+
+    @Json(name = "message")
+    val message: kotlin.String? = null
 
 ) : Serializable {
     companion object {

@@ -40,6 +40,7 @@ class AnsibleFacts(object):
         'user': 'str',
         'appliance': 'int',
         'deleted': 'datetime',
+        'created_dt': 'datetime',
         'os_version': 'str',
         'os': 'str',
         'kernel_version': 'str',
@@ -59,6 +60,7 @@ class AnsibleFacts(object):
         'user': 'user',
         'appliance': 'appliance',
         'deleted': 'deleted',
+        'created_dt': 'created_dt',
         'os_version': 'os_version',
         'os': 'os',
         'kernel_version': 'kernel_version',
@@ -73,7 +75,7 @@ class AnsibleFacts(object):
         'json': 'json'
     }
 
-    def __init__(self, id=None, user=None, appliance=None, deleted=None, os_version=None, os=None, kernel_version=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, cpu_flags=None, release_channel=None, json=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, user=None, appliance=None, deleted=None, created_dt=None, os_version=None, os=None, kernel_version=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, cpu_flags=None, release_channel=None, json=None, local_vars_configuration=None):  # noqa: E501
         """AnsibleFacts - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -83,6 +85,7 @@ class AnsibleFacts(object):
         self._user = None
         self._appliance = None
         self._deleted = None
+        self._created_dt = None
         self._os_version = None
         self._os = None
         self._kernel_version = None
@@ -97,10 +100,16 @@ class AnsibleFacts(object):
         self._json = None
         self.discriminator = None
 
-        self.id = id
-        self.user = user
-        self.appliance = appliance
-        self.deleted = deleted
+        if id is not None:
+            self.id = id
+        if user is not None:
+            self.user = user
+        if appliance is not None:
+            self.appliance = appliance
+        if deleted is not None:
+            self.deleted = deleted
+        if created_dt is not None:
+            self.created_dt = created_dt
         self.os_version = os_version
         self.os = os
         self.kernel_version = kernel_version
@@ -133,8 +142,6 @@ class AnsibleFacts(object):
         :param id: The id of this AnsibleFacts.  # noqa: E501
         :type id: int
         """
-        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
-            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -156,8 +163,6 @@ class AnsibleFacts(object):
         :param user: The user of this AnsibleFacts.  # noqa: E501
         :type user: str
         """
-        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
-            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
 
         self._user = user
 
@@ -179,8 +184,6 @@ class AnsibleFacts(object):
         :param appliance: The appliance of this AnsibleFacts.  # noqa: E501
         :type appliance: int
         """
-        if self.local_vars_configuration.client_side_validation and appliance is None:  # noqa: E501
-            raise ValueError("Invalid value for `appliance`, must not be `None`")  # noqa: E501
 
         self._appliance = appliance
 
@@ -202,10 +205,29 @@ class AnsibleFacts(object):
         :param deleted: The deleted of this AnsibleFacts.  # noqa: E501
         :type deleted: datetime
         """
-        if self.local_vars_configuration.client_side_validation and deleted is None:  # noqa: E501
-            raise ValueError("Invalid value for `deleted`, must not be `None`")  # noqa: E501
 
         self._deleted = deleted
+
+    @property
+    def created_dt(self):
+        """Gets the created_dt of this AnsibleFacts.  # noqa: E501
+
+
+        :return: The created_dt of this AnsibleFacts.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._created_dt
+
+    @created_dt.setter
+    def created_dt(self, created_dt):
+        """Sets the created_dt of this AnsibleFacts.
+
+
+        :param created_dt: The created_dt of this AnsibleFacts.  # noqa: E501
+        :type created_dt: datetime
+        """
+
+        self._created_dt = created_dt
 
     @property
     def os_version(self):

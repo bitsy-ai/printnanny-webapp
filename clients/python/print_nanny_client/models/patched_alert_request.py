@@ -37,7 +37,7 @@ class PatchedAlertRequest(object):
     """
     openapi_types = {
         'octoprint_device': 'int',
-        'event_type': 'AlertEventTypeEnum',
+        'event_type': 'OneOfAlertEventTypeEnumNullEnum',
         'seen': 'bool',
         'sent': 'bool'
     }
@@ -95,7 +95,7 @@ class PatchedAlertRequest(object):
 
 
         :return: The event_type of this PatchedAlertRequest.  # noqa: E501
-        :rtype: AlertEventTypeEnum
+        :rtype: OneOfAlertEventTypeEnumNullEnum
         """
         return self._event_type
 
@@ -105,7 +105,7 @@ class PatchedAlertRequest(object):
 
 
         :param event_type: The event_type of this PatchedAlertRequest.  # noqa: E501
-        :type event_type: AlertEventTypeEnum
+        :type event_type: OneOfAlertEventTypeEnumNullEnum
         """
 
         self._event_type = event_type

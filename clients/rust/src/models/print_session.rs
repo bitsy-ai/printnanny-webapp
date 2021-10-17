@@ -11,12 +11,12 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct PrintSession {
-    #[serde(rename = "id")]
-    pub id: i32,
+    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
+    pub id: Option<i32>,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
-    #[serde(rename = "updated_dt")]
-    pub updated_dt: String,
+    #[serde(rename = "updated_dt", skip_serializing_if = "Option::is_none")]
+    pub updated_dt: Option<String>,
     #[serde(rename = "octoprint_device")]
     pub octoprint_device: i32,
     #[serde(rename = "active", skip_serializing_if = "Option::is_none")]
@@ -31,8 +31,8 @@ pub struct PrintSession {
     pub time_elapsed: Option<i32>,
     #[serde(rename = "time_remaining", skip_serializing_if = "Option::is_none")]
     pub time_remaining: Option<i32>,
-    #[serde(rename = "user")]
-    pub user: i32,
+    #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
+    pub user: Option<i32>,
     #[serde(rename = "printer_profile", skip_serializing_if = "Option::is_none")]
     pub printer_profile: Option<i32>,
     #[serde(rename = "gcode_file", skip_serializing_if = "Option::is_none")]
@@ -42,19 +42,19 @@ pub struct PrintSession {
     #[serde(rename = "octoprint_job", skip_serializing_if = "Option::is_none")]
     pub octoprint_job: Option<::std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "print_job_status", skip_serializing_if = "Option::is_none")]
-    pub print_job_status: Option<Box<crate::models::PrintJobStatusEnum>>,
-    #[serde(rename = "url")]
-    pub url: String,
-    #[serde(rename = "datesegment")]
-    pub datesegment: String,
+    pub print_job_status: Option<Box<crate::models::OneOfPrintJobStatusEnumNullEnum>>,
+    #[serde(rename = "url", skip_serializing_if = "Option::is_none")]
+    pub url: Option<String>,
+    #[serde(rename = "datesegment", skip_serializing_if = "Option::is_none")]
+    pub datesegment: Option<String>,
 }
 
 impl PrintSession {
-    pub fn new(id: i32, created_dt: String, updated_dt: String, octoprint_device: i32, session: String, user: i32, url: String, datesegment: String) -> PrintSession {
+    pub fn new(created_dt: String, octoprint_device: i32, session: String) -> PrintSession {
         PrintSession {
-            id,
+            id: None,
             created_dt,
-            updated_dt,
+            updated_dt: None,
             octoprint_device,
             active: None,
             session,
@@ -62,14 +62,14 @@ impl PrintSession {
             print_progress: None,
             time_elapsed: None,
             time_remaining: None,
-            user,
+            user: None,
             printer_profile: None,
             gcode_file: None,
             gcode_filename: None,
             octoprint_job: None,
             print_job_status: None,
-            url,
-            datesegment,
+            url: None,
+            datesegment: None,
         }
     }
 }

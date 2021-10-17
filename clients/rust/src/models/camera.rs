@@ -11,41 +11,41 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Camera {
-    #[serde(rename = "id")]
-    pub id: i32,
-    #[serde(rename = "deleted")]
-    pub deleted: String,
-    #[serde(rename = "created_dt")]
-    pub created_dt: String,
-    #[serde(rename = "updated_dt")]
-    pub updated_dt: String,
-    #[serde(rename = "user")]
-    pub user: i32,
-    #[serde(rename = "appliance")]
-    pub appliance: i32,
+    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
+    pub id: Option<i32>,
+    #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
+    pub deleted: Option<String>,
+    #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
+    pub created_dt: Option<String>,
+    #[serde(rename = "updated_dt", skip_serializing_if = "Option::is_none")]
+    pub updated_dt: Option<String>,
+    #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
+    pub user: Option<i32>,
+    #[serde(rename = "appliance", skip_serializing_if = "Option::is_none")]
+    pub appliance: Option<i32>,
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "camera_type", skip_serializing_if = "Option::is_none")]
     pub camera_type: Option<Box<crate::models::CameraTypeEnum>>,
     #[serde(rename = "camera_source")]
     pub camera_source: String,
-    #[serde(rename = "url")]
-    pub url: String,
+    #[serde(rename = "url", skip_serializing_if = "Option::is_none")]
+    pub url: Option<String>,
 }
 
 impl Camera {
-    pub fn new(id: i32, deleted: String, created_dt: String, updated_dt: String, user: i32, appliance: i32, name: String, camera_source: String, url: String) -> Camera {
+    pub fn new(name: String, camera_source: String) -> Camera {
         Camera {
-            id,
-            deleted,
-            created_dt,
-            updated_dt,
-            user,
-            appliance,
+            id: None,
+            deleted: None,
+            created_dt: None,
+            updated_dt: None,
+            user: None,
+            appliance: None,
             name,
             camera_type: None,
             camera_source,
-            url,
+            url: None,
         }
     }
 }

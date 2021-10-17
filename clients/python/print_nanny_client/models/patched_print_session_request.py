@@ -48,7 +48,7 @@ class PatchedPrintSessionRequest(object):
         'gcode_file': 'int',
         'gcode_filename': 'str',
         'octoprint_job': 'dict(str, object)',
-        'print_job_status': 'PrintJobStatusEnum'
+        'print_job_status': 'OneOfPrintJobStatusEnumNullEnum'
     }
 
     attribute_map = {
@@ -394,7 +394,7 @@ class PatchedPrintSessionRequest(object):
 
 
         :return: The print_job_status of this PatchedPrintSessionRequest.  # noqa: E501
-        :rtype: PrintJobStatusEnum
+        :rtype: OneOfPrintJobStatusEnumNullEnum
         """
         return self._print_job_status
 
@@ -404,7 +404,7 @@ class PatchedPrintSessionRequest(object):
 
 
         :param print_job_status: The print_job_status of this PatchedPrintSessionRequest.  # noqa: E501
-        :type print_job_status: PrintJobStatusEnum
+        :type print_job_status: OneOfPrintJobStatusEnumNullEnum
         """
 
         self._print_job_status = print_job_status

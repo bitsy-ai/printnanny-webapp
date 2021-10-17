@@ -13,10 +13,49 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
+/// struct for typed errors of method [`appliances_ansible_facts_create`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AppliancesAnsibleFactsCreateError {
+    DefaultResponse(crate::models::InlineResponseDefault),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`appliances_ansible_facts_list`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AppliancesAnsibleFactsListError {
+    DefaultResponse(crate::models::InlineResponseDefault),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`appliances_ansible_facts_partial_update`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AppliancesAnsibleFactsPartialUpdateError {
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`appliances_ansible_facts_retrieve`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AppliancesAnsibleFactsRetrieveError {
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`appliances_ansible_facts_update`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AppliancesAnsibleFactsUpdateError {
+    DefaultResponse(crate::models::InlineResponseDefault),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`appliances_cameras_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesCamerasCreateError {
+    DefaultResponse(crate::models::InlineResponseDefault),
     UnknownValue(serde_json::Value),
 }
 
@@ -24,6 +63,7 @@ pub enum AppliancesCamerasCreateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesCamerasListError {
+    DefaultResponse(crate::models::InlineResponseDefault),
     UnknownValue(serde_json::Value),
 }
 
@@ -45,6 +85,45 @@ pub enum AppliancesCamerasRetrieveError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesCamerasUpdateError {
+    DefaultResponse(crate::models::InlineResponseDefault),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`appliances_cloud_iot_devices_create`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AppliancesCloudIotDevicesCreateError {
+    DefaultResponse(crate::models::InlineResponseDefault),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`appliances_cloud_iot_devices_list`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AppliancesCloudIotDevicesListError {
+    DefaultResponse(crate::models::InlineResponseDefault),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`appliances_cloud_iot_devices_partial_update`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AppliancesCloudIotDevicesPartialUpdateError {
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`appliances_cloud_iot_devices_retrieve`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AppliancesCloudIotDevicesRetrieveError {
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`appliances_cloud_iot_devices_update`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AppliancesCloudIotDevicesUpdateError {
+    DefaultResponse(crate::models::InlineResponseDefault),
     UnknownValue(serde_json::Value),
 }
 
@@ -52,9 +131,7 @@ pub enum AppliancesCamerasUpdateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesCreateError {
-    Status403(crate::models::InlineResponse403),
-    Status409(crate::models::InlineResponse403),
-    Status500(crate::models::InlineResponse403),
+    DefaultResponse(crate::models::InlineResponseDefault),
     UnknownValue(serde_json::Value),
 }
 
@@ -62,8 +139,7 @@ pub enum AppliancesCreateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesListError {
-    Status403(crate::models::InlineResponse403),
-    Status500(crate::models::InlineResponse403),
+    DefaultResponse(crate::models::InlineResponseDefault),
     UnknownValue(serde_json::Value),
 }
 
@@ -78,6 +154,7 @@ pub enum AppliancesPartialUpdateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesPrinterControllersCreateError {
+    DefaultResponse(crate::models::InlineResponseDefault),
     UnknownValue(serde_json::Value),
 }
 
@@ -85,6 +162,7 @@ pub enum AppliancesPrinterControllersCreateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesPrinterControllersListError {
+    DefaultResponse(crate::models::InlineResponseDefault),
     UnknownValue(serde_json::Value),
 }
 
@@ -106,6 +184,45 @@ pub enum AppliancesPrinterControllersRetrieveError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesPrinterControllersUpdateError {
+    DefaultResponse(crate::models::InlineResponseDefault),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`appliances_public_keys_create`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AppliancesPublicKeysCreateError {
+    DefaultResponse(crate::models::InlineResponseDefault),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`appliances_public_keys_list`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AppliancesPublicKeysListError {
+    DefaultResponse(crate::models::InlineResponseDefault),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`appliances_public_keys_partial_update`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AppliancesPublicKeysPartialUpdateError {
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`appliances_public_keys_retrieve`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AppliancesPublicKeysRetrieveError {
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`appliances_public_keys_update`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AppliancesPublicKeysUpdateError {
+    DefaultResponse(crate::models::InlineResponseDefault),
     UnknownValue(serde_json::Value),
 }
 
@@ -120,12 +237,166 @@ pub enum AppliancesRetrieveError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesUpdateError {
-    Status403(crate::models::InlineResponse403),
-    Status409(crate::models::InlineResponse403),
-    Status500(crate::models::InlineResponse403),
+    DefaultResponse(crate::models::InlineResponseDefault),
     UnknownValue(serde_json::Value),
 }
 
+
+pub async fn appliances_ansible_facts_create(configuration: &configuration::Configuration, appliance_id: i32, ansible_facts_request: crate::models::AnsibleFactsRequest) -> Result<crate::models::AnsibleFacts, Error<AppliancesAnsibleFactsCreateError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/appliances/{appliance_id}/ansible-facts/", local_var_configuration.base_path, appliance_id=appliance_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&ansible_facts_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<AppliancesAnsibleFactsCreateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn appliances_ansible_facts_list(configuration: &configuration::Configuration, appliance_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedAnsibleFactsList, Error<AppliancesAnsibleFactsListError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/appliances/{appliance_id}/ansible-facts/", local_var_configuration.base_path, appliance_id=appliance_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_str) = page {
+        local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<AppliancesAnsibleFactsListError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn appliances_ansible_facts_partial_update(configuration: &configuration::Configuration, appliance_id: i32, id: i32, patched_ansible_facts_request: Option<crate::models::PatchedAnsibleFactsRequest>) -> Result<crate::models::AnsibleFacts, Error<AppliancesAnsibleFactsPartialUpdateError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/appliances/{appliance_id}/ansible-facts/{id}/", local_var_configuration.base_path, appliance_id=appliance_id, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PATCH, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&patched_ansible_facts_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<AppliancesAnsibleFactsPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn appliances_ansible_facts_retrieve(configuration: &configuration::Configuration, appliance_id: i32, id: i32) -> Result<crate::models::AnsibleFacts, Error<AppliancesAnsibleFactsRetrieveError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/appliances/{appliance_id}/ansible-facts/{id}/", local_var_configuration.base_path, appliance_id=appliance_id, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<AppliancesAnsibleFactsRetrieveError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn appliances_ansible_facts_update(configuration: &configuration::Configuration, appliance_id: i32, id: i32, ansible_facts_request: crate::models::AnsibleFactsRequest) -> Result<crate::models::AnsibleFacts, Error<AppliancesAnsibleFactsUpdateError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/appliances/{appliance_id}/ansible-facts/{id}/", local_var_configuration.base_path, appliance_id=appliance_id, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&ansible_facts_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<AppliancesAnsibleFactsUpdateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
 
 pub async fn appliances_cameras_create(configuration: &configuration::Configuration, appliance_id: i32, camera_request: crate::models::CameraRequest) -> Result<crate::models::Camera, Error<AppliancesCamerasCreateError>> {
     let local_var_configuration = configuration;
@@ -283,6 +554,162 @@ pub async fn appliances_cameras_update(configuration: &configuration::Configurat
     }
 }
 
+pub async fn appliances_cloud_iot_devices_create(configuration: &configuration::Configuration, appliance_id: i32, cloud_io_t_device_request: crate::models::CloudIoTDeviceRequest) -> Result<crate::models::CloudIoTDevice, Error<AppliancesCloudIotDevicesCreateError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/appliances/{appliance_id}/cloud-iot-devices/", local_var_configuration.base_path, appliance_id=appliance_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&cloud_io_t_device_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<AppliancesCloudIotDevicesCreateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn appliances_cloud_iot_devices_list(configuration: &configuration::Configuration, appliance_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedCloudIoTDeviceList, Error<AppliancesCloudIotDevicesListError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/appliances/{appliance_id}/cloud-iot-devices/", local_var_configuration.base_path, appliance_id=appliance_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_str) = page {
+        local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<AppliancesCloudIotDevicesListError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn appliances_cloud_iot_devices_partial_update(configuration: &configuration::Configuration, appliance_id: i32, id: &str, patched_cloud_io_t_device_request: Option<crate::models::PatchedCloudIoTDeviceRequest>) -> Result<crate::models::CloudIoTDevice, Error<AppliancesCloudIotDevicesPartialUpdateError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/appliances/{appliance_id}/cloud-iot-devices/{id}/", local_var_configuration.base_path, appliance_id=appliance_id, id=crate::apis::urlencode(id));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PATCH, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&patched_cloud_io_t_device_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<AppliancesCloudIotDevicesPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn appliances_cloud_iot_devices_retrieve(configuration: &configuration::Configuration, appliance_id: i32, id: &str) -> Result<crate::models::CloudIoTDevice, Error<AppliancesCloudIotDevicesRetrieveError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/appliances/{appliance_id}/cloud-iot-devices/{id}/", local_var_configuration.base_path, appliance_id=appliance_id, id=crate::apis::urlencode(id));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<AppliancesCloudIotDevicesRetrieveError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn appliances_cloud_iot_devices_update(configuration: &configuration::Configuration, appliance_id: i32, id: &str, cloud_io_t_device_request: crate::models::CloudIoTDeviceRequest) -> Result<crate::models::CloudIoTDevice, Error<AppliancesCloudIotDevicesUpdateError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/appliances/{appliance_id}/cloud-iot-devices/{id}/", local_var_configuration.base_path, appliance_id=appliance_id, id=crate::apis::urlencode(id));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&cloud_io_t_device_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<AppliancesCloudIotDevicesUpdateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
 /// All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
 pub async fn appliances_create(configuration: &configuration::Configuration, appliance_request: crate::models::ApplianceRequest) -> Result<crate::models::Appliance, Error<AppliancesCreateError>> {
     let local_var_configuration = configuration;
@@ -381,7 +808,7 @@ pub async fn appliances_partial_update(configuration: &configuration::Configurat
     }
 }
 
-pub async fn appliances_printer_controllers_create(configuration: &configuration::Configuration, appliance_id: i32, printer_controller_request: crate::models::PrinterControllerRequest) -> Result<crate::models::PrinterController, Error<AppliancesPrinterControllersCreateError>> {
+pub async fn appliances_printer_controllers_create(configuration: &configuration::Configuration, appliance_id: i32, appliance_request: crate::models::ApplianceRequest) -> Result<crate::models::PrinterController, Error<AppliancesPrinterControllersCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -395,7 +822,7 @@ pub async fn appliances_printer_controllers_create(configuration: &configuration
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&printer_controller_request);
+    local_var_req_builder = local_var_req_builder.json(&appliance_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -506,7 +933,7 @@ pub async fn appliances_printer_controllers_retrieve(configuration: &configurati
     }
 }
 
-pub async fn appliances_printer_controllers_update(configuration: &configuration::Configuration, appliance_id: i32, id: i32, printer_controller_request: crate::models::PrinterControllerRequest) -> Result<crate::models::PrinterController, Error<AppliancesPrinterControllersUpdateError>> {
+pub async fn appliances_printer_controllers_update(configuration: &configuration::Configuration, appliance_id: i32, id: i32, appliance_request: crate::models::ApplianceRequest) -> Result<crate::models::PrinterController, Error<AppliancesPrinterControllersUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -520,7 +947,7 @@ pub async fn appliances_printer_controllers_update(configuration: &configuration
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&printer_controller_request);
+    local_var_req_builder = local_var_req_builder.json(&appliance_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -532,6 +959,167 @@ pub async fn appliances_printer_controllers_update(configuration: &configuration
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<AppliancesPrinterControllersUpdateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+pub async fn appliances_public_keys_create(configuration: &configuration::Configuration, appliance_id: i32, appliance_public_key_request: crate::models::AppliancePublicKeyRequest) -> Result<crate::models::AppliancePublicKey, Error<AppliancesPublicKeysCreateError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/appliances/{appliance_id}/public-keys/", local_var_configuration.base_path, appliance_id=appliance_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&appliance_public_key_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<AppliancesPublicKeysCreateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+pub async fn appliances_public_keys_list(configuration: &configuration::Configuration, appliance_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedAppliancePublicKeyList, Error<AppliancesPublicKeysListError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/appliances/{appliance_id}/public-keys/", local_var_configuration.base_path, appliance_id=appliance_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_str) = page {
+        local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<AppliancesPublicKeysListError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+pub async fn appliances_public_keys_partial_update(configuration: &configuration::Configuration, appliance_id: i32, id: i32, patched_appliance_public_key_request: Option<crate::models::PatchedAppliancePublicKeyRequest>) -> Result<crate::models::AppliancePublicKey, Error<AppliancesPublicKeysPartialUpdateError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/appliances/{appliance_id}/public-keys/{id}/", local_var_configuration.base_path, appliance_id=appliance_id, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PATCH, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&patched_appliance_public_key_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<AppliancesPublicKeysPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+pub async fn appliances_public_keys_retrieve(configuration: &configuration::Configuration, appliance_id: i32, id: i32) -> Result<crate::models::AppliancePublicKey, Error<AppliancesPublicKeysRetrieveError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/appliances/{appliance_id}/public-keys/{id}/", local_var_configuration.base_path, appliance_id=appliance_id, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<AppliancesPublicKeysRetrieveError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+pub async fn appliances_public_keys_update(configuration: &configuration::Configuration, appliance_id: i32, id: i32, appliance_public_key_request: crate::models::AppliancePublicKeyRequest) -> Result<crate::models::AppliancePublicKey, Error<AppliancesPublicKeysUpdateError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/appliances/{appliance_id}/public-keys/{id}/", local_var_configuration.base_path, appliance_id=appliance_id, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&appliance_public_key_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<AppliancesPublicKeysUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }

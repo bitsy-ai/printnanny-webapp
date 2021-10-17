@@ -28,6 +28,36 @@ class TestAppliancesApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_appliances_ansible_facts_create(self):
+        """Test case for appliances_ansible_facts_create
+
+        """
+        pass
+
+    def test_appliances_ansible_facts_list(self):
+        """Test case for appliances_ansible_facts_list
+
+        """
+        pass
+
+    def test_appliances_ansible_facts_partial_update(self):
+        """Test case for appliances_ansible_facts_partial_update
+
+        """
+        pass
+
+    def test_appliances_ansible_facts_retrieve(self):
+        """Test case for appliances_ansible_facts_retrieve
+
+        """
+        pass
+
+    def test_appliances_ansible_facts_update(self):
+        """Test case for appliances_ansible_facts_update
+
+        """
+        pass
+
     def test_appliances_cameras_create(self):
         """Test case for appliances_cameras_create
 
@@ -54,6 +84,36 @@ class TestAppliancesApi(unittest.TestCase):
 
     def test_appliances_cameras_update(self):
         """Test case for appliances_cameras_update
+
+        """
+        pass
+
+    def test_appliances_cloud_iot_devices_create(self):
+        """Test case for appliances_cloud_iot_devices_create
+
+        """
+        pass
+
+    def test_appliances_cloud_iot_devices_list(self):
+        """Test case for appliances_cloud_iot_devices_list
+
+        """
+        pass
+
+    def test_appliances_cloud_iot_devices_partial_update(self):
+        """Test case for appliances_cloud_iot_devices_partial_update
+
+        """
+        pass
+
+    def test_appliances_cloud_iot_devices_retrieve(self):
+        """Test case for appliances_cloud_iot_devices_retrieve
+
+        """
+        pass
+
+    def test_appliances_cloud_iot_devices_update(self):
+        """Test case for appliances_cloud_iot_devices_update
 
         """
         pass
@@ -102,6 +162,36 @@ class TestAppliancesApi(unittest.TestCase):
 
     def test_appliances_printer_controllers_update(self):
         """Test case for appliances_printer_controllers_update
+
+        """
+        pass
+
+    def test_appliances_public_keys_create(self):
+        """Test case for appliances_public_keys_create
+
+        """
+        pass
+
+    def test_appliances_public_keys_list(self):
+        """Test case for appliances_public_keys_list
+
+        """
+        pass
+
+    def test_appliances_public_keys_partial_update(self):
+        """Test case for appliances_public_keys_partial_update
+
+        """
+        pass
+
+    def test_appliances_public_keys_retrieve(self):
+        """Test case for appliances_public_keys_retrieve
+
+        """
+        pass
+
+    def test_appliances_public_keys_update(self):
+        """Test case for appliances_public_keys_update
 
         """
         pass

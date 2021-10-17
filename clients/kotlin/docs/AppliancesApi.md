@@ -4,11 +4,21 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**appliancesAnsibleFactsCreate**](AppliancesApi.md#appliancesAnsibleFactsCreate) | **POST** /api/appliances/{appliance_id}/ansible-facts/ | 
+[**appliancesAnsibleFactsList**](AppliancesApi.md#appliancesAnsibleFactsList) | **GET** /api/appliances/{appliance_id}/ansible-facts/ | 
+[**appliancesAnsibleFactsPartialUpdate**](AppliancesApi.md#appliancesAnsibleFactsPartialUpdate) | **PATCH** /api/appliances/{appliance_id}/ansible-facts/{id}/ | 
+[**appliancesAnsibleFactsRetrieve**](AppliancesApi.md#appliancesAnsibleFactsRetrieve) | **GET** /api/appliances/{appliance_id}/ansible-facts/{id}/ | 
+[**appliancesAnsibleFactsUpdate**](AppliancesApi.md#appliancesAnsibleFactsUpdate) | **PUT** /api/appliances/{appliance_id}/ansible-facts/{id}/ | 
 [**appliancesCamerasCreate**](AppliancesApi.md#appliancesCamerasCreate) | **POST** /api/appliances/{appliance_id}/cameras/ | 
 [**appliancesCamerasList**](AppliancesApi.md#appliancesCamerasList) | **GET** /api/appliances/{appliance_id}/cameras/ | 
 [**appliancesCamerasPartialUpdate**](AppliancesApi.md#appliancesCamerasPartialUpdate) | **PATCH** /api/appliances/{appliance_id}/cameras/{id}/ | 
 [**appliancesCamerasRetrieve**](AppliancesApi.md#appliancesCamerasRetrieve) | **GET** /api/appliances/{appliance_id}/cameras/{id}/ | 
 [**appliancesCamerasUpdate**](AppliancesApi.md#appliancesCamerasUpdate) | **PUT** /api/appliances/{appliance_id}/cameras/{id}/ | 
+[**appliancesCloudIotDevicesCreate**](AppliancesApi.md#appliancesCloudIotDevicesCreate) | **POST** /api/appliances/{appliance_id}/cloud-iot-devices/ | 
+[**appliancesCloudIotDevicesList**](AppliancesApi.md#appliancesCloudIotDevicesList) | **GET** /api/appliances/{appliance_id}/cloud-iot-devices/ | 
+[**appliancesCloudIotDevicesPartialUpdate**](AppliancesApi.md#appliancesCloudIotDevicesPartialUpdate) | **PATCH** /api/appliances/{appliance_id}/cloud-iot-devices/{id}/ | 
+[**appliancesCloudIotDevicesRetrieve**](AppliancesApi.md#appliancesCloudIotDevicesRetrieve) | **GET** /api/appliances/{appliance_id}/cloud-iot-devices/{id}/ | 
+[**appliancesCloudIotDevicesUpdate**](AppliancesApi.md#appliancesCloudIotDevicesUpdate) | **PUT** /api/appliances/{appliance_id}/cloud-iot-devices/{id}/ | 
 [**appliancesCreate**](AppliancesApi.md#appliancesCreate) | **POST** /api/appliances/ | 
 [**appliancesList**](AppliancesApi.md#appliancesList) | **GET** /api/appliances/ | 
 [**appliancesPartialUpdate**](AppliancesApi.md#appliancesPartialUpdate) | **PATCH** /api/appliances/{id}/ | 
@@ -17,9 +27,278 @@ Method | HTTP request | Description
 [**appliancesPrinterControllersPartialUpdate**](AppliancesApi.md#appliancesPrinterControllersPartialUpdate) | **PATCH** /api/appliances/{appliance_id}/printer-controllers/{id}/ | 
 [**appliancesPrinterControllersRetrieve**](AppliancesApi.md#appliancesPrinterControllersRetrieve) | **GET** /api/appliances/{appliance_id}/printer-controllers/{id}/ | 
 [**appliancesPrinterControllersUpdate**](AppliancesApi.md#appliancesPrinterControllersUpdate) | **PUT** /api/appliances/{appliance_id}/printer-controllers/{id}/ | 
+[**appliancesPublicKeysCreate**](AppliancesApi.md#appliancesPublicKeysCreate) | **POST** /api/appliances/{appliance_id}/public-keys/ | 
+[**appliancesPublicKeysList**](AppliancesApi.md#appliancesPublicKeysList) | **GET** /api/appliances/{appliance_id}/public-keys/ | 
+[**appliancesPublicKeysPartialUpdate**](AppliancesApi.md#appliancesPublicKeysPartialUpdate) | **PATCH** /api/appliances/{appliance_id}/public-keys/{id}/ | 
+[**appliancesPublicKeysRetrieve**](AppliancesApi.md#appliancesPublicKeysRetrieve) | **GET** /api/appliances/{appliance_id}/public-keys/{id}/ | 
+[**appliancesPublicKeysUpdate**](AppliancesApi.md#appliancesPublicKeysUpdate) | **PUT** /api/appliances/{appliance_id}/public-keys/{id}/ | 
 [**appliancesRetrieve**](AppliancesApi.md#appliancesRetrieve) | **GET** /api/appliances/{id}/ | 
 [**appliancesUpdate**](AppliancesApi.md#appliancesUpdate) | **PUT** /api/appliances/{id}/ | 
 
+
+<a name="appliancesAnsibleFactsCreate"></a>
+# **appliancesAnsibleFactsCreate**
+> AnsibleFacts appliancesAnsibleFactsCreate(applianceId, ansibleFactsRequest)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = AppliancesApi()
+val applianceId : kotlin.Int = 56 // kotlin.Int | 
+val ansibleFactsRequest : AnsibleFactsRequest =  // AnsibleFactsRequest | 
+try {
+    val result : AnsibleFacts = apiInstance.appliancesAnsibleFactsCreate(applianceId, ansibleFactsRequest)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling AppliancesApi#appliancesAnsibleFactsCreate")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling AppliancesApi#appliancesAnsibleFactsCreate")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **applianceId** | **kotlin.Int**|  |
+ **ansibleFactsRequest** | [**AnsibleFactsRequest**](AnsibleFactsRequest.md)|  |
+
+### Return type
+
+[**AnsibleFacts**](AnsibleFacts.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+<a name="appliancesAnsibleFactsList"></a>
+# **appliancesAnsibleFactsList**
+> PaginatedAnsibleFactsList appliancesAnsibleFactsList(applianceId, page)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = AppliancesApi()
+val applianceId : kotlin.Int = 56 // kotlin.Int | 
+val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
+try {
+    val result : PaginatedAnsibleFactsList = apiInstance.appliancesAnsibleFactsList(applianceId, page)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling AppliancesApi#appliancesAnsibleFactsList")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling AppliancesApi#appliancesAnsibleFactsList")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **applianceId** | **kotlin.Int**|  |
+ **page** | **kotlin.Int**| A page number within the paginated result set. | [optional]
+
+### Return type
+
+[**PaginatedAnsibleFactsList**](PaginatedAnsibleFactsList.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="appliancesAnsibleFactsPartialUpdate"></a>
+# **appliancesAnsibleFactsPartialUpdate**
+> AnsibleFacts appliancesAnsibleFactsPartialUpdate(applianceId, id, patchedAnsibleFactsRequest)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = AppliancesApi()
+val applianceId : kotlin.Int = 56 // kotlin.Int | 
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this ansible facts.
+val patchedAnsibleFactsRequest : PatchedAnsibleFactsRequest =  // PatchedAnsibleFactsRequest | 
+try {
+    val result : AnsibleFacts = apiInstance.appliancesAnsibleFactsPartialUpdate(applianceId, id, patchedAnsibleFactsRequest)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling AppliancesApi#appliancesAnsibleFactsPartialUpdate")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling AppliancesApi#appliancesAnsibleFactsPartialUpdate")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **applianceId** | **kotlin.Int**|  |
+ **id** | **kotlin.Int**| A unique integer value identifying this ansible facts. |
+ **patchedAnsibleFactsRequest** | [**PatchedAnsibleFactsRequest**](PatchedAnsibleFactsRequest.md)|  | [optional]
+
+### Return type
+
+[**AnsibleFacts**](AnsibleFacts.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+<a name="appliancesAnsibleFactsRetrieve"></a>
+# **appliancesAnsibleFactsRetrieve**
+> AnsibleFacts appliancesAnsibleFactsRetrieve(applianceId, id)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = AppliancesApi()
+val applianceId : kotlin.Int = 56 // kotlin.Int | 
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this ansible facts.
+try {
+    val result : AnsibleFacts = apiInstance.appliancesAnsibleFactsRetrieve(applianceId, id)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling AppliancesApi#appliancesAnsibleFactsRetrieve")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling AppliancesApi#appliancesAnsibleFactsRetrieve")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **applianceId** | **kotlin.Int**|  |
+ **id** | **kotlin.Int**| A unique integer value identifying this ansible facts. |
+
+### Return type
+
+[**AnsibleFacts**](AnsibleFacts.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="appliancesAnsibleFactsUpdate"></a>
+# **appliancesAnsibleFactsUpdate**
+> AnsibleFacts appliancesAnsibleFactsUpdate(applianceId, id, ansibleFactsRequest)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = AppliancesApi()
+val applianceId : kotlin.Int = 56 // kotlin.Int | 
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this ansible facts.
+val ansibleFactsRequest : AnsibleFactsRequest =  // AnsibleFactsRequest | 
+try {
+    val result : AnsibleFacts = apiInstance.appliancesAnsibleFactsUpdate(applianceId, id, ansibleFactsRequest)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling AppliancesApi#appliancesAnsibleFactsUpdate")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling AppliancesApi#appliancesAnsibleFactsUpdate")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **applianceId** | **kotlin.Int**|  |
+ **id** | **kotlin.Int**| A unique integer value identifying this ansible facts. |
+ **ansibleFactsRequest** | [**AnsibleFactsRequest**](AnsibleFactsRequest.md)|  |
+
+### Return type
+
+[**AnsibleFacts**](AnsibleFacts.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
 
 <a name="appliancesCamerasCreate"></a>
 # **appliancesCamerasCreate**
@@ -285,6 +564,270 @@ Configure tokenAuth:
  - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
+<a name="appliancesCloudIotDevicesCreate"></a>
+# **appliancesCloudIotDevicesCreate**
+> CloudIoTDevice appliancesCloudIotDevicesCreate(applianceId, cloudIoTDeviceRequest)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = AppliancesApi()
+val applianceId : kotlin.Int = 56 // kotlin.Int | 
+val cloudIoTDeviceRequest : CloudIoTDeviceRequest =  // CloudIoTDeviceRequest | 
+try {
+    val result : CloudIoTDevice = apiInstance.appliancesCloudIotDevicesCreate(applianceId, cloudIoTDeviceRequest)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling AppliancesApi#appliancesCloudIotDevicesCreate")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling AppliancesApi#appliancesCloudIotDevicesCreate")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **applianceId** | **kotlin.Int**|  |
+ **cloudIoTDeviceRequest** | [**CloudIoTDeviceRequest**](CloudIoTDeviceRequest.md)|  |
+
+### Return type
+
+[**CloudIoTDevice**](CloudIoTDevice.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+<a name="appliancesCloudIotDevicesList"></a>
+# **appliancesCloudIotDevicesList**
+> PaginatedCloudIoTDeviceList appliancesCloudIotDevicesList(applianceId, page)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = AppliancesApi()
+val applianceId : kotlin.Int = 56 // kotlin.Int | 
+val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
+try {
+    val result : PaginatedCloudIoTDeviceList = apiInstance.appliancesCloudIotDevicesList(applianceId, page)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling AppliancesApi#appliancesCloudIotDevicesList")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling AppliancesApi#appliancesCloudIotDevicesList")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **applianceId** | **kotlin.Int**|  |
+ **page** | **kotlin.Int**| A page number within the paginated result set. | [optional]
+
+### Return type
+
+[**PaginatedCloudIoTDeviceList**](PaginatedCloudIoTDeviceList.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="appliancesCloudIotDevicesPartialUpdate"></a>
+# **appliancesCloudIotDevicesPartialUpdate**
+> CloudIoTDevice appliancesCloudIotDevicesPartialUpdate(applianceId, id, patchedCloudIoTDeviceRequest)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = AppliancesApi()
+val applianceId : kotlin.Int = 56 // kotlin.Int | 
+val id : kotlin.String = id_example // kotlin.String | 
+val patchedCloudIoTDeviceRequest : PatchedCloudIoTDeviceRequest =  // PatchedCloudIoTDeviceRequest | 
+try {
+    val result : CloudIoTDevice = apiInstance.appliancesCloudIotDevicesPartialUpdate(applianceId, id, patchedCloudIoTDeviceRequest)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling AppliancesApi#appliancesCloudIotDevicesPartialUpdate")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling AppliancesApi#appliancesCloudIotDevicesPartialUpdate")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **applianceId** | **kotlin.Int**|  |
+ **id** | **kotlin.String**|  |
+ **patchedCloudIoTDeviceRequest** | [**PatchedCloudIoTDeviceRequest**](PatchedCloudIoTDeviceRequest.md)|  | [optional]
+
+### Return type
+
+[**CloudIoTDevice**](CloudIoTDevice.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+<a name="appliancesCloudIotDevicesRetrieve"></a>
+# **appliancesCloudIotDevicesRetrieve**
+> CloudIoTDevice appliancesCloudIotDevicesRetrieve(applianceId, id)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = AppliancesApi()
+val applianceId : kotlin.Int = 56 // kotlin.Int | 
+val id : kotlin.String = id_example // kotlin.String | 
+try {
+    val result : CloudIoTDevice = apiInstance.appliancesCloudIotDevicesRetrieve(applianceId, id)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling AppliancesApi#appliancesCloudIotDevicesRetrieve")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling AppliancesApi#appliancesCloudIotDevicesRetrieve")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **applianceId** | **kotlin.Int**|  |
+ **id** | **kotlin.String**|  |
+
+### Return type
+
+[**CloudIoTDevice**](CloudIoTDevice.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="appliancesCloudIotDevicesUpdate"></a>
+# **appliancesCloudIotDevicesUpdate**
+> CloudIoTDevice appliancesCloudIotDevicesUpdate(applianceId, id, cloudIoTDeviceRequest)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = AppliancesApi()
+val applianceId : kotlin.Int = 56 // kotlin.Int | 
+val id : kotlin.String = id_example // kotlin.String | 
+val cloudIoTDeviceRequest : CloudIoTDeviceRequest =  // CloudIoTDeviceRequest | 
+try {
+    val result : CloudIoTDevice = apiInstance.appliancesCloudIotDevicesUpdate(applianceId, id, cloudIoTDeviceRequest)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling AppliancesApi#appliancesCloudIotDevicesUpdate")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling AppliancesApi#appliancesCloudIotDevicesUpdate")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **applianceId** | **kotlin.Int**|  |
+ **id** | **kotlin.String**|  |
+ **cloudIoTDeviceRequest** | [**CloudIoTDeviceRequest**](CloudIoTDeviceRequest.md)|  |
+
+### Return type
+
+[**CloudIoTDevice**](CloudIoTDevice.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
 <a name="appliancesCreate"></a>
 # **appliancesCreate**
 > Appliance appliancesCreate(applianceRequest)
@@ -445,7 +988,7 @@ Configure tokenAuth:
 
 <a name="appliancesPrinterControllersCreate"></a>
 # **appliancesPrinterControllersCreate**
-> PrinterController appliancesPrinterControllersCreate(applianceId, printerControllerRequest)
+> PrinterController appliancesPrinterControllersCreate(applianceId, applianceRequest)
 
 
 
@@ -457,9 +1000,9 @@ Configure tokenAuth:
 
 val apiInstance = AppliancesApi()
 val applianceId : kotlin.Int = 56 // kotlin.Int | 
-val printerControllerRequest : PrinterControllerRequest =  // PrinterControllerRequest | 
+val applianceRequest : ApplianceRequest =  // ApplianceRequest | 
 try {
-    val result : PrinterController = apiInstance.appliancesPrinterControllersCreate(applianceId, printerControllerRequest)
+    val result : PrinterController = apiInstance.appliancesPrinterControllersCreate(applianceId, applianceRequest)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling AppliancesApi#appliancesPrinterControllersCreate")
@@ -475,7 +1018,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **applianceId** | **kotlin.Int**|  |
- **printerControllerRequest** | [**PrinterControllerRequest**](PrinterControllerRequest.md)|  |
+ **applianceRequest** | [**ApplianceRequest**](ApplianceRequest.md)|  |
 
 ### Return type
 
@@ -655,7 +1198,7 @@ Configure tokenAuth:
 
 <a name="appliancesPrinterControllersUpdate"></a>
 # **appliancesPrinterControllersUpdate**
-> PrinterController appliancesPrinterControllersUpdate(applianceId, id, printerControllerRequest)
+> PrinterController appliancesPrinterControllersUpdate(applianceId, id, applianceRequest)
 
 
 
@@ -668,9 +1211,9 @@ Configure tokenAuth:
 val apiInstance = AppliancesApi()
 val applianceId : kotlin.Int = 56 // kotlin.Int | 
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this printer controller.
-val printerControllerRequest : PrinterControllerRequest =  // PrinterControllerRequest | 
+val applianceRequest : ApplianceRequest =  // ApplianceRequest | 
 try {
-    val result : PrinterController = apiInstance.appliancesPrinterControllersUpdate(applianceId, id, printerControllerRequest)
+    val result : PrinterController = apiInstance.appliancesPrinterControllersUpdate(applianceId, id, applianceRequest)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling AppliancesApi#appliancesPrinterControllersUpdate")
@@ -687,11 +1230,285 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **applianceId** | **kotlin.Int**|  |
  **id** | **kotlin.Int**| A unique integer value identifying this printer controller. |
- **printerControllerRequest** | [**PrinterControllerRequest**](PrinterControllerRequest.md)|  |
+ **applianceRequest** | [**ApplianceRequest**](ApplianceRequest.md)|  |
 
 ### Return type
 
 [**PrinterController**](PrinterController.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+<a name="appliancesPublicKeysCreate"></a>
+# **appliancesPublicKeysCreate**
+> AppliancePublicKey appliancesPublicKeysCreate(applianceId, appliancePublicKeyRequest)
+
+
+
+Public key for Print Nanny Appliance Only one public key may be active at a time DELETE &lt;:endpoint&gt; will soft-delete a key
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = AppliancesApi()
+val applianceId : kotlin.Int = 56 // kotlin.Int | 
+val appliancePublicKeyRequest : AppliancePublicKeyRequest =  // AppliancePublicKeyRequest | 
+try {
+    val result : AppliancePublicKey = apiInstance.appliancesPublicKeysCreate(applianceId, appliancePublicKeyRequest)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling AppliancesApi#appliancesPublicKeysCreate")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling AppliancesApi#appliancesPublicKeysCreate")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **applianceId** | **kotlin.Int**|  |
+ **appliancePublicKeyRequest** | [**AppliancePublicKeyRequest**](AppliancePublicKeyRequest.md)|  |
+
+### Return type
+
+[**AppliancePublicKey**](AppliancePublicKey.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+<a name="appliancesPublicKeysList"></a>
+# **appliancesPublicKeysList**
+> PaginatedAppliancePublicKeyList appliancesPublicKeysList(applianceId, page)
+
+
+
+Public key for Print Nanny Appliance Only one public key may be active at a time DELETE &lt;:endpoint&gt; will soft-delete a key
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = AppliancesApi()
+val applianceId : kotlin.Int = 56 // kotlin.Int | 
+val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
+try {
+    val result : PaginatedAppliancePublicKeyList = apiInstance.appliancesPublicKeysList(applianceId, page)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling AppliancesApi#appliancesPublicKeysList")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling AppliancesApi#appliancesPublicKeysList")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **applianceId** | **kotlin.Int**|  |
+ **page** | **kotlin.Int**| A page number within the paginated result set. | [optional]
+
+### Return type
+
+[**PaginatedAppliancePublicKeyList**](PaginatedAppliancePublicKeyList.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="appliancesPublicKeysPartialUpdate"></a>
+# **appliancesPublicKeysPartialUpdate**
+> AppliancePublicKey appliancesPublicKeysPartialUpdate(applianceId, id, patchedAppliancePublicKeyRequest)
+
+
+
+Public key for Print Nanny Appliance Only one public key may be active at a time DELETE &lt;:endpoint&gt; will soft-delete a key
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = AppliancesApi()
+val applianceId : kotlin.Int = 56 // kotlin.Int | 
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this appliance public key.
+val patchedAppliancePublicKeyRequest : PatchedAppliancePublicKeyRequest =  // PatchedAppliancePublicKeyRequest | 
+try {
+    val result : AppliancePublicKey = apiInstance.appliancesPublicKeysPartialUpdate(applianceId, id, patchedAppliancePublicKeyRequest)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling AppliancesApi#appliancesPublicKeysPartialUpdate")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling AppliancesApi#appliancesPublicKeysPartialUpdate")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **applianceId** | **kotlin.Int**|  |
+ **id** | **kotlin.Int**| A unique integer value identifying this appliance public key. |
+ **patchedAppliancePublicKeyRequest** | [**PatchedAppliancePublicKeyRequest**](PatchedAppliancePublicKeyRequest.md)|  | [optional]
+
+### Return type
+
+[**AppliancePublicKey**](AppliancePublicKey.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+<a name="appliancesPublicKeysRetrieve"></a>
+# **appliancesPublicKeysRetrieve**
+> AppliancePublicKey appliancesPublicKeysRetrieve(applianceId, id)
+
+
+
+Public key for Print Nanny Appliance Only one public key may be active at a time DELETE &lt;:endpoint&gt; will soft-delete a key
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = AppliancesApi()
+val applianceId : kotlin.Int = 56 // kotlin.Int | 
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this appliance public key.
+try {
+    val result : AppliancePublicKey = apiInstance.appliancesPublicKeysRetrieve(applianceId, id)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling AppliancesApi#appliancesPublicKeysRetrieve")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling AppliancesApi#appliancesPublicKeysRetrieve")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **applianceId** | **kotlin.Int**|  |
+ **id** | **kotlin.Int**| A unique integer value identifying this appliance public key. |
+
+### Return type
+
+[**AppliancePublicKey**](AppliancePublicKey.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="appliancesPublicKeysUpdate"></a>
+# **appliancesPublicKeysUpdate**
+> AppliancePublicKey appliancesPublicKeysUpdate(applianceId, id, appliancePublicKeyRequest)
+
+
+
+Public key for Print Nanny Appliance Only one public key may be active at a time DELETE &lt;:endpoint&gt; will soft-delete a key
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = AppliancesApi()
+val applianceId : kotlin.Int = 56 // kotlin.Int | 
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this appliance public key.
+val appliancePublicKeyRequest : AppliancePublicKeyRequest =  // AppliancePublicKeyRequest | 
+try {
+    val result : AppliancePublicKey = apiInstance.appliancesPublicKeysUpdate(applianceId, id, appliancePublicKeyRequest)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling AppliancesApi#appliancesPublicKeysUpdate")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling AppliancesApi#appliancesPublicKeysUpdate")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **applianceId** | **kotlin.Int**|  |
+ **id** | **kotlin.Int**| A unique integer value identifying this appliance public key. |
+ **appliancePublicKeyRequest** | [**AppliancePublicKeyRequest**](AppliancePublicKeyRequest.md)|  |
+
+### Return type
+
+[**AppliancePublicKey**](AppliancePublicKey.md)
 
 ### Authorization
 

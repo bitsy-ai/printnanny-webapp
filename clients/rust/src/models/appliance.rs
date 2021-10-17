@@ -11,40 +11,40 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Appliance {
-    #[serde(rename = "id")]
-    pub id: i32,
-    #[serde(rename = "pki")]
-    pub pki: Option<Box<crate::models::AppliancePki>>,
-    #[serde(rename = "ansible_facts")]
-    pub ansible_facts: Option<Box<crate::models::AnsibleFacts>>,
-    #[serde(rename = "cameras")]
-    pub cameras: Vec<crate::models::Camera>,
-    #[serde(rename = "printer_controllers")]
-    pub printer_controllers: Vec<crate::models::PrinterController>,
-    #[serde(rename = "user")]
-    pub user: i32,
-    #[serde(rename = "deleted")]
-    pub deleted: String,
-    #[serde(rename = "created_dt")]
-    pub created_dt: String,
-    #[serde(rename = "updated_dt")]
-    pub updated_dt: String,
+    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
+    pub id: Option<i32>,
+    #[serde(rename = "public_key", skip_serializing_if = "Option::is_none")]
+    pub public_key: Option<Box<crate::models::AppliancePublicKey>>,
+    #[serde(rename = "last_ansible_facts", skip_serializing_if = "Option::is_none")]
+    pub last_ansible_facts: Option<Box<crate::models::AnsibleFacts>>,
+    #[serde(rename = "cameras", skip_serializing_if = "Option::is_none")]
+    pub cameras: Option<Vec<crate::models::Camera>>,
+    #[serde(rename = "printer_controllers", skip_serializing_if = "Option::is_none")]
+    pub printer_controllers: Option<Vec<crate::models::PrinterController>>,
+    #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
+    pub user: Option<i32>,
+    #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
+    pub deleted: Option<String>,
+    #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
+    pub created_dt: Option<String>,
+    #[serde(rename = "updated_dt", skip_serializing_if = "Option::is_none")]
+    pub updated_dt: Option<String>,
     #[serde(rename = "hostname")]
     pub hostname: String,
 }
 
 impl Appliance {
-    pub fn new(id: i32, pki: Option<crate::models::AppliancePki>, ansible_facts: Option<crate::models::AnsibleFacts>, cameras: Vec<crate::models::Camera>, printer_controllers: Vec<crate::models::PrinterController>, user: i32, deleted: String, created_dt: String, updated_dt: String, hostname: String) -> Appliance {
+    pub fn new(hostname: String) -> Appliance {
         Appliance {
-            id,
-            pki: Box::new(pki),
-            ansible_facts: Box::new(ansible_facts),
-            cameras,
-            printer_controllers,
-            user,
-            deleted,
-            created_dt,
-            updated_dt,
+            id: None,
+            public_key: None,
+            last_ansible_facts: None,
+            cameras: None,
+            printer_controllers: None,
+            user: None,
+            deleted: None,
+            created_dt: None,
+            updated_dt: None,
             hostname,
         }
     }

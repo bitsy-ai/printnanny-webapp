@@ -28,37 +28,19 @@ import java.io.Serializable
 /**
  * 
  *
+ * @param name 
+ * @param cameraSource 
  * @param id 
  * @param deleted 
  * @param createdDt 
  * @param updatedDt 
  * @param user 
  * @param appliance 
- * @param name 
- * @param cameraSource 
- * @param url 
  * @param cameraType 
+ * @param url 
  */
 
 data class Camera (
-
-    @Json(name = "id")
-    val id: kotlin.Int,
-
-    @Json(name = "deleted")
-    val deleted: java.time.OffsetDateTime,
-
-    @Json(name = "created_dt")
-    val createdDt: java.time.OffsetDateTime,
-
-    @Json(name = "updated_dt")
-    val updatedDt: java.time.OffsetDateTime,
-
-    @Json(name = "user")
-    val user: kotlin.Int,
-
-    @Json(name = "appliance")
-    val appliance: kotlin.Int,
 
     @Json(name = "name")
     val name: kotlin.String,
@@ -66,11 +48,29 @@ data class Camera (
     @Json(name = "camera_source")
     val cameraSource: kotlin.String,
 
-    @Json(name = "url")
-    val url: java.net.URI,
+    @Json(name = "id")
+    val id: kotlin.Int? = null,
+
+    @Json(name = "deleted")
+    val deleted: java.time.OffsetDateTime? = null,
+
+    @Json(name = "created_dt")
+    val createdDt: java.time.OffsetDateTime? = null,
+
+    @Json(name = "updated_dt")
+    val updatedDt: java.time.OffsetDateTime? = null,
+
+    @Json(name = "user")
+    val user: kotlin.Int? = null,
+
+    @Json(name = "appliance")
+    val appliance: kotlin.Int? = null,
 
     @Json(name = "camera_type")
-    val cameraType: CameraTypeEnum? = null
+    val cameraType: CameraTypeEnum? = null,
+
+    @Json(name = "url")
+    val url: java.net.URI? = null
 
 ) : Serializable {
     companion object {

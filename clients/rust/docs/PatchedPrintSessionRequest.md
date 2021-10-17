@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **gcode_file** | Option<**i32**> |  | [optional]
 **gcode_filename** | Option<**String**> |  | [optional]
 **octoprint_job** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
-**print_job_status** | Option<[**crate::models::PrintJobStatusEnum**](PrintJobStatusEnum.md)> |  | [optional]
+**print_job_status** | Option<[**crate::models::OneOfPrintJobStatusEnumNullEnum**](oneOf<PrintJobStatusEnum,NullEnum>.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

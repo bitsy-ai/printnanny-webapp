@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **i32** |  | [readonly]
-**user** | **i32** |  | [readonly]
+**id** | Option<**i32**> |  | [optional][readonly]
+**user** | Option<**i32**> |  | [optional][readonly]
 **octoprint_device** | **i32** |  | 
 **axes_e_inverted** | Option<**bool**> |  | [optional]
 **axes_e_speed** | Option<**i32**> |  | [optional]
@@ -29,7 +29,7 @@ Name | Type | Description | Notes
 **volume_height** | Option<**f32**> |  | [optional]
 **volume_origin** | Option<**String**> |  | [optional]
 **volume_width** | Option<**f32**> |  | [optional]
-**url** | **String** |  | [readonly]
+**url** | Option<**String**> |  | [optional][readonly]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

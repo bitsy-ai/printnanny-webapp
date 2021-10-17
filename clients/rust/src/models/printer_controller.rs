@@ -11,35 +11,35 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct PrinterController {
-    #[serde(rename = "id")]
-    pub id: i32,
-    #[serde(rename = "user")]
-    pub user: i32,
-    #[serde(rename = "appliance")]
-    pub appliance: i32,
-    #[serde(rename = "deleted")]
-    pub deleted: String,
-    #[serde(rename = "created_dt")]
-    pub created_dt: String,
-    #[serde(rename = "updated_dt")]
-    pub updated_dt: String,
+    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
+    pub id: Option<i32>,
+    #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
+    pub user: Option<i32>,
+    #[serde(rename = "appliance", skip_serializing_if = "Option::is_none")]
+    pub appliance: Option<i32>,
+    #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
+    pub deleted: Option<String>,
+    #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
+    pub created_dt: Option<String>,
+    #[serde(rename = "updated_dt", skip_serializing_if = "Option::is_none")]
+    pub updated_dt: Option<String>,
     #[serde(rename = "software")]
     pub software: crate::models::SoftwareEnum,
-    #[serde(rename = "polymorphic_ctype")]
-    pub polymorphic_ctype: i32,
+    #[serde(rename = "polymorphic_ctype", skip_serializing_if = "Option::is_none")]
+    pub polymorphic_ctype: Option<i32>,
 }
 
 impl PrinterController {
-    pub fn new(id: i32, user: i32, appliance: i32, deleted: String, created_dt: String, updated_dt: String, software: crate::models::SoftwareEnum, polymorphic_ctype: i32) -> PrinterController {
+    pub fn new(software: crate::models::SoftwareEnum) -> PrinterController {
         PrinterController {
-            id,
-            user,
-            appliance,
-            deleted,
-            created_dt,
-            updated_dt,
+            id: None,
+            user: None,
+            appliance: None,
+            deleted: None,
+            created_dt: None,
+            updated_dt: None,
             software,
-            polymorphic_ctype,
+            polymorphic_ctype: None,
         }
     }
 }

@@ -8,9 +8,9 @@ Name | Type | Description | Notes
 **model** | **kotlin.String** |  | 
 **platform** | **kotlin.String** |  | 
 **octoprintVersion** | **kotlin.String** |  | 
-**printNannyPluginVersion** | **kotlin.String** |  |  [readonly]
 **printNannyClientVersion** | **kotlin.String** |  | 
-**verified** | **kotlin.String** |  |  [readonly]
+**printNannyPluginVersion** | **kotlin.String** |  |  [optional] [readonly]
+**verified** | **kotlin.String** |  |  [optional] [readonly]
 
 
 

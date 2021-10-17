@@ -37,8 +37,8 @@ class TestAppliance(unittest.TestCase):
         if include_optional :
             return Appliance(
                 id = 56, 
-                pki = None, 
-                ansible_facts = None, 
+                public_key = None, 
+                last_ansible_facts = None, 
                 cameras = [
                     print_nanny_client.models.camera.Camera(
                         id = 56, 
@@ -71,37 +71,6 @@ class TestAppliance(unittest.TestCase):
             )
         else :
             return Appliance(
-                id = 56,
-                pki = None,
-                ansible_facts = None,
-                cameras = [
-                    print_nanny_client.models.camera.Camera(
-                        id = 56, 
-                        deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        user = 56, 
-                        appliance = 56, 
-                        name = '', 
-                        camera_type = null, 
-                        camera_source = '', 
-                        url = '', )
-                    ],
-                printer_controllers = [
-                    print_nanny_client.models.printer_controller.PrinterController(
-                        id = 56, 
-                        user = 56, 
-                        appliance = 56, 
-                        deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        software = 'OctoPrint', 
-                        polymorphic_ctype = 56, )
-                    ],
-                user = 56,
-                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 hostname = '',
         )
 

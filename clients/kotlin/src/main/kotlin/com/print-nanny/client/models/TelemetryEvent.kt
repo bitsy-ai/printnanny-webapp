@@ -31,27 +31,24 @@ import java.io.Serializable
 /**
  * 
  *
- * @param id 
  * @param octoprintEnvironment 
  * @param octoprintPrinterData 
  * @param printNannyPluginVersion 
  * @param printNannyClientVersion 
  * @param octoprintVersion 
- * @param polymorphicCtype 
  * @param octoprintDevice 
- * @param user 
+ * @param id 
  * @param ts 
  * @param eventSource 
  * @param eventType 
  * @param eventData 
  * @param temperature 
+ * @param polymorphicCtype 
+ * @param user 
  * @param printSession 
  */
 
 data class TelemetryEvent (
-
-    @Json(name = "id")
-    val id: kotlin.Int,
 
     @Json(name = "octoprint_environment")
     val octoprintEnvironment: OctoprintEnvironment,
@@ -68,14 +65,11 @@ data class TelemetryEvent (
     @Json(name = "octoprint_version")
     val octoprintVersion: kotlin.String,
 
-    @Json(name = "polymorphic_ctype")
-    val polymorphicCtype: kotlin.Int,
-
     @Json(name = "octoprint_device")
     val octoprintDevice: kotlin.Int,
 
-    @Json(name = "user")
-    val user: kotlin.Int,
+    @Json(name = "id")
+    val id: kotlin.Int? = null,
 
     @Json(name = "ts")
     val ts: kotlin.Float? = null,
@@ -91,6 +85,12 @@ data class TelemetryEvent (
 
     @Json(name = "temperature")
     val temperature: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,
+
+    @Json(name = "polymorphic_ctype")
+    val polymorphicCtype: kotlin.Int? = null,
+
+    @Json(name = "user")
+    val user: kotlin.Int? = null,
 
     @Json(name = "print_session")
     val printSession: kotlin.Int? = null

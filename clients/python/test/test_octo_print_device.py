@@ -91,18 +91,7 @@ class TestOctoPrintDevice(unittest.TestCase):
             )
         else :
             return OctoPrintDevice(
-                id = 56,
-                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 name = '',
-                user = 56,
-                public_key = '',
-                fingerprint = '',
-                cloudiot_device = {
-                    'key' : null
-                    },
-                cloudiot_device_name = '',
-                cloudiot_device_path = '',
-                cloudiot_device_num_id = 56,
                 model = '',
                 platform = '',
                 serial = '',
@@ -113,9 +102,6 @@ class TestOctoPrintDevice(unittest.TestCase):
                 octoprint_version = '',
                 plugin_version = '',
                 print_nanny_client_version = '',
-                cloudiot_device_configs = '',
-                manage_url = '',
-                monitoring_active = True,
         )
 
     def testOctoPrintDevice(self):

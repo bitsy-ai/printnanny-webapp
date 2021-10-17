@@ -74,9 +74,11 @@ class Partner3DGeeksMetadata(object):
         self.model = model
         self.platform = platform
         self.octoprint_version = octoprint_version
-        self.print_nanny_plugin_version = print_nanny_plugin_version
+        if print_nanny_plugin_version is not None:
+            self.print_nanny_plugin_version = print_nanny_plugin_version
         self.print_nanny_client_version = print_nanny_client_version
-        self.verified = verified
+        if verified is not None:
+            self.verified = verified
 
     @property
     def name(self):
@@ -200,8 +202,6 @@ class Partner3DGeeksMetadata(object):
         :param print_nanny_plugin_version: The print_nanny_plugin_version of this Partner3DGeeksMetadata.  # noqa: E501
         :type print_nanny_plugin_version: str
         """
-        if self.local_vars_configuration.client_side_validation and print_nanny_plugin_version is None:  # noqa: E501
-            raise ValueError("Invalid value for `print_nanny_plugin_version`, must not be `None`")  # noqa: E501
 
         self._print_nanny_plugin_version = print_nanny_plugin_version
 
@@ -249,8 +249,6 @@ class Partner3DGeeksMetadata(object):
         :param verified: The verified of this Partner3DGeeksMetadata.  # noqa: E501
         :type verified: str
         """
-        if self.local_vars_configuration.client_side_validation and verified is None:  # noqa: E501
-            raise ValueError("Invalid value for `verified`, must not be `None`")  # noqa: E501
 
         self._verified = verified
 

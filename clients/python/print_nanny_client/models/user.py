@@ -59,8 +59,10 @@ class User(object):
         self.discriminator = None
 
         self.email = email
-        self.url = url
-        self.id = id
+        if url is not None:
+            self.url = url
+        if id is not None:
+            self.id = id
 
     @property
     def email(self):
@@ -106,8 +108,6 @@ class User(object):
         :param url: The url of this User.  # noqa: E501
         :type url: str
         """
-        if self.local_vars_configuration.client_side_validation and url is None:  # noqa: E501
-            raise ValueError("Invalid value for `url`, must not be `None`")  # noqa: E501
 
         self._url = url
 
@@ -129,8 +129,6 @@ class User(object):
         :param id: The id of this User.  # noqa: E501
         :type id: int
         """
-        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
-            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 

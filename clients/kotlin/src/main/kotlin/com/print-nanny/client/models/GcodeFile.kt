@@ -27,22 +27,16 @@ import java.io.Serializable
 /**
  * 
  *
- * @param id 
- * @param user 
  * @param name 
  * @param file 
  * @param fileHash 
  * @param octoprintDevice 
+ * @param id 
+ * @param user 
  * @param url 
  */
 
 data class GcodeFile (
-
-    @Json(name = "id")
-    val id: kotlin.Int,
-
-    @Json(name = "user")
-    val user: kotlin.Int,
 
     @Json(name = "name")
     val name: kotlin.String,
@@ -56,8 +50,14 @@ data class GcodeFile (
     @Json(name = "octoprint_device")
     val octoprintDevice: kotlin.String,
 
+    @Json(name = "id")
+    val id: kotlin.Int? = null,
+
+    @Json(name = "user")
+    val user: kotlin.Int? = null,
+
     @Json(name = "url")
-    val url: java.net.URI
+    val url: java.net.URI? = null
 
 ) : Serializable {
     companion object {
