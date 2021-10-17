@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.inline_response_default import InlineResponseDefault  # noqa: E501
+from print_nanny_client.models.error_detail import ErrorDetail  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestInlineResponseDefault(unittest.TestCase):
-    """InlineResponseDefault unit test stubs"""
+class TestErrorDetail(unittest.TestCase):
+    """ErrorDetail unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,21 +29,22 @@ class TestInlineResponseDefault(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test InlineResponseDefault
+        """Test ErrorDetail
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.inline_response_default.InlineResponseDefault()  # noqa: E501
+        # model = print_nanny_client.models.error_detail.ErrorDetail()  # noqa: E501
         if include_optional :
-            return InlineResponseDefault(
+            return ErrorDetail(
                 detail = ''
             )
         else :
-            return InlineResponseDefault(
+            return ErrorDetail(
+                detail = '',
         )
 
-    def testInlineResponseDefault(self):
-        """Test InlineResponseDefault"""
+    def testErrorDetail(self):
+        """Test ErrorDetail"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

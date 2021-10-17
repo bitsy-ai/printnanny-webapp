@@ -30,7 +30,7 @@ import com.print-nanny.client.models.Camera
 import com.print-nanny.client.models.CameraRequest
 import com.print-nanny.client.models.CloudIoTDevice
 import com.print-nanny.client.models.CloudIoTDeviceRequest
-import com.print-nanny.client.models.InlineResponseDefault
+import com.print-nanny.client.models.ErrorDetail
 import com.print-nanny.client.models.PaginatedAnsibleFactsList
 import com.print-nanny.client.models.PaginatedApplianceList
 import com.print-nanny.client.models.PaginatedAppliancePublicKeyList

@@ -10,15 +10,15 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct InlineResponseDefault {
-    #[serde(rename = "detail", skip_serializing_if = "Option::is_none")]
-    pub detail: Option<String>,
+pub struct ErrorDetail {
+    #[serde(rename = "detail")]
+    pub detail: String,
 }
 
-impl InlineResponseDefault {
-    pub fn new() -> InlineResponseDefault {
-        InlineResponseDefault {
-            detail: None,
+impl ErrorDetail {
+    pub fn new(detail: String) -> ErrorDetail {
+        ErrorDetail {
+            detail,
         }
     }
 }
