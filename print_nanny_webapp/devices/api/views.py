@@ -5,8 +5,6 @@ from drf_spectacular.utils import extend_schema, extend_schema_view
 from django.db.utils import IntegrityError
 
 import rest_framework.status
-from rest_framework.serializers import ValidationError
-from rest_framework.decorators import action
 from rest_framework.mixins import (
     ListModelMixin,
     RetrieveModelMixin,
@@ -23,6 +21,7 @@ from .serializers import (
     PrinterControllerSerializer,
 )
 from ..models import Camera, Appliance, PrinterController
+from print_nanny_webapp.utils.exceptions import AlreadyExistsException
 
 logger = logging.getLogger(__name__)
 
@@ -76,9 +75,8 @@ class ApplianceViewSet(
         try:
             return super().create(request, *args, **kwargs)
         except IntegrityError:
-            raise ValidationError(
-                code=rest_framework.status.HTTP_409_CONFLICT,
-                detail=f"HTTP_409_CONFLICT: Appliance with hostname={hostname} already exists for user={self.request.user.id}",
+            raise AlreadyExistsException(
+                detail=f"Appliance with hostname={hostname} already exists for user={self.request.user.id}",
             )
 
     def perform_create(self, serializer):
