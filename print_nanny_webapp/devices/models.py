@@ -54,6 +54,10 @@ class Appliance(SafeDeleteModel):
     )
     hostname = models.CharField(max_length=255)
 
+    @property
+    def last_ansible_facts(self):
+        return self.ansible_facts.first()
+
 
 class CloudIoTDevice(SafeDeleteModel):
     """
