@@ -4,10 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **i32** |  | [readonly]
-**user** | **String** |  | [readonly]
-**appliance** | **i32** |  | [readonly]
-**deleted** | **String** |  | [readonly]
+**id** | Option<**i32**> |  | [optional][readonly]
+**user** | Option<**String**> |  | [optional][readonly]
+**appliance** | Option<**i32**> |  | [optional][readonly]
+**deleted** | Option<**String**> |  | [optional][readonly]
+**created_dt** | Option<**String**> |  | [optional][readonly]
 **os_version** | **String** |  | 
 **os** | **String** |  | 
 **kernel_version** | **String** |  | 

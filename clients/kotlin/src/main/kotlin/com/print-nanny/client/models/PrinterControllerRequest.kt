@@ -34,7 +34,7 @@ import java.io.Serializable
 data class PrinterControllerRequest (
 
     @Json(name = "software")
-    val software: SoftwareEnum
+    val software: SoftwareEnum? = null
 
 ) : Serializable {
     companion object {

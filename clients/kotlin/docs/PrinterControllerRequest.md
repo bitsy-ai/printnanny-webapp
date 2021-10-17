@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**software** | [**SoftwareEnum**](SoftwareEnum.md) |  | 
+**software** | [**SoftwareEnum**](SoftwareEnum.md) |  |  [optional]
 
 
 

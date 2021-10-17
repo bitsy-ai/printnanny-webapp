@@ -46,8 +46,6 @@ class AlreadyExists(APIException):
     request=AlertSerializer,
     responses={
         200: AlertSerializer,
-        201: AlertSerializer,
-        202: AlertSerializer,
     },
 )
 class AlertViewSet(

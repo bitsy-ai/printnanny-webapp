@@ -43,8 +43,6 @@ class TestExperimentDeviceConfig(unittest.TestCase):
             )
         else :
             return ExperimentDeviceConfig(
-                id = 56,
-                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 experiment = 56,
                 artifact = 56,
         )

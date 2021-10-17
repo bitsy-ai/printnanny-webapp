@@ -45,7 +45,7 @@ pub enum TelemetryEventPolymorphicRequest {
         #[serde(rename = "event_source", skip_serializing_if = "Option::is_none")]
         event_source: Option<Box<crate::models::EventSourceEnum>>,
         #[serde(rename = "event_type", skip_serializing_if = "Option::is_none")]
-        event_type: Option<Box<crate::models::EventTypeD9eEnum>>,
+        event_type: Option<Box<crate::models::PrintJobEventType>>,
         #[serde(rename = "octoprint_environment")]
         octoprint_environment: Box<crate::models::OctoprintEnvironmentRequest>,
         #[serde(rename = "octoprint_printer_data")]

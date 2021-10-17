@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **i32** |  | [readonly]
-**created_dt** | **String** |  | [readonly]
+**id** | Option<**i32**> |  | [optional][readonly]
+**created_dt** | Option<**String**> |  | [optional][readonly]
 **name** | **String** |  | 
-**user** | **i32** |  | [readonly]
-**public_key** | **String** |  | [readonly]
-**fingerprint** | **String** |  | [readonly]
-**cloudiot_device** | [**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md) |  | [readonly]
-**cloudiot_device_name** | **String** |  | [readonly]
-**cloudiot_device_path** | **String** |  | [readonly]
-**cloudiot_device_num_id** | **i32** |  | [readonly]
+**user** | Option<**i32**> |  | [optional][readonly]
+**public_key** | Option<**String**> |  | [optional][readonly]
+**fingerprint** | Option<**String**> |  | [optional][readonly]
+**cloudiot_device** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional][readonly]
+**cloudiot_device_name** | Option<**String**> |  | [optional][readonly]
+**cloudiot_device_path** | Option<**String**> |  | [optional][readonly]
+**cloudiot_device_num_id** | Option<**i32**> |  | [optional][readonly]
 **model** | **String** |  | 
 **platform** | **String** |  | 
 **cpu_flags** | Option<**Vec<String>**> |  | [optional]
@@ -28,9 +28,9 @@ Name | Type | Description | Notes
 **octoprint_version** | **String** |  | 
 **plugin_version** | **String** |  | 
 **print_nanny_client_version** | **String** |  | 
-**cloudiot_device_configs** | **String** |  | [readonly]
-**manage_url** | **String** |  | [readonly]
-**monitoring_active** | **bool** |  | [readonly]
+**cloudiot_device_configs** | Option<**String**> |  | [optional][readonly]
+**manage_url** | Option<**String**> |  | [optional][readonly]
+**monitoring_active** | Option<**bool**> |  | [optional][readonly]
 **active_session** | Option<[**crate::models::PrintSession**](PrintSession.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -40,6 +40,7 @@ class TestAnsibleFacts(unittest.TestCase):
                 user = '', 
                 appliance = 56, 
                 deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 os_version = '', 
                 os = '', 
                 kernel_version = '', 
@@ -59,10 +60,6 @@ class TestAnsibleFacts(unittest.TestCase):
             )
         else :
             return AnsibleFacts(
-                id = 56,
-                user = '',
-                appliance = 56,
-                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 os_version = '',
                 os = '',
                 kernel_version = '',

@@ -36,7 +36,7 @@ class TestPatchedPrinterControllerRequest(unittest.TestCase):
         # model = print_nanny_client.models.patched_printer_controller_request.PatchedPrinterControllerRequest()  # noqa: E501
         if include_optional :
             return PatchedPrinterControllerRequest(
-                software = 'OctoPrint'
+                software = None
             )
         else :
             return PatchedPrinterControllerRequest(

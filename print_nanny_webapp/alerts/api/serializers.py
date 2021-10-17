@@ -12,10 +12,15 @@ logger = logging.getLogger(__name__)
 
 Alert = apps.get_model("alerts", "AlertMessage")
 AlertSettings = apps.get_model("alerts", "AlertSettings")
+from ..models import GenericAlertEventType
 
 
 class AlertSerializer(serializers.ModelSerializer):
 
+    event_type = serializers.ChoiceField(
+        choices=GenericAlertEventType.choices,
+        default=GenericAlertEventType.PRINT_NANNY_WEBAPP,
+    )
     time = serializers.SerializerMethodField()
 
     def get_time(self, obj):

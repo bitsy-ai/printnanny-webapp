@@ -38,7 +38,7 @@ class PrintJobEventRequest(object):
     openapi_types = {
         'ts': 'float',
         'event_source': 'EventSourceEnum',
-        'event_type': 'EventTypeD9eEnum',
+        'event_type': 'PrintJobEventType',
         'octoprint_environment': 'OctoprintEnvironmentRequest',
         'octoprint_printer_data': 'OctoprintPrinterDataRequest',
         'event_data': 'dict(str, object)',
@@ -148,7 +148,7 @@ class PrintJobEventRequest(object):
 
 
         :return: The event_type of this PrintJobEventRequest.  # noqa: E501
-        :rtype: EventTypeD9eEnum
+        :rtype: PrintJobEventType
         """
         return self._event_type
 
@@ -158,7 +158,7 @@ class PrintJobEventRequest(object):
 
 
         :param event_type: The event_type of this PrintJobEventRequest.  # noqa: E501
-        :type event_type: EventTypeD9eEnum
+        :type event_type: PrintJobEventType
         """
 
         self._event_type = event_type

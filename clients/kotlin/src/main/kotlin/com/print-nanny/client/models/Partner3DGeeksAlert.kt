@@ -41,31 +41,31 @@ import java.io.Serializable
 data class Partner3DGeeksAlert (
 
     @Json(name = "event")
-    val event: kotlin.String,
+    val event: kotlin.String? = null,
 
     @Json(name = "token")
-    val token: kotlin.String,
+    val token: kotlin.String? = null,
 
     @Json(name = "printer")
-    val printer: kotlin.String,
+    val printer: kotlin.String? = null,
 
     @Json(name = "print")
-    val print: kotlin.String,
+    val print: kotlin.String? = null,
 
     @Json(name = "currentTime")
-    val currentTime: kotlin.Int,
+    val currentTime: kotlin.Int? = null,
 
     @Json(name = "timeLeft")
-    val timeLeft: kotlin.Int,
+    val timeLeft: kotlin.Int? = null,
 
     @Json(name = "percent")
-    val percent: kotlin.Int,
+    val percent: kotlin.Int? = null,
 
     @Json(name = "image")
-    val image: kotlin.String?,
+    val image: kotlin.String? = null,
 
     @Json(name = "action")
-    val action: kotlin.String
+    val action: kotlin.String? = null
 
 ) : Serializable {
     companion object {

@@ -5,37 +5,37 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **caCerts** | **kotlin.collections.Map&lt;kotlin.String, kotlin.String&gt;** |  | 
-**cloudiotDeviceConfigs** | **kotlin.String** |  |  [readonly]
-**cloudiotDeviceName** | **kotlin.String** |  |  [readonly]
-**cloudiotDeviceNumId** | **kotlin.Int** |  |  [readonly]
-**cloudiotDevicePath** | **kotlin.String** |  |  [readonly]
-**cloudiotDevice** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt;**](kotlin.Any.md) |  |  [readonly]
 **cores** | **kotlin.Int** |  | 
-**createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
-**fingerprint** | **kotlin.String** |  |  [readonly]
-**id** | **kotlin.Int** |  |  [readonly]
-**manageUrl** | [**java.net.URI**](java.net.URI.md) |  |  [readonly]
 **model** | **kotlin.String** |  | 
-**monitoringActive** | **kotlin.Boolean** |  |  [readonly]
 **name** | **kotlin.String** |  | 
 **octoprintVersion** | **kotlin.String** |  | 
 **pipVersion** | **kotlin.String** |  | 
 **platform** | **kotlin.String** |  | 
 **pluginVersion** | **kotlin.String** |  | 
 **printNannyClientVersion** | **kotlin.String** |  | 
-**privateKeyChecksum** | **kotlin.String** |  |  [readonly]
-**privateKey** | **kotlin.String** |  |  [readonly]
 **publicKeyChecksum** | **kotlin.String** |  | 
-**publicKey** | **kotlin.String** |  |  [readonly]
 **pythonVersion** | **kotlin.String** |  | 
 **ram** | **kotlin.Int** |  | 
 **serial** | **kotlin.String** |  | 
-**user** | **kotlin.Int** |  |  [readonly]
-**url** | [**java.net.URI**](java.net.URI.md) |  |  [readonly]
 **activeSession** | [**PrintSession**](PrintSession.md) |  |  [optional]
+**cloudiotDeviceConfigs** | **kotlin.String** |  |  [optional] [readonly]
+**cloudiotDeviceName** | **kotlin.String** |  |  [optional] [readonly]
+**cloudiotDeviceNumId** | **kotlin.Int** |  |  [optional] [readonly]
+**cloudiotDevicePath** | **kotlin.String** |  |  [optional] [readonly]
+**cloudiotDevice** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt;**](kotlin.Any.md) |  |  [optional] [readonly]
 **cpuFlags** | **kotlin.collections.List&lt;kotlin.String&gt;** |  |  [optional]
+**createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
+**fingerprint** | **kotlin.String** |  |  [optional] [readonly]
 **hardware** | **kotlin.String** |  |  [optional]
+**id** | **kotlin.Int** |  |  [optional] [readonly]
+**manageUrl** | [**java.net.URI**](java.net.URI.md) |  |  [optional] [readonly]
+**monitoringActive** | **kotlin.Boolean** |  |  [optional] [readonly]
+**privateKeyChecksum** | **kotlin.String** |  |  [optional] [readonly]
+**privateKey** | **kotlin.String** |  |  [optional] [readonly]
+**publicKey** | **kotlin.String** |  |  [optional] [readonly]
 **revision** | **kotlin.String** |  |  [optional]
+**user** | **kotlin.Int** |  |  [optional] [readonly]
+**url** | [**java.net.URI**](java.net.URI.md) |  |  [optional] [readonly]
 
 
 

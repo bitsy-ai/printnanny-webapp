@@ -4,10 +4,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [readonly] 
-**user** | **str** |  | [readonly] 
-**appliance** | **int** |  | [readonly] 
-**deleted** | **datetime** |  | [readonly] 
+**id** | **int** |  | [optional] [readonly] 
+**user** | **str** |  | [optional] [readonly] 
+**appliance** | **int** |  | [optional] [readonly] 
+**deleted** | **datetime** |  | [optional] [readonly] 
+**created_dt** | **datetime** |  | [optional] [readonly] 
 **os_version** | **str** |  | 
 **os** | **str** |  | 
 **kernel_version** | **str** |  | 

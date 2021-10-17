@@ -46,13 +46,10 @@ class TestGcodeFile(unittest.TestCase):
             )
         else :
             return GcodeFile(
-                id = 56,
-                user = 56,
                 name = '',
                 file = '',
                 file_hash = '',
                 octoprint_device = '',
-                url = '',
         )
 
     def testGcodeFile(self):

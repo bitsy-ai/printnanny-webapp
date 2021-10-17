@@ -48,15 +48,6 @@ class TestPartner3DGeeksAlert(unittest.TestCase):
             )
         else :
             return Partner3DGeeksAlert(
-                event = '',
-                token = '',
-                printer = '',
-                _print = '',
-                current_time = 56,
-                time_left = 56,
-                percent = 56,
-                image = '',
-                action = '',
         )
 
     def testPartner3DGeeksAlert(self):

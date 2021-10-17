@@ -72,8 +72,6 @@ class PrinterControllerRequest(object):
         :param software: The software of this PrinterControllerRequest.  # noqa: E501
         :type software: SoftwareEnum
         """
-        if self.local_vars_configuration.client_side_validation and software is None:  # noqa: E501
-            raise ValueError("Invalid value for `software`, must not be `None`")  # noqa: E501
 
         self._software = software
 

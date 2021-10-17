@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **i32** |  | [readonly]
-**created_dt** | **String** |  | [readonly]
+**id** | Option<**i32**> |  | [optional][readonly]
+**created_dt** | Option<**String**> |  | [optional][readonly]
 **experiment** | **i32** |  | 
 **artifact** | **i32** |  | 
 

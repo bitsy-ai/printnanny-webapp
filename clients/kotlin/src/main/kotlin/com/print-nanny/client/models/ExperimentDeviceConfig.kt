@@ -27,25 +27,25 @@ import java.io.Serializable
 /**
  * 
  *
- * @param id 
- * @param createdDt 
  * @param experiment 
  * @param artifact 
+ * @param id 
+ * @param createdDt 
  */
 
 data class ExperimentDeviceConfig (
-
-    @Json(name = "id")
-    val id: kotlin.Int,
-
-    @Json(name = "created_dt")
-    val createdDt: java.time.OffsetDateTime,
 
     @Json(name = "experiment")
     val experiment: kotlin.Int,
 
     @Json(name = "artifact")
-    val artifact: kotlin.Int
+    val artifact: kotlin.Int,
+
+    @Json(name = "id")
+    val id: kotlin.Int? = null,
+
+    @Json(name = "created_dt")
+    val createdDt: java.time.OffsetDateTime? = null
 
 ) : Serializable {
     companion object {

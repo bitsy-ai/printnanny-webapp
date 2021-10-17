@@ -21,9 +21,9 @@
 package com.print-nanny.client.models
 
 import com.print-nanny.client.models.EventSourceEnum
-import com.print-nanny.client.models.EventTypeD9eEnum
 import com.print-nanny.client.models.OctoprintEnvironmentRequest
 import com.print-nanny.client.models.OctoprintPrinterDataRequest
+import com.print-nanny.client.models.PrintJobEventType
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -72,7 +72,7 @@ data class PrintJobEventRequest (
     val eventSource: EventSourceEnum? = null,
 
     @Json(name = "event_type")
-    val eventType: EventTypeD9eEnum? = null,
+    val eventType: PrintJobEventType? = null,
 
     @Json(name = "event_data")
     val eventData: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,

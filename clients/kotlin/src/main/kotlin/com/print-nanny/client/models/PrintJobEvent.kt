@@ -21,9 +21,9 @@
 package com.print-nanny.client.models
 
 import com.print-nanny.client.models.EventSourceEnum
-import com.print-nanny.client.models.EventTypeD9eEnum
 import com.print-nanny.client.models.OctoprintEnvironment
 import com.print-nanny.client.models.OctoprintPrinterData
+import com.print-nanny.client.models.PrintJobEventType
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -31,27 +31,24 @@ import java.io.Serializable
 /**
  * 
  *
- * @param id 
  * @param octoprintEnvironment 
  * @param octoprintPrinterData 
  * @param printNannyPluginVersion 
  * @param printNannyClientVersion 
  * @param octoprintVersion 
- * @param polymorphicCtype 
  * @param octoprintDevice 
- * @param user 
+ * @param id 
  * @param ts 
  * @param eventSource 
  * @param eventType 
  * @param eventData 
  * @param temperature 
+ * @param polymorphicCtype 
+ * @param user 
  * @param printSession 
  */
 
 data class PrintJobEvent (
-
-    @Json(name = "id")
-    val id: kotlin.Int,
 
     @Json(name = "octoprint_environment")
     val octoprintEnvironment: OctoprintEnvironment,
@@ -68,14 +65,11 @@ data class PrintJobEvent (
     @Json(name = "octoprint_version")
     val octoprintVersion: kotlin.String,
 
-    @Json(name = "polymorphic_ctype")
-    val polymorphicCtype: kotlin.Int,
-
     @Json(name = "octoprint_device")
     val octoprintDevice: kotlin.Int,
 
-    @Json(name = "user")
-    val user: kotlin.Int,
+    @Json(name = "id")
+    val id: kotlin.Int? = null,
 
     @Json(name = "ts")
     val ts: kotlin.Float? = null,
@@ -84,13 +78,19 @@ data class PrintJobEvent (
     val eventSource: EventSourceEnum? = null,
 
     @Json(name = "event_type")
-    val eventType: EventTypeD9eEnum? = null,
+    val eventType: PrintJobEventType? = null,
 
     @Json(name = "event_data")
     val eventData: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,
 
     @Json(name = "temperature")
     val temperature: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,
+
+    @Json(name = "polymorphic_ctype")
+    val polymorphicCtype: kotlin.Int? = null,
+
+    @Json(name = "user")
+    val user: kotlin.Int? = null,
 
     @Json(name = "print_session")
     val printSession: kotlin.Int? = null

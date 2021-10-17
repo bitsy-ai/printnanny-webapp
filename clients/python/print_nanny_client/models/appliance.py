@@ -37,8 +37,8 @@ class Appliance(object):
     """
     openapi_types = {
         'id': 'int',
-        'pki': 'AppliancePKI',
-        'ansible_facts': 'AnsibleFacts',
+        'public_key': 'AppliancePublicKey',
+        'last_ansible_facts': 'AnsibleFacts',
         'cameras': 'list[Camera]',
         'printer_controllers': 'list[PrinterController]',
         'user': 'int',
@@ -50,8 +50,8 @@ class Appliance(object):
 
     attribute_map = {
         'id': 'id',
-        'pki': 'pki',
-        'ansible_facts': 'ansible_facts',
+        'public_key': 'public_key',
+        'last_ansible_facts': 'last_ansible_facts',
         'cameras': 'cameras',
         'printer_controllers': 'printer_controllers',
         'user': 'user',
@@ -61,15 +61,15 @@ class Appliance(object):
         'hostname': 'hostname'
     }
 
-    def __init__(self, id=None, pki=None, ansible_facts=None, cameras=None, printer_controllers=None, user=None, deleted=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, public_key=None, last_ansible_facts=None, cameras=None, printer_controllers=None, user=None, deleted=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
         """Appliance - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
-        self._pki = None
-        self._ansible_facts = None
+        self._public_key = None
+        self._last_ansible_facts = None
         self._cameras = None
         self._printer_controllers = None
         self._user = None
@@ -79,15 +79,22 @@ class Appliance(object):
         self._hostname = None
         self.discriminator = None
 
-        self.id = id
-        self.pki = pki
-        self.ansible_facts = ansible_facts
-        self.cameras = cameras
-        self.printer_controllers = printer_controllers
-        self.user = user
-        self.deleted = deleted
-        self.created_dt = created_dt
-        self.updated_dt = updated_dt
+        if id is not None:
+            self.id = id
+        self.public_key = public_key
+        self.last_ansible_facts = last_ansible_facts
+        if cameras is not None:
+            self.cameras = cameras
+        if printer_controllers is not None:
+            self.printer_controllers = printer_controllers
+        if user is not None:
+            self.user = user
+        if deleted is not None:
+            self.deleted = deleted
+        if created_dt is not None:
+            self.created_dt = created_dt
+        if updated_dt is not None:
+            self.updated_dt = updated_dt
         self.hostname = hostname
 
     @property
@@ -108,52 +115,50 @@ class Appliance(object):
         :param id: The id of this Appliance.  # noqa: E501
         :type id: int
         """
-        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
-            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
     @property
-    def pki(self):
-        """Gets the pki of this Appliance.  # noqa: E501
+    def public_key(self):
+        """Gets the public_key of this Appliance.  # noqa: E501
 
 
-        :return: The pki of this Appliance.  # noqa: E501
-        :rtype: AppliancePKI
+        :return: The public_key of this Appliance.  # noqa: E501
+        :rtype: AppliancePublicKey
         """
-        return self._pki
+        return self._public_key
 
-    @pki.setter
-    def pki(self, pki):
-        """Sets the pki of this Appliance.
+    @public_key.setter
+    def public_key(self, public_key):
+        """Sets the public_key of this Appliance.
 
 
-        :param pki: The pki of this Appliance.  # noqa: E501
-        :type pki: AppliancePKI
+        :param public_key: The public_key of this Appliance.  # noqa: E501
+        :type public_key: AppliancePublicKey
         """
 
-        self._pki = pki
+        self._public_key = public_key
 
     @property
-    def ansible_facts(self):
-        """Gets the ansible_facts of this Appliance.  # noqa: E501
+    def last_ansible_facts(self):
+        """Gets the last_ansible_facts of this Appliance.  # noqa: E501
 
 
-        :return: The ansible_facts of this Appliance.  # noqa: E501
+        :return: The last_ansible_facts of this Appliance.  # noqa: E501
         :rtype: AnsibleFacts
         """
-        return self._ansible_facts
+        return self._last_ansible_facts
 
-    @ansible_facts.setter
-    def ansible_facts(self, ansible_facts):
-        """Sets the ansible_facts of this Appliance.
+    @last_ansible_facts.setter
+    def last_ansible_facts(self, last_ansible_facts):
+        """Sets the last_ansible_facts of this Appliance.
 
 
-        :param ansible_facts: The ansible_facts of this Appliance.  # noqa: E501
-        :type ansible_facts: AnsibleFacts
+        :param last_ansible_facts: The last_ansible_facts of this Appliance.  # noqa: E501
+        :type last_ansible_facts: AnsibleFacts
         """
 
-        self._ansible_facts = ansible_facts
+        self._last_ansible_facts = last_ansible_facts
 
     @property
     def cameras(self):
@@ -173,8 +178,6 @@ class Appliance(object):
         :param cameras: The cameras of this Appliance.  # noqa: E501
         :type cameras: list[Camera]
         """
-        if self.local_vars_configuration.client_side_validation and cameras is None:  # noqa: E501
-            raise ValueError("Invalid value for `cameras`, must not be `None`")  # noqa: E501
 
         self._cameras = cameras
 
@@ -196,8 +199,6 @@ class Appliance(object):
         :param printer_controllers: The printer_controllers of this Appliance.  # noqa: E501
         :type printer_controllers: list[PrinterController]
         """
-        if self.local_vars_configuration.client_side_validation and printer_controllers is None:  # noqa: E501
-            raise ValueError("Invalid value for `printer_controllers`, must not be `None`")  # noqa: E501
 
         self._printer_controllers = printer_controllers
 
@@ -219,8 +220,6 @@ class Appliance(object):
         :param user: The user of this Appliance.  # noqa: E501
         :type user: int
         """
-        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
-            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
 
         self._user = user
 
@@ -242,8 +241,6 @@ class Appliance(object):
         :param deleted: The deleted of this Appliance.  # noqa: E501
         :type deleted: datetime
         """
-        if self.local_vars_configuration.client_side_validation and deleted is None:  # noqa: E501
-            raise ValueError("Invalid value for `deleted`, must not be `None`")  # noqa: E501
 
         self._deleted = deleted
 
@@ -265,8 +262,6 @@ class Appliance(object):
         :param created_dt: The created_dt of this Appliance.  # noqa: E501
         :type created_dt: datetime
         """
-        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
-            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
 
         self._created_dt = created_dt
 
@@ -288,8 +283,6 @@ class Appliance(object):
         :param updated_dt: The updated_dt of this Appliance.  # noqa: E501
         :type updated_dt: datetime
         """
-        if self.local_vars_configuration.client_side_validation and updated_dt is None:  # noqa: E501
-            raise ValueError("Invalid value for `updated_dt`, must not be `None`")  # noqa: E501
 
         self._updated_dt = updated_dt
 

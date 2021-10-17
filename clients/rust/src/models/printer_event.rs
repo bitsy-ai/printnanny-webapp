@@ -11,8 +11,8 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct PrinterEvent {
-    #[serde(rename = "id")]
-    pub id: i32,
+    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
+    pub id: Option<i32>,
     #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
     pub ts: Option<f32>,
     #[serde(rename = "event_source", skip_serializing_if = "Option::is_none")]
@@ -35,20 +35,20 @@ pub struct PrinterEvent {
     pub octoprint_version: String,
     #[serde(rename = "printer_state", skip_serializing_if = "Option::is_none")]
     pub printer_state: Option<crate::models::PrinterStateEnum>,
-    #[serde(rename = "polymorphic_ctype")]
-    pub polymorphic_ctype: i32,
+    #[serde(rename = "polymorphic_ctype", skip_serializing_if = "Option::is_none")]
+    pub polymorphic_ctype: Option<i32>,
     #[serde(rename = "octoprint_device")]
     pub octoprint_device: i32,
-    #[serde(rename = "user")]
-    pub user: i32,
+    #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
+    pub user: Option<i32>,
     #[serde(rename = "print_session", skip_serializing_if = "Option::is_none")]
     pub print_session: Option<i32>,
 }
 
 impl PrinterEvent {
-    pub fn new(id: i32, octoprint_environment: crate::models::OctoprintEnvironment, octoprint_printer_data: crate::models::OctoprintPrinterData, print_nanny_plugin_version: String, print_nanny_client_version: String, octoprint_version: String, polymorphic_ctype: i32, octoprint_device: i32, user: i32) -> PrinterEvent {
+    pub fn new(octoprint_environment: crate::models::OctoprintEnvironment, octoprint_printer_data: crate::models::OctoprintPrinterData, print_nanny_plugin_version: String, print_nanny_client_version: String, octoprint_version: String, octoprint_device: i32) -> PrinterEvent {
         PrinterEvent {
-            id,
+            id: None,
             ts: None,
             event_source: None,
             event_type: None,
@@ -60,9 +60,9 @@ impl PrinterEvent {
             print_nanny_client_version,
             octoprint_version,
             printer_state: None,
-            polymorphic_ctype,
+            polymorphic_ctype: None,
             octoprint_device,
-            user,
+            user: None,
             print_session: None,
         }
     }

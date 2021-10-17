@@ -39,10 +39,10 @@ class PrinterController(object):
         'id': 'int',
         'user': 'int',
         'appliance': 'int',
+        'software': 'SoftwareEnum',
         'deleted': 'datetime',
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
-        'software': 'SoftwareEnum',
         'polymorphic_ctype': 'int'
     }
 
@@ -50,14 +50,14 @@ class PrinterController(object):
         'id': 'id',
         'user': 'user',
         'appliance': 'appliance',
+        'software': 'software',
         'deleted': 'deleted',
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
-        'software': 'software',
         'polymorphic_ctype': 'polymorphic_ctype'
     }
 
-    def __init__(self, id=None, user=None, appliance=None, deleted=None, created_dt=None, updated_dt=None, software=None, polymorphic_ctype=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, user=None, appliance=None, software=None, deleted=None, created_dt=None, updated_dt=None, polymorphic_ctype=None, local_vars_configuration=None):  # noqa: E501
         """PrinterController - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -66,21 +66,28 @@ class PrinterController(object):
         self._id = None
         self._user = None
         self._appliance = None
+        self._software = None
         self._deleted = None
         self._created_dt = None
         self._updated_dt = None
-        self._software = None
         self._polymorphic_ctype = None
         self.discriminator = None
 
-        self.id = id
-        self.user = user
-        self.appliance = appliance
-        self.deleted = deleted
-        self.created_dt = created_dt
-        self.updated_dt = updated_dt
+        if id is not None:
+            self.id = id
+        if user is not None:
+            self.user = user
+        if appliance is not None:
+            self.appliance = appliance
         self.software = software
-        self.polymorphic_ctype = polymorphic_ctype
+        if deleted is not None:
+            self.deleted = deleted
+        if created_dt is not None:
+            self.created_dt = created_dt
+        if updated_dt is not None:
+            self.updated_dt = updated_dt
+        if polymorphic_ctype is not None:
+            self.polymorphic_ctype = polymorphic_ctype
 
     @property
     def id(self):
@@ -100,8 +107,6 @@ class PrinterController(object):
         :param id: The id of this PrinterController.  # noqa: E501
         :type id: int
         """
-        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
-            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -123,8 +128,6 @@ class PrinterController(object):
         :param user: The user of this PrinterController.  # noqa: E501
         :type user: int
         """
-        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
-            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
 
         self._user = user
 
@@ -146,10 +149,29 @@ class PrinterController(object):
         :param appliance: The appliance of this PrinterController.  # noqa: E501
         :type appliance: int
         """
-        if self.local_vars_configuration.client_side_validation and appliance is None:  # noqa: E501
-            raise ValueError("Invalid value for `appliance`, must not be `None`")  # noqa: E501
 
         self._appliance = appliance
+
+    @property
+    def software(self):
+        """Gets the software of this PrinterController.  # noqa: E501
+
+
+        :return: The software of this PrinterController.  # noqa: E501
+        :rtype: SoftwareEnum
+        """
+        return self._software
+
+    @software.setter
+    def software(self, software):
+        """Sets the software of this PrinterController.
+
+
+        :param software: The software of this PrinterController.  # noqa: E501
+        :type software: SoftwareEnum
+        """
+
+        self._software = software
 
     @property
     def deleted(self):
@@ -169,8 +191,6 @@ class PrinterController(object):
         :param deleted: The deleted of this PrinterController.  # noqa: E501
         :type deleted: datetime
         """
-        if self.local_vars_configuration.client_side_validation and deleted is None:  # noqa: E501
-            raise ValueError("Invalid value for `deleted`, must not be `None`")  # noqa: E501
 
         self._deleted = deleted
 
@@ -192,8 +212,6 @@ class PrinterController(object):
         :param created_dt: The created_dt of this PrinterController.  # noqa: E501
         :type created_dt: datetime
         """
-        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
-            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
 
         self._created_dt = created_dt
 
@@ -215,33 +233,8 @@ class PrinterController(object):
         :param updated_dt: The updated_dt of this PrinterController.  # noqa: E501
         :type updated_dt: datetime
         """
-        if self.local_vars_configuration.client_side_validation and updated_dt is None:  # noqa: E501
-            raise ValueError("Invalid value for `updated_dt`, must not be `None`")  # noqa: E501
 
         self._updated_dt = updated_dt
-
-    @property
-    def software(self):
-        """Gets the software of this PrinterController.  # noqa: E501
-
-
-        :return: The software of this PrinterController.  # noqa: E501
-        :rtype: SoftwareEnum
-        """
-        return self._software
-
-    @software.setter
-    def software(self, software):
-        """Sets the software of this PrinterController.
-
-
-        :param software: The software of this PrinterController.  # noqa: E501
-        :type software: SoftwareEnum
-        """
-        if self.local_vars_configuration.client_side_validation and software is None:  # noqa: E501
-            raise ValueError("Invalid value for `software`, must not be `None`")  # noqa: E501
-
-        self._software = software
 
     @property
     def polymorphic_ctype(self):
@@ -261,8 +254,6 @@ class PrinterController(object):
         :param polymorphic_ctype: The polymorphic_ctype of this PrinterController.  # noqa: E501
         :type polymorphic_ctype: int
         """
-        if self.local_vars_configuration.client_side_validation and polymorphic_ctype is None:  # noqa: E501
-            raise ValueError("Invalid value for `polymorphic_ctype`, must not be `None`")  # noqa: E501
 
         self._polymorphic_ctype = polymorphic_ctype
 

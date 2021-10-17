@@ -11,14 +11,16 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct AnsibleFacts {
-    #[serde(rename = "id")]
-    pub id: i32,
-    #[serde(rename = "user")]
-    pub user: String,
-    #[serde(rename = "appliance")]
-    pub appliance: i32,
-    #[serde(rename = "deleted")]
-    pub deleted: String,
+    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
+    pub id: Option<i32>,
+    #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
+    pub user: Option<String>,
+    #[serde(rename = "appliance", skip_serializing_if = "Option::is_none")]
+    pub appliance: Option<i32>,
+    #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
+    pub deleted: Option<String>,
+    #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
+    pub created_dt: Option<String>,
     #[serde(rename = "os_version")]
     pub os_version: String,
     #[serde(rename = "os")]
@@ -46,12 +48,13 @@ pub struct AnsibleFacts {
 }
 
 impl AnsibleFacts {
-    pub fn new(id: i32, user: String, appliance: i32, deleted: String, os_version: String, os: String, kernel_version: String, cores: i32, ram: i64, cpu_flags: Vec<String>, json: ::std::collections::HashMap<String, serde_json::Value>) -> AnsibleFacts {
+    pub fn new(os_version: String, os: String, kernel_version: String, cores: i32, ram: i64, cpu_flags: Vec<String>, json: ::std::collections::HashMap<String, serde_json::Value>) -> AnsibleFacts {
         AnsibleFacts {
-            id,
-            user,
-            appliance,
-            deleted,
+            id: None,
+            user: None,
+            appliance: None,
+            deleted: None,
+            created_dt: None,
             os_version,
             os,
             kernel_version,

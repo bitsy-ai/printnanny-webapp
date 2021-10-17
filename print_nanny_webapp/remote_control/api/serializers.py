@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from rest_framework import serializers
 
+from print_nanny_webapp.telemetry.types import PrintJobEventType
 from print_nanny_webapp.remote_control.models import (
     GcodeFile,
     PrintSession,
@@ -24,6 +25,11 @@ class RemoteControlCommandSerializer(serializers.ModelSerializer):
 
 
 class PrintSessionSerializer(serializers.ModelSerializer):
+    print_job_status = serializers.ChoiceField(
+        choices=PrintJobEventType.choices,
+        default=PrintJobEventType.PRINT_STARTED,
+    )
+
     class Meta:
         model = PrintSession
         fields = [field.name for field in PrintSession._meta.fields] + [

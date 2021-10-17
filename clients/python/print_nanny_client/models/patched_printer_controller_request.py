@@ -52,8 +52,7 @@ class PatchedPrinterControllerRequest(object):
         self._software = None
         self.discriminator = None
 
-        if software is not None:
-            self.software = software
+        self.software = software
 
     @property
     def software(self):

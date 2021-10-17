@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.8.37"
+__version__ = "0.8.39"
 
 # import apis into sdk package
 from print_nanny_client.api.alerts_api import AlertsApi
@@ -46,8 +46,8 @@ from print_nanny_client.models.alert_request import AlertRequest
 from print_nanny_client.models.ansible_facts import AnsibleFacts
 from print_nanny_client.models.ansible_facts_request import AnsibleFactsRequest
 from print_nanny_client.models.appliance import Appliance
-from print_nanny_client.models.appliance_pki import AppliancePKI
-from print_nanny_client.models.appliance_pki_request import AppliancePKIRequest
+from print_nanny_client.models.appliance_public_key import AppliancePublicKey
+from print_nanny_client.models.appliance_public_key_request import AppliancePublicKeyRequest
 from print_nanny_client.models.appliance_request import ApplianceRequest
 from print_nanny_client.models.artifact_types_enum import ArtifactTypesEnum
 from print_nanny_client.models.callback_token_auth_request import CallbackTokenAuthRequest
@@ -56,6 +56,8 @@ from print_nanny_client.models.callback_token_verification_request import Callba
 from print_nanny_client.models.camera import Camera
 from print_nanny_client.models.camera_request import CameraRequest
 from print_nanny_client.models.camera_type_enum import CameraTypeEnum
+from print_nanny_client.models.cloud_io_t_device import CloudIoTDevice
+from print_nanny_client.models.cloud_io_t_device_request import CloudIoTDeviceRequest
 from print_nanny_client.models.command_enum import CommandEnum
 from print_nanny_client.models.detail_response import DetailResponse
 from print_nanny_client.models.device_calibration import DeviceCalibration
@@ -63,11 +65,10 @@ from print_nanny_client.models.device_calibration_request import DeviceCalibrati
 from print_nanny_client.models.email_auth_request import EmailAuthRequest
 from print_nanny_client.models.event_source_enum import EventSourceEnum
 from print_nanny_client.models.event_type0c4_enum import EventType0c4Enum
-from print_nanny_client.models.event_type_d9e_enum import EventTypeD9eEnum
 from print_nanny_client.models.experiment import Experiment
 from print_nanny_client.models.experiment_device_config import ExperimentDeviceConfig
 from print_nanny_client.models.gcode_file import GcodeFile
-from print_nanny_client.models.inline_response403 import InlineResponse403
+from print_nanny_client.models.inline_response_default import InlineResponseDefault
 from print_nanny_client.models.mobile_auth_request import MobileAuthRequest
 from print_nanny_client.models.model_artifact import ModelArtifact
 from print_nanny_client.models.octo_print_device import OctoPrintDevice
@@ -99,8 +100,11 @@ from print_nanny_client.models.octoprint_progress_request import OctoprintProgre
 from print_nanny_client.models.octoprint_python import OctoprintPython
 from print_nanny_client.models.octoprint_python_request import OctoprintPythonRequest
 from print_nanny_client.models.paginated_alert_list import PaginatedAlertList
+from print_nanny_client.models.paginated_ansible_facts_list import PaginatedAnsibleFactsList
 from print_nanny_client.models.paginated_appliance_list import PaginatedApplianceList
+from print_nanny_client.models.paginated_appliance_public_key_list import PaginatedAppliancePublicKeyList
 from print_nanny_client.models.paginated_camera_list import PaginatedCameraList
+from print_nanny_client.models.paginated_cloud_io_t_device_list import PaginatedCloudIoTDeviceList
 from print_nanny_client.models.paginated_device_calibration_list import PaginatedDeviceCalibrationList
 from print_nanny_client.models.paginated_experiment_device_config_list import PaginatedExperimentDeviceConfigList
 from print_nanny_client.models.paginated_experiment_list import PaginatedExperimentList
@@ -121,8 +125,11 @@ from print_nanny_client.models.partner3_d_geeks_alert import Partner3DGeeksAlert
 from print_nanny_client.models.partner3_d_geeks_metadata import Partner3DGeeksMetadata
 from print_nanny_client.models.patched_alert_bulk_request_request import PatchedAlertBulkRequestRequest
 from print_nanny_client.models.patched_alert_request import PatchedAlertRequest
+from print_nanny_client.models.patched_ansible_facts_request import PatchedAnsibleFactsRequest
+from print_nanny_client.models.patched_appliance_public_key_request import PatchedAppliancePublicKeyRequest
 from print_nanny_client.models.patched_appliance_request import PatchedApplianceRequest
 from print_nanny_client.models.patched_camera_request import PatchedCameraRequest
+from print_nanny_client.models.patched_cloud_io_t_device_request import PatchedCloudIoTDeviceRequest
 from print_nanny_client.models.patched_device_calibration_request import PatchedDeviceCalibrationRequest
 from print_nanny_client.models.patched_octo_print_device_request import PatchedOctoPrintDeviceRequest
 from print_nanny_client.models.patched_print_session_request import PatchedPrintSessionRequest
@@ -132,7 +139,7 @@ from print_nanny_client.models.patched_remote_control_command_request import Pat
 from print_nanny_client.models.patched_user_request import PatchedUserRequest
 from print_nanny_client.models.print_job_event import PrintJobEvent
 from print_nanny_client.models.print_job_event_request import PrintJobEventRequest
-from print_nanny_client.models.print_job_status_enum import PrintJobStatusEnum
+from print_nanny_client.models.print_job_event_type import PrintJobEventType
 from print_nanny_client.models.print_nanny_plugin_event import PrintNannyPluginEvent
 from print_nanny_client.models.print_nanny_plugin_event_event_type_enum import PrintNannyPluginEventEventTypeEnum
 from print_nanny_client.models.print_nanny_plugin_event_request import PrintNannyPluginEventRequest
