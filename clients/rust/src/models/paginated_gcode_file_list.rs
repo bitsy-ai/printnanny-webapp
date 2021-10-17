@@ -25,8 +25,8 @@ impl PaginatedGcodeFileList {
     pub fn new() -> PaginatedGcodeFileList {
         PaginatedGcodeFileList {
             count: None,
-            next: NoneSome(,
-            previous: NoneSome(,
+            next: None,
+            previous: None,
             results: None,
         }
     }

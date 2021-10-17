@@ -25,8 +25,8 @@ impl PaginatedTelemetryEventPolymorphicList {
     pub fn new() -> PaginatedTelemetryEventPolymorphicList {
         PaginatedTelemetryEventPolymorphicList {
             count: None,
-            next: NoneSome(,
-            previous: NoneSome(,
+            next: None,
+            previous: None,
             results: None,
         }
     }

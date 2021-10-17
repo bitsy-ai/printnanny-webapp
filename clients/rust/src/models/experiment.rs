@@ -39,7 +39,7 @@ impl Experiment {
             hypothesis,
             control,
             treatments: None,
-            notion_url: NoneSome(,
+            notion_url: None,
         }
     }
 }

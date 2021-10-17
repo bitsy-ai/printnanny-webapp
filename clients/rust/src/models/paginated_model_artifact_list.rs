@@ -25,8 +25,8 @@ impl PaginatedModelArtifactList {
     pub fn new() -> PaginatedModelArtifactList {
         PaginatedModelArtifactList {
             count: None,
-            next: NoneSome(,
-            previous: NoneSome(,
+            next: None,
+            previous: None,
             results: None,
         }
     }

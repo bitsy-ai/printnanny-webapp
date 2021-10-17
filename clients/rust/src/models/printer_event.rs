@@ -50,11 +50,11 @@ impl PrinterEvent {
         PrinterEvent {
             id,
             ts: None,
-            event_source: NoneSome(,
-            event_type: NoneSome(,
+            event_source: None,
+            event_type: None,
             octoprint_environment: Box::new(octoprint_environment),
             octoprint_printer_data: Box::new(octoprint_printer_data),
-            event_data: NoneSome(,
+            event_data: None,
             temperature: None,
             print_nanny_plugin_version,
             print_nanny_client_version,
@@ -63,7 +63,7 @@ impl PrinterEvent {
             polymorphic_ctype,
             octoprint_device,
             user,
-            print_session: NoneSome(,
+            print_session: None,
         }
     }
 }

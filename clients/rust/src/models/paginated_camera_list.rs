@@ -25,8 +25,8 @@ impl PaginatedCameraList {
     pub fn new() -> PaginatedCameraList {
         PaginatedCameraList {
             count: None,
-            next: NoneSome(,
-            previous: NoneSome(,
+            next: None,
+            previous: None,
             results: None,
         }
     }

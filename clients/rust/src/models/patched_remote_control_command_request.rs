@@ -34,7 +34,7 @@ impl PatchedRemoteControlCommandRequest {
             user: None,
             device: None,
             received: None,
-            success: NoneSome(,
+            success: None,
             iotcore_response: None,
             metadata: None,
         }
