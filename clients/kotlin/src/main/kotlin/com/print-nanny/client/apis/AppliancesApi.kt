@@ -1654,7 +1654,7 @@ class AppliancesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(baseP
     /**
     * 
     * All-in-one Print Nanny installation via print-nanny-main-&lt;platform&gt;-&lt;cpu&gt;.img
-    * @param id A unique integer value identifying this appliance. 
+    * @param hostname  
     * @return Appliance
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
@@ -1662,8 +1662,8 @@ class AppliancesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(baseP
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun appliancesRetrieve(id: kotlin.Int) : Appliance {
-        val localVariableConfig = appliancesRetrieveRequestConfig(id = id)
+    fun appliancesRetrieve(hostname: kotlin.String) : Appliance {
+        val localVariableConfig = appliancesRetrieveRequestConfig(hostname = hostname)
 
         val localVarResponse = request<Unit, Appliance>(
             localVariableConfig
@@ -1687,10 +1687,63 @@ class AppliancesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(baseP
     /**
     * To obtain the request config of the operation appliancesRetrieve
     *
+    * @param hostname  
+    * @return RequestConfig
+    */
+    fun appliancesRetrieveRequestConfig(hostname: kotlin.String) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/appliances/{hostname}".replace("{"+"hostname"+"}", "$hostname"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+    }
+
+    /**
+    * 
+    * All-in-one Print Nanny installation via print-nanny-main-&lt;platform&gt;-&lt;cpu&gt;.img
+    * @param id A unique integer value identifying this appliance. 
+    * @return Appliance
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun appliancesRetrieve2(id: kotlin.Int) : Appliance {
+        val localVariableConfig = appliancesRetrieve2RequestConfig(id = id)
+
+        val localVarResponse = request<Unit, Appliance>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as Appliance
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation appliancesRetrieve2
+    *
     * @param id A unique integer value identifying this appliance. 
     * @return RequestConfig
     */
-    fun appliancesRetrieveRequestConfig(id: kotlin.Int) : RequestConfig<Unit> {
+    fun appliancesRetrieve2RequestConfig(id: kotlin.Int) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
