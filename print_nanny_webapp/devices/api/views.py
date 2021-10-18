@@ -128,7 +128,25 @@ class ApplianceViewSet(
         serializer.save(user=self.request.user)
 
 
-class ApplianceHostnameViewSet(ApplianceViewSet):
+###
+# Appliances (by hostname)
+##
+retrieve_appliances_schema = extend_schema(
+    operation_id="appliances_retrieve_hostname",
+    responses={
+        "default": ErrorDetailSerializer,
+        200: ApplianceSerializer,
+    },
+)
+
+
+@extend_schema_view(retrieve=retrieve_appliances_schema)
+class ApplianceHostnameViewSet(
+    GenericViewSet,
+    RetrieveModelMixin,
+):
+    serializer_class = ApplianceSerializer
+    queryset = Appliance.objects.all()
     lookup_field = "hostname"
 
 
