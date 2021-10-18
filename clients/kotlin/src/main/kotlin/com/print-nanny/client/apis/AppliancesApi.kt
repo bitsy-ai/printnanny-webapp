@@ -1654,7 +1654,7 @@ class AppliancesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(baseP
     /**
     * 
     * All-in-one Print Nanny installation via print-nanny-main-&lt;platform&gt;-&lt;cpu&gt;.img
-    * @param hostname  
+    * @param id A unique integer value identifying this appliance. 
     * @return Appliance
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
@@ -1662,8 +1662,8 @@ class AppliancesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(baseP
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun appliancesRetrieve(hostname: kotlin.String) : Appliance {
-        val localVariableConfig = appliancesRetrieveRequestConfig(hostname = hostname)
+    fun appliancesRetrieve(id: kotlin.Int) : Appliance {
+        val localVariableConfig = appliancesRetrieveRequestConfig(id = id)
 
         val localVarResponse = request<Unit, Appliance>(
             localVariableConfig
@@ -1687,17 +1687,17 @@ class AppliancesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(baseP
     /**
     * To obtain the request config of the operation appliancesRetrieve
     *
-    * @param hostname  
+    * @param id A unique integer value identifying this appliance. 
     * @return RequestConfig
     */
-    fun appliancesRetrieveRequestConfig(hostname: kotlin.String) : RequestConfig<Unit> {
+    fun appliancesRetrieveRequestConfig(id: kotlin.Int) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/api/appliances/{hostname}".replace("{"+"hostname"+"}", "$hostname"),
+            path = "/api/appliances/{id}/".replace("{"+"id"+"}", "$id"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
@@ -1706,8 +1706,8 @@ class AppliancesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(baseP
 
     /**
     * 
-    * All-in-one Print Nanny installation via print-nanny-main-&lt;platform&gt;-&lt;cpu&gt;.img
-    * @param id A unique integer value identifying this appliance. 
+    * 
+    * @param hostname  
     * @return Appliance
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
@@ -1715,8 +1715,8 @@ class AppliancesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(baseP
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun appliancesRetrieve2(id: kotlin.Int) : Appliance {
-        val localVariableConfig = appliancesRetrieve2RequestConfig(id = id)
+    fun appliancesRetrieveHostname(hostname: kotlin.String) : Appliance {
+        val localVariableConfig = appliancesRetrieveHostnameRequestConfig(hostname = hostname)
 
         val localVarResponse = request<Unit, Appliance>(
             localVariableConfig
@@ -1738,19 +1738,19 @@ class AppliancesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(baseP
     }
 
     /**
-    * To obtain the request config of the operation appliancesRetrieve2
+    * To obtain the request config of the operation appliancesRetrieveHostname
     *
-    * @param id A unique integer value identifying this appliance. 
+    * @param hostname  
     * @return RequestConfig
     */
-    fun appliancesRetrieve2RequestConfig(id: kotlin.Int) : RequestConfig<Unit> {
+    fun appliancesRetrieveHostnameRequestConfig(hostname: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/api/appliances/{id}/".replace("{"+"id"+"}", "$id"),
+            path = "/api/appliances/{hostname}".replace("{"+"hostname"+"}", "$hostname"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody

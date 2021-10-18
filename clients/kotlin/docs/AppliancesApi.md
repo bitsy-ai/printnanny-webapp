@@ -32,8 +32,8 @@ Method | HTTP request | Description
 [**appliancesPublicKeysPartialUpdate**](AppliancesApi.md#appliancesPublicKeysPartialUpdate) | **PATCH** /api/appliances/{appliance_id}/public-keys/{id}/ | 
 [**appliancesPublicKeysRetrieve**](AppliancesApi.md#appliancesPublicKeysRetrieve) | **GET** /api/appliances/{appliance_id}/public-keys/{id}/ | 
 [**appliancesPublicKeysUpdate**](AppliancesApi.md#appliancesPublicKeysUpdate) | **PUT** /api/appliances/{appliance_id}/public-keys/{id}/ | 
-[**appliancesRetrieve**](AppliancesApi.md#appliancesRetrieve) | **GET** /api/appliances/{hostname} | 
-[**appliancesRetrieve2**](AppliancesApi.md#appliancesRetrieve2) | **GET** /api/appliances/{id}/ | 
+[**appliancesRetrieve**](AppliancesApi.md#appliancesRetrieve) | **GET** /api/appliances/{id}/ | 
+[**appliancesRetrieveHostname**](AppliancesApi.md#appliancesRetrieveHostname) | **GET** /api/appliances/{hostname} | 
 [**appliancesUpdate**](AppliancesApi.md#appliancesUpdate) | **PUT** /api/appliances/{id}/ | 
 
 
@@ -1527,7 +1527,7 @@ Configure tokenAuth:
 
 <a name="appliancesRetrieve"></a>
 # **appliancesRetrieve**
-> Appliance appliancesRetrieve(hostname)
+> Appliance appliancesRetrieve(id)
 
 
 
@@ -1540,9 +1540,9 @@ All-in-one Print Nanny installation via print-nanny-main-&lt;platform&gt;-&lt;cp
 //import com.print-nanny.client.models.*
 
 val apiInstance = AppliancesApi()
-val hostname : kotlin.String = hostname_example // kotlin.String | 
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this appliance.
 try {
-    val result : Appliance = apiInstance.appliancesRetrieve(hostname)
+    val result : Appliance = apiInstance.appliancesRetrieve(id)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling AppliancesApi#appliancesRetrieve")
@@ -1557,7 +1557,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **hostname** | **kotlin.String**|  |
+ **id** | **kotlin.Int**| A unique integer value identifying this appliance. |
 
 ### Return type
 
@@ -1577,13 +1577,11 @@ Configure tokenAuth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="appliancesRetrieve2"></a>
-# **appliancesRetrieve2**
-> Appliance appliancesRetrieve2(id)
+<a name="appliancesRetrieveHostname"></a>
+# **appliancesRetrieveHostname**
+> Appliance appliancesRetrieveHostname(hostname)
 
 
-
-All-in-one Print Nanny installation via print-nanny-main-&lt;platform&gt;-&lt;cpu&gt;.img
 
 ### Example
 ```kotlin
@@ -1592,15 +1590,15 @@ All-in-one Print Nanny installation via print-nanny-main-&lt;platform&gt;-&lt;cp
 //import com.print-nanny.client.models.*
 
 val apiInstance = AppliancesApi()
-val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this appliance.
+val hostname : kotlin.String = hostname_example // kotlin.String | 
 try {
-    val result : Appliance = apiInstance.appliancesRetrieve2(id)
+    val result : Appliance = apiInstance.appliancesRetrieveHostname(hostname)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling AppliancesApi#appliancesRetrieve2")
+    println("4xx response calling AppliancesApi#appliancesRetrieveHostname")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling AppliancesApi#appliancesRetrieve2")
+    println("5xx response calling AppliancesApi#appliancesRetrieveHostname")
     e.printStackTrace()
 }
 ```
@@ -1609,7 +1607,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **kotlin.Int**| A unique integer value identifying this appliance. |
+ **hostname** | **kotlin.String**|  |
 
 ### Return type
 
