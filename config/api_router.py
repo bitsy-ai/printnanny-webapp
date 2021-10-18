@@ -1,3 +1,4 @@
+from django.urls import path
 from rest_framework.routers import DefaultRouter
 from rest_framework_nested.routers import NestedSimpleRouter
 from print_nanny_webapp.devices.api.serializers import PrinterControllerSerializer
@@ -5,6 +6,7 @@ from print_nanny_webapp.devices.api.serializers import PrinterControllerSerializ
 from print_nanny_webapp.devices.api.views import (
     AnsibleFactsViewSet,
     ApplianceViewSet,
+    ApplianceHostnameViewSet,
     AppliancePublicKeyViewSet,
     CameraViewSet,
     CloudIoTDeviceViewSet,
@@ -41,6 +43,10 @@ router = DefaultRouter()
 
 router.register("alerts", AlertViewSet)
 router.register("appliances", ApplianceViewSet)
+# enables /api/appliances/:hostname lookup (no nested routing)
+appliances_by_hostname = [
+    path("appliances/<slug:hostname>", ApplianceHostnameViewSet.as_view({'get': 'retrieve'})),
+]
 
 appliances_router = NestedSimpleRouter(router, r'appliances', lookup='appliance')
 appliances_router.register(r'ansible-facts', AnsibleFactsViewSet, basename='ansible-facts')
@@ -71,4 +77,4 @@ router.register(r"partners/3d-geeks", GeeksViewSet, basename='partner-3d-geeks')
 
 app_name = "api"
 
-urlpatterns = router.urls + appliances_router.urls
+urlpatterns = router.urls + appliances_router.urls + appliances_by_hostname

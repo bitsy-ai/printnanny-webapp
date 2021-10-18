@@ -32,7 +32,8 @@ Method | HTTP request | Description
 [**appliances_public_keys_partial_update**](AppliancesApi.md#appliances_public_keys_partial_update) | **PATCH** /api/appliances/{appliance_id}/public-keys/{id}/ | 
 [**appliances_public_keys_retrieve**](AppliancesApi.md#appliances_public_keys_retrieve) | **GET** /api/appliances/{appliance_id}/public-keys/{id}/ | 
 [**appliances_public_keys_update**](AppliancesApi.md#appliances_public_keys_update) | **PUT** /api/appliances/{appliance_id}/public-keys/{id}/ | 
-[**appliances_retrieve**](AppliancesApi.md#appliances_retrieve) | **GET** /api/appliances/{id}/ | 
+[**appliances_retrieve**](AppliancesApi.md#appliances_retrieve) | **GET** /api/appliances/{hostname} | 
+[**appliances_retrieve2**](AppliancesApi.md#appliances_retrieve2) | **GET** /api/appliances/{id}/ | 
 [**appliances_update**](AppliancesApi.md#appliances_update) | **PUT** /api/appliances/{id}/ | 
 
 
@@ -875,7 +876,37 @@ Name | Type | Description  | Required | Notes
 
 ## appliances_retrieve
 
-> crate::models::Appliance appliances_retrieve(id)
+> crate::models::Appliance appliances_retrieve(hostname)
+
+
+All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**hostname** | **String** |  | [required] |
+
+### Return type
+
+[**crate::models::Appliance**](Appliance.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## appliances_retrieve2
+
+> crate::models::Appliance appliances_retrieve2(id)
 
 
 All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img

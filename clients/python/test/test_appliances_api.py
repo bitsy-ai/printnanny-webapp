@@ -202,6 +202,12 @@ class TestAppliancesApi(unittest.TestCase):
         """
         pass
 
+    def test_appliances_retrieve2(self):
+        """Test case for appliances_retrieve2
+
+        """
+        pass
+
     def test_appliances_update(self):
         """Test case for appliances_update
 

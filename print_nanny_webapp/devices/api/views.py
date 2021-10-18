@@ -76,7 +76,7 @@ class AnsibleFactsViewSet(
 
 
 ##
-# Appliance
+# Appliance (by id)
 ##
 list_appliances_schema = extend_schema(
     responses={
@@ -126,6 +126,10 @@ class ApplianceViewSet(
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+
+class ApplianceHostnameViewSet(ApplianceViewSet):
+    lookup_field = "hostname"
 
 
 ##
