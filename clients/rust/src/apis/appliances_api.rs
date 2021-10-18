@@ -233,10 +233,11 @@ pub enum AppliancesRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`appliances_retrieve2`]
+/// struct for typed errors of method [`appliances_retrieve_hostname`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum AppliancesRetrieve2Error {
+pub enum AppliancesRetrieveHostnameError {
+    DefaultResponse(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -1133,12 +1134,12 @@ pub async fn appliances_public_keys_update(configuration: &configuration::Config
 }
 
 /// All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-pub async fn appliances_retrieve(configuration: &configuration::Configuration, hostname: &str) -> Result<crate::models::Appliance, Error<AppliancesRetrieveError>> {
+pub async fn appliances_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::Appliance, Error<AppliancesRetrieveError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/appliances/{hostname}", local_var_configuration.base_path, hostname=crate::apis::urlencode(hostname));
+    let local_var_uri_str = format!("{}/api/appliances/{id}/", local_var_configuration.base_path, id=id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -1163,13 +1164,12 @@ pub async fn appliances_retrieve(configuration: &configuration::Configuration, h
     }
 }
 
-/// All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-pub async fn appliances_retrieve2(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::Appliance, Error<AppliancesRetrieve2Error>> {
+pub async fn appliances_retrieve_hostname(configuration: &configuration::Configuration, hostname: &str) -> Result<crate::models::Appliance, Error<AppliancesRetrieveHostnameError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/appliances/{id}/", local_var_configuration.base_path, id=id);
+    let local_var_uri_str = format!("{}/api/appliances/{hostname}", local_var_configuration.base_path, hostname=crate::apis::urlencode(hostname));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -1188,7 +1188,7 @@ pub async fn appliances_retrieve2(configuration: &configuration::Configuration, 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<AppliancesRetrieve2Error> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<AppliancesRetrieveHostnameError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }

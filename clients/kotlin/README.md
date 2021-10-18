@@ -70,8 +70,8 @@ Class | Method | HTTP request | Description
 *AppliancesApi* | [**appliancesPublicKeysPartialUpdate**](docs/AppliancesApi.md#appliancespublickeyspartialupdate) | **PATCH** /api/appliances/{appliance_id}/public-keys/{id}/ | 
 *AppliancesApi* | [**appliancesPublicKeysRetrieve**](docs/AppliancesApi.md#appliancespublickeysretrieve) | **GET** /api/appliances/{appliance_id}/public-keys/{id}/ | 
 *AppliancesApi* | [**appliancesPublicKeysUpdate**](docs/AppliancesApi.md#appliancespublickeysupdate) | **PUT** /api/appliances/{appliance_id}/public-keys/{id}/ | 
-*AppliancesApi* | [**appliancesRetrieve**](docs/AppliancesApi.md#appliancesretrieve) | **GET** /api/appliances/{hostname} | 
-*AppliancesApi* | [**appliancesRetrieve2**](docs/AppliancesApi.md#appliancesretrieve2) | **GET** /api/appliances/{id}/ | 
+*AppliancesApi* | [**appliancesRetrieve**](docs/AppliancesApi.md#appliancesretrieve) | **GET** /api/appliances/{id}/ | 
+*AppliancesApi* | [**appliancesRetrieveHostname**](docs/AppliancesApi.md#appliancesretrievehostname) | **GET** /api/appliances/{hostname} | 
 *AppliancesApi* | [**appliancesUpdate**](docs/AppliancesApi.md#appliancesupdate) | **PUT** /api/appliances/{id}/ | 
 *AuthApi* | [**authEmailCreate**](docs/AuthApi.md#authemailcreate) | **POST** /auth/email/ | 
 *AuthApi* | [**authMobileCreate**](docs/AuthApi.md#authmobilecreate) | **POST** /auth/mobile/ | 

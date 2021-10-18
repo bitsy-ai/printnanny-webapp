@@ -202,8 +202,8 @@ class TestAppliancesApi(unittest.TestCase):
         """
         pass
 
-    def test_appliances_retrieve2(self):
-        """Test case for appliances_retrieve2
+    def test_appliances_retrieve_hostname(self):
+        """Test case for appliances_retrieve_hostname
 
         """
         pass

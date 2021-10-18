@@ -7818,15 +7818,15 @@ export const AppliancesApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-         * @param {string} hostname 
+         * @param {number} id A unique integer value identifying this appliance.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        appliancesRetrieve: async (hostname: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'hostname' is not null or undefined
-            assertParamExists('appliancesRetrieve', 'hostname', hostname)
-            const localVarPath = `/api/appliances/{hostname}`
-                .replace(`{${"hostname"}}`, encodeURIComponent(String(hostname)));
+        appliancesRetrieve: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('appliancesRetrieve', 'id', id)
+            const localVarPath = `/api/appliances/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -7856,16 +7856,16 @@ export const AppliancesApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-         * @param {number} id A unique integer value identifying this appliance.
+         * 
+         * @param {string} hostname 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        appliancesRetrieve2: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('appliancesRetrieve2', 'id', id)
-            const localVarPath = `/api/appliances/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+        appliancesRetrieveHostname: async (hostname: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'hostname' is not null or undefined
+            assertParamExists('appliancesRetrieveHostname', 'hostname', hostname)
+            const localVarPath = `/api/appliances/{hostname}`
+                .replace(`{${"hostname"}}`, encodeURIComponent(String(hostname)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -8267,22 +8267,22 @@ export const AppliancesApiFp = function(configuration?: Configuration) {
         },
         /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-         * @param {string} hostname 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async appliancesRetrieve(hostname: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Appliance>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesRetrieve(hostname, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {number} id A unique integer value identifying this appliance.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async appliancesRetrieve2(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Appliance>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesRetrieve2(id, options);
+        async appliancesRetrieve(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Appliance>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} hostname 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesRetrieveHostname(hostname: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Appliance>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesRetrieveHostname(hostname, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -8596,21 +8596,21 @@ export const AppliancesApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-         * @param {string} hostname 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        appliancesRetrieve(hostname: string, options?: any): AxiosPromise<Appliance> {
-            return localVarFp.appliancesRetrieve(hostname, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {number} id A unique integer value identifying this appliance.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        appliancesRetrieve2(id: number, options?: any): AxiosPromise<Appliance> {
-            return localVarFp.appliancesRetrieve2(id, options).then((request) => request(axios, basePath));
+        appliancesRetrieve(id: number, options?: any): AxiosPromise<Appliance> {
+            return localVarFp.appliancesRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} hostname 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesRetrieveHostname(hostname: string, options?: any): AxiosPromise<Appliance> {
+            return localVarFp.appliancesRetrieveHostname(hostname, options).then((request) => request(axios, basePath));
         },
         /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
@@ -8921,21 +8921,21 @@ export interface AppliancesApiInterface {
 
     /**
      * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-     * @param {string} hostname 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AppliancesApiInterface
-     */
-    appliancesRetrieve(hostname: string, options?: AxiosRequestConfig): AxiosPromise<Appliance>;
-
-    /**
-     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
      * @param {number} id A unique integer value identifying this appliance.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AppliancesApiInterface
      */
-    appliancesRetrieve2(id: number, options?: AxiosRequestConfig): AxiosPromise<Appliance>;
+    appliancesRetrieve(id: number, options?: AxiosRequestConfig): AxiosPromise<Appliance>;
+
+    /**
+     * 
+     * @param {string} hostname 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesRetrieveHostname(hostname: string, options?: AxiosRequestConfig): AxiosPromise<Appliance>;
 
     /**
      * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
@@ -9302,24 +9302,24 @@ export class AppliancesApi extends BaseAPI implements AppliancesApiInterface {
 
     /**
      * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-     * @param {string} hostname 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AppliancesApi
-     */
-    public appliancesRetrieve(hostname: string, options?: AxiosRequestConfig) {
-        return AppliancesApiFp(this.configuration).appliancesRetrieve(hostname, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
      * @param {number} id A unique integer value identifying this appliance.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AppliancesApi
      */
-    public appliancesRetrieve2(id: number, options?: AxiosRequestConfig) {
-        return AppliancesApiFp(this.configuration).appliancesRetrieve2(id, options).then((request) => request(this.axios, this.basePath));
+    public appliancesRetrieve(id: number, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} hostname 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesRetrieveHostname(hostname: string, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesRetrieveHostname(hostname, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
