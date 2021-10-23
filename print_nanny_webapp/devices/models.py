@@ -58,6 +58,10 @@ class Appliance(SafeDeleteModel):
     def last_ansible_facts(self):
         return self.ansible_facts.first()
 
+    @property
+    def to_cloudiot_id(self):
+        return f"appliance-id-{self.id}"
+
 
 class CloudIoTDevice(SafeDeleteModel):
     """

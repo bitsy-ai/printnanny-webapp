@@ -172,7 +172,7 @@ def create_cloudiot_device(appliance: Appliance, keypair: KeyPair):
     )
 
     device = cloudiot_v1.types.Device()
-    device.id = str(appliance.id)
+    device.id = appliance.to_cloudiot_id
     device.credentials = [
         {
             "public_key": {
@@ -211,6 +211,9 @@ def update_cloudiot_device(
         user_id=str(appliance.user.id),
         email=appliance.user.email,
     )
+    # google.api_core.exceptions.InvalidArgument: 400 The fields 'device.id' and 'device.num_id' must be empty.
+    del device.num_id
+    del device.id
 
     request = cloudiot_v1.types.UpdateDeviceRequest(
         device=device, update_mask={"paths": ["credentials", "metadata"]}
@@ -228,7 +231,7 @@ def update_or_create_cloudiot_device(
         settings.GCP_PROJECT_ID,
         settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
         settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
-        appliance.hostname,
+        appliance.to_cloudiot_id,
     )
 
     try:
@@ -254,10 +257,9 @@ def generate_keypair_and_update_or_create_cloudiot_device(
 
     # update apppliance relationships
     if appliance.cloudiot_devices.first():
-        appliance.cloudiot_devices.first().update(
+        appliance.cloudiot_devices.update(
             num_id=cloudiot_device.num_id,
             name=cloudiot_device.name,
-            appliance=appliance,
         )
     else:
         # create new print_nanny_webapp.devices.models.CloudIoTDevices object
