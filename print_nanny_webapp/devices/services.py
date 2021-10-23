@@ -31,6 +31,7 @@ class KeyPair(TypedDict):
     public_key: str
     public_key_checksum: str
     fingerprint: str
+    # TODO x509
     # ca_certs: CACerts
 
 
@@ -88,6 +89,7 @@ def check_ca_certs():
 
 def generate_keypair():
 
+    # TODO x509
     # ca_certs = check_ca_certs()
 
     with tempfile.TemporaryDirectory() as tmp:
@@ -220,9 +222,7 @@ def update_cloudiot_device(
 
 def update_or_create_cloudiot_device(
     appliance: Appliance, keypair: KeyPair
-) -> Tuple[bool, CloudIoTDevice]:
-
-    CloudIoTDevice = apps.get_model("devices", "CloudIoTDevice")
+) -> cloudiot_v1.Device:
     # request to Cloud IoT API
     client = cloudiot_v1.DeviceManagerClient()
 
@@ -234,31 +234,53 @@ def update_or_create_cloudiot_device(
     )
 
     try:
-        cloudiot_device_msg: cloudiot_v1.types.Device = client.get_device(
+        cloudiot_device: cloudiot_v1.types.Device = client.get_device(
             name=device_path
         )
-        cloudiot_device_msg: cloudiot_v1.types.Device = update_cloudiot_device(
-            cloudiot_device_msg, appliance, keypair
+        cloudiot_device: cloudiot_v1.types.Device = update_cloudiot_device(
+            cloudiot_device, appliance, keypair
         )
     except google.api_core.exceptions.NotFound:
-        cloudiot_device_msg: cloudiot_v1.Device = create_cloudiot_device(
+        cloudiot_device: cloudiot_v1.Device = create_cloudiot_device(
             appliance, keypair
         )
 
-    # cloudiot_device_dict = MessageToDict(cloudiot_device._pb)
+    return cloudiot_device
+
+def generate_keypair_and_update_or_create_cloudiot_device(appliance: Appliance) -> Tuple[KeyPair, CloudIoTDevice]:
+    keypair = generate_keypair()
+    cloudiot_device = update_or_create_cloudiot_device(
+        appliance=appliance, keypair=keypair
+    )
+    CloudIoTDevice = apps.get_model("devices", "CloudIoTDevice")
+    AppliancePublicKey = apps.get_model("devices", "AppliancePublicKey")
 
     # update apppliance relationships
     if appliance.cloudiot_devices.first():
         appliance.cloudiot_devices.first().update(
-            num_id=cloudiot_device_msg.num_id,
-            name=cloudiot_device_msg.name,
+            num_id=cloudiot_device.num_id,
+            name=cloudiot_device.name,
             appliance=appliance,
         )
     else:
         # create new print_nanny_webapp.devices.models.CloudIoTDevices object
-        cloudiot_device = CloudIoTDevice.objects.create(
-            num_id=cloudiot_device_msg.num_id,
-            name=cloudiot_device_msg.name,
+        CloudIoTDevice.objects.create(
+            num_id=cloudiot_device.num_id,
+            name=cloudiot_device.name,
             appliance=appliance,
         )
-    return appliance.cloudiot_devices.first()
+    if appliance.public_keys.first():
+        appliance.public_keys.update(
+            public_key=keypair['public_key'],
+            public_key_checksum=keypair['public_key_checksum'],
+            fingerprint=keypair['fingerprint'],
+            appliance=appliance
+        )
+    else:
+        AppliancePublicKey.objects.create(
+            public_key=keypair['public_key'],
+            public_key_checksum=keypair['public_key_checksum'],
+            fingerprint=keypair['fingerprint'],
+            appliance=appliance
+        )
+    return keypair, appliance.cloudiot_devices.first()
