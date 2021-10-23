@@ -66,6 +66,12 @@ class AppliancePublicKeySerializer(serializers.ModelSerializer):
     class Meta:
         model = AppliancePublicKey
         fields = "__all__"
+        read_only_fields = ("public_key", "public_key_checksum", "fingerprint", "user")
+
+
+class ApplianceKeyPairSerializer(AppliancePublicKeySerializer):
+    private_key = serializers.CharField(read_only=True)
+    private_key_checksum = serializers.CharField(read_only=True)
 
 
 class AnsibleFactsSerializer(serializers.ModelSerializer):

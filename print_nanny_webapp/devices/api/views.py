@@ -17,6 +17,7 @@ from rest_framework.viewsets import GenericViewSet
 
 from .serializers import (
     AnsibleFactsSerializer,
+    ApplianceKeyPairSerializer,
     AppliancePublicKeySerializer,
     ApplianceSerializer,
     CameraSerializer,
@@ -160,11 +161,11 @@ list_appliance_public_keys_schema = extend_schema(
     },
 )
 modify_appliance_public_keys_schema = extend_schema(
-    request=AppliancePublicKeySerializer,
+    request=ApplianceKeyPairSerializer,
     responses={
         "default": ErrorDetailSerializer,
-        201: AppliancePublicKeySerializer,
-        202: AppliancePublicKeySerializer,
+        201: ApplianceKeyPairSerializer,
+        202: ApplianceKeyPairSerializer,
     },
 )
 

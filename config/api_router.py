@@ -50,7 +50,7 @@ appliances_by_hostname = [
 
 appliances_router = NestedSimpleRouter(router, r'appliances', lookup='appliance')
 appliances_router.register(r'ansible-facts', AnsibleFactsViewSet, basename='ansible-facts')
-appliances_router.register(r'public-keys', AppliancePublicKeyViewSet, basename='public-keys')
+appliances_router.register(r'keypairs', AppliancePublicKeyViewSet, basename='keypairs')
 appliances_router.register(r'cameras', CameraViewSet, basename='cameras')
 appliances_router.register(r'cloud-iot-devices', CloudIoTDeviceViewSet, basename='cloud-iot-devices')
 appliances_router.register(r'printer-controllers', PrinterControllerViewSet, basename='printer-controllers')
