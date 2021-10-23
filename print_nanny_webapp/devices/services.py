@@ -10,6 +10,8 @@ from google.protobuf.json_format import MessageToDict
 import google.api_core.exceptions
 import subprocess
 
+from .models import Appliance, CloudIoTDevice
+
 logger = logging.getLogger(__name__)
 
 
@@ -83,7 +85,7 @@ def check_ca_certs():
 
 def generate_keypair():
 
-    ca_certs = check_ca_certs()
+    # ca_certs = check_ca_certs()
 
     with tempfile.TemporaryDirectory() as tmp:
         keypair_filename = f"{tmp}/ecdsa256_keypair.pem"
@@ -230,36 +232,22 @@ def update_cloudiot_device(
 
 
 def update_or_create_cloudiot_device(
-    name: str,
-    serial: str,
-    user_id: int,
-    metadata: dict,
-    fingerprint: str,
-    public_key_content: str,
-):
+    appliance: Appliance, keypair: KeyPair
+) -> CloudIoTDevice:
     client = cloudiot_v1.DeviceManagerClient()
 
     device_path = client.device_path(
         settings.GCP_PROJECT_ID,
         settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
         settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
-        name,
+        appliance.hostname,
     )
 
     try:
         cloudiot_device = client.get_device(name=device_path)
-        cloudiot_device = update_cloudiot_device(
-            cloudiot_device,
-            serial,
-            user_id,
-            metadata,
-            fingerprint,
-            public_key_content,
-        )
-    except google.api_core.exceptions.NotFound as e:
-        cloudiot_device = create_cloudiot_device(
-            name, serial, user_id, metadata, fingerprint, public_key_content
-        )
+        cloudiot_device = update_cloudiot_device(cloudiot_device, appliance, keypair)
+    except google.api_core.exceptions.NotFound:
+        cloudiot_device = create_cloudiot_device(appliance, keypair)
 
     cloudiot_device_dict = MessageToDict(cloudiot_device._pb)
     return cloudiot_device_dict, device_path

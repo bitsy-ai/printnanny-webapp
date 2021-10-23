@@ -4,7 +4,7 @@ from typing import Any
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from django.db.utils import IntegrityError
 
-import rest_framework.status
+from django.shortcuts import get_object_or_404
 from rest_framework.mixins import (
     ListModelMixin,
     RetrieveModelMixin,
@@ -14,6 +14,8 @@ from rest_framework.mixins import (
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
+
+from print_nanny_webapp.devices.services import KeyPair
 
 from .serializers import (
     AnsibleFactsSerializer,
@@ -32,6 +34,7 @@ from ..models import (
     CloudIoTDevice,
     PrinterController,
 )
+from ..services import generate_keypair, KeyPair, update_or_create_cloudiot_device
 from print_nanny_webapp.utils.api.exceptions import AlreadyExists
 from print_nanny_webapp.utils.api.serializers import ErrorDetailSerializer
 
@@ -175,7 +178,7 @@ modify_appliance_public_keys_schema = extend_schema(
     create=modify_appliance_public_keys_schema,
     update=modify_appliance_public_keys_schema,
 )
-class AppliancePublicKeyViewSet(
+class ApplianceKeyPairViewSet(
     GenericViewSet,
     CreateModelMixin,
     ListModelMixin,
@@ -193,8 +196,11 @@ class AppliancePublicKeyViewSet(
     lookup_field = "id"
 
     def create(self, request: Request, *args: Any, **kwargs: Any) -> Response:
-        appliance = request.data.get("appliance_id")
+        appliance_id = request.data.get("appliance_id")
+        appliance = get_object_or_404(Appliance, pk=appliance_id)
         try:
+            keypair: KeyPair = generate_keypair()
+            cloudiot_device = update_or_create_cloudiot_device(appliance, keypair)
             return super().create(request, *args, **kwargs)
         except IntegrityError:
             raise AlreadyExists(
