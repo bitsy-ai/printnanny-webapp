@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.patched_appliance_public_key_request import PatchedAppliancePublicKeyRequest  # noqa: E501
+from print_nanny_client.models.appliance_key_pair import ApplianceKeyPair  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestPatchedAppliancePublicKeyRequest(unittest.TestCase):
-    """PatchedAppliancePublicKeyRequest unit test stubs"""
+class TestApplianceKeyPair(unittest.TestCase):
+    """ApplianceKeyPair unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,23 +29,25 @@ class TestPatchedAppliancePublicKeyRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test PatchedAppliancePublicKeyRequest
+        """Test ApplianceKeyPair
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.patched_appliance_public_key_request.PatchedAppliancePublicKeyRequest()  # noqa: E501
+        # model = print_nanny_client.models.appliance_key_pair.ApplianceKeyPair()  # noqa: E501
         if include_optional :
-            return PatchedAppliancePublicKeyRequest(
+            return ApplianceKeyPair(
+                private_key = '', 
+                private_key_checksum = '', 
                 public_key = '', 
                 public_key_checksum = '', 
-                fingerprint = ''
+                fingerprint_checksum = ''
             )
         else :
-            return PatchedAppliancePublicKeyRequest(
+            return ApplianceKeyPair(
         )
 
-    def testPatchedAppliancePublicKeyRequest(self):
-        """Test PatchedAppliancePublicKeyRequest"""
+    def testApplianceKeyPair(self):
+        """Test ApplianceKeyPair"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

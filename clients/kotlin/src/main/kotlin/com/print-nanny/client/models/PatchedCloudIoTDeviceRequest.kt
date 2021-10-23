@@ -34,7 +34,7 @@ import java.io.Serializable
 
 data class PatchedCloudIoTDeviceRequest (
 
-    @Json(name = "numId")
+    @Json(name = "num_id")
     val numId: kotlin.Long? = null,
 
     @Json(name = "name")

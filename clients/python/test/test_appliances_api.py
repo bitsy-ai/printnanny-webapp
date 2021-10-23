@@ -124,6 +124,24 @@ class TestAppliancesApi(unittest.TestCase):
         """
         pass
 
+    def test_appliances_keypairs_create(self):
+        """Test case for appliances_keypairs_create
+
+        """
+        pass
+
+    def test_appliances_keypairs_list(self):
+        """Test case for appliances_keypairs_list
+
+        """
+        pass
+
+    def test_appliances_keypairs_retrieve(self):
+        """Test case for appliances_keypairs_retrieve
+
+        """
+        pass
+
     def test_appliances_list(self):
         """Test case for appliances_list
 
@@ -162,36 +180,6 @@ class TestAppliancesApi(unittest.TestCase):
 
     def test_appliances_printer_controllers_update(self):
         """Test case for appliances_printer_controllers_update
-
-        """
-        pass
-
-    def test_appliances_public_keys_create(self):
-        """Test case for appliances_public_keys_create
-
-        """
-        pass
-
-    def test_appliances_public_keys_list(self):
-        """Test case for appliances_public_keys_list
-
-        """
-        pass
-
-    def test_appliances_public_keys_partial_update(self):
-        """Test case for appliances_public_keys_partial_update
-
-        """
-        pass
-
-    def test_appliances_public_keys_retrieve(self):
-        """Test case for appliances_public_keys_retrieve
-
-        """
-        pass
-
-    def test_appliances_public_keys_update(self):
-        """Test case for appliances_public_keys_update
 
         """
         pass

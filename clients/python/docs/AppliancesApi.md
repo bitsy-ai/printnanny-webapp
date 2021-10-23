@@ -20,6 +20,9 @@ Method | HTTP request | Description
 [**appliances_cloud_iot_devices_retrieve**](AppliancesApi.md#appliances_cloud_iot_devices_retrieve) | **GET** /api/appliances/{appliance_id}/cloud-iot-devices/{id}/ | 
 [**appliances_cloud_iot_devices_update**](AppliancesApi.md#appliances_cloud_iot_devices_update) | **PUT** /api/appliances/{appliance_id}/cloud-iot-devices/{id}/ | 
 [**appliances_create**](AppliancesApi.md#appliances_create) | **POST** /api/appliances/ | 
+[**appliances_keypairs_create**](AppliancesApi.md#appliances_keypairs_create) | **POST** /api/appliances/{appliance_id}/keypairs/ | 
+[**appliances_keypairs_list**](AppliancesApi.md#appliances_keypairs_list) | **GET** /api/appliances/{appliance_id}/keypairs/ | 
+[**appliances_keypairs_retrieve**](AppliancesApi.md#appliances_keypairs_retrieve) | **GET** /api/appliances/{appliance_id}/keypairs/{id}/ | 
 [**appliances_list**](AppliancesApi.md#appliances_list) | **GET** /api/appliances/ | 
 [**appliances_partial_update**](AppliancesApi.md#appliances_partial_update) | **PATCH** /api/appliances/{id}/ | 
 [**appliances_printer_controllers_create**](AppliancesApi.md#appliances_printer_controllers_create) | **POST** /api/appliances/{appliance_id}/printer-controllers/ | 
@@ -27,11 +30,6 @@ Method | HTTP request | Description
 [**appliances_printer_controllers_partial_update**](AppliancesApi.md#appliances_printer_controllers_partial_update) | **PATCH** /api/appliances/{appliance_id}/printer-controllers/{id}/ | 
 [**appliances_printer_controllers_retrieve**](AppliancesApi.md#appliances_printer_controllers_retrieve) | **GET** /api/appliances/{appliance_id}/printer-controllers/{id}/ | 
 [**appliances_printer_controllers_update**](AppliancesApi.md#appliances_printer_controllers_update) | **PUT** /api/appliances/{appliance_id}/printer-controllers/{id}/ | 
-[**appliances_public_keys_create**](AppliancesApi.md#appliances_public_keys_create) | **POST** /api/appliances/{appliance_id}/public-keys/ | 
-[**appliances_public_keys_list**](AppliancesApi.md#appliances_public_keys_list) | **GET** /api/appliances/{appliance_id}/public-keys/ | 
-[**appliances_public_keys_partial_update**](AppliancesApi.md#appliances_public_keys_partial_update) | **PATCH** /api/appliances/{appliance_id}/public-keys/{id}/ | 
-[**appliances_public_keys_retrieve**](AppliancesApi.md#appliances_public_keys_retrieve) | **GET** /api/appliances/{appliance_id}/public-keys/{id}/ | 
-[**appliances_public_keys_update**](AppliancesApi.md#appliances_public_keys_update) | **PUT** /api/appliances/{appliance_id}/public-keys/{id}/ | 
 [**appliances_retrieve**](AppliancesApi.md#appliances_retrieve) | **GET** /api/appliances/{id}/ | 
 [**appliances_retrieve_hostname**](AppliancesApi.md#appliances_retrieve_hostname) | **GET** /api/appliances/{hostname} | 
 [**appliances_update**](AppliancesApi.md#appliances_update) | **PUT** /api/appliances/{id}/ | 
@@ -1991,6 +1989,372 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **appliances_keypairs_create**
+> ApplianceKeyPair appliances_keypairs_create(appliance_id)
+
+
+
+Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = print_nanny_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = print_nanny_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with print_nanny_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = print_nanny_client.AppliancesApi(api_client)
+    appliance_id = 56 # int | 
+
+    try:
+        api_response = api_instance.appliances_keypairs_create(appliance_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AppliancesApi->appliances_keypairs_create: %s\n" % e)
+```
+
+* Bearer Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = print_nanny_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = print_nanny_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with print_nanny_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = print_nanny_client.AppliancesApi(api_client)
+    appliance_id = 56 # int | 
+
+    try:
+        api_response = api_instance.appliances_keypairs_create(appliance_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AppliancesApi->appliances_keypairs_create: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **appliance_id** | **int**|  | 
+
+### Return type
+
+[**ApplianceKeyPair**](ApplianceKeyPair.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** |  |  -  |
+**202** |  |  -  |
+**0** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **appliances_keypairs_list**
+> PaginatedAppliancePublicKeyList appliances_keypairs_list(appliance_id, page=page)
+
+
+
+Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = print_nanny_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = print_nanny_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with print_nanny_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = print_nanny_client.AppliancesApi(api_client)
+    appliance_id = 56 # int | 
+page = 56 # int | A page number within the paginated result set. (optional)
+
+    try:
+        api_response = api_instance.appliances_keypairs_list(appliance_id, page=page)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AppliancesApi->appliances_keypairs_list: %s\n" % e)
+```
+
+* Bearer Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = print_nanny_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = print_nanny_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with print_nanny_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = print_nanny_client.AppliancesApi(api_client)
+    appliance_id = 56 # int | 
+page = 56 # int | A page number within the paginated result set. (optional)
+
+    try:
+        api_response = api_instance.appliances_keypairs_list(appliance_id, page=page)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AppliancesApi->appliances_keypairs_list: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **appliance_id** | **int**|  | 
+ **page** | **int**| A page number within the paginated result set. | [optional] 
+
+### Return type
+
+[**PaginatedAppliancePublicKeyList**](PaginatedAppliancePublicKeyList.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**0** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **appliances_keypairs_retrieve**
+> AppliancePublicKey appliances_keypairs_retrieve(appliance_id, id)
+
+
+
+Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = print_nanny_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = print_nanny_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with print_nanny_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = print_nanny_client.AppliancesApi(api_client)
+    appliance_id = 56 # int | 
+id = 56 # int | A unique integer value identifying this appliance public key.
+
+    try:
+        api_response = api_instance.appliances_keypairs_retrieve(appliance_id, id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AppliancesApi->appliances_keypairs_retrieve: %s\n" % e)
+```
+
+* Bearer Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = print_nanny_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = print_nanny_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with print_nanny_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = print_nanny_client.AppliancesApi(api_client)
+    appliance_id = 56 # int | 
+id = 56 # int | A unique integer value identifying this appliance public key.
+
+    try:
+        api_response = api_instance.appliances_keypairs_retrieve(appliance_id, id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AppliancesApi->appliances_keypairs_retrieve: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **appliance_id** | **int**|  | 
+ **id** | **int**| A unique integer value identifying this appliance public key. | 
+
+### Return type
+
+[**AppliancePublicKey**](AppliancePublicKey.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **appliances_list**
 > PaginatedApplianceList appliances_list(page=page)
 
@@ -2825,627 +3189,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PrinterController**](PrinterController.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** |  |  -  |
-**202** |  |  -  |
-**0** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **appliances_public_keys_create**
-> AppliancePublicKey appliances_public_keys_create(appliance_id, appliance_public_key_request)
-
-
-
-Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-
-### Example
-
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import print_nanny_client
-from print_nanny_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = print_nanny_client.AppliancesApi(api_client)
-    appliance_id = 56 # int | 
-appliance_public_key_request = print_nanny_client.AppliancePublicKeyRequest() # AppliancePublicKeyRequest | 
-
-    try:
-        api_response = api_instance.appliances_public_keys_create(appliance_id, appliance_public_key_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling AppliancesApi->appliances_public_keys_create: %s\n" % e)
-```
-
-* Bearer Authentication (tokenAuth):
-```python
-from __future__ import print_function
-import time
-import print_nanny_client
-from print_nanny_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = print_nanny_client.AppliancesApi(api_client)
-    appliance_id = 56 # int | 
-appliance_public_key_request = print_nanny_client.AppliancePublicKeyRequest() # AppliancePublicKeyRequest | 
-
-    try:
-        api_response = api_instance.appliances_public_keys_create(appliance_id, appliance_public_key_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling AppliancesApi->appliances_public_keys_create: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **appliance_id** | **int**|  | 
- **appliance_public_key_request** | [**AppliancePublicKeyRequest**](AppliancePublicKeyRequest.md)|  | 
-
-### Return type
-
-[**AppliancePublicKey**](AppliancePublicKey.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** |  |  -  |
-**202** |  |  -  |
-**0** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **appliances_public_keys_list**
-> PaginatedAppliancePublicKeyList appliances_public_keys_list(appliance_id, page=page)
-
-
-
-Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-
-### Example
-
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import print_nanny_client
-from print_nanny_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = print_nanny_client.AppliancesApi(api_client)
-    appliance_id = 56 # int | 
-page = 56 # int | A page number within the paginated result set. (optional)
-
-    try:
-        api_response = api_instance.appliances_public_keys_list(appliance_id, page=page)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling AppliancesApi->appliances_public_keys_list: %s\n" % e)
-```
-
-* Bearer Authentication (tokenAuth):
-```python
-from __future__ import print_function
-import time
-import print_nanny_client
-from print_nanny_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = print_nanny_client.AppliancesApi(api_client)
-    appliance_id = 56 # int | 
-page = 56 # int | A page number within the paginated result set. (optional)
-
-    try:
-        api_response = api_instance.appliances_public_keys_list(appliance_id, page=page)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling AppliancesApi->appliances_public_keys_list: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **appliance_id** | **int**|  | 
- **page** | **int**| A page number within the paginated result set. | [optional] 
-
-### Return type
-
-[**PaginatedAppliancePublicKeyList**](PaginatedAppliancePublicKeyList.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
-**0** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **appliances_public_keys_partial_update**
-> AppliancePublicKey appliances_public_keys_partial_update(appliance_id, id, patched_appliance_public_key_request=patched_appliance_public_key_request)
-
-
-
-Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-
-### Example
-
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import print_nanny_client
-from print_nanny_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = print_nanny_client.AppliancesApi(api_client)
-    appliance_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this appliance public key.
-patched_appliance_public_key_request = print_nanny_client.PatchedAppliancePublicKeyRequest() # PatchedAppliancePublicKeyRequest |  (optional)
-
-    try:
-        api_response = api_instance.appliances_public_keys_partial_update(appliance_id, id, patched_appliance_public_key_request=patched_appliance_public_key_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling AppliancesApi->appliances_public_keys_partial_update: %s\n" % e)
-```
-
-* Bearer Authentication (tokenAuth):
-```python
-from __future__ import print_function
-import time
-import print_nanny_client
-from print_nanny_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = print_nanny_client.AppliancesApi(api_client)
-    appliance_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this appliance public key.
-patched_appliance_public_key_request = print_nanny_client.PatchedAppliancePublicKeyRequest() # PatchedAppliancePublicKeyRequest |  (optional)
-
-    try:
-        api_response = api_instance.appliances_public_keys_partial_update(appliance_id, id, patched_appliance_public_key_request=patched_appliance_public_key_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling AppliancesApi->appliances_public_keys_partial_update: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **appliance_id** | **int**|  | 
- **id** | **int**| A unique integer value identifying this appliance public key. | 
- **patched_appliance_public_key_request** | [**PatchedAppliancePublicKeyRequest**](PatchedAppliancePublicKeyRequest.md)|  | [optional] 
-
-### Return type
-
-[**AppliancePublicKey**](AppliancePublicKey.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **appliances_public_keys_retrieve**
-> AppliancePublicKey appliances_public_keys_retrieve(appliance_id, id)
-
-
-
-Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-
-### Example
-
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import print_nanny_client
-from print_nanny_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = print_nanny_client.AppliancesApi(api_client)
-    appliance_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this appliance public key.
-
-    try:
-        api_response = api_instance.appliances_public_keys_retrieve(appliance_id, id)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling AppliancesApi->appliances_public_keys_retrieve: %s\n" % e)
-```
-
-* Bearer Authentication (tokenAuth):
-```python
-from __future__ import print_function
-import time
-import print_nanny_client
-from print_nanny_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = print_nanny_client.AppliancesApi(api_client)
-    appliance_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this appliance public key.
-
-    try:
-        api_response = api_instance.appliances_public_keys_retrieve(appliance_id, id)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling AppliancesApi->appliances_public_keys_retrieve: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **appliance_id** | **int**|  | 
- **id** | **int**| A unique integer value identifying this appliance public key. | 
-
-### Return type
-
-[**AppliancePublicKey**](AppliancePublicKey.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **appliances_public_keys_update**
-> AppliancePublicKey appliances_public_keys_update(appliance_id, id, appliance_public_key_request)
-
-
-
-Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-
-### Example
-
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import print_nanny_client
-from print_nanny_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = print_nanny_client.AppliancesApi(api_client)
-    appliance_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this appliance public key.
-appliance_public_key_request = print_nanny_client.AppliancePublicKeyRequest() # AppliancePublicKeyRequest | 
-
-    try:
-        api_response = api_instance.appliances_public_keys_update(appliance_id, id, appliance_public_key_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling AppliancesApi->appliances_public_keys_update: %s\n" % e)
-```
-
-* Bearer Authentication (tokenAuth):
-```python
-from __future__ import print_function
-import time
-import print_nanny_client
-from print_nanny_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = print_nanny_client.AppliancesApi(api_client)
-    appliance_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this appliance public key.
-appliance_public_key_request = print_nanny_client.AppliancePublicKeyRequest() # AppliancePublicKeyRequest | 
-
-    try:
-        api_response = api_instance.appliances_public_keys_update(appliance_id, id, appliance_public_key_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling AppliancesApi->appliances_public_keys_update: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **appliance_id** | **int**|  | 
- **id** | **int**| A unique integer value identifying this appliance public key. | 
- **appliance_public_key_request** | [**AppliancePublicKeyRequest**](AppliancePublicKeyRequest.md)|  | 
-
-### Return type
-
-[**AppliancePublicKey**](AppliancePublicKey.md)
 
 ### Authorization
 

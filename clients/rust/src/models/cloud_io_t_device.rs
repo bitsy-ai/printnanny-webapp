@@ -11,7 +11,7 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct CloudIoTDevice {
-    #[serde(rename = "numId")]
+    #[serde(rename = "num_id")]
     pub num_id: i64,
     #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
     pub user: Option<String>,

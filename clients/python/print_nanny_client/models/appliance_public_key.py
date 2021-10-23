@@ -78,9 +78,12 @@ class AppliancePublicKey(object):
             self.appliance = appliance
         if deleted is not None:
             self.deleted = deleted
-        self.public_key = public_key
-        self.public_key_checksum = public_key_checksum
-        self.fingerprint = fingerprint
+        if public_key is not None:
+            self.public_key = public_key
+        if public_key_checksum is not None:
+            self.public_key_checksum = public_key_checksum
+        if fingerprint is not None:
+            self.fingerprint = fingerprint
 
     @property
     def id(self):
@@ -184,8 +187,6 @@ class AppliancePublicKey(object):
         :param public_key: The public_key of this AppliancePublicKey.  # noqa: E501
         :type public_key: str
         """
-        if self.local_vars_configuration.client_side_validation and public_key is None:  # noqa: E501
-            raise ValueError("Invalid value for `public_key`, must not be `None`")  # noqa: E501
 
         self._public_key = public_key
 
@@ -207,11 +208,6 @@ class AppliancePublicKey(object):
         :param public_key_checksum: The public_key_checksum of this AppliancePublicKey.  # noqa: E501
         :type public_key_checksum: str
         """
-        if self.local_vars_configuration.client_side_validation and public_key_checksum is None:  # noqa: E501
-            raise ValueError("Invalid value for `public_key_checksum`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                public_key_checksum is not None and len(public_key_checksum) > 255):
-            raise ValueError("Invalid value for `public_key_checksum`, length must be less than or equal to `255`")  # noqa: E501
 
         self._public_key_checksum = public_key_checksum
 
@@ -233,11 +229,6 @@ class AppliancePublicKey(object):
         :param fingerprint: The fingerprint of this AppliancePublicKey.  # noqa: E501
         :type fingerprint: str
         """
-        if self.local_vars_configuration.client_side_validation and fingerprint is None:  # noqa: E501
-            raise ValueError("Invalid value for `fingerprint`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                fingerprint is not None and len(fingerprint) > 255):
-            raise ValueError("Invalid value for `fingerprint`, length must be less than or equal to `255`")  # noqa: E501
 
         self._fingerprint = fingerprint
 

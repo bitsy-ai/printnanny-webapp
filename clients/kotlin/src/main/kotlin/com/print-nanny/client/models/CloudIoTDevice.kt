@@ -37,7 +37,7 @@ import java.io.Serializable
 
 data class CloudIoTDevice (
 
-    @Json(name = "numId")
+    @Json(name = "num_id")
     val numId: kotlin.Long,
 
     @Json(name = "name")

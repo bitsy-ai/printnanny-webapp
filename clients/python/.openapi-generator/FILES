@@ -12,8 +12,8 @@ docs/AlertsApi.md
 docs/AnsibleFacts.md
 docs/AnsibleFactsRequest.md
 docs/Appliance.md
+docs/ApplianceKeyPair.md
 docs/AppliancePublicKey.md
-docs/AppliancePublicKeyRequest.md
 docs/ApplianceRequest.md
 docs/AppliancesApi.md
 docs/ArtifactTypesEnum.md
@@ -98,7 +98,6 @@ docs/PartnersGeeks3dApi.md
 docs/PatchedAlertBulkRequestRequest.md
 docs/PatchedAlertRequest.md
 docs/PatchedAnsibleFactsRequest.md
-docs/PatchedAppliancePublicKeyRequest.md
 docs/PatchedApplianceRequest.md
 docs/PatchedCameraRequest.md
 docs/PatchedCloudIoTDeviceRequest.md
@@ -168,8 +167,8 @@ print_nanny_client/models/alert_request.py
 print_nanny_client/models/ansible_facts.py
 print_nanny_client/models/ansible_facts_request.py
 print_nanny_client/models/appliance.py
+print_nanny_client/models/appliance_key_pair.py
 print_nanny_client/models/appliance_public_key.py
-print_nanny_client/models/appliance_public_key_request.py
 print_nanny_client/models/appliance_request.py
 print_nanny_client/models/artifact_types_enum.py
 print_nanny_client/models/callback_token_auth_request.py
@@ -248,7 +247,6 @@ print_nanny_client/models/partner3_d_geeks_metadata.py
 print_nanny_client/models/patched_alert_bulk_request_request.py
 print_nanny_client/models/patched_alert_request.py
 print_nanny_client/models/patched_ansible_facts_request.py
-print_nanny_client/models/patched_appliance_public_key_request.py
 print_nanny_client/models/patched_appliance_request.py
 print_nanny_client/models/patched_camera_request.py
 print_nanny_client/models/patched_cloud_io_t_device_request.py
@@ -304,8 +302,8 @@ test/test_alerts_api.py
 test/test_ansible_facts.py
 test/test_ansible_facts_request.py
 test/test_appliance.py
+test/test_appliance_key_pair.py
 test/test_appliance_public_key.py
-test/test_appliance_public_key_request.py
 test/test_appliance_request.py
 test/test_appliances_api.py
 test/test_artifact_types_enum.py
@@ -390,7 +388,6 @@ test/test_partners_geeks3d_api.py
 test/test_patched_alert_bulk_request_request.py
 test/test_patched_alert_request.py
 test/test_patched_ansible_facts_request.py
-test/test_patched_appliance_public_key_request.py
 test/test_patched_appliance_request.py
 test/test_patched_camera_request.py
 test/test_patched_cloud_io_t_device_request.py

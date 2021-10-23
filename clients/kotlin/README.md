@@ -58,6 +58,9 @@ Class | Method | HTTP request | Description
 *AppliancesApi* | [**appliancesCloudIotDevicesRetrieve**](docs/AppliancesApi.md#appliancescloudiotdevicesretrieve) | **GET** /api/appliances/{appliance_id}/cloud-iot-devices/{id}/ | 
 *AppliancesApi* | [**appliancesCloudIotDevicesUpdate**](docs/AppliancesApi.md#appliancescloudiotdevicesupdate) | **PUT** /api/appliances/{appliance_id}/cloud-iot-devices/{id}/ | 
 *AppliancesApi* | [**appliancesCreate**](docs/AppliancesApi.md#appliancescreate) | **POST** /api/appliances/ | 
+*AppliancesApi* | [**appliancesKeypairsCreate**](docs/AppliancesApi.md#applianceskeypairscreate) | **POST** /api/appliances/{appliance_id}/keypairs/ | 
+*AppliancesApi* | [**appliancesKeypairsList**](docs/AppliancesApi.md#applianceskeypairslist) | **GET** /api/appliances/{appliance_id}/keypairs/ | 
+*AppliancesApi* | [**appliancesKeypairsRetrieve**](docs/AppliancesApi.md#applianceskeypairsretrieve) | **GET** /api/appliances/{appliance_id}/keypairs/{id}/ | 
 *AppliancesApi* | [**appliancesList**](docs/AppliancesApi.md#applianceslist) | **GET** /api/appliances/ | 
 *AppliancesApi* | [**appliancesPartialUpdate**](docs/AppliancesApi.md#appliancespartialupdate) | **PATCH** /api/appliances/{id}/ | 
 *AppliancesApi* | [**appliancesPrinterControllersCreate**](docs/AppliancesApi.md#appliancesprintercontrollerscreate) | **POST** /api/appliances/{appliance_id}/printer-controllers/ | 
@@ -65,11 +68,6 @@ Class | Method | HTTP request | Description
 *AppliancesApi* | [**appliancesPrinterControllersPartialUpdate**](docs/AppliancesApi.md#appliancesprintercontrollerspartialupdate) | **PATCH** /api/appliances/{appliance_id}/printer-controllers/{id}/ | 
 *AppliancesApi* | [**appliancesPrinterControllersRetrieve**](docs/AppliancesApi.md#appliancesprintercontrollersretrieve) | **GET** /api/appliances/{appliance_id}/printer-controllers/{id}/ | 
 *AppliancesApi* | [**appliancesPrinterControllersUpdate**](docs/AppliancesApi.md#appliancesprintercontrollersupdate) | **PUT** /api/appliances/{appliance_id}/printer-controllers/{id}/ | 
-*AppliancesApi* | [**appliancesPublicKeysCreate**](docs/AppliancesApi.md#appliancespublickeyscreate) | **POST** /api/appliances/{appliance_id}/public-keys/ | 
-*AppliancesApi* | [**appliancesPublicKeysList**](docs/AppliancesApi.md#appliancespublickeyslist) | **GET** /api/appliances/{appliance_id}/public-keys/ | 
-*AppliancesApi* | [**appliancesPublicKeysPartialUpdate**](docs/AppliancesApi.md#appliancespublickeyspartialupdate) | **PATCH** /api/appliances/{appliance_id}/public-keys/{id}/ | 
-*AppliancesApi* | [**appliancesPublicKeysRetrieve**](docs/AppliancesApi.md#appliancespublickeysretrieve) | **GET** /api/appliances/{appliance_id}/public-keys/{id}/ | 
-*AppliancesApi* | [**appliancesPublicKeysUpdate**](docs/AppliancesApi.md#appliancespublickeysupdate) | **PUT** /api/appliances/{appliance_id}/public-keys/{id}/ | 
 *AppliancesApi* | [**appliancesRetrieve**](docs/AppliancesApi.md#appliancesretrieve) | **GET** /api/appliances/{id}/ | 
 *AppliancesApi* | [**appliancesRetrieveHostname**](docs/AppliancesApi.md#appliancesretrievehostname) | **GET** /api/appliances/{hostname} | 
 *AppliancesApi* | [**appliancesUpdate**](docs/AppliancesApi.md#appliancesupdate) | **PUT** /api/appliances/{id}/ | 
@@ -149,8 +147,8 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.AnsibleFacts](docs/AnsibleFacts.md)
  - [com.print-nanny.client.models.AnsibleFactsRequest](docs/AnsibleFactsRequest.md)
  - [com.print-nanny.client.models.Appliance](docs/Appliance.md)
+ - [com.print-nanny.client.models.ApplianceKeyPair](docs/ApplianceKeyPair.md)
  - [com.print-nanny.client.models.AppliancePublicKey](docs/AppliancePublicKey.md)
- - [com.print-nanny.client.models.AppliancePublicKeyRequest](docs/AppliancePublicKeyRequest.md)
  - [com.print-nanny.client.models.ApplianceRequest](docs/ApplianceRequest.md)
  - [com.print-nanny.client.models.ArtifactTypesEnum](docs/ArtifactTypesEnum.md)
  - [com.print-nanny.client.models.CallbackTokenAuthRequest](docs/CallbackTokenAuthRequest.md)
@@ -229,7 +227,6 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.PatchedAlertBulkRequestRequest](docs/PatchedAlertBulkRequestRequest.md)
  - [com.print-nanny.client.models.PatchedAlertRequest](docs/PatchedAlertRequest.md)
  - [com.print-nanny.client.models.PatchedAnsibleFactsRequest](docs/PatchedAnsibleFactsRequest.md)
- - [com.print-nanny.client.models.PatchedAppliancePublicKeyRequest](docs/PatchedAppliancePublicKeyRequest.md)
  - [com.print-nanny.client.models.PatchedApplianceRequest](docs/PatchedApplianceRequest.md)
  - [com.print-nanny.client.models.PatchedCameraRequest](docs/PatchedCameraRequest.md)
  - [com.print-nanny.client.models.PatchedCloudIoTDeviceRequest](docs/PatchedCloudIoTDeviceRequest.md)

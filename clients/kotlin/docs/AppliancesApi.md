@@ -20,6 +20,9 @@ Method | HTTP request | Description
 [**appliancesCloudIotDevicesRetrieve**](AppliancesApi.md#appliancesCloudIotDevicesRetrieve) | **GET** /api/appliances/{appliance_id}/cloud-iot-devices/{id}/ | 
 [**appliancesCloudIotDevicesUpdate**](AppliancesApi.md#appliancesCloudIotDevicesUpdate) | **PUT** /api/appliances/{appliance_id}/cloud-iot-devices/{id}/ | 
 [**appliancesCreate**](AppliancesApi.md#appliancesCreate) | **POST** /api/appliances/ | 
+[**appliancesKeypairsCreate**](AppliancesApi.md#appliancesKeypairsCreate) | **POST** /api/appliances/{appliance_id}/keypairs/ | 
+[**appliancesKeypairsList**](AppliancesApi.md#appliancesKeypairsList) | **GET** /api/appliances/{appliance_id}/keypairs/ | 
+[**appliancesKeypairsRetrieve**](AppliancesApi.md#appliancesKeypairsRetrieve) | **GET** /api/appliances/{appliance_id}/keypairs/{id}/ | 
 [**appliancesList**](AppliancesApi.md#appliancesList) | **GET** /api/appliances/ | 
 [**appliancesPartialUpdate**](AppliancesApi.md#appliancesPartialUpdate) | **PATCH** /api/appliances/{id}/ | 
 [**appliancesPrinterControllersCreate**](AppliancesApi.md#appliancesPrinterControllersCreate) | **POST** /api/appliances/{appliance_id}/printer-controllers/ | 
@@ -27,11 +30,6 @@ Method | HTTP request | Description
 [**appliancesPrinterControllersPartialUpdate**](AppliancesApi.md#appliancesPrinterControllersPartialUpdate) | **PATCH** /api/appliances/{appliance_id}/printer-controllers/{id}/ | 
 [**appliancesPrinterControllersRetrieve**](AppliancesApi.md#appliancesPrinterControllersRetrieve) | **GET** /api/appliances/{appliance_id}/printer-controllers/{id}/ | 
 [**appliancesPrinterControllersUpdate**](AppliancesApi.md#appliancesPrinterControllersUpdate) | **PUT** /api/appliances/{appliance_id}/printer-controllers/{id}/ | 
-[**appliancesPublicKeysCreate**](AppliancesApi.md#appliancesPublicKeysCreate) | **POST** /api/appliances/{appliance_id}/public-keys/ | 
-[**appliancesPublicKeysList**](AppliancesApi.md#appliancesPublicKeysList) | **GET** /api/appliances/{appliance_id}/public-keys/ | 
-[**appliancesPublicKeysPartialUpdate**](AppliancesApi.md#appliancesPublicKeysPartialUpdate) | **PATCH** /api/appliances/{appliance_id}/public-keys/{id}/ | 
-[**appliancesPublicKeysRetrieve**](AppliancesApi.md#appliancesPublicKeysRetrieve) | **GET** /api/appliances/{appliance_id}/public-keys/{id}/ | 
-[**appliancesPublicKeysUpdate**](AppliancesApi.md#appliancesPublicKeysUpdate) | **PUT** /api/appliances/{appliance_id}/public-keys/{id}/ | 
 [**appliancesRetrieve**](AppliancesApi.md#appliancesRetrieve) | **GET** /api/appliances/{id}/ | 
 [**appliancesRetrieveHostname**](AppliancesApi.md#appliancesRetrieveHostname) | **GET** /api/appliances/{hostname} | 
 [**appliancesUpdate**](AppliancesApi.md#appliancesUpdate) | **PUT** /api/appliances/{id}/ | 
@@ -881,6 +879,166 @@ Configure tokenAuth:
  - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
+<a name="appliancesKeypairsCreate"></a>
+# **appliancesKeypairsCreate**
+> ApplianceKeyPair appliancesKeypairsCreate(applianceId)
+
+
+
+Public key for Print Nanny Appliance Only one public key may be active at a time DELETE &lt;:endpoint&gt; will soft-delete a key
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = AppliancesApi()
+val applianceId : kotlin.Int = 56 // kotlin.Int | 
+try {
+    val result : ApplianceKeyPair = apiInstance.appliancesKeypairsCreate(applianceId)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling AppliancesApi#appliancesKeypairsCreate")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling AppliancesApi#appliancesKeypairsCreate")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **applianceId** | **kotlin.Int**|  |
+
+### Return type
+
+[**ApplianceKeyPair**](ApplianceKeyPair.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="appliancesKeypairsList"></a>
+# **appliancesKeypairsList**
+> PaginatedAppliancePublicKeyList appliancesKeypairsList(applianceId, page)
+
+
+
+Public key for Print Nanny Appliance Only one public key may be active at a time DELETE &lt;:endpoint&gt; will soft-delete a key
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = AppliancesApi()
+val applianceId : kotlin.Int = 56 // kotlin.Int | 
+val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
+try {
+    val result : PaginatedAppliancePublicKeyList = apiInstance.appliancesKeypairsList(applianceId, page)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling AppliancesApi#appliancesKeypairsList")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling AppliancesApi#appliancesKeypairsList")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **applianceId** | **kotlin.Int**|  |
+ **page** | **kotlin.Int**| A page number within the paginated result set. | [optional]
+
+### Return type
+
+[**PaginatedAppliancePublicKeyList**](PaginatedAppliancePublicKeyList.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="appliancesKeypairsRetrieve"></a>
+# **appliancesKeypairsRetrieve**
+> AppliancePublicKey appliancesKeypairsRetrieve(applianceId, id)
+
+
+
+Public key for Print Nanny Appliance Only one public key may be active at a time DELETE &lt;:endpoint&gt; will soft-delete a key
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = AppliancesApi()
+val applianceId : kotlin.Int = 56 // kotlin.Int | 
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this appliance public key.
+try {
+    val result : AppliancePublicKey = apiInstance.appliancesKeypairsRetrieve(applianceId, id)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling AppliancesApi#appliancesKeypairsRetrieve")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling AppliancesApi#appliancesKeypairsRetrieve")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **applianceId** | **kotlin.Int**|  |
+ **id** | **kotlin.Int**| A unique integer value identifying this appliance public key. |
+
+### Return type
+
+[**AppliancePublicKey**](AppliancePublicKey.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
 <a name="appliancesList"></a>
 # **appliancesList**
 > PaginatedApplianceList appliancesList(page)
@@ -1236,280 +1394,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PrinterController**](PrinterController.md)
-
-### Authorization
-
-
-Configure cookieAuth:
-    ApiClient.apiKey["sessionid"] = ""
-    ApiClient.apiKeyPrefix["sessionid"] = ""
-Configure tokenAuth:
-    ApiClient.accessToken = ""
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
-
-<a name="appliancesPublicKeysCreate"></a>
-# **appliancesPublicKeysCreate**
-> AppliancePublicKey appliancesPublicKeysCreate(applianceId, appliancePublicKeyRequest)
-
-
-
-Public key for Print Nanny Appliance Only one public key may be active at a time DELETE &lt;:endpoint&gt; will soft-delete a key
-
-### Example
-```kotlin
-// Import classes:
-//import com.print-nanny.client.infrastructure.*
-//import com.print-nanny.client.models.*
-
-val apiInstance = AppliancesApi()
-val applianceId : kotlin.Int = 56 // kotlin.Int | 
-val appliancePublicKeyRequest : AppliancePublicKeyRequest =  // AppliancePublicKeyRequest | 
-try {
-    val result : AppliancePublicKey = apiInstance.appliancesPublicKeysCreate(applianceId, appliancePublicKeyRequest)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling AppliancesApi#appliancesPublicKeysCreate")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling AppliancesApi#appliancesPublicKeysCreate")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **applianceId** | **kotlin.Int**|  |
- **appliancePublicKeyRequest** | [**AppliancePublicKeyRequest**](AppliancePublicKeyRequest.md)|  |
-
-### Return type
-
-[**AppliancePublicKey**](AppliancePublicKey.md)
-
-### Authorization
-
-
-Configure cookieAuth:
-    ApiClient.apiKey["sessionid"] = ""
-    ApiClient.apiKeyPrefix["sessionid"] = ""
-Configure tokenAuth:
-    ApiClient.accessToken = ""
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
-
-<a name="appliancesPublicKeysList"></a>
-# **appliancesPublicKeysList**
-> PaginatedAppliancePublicKeyList appliancesPublicKeysList(applianceId, page)
-
-
-
-Public key for Print Nanny Appliance Only one public key may be active at a time DELETE &lt;:endpoint&gt; will soft-delete a key
-
-### Example
-```kotlin
-// Import classes:
-//import com.print-nanny.client.infrastructure.*
-//import com.print-nanny.client.models.*
-
-val apiInstance = AppliancesApi()
-val applianceId : kotlin.Int = 56 // kotlin.Int | 
-val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
-try {
-    val result : PaginatedAppliancePublicKeyList = apiInstance.appliancesPublicKeysList(applianceId, page)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling AppliancesApi#appliancesPublicKeysList")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling AppliancesApi#appliancesPublicKeysList")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **applianceId** | **kotlin.Int**|  |
- **page** | **kotlin.Int**| A page number within the paginated result set. | [optional]
-
-### Return type
-
-[**PaginatedAppliancePublicKeyList**](PaginatedAppliancePublicKeyList.md)
-
-### Authorization
-
-
-Configure cookieAuth:
-    ApiClient.apiKey["sessionid"] = ""
-    ApiClient.apiKeyPrefix["sessionid"] = ""
-Configure tokenAuth:
-    ApiClient.accessToken = ""
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a name="appliancesPublicKeysPartialUpdate"></a>
-# **appliancesPublicKeysPartialUpdate**
-> AppliancePublicKey appliancesPublicKeysPartialUpdate(applianceId, id, patchedAppliancePublicKeyRequest)
-
-
-
-Public key for Print Nanny Appliance Only one public key may be active at a time DELETE &lt;:endpoint&gt; will soft-delete a key
-
-### Example
-```kotlin
-// Import classes:
-//import com.print-nanny.client.infrastructure.*
-//import com.print-nanny.client.models.*
-
-val apiInstance = AppliancesApi()
-val applianceId : kotlin.Int = 56 // kotlin.Int | 
-val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this appliance public key.
-val patchedAppliancePublicKeyRequest : PatchedAppliancePublicKeyRequest =  // PatchedAppliancePublicKeyRequest | 
-try {
-    val result : AppliancePublicKey = apiInstance.appliancesPublicKeysPartialUpdate(applianceId, id, patchedAppliancePublicKeyRequest)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling AppliancesApi#appliancesPublicKeysPartialUpdate")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling AppliancesApi#appliancesPublicKeysPartialUpdate")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **applianceId** | **kotlin.Int**|  |
- **id** | **kotlin.Int**| A unique integer value identifying this appliance public key. |
- **patchedAppliancePublicKeyRequest** | [**PatchedAppliancePublicKeyRequest**](PatchedAppliancePublicKeyRequest.md)|  | [optional]
-
-### Return type
-
-[**AppliancePublicKey**](AppliancePublicKey.md)
-
-### Authorization
-
-
-Configure cookieAuth:
-    ApiClient.apiKey["sessionid"] = ""
-    ApiClient.apiKeyPrefix["sessionid"] = ""
-Configure tokenAuth:
-    ApiClient.accessToken = ""
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
-
-<a name="appliancesPublicKeysRetrieve"></a>
-# **appliancesPublicKeysRetrieve**
-> AppliancePublicKey appliancesPublicKeysRetrieve(applianceId, id)
-
-
-
-Public key for Print Nanny Appliance Only one public key may be active at a time DELETE &lt;:endpoint&gt; will soft-delete a key
-
-### Example
-```kotlin
-// Import classes:
-//import com.print-nanny.client.infrastructure.*
-//import com.print-nanny.client.models.*
-
-val apiInstance = AppliancesApi()
-val applianceId : kotlin.Int = 56 // kotlin.Int | 
-val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this appliance public key.
-try {
-    val result : AppliancePublicKey = apiInstance.appliancesPublicKeysRetrieve(applianceId, id)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling AppliancesApi#appliancesPublicKeysRetrieve")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling AppliancesApi#appliancesPublicKeysRetrieve")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **applianceId** | **kotlin.Int**|  |
- **id** | **kotlin.Int**| A unique integer value identifying this appliance public key. |
-
-### Return type
-
-[**AppliancePublicKey**](AppliancePublicKey.md)
-
-### Authorization
-
-
-Configure cookieAuth:
-    ApiClient.apiKey["sessionid"] = ""
-    ApiClient.apiKeyPrefix["sessionid"] = ""
-Configure tokenAuth:
-    ApiClient.accessToken = ""
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a name="appliancesPublicKeysUpdate"></a>
-# **appliancesPublicKeysUpdate**
-> AppliancePublicKey appliancesPublicKeysUpdate(applianceId, id, appliancePublicKeyRequest)
-
-
-
-Public key for Print Nanny Appliance Only one public key may be active at a time DELETE &lt;:endpoint&gt; will soft-delete a key
-
-### Example
-```kotlin
-// Import classes:
-//import com.print-nanny.client.infrastructure.*
-//import com.print-nanny.client.models.*
-
-val apiInstance = AppliancesApi()
-val applianceId : kotlin.Int = 56 // kotlin.Int | 
-val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this appliance public key.
-val appliancePublicKeyRequest : AppliancePublicKeyRequest =  // AppliancePublicKeyRequest | 
-try {
-    val result : AppliancePublicKey = apiInstance.appliancesPublicKeysUpdate(applianceId, id, appliancePublicKeyRequest)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling AppliancesApi#appliancesPublicKeysUpdate")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling AppliancesApi#appliancesPublicKeysUpdate")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **applianceId** | **kotlin.Int**|  |
- **id** | **kotlin.Int**| A unique integer value identifying this appliance public key. |
- **appliancePublicKeyRequest** | [**AppliancePublicKeyRequest**](AppliancePublicKeyRequest.md)|  |
-
-### Return type
-
-[**AppliancePublicKey**](AppliancePublicKey.md)
 
 ### Authorization
 

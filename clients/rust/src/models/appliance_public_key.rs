@@ -19,24 +19,24 @@ pub struct AppliancePublicKey {
     pub appliance: Option<i32>,
     #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
     pub deleted: Option<String>,
-    #[serde(rename = "public_key")]
-    pub public_key: String,
-    #[serde(rename = "public_key_checksum")]
-    pub public_key_checksum: String,
-    #[serde(rename = "fingerprint")]
-    pub fingerprint: String,
+    #[serde(rename = "public_key", skip_serializing_if = "Option::is_none")]
+    pub public_key: Option<String>,
+    #[serde(rename = "public_key_checksum", skip_serializing_if = "Option::is_none")]
+    pub public_key_checksum: Option<String>,
+    #[serde(rename = "fingerprint", skip_serializing_if = "Option::is_none")]
+    pub fingerprint: Option<String>,
 }
 
 impl AppliancePublicKey {
-    pub fn new(public_key: String, public_key_checksum: String, fingerprint: String) -> AppliancePublicKey {
+    pub fn new() -> AppliancePublicKey {
         AppliancePublicKey {
             id: None,
             user: None,
             appliance: None,
             deleted: None,
-            public_key,
-            public_key_checksum,
-            fingerprint,
+            public_key: None,
+            public_key_checksum: None,
+            fingerprint: None,
         }
     }
 }

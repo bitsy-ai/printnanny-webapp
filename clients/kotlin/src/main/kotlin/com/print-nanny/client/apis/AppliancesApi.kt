@@ -23,8 +23,8 @@ package com.print-nanny.client.apis
 import com.print-nanny.client.models.AnsibleFacts
 import com.print-nanny.client.models.AnsibleFactsRequest
 import com.print-nanny.client.models.Appliance
+import com.print-nanny.client.models.ApplianceKeyPair
 import com.print-nanny.client.models.AppliancePublicKey
-import com.print-nanny.client.models.AppliancePublicKeyRequest
 import com.print-nanny.client.models.ApplianceRequest
 import com.print-nanny.client.models.Camera
 import com.print-nanny.client.models.CameraRequest
@@ -38,7 +38,6 @@ import com.print-nanny.client.models.PaginatedCameraList
 import com.print-nanny.client.models.PaginatedCloudIoTDeviceList
 import com.print-nanny.client.models.PaginatedPrinterControllerList
 import com.print-nanny.client.models.PatchedAnsibleFactsRequest
-import com.print-nanny.client.models.PatchedAppliancePublicKeyRequest
 import com.print-nanny.client.models.PatchedApplianceRequest
 import com.print-nanny.client.models.PatchedCameraRequest
 import com.print-nanny.client.models.PatchedCloudIoTDeviceRequest
@@ -972,6 +971,174 @@ class AppliancesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(baseP
 
     /**
     * 
+    * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE &lt;:endpoint&gt; will soft-delete a key
+    * @param applianceId  
+    * @return ApplianceKeyPair
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun appliancesKeypairsCreate(applianceId: kotlin.Int) : ApplianceKeyPair {
+        val localVariableConfig = appliancesKeypairsCreateRequestConfig(applianceId = applianceId)
+
+        val localVarResponse = request<Unit, ApplianceKeyPair>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as ApplianceKeyPair
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation appliancesKeypairsCreate
+    *
+    * @param applianceId  
+    * @return RequestConfig
+    */
+    fun appliancesKeypairsCreateRequestConfig(applianceId: kotlin.Int) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+
+        return RequestConfig(
+            method = RequestMethod.POST,
+            path = "/api/appliances/{appliance_id}/keypairs/".replace("{"+"appliance_id"+"}", "$applianceId"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+    }
+
+    /**
+    * 
+    * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE &lt;:endpoint&gt; will soft-delete a key
+    * @param applianceId  
+    * @param page A page number within the paginated result set. (optional)
+    * @return PaginatedAppliancePublicKeyList
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun appliancesKeypairsList(applianceId: kotlin.Int, page: kotlin.Int?) : PaginatedAppliancePublicKeyList {
+        val localVariableConfig = appliancesKeypairsListRequestConfig(applianceId = applianceId, page = page)
+
+        val localVarResponse = request<Unit, PaginatedAppliancePublicKeyList>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedAppliancePublicKeyList
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation appliancesKeypairsList
+    *
+    * @param applianceId  
+    * @param page A page number within the paginated result set. (optional)
+    * @return RequestConfig
+    */
+    fun appliancesKeypairsListRequestConfig(applianceId: kotlin.Int, page: kotlin.Int?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/appliances/{appliance_id}/keypairs/".replace("{"+"appliance_id"+"}", "$applianceId"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+    }
+
+    /**
+    * 
+    * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE &lt;:endpoint&gt; will soft-delete a key
+    * @param applianceId  
+    * @param id A unique integer value identifying this appliance public key. 
+    * @return AppliancePublicKey
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun appliancesKeypairsRetrieve(applianceId: kotlin.Int, id: kotlin.Int) : AppliancePublicKey {
+        val localVariableConfig = appliancesKeypairsRetrieveRequestConfig(applianceId = applianceId, id = id)
+
+        val localVarResponse = request<Unit, AppliancePublicKey>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as AppliancePublicKey
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation appliancesKeypairsRetrieve
+    *
+    * @param applianceId  
+    * @param id A unique integer value identifying this appliance public key. 
+    * @return RequestConfig
+    */
+    fun appliancesKeypairsRetrieveRequestConfig(applianceId: kotlin.Int, id: kotlin.Int) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/appliances/{appliance_id}/keypairs/{id}/".replace("{"+"appliance_id"+"}", "$applianceId").replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+    }
+
+    /**
+    * 
     * All-in-one Print Nanny installation via print-nanny-main-&lt;platform&gt;-&lt;cpu&gt;.img
     * @param page A page number within the paginated result set. (optional)
     * @return PaginatedApplianceList
@@ -1361,290 +1528,6 @@ class AppliancesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(baseP
         return RequestConfig(
             method = RequestMethod.PUT,
             path = "/api/appliances/{appliance_id}/printer-controllers/{id}/".replace("{"+"appliance_id"+"}", "$applianceId").replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-    }
-
-    /**
-    * 
-    * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE &lt;:endpoint&gt; will soft-delete a key
-    * @param applianceId  
-    * @param appliancePublicKeyRequest  
-    * @return AppliancePublicKey
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun appliancesPublicKeysCreate(applianceId: kotlin.Int, appliancePublicKeyRequest: AppliancePublicKeyRequest) : AppliancePublicKey {
-        val localVariableConfig = appliancesPublicKeysCreateRequestConfig(applianceId = applianceId, appliancePublicKeyRequest = appliancePublicKeyRequest)
-
-        val localVarResponse = request<AppliancePublicKeyRequest, AppliancePublicKey>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as AppliancePublicKey
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation appliancesPublicKeysCreate
-    *
-    * @param applianceId  
-    * @param appliancePublicKeyRequest  
-    * @return RequestConfig
-    */
-    fun appliancesPublicKeysCreateRequestConfig(applianceId: kotlin.Int, appliancePublicKeyRequest: AppliancePublicKeyRequest) : RequestConfig<AppliancePublicKeyRequest> {
-        val localVariableBody = appliancePublicKeyRequest
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-
-        return RequestConfig(
-            method = RequestMethod.POST,
-            path = "/api/appliances/{appliance_id}/public-keys/".replace("{"+"appliance_id"+"}", "$applianceId"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-    }
-
-    /**
-    * 
-    * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE &lt;:endpoint&gt; will soft-delete a key
-    * @param applianceId  
-    * @param page A page number within the paginated result set. (optional)
-    * @return PaginatedAppliancePublicKeyList
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun appliancesPublicKeysList(applianceId: kotlin.Int, page: kotlin.Int?) : PaginatedAppliancePublicKeyList {
-        val localVariableConfig = appliancesPublicKeysListRequestConfig(applianceId = applianceId, page = page)
-
-        val localVarResponse = request<Unit, PaginatedAppliancePublicKeyList>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedAppliancePublicKeyList
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation appliancesPublicKeysList
-    *
-    * @param applianceId  
-    * @param page A page number within the paginated result set. (optional)
-    * @return RequestConfig
-    */
-    fun appliancesPublicKeysListRequestConfig(applianceId: kotlin.Int, page: kotlin.Int?) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
-            .apply {
-                if (page != null) {
-                    put("page", listOf(page.toString()))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-
-        return RequestConfig(
-            method = RequestMethod.GET,
-            path = "/api/appliances/{appliance_id}/public-keys/".replace("{"+"appliance_id"+"}", "$applianceId"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-    }
-
-    /**
-    * 
-    * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE &lt;:endpoint&gt; will soft-delete a key
-    * @param applianceId  
-    * @param id A unique integer value identifying this appliance public key. 
-    * @param patchedAppliancePublicKeyRequest  (optional)
-    * @return AppliancePublicKey
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun appliancesPublicKeysPartialUpdate(applianceId: kotlin.Int, id: kotlin.Int, patchedAppliancePublicKeyRequest: PatchedAppliancePublicKeyRequest?) : AppliancePublicKey {
-        val localVariableConfig = appliancesPublicKeysPartialUpdateRequestConfig(applianceId = applianceId, id = id, patchedAppliancePublicKeyRequest = patchedAppliancePublicKeyRequest)
-
-        val localVarResponse = request<PatchedAppliancePublicKeyRequest, AppliancePublicKey>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as AppliancePublicKey
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation appliancesPublicKeysPartialUpdate
-    *
-    * @param applianceId  
-    * @param id A unique integer value identifying this appliance public key. 
-    * @param patchedAppliancePublicKeyRequest  (optional)
-    * @return RequestConfig
-    */
-    fun appliancesPublicKeysPartialUpdateRequestConfig(applianceId: kotlin.Int, id: kotlin.Int, patchedAppliancePublicKeyRequest: PatchedAppliancePublicKeyRequest?) : RequestConfig<PatchedAppliancePublicKeyRequest> {
-        val localVariableBody = patchedAppliancePublicKeyRequest
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-
-        return RequestConfig(
-            method = RequestMethod.PATCH,
-            path = "/api/appliances/{appliance_id}/public-keys/{id}/".replace("{"+"appliance_id"+"}", "$applianceId").replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-    }
-
-    /**
-    * 
-    * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE &lt;:endpoint&gt; will soft-delete a key
-    * @param applianceId  
-    * @param id A unique integer value identifying this appliance public key. 
-    * @return AppliancePublicKey
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun appliancesPublicKeysRetrieve(applianceId: kotlin.Int, id: kotlin.Int) : AppliancePublicKey {
-        val localVariableConfig = appliancesPublicKeysRetrieveRequestConfig(applianceId = applianceId, id = id)
-
-        val localVarResponse = request<Unit, AppliancePublicKey>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as AppliancePublicKey
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation appliancesPublicKeysRetrieve
-    *
-    * @param applianceId  
-    * @param id A unique integer value identifying this appliance public key. 
-    * @return RequestConfig
-    */
-    fun appliancesPublicKeysRetrieveRequestConfig(applianceId: kotlin.Int, id: kotlin.Int) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-
-        return RequestConfig(
-            method = RequestMethod.GET,
-            path = "/api/appliances/{appliance_id}/public-keys/{id}/".replace("{"+"appliance_id"+"}", "$applianceId").replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-    }
-
-    /**
-    * 
-    * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE &lt;:endpoint&gt; will soft-delete a key
-    * @param applianceId  
-    * @param id A unique integer value identifying this appliance public key. 
-    * @param appliancePublicKeyRequest  
-    * @return AppliancePublicKey
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun appliancesPublicKeysUpdate(applianceId: kotlin.Int, id: kotlin.Int, appliancePublicKeyRequest: AppliancePublicKeyRequest) : AppliancePublicKey {
-        val localVariableConfig = appliancesPublicKeysUpdateRequestConfig(applianceId = applianceId, id = id, appliancePublicKeyRequest = appliancePublicKeyRequest)
-
-        val localVarResponse = request<AppliancePublicKeyRequest, AppliancePublicKey>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as AppliancePublicKey
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation appliancesPublicKeysUpdate
-    *
-    * @param applianceId  
-    * @param id A unique integer value identifying this appliance public key. 
-    * @param appliancePublicKeyRequest  
-    * @return RequestConfig
-    */
-    fun appliancesPublicKeysUpdateRequestConfig(applianceId: kotlin.Int, id: kotlin.Int, appliancePublicKeyRequest: AppliancePublicKeyRequest) : RequestConfig<AppliancePublicKeyRequest> {
-        val localVariableBody = appliancePublicKeyRequest
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-
-        return RequestConfig(
-            method = RequestMethod.PUT,
-            path = "/api/appliances/{appliance_id}/public-keys/{id}/".replace("{"+"appliance_id"+"}", "$applianceId").replace("{"+"id"+"}", "$id"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody

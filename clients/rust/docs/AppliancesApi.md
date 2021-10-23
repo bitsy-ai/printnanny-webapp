@@ -20,6 +20,9 @@ Method | HTTP request | Description
 [**appliances_cloud_iot_devices_retrieve**](AppliancesApi.md#appliances_cloud_iot_devices_retrieve) | **GET** /api/appliances/{appliance_id}/cloud-iot-devices/{id}/ | 
 [**appliances_cloud_iot_devices_update**](AppliancesApi.md#appliances_cloud_iot_devices_update) | **PUT** /api/appliances/{appliance_id}/cloud-iot-devices/{id}/ | 
 [**appliances_create**](AppliancesApi.md#appliances_create) | **POST** /api/appliances/ | 
+[**appliances_keypairs_create**](AppliancesApi.md#appliances_keypairs_create) | **POST** /api/appliances/{appliance_id}/keypairs/ | 
+[**appliances_keypairs_list**](AppliancesApi.md#appliances_keypairs_list) | **GET** /api/appliances/{appliance_id}/keypairs/ | 
+[**appliances_keypairs_retrieve**](AppliancesApi.md#appliances_keypairs_retrieve) | **GET** /api/appliances/{appliance_id}/keypairs/{id}/ | 
 [**appliances_list**](AppliancesApi.md#appliances_list) | **GET** /api/appliances/ | 
 [**appliances_partial_update**](AppliancesApi.md#appliances_partial_update) | **PATCH** /api/appliances/{id}/ | 
 [**appliances_printer_controllers_create**](AppliancesApi.md#appliances_printer_controllers_create) | **POST** /api/appliances/{appliance_id}/printer-controllers/ | 
@@ -27,11 +30,6 @@ Method | HTTP request | Description
 [**appliances_printer_controllers_partial_update**](AppliancesApi.md#appliances_printer_controllers_partial_update) | **PATCH** /api/appliances/{appliance_id}/printer-controllers/{id}/ | 
 [**appliances_printer_controllers_retrieve**](AppliancesApi.md#appliances_printer_controllers_retrieve) | **GET** /api/appliances/{appliance_id}/printer-controllers/{id}/ | 
 [**appliances_printer_controllers_update**](AppliancesApi.md#appliances_printer_controllers_update) | **PUT** /api/appliances/{appliance_id}/printer-controllers/{id}/ | 
-[**appliances_public_keys_create**](AppliancesApi.md#appliances_public_keys_create) | **POST** /api/appliances/{appliance_id}/public-keys/ | 
-[**appliances_public_keys_list**](AppliancesApi.md#appliances_public_keys_list) | **GET** /api/appliances/{appliance_id}/public-keys/ | 
-[**appliances_public_keys_partial_update**](AppliancesApi.md#appliances_public_keys_partial_update) | **PATCH** /api/appliances/{appliance_id}/public-keys/{id}/ | 
-[**appliances_public_keys_retrieve**](AppliancesApi.md#appliances_public_keys_retrieve) | **GET** /api/appliances/{appliance_id}/public-keys/{id}/ | 
-[**appliances_public_keys_update**](AppliancesApi.md#appliances_public_keys_update) | **PUT** /api/appliances/{appliance_id}/public-keys/{id}/ | 
 [**appliances_retrieve**](AppliancesApi.md#appliances_retrieve) | **GET** /api/appliances/{id}/ | 
 [**appliances_retrieve_hostname**](AppliancesApi.md#appliances_retrieve_hostname) | **GET** /api/appliances/{hostname} | 
 [**appliances_update**](AppliancesApi.md#appliances_update) | **PUT** /api/appliances/{id}/ | 
@@ -509,6 +507,98 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## appliances_keypairs_create
+
+> crate::models::ApplianceKeyPair appliances_keypairs_create(appliance_id)
+
+
+Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**appliance_id** | **i32** |  | [required] |
+
+### Return type
+
+[**crate::models::ApplianceKeyPair**](ApplianceKeyPair.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## appliances_keypairs_list
+
+> crate::models::PaginatedAppliancePublicKeyList appliances_keypairs_list(appliance_id, page)
+
+
+Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**appliance_id** | **i32** |  | [required] |
+**page** | Option<**i32**> | A page number within the paginated result set. |  |
+
+### Return type
+
+[**crate::models::PaginatedAppliancePublicKeyList**](PaginatedAppliancePublicKeyList.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## appliances_keypairs_retrieve
+
+> crate::models::AppliancePublicKey appliances_keypairs_retrieve(appliance_id, id)
+
+
+Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**appliance_id** | **i32** |  | [required] |
+**id** | **i32** | A unique integer value identifying this appliance public key. | [required] |
+
+### Return type
+
+[**crate::models::AppliancePublicKey**](AppliancePublicKey.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## appliances_list
 
 > crate::models::PaginatedApplianceList appliances_list(page)
@@ -704,163 +794,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::PrinterController**](PrinterController.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## appliances_public_keys_create
-
-> crate::models::AppliancePublicKey appliances_public_keys_create(appliance_id, appliance_public_key_request)
-
-
-Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**appliance_id** | **i32** |  | [required] |
-**appliance_public_key_request** | [**AppliancePublicKeyRequest**](AppliancePublicKeyRequest.md) |  | [required] |
-
-### Return type
-
-[**crate::models::AppliancePublicKey**](AppliancePublicKey.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## appliances_public_keys_list
-
-> crate::models::PaginatedAppliancePublicKeyList appliances_public_keys_list(appliance_id, page)
-
-
-Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**appliance_id** | **i32** |  | [required] |
-**page** | Option<**i32**> | A page number within the paginated result set. |  |
-
-### Return type
-
-[**crate::models::PaginatedAppliancePublicKeyList**](PaginatedAppliancePublicKeyList.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## appliances_public_keys_partial_update
-
-> crate::models::AppliancePublicKey appliances_public_keys_partial_update(appliance_id, id, patched_appliance_public_key_request)
-
-
-Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**appliance_id** | **i32** |  | [required] |
-**id** | **i32** | A unique integer value identifying this appliance public key. | [required] |
-**patched_appliance_public_key_request** | Option<[**PatchedAppliancePublicKeyRequest**](PatchedAppliancePublicKeyRequest.md)> |  |  |
-
-### Return type
-
-[**crate::models::AppliancePublicKey**](AppliancePublicKey.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## appliances_public_keys_retrieve
-
-> crate::models::AppliancePublicKey appliances_public_keys_retrieve(appliance_id, id)
-
-
-Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**appliance_id** | **i32** |  | [required] |
-**id** | **i32** | A unique integer value identifying this appliance public key. | [required] |
-
-### Return type
-
-[**crate::models::AppliancePublicKey**](AppliancePublicKey.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## appliances_public_keys_update
-
-> crate::models::AppliancePublicKey appliances_public_keys_update(appliance_id, id, appliance_public_key_request)
-
-
-Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**appliance_id** | **i32** |  | [required] |
-**id** | **i32** | A unique integer value identifying this appliance public key. | [required] |
-**appliance_public_key_request** | [**AppliancePublicKeyRequest**](AppliancePublicKeyRequest.md) |  | [required] |
-
-### Return type
-
-[**crate::models::AppliancePublicKey**](AppliancePublicKey.md)
 
 ### Authorization
 

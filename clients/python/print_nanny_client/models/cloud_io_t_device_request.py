@@ -42,7 +42,7 @@ class CloudIoTDeviceRequest(object):
     }
 
     attribute_map = {
-        'num_id': 'numId',
+        'num_id': 'num_id',
         'name': 'name',
         'id': 'id'
     }

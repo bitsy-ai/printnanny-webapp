@@ -9,8 +9,8 @@ docs/AlertsApi.md
 docs/AnsibleFacts.md
 docs/AnsibleFactsRequest.md
 docs/Appliance.md
+docs/ApplianceKeyPair.md
 docs/AppliancePublicKey.md
-docs/AppliancePublicKeyRequest.md
 docs/ApplianceRequest.md
 docs/AppliancesApi.md
 docs/ArtifactTypesEnum.md
@@ -94,7 +94,6 @@ docs/PartnersGeeks3dApi.md
 docs/PatchedAlertBulkRequestRequest.md
 docs/PatchedAlertRequest.md
 docs/PatchedAnsibleFactsRequest.md
-docs/PatchedAppliancePublicKeyRequest.md
 docs/PatchedApplianceRequest.md
 docs/PatchedCameraRequest.md
 docs/PatchedCloudIoTDeviceRequest.md
@@ -177,8 +176,8 @@ src/main/kotlin/com/print-nanny/client/models/AlertRequest.kt
 src/main/kotlin/com/print-nanny/client/models/AnsibleFacts.kt
 src/main/kotlin/com/print-nanny/client/models/AnsibleFactsRequest.kt
 src/main/kotlin/com/print-nanny/client/models/Appliance.kt
+src/main/kotlin/com/print-nanny/client/models/ApplianceKeyPair.kt
 src/main/kotlin/com/print-nanny/client/models/AppliancePublicKey.kt
-src/main/kotlin/com/print-nanny/client/models/AppliancePublicKeyRequest.kt
 src/main/kotlin/com/print-nanny/client/models/ApplianceRequest.kt
 src/main/kotlin/com/print-nanny/client/models/ArtifactTypesEnum.kt
 src/main/kotlin/com/print-nanny/client/models/CallbackTokenAuthRequest.kt
@@ -257,7 +256,6 @@ src/main/kotlin/com/print-nanny/client/models/Partner3DGeeksMetadata.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedAlertBulkRequestRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedAlertRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedAnsibleFactsRequest.kt
-src/main/kotlin/com/print-nanny/client/models/PatchedAppliancePublicKeyRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedApplianceRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedCameraRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedCloudIoTDeviceRequest.kt

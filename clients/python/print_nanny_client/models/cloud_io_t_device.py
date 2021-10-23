@@ -45,7 +45,7 @@ class CloudIoTDevice(object):
     }
 
     attribute_map = {
-        'num_id': 'numId',
+        'num_id': 'num_id',
         'user': 'user',
         'appliance': 'appliance',
         'deleted': 'deleted',

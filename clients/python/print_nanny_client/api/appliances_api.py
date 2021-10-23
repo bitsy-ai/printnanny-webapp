@@ -2420,6 +2420,430 @@ class AppliancesApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
+    def appliances_keypairs_create(self, appliance_id, **kwargs):  # noqa: E501
+        """appliances_keypairs_create  # noqa: E501
+
+        Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.appliances_keypairs_create(appliance_id, async_req=True)
+        >>> result = thread.get()
+
+        :param appliance_id: (required)
+        :type appliance_id: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: ApplianceKeyPair
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.appliances_keypairs_create_with_http_info(appliance_id, **kwargs)  # noqa: E501
+
+    def appliances_keypairs_create_with_http_info(self, appliance_id, **kwargs):  # noqa: E501
+        """appliances_keypairs_create  # noqa: E501
+
+        Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.appliances_keypairs_create_with_http_info(appliance_id, async_req=True)
+        >>> result = thread.get()
+
+        :param appliance_id: (required)
+        :type appliance_id: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(ApplianceKeyPair, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'appliance_id'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method appliances_keypairs_create" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'appliance_id' is set
+        if self.api_client.client_side_validation and ('appliance_id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['appliance_id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `appliance_id` when calling `appliances_keypairs_create`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'appliance_id' in local_var_params:
+            path_params['appliance_id'] = local_var_params['appliance_id']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
+
+        response_types_map = {
+            201: "ApplianceKeyPair",
+            202: "ApplianceKeyPair",
+        }
+
+        return self.api_client.call_api(
+            '/api/appliances/{appliance_id}/keypairs/', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
+    def appliances_keypairs_list(self, appliance_id, **kwargs):  # noqa: E501
+        """appliances_keypairs_list  # noqa: E501
+
+        Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.appliances_keypairs_list(appliance_id, async_req=True)
+        >>> result = thread.get()
+
+        :param appliance_id: (required)
+        :type appliance_id: int
+        :param page: A page number within the paginated result set.
+        :type page: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: PaginatedAppliancePublicKeyList
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.appliances_keypairs_list_with_http_info(appliance_id, **kwargs)  # noqa: E501
+
+    def appliances_keypairs_list_with_http_info(self, appliance_id, **kwargs):  # noqa: E501
+        """appliances_keypairs_list  # noqa: E501
+
+        Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.appliances_keypairs_list_with_http_info(appliance_id, async_req=True)
+        >>> result = thread.get()
+
+        :param appliance_id: (required)
+        :type appliance_id: int
+        :param page: A page number within the paginated result set.
+        :type page: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(PaginatedAppliancePublicKeyList, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'appliance_id',
+            'page'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method appliances_keypairs_list" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'appliance_id' is set
+        if self.api_client.client_side_validation and ('appliance_id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['appliance_id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `appliance_id` when calling `appliances_keypairs_list`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'appliance_id' in local_var_params:
+            path_params['appliance_id'] = local_var_params['appliance_id']  # noqa: E501
+
+        query_params = []
+        if 'page' in local_var_params and local_var_params['page'] is not None:  # noqa: E501
+            query_params.append(('page', local_var_params['page']))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
+
+        response_types_map = {
+            200: "PaginatedAppliancePublicKeyList",
+        }
+
+        return self.api_client.call_api(
+            '/api/appliances/{appliance_id}/keypairs/', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
+    def appliances_keypairs_retrieve(self, appliance_id, id, **kwargs):  # noqa: E501
+        """appliances_keypairs_retrieve  # noqa: E501
+
+        Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.appliances_keypairs_retrieve(appliance_id, id, async_req=True)
+        >>> result = thread.get()
+
+        :param appliance_id: (required)
+        :type appliance_id: int
+        :param id: A unique integer value identifying this appliance public key. (required)
+        :type id: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: AppliancePublicKey
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.appliances_keypairs_retrieve_with_http_info(appliance_id, id, **kwargs)  # noqa: E501
+
+    def appliances_keypairs_retrieve_with_http_info(self, appliance_id, id, **kwargs):  # noqa: E501
+        """appliances_keypairs_retrieve  # noqa: E501
+
+        Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.appliances_keypairs_retrieve_with_http_info(appliance_id, id, async_req=True)
+        >>> result = thread.get()
+
+        :param appliance_id: (required)
+        :type appliance_id: int
+        :param id: A unique integer value identifying this appliance public key. (required)
+        :type id: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(AppliancePublicKey, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'appliance_id',
+            'id'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method appliances_keypairs_retrieve" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'appliance_id' is set
+        if self.api_client.client_side_validation and ('appliance_id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['appliance_id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `appliance_id` when calling `appliances_keypairs_retrieve`")  # noqa: E501
+        # verify the required parameter 'id' is set
+        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `id` when calling `appliances_keypairs_retrieve`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'appliance_id' in local_var_params:
+            path_params['appliance_id'] = local_var_params['appliance_id']  # noqa: E501
+        if 'id' in local_var_params:
+            path_params['id'] = local_var_params['id']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
+
+        response_types_map = {
+            200: "AppliancePublicKey",
+        }
+
+        return self.api_client.call_api(
+            '/api/appliances/{appliance_id}/keypairs/{id}/', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
     def appliances_list(self, **kwargs):  # noqa: E501
         """appliances_list  # noqa: E501
 
@@ -3430,764 +3854,6 @@ class AppliancesApi(object):
 
         return self.api_client.call_api(
             '/api/appliances/{appliance_id}/printer-controllers/{id}/', 'PUT',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_types_map=response_types_map,
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats,
-            _request_auth=local_var_params.get('_request_auth'))
-
-    def appliances_public_keys_create(self, appliance_id, appliance_public_key_request, **kwargs):  # noqa: E501
-        """appliances_public_keys_create  # noqa: E501
-
-        Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.appliances_public_keys_create(appliance_id, appliance_public_key_request, async_req=True)
-        >>> result = thread.get()
-
-        :param appliance_id: (required)
-        :type appliance_id: int
-        :param appliance_public_key_request: (required)
-        :type appliance_public_key_request: AppliancePublicKeyRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: AppliancePublicKey
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.appliances_public_keys_create_with_http_info(appliance_id, appliance_public_key_request, **kwargs)  # noqa: E501
-
-    def appliances_public_keys_create_with_http_info(self, appliance_id, appliance_public_key_request, **kwargs):  # noqa: E501
-        """appliances_public_keys_create  # noqa: E501
-
-        Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.appliances_public_keys_create_with_http_info(appliance_id, appliance_public_key_request, async_req=True)
-        >>> result = thread.get()
-
-        :param appliance_id: (required)
-        :type appliance_id: int
-        :param appliance_public_key_request: (required)
-        :type appliance_public_key_request: AppliancePublicKeyRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(AppliancePublicKey, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        local_var_params = locals()
-
-        all_params = [
-            'appliance_id',
-            'appliance_public_key_request'
-        ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth'
-            ]
-        )
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method appliances_public_keys_create" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'appliance_id' is set
-        if self.api_client.client_side_validation and ('appliance_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['appliance_id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `appliance_id` when calling `appliances_public_keys_create`")  # noqa: E501
-        # verify the required parameter 'appliance_public_key_request' is set
-        if self.api_client.client_side_validation and ('appliance_public_key_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['appliance_public_key_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `appliance_public_key_request` when calling `appliances_public_keys_create`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'appliance_id' in local_var_params:
-            path_params['appliance_id'] = local_var_params['appliance_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'appliance_public_key_request' in local_var_params:
-            body_params = local_var_params['appliance_public_key_request']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-
-        response_types_map = {
-            201: "AppliancePublicKey",
-            202: "AppliancePublicKey",
-        }
-
-        return self.api_client.call_api(
-            '/api/appliances/{appliance_id}/public-keys/', 'POST',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_types_map=response_types_map,
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats,
-            _request_auth=local_var_params.get('_request_auth'))
-
-    def appliances_public_keys_list(self, appliance_id, **kwargs):  # noqa: E501
-        """appliances_public_keys_list  # noqa: E501
-
-        Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.appliances_public_keys_list(appliance_id, async_req=True)
-        >>> result = thread.get()
-
-        :param appliance_id: (required)
-        :type appliance_id: int
-        :param page: A page number within the paginated result set.
-        :type page: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: PaginatedAppliancePublicKeyList
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.appliances_public_keys_list_with_http_info(appliance_id, **kwargs)  # noqa: E501
-
-    def appliances_public_keys_list_with_http_info(self, appliance_id, **kwargs):  # noqa: E501
-        """appliances_public_keys_list  # noqa: E501
-
-        Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.appliances_public_keys_list_with_http_info(appliance_id, async_req=True)
-        >>> result = thread.get()
-
-        :param appliance_id: (required)
-        :type appliance_id: int
-        :param page: A page number within the paginated result set.
-        :type page: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(PaginatedAppliancePublicKeyList, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        local_var_params = locals()
-
-        all_params = [
-            'appliance_id',
-            'page'
-        ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth'
-            ]
-        )
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method appliances_public_keys_list" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'appliance_id' is set
-        if self.api_client.client_side_validation and ('appliance_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['appliance_id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `appliance_id` when calling `appliances_public_keys_list`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'appliance_id' in local_var_params:
-            path_params['appliance_id'] = local_var_params['appliance_id']  # noqa: E501
-
-        query_params = []
-        if 'page' in local_var_params and local_var_params['page'] is not None:  # noqa: E501
-            query_params.append(('page', local_var_params['page']))  # noqa: E501
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-
-        response_types_map = {
-            200: "PaginatedAppliancePublicKeyList",
-        }
-
-        return self.api_client.call_api(
-            '/api/appliances/{appliance_id}/public-keys/', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_types_map=response_types_map,
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats,
-            _request_auth=local_var_params.get('_request_auth'))
-
-    def appliances_public_keys_partial_update(self, appliance_id, id, **kwargs):  # noqa: E501
-        """appliances_public_keys_partial_update  # noqa: E501
-
-        Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.appliances_public_keys_partial_update(appliance_id, id, async_req=True)
-        >>> result = thread.get()
-
-        :param appliance_id: (required)
-        :type appliance_id: int
-        :param id: A unique integer value identifying this appliance public key. (required)
-        :type id: int
-        :param patched_appliance_public_key_request:
-        :type patched_appliance_public_key_request: PatchedAppliancePublicKeyRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: AppliancePublicKey
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.appliances_public_keys_partial_update_with_http_info(appliance_id, id, **kwargs)  # noqa: E501
-
-    def appliances_public_keys_partial_update_with_http_info(self, appliance_id, id, **kwargs):  # noqa: E501
-        """appliances_public_keys_partial_update  # noqa: E501
-
-        Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.appliances_public_keys_partial_update_with_http_info(appliance_id, id, async_req=True)
-        >>> result = thread.get()
-
-        :param appliance_id: (required)
-        :type appliance_id: int
-        :param id: A unique integer value identifying this appliance public key. (required)
-        :type id: int
-        :param patched_appliance_public_key_request:
-        :type patched_appliance_public_key_request: PatchedAppliancePublicKeyRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(AppliancePublicKey, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        local_var_params = locals()
-
-        all_params = [
-            'appliance_id',
-            'id',
-            'patched_appliance_public_key_request'
-        ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth'
-            ]
-        )
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method appliances_public_keys_partial_update" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'appliance_id' is set
-        if self.api_client.client_side_validation and ('appliance_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['appliance_id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `appliance_id` when calling `appliances_public_keys_partial_update`")  # noqa: E501
-        # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `id` when calling `appliances_public_keys_partial_update`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'appliance_id' in local_var_params:
-            path_params['appliance_id'] = local_var_params['appliance_id']  # noqa: E501
-        if 'id' in local_var_params:
-            path_params['id'] = local_var_params['id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'patched_appliance_public_key_request' in local_var_params:
-            body_params = local_var_params['patched_appliance_public_key_request']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-
-        response_types_map = {
-            200: "AppliancePublicKey",
-        }
-
-        return self.api_client.call_api(
-            '/api/appliances/{appliance_id}/public-keys/{id}/', 'PATCH',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_types_map=response_types_map,
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats,
-            _request_auth=local_var_params.get('_request_auth'))
-
-    def appliances_public_keys_retrieve(self, appliance_id, id, **kwargs):  # noqa: E501
-        """appliances_public_keys_retrieve  # noqa: E501
-
-        Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.appliances_public_keys_retrieve(appliance_id, id, async_req=True)
-        >>> result = thread.get()
-
-        :param appliance_id: (required)
-        :type appliance_id: int
-        :param id: A unique integer value identifying this appliance public key. (required)
-        :type id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: AppliancePublicKey
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.appliances_public_keys_retrieve_with_http_info(appliance_id, id, **kwargs)  # noqa: E501
-
-    def appliances_public_keys_retrieve_with_http_info(self, appliance_id, id, **kwargs):  # noqa: E501
-        """appliances_public_keys_retrieve  # noqa: E501
-
-        Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.appliances_public_keys_retrieve_with_http_info(appliance_id, id, async_req=True)
-        >>> result = thread.get()
-
-        :param appliance_id: (required)
-        :type appliance_id: int
-        :param id: A unique integer value identifying this appliance public key. (required)
-        :type id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(AppliancePublicKey, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        local_var_params = locals()
-
-        all_params = [
-            'appliance_id',
-            'id'
-        ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth'
-            ]
-        )
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method appliances_public_keys_retrieve" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'appliance_id' is set
-        if self.api_client.client_side_validation and ('appliance_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['appliance_id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `appliance_id` when calling `appliances_public_keys_retrieve`")  # noqa: E501
-        # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `id` when calling `appliances_public_keys_retrieve`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'appliance_id' in local_var_params:
-            path_params['appliance_id'] = local_var_params['appliance_id']  # noqa: E501
-        if 'id' in local_var_params:
-            path_params['id'] = local_var_params['id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-
-        response_types_map = {
-            200: "AppliancePublicKey",
-        }
-
-        return self.api_client.call_api(
-            '/api/appliances/{appliance_id}/public-keys/{id}/', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_types_map=response_types_map,
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats,
-            _request_auth=local_var_params.get('_request_auth'))
-
-    def appliances_public_keys_update(self, appliance_id, id, appliance_public_key_request, **kwargs):  # noqa: E501
-        """appliances_public_keys_update  # noqa: E501
-
-        Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.appliances_public_keys_update(appliance_id, id, appliance_public_key_request, async_req=True)
-        >>> result = thread.get()
-
-        :param appliance_id: (required)
-        :type appliance_id: int
-        :param id: A unique integer value identifying this appliance public key. (required)
-        :type id: int
-        :param appliance_public_key_request: (required)
-        :type appliance_public_key_request: AppliancePublicKeyRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: AppliancePublicKey
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.appliances_public_keys_update_with_http_info(appliance_id, id, appliance_public_key_request, **kwargs)  # noqa: E501
-
-    def appliances_public_keys_update_with_http_info(self, appliance_id, id, appliance_public_key_request, **kwargs):  # noqa: E501
-        """appliances_public_keys_update  # noqa: E501
-
-        Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.appliances_public_keys_update_with_http_info(appliance_id, id, appliance_public_key_request, async_req=True)
-        >>> result = thread.get()
-
-        :param appliance_id: (required)
-        :type appliance_id: int
-        :param id: A unique integer value identifying this appliance public key. (required)
-        :type id: int
-        :param appliance_public_key_request: (required)
-        :type appliance_public_key_request: AppliancePublicKeyRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(AppliancePublicKey, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        local_var_params = locals()
-
-        all_params = [
-            'appliance_id',
-            'id',
-            'appliance_public_key_request'
-        ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth'
-            ]
-        )
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method appliances_public_keys_update" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'appliance_id' is set
-        if self.api_client.client_side_validation and ('appliance_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['appliance_id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `appliance_id` when calling `appliances_public_keys_update`")  # noqa: E501
-        # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `id` when calling `appliances_public_keys_update`")  # noqa: E501
-        # verify the required parameter 'appliance_public_key_request' is set
-        if self.api_client.client_side_validation and ('appliance_public_key_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['appliance_public_key_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `appliance_public_key_request` when calling `appliances_public_keys_update`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'appliance_id' in local_var_params:
-            path_params['appliance_id'] = local_var_params['appliance_id']  # noqa: E501
-        if 'id' in local_var_params:
-            path_params['id'] = local_var_params['id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'appliance_public_key_request' in local_var_params:
-            body_params = local_var_params['appliance_public_key_request']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-
-        response_types_map = {
-            201: "AppliancePublicKey",
-            202: "AppliancePublicKey",
-        }
-
-        return self.api_client.call_api(
-            '/api/appliances/{appliance_id}/public-keys/{id}/', 'PUT',
             path_params,
             query_params,
             header_params,

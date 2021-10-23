@@ -46,9 +46,6 @@ class TestAppliancePublicKey(unittest.TestCase):
             )
         else :
             return AppliancePublicKey(
-                public_key = '',
-                public_key_checksum = '',
-                fingerprint = '',
         )
 
     def testAppliancePublicKey(self):

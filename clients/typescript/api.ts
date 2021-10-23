@@ -445,6 +445,43 @@ export interface Appliance {
 /**
  * 
  * @export
+ * @interface ApplianceKeyPair
+ */
+export interface ApplianceKeyPair {
+    /**
+     * 
+     * @type {string}
+     * @memberof ApplianceKeyPair
+     */
+    'private_key'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApplianceKeyPair
+     */
+    'private_key_checksum'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApplianceKeyPair
+     */
+    'public_key'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApplianceKeyPair
+     */
+    'public_key_checksum'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApplianceKeyPair
+     */
+    'fingerprint_checksum'?: string;
+}
+/**
+ * 
+ * @export
  * @interface AppliancePublicKey
  */
 export interface AppliancePublicKey {
@@ -477,44 +514,19 @@ export interface AppliancePublicKey {
      * @type {string}
      * @memberof AppliancePublicKey
      */
-    'public_key': string;
+    'public_key'?: string;
     /**
      * 
      * @type {string}
      * @memberof AppliancePublicKey
      */
-    'public_key_checksum': string;
+    'public_key_checksum'?: string;
     /**
      * 
      * @type {string}
      * @memberof AppliancePublicKey
      */
-    'fingerprint': string;
-}
-/**
- * 
- * @export
- * @interface AppliancePublicKeyRequest
- */
-export interface AppliancePublicKeyRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof AppliancePublicKeyRequest
-     */
-    'public_key': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AppliancePublicKeyRequest
-     */
-    'public_key_checksum': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AppliancePublicKeyRequest
-     */
-    'fingerprint': string;
+    'fingerprint'?: string;
 }
 /**
  * 
@@ -732,7 +744,7 @@ export interface CloudIoTDevice {
      * @type {number}
      * @memberof CloudIoTDevice
      */
-    'numId': number;
+    'num_id': number;
     /**
      * 
      * @type {string}
@@ -775,7 +787,7 @@ export interface CloudIoTDeviceRequest {
      * @type {number}
      * @memberof CloudIoTDeviceRequest
      */
-    'numId': number;
+    'num_id': number;
     /**
      * 
      * @type {string}
@@ -3582,31 +3594,6 @@ export interface PatchedAnsibleFactsRequest {
 /**
  * 
  * @export
- * @interface PatchedAppliancePublicKeyRequest
- */
-export interface PatchedAppliancePublicKeyRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedAppliancePublicKeyRequest
-     */
-    'public_key'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedAppliancePublicKeyRequest
-     */
-    'public_key_checksum'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedAppliancePublicKeyRequest
-     */
-    'fingerprint'?: string;
-}
-/**
- * 
- * @export
  * @interface PatchedApplianceRequest
  */
 export interface PatchedApplianceRequest {
@@ -3653,7 +3640,7 @@ export interface PatchedCloudIoTDeviceRequest {
      * @type {number}
      * @memberof PatchedCloudIoTDeviceRequest
      */
-    'numId'?: number;
+    'num_id'?: number;
     /**
      * 
      * @type {string}
@@ -7278,6 +7265,132 @@ export const AppliancesApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
+         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+         * @param {number} applianceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesKeypairsCreate: async (applianceId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceId' is not null or undefined
+            assertParamExists('appliancesKeypairsCreate', 'applianceId', applianceId)
+            const localVarPath = `/api/appliances/{appliance_id}/keypairs/`
+                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+         * @param {number} applianceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesKeypairsList: async (applianceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceId' is not null or undefined
+            assertParamExists('appliancesKeypairsList', 'applianceId', applianceId)
+            const localVarPath = `/api/appliances/{appliance_id}/keypairs/`
+                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this appliance public key.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesKeypairsRetrieve: async (applianceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceId' is not null or undefined
+            assertParamExists('appliancesKeypairsRetrieve', 'applianceId', applianceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('appliancesKeypairsRetrieve', 'id', id)
+            const localVarPath = `/api/appliances/{appliance_id}/keypairs/{id}/`
+                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
@@ -7582,234 +7695,6 @@ export const AppliancesApiAxiosParamCreator = function (configuration?: Configur
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(applianceRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-         * @param {number} applianceId 
-         * @param {AppliancePublicKeyRequest} appliancePublicKeyRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        appliancesPublicKeysCreate: async (applianceId: number, appliancePublicKeyRequest: AppliancePublicKeyRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'applianceId' is not null or undefined
-            assertParamExists('appliancesPublicKeysCreate', 'applianceId', applianceId)
-            // verify required parameter 'appliancePublicKeyRequest' is not null or undefined
-            assertParamExists('appliancesPublicKeysCreate', 'appliancePublicKeyRequest', appliancePublicKeyRequest)
-            const localVarPath = `/api/appliances/{appliance_id}/public-keys/`
-                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(appliancePublicKeyRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-         * @param {number} applianceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        appliancesPublicKeysList: async (applianceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'applianceId' is not null or undefined
-            assertParamExists('appliancesPublicKeysList', 'applianceId', applianceId)
-            const localVarPath = `/api/appliances/{appliance_id}/public-keys/`
-                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-         * @param {number} applianceId 
-         * @param {number} id A unique integer value identifying this appliance public key.
-         * @param {PatchedAppliancePublicKeyRequest} [patchedAppliancePublicKeyRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        appliancesPublicKeysPartialUpdate: async (applianceId: number, id: number, patchedAppliancePublicKeyRequest?: PatchedAppliancePublicKeyRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'applianceId' is not null or undefined
-            assertParamExists('appliancesPublicKeysPartialUpdate', 'applianceId', applianceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('appliancesPublicKeysPartialUpdate', 'id', id)
-            const localVarPath = `/api/appliances/{appliance_id}/public-keys/{id}/`
-                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(patchedAppliancePublicKeyRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-         * @param {number} applianceId 
-         * @param {number} id A unique integer value identifying this appliance public key.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        appliancesPublicKeysRetrieve: async (applianceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'applianceId' is not null or undefined
-            assertParamExists('appliancesPublicKeysRetrieve', 'applianceId', applianceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('appliancesPublicKeysRetrieve', 'id', id)
-            const localVarPath = `/api/appliances/{appliance_id}/public-keys/{id}/`
-                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-         * @param {number} applianceId 
-         * @param {number} id A unique integer value identifying this appliance public key.
-         * @param {AppliancePublicKeyRequest} appliancePublicKeyRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        appliancesPublicKeysUpdate: async (applianceId: number, id: number, appliancePublicKeyRequest: AppliancePublicKeyRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'applianceId' is not null or undefined
-            assertParamExists('appliancesPublicKeysUpdate', 'applianceId', applianceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('appliancesPublicKeysUpdate', 'id', id)
-            // verify required parameter 'appliancePublicKeyRequest' is not null or undefined
-            assertParamExists('appliancesPublicKeysUpdate', 'appliancePublicKeyRequest', appliancePublicKeyRequest)
-            const localVarPath = `/api/appliances/{appliance_id}/public-keys/{id}/`
-                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(appliancePublicKeyRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -8131,6 +8016,38 @@ export const AppliancesApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+         * @param {number} applianceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesKeypairsCreate(applianceId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApplianceKeyPair>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesKeypairsCreate(applianceId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+         * @param {number} applianceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesKeypairsList(applianceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedAppliancePublicKeyList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesKeypairsList(applianceId, page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this appliance public key.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesKeypairsRetrieve(applianceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AppliancePublicKey>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesKeypairsRetrieve(applianceId, id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
@@ -8206,63 +8123,6 @@ export const AppliancesApiFp = function(configuration?: Configuration) {
          */
         async appliancesPrinterControllersUpdate(applianceId: number, id: number, applianceRequest: ApplianceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterController>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesPrinterControllersUpdate(applianceId, id, applianceRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-         * @param {number} applianceId 
-         * @param {AppliancePublicKeyRequest} appliancePublicKeyRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async appliancesPublicKeysCreate(applianceId: number, appliancePublicKeyRequest: AppliancePublicKeyRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AppliancePublicKey>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesPublicKeysCreate(applianceId, appliancePublicKeyRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-         * @param {number} applianceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async appliancesPublicKeysList(applianceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedAppliancePublicKeyList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesPublicKeysList(applianceId, page, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-         * @param {number} applianceId 
-         * @param {number} id A unique integer value identifying this appliance public key.
-         * @param {PatchedAppliancePublicKeyRequest} [patchedAppliancePublicKeyRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async appliancesPublicKeysPartialUpdate(applianceId: number, id: number, patchedAppliancePublicKeyRequest?: PatchedAppliancePublicKeyRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AppliancePublicKey>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesPublicKeysPartialUpdate(applianceId, id, patchedAppliancePublicKeyRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-         * @param {number} applianceId 
-         * @param {number} id A unique integer value identifying this appliance public key.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async appliancesPublicKeysRetrieve(applianceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AppliancePublicKey>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesPublicKeysRetrieve(applianceId, id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-         * @param {number} applianceId 
-         * @param {number} id A unique integer value identifying this appliance public key.
-         * @param {AppliancePublicKeyRequest} appliancePublicKeyRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async appliancesPublicKeysUpdate(applianceId: number, id: number, appliancePublicKeyRequest: AppliancePublicKeyRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AppliancePublicKey>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesPublicKeysUpdate(applianceId, id, appliancePublicKeyRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -8472,6 +8332,35 @@ export const AppliancesApiFactory = function (configuration?: Configuration, bas
             return localVarFp.appliancesCreate(applianceRequest, options).then((request) => request(axios, basePath));
         },
         /**
+         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+         * @param {number} applianceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesKeypairsCreate(applianceId: number, options?: any): AxiosPromise<ApplianceKeyPair> {
+            return localVarFp.appliancesKeypairsCreate(applianceId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+         * @param {number} applianceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesKeypairsList(applianceId: number, page?: number, options?: any): AxiosPromise<PaginatedAppliancePublicKeyList> {
+            return localVarFp.appliancesKeypairsList(applianceId, page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this appliance public key.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesKeypairsRetrieve(applianceId: number, id: number, options?: any): AxiosPromise<AppliancePublicKey> {
+            return localVarFp.appliancesKeypairsRetrieve(applianceId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
@@ -8541,58 +8430,6 @@ export const AppliancesApiFactory = function (configuration?: Configuration, bas
          */
         appliancesPrinterControllersUpdate(applianceId: number, id: number, applianceRequest: ApplianceRequest, options?: any): AxiosPromise<PrinterController> {
             return localVarFp.appliancesPrinterControllersUpdate(applianceId, id, applianceRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-         * @param {number} applianceId 
-         * @param {AppliancePublicKeyRequest} appliancePublicKeyRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        appliancesPublicKeysCreate(applianceId: number, appliancePublicKeyRequest: AppliancePublicKeyRequest, options?: any): AxiosPromise<AppliancePublicKey> {
-            return localVarFp.appliancesPublicKeysCreate(applianceId, appliancePublicKeyRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-         * @param {number} applianceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        appliancesPublicKeysList(applianceId: number, page?: number, options?: any): AxiosPromise<PaginatedAppliancePublicKeyList> {
-            return localVarFp.appliancesPublicKeysList(applianceId, page, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-         * @param {number} applianceId 
-         * @param {number} id A unique integer value identifying this appliance public key.
-         * @param {PatchedAppliancePublicKeyRequest} [patchedAppliancePublicKeyRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        appliancesPublicKeysPartialUpdate(applianceId: number, id: number, patchedAppliancePublicKeyRequest?: PatchedAppliancePublicKeyRequest, options?: any): AxiosPromise<AppliancePublicKey> {
-            return localVarFp.appliancesPublicKeysPartialUpdate(applianceId, id, patchedAppliancePublicKeyRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-         * @param {number} applianceId 
-         * @param {number} id A unique integer value identifying this appliance public key.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        appliancesPublicKeysRetrieve(applianceId: number, id: number, options?: any): AxiosPromise<AppliancePublicKey> {
-            return localVarFp.appliancesPublicKeysRetrieve(applianceId, id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-         * @param {number} applianceId 
-         * @param {number} id A unique integer value identifying this appliance public key.
-         * @param {AppliancePublicKeyRequest} appliancePublicKeyRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        appliancesPublicKeysUpdate(applianceId: number, id: number, appliancePublicKeyRequest: AppliancePublicKeyRequest, options?: any): AxiosPromise<AppliancePublicKey> {
-            return localVarFp.appliancesPublicKeysUpdate(applianceId, id, appliancePublicKeyRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
@@ -8797,6 +8634,35 @@ export interface AppliancesApiInterface {
     appliancesCreate(applianceRequest: ApplianceRequest, options?: AxiosRequestConfig): AxiosPromise<Appliance>;
 
     /**
+     * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+     * @param {number} applianceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesKeypairsCreate(applianceId: number, options?: AxiosRequestConfig): AxiosPromise<ApplianceKeyPair>;
+
+    /**
+     * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+     * @param {number} applianceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesKeypairsList(applianceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedAppliancePublicKeyList>;
+
+    /**
+     * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+     * @param {number} applianceId 
+     * @param {number} id A unique integer value identifying this appliance public key.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesKeypairsRetrieve(applianceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<AppliancePublicKey>;
+
+    /**
      * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
@@ -8866,58 +8732,6 @@ export interface AppliancesApiInterface {
      * @memberof AppliancesApiInterface
      */
     appliancesPrinterControllersUpdate(applianceId: number, id: number, applianceRequest: ApplianceRequest, options?: AxiosRequestConfig): AxiosPromise<PrinterController>;
-
-    /**
-     * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-     * @param {number} applianceId 
-     * @param {AppliancePublicKeyRequest} appliancePublicKeyRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AppliancesApiInterface
-     */
-    appliancesPublicKeysCreate(applianceId: number, appliancePublicKeyRequest: AppliancePublicKeyRequest, options?: AxiosRequestConfig): AxiosPromise<AppliancePublicKey>;
-
-    /**
-     * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-     * @param {number} applianceId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AppliancesApiInterface
-     */
-    appliancesPublicKeysList(applianceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedAppliancePublicKeyList>;
-
-    /**
-     * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-     * @param {number} applianceId 
-     * @param {number} id A unique integer value identifying this appliance public key.
-     * @param {PatchedAppliancePublicKeyRequest} [patchedAppliancePublicKeyRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AppliancesApiInterface
-     */
-    appliancesPublicKeysPartialUpdate(applianceId: number, id: number, patchedAppliancePublicKeyRequest?: PatchedAppliancePublicKeyRequest, options?: AxiosRequestConfig): AxiosPromise<AppliancePublicKey>;
-
-    /**
-     * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-     * @param {number} applianceId 
-     * @param {number} id A unique integer value identifying this appliance public key.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AppliancesApiInterface
-     */
-    appliancesPublicKeysRetrieve(applianceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<AppliancePublicKey>;
-
-    /**
-     * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-     * @param {number} applianceId 
-     * @param {number} id A unique integer value identifying this appliance public key.
-     * @param {AppliancePublicKeyRequest} appliancePublicKeyRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AppliancesApiInterface
-     */
-    appliancesPublicKeysUpdate(applianceId: number, id: number, appliancePublicKeyRequest: AppliancePublicKeyRequest, options?: AxiosRequestConfig): AxiosPromise<AppliancePublicKey>;
 
     /**
      * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
@@ -9154,6 +8968,41 @@ export class AppliancesApi extends BaseAPI implements AppliancesApiInterface {
     }
 
     /**
+     * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+     * @param {number} applianceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesKeypairsCreate(applianceId: number, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesKeypairsCreate(applianceId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+     * @param {number} applianceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesKeypairsList(applianceId: number, page?: number, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesKeypairsList(applianceId, page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
+     * @param {number} applianceId 
+     * @param {number} id A unique integer value identifying this appliance public key.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesKeypairsRetrieve(applianceId: number, id: number, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesKeypairsRetrieve(applianceId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
@@ -9236,68 +9085,6 @@ export class AppliancesApi extends BaseAPI implements AppliancesApiInterface {
      */
     public appliancesPrinterControllersUpdate(applianceId: number, id: number, applianceRequest: ApplianceRequest, options?: AxiosRequestConfig) {
         return AppliancesApiFp(this.configuration).appliancesPrinterControllersUpdate(applianceId, id, applianceRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-     * @param {number} applianceId 
-     * @param {AppliancePublicKeyRequest} appliancePublicKeyRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AppliancesApi
-     */
-    public appliancesPublicKeysCreate(applianceId: number, appliancePublicKeyRequest: AppliancePublicKeyRequest, options?: AxiosRequestConfig) {
-        return AppliancesApiFp(this.configuration).appliancesPublicKeysCreate(applianceId, appliancePublicKeyRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-     * @param {number} applianceId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AppliancesApi
-     */
-    public appliancesPublicKeysList(applianceId: number, page?: number, options?: AxiosRequestConfig) {
-        return AppliancesApiFp(this.configuration).appliancesPublicKeysList(applianceId, page, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-     * @param {number} applianceId 
-     * @param {number} id A unique integer value identifying this appliance public key.
-     * @param {PatchedAppliancePublicKeyRequest} [patchedAppliancePublicKeyRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AppliancesApi
-     */
-    public appliancesPublicKeysPartialUpdate(applianceId: number, id: number, patchedAppliancePublicKeyRequest?: PatchedAppliancePublicKeyRequest, options?: AxiosRequestConfig) {
-        return AppliancesApiFp(this.configuration).appliancesPublicKeysPartialUpdate(applianceId, id, patchedAppliancePublicKeyRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-     * @param {number} applianceId 
-     * @param {number} id A unique integer value identifying this appliance public key.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AppliancesApi
-     */
-    public appliancesPublicKeysRetrieve(applianceId: number, id: number, options?: AxiosRequestConfig) {
-        return AppliancesApiFp(this.configuration).appliancesPublicKeysRetrieve(applianceId, id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Public key for Print Nanny Appliance Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-     * @param {number} applianceId 
-     * @param {number} id A unique integer value identifying this appliance public key.
-     * @param {AppliancePublicKeyRequest} appliancePublicKeyRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AppliancesApi
-     */
-    public appliancesPublicKeysUpdate(applianceId: number, id: number, appliancePublicKeyRequest: AppliancePublicKeyRequest, options?: AxiosRequestConfig) {
-        return AppliancesApiFp(this.configuration).appliancesPublicKeysUpdate(applianceId, id, appliancePublicKeyRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

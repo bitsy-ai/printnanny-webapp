@@ -10,21 +10,27 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct PatchedAppliancePublicKeyRequest {
+pub struct ApplianceKeyPair {
+    #[serde(rename = "private_key", skip_serializing_if = "Option::is_none")]
+    pub private_key: Option<String>,
+    #[serde(rename = "private_key_checksum", skip_serializing_if = "Option::is_none")]
+    pub private_key_checksum: Option<String>,
     #[serde(rename = "public_key", skip_serializing_if = "Option::is_none")]
     pub public_key: Option<String>,
     #[serde(rename = "public_key_checksum", skip_serializing_if = "Option::is_none")]
     pub public_key_checksum: Option<String>,
-    #[serde(rename = "fingerprint", skip_serializing_if = "Option::is_none")]
-    pub fingerprint: Option<String>,
+    #[serde(rename = "fingerprint_checksum", skip_serializing_if = "Option::is_none")]
+    pub fingerprint_checksum: Option<String>,
 }
 
-impl PatchedAppliancePublicKeyRequest {
-    pub fn new() -> PatchedAppliancePublicKeyRequest {
-        PatchedAppliancePublicKeyRequest {
+impl ApplianceKeyPair {
+    pub fn new() -> ApplianceKeyPair {
+        ApplianceKeyPair {
+            private_key: None,
+            private_key_checksum: None,
             public_key: None,
             public_key_checksum: None,
-            fingerprint: None,
+            fingerprint_checksum: None,
         }
     }
 }

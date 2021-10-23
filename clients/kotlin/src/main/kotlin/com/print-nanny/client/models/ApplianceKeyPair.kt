@@ -27,12 +27,20 @@ import java.io.Serializable
 /**
  * 
  *
+ * @param privateKey 
+ * @param privateKeyChecksum 
  * @param publicKey 
  * @param publicKeyChecksum 
- * @param fingerprint 
+ * @param fingerprintChecksum 
  */
 
-data class PatchedAppliancePublicKeyRequest (
+data class ApplianceKeyPair (
+
+    @Json(name = "private_key")
+    val privateKey: kotlin.String? = null,
+
+    @Json(name = "private_key_checksum")
+    val privateKeyChecksum: kotlin.String? = null,
 
     @Json(name = "public_key")
     val publicKey: kotlin.String? = null,
@@ -40,8 +48,8 @@ data class PatchedAppliancePublicKeyRequest (
     @Json(name = "public_key_checksum")
     val publicKeyChecksum: kotlin.String? = null,
 
-    @Json(name = "fingerprint")
-    val fingerprint: kotlin.String? = null
+    @Json(name = "fingerprint_checksum")
+    val fingerprintChecksum: kotlin.String? = null
 
 ) : Serializable {
     companion object {

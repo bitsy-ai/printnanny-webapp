@@ -11,7 +11,7 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct CloudIoTDeviceRequest {
-    #[serde(rename = "numId")]
+    #[serde(rename = "num_id")]
     pub num_id: i64,
     #[serde(rename = "name")]
     pub name: String,

@@ -27,25 +27,16 @@ import java.io.Serializable
 /**
  * 
  *
- * @param publicKey 
- * @param publicKeyChecksum 
- * @param fingerprint 
  * @param id 
  * @param user 
  * @param appliance 
  * @param deleted 
+ * @param publicKey 
+ * @param publicKeyChecksum 
+ * @param fingerprint 
  */
 
 data class AppliancePublicKey (
-
-    @Json(name = "public_key")
-    val publicKey: kotlin.String,
-
-    @Json(name = "public_key_checksum")
-    val publicKeyChecksum: kotlin.String,
-
-    @Json(name = "fingerprint")
-    val fingerprint: kotlin.String,
 
     @Json(name = "id")
     val id: kotlin.Int? = null,
@@ -57,7 +48,16 @@ data class AppliancePublicKey (
     val appliance: kotlin.Int? = null,
 
     @Json(name = "deleted")
-    val deleted: java.time.OffsetDateTime? = null
+    val deleted: java.time.OffsetDateTime? = null,
+
+    @Json(name = "public_key")
+    val publicKey: kotlin.String? = null,
+
+    @Json(name = "public_key_checksum")
+    val publicKeyChecksum: kotlin.String? = null,
+
+    @Json(name = "fingerprint")
+    val fingerprint: kotlin.String? = null
 
 ) : Serializable {
     companion object {

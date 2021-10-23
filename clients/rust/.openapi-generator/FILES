@@ -11,8 +11,8 @@ docs/AlertsApi.md
 docs/AnsibleFacts.md
 docs/AnsibleFactsRequest.md
 docs/Appliance.md
+docs/ApplianceKeyPair.md
 docs/AppliancePublicKey.md
-docs/AppliancePublicKeyRequest.md
 docs/ApplianceRequest.md
 docs/AppliancesApi.md
 docs/ArtifactTypesEnum.md
@@ -96,7 +96,6 @@ docs/PartnersGeeks3dApi.md
 docs/PatchedAlertBulkRequestRequest.md
 docs/PatchedAlertRequest.md
 docs/PatchedAnsibleFactsRequest.md
-docs/PatchedAppliancePublicKeyRequest.md
 docs/PatchedApplianceRequest.md
 docs/PatchedCameraRequest.md
 docs/PatchedCloudIoTDeviceRequest.md
@@ -162,8 +161,8 @@ src/models/alert_request.rs
 src/models/ansible_facts.rs
 src/models/ansible_facts_request.rs
 src/models/appliance.rs
+src/models/appliance_key_pair.rs
 src/models/appliance_public_key.rs
-src/models/appliance_public_key_request.rs
 src/models/appliance_request.rs
 src/models/artifact_types_enum.rs
 src/models/callback_token_auth_request.rs
@@ -243,7 +242,6 @@ src/models/partner3_d_geeks_metadata.rs
 src/models/patched_alert_bulk_request_request.rs
 src/models/patched_alert_request.rs
 src/models/patched_ansible_facts_request.rs
-src/models/patched_appliance_public_key_request.rs
 src/models/patched_appliance_request.rs
 src/models/patched_camera_request.rs
 src/models/patched_cloud_io_t_device_request.rs
