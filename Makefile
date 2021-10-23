@@ -307,7 +307,7 @@ cloudsql:
 	cloud_sql_proxy -dir=$(HOME)/cloudsql -instances=print-nanny:us-central1:print-nanny=tcp:5433
 
 test:
-	docker-compose -f local.yml run --rm django pytest print_nanny_webapp/devices
+	docker-compose -f local.yml run --rm django pytest
 
 stripe-local-webhooks:
 	stripe listen --forward-to localhost:8000/stripe/webhook/
