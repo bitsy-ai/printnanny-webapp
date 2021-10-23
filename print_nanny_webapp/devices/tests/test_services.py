@@ -10,7 +10,7 @@ from print_nanny_webapp.devices.models import Appliance
 
 from print_nanny_webapp.devices.services import (
     generate_keypair_and_update_or_create_cloudiot_device,
-    generate_keypair
+    generate_keypair,
 )
 
 from django.contrib.auth import get_user_model
@@ -19,6 +19,7 @@ User = get_user_model()
 
 TEST_EMAIL = "testing@print-nanny.com"
 TEST_HOSTNAME = "testing.local"
+
 
 class MockDevice(object):
     num_id = 1
@@ -39,12 +40,15 @@ def test_create_cloudiot_device(mocker, user):
         google.api_core.exceptions.NotFound("Fake Exception")
     )
 
-    keypair, cloudiot_device = generate_keypair_and_update_or_create_cloudiot_device(appliance)
+    keypair, cloudiot_device = generate_keypair_and_update_or_create_cloudiot_device(
+        appliance
+    )
 
     assert mock_cloudiot_client.return_value.get_device.call_count == 1
     assert mock_cloudiot_client.return_value.update_device.call_count == 0
     assert mock_cloudiot_client.return_value.create_device.call_count == 1
     assert cloudiot_device.appliance == appliance
+
 
 @pytest.mark.django_db
 def test_update_cloudiot_device(mocker, user):
@@ -58,12 +62,15 @@ def test_update_cloudiot_device(mocker, user):
     )
     mock_cloudiot_client.return_value.update_device.return_value = MockDevice()
 
-    keypair, cloudiot_device = generate_keypair_and_update_or_create_cloudiot_device(appliance)
+    keypair, cloudiot_device = generate_keypair_and_update_or_create_cloudiot_device(
+        appliance
+    )
 
     assert mock_cloudiot_client.return_value.get_device.call_count == 1
     assert mock_cloudiot_client.return_value.update_device.call_count == 1
     assert mock_cloudiot_client.return_value.create_device.call_count == 0
     assert cloudiot_device.appliance == appliance
+
 
 def test_generate_keypair():
     keypair = generate_keypair()

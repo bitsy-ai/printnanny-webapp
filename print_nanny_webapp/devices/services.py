@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from django.forms.models import model_to_dict
 from typing import Tuple
 import hashlib
 import logging
@@ -11,7 +10,6 @@ from django.apps import apps
 from typing import TypedDict
 from django.conf import settings
 from google.cloud import iot_v1 as cloudiot_v1
-from google.protobuf.json_format import MessageToDict
 import google.api_core.exceptions
 import subprocess
 
@@ -234,20 +232,19 @@ def update_or_create_cloudiot_device(
     )
 
     try:
-        cloudiot_device: cloudiot_v1.types.Device = client.get_device(
-            name=device_path
-        )
+        cloudiot_device: cloudiot_v1.types.Device = client.get_device(name=device_path)
         cloudiot_device: cloudiot_v1.types.Device = update_cloudiot_device(
             cloudiot_device, appliance, keypair
         )
     except google.api_core.exceptions.NotFound:
-        cloudiot_device: cloudiot_v1.Device = create_cloudiot_device(
-            appliance, keypair
-        )
+        cloudiot_device: cloudiot_v1.Device = create_cloudiot_device(appliance, keypair)
 
     return cloudiot_device
 
-def generate_keypair_and_update_or_create_cloudiot_device(appliance: Appliance) -> Tuple[KeyPair, CloudIoTDevice]:
+
+def generate_keypair_and_update_or_create_cloudiot_device(
+    appliance: Appliance,
+) -> Tuple[KeyPair, CloudIoTDevice]:
     keypair = generate_keypair()
     cloudiot_device = update_or_create_cloudiot_device(
         appliance=appliance, keypair=keypair
@@ -271,16 +268,16 @@ def generate_keypair_and_update_or_create_cloudiot_device(appliance: Appliance) 
         )
     if appliance.public_keys.first():
         appliance.public_keys.update(
-            public_key=keypair['public_key'],
-            public_key_checksum=keypair['public_key_checksum'],
-            fingerprint=keypair['fingerprint'],
-            appliance=appliance
+            public_key=keypair["public_key"],
+            public_key_checksum=keypair["public_key_checksum"],
+            fingerprint=keypair["fingerprint"],
+            appliance=appliance,
         )
     else:
         AppliancePublicKey.objects.create(
-            public_key=keypair['public_key'],
-            public_key_checksum=keypair['public_key_checksum'],
-            fingerprint=keypair['fingerprint'],
-            appliance=appliance
+            public_key=keypair["public_key"],
+            public_key_checksum=keypair["public_key_checksum"],
+            fingerprint=keypair["fingerprint"],
+            appliance=appliance,
         )
     return keypair, appliance.cloudiot_devices.first()
