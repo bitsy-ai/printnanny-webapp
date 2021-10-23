@@ -298,7 +298,7 @@ python-client-release: dist ## package and upload a release
 
 rust-client-release: rust-client
 	-git add -A
-	-git commit -m "0.8.43 client codegen ✨"
+	-git commit -m "0.8.42 client codegen ✨"
 	cd clients/rust && cargo publish
 
 clients-release: python-client-release ts-client kotlin-client rust-client-release
@@ -307,7 +307,7 @@ cloudsql:
 	cloud_sql_proxy -dir=$(HOME)/cloudsql -instances=print-nanny:us-central1:print-nanny=tcp:5433
 
 test:
-	docker-compose -f local.yml run --rm django pytest
+	docker-compose -f local.yml run --rm django pytest print_nanny_webapp/devices
 
 stripe-local-webhooks:
 	stripe listen --forward-to localhost:8000/stripe/webhook/
