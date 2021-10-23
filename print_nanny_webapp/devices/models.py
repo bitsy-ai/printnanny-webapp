@@ -79,7 +79,7 @@ class CloudIoTDevice(SafeDeleteModel):
     def pre_softdelete(self):
         return delete_cloudiot_device(self.numId)
 
-    numId = models.BigIntegerField(primary_key=True)
+    num_id = models.BigIntegerField(primary_key=True)
     name = models.CharField(max_length=255)
     id = models.CharField(max_length=255)
 
