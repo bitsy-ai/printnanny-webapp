@@ -4,7 +4,8 @@ from typing import Any
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from django.db.utils import IntegrityError
 
-import rest_framework.status
+from django.shortcuts import get_object_or_404
+from rest_framework import serializers
 from rest_framework.mixins import (
     ListModelMixin,
     RetrieveModelMixin,
@@ -14,9 +15,11 @@ from rest_framework.mixins import (
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
+import rest_framework.status
 
 from .serializers import (
     AnsibleFactsSerializer,
+    ApplianceKeyPairSerializer,
     AppliancePublicKeySerializer,
     ApplianceSerializer,
     CameraSerializer,
@@ -31,6 +34,7 @@ from ..models import (
     CloudIoTDevice,
     PrinterController,
 )
+from ..services import KeyPair, generate_keypair_and_update_or_create_cloudiot_device
 from print_nanny_webapp.utils.api.exceptions import AlreadyExists
 from print_nanny_webapp.utils.api.serializers import ErrorDetailSerializer
 
@@ -160,11 +164,11 @@ list_appliance_public_keys_schema = extend_schema(
     },
 )
 modify_appliance_public_keys_schema = extend_schema(
-    request=AppliancePublicKeySerializer,
+    request=ApplianceKeyPairSerializer,
     responses={
         "default": ErrorDetailSerializer,
-        201: AppliancePublicKeySerializer,
-        202: AppliancePublicKeySerializer,
+        201: ApplianceKeyPairSerializer,
+        202: ApplianceKeyPairSerializer,
     },
 )
 
@@ -172,14 +176,12 @@ modify_appliance_public_keys_schema = extend_schema(
 @extend_schema_view(
     list=list_appliance_public_keys_schema,
     create=modify_appliance_public_keys_schema,
-    update=modify_appliance_public_keys_schema,
 )
-class AppliancePublicKeyViewSet(
+class ApplianceKeyPairViewSet(
     GenericViewSet,
     CreateModelMixin,
     ListModelMixin,
     RetrieveModelMixin,
-    UpdateModelMixin,
 ):
     """
     Public key for Print Nanny Appliance
@@ -191,10 +193,15 @@ class AppliancePublicKeyViewSet(
     queryset = AppliancePublicKey.objects.all()
     lookup_field = "id"
 
-    def create(self, request: Request, *args: Any, **kwargs: Any) -> Response:
-        appliance = request.data.get("appliance_id")
+    def create(
+        self, request: Request, appliance_id=None, *args: Any, **kwargs: Any
+    ) -> Response:
+        appliance = get_object_or_404(Appliance, pk=appliance_id)
         try:
-            return super().create(request, *args, **kwargs)
+            keypair, _ = generate_keypair_and_update_or_create_cloudiot_device(
+                appliance
+            )
+            return Response(data=keypair, status=rest_framework.status.HTTP_201_CREATED)
         except IntegrityError:
             raise AlreadyExists(
                 detail=f"AppliancePublicKey already exists for appliance_id={appliance} already exists.",

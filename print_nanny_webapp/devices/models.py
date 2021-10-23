@@ -14,12 +14,6 @@ from safedelete.signals import pre_softdelete
 
 from .choices import ApplianceReleaseChannel, PrinterSoftwareType
 
-from print_nanny_webapp.devices.services import (
-    delete_cloudiot_device,
-    generate_keypair,
-    update_or_create_cloudiot_device,
-)
-
 UserModel = get_user_model()
 logger = logging.getLogger(__name__)
 
@@ -58,6 +52,10 @@ class Appliance(SafeDeleteModel):
     def last_ansible_facts(self):
         return self.ansible_facts.first()
 
+    @property
+    def to_cloudiot_id(self):
+        return f"appliance-id-{self.id}"
+
 
 class CloudIoTDevice(SafeDeleteModel):
     """
@@ -77,9 +75,13 @@ class CloudIoTDevice(SafeDeleteModel):
         ]
 
     def pre_softdelete(self):
+        from print_nanny_webapp.devices.services import (
+            delete_cloudiot_device,
+        )
+
         return delete_cloudiot_device(self.numId)
 
-    numId = models.BigIntegerField(primary_key=True)
+    num_id = models.BigIntegerField(primary_key=True)
     name = models.CharField(max_length=255)
     id = models.CharField(max_length=255)
 
