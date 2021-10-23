@@ -1,19 +1,14 @@
-from __future__ import annotations
-
-from typing import Tuple
 import hashlib
 import logging
 import tempfile
 import requests
 import os
-from django.apps import apps
 from typing import TypedDict
 from django.conf import settings
 from google.cloud import iot_v1 as cloudiot_v1
+from google.protobuf.json_format import MessageToDict
 import google.api_core.exceptions
 import subprocess
-
-from .models import Appliance, CloudIoTDevice
 
 logger = logging.getLogger(__name__)
 
@@ -26,13 +21,12 @@ class CACerts(TypedDict):
 
 
 class KeyPair(TypedDict):
-    private_key: str
+    private_key_content: str
     private_key_checksum: str
-    public_key: str
+    public_key_content: str
     public_key_checksum: str
     fingerprint: str
-    # TODO x509
-    # ca_certs: CACerts
+    ca_certs: CACerts
 
 
 def check_ca_certs():
@@ -89,14 +83,13 @@ def check_ca_certs():
 
 def generate_keypair():
 
-    # TODO x509
-    # ca_certs = check_ca_certs()
+    ca_certs = check_ca_certs()
 
     with tempfile.TemporaryDirectory() as tmp:
-        keypair_filename = f"{tmp}/ecdsa256_keypair.pem"
-        public_key_filename = f"{tmp}/ecdsa_public.pem"
+        keypair_filename = f"{tmp}/ec256_keypair.pem"
+        public_key_filename = f"{tmp}/ec_public.pem"
 
-        p = subprocess.check_output(
+        p = subprocess.run(
             [
                 "openssl",
                 "ecparam",
@@ -107,9 +100,10 @@ def generate_keypair():
                 "-out",
                 keypair_filename,
             ],
+            capture_output=True,
         )
 
-        p = subprocess.check_output(
+        p = subprocess.run(
             [
                 "openssl",
                 "ec",
@@ -119,19 +113,19 @@ def generate_keypair():
                 "-out",
                 public_key_filename,
             ],
+            capture_output=True,
         )
-
-        p = subprocess.check_output(
+        p = subprocess.run(
             [
                 "openssl",
                 "sha3-256",
                 "-c",
                 public_key_filename,
             ],
+            capture_output=True,
         )
-        fingerprint = p.decode().split("=")[-1]
+        fingerprint = p.stdout.decode().split("=")[-1]
         fingerprint = fingerprint.strip()
-        logger.info(fingerprint)
 
         with open(public_key_filename, "rb") as f:
             public_key_content = f.read()
@@ -142,11 +136,12 @@ def generate_keypair():
             private_key_checksum = hashlib.sha256(private_key_content).hexdigest()
 
         return KeyPair(
-            private_key=private_key_content.decode("utf8"),
+            private_key_content=private_key_content.decode("utf8"),
             private_key_checksum=private_key_checksum,
-            public_key=public_key_content.decode("utf8"),
+            public_key_content=public_key_content.decode("utf8"),
             public_key_checksum=public_key_checksum,
             fingerprint=fingerprint,
+            ca_certs=ca_certs,
         )
 
 
@@ -165,7 +160,14 @@ def delete_cloudiot_device(device_id_int64: int):
         logger.error(e)
 
 
-def create_cloudiot_device(appliance: Appliance, keypair: KeyPair):
+def create_cloudiot_device(
+    name: str,
+    serial: str,
+    user_id: int,
+    metadata: dict,
+    fingerprint: str,
+    public_key_content: str,
+):
     client = cloudiot_v1.DeviceManagerClient()
     parent = client.registry_path(
         settings.GCP_PROJECT_ID,
@@ -173,49 +175,54 @@ def create_cloudiot_device(appliance: Appliance, keypair: KeyPair):
         settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
     )
 
+    string_kwargs = {k: str(v) for k, v in metadata.items()}
+
     device = cloudiot_v1.types.Device()
-    device.id = appliance.to_cloudiot_id
+    device.id = name
     device.credentials = [
         {
             "public_key": {
                 "format": cloudiot_v1.PublicKeyFormat.ES256_PEM,
-                "key": keypair["public_key"],
+                "key": public_key_content,
             }
         }
     ]
-    device.metadata = dict(
-        fingerprint=keypair["fingerprint"],
-        appliance_id=str(appliance.id),
-        appliance_hostname=appliance.hostname,
-        user_id=str(appliance.user.id),
-        email=appliance.user.email,
-    )
+    device.metadata = {
+        "user_id": str(user_id),
+        "serial": serial,
+        "fingerprint": fingerprint,
+        **string_kwargs,
+    }
 
     return client.create_device(parent=parent, device=device)
 
 
 def update_cloudiot_device(
-    device: cloudiot_v1.types.Device, appliance: Appliance, keypair: KeyPair
+    device: cloudiot_v1.types.Device,
+    serial: str,
+    user_id: int,
+    metadata: dict,
+    fingerprint: str,
+    public_key_content: str,
 ):
     client = cloudiot_v1.DeviceManagerClient()
+    string_kwargs = {k: str(v) for k, v in metadata.items()}
     device.credentials = [
         {
             "public_key": {
                 "format": cloudiot_v1.PublicKeyFormat.ES256_PEM,
-                "key": keypair["public_key"],
+                "key": public_key_content,
             }
         }
     ]
-    device.metadata = dict(
-        fingerprint=keypair["fingerprint"],
-        appliance_id=str(appliance.id),
-        appliance_hostname=appliance.hostname,
-        user_id=str(appliance.user.id),
-        email=appliance.user.email,
-    )
-    # google.api_core.exceptions.InvalidArgument: 400 The fields 'device.id' and 'device.num_id' must be empty.
-    del device.num_id
+    device.metadata = {
+        "user_id": str(user_id),
+        "serial": serial,
+        "fingerprint": fingerprint,
+        **string_kwargs,
+    }
     del device.id
+    del device.num_id
 
     request = cloudiot_v1.types.UpdateDeviceRequest(
         device=device, update_mask={"paths": ["credentials", "metadata"]}
@@ -224,62 +231,36 @@ def update_cloudiot_device(
 
 
 def update_or_create_cloudiot_device(
-    appliance: Appliance, keypair: KeyPair
-) -> cloudiot_v1.Device:
-    # request to Cloud IoT API
+    name: str,
+    serial: str,
+    user_id: int,
+    metadata: dict,
+    fingerprint: str,
+    public_key_content: str,
+):
     client = cloudiot_v1.DeviceManagerClient()
 
     device_path = client.device_path(
         settings.GCP_PROJECT_ID,
         settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
         settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
-        appliance.to_cloudiot_id,
+        name,
     )
 
     try:
-        existing_cloudiot_device: cloudiot_v1.types.Device = client.get_device(
-            name=device_path
+        cloudiot_device = client.get_device(name=device_path)
+        cloudiot_device = update_cloudiot_device(
+            cloudiot_device,
+            serial,
+            user_id,
+            metadata,
+            fingerprint,
+            public_key_content,
         )
-        return update_cloudiot_device(existing_cloudiot_device, appliance, keypair)
-    except google.api_core.exceptions.NotFound:
-        return create_cloudiot_device(appliance, keypair)
+    except google.api_core.exceptions.NotFound as e:
+        cloudiot_device = create_cloudiot_device(
+            name, serial, user_id, metadata, fingerprint, public_key_content
+        )
 
-
-def generate_keypair_and_update_or_create_cloudiot_device(
-    appliance: Appliance,
-) -> Tuple[KeyPair, CloudIoTDevice]:
-    keypair = generate_keypair()
-    cloudiot_device = update_or_create_cloudiot_device(
-        appliance=appliance, keypair=keypair
-    )
-    CloudIoTDevice = apps.get_model("devices", "CloudIoTDevice")
-    AppliancePublicKey = apps.get_model("devices", "AppliancePublicKey")
-
-    # update apppliance relationships
-    if appliance.cloudiot_devices.first():
-        appliance.cloudiot_devices.update(
-            num_id=cloudiot_device.num_id,
-            name=cloudiot_device.name,
-        )
-    else:
-        # create new print_nanny_webapp.devices.models.CloudIoTDevices object
-        CloudIoTDevice.objects.create(
-            num_id=cloudiot_device.num_id,
-            name=cloudiot_device.name,
-            appliance=appliance,
-        )
-    if appliance.public_keys.first():
-        appliance.public_keys.update(
-            public_key=keypair["public_key"],
-            public_key_checksum=keypair["public_key_checksum"],
-            fingerprint=keypair["fingerprint"],
-            appliance=appliance,
-        )
-    else:
-        AppliancePublicKey.objects.create(
-            public_key=keypair["public_key"],
-            public_key_checksum=keypair["public_key_checksum"],
-            fingerprint=keypair["fingerprint"],
-            appliance=appliance,
-        )
-    return keypair, appliance.cloudiot_devices.first()
+    cloudiot_device_dict = MessageToDict(cloudiot_device._pb)
+    return cloudiot_device_dict, device_path
