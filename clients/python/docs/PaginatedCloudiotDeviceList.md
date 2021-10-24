@@ -1,12 +1,13 @@
-# PatchedCloudIoTDeviceRequest
+# PaginatedCloudiotDeviceList
 
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**num_id** | **int** |  | [optional] 
-**name** | **str** |  | [optional] 
-**id** | **str** |  | [optional] 
+**count** | **int** |  | [optional] 
+**next** | **str** |  | [optional] 
+**previous** | **str** |  | [optional] 
+**results** | [**list[CloudiotDevice]**](CloudiotDevice.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

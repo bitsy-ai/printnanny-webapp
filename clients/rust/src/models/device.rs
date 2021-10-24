@@ -13,16 +13,18 @@
 pub struct Device {
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
     pub id: Option<i32>,
-    #[serde(rename = "public_key", skip_serializing_if = "Option::is_none")]
-    pub public_key: Option<Box<crate::models::DevicePublicKey>>,
-    #[serde(rename = "last_ansible_facts", skip_serializing_if = "Option::is_none")]
-    pub last_ansible_facts: Option<Box<crate::models::AnsibleFacts>>,
-    #[serde(rename = "dashboard_url", skip_serializing_if = "Option::is_none")]
-    pub dashboard_url: Option<String>,
+    #[serde(rename = "cloudiot_devices", skip_serializing_if = "Option::is_none")]
+    pub cloudiot_devices: Option<Vec<crate::models::CloudiotDevice>>,
     #[serde(rename = "cameras", skip_serializing_if = "Option::is_none")]
     pub cameras: Option<Vec<crate::models::Camera>>,
+    #[serde(rename = "dashboard_url", skip_serializing_if = "Option::is_none")]
+    pub dashboard_url: Option<String>,
+    #[serde(rename = "last_ansible_facts", skip_serializing_if = "Option::is_none")]
+    pub last_ansible_facts: Option<Box<crate::models::AnsibleFacts>>,
     #[serde(rename = "printer_controllers", skip_serializing_if = "Option::is_none")]
     pub printer_controllers: Option<Vec<crate::models::PrinterController>>,
+    #[serde(rename = "public_key", skip_serializing_if = "Option::is_none")]
+    pub public_key: Option<Box<crate::models::DevicePublicKey>>,
     #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
     pub user: Option<i32>,
     #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
@@ -39,11 +41,12 @@ impl Device {
     pub fn new(hostname: String) -> Device {
         Device {
             id: None,
-            public_key: None,
-            last_ansible_facts: None,
-            dashboard_url: None,
+            cloudiot_devices: None,
             cameras: None,
+            dashboard_url: None,
+            last_ansible_facts: None,
             printer_controllers: None,
+            public_key: None,
             user: None,
             deleted: None,
             created_dt: None,

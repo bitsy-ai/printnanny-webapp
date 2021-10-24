@@ -1,5 +1,5 @@
 
-# PatchedCloudIoTDeviceRequest
+# PatchedCloudiotDeviceRequest
 
 ## Properties
 Name | Type | Description | Notes

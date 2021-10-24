@@ -28,6 +28,7 @@ import java.io.Serializable
  * 
  *
  * @param id 
+ * @param privateKey 
  * @param user 
  * @param device 
  * @param deleted 
@@ -40,6 +41,9 @@ data class DevicePublicKey (
 
     @Json(name = "id")
     val id: kotlin.Int? = null,
+
+    @Json(name = "private_key")
+    val privateKey: kotlin.String? = null,
 
     @Json(name = "user")
     val user: kotlin.String? = null,

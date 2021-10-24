@@ -16,8 +16,8 @@ docs/CallbackTokenVerificationRequest.md
 docs/Camera.md
 docs/CameraRequest.md
 docs/CameraTypeEnum.md
-docs/CloudIoTDevice.md
-docs/CloudIoTDeviceRequest.md
+docs/CloudiotDevice.md
+docs/CloudiotDeviceRequest.md
 docs/CommandEnum.md
 docs/DetailResponse.md
 docs/Device.md
@@ -68,7 +68,7 @@ docs/OctoprintPythonRequest.md
 docs/PaginatedAlertList.md
 docs/PaginatedAnsibleFactsList.md
 docs/PaginatedCameraList.md
-docs/PaginatedCloudIoTDeviceList.md
+docs/PaginatedCloudiotDeviceList.md
 docs/PaginatedDeviceCalibrationList.md
 docs/PaginatedDeviceList.md
 docs/PaginatedDevicePublicKeyList.md
@@ -95,7 +95,7 @@ docs/PatchedAlertBulkRequestRequest.md
 docs/PatchedAlertRequest.md
 docs/PatchedAnsibleFactsRequest.md
 docs/PatchedCameraRequest.md
-docs/PatchedCloudIoTDeviceRequest.md
+docs/PatchedCloudiotDeviceRequest.md
 docs/PatchedDeviceCalibrationRequest.md
 docs/PatchedDeviceRequest.md
 docs/PatchedOctoPrintDeviceRequest.md
@@ -182,8 +182,8 @@ src/main/kotlin/com/print-nanny/client/models/CallbackTokenVerificationRequest.k
 src/main/kotlin/com/print-nanny/client/models/Camera.kt
 src/main/kotlin/com/print-nanny/client/models/CameraRequest.kt
 src/main/kotlin/com/print-nanny/client/models/CameraTypeEnum.kt
-src/main/kotlin/com/print-nanny/client/models/CloudIoTDevice.kt
-src/main/kotlin/com/print-nanny/client/models/CloudIoTDeviceRequest.kt
+src/main/kotlin/com/print-nanny/client/models/CloudiotDevice.kt
+src/main/kotlin/com/print-nanny/client/models/CloudiotDeviceRequest.kt
 src/main/kotlin/com/print-nanny/client/models/CommandEnum.kt
 src/main/kotlin/com/print-nanny/client/models/DetailResponse.kt
 src/main/kotlin/com/print-nanny/client/models/Device.kt
@@ -232,7 +232,7 @@ src/main/kotlin/com/print-nanny/client/models/OctoprintPythonRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedAlertList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedAnsibleFactsList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedCameraList.kt
-src/main/kotlin/com/print-nanny/client/models/PaginatedCloudIoTDeviceList.kt
+src/main/kotlin/com/print-nanny/client/models/PaginatedCloudiotDeviceList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedDeviceCalibrationList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedDeviceList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedDevicePublicKeyList.kt
@@ -257,7 +257,7 @@ src/main/kotlin/com/print-nanny/client/models/PatchedAlertBulkRequestRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedAlertRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedAnsibleFactsRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedCameraRequest.kt
-src/main/kotlin/com/print-nanny/client/models/PatchedCloudIoTDeviceRequest.kt
+src/main/kotlin/com/print-nanny/client/models/PatchedCloudiotDeviceRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedDeviceCalibrationRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedDeviceRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedOctoPrintDeviceRequest.kt

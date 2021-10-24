@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | Option<**i32**> |  | [optional][readonly]
+**private_key** | Option<**String**> |  | [optional][readonly]
 **user** | Option<**String**> |  | [optional][readonly]
 **device** | Option<**i32**> |  | [optional][readonly]
 **deleted** | Option<**String**> |  | [optional][readonly]

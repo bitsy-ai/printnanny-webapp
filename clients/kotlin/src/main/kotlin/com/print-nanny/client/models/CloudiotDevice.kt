@@ -30,12 +30,18 @@ import java.io.Serializable
  * @param numId 
  * @param name 
  * @param id 
+ * @param gcpProjectId 
+ * @param gcpRegion 
+ * @param gcpCloudiotDeviceRegistry 
+ * @param mqttBridgeHostname 
+ * @param mqttBridgePort 
+ * @param mqttClientId 
  * @param user 
  * @param device 
  * @param deleted 
  */
 
-data class CloudIoTDevice (
+data class CloudiotDevice (
 
     @Json(name = "num_id")
     val numId: kotlin.Long,
@@ -45,6 +51,24 @@ data class CloudIoTDevice (
 
     @Json(name = "id")
     val id: kotlin.String,
+
+    @Json(name = "gcp_project_id")
+    val gcpProjectId: kotlin.String? = null,
+
+    @Json(name = "gcp_region")
+    val gcpRegion: kotlin.String? = null,
+
+    @Json(name = "gcp_cloudiot_device_registry")
+    val gcpCloudiotDeviceRegistry: kotlin.String? = null,
+
+    @Json(name = "mqtt_bridge_hostname")
+    val mqttBridgeHostname: kotlin.String? = null,
+
+    @Json(name = "mqtt_bridge_port")
+    val mqttBridgePort: kotlin.Int? = null,
+
+    @Json(name = "mqtt_client_id")
+    val mqttClientId: kotlin.String? = null,
 
     @Json(name = "user")
     val user: kotlin.String? = null,

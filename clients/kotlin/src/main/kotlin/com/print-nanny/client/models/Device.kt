@@ -22,6 +22,7 @@ package com.print-nanny.client.models
 
 import com.print-nanny.client.models.AnsibleFacts
 import com.print-nanny.client.models.Camera
+import com.print-nanny.client.models.CloudiotDevice
 import com.print-nanny.client.models.DevicePublicKey
 import com.print-nanny.client.models.PrinterController
 
@@ -33,11 +34,12 @@ import java.io.Serializable
  *
  * @param hostname 
  * @param id 
- * @param publicKey 
- * @param lastAnsibleFacts 
- * @param dashboardUrl 
+ * @param cloudiotDevices 
  * @param cameras 
+ * @param dashboardUrl 
+ * @param lastAnsibleFacts 
  * @param printerControllers 
+ * @param publicKey 
  * @param user 
  * @param deleted 
  * @param createdDt 
@@ -52,20 +54,23 @@ data class Device (
     @Json(name = "id")
     val id: kotlin.Int? = null,
 
-    @Json(name = "public_key")
-    val publicKey: DevicePublicKey? = null,
-
-    @Json(name = "last_ansible_facts")
-    val lastAnsibleFacts: AnsibleFacts? = null,
-
-    @Json(name = "dashboard_url")
-    val dashboardUrl: kotlin.String? = null,
+    @Json(name = "cloudiot_devices")
+    val cloudiotDevices: kotlin.collections.List<CloudiotDevice>? = null,
 
     @Json(name = "cameras")
     val cameras: kotlin.collections.List<Camera>? = null,
 
+    @Json(name = "dashboard_url")
+    val dashboardUrl: kotlin.String? = null,
+
+    @Json(name = "last_ansible_facts")
+    val lastAnsibleFacts: AnsibleFacts? = null,
+
     @Json(name = "printer_controllers")
     val printerControllers: kotlin.collections.List<PrinterController>? = null,
+
+    @Json(name = "public_key")
+    val publicKey: DevicePublicKey? = null,
 
     @Json(name = "user")
     val user: kotlin.Int? = null,

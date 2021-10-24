@@ -18,8 +18,8 @@ docs/CallbackTokenVerificationRequest.md
 docs/Camera.md
 docs/CameraRequest.md
 docs/CameraTypeEnum.md
-docs/CloudIoTDevice.md
-docs/CloudIoTDeviceRequest.md
+docs/CloudiotDevice.md
+docs/CloudiotDeviceRequest.md
 docs/CommandEnum.md
 docs/DetailResponse.md
 docs/Device.md
@@ -70,7 +70,7 @@ docs/OctoprintPythonRequest.md
 docs/PaginatedAlertList.md
 docs/PaginatedAnsibleFactsList.md
 docs/PaginatedCameraList.md
-docs/PaginatedCloudIoTDeviceList.md
+docs/PaginatedCloudiotDeviceList.md
 docs/PaginatedDeviceCalibrationList.md
 docs/PaginatedDeviceList.md
 docs/PaginatedDevicePublicKeyList.md
@@ -97,7 +97,7 @@ docs/PatchedAlertBulkRequestRequest.md
 docs/PatchedAlertRequest.md
 docs/PatchedAnsibleFactsRequest.md
 docs/PatchedCameraRequest.md
-docs/PatchedCloudIoTDeviceRequest.md
+docs/PatchedCloudiotDeviceRequest.md
 docs/PatchedDeviceCalibrationRequest.md
 docs/PatchedDeviceRequest.md
 docs/PatchedOctoPrintDeviceRequest.md
@@ -167,8 +167,8 @@ src/models/callback_token_verification_request.rs
 src/models/camera.rs
 src/models/camera_request.rs
 src/models/camera_type_enum.rs
-src/models/cloud_io_t_device.rs
-src/models/cloud_io_t_device_request.rs
+src/models/cloudiot_device.rs
+src/models/cloudiot_device_request.rs
 src/models/command_enum.rs
 src/models/detail_response.rs
 src/models/device.rs
@@ -218,7 +218,7 @@ src/models/octoprint_python_request.rs
 src/models/paginated_alert_list.rs
 src/models/paginated_ansible_facts_list.rs
 src/models/paginated_camera_list.rs
-src/models/paginated_cloud_io_t_device_list.rs
+src/models/paginated_cloudiot_device_list.rs
 src/models/paginated_device_calibration_list.rs
 src/models/paginated_device_list.rs
 src/models/paginated_device_public_key_list.rs
@@ -243,7 +243,7 @@ src/models/patched_alert_bulk_request_request.rs
 src/models/patched_alert_request.rs
 src/models/patched_ansible_facts_request.rs
 src/models/patched_camera_request.rs
-src/models/patched_cloud_io_t_device_request.rs
+src/models/patched_cloudiot_device_request.rs
 src/models/patched_device_calibration_request.rs
 src/models/patched_device_request.rs
 src/models/patched_octo_print_device_request.rs

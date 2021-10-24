@@ -20,7 +20,6 @@
 
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.CloudIoTDevice
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -28,25 +27,21 @@ import java.io.Serializable
 /**
  * 
  *
- * @param count 
- * @param next 
- * @param previous 
- * @param results 
+ * @param numId 
+ * @param name 
+ * @param id 
  */
 
-data class PaginatedCloudIoTDeviceList (
+data class CloudiotDeviceRequest (
 
-    @Json(name = "count")
-    val count: kotlin.Int? = null,
+    @Json(name = "num_id")
+    val numId: kotlin.Long,
 
-    @Json(name = "next")
-    val next: java.net.URI? = null,
+    @Json(name = "name")
+    val name: kotlin.String,
 
-    @Json(name = "previous")
-    val previous: java.net.URI? = null,
-
-    @Json(name = "results")
-    val results: kotlin.collections.List<CloudIoTDevice>? = null
+    @Json(name = "id")
+    val id: kotlin.String
 
 ) : Serializable {
     companion object {

@@ -13,6 +13,8 @@
 pub struct DevicePublicKey {
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
     pub id: Option<i32>,
+    #[serde(rename = "private_key", skip_serializing_if = "Option::is_none")]
+    pub private_key: Option<String>,
     #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
     pub user: Option<String>,
     #[serde(rename = "device", skip_serializing_if = "Option::is_none")]
@@ -31,6 +33,7 @@ impl DevicePublicKey {
     pub fn new() -> DevicePublicKey {
         DevicePublicKey {
             id: None,
+            private_key: None,
             user: None,
             device: None,
             deleted: None,

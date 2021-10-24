@@ -10,7 +10,7 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct CloudIoTDeviceRequest {
+pub struct CloudiotDeviceRequest {
     #[serde(rename = "num_id")]
     pub num_id: i64,
     #[serde(rename = "name")]
@@ -19,9 +19,9 @@ pub struct CloudIoTDeviceRequest {
     pub id: String,
 }
 
-impl CloudIoTDeviceRequest {
-    pub fn new(num_id: i64, name: String, id: String) -> CloudIoTDeviceRequest {
-        CloudIoTDeviceRequest {
+impl CloudiotDeviceRequest {
+    pub fn new(num_id: i64, name: String, id: String) -> CloudiotDeviceRequest {
+        CloudiotDeviceRequest {
             num_id,
             name,
             id,

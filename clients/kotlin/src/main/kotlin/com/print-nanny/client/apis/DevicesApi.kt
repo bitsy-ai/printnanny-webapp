@@ -24,8 +24,8 @@ import com.print-nanny.client.models.AnsibleFacts
 import com.print-nanny.client.models.AnsibleFactsRequest
 import com.print-nanny.client.models.Camera
 import com.print-nanny.client.models.CameraRequest
-import com.print-nanny.client.models.CloudIoTDevice
-import com.print-nanny.client.models.CloudIoTDeviceRequest
+import com.print-nanny.client.models.CloudiotDevice
+import com.print-nanny.client.models.CloudiotDeviceRequest
 import com.print-nanny.client.models.Device
 import com.print-nanny.client.models.DeviceKeyPair
 import com.print-nanny.client.models.DevicePublicKey
@@ -33,13 +33,13 @@ import com.print-nanny.client.models.DeviceRequest
 import com.print-nanny.client.models.ErrorDetail
 import com.print-nanny.client.models.PaginatedAnsibleFactsList
 import com.print-nanny.client.models.PaginatedCameraList
-import com.print-nanny.client.models.PaginatedCloudIoTDeviceList
+import com.print-nanny.client.models.PaginatedCloudiotDeviceList
 import com.print-nanny.client.models.PaginatedDeviceList
 import com.print-nanny.client.models.PaginatedDevicePublicKeyList
 import com.print-nanny.client.models.PaginatedPrinterControllerList
 import com.print-nanny.client.models.PatchedAnsibleFactsRequest
 import com.print-nanny.client.models.PatchedCameraRequest
-import com.print-nanny.client.models.PatchedCloudIoTDeviceRequest
+import com.print-nanny.client.models.PatchedCloudiotDeviceRequest
 import com.print-nanny.client.models.PatchedDeviceRequest
 import com.print-nanny.client.models.PatchedPrinterControllerRequest
 import com.print-nanny.client.models.PrinterController
@@ -636,23 +636,23 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     * 
     * 
     * @param deviceId  
-    * @param cloudIoTDeviceRequest  
-    * @return CloudIoTDevice
+    * @param cloudiotDeviceRequest  
+    * @return CloudiotDevice
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun devicesCloudIotDevicesCreate(deviceId: kotlin.Int, cloudIoTDeviceRequest: CloudIoTDeviceRequest) : CloudIoTDevice {
-        val localVariableConfig = devicesCloudIotDevicesCreateRequestConfig(deviceId = deviceId, cloudIoTDeviceRequest = cloudIoTDeviceRequest)
+    fun devicesCloudIotDevicesCreate(deviceId: kotlin.Int, cloudiotDeviceRequest: CloudiotDeviceRequest) : CloudiotDevice {
+        val localVariableConfig = devicesCloudIotDevicesCreateRequestConfig(deviceId = deviceId, cloudiotDeviceRequest = cloudiotDeviceRequest)
 
-        val localVarResponse = request<CloudIoTDeviceRequest, CloudIoTDevice>(
+        val localVarResponse = request<CloudiotDeviceRequest, CloudiotDevice>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as CloudIoTDevice
+            ResponseType.Success -> (localVarResponse as Success<*>).data as CloudiotDevice
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -670,11 +670,11 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     * To obtain the request config of the operation devicesCloudIotDevicesCreate
     *
     * @param deviceId  
-    * @param cloudIoTDeviceRequest  
+    * @param cloudiotDeviceRequest  
     * @return RequestConfig
     */
-    fun devicesCloudIotDevicesCreateRequestConfig(deviceId: kotlin.Int, cloudIoTDeviceRequest: CloudIoTDeviceRequest) : RequestConfig<CloudIoTDeviceRequest> {
-        val localVariableBody = cloudIoTDeviceRequest
+    fun devicesCloudIotDevicesCreateRequestConfig(deviceId: kotlin.Int, cloudiotDeviceRequest: CloudiotDeviceRequest) : RequestConfig<CloudiotDeviceRequest> {
+        val localVariableBody = cloudiotDeviceRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
@@ -692,22 +692,22 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     * 
     * @param deviceId  
     * @param page A page number within the paginated result set. (optional)
-    * @return PaginatedCloudIoTDeviceList
+    * @return PaginatedCloudiotDeviceList
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun devicesCloudIotDevicesList(deviceId: kotlin.Int, page: kotlin.Int?) : PaginatedCloudIoTDeviceList {
+    fun devicesCloudIotDevicesList(deviceId: kotlin.Int, page: kotlin.Int?) : PaginatedCloudiotDeviceList {
         val localVariableConfig = devicesCloudIotDevicesListRequestConfig(deviceId = deviceId, page = page)
 
-        val localVarResponse = request<Unit, PaginatedCloudIoTDeviceList>(
+        val localVarResponse = request<Unit, PaginatedCloudiotDeviceList>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedCloudIoTDeviceList
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedCloudiotDeviceList
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -752,23 +752,23 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     * 
     * @param deviceId  
     * @param id  
-    * @param patchedCloudIoTDeviceRequest  (optional)
-    * @return CloudIoTDevice
+    * @param patchedCloudiotDeviceRequest  (optional)
+    * @return CloudiotDevice
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun devicesCloudIotDevicesPartialUpdate(deviceId: kotlin.Int, id: kotlin.String, patchedCloudIoTDeviceRequest: PatchedCloudIoTDeviceRequest?) : CloudIoTDevice {
-        val localVariableConfig = devicesCloudIotDevicesPartialUpdateRequestConfig(deviceId = deviceId, id = id, patchedCloudIoTDeviceRequest = patchedCloudIoTDeviceRequest)
+    fun devicesCloudIotDevicesPartialUpdate(deviceId: kotlin.Int, id: kotlin.String, patchedCloudiotDeviceRequest: PatchedCloudiotDeviceRequest?) : CloudiotDevice {
+        val localVariableConfig = devicesCloudIotDevicesPartialUpdateRequestConfig(deviceId = deviceId, id = id, patchedCloudiotDeviceRequest = patchedCloudiotDeviceRequest)
 
-        val localVarResponse = request<PatchedCloudIoTDeviceRequest, CloudIoTDevice>(
+        val localVarResponse = request<PatchedCloudiotDeviceRequest, CloudiotDevice>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as CloudIoTDevice
+            ResponseType.Success -> (localVarResponse as Success<*>).data as CloudiotDevice
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -787,11 +787,11 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     *
     * @param deviceId  
     * @param id  
-    * @param patchedCloudIoTDeviceRequest  (optional)
+    * @param patchedCloudiotDeviceRequest  (optional)
     * @return RequestConfig
     */
-    fun devicesCloudIotDevicesPartialUpdateRequestConfig(deviceId: kotlin.Int, id: kotlin.String, patchedCloudIoTDeviceRequest: PatchedCloudIoTDeviceRequest?) : RequestConfig<PatchedCloudIoTDeviceRequest> {
-        val localVariableBody = patchedCloudIoTDeviceRequest
+    fun devicesCloudIotDevicesPartialUpdateRequestConfig(deviceId: kotlin.Int, id: kotlin.String, patchedCloudiotDeviceRequest: PatchedCloudiotDeviceRequest?) : RequestConfig<PatchedCloudiotDeviceRequest> {
+        val localVariableBody = patchedCloudiotDeviceRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
@@ -809,22 +809,22 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     * 
     * @param deviceId  
     * @param id  
-    * @return CloudIoTDevice
+    * @return CloudiotDevice
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun devicesCloudIotDevicesRetrieve(deviceId: kotlin.Int, id: kotlin.String) : CloudIoTDevice {
+    fun devicesCloudIotDevicesRetrieve(deviceId: kotlin.Int, id: kotlin.String) : CloudiotDevice {
         val localVariableConfig = devicesCloudIotDevicesRetrieveRequestConfig(deviceId = deviceId, id = id)
 
-        val localVarResponse = request<Unit, CloudIoTDevice>(
+        val localVarResponse = request<Unit, CloudiotDevice>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as CloudIoTDevice
+            ResponseType.Success -> (localVarResponse as Success<*>).data as CloudiotDevice
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -864,23 +864,23 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     * 
     * @param deviceId  
     * @param id  
-    * @param cloudIoTDeviceRequest  
-    * @return CloudIoTDevice
+    * @param cloudiotDeviceRequest  
+    * @return CloudiotDevice
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun devicesCloudIotDevicesUpdate(deviceId: kotlin.Int, id: kotlin.String, cloudIoTDeviceRequest: CloudIoTDeviceRequest) : CloudIoTDevice {
-        val localVariableConfig = devicesCloudIotDevicesUpdateRequestConfig(deviceId = deviceId, id = id, cloudIoTDeviceRequest = cloudIoTDeviceRequest)
+    fun devicesCloudIotDevicesUpdate(deviceId: kotlin.Int, id: kotlin.String, cloudiotDeviceRequest: CloudiotDeviceRequest) : CloudiotDevice {
+        val localVariableConfig = devicesCloudIotDevicesUpdateRequestConfig(deviceId = deviceId, id = id, cloudiotDeviceRequest = cloudiotDeviceRequest)
 
-        val localVarResponse = request<CloudIoTDeviceRequest, CloudIoTDevice>(
+        val localVarResponse = request<CloudiotDeviceRequest, CloudiotDevice>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as CloudIoTDevice
+            ResponseType.Success -> (localVarResponse as Success<*>).data as CloudiotDevice
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -899,11 +899,11 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     *
     * @param deviceId  
     * @param id  
-    * @param cloudIoTDeviceRequest  
+    * @param cloudiotDeviceRequest  
     * @return RequestConfig
     */
-    fun devicesCloudIotDevicesUpdateRequestConfig(deviceId: kotlin.Int, id: kotlin.String, cloudIoTDeviceRequest: CloudIoTDeviceRequest) : RequestConfig<CloudIoTDeviceRequest> {
-        val localVariableBody = cloudIoTDeviceRequest
+    fun devicesCloudIotDevicesUpdateRequestConfig(deviceId: kotlin.Int, id: kotlin.String, cloudiotDeviceRequest: CloudiotDeviceRequest) : RequestConfig<CloudiotDeviceRequest> {
+        val localVariableBody = cloudiotDeviceRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 

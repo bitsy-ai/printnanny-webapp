@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.cloud_io_t_device_request import CloudIoTDeviceRequest  # noqa: E501
+from print_nanny_client.models.patched_cloudiot_device_request import PatchedCloudiotDeviceRequest  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestCloudIoTDeviceRequest(unittest.TestCase):
-    """CloudIoTDeviceRequest unit test stubs"""
+class TestPatchedCloudiotDeviceRequest(unittest.TestCase):
+    """PatchedCloudiotDeviceRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,26 +29,23 @@ class TestCloudIoTDeviceRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test CloudIoTDeviceRequest
+        """Test PatchedCloudiotDeviceRequest
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.cloud_io_t_device_request.CloudIoTDeviceRequest()  # noqa: E501
+        # model = print_nanny_client.models.patched_cloudiot_device_request.PatchedCloudiotDeviceRequest()  # noqa: E501
         if include_optional :
-            return CloudIoTDeviceRequest(
+            return PatchedCloudiotDeviceRequest(
                 num_id = -9223372036854775808, 
                 name = '', 
                 id = ''
             )
         else :
-            return CloudIoTDeviceRequest(
-                num_id = -9223372036854775808,
-                name = '',
-                id = '',
+            return PatchedCloudiotDeviceRequest(
         )
 
-    def testCloudIoTDeviceRequest(self):
-        """Test CloudIoTDeviceRequest"""
+    def testPatchedCloudiotDeviceRequest(self):
+        """Test PatchedCloudiotDeviceRequest"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

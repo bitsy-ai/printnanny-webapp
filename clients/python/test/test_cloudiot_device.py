@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.patched_cloud_io_t_device_request import PatchedCloudIoTDeviceRequest  # noqa: E501
+from print_nanny_client.models.cloudiot_device import CloudiotDevice  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestPatchedCloudIoTDeviceRequest(unittest.TestCase):
-    """PatchedCloudIoTDeviceRequest unit test stubs"""
+class TestCloudiotDevice(unittest.TestCase):
+    """CloudiotDevice unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,23 +29,35 @@ class TestPatchedCloudIoTDeviceRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test PatchedCloudIoTDeviceRequest
+        """Test CloudiotDevice
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.patched_cloud_io_t_device_request.PatchedCloudIoTDeviceRequest()  # noqa: E501
+        # model = print_nanny_client.models.cloudiot_device.CloudiotDevice()  # noqa: E501
         if include_optional :
-            return PatchedCloudIoTDeviceRequest(
+            return CloudiotDevice(
                 num_id = -9223372036854775808, 
+                gcp_project_id = '', 
+                gcp_region = '', 
+                gcp_cloudiot_device_registry = '', 
+                mqtt_bridge_hostname = '', 
+                mqtt_bridge_port = 56, 
+                mqtt_client_id = '', 
+                user = '', 
+                device = 56, 
+                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 name = '', 
                 id = ''
             )
         else :
-            return PatchedCloudIoTDeviceRequest(
+            return CloudiotDevice(
+                num_id = -9223372036854775808,
+                name = '',
+                id = '',
         )
 
-    def testPatchedCloudIoTDeviceRequest(self):
-        """Test PatchedCloudIoTDeviceRequest"""
+    def testCloudiotDevice(self):
+        """Test CloudiotDevice"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

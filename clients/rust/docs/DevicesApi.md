@@ -332,7 +332,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_cloud_iot_devices_create
 
-> crate::models::CloudIoTDevice devices_cloud_iot_devices_create(device_id, cloud_io_t_device_request)
+> crate::models::CloudiotDevice devices_cloud_iot_devices_create(device_id, cloudiot_device_request)
 
 
 ### Parameters
@@ -341,11 +341,11 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
-**cloud_io_t_device_request** | [**CloudIoTDeviceRequest**](CloudIoTDeviceRequest.md) |  | [required] |
+**cloudiot_device_request** | [**CloudiotDeviceRequest**](CloudiotDeviceRequest.md) |  | [required] |
 
 ### Return type
 
-[**crate::models::CloudIoTDevice**](CloudIoTDevice.md)
+[**crate::models::CloudiotDevice**](CloudiotDevice.md)
 
 ### Authorization
 
@@ -361,7 +361,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_cloud_iot_devices_list
 
-> crate::models::PaginatedCloudIoTDeviceList devices_cloud_iot_devices_list(device_id, page)
+> crate::models::PaginatedCloudiotDeviceList devices_cloud_iot_devices_list(device_id, page)
 
 
 ### Parameters
@@ -374,7 +374,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::PaginatedCloudIoTDeviceList**](PaginatedCloudIoTDeviceList.md)
+[**crate::models::PaginatedCloudiotDeviceList**](PaginatedCloudiotDeviceList.md)
 
 ### Authorization
 
@@ -390,7 +390,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_cloud_iot_devices_partial_update
 
-> crate::models::CloudIoTDevice devices_cloud_iot_devices_partial_update(device_id, id, patched_cloud_io_t_device_request)
+> crate::models::CloudiotDevice devices_cloud_iot_devices_partial_update(device_id, id, patched_cloudiot_device_request)
 
 
 ### Parameters
@@ -400,11 +400,11 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
 **id** | **String** |  | [required] |
-**patched_cloud_io_t_device_request** | Option<[**PatchedCloudIoTDeviceRequest**](PatchedCloudIoTDeviceRequest.md)> |  |  |
+**patched_cloudiot_device_request** | Option<[**PatchedCloudiotDeviceRequest**](PatchedCloudiotDeviceRequest.md)> |  |  |
 
 ### Return type
 
-[**crate::models::CloudIoTDevice**](CloudIoTDevice.md)
+[**crate::models::CloudiotDevice**](CloudiotDevice.md)
 
 ### Authorization
 
@@ -420,7 +420,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_cloud_iot_devices_retrieve
 
-> crate::models::CloudIoTDevice devices_cloud_iot_devices_retrieve(device_id, id)
+> crate::models::CloudiotDevice devices_cloud_iot_devices_retrieve(device_id, id)
 
 
 ### Parameters
@@ -433,7 +433,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::CloudIoTDevice**](CloudIoTDevice.md)
+[**crate::models::CloudiotDevice**](CloudiotDevice.md)
 
 ### Authorization
 
@@ -449,7 +449,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_cloud_iot_devices_update
 
-> crate::models::CloudIoTDevice devices_cloud_iot_devices_update(device_id, id, cloud_io_t_device_request)
+> crate::models::CloudiotDevice devices_cloud_iot_devices_update(device_id, id, cloudiot_device_request)
 
 
 ### Parameters
@@ -459,11 +459,11 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
 **id** | **String** |  | [required] |
-**cloud_io_t_device_request** | [**CloudIoTDeviceRequest**](CloudIoTDeviceRequest.md) |  | [required] |
+**cloudiot_device_request** | [**CloudiotDeviceRequest**](CloudiotDeviceRequest.md) |  | [required] |
 
 ### Return type
 
-[**crate::models::CloudIoTDevice**](CloudIoTDevice.md)
+[**crate::models::CloudiotDevice**](CloudiotDevice.md)
 
 ### Authorization
 

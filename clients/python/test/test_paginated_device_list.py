@@ -42,9 +42,21 @@ class TestPaginatedDeviceList(unittest.TestCase):
                 results = [
                     print_nanny_client.models.device.Device(
                         id = 56, 
-                        public_key = null, 
-                        last_ansible_facts = null, 
-                        dashboard_url = '', 
+                        cloudiot_devices = [
+                            print_nanny_client.models.cloudiot_device.CloudiotDevice(
+                                num_id = -9223372036854775808, 
+                                gcp_project_id = '', 
+                                gcp_region = '', 
+                                gcp_cloudiot_device_registry = '', 
+                                mqtt_bridge_hostname = '', 
+                                mqtt_bridge_port = 56, 
+                                mqtt_client_id = '', 
+                                user = '', 
+                                device = 56, 
+                                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                name = '', 
+                                id = '', )
+                            ], 
                         cameras = [
                             print_nanny_client.models.camera.Camera(
                                 id = 56, 
@@ -58,6 +70,8 @@ class TestPaginatedDeviceList(unittest.TestCase):
                                 camera_source = '', 
                                 url = '', )
                             ], 
+                        dashboard_url = '', 
+                        last_ansible_facts = null, 
                         printer_controllers = [
                             print_nanny_client.models.printer_controller.PrinterController(
                                 id = 56, 
@@ -69,6 +83,7 @@ class TestPaginatedDeviceList(unittest.TestCase):
                                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                                 polymorphic_ctype = 56, )
                             ], 
+                        public_key = null, 
                         user = 56, 
                         deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 

@@ -37,6 +37,7 @@ class TestDevicePublicKey(unittest.TestCase):
         if include_optional :
             return DevicePublicKey(
                 id = 56, 
+                private_key = '', 
                 user = '', 
                 device = 56, 
                 deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 

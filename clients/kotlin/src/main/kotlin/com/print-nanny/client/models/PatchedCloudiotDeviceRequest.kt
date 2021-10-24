@@ -32,16 +32,16 @@ import java.io.Serializable
  * @param id 
  */
 
-data class CloudIoTDeviceRequest (
+data class PatchedCloudiotDeviceRequest (
 
     @Json(name = "num_id")
-    val numId: kotlin.Long,
+    val numId: kotlin.Long? = null,
 
     @Json(name = "name")
-    val name: kotlin.String,
+    val name: kotlin.String? = null,
 
     @Json(name = "id")
-    val id: kotlin.String
+    val id: kotlin.String? = null
 
 ) : Serializable {
     companion object {

@@ -20,8 +20,8 @@ docs/CallbackTokenVerificationRequest.md
 docs/Camera.md
 docs/CameraRequest.md
 docs/CameraTypeEnum.md
-docs/CloudIoTDevice.md
-docs/CloudIoTDeviceRequest.md
+docs/CloudiotDevice.md
+docs/CloudiotDeviceRequest.md
 docs/CommandEnum.md
 docs/DetailResponse.md
 docs/Device.md
@@ -72,7 +72,7 @@ docs/OctoprintPythonRequest.md
 docs/PaginatedAlertList.md
 docs/PaginatedAnsibleFactsList.md
 docs/PaginatedCameraList.md
-docs/PaginatedCloudIoTDeviceList.md
+docs/PaginatedCloudiotDeviceList.md
 docs/PaginatedDeviceCalibrationList.md
 docs/PaginatedDeviceList.md
 docs/PaginatedDevicePublicKeyList.md
@@ -99,7 +99,7 @@ docs/PatchedAlertBulkRequestRequest.md
 docs/PatchedAlertRequest.md
 docs/PatchedAnsibleFactsRequest.md
 docs/PatchedCameraRequest.md
-docs/PatchedCloudIoTDeviceRequest.md
+docs/PatchedCloudiotDeviceRequest.md
 docs/PatchedDeviceCalibrationRequest.md
 docs/PatchedDeviceRequest.md
 docs/PatchedOctoPrintDeviceRequest.md
@@ -173,8 +173,8 @@ print_nanny_client/models/callback_token_verification_request.py
 print_nanny_client/models/camera.py
 print_nanny_client/models/camera_request.py
 print_nanny_client/models/camera_type_enum.py
-print_nanny_client/models/cloud_io_t_device.py
-print_nanny_client/models/cloud_io_t_device_request.py
+print_nanny_client/models/cloudiot_device.py
+print_nanny_client/models/cloudiot_device_request.py
 print_nanny_client/models/command_enum.py
 print_nanny_client/models/detail_response.py
 print_nanny_client/models/device.py
@@ -223,7 +223,7 @@ print_nanny_client/models/octoprint_python_request.py
 print_nanny_client/models/paginated_alert_list.py
 print_nanny_client/models/paginated_ansible_facts_list.py
 print_nanny_client/models/paginated_camera_list.py
-print_nanny_client/models/paginated_cloud_io_t_device_list.py
+print_nanny_client/models/paginated_cloudiot_device_list.py
 print_nanny_client/models/paginated_device_calibration_list.py
 print_nanny_client/models/paginated_device_list.py
 print_nanny_client/models/paginated_device_public_key_list.py
@@ -248,7 +248,7 @@ print_nanny_client/models/patched_alert_bulk_request_request.py
 print_nanny_client/models/patched_alert_request.py
 print_nanny_client/models/patched_ansible_facts_request.py
 print_nanny_client/models/patched_camera_request.py
-print_nanny_client/models/patched_cloud_io_t_device_request.py
+print_nanny_client/models/patched_cloudiot_device_request.py
 print_nanny_client/models/patched_device_calibration_request.py
 print_nanny_client/models/patched_device_request.py
 print_nanny_client/models/patched_octo_print_device_request.py
@@ -310,8 +310,8 @@ test/test_callback_token_verification_request.py
 test/test_camera.py
 test/test_camera_request.py
 test/test_camera_type_enum.py
-test/test_cloud_io_t_device.py
-test/test_cloud_io_t_device_request.py
+test/test_cloudiot_device.py
+test/test_cloudiot_device_request.py
 test/test_command_enum.py
 test/test_detail_response.py
 test/test_device.py
@@ -362,7 +362,7 @@ test/test_octoprint_python_request.py
 test/test_paginated_alert_list.py
 test/test_paginated_ansible_facts_list.py
 test/test_paginated_camera_list.py
-test/test_paginated_cloud_io_t_device_list.py
+test/test_paginated_cloudiot_device_list.py
 test/test_paginated_device_calibration_list.py
 test/test_paginated_device_list.py
 test/test_paginated_device_public_key_list.py
@@ -389,7 +389,7 @@ test/test_patched_alert_bulk_request_request.py
 test/test_patched_alert_request.py
 test/test_patched_ansible_facts_request.py
 test/test_patched_camera_request.py
-test/test_patched_cloud_io_t_device_request.py
+test/test_patched_cloudiot_device_request.py
 test/test_patched_device_calibration_request.py
 test/test_patched_device_request.py
 test/test_patched_octo_print_device_request.py

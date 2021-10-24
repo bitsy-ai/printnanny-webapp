@@ -37,6 +37,7 @@ class DevicePublicKey(object):
     """
     openapi_types = {
         'id': 'int',
+        'private_key': 'str',
         'user': 'str',
         'device': 'int',
         'deleted': 'datetime',
@@ -47,6 +48,7 @@ class DevicePublicKey(object):
 
     attribute_map = {
         'id': 'id',
+        'private_key': 'private_key',
         'user': 'user',
         'device': 'device',
         'deleted': 'deleted',
@@ -55,13 +57,14 @@ class DevicePublicKey(object):
         'fingerprint': 'fingerprint'
     }
 
-    def __init__(self, id=None, user=None, device=None, deleted=None, public_key=None, public_key_checksum=None, fingerprint=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, private_key=None, user=None, device=None, deleted=None, public_key=None, public_key_checksum=None, fingerprint=None, local_vars_configuration=None):  # noqa: E501
         """DevicePublicKey - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
+        self._private_key = None
         self._user = None
         self._device = None
         self._deleted = None
@@ -72,6 +75,8 @@ class DevicePublicKey(object):
 
         if id is not None:
             self.id = id
+        if private_key is not None:
+            self.private_key = private_key
         if user is not None:
             self.user = user
         if device is not None:
@@ -105,6 +110,27 @@ class DevicePublicKey(object):
         """
 
         self._id = id
+
+    @property
+    def private_key(self):
+        """Gets the private_key of this DevicePublicKey.  # noqa: E501
+
+
+        :return: The private_key of this DevicePublicKey.  # noqa: E501
+        :rtype: str
+        """
+        return self._private_key
+
+    @private_key.setter
+    def private_key(self, private_key):
+        """Sets the private_key of this DevicePublicKey.
+
+
+        :param private_key: The private_key of this DevicePublicKey.  # noqa: E501
+        :type private_key: str
+        """
+
+        self._private_key = private_key
 
     @property
     def user(self):

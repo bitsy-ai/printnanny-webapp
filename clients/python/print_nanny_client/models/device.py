@@ -37,11 +37,12 @@ class Device(object):
     """
     openapi_types = {
         'id': 'int',
-        'public_key': 'DevicePublicKey',
-        'last_ansible_facts': 'AnsibleFacts',
-        'dashboard_url': 'str',
+        'cloudiot_devices': 'list[CloudiotDevice]',
         'cameras': 'list[Camera]',
+        'dashboard_url': 'str',
+        'last_ansible_facts': 'AnsibleFacts',
         'printer_controllers': 'list[PrinterController]',
+        'public_key': 'DevicePublicKey',
         'user': 'int',
         'deleted': 'datetime',
         'created_dt': 'datetime',
@@ -51,11 +52,12 @@ class Device(object):
 
     attribute_map = {
         'id': 'id',
-        'public_key': 'public_key',
-        'last_ansible_facts': 'last_ansible_facts',
-        'dashboard_url': 'dashboard_url',
+        'cloudiot_devices': 'cloudiot_devices',
         'cameras': 'cameras',
+        'dashboard_url': 'dashboard_url',
+        'last_ansible_facts': 'last_ansible_facts',
         'printer_controllers': 'printer_controllers',
+        'public_key': 'public_key',
         'user': 'user',
         'deleted': 'deleted',
         'created_dt': 'created_dt',
@@ -63,18 +65,19 @@ class Device(object):
         'hostname': 'hostname'
     }
 
-    def __init__(self, id=None, public_key=None, last_ansible_facts=None, dashboard_url=None, cameras=None, printer_controllers=None, user=None, deleted=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, cloudiot_devices=None, cameras=None, dashboard_url=None, last_ansible_facts=None, printer_controllers=None, public_key=None, user=None, deleted=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
-        self._public_key = None
-        self._last_ansible_facts = None
-        self._dashboard_url = None
+        self._cloudiot_devices = None
         self._cameras = None
+        self._dashboard_url = None
+        self._last_ansible_facts = None
         self._printer_controllers = None
+        self._public_key = None
         self._user = None
         self._deleted = None
         self._created_dt = None
@@ -84,14 +87,16 @@ class Device(object):
 
         if id is not None:
             self.id = id
-        self.public_key = public_key
-        self.last_ansible_facts = last_ansible_facts
-        if dashboard_url is not None:
-            self.dashboard_url = dashboard_url
+        if cloudiot_devices is not None:
+            self.cloudiot_devices = cloudiot_devices
         if cameras is not None:
             self.cameras = cameras
+        if dashboard_url is not None:
+            self.dashboard_url = dashboard_url
+        self.last_ansible_facts = last_ansible_facts
         if printer_controllers is not None:
             self.printer_controllers = printer_controllers
+        self.public_key = public_key
         if user is not None:
             self.user = user
         if deleted is not None:
@@ -124,67 +129,25 @@ class Device(object):
         self._id = id
 
     @property
-    def public_key(self):
-        """Gets the public_key of this Device.  # noqa: E501
+    def cloudiot_devices(self):
+        """Gets the cloudiot_devices of this Device.  # noqa: E501
 
 
-        :return: The public_key of this Device.  # noqa: E501
-        :rtype: DevicePublicKey
+        :return: The cloudiot_devices of this Device.  # noqa: E501
+        :rtype: list[CloudiotDevice]
         """
-        return self._public_key
+        return self._cloudiot_devices
 
-    @public_key.setter
-    def public_key(self, public_key):
-        """Sets the public_key of this Device.
-
-
-        :param public_key: The public_key of this Device.  # noqa: E501
-        :type public_key: DevicePublicKey
-        """
-
-        self._public_key = public_key
-
-    @property
-    def last_ansible_facts(self):
-        """Gets the last_ansible_facts of this Device.  # noqa: E501
+    @cloudiot_devices.setter
+    def cloudiot_devices(self, cloudiot_devices):
+        """Sets the cloudiot_devices of this Device.
 
 
-        :return: The last_ansible_facts of this Device.  # noqa: E501
-        :rtype: AnsibleFacts
-        """
-        return self._last_ansible_facts
-
-    @last_ansible_facts.setter
-    def last_ansible_facts(self, last_ansible_facts):
-        """Sets the last_ansible_facts of this Device.
-
-
-        :param last_ansible_facts: The last_ansible_facts of this Device.  # noqa: E501
-        :type last_ansible_facts: AnsibleFacts
+        :param cloudiot_devices: The cloudiot_devices of this Device.  # noqa: E501
+        :type cloudiot_devices: list[CloudiotDevice]
         """
 
-        self._last_ansible_facts = last_ansible_facts
-
-    @property
-    def dashboard_url(self):
-        """Gets the dashboard_url of this Device.  # noqa: E501
-
-
-        :return: The dashboard_url of this Device.  # noqa: E501
-        :rtype: str
-        """
-        return self._dashboard_url
-
-    @dashboard_url.setter
-    def dashboard_url(self, dashboard_url):
-        """Sets the dashboard_url of this Device.
-
-
-        :param dashboard_url: The dashboard_url of this Device.  # noqa: E501
-        :type dashboard_url: str
-        """
-
-        self._dashboard_url = dashboard_url
+        self._cloudiot_devices = cloudiot_devices
 
     @property
     def cameras(self):
@@ -208,6 +171,48 @@ class Device(object):
         self._cameras = cameras
 
     @property
+    def dashboard_url(self):
+        """Gets the dashboard_url of this Device.  # noqa: E501
+
+
+        :return: The dashboard_url of this Device.  # noqa: E501
+        :rtype: str
+        """
+        return self._dashboard_url
+
+    @dashboard_url.setter
+    def dashboard_url(self, dashboard_url):
+        """Sets the dashboard_url of this Device.
+
+
+        :param dashboard_url: The dashboard_url of this Device.  # noqa: E501
+        :type dashboard_url: str
+        """
+
+        self._dashboard_url = dashboard_url
+
+    @property
+    def last_ansible_facts(self):
+        """Gets the last_ansible_facts of this Device.  # noqa: E501
+
+
+        :return: The last_ansible_facts of this Device.  # noqa: E501
+        :rtype: AnsibleFacts
+        """
+        return self._last_ansible_facts
+
+    @last_ansible_facts.setter
+    def last_ansible_facts(self, last_ansible_facts):
+        """Sets the last_ansible_facts of this Device.
+
+
+        :param last_ansible_facts: The last_ansible_facts of this Device.  # noqa: E501
+        :type last_ansible_facts: AnsibleFacts
+        """
+
+        self._last_ansible_facts = last_ansible_facts
+
+    @property
     def printer_controllers(self):
         """Gets the printer_controllers of this Device.  # noqa: E501
 
@@ -227,6 +232,27 @@ class Device(object):
         """
 
         self._printer_controllers = printer_controllers
+
+    @property
+    def public_key(self):
+        """Gets the public_key of this Device.  # noqa: E501
+
+
+        :return: The public_key of this Device.  # noqa: E501
+        :rtype: DevicePublicKey
+        """
+        return self._public_key
+
+    @public_key.setter
+    def public_key(self, public_key):
+        """Sets the public_key of this Device.
+
+
+        :param public_key: The public_key of this Device.  # noqa: E501
+        :type public_key: DevicePublicKey
+        """
+
+        self._public_key = public_key
 
     @property
     def user(self):

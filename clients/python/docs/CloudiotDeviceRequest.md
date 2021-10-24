@@ -1,4 +1,4 @@
-# CloudIoTDeviceRequest
+# CloudiotDeviceRequest
 
 
 ## Properties

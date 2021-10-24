@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
+**private_key** | **str** |  | [optional] [readonly] 
 **user** | **str** |  | [optional] [readonly] 
 **device** | **int** |  | [optional] [readonly] 
 **deleted** | **datetime** |  | [optional] [readonly] 

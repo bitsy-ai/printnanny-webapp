@@ -10,7 +10,7 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct PatchedCloudIoTDeviceRequest {
+pub struct PatchedCloudiotDeviceRequest {
     #[serde(rename = "num_id", skip_serializing_if = "Option::is_none")]
     pub num_id: Option<i64>,
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
@@ -19,9 +19,9 @@ pub struct PatchedCloudIoTDeviceRequest {
     pub id: Option<String>,
 }
 
-impl PatchedCloudIoTDeviceRequest {
-    pub fn new() -> PatchedCloudIoTDeviceRequest {
-        PatchedCloudIoTDeviceRequest {
+impl PatchedCloudiotDeviceRequest {
+    pub fn new() -> PatchedCloudiotDeviceRequest {
+        PatchedCloudiotDeviceRequest {
             num_id: None,
             name: None,
             id: None,

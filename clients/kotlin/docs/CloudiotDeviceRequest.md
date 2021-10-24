@@ -1,5 +1,5 @@
 
-# CloudIoTDeviceRequest
+# CloudiotDeviceRequest
 
 ## Properties
 Name | Type | Description | Notes

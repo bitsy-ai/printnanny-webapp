@@ -565,7 +565,7 @@ Configure tokenAuth:
 
 <a name="devicesCloudIotDevicesCreate"></a>
 # **devicesCloudIotDevicesCreate**
-> CloudIoTDevice devicesCloudIotDevicesCreate(deviceId, cloudIoTDeviceRequest)
+> CloudiotDevice devicesCloudIotDevicesCreate(deviceId, cloudiotDeviceRequest)
 
 
 
@@ -577,9 +577,9 @@ Configure tokenAuth:
 
 val apiInstance = DevicesApi()
 val deviceId : kotlin.Int = 56 // kotlin.Int | 
-val cloudIoTDeviceRequest : CloudIoTDeviceRequest =  // CloudIoTDeviceRequest | 
+val cloudiotDeviceRequest : CloudiotDeviceRequest =  // CloudiotDeviceRequest | 
 try {
-    val result : CloudIoTDevice = apiInstance.devicesCloudIotDevicesCreate(deviceId, cloudIoTDeviceRequest)
+    val result : CloudiotDevice = apiInstance.devicesCloudIotDevicesCreate(deviceId, cloudiotDeviceRequest)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling DevicesApi#devicesCloudIotDevicesCreate")
@@ -595,11 +595,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **deviceId** | **kotlin.Int**|  |
- **cloudIoTDeviceRequest** | [**CloudIoTDeviceRequest**](CloudIoTDeviceRequest.md)|  |
+ **cloudiotDeviceRequest** | [**CloudiotDeviceRequest**](CloudiotDeviceRequest.md)|  |
 
 ### Return type
 
-[**CloudIoTDevice**](CloudIoTDevice.md)
+[**CloudiotDevice**](CloudiotDevice.md)
 
 ### Authorization
 
@@ -617,7 +617,7 @@ Configure tokenAuth:
 
 <a name="devicesCloudIotDevicesList"></a>
 # **devicesCloudIotDevicesList**
-> PaginatedCloudIoTDeviceList devicesCloudIotDevicesList(deviceId, page)
+> PaginatedCloudiotDeviceList devicesCloudIotDevicesList(deviceId, page)
 
 
 
@@ -631,7 +631,7 @@ val apiInstance = DevicesApi()
 val deviceId : kotlin.Int = 56 // kotlin.Int | 
 val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
 try {
-    val result : PaginatedCloudIoTDeviceList = apiInstance.devicesCloudIotDevicesList(deviceId, page)
+    val result : PaginatedCloudiotDeviceList = apiInstance.devicesCloudIotDevicesList(deviceId, page)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling DevicesApi#devicesCloudIotDevicesList")
@@ -651,7 +651,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedCloudIoTDeviceList**](PaginatedCloudIoTDeviceList.md)
+[**PaginatedCloudiotDeviceList**](PaginatedCloudiotDeviceList.md)
 
 ### Authorization
 
@@ -669,7 +669,7 @@ Configure tokenAuth:
 
 <a name="devicesCloudIotDevicesPartialUpdate"></a>
 # **devicesCloudIotDevicesPartialUpdate**
-> CloudIoTDevice devicesCloudIotDevicesPartialUpdate(deviceId, id, patchedCloudIoTDeviceRequest)
+> CloudiotDevice devicesCloudIotDevicesPartialUpdate(deviceId, id, patchedCloudiotDeviceRequest)
 
 
 
@@ -682,9 +682,9 @@ Configure tokenAuth:
 val apiInstance = DevicesApi()
 val deviceId : kotlin.Int = 56 // kotlin.Int | 
 val id : kotlin.String = id_example // kotlin.String | 
-val patchedCloudIoTDeviceRequest : PatchedCloudIoTDeviceRequest =  // PatchedCloudIoTDeviceRequest | 
+val patchedCloudiotDeviceRequest : PatchedCloudiotDeviceRequest =  // PatchedCloudiotDeviceRequest | 
 try {
-    val result : CloudIoTDevice = apiInstance.devicesCloudIotDevicesPartialUpdate(deviceId, id, patchedCloudIoTDeviceRequest)
+    val result : CloudiotDevice = apiInstance.devicesCloudIotDevicesPartialUpdate(deviceId, id, patchedCloudiotDeviceRequest)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling DevicesApi#devicesCloudIotDevicesPartialUpdate")
@@ -701,11 +701,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **deviceId** | **kotlin.Int**|  |
  **id** | **kotlin.String**|  |
- **patchedCloudIoTDeviceRequest** | [**PatchedCloudIoTDeviceRequest**](PatchedCloudIoTDeviceRequest.md)|  | [optional]
+ **patchedCloudiotDeviceRequest** | [**PatchedCloudiotDeviceRequest**](PatchedCloudiotDeviceRequest.md)|  | [optional]
 
 ### Return type
 
-[**CloudIoTDevice**](CloudIoTDevice.md)
+[**CloudiotDevice**](CloudiotDevice.md)
 
 ### Authorization
 
@@ -723,7 +723,7 @@ Configure tokenAuth:
 
 <a name="devicesCloudIotDevicesRetrieve"></a>
 # **devicesCloudIotDevicesRetrieve**
-> CloudIoTDevice devicesCloudIotDevicesRetrieve(deviceId, id)
+> CloudiotDevice devicesCloudIotDevicesRetrieve(deviceId, id)
 
 
 
@@ -737,7 +737,7 @@ val apiInstance = DevicesApi()
 val deviceId : kotlin.Int = 56 // kotlin.Int | 
 val id : kotlin.String = id_example // kotlin.String | 
 try {
-    val result : CloudIoTDevice = apiInstance.devicesCloudIotDevicesRetrieve(deviceId, id)
+    val result : CloudiotDevice = apiInstance.devicesCloudIotDevicesRetrieve(deviceId, id)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling DevicesApi#devicesCloudIotDevicesRetrieve")
@@ -757,7 +757,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CloudIoTDevice**](CloudIoTDevice.md)
+[**CloudiotDevice**](CloudiotDevice.md)
 
 ### Authorization
 
@@ -775,7 +775,7 @@ Configure tokenAuth:
 
 <a name="devicesCloudIotDevicesUpdate"></a>
 # **devicesCloudIotDevicesUpdate**
-> CloudIoTDevice devicesCloudIotDevicesUpdate(deviceId, id, cloudIoTDeviceRequest)
+> CloudiotDevice devicesCloudIotDevicesUpdate(deviceId, id, cloudiotDeviceRequest)
 
 
 
@@ -788,9 +788,9 @@ Configure tokenAuth:
 val apiInstance = DevicesApi()
 val deviceId : kotlin.Int = 56 // kotlin.Int | 
 val id : kotlin.String = id_example // kotlin.String | 
-val cloudIoTDeviceRequest : CloudIoTDeviceRequest =  // CloudIoTDeviceRequest | 
+val cloudiotDeviceRequest : CloudiotDeviceRequest =  // CloudiotDeviceRequest | 
 try {
-    val result : CloudIoTDevice = apiInstance.devicesCloudIotDevicesUpdate(deviceId, id, cloudIoTDeviceRequest)
+    val result : CloudiotDevice = apiInstance.devicesCloudIotDevicesUpdate(deviceId, id, cloudiotDeviceRequest)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling DevicesApi#devicesCloudIotDevicesUpdate")
@@ -807,11 +807,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **deviceId** | **kotlin.Int**|  |
  **id** | **kotlin.String**|  |
- **cloudIoTDeviceRequest** | [**CloudIoTDeviceRequest**](CloudIoTDeviceRequest.md)|  |
+ **cloudiotDeviceRequest** | [**CloudiotDeviceRequest**](CloudiotDeviceRequest.md)|  |
 
 ### Return type
 
-[**CloudIoTDevice**](CloudIoTDevice.md)
+[**CloudiotDevice**](CloudiotDevice.md)
 
 ### Authorization
 

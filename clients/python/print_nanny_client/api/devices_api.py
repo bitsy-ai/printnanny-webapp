@@ -1532,19 +1532,19 @@ class DevicesApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def devices_cloud_iot_devices_create(self, device_id, cloud_io_t_device_request, **kwargs):  # noqa: E501
+    def devices_cloud_iot_devices_create(self, device_id, cloudiot_device_request, **kwargs):  # noqa: E501
         """devices_cloud_iot_devices_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_cloud_iot_devices_create(device_id, cloud_io_t_device_request, async_req=True)
+        >>> thread = api.devices_cloud_iot_devices_create(device_id, cloudiot_device_request, async_req=True)
         >>> result = thread.get()
 
         :param device_id: (required)
         :type device_id: int
-        :param cloud_io_t_device_request: (required)
-        :type cloud_io_t_device_request: CloudIoTDeviceRequest
+        :param cloudiot_device_request: (required)
+        :type cloudiot_device_request: CloudiotDeviceRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -1558,24 +1558,24 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: CloudIoTDevice
+        :rtype: CloudiotDevice
         """
         kwargs['_return_http_data_only'] = True
-        return self.devices_cloud_iot_devices_create_with_http_info(device_id, cloud_io_t_device_request, **kwargs)  # noqa: E501
+        return self.devices_cloud_iot_devices_create_with_http_info(device_id, cloudiot_device_request, **kwargs)  # noqa: E501
 
-    def devices_cloud_iot_devices_create_with_http_info(self, device_id, cloud_io_t_device_request, **kwargs):  # noqa: E501
+    def devices_cloud_iot_devices_create_with_http_info(self, device_id, cloudiot_device_request, **kwargs):  # noqa: E501
         """devices_cloud_iot_devices_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_cloud_iot_devices_create_with_http_info(device_id, cloud_io_t_device_request, async_req=True)
+        >>> thread = api.devices_cloud_iot_devices_create_with_http_info(device_id, cloudiot_device_request, async_req=True)
         >>> result = thread.get()
 
         :param device_id: (required)
         :type device_id: int
-        :param cloud_io_t_device_request: (required)
-        :type cloud_io_t_device_request: CloudIoTDeviceRequest
+        :param cloudiot_device_request: (required)
+        :type cloudiot_device_request: CloudiotDeviceRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -1596,14 +1596,14 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(CloudIoTDevice, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(CloudiotDevice, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
 
         all_params = [
             'device_id',
-            'cloud_io_t_device_request'
+            'cloudiot_device_request'
         ]
         all_params.extend(
             [
@@ -1627,10 +1627,10 @@ class DevicesApi(object):
         if self.api_client.client_side_validation and ('device_id' not in local_var_params or  # noqa: E501
                                                         local_var_params['device_id'] is None):  # noqa: E501
             raise ApiValueError("Missing the required parameter `device_id` when calling `devices_cloud_iot_devices_create`")  # noqa: E501
-        # verify the required parameter 'cloud_io_t_device_request' is set
-        if self.api_client.client_side_validation and ('cloud_io_t_device_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['cloud_io_t_device_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `cloud_io_t_device_request` when calling `devices_cloud_iot_devices_create`")  # noqa: E501
+        # verify the required parameter 'cloudiot_device_request' is set
+        if self.api_client.client_side_validation and ('cloudiot_device_request' not in local_var_params or  # noqa: E501
+                                                        local_var_params['cloudiot_device_request'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `cloudiot_device_request` when calling `devices_cloud_iot_devices_create`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1646,8 +1646,8 @@ class DevicesApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'cloud_io_t_device_request' in local_var_params:
-            body_params = local_var_params['cloud_io_t_device_request']
+        if 'cloudiot_device_request' in local_var_params:
+            body_params = local_var_params['cloudiot_device_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -1660,8 +1660,8 @@ class DevicesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            201: "CloudIoTDevice",
-            202: "CloudIoTDevice",
+            201: "CloudiotDevice",
+            202: "CloudiotDevice",
         }
 
         return self.api_client.call_api(
@@ -1707,7 +1707,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: PaginatedCloudIoTDeviceList
+        :rtype: PaginatedCloudiotDeviceList
         """
         kwargs['_return_http_data_only'] = True
         return self.devices_cloud_iot_devices_list_with_http_info(device_id, **kwargs)  # noqa: E501
@@ -1745,7 +1745,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(PaginatedCloudIoTDeviceList, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(PaginatedCloudiotDeviceList, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -1801,7 +1801,7 @@ class DevicesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            200: "PaginatedCloudIoTDeviceList",
+            200: "PaginatedCloudiotDeviceList",
         }
 
         return self.api_client.call_api(
@@ -1834,8 +1834,8 @@ class DevicesApi(object):
         :type device_id: int
         :param id: (required)
         :type id: str
-        :param patched_cloud_io_t_device_request:
-        :type patched_cloud_io_t_device_request: PatchedCloudIoTDeviceRequest
+        :param patched_cloudiot_device_request:
+        :type patched_cloudiot_device_request: PatchedCloudiotDeviceRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -1849,7 +1849,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: CloudIoTDevice
+        :rtype: CloudiotDevice
         """
         kwargs['_return_http_data_only'] = True
         return self.devices_cloud_iot_devices_partial_update_with_http_info(device_id, id, **kwargs)  # noqa: E501
@@ -1867,8 +1867,8 @@ class DevicesApi(object):
         :type device_id: int
         :param id: (required)
         :type id: str
-        :param patched_cloud_io_t_device_request:
-        :type patched_cloud_io_t_device_request: PatchedCloudIoTDeviceRequest
+        :param patched_cloudiot_device_request:
+        :type patched_cloudiot_device_request: PatchedCloudiotDeviceRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -1889,7 +1889,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(CloudIoTDevice, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(CloudiotDevice, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -1897,7 +1897,7 @@ class DevicesApi(object):
         all_params = [
             'device_id',
             'id',
-            'patched_cloud_io_t_device_request'
+            'patched_cloudiot_device_request'
         ]
         all_params.extend(
             [
@@ -1942,8 +1942,8 @@ class DevicesApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'patched_cloud_io_t_device_request' in local_var_params:
-            body_params = local_var_params['patched_cloud_io_t_device_request']
+        if 'patched_cloudiot_device_request' in local_var_params:
+            body_params = local_var_params['patched_cloudiot_device_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -1956,7 +1956,7 @@ class DevicesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            200: "CloudIoTDevice",
+            200: "CloudiotDevice",
         }
 
         return self.api_client.call_api(
@@ -2002,7 +2002,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: CloudIoTDevice
+        :rtype: CloudiotDevice
         """
         kwargs['_return_http_data_only'] = True
         return self.devices_cloud_iot_devices_retrieve_with_http_info(device_id, id, **kwargs)  # noqa: E501
@@ -2040,7 +2040,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(CloudIoTDevice, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(CloudiotDevice, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -2100,7 +2100,7 @@ class DevicesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            200: "CloudIoTDevice",
+            200: "CloudiotDevice",
         }
 
         return self.api_client.call_api(
@@ -2120,21 +2120,21 @@ class DevicesApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def devices_cloud_iot_devices_update(self, device_id, id, cloud_io_t_device_request, **kwargs):  # noqa: E501
+    def devices_cloud_iot_devices_update(self, device_id, id, cloudiot_device_request, **kwargs):  # noqa: E501
         """devices_cloud_iot_devices_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_cloud_iot_devices_update(device_id, id, cloud_io_t_device_request, async_req=True)
+        >>> thread = api.devices_cloud_iot_devices_update(device_id, id, cloudiot_device_request, async_req=True)
         >>> result = thread.get()
 
         :param device_id: (required)
         :type device_id: int
         :param id: (required)
         :type id: str
-        :param cloud_io_t_device_request: (required)
-        :type cloud_io_t_device_request: CloudIoTDeviceRequest
+        :param cloudiot_device_request: (required)
+        :type cloudiot_device_request: CloudiotDeviceRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -2148,26 +2148,26 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: CloudIoTDevice
+        :rtype: CloudiotDevice
         """
         kwargs['_return_http_data_only'] = True
-        return self.devices_cloud_iot_devices_update_with_http_info(device_id, id, cloud_io_t_device_request, **kwargs)  # noqa: E501
+        return self.devices_cloud_iot_devices_update_with_http_info(device_id, id, cloudiot_device_request, **kwargs)  # noqa: E501
 
-    def devices_cloud_iot_devices_update_with_http_info(self, device_id, id, cloud_io_t_device_request, **kwargs):  # noqa: E501
+    def devices_cloud_iot_devices_update_with_http_info(self, device_id, id, cloudiot_device_request, **kwargs):  # noqa: E501
         """devices_cloud_iot_devices_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_cloud_iot_devices_update_with_http_info(device_id, id, cloud_io_t_device_request, async_req=True)
+        >>> thread = api.devices_cloud_iot_devices_update_with_http_info(device_id, id, cloudiot_device_request, async_req=True)
         >>> result = thread.get()
 
         :param device_id: (required)
         :type device_id: int
         :param id: (required)
         :type id: str
-        :param cloud_io_t_device_request: (required)
-        :type cloud_io_t_device_request: CloudIoTDeviceRequest
+        :param cloudiot_device_request: (required)
+        :type cloudiot_device_request: CloudiotDeviceRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -2188,7 +2188,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(CloudIoTDevice, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(CloudiotDevice, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -2196,7 +2196,7 @@ class DevicesApi(object):
         all_params = [
             'device_id',
             'id',
-            'cloud_io_t_device_request'
+            'cloudiot_device_request'
         ]
         all_params.extend(
             [
@@ -2224,10 +2224,10 @@ class DevicesApi(object):
         if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
                                                         local_var_params['id'] is None):  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `devices_cloud_iot_devices_update`")  # noqa: E501
-        # verify the required parameter 'cloud_io_t_device_request' is set
-        if self.api_client.client_side_validation and ('cloud_io_t_device_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['cloud_io_t_device_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `cloud_io_t_device_request` when calling `devices_cloud_iot_devices_update`")  # noqa: E501
+        # verify the required parameter 'cloudiot_device_request' is set
+        if self.api_client.client_side_validation and ('cloudiot_device_request' not in local_var_params or  # noqa: E501
+                                                        local_var_params['cloudiot_device_request'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `cloudiot_device_request` when calling `devices_cloud_iot_devices_update`")  # noqa: E501
 
         collection_formats = {}
 
@@ -2245,8 +2245,8 @@ class DevicesApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'cloud_io_t_device_request' in local_var_params:
-            body_params = local_var_params['cloud_io_t_device_request']
+        if 'cloudiot_device_request' in local_var_params:
+            body_params = local_var_params['cloudiot_device_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -2259,8 +2259,8 @@ class DevicesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            201: "CloudIoTDevice",
-            202: "CloudIoTDevice",
+            201: "CloudiotDevice",
+            202: "CloudiotDevice",
         }
 
         return self.api_client.call_api(

@@ -42,6 +42,7 @@ class TestPaginatedDevicePublicKeyList(unittest.TestCase):
                 results = [
                     print_nanny_client.models.device_public_key.DevicePublicKey(
                         id = 56, 
+                        private_key = '', 
                         user = '', 
                         device = 56, 
                         deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 

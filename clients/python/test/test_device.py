@@ -37,9 +37,21 @@ class TestDevice(unittest.TestCase):
         if include_optional :
             return Device(
                 id = 56, 
-                public_key = None, 
-                last_ansible_facts = None, 
-                dashboard_url = '', 
+                cloudiot_devices = [
+                    print_nanny_client.models.cloudiot_device.CloudiotDevice(
+                        num_id = -9223372036854775808, 
+                        gcp_project_id = '', 
+                        gcp_region = '', 
+                        gcp_cloudiot_device_registry = '', 
+                        mqtt_bridge_hostname = '', 
+                        mqtt_bridge_port = 56, 
+                        mqtt_client_id = '', 
+                        user = '', 
+                        device = 56, 
+                        deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        name = '', 
+                        id = '', )
+                    ], 
                 cameras = [
                     print_nanny_client.models.camera.Camera(
                         id = 56, 
@@ -53,6 +65,8 @@ class TestDevice(unittest.TestCase):
                         camera_source = '', 
                         url = '', )
                     ], 
+                dashboard_url = '', 
+                last_ansible_facts = None, 
                 printer_controllers = [
                     print_nanny_client.models.printer_controller.PrinterController(
                         id = 56, 
@@ -64,6 +78,7 @@ class TestDevice(unittest.TestCase):
                         updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         polymorphic_ctype = 56, )
                     ], 
+                public_key = None, 
                 user = 56, 
                 deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 

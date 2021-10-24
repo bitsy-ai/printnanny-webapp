@@ -547,7 +547,7 @@ pub async fn devices_cameras_update(configuration: &configuration::Configuration
     }
 }
 
-pub async fn devices_cloud_iot_devices_create(configuration: &configuration::Configuration, device_id: i32, cloud_io_t_device_request: crate::models::CloudIoTDeviceRequest) -> Result<crate::models::CloudIoTDevice, Error<DevicesCloudIotDevicesCreateError>> {
+pub async fn devices_cloud_iot_devices_create(configuration: &configuration::Configuration, device_id: i32, cloudiot_device_request: crate::models::CloudiotDeviceRequest) -> Result<crate::models::CloudiotDevice, Error<DevicesCloudIotDevicesCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -561,7 +561,7 @@ pub async fn devices_cloud_iot_devices_create(configuration: &configuration::Con
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&cloud_io_t_device_request);
+    local_var_req_builder = local_var_req_builder.json(&cloudiot_device_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -578,7 +578,7 @@ pub async fn devices_cloud_iot_devices_create(configuration: &configuration::Con
     }
 }
 
-pub async fn devices_cloud_iot_devices_list(configuration: &configuration::Configuration, device_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedCloudIoTDeviceList, Error<DevicesCloudIotDevicesListError>> {
+pub async fn devices_cloud_iot_devices_list(configuration: &configuration::Configuration, device_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedCloudiotDeviceList, Error<DevicesCloudIotDevicesListError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -611,7 +611,7 @@ pub async fn devices_cloud_iot_devices_list(configuration: &configuration::Confi
     }
 }
 
-pub async fn devices_cloud_iot_devices_partial_update(configuration: &configuration::Configuration, device_id: i32, id: &str, patched_cloud_io_t_device_request: Option<crate::models::PatchedCloudIoTDeviceRequest>) -> Result<crate::models::CloudIoTDevice, Error<DevicesCloudIotDevicesPartialUpdateError>> {
+pub async fn devices_cloud_iot_devices_partial_update(configuration: &configuration::Configuration, device_id: i32, id: &str, patched_cloudiot_device_request: Option<crate::models::PatchedCloudiotDeviceRequest>) -> Result<crate::models::CloudiotDevice, Error<DevicesCloudIotDevicesPartialUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -625,7 +625,7 @@ pub async fn devices_cloud_iot_devices_partial_update(configuration: &configurat
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&patched_cloud_io_t_device_request);
+    local_var_req_builder = local_var_req_builder.json(&patched_cloudiot_device_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -642,7 +642,7 @@ pub async fn devices_cloud_iot_devices_partial_update(configuration: &configurat
     }
 }
 
-pub async fn devices_cloud_iot_devices_retrieve(configuration: &configuration::Configuration, device_id: i32, id: &str) -> Result<crate::models::CloudIoTDevice, Error<DevicesCloudIotDevicesRetrieveError>> {
+pub async fn devices_cloud_iot_devices_retrieve(configuration: &configuration::Configuration, device_id: i32, id: &str) -> Result<crate::models::CloudiotDevice, Error<DevicesCloudIotDevicesRetrieveError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -672,7 +672,7 @@ pub async fn devices_cloud_iot_devices_retrieve(configuration: &configuration::C
     }
 }
 
-pub async fn devices_cloud_iot_devices_update(configuration: &configuration::Configuration, device_id: i32, id: &str, cloud_io_t_device_request: crate::models::CloudIoTDeviceRequest) -> Result<crate::models::CloudIoTDevice, Error<DevicesCloudIotDevicesUpdateError>> {
+pub async fn devices_cloud_iot_devices_update(configuration: &configuration::Configuration, device_id: i32, id: &str, cloudiot_device_request: crate::models::CloudiotDeviceRequest) -> Result<crate::models::CloudiotDevice, Error<DevicesCloudIotDevicesUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -686,7 +686,7 @@ pub async fn devices_cloud_iot_devices_update(configuration: &configuration::Con
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&cloud_io_t_device_request);
+    local_var_req_builder = local_var_req_builder.json(&cloudiot_device_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
