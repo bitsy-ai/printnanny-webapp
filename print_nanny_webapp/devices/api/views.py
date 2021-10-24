@@ -19,17 +19,17 @@ import rest_framework.status
 
 from .serializers import (
     AnsibleFactsSerializer,
-    ApplianceKeyPairSerializer,
-    AppliancePublicKeySerializer,
-    ApplianceSerializer,
+    DeviceKeyPairSerializer,
+    DevicePublicKeySerializer,
+    DeviceSerializer,
     CameraSerializer,
     CloudIoTDeviceSerializer,
     PrinterControllerSerializer,
 )
 from ..models import (
     AnsibleFacts,
-    Appliance,
-    AppliancePublicKey,
+    Device,
+    DevicePublicKey,
     Camera,
     CloudIoTDevice,
     PrinterController,
@@ -80,30 +80,30 @@ class AnsibleFactsViewSet(
 
 
 ##
-# Appliance (by id)
+# Device (by id)
 ##
-list_appliances_schema = extend_schema(
+list_devices_schema = extend_schema(
     responses={
         "default": ErrorDetailSerializer,
-        200: ApplianceSerializer(many=True),
+        200: DeviceSerializer(many=True),
     },
 )
-modify_appliances_schema = extend_schema(
-    request=ApplianceSerializer,
+modify_devices_schema = extend_schema(
+    request=DeviceSerializer,
     responses={
         "default": ErrorDetailSerializer,
-        201: ApplianceSerializer,
-        202: ApplianceSerializer,
+        201: DeviceSerializer,
+        202: DeviceSerializer,
     },
 )
 
 
 @extend_schema_view(
-    list=list_appliances_schema,
-    create=modify_appliances_schema,
-    update=modify_appliances_schema,
+    list=list_devices_schema,
+    create=modify_devices_schema,
+    update=modify_devices_schema,
 )
-class ApplianceViewSet(
+class DeviceViewSet(
     GenericViewSet,
     CreateModelMixin,
     ListModelMixin,
@@ -115,8 +115,8 @@ class ApplianceViewSet(
     via print-nanny-main-<platform>-<cpu>.img
     """
 
-    serializer_class = ApplianceSerializer
-    queryset = Appliance.objects.all()
+    serializer_class = DeviceSerializer
+    queryset = Device.objects.all()
     lookup_field = "id"
 
     def create(self, request: Request, *args: Any, **kwargs: Any) -> Response:
@@ -125,7 +125,7 @@ class ApplianceViewSet(
             return super().create(request, *args, **kwargs)
         except IntegrityError:
             raise AlreadyExists(
-                detail=f"Appliance with hostname={hostname} already exists for user={self.request.user.id}.",
+                detail=f"Device with hostname={hostname} already exists for user={self.request.user.id}.",
             )
 
     def perform_create(self, serializer):
@@ -133,78 +133,76 @@ class ApplianceViewSet(
 
 
 ###
-# Appliances (by hostname)
+# Devices (by hostname)
 ##
-retrieve_appliances_schema = extend_schema(
-    operation_id="appliances_retrieve_hostname",
+retrieve_devices_schema = extend_schema(
+    operation_id="devices_retrieve_hostname",
     responses={
         "default": ErrorDetailSerializer,
-        200: ApplianceSerializer,
+        200: DeviceSerializer,
     },
 )
 
 
-@extend_schema_view(retrieve=retrieve_appliances_schema)
-class ApplianceHostnameViewSet(
+@extend_schema_view(retrieve=retrieve_devices_schema)
+class DeviceHostnameViewSet(
     GenericViewSet,
     RetrieveModelMixin,
 ):
-    serializer_class = ApplianceSerializer
-    queryset = Appliance.objects.all()
+    serializer_class = DeviceSerializer
+    queryset = Device.objects.all()
     lookup_field = "hostname"
 
 
 ##
-# AppliancePublicKey
+# DevicePublicKey
 ##
-list_appliance_public_keys_schema = extend_schema(
+list_device_public_keys_schema = extend_schema(
     responses={
         "default": ErrorDetailSerializer,
-        200: AppliancePublicKeySerializer(many=True),
+        200: DevicePublicKeySerializer(many=True),
     },
 )
-modify_appliance_public_keys_schema = extend_schema(
-    request=ApplianceKeyPairSerializer,
+modify_device_public_keys_schema = extend_schema(
+    request=DeviceKeyPairSerializer,
     responses={
         "default": ErrorDetailSerializer,
-        201: ApplianceKeyPairSerializer,
-        202: ApplianceKeyPairSerializer,
+        201: DeviceKeyPairSerializer,
+        202: DeviceKeyPairSerializer,
     },
 )
 
 
 @extend_schema_view(
-    list=list_appliance_public_keys_schema,
-    create=modify_appliance_public_keys_schema,
+    list=list_device_public_keys_schema,
+    create=modify_device_public_keys_schema,
 )
-class ApplianceKeyPairViewSet(
+class DeviceKeyPairViewSet(
     GenericViewSet,
     CreateModelMixin,
     ListModelMixin,
     RetrieveModelMixin,
 ):
     """
-    Public key for Print Nanny Appliance
+    Public key for Print Nanny Device
     Only one public key may be active at a time
     DELETE <:endpoint> will soft-delete a key
     """
 
-    serializer_class = AppliancePublicKeySerializer
-    queryset = AppliancePublicKey.objects.all()
+    serializer_class = DevicePublicKeySerializer
+    queryset = DevicePublicKey.objects.all()
     lookup_field = "id"
 
     def create(
-        self, request: Request, appliance_id=None, *args: Any, **kwargs: Any
+        self, request: Request, device_id=None, *args: Any, **kwargs: Any
     ) -> Response:
-        appliance = get_object_or_404(Appliance, pk=appliance_id)
+        device = get_object_or_404(Device, pk=device_id)
         try:
-            keypair, _ = generate_keypair_and_update_or_create_cloudiot_device(
-                appliance
-            )
+            keypair, _ = generate_keypair_and_update_or_create_cloudiot_device(device)
             return Response(data=keypair, status=rest_framework.status.HTTP_201_CREATED)
         except IntegrityError:
             raise AlreadyExists(
-                detail=f"AppliancePublicKey already exists for appliance_id={appliance} already exists.",
+                detail=f"DevicePublicKey already exists for device_id={device} already exists.",
             )
 
     def perform_create(self, serializer):
@@ -299,7 +297,7 @@ list_printer_controllers_schema = extend_schema(
     },
 )
 modify_printer_controllers_schema = extend_schema(
-    request=ApplianceSerializer,
+    request=DeviceSerializer,
     responses={
         "default": ErrorDetailSerializer,
         201: PrinterControllerSerializer,

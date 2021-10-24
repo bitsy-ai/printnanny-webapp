@@ -5,9 +5,9 @@ from print_nanny_webapp.devices.api.serializers import PrinterControllerSerializ
 
 from print_nanny_webapp.devices.api.views import (
     AnsibleFactsViewSet,
-    ApplianceViewSet,
-    ApplianceHostnameViewSet,
-    ApplianceKeyPairViewSet,
+    DeviceViewSet,
+    DeviceHostnameViewSet,
+    DeviceKeyPairViewSet,
     CameraViewSet,
     CloudIoTDeviceViewSet,
     PrinterControllerViewSet,
@@ -42,18 +42,18 @@ from print_nanny_webapp.partners.api.views import ( GeeksViewSet )
 router = DefaultRouter()
 
 router.register("alerts", AlertViewSet)
-router.register("appliances", ApplianceViewSet)
+router.register("devices", DeviceViewSet)
 # enables /api/appliances/:hostname lookup (no nested routing)
-appliances_by_hostname = [
-    path("appliances/<slug:hostname>", ApplianceHostnameViewSet.as_view({'get': 'retrieve'})),
+devices_by_hostname = [
+    path("appliances/<slug:hostname>", DeviceHostnameViewSet.as_view({'get': 'retrieve'})),
 ]
 
-appliances_router = NestedSimpleRouter(router, r'appliances', lookup='appliance')
-appliances_router.register(r'ansible-facts', AnsibleFactsViewSet, basename='ansible-facts')
-appliances_router.register(r'keypairs', ApplianceKeyPairViewSet, basename='keypairs')
-appliances_router.register(r'cameras', CameraViewSet, basename='cameras')
-appliances_router.register(r'cloud-iot-devices', CloudIoTDeviceViewSet, basename='cloud-iot-devices')
-appliances_router.register(r'printer-controllers', PrinterControllerViewSet, basename='printer-controllers')
+devices_router  = NestedSimpleRouter(router, r'devices', lookup='device')
+devices_router .register(r'ansible-facts', AnsibleFactsViewSet, basename='ansible-facts')
+devices_router .register(r'keypairs', DeviceKeyPairViewSet, basename='keypairs')
+devices_router .register(r'cameras', CameraViewSet, basename='cameras')
+devices_router .register(r'cloud-iot-devices', CloudIoTDeviceViewSet, basename='cloud-iot-devices')
+devices_router .register(r'printer-controllers', PrinterControllerViewSet, basename='printer-controllers')
 
 router.register("telemetry-events", TelemetryEventViewSet, basename="telemetry-events")
 router.register("remote-command-events", RemoteCommandEventViewSet, basename="remote-command-events")
@@ -77,4 +77,4 @@ router.register(r"partners/3d-geeks", GeeksViewSet, basename='partner-3d-geeks')
 
 app_name = "api"
 
-urlpatterns = router.urls + appliances_router.urls + appliances_by_hostname
+urlpatterns = router.urls + devices_router .urls + devices_by_hostname

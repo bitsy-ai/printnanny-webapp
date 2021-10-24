@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class ApplianceReleaseChannel(models.TextChoices):
+class DeviceReleaseChannel(models.TextChoices):
     MAIN = "main", "Stable mainline release channel"
     DEVEL = "devel", "Unstable developer release channel"
 

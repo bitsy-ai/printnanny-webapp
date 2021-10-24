@@ -1,23 +1,23 @@
 from rest_framework import serializers
 
 from print_nanny_webapp.devices.models import (
-    Appliance,
+    Device,
     Camera,
     CloudIoTDevice,
-    AppliancePublicKey,
+    DevicePublicKey,
     AnsibleFacts,
     PrinterController,
     # PrinterProfile,
     # OctoprintPrinterProfile,
 )
-from ..choices import ApplianceReleaseChannel, PrinterSoftwareType
+from ..choices import DeviceReleaseChannel, PrinterSoftwareType
 from print_nanny_webapp.devices.services import CACerts
 from print_nanny_webapp.users.api.serializers import UserSerializer
 
 
 class CameraSerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(read_only=True)
-    appliance = serializers.PrimaryKeyRelatedField(read_only=True)
+    device = serializers.PrimaryKeyRelatedField(read_only=True)
     camera_type = serializers.ChoiceField(
         choices=Camera.CameraType.choices,
         default=Camera.CameraType.RPI_CAMERA,
@@ -36,7 +36,7 @@ class CameraSerializer(serializers.ModelSerializer):
 
 class PrinterControllerSerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(read_only=True)
-    appliance = serializers.PrimaryKeyRelatedField(read_only=True)
+    device = serializers.PrimaryKeyRelatedField(read_only=True)
     software = serializers.ChoiceField(
         choices=PrinterSoftwareType.choices,
         default=PrinterSoftwareType.OCTOPRINT,
@@ -48,28 +48,28 @@ class PrinterControllerSerializer(serializers.ModelSerializer):
 
 
 ##
-# v1 Appliance Identity Provisioning (distributed via rpi-imager)
+# v1 Device Identity Provisioning (distributed via rpi-imager)
 ##
 class CloudIoTDeviceSerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(read_only=True)
-    appliance = serializers.PrimaryKeyRelatedField(read_only=True)
+    device = serializers.PrimaryKeyRelatedField(read_only=True)
 
     class Meta:
         model = CloudIoTDevice
         fields = "__all__"
 
 
-class AppliancePublicKeySerializer(serializers.ModelSerializer):
+class DevicePublicKeySerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(read_only=True)
-    appliance = serializers.PrimaryKeyRelatedField(read_only=True)
+    device = serializers.PrimaryKeyRelatedField(read_only=True)
 
     class Meta:
-        model = AppliancePublicKey
+        model = DevicePublicKey
         fields = "__all__"
         read_only_fields = ("public_key", "public_key_checksum", "fingerprint", "user")
 
 
-class ApplianceKeyPairSerializer(serializers.Serializer):
+class DeviceKeyPairSerializer(serializers.Serializer):
 
     private_key = serializers.CharField(read_only=True)
     private_key_checksum = serializers.CharField(read_only=True)
@@ -81,15 +81,15 @@ class ApplianceKeyPairSerializer(serializers.Serializer):
 
 class AnsibleFactsSerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(read_only=True)
-    appliance = serializers.PrimaryKeyRelatedField(read_only=True)
+    device = serializers.PrimaryKeyRelatedField(read_only=True)
 
     class Meta:
         model = AnsibleFacts
         fields = "__all__"
 
 
-class ApplianceSerializer(serializers.ModelSerializer):
-    public_key = AppliancePublicKeySerializer(
+class DeviceSerializer(serializers.ModelSerializer):
+    public_key = DevicePublicKeySerializer(
         read_only=True, required=False, allow_null=True
     )
 
@@ -104,5 +104,5 @@ class ApplianceSerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(read_only=True)
 
     class Meta:
-        model = Appliance
+        model = Device
         fields = "__all__"
