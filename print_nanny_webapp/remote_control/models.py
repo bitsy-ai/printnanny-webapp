@@ -222,7 +222,7 @@ class OctoPrintDevice(SafeDeleteModel):
         client = cloudiot_v1.DeviceManagerClient()
         device_path = client.device_path(
             settings.GCP_PROJECT_ID,
-            settings.GCP_CLOUD_IOT_OCTOPRINT_DEVICE_REGISTRY_REGION,
+            settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
             settings.GCP_CLOUD_IOT_OCTOPRINT_DEVICE_REGISTRY,
             self.cloudiot_device_name,
         )
@@ -235,7 +235,7 @@ class OctoPrintDevice(SafeDeleteModel):
         client = cloudiot_v1.DeviceManagerClient()
         device_path = client.device_path(
             settings.GCP_PROJECT_ID,
-            settings.GCP_CLOUD_IOT_OCTOPRINT_DEVICE_REGISTRY_REGION,
+            settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
             settings.GCP_CLOUD_IOT_OCTOPRINT_DEVICE_REGISTRY,
             self.cloudiot_device_name,
         )
@@ -389,7 +389,7 @@ class RemoteControlCommandManager(models.Manager):
         device: OctoPrintDevice = kwargs["device"]
         device_path = client.device_path(
             settings.GCP_PROJECT_ID,
-            settings.GCP_CLOUD_IOT_OCTOPRINT_DEVICE_REGISTRY_REGION,
+            settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
             settings.GCP_CLOUD_IOT_OCTOPRINT_DEVICE_REGISTRY,
             device.cloudiot_device_name,
         )
