@@ -62,13 +62,22 @@
 
             {% endcomment %}
 
-
             <li class="side-nav-item">
-                <a href="{% url 'dashboard:octoprint-devices:list' %}" class="side-nav-link">
+                <a href="javascript: void(0);" class="side-nav-link">
                     <i class="mdi mdi-printer-3d"></i>
                     <span> {% trans "Devices & Printers" %} </span>
+                    <span class="menu-arrow"></span>
                 </a>
+                <ul class="side-nav-second-level" aria-expanded="false">
+                    <li class="{% if request.resolver_match.url_name == 'devices:appliances:list' %}active{% endif %}">
+                        <a href="{% url 'devices:appliances:list' %}">{% trans "Print Nanny OS" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'dashboard:octoprint-devices:list' %}active{% endif %}">
+                        <a href="{% url 'dashboard:octoprint-devices:list' %}">{% trans "Octoprint Plugin (Early Access Program)" %}</a>
+                    </li>
+                </ul>
             </li>
+
 
             <li class="side-nav-item">
                 <a href="{% url 'dashboard:videos:list' %}" class="side-nav-link">

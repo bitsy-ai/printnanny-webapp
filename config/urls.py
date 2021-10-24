@@ -44,6 +44,9 @@ urlpatterns = [
     path("alerts/", include("print_nanny_webapp.alerts.urls", "alerts")),
     re_path(r'^invitations/', include('invitations.urls', namespace='invitations')),
 
+    path("devices/",
+         include("print_nanny_webapp.devices.urls", namespace="devices"), ),
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -2,14 +2,10 @@ import logging
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.contrib.auth import get_user_model
-from google.cloud import iot_v1 as cloudiot_v1
-from google.protobuf.json_format import MessageToDict
-from django.conf import settings
 from django.db.models import UniqueConstraint
-
+from django.urls import reverse
 from polymorphic.models import PolymorphicModel
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
-from safedelete.managers import SafeDeleteManager
 from safedelete.signals import pre_softdelete
 
 from .choices import ApplianceReleaseChannel, PrinterSoftwareType
@@ -55,6 +51,10 @@ class Appliance(SafeDeleteModel):
     @property
     def to_cloudiot_id(self):
         return f"appliance-id-{self.id}"
+
+    @property
+    def dashboard_url(self):
+        return reverse("devices:appliances:detail", kwargs={"pk": self.id})
 
 
 class CloudIoTDevice(SafeDeleteModel):

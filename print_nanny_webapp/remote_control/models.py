@@ -1,6 +1,6 @@
 import logging
 from print_nanny_webapp.telemetry.models import PrinterEvent, PrintJobEvent
-from typing import Dict, Any, Optional, Tuple
+from typing import Dict, Any, Optional
 from django.contrib.auth import get_user_model
 import json
 from django.utils import dateformat

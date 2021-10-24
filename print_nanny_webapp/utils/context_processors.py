@@ -29,6 +29,7 @@ def settings_context(_request):
         "ABOUT_URL": settings.ABOUT_URL,
         "BLOG_SITE_URL": settings.BLOG_SITE_URL,
         "HELP_OCTOPRINT_PLUGIN_SETUP": settings.HELP_OCTOPRINT_PLUGIN_SETUP,
+        "HELP_PRINTNANNY_OS_SETUP": settings.HELP_PRINTNANNY_OS_SETUP,
         "IS_SOLD_OUT": sold_out,
         "AVAILABLE_SUBSCRIPTIONS_COUNT": num_subscriptions_available,
         "PAID_BETA_SUBSCRIPTION_LIMIT": PAID_BETA_SUBSCRIPTION_LIMIT,
