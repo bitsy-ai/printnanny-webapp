@@ -8,7 +8,7 @@ from polymorphic.models import PolymorphicModel
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.signals import pre_softdelete
 
-from .choices import ApplianceReleaseChannel, PrinterSoftwareType
+from .choices import DeviceReleaseChannel, PrinterSoftwareType
 
 UserModel = get_user_model()
 logger = logging.getLogger(__name__)
@@ -23,7 +23,7 @@ def pre_softdelete_cloudiot_device(instance=None, **kwargs):
 pre_softdelete.connect(pre_softdelete_cloudiot_device)
 
 
-class Appliance(SafeDeleteModel):
+class Device(SafeDeleteModel):
     """ """
 
     _safedelete_policy = SOFT_DELETE
@@ -33,14 +33,14 @@ class Appliance(SafeDeleteModel):
             UniqueConstraint(
                 fields=["user", "hostname"],
                 condition=models.Q(deleted=None),
-                name="unique_appliance_hostname_per_user",
+                name="unique_device_hostname_per_user",
             )
         ]
 
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     updated_dt = models.DateTimeField(db_index=True, auto_now=True)
     user = models.ForeignKey(
-        UserModel, on_delete=models.CASCADE, related_name="appliances"
+        UserModel, on_delete=models.CASCADE, related_name="devices"
     )
     hostname = models.CharField(max_length=255)
 
@@ -50,11 +50,11 @@ class Appliance(SafeDeleteModel):
 
     @property
     def to_cloudiot_id(self):
-        return f"appliance-id-{self.id}"
+        return f"device-id-{self.id}"
 
     @property
     def dashboard_url(self):
-        return reverse("devices:appliances:detail", kwargs={"pk": self.id})
+        return reverse("devices:detail", kwargs={"pk": self.id})
 
 
 class CloudIoTDevice(SafeDeleteModel):
@@ -68,9 +68,9 @@ class CloudIoTDevice(SafeDeleteModel):
     class Meta:
         constraints = [
             UniqueConstraint(
-                fields=["appliance"],
+                fields=["device"],
                 condition=models.Q(deleted=None),
-                name="unique_cloud_iot_device_per_appliance",
+                name="unique_cloud_iot_device_per_device",
             )
         ]
 
@@ -85,31 +85,31 @@ class CloudIoTDevice(SafeDeleteModel):
     name = models.CharField(max_length=255)
     id = models.CharField(max_length=255)
 
-    appliance = models.ForeignKey(
-        Appliance,
+    device = models.ForeignKey(
+        Device,
         on_delete=models.CASCADE,
         related_name="cloudiot_devices",
         db_index=True,
     )
 
 
-class AppliancePublicKey(SafeDeleteModel):
+class DevicePublicKey(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
 
     class Meta:
         constraints = [
             UniqueConstraint(
-                fields=["appliance"],
+                fields=["device"],
                 condition=models.Q(deleted=None),
-                name="unique_public_key_per_appliance",
+                name="unique_public_key_per_device",
             )
         ]
 
     public_key = models.TextField()
     public_key_checksum = models.CharField(max_length=255)
     fingerprint = models.CharField(max_length=255)
-    appliance = models.ForeignKey(
-        Appliance, on_delete=models.CASCADE, related_name="public_keys", db_index=True
+    device = models.ForeignKey(
+        Device, on_delete=models.CASCADE, related_name="public_keys", db_index=True
     )
 
 
@@ -120,8 +120,8 @@ class AnsibleFacts(SafeDeleteModel):
         ordering = ["-created_dt"]
 
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
-    appliance = models.ForeignKey(
-        Appliance, on_delete=models.CASCADE, related_name="ansible_facts", db_index=True
+    device = models.ForeignKey(
+        Device, on_delete=models.CASCADE, related_name="ansible_facts", db_index=True
     )
     # platform info
     os_version = models.CharField(max_length=255)
@@ -143,8 +143,8 @@ class AnsibleFacts(SafeDeleteModel):
 
     release_channel = models.CharField(
         max_length=8,
-        choices=ApplianceReleaseChannel.choices,
-        default=ApplianceReleaseChannel.MAIN,
+        choices=DeviceReleaseChannel.choices,
+        default=DeviceReleaseChannel.MAIN,
     )
     json = models.JSONField()
 
@@ -168,9 +168,7 @@ class Camera(SafeDeleteModel):
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     updated_dt = models.DateTimeField(db_index=True, auto_now=True)
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
-    appliance = models.ForeignKey(
-        Appliance, on_delete=models.CASCADE, related_name="cameras"
-    )
+    device = models.ForeignKey(Device, on_delete=models.CASCADE, related_name="cameras")
     name = models.CharField(max_length=255)
     camera_type = models.CharField(max_length=255, choices=CameraType.choices)
     camera_source = models.CharField(max_length=255)
@@ -185,10 +183,14 @@ class PrinterController(PolymorphicModel, SafeDeleteModel):
     user = models.ForeignKey(
         UserModel, on_delete=models.CASCADE, related_name="printer_controllers"
     )
-    appliance = models.ForeignKey(
-        Appliance, on_delete=models.CASCADE, related_name="printer_controllers"
+    device = models.ForeignKey(
+        Device, on_delete=models.CASCADE, related_name="printer_controllers"
     )
-    software = models.CharField(max_length=12, choices=PrinterSoftwareType.choices)
+    software = models.CharField(
+        max_length=12,
+        choices=PrinterSoftwareType.choices,
+        default=PrinterSoftwareType.OCTOPRINT,
+    )
 
 
 # class PrinterProfile(SafeDeleteModel):

@@ -6,7 +6,7 @@
             <h2 class="header-title">
               <i class="mdi mdi-printer-3d"></i>Raspberry Pis
             </h2>
-            {% if appliances.count > 0 %}
+            {% if devices.count > 0 %}
   
             <table class="table table-centered mb-0" id="dashboard-raspberry-pis">
               <thead>
@@ -33,7 +33,7 @@
   
   
   
-                {% for device in appliances %}
+                {% for device in devices %}
                 <tr>
                     <td><h3><span class="badge badge-light">{{device.name}}</span></h3></td>
                     <!-- <td>

@@ -6,7 +6,7 @@ from django.test import TestCase
 import google.api_core.exceptions
 
 from google.cloud import iot_v1 as cloudiot_v1
-from print_nanny_webapp.devices.models import Appliance
+from print_nanny_webapp.devices.models import Device
 
 from print_nanny_webapp.devices.services import (
     generate_keypair_and_update_or_create_cloudiot_device,
@@ -30,7 +30,7 @@ class MockDevice(object):
 @pytest.mark.django_db
 def test_create_cloudiot_device(mocker, user):
 
-    appliance = Appliance.objects.create(user=user, hostname=TEST_HOSTNAME)
+    device = Device.objects.create(user=user, hostname=TEST_HOSTNAME)
     mock_cloudiot_client = mocker.patch(
         "print_nanny_webapp.devices.services.cloudiot_v1.DeviceManagerClient"
     )
@@ -41,19 +41,19 @@ def test_create_cloudiot_device(mocker, user):
     )
 
     keypair, cloudiot_device = generate_keypair_and_update_or_create_cloudiot_device(
-        appliance
+        device
     )
 
     assert mock_cloudiot_client.return_value.get_device.call_count == 1
     assert mock_cloudiot_client.return_value.update_device.call_count == 0
     assert mock_cloudiot_client.return_value.create_device.call_count == 1
-    assert cloudiot_device.appliance == appliance
+    assert cloudiot_device.device == device
 
 
 @pytest.mark.django_db
 def test_update_cloudiot_device(mocker, user):
 
-    appliance = Appliance.objects.create(user=user, hostname=TEST_HOSTNAME)
+    device = Device.objects.create(user=user, hostname=TEST_HOSTNAME)
     mock_cloudiot_client = mocker.patch(
         "print_nanny_webapp.devices.services.cloudiot_v1.DeviceManagerClient"
     )
@@ -63,13 +63,13 @@ def test_update_cloudiot_device(mocker, user):
     mock_cloudiot_client.return_value.update_device.return_value = MockDevice()
 
     keypair, cloudiot_device = generate_keypair_and_update_or_create_cloudiot_device(
-        appliance
+        device
     )
 
     assert mock_cloudiot_client.return_value.get_device.call_count == 1
     assert mock_cloudiot_client.return_value.update_device.call_count == 1
     assert mock_cloudiot_client.return_value.create_device.call_count == 0
-    assert cloudiot_device.appliance == appliance
+    assert cloudiot_device.device == device
 
 
 def test_generate_keypair():
