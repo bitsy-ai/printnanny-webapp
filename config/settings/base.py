@@ -548,6 +548,7 @@ INSTALLED_APPS += [
 # help guides
 
 HELP_OCTOPRINT_PLUGIN_SETUP = "https://help.print-nanny.com/octoprint-plugin-setup/"
+HELP_PRINTNANNY_OS_SETUP = "https://help.print-nanny.com/how-to-setup-printnanny-os/"
 
 
 # dj-stripe
