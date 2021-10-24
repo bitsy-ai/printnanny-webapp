@@ -38,7 +38,7 @@ class CloudIoTDevice(object):
     openapi_types = {
         'num_id': 'int',
         'user': 'str',
-        'appliance': 'int',
+        'device': 'int',
         'deleted': 'datetime',
         'name': 'str',
         'id': 'str'
@@ -47,13 +47,13 @@ class CloudIoTDevice(object):
     attribute_map = {
         'num_id': 'num_id',
         'user': 'user',
-        'appliance': 'appliance',
+        'device': 'device',
         'deleted': 'deleted',
         'name': 'name',
         'id': 'id'
     }
 
-    def __init__(self, num_id=None, user=None, appliance=None, deleted=None, name=None, id=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, num_id=None, user=None, device=None, deleted=None, name=None, id=None, local_vars_configuration=None):  # noqa: E501
         """CloudIoTDevice - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -61,7 +61,7 @@ class CloudIoTDevice(object):
 
         self._num_id = None
         self._user = None
-        self._appliance = None
+        self._device = None
         self._deleted = None
         self._name = None
         self._id = None
@@ -70,8 +70,8 @@ class CloudIoTDevice(object):
         self.num_id = num_id
         if user is not None:
             self.user = user
-        if appliance is not None:
-            self.appliance = appliance
+        if device is not None:
+            self.device = device
         if deleted is not None:
             self.deleted = deleted
         self.name = name
@@ -128,25 +128,25 @@ class CloudIoTDevice(object):
         self._user = user
 
     @property
-    def appliance(self):
-        """Gets the appliance of this CloudIoTDevice.  # noqa: E501
+    def device(self):
+        """Gets the device of this CloudIoTDevice.  # noqa: E501
 
 
-        :return: The appliance of this CloudIoTDevice.  # noqa: E501
+        :return: The device of this CloudIoTDevice.  # noqa: E501
         :rtype: int
         """
-        return self._appliance
+        return self._device
 
-    @appliance.setter
-    def appliance(self, appliance):
-        """Sets the appliance of this CloudIoTDevice.
+    @device.setter
+    def device(self, device):
+        """Sets the device of this CloudIoTDevice.
 
 
-        :param appliance: The appliance of this CloudIoTDevice.  # noqa: E501
-        :type appliance: int
+        :param device: The device of this CloudIoTDevice.  # noqa: E501
+        :type device: int
         """
 
-        self._appliance = appliance
+        self._device = device
 
     @property
     def deleted(self):

@@ -21,8 +21,8 @@ pub struct Camera {
     pub updated_dt: Option<String>,
     #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
     pub user: Option<i32>,
-    #[serde(rename = "appliance", skip_serializing_if = "Option::is_none")]
-    pub appliance: Option<i32>,
+    #[serde(rename = "device", skip_serializing_if = "Option::is_none")]
+    pub device: Option<i32>,
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "camera_type", skip_serializing_if = "Option::is_none")]
@@ -41,7 +41,7 @@ impl Camera {
             created_dt: None,
             updated_dt: None,
             user: None,
-            appliance: None,
+            device: None,
             name,
             camera_type: None,
             camera_source,

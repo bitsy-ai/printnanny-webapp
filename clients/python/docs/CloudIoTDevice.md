@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **num_id** | **int** |  | 
 **user** | **str** |  | [optional] [readonly] 
-**appliance** | **int** |  | [optional] [readonly] 
+**device** | **int** |  | [optional] [readonly] 
 **deleted** | **datetime** |  | [optional] [readonly] 
 **name** | **str** |  | 
 **id** | **str** |  | 

@@ -42,41 +42,41 @@ Class | Method | HTTP request | Description
 *AlertsApi* | [**alertsSeen**](docs/AlertsApi.md#alertsseen) | **PATCH** /api/alerts/seen/ | 
 *AlertsApi* | [**alertsUnread**](docs/AlertsApi.md#alertsunread) | **GET** /api/alerts/unread/ | 
 *AlertsApi* | [**alertsUpdate**](docs/AlertsApi.md#alertsupdate) | **PUT** /api/alerts/{id}/ | 
-*AppliancesApi* | [**appliancesAnsibleFactsCreate**](docs/AppliancesApi.md#appliancesansiblefactscreate) | **POST** /api/appliances/{appliance_id}/ansible-facts/ | 
-*AppliancesApi* | [**appliancesAnsibleFactsList**](docs/AppliancesApi.md#appliancesansiblefactslist) | **GET** /api/appliances/{appliance_id}/ansible-facts/ | 
-*AppliancesApi* | [**appliancesAnsibleFactsPartialUpdate**](docs/AppliancesApi.md#appliancesansiblefactspartialupdate) | **PATCH** /api/appliances/{appliance_id}/ansible-facts/{id}/ | 
-*AppliancesApi* | [**appliancesAnsibleFactsRetrieve**](docs/AppliancesApi.md#appliancesansiblefactsretrieve) | **GET** /api/appliances/{appliance_id}/ansible-facts/{id}/ | 
-*AppliancesApi* | [**appliancesAnsibleFactsUpdate**](docs/AppliancesApi.md#appliancesansiblefactsupdate) | **PUT** /api/appliances/{appliance_id}/ansible-facts/{id}/ | 
-*AppliancesApi* | [**appliancesCamerasCreate**](docs/AppliancesApi.md#appliancescamerascreate) | **POST** /api/appliances/{appliance_id}/cameras/ | 
-*AppliancesApi* | [**appliancesCamerasList**](docs/AppliancesApi.md#appliancescameraslist) | **GET** /api/appliances/{appliance_id}/cameras/ | 
-*AppliancesApi* | [**appliancesCamerasPartialUpdate**](docs/AppliancesApi.md#appliancescameraspartialupdate) | **PATCH** /api/appliances/{appliance_id}/cameras/{id}/ | 
-*AppliancesApi* | [**appliancesCamerasRetrieve**](docs/AppliancesApi.md#appliancescamerasretrieve) | **GET** /api/appliances/{appliance_id}/cameras/{id}/ | 
-*AppliancesApi* | [**appliancesCamerasUpdate**](docs/AppliancesApi.md#appliancescamerasupdate) | **PUT** /api/appliances/{appliance_id}/cameras/{id}/ | 
-*AppliancesApi* | [**appliancesCloudIotDevicesCreate**](docs/AppliancesApi.md#appliancescloudiotdevicescreate) | **POST** /api/appliances/{appliance_id}/cloud-iot-devices/ | 
-*AppliancesApi* | [**appliancesCloudIotDevicesList**](docs/AppliancesApi.md#appliancescloudiotdeviceslist) | **GET** /api/appliances/{appliance_id}/cloud-iot-devices/ | 
-*AppliancesApi* | [**appliancesCloudIotDevicesPartialUpdate**](docs/AppliancesApi.md#appliancescloudiotdevicespartialupdate) | **PATCH** /api/appliances/{appliance_id}/cloud-iot-devices/{id}/ | 
-*AppliancesApi* | [**appliancesCloudIotDevicesRetrieve**](docs/AppliancesApi.md#appliancescloudiotdevicesretrieve) | **GET** /api/appliances/{appliance_id}/cloud-iot-devices/{id}/ | 
-*AppliancesApi* | [**appliancesCloudIotDevicesUpdate**](docs/AppliancesApi.md#appliancescloudiotdevicesupdate) | **PUT** /api/appliances/{appliance_id}/cloud-iot-devices/{id}/ | 
-*AppliancesApi* | [**appliancesCreate**](docs/AppliancesApi.md#appliancescreate) | **POST** /api/appliances/ | 
-*AppliancesApi* | [**appliancesKeypairsCreate**](docs/AppliancesApi.md#applianceskeypairscreate) | **POST** /api/appliances/{appliance_id}/keypairs/ | 
-*AppliancesApi* | [**appliancesKeypairsList**](docs/AppliancesApi.md#applianceskeypairslist) | **GET** /api/appliances/{appliance_id}/keypairs/ | 
-*AppliancesApi* | [**appliancesKeypairsRetrieve**](docs/AppliancesApi.md#applianceskeypairsretrieve) | **GET** /api/appliances/{appliance_id}/keypairs/{id}/ | 
-*AppliancesApi* | [**appliancesList**](docs/AppliancesApi.md#applianceslist) | **GET** /api/appliances/ | 
-*AppliancesApi* | [**appliancesPartialUpdate**](docs/AppliancesApi.md#appliancespartialupdate) | **PATCH** /api/appliances/{id}/ | 
-*AppliancesApi* | [**appliancesPrinterControllersCreate**](docs/AppliancesApi.md#appliancesprintercontrollerscreate) | **POST** /api/appliances/{appliance_id}/printer-controllers/ | 
-*AppliancesApi* | [**appliancesPrinterControllersList**](docs/AppliancesApi.md#appliancesprintercontrollerslist) | **GET** /api/appliances/{appliance_id}/printer-controllers/ | 
-*AppliancesApi* | [**appliancesPrinterControllersPartialUpdate**](docs/AppliancesApi.md#appliancesprintercontrollerspartialupdate) | **PATCH** /api/appliances/{appliance_id}/printer-controllers/{id}/ | 
-*AppliancesApi* | [**appliancesPrinterControllersRetrieve**](docs/AppliancesApi.md#appliancesprintercontrollersretrieve) | **GET** /api/appliances/{appliance_id}/printer-controllers/{id}/ | 
-*AppliancesApi* | [**appliancesPrinterControllersUpdate**](docs/AppliancesApi.md#appliancesprintercontrollersupdate) | **PUT** /api/appliances/{appliance_id}/printer-controllers/{id}/ | 
-*AppliancesApi* | [**appliancesRetrieve**](docs/AppliancesApi.md#appliancesretrieve) | **GET** /api/appliances/{id}/ | 
-*AppliancesApi* | [**appliancesRetrieveHostname**](docs/AppliancesApi.md#appliancesretrievehostname) | **GET** /api/appliances/{hostname} | 
-*AppliancesApi* | [**appliancesUpdate**](docs/AppliancesApi.md#appliancesupdate) | **PUT** /api/appliances/{id}/ | 
+*AppliancesApi* | [**devicesRetrieveHostname**](docs/AppliancesApi.md#devicesretrievehostname) | **GET** /api/appliances/{hostname} | 
 *AuthApi* | [**authEmailCreate**](docs/AuthApi.md#authemailcreate) | **POST** /auth/email/ | 
 *AuthApi* | [**authMobileCreate**](docs/AuthApi.md#authmobilecreate) | **POST** /auth/mobile/ | 
 *AuthApi* | [**authTokenCreate**](docs/AuthApi.md#authtokencreate) | **POST** /auth/token/ | 
 *AuthApi* | [**authVerifyCreate**](docs/AuthApi.md#authverifycreate) | **POST** /auth/verify/ | 
 *AuthApi* | [**authVerifyEmailCreate**](docs/AuthApi.md#authverifyemailcreate) | **POST** /auth/verify/email/ | 
 *AuthApi* | [**authVerifyMobileCreate**](docs/AuthApi.md#authverifymobilecreate) | **POST** /auth/verify/mobile/ | 
+*DevicesApi* | [**devicesAnsibleFactsCreate**](docs/DevicesApi.md#devicesansiblefactscreate) | **POST** /api/devices/{device_id}/ansible-facts/ | 
+*DevicesApi* | [**devicesAnsibleFactsList**](docs/DevicesApi.md#devicesansiblefactslist) | **GET** /api/devices/{device_id}/ansible-facts/ | 
+*DevicesApi* | [**devicesAnsibleFactsPartialUpdate**](docs/DevicesApi.md#devicesansiblefactspartialupdate) | **PATCH** /api/devices/{device_id}/ansible-facts/{id}/ | 
+*DevicesApi* | [**devicesAnsibleFactsRetrieve**](docs/DevicesApi.md#devicesansiblefactsretrieve) | **GET** /api/devices/{device_id}/ansible-facts/{id}/ | 
+*DevicesApi* | [**devicesAnsibleFactsUpdate**](docs/DevicesApi.md#devicesansiblefactsupdate) | **PUT** /api/devices/{device_id}/ansible-facts/{id}/ | 
+*DevicesApi* | [**devicesCamerasCreate**](docs/DevicesApi.md#devicescamerascreate) | **POST** /api/devices/{device_id}/cameras/ | 
+*DevicesApi* | [**devicesCamerasList**](docs/DevicesApi.md#devicescameraslist) | **GET** /api/devices/{device_id}/cameras/ | 
+*DevicesApi* | [**devicesCamerasPartialUpdate**](docs/DevicesApi.md#devicescameraspartialupdate) | **PATCH** /api/devices/{device_id}/cameras/{id}/ | 
+*DevicesApi* | [**devicesCamerasRetrieve**](docs/DevicesApi.md#devicescamerasretrieve) | **GET** /api/devices/{device_id}/cameras/{id}/ | 
+*DevicesApi* | [**devicesCamerasUpdate**](docs/DevicesApi.md#devicescamerasupdate) | **PUT** /api/devices/{device_id}/cameras/{id}/ | 
+*DevicesApi* | [**devicesCloudIotDevicesCreate**](docs/DevicesApi.md#devicescloudiotdevicescreate) | **POST** /api/devices/{device_id}/cloud-iot-devices/ | 
+*DevicesApi* | [**devicesCloudIotDevicesList**](docs/DevicesApi.md#devicescloudiotdeviceslist) | **GET** /api/devices/{device_id}/cloud-iot-devices/ | 
+*DevicesApi* | [**devicesCloudIotDevicesPartialUpdate**](docs/DevicesApi.md#devicescloudiotdevicespartialupdate) | **PATCH** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
+*DevicesApi* | [**devicesCloudIotDevicesRetrieve**](docs/DevicesApi.md#devicescloudiotdevicesretrieve) | **GET** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
+*DevicesApi* | [**devicesCloudIotDevicesUpdate**](docs/DevicesApi.md#devicescloudiotdevicesupdate) | **PUT** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
+*DevicesApi* | [**devicesCreate**](docs/DevicesApi.md#devicescreate) | **POST** /api/devices/ | 
+*DevicesApi* | [**devicesKeypairsCreate**](docs/DevicesApi.md#deviceskeypairscreate) | **POST** /api/devices/{device_id}/keypairs/ | 
+*DevicesApi* | [**devicesKeypairsList**](docs/DevicesApi.md#deviceskeypairslist) | **GET** /api/devices/{device_id}/keypairs/ | 
+*DevicesApi* | [**devicesKeypairsRetrieve**](docs/DevicesApi.md#deviceskeypairsretrieve) | **GET** /api/devices/{device_id}/keypairs/{id}/ | 
+*DevicesApi* | [**devicesList**](docs/DevicesApi.md#deviceslist) | **GET** /api/devices/ | 
+*DevicesApi* | [**devicesPartialUpdate**](docs/DevicesApi.md#devicespartialupdate) | **PATCH** /api/devices/{id}/ | 
+*DevicesApi* | [**devicesPrinterControllersCreate**](docs/DevicesApi.md#devicesprintercontrollerscreate) | **POST** /api/devices/{device_id}/printer-controllers/ | 
+*DevicesApi* | [**devicesPrinterControllersList**](docs/DevicesApi.md#devicesprintercontrollerslist) | **GET** /api/devices/{device_id}/printer-controllers/ | 
+*DevicesApi* | [**devicesPrinterControllersPartialUpdate**](docs/DevicesApi.md#devicesprintercontrollerspartialupdate) | **PATCH** /api/devices/{device_id}/printer-controllers/{id}/ | 
+*DevicesApi* | [**devicesPrinterControllersRetrieve**](docs/DevicesApi.md#devicesprintercontrollersretrieve) | **GET** /api/devices/{device_id}/printer-controllers/{id}/ | 
+*DevicesApi* | [**devicesPrinterControllersUpdate**](docs/DevicesApi.md#devicesprintercontrollersupdate) | **PUT** /api/devices/{device_id}/printer-controllers/{id}/ | 
+*DevicesApi* | [**devicesRetrieve**](docs/DevicesApi.md#devicesretrieve) | **GET** /api/devices/{id}/ | 
+*DevicesApi* | [**devicesUpdate**](docs/DevicesApi.md#devicesupdate) | **PUT** /api/devices/{id}/ | 
 *MlOpsApi* | [**deviceCalibrationUpdateOrCreate**](docs/MlOpsApi.md#devicecalibrationupdateorcreate) | **POST** /api/device-calibrations/update-or-create/ | 
 *MlOpsApi* | [**deviceCalibrationsList**](docs/MlOpsApi.md#devicecalibrationslist) | **GET** /api/device-calibrations/ | 
 *MlOpsApi* | [**deviceCalibrationsPartialUpdate**](docs/MlOpsApi.md#devicecalibrationspartialupdate) | **PATCH** /api/device-calibrations/{id}/ | 
@@ -146,10 +146,6 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.AlertRequest](docs/AlertRequest.md)
  - [com.print-nanny.client.models.AnsibleFacts](docs/AnsibleFacts.md)
  - [com.print-nanny.client.models.AnsibleFactsRequest](docs/AnsibleFactsRequest.md)
- - [com.print-nanny.client.models.Appliance](docs/Appliance.md)
- - [com.print-nanny.client.models.ApplianceKeyPair](docs/ApplianceKeyPair.md)
- - [com.print-nanny.client.models.AppliancePublicKey](docs/AppliancePublicKey.md)
- - [com.print-nanny.client.models.ApplianceRequest](docs/ApplianceRequest.md)
  - [com.print-nanny.client.models.ArtifactTypesEnum](docs/ArtifactTypesEnum.md)
  - [com.print-nanny.client.models.CallbackTokenAuthRequest](docs/CallbackTokenAuthRequest.md)
  - [com.print-nanny.client.models.CallbackTokenVerification](docs/CallbackTokenVerification.md)
@@ -161,8 +157,12 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.CloudIoTDeviceRequest](docs/CloudIoTDeviceRequest.md)
  - [com.print-nanny.client.models.CommandEnum](docs/CommandEnum.md)
  - [com.print-nanny.client.models.DetailResponse](docs/DetailResponse.md)
+ - [com.print-nanny.client.models.Device](docs/Device.md)
  - [com.print-nanny.client.models.DeviceCalibration](docs/DeviceCalibration.md)
  - [com.print-nanny.client.models.DeviceCalibrationRequest](docs/DeviceCalibrationRequest.md)
+ - [com.print-nanny.client.models.DeviceKeyPair](docs/DeviceKeyPair.md)
+ - [com.print-nanny.client.models.DevicePublicKey](docs/DevicePublicKey.md)
+ - [com.print-nanny.client.models.DeviceRequest](docs/DeviceRequest.md)
  - [com.print-nanny.client.models.EmailAuthRequest](docs/EmailAuthRequest.md)
  - [com.print-nanny.client.models.ErrorDetail](docs/ErrorDetail.md)
  - [com.print-nanny.client.models.EventSourceEnum](docs/EventSourceEnum.md)
@@ -202,11 +202,11 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.OctoprintPythonRequest](docs/OctoprintPythonRequest.md)
  - [com.print-nanny.client.models.PaginatedAlertList](docs/PaginatedAlertList.md)
  - [com.print-nanny.client.models.PaginatedAnsibleFactsList](docs/PaginatedAnsibleFactsList.md)
- - [com.print-nanny.client.models.PaginatedApplianceList](docs/PaginatedApplianceList.md)
- - [com.print-nanny.client.models.PaginatedAppliancePublicKeyList](docs/PaginatedAppliancePublicKeyList.md)
  - [com.print-nanny.client.models.PaginatedCameraList](docs/PaginatedCameraList.md)
  - [com.print-nanny.client.models.PaginatedCloudIoTDeviceList](docs/PaginatedCloudIoTDeviceList.md)
  - [com.print-nanny.client.models.PaginatedDeviceCalibrationList](docs/PaginatedDeviceCalibrationList.md)
+ - [com.print-nanny.client.models.PaginatedDeviceList](docs/PaginatedDeviceList.md)
+ - [com.print-nanny.client.models.PaginatedDevicePublicKeyList](docs/PaginatedDevicePublicKeyList.md)
  - [com.print-nanny.client.models.PaginatedExperimentDeviceConfigList](docs/PaginatedExperimentDeviceConfigList.md)
  - [com.print-nanny.client.models.PaginatedExperimentList](docs/PaginatedExperimentList.md)
  - [com.print-nanny.client.models.PaginatedGcodeFileList](docs/PaginatedGcodeFileList.md)
@@ -227,10 +227,10 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.PatchedAlertBulkRequestRequest](docs/PatchedAlertBulkRequestRequest.md)
  - [com.print-nanny.client.models.PatchedAlertRequest](docs/PatchedAlertRequest.md)
  - [com.print-nanny.client.models.PatchedAnsibleFactsRequest](docs/PatchedAnsibleFactsRequest.md)
- - [com.print-nanny.client.models.PatchedApplianceRequest](docs/PatchedApplianceRequest.md)
  - [com.print-nanny.client.models.PatchedCameraRequest](docs/PatchedCameraRequest.md)
  - [com.print-nanny.client.models.PatchedCloudIoTDeviceRequest](docs/PatchedCloudIoTDeviceRequest.md)
  - [com.print-nanny.client.models.PatchedDeviceCalibrationRequest](docs/PatchedDeviceCalibrationRequest.md)
+ - [com.print-nanny.client.models.PatchedDeviceRequest](docs/PatchedDeviceRequest.md)
  - [com.print-nanny.client.models.PatchedOctoPrintDeviceRequest](docs/PatchedOctoPrintDeviceRequest.md)
  - [com.print-nanny.client.models.PatchedPrintSessionRequest](docs/PatchedPrintSessionRequest.md)
  - [com.print-nanny.client.models.PatchedPrinterControllerRequest](docs/PatchedPrinterControllerRequest.md)

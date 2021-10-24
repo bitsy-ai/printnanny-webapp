@@ -15,8 +15,8 @@ pub struct AnsibleFacts {
     pub id: Option<i32>,
     #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
     pub user: Option<String>,
-    #[serde(rename = "appliance", skip_serializing_if = "Option::is_none")]
-    pub appliance: Option<i32>,
+    #[serde(rename = "device", skip_serializing_if = "Option::is_none")]
+    pub device: Option<i32>,
     #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
     pub deleted: Option<String>,
     #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
@@ -52,7 +52,7 @@ impl AnsibleFacts {
         AnsibleFacts {
             id: None,
             user: None,
-            appliance: None,
+            device: None,
             deleted: None,
             created_dt: None,
             os_version,

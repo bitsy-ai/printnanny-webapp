@@ -38,7 +38,7 @@ class PrinterController(object):
     openapi_types = {
         'id': 'int',
         'user': 'int',
-        'appliance': 'int',
+        'device': 'int',
         'software': 'SoftwareEnum',
         'deleted': 'datetime',
         'created_dt': 'datetime',
@@ -49,7 +49,7 @@ class PrinterController(object):
     attribute_map = {
         'id': 'id',
         'user': 'user',
-        'appliance': 'appliance',
+        'device': 'device',
         'software': 'software',
         'deleted': 'deleted',
         'created_dt': 'created_dt',
@@ -57,7 +57,7 @@ class PrinterController(object):
         'polymorphic_ctype': 'polymorphic_ctype'
     }
 
-    def __init__(self, id=None, user=None, appliance=None, software=None, deleted=None, created_dt=None, updated_dt=None, polymorphic_ctype=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, user=None, device=None, software=None, deleted=None, created_dt=None, updated_dt=None, polymorphic_ctype=None, local_vars_configuration=None):  # noqa: E501
         """PrinterController - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -65,7 +65,7 @@ class PrinterController(object):
 
         self._id = None
         self._user = None
-        self._appliance = None
+        self._device = None
         self._software = None
         self._deleted = None
         self._created_dt = None
@@ -77,8 +77,8 @@ class PrinterController(object):
             self.id = id
         if user is not None:
             self.user = user
-        if appliance is not None:
-            self.appliance = appliance
+        if device is not None:
+            self.device = device
         self.software = software
         if deleted is not None:
             self.deleted = deleted
@@ -132,25 +132,25 @@ class PrinterController(object):
         self._user = user
 
     @property
-    def appliance(self):
-        """Gets the appliance of this PrinterController.  # noqa: E501
+    def device(self):
+        """Gets the device of this PrinterController.  # noqa: E501
 
 
-        :return: The appliance of this PrinterController.  # noqa: E501
+        :return: The device of this PrinterController.  # noqa: E501
         :rtype: int
         """
-        return self._appliance
+        return self._device
 
-    @appliance.setter
-    def appliance(self, appliance):
-        """Sets the appliance of this PrinterController.
+    @device.setter
+    def device(self, device):
+        """Sets the device of this PrinterController.
 
 
-        :param appliance: The appliance of this PrinterController.  # noqa: E501
-        :type appliance: int
+        :param device: The device of this PrinterController.  # noqa: E501
+        :type device: int
         """
 
-        self._appliance = appliance
+        self._device = device
 
     @property
     def software(self):

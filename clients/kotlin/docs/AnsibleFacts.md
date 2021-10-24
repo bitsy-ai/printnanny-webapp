@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **json** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt;**](kotlin.Any.md) |  | 
 **id** | **kotlin.Int** |  |  [optional] [readonly]
 **user** | **kotlin.String** |  |  [optional] [readonly]
-**appliance** | **kotlin.Int** |  |  [optional] [readonly]
+**device** | **kotlin.Int** |  |  [optional] [readonly]
 **deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **hardware** | **kotlin.String** |  |  [optional]

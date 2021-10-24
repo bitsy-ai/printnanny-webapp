@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | Option<**i32**> |  | [optional][readonly]
 **user** | Option<**i32**> |  | [optional][readonly]
-**appliance** | Option<**i32**> |  | [optional][readonly]
+**device** | Option<**i32**> |  | [optional][readonly]
 **software** | Option<[**crate::models::SoftwareEnum**](SoftwareEnum.md)> |  | [optional]
 **deleted** | Option<**String**> |  | [optional][readonly]
 **created_dt** | Option<**String**> |  | [optional][readonly]

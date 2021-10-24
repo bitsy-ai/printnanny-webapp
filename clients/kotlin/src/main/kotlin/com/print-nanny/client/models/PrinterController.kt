@@ -30,7 +30,7 @@ import java.io.Serializable
  *
  * @param id 
  * @param user 
- * @param appliance 
+ * @param device 
  * @param software 
  * @param deleted 
  * @param createdDt 
@@ -46,8 +46,8 @@ data class PrinterController (
     @Json(name = "user")
     val user: kotlin.Int? = null,
 
-    @Json(name = "appliance")
-    val appliance: kotlin.Int? = null,
+    @Json(name = "device")
+    val device: kotlin.Int? = null,
 
     @Json(name = "software")
     val software: SoftwareEnum? = null,

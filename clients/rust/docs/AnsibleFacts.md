@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | Option<**i32**> |  | [optional][readonly]
 **user** | Option<**String**> |  | [optional][readonly]
-**appliance** | Option<**i32**> |  | [optional][readonly]
+**device** | Option<**i32**> |  | [optional][readonly]
 **deleted** | Option<**String**> |  | [optional][readonly]
 **created_dt** | Option<**String**> |  | [optional][readonly]
 **os_version** | **String** |  | 

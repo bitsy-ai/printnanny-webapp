@@ -31,7 +31,7 @@ import java.io.Serializable
  * @param name 
  * @param id 
  * @param user 
- * @param appliance 
+ * @param device 
  * @param deleted 
  */
 
@@ -49,8 +49,8 @@ data class CloudIoTDevice (
     @Json(name = "user")
     val user: kotlin.String? = null,
 
-    @Json(name = "appliance")
-    val appliance: kotlin.Int? = null,
+    @Json(name = "device")
+    val device: kotlin.Int? = null,
 
     @Json(name = "deleted")
     val deleted: java.time.OffsetDateTime? = null

@@ -43,7 +43,7 @@ class TestPaginatedCloudIoTDeviceList(unittest.TestCase):
                     print_nanny_client.models.cloud_io_t_device.CloudIoTDevice(
                         num_id = -9223372036854775808, 
                         user = '', 
-                        appliance = 56, 
+                        device = 56, 
                         deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         name = '', 
                         id = '', )

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **name** | **kotlin.String** |  | 
 **id** | **kotlin.String** |  | 
 **user** | **kotlin.String** |  |  [optional] [readonly]
-**appliance** | **kotlin.Int** |  |  [optional] [readonly]
+**device** | **kotlin.Int** |  |  [optional] [readonly]
 **deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 
 

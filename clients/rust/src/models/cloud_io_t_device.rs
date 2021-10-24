@@ -15,8 +15,8 @@ pub struct CloudIoTDevice {
     pub num_id: i64,
     #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
     pub user: Option<String>,
-    #[serde(rename = "appliance", skip_serializing_if = "Option::is_none")]
-    pub appliance: Option<i32>,
+    #[serde(rename = "device", skip_serializing_if = "Option::is_none")]
+    pub device: Option<i32>,
     #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
     pub deleted: Option<String>,
     #[serde(rename = "name")]
@@ -30,7 +30,7 @@ impl CloudIoTDevice {
         CloudIoTDevice {
             num_id,
             user: None,
-            appliance: None,
+            device: None,
             deleted: None,
             name,
             id,

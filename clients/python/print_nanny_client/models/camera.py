@@ -41,7 +41,7 @@ class Camera(object):
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
         'user': 'int',
-        'appliance': 'int',
+        'device': 'int',
         'name': 'str',
         'camera_type': 'CameraTypeEnum',
         'camera_source': 'str',
@@ -54,14 +54,14 @@ class Camera(object):
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
         'user': 'user',
-        'appliance': 'appliance',
+        'device': 'device',
         'name': 'name',
         'camera_type': 'camera_type',
         'camera_source': 'camera_source',
         'url': 'url'
     }
 
-    def __init__(self, id=None, deleted=None, created_dt=None, updated_dt=None, user=None, appliance=None, name=None, camera_type=None, camera_source=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, deleted=None, created_dt=None, updated_dt=None, user=None, device=None, name=None, camera_type=None, camera_source=None, url=None, local_vars_configuration=None):  # noqa: E501
         """Camera - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -72,7 +72,7 @@ class Camera(object):
         self._created_dt = None
         self._updated_dt = None
         self._user = None
-        self._appliance = None
+        self._device = None
         self._name = None
         self._camera_type = None
         self._camera_source = None
@@ -89,8 +89,8 @@ class Camera(object):
             self.updated_dt = updated_dt
         if user is not None:
             self.user = user
-        if appliance is not None:
-            self.appliance = appliance
+        if device is not None:
+            self.device = device
         self.name = name
         self.camera_type = camera_type
         self.camera_source = camera_source
@@ -203,25 +203,25 @@ class Camera(object):
         self._user = user
 
     @property
-    def appliance(self):
-        """Gets the appliance of this Camera.  # noqa: E501
+    def device(self):
+        """Gets the device of this Camera.  # noqa: E501
 
 
-        :return: The appliance of this Camera.  # noqa: E501
+        :return: The device of this Camera.  # noqa: E501
         :rtype: int
         """
-        return self._appliance
+        return self._device
 
-    @appliance.setter
-    def appliance(self, appliance):
-        """Sets the appliance of this Camera.
+    @device.setter
+    def device(self, device):
+        """Sets the device of this Camera.
 
 
-        :param appliance: The appliance of this Camera.  # noqa: E501
-        :type appliance: int
+        :param device: The device of this Camera.  # noqa: E501
+        :type device: int
         """
 
-        self._appliance = appliance
+        self._device = device
 
     @property
     def name(self):

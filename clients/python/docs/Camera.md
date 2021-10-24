@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **created_dt** | **datetime** |  | [optional] [readonly] 
 **updated_dt** | **datetime** |  | [optional] [readonly] 
 **user** | **int** |  | [optional] [readonly] 
-**appliance** | **int** |  | [optional] [readonly] 
+**device** | **int** |  | [optional] [readonly] 
 **name** | **str** |  | 
 **camera_type** | [**CameraTypeEnum**](CameraTypeEnum.md) |  | [optional] 
 **camera_source** | **str** |  | 
