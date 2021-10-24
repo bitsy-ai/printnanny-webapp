@@ -1,4 +1,5 @@
 import logging
+from django.conf import settings
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.contrib.auth import get_user_model
@@ -57,7 +58,7 @@ class Device(SafeDeleteModel):
         return reverse("devices:detail", kwargs={"pk": self.id})
 
 
-class CloudIoTDevice(SafeDeleteModel):
+class CloudiotDevice(SafeDeleteModel):
     """
     Instance of cloudiot.projects.locations.registries.devices#Device
     https://cloud.google.com/iot/docs/reference/cloudiot/rest/v1/projects.locations.registries.devices#Device
@@ -79,7 +80,7 @@ class CloudIoTDevice(SafeDeleteModel):
             delete_cloudiot_device,
         )
 
-        return delete_cloudiot_device(self.numId)
+        return delete_cloudiot_device(self.num_id)
 
     num_id = models.BigIntegerField(primary_key=True)
     name = models.CharField(max_length=255)
@@ -91,6 +92,30 @@ class CloudIoTDevice(SafeDeleteModel):
         related_name="cloudiot_devices",
         db_index=True,
     )
+
+    @property
+    def gcp_project_id(self):
+        return settings.GCP_PROJECT_ID
+
+    @property
+    def gcp_region(self):
+        return settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION
+
+    @property
+    def gcp_cloudiot_device_registry(self):
+        return settings.GCP_CLOUD_IOT_STANDALONE_DEVICE_REGISTRY
+
+    @property
+    def mqtt_bridge_hostname(self):
+        return settings.GCP_MQTT_BRIDGE_HOSTNAME
+
+    @property
+    def mqtt_bridge_port(self):
+        return settings.GCP_MQTT_BRIDGE_PORT
+
+    @property
+    def mqtt_client_id(self):
+        return self.name
 
 
 class DevicePublicKey(SafeDeleteModel):

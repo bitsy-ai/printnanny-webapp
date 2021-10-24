@@ -3,7 +3,7 @@ from rest_framework import serializers
 from print_nanny_webapp.devices.models import (
     Device,
     Camera,
-    CloudIoTDevice,
+    CloudiotDevice,
     DevicePublicKey,
     AnsibleFacts,
     PrinterController,
@@ -50,16 +50,24 @@ class PrinterControllerSerializer(serializers.ModelSerializer):
 ##
 # v1 Device Identity Provisioning (distributed via rpi-imager)
 ##
-class CloudIoTDeviceSerializer(serializers.ModelSerializer):
+class CloudiotDeviceSerializer(serializers.ModelSerializer):
+    gcp_project_id = serializers.CharField(read_only=True)
+    gcp_region = serializers.CharField(read_only=True)
+    gcp_cloudiot_device_registry = serializers.CharField(read_only=True)
+    mqtt_bridge_hostname = serializers.CharField(read_only=True)
+    mqtt_bridge_port = serializers.IntegerField(read_only=True)
+    mqtt_client_id = serializers.CharField(read_only=True)
+
     user = serializers.PrimaryKeyRelatedField(read_only=True)
     device = serializers.PrimaryKeyRelatedField(read_only=True)
 
     class Meta:
-        model = CloudIoTDevice
+        model = CloudiotDevice
         fields = "__all__"
 
 
 class DevicePublicKeySerializer(serializers.ModelSerializer):
+    private_key = serializers.CharField(read_only=True)
     user = serializers.PrimaryKeyRelatedField(read_only=True)
     device = serializers.PrimaryKeyRelatedField(read_only=True)
 
@@ -89,18 +97,22 @@ class AnsibleFactsSerializer(serializers.ModelSerializer):
 
 
 class DeviceSerializer(serializers.ModelSerializer):
-    public_key = DevicePublicKeySerializer(
-        read_only=True, required=False, allow_null=True
+    cloudiot_devices = CloudiotDeviceSerializer(
+        read_only=True, required=False, many=True
     )
+    cameras = CameraSerializer(read_only=True, many=True)
+    dashboard_url = serializers.CharField(read_only=True)
 
     last_ansible_facts = AnsibleFactsSerializer(
         read_only=True,
         required=False,
         allow_null=True,
     )
-    dashboard_url = serializers.CharField(read_only=True)
-    cameras = CameraSerializer(read_only=True, many=True)
     printer_controllers = PrinterControllerSerializer(read_only=True, many=True)
+    public_key = DevicePublicKeySerializer(
+        read_only=True, required=False, allow_null=True
+    )
+
     user = serializers.PrimaryKeyRelatedField(read_only=True)
 
     class Meta:

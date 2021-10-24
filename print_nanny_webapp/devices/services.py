@@ -13,7 +13,7 @@ from google.cloud import iot_v1 as cloudiot_v1
 import google.api_core.exceptions
 import subprocess
 
-from .models import Device, CloudIoTDevice
+from .models import Device, CloudiotDevice
 
 logger = logging.getLogger(__name__)
 
@@ -156,7 +156,7 @@ def delete_cloudiot_device(device_id_int64: int):
     device_path = client.device_path(
         settings.GCP_PROJECT_ID,
         settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
-        settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
+        settings.GCP_CLOUD_IOT_STANDALONE_DEVICE_REGISTRY,
         str(device_id_int64),
     )
     try:
@@ -170,7 +170,7 @@ def create_cloudiot_device(device: Device, keypair: KeyPair):
     parent = client.registry_path(
         settings.GCP_PROJECT_ID,
         settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
-        settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
+        settings.GCP_CLOUD_IOT_STANDALONE_DEVICE_REGISTRY,
     )
 
     cloudiot_device = cloudiot_v1.types.Device()
@@ -232,7 +232,7 @@ def update_or_create_cloudiot_device(
     device_path = client.device_path(
         settings.GCP_PROJECT_ID,
         settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
-        settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
+        settings.GCP_CLOUD_IOT_STANDALONE_DEVICE_REGISTRY,
         device.to_cloudiot_id,
     )
 
@@ -247,10 +247,10 @@ def update_or_create_cloudiot_device(
 
 def generate_keypair_and_update_or_create_cloudiot_device(
     device: Device,
-) -> Tuple[KeyPair, CloudIoTDevice]:
+) -> Tuple[KeyPair, CloudiotDevice]:
     keypair = generate_keypair()
     cloudiot_device = update_or_create_cloudiot_device(device=device, keypair=keypair)
-    CloudIoTDevice = apps.get_model("devices", "CloudIoTDevice")
+    CloudiotDevice = apps.get_model("devices", "CloudiotDevice")
     DevicePublicKey = apps.get_model("devices", "DevicePublicKey")
 
     # update apppliance relationships
@@ -260,8 +260,8 @@ def generate_keypair_and_update_or_create_cloudiot_device(
             name=cloudiot_device.name,
         )
     else:
-        # create new print_nanny_webapp.devices.models.CloudIoTDevices object
-        CloudIoTDevice.objects.create(
+        # create new print_nanny_webapp.devices.models.CloudiotDevices object
+        CloudiotDevice.objects.create(
             num_id=cloudiot_device.num_id,
             name=cloudiot_device.name,
             device=device,

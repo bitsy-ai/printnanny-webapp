@@ -9,7 +9,7 @@ from print_nanny_webapp.devices.api.views import (
     DeviceHostnameViewSet,
     DeviceKeyPairViewSet,
     CameraViewSet,
-    CloudIoTDeviceViewSet,
+    CloudiotDeviceViewSet ,
     PrinterControllerViewSet,
 )
 from print_nanny_webapp.ml_ops.api.views import (
@@ -52,7 +52,7 @@ devices_router  = NestedSimpleRouter(router, r'devices', lookup='device')
 devices_router .register(r'ansible-facts', AnsibleFactsViewSet, basename='ansible-facts')
 devices_router .register(r'keypairs', DeviceKeyPairViewSet, basename='keypairs')
 devices_router .register(r'cameras', CameraViewSet, basename='cameras')
-devices_router .register(r'cloud-iot-devices', CloudIoTDeviceViewSet, basename='cloud-iot-devices')
+devices_router .register(r'cloud-iot-devices', CloudiotDeviceViewSet , basename='cloud-iot-devices')
 devices_router .register(r'printer-controllers', PrinterControllerViewSet, basename='printer-controllers')
 
 router.register("telemetry-events", TelemetryEventViewSet, basename="telemetry-events")

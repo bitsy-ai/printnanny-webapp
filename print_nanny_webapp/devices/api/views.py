@@ -23,7 +23,7 @@ from .serializers import (
     DevicePublicKeySerializer,
     DeviceSerializer,
     CameraSerializer,
-    CloudIoTDeviceSerializer,
+    CloudiotDeviceSerializer,
     PrinterControllerSerializer,
 )
 from ..models import (
@@ -31,7 +31,7 @@ from ..models import (
     Device,
     DevicePublicKey,
     Camera,
-    CloudIoTDevice,
+    CloudiotDevice,
     PrinterController,
 )
 from ..services import KeyPair, generate_keypair_and_update_or_create_cloudiot_device
@@ -215,15 +215,15 @@ class DeviceKeyPairViewSet(
 list_cloud_iot_devices_schema = extend_schema(
     responses={
         "default": ErrorDetailSerializer,
-        200: CloudIoTDeviceSerializer(many=True),
+        200: CloudiotDeviceSerializer(many=True),
     },
 )
 modify_cloud_iot_devices_schema = extend_schema(
-    request=CloudIoTDeviceSerializer,
+    request=CloudiotDeviceSerializer,
     responses={
         "default": ErrorDetailSerializer,
-        201: CloudIoTDeviceSerializer,
-        202: CloudIoTDeviceSerializer,
+        201: CloudiotDeviceSerializer,
+        202: CloudiotDeviceSerializer,
     },
 )
 
@@ -233,15 +233,15 @@ modify_cloud_iot_devices_schema = extend_schema(
     create=modify_cloud_iot_devices_schema,
     update=modify_cloud_iot_devices_schema,
 )
-class CloudIoTDeviceViewSet(
+class CloudiotDeviceViewSet(
     GenericViewSet,
     CreateModelMixin,
     ListModelMixin,
     RetrieveModelMixin,
     UpdateModelMixin,
 ):
-    serializer_class = CloudIoTDeviceSerializer
-    queryset = CloudIoTDevice.objects.all()
+    serializer_class = CloudiotDeviceSerializer
+    queryset = CloudiotDevice.objects.all()
     lookup_field = "id"
 
     def perform_create(self, serializer):

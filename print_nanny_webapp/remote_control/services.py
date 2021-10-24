@@ -151,7 +151,7 @@ def delete_cloudiot_device(device_id_int64: int):
     device_path = client.device_path(
         settings.GCP_PROJECT_ID,
         settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
-        settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
+        settings.GCP_CLOUD_IOT_OCTOPRINT_DEVICE_REGISTRY,
         str(device_id_int64),
     )
     try:
@@ -172,7 +172,7 @@ def create_cloudiot_device(
     parent = client.registry_path(
         settings.GCP_PROJECT_ID,
         settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
-        settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
+        settings.GCP_CLOUD_IOT_OCTOPRINT_DEVICE_REGISTRY,
     )
 
     string_kwargs = {k: str(v) for k, v in metadata.items()}
@@ -243,7 +243,7 @@ def update_or_create_cloudiot_device(
     device_path = client.device_path(
         settings.GCP_PROJECT_ID,
         settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
-        settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
+        settings.GCP_CLOUD_IOT_OCTOPRINT_DEVICE_REGISTRY,
         name,
     )
 
