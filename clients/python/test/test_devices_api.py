@@ -190,6 +190,12 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
+    def test_devices_retrieve_hostname(self):
+        """Test case for devices_retrieve_hostname
+
+        """
+        pass
+
     def test_devices_update(self):
         """Test case for devices_update
 

@@ -6540,130 +6540,6 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
 
 
 /**
- * AppliancesApi - axios parameter creator
- * @export
- */
-export const AppliancesApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @param {string} hostname 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesRetrieveHostname: async (hostname: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'hostname' is not null or undefined
-            assertParamExists('devicesRetrieveHostname', 'hostname', hostname)
-            const localVarPath = `/api/appliances/{hostname}`
-                .replace(`{${"hostname"}}`, encodeURIComponent(String(hostname)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * AppliancesApi - functional programming interface
- * @export
- */
-export const AppliancesApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = AppliancesApiAxiosParamCreator(configuration)
-    return {
-        /**
-         * 
-         * @param {string} hostname 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesRetrieveHostname(hostname: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesRetrieveHostname(hostname, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-    }
-};
-
-/**
- * AppliancesApi - factory interface
- * @export
- */
-export const AppliancesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = AppliancesApiFp(configuration)
-    return {
-        /**
-         * 
-         * @param {string} hostname 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesRetrieveHostname(hostname: string, options?: any): AxiosPromise<Device> {
-            return localVarFp.devicesRetrieveHostname(hostname, options).then((request) => request(axios, basePath));
-        },
-    };
-};
-
-/**
- * AppliancesApi - interface
- * @export
- * @interface AppliancesApi
- */
-export interface AppliancesApiInterface {
-    /**
-     * 
-     * @param {string} hostname 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AppliancesApiInterface
-     */
-    devicesRetrieveHostname(hostname: string, options?: AxiosRequestConfig): AxiosPromise<Device>;
-
-}
-
-/**
- * AppliancesApi - object-oriented interface
- * @export
- * @class AppliancesApi
- * @extends {BaseAPI}
- */
-export class AppliancesApi extends BaseAPI implements AppliancesApiInterface {
-    /**
-     * 
-     * @param {string} hostname 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AppliancesApi
-     */
-    public devicesRetrieveHostname(hostname: string, options?: AxiosRequestConfig) {
-        return AppliancesApiFp(this.configuration).devicesRetrieveHostname(hostname, options).then((request) => request(this.axios, this.basePath));
-    }
-}
-
-
-/**
  * AuthApi - axios parameter creator
  * @export
  */
@@ -8377,6 +8253,45 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
+         * 
+         * @param {string} hostname 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesRetrieveHostname: async (hostname: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'hostname' is not null or undefined
+            assertParamExists('devicesRetrieveHostname', 'hostname', hostname)
+            const localVarPath = `/api/devices/{hostname}`
+                .replace(`{${"hostname"}}`, encodeURIComponent(String(hostname)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {number} id A unique integer value identifying this device.
          * @param {DeviceRequest} deviceRequest 
@@ -8733,6 +8648,16 @@ export const DevicesApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * 
+         * @param {string} hostname 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesRetrieveHostname(hostname: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesRetrieveHostname(hostname, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {number} id A unique integer value identifying this device.
          * @param {DeviceRequest} deviceRequest 
@@ -9028,6 +8953,15 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.devicesRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
+         * 
+         * @param {string} hostname 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesRetrieveHostname(hostname: string, options?: any): AxiosPromise<Device> {
+            return localVarFp.devicesRetrieveHostname(hostname, options).then((request) => request(axios, basePath));
+        },
+        /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {number} id A unique integer value identifying this device.
          * @param {DeviceRequest} deviceRequest 
@@ -9319,6 +9253,15 @@ export interface DevicesApiInterface {
      * @memberof DevicesApiInterface
      */
     devicesRetrieve(id: number, options?: AxiosRequestConfig): AxiosPromise<Device>;
+
+    /**
+     * 
+     * @param {string} hostname 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesRetrieveHostname(hostname: string, options?: AxiosRequestConfig): AxiosPromise<Device>;
 
     /**
      * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
@@ -9665,6 +9608,17 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      */
     public devicesRetrieve(id: number, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} hostname 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesRetrieveHostname(hostname: string, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesRetrieveHostname(hostname, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

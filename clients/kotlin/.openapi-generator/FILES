@@ -8,7 +8,6 @@ docs/AlertRequest.md
 docs/AlertsApi.md
 docs/AnsibleFacts.md
 docs/AnsibleFactsRequest.md
-docs/AppliancesApi.md
 docs/ArtifactTypesEnum.md
 docs/AuthApi.md
 docs/CallbackTokenAuthRequest.md
@@ -145,7 +144,6 @@ gradlew
 gradlew.bat
 settings.gradle
 src/main/kotlin/com/print-nanny/client/apis/AlertsApi.kt
-src/main/kotlin/com/print-nanny/client/apis/AppliancesApi.kt
 src/main/kotlin/com/print-nanny/client/apis/AuthApi.kt
 src/main/kotlin/com/print-nanny/client/apis/DevicesApi.kt
 src/main/kotlin/com/print-nanny/client/apis/MlOpsApi.kt

@@ -31,6 +31,7 @@ Method | HTTP request | Description
 [**devices_printer_controllers_retrieve**](DevicesApi.md#devices_printer_controllers_retrieve) | **GET** /api/devices/{device_id}/printer-controllers/{id}/ | 
 [**devices_printer_controllers_update**](DevicesApi.md#devices_printer_controllers_update) | **PUT** /api/devices/{device_id}/printer-controllers/{id}/ | 
 [**devices_retrieve**](DevicesApi.md#devices_retrieve) | **GET** /api/devices/{id}/ | 
+[**devices_retrieve_hostname**](DevicesApi.md#devices_retrieve_hostname) | **GET** /api/devices/{hostname} | 
 [**devices_update**](DevicesApi.md#devices_update) | **PUT** /api/devices/{id}/ | 
 
 
@@ -819,6 +820,34 @@ All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **i32** | A unique integer value identifying this device. | [required] |
+
+### Return type
+
+[**crate::models::Device**](Device.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## devices_retrieve_hostname
+
+> crate::models::Device devices_retrieve_hostname(hostname)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**hostname** | **String** |  | [required] |
 
 ### Return type
 

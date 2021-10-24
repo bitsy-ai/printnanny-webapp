@@ -11,7 +11,6 @@ docs/AlertRequest.md
 docs/AlertsApi.md
 docs/AnsibleFacts.md
 docs/AnsibleFactsRequest.md
-docs/AppliancesApi.md
 docs/ArtifactTypesEnum.md
 docs/AuthApi.md
 docs/AuthApi.md
@@ -147,7 +146,6 @@ git_push.sh
 print_nanny_client/__init__.py
 print_nanny_client/api/__init__.py
 print_nanny_client/api/alerts_api.py
-print_nanny_client/api/appliances_api.py
 print_nanny_client/api/auth__api.py
 print_nanny_client/api/auth_api.py
 print_nanny_client/api/devices_api.py
@@ -303,7 +301,6 @@ test/test_alert_request.py
 test/test_alerts_api.py
 test/test_ansible_facts.py
 test/test_ansible_facts_request.py
-test/test_appliances_api.py
 test/test_artifact_types_enum.py
 test/test_auth__api.py
 test/test_auth_api.py

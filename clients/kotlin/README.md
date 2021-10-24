@@ -42,7 +42,6 @@ Class | Method | HTTP request | Description
 *AlertsApi* | [**alertsSeen**](docs/AlertsApi.md#alertsseen) | **PATCH** /api/alerts/seen/ | 
 *AlertsApi* | [**alertsUnread**](docs/AlertsApi.md#alertsunread) | **GET** /api/alerts/unread/ | 
 *AlertsApi* | [**alertsUpdate**](docs/AlertsApi.md#alertsupdate) | **PUT** /api/alerts/{id}/ | 
-*AppliancesApi* | [**devicesRetrieveHostname**](docs/AppliancesApi.md#devicesretrievehostname) | **GET** /api/appliances/{hostname} | 
 *AuthApi* | [**authEmailCreate**](docs/AuthApi.md#authemailcreate) | **POST** /auth/email/ | 
 *AuthApi* | [**authMobileCreate**](docs/AuthApi.md#authmobilecreate) | **POST** /auth/mobile/ | 
 *AuthApi* | [**authTokenCreate**](docs/AuthApi.md#authtokencreate) | **POST** /auth/token/ | 
@@ -76,6 +75,7 @@ Class | Method | HTTP request | Description
 *DevicesApi* | [**devicesPrinterControllersRetrieve**](docs/DevicesApi.md#devicesprintercontrollersretrieve) | **GET** /api/devices/{device_id}/printer-controllers/{id}/ | 
 *DevicesApi* | [**devicesPrinterControllersUpdate**](docs/DevicesApi.md#devicesprintercontrollersupdate) | **PUT** /api/devices/{device_id}/printer-controllers/{id}/ | 
 *DevicesApi* | [**devicesRetrieve**](docs/DevicesApi.md#devicesretrieve) | **GET** /api/devices/{id}/ | 
+*DevicesApi* | [**devicesRetrieveHostname**](docs/DevicesApi.md#devicesretrievehostname) | **GET** /api/devices/{hostname} | 
 *DevicesApi* | [**devicesUpdate**](docs/DevicesApi.md#devicesupdate) | **PUT** /api/devices/{id}/ | 
 *MlOpsApi* | [**deviceCalibrationUpdateOrCreate**](docs/MlOpsApi.md#devicecalibrationupdateorcreate) | **POST** /api/device-calibrations/update-or-create/ | 
 *MlOpsApi* | [**deviceCalibrationsList**](docs/MlOpsApi.md#devicecalibrationslist) | **GET** /api/device-calibrations/ | 

@@ -31,6 +31,7 @@ Method | HTTP request | Description
 [**devicesPrinterControllersRetrieve**](DevicesApi.md#devicesPrinterControllersRetrieve) | **GET** /api/devices/{device_id}/printer-controllers/{id}/ | 
 [**devicesPrinterControllersUpdate**](DevicesApi.md#devicesPrinterControllersUpdate) | **PUT** /api/devices/{device_id}/printer-controllers/{id}/ | 
 [**devicesRetrieve**](DevicesApi.md#devicesRetrieve) | **GET** /api/devices/{id}/ | 
+[**devicesRetrieveHostname**](DevicesApi.md#devicesRetrieveHostname) | **GET** /api/devices/{hostname} | 
 [**devicesUpdate**](DevicesApi.md#devicesUpdate) | **PUT** /api/devices/{id}/ | 
 
 
@@ -1441,6 +1442,56 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **kotlin.Int**| A unique integer value identifying this device. |
+
+### Return type
+
+[**Device**](Device.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="devicesRetrieveHostname"></a>
+# **devicesRetrieveHostname**
+> Device devicesRetrieveHostname(hostname)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = DevicesApi()
+val hostname : kotlin.String = hostname_example // kotlin.String | 
+try {
+    val result : Device = apiInstance.devicesRetrieveHostname(hostname)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DevicesApi#devicesRetrieveHostname")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DevicesApi#devicesRetrieveHostname")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **hostname** | **kotlin.String**|  |
 
 ### Return type
 
