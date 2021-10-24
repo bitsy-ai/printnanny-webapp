@@ -24,6 +24,7 @@ class ApplianceListView(LoginRequiredMixin, TemplateView):
 
         return context
 
+
 class ApplianceDetailView(LoginRequiredMixin, BaseDetailView):
     model = Appliance
     template_name = "devices/appliance-detail.html"

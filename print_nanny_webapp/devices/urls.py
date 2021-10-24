@@ -7,7 +7,6 @@ app_name = "devices"
 appliance_urls = [
     path("/", ApplianceListView.as_view(), name="list"),
     path("/<slug:pk>", ApplianceDetailView.as_view(), name="detail"),
-
 ]
 
 urlpatterns = [

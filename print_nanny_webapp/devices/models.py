@@ -53,8 +53,8 @@ class Appliance(SafeDeleteModel):
         return f"appliance-id-{self.id}"
 
     @property
-    def url(self):
-        reverse("appliances:detail", kwargs={"pk": self.id})
+    def dashboard_url(self):
+        return reverse("devices:appliances:detail", kwargs={"pk": self.id})
 
 
 class CloudIoTDevice(SafeDeleteModel):

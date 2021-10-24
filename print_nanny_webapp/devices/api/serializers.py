@@ -89,7 +89,6 @@ class AnsibleFactsSerializer(serializers.ModelSerializer):
 
 
 class ApplianceSerializer(serializers.ModelSerializer):
-
     public_key = AppliancePublicKeySerializer(
         read_only=True, required=False, allow_null=True
     )
@@ -99,6 +98,7 @@ class ApplianceSerializer(serializers.ModelSerializer):
         required=False,
         allow_null=True,
     )
+    dashboard_url = serializers.CharField(read_only=True)
     cameras = CameraSerializer(read_only=True, many=True)
     printer_controllers = PrinterControllerSerializer(read_only=True, many=True)
     user = serializers.PrimaryKeyRelatedField(read_only=True)
