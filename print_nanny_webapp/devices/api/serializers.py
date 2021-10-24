@@ -89,18 +89,19 @@ class AnsibleFactsSerializer(serializers.ModelSerializer):
 
 
 class DeviceSerializer(serializers.ModelSerializer):
-    public_key = DevicePublicKeySerializer(
-        read_only=True, required=False, allow_null=True
-    )
+    cameras = CameraSerializer(read_only=True, many=True)
+    dashboard_url = serializers.CharField(read_only=True)
 
     last_ansible_facts = AnsibleFactsSerializer(
         read_only=True,
         required=False,
         allow_null=True,
     )
-    dashboard_url = serializers.CharField(read_only=True)
-    cameras = CameraSerializer(read_only=True, many=True)
     printer_controllers = PrinterControllerSerializer(read_only=True, many=True)
+    public_key = DevicePublicKeySerializer(
+        read_only=True, required=False, allow_null=True
+    )
+
     user = serializers.PrimaryKeyRelatedField(read_only=True)
 
     class Meta:

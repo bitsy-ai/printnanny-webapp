@@ -1,4 +1,5 @@
 import logging
+from django.conf import settings
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.contrib.auth import get_user_model
@@ -91,6 +92,14 @@ class CloudIoTDevice(SafeDeleteModel):
         related_name="cloudiot_devices",
         db_index=True,
     )
+
+    @property
+    def mqtt_bridge_hostname(self):
+        return settings.GCP_MQTT_BRIDGE_HOSTNAME
+
+    @property
+    def mqttt_bridge_port(self):
+        return settings.GCP_MQTT_BRIDGE_PORT
 
 
 class DevicePublicKey(SafeDeleteModel):

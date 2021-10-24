@@ -155,8 +155,8 @@ def delete_cloudiot_device(device_id_int64: int):
     client = cloudiot_v1.DeviceManagerClient()
     device_path = client.device_path(
         settings.GCP_PROJECT_ID,
-        settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
-        settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
+        settings.GCP_CLOUD_IOT_STANDALONE_DEVICE_REGISTRY_REGION,
+        settings.GCP_CLOUD_IOT_STANDALONE_DEVICE_REGISTRY,
         str(device_id_int64),
     )
     try:
@@ -169,8 +169,8 @@ def create_cloudiot_device(device: Device, keypair: KeyPair):
     client = cloudiot_v1.DeviceManagerClient()
     parent = client.registry_path(
         settings.GCP_PROJECT_ID,
-        settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
-        settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
+        settings.GCP_CLOUD_IOT_STANDALONE_DEVICE_REGISTRY_REGION,
+        settings.GCP_CLOUD_IOT_STANDALONE_DEVICE_REGISTRY,
     )
 
     cloudiot_device = cloudiot_v1.types.Device()
@@ -231,8 +231,8 @@ def update_or_create_cloudiot_device(
 
     device_path = client.device_path(
         settings.GCP_PROJECT_ID,
-        settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
-        settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
+        settings.GCP_CLOUD_IOT_STANDALONE_DEVICE_REGISTRY_REGION,
+        settings.GCP_CLOUD_IOT_STANDALONE_DEVICE_REGISTRY,
         device.to_cloudiot_id,
     )
 
