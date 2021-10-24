@@ -13,7 +13,7 @@ from google.cloud import iot_v1 as cloudiot_v1
 import google.api_core.exceptions
 import subprocess
 
-from .models import Device, CloudIoTDevice
+from .models import Device, CloudiotDevice
 
 logger = logging.getLogger(__name__)
 
@@ -247,10 +247,10 @@ def update_or_create_cloudiot_device(
 
 def generate_keypair_and_update_or_create_cloudiot_device(
     device: Device,
-) -> Tuple[KeyPair, CloudIoTDevice]:
+) -> Tuple[KeyPair, CloudiotDevice]:
     keypair = generate_keypair()
     cloudiot_device = update_or_create_cloudiot_device(device=device, keypair=keypair)
-    CloudIoTDevice = apps.get_model("devices", "CloudIoTDevice")
+    CloudiotDevice = apps.get_model("devices", "CloudiotDevice")
     DevicePublicKey = apps.get_model("devices", "DevicePublicKey")
 
     # update apppliance relationships
@@ -260,8 +260,8 @@ def generate_keypair_and_update_or_create_cloudiot_device(
             name=cloudiot_device.name,
         )
     else:
-        # create new print_nanny_webapp.devices.models.CloudIoTDevices object
-        CloudIoTDevice.objects.create(
+        # create new print_nanny_webapp.devices.models.CloudiotDevices object
+        CloudiotDevice.objects.create(
             num_id=cloudiot_device.num_id,
             name=cloudiot_device.name,
             device=device,

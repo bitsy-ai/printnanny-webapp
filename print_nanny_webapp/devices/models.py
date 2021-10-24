@@ -58,7 +58,7 @@ class Device(SafeDeleteModel):
         return reverse("devices:detail", kwargs={"pk": self.id})
 
 
-class CloudIoTDevice(SafeDeleteModel):
+class CloudiotDevice(SafeDeleteModel):
     """
     Instance of cloudiot.projects.locations.registries.devices#Device
     https://cloud.google.com/iot/docs/reference/cloudiot/rest/v1/projects.locations.registries.devices#Device

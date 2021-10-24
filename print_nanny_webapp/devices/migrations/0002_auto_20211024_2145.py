@@ -97,7 +97,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name="CloudIoTDevice",
+            name="CloudiotDevice",
             fields=[
                 ("deleted", models.DateTimeField(editable=False, null=True)),
                 ("num_id", models.BigIntegerField(primary_key=True, serialize=False)),

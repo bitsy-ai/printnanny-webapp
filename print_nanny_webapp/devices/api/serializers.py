@@ -3,7 +3,7 @@ from rest_framework import serializers
 from print_nanny_webapp.devices.models import (
     Device,
     Camera,
-    CloudIoTDevice,
+    CloudiotDevice,
     DevicePublicKey,
     AnsibleFacts,
     PrinterController,
@@ -50,7 +50,7 @@ class PrinterControllerSerializer(serializers.ModelSerializer):
 ##
 # v1 Device Identity Provisioning (distributed via rpi-imager)
 ##
-class CloudIoTDeviceSerializer(serializers.ModelSerializer):
+class CloudiotDeviceSerializer(serializers.ModelSerializer):
     gcp_project_id = serializers.CharField(read_only=True)
     gcp_region = serializers.CharField(read_only=True)
     gcp_cloudiot_device_registry = serializers.CharField(read_only=True)
@@ -62,7 +62,7 @@ class CloudIoTDeviceSerializer(serializers.ModelSerializer):
     device = serializers.PrimaryKeyRelatedField(read_only=True)
 
     class Meta:
-        model = CloudIoTDevice
+        model = CloudiotDevice
         fields = "__all__"
 
 
@@ -97,7 +97,7 @@ class AnsibleFactsSerializer(serializers.ModelSerializer):
 
 
 class DeviceSerializer(serializers.ModelSerializer):
-    cloudiot_devices = CloudIoTDeviceSerializer(
+    cloudiot_devices = CloudiotDeviceSerializer(
         read_only=True, required=False, many=True
     )
     cameras = CameraSerializer(read_only=True, many=True)
