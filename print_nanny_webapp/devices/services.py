@@ -173,9 +173,9 @@ def create_cloudiot_device(device: Device, keypair: KeyPair):
         settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
     )
 
-    device = cloudiot_v1.types.Device()
-    device.id = device.to_cloudiot_id
-    device.credentials = [
+    cloudiot_device = cloudiot_v1.types.Device()
+    cloudiot_device.id = device.to_cloudiot_id
+    cloudiot_device.credentials = [
         {
             "public_key": {
                 "format": cloudiot_v1.PublicKeyFormat.ES256_PEM,
@@ -183,7 +183,7 @@ def create_cloudiot_device(device: Device, keypair: KeyPair):
             }
         }
     ]
-    device.metadata = dict(
+    cloudiot_device.metadata = dict(
         fingerprint=keypair["fingerprint"],
         device_id=str(device.id),
         device_hostname=device.hostname,
@@ -191,7 +191,7 @@ def create_cloudiot_device(device: Device, keypair: KeyPair):
         email=device.user.email,
     )
 
-    return client.create_device(parent=parent, device=device)
+    return client.create_device(parent=parent, device=cloudiot_device)
 
 
 def update_cloudiot_device(
