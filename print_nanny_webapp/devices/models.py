@@ -80,7 +80,7 @@ class CloudIoTDevice(SafeDeleteModel):
             delete_cloudiot_device,
         )
 
-        return delete_cloudiot_device(self.numId)
+        return delete_cloudiot_device(self.num_id)
 
     num_id = models.BigIntegerField(primary_key=True)
     name = models.CharField(max_length=255)
@@ -94,12 +94,28 @@ class CloudIoTDevice(SafeDeleteModel):
     )
 
     @property
+    def gcp_project_id(self):
+        return settings.GCP_PROJECT_ID
+
+    @property
+    def gcp_region(self):
+        return settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION
+
+    @property
+    def gcp_cloudiot_device_registry(self):
+        return settings.GCP_CLOUD_IOT_STANDALONE_DEVICE_REGISTRY
+
+    @property
     def mqtt_bridge_hostname(self):
         return settings.GCP_MQTT_BRIDGE_HOSTNAME
 
     @property
-    def mqttt_bridge_port(self):
+    def mqtt_bridge_port(self):
         return settings.GCP_MQTT_BRIDGE_PORT
+
+    @property
+    def mqtt_client_id(self):
+        return self.name
 
 
 class DevicePublicKey(SafeDeleteModel):

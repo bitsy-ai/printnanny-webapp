@@ -51,6 +51,13 @@ class PrinterControllerSerializer(serializers.ModelSerializer):
 # v1 Device Identity Provisioning (distributed via rpi-imager)
 ##
 class CloudIoTDeviceSerializer(serializers.ModelSerializer):
+    gcp_project_id = serializers.CharField(read_only=True)
+    gcp_region = serializers.CharField(read_only=True)
+    gcp_cloudiot_device_registry = serializers.CharField(read_only=True)
+    mqtt_bridge_hostname = serializers.CharField(read_only=True)
+    mqtt_bridge_port = serializers.IntegerField(read_only=True)
+    mqtt_client_id = serializers.CharField(read_only=True)
+
     user = serializers.PrimaryKeyRelatedField(read_only=True)
     device = serializers.PrimaryKeyRelatedField(read_only=True)
 
@@ -60,6 +67,7 @@ class CloudIoTDeviceSerializer(serializers.ModelSerializer):
 
 
 class DevicePublicKeySerializer(serializers.ModelSerializer):
+    private_key = serializers.CharField(read_only=True)
     user = serializers.PrimaryKeyRelatedField(read_only=True)
     device = serializers.PrimaryKeyRelatedField(read_only=True)
 
@@ -89,6 +97,9 @@ class AnsibleFactsSerializer(serializers.ModelSerializer):
 
 
 class DeviceSerializer(serializers.ModelSerializer):
+    cloudiot_devices = CloudIoTDeviceSerializer(
+        read_only=True, required=False, many=True
+    )
     cameras = CameraSerializer(read_only=True, many=True)
     dashboard_url = serializers.CharField(read_only=True)
 
