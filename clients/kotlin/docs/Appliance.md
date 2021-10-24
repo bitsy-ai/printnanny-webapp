@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **id** | **kotlin.Int** |  |  [optional] [readonly]
 **publicKey** | [**AppliancePublicKey**](AppliancePublicKey.md) |  |  [optional] [readonly]
 **lastAnsibleFacts** | [**AnsibleFacts**](AnsibleFacts.md) |  |  [optional] [readonly]
+**dashboardUrl** | **kotlin.String** |  |  [optional] [readonly]
 **cameras** | [**kotlin.collections.List&lt;Camera&gt;**](Camera.md) |  |  [optional] [readonly]
 **printerControllers** | [**kotlin.collections.List&lt;PrinterController&gt;**](PrinterController.md) |  |  [optional] [readonly]
 **user** | **kotlin.Int** |  |  [optional] [readonly]

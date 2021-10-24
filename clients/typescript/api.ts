@@ -401,6 +401,12 @@ export interface Appliance {
     'last_ansible_facts'?: AnsibleFacts | null;
     /**
      * 
+     * @type {string}
+     * @memberof Appliance
+     */
+    'dashboard_url'?: string;
+    /**
+     * 
      * @type {Array<Camera>}
      * @memberof Appliance
      */

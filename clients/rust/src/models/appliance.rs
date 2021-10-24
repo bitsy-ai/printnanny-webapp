@@ -17,6 +17,8 @@ pub struct Appliance {
     pub public_key: Option<Box<crate::models::AppliancePublicKey>>,
     #[serde(rename = "last_ansible_facts", skip_serializing_if = "Option::is_none")]
     pub last_ansible_facts: Option<Box<crate::models::AnsibleFacts>>,
+    #[serde(rename = "dashboard_url", skip_serializing_if = "Option::is_none")]
+    pub dashboard_url: Option<String>,
     #[serde(rename = "cameras", skip_serializing_if = "Option::is_none")]
     pub cameras: Option<Vec<crate::models::Camera>>,
     #[serde(rename = "printer_controllers", skip_serializing_if = "Option::is_none")]
@@ -39,6 +41,7 @@ impl Appliance {
             id: None,
             public_key: None,
             last_ansible_facts: None,
+            dashboard_url: None,
             cameras: None,
             printer_controllers: None,
             user: None,

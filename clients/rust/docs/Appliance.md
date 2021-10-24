@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **id** | Option<**i32**> |  | [optional][readonly]
 **public_key** | Option<[**crate::models::AppliancePublicKey**](AppliancePublicKey.md)> |  | [optional][readonly]
 **last_ansible_facts** | Option<[**crate::models::AnsibleFacts**](AnsibleFacts.md)> |  | [optional][readonly]
+**dashboard_url** | Option<**String**> |  | [optional][readonly]
 **cameras** | Option<[**Vec<crate::models::Camera>**](Camera.md)> |  | [optional][readonly]
 **printer_controllers** | Option<[**Vec<crate::models::PrinterController>**](PrinterController.md)> |  | [optional][readonly]
 **user** | Option<**i32**> |  | [optional][readonly]

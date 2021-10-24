@@ -44,6 +44,7 @@ class TestPaginatedApplianceList(unittest.TestCase):
                         id = 56, 
                         public_key = null, 
                         last_ansible_facts = null, 
+                        dashboard_url = '', 
                         cameras = [
                             print_nanny_client.models.camera.Camera(
                                 id = 56, 

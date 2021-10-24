@@ -39,6 +39,7 @@ class Appliance(object):
         'id': 'int',
         'public_key': 'AppliancePublicKey',
         'last_ansible_facts': 'AnsibleFacts',
+        'dashboard_url': 'str',
         'cameras': 'list[Camera]',
         'printer_controllers': 'list[PrinterController]',
         'user': 'int',
@@ -52,6 +53,7 @@ class Appliance(object):
         'id': 'id',
         'public_key': 'public_key',
         'last_ansible_facts': 'last_ansible_facts',
+        'dashboard_url': 'dashboard_url',
         'cameras': 'cameras',
         'printer_controllers': 'printer_controllers',
         'user': 'user',
@@ -61,7 +63,7 @@ class Appliance(object):
         'hostname': 'hostname'
     }
 
-    def __init__(self, id=None, public_key=None, last_ansible_facts=None, cameras=None, printer_controllers=None, user=None, deleted=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, public_key=None, last_ansible_facts=None, dashboard_url=None, cameras=None, printer_controllers=None, user=None, deleted=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
         """Appliance - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -70,6 +72,7 @@ class Appliance(object):
         self._id = None
         self._public_key = None
         self._last_ansible_facts = None
+        self._dashboard_url = None
         self._cameras = None
         self._printer_controllers = None
         self._user = None
@@ -83,6 +86,8 @@ class Appliance(object):
             self.id = id
         self.public_key = public_key
         self.last_ansible_facts = last_ansible_facts
+        if dashboard_url is not None:
+            self.dashboard_url = dashboard_url
         if cameras is not None:
             self.cameras = cameras
         if printer_controllers is not None:
@@ -159,6 +164,27 @@ class Appliance(object):
         """
 
         self._last_ansible_facts = last_ansible_facts
+
+    @property
+    def dashboard_url(self):
+        """Gets the dashboard_url of this Appliance.  # noqa: E501
+
+
+        :return: The dashboard_url of this Appliance.  # noqa: E501
+        :rtype: str
+        """
+        return self._dashboard_url
+
+    @dashboard_url.setter
+    def dashboard_url(self, dashboard_url):
+        """Sets the dashboard_url of this Appliance.
+
+
+        :param dashboard_url: The dashboard_url of this Appliance.  # noqa: E501
+        :type dashboard_url: str
+        """
+
+        self._dashboard_url = dashboard_url
 
     @property
     def cameras(self):

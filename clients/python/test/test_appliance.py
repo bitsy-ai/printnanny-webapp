@@ -39,6 +39,7 @@ class TestAppliance(unittest.TestCase):
                 id = 56, 
                 public_key = None, 
                 last_ansible_facts = None, 
+                dashboard_url = '', 
                 cameras = [
                     print_nanny_client.models.camera.Camera(
                         id = 56, 

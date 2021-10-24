@@ -35,6 +35,7 @@ import java.io.Serializable
  * @param id 
  * @param publicKey 
  * @param lastAnsibleFacts 
+ * @param dashboardUrl 
  * @param cameras 
  * @param printerControllers 
  * @param user 
@@ -56,6 +57,9 @@ data class Appliance (
 
     @Json(name = "last_ansible_facts")
     val lastAnsibleFacts: AnsibleFacts? = null,
+
+    @Json(name = "dashboard_url")
+    val dashboardUrl: kotlin.String? = null,
 
     @Json(name = "cameras")
     val cameras: kotlin.collections.List<Camera>? = null,
