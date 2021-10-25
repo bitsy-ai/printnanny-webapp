@@ -45,8 +45,21 @@ class Device(SafeDeleteModel):
     )
     hostname = models.CharField(max_length=255)
 
+    # immutable device info
+    # /proc/cpuinfo HARDWARE
+    hardware = models.CharField(max_length=255)
+    # /proc/cpuinfo REVISION
+    revision = models.CharField(max_length=255)
+    # /proc/cpuinfo MODEL
+    model = models.CharField(max_length=255)
+    # /proc/cpuinfo SERIAL
+    serial = models.CharField(max_length=255)
+    # /proc/cpuinfo MAX PROCESSOR
+    cores = models.IntegerField()
+    ram = models.BigIntegerField()
+
     @property
-    def last_ansible_facts(self):
+    def last_state(self):
         return self.ansible_facts.first()
 
     @property
@@ -117,6 +130,76 @@ class CloudiotDevice(SafeDeleteModel):
     def mqtt_client_id(self):
         return self.name
 
+    @property
+    def config_topic(self):
+        return f"/devices/{self.num_id}/config"
+
+    @property
+    def state_topic(self):
+        return f"/devices/{self.num_id}/state"
+
+
+class DeviceDesiredConfig(SafeDeleteModel):
+    """
+    Append-only log of msgs published to /devices/:id/config FROM webapp controller
+
+    Fields rendered to extra vars file used with Ansible Playbook
+    ansible-playbook playbook.yml --extra-vars "@some_file.json"
+
+    Device will attempt to apply the received config
+    Then publish state to /devices/:id/state FROM device
+    https://cloud.google.com/iot/docs/concepts/devices#changing_device_behavior_or_state_using_configuration_data
+    """
+
+    _safedelete_policy = SOFT_DELETE
+
+    class Meta:
+        ordering = ["-created_dt"]
+
+    device = models.ForeignKey(
+        Device, on_delete=models.CASCADE, related_name="desired_config", db_index=True
+    )
+    ansible_extra_vars = models.JSONField(default=dict())
+    release_channel = models.CharField(
+        max_length=8,
+        choices=DeviceReleaseChannel.choices,
+        default=DeviceReleaseChannel.STABLE,
+    )
+    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
+
+    @property
+    def mqtt_topic(self):
+        return f"/devices/{self.num_id}/config"
+
+
+class DeviceCurrentState(SafeDeleteModel):
+    """
+    Append-only log published to /devices/:id/state FROM device
+
+    See: desired state design pattern for details
+    https://cloud.google.com/iot/docs/concepts/devices#changing_device_behavior_or_state_using_configuration_data
+    """
+
+    _safedelete_policy = SOFT_DELETE
+
+    class Meta:
+        ordering = ["-created_dt"]
+
+    device = models.ForeignKey(
+        Device, on_delete=models.CASCADE, related_name="current_state", db_index=True
+    )
+    ansible_facts = models.ForeignKey("devices.AnsibleFacts", on_delete=models.CASCADE)
+    ansible_extra_vars = models.JSONField(default=dict())
+    release_channel = models.CharField(
+        max_length=8,
+        choices=DeviceReleaseChannel.choices,
+        default=DeviceReleaseChannel.STABLE,
+    )
+    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
+
+    @property
+    def mqtt_topic(self):
+        return f"/devices/{self.num_id}/state"
 
 class DevicePublicKey(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
@@ -136,42 +219,6 @@ class DevicePublicKey(SafeDeleteModel):
     device = models.ForeignKey(
         Device, on_delete=models.CASCADE, related_name="public_keys", db_index=True
     )
-
-
-class AnsibleFacts(SafeDeleteModel):
-    _safedelete_policy = SOFT_DELETE
-
-    class Meta:
-        ordering = ["-created_dt"]
-
-    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
-    device = models.ForeignKey(
-        Device, on_delete=models.CASCADE, related_name="ansible_facts", db_index=True
-    )
-    # platform info
-    os_version = models.CharField(max_length=255)
-    os = models.CharField(max_length=255)
-    kernel_version = models.CharField(max_length=255)
-    # hardware info
-    # /proc/cpuinfo HARDWARE
-    hardware = models.CharField(max_length=255, null=True)
-    # /proc/cpuinfo REVISION
-    revision = models.CharField(max_length=255, null=True)
-    # /proc/cpuinfo MODEL
-    model = models.CharField(max_length=255, null=True)
-    # /proc/cpuinfo SERIAL
-    serial = models.CharField(max_length=255, null=True)
-    # /proc/cpuinfo MAX PROCESSOR
-    cores = models.IntegerField()
-    ram = models.BigIntegerField()
-    cpu_flags = ArrayField(models.CharField(max_length=255))
-
-    release_channel = models.CharField(
-        max_length=8,
-        choices=DeviceReleaseChannel.choices,
-        default=DeviceReleaseChannel.MAIN,
-    )
-    json = models.JSONField()
 
 
 class Camera(SafeDeleteModel):

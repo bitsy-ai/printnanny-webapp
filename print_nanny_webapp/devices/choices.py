@@ -2,8 +2,8 @@ from django.db import models
 
 
 class DeviceReleaseChannel(models.TextChoices):
-    MAIN = "main", "Stable mainline release channel"
-    DEVEL = "devel", "Unstable developer release channel"
+    STABLE = "stable", "Stable mainline release channel"
+    NIGHTLY = "nightly", "Nightly developer release channel"
 
 
 class PrinterSoftwareType(models.TextChoices):
