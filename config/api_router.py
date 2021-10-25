@@ -4,7 +4,8 @@ from rest_framework_nested.routers import NestedSimpleRouter
 from print_nanny_webapp.devices.api.serializers import PrinterControllerSerializer
 
 from print_nanny_webapp.devices.api.views import (
-    AnsibleFactsViewSet,
+    DesiredConfigViewSet,
+    CurrentStateViewSet,
     DeviceViewSet,
     DeviceHostnameViewSet,
     DeviceKeyPairViewSet,
@@ -49,7 +50,9 @@ devices_by_hostname = [
 ]
 
 devices_router  = NestedSimpleRouter(router, r'devices', lookup='device')
-devices_router .register(r'ansible-facts', AnsibleFactsViewSet, basename='ansible-facts')
+devices_router .register(r'desired-config', DesiredConfigViewSet, basename='desired-config')
+devices_router .register(r'current-state', CurrentStateViewSet, basename='current-state')
+
 devices_router .register(r'keypairs', DeviceKeyPairViewSet, basename='keypairs')
 devices_router .register(r'cameras', CameraViewSet, basename='cameras')
 devices_router .register(r'cloud-iot-devices', CloudiotDeviceViewSet , basename='cloud-iot-devices')

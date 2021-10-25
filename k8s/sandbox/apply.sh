@@ -7,4 +7,4 @@ kubectl apply -f k8s/sandbox/configmap.yml
 kubectl apply -f k8s/sandbox/monolith.yml
 kubectl apply -f k8s/sandbox/certs.yml
 kubectl apply -f k8s/sandbox/pv.yml
-kubectl apply -f k9s/sandbox/services.yml
+kubectl apply -f k8s/sandbox/services.yml

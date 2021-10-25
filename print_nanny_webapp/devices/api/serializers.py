@@ -4,8 +4,9 @@ from print_nanny_webapp.devices.models import (
     Device,
     Camera,
     CloudiotDevice,
+    DesiredConfig,
+    CurrentState,
     DevicePublicKey,
-    AnsibleFacts,
     PrinterController,
     # PrinterProfile,
     # OctoprintPrinterProfile,
@@ -51,6 +52,9 @@ class PrinterControllerSerializer(serializers.ModelSerializer):
 # v1 Device Identity Provisioning (distributed via rpi-imager)
 ##
 class CloudiotDeviceSerializer(serializers.ModelSerializer):
+    config_topic = serializers.CharField(read_only=True)
+    state_topic = serializers.CharField(read_only=True)
+
     gcp_project_id = serializers.CharField(read_only=True)
     gcp_region = serializers.CharField(read_only=True)
     gcp_cloudiot_device_registry = serializers.CharField(read_only=True)
@@ -87,12 +91,15 @@ class DeviceKeyPairSerializer(serializers.Serializer):
     fingerprint_checksum = serializers.CharField(read_only=True)
 
 
-class AnsibleFactsSerializer(serializers.ModelSerializer):
-    user = serializers.PrimaryKeyRelatedField(read_only=True)
-    device = serializers.PrimaryKeyRelatedField(read_only=True)
-
+class DesiredConfigSerializer(serializers.ModelSerializer):
     class Meta:
-        model = AnsibleFacts
+        model = DesiredConfig
+        fields = "__all__"
+
+
+class CurrentStateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CurrentState
         fields = "__all__"
 
 
@@ -103,11 +110,20 @@ class DeviceSerializer(serializers.ModelSerializer):
     cameras = CameraSerializer(read_only=True, many=True)
     dashboard_url = serializers.CharField(read_only=True)
 
-    last_ansible_facts = AnsibleFactsSerializer(
+    desired_config = DesiredConfigSerializer(
         read_only=True,
         required=False,
         allow_null=True,
     )
+    desired_config_topic = serializers.CharField(read_only=True)
+
+    current_state = CurrentStateSerializer(
+        read_only=True,
+        required=False,
+        allow_null=True,
+    )
+    current_state_topic = serializers.CharField(read_only=True)
+
     printer_controllers = PrinterControllerSerializer(read_only=True, many=True)
     public_key = DevicePublicKeySerializer(
         read_only=True, required=False, allow_null=True
