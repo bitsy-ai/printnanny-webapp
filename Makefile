@@ -298,7 +298,7 @@ python-client-release: dist ## package and upload a release
 
 rust-client-release: rust-client
 	-git add -A
-	-git commit -m "0.8.49 client codegen ✨"
+	-git commit -m "0.8.50 client codegen ✨"
 	cd clients/rust && cargo publish
 
 clients-release: python-client-release ts-client kotlin-client rust-client-release
