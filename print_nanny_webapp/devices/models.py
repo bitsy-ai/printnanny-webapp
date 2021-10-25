@@ -70,6 +70,14 @@ class Device(SafeDeleteModel):
     def dashboard_url(self):
         return reverse("devices:detail", kwargs={"pk": self.id})
 
+    @property
+    def desired_config(self):
+        return self.desired_config_set().first()
+
+    @property
+    def current_state(self):
+        return self.current_state_set().first()
+
 
 class CloudiotDevice(SafeDeleteModel):
     """
@@ -139,7 +147,7 @@ class CloudiotDevice(SafeDeleteModel):
         return f"/devices/{self.num_id}/state"
 
 
-class DeviceDesiredConfig(SafeDeleteModel):
+class DesiredConfig(SafeDeleteModel):
     """
     Append-only log of msgs published to /devices/:id/config FROM webapp controller
 
@@ -156,9 +164,7 @@ class DeviceDesiredConfig(SafeDeleteModel):
     class Meta:
         ordering = ["-created_dt"]
 
-    device = models.ForeignKey(
-        Device, on_delete=models.CASCADE, related_name="desired_config", db_index=True
-    )
+    device = models.ForeignKey(Device, on_delete=models.CASCADE, db_index=True)
     ansible_extra_vars = models.JSONField(default=dict())
     release_channel = models.CharField(
         max_length=8,
@@ -172,7 +178,7 @@ class DeviceDesiredConfig(SafeDeleteModel):
         return f"/devices/{self.num_id}/config"
 
 
-class DeviceCurrentState(SafeDeleteModel):
+class CurrentState(SafeDeleteModel):
     """
     Append-only log published to /devices/:id/state FROM device
 
@@ -185,10 +191,8 @@ class DeviceCurrentState(SafeDeleteModel):
     class Meta:
         ordering = ["-created_dt"]
 
-    device = models.ForeignKey(
-        Device, on_delete=models.CASCADE, related_name="current_state", db_index=True
-    )
-    ansible_facts = models.ForeignKey("devices.AnsibleFacts", on_delete=models.CASCADE)
+    device = models.ForeignKey(Device, on_delete=models.CASCADE, db_index=True)
+    ansible_facts = models.JSONField(default=dict())
     ansible_extra_vars = models.JSONField(default=dict())
     release_channel = models.CharField(
         max_length=8,
@@ -200,6 +204,7 @@ class DeviceCurrentState(SafeDeleteModel):
     @property
     def mqtt_topic(self):
         return f"/devices/{self.num_id}/state"
+
 
 class DevicePublicKey(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE

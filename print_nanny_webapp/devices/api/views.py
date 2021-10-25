@@ -18,7 +18,8 @@ from rest_framework.viewsets import GenericViewSet
 import rest_framework.status
 
 from .serializers import (
-    AnsibleFactsSerializer,
+    DesiredConfigSerializer,
+    CurrentStateSerializer,
     DeviceKeyPairSerializer,
     DevicePublicKeySerializer,
     DeviceSerializer,
@@ -27,7 +28,8 @@ from .serializers import (
     PrinterControllerSerializer,
 )
 from ..models import (
-    AnsibleFacts,
+    DesiredConfig,
+    CurrentState,
     Device,
     DevicePublicKey,
     Camera,
@@ -41,38 +43,53 @@ from print_nanny_webapp.utils.api.serializers import ErrorDetailSerializer
 logger = logging.getLogger(__name__)
 
 ##
-# AnsibleFacts
+# DesiredConfig
 ##
-list_ansible_facts_schema = extend_schema(
+list_desired_config_schema = extend_schema(
     responses={
         "default": ErrorDetailSerializer,
-        200: AnsibleFactsSerializer(many=True),
-    },
-)
-modify_ansible_facts_schema = extend_schema(
-    request=AnsibleFactsSerializer,
-    responses={
-        "default": ErrorDetailSerializer,
-        201: AnsibleFactsSerializer,
-        202: AnsibleFactsSerializer,
+        200: DesiredConfigSerializer(many=True),
     },
 )
 
 
 @extend_schema_view(
-    list=list_ansible_facts_schema,
-    create=modify_ansible_facts_schema,
-    update=modify_ansible_facts_schema,
+    list=list_desired_config_schema,
 )
-class AnsibleFactsViewSet(
+class DesiredConfigViewSet(
     GenericViewSet,
-    CreateModelMixin,
     ListModelMixin,
     RetrieveModelMixin,
-    UpdateModelMixin,
 ):
-    serializer_class = AnsibleFactsSerializer
-    queryset = AnsibleFacts.objects.all()
+    serializer_class = DesiredConfigSerializer
+    queryset = DesiredConfig.objects.all()
+    lookup_field = "id"
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+
+##
+# CurrentState
+##
+list_current_state_schema = extend_schema(
+    responses={
+        "default": ErrorDetailSerializer,
+        200: CurrentStateSerializer(many=True),
+    },
+)
+
+
+@extend_schema_view(
+    list=list_current_state_schema,
+)
+class CurrentStateViewSet(
+    GenericViewSet,
+    ListModelMixin,
+    RetrieveModelMixin,
+):
+    serializer_class = CurrentStateSerializer
+    queryset = CurrentState.objects.all()
     lookup_field = "id"
 
     def perform_create(self, serializer):
