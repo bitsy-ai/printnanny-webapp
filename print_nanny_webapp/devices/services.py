@@ -31,8 +31,7 @@ class KeyPair(TypedDict):
     public_key: str
     public_key_checksum: str
     fingerprint: str
-    # TODO x509
-    # ca_certs: CACerts
+    ca_certs: CACerts
 
 
 def check_ca_certs():
@@ -89,8 +88,7 @@ def check_ca_certs():
 
 def generate_keypair():
 
-    # TODO x509
-    # ca_certs = check_ca_certs()
+    ca_certs = check_ca_certs()
 
     with tempfile.TemporaryDirectory() as tmp:
         keypair_filename = f"{tmp}/ecdsa256_keypair.pem"
@@ -147,6 +145,7 @@ def generate_keypair():
             public_key=public_key_content.decode("utf8"),
             public_key_checksum=public_key_checksum,
             fingerprint=fingerprint,
+            ca_certs=ca_certs,
         )
 
 
