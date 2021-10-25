@@ -81,6 +81,13 @@ class DevicePublicKeySerializer(serializers.ModelSerializer):
         read_only_fields = ("public_key", "public_key_checksum", "fingerprint", "user")
 
 
+class CACertsSerializer(serializers.Serializer):
+    primary = serializers.CharField(read_only=True)
+    primary_checksum = serializers.CharField(read_only=True)
+    backup = serializers.CharField(read_only=True)
+    backup_checksum = serializers.CharField(read_only=True)
+
+
 class DeviceKeyPairSerializer(serializers.Serializer):
 
     private_key = serializers.CharField(read_only=True)
@@ -89,6 +96,7 @@ class DeviceKeyPairSerializer(serializers.Serializer):
     public_key = serializers.CharField(read_only=True)
     public_key_checksum = serializers.CharField(read_only=True)
     fingerprint_checksum = serializers.CharField(read_only=True)
+    ca_certs = CACertsSerializer(read_only=True)
 
 
 class DesiredConfigSerializer(serializers.ModelSerializer):
