@@ -9,7 +9,7 @@ from polymorphic.models import PolymorphicModel
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.signals import pre_softdelete
 
-from .choices import DeviceReleaseChannel, PrinterSoftwareType
+from .choices import AnsibleStateChoices, DeviceReleaseChannel, PrinterSoftwareType
 
 UserModel = get_user_model()
 logger = logging.getLogger(__name__)
@@ -187,6 +187,9 @@ class CurrentState(SafeDeleteModel):
     """
 
     _safedelete_policy = SOFT_DELETE
+    ansible_state = models.CharField(
+        choices=AnsibleStateChoices.choices, default=AnsibleStateChoices.RUNNING
+    )
 
     class Meta:
         ordering = ["-created_dt"]

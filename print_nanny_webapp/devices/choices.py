@@ -11,3 +11,9 @@ class PrinterSoftwareType(models.TextChoices):
     # TODO re-enable as setup teaser + add 400 response if submitted
     # REPETIER = "Repetier", "Repetier printer controller"
     # MAINSAL = "Mainsail", "Mainsail printer controller"
+
+
+class AnsibleStateChoices(models.TextChoices):
+    RUNNING = "running" "Software update is running"
+    SUCCESS = "success" "Software is up-to-date"
+    FAILED = "failed" "Software update failed"

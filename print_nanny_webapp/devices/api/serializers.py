@@ -115,12 +115,14 @@ class DeviceSerializer(serializers.ModelSerializer):
         required=False,
         allow_null=True,
     )
+    desired_config_topic = serializers.CharField(read_only=True)
 
     current_state = CurrentStateSerializer(
         read_only=True,
         required=False,
         allow_null=True,
     )
+    current_state_topic = serializers.CharField(read_only=True)
 
     printer_controllers = PrinterControllerSerializer(read_only=True, many=True)
     public_key = DevicePublicKeySerializer(
