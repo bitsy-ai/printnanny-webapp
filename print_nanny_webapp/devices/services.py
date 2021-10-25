@@ -145,7 +145,7 @@ def generate_keypair():
             public_key=public_key_content.decode("utf8"),
             public_key_checksum=public_key_checksum,
             fingerprint=fingerprint,
-            ca_cers=ca_certs,
+            ca_certs=ca_certs,
         )
 
 
