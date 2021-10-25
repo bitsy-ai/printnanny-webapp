@@ -711,10 +711,10 @@ export interface Device {
     'id'?: number;
     /**
      * 
-     * @type {Array<CloudiotDevice>}
+     * @type {CloudiotDevice}
      * @memberof Device
      */
-    'cloudiot_devices'?: Array<CloudiotDevice>;
+    'cloudiot_device'?: CloudiotDevice;
     /**
      * 
      * @type {Array<Camera>}

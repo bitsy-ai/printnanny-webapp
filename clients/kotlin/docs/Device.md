@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **cores** | **kotlin.Int** |  | 
 **ram** | **kotlin.Long** |  | 
 **id** | **kotlin.Int** |  |  [optional] [readonly]
-**cloudiotDevices** | [**kotlin.collections.List&lt;CloudiotDevice&gt;**](CloudiotDevice.md) |  |  [optional] [readonly]
+**cloudiotDevice** | [**CloudiotDevice**](CloudiotDevice.md) |  |  [optional] [readonly]
 **cameras** | [**kotlin.collections.List&lt;Camera&gt;**](Camera.md) |  |  [optional] [readonly]
 **dashboardUrl** | **kotlin.String** |  |  [optional] [readonly]
 **desiredConfig** | [**DesiredConfig**](DesiredConfig.md) |  |  [optional] [readonly]

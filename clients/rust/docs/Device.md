@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | Option<**i32**> |  | [optional][readonly]
-**cloudiot_devices** | Option<[**Vec<crate::models::CloudiotDevice>**](CloudiotDevice.md)> |  | [optional][readonly]
+**cloudiot_device** | Option<[**crate::models::CloudiotDevice**](CloudiotDevice.md)> |  | [optional][readonly]
 **cameras** | Option<[**Vec<crate::models::Camera>**](Camera.md)> |  | [optional][readonly]
 **dashboard_url** | Option<**String**> |  | [optional][readonly]
 **desired_config** | Option<[**crate::models::DesiredConfig**](DesiredConfig.md)> |  | [optional][readonly]

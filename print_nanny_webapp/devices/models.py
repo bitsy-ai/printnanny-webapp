@@ -78,6 +78,10 @@ class Device(SafeDeleteModel):
     def current_state(self):
         return self.current_state_set().first()
 
+    @property
+    def cloudiot_device(self):
+        return self.cloudiot_devices().first()
+
 
 class CloudiotDevice(SafeDeleteModel):
     """

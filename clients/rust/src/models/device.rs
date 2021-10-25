@@ -13,8 +13,8 @@
 pub struct Device {
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
     pub id: Option<i32>,
-    #[serde(rename = "cloudiot_devices", skip_serializing_if = "Option::is_none")]
-    pub cloudiot_devices: Option<Vec<crate::models::CloudiotDevice>>,
+    #[serde(rename = "cloudiot_device", skip_serializing_if = "Option::is_none")]
+    pub cloudiot_device: Option<Box<crate::models::CloudiotDevice>>,
     #[serde(rename = "cameras", skip_serializing_if = "Option::is_none")]
     pub cameras: Option<Vec<crate::models::Camera>>,
     #[serde(rename = "dashboard_url", skip_serializing_if = "Option::is_none")]
@@ -59,7 +59,7 @@ impl Device {
     pub fn new(hostname: String, hardware: String, revision: String, model: String, serial: String, cores: i32, ram: i64) -> Device {
         Device {
             id: None,
-            cloudiot_devices: None,
+            cloudiot_device: None,
             cameras: None,
             dashboard_url: None,
             desired_config: None,

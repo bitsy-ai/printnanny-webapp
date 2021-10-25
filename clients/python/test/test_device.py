@@ -37,23 +37,7 @@ class TestDevice(unittest.TestCase):
         if include_optional :
             return Device(
                 id = 56, 
-                cloudiot_devices = [
-                    print_nanny_client.models.cloudiot_device.CloudiotDevice(
-                        num_id = -9223372036854775808, 
-                        config_topic = '', 
-                        state_topic = '', 
-                        gcp_project_id = '', 
-                        gcp_region = '', 
-                        gcp_cloudiot_device_registry = '', 
-                        mqtt_bridge_hostname = '', 
-                        mqtt_bridge_port = 56, 
-                        mqtt_client_id = '', 
-                        user = '', 
-                        device = 56, 
-                        deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        name = '', 
-                        id = '', )
-                    ], 
+                cloudiot_device = None, 
                 cameras = [
                     print_nanny_client.models.camera.Camera(
                         id = 56, 

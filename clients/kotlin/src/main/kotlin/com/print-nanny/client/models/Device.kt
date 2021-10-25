@@ -41,7 +41,7 @@ import java.io.Serializable
  * @param cores 
  * @param ram 
  * @param id 
- * @param cloudiotDevices 
+ * @param cloudiotDevice 
  * @param cameras 
  * @param dashboardUrl 
  * @param desiredConfig 
@@ -82,8 +82,8 @@ data class Device (
     @Json(name = "id")
     val id: kotlin.Int? = null,
 
-    @Json(name = "cloudiot_devices")
-    val cloudiotDevices: kotlin.collections.List<CloudiotDevice>? = null,
+    @Json(name = "cloudiot_device")
+    val cloudiotDevice: CloudiotDevice? = null,
 
     @Json(name = "cameras")
     val cameras: kotlin.collections.List<Camera>? = null,

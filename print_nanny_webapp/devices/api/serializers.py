@@ -104,9 +104,7 @@ class CurrentStateSerializer(serializers.ModelSerializer):
 
 
 class DeviceSerializer(serializers.ModelSerializer):
-    cloudiot_devices = CloudiotDeviceSerializer(
-        read_only=True, required=False, many=True
-    )
+    cloudiot_device = CloudiotDeviceSerializer(read_only=True, required=False)
     cameras = CameraSerializer(read_only=True, many=True)
     dashboard_url = serializers.CharField(read_only=True)
 
