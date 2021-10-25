@@ -139,11 +139,11 @@ class CloudiotDevice(SafeDeleteModel):
         return self.name
 
     @property
-    def config_topic(self):
+    def desired_config_topic(self):
         return f"/devices/{self.num_id}/config"
 
     @property
-    def state_topic(self):
+    def current_state_topic(self):
         return f"/devices/{self.num_id}/state"
 
 
