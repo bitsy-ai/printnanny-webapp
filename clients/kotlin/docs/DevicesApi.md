@@ -4,11 +4,6 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**devicesAnsibleFactsCreate**](DevicesApi.md#devicesAnsibleFactsCreate) | **POST** /api/devices/{device_id}/ansible-facts/ | 
-[**devicesAnsibleFactsList**](DevicesApi.md#devicesAnsibleFactsList) | **GET** /api/devices/{device_id}/ansible-facts/ | 
-[**devicesAnsibleFactsPartialUpdate**](DevicesApi.md#devicesAnsibleFactsPartialUpdate) | **PATCH** /api/devices/{device_id}/ansible-facts/{id}/ | 
-[**devicesAnsibleFactsRetrieve**](DevicesApi.md#devicesAnsibleFactsRetrieve) | **GET** /api/devices/{device_id}/ansible-facts/{id}/ | 
-[**devicesAnsibleFactsUpdate**](DevicesApi.md#devicesAnsibleFactsUpdate) | **PUT** /api/devices/{device_id}/ansible-facts/{id}/ | 
 [**devicesCamerasCreate**](DevicesApi.md#devicesCamerasCreate) | **POST** /api/devices/{device_id}/cameras/ | 
 [**devicesCamerasList**](DevicesApi.md#devicesCamerasList) | **GET** /api/devices/{device_id}/cameras/ | 
 [**devicesCamerasPartialUpdate**](DevicesApi.md#devicesCamerasPartialUpdate) | **PATCH** /api/devices/{device_id}/cameras/{id}/ | 
@@ -20,6 +15,10 @@ Method | HTTP request | Description
 [**devicesCloudIotDevicesRetrieve**](DevicesApi.md#devicesCloudIotDevicesRetrieve) | **GET** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
 [**devicesCloudIotDevicesUpdate**](DevicesApi.md#devicesCloudIotDevicesUpdate) | **PUT** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
 [**devicesCreate**](DevicesApi.md#devicesCreate) | **POST** /api/devices/ | 
+[**devicesCurrentStateList**](DevicesApi.md#devicesCurrentStateList) | **GET** /api/devices/{device_id}/current-state/ | 
+[**devicesCurrentStateRetrieve**](DevicesApi.md#devicesCurrentStateRetrieve) | **GET** /api/devices/{device_id}/current-state/{id}/ | 
+[**devicesDesiredConfigList**](DevicesApi.md#devicesDesiredConfigList) | **GET** /api/devices/{device_id}/desired-config/ | 
+[**devicesDesiredConfigRetrieve**](DevicesApi.md#devicesDesiredConfigRetrieve) | **GET** /api/devices/{device_id}/desired-config/{id}/ | 
 [**devicesKeypairsCreate**](DevicesApi.md#devicesKeypairsCreate) | **POST** /api/devices/{device_id}/keypairs/ | 
 [**devicesKeypairsList**](DevicesApi.md#devicesKeypairsList) | **GET** /api/devices/{device_id}/keypairs/ | 
 [**devicesKeypairsRetrieve**](DevicesApi.md#devicesKeypairsRetrieve) | **GET** /api/devices/{device_id}/keypairs/{id}/ | 
@@ -34,270 +33,6 @@ Method | HTTP request | Description
 [**devicesRetrieveHostname**](DevicesApi.md#devicesRetrieveHostname) | **GET** /api/devices/{hostname} | 
 [**devicesUpdate**](DevicesApi.md#devicesUpdate) | **PUT** /api/devices/{id}/ | 
 
-
-<a name="devicesAnsibleFactsCreate"></a>
-# **devicesAnsibleFactsCreate**
-> AnsibleFacts devicesAnsibleFactsCreate(deviceId, ansibleFactsRequest)
-
-
-
-### Example
-```kotlin
-// Import classes:
-//import com.print-nanny.client.infrastructure.*
-//import com.print-nanny.client.models.*
-
-val apiInstance = DevicesApi()
-val deviceId : kotlin.Int = 56 // kotlin.Int | 
-val ansibleFactsRequest : AnsibleFactsRequest =  // AnsibleFactsRequest | 
-try {
-    val result : AnsibleFacts = apiInstance.devicesAnsibleFactsCreate(deviceId, ansibleFactsRequest)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling DevicesApi#devicesAnsibleFactsCreate")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling DevicesApi#devicesAnsibleFactsCreate")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **deviceId** | **kotlin.Int**|  |
- **ansibleFactsRequest** | [**AnsibleFactsRequest**](AnsibleFactsRequest.md)|  |
-
-### Return type
-
-[**AnsibleFacts**](AnsibleFacts.md)
-
-### Authorization
-
-
-Configure cookieAuth:
-    ApiClient.apiKey["sessionid"] = ""
-    ApiClient.apiKeyPrefix["sessionid"] = ""
-Configure tokenAuth:
-    ApiClient.accessToken = ""
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
-
-<a name="devicesAnsibleFactsList"></a>
-# **devicesAnsibleFactsList**
-> PaginatedAnsibleFactsList devicesAnsibleFactsList(deviceId, page)
-
-
-
-### Example
-```kotlin
-// Import classes:
-//import com.print-nanny.client.infrastructure.*
-//import com.print-nanny.client.models.*
-
-val apiInstance = DevicesApi()
-val deviceId : kotlin.Int = 56 // kotlin.Int | 
-val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
-try {
-    val result : PaginatedAnsibleFactsList = apiInstance.devicesAnsibleFactsList(deviceId, page)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling DevicesApi#devicesAnsibleFactsList")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling DevicesApi#devicesAnsibleFactsList")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **deviceId** | **kotlin.Int**|  |
- **page** | **kotlin.Int**| A page number within the paginated result set. | [optional]
-
-### Return type
-
-[**PaginatedAnsibleFactsList**](PaginatedAnsibleFactsList.md)
-
-### Authorization
-
-
-Configure cookieAuth:
-    ApiClient.apiKey["sessionid"] = ""
-    ApiClient.apiKeyPrefix["sessionid"] = ""
-Configure tokenAuth:
-    ApiClient.accessToken = ""
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a name="devicesAnsibleFactsPartialUpdate"></a>
-# **devicesAnsibleFactsPartialUpdate**
-> AnsibleFacts devicesAnsibleFactsPartialUpdate(deviceId, id, patchedAnsibleFactsRequest)
-
-
-
-### Example
-```kotlin
-// Import classes:
-//import com.print-nanny.client.infrastructure.*
-//import com.print-nanny.client.models.*
-
-val apiInstance = DevicesApi()
-val deviceId : kotlin.Int = 56 // kotlin.Int | 
-val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this ansible facts.
-val patchedAnsibleFactsRequest : PatchedAnsibleFactsRequest =  // PatchedAnsibleFactsRequest | 
-try {
-    val result : AnsibleFacts = apiInstance.devicesAnsibleFactsPartialUpdate(deviceId, id, patchedAnsibleFactsRequest)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling DevicesApi#devicesAnsibleFactsPartialUpdate")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling DevicesApi#devicesAnsibleFactsPartialUpdate")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **deviceId** | **kotlin.Int**|  |
- **id** | **kotlin.Int**| A unique integer value identifying this ansible facts. |
- **patchedAnsibleFactsRequest** | [**PatchedAnsibleFactsRequest**](PatchedAnsibleFactsRequest.md)|  | [optional]
-
-### Return type
-
-[**AnsibleFacts**](AnsibleFacts.md)
-
-### Authorization
-
-
-Configure cookieAuth:
-    ApiClient.apiKey["sessionid"] = ""
-    ApiClient.apiKeyPrefix["sessionid"] = ""
-Configure tokenAuth:
-    ApiClient.accessToken = ""
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
-
-<a name="devicesAnsibleFactsRetrieve"></a>
-# **devicesAnsibleFactsRetrieve**
-> AnsibleFacts devicesAnsibleFactsRetrieve(deviceId, id)
-
-
-
-### Example
-```kotlin
-// Import classes:
-//import com.print-nanny.client.infrastructure.*
-//import com.print-nanny.client.models.*
-
-val apiInstance = DevicesApi()
-val deviceId : kotlin.Int = 56 // kotlin.Int | 
-val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this ansible facts.
-try {
-    val result : AnsibleFacts = apiInstance.devicesAnsibleFactsRetrieve(deviceId, id)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling DevicesApi#devicesAnsibleFactsRetrieve")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling DevicesApi#devicesAnsibleFactsRetrieve")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **deviceId** | **kotlin.Int**|  |
- **id** | **kotlin.Int**| A unique integer value identifying this ansible facts. |
-
-### Return type
-
-[**AnsibleFacts**](AnsibleFacts.md)
-
-### Authorization
-
-
-Configure cookieAuth:
-    ApiClient.apiKey["sessionid"] = ""
-    ApiClient.apiKeyPrefix["sessionid"] = ""
-Configure tokenAuth:
-    ApiClient.accessToken = ""
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a name="devicesAnsibleFactsUpdate"></a>
-# **devicesAnsibleFactsUpdate**
-> AnsibleFacts devicesAnsibleFactsUpdate(deviceId, id, ansibleFactsRequest)
-
-
-
-### Example
-```kotlin
-// Import classes:
-//import com.print-nanny.client.infrastructure.*
-//import com.print-nanny.client.models.*
-
-val apiInstance = DevicesApi()
-val deviceId : kotlin.Int = 56 // kotlin.Int | 
-val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this ansible facts.
-val ansibleFactsRequest : AnsibleFactsRequest =  // AnsibleFactsRequest | 
-try {
-    val result : AnsibleFacts = apiInstance.devicesAnsibleFactsUpdate(deviceId, id, ansibleFactsRequest)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling DevicesApi#devicesAnsibleFactsUpdate")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling DevicesApi#devicesAnsibleFactsUpdate")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **deviceId** | **kotlin.Int**|  |
- **id** | **kotlin.Int**| A unique integer value identifying this ansible facts. |
- **ansibleFactsRequest** | [**AnsibleFactsRequest**](AnsibleFactsRequest.md)|  |
-
-### Return type
-
-[**AnsibleFacts**](AnsibleFacts.md)
-
-### Authorization
-
-
-Configure cookieAuth:
-    ApiClient.apiKey["sessionid"] = ""
-    ApiClient.apiKeyPrefix["sessionid"] = ""
-Configure tokenAuth:
-    ApiClient.accessToken = ""
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
 
 <a name="devicesCamerasCreate"></a>
 # **devicesCamerasCreate**
@@ -877,6 +612,214 @@ Configure tokenAuth:
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+<a name="devicesCurrentStateList"></a>
+# **devicesCurrentStateList**
+> PaginatedCurrentStateList devicesCurrentStateList(deviceId, page)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = DevicesApi()
+val deviceId : kotlin.Int = 56 // kotlin.Int | 
+val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
+try {
+    val result : PaginatedCurrentStateList = apiInstance.devicesCurrentStateList(deviceId, page)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DevicesApi#devicesCurrentStateList")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DevicesApi#devicesCurrentStateList")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deviceId** | **kotlin.Int**|  |
+ **page** | **kotlin.Int**| A page number within the paginated result set. | [optional]
+
+### Return type
+
+[**PaginatedCurrentStateList**](PaginatedCurrentStateList.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="devicesCurrentStateRetrieve"></a>
+# **devicesCurrentStateRetrieve**
+> CurrentState devicesCurrentStateRetrieve(deviceId, id)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = DevicesApi()
+val deviceId : kotlin.Int = 56 // kotlin.Int | 
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this current state.
+try {
+    val result : CurrentState = apiInstance.devicesCurrentStateRetrieve(deviceId, id)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DevicesApi#devicesCurrentStateRetrieve")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DevicesApi#devicesCurrentStateRetrieve")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deviceId** | **kotlin.Int**|  |
+ **id** | **kotlin.Int**| A unique integer value identifying this current state. |
+
+### Return type
+
+[**CurrentState**](CurrentState.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="devicesDesiredConfigList"></a>
+# **devicesDesiredConfigList**
+> PaginatedDesiredConfigList devicesDesiredConfigList(deviceId, page)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = DevicesApi()
+val deviceId : kotlin.Int = 56 // kotlin.Int | 
+val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
+try {
+    val result : PaginatedDesiredConfigList = apiInstance.devicesDesiredConfigList(deviceId, page)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DevicesApi#devicesDesiredConfigList")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DevicesApi#devicesDesiredConfigList")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deviceId** | **kotlin.Int**|  |
+ **page** | **kotlin.Int**| A page number within the paginated result set. | [optional]
+
+### Return type
+
+[**PaginatedDesiredConfigList**](PaginatedDesiredConfigList.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="devicesDesiredConfigRetrieve"></a>
+# **devicesDesiredConfigRetrieve**
+> DesiredConfig devicesDesiredConfigRetrieve(deviceId, id)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = DevicesApi()
+val deviceId : kotlin.Int = 56 // kotlin.Int | 
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this desired config.
+try {
+    val result : DesiredConfig = apiInstance.devicesDesiredConfigRetrieve(deviceId, id)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DevicesApi#devicesDesiredConfigRetrieve")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DevicesApi#devicesDesiredConfigRetrieve")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deviceId** | **kotlin.Int**|  |
+ **id** | **kotlin.Int**| A unique integer value identifying this desired config. |
+
+### Return type
+
+[**DesiredConfig**](DesiredConfig.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 <a name="devicesKeypairsCreate"></a>

@@ -28,36 +28,6 @@ class TestDevicesApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_devices_ansible_facts_create(self):
-        """Test case for devices_ansible_facts_create
-
-        """
-        pass
-
-    def test_devices_ansible_facts_list(self):
-        """Test case for devices_ansible_facts_list
-
-        """
-        pass
-
-    def test_devices_ansible_facts_partial_update(self):
-        """Test case for devices_ansible_facts_partial_update
-
-        """
-        pass
-
-    def test_devices_ansible_facts_retrieve(self):
-        """Test case for devices_ansible_facts_retrieve
-
-        """
-        pass
-
-    def test_devices_ansible_facts_update(self):
-        """Test case for devices_ansible_facts_update
-
-        """
-        pass
-
     def test_devices_cameras_create(self):
         """Test case for devices_cameras_create
 
@@ -120,6 +90,30 @@ class TestDevicesApi(unittest.TestCase):
 
     def test_devices_create(self):
         """Test case for devices_create
+
+        """
+        pass
+
+    def test_devices_current_state_list(self):
+        """Test case for devices_current_state_list
+
+        """
+        pass
+
+    def test_devices_current_state_retrieve(self):
+        """Test case for devices_current_state_retrieve
+
+        """
+        pass
+
+    def test_devices_desired_config_list(self):
+        """Test case for devices_desired_config_list
+
+        """
+        pass
+
+    def test_devices_desired_config_retrieve(self):
+        """Test case for devices_desired_config_retrieve
 
         """
         pass

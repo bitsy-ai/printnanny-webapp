@@ -40,6 +40,8 @@ class TestDevice(unittest.TestCase):
                 cloudiot_devices = [
                     print_nanny_client.models.cloudiot_device.CloudiotDevice(
                         num_id = -9223372036854775808, 
+                        config_topic = '', 
+                        state_topic = '', 
                         gcp_project_id = '', 
                         gcp_region = '', 
                         gcp_cloudiot_device_registry = '', 
@@ -66,7 +68,10 @@ class TestDevice(unittest.TestCase):
                         url = '', )
                     ], 
                 dashboard_url = '', 
-                last_ansible_facts = None, 
+                desired_config = None, 
+                desired_config_topic = '', 
+                current_state = None, 
+                current_state_topic = '', 
                 printer_controllers = [
                     print_nanny_client.models.printer_controller.PrinterController(
                         id = 56, 
@@ -83,11 +88,23 @@ class TestDevice(unittest.TestCase):
                 deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                hostname = ''
+                hostname = '', 
+                hardware = '', 
+                revision = '', 
+                model = '', 
+                serial = '', 
+                cores = -2147483648, 
+                ram = -9223372036854775808
             )
         else :
             return Device(
                 hostname = '',
+                hardware = '',
+                revision = '',
+                model = '',
+                serial = '',
+                cores = -2147483648,
+                ram = -9223372036854775808,
         )
 
     def testDevice(self):

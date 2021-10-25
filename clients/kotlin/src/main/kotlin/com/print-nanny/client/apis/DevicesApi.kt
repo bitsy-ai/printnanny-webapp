@@ -20,24 +20,24 @@
 
 package com.print-nanny.client.apis
 
-import com.print-nanny.client.models.AnsibleFacts
-import com.print-nanny.client.models.AnsibleFactsRequest
 import com.print-nanny.client.models.Camera
 import com.print-nanny.client.models.CameraRequest
 import com.print-nanny.client.models.CloudiotDevice
 import com.print-nanny.client.models.CloudiotDeviceRequest
+import com.print-nanny.client.models.CurrentState
+import com.print-nanny.client.models.DesiredConfig
 import com.print-nanny.client.models.Device
 import com.print-nanny.client.models.DeviceKeyPair
 import com.print-nanny.client.models.DevicePublicKey
 import com.print-nanny.client.models.DeviceRequest
 import com.print-nanny.client.models.ErrorDetail
-import com.print-nanny.client.models.PaginatedAnsibleFactsList
 import com.print-nanny.client.models.PaginatedCameraList
 import com.print-nanny.client.models.PaginatedCloudiotDeviceList
+import com.print-nanny.client.models.PaginatedCurrentStateList
+import com.print-nanny.client.models.PaginatedDesiredConfigList
 import com.print-nanny.client.models.PaginatedDeviceList
 import com.print-nanny.client.models.PaginatedDevicePublicKeyList
 import com.print-nanny.client.models.PaginatedPrinterControllerList
-import com.print-nanny.client.models.PatchedAnsibleFactsRequest
 import com.print-nanny.client.models.PatchedCameraRequest
 import com.print-nanny.client.models.PatchedCloudiotDeviceRequest
 import com.print-nanny.client.models.PatchedDeviceRequest
@@ -62,290 +62,6 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
         val defaultBasePath: String by lazy {
             System.getProperties().getProperty("com.print-nanny.client.baseUrl", "http://localhost")
         }
-    }
-
-    /**
-    * 
-    * 
-    * @param deviceId  
-    * @param ansibleFactsRequest  
-    * @return AnsibleFacts
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun devicesAnsibleFactsCreate(deviceId: kotlin.Int, ansibleFactsRequest: AnsibleFactsRequest) : AnsibleFacts {
-        val localVariableConfig = devicesAnsibleFactsCreateRequestConfig(deviceId = deviceId, ansibleFactsRequest = ansibleFactsRequest)
-
-        val localVarResponse = request<AnsibleFactsRequest, AnsibleFacts>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as AnsibleFacts
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation devicesAnsibleFactsCreate
-    *
-    * @param deviceId  
-    * @param ansibleFactsRequest  
-    * @return RequestConfig
-    */
-    fun devicesAnsibleFactsCreateRequestConfig(deviceId: kotlin.Int, ansibleFactsRequest: AnsibleFactsRequest) : RequestConfig<AnsibleFactsRequest> {
-        val localVariableBody = ansibleFactsRequest
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-
-        return RequestConfig(
-            method = RequestMethod.POST,
-            path = "/api/devices/{device_id}/ansible-facts/".replace("{"+"device_id"+"}", "$deviceId"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-    }
-
-    /**
-    * 
-    * 
-    * @param deviceId  
-    * @param page A page number within the paginated result set. (optional)
-    * @return PaginatedAnsibleFactsList
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun devicesAnsibleFactsList(deviceId: kotlin.Int, page: kotlin.Int?) : PaginatedAnsibleFactsList {
-        val localVariableConfig = devicesAnsibleFactsListRequestConfig(deviceId = deviceId, page = page)
-
-        val localVarResponse = request<Unit, PaginatedAnsibleFactsList>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedAnsibleFactsList
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation devicesAnsibleFactsList
-    *
-    * @param deviceId  
-    * @param page A page number within the paginated result set. (optional)
-    * @return RequestConfig
-    */
-    fun devicesAnsibleFactsListRequestConfig(deviceId: kotlin.Int, page: kotlin.Int?) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
-            .apply {
-                if (page != null) {
-                    put("page", listOf(page.toString()))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-
-        return RequestConfig(
-            method = RequestMethod.GET,
-            path = "/api/devices/{device_id}/ansible-facts/".replace("{"+"device_id"+"}", "$deviceId"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-    }
-
-    /**
-    * 
-    * 
-    * @param deviceId  
-    * @param id A unique integer value identifying this ansible facts. 
-    * @param patchedAnsibleFactsRequest  (optional)
-    * @return AnsibleFacts
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun devicesAnsibleFactsPartialUpdate(deviceId: kotlin.Int, id: kotlin.Int, patchedAnsibleFactsRequest: PatchedAnsibleFactsRequest?) : AnsibleFacts {
-        val localVariableConfig = devicesAnsibleFactsPartialUpdateRequestConfig(deviceId = deviceId, id = id, patchedAnsibleFactsRequest = patchedAnsibleFactsRequest)
-
-        val localVarResponse = request<PatchedAnsibleFactsRequest, AnsibleFacts>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as AnsibleFacts
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation devicesAnsibleFactsPartialUpdate
-    *
-    * @param deviceId  
-    * @param id A unique integer value identifying this ansible facts. 
-    * @param patchedAnsibleFactsRequest  (optional)
-    * @return RequestConfig
-    */
-    fun devicesAnsibleFactsPartialUpdateRequestConfig(deviceId: kotlin.Int, id: kotlin.Int, patchedAnsibleFactsRequest: PatchedAnsibleFactsRequest?) : RequestConfig<PatchedAnsibleFactsRequest> {
-        val localVariableBody = patchedAnsibleFactsRequest
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-
-        return RequestConfig(
-            method = RequestMethod.PATCH,
-            path = "/api/devices/{device_id}/ansible-facts/{id}/".replace("{"+"device_id"+"}", "$deviceId").replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-    }
-
-    /**
-    * 
-    * 
-    * @param deviceId  
-    * @param id A unique integer value identifying this ansible facts. 
-    * @return AnsibleFacts
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun devicesAnsibleFactsRetrieve(deviceId: kotlin.Int, id: kotlin.Int) : AnsibleFacts {
-        val localVariableConfig = devicesAnsibleFactsRetrieveRequestConfig(deviceId = deviceId, id = id)
-
-        val localVarResponse = request<Unit, AnsibleFacts>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as AnsibleFacts
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation devicesAnsibleFactsRetrieve
-    *
-    * @param deviceId  
-    * @param id A unique integer value identifying this ansible facts. 
-    * @return RequestConfig
-    */
-    fun devicesAnsibleFactsRetrieveRequestConfig(deviceId: kotlin.Int, id: kotlin.Int) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-
-        return RequestConfig(
-            method = RequestMethod.GET,
-            path = "/api/devices/{device_id}/ansible-facts/{id}/".replace("{"+"device_id"+"}", "$deviceId").replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-    }
-
-    /**
-    * 
-    * 
-    * @param deviceId  
-    * @param id A unique integer value identifying this ansible facts. 
-    * @param ansibleFactsRequest  
-    * @return AnsibleFacts
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun devicesAnsibleFactsUpdate(deviceId: kotlin.Int, id: kotlin.Int, ansibleFactsRequest: AnsibleFactsRequest) : AnsibleFacts {
-        val localVariableConfig = devicesAnsibleFactsUpdateRequestConfig(deviceId = deviceId, id = id, ansibleFactsRequest = ansibleFactsRequest)
-
-        val localVarResponse = request<AnsibleFactsRequest, AnsibleFacts>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as AnsibleFacts
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation devicesAnsibleFactsUpdate
-    *
-    * @param deviceId  
-    * @param id A unique integer value identifying this ansible facts. 
-    * @param ansibleFactsRequest  
-    * @return RequestConfig
-    */
-    fun devicesAnsibleFactsUpdateRequestConfig(deviceId: kotlin.Int, id: kotlin.Int, ansibleFactsRequest: AnsibleFactsRequest) : RequestConfig<AnsibleFactsRequest> {
-        val localVariableBody = ansibleFactsRequest
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-
-        return RequestConfig(
-            method = RequestMethod.PUT,
-            path = "/api/devices/{device_id}/ansible-facts/{id}/".replace("{"+"device_id"+"}", "$deviceId").replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
     }
 
     /**
@@ -963,6 +679,236 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
         return RequestConfig(
             method = RequestMethod.POST,
             path = "/api/devices/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+    }
+
+    /**
+    * 
+    * 
+    * @param deviceId  
+    * @param page A page number within the paginated result set. (optional)
+    * @return PaginatedCurrentStateList
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun devicesCurrentStateList(deviceId: kotlin.Int, page: kotlin.Int?) : PaginatedCurrentStateList {
+        val localVariableConfig = devicesCurrentStateListRequestConfig(deviceId = deviceId, page = page)
+
+        val localVarResponse = request<Unit, PaginatedCurrentStateList>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedCurrentStateList
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation devicesCurrentStateList
+    *
+    * @param deviceId  
+    * @param page A page number within the paginated result set. (optional)
+    * @return RequestConfig
+    */
+    fun devicesCurrentStateListRequestConfig(deviceId: kotlin.Int, page: kotlin.Int?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/devices/{device_id}/current-state/".replace("{"+"device_id"+"}", "$deviceId"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+    }
+
+    /**
+    * 
+    * 
+    * @param deviceId  
+    * @param id A unique integer value identifying this current state. 
+    * @return CurrentState
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun devicesCurrentStateRetrieve(deviceId: kotlin.Int, id: kotlin.Int) : CurrentState {
+        val localVariableConfig = devicesCurrentStateRetrieveRequestConfig(deviceId = deviceId, id = id)
+
+        val localVarResponse = request<Unit, CurrentState>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as CurrentState
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation devicesCurrentStateRetrieve
+    *
+    * @param deviceId  
+    * @param id A unique integer value identifying this current state. 
+    * @return RequestConfig
+    */
+    fun devicesCurrentStateRetrieveRequestConfig(deviceId: kotlin.Int, id: kotlin.Int) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/devices/{device_id}/current-state/{id}/".replace("{"+"device_id"+"}", "$deviceId").replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+    }
+
+    /**
+    * 
+    * 
+    * @param deviceId  
+    * @param page A page number within the paginated result set. (optional)
+    * @return PaginatedDesiredConfigList
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun devicesDesiredConfigList(deviceId: kotlin.Int, page: kotlin.Int?) : PaginatedDesiredConfigList {
+        val localVariableConfig = devicesDesiredConfigListRequestConfig(deviceId = deviceId, page = page)
+
+        val localVarResponse = request<Unit, PaginatedDesiredConfigList>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedDesiredConfigList
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation devicesDesiredConfigList
+    *
+    * @param deviceId  
+    * @param page A page number within the paginated result set. (optional)
+    * @return RequestConfig
+    */
+    fun devicesDesiredConfigListRequestConfig(deviceId: kotlin.Int, page: kotlin.Int?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/devices/{device_id}/desired-config/".replace("{"+"device_id"+"}", "$deviceId"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+    }
+
+    /**
+    * 
+    * 
+    * @param deviceId  
+    * @param id A unique integer value identifying this desired config. 
+    * @return DesiredConfig
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun devicesDesiredConfigRetrieve(deviceId: kotlin.Int, id: kotlin.Int) : DesiredConfig {
+        val localVariableConfig = devicesDesiredConfigRetrieveRequestConfig(deviceId = deviceId, id = id)
+
+        val localVarResponse = request<Unit, DesiredConfig>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as DesiredConfig
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation devicesDesiredConfigRetrieve
+    *
+    * @param deviceId  
+    * @param id A unique integer value identifying this desired config. 
+    * @return RequestConfig
+    */
+    fun devicesDesiredConfigRetrieveRequestConfig(deviceId: kotlin.Int, id: kotlin.Int) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/devices/{device_id}/desired-config/{id}/".replace("{"+"device_id"+"}", "$deviceId").replace("{"+"id"+"}", "$id"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody

@@ -36,11 +36,23 @@ class TestDeviceRequest(unittest.TestCase):
         # model = print_nanny_client.models.device_request.DeviceRequest()  # noqa: E501
         if include_optional :
             return DeviceRequest(
-                hostname = ''
+                hostname = '', 
+                hardware = '', 
+                revision = '', 
+                model = '', 
+                serial = '', 
+                cores = -2147483648, 
+                ram = -9223372036854775808
             )
         else :
             return DeviceRequest(
                 hostname = '',
+                hardware = '',
+                revision = '',
+                model = '',
+                serial = '',
+                cores = -2147483648,
+                ram = -9223372036854775808,
         )
 
     def testDeviceRequest(self):

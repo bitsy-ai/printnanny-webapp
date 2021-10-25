@@ -28,12 +28,36 @@ import java.io.Serializable
  * 
  *
  * @param hostname 
+ * @param hardware 
+ * @param revision 
+ * @param model 
+ * @param serial 
+ * @param cores 
+ * @param ram 
  */
 
 data class PatchedDeviceRequest (
 
     @Json(name = "hostname")
-    val hostname: kotlin.String? = null
+    val hostname: kotlin.String? = null,
+
+    @Json(name = "hardware")
+    val hardware: kotlin.String? = null,
+
+    @Json(name = "revision")
+    val revision: kotlin.String? = null,
+
+    @Json(name = "model")
+    val model: kotlin.String? = null,
+
+    @Json(name = "serial")
+    val serial: kotlin.String? = null,
+
+    @Json(name = "cores")
+    val cores: kotlin.Int? = null,
+
+    @Json(name = "ram")
+    val ram: kotlin.Long? = null
 
 ) : Serializable {
     companion object {

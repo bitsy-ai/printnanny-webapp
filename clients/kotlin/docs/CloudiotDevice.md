@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **numId** | **kotlin.Long** |  | 
 **name** | **kotlin.String** |  | 
 **id** | **kotlin.String** |  | 
+**configTopic** | **kotlin.String** |  |  [optional] [readonly]
+**stateTopic** | **kotlin.String** |  |  [optional] [readonly]
 **gcpProjectId** | **kotlin.String** |  |  [optional] [readonly]
 **gcpRegion** | **kotlin.String** |  |  [optional] [readonly]
 **gcpCloudiotDeviceRegistry** | **kotlin.String** |  |  [optional] [readonly]

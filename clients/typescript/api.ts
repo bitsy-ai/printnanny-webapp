@@ -190,191 +190,15 @@ export interface AlertRequest {
 /**
  * 
  * @export
- * @interface AnsibleFacts
+ * @enum {string}
  */
-export interface AnsibleFacts {
-    /**
-     * 
-     * @type {number}
-     * @memberof AnsibleFacts
-     */
-    'id'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnsibleFacts
-     */
-    'user'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof AnsibleFacts
-     */
-    'device'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnsibleFacts
-     */
-    'deleted'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnsibleFacts
-     */
-    'created_dt'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnsibleFacts
-     */
-    'os_version': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnsibleFacts
-     */
-    'os': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnsibleFacts
-     */
-    'kernel_version': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnsibleFacts
-     */
-    'hardware'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnsibleFacts
-     */
-    'revision'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnsibleFacts
-     */
-    'model'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnsibleFacts
-     */
-    'serial'?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof AnsibleFacts
-     */
-    'cores': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof AnsibleFacts
-     */
-    'ram': number;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof AnsibleFacts
-     */
-    'cpu_flags': Array<string>;
-    /**
-     * 
-     * @type {ReleaseChannelEnum}
-     * @memberof AnsibleFacts
-     */
-    'release_channel'?: ReleaseChannelEnum;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof AnsibleFacts
-     */
-    'json': { [key: string]: any; };
+
+export enum AnsibleStateEnum {
+    RunningSoftwareUpdateIsRunning = 'runningSoftware update is running',
+    SuccessSoftwareIsUpToDate = 'successSoftware is up-to-date',
+    FailedSoftwareUpdateFailed = 'failedSoftware update failed'
 }
-/**
- * 
- * @export
- * @interface AnsibleFactsRequest
- */
-export interface AnsibleFactsRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof AnsibleFactsRequest
-     */
-    'os_version': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnsibleFactsRequest
-     */
-    'os': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnsibleFactsRequest
-     */
-    'kernel_version': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnsibleFactsRequest
-     */
-    'hardware'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnsibleFactsRequest
-     */
-    'revision'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnsibleFactsRequest
-     */
-    'model'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnsibleFactsRequest
-     */
-    'serial'?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof AnsibleFactsRequest
-     */
-    'cores': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof AnsibleFactsRequest
-     */
-    'ram': number;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof AnsibleFactsRequest
-     */
-    'cpu_flags': Array<string>;
-    /**
-     * 
-     * @type {ReleaseChannelEnum}
-     * @memberof AnsibleFactsRequest
-     */
-    'release_channel'?: ReleaseChannelEnum;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof AnsibleFactsRequest
-     */
-    'json': { [key: string]: any; };
-}
+
 /**
  * 
  * @export
@@ -584,6 +408,18 @@ export interface CloudiotDevice {
      * @type {string}
      * @memberof CloudiotDevice
      */
+    'config_topic'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CloudiotDevice
+     */
+    'state_topic'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CloudiotDevice
+     */
     'gcp_project_id'?: string;
     /**
      * 
@@ -689,6 +525,166 @@ export enum CommandEnum {
 }
 
 /**
+ * 
+ * @export
+ * @interface CurrentState
+ */
+export interface CurrentState {
+    /**
+     * 
+     * @type {number}
+     * @memberof CurrentState
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CurrentState
+     */
+    'deleted'?: string;
+    /**
+     * 
+     * @type {AnsibleStateEnum}
+     * @memberof CurrentState
+     */
+    'ansible_state'?: AnsibleStateEnum;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof CurrentState
+     */
+    'ansible_facts'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof CurrentState
+     */
+    'ansible_extra_vars'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {ReleaseChannelEnum}
+     * @memberof CurrentState
+     */
+    'release_channel'?: ReleaseChannelEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof CurrentState
+     */
+    'created_dt'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CurrentState
+     */
+    'device': number;
+}
+/**
+ * 
+ * @export
+ * @interface CurrentStateRequest
+ */
+export interface CurrentStateRequest {
+    /**
+     * 
+     * @type {AnsibleStateEnum}
+     * @memberof CurrentStateRequest
+     */
+    'ansible_state'?: AnsibleStateEnum;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof CurrentStateRequest
+     */
+    'ansible_facts'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof CurrentStateRequest
+     */
+    'ansible_extra_vars'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {ReleaseChannelEnum}
+     * @memberof CurrentStateRequest
+     */
+    'release_channel'?: ReleaseChannelEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof CurrentStateRequest
+     */
+    'device': number;
+}
+/**
+ * 
+ * @export
+ * @interface DesiredConfig
+ */
+export interface DesiredConfig {
+    /**
+     * 
+     * @type {number}
+     * @memberof DesiredConfig
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DesiredConfig
+     */
+    'deleted'?: string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof DesiredConfig
+     */
+    'ansible_extra_vars'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {ReleaseChannelEnum}
+     * @memberof DesiredConfig
+     */
+    'release_channel'?: ReleaseChannelEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof DesiredConfig
+     */
+    'created_dt'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof DesiredConfig
+     */
+    'device': number;
+}
+/**
+ * 
+ * @export
+ * @interface DesiredConfigRequest
+ */
+export interface DesiredConfigRequest {
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof DesiredConfigRequest
+     */
+    'ansible_extra_vars'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {ReleaseChannelEnum}
+     * @memberof DesiredConfigRequest
+     */
+    'release_channel'?: ReleaseChannelEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof DesiredConfigRequest
+     */
+    'device': number;
+}
+/**
  * Generic auth response serializer
  * @export
  * @interface DetailResponse
@@ -733,10 +729,28 @@ export interface Device {
     'dashboard_url'?: string;
     /**
      * 
-     * @type {AnsibleFacts}
+     * @type {DesiredConfig}
      * @memberof Device
      */
-    'last_ansible_facts'?: AnsibleFacts | null;
+    'desired_config'?: DesiredConfig | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    'desired_config_topic'?: string;
+    /**
+     * 
+     * @type {CurrentState}
+     * @memberof Device
+     */
+    'current_state'?: CurrentState | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    'current_state_topic'?: string;
     /**
      * 
      * @type {Array<PrinterController>}
@@ -779,6 +793,42 @@ export interface Device {
      * @memberof Device
      */
     'hostname': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    'hardware': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    'revision': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    'model': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    'serial': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Device
+     */
+    'cores': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Device
+     */
+    'ram': number;
 }
 /**
  * 
@@ -982,6 +1032,42 @@ export interface DeviceRequest {
      * @memberof DeviceRequest
      */
     'hostname': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceRequest
+     */
+    'hardware': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceRequest
+     */
+    'revision': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceRequest
+     */
+    'model': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceRequest
+     */
+    'serial': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof DeviceRequest
+     */
+    'cores': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DeviceRequest
+     */
+    'ram': number;
 }
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
@@ -2764,37 +2850,6 @@ export interface PaginatedAlertList {
 /**
  * 
  * @export
- * @interface PaginatedAnsibleFactsList
- */
-export interface PaginatedAnsibleFactsList {
-    /**
-     * 
-     * @type {number}
-     * @memberof PaginatedAnsibleFactsList
-     */
-    'count'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedAnsibleFactsList
-     */
-    'next'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedAnsibleFactsList
-     */
-    'previous'?: string | null;
-    /**
-     * 
-     * @type {Array<AnsibleFacts>}
-     * @memberof PaginatedAnsibleFactsList
-     */
-    'results'?: Array<AnsibleFacts>;
-}
-/**
- * 
- * @export
  * @interface PaginatedCameraList
  */
 export interface PaginatedCameraList {
@@ -2853,6 +2908,68 @@ export interface PaginatedCloudiotDeviceList {
      * @memberof PaginatedCloudiotDeviceList
      */
     'results'?: Array<CloudiotDevice>;
+}
+/**
+ * 
+ * @export
+ * @interface PaginatedCurrentStateList
+ */
+export interface PaginatedCurrentStateList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedCurrentStateList
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedCurrentStateList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedCurrentStateList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<CurrentState>}
+     * @memberof PaginatedCurrentStateList
+     */
+    'results'?: Array<CurrentState>;
+}
+/**
+ * 
+ * @export
+ * @interface PaginatedDesiredConfigList
+ */
+export interface PaginatedDesiredConfigList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedDesiredConfigList
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedDesiredConfigList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedDesiredConfigList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<DesiredConfig>}
+     * @memberof PaginatedDesiredConfigList
+     */
+    'results'?: Array<DesiredConfig>;
 }
 /**
  * 
@@ -3569,85 +3686,6 @@ export interface PatchedAlertRequest {
 /**
  * 
  * @export
- * @interface PatchedAnsibleFactsRequest
- */
-export interface PatchedAnsibleFactsRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedAnsibleFactsRequest
-     */
-    'os_version'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedAnsibleFactsRequest
-     */
-    'os'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedAnsibleFactsRequest
-     */
-    'kernel_version'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedAnsibleFactsRequest
-     */
-    'hardware'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedAnsibleFactsRequest
-     */
-    'revision'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedAnsibleFactsRequest
-     */
-    'model'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedAnsibleFactsRequest
-     */
-    'serial'?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedAnsibleFactsRequest
-     */
-    'cores'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedAnsibleFactsRequest
-     */
-    'ram'?: number;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof PatchedAnsibleFactsRequest
-     */
-    'cpu_flags'?: Array<string>;
-    /**
-     * 
-     * @type {ReleaseChannelEnum}
-     * @memberof PatchedAnsibleFactsRequest
-     */
-    'release_channel'?: ReleaseChannelEnum;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PatchedAnsibleFactsRequest
-     */
-    'json'?: { [key: string]: any; };
-}
-/**
- * 
- * @export
  * @interface PatchedCameraRequest
  */
 export interface PatchedCameraRequest {
@@ -3744,6 +3782,42 @@ export interface PatchedDeviceRequest {
      * @memberof PatchedDeviceRequest
      */
     'hostname'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedDeviceRequest
+     */
+    'hardware'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedDeviceRequest
+     */
+    'revision'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedDeviceRequest
+     */
+    'model'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedDeviceRequest
+     */
+    'serial'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedDeviceRequest
+     */
+    'cores'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedDeviceRequest
+     */
+    'ram'?: number;
 }
 /**
  * 
@@ -5348,8 +5422,8 @@ export enum PrinterStateEnum {
  */
 
 export enum ReleaseChannelEnum {
-    Main = 'main',
-    Devel = 'devel'
+    Stable = 'stable',
+    Nightly = 'nightly'
 }
 
 /**
@@ -7102,234 +7176,6 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {number} deviceId 
-         * @param {AnsibleFactsRequest} ansibleFactsRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesAnsibleFactsCreate: async (deviceId: number, ansibleFactsRequest: AnsibleFactsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesAnsibleFactsCreate', 'deviceId', deviceId)
-            // verify required parameter 'ansibleFactsRequest' is not null or undefined
-            assertParamExists('devicesAnsibleFactsCreate', 'ansibleFactsRequest', ansibleFactsRequest)
-            const localVarPath = `/api/devices/{device_id}/ansible-facts/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(ansibleFactsRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesAnsibleFactsList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesAnsibleFactsList', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/ansible-facts/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this ansible facts.
-         * @param {PatchedAnsibleFactsRequest} [patchedAnsibleFactsRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesAnsibleFactsPartialUpdate: async (deviceId: number, id: number, patchedAnsibleFactsRequest?: PatchedAnsibleFactsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesAnsibleFactsPartialUpdate', 'deviceId', deviceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesAnsibleFactsPartialUpdate', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/ansible-facts/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(patchedAnsibleFactsRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this ansible facts.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesAnsibleFactsRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesAnsibleFactsRetrieve', 'deviceId', deviceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesAnsibleFactsRetrieve', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/ansible-facts/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this ansible facts.
-         * @param {AnsibleFactsRequest} ansibleFactsRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesAnsibleFactsUpdate: async (deviceId: number, id: number, ansibleFactsRequest: AnsibleFactsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesAnsibleFactsUpdate', 'deviceId', deviceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesAnsibleFactsUpdate', 'id', id)
-            // verify required parameter 'ansibleFactsRequest' is not null or undefined
-            assertParamExists('devicesAnsibleFactsUpdate', 'ansibleFactsRequest', ansibleFactsRequest)
-            const localVarPath = `/api/devices/{device_id}/ansible-facts/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(ansibleFactsRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
          * @param {CameraRequest} cameraRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -7818,6 +7664,180 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(deviceRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesCurrentStateList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesCurrentStateList', 'deviceId', deviceId)
+            const localVarPath = `/api/devices/{device_id}/current-state/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this current state.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesCurrentStateRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesCurrentStateRetrieve', 'deviceId', deviceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesCurrentStateRetrieve', 'id', id)
+            const localVarPath = `/api/devices/{device_id}/current-state/{id}/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesDesiredConfigList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesDesiredConfigList', 'deviceId', deviceId)
+            const localVarPath = `/api/devices/{device_id}/desired-config/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this desired config.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesDesiredConfigRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesDesiredConfigRetrieve', 'deviceId', deviceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesDesiredConfigRetrieve', 'id', id)
+            const localVarPath = `/api/devices/{device_id}/desired-config/{id}/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -8397,63 +8417,6 @@ export const DevicesApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} deviceId 
-         * @param {AnsibleFactsRequest} ansibleFactsRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesAnsibleFactsCreate(deviceId: number, ansibleFactsRequest: AnsibleFactsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AnsibleFacts>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesAnsibleFactsCreate(deviceId, ansibleFactsRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesAnsibleFactsList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedAnsibleFactsList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesAnsibleFactsList(deviceId, page, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this ansible facts.
-         * @param {PatchedAnsibleFactsRequest} [patchedAnsibleFactsRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesAnsibleFactsPartialUpdate(deviceId: number, id: number, patchedAnsibleFactsRequest?: PatchedAnsibleFactsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AnsibleFacts>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesAnsibleFactsPartialUpdate(deviceId, id, patchedAnsibleFactsRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this ansible facts.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesAnsibleFactsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AnsibleFacts>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesAnsibleFactsRetrieve(deviceId, id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this ansible facts.
-         * @param {AnsibleFactsRequest} ansibleFactsRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesAnsibleFactsUpdate(deviceId: number, id: number, ansibleFactsRequest: AnsibleFactsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AnsibleFacts>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesAnsibleFactsUpdate(deviceId, id, ansibleFactsRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
          * @param {CameraRequest} cameraRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -8573,6 +8536,50 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          */
         async devicesCreate(deviceRequest: DeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCreate(deviceRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesCurrentStateList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedCurrentStateList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCurrentStateList(deviceId, page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this current state.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesCurrentStateRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CurrentState>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCurrentStateRetrieve(deviceId, id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesDesiredConfigList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedDesiredConfigList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesDesiredConfigList(deviceId, page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this desired config.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesDesiredConfigRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DesiredConfig>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesDesiredConfigRetrieve(deviceId, id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -8729,58 +8736,6 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @param {number} deviceId 
-         * @param {AnsibleFactsRequest} ansibleFactsRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesAnsibleFactsCreate(deviceId: number, ansibleFactsRequest: AnsibleFactsRequest, options?: any): AxiosPromise<AnsibleFacts> {
-            return localVarFp.devicesAnsibleFactsCreate(deviceId, ansibleFactsRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesAnsibleFactsList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedAnsibleFactsList> {
-            return localVarFp.devicesAnsibleFactsList(deviceId, page, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this ansible facts.
-         * @param {PatchedAnsibleFactsRequest} [patchedAnsibleFactsRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesAnsibleFactsPartialUpdate(deviceId: number, id: number, patchedAnsibleFactsRequest?: PatchedAnsibleFactsRequest, options?: any): AxiosPromise<AnsibleFacts> {
-            return localVarFp.devicesAnsibleFactsPartialUpdate(deviceId, id, patchedAnsibleFactsRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this ansible facts.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesAnsibleFactsRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<AnsibleFacts> {
-            return localVarFp.devicesAnsibleFactsRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this ansible facts.
-         * @param {AnsibleFactsRequest} ansibleFactsRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesAnsibleFactsUpdate(deviceId: number, id: number, ansibleFactsRequest: AnsibleFactsRequest, options?: any): AxiosPromise<AnsibleFacts> {
-            return localVarFp.devicesAnsibleFactsUpdate(deviceId, id, ansibleFactsRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
          * @param {CameraRequest} cameraRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -8890,6 +8845,46 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          */
         devicesCreate(deviceRequest: DeviceRequest, options?: any): AxiosPromise<Device> {
             return localVarFp.devicesCreate(deviceRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesCurrentStateList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedCurrentStateList> {
+            return localVarFp.devicesCurrentStateList(deviceId, page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this current state.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesCurrentStateRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<CurrentState> {
+            return localVarFp.devicesCurrentStateRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesDesiredConfigList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedDesiredConfigList> {
+            return localVarFp.devicesDesiredConfigList(deviceId, page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this desired config.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesDesiredConfigRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<DesiredConfig> {
+            return localVarFp.devicesDesiredConfigRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
         },
         /**
          * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
@@ -9031,58 +9026,6 @@ export interface DevicesApiInterface {
     /**
      * 
      * @param {number} deviceId 
-     * @param {AnsibleFactsRequest} ansibleFactsRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesAnsibleFactsCreate(deviceId: number, ansibleFactsRequest: AnsibleFactsRequest, options?: AxiosRequestConfig): AxiosPromise<AnsibleFacts>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesAnsibleFactsList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedAnsibleFactsList>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this ansible facts.
-     * @param {PatchedAnsibleFactsRequest} [patchedAnsibleFactsRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesAnsibleFactsPartialUpdate(deviceId: number, id: number, patchedAnsibleFactsRequest?: PatchedAnsibleFactsRequest, options?: AxiosRequestConfig): AxiosPromise<AnsibleFacts>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this ansible facts.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesAnsibleFactsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<AnsibleFacts>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this ansible facts.
-     * @param {AnsibleFactsRequest} ansibleFactsRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesAnsibleFactsUpdate(deviceId: number, id: number, ansibleFactsRequest: AnsibleFactsRequest, options?: AxiosRequestConfig): AxiosPromise<AnsibleFacts>;
-
-    /**
-     * 
-     * @param {number} deviceId 
      * @param {CameraRequest} cameraRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -9192,6 +9135,46 @@ export interface DevicesApiInterface {
      * @memberof DevicesApiInterface
      */
     devicesCreate(deviceRequest: DeviceRequest, options?: AxiosRequestConfig): AxiosPromise<Device>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesCurrentStateList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedCurrentStateList>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this current state.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesCurrentStateRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<CurrentState>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesDesiredConfigList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedDesiredConfigList>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this desired config.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesDesiredConfigRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<DesiredConfig>;
 
     /**
      * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
@@ -9333,68 +9316,6 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
     /**
      * 
      * @param {number} deviceId 
-     * @param {AnsibleFactsRequest} ansibleFactsRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesAnsibleFactsCreate(deviceId: number, ansibleFactsRequest: AnsibleFactsRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesAnsibleFactsCreate(deviceId, ansibleFactsRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesAnsibleFactsList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesAnsibleFactsList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this ansible facts.
-     * @param {PatchedAnsibleFactsRequest} [patchedAnsibleFactsRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesAnsibleFactsPartialUpdate(deviceId: number, id: number, patchedAnsibleFactsRequest?: PatchedAnsibleFactsRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesAnsibleFactsPartialUpdate(deviceId, id, patchedAnsibleFactsRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this ansible facts.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesAnsibleFactsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesAnsibleFactsRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this ansible facts.
-     * @param {AnsibleFactsRequest} ansibleFactsRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesAnsibleFactsUpdate(deviceId: number, id: number, ansibleFactsRequest: AnsibleFactsRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesAnsibleFactsUpdate(deviceId, id, ansibleFactsRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
      * @param {CameraRequest} cameraRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -9525,6 +9446,54 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      */
     public devicesCreate(deviceRequest: DeviceRequest, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesCreate(deviceRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesCurrentStateList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesCurrentStateList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this current state.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesCurrentStateRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesCurrentStateRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesDesiredConfigList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesDesiredConfigList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this desired config.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesDesiredConfigRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesDesiredConfigRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

@@ -19,8 +19,14 @@ pub struct Device {
     pub cameras: Option<Vec<crate::models::Camera>>,
     #[serde(rename = "dashboard_url", skip_serializing_if = "Option::is_none")]
     pub dashboard_url: Option<String>,
-    #[serde(rename = "last_ansible_facts", skip_serializing_if = "Option::is_none")]
-    pub last_ansible_facts: Option<Box<crate::models::AnsibleFacts>>,
+    #[serde(rename = "desired_config", skip_serializing_if = "Option::is_none")]
+    pub desired_config: Option<Box<crate::models::DesiredConfig>>,
+    #[serde(rename = "desired_config_topic", skip_serializing_if = "Option::is_none")]
+    pub desired_config_topic: Option<String>,
+    #[serde(rename = "current_state", skip_serializing_if = "Option::is_none")]
+    pub current_state: Option<Box<crate::models::CurrentState>>,
+    #[serde(rename = "current_state_topic", skip_serializing_if = "Option::is_none")]
+    pub current_state_topic: Option<String>,
     #[serde(rename = "printer_controllers", skip_serializing_if = "Option::is_none")]
     pub printer_controllers: Option<Vec<crate::models::PrinterController>>,
     #[serde(rename = "public_key", skip_serializing_if = "Option::is_none")]
@@ -35,16 +41,31 @@ pub struct Device {
     pub updated_dt: Option<String>,
     #[serde(rename = "hostname")]
     pub hostname: String,
+    #[serde(rename = "hardware")]
+    pub hardware: String,
+    #[serde(rename = "revision")]
+    pub revision: String,
+    #[serde(rename = "model")]
+    pub model: String,
+    #[serde(rename = "serial")]
+    pub serial: String,
+    #[serde(rename = "cores")]
+    pub cores: i32,
+    #[serde(rename = "ram")]
+    pub ram: i64,
 }
 
 impl Device {
-    pub fn new(hostname: String) -> Device {
+    pub fn new(hostname: String, hardware: String, revision: String, model: String, serial: String, cores: i32, ram: i64) -> Device {
         Device {
             id: None,
             cloudiot_devices: None,
             cameras: None,
             dashboard_url: None,
-            last_ansible_facts: None,
+            desired_config: None,
+            desired_config_topic: None,
+            current_state: None,
+            current_state_topic: None,
             printer_controllers: None,
             public_key: None,
             user: None,
@@ -52,6 +73,12 @@ impl Device {
             created_dt: None,
             updated_dt: None,
             hostname,
+            hardware,
+            revision,
+            model,
+            serial,
+            cores,
+            ram,
         }
     }
 }

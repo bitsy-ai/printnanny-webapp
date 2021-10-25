@@ -8,8 +8,7 @@ docs/AlertBulkResponse.md
 docs/AlertEventTypeEnum.md
 docs/AlertRequest.md
 docs/AlertsApi.md
-docs/AnsibleFacts.md
-docs/AnsibleFactsRequest.md
+docs/AnsibleStateEnum.md
 docs/ArtifactTypesEnum.md
 docs/AuthApi.md
 docs/CallbackTokenAuthRequest.md
@@ -21,6 +20,10 @@ docs/CameraTypeEnum.md
 docs/CloudiotDevice.md
 docs/CloudiotDeviceRequest.md
 docs/CommandEnum.md
+docs/CurrentState.md
+docs/CurrentStateRequest.md
+docs/DesiredConfig.md
+docs/DesiredConfigRequest.md
 docs/DetailResponse.md
 docs/Device.md
 docs/DeviceCalibration.md
@@ -68,9 +71,10 @@ docs/OctoprintProgressRequest.md
 docs/OctoprintPython.md
 docs/OctoprintPythonRequest.md
 docs/PaginatedAlertList.md
-docs/PaginatedAnsibleFactsList.md
 docs/PaginatedCameraList.md
 docs/PaginatedCloudiotDeviceList.md
+docs/PaginatedCurrentStateList.md
+docs/PaginatedDesiredConfigList.md
 docs/PaginatedDeviceCalibrationList.md
 docs/PaginatedDeviceList.md
 docs/PaginatedDevicePublicKeyList.md
@@ -95,7 +99,6 @@ docs/PartnersGeeks3Api.md
 docs/PartnersGeeks3dApi.md
 docs/PatchedAlertBulkRequestRequest.md
 docs/PatchedAlertRequest.md
-docs/PatchedAnsibleFactsRequest.md
 docs/PatchedCameraRequest.md
 docs/PatchedCloudiotDeviceRequest.md
 docs/PatchedDeviceCalibrationRequest.md
@@ -158,8 +161,7 @@ src/models/alert.rs
 src/models/alert_bulk_response.rs
 src/models/alert_event_type_enum.rs
 src/models/alert_request.rs
-src/models/ansible_facts.rs
-src/models/ansible_facts_request.rs
+src/models/ansible_state_enum.rs
 src/models/artifact_types_enum.rs
 src/models/callback_token_auth_request.rs
 src/models/callback_token_verification.rs
@@ -170,6 +172,10 @@ src/models/camera_type_enum.rs
 src/models/cloudiot_device.rs
 src/models/cloudiot_device_request.rs
 src/models/command_enum.rs
+src/models/current_state.rs
+src/models/current_state_request.rs
+src/models/desired_config.rs
+src/models/desired_config_request.rs
 src/models/detail_response.rs
 src/models/device.rs
 src/models/device_calibration.rs
@@ -216,9 +222,10 @@ src/models/octoprint_progress_request.rs
 src/models/octoprint_python.rs
 src/models/octoprint_python_request.rs
 src/models/paginated_alert_list.rs
-src/models/paginated_ansible_facts_list.rs
 src/models/paginated_camera_list.rs
 src/models/paginated_cloudiot_device_list.rs
+src/models/paginated_current_state_list.rs
+src/models/paginated_desired_config_list.rs
 src/models/paginated_device_calibration_list.rs
 src/models/paginated_device_list.rs
 src/models/paginated_device_public_key_list.rs
@@ -241,7 +248,6 @@ src/models/partner3_d_geeks_alert.rs
 src/models/partner3_d_geeks_metadata.rs
 src/models/patched_alert_bulk_request_request.rs
 src/models/patched_alert_request.rs
-src/models/patched_ansible_facts_request.rs
 src/models/patched_camera_request.rs
 src/models/patched_cloudiot_device_request.rs
 src/models/patched_device_calibration_request.rs

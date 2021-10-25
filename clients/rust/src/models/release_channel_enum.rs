@@ -10,18 +10,18 @@
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum ReleaseChannelEnum {
-    #[serde(rename = "main")]
-    Main,
-    #[serde(rename = "devel")]
-    Devel,
+    #[serde(rename = "stable")]
+    Stable,
+    #[serde(rename = "nightly")]
+    Nightly,
 
 }
 
 impl ToString for ReleaseChannelEnum {
     fn to_string(&self) -> String {
         match self {
-            Self::Main => String::from("main"),
-            Self::Devel => String::from("devel"),
+            Self::Stable => String::from("stable"),
+            Self::Nightly => String::from("nightly"),
         }
     }
 }

@@ -40,14 +40,23 @@ class Device(object):
         'cloudiot_devices': 'list[CloudiotDevice]',
         'cameras': 'list[Camera]',
         'dashboard_url': 'str',
-        'last_ansible_facts': 'AnsibleFacts',
+        'desired_config': 'DesiredConfig',
+        'desired_config_topic': 'str',
+        'current_state': 'CurrentState',
+        'current_state_topic': 'str',
         'printer_controllers': 'list[PrinterController]',
         'public_key': 'DevicePublicKey',
         'user': 'int',
         'deleted': 'datetime',
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
-        'hostname': 'str'
+        'hostname': 'str',
+        'hardware': 'str',
+        'revision': 'str',
+        'model': 'str',
+        'serial': 'str',
+        'cores': 'int',
+        'ram': 'int'
     }
 
     attribute_map = {
@@ -55,17 +64,26 @@ class Device(object):
         'cloudiot_devices': 'cloudiot_devices',
         'cameras': 'cameras',
         'dashboard_url': 'dashboard_url',
-        'last_ansible_facts': 'last_ansible_facts',
+        'desired_config': 'desired_config',
+        'desired_config_topic': 'desired_config_topic',
+        'current_state': 'current_state',
+        'current_state_topic': 'current_state_topic',
         'printer_controllers': 'printer_controllers',
         'public_key': 'public_key',
         'user': 'user',
         'deleted': 'deleted',
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
-        'hostname': 'hostname'
+        'hostname': 'hostname',
+        'hardware': 'hardware',
+        'revision': 'revision',
+        'model': 'model',
+        'serial': 'serial',
+        'cores': 'cores',
+        'ram': 'ram'
     }
 
-    def __init__(self, id=None, cloudiot_devices=None, cameras=None, dashboard_url=None, last_ansible_facts=None, printer_controllers=None, public_key=None, user=None, deleted=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, cloudiot_devices=None, cameras=None, dashboard_url=None, desired_config=None, desired_config_topic=None, current_state=None, current_state_topic=None, printer_controllers=None, public_key=None, user=None, deleted=None, created_dt=None, updated_dt=None, hostname=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -75,7 +93,10 @@ class Device(object):
         self._cloudiot_devices = None
         self._cameras = None
         self._dashboard_url = None
-        self._last_ansible_facts = None
+        self._desired_config = None
+        self._desired_config_topic = None
+        self._current_state = None
+        self._current_state_topic = None
         self._printer_controllers = None
         self._public_key = None
         self._user = None
@@ -83,6 +104,12 @@ class Device(object):
         self._created_dt = None
         self._updated_dt = None
         self._hostname = None
+        self._hardware = None
+        self._revision = None
+        self._model = None
+        self._serial = None
+        self._cores = None
+        self._ram = None
         self.discriminator = None
 
         if id is not None:
@@ -93,7 +120,12 @@ class Device(object):
             self.cameras = cameras
         if dashboard_url is not None:
             self.dashboard_url = dashboard_url
-        self.last_ansible_facts = last_ansible_facts
+        self.desired_config = desired_config
+        if desired_config_topic is not None:
+            self.desired_config_topic = desired_config_topic
+        self.current_state = current_state
+        if current_state_topic is not None:
+            self.current_state_topic = current_state_topic
         if printer_controllers is not None:
             self.printer_controllers = printer_controllers
         self.public_key = public_key
@@ -106,6 +138,12 @@ class Device(object):
         if updated_dt is not None:
             self.updated_dt = updated_dt
         self.hostname = hostname
+        self.hardware = hardware
+        self.revision = revision
+        self.model = model
+        self.serial = serial
+        self.cores = cores
+        self.ram = ram
 
     @property
     def id(self):
@@ -192,25 +230,88 @@ class Device(object):
         self._dashboard_url = dashboard_url
 
     @property
-    def last_ansible_facts(self):
-        """Gets the last_ansible_facts of this Device.  # noqa: E501
+    def desired_config(self):
+        """Gets the desired_config of this Device.  # noqa: E501
 
 
-        :return: The last_ansible_facts of this Device.  # noqa: E501
-        :rtype: AnsibleFacts
+        :return: The desired_config of this Device.  # noqa: E501
+        :rtype: DesiredConfig
         """
-        return self._last_ansible_facts
+        return self._desired_config
 
-    @last_ansible_facts.setter
-    def last_ansible_facts(self, last_ansible_facts):
-        """Sets the last_ansible_facts of this Device.
+    @desired_config.setter
+    def desired_config(self, desired_config):
+        """Sets the desired_config of this Device.
 
 
-        :param last_ansible_facts: The last_ansible_facts of this Device.  # noqa: E501
-        :type last_ansible_facts: AnsibleFacts
+        :param desired_config: The desired_config of this Device.  # noqa: E501
+        :type desired_config: DesiredConfig
         """
 
-        self._last_ansible_facts = last_ansible_facts
+        self._desired_config = desired_config
+
+    @property
+    def desired_config_topic(self):
+        """Gets the desired_config_topic of this Device.  # noqa: E501
+
+
+        :return: The desired_config_topic of this Device.  # noqa: E501
+        :rtype: str
+        """
+        return self._desired_config_topic
+
+    @desired_config_topic.setter
+    def desired_config_topic(self, desired_config_topic):
+        """Sets the desired_config_topic of this Device.
+
+
+        :param desired_config_topic: The desired_config_topic of this Device.  # noqa: E501
+        :type desired_config_topic: str
+        """
+
+        self._desired_config_topic = desired_config_topic
+
+    @property
+    def current_state(self):
+        """Gets the current_state of this Device.  # noqa: E501
+
+
+        :return: The current_state of this Device.  # noqa: E501
+        :rtype: CurrentState
+        """
+        return self._current_state
+
+    @current_state.setter
+    def current_state(self, current_state):
+        """Sets the current_state of this Device.
+
+
+        :param current_state: The current_state of this Device.  # noqa: E501
+        :type current_state: CurrentState
+        """
+
+        self._current_state = current_state
+
+    @property
+    def current_state_topic(self):
+        """Gets the current_state_topic of this Device.  # noqa: E501
+
+
+        :return: The current_state_topic of this Device.  # noqa: E501
+        :rtype: str
+        """
+        return self._current_state_topic
+
+    @current_state_topic.setter
+    def current_state_topic(self, current_state_topic):
+        """Sets the current_state_topic of this Device.
+
+
+        :param current_state_topic: The current_state_topic of this Device.  # noqa: E501
+        :type current_state_topic: str
+        """
+
+        self._current_state_topic = current_state_topic
 
     @property
     def printer_controllers(self):
@@ -363,6 +464,168 @@ class Device(object):
             raise ValueError("Invalid value for `hostname`, length must be less than or equal to `255`")  # noqa: E501
 
         self._hostname = hostname
+
+    @property
+    def hardware(self):
+        """Gets the hardware of this Device.  # noqa: E501
+
+
+        :return: The hardware of this Device.  # noqa: E501
+        :rtype: str
+        """
+        return self._hardware
+
+    @hardware.setter
+    def hardware(self, hardware):
+        """Sets the hardware of this Device.
+
+
+        :param hardware: The hardware of this Device.  # noqa: E501
+        :type hardware: str
+        """
+        if self.local_vars_configuration.client_side_validation and hardware is None:  # noqa: E501
+            raise ValueError("Invalid value for `hardware`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                hardware is not None and len(hardware) > 255):
+            raise ValueError("Invalid value for `hardware`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._hardware = hardware
+
+    @property
+    def revision(self):
+        """Gets the revision of this Device.  # noqa: E501
+
+
+        :return: The revision of this Device.  # noqa: E501
+        :rtype: str
+        """
+        return self._revision
+
+    @revision.setter
+    def revision(self, revision):
+        """Sets the revision of this Device.
+
+
+        :param revision: The revision of this Device.  # noqa: E501
+        :type revision: str
+        """
+        if self.local_vars_configuration.client_side_validation and revision is None:  # noqa: E501
+            raise ValueError("Invalid value for `revision`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                revision is not None and len(revision) > 255):
+            raise ValueError("Invalid value for `revision`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._revision = revision
+
+    @property
+    def model(self):
+        """Gets the model of this Device.  # noqa: E501
+
+
+        :return: The model of this Device.  # noqa: E501
+        :rtype: str
+        """
+        return self._model
+
+    @model.setter
+    def model(self, model):
+        """Sets the model of this Device.
+
+
+        :param model: The model of this Device.  # noqa: E501
+        :type model: str
+        """
+        if self.local_vars_configuration.client_side_validation and model is None:  # noqa: E501
+            raise ValueError("Invalid value for `model`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                model is not None and len(model) > 255):
+            raise ValueError("Invalid value for `model`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._model = model
+
+    @property
+    def serial(self):
+        """Gets the serial of this Device.  # noqa: E501
+
+
+        :return: The serial of this Device.  # noqa: E501
+        :rtype: str
+        """
+        return self._serial
+
+    @serial.setter
+    def serial(self, serial):
+        """Sets the serial of this Device.
+
+
+        :param serial: The serial of this Device.  # noqa: E501
+        :type serial: str
+        """
+        if self.local_vars_configuration.client_side_validation and serial is None:  # noqa: E501
+            raise ValueError("Invalid value for `serial`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                serial is not None and len(serial) > 255):
+            raise ValueError("Invalid value for `serial`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._serial = serial
+
+    @property
+    def cores(self):
+        """Gets the cores of this Device.  # noqa: E501
+
+
+        :return: The cores of this Device.  # noqa: E501
+        :rtype: int
+        """
+        return self._cores
+
+    @cores.setter
+    def cores(self, cores):
+        """Sets the cores of this Device.
+
+
+        :param cores: The cores of this Device.  # noqa: E501
+        :type cores: int
+        """
+        if self.local_vars_configuration.client_side_validation and cores is None:  # noqa: E501
+            raise ValueError("Invalid value for `cores`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                cores is not None and cores > 2147483647):  # noqa: E501
+            raise ValueError("Invalid value for `cores`, must be a value less than or equal to `2147483647`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                cores is not None and cores < -2147483648):  # noqa: E501
+            raise ValueError("Invalid value for `cores`, must be a value greater than or equal to `-2147483648`")  # noqa: E501
+
+        self._cores = cores
+
+    @property
+    def ram(self):
+        """Gets the ram of this Device.  # noqa: E501
+
+
+        :return: The ram of this Device.  # noqa: E501
+        :rtype: int
+        """
+        return self._ram
+
+    @ram.setter
+    def ram(self, ram):
+        """Sets the ram of this Device.
+
+
+        :param ram: The ram of this Device.  # noqa: E501
+        :type ram: int
+        """
+        if self.local_vars_configuration.client_side_validation and ram is None:  # noqa: E501
+            raise ValueError("Invalid value for `ram`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                ram is not None and ram > 9223372036854775807):  # noqa: E501
+            raise ValueError("Invalid value for `ram`, must be a value less than or equal to `9223372036854775807`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                ram is not None and ram < -9223372036854775808):  # noqa: E501
+            raise ValueError("Invalid value for `ram`, must be a value greater than or equal to `-9223372036854775808`")  # noqa: E501
+
+        self._ram = ram
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

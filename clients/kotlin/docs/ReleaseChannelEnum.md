@@ -4,9 +4,9 @@
 ## Enum
 
 
-    * `main` (value: `"main"`)
+    * `stable` (value: `"stable"`)
 
-    * `devel` (value: `"devel"`)
+    * `nightly` (value: `"nightly"`)
 
 
 

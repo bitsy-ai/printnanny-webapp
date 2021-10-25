@@ -31,10 +31,10 @@ class ReleaseChannelEnum(object):
     """
     allowed enum values
     """
-    MAIN = "main"
-    DEVEL = "devel"
+    STABLE = "stable"
+    NIGHTLY = "nightly"
 
-    allowable_values = [MAIN, DEVEL]  # noqa: E501
+    allowable_values = [STABLE, NIGHTLY]  # noqa: E501
 
     """
     Attributes:

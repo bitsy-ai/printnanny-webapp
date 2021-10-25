@@ -4,11 +4,6 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**devices_ansible_facts_create**](DevicesApi.md#devices_ansible_facts_create) | **POST** /api/devices/{device_id}/ansible-facts/ | 
-[**devices_ansible_facts_list**](DevicesApi.md#devices_ansible_facts_list) | **GET** /api/devices/{device_id}/ansible-facts/ | 
-[**devices_ansible_facts_partial_update**](DevicesApi.md#devices_ansible_facts_partial_update) | **PATCH** /api/devices/{device_id}/ansible-facts/{id}/ | 
-[**devices_ansible_facts_retrieve**](DevicesApi.md#devices_ansible_facts_retrieve) | **GET** /api/devices/{device_id}/ansible-facts/{id}/ | 
-[**devices_ansible_facts_update**](DevicesApi.md#devices_ansible_facts_update) | **PUT** /api/devices/{device_id}/ansible-facts/{id}/ | 
 [**devices_cameras_create**](DevicesApi.md#devices_cameras_create) | **POST** /api/devices/{device_id}/cameras/ | 
 [**devices_cameras_list**](DevicesApi.md#devices_cameras_list) | **GET** /api/devices/{device_id}/cameras/ | 
 [**devices_cameras_partial_update**](DevicesApi.md#devices_cameras_partial_update) | **PATCH** /api/devices/{device_id}/cameras/{id}/ | 
@@ -20,6 +15,10 @@ Method | HTTP request | Description
 [**devices_cloud_iot_devices_retrieve**](DevicesApi.md#devices_cloud_iot_devices_retrieve) | **GET** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
 [**devices_cloud_iot_devices_update**](DevicesApi.md#devices_cloud_iot_devices_update) | **PUT** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
 [**devices_create**](DevicesApi.md#devices_create) | **POST** /api/devices/ | 
+[**devices_current_state_list**](DevicesApi.md#devices_current_state_list) | **GET** /api/devices/{device_id}/current-state/ | 
+[**devices_current_state_retrieve**](DevicesApi.md#devices_current_state_retrieve) | **GET** /api/devices/{device_id}/current-state/{id}/ | 
+[**devices_desired_config_list**](DevicesApi.md#devices_desired_config_list) | **GET** /api/devices/{device_id}/desired-config/ | 
+[**devices_desired_config_retrieve**](DevicesApi.md#devices_desired_config_retrieve) | **GET** /api/devices/{device_id}/desired-config/{id}/ | 
 [**devices_keypairs_create**](DevicesApi.md#devices_keypairs_create) | **POST** /api/devices/{device_id}/keypairs/ | 
 [**devices_keypairs_list**](DevicesApi.md#devices_keypairs_list) | **GET** /api/devices/{device_id}/keypairs/ | 
 [**devices_keypairs_retrieve**](DevicesApi.md#devices_keypairs_retrieve) | **GET** /api/devices/{device_id}/keypairs/{id}/ | 
@@ -34,153 +33,6 @@ Method | HTTP request | Description
 [**devices_retrieve_hostname**](DevicesApi.md#devices_retrieve_hostname) | **GET** /api/devices/{hostname} | 
 [**devices_update**](DevicesApi.md#devices_update) | **PUT** /api/devices/{id}/ | 
 
-
-
-## devices_ansible_facts_create
-
-> crate::models::AnsibleFacts devices_ansible_facts_create(device_id, ansible_facts_request)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-**ansible_facts_request** | [**AnsibleFactsRequest**](AnsibleFactsRequest.md) |  | [required] |
-
-### Return type
-
-[**crate::models::AnsibleFacts**](AnsibleFacts.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## devices_ansible_facts_list
-
-> crate::models::PaginatedAnsibleFactsList devices_ansible_facts_list(device_id, page)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-**page** | Option<**i32**> | A page number within the paginated result set. |  |
-
-### Return type
-
-[**crate::models::PaginatedAnsibleFactsList**](PaginatedAnsibleFactsList.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## devices_ansible_facts_partial_update
-
-> crate::models::AnsibleFacts devices_ansible_facts_partial_update(device_id, id, patched_ansible_facts_request)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-**id** | **i32** | A unique integer value identifying this ansible facts. | [required] |
-**patched_ansible_facts_request** | Option<[**PatchedAnsibleFactsRequest**](PatchedAnsibleFactsRequest.md)> |  |  |
-
-### Return type
-
-[**crate::models::AnsibleFacts**](AnsibleFacts.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## devices_ansible_facts_retrieve
-
-> crate::models::AnsibleFacts devices_ansible_facts_retrieve(device_id, id)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-**id** | **i32** | A unique integer value identifying this ansible facts. | [required] |
-
-### Return type
-
-[**crate::models::AnsibleFacts**](AnsibleFacts.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## devices_ansible_facts_update
-
-> crate::models::AnsibleFacts devices_ansible_facts_update(device_id, id, ansible_facts_request)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-**id** | **i32** | A unique integer value identifying this ansible facts. | [required] |
-**ansible_facts_request** | [**AnsibleFactsRequest**](AnsibleFactsRequest.md) |  | [required] |
-
-### Return type
-
-[**crate::models::AnsibleFacts**](AnsibleFacts.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## devices_cameras_create
@@ -502,6 +354,122 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## devices_current_state_list
+
+> crate::models::PaginatedCurrentStateList devices_current_state_list(device_id, page)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_id** | **i32** |  | [required] |
+**page** | Option<**i32**> | A page number within the paginated result set. |  |
+
+### Return type
+
+[**crate::models::PaginatedCurrentStateList**](PaginatedCurrentStateList.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## devices_current_state_retrieve
+
+> crate::models::CurrentState devices_current_state_retrieve(device_id, id)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_id** | **i32** |  | [required] |
+**id** | **i32** | A unique integer value identifying this current state. | [required] |
+
+### Return type
+
+[**crate::models::CurrentState**](CurrentState.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## devices_desired_config_list
+
+> crate::models::PaginatedDesiredConfigList devices_desired_config_list(device_id, page)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_id** | **i32** |  | [required] |
+**page** | Option<**i32**> | A page number within the paginated result set. |  |
+
+### Return type
+
+[**crate::models::PaginatedDesiredConfigList**](PaginatedDesiredConfigList.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## devices_desired_config_retrieve
+
+> crate::models::DesiredConfig devices_desired_config_retrieve(device_id, id)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_id** | **i32** |  | [required] |
+**id** | **i32** | A unique integer value identifying this desired config. | [required] |
+
+### Return type
+
+[**crate::models::DesiredConfig**](DesiredConfig.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

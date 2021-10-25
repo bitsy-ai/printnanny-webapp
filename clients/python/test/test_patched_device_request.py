@@ -36,7 +36,13 @@ class TestPatchedDeviceRequest(unittest.TestCase):
         # model = print_nanny_client.models.patched_device_request.PatchedDeviceRequest()  # noqa: E501
         if include_optional :
             return PatchedDeviceRequest(
-                hostname = ''
+                hostname = '', 
+                hardware = '', 
+                revision = '', 
+                model = '', 
+                serial = '', 
+                cores = -2147483648, 
+                ram = -9223372036854775808
             )
         else :
             return PatchedDeviceRequest(

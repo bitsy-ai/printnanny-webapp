@@ -13,44 +13,6 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method [`devices_ansible_facts_create`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum DevicesAnsibleFactsCreateError {
-    DefaultResponse(crate::models::ErrorDetail),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`devices_ansible_facts_list`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum DevicesAnsibleFactsListError {
-    DefaultResponse(crate::models::ErrorDetail),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`devices_ansible_facts_partial_update`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum DevicesAnsibleFactsPartialUpdateError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`devices_ansible_facts_retrieve`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum DevicesAnsibleFactsRetrieveError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`devices_ansible_facts_update`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum DevicesAnsibleFactsUpdateError {
-    DefaultResponse(crate::models::ErrorDetail),
-    UnknownValue(serde_json::Value),
-}
-
 /// struct for typed errors of method [`devices_cameras_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -132,6 +94,36 @@ pub enum DevicesCloudIotDevicesUpdateError {
 #[serde(untagged)]
 pub enum DevicesCreateError {
     DefaultResponse(crate::models::ErrorDetail),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`devices_current_state_list`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DevicesCurrentStateListError {
+    DefaultResponse(crate::models::ErrorDetail),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`devices_current_state_retrieve`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DevicesCurrentStateRetrieveError {
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`devices_desired_config_list`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DevicesDesiredConfigListError {
+    DefaultResponse(crate::models::ErrorDetail),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`devices_desired_config_retrieve`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DevicesDesiredConfigRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
@@ -234,162 +226,6 @@ pub enum DevicesUpdateError {
     UnknownValue(serde_json::Value),
 }
 
-
-pub async fn devices_ansible_facts_create(configuration: &configuration::Configuration, device_id: i32, ansible_facts_request: crate::models::AnsibleFactsRequest) -> Result<crate::models::AnsibleFacts, Error<DevicesAnsibleFactsCreateError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/ansible-facts/", local_var_configuration.base_path, device_id=device_id);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    local_var_req_builder = local_var_req_builder.json(&ansible_facts_request);
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<DevicesAnsibleFactsCreateError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn devices_ansible_facts_list(configuration: &configuration::Configuration, device_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedAnsibleFactsList, Error<DevicesAnsibleFactsListError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/ansible-facts/", local_var_configuration.base_path, device_id=device_id);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_str) = page {
-        local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<DevicesAnsibleFactsListError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn devices_ansible_facts_partial_update(configuration: &configuration::Configuration, device_id: i32, id: i32, patched_ansible_facts_request: Option<crate::models::PatchedAnsibleFactsRequest>) -> Result<crate::models::AnsibleFacts, Error<DevicesAnsibleFactsPartialUpdateError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/ansible-facts/{id}/", local_var_configuration.base_path, device_id=device_id, id=id);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PATCH, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    local_var_req_builder = local_var_req_builder.json(&patched_ansible_facts_request);
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<DevicesAnsibleFactsPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn devices_ansible_facts_retrieve(configuration: &configuration::Configuration, device_id: i32, id: i32) -> Result<crate::models::AnsibleFacts, Error<DevicesAnsibleFactsRetrieveError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/ansible-facts/{id}/", local_var_configuration.base_path, device_id=device_id, id=id);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<DevicesAnsibleFactsRetrieveError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn devices_ansible_facts_update(configuration: &configuration::Configuration, device_id: i32, id: i32, ansible_facts_request: crate::models::AnsibleFactsRequest) -> Result<crate::models::AnsibleFacts, Error<DevicesAnsibleFactsUpdateError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/ansible-facts/{id}/", local_var_configuration.base_path, device_id=device_id, id=id);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    local_var_req_builder = local_var_req_builder.json(&ansible_facts_request);
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<DevicesAnsibleFactsUpdateError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
 
 pub async fn devices_cameras_create(configuration: &configuration::Configuration, device_id: i32, camera_request: crate::models::CameraRequest) -> Result<crate::models::Camera, Error<DevicesCamerasCreateError>> {
     let local_var_configuration = configuration;
@@ -730,6 +566,132 @@ pub async fn devices_create(configuration: &configuration::Configuration, device
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<DevicesCreateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn devices_current_state_list(configuration: &configuration::Configuration, device_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedCurrentStateList, Error<DevicesCurrentStateListError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/current-state/", local_var_configuration.base_path, device_id=device_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_str) = page {
+        local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<DevicesCurrentStateListError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn devices_current_state_retrieve(configuration: &configuration::Configuration, device_id: i32, id: i32) -> Result<crate::models::CurrentState, Error<DevicesCurrentStateRetrieveError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/current-state/{id}/", local_var_configuration.base_path, device_id=device_id, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<DevicesCurrentStateRetrieveError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn devices_desired_config_list(configuration: &configuration::Configuration, device_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedDesiredConfigList, Error<DevicesDesiredConfigListError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/desired-config/", local_var_configuration.base_path, device_id=device_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_str) = page {
+        local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<DevicesDesiredConfigListError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn devices_desired_config_retrieve(configuration: &configuration::Configuration, device_id: i32, id: i32) -> Result<crate::models::DesiredConfig, Error<DevicesDesiredConfigRetrieveError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/desired-config/{id}/", local_var_configuration.base_path, device_id=device_id, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<DevicesDesiredConfigRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }

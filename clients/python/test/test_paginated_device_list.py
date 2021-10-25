@@ -45,6 +45,8 @@ class TestPaginatedDeviceList(unittest.TestCase):
                         cloudiot_devices = [
                             print_nanny_client.models.cloudiot_device.CloudiotDevice(
                                 num_id = -9223372036854775808, 
+                                config_topic = '', 
+                                state_topic = '', 
                                 gcp_project_id = '', 
                                 gcp_region = '', 
                                 gcp_cloudiot_device_registry = '', 
@@ -71,7 +73,10 @@ class TestPaginatedDeviceList(unittest.TestCase):
                                 url = '', )
                             ], 
                         dashboard_url = '', 
-                        last_ansible_facts = null, 
+                        desired_config = null, 
+                        desired_config_topic = '', 
+                        current_state = null, 
+                        current_state_topic = '', 
                         printer_controllers = [
                             print_nanny_client.models.printer_controller.PrinterController(
                                 id = 56, 
@@ -88,7 +93,13 @@ class TestPaginatedDeviceList(unittest.TestCase):
                         deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        hostname = '', )
+                        hostname = '', 
+                        hardware = '', 
+                        revision = '', 
+                        model = '', 
+                        serial = '', 
+                        cores = -2147483648, 
+                        ram = -9223372036854775808, )
                     ]
             )
         else :

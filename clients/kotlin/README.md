@@ -48,11 +48,6 @@ Class | Method | HTTP request | Description
 *AuthApi* | [**authVerifyCreate**](docs/AuthApi.md#authverifycreate) | **POST** /auth/verify/ | 
 *AuthApi* | [**authVerifyEmailCreate**](docs/AuthApi.md#authverifyemailcreate) | **POST** /auth/verify/email/ | 
 *AuthApi* | [**authVerifyMobileCreate**](docs/AuthApi.md#authverifymobilecreate) | **POST** /auth/verify/mobile/ | 
-*DevicesApi* | [**devicesAnsibleFactsCreate**](docs/DevicesApi.md#devicesansiblefactscreate) | **POST** /api/devices/{device_id}/ansible-facts/ | 
-*DevicesApi* | [**devicesAnsibleFactsList**](docs/DevicesApi.md#devicesansiblefactslist) | **GET** /api/devices/{device_id}/ansible-facts/ | 
-*DevicesApi* | [**devicesAnsibleFactsPartialUpdate**](docs/DevicesApi.md#devicesansiblefactspartialupdate) | **PATCH** /api/devices/{device_id}/ansible-facts/{id}/ | 
-*DevicesApi* | [**devicesAnsibleFactsRetrieve**](docs/DevicesApi.md#devicesansiblefactsretrieve) | **GET** /api/devices/{device_id}/ansible-facts/{id}/ | 
-*DevicesApi* | [**devicesAnsibleFactsUpdate**](docs/DevicesApi.md#devicesansiblefactsupdate) | **PUT** /api/devices/{device_id}/ansible-facts/{id}/ | 
 *DevicesApi* | [**devicesCamerasCreate**](docs/DevicesApi.md#devicescamerascreate) | **POST** /api/devices/{device_id}/cameras/ | 
 *DevicesApi* | [**devicesCamerasList**](docs/DevicesApi.md#devicescameraslist) | **GET** /api/devices/{device_id}/cameras/ | 
 *DevicesApi* | [**devicesCamerasPartialUpdate**](docs/DevicesApi.md#devicescameraspartialupdate) | **PATCH** /api/devices/{device_id}/cameras/{id}/ | 
@@ -64,6 +59,10 @@ Class | Method | HTTP request | Description
 *DevicesApi* | [**devicesCloudIotDevicesRetrieve**](docs/DevicesApi.md#devicescloudiotdevicesretrieve) | **GET** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
 *DevicesApi* | [**devicesCloudIotDevicesUpdate**](docs/DevicesApi.md#devicescloudiotdevicesupdate) | **PUT** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
 *DevicesApi* | [**devicesCreate**](docs/DevicesApi.md#devicescreate) | **POST** /api/devices/ | 
+*DevicesApi* | [**devicesCurrentStateList**](docs/DevicesApi.md#devicescurrentstatelist) | **GET** /api/devices/{device_id}/current-state/ | 
+*DevicesApi* | [**devicesCurrentStateRetrieve**](docs/DevicesApi.md#devicescurrentstateretrieve) | **GET** /api/devices/{device_id}/current-state/{id}/ | 
+*DevicesApi* | [**devicesDesiredConfigList**](docs/DevicesApi.md#devicesdesiredconfiglist) | **GET** /api/devices/{device_id}/desired-config/ | 
+*DevicesApi* | [**devicesDesiredConfigRetrieve**](docs/DevicesApi.md#devicesdesiredconfigretrieve) | **GET** /api/devices/{device_id}/desired-config/{id}/ | 
 *DevicesApi* | [**devicesKeypairsCreate**](docs/DevicesApi.md#deviceskeypairscreate) | **POST** /api/devices/{device_id}/keypairs/ | 
 *DevicesApi* | [**devicesKeypairsList**](docs/DevicesApi.md#deviceskeypairslist) | **GET** /api/devices/{device_id}/keypairs/ | 
 *DevicesApi* | [**devicesKeypairsRetrieve**](docs/DevicesApi.md#deviceskeypairsretrieve) | **GET** /api/devices/{device_id}/keypairs/{id}/ | 
@@ -144,8 +143,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.AlertBulkResponse](docs/AlertBulkResponse.md)
  - [com.print-nanny.client.models.AlertEventTypeEnum](docs/AlertEventTypeEnum.md)
  - [com.print-nanny.client.models.AlertRequest](docs/AlertRequest.md)
- - [com.print-nanny.client.models.AnsibleFacts](docs/AnsibleFacts.md)
- - [com.print-nanny.client.models.AnsibleFactsRequest](docs/AnsibleFactsRequest.md)
+ - [com.print-nanny.client.models.AnsibleStateEnum](docs/AnsibleStateEnum.md)
  - [com.print-nanny.client.models.ArtifactTypesEnum](docs/ArtifactTypesEnum.md)
  - [com.print-nanny.client.models.CallbackTokenAuthRequest](docs/CallbackTokenAuthRequest.md)
  - [com.print-nanny.client.models.CallbackTokenVerification](docs/CallbackTokenVerification.md)
@@ -156,6 +154,10 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.CloudiotDevice](docs/CloudiotDevice.md)
  - [com.print-nanny.client.models.CloudiotDeviceRequest](docs/CloudiotDeviceRequest.md)
  - [com.print-nanny.client.models.CommandEnum](docs/CommandEnum.md)
+ - [com.print-nanny.client.models.CurrentState](docs/CurrentState.md)
+ - [com.print-nanny.client.models.CurrentStateRequest](docs/CurrentStateRequest.md)
+ - [com.print-nanny.client.models.DesiredConfig](docs/DesiredConfig.md)
+ - [com.print-nanny.client.models.DesiredConfigRequest](docs/DesiredConfigRequest.md)
  - [com.print-nanny.client.models.DetailResponse](docs/DetailResponse.md)
  - [com.print-nanny.client.models.Device](docs/Device.md)
  - [com.print-nanny.client.models.DeviceCalibration](docs/DeviceCalibration.md)
@@ -201,9 +203,10 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.OctoprintPython](docs/OctoprintPython.md)
  - [com.print-nanny.client.models.OctoprintPythonRequest](docs/OctoprintPythonRequest.md)
  - [com.print-nanny.client.models.PaginatedAlertList](docs/PaginatedAlertList.md)
- - [com.print-nanny.client.models.PaginatedAnsibleFactsList](docs/PaginatedAnsibleFactsList.md)
  - [com.print-nanny.client.models.PaginatedCameraList](docs/PaginatedCameraList.md)
  - [com.print-nanny.client.models.PaginatedCloudiotDeviceList](docs/PaginatedCloudiotDeviceList.md)
+ - [com.print-nanny.client.models.PaginatedCurrentStateList](docs/PaginatedCurrentStateList.md)
+ - [com.print-nanny.client.models.PaginatedDesiredConfigList](docs/PaginatedDesiredConfigList.md)
  - [com.print-nanny.client.models.PaginatedDeviceCalibrationList](docs/PaginatedDeviceCalibrationList.md)
  - [com.print-nanny.client.models.PaginatedDeviceList](docs/PaginatedDeviceList.md)
  - [com.print-nanny.client.models.PaginatedDevicePublicKeyList](docs/PaginatedDevicePublicKeyList.md)
@@ -226,7 +229,6 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.Partner3DGeeksMetadata](docs/Partner3DGeeksMetadata.md)
  - [com.print-nanny.client.models.PatchedAlertBulkRequestRequest](docs/PatchedAlertBulkRequestRequest.md)
  - [com.print-nanny.client.models.PatchedAlertRequest](docs/PatchedAlertRequest.md)
- - [com.print-nanny.client.models.PatchedAnsibleFactsRequest](docs/PatchedAnsibleFactsRequest.md)
  - [com.print-nanny.client.models.PatchedCameraRequest](docs/PatchedCameraRequest.md)
  - [com.print-nanny.client.models.PatchedCloudiotDeviceRequest](docs/PatchedCloudiotDeviceRequest.md)
  - [com.print-nanny.client.models.PatchedDeviceCalibrationRequest](docs/PatchedDeviceCalibrationRequest.md)

@@ -26,16 +26,16 @@ import com.squareup.moshi.Json
 /**
  * 
  *
- * Values: main,devel
+ * Values: stable,nightly
  */
 
 enum class ReleaseChannelEnum(val value: kotlin.String) {
 
-    @Json(name = "main")
-    main("main"),
+    @Json(name = "stable")
+    stable("stable"),
 
-    @Json(name = "devel")
-    devel("devel");
+    @Json(name = "nightly")
+    nightly("nightly");
 
     /**
      * Override toString() to avoid using the enum variable name as the value, and instead use

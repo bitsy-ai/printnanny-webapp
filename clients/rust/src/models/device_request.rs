@@ -13,12 +13,30 @@
 pub struct DeviceRequest {
     #[serde(rename = "hostname")]
     pub hostname: String,
+    #[serde(rename = "hardware")]
+    pub hardware: String,
+    #[serde(rename = "revision")]
+    pub revision: String,
+    #[serde(rename = "model")]
+    pub model: String,
+    #[serde(rename = "serial")]
+    pub serial: String,
+    #[serde(rename = "cores")]
+    pub cores: i32,
+    #[serde(rename = "ram")]
+    pub ram: i64,
 }
 
 impl DeviceRequest {
-    pub fn new(hostname: String) -> DeviceRequest {
+    pub fn new(hostname: String, hardware: String, revision: String, model: String, serial: String, cores: i32, ram: i64) -> DeviceRequest {
         DeviceRequest {
             hostname,
+            hardware,
+            revision,
+            model,
+            serial,
+            cores,
+            ram,
         }
     }
 }

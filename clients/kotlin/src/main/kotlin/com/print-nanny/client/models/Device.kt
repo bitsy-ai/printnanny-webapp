@@ -20,9 +20,10 @@
 
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.AnsibleFacts
 import com.print-nanny.client.models.Camera
 import com.print-nanny.client.models.CloudiotDevice
+import com.print-nanny.client.models.CurrentState
+import com.print-nanny.client.models.DesiredConfig
 import com.print-nanny.client.models.DevicePublicKey
 import com.print-nanny.client.models.PrinterController
 
@@ -33,11 +34,20 @@ import java.io.Serializable
  * 
  *
  * @param hostname 
+ * @param hardware 
+ * @param revision 
+ * @param model 
+ * @param serial 
+ * @param cores 
+ * @param ram 
  * @param id 
  * @param cloudiotDevices 
  * @param cameras 
  * @param dashboardUrl 
- * @param lastAnsibleFacts 
+ * @param desiredConfig 
+ * @param desiredConfigTopic 
+ * @param currentState 
+ * @param currentStateTopic 
  * @param printerControllers 
  * @param publicKey 
  * @param user 
@@ -51,6 +61,24 @@ data class Device (
     @Json(name = "hostname")
     val hostname: kotlin.String,
 
+    @Json(name = "hardware")
+    val hardware: kotlin.String,
+
+    @Json(name = "revision")
+    val revision: kotlin.String,
+
+    @Json(name = "model")
+    val model: kotlin.String,
+
+    @Json(name = "serial")
+    val serial: kotlin.String,
+
+    @Json(name = "cores")
+    val cores: kotlin.Int,
+
+    @Json(name = "ram")
+    val ram: kotlin.Long,
+
     @Json(name = "id")
     val id: kotlin.Int? = null,
 
@@ -63,8 +91,17 @@ data class Device (
     @Json(name = "dashboard_url")
     val dashboardUrl: kotlin.String? = null,
 
-    @Json(name = "last_ansible_facts")
-    val lastAnsibleFacts: AnsibleFacts? = null,
+    @Json(name = "desired_config")
+    val desiredConfig: DesiredConfig? = null,
+
+    @Json(name = "desired_config_topic")
+    val desiredConfigTopic: kotlin.String? = null,
+
+    @Json(name = "current_state")
+    val currentState: CurrentState? = null,
+
+    @Json(name = "current_state_topic")
+    val currentStateTopic: kotlin.String? = null,
 
     @Json(name = "printer_controllers")
     val printerControllers: kotlin.collections.List<PrinterController>? = null,
