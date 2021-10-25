@@ -31,7 +31,7 @@ class KeyPair(TypedDict):
     public_key: str
     public_key_checksum: str
     fingerprint: str
-    ca_cers: CACerts
+    ca_certs: CACerts
 
 
 def check_ca_certs():
