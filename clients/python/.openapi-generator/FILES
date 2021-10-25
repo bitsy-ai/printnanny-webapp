@@ -13,6 +13,7 @@ docs/AnsibleStateEnum.md
 docs/ArtifactTypesEnum.md
 docs/AuthApi.md
 docs/AuthApi.md
+docs/CACerts.md
 docs/CallbackTokenAuthRequest.md
 docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
@@ -169,6 +170,7 @@ print_nanny_client/models/alert_event_type_enum.py
 print_nanny_client/models/alert_request.py
 print_nanny_client/models/ansible_state_enum.py
 print_nanny_client/models/artifact_types_enum.py
+print_nanny_client/models/ca_certs.py
 print_nanny_client/models/callback_token_auth_request.py
 print_nanny_client/models/callback_token_verification.py
 print_nanny_client/models/callback_token_verification_request.py
@@ -309,6 +311,7 @@ test/test_ansible_state_enum.py
 test/test_artifact_types_enum.py
 test/test_auth__api.py
 test/test_auth_api.py
+test/test_ca_certs.py
 test/test_callback_token_auth_request.py
 test/test_callback_token_verification.py
 test/test_callback_token_verification_request.py

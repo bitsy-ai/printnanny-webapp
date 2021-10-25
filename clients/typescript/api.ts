@@ -213,6 +213,37 @@ export enum ArtifactTypesEnum {
 }
 
 /**
+ * 
+ * @export
+ * @interface CACerts
+ */
+export interface CACerts {
+    /**
+     * 
+     * @type {string}
+     * @memberof CACerts
+     */
+    'primary'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CACerts
+     */
+    'primary_checksum'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CACerts
+     */
+    'backup'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CACerts
+     */
+    'backup_checksum'?: string;
+}
+/**
  * Abstract class inspired by DRF\'s own token serializer. Returns a user if valid, None or a message if not.
  * @export
  * @interface CallbackTokenAuthRequest
@@ -964,6 +995,12 @@ export interface DeviceKeyPair {
      * @memberof DeviceKeyPair
      */
     'fingerprint_checksum'?: string;
+    /**
+     * 
+     * @type {CACerts}
+     * @memberof DeviceKeyPair
+     */
+    'ca_certs'?: CACerts;
 }
 /**
  * 

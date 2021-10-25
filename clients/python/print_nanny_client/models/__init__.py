@@ -20,6 +20,7 @@ from print_nanny_client.models.alert_event_type_enum import AlertEventTypeEnum
 from print_nanny_client.models.alert_request import AlertRequest
 from print_nanny_client.models.ansible_state_enum import AnsibleStateEnum
 from print_nanny_client.models.artifact_types_enum import ArtifactTypesEnum
+from print_nanny_client.models.ca_certs import CACerts
 from print_nanny_client.models.callback_token_auth_request import CallbackTokenAuthRequest
 from print_nanny_client.models.callback_token_verification import CallbackTokenVerification
 from print_nanny_client.models.callback_token_verification_request import CallbackTokenVerificationRequest

@@ -20,6 +20,7 @@
 
 package com.print-nanny.client.models
 
+import com.print-nanny.client.models.CACerts
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -32,6 +33,7 @@ import java.io.Serializable
  * @param publicKey 
  * @param publicKeyChecksum 
  * @param fingerprintChecksum 
+ * @param caCerts 
  */
 
 data class DeviceKeyPair (
@@ -49,7 +51,10 @@ data class DeviceKeyPair (
     val publicKeyChecksum: kotlin.String? = null,
 
     @Json(name = "fingerprint_checksum")
-    val fingerprintChecksum: kotlin.String? = null
+    val fingerprintChecksum: kotlin.String? = null,
+
+    @Json(name = "ca_certs")
+    val caCerts: CACerts? = null
 
 ) : Serializable {
     companion object {

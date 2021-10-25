@@ -21,6 +21,8 @@ pub struct DeviceKeyPair {
     pub public_key_checksum: Option<String>,
     #[serde(rename = "fingerprint_checksum", skip_serializing_if = "Option::is_none")]
     pub fingerprint_checksum: Option<String>,
+    #[serde(rename = "ca_certs", skip_serializing_if = "Option::is_none")]
+    pub ca_certs: Option<Box<crate::models::CaCerts>>,
 }
 
 impl DeviceKeyPair {
@@ -31,6 +33,7 @@ impl DeviceKeyPair {
             public_key: None,
             public_key_checksum: None,
             fingerprint_checksum: None,
+            ca_certs: None,
         }
     }
 }

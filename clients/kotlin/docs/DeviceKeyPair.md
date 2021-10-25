@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **publicKey** | **kotlin.String** |  |  [optional] [readonly]
 **publicKeyChecksum** | **kotlin.String** |  |  [optional] [readonly]
 **fingerprintChecksum** | **kotlin.String** |  |  [optional] [readonly]
+**caCerts** | [**CACerts**](CACerts.md) |  |  [optional] [readonly]
 
 
 

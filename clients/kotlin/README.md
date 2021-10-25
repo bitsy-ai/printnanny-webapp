@@ -145,6 +145,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.AlertRequest](docs/AlertRequest.md)
  - [com.print-nanny.client.models.AnsibleStateEnum](docs/AnsibleStateEnum.md)
  - [com.print-nanny.client.models.ArtifactTypesEnum](docs/ArtifactTypesEnum.md)
+ - [com.print-nanny.client.models.CACerts](docs/CACerts.md)
  - [com.print-nanny.client.models.CallbackTokenAuthRequest](docs/CallbackTokenAuthRequest.md)
  - [com.print-nanny.client.models.CallbackTokenVerification](docs/CallbackTokenVerification.md)
  - [com.print-nanny.client.models.CallbackTokenVerificationRequest](docs/CallbackTokenVerificationRequest.md)

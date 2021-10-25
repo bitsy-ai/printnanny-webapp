@@ -40,7 +40,8 @@ class DeviceKeyPair(object):
         'private_key_checksum': 'str',
         'public_key': 'str',
         'public_key_checksum': 'str',
-        'fingerprint_checksum': 'str'
+        'fingerprint_checksum': 'str',
+        'ca_certs': 'CACerts'
     }
 
     attribute_map = {
@@ -48,10 +49,11 @@ class DeviceKeyPair(object):
         'private_key_checksum': 'private_key_checksum',
         'public_key': 'public_key',
         'public_key_checksum': 'public_key_checksum',
-        'fingerprint_checksum': 'fingerprint_checksum'
+        'fingerprint_checksum': 'fingerprint_checksum',
+        'ca_certs': 'ca_certs'
     }
 
-    def __init__(self, private_key=None, private_key_checksum=None, public_key=None, public_key_checksum=None, fingerprint_checksum=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, private_key=None, private_key_checksum=None, public_key=None, public_key_checksum=None, fingerprint_checksum=None, ca_certs=None, local_vars_configuration=None):  # noqa: E501
         """DeviceKeyPair - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -62,6 +64,7 @@ class DeviceKeyPair(object):
         self._public_key = None
         self._public_key_checksum = None
         self._fingerprint_checksum = None
+        self._ca_certs = None
         self.discriminator = None
 
         if private_key is not None:
@@ -74,6 +77,7 @@ class DeviceKeyPair(object):
             self.public_key_checksum = public_key_checksum
         if fingerprint_checksum is not None:
             self.fingerprint_checksum = fingerprint_checksum
+        self.ca_certs = ca_certs
 
     @property
     def private_key(self):
@@ -179,6 +183,27 @@ class DeviceKeyPair(object):
         """
 
         self._fingerprint_checksum = fingerprint_checksum
+
+    @property
+    def ca_certs(self):
+        """Gets the ca_certs of this DeviceKeyPair.  # noqa: E501
+
+
+        :return: The ca_certs of this DeviceKeyPair.  # noqa: E501
+        :rtype: CACerts
+        """
+        return self._ca_certs
+
+    @ca_certs.setter
+    def ca_certs(self, ca_certs):
+        """Sets the ca_certs of this DeviceKeyPair.
+
+
+        :param ca_certs: The ca_certs of this DeviceKeyPair.  # noqa: E501
+        :type ca_certs: CACerts
+        """
+
+        self._ca_certs = ca_certs
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

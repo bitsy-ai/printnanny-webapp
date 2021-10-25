@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.device_key_pair import DeviceKeyPair  # noqa: E501
+from print_nanny_client.models.ca_certs import CACerts  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestDeviceKeyPair(unittest.TestCase):
-    """DeviceKeyPair unit test stubs"""
+class TestCACerts(unittest.TestCase):
+    """CACerts unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,26 +29,24 @@ class TestDeviceKeyPair(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test DeviceKeyPair
+        """Test CACerts
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.device_key_pair.DeviceKeyPair()  # noqa: E501
+        # model = print_nanny_client.models.ca_certs.CACerts()  # noqa: E501
         if include_optional :
-            return DeviceKeyPair(
-                private_key = '', 
-                private_key_checksum = '', 
-                public_key = '', 
-                public_key_checksum = '', 
-                fingerprint_checksum = '', 
-                ca_certs = None
+            return CACerts(
+                primary = '', 
+                primary_checksum = '', 
+                backup = '', 
+                backup_checksum = ''
             )
         else :
-            return DeviceKeyPair(
+            return CACerts(
         )
 
-    def testDeviceKeyPair(self):
-        """Test DeviceKeyPair"""
+    def testCACerts(self):
+        """Test CACerts"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

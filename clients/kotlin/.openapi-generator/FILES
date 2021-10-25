@@ -9,6 +9,7 @@ docs/AlertsApi.md
 docs/AnsibleStateEnum.md
 docs/ArtifactTypesEnum.md
 docs/AuthApi.md
+docs/CACerts.md
 docs/CallbackTokenAuthRequest.md
 docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
@@ -178,6 +179,7 @@ src/main/kotlin/com/print-nanny/client/models/AlertEventTypeEnum.kt
 src/main/kotlin/com/print-nanny/client/models/AlertRequest.kt
 src/main/kotlin/com/print-nanny/client/models/AnsibleStateEnum.kt
 src/main/kotlin/com/print-nanny/client/models/ArtifactTypesEnum.kt
+src/main/kotlin/com/print-nanny/client/models/CACerts.kt
 src/main/kotlin/com/print-nanny/client/models/CallbackTokenAuthRequest.kt
 src/main/kotlin/com/print-nanny/client/models/CallbackTokenVerification.kt
 src/main/kotlin/com/print-nanny/client/models/CallbackTokenVerificationRequest.kt

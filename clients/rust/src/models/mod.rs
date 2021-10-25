@@ -10,6 +10,8 @@ pub mod ansible_state_enum;
 pub use self::ansible_state_enum::AnsibleStateEnum;
 pub mod artifact_types_enum;
 pub use self::artifact_types_enum::ArtifactTypesEnum;
+pub mod ca_certs;
+pub use self::ca_certs::CaCerts;
 pub mod callback_token_auth_request;
 pub use self::callback_token_auth_request::CallbackTokenAuthRequest;
 pub mod callback_token_verification;

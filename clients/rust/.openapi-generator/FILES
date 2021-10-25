@@ -11,6 +11,7 @@ docs/AlertsApi.md
 docs/AnsibleStateEnum.md
 docs/ArtifactTypesEnum.md
 docs/AuthApi.md
+docs/CaCerts.md
 docs/CallbackTokenAuthRequest.md
 docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
@@ -163,6 +164,7 @@ src/models/alert_event_type_enum.rs
 src/models/alert_request.rs
 src/models/ansible_state_enum.rs
 src/models/artifact_types_enum.rs
+src/models/ca_certs.rs
 src/models/callback_token_auth_request.rs
 src/models/callback_token_verification.rs
 src/models/callback_token_verification_request.rs
