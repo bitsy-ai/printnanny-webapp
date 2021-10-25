@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
-**cloudiot_devices** | [**list[CloudiotDevice]**](CloudiotDevice.md) |  | [optional] [readonly] 
+**cloudiot_device** | [**CloudiotDevice**](CloudiotDevice.md) |  | [optional] [readonly] 
 **cameras** | [**list[Camera]**](Camera.md) |  | [optional] [readonly] 
 **dashboard_url** | **str** |  | [optional] [readonly] 
 **desired_config** | [**DesiredConfig**](DesiredConfig.md) |  | [optional] [readonly] 

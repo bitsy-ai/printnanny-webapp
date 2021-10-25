@@ -37,7 +37,7 @@ class Device(object):
     """
     openapi_types = {
         'id': 'int',
-        'cloudiot_devices': 'list[CloudiotDevice]',
+        'cloudiot_device': 'CloudiotDevice',
         'cameras': 'list[Camera]',
         'dashboard_url': 'str',
         'desired_config': 'DesiredConfig',
@@ -61,7 +61,7 @@ class Device(object):
 
     attribute_map = {
         'id': 'id',
-        'cloudiot_devices': 'cloudiot_devices',
+        'cloudiot_device': 'cloudiot_device',
         'cameras': 'cameras',
         'dashboard_url': 'dashboard_url',
         'desired_config': 'desired_config',
@@ -83,14 +83,14 @@ class Device(object):
         'ram': 'ram'
     }
 
-    def __init__(self, id=None, cloudiot_devices=None, cameras=None, dashboard_url=None, desired_config=None, desired_config_topic=None, current_state=None, current_state_topic=None, printer_controllers=None, public_key=None, user=None, deleted=None, created_dt=None, updated_dt=None, hostname=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, cloudiot_device=None, cameras=None, dashboard_url=None, desired_config=None, desired_config_topic=None, current_state=None, current_state_topic=None, printer_controllers=None, public_key=None, user=None, deleted=None, created_dt=None, updated_dt=None, hostname=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
-        self._cloudiot_devices = None
+        self._cloudiot_device = None
         self._cameras = None
         self._dashboard_url = None
         self._desired_config = None
@@ -114,8 +114,7 @@ class Device(object):
 
         if id is not None:
             self.id = id
-        if cloudiot_devices is not None:
-            self.cloudiot_devices = cloudiot_devices
+        self.cloudiot_device = cloudiot_device
         if cameras is not None:
             self.cameras = cameras
         if dashboard_url is not None:
@@ -167,25 +166,25 @@ class Device(object):
         self._id = id
 
     @property
-    def cloudiot_devices(self):
-        """Gets the cloudiot_devices of this Device.  # noqa: E501
+    def cloudiot_device(self):
+        """Gets the cloudiot_device of this Device.  # noqa: E501
 
 
-        :return: The cloudiot_devices of this Device.  # noqa: E501
-        :rtype: list[CloudiotDevice]
+        :return: The cloudiot_device of this Device.  # noqa: E501
+        :rtype: CloudiotDevice
         """
-        return self._cloudiot_devices
+        return self._cloudiot_device
 
-    @cloudiot_devices.setter
-    def cloudiot_devices(self, cloudiot_devices):
-        """Sets the cloudiot_devices of this Device.
+    @cloudiot_device.setter
+    def cloudiot_device(self, cloudiot_device):
+        """Sets the cloudiot_device of this Device.
 
 
-        :param cloudiot_devices: The cloudiot_devices of this Device.  # noqa: E501
-        :type cloudiot_devices: list[CloudiotDevice]
+        :param cloudiot_device: The cloudiot_device of this Device.  # noqa: E501
+        :type cloudiot_device: CloudiotDevice
         """
 
-        self._cloudiot_devices = cloudiot_devices
+        self._cloudiot_device = cloudiot_device
 
     @property
     def cameras(self):
