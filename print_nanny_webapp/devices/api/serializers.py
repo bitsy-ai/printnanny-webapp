@@ -52,8 +52,8 @@ class PrinterControllerSerializer(serializers.ModelSerializer):
 # v1 Device Identity Provisioning (distributed via rpi-imager)
 ##
 class CloudiotDeviceSerializer(serializers.ModelSerializer):
-    config_topic = serializers.CharField(read_only=True)
-    state_topic = serializers.CharField(read_only=True)
+    desired_config_topic = serializers.CharField(read_only=True)
+    current_state_topic = serializers.CharField(read_only=True)
 
     gcp_project_id = serializers.CharField(read_only=True)
     gcp_region = serializers.CharField(read_only=True)
@@ -121,14 +121,12 @@ class DeviceSerializer(serializers.ModelSerializer):
         required=False,
         allow_null=True,
     )
-    desired_config_topic = serializers.CharField(read_only=True)
 
     current_state = CurrentStateSerializer(
         read_only=True,
         required=False,
         allow_null=True,
     )
-    current_state_topic = serializers.CharField(read_only=True)
 
     printer_controllers = PrinterControllerSerializer(read_only=True, many=True)
     public_key = DevicePublicKeySerializer(
