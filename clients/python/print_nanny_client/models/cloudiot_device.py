@@ -37,8 +37,8 @@ class CloudiotDevice(object):
     """
     openapi_types = {
         'num_id': 'int',
-        'config_topic': 'str',
-        'state_topic': 'str',
+        'desired_config_topic': 'str',
+        'current_state_topic': 'str',
         'gcp_project_id': 'str',
         'gcp_region': 'str',
         'gcp_cloudiot_device_registry': 'str',
@@ -54,8 +54,8 @@ class CloudiotDevice(object):
 
     attribute_map = {
         'num_id': 'num_id',
-        'config_topic': 'config_topic',
-        'state_topic': 'state_topic',
+        'desired_config_topic': 'desired_config_topic',
+        'current_state_topic': 'current_state_topic',
         'gcp_project_id': 'gcp_project_id',
         'gcp_region': 'gcp_region',
         'gcp_cloudiot_device_registry': 'gcp_cloudiot_device_registry',
@@ -69,15 +69,15 @@ class CloudiotDevice(object):
         'id': 'id'
     }
 
-    def __init__(self, num_id=None, config_topic=None, state_topic=None, gcp_project_id=None, gcp_region=None, gcp_cloudiot_device_registry=None, mqtt_bridge_hostname=None, mqtt_bridge_port=None, mqtt_client_id=None, user=None, device=None, deleted=None, name=None, id=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, num_id=None, desired_config_topic=None, current_state_topic=None, gcp_project_id=None, gcp_region=None, gcp_cloudiot_device_registry=None, mqtt_bridge_hostname=None, mqtt_bridge_port=None, mqtt_client_id=None, user=None, device=None, deleted=None, name=None, id=None, local_vars_configuration=None):  # noqa: E501
         """CloudiotDevice - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._num_id = None
-        self._config_topic = None
-        self._state_topic = None
+        self._desired_config_topic = None
+        self._current_state_topic = None
         self._gcp_project_id = None
         self._gcp_region = None
         self._gcp_cloudiot_device_registry = None
@@ -92,10 +92,10 @@ class CloudiotDevice(object):
         self.discriminator = None
 
         self.num_id = num_id
-        if config_topic is not None:
-            self.config_topic = config_topic
-        if state_topic is not None:
-            self.state_topic = state_topic
+        if desired_config_topic is not None:
+            self.desired_config_topic = desired_config_topic
+        if current_state_topic is not None:
+            self.current_state_topic = current_state_topic
         if gcp_project_id is not None:
             self.gcp_project_id = gcp_project_id
         if gcp_region is not None:
@@ -147,46 +147,46 @@ class CloudiotDevice(object):
         self._num_id = num_id
 
     @property
-    def config_topic(self):
-        """Gets the config_topic of this CloudiotDevice.  # noqa: E501
+    def desired_config_topic(self):
+        """Gets the desired_config_topic of this CloudiotDevice.  # noqa: E501
 
 
-        :return: The config_topic of this CloudiotDevice.  # noqa: E501
+        :return: The desired_config_topic of this CloudiotDevice.  # noqa: E501
         :rtype: str
         """
-        return self._config_topic
+        return self._desired_config_topic
 
-    @config_topic.setter
-    def config_topic(self, config_topic):
-        """Sets the config_topic of this CloudiotDevice.
+    @desired_config_topic.setter
+    def desired_config_topic(self, desired_config_topic):
+        """Sets the desired_config_topic of this CloudiotDevice.
 
 
-        :param config_topic: The config_topic of this CloudiotDevice.  # noqa: E501
-        :type config_topic: str
+        :param desired_config_topic: The desired_config_topic of this CloudiotDevice.  # noqa: E501
+        :type desired_config_topic: str
         """
 
-        self._config_topic = config_topic
+        self._desired_config_topic = desired_config_topic
 
     @property
-    def state_topic(self):
-        """Gets the state_topic of this CloudiotDevice.  # noqa: E501
+    def current_state_topic(self):
+        """Gets the current_state_topic of this CloudiotDevice.  # noqa: E501
 
 
-        :return: The state_topic of this CloudiotDevice.  # noqa: E501
+        :return: The current_state_topic of this CloudiotDevice.  # noqa: E501
         :rtype: str
         """
-        return self._state_topic
+        return self._current_state_topic
 
-    @state_topic.setter
-    def state_topic(self, state_topic):
-        """Sets the state_topic of this CloudiotDevice.
+    @current_state_topic.setter
+    def current_state_topic(self, current_state_topic):
+        """Sets the current_state_topic of this CloudiotDevice.
 
 
-        :param state_topic: The state_topic of this CloudiotDevice.  # noqa: E501
-        :type state_topic: str
+        :param current_state_topic: The current_state_topic of this CloudiotDevice.  # noqa: E501
+        :type current_state_topic: str
         """
 
-        self._state_topic = state_topic
+        self._current_state_topic = current_state_topic
 
     @property
     def gcp_project_id(self):

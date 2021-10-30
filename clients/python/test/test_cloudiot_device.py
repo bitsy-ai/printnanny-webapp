@@ -37,8 +37,8 @@ class TestCloudiotDevice(unittest.TestCase):
         if include_optional :
             return CloudiotDevice(
                 num_id = -9223372036854775808, 
-                config_topic = '', 
-                state_topic = '', 
+                desired_config_topic = '', 
+                current_state_topic = '', 
                 gcp_project_id = '', 
                 gcp_region = '', 
                 gcp_cloudiot_device_registry = '', 

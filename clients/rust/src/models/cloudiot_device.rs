@@ -13,10 +13,10 @@
 pub struct CloudiotDevice {
     #[serde(rename = "num_id")]
     pub num_id: i64,
-    #[serde(rename = "config_topic", skip_serializing_if = "Option::is_none")]
-    pub config_topic: Option<String>,
-    #[serde(rename = "state_topic", skip_serializing_if = "Option::is_none")]
-    pub state_topic: Option<String>,
+    #[serde(rename = "desired_config_topic", skip_serializing_if = "Option::is_none")]
+    pub desired_config_topic: Option<String>,
+    #[serde(rename = "current_state_topic", skip_serializing_if = "Option::is_none")]
+    pub current_state_topic: Option<String>,
     #[serde(rename = "gcp_project_id", skip_serializing_if = "Option::is_none")]
     pub gcp_project_id: Option<String>,
     #[serde(rename = "gcp_region", skip_serializing_if = "Option::is_none")]
@@ -45,8 +45,8 @@ impl CloudiotDevice {
     pub fn new(num_id: i64, name: String, id: String) -> CloudiotDevice {
         CloudiotDevice {
             num_id,
-            config_topic: None,
-            state_topic: None,
+            desired_config_topic: None,
+            current_state_topic: None,
             gcp_project_id: None,
             gcp_region: None,
             gcp_cloudiot_device_registry: None,

@@ -58,9 +58,7 @@ class TestPaginatedDeviceList(unittest.TestCase):
                             ], 
                         dashboard_url = '', 
                         desired_config = null, 
-                        desired_config_topic = '', 
                         current_state = null, 
-                        current_state_topic = '', 
                         printer_controllers = [
                             print_nanny_client.models.printer_controller.PrinterController(
                                 id = 56, 

@@ -30,8 +30,8 @@ import java.io.Serializable
  * @param numId 
  * @param name 
  * @param id 
- * @param configTopic 
- * @param stateTopic 
+ * @param desiredConfigTopic 
+ * @param currentStateTopic 
  * @param gcpProjectId 
  * @param gcpRegion 
  * @param gcpCloudiotDeviceRegistry 
@@ -54,11 +54,11 @@ data class CloudiotDevice (
     @Json(name = "id")
     val id: kotlin.String,
 
-    @Json(name = "config_topic")
-    val configTopic: kotlin.String? = null,
+    @Json(name = "desired_config_topic")
+    val desiredConfigTopic: kotlin.String? = null,
 
-    @Json(name = "state_topic")
-    val stateTopic: kotlin.String? = null,
+    @Json(name = "current_state_topic")
+    val currentStateTopic: kotlin.String? = null,
 
     @Json(name = "gcp_project_id")
     val gcpProjectId: kotlin.String? = null,

@@ -41,9 +41,7 @@ class Device(object):
         'cameras': 'list[Camera]',
         'dashboard_url': 'str',
         'desired_config': 'DesiredConfig',
-        'desired_config_topic': 'str',
         'current_state': 'CurrentState',
-        'current_state_topic': 'str',
         'printer_controllers': 'list[PrinterController]',
         'public_key': 'DevicePublicKey',
         'user': 'int',
@@ -65,9 +63,7 @@ class Device(object):
         'cameras': 'cameras',
         'dashboard_url': 'dashboard_url',
         'desired_config': 'desired_config',
-        'desired_config_topic': 'desired_config_topic',
         'current_state': 'current_state',
-        'current_state_topic': 'current_state_topic',
         'printer_controllers': 'printer_controllers',
         'public_key': 'public_key',
         'user': 'user',
@@ -83,7 +79,7 @@ class Device(object):
         'ram': 'ram'
     }
 
-    def __init__(self, id=None, cloudiot_device=None, cameras=None, dashboard_url=None, desired_config=None, desired_config_topic=None, current_state=None, current_state_topic=None, printer_controllers=None, public_key=None, user=None, deleted=None, created_dt=None, updated_dt=None, hostname=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, cloudiot_device=None, cameras=None, dashboard_url=None, desired_config=None, current_state=None, printer_controllers=None, public_key=None, user=None, deleted=None, created_dt=None, updated_dt=None, hostname=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -94,9 +90,7 @@ class Device(object):
         self._cameras = None
         self._dashboard_url = None
         self._desired_config = None
-        self._desired_config_topic = None
         self._current_state = None
-        self._current_state_topic = None
         self._printer_controllers = None
         self._public_key = None
         self._user = None
@@ -120,11 +114,7 @@ class Device(object):
         if dashboard_url is not None:
             self.dashboard_url = dashboard_url
         self.desired_config = desired_config
-        if desired_config_topic is not None:
-            self.desired_config_topic = desired_config_topic
         self.current_state = current_state
-        if current_state_topic is not None:
-            self.current_state_topic = current_state_topic
         if printer_controllers is not None:
             self.printer_controllers = printer_controllers
         self.public_key = public_key
@@ -250,27 +240,6 @@ class Device(object):
         self._desired_config = desired_config
 
     @property
-    def desired_config_topic(self):
-        """Gets the desired_config_topic of this Device.  # noqa: E501
-
-
-        :return: The desired_config_topic of this Device.  # noqa: E501
-        :rtype: str
-        """
-        return self._desired_config_topic
-
-    @desired_config_topic.setter
-    def desired_config_topic(self, desired_config_topic):
-        """Sets the desired_config_topic of this Device.
-
-
-        :param desired_config_topic: The desired_config_topic of this Device.  # noqa: E501
-        :type desired_config_topic: str
-        """
-
-        self._desired_config_topic = desired_config_topic
-
-    @property
     def current_state(self):
         """Gets the current_state of this Device.  # noqa: E501
 
@@ -290,27 +259,6 @@ class Device(object):
         """
 
         self._current_state = current_state
-
-    @property
-    def current_state_topic(self):
-        """Gets the current_state_topic of this Device.  # noqa: E501
-
-
-        :return: The current_state_topic of this Device.  # noqa: E501
-        :rtype: str
-        """
-        return self._current_state_topic
-
-    @current_state_topic.setter
-    def current_state_topic(self, current_state_topic):
-        """Sets the current_state_topic of this Device.
-
-
-        :param current_state_topic: The current_state_topic of this Device.  # noqa: E501
-        :type current_state_topic: str
-        """
-
-        self._current_state_topic = current_state_topic
 
     @property
     def printer_controllers(self):

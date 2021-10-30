@@ -21,12 +21,8 @@ pub struct Device {
     pub dashboard_url: Option<String>,
     #[serde(rename = "desired_config", skip_serializing_if = "Option::is_none")]
     pub desired_config: Option<Box<crate::models::DesiredConfig>>,
-    #[serde(rename = "desired_config_topic", skip_serializing_if = "Option::is_none")]
-    pub desired_config_topic: Option<String>,
     #[serde(rename = "current_state", skip_serializing_if = "Option::is_none")]
     pub current_state: Option<Box<crate::models::CurrentState>>,
-    #[serde(rename = "current_state_topic", skip_serializing_if = "Option::is_none")]
-    pub current_state_topic: Option<String>,
     #[serde(rename = "printer_controllers", skip_serializing_if = "Option::is_none")]
     pub printer_controllers: Option<Vec<crate::models::PrinterController>>,
     #[serde(rename = "public_key", skip_serializing_if = "Option::is_none")]
@@ -63,9 +59,7 @@ impl Device {
             cameras: None,
             dashboard_url: None,
             desired_config: None,
-            desired_config_topic: None,
             current_state: None,
-            current_state_topic: None,
             printer_controllers: None,
             public_key: None,
             user: None,

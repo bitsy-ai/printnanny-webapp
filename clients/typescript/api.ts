@@ -439,13 +439,13 @@ export interface CloudiotDevice {
      * @type {string}
      * @memberof CloudiotDevice
      */
-    'config_topic'?: string;
+    'desired_config_topic'?: string;
     /**
      * 
      * @type {string}
      * @memberof CloudiotDevice
      */
-    'state_topic'?: string;
+    'current_state_topic'?: string;
     /**
      * 
      * @type {string}
@@ -766,22 +766,10 @@ export interface Device {
     'desired_config'?: DesiredConfig | null;
     /**
      * 
-     * @type {string}
-     * @memberof Device
-     */
-    'desired_config_topic'?: string;
-    /**
-     * 
      * @type {CurrentState}
      * @memberof Device
      */
     'current_state'?: CurrentState | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Device
-     */
-    'current_state_topic'?: string;
     /**
      * 
      * @type {Array<PrinterController>}

@@ -42,8 +42,8 @@ class TestPaginatedCloudiotDeviceList(unittest.TestCase):
                 results = [
                     print_nanny_client.models.cloudiot_device.CloudiotDevice(
                         num_id = -9223372036854775808, 
-                        config_topic = '', 
-                        state_topic = '', 
+                        desired_config_topic = '', 
+                        current_state_topic = '', 
                         gcp_project_id = '', 
                         gcp_region = '', 
                         gcp_cloudiot_device_registry = '', 

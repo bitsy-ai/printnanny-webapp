@@ -45,9 +45,7 @@ import java.io.Serializable
  * @param cameras 
  * @param dashboardUrl 
  * @param desiredConfig 
- * @param desiredConfigTopic 
  * @param currentState 
- * @param currentStateTopic 
  * @param printerControllers 
  * @param publicKey 
  * @param user 
@@ -94,14 +92,8 @@ data class Device (
     @Json(name = "desired_config")
     val desiredConfig: DesiredConfig? = null,
 
-    @Json(name = "desired_config_topic")
-    val desiredConfigTopic: kotlin.String? = null,
-
     @Json(name = "current_state")
     val currentState: CurrentState? = null,
-
-    @Json(name = "current_state_topic")
-    val currentStateTopic: kotlin.String? = null,
 
     @Json(name = "printer_controllers")
     val printerControllers: kotlin.collections.List<PrinterController>? = null,
