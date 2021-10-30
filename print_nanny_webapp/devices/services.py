@@ -91,7 +91,8 @@ def generate_keypair():
     ca_certs = check_ca_certs()
 
     with tempfile.TemporaryDirectory() as tmp:
-        keypair_filename = f"{tmp}/ecdsa256_keypair.pem"
+        sec1_filename = f"{tmp}/ecdsa256_sec1.pem"
+        pkcs8_filename = f"{tmp}/ecdsa256.pem"
         public_key_filename = f"{tmp}/ecdsa_public.pem"
 
         p = subprocess.check_output(
@@ -103,7 +104,21 @@ def generate_keypair():
                 "prime256v1",
                 "-noout",
                 "-out",
-                keypair_filename,
+                sec1_filename,
+            ],
+        )
+        # Keats/jsonwebtoken crate only supports PKCS8 format for private EC keys
+        # https://github.com/Keats/jsonwebtoken#convert-sec1-private-key-to-pkcs8
+        p = subprocess.check_output(
+            [
+                "openssl",
+                "pkcs8",
+                "-topk8",
+                "-nocrypt",
+                "-in",
+                sec1_filename,
+                "-out",
+                pkcs8_filename,
             ],
         )
 
@@ -112,7 +127,7 @@ def generate_keypair():
                 "openssl",
                 "ec",
                 "-in",
-                keypair_filename,
+                sec1_filename,
                 "-pubout",
                 "-out",
                 public_key_filename,
@@ -135,7 +150,7 @@ def generate_keypair():
             public_key_content = f.read()
             public_key_checksum = hashlib.sha256(public_key_content).hexdigest()
 
-        with open(keypair_filename, "rb") as f:
+        with open(pkcs8_filename, "rb") as f:
             private_key_content = f.read()
             private_key_checksum = hashlib.sha256(private_key_content).hexdigest()
 
