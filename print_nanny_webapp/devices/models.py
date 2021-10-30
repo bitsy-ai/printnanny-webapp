@@ -192,7 +192,7 @@ class CurrentState(SafeDeleteModel):
 
     _safedelete_policy = SOFT_DELETE
     ansible_state = models.CharField(
-        max_length=32,
+        max_length=64,
         choices=AnsibleStateChoices.choices,
         default=AnsibleStateChoices.RUNNING,
     )
