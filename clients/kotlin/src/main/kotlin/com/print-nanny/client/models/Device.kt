@@ -26,6 +26,7 @@ import com.print-nanny.client.models.DeviceConfig
 import com.print-nanny.client.models.DevicePublicKey
 import com.print-nanny.client.models.DeviceState
 import com.print-nanny.client.models.PrinterController
+import com.print-nanny.client.models.ReleaseChannelEnum
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -52,6 +53,7 @@ import java.io.Serializable
  * @param deleted 
  * @param createdDt 
  * @param updatedDt 
+ * @param releaseChannel 
  */
 
 data class Device (
@@ -111,7 +113,10 @@ data class Device (
     val createdDt: java.time.OffsetDateTime? = null,
 
     @Json(name = "updated_dt")
-    val updatedDt: java.time.OffsetDateTime? = null
+    val updatedDt: java.time.OffsetDateTime? = null,
+
+    @Json(name = "release_channel")
+    val releaseChannel: ReleaseChannelEnum? = null
 
 ) : Serializable {
     companion object {

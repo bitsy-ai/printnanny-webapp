@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **hostname** | Option<**String**> |  | [optional]
+**release_channel** | Option<[**crate::models::ReleaseChannelEnum**](ReleaseChannelEnum.md)> |  | [optional]
 **hardware** | Option<**String**> |  | [optional]
 **revision** | Option<**String**> |  | [optional]
 **model** | Option<**String**> |  | [optional]

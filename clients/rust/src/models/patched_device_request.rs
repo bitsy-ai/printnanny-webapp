@@ -13,6 +13,8 @@
 pub struct PatchedDeviceRequest {
     #[serde(rename = "hostname", skip_serializing_if = "Option::is_none")]
     pub hostname: Option<String>,
+    #[serde(rename = "release_channel", skip_serializing_if = "Option::is_none")]
+    pub release_channel: Option<crate::models::ReleaseChannelEnum>,
     #[serde(rename = "hardware", skip_serializing_if = "Option::is_none")]
     pub hardware: Option<String>,
     #[serde(rename = "revision", skip_serializing_if = "Option::is_none")]
@@ -31,6 +33,7 @@ impl PatchedDeviceRequest {
     pub fn new() -> PatchedDeviceRequest {
         PatchedDeviceRequest {
             hostname: None,
+            release_channel: None,
             hardware: None,
             revision: None,
             model: None,

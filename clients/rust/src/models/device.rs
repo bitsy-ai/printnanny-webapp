@@ -37,6 +37,8 @@ pub struct Device {
     pub updated_dt: Option<String>,
     #[serde(rename = "hostname")]
     pub hostname: String,
+    #[serde(rename = "release_channel", skip_serializing_if = "Option::is_none")]
+    pub release_channel: Option<crate::models::ReleaseChannelEnum>,
     #[serde(rename = "hardware")]
     pub hardware: String,
     #[serde(rename = "revision")]
@@ -67,6 +69,7 @@ impl Device {
             created_dt: None,
             updated_dt: None,
             hostname,
+            release_channel: None,
             hardware,
             revision,
             model,

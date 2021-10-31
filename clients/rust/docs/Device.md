@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **created_dt** | Option<**String**> |  | [optional][readonly]
 **updated_dt** | Option<**String**> |  | [optional][readonly]
 **hostname** | **String** |  | 
+**release_channel** | Option<[**crate::models::ReleaseChannelEnum**](ReleaseChannelEnum.md)> |  | [optional]
 **hardware** | **String** |  | 
 **revision** | **String** |  | 
 **model** | **String** |  | 

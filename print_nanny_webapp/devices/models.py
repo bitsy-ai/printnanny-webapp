@@ -44,7 +44,11 @@ class Device(SafeDeleteModel):
         UserModel, on_delete=models.CASCADE, related_name="devices"
     )
     hostname = models.CharField(max_length=255)
-
+    release_channel = models.CharField(
+        max_length=8,
+        choices=DeviceReleaseChannel.choices,
+        default=DeviceReleaseChannel.STABLE,
+    )
     # immutable device info
     # /proc/cpuinfo HARDWARE
     hardware = models.CharField(max_length=255)
