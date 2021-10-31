@@ -36,8 +36,8 @@ class PatchedDeviceRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'hostname': 'str',
         'release_channel': 'ReleaseChannelEnum',
+        'hostname': 'str',
         'hardware': 'str',
         'revision': 'str',
         'model': 'str',
@@ -47,8 +47,8 @@ class PatchedDeviceRequest(object):
     }
 
     attribute_map = {
-        'hostname': 'hostname',
         'release_channel': 'release_channel',
+        'hostname': 'hostname',
         'hardware': 'hardware',
         'revision': 'revision',
         'model': 'model',
@@ -57,14 +57,14 @@ class PatchedDeviceRequest(object):
         'ram': 'ram'
     }
 
-    def __init__(self, hostname=None, release_channel=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, release_channel=None, hostname=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, local_vars_configuration=None):  # noqa: E501
         """PatchedDeviceRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
-        self._hostname = None
         self._release_channel = None
+        self._hostname = None
         self._hardware = None
         self._revision = None
         self._model = None
@@ -73,10 +73,9 @@ class PatchedDeviceRequest(object):
         self._ram = None
         self.discriminator = None
 
+        self.release_channel = release_channel
         if hostname is not None:
             self.hostname = hostname
-        if release_channel is not None:
-            self.release_channel = release_channel
         if hardware is not None:
             self.hardware = hardware
         if revision is not None:
@@ -89,6 +88,27 @@ class PatchedDeviceRequest(object):
             self.cores = cores
         if ram is not None:
             self.ram = ram
+
+    @property
+    def release_channel(self):
+        """Gets the release_channel of this PatchedDeviceRequest.  # noqa: E501
+
+
+        :return: The release_channel of this PatchedDeviceRequest.  # noqa: E501
+        :rtype: ReleaseChannelEnum
+        """
+        return self._release_channel
+
+    @release_channel.setter
+    def release_channel(self, release_channel):
+        """Sets the release_channel of this PatchedDeviceRequest.
+
+
+        :param release_channel: The release_channel of this PatchedDeviceRequest.  # noqa: E501
+        :type release_channel: ReleaseChannelEnum
+        """
+
+        self._release_channel = release_channel
 
     @property
     def hostname(self):
@@ -113,27 +133,6 @@ class PatchedDeviceRequest(object):
             raise ValueError("Invalid value for `hostname`, length must be less than or equal to `255`")  # noqa: E501
 
         self._hostname = hostname
-
-    @property
-    def release_channel(self):
-        """Gets the release_channel of this PatchedDeviceRequest.  # noqa: E501
-
-
-        :return: The release_channel of this PatchedDeviceRequest.  # noqa: E501
-        :rtype: ReleaseChannelEnum
-        """
-        return self._release_channel
-
-    @release_channel.setter
-    def release_channel(self, release_channel):
-        """Sets the release_channel of this PatchedDeviceRequest.
-
-
-        :param release_channel: The release_channel of this PatchedDeviceRequest.  # noqa: E501
-        :type release_channel: ReleaseChannelEnum
-        """
-
-        self._release_channel = release_channel
 
     @property
     def hardware(self):

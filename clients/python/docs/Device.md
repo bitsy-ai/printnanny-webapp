@@ -12,12 +12,12 @@ Name | Type | Description | Notes
 **current_state** | [**DeviceState**](DeviceState.md) |  | [optional] [readonly] 
 **printer_controllers** | [**list[PrinterController]**](PrinterController.md) |  | [optional] [readonly] 
 **public_key** | [**DevicePublicKey**](DevicePublicKey.md) |  | [optional] [readonly] 
+**release_channel** | [**ReleaseChannelEnum**](ReleaseChannelEnum.md) |  | [optional] 
 **user** | **int** |  | [optional] [readonly] 
 **deleted** | **datetime** |  | [optional] [readonly] 
 **created_dt** | **datetime** |  | [optional] [readonly] 
 **updated_dt** | **datetime** |  | [optional] [readonly] 
 **hostname** | **str** |  | 
-**release_channel** | [**ReleaseChannelEnum**](ReleaseChannelEnum.md) |  | [optional] 
 **hardware** | **str** |  | 
 **revision** | **str** |  | 
 **model** | **str** |  | 

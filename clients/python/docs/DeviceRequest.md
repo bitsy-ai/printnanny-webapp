@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**hostname** | **str** |  | 
 **release_channel** | [**ReleaseChannelEnum**](ReleaseChannelEnum.md) |  | [optional] 
+**hostname** | **str** |  | 
 **hardware** | **str** |  | 
 **revision** | **str** |  | 
 **model** | **str** |  | 

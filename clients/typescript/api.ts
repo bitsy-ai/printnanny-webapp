@@ -679,6 +679,12 @@ export interface Device {
     'public_key'?: DevicePublicKey | null;
     /**
      * 
+     * @type {ReleaseChannelEnum}
+     * @memberof Device
+     */
+    'release_channel'?: ReleaseChannelEnum;
+    /**
+     * 
      * @type {number}
      * @memberof Device
      */
@@ -707,12 +713,6 @@ export interface Device {
      * @memberof Device
      */
     'hostname': string;
-    /**
-     * 
-     * @type {ReleaseChannelEnum}
-     * @memberof Device
-     */
-    'release_channel'?: ReleaseChannelEnum;
     /**
      * 
      * @type {string}
@@ -1022,16 +1022,16 @@ export interface DevicePublicKey {
 export interface DeviceRequest {
     /**
      * 
-     * @type {string}
-     * @memberof DeviceRequest
-     */
-    'hostname': string;
-    /**
-     * 
      * @type {ReleaseChannelEnum}
      * @memberof DeviceRequest
      */
     'release_channel'?: ReleaseChannelEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceRequest
+     */
+    'hostname': string;
     /**
      * 
      * @type {string}
@@ -3901,16 +3901,16 @@ export interface PatchedDeviceCalibrationRequest {
 export interface PatchedDeviceRequest {
     /**
      * 
-     * @type {string}
-     * @memberof PatchedDeviceRequest
-     */
-    'hostname'?: string;
-    /**
-     * 
      * @type {ReleaseChannelEnum}
      * @memberof PatchedDeviceRequest
      */
     'release_channel'?: ReleaseChannelEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedDeviceRequest
+     */
+    'hostname'?: string;
     /**
      * 
      * @type {string}

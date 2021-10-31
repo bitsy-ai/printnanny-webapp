@@ -19,11 +19,11 @@ Name | Type | Description | Notes
 **currentState** | [**DeviceState**](DeviceState.md) |  |  [optional] [readonly]
 **printerControllers** | [**kotlin.collections.List&lt;PrinterController&gt;**](PrinterController.md) |  |  [optional] [readonly]
 **publicKey** | [**DevicePublicKey**](DevicePublicKey.md) |  |  [optional] [readonly]
+**releaseChannel** | [**ReleaseChannelEnum**](ReleaseChannelEnum.md) |  |  [optional]
 **user** | **kotlin.Int** |  |  [optional] [readonly]
 **deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **updatedDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
-**releaseChannel** | [**ReleaseChannelEnum**](ReleaseChannelEnum.md) |  |  [optional]
 
 
 

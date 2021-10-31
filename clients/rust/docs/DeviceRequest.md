@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**hostname** | **String** |  | 
 **release_channel** | Option<[**crate::models::ReleaseChannelEnum**](ReleaseChannelEnum.md)> |  | [optional]
+**hostname** | **String** |  | 
 **hardware** | **String** |  | 
 **revision** | **String** |  | 
 **model** | **String** |  | 

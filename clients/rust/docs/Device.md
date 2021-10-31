@@ -12,12 +12,12 @@ Name | Type | Description | Notes
 **current_state** | Option<[**crate::models::DeviceState**](DeviceState.md)> |  | [optional][readonly]
 **printer_controllers** | Option<[**Vec<crate::models::PrinterController>**](PrinterController.md)> |  | [optional][readonly]
 **public_key** | Option<[**crate::models::DevicePublicKey**](DevicePublicKey.md)> |  | [optional][readonly]
+**release_channel** | Option<[**crate::models::ReleaseChannelEnum**](ReleaseChannelEnum.md)> |  | [optional]
 **user** | Option<**i32**> |  | [optional][readonly]
 **deleted** | Option<**String**> |  | [optional][readonly]
 **created_dt** | Option<**String**> |  | [optional][readonly]
 **updated_dt** | Option<**String**> |  | [optional][readonly]
 **hostname** | **String** |  | 
-**release_channel** | Option<[**crate::models::ReleaseChannelEnum**](ReleaseChannelEnum.md)> |  | [optional]
 **hardware** | **String** |  | 
 **revision** | **String** |  | 
 **model** | **String** |  | 

@@ -36,8 +36,8 @@ class TestPatchedDeviceRequest(unittest.TestCase):
         # model = print_nanny_client.models.patched_device_request.PatchedDeviceRequest()  # noqa: E501
         if include_optional :
             return PatchedDeviceRequest(
+                release_channel = None, 
                 hostname = '', 
-                release_channel = 'stable', 
                 hardware = '', 
                 revision = '', 
                 model = '', 

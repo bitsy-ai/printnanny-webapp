@@ -49,11 +49,11 @@ import java.io.Serializable
  * @param currentState 
  * @param printerControllers 
  * @param publicKey 
+ * @param releaseChannel 
  * @param user 
  * @param deleted 
  * @param createdDt 
  * @param updatedDt 
- * @param releaseChannel 
  */
 
 data class Device (
@@ -103,6 +103,9 @@ data class Device (
     @Json(name = "public_key")
     val publicKey: DevicePublicKey? = null,
 
+    @Json(name = "release_channel")
+    val releaseChannel: ReleaseChannelEnum? = null,
+
     @Json(name = "user")
     val user: kotlin.Int? = null,
 
@@ -113,10 +116,7 @@ data class Device (
     val createdDt: java.time.OffsetDateTime? = null,
 
     @Json(name = "updated_dt")
-    val updatedDt: java.time.OffsetDateTime? = null,
-
-    @Json(name = "release_channel")
-    val releaseChannel: ReleaseChannelEnum? = null
+    val updatedDt: java.time.OffsetDateTime? = null
 
 ) : Serializable {
     companion object {

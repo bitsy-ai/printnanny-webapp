@@ -11,10 +11,10 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct DeviceRequest {
+    #[serde(rename = "release_channel", skip_serializing_if = "Option::is_none")]
+    pub release_channel: Option<Box<crate::models::ReleaseChannelEnum>>,
     #[serde(rename = "hostname")]
     pub hostname: String,
-    #[serde(rename = "release_channel", skip_serializing_if = "Option::is_none")]
-    pub release_channel: Option<crate::models::ReleaseChannelEnum>,
     #[serde(rename = "hardware")]
     pub hardware: String,
     #[serde(rename = "revision")]
@@ -32,8 +32,8 @@ pub struct DeviceRequest {
 impl DeviceRequest {
     pub fn new(hostname: String, hardware: String, revision: String, model: String, serial: String, cores: i32, ram: i64) -> DeviceRequest {
         DeviceRequest {
-            hostname,
             release_channel: None,
+            hostname,
             hardware,
             revision,
             model,

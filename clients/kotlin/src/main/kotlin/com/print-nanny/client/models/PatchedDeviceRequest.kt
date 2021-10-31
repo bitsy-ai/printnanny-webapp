@@ -28,8 +28,8 @@ import java.io.Serializable
 /**
  * 
  *
- * @param hostname 
  * @param releaseChannel 
+ * @param hostname 
  * @param hardware 
  * @param revision 
  * @param model 
@@ -40,11 +40,11 @@ import java.io.Serializable
 
 data class PatchedDeviceRequest (
 
-    @Json(name = "hostname")
-    val hostname: kotlin.String? = null,
-
     @Json(name = "release_channel")
     val releaseChannel: ReleaseChannelEnum? = null,
+
+    @Json(name = "hostname")
+    val hostname: kotlin.String? = null,
 
     @Json(name = "hardware")
     val hardware: kotlin.String? = null,
