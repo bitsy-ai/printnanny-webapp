@@ -45,9 +45,7 @@ class ReleaseViewSet(
 
 
 @extend_schema_view(retreive=retrieve_release_schema)
-class LatestReleaseViewSet(
-    GenericViewSet,
-):
+class LatestReleaseViewSet(GenericViewSet, RetrieveModelMixin):
     """
     All-in-one Print Nanny installation
     via print-nanny-main-<platform>-<cpu>.img
@@ -60,12 +58,13 @@ class LatestReleaseViewSet(
 
     @extend_schema(
         tags=["releases"],
+        operation_id="releases_latest_retreive",
         responses={
             "default": ErrorDetailSerializer,
             201: ReleaseSerializer,
         },
     )
-    @action(detail=False, methods=["GET"])
-    def latest(self):
+    @action(detail=True, methods=["GET"])
+    def retreive(self):
         release_channel = self.kwargs["release_channel"]
         return Release.objects.all(release_channel=release_channel).first()

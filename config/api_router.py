@@ -80,8 +80,12 @@ router.register(r"experiment-device-configs", ExperimentDeviceConfigViewSet, bas
 router.register(r"experiments", ExperimentViewSet, basename="experiment")
 router.register(r"partners/3d-geeks", GeeksViewSet, basename='partner-3d-geeks')
 router.register(r"releases", ReleaseViewSet, basename='releases')
-router.register(r"releases/<slug:release_channel>", LatestReleaseViewSet, basename='releases-latest')
+
+releases_by_channel = [
+    path("releases/<slug:release_channel>/latest", LatestReleaseViewSet.as_view({'get': 'retrieve'})),
+]
+
 
 app_name = "api"
 
-urlpatterns = router.urls + devices_router .urls + devices_by_hostname
+urlpatterns = router.urls + devices_router .urls + devices_by_hostname + releases_by_channel
