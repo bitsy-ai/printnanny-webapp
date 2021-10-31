@@ -16,7 +16,7 @@ pub struct CurrentState {
     #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
     pub deleted: Option<String>,
     #[serde(rename = "ansible_state", skip_serializing_if = "Option::is_none")]
-    pub ansible_state: Option<Box<crate::models::AnsibleStateEnum>>,
+    pub ansible_state: Option<crate::models::AnsibleStateEnum>,
     #[serde(rename = "ansible_facts", skip_serializing_if = "Option::is_none")]
     pub ansible_facts: Option<::std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "ansible_extra_vars", skip_serializing_if = "Option::is_none")]

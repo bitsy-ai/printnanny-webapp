@@ -64,7 +64,8 @@ class CurrentStateRequest(object):
         self._device = None
         self.discriminator = None
 
-        self.ansible_state = ansible_state
+        if ansible_state is not None:
+            self.ansible_state = ansible_state
         if ansible_facts is not None:
             self.ansible_facts = ansible_facts
         if ansible_extra_vars is not None:

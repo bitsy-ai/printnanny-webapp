@@ -2,21 +2,27 @@
 
 use reqwest;
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Configuration {
     pub base_path: String,
+    #[serde(skip_serializing_if="Option::is_none")]
     pub user_agent: Option<String>,
+    #[serde(skip)]
     pub client: reqwest::Client,
+    #[serde(skip_serializing_if="Option::is_none")]
     pub basic_auth: Option<BasicAuth>,
+    #[serde(skip_serializing_if="Option::is_none")]
     pub oauth_access_token: Option<String>,
+    #[serde(skip_serializing_if="Option::is_none")]
     pub bearer_access_token: Option<String>,
+    #[serde(skip_serializing_if="Option::is_none")]
     pub api_key: Option<ApiKey>,
     // TODO: take an oauth2 token source, similar to the go one
 }
 
 pub type BasicAuth = (String, Option<String>);
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ApiKey {
     pub prefix: Option<String>,
     pub key: String,

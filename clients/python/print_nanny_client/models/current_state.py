@@ -77,7 +77,8 @@ class CurrentState(object):
             self.id = id
         if deleted is not None:
             self.deleted = deleted
-        self.ansible_state = ansible_state
+        if ansible_state is not None:
+            self.ansible_state = ansible_state
         if ansible_facts is not None:
             self.ansible_facts = ansible_facts
         if ansible_extra_vars is not None:

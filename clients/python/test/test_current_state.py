@@ -38,7 +38,7 @@ class TestCurrentState(unittest.TestCase):
             return CurrentState(
                 id = 56, 
                 deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                ansible_state = None, 
+                ansible_state = 'runningSoftware update is running', 
                 ansible_facts = {
                     'key' : null
                     }, 
