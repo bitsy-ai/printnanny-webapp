@@ -10999,7 +10999,7 @@ export const ReleasesApiAxiosParamCreator = function (configuration?: Configurat
         releasesLatestRetrieve: async (releaseChannel: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'releaseChannel' is not null or undefined
             assertParamExists('releasesLatestRetrieve', 'releaseChannel', releaseChannel)
-            const localVarPath = `/api/releases/{release_channel}/latest/`
+            const localVarPath = `/api/releases/{release_channel}/latest`
                 .replace(`{${"release_channel"}}`, encodeURIComponent(String(releaseChannel)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);

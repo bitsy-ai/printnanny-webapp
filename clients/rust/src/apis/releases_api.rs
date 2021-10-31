@@ -17,7 +17,6 @@ use super::{Error, configuration};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ReleasesLatestRetrieveError {
-    DefaultResponse(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -43,7 +42,7 @@ pub async fn releases_latest_retrieve(configuration: &configuration::Configurati
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/releases/{release_channel}/latest/", local_var_configuration.base_path, release_channel=crate::apis::urlencode(release_channel));
+    let local_var_uri_str = format!("{}/api/releases/{release_channel}/latest", local_var_configuration.base_path, release_channel=crate::apis::urlencode(release_channel));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {

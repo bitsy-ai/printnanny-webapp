@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**releasesLatestRetrieve**](ReleasesApi.md#releasesLatestRetrieve) | **GET** /api/releases/{release_channel}/latest/ | 
+[**releasesLatestRetrieve**](ReleasesApi.md#releasesLatestRetrieve) | **GET** /api/releases/{release_channel}/latest | 
 [**releasesList**](ReleasesApi.md#releasesList) | **GET** /api/releases/ | 
 [**releasesRetrieve**](ReleasesApi.md#releasesRetrieve) | **GET** /api/releases/{id}/ | 
 

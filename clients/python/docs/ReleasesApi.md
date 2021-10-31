@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**releases_latest_retrieve**](ReleasesApi.md#releases_latest_retrieve) | **GET** /api/releases/{release_channel}/latest/ | 
+[**releases_latest_retrieve**](ReleasesApi.md#releases_latest_retrieve) | **GET** /api/releases/{release_channel}/latest | 
 [**releases_list**](ReleasesApi.md#releases_list) | **GET** /api/releases/ | 
 [**releases_retrieve**](ReleasesApi.md#releases_retrieve) | **GET** /api/releases/{id}/ | 
 
@@ -124,8 +124,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** |  |  -  |
-**0** |  |  -  |
+**200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

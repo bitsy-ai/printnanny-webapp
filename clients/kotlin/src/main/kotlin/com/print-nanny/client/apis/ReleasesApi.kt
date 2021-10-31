@@ -90,7 +90,7 @@ class ReleasesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePat
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/api/releases/{release_channel}/latest/".replace("{"+"release_channel"+"}", "$releaseChannel"),
+            path = "/api/releases/{release_channel}/latest".replace("{"+"release_channel"+"}", "$releaseChannel"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody

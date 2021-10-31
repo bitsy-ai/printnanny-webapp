@@ -151,11 +151,11 @@ class ReleasesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            201: "Release",
+            200: "Release",
         }
 
         return self.api_client.call_api(
-            '/api/releases/{release_channel}/latest/', 'GET',
+            '/api/releases/{release_channel}/latest', 'GET',
             path_params,
             query_params,
             header_params,

@@ -89,7 +89,7 @@ Class | Method | HTTP request | Description
 *MlOpsApi* | [**modelArtifactsRetrieve**](docs/MlOpsApi.md#modelartifactsretrieve) | **GET** /api/model-artifacts/{id}/ | 
 *PartnersGeeks3Api* | [**alertsList2**](docs/PartnersGeeks3Api.md#alertslist2) | **GET** /api/partners/3d-geeks/{id}/alerts/ | 
 *PartnersGeeks3dApi* | [**metadataRetrieve**](docs/PartnersGeeks3dApi.md#metadataretrieve) | **GET** /api/partners/3d-geeks/{id}/ | 
-*ReleasesApi* | [**releasesLatestRetrieve**](docs/ReleasesApi.md#releaseslatestretrieve) | **GET** /api/releases/{release_channel}/latest/ | 
+*ReleasesApi* | [**releasesLatestRetrieve**](docs/ReleasesApi.md#releaseslatestretrieve) | **GET** /api/releases/{release_channel}/latest | 
 *ReleasesApi* | [**releasesList**](docs/ReleasesApi.md#releaseslist) | **GET** /api/releases/ | 
 *ReleasesApi* | [**releasesRetrieve**](docs/ReleasesApi.md#releasesretrieve) | **GET** /api/releases/{id}/ | 
 *RemoteControlApi* | [**commandsList**](docs/RemoteControlApi.md#commandslist) | **GET** /api/commands/ | 
