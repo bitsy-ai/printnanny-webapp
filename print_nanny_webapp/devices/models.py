@@ -194,6 +194,7 @@ class DeviceConfig(SafeDeleteModel):
 class CurrentState(SafeDeleteModel):
     """
     Append-only log published to /devices/:id/state FROM device
+    Indicates current state of device
 
     See: desired state design pattern for details
     https://cloud.google.com/iot/docs/concepts/devices#changing_device_behavior_or_state_using_configuration_data
