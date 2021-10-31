@@ -19,7 +19,7 @@ import rest_framework.status
 
 from .serializers import (
     DeviceConfigSerializer,
-    CurrentStateSerializer,
+    DeviceStateSerializer,
     DeviceKeyPairSerializer,
     DevicePublicKeySerializer,
     DeviceSerializer,
@@ -29,7 +29,7 @@ from .serializers import (
 )
 from ..models import (
     DeviceConfig,
-    CurrentState,
+    DeviceState,
     Device,
     DevicePublicKey,
     Camera,
@@ -70,12 +70,12 @@ class DeviceConfigViewSet(
 
 
 ##
-# CurrentState
+# DeviceState
 ##
 list_current_state_schema = extend_schema(
     responses={
         "default": ErrorDetailSerializer,
-        200: CurrentStateSerializer(many=True),
+        200: DeviceStateSerializer(many=True),
     },
 )
 
@@ -83,13 +83,13 @@ list_current_state_schema = extend_schema(
 @extend_schema_view(
     list=list_current_state_schema,
 )
-class CurrentStateViewSet(
+class DeviceStateViewSet(
     GenericViewSet,
     ListModelMixin,
     RetrieveModelMixin,
 ):
-    serializer_class = CurrentStateSerializer
-    queryset = CurrentState.objects.all()
+    serializer_class = DeviceStateSerializer
+    queryset = DeviceState.objects.all()
     lookup_field = "id"
 
     def perform_create(self, serializer):

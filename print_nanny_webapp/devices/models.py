@@ -87,7 +87,7 @@ class CloudiotDevice(SafeDeleteModel):
     """
     Instance of cloudiot.projects.locations.registries.devices#Device
     https://cloud.google.com/iot/docs/reference/cloudiot/rest/v1/projects.locations.registries.devices#Device
-    """
+    """  # Create your models here.
 
     _safedelete_policy = SOFT_DELETE
 
@@ -191,7 +191,7 @@ class DeviceConfig(SafeDeleteModel):
         return self.device.cloudiot_device
 
 
-class CurrentState(SafeDeleteModel):
+class DeviceState(SafeDeleteModel):
     """
     Append-only log published to /devices/:id/state FROM device
     Indicates current state of device

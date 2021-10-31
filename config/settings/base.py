@@ -92,6 +92,8 @@ LOCAL_APPS = [
     "print_nanny_webapp.remote_control.apps.RemoteControlConfig",
     "print_nanny_webapp.telemetry.apps.TelemetryConfig",
     "print_nanny_webapp.users.apps.UsersConfig",
+    "print_nanny_webapp.releases.apps.ReleasesConfig",
+
     # "print_nanny_webapp.subscriptions.apps.SubscriptionsConfig", # Gated at the bottom
     # Your stuff: custom apps go here
 ]
@@ -653,7 +655,7 @@ COTURN_REALM = env("COTURN_REALM")
 
 # Ansible Extra Vars
 ANSIBLE_EXTRA_VARS = {
-    "STABLE": {
+    "stable": {
         "janus_version": "v0.11.5",
         "janus_libnice_version": "0.1.18",
         "janus_libsrtp_version": "2.2.0",
@@ -663,7 +665,7 @@ ANSIBLE_EXTRA_VARS = {
         "printnanny_cli_version": "0.1.5",
         "tflite_version": "v2.5.1",
     },
-    "NIGHTLY": {
+    "nightly": {
         "janus_version": "v0.11.5",
         "janus_libnice_version": "0.1.18",
         "janus_libsrtp_version": "2.2.0",

@@ -5,7 +5,7 @@ from print_nanny_webapp.devices.api.serializers import PrinterControllerSerializ
 
 from print_nanny_webapp.devices.api.views import (
     DeviceConfigViewSet,
-    CurrentStateViewSet,
+    DeviceStateViewSet,
     DeviceViewSet,
     DeviceHostnameViewSet,
     DeviceKeyPairViewSet,
@@ -40,6 +40,8 @@ from print_nanny_webapp.alerts.api.views import (
 
 from print_nanny_webapp.partners.api.views import ( GeeksViewSet )
 
+from print_nanny_webapp.releases.api.views import ReleaseViewSet
+
 router = DefaultRouter()
 
 router.register("alerts", AlertViewSet)
@@ -50,8 +52,8 @@ devices_by_hostname = [
 ]
 
 devices_router  = NestedSimpleRouter(router, r'devices', lookup='device')
-devices_router .register(r'desired-config', DeviceConfigViewSet, basename='desired-config')
-devices_router .register(r'current-state', CurrentStateViewSet, basename='current-state')
+devices_router .register(r'config', DeviceConfigViewSet, basename='config')
+devices_router .register(r'state', DeviceStateViewSet, basename='state')
 
 devices_router .register(r'keypairs', DeviceKeyPairViewSet, basename='keypairs')
 devices_router .register(r'cameras', CameraViewSet, basename='cameras')
@@ -77,6 +79,7 @@ router.register(r"model-artifacts", ModelArtifactViewSet, basename='model-artifa
 router.register(r"experiment-device-configs", ExperimentDeviceConfigViewSet, basename="experiment-device-config")
 router.register(r"experiments", ExperimentViewSet, basename="experiment")
 router.register(r"partners/3d-geeks", GeeksViewSet, basename='partner-3d-geeks')
+router.register(r"releases", ReleaseViewSet, basename='releases')
 
 app_name = "api"
 
