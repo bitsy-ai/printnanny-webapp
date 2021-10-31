@@ -6,13 +6,20 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devices', '0002_auto_20211031_1732'),
+        ("devices", "0002_auto_20211031_1732"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='device',
-            name='release_channel',
-            field=models.CharField(choices=[('stable', 'Stable mainline release channel'), ('nightly', 'Nightly developer release channel')], default='stable', max_length=8),
+            model_name="device",
+            name="release_channel",
+            field=models.CharField(
+                choices=[
+                    ("stable", "Stable mainline release channel"),
+                    ("nightly", "Nightly developer release channel"),
+                ],
+                default="stable",
+                max_length=8,
+            ),
         ),
     ]
