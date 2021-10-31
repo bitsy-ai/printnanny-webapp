@@ -187,7 +187,7 @@ class DeviceConfig(SafeDeleteModel):
         return self.device.user
 
     @property
-    def cloudiot_device(self) -> CloudiotDevice:
+    def cloudiot_device(self):
         return self.device.cloudiot_device
 
 
