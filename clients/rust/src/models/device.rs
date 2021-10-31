@@ -20,9 +20,9 @@ pub struct Device {
     #[serde(rename = "dashboard_url", skip_serializing_if = "Option::is_none")]
     pub dashboard_url: Option<String>,
     #[serde(rename = "desired_config", skip_serializing_if = "Option::is_none")]
-    pub desired_config: Option<Box<crate::models::DesiredConfig>>,
+    pub desired_config: Option<Box<crate::models::DeviceConfig>>,
     #[serde(rename = "current_state", skip_serializing_if = "Option::is_none")]
-    pub current_state: Option<Box<crate::models::CurrentState>>,
+    pub current_state: Option<Box<crate::models::DeviceState>>,
     #[serde(rename = "printer_controllers", skip_serializing_if = "Option::is_none")]
     pub printer_controllers: Option<Vec<crate::models::PrinterController>>,
     #[serde(rename = "public_key", skip_serializing_if = "Option::is_none")]

@@ -89,41 +89,26 @@ pub enum DevicesCloudIotDevicesUpdateError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`devices_config_list`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DevicesConfigListError {
+    DefaultResponse(crate::models::ErrorDetail),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`devices_config_retrieve`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DevicesConfigRetrieveError {
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`devices_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesCreateError {
     DefaultResponse(crate::models::ErrorDetail),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`devices_current_state_list`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum DevicesCurrentStateListError {
-    DefaultResponse(crate::models::ErrorDetail),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`devices_current_state_retrieve`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum DevicesCurrentStateRetrieveError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`devices_desired_config_list`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum DevicesDesiredConfigListError {
-    DefaultResponse(crate::models::ErrorDetail),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`devices_desired_config_retrieve`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum DevicesDesiredConfigRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
@@ -215,6 +200,21 @@ pub enum DevicesRetrieveError {
 #[serde(untagged)]
 pub enum DevicesRetrieveHostnameError {
     DefaultResponse(crate::models::ErrorDetail),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`devices_state_list`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DevicesStateListError {
+    DefaultResponse(crate::models::ErrorDetail),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`devices_state_retrieve`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DevicesStateRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
@@ -539,6 +539,69 @@ pub async fn devices_cloud_iot_devices_update(configuration: &configuration::Con
     }
 }
 
+pub async fn devices_config_list(configuration: &configuration::Configuration, device_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedDeviceConfigList, Error<DevicesConfigListError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/config/", local_var_configuration.base_path, device_id=device_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_str) = page {
+        local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<DevicesConfigListError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn devices_config_retrieve(configuration: &configuration::Configuration, device_id: i32, id: i32) -> Result<crate::models::DeviceConfig, Error<DevicesConfigRetrieveError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/config/{id}/", local_var_configuration.base_path, device_id=device_id, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<DevicesConfigRetrieveError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
 /// All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
 pub async fn devices_create(configuration: &configuration::Configuration, device_request: crate::models::DeviceRequest) -> Result<crate::models::Device, Error<DevicesCreateError>> {
     let local_var_configuration = configuration;
@@ -566,132 +629,6 @@ pub async fn devices_create(configuration: &configuration::Configuration, device
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<DevicesCreateError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn devices_current_state_list(configuration: &configuration::Configuration, device_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedCurrentStateList, Error<DevicesCurrentStateListError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/current-state/", local_var_configuration.base_path, device_id=device_id);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_str) = page {
-        local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<DevicesCurrentStateListError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn devices_current_state_retrieve(configuration: &configuration::Configuration, device_id: i32, id: i32) -> Result<crate::models::CurrentState, Error<DevicesCurrentStateRetrieveError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/current-state/{id}/", local_var_configuration.base_path, device_id=device_id, id=id);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<DevicesCurrentStateRetrieveError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn devices_desired_config_list(configuration: &configuration::Configuration, device_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedDesiredConfigList, Error<DevicesDesiredConfigListError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/desired-config/", local_var_configuration.base_path, device_id=device_id);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_str) = page {
-        local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<DevicesDesiredConfigListError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn devices_desired_config_retrieve(configuration: &configuration::Configuration, device_id: i32, id: i32) -> Result<crate::models::DesiredConfig, Error<DevicesDesiredConfigRetrieveError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/desired-config/{id}/", local_var_configuration.base_path, device_id=device_id, id=id);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<DevicesDesiredConfigRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
@@ -1071,6 +1008,69 @@ pub async fn devices_retrieve_hostname(configuration: &configuration::Configurat
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<DevicesRetrieveHostnameError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn devices_state_list(configuration: &configuration::Configuration, device_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedDeviceStateList, Error<DevicesStateListError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/state/", local_var_configuration.base_path, device_id=device_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_str) = page {
+        local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<DevicesStateListError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn devices_state_retrieve(configuration: &configuration::Configuration, device_id: i32, id: i32) -> Result<crate::models::DeviceState, Error<DevicesStateRetrieveError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/state/{id}/", local_var_configuration.base_path, device_id=device_id, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<DevicesStateRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }

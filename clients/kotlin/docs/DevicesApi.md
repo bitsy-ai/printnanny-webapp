@@ -14,11 +14,9 @@ Method | HTTP request | Description
 [**devicesCloudIotDevicesPartialUpdate**](DevicesApi.md#devicesCloudIotDevicesPartialUpdate) | **PATCH** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
 [**devicesCloudIotDevicesRetrieve**](DevicesApi.md#devicesCloudIotDevicesRetrieve) | **GET** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
 [**devicesCloudIotDevicesUpdate**](DevicesApi.md#devicesCloudIotDevicesUpdate) | **PUT** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
+[**devicesConfigList**](DevicesApi.md#devicesConfigList) | **GET** /api/devices/{device_id}/config/ | 
+[**devicesConfigRetrieve**](DevicesApi.md#devicesConfigRetrieve) | **GET** /api/devices/{device_id}/config/{id}/ | 
 [**devicesCreate**](DevicesApi.md#devicesCreate) | **POST** /api/devices/ | 
-[**devicesCurrentStateList**](DevicesApi.md#devicesCurrentStateList) | **GET** /api/devices/{device_id}/current-state/ | 
-[**devicesCurrentStateRetrieve**](DevicesApi.md#devicesCurrentStateRetrieve) | **GET** /api/devices/{device_id}/current-state/{id}/ | 
-[**devicesDesiredConfigList**](DevicesApi.md#devicesDesiredConfigList) | **GET** /api/devices/{device_id}/desired-config/ | 
-[**devicesDesiredConfigRetrieve**](DevicesApi.md#devicesDesiredConfigRetrieve) | **GET** /api/devices/{device_id}/desired-config/{id}/ | 
 [**devicesKeypairsCreate**](DevicesApi.md#devicesKeypairsCreate) | **POST** /api/devices/{device_id}/keypairs/ | 
 [**devicesKeypairsList**](DevicesApi.md#devicesKeypairsList) | **GET** /api/devices/{device_id}/keypairs/ | 
 [**devicesKeypairsRetrieve**](DevicesApi.md#devicesKeypairsRetrieve) | **GET** /api/devices/{device_id}/keypairs/{id}/ | 
@@ -31,6 +29,8 @@ Method | HTTP request | Description
 [**devicesPrinterControllersUpdate**](DevicesApi.md#devicesPrinterControllersUpdate) | **PUT** /api/devices/{device_id}/printer-controllers/{id}/ | 
 [**devicesRetrieve**](DevicesApi.md#devicesRetrieve) | **GET** /api/devices/{id}/ | 
 [**devicesRetrieveHostname**](DevicesApi.md#devicesRetrieveHostname) | **GET** /api/devices/{hostname} | 
+[**devicesStateList**](DevicesApi.md#devicesStateList) | **GET** /api/devices/{device_id}/state/ | 
+[**devicesStateRetrieve**](DevicesApi.md#devicesStateRetrieve) | **GET** /api/devices/{device_id}/state/{id}/ | 
 [**devicesUpdate**](DevicesApi.md#devicesUpdate) | **PUT** /api/devices/{id}/ | 
 
 
@@ -562,6 +562,110 @@ Configure tokenAuth:
  - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
+<a name="devicesConfigList"></a>
+# **devicesConfigList**
+> PaginatedDeviceConfigList devicesConfigList(deviceId, page)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = DevicesApi()
+val deviceId : kotlin.Int = 56 // kotlin.Int | 
+val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
+try {
+    val result : PaginatedDeviceConfigList = apiInstance.devicesConfigList(deviceId, page)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DevicesApi#devicesConfigList")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DevicesApi#devicesConfigList")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deviceId** | **kotlin.Int**|  |
+ **page** | **kotlin.Int**| A page number within the paginated result set. | [optional]
+
+### Return type
+
+[**PaginatedDeviceConfigList**](PaginatedDeviceConfigList.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="devicesConfigRetrieve"></a>
+# **devicesConfigRetrieve**
+> DeviceConfig devicesConfigRetrieve(deviceId, id)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = DevicesApi()
+val deviceId : kotlin.Int = 56 // kotlin.Int | 
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this device config.
+try {
+    val result : DeviceConfig = apiInstance.devicesConfigRetrieve(deviceId, id)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DevicesApi#devicesConfigRetrieve")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DevicesApi#devicesConfigRetrieve")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deviceId** | **kotlin.Int**|  |
+ **id** | **kotlin.Int**| A unique integer value identifying this device config. |
+
+### Return type
+
+[**DeviceConfig**](DeviceConfig.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
 <a name="devicesCreate"></a>
 # **devicesCreate**
 > Device devicesCreate(deviceRequest)
@@ -612,214 +716,6 @@ Configure tokenAuth:
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
-
-<a name="devicesCurrentStateList"></a>
-# **devicesCurrentStateList**
-> PaginatedCurrentStateList devicesCurrentStateList(deviceId, page)
-
-
-
-### Example
-```kotlin
-// Import classes:
-//import com.print-nanny.client.infrastructure.*
-//import com.print-nanny.client.models.*
-
-val apiInstance = DevicesApi()
-val deviceId : kotlin.Int = 56 // kotlin.Int | 
-val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
-try {
-    val result : PaginatedCurrentStateList = apiInstance.devicesCurrentStateList(deviceId, page)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling DevicesApi#devicesCurrentStateList")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling DevicesApi#devicesCurrentStateList")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **deviceId** | **kotlin.Int**|  |
- **page** | **kotlin.Int**| A page number within the paginated result set. | [optional]
-
-### Return type
-
-[**PaginatedCurrentStateList**](PaginatedCurrentStateList.md)
-
-### Authorization
-
-
-Configure cookieAuth:
-    ApiClient.apiKey["sessionid"] = ""
-    ApiClient.apiKeyPrefix["sessionid"] = ""
-Configure tokenAuth:
-    ApiClient.accessToken = ""
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a name="devicesCurrentStateRetrieve"></a>
-# **devicesCurrentStateRetrieve**
-> CurrentState devicesCurrentStateRetrieve(deviceId, id)
-
-
-
-### Example
-```kotlin
-// Import classes:
-//import com.print-nanny.client.infrastructure.*
-//import com.print-nanny.client.models.*
-
-val apiInstance = DevicesApi()
-val deviceId : kotlin.Int = 56 // kotlin.Int | 
-val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this current state.
-try {
-    val result : CurrentState = apiInstance.devicesCurrentStateRetrieve(deviceId, id)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling DevicesApi#devicesCurrentStateRetrieve")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling DevicesApi#devicesCurrentStateRetrieve")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **deviceId** | **kotlin.Int**|  |
- **id** | **kotlin.Int**| A unique integer value identifying this current state. |
-
-### Return type
-
-[**CurrentState**](CurrentState.md)
-
-### Authorization
-
-
-Configure cookieAuth:
-    ApiClient.apiKey["sessionid"] = ""
-    ApiClient.apiKeyPrefix["sessionid"] = ""
-Configure tokenAuth:
-    ApiClient.accessToken = ""
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a name="devicesDesiredConfigList"></a>
-# **devicesDesiredConfigList**
-> PaginatedDesiredConfigList devicesDesiredConfigList(deviceId, page)
-
-
-
-### Example
-```kotlin
-// Import classes:
-//import com.print-nanny.client.infrastructure.*
-//import com.print-nanny.client.models.*
-
-val apiInstance = DevicesApi()
-val deviceId : kotlin.Int = 56 // kotlin.Int | 
-val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
-try {
-    val result : PaginatedDesiredConfigList = apiInstance.devicesDesiredConfigList(deviceId, page)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling DevicesApi#devicesDesiredConfigList")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling DevicesApi#devicesDesiredConfigList")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **deviceId** | **kotlin.Int**|  |
- **page** | **kotlin.Int**| A page number within the paginated result set. | [optional]
-
-### Return type
-
-[**PaginatedDesiredConfigList**](PaginatedDesiredConfigList.md)
-
-### Authorization
-
-
-Configure cookieAuth:
-    ApiClient.apiKey["sessionid"] = ""
-    ApiClient.apiKeyPrefix["sessionid"] = ""
-Configure tokenAuth:
-    ApiClient.accessToken = ""
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a name="devicesDesiredConfigRetrieve"></a>
-# **devicesDesiredConfigRetrieve**
-> DesiredConfig devicesDesiredConfigRetrieve(deviceId, id)
-
-
-
-### Example
-```kotlin
-// Import classes:
-//import com.print-nanny.client.infrastructure.*
-//import com.print-nanny.client.models.*
-
-val apiInstance = DevicesApi()
-val deviceId : kotlin.Int = 56 // kotlin.Int | 
-val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this desired config.
-try {
-    val result : DesiredConfig = apiInstance.devicesDesiredConfigRetrieve(deviceId, id)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling DevicesApi#devicesDesiredConfigRetrieve")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling DevicesApi#devicesDesiredConfigRetrieve")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **deviceId** | **kotlin.Int**|  |
- **id** | **kotlin.Int**| A unique integer value identifying this desired config. |
-
-### Return type
-
-[**DesiredConfig**](DesiredConfig.md)
-
-### Authorization
-
-
-Configure cookieAuth:
-    ApiClient.apiKey["sessionid"] = ""
-    ApiClient.apiKeyPrefix["sessionid"] = ""
-Configure tokenAuth:
-    ApiClient.accessToken = ""
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
  - **Accept**: application/json
 
 <a name="devicesKeypairsCreate"></a>
@@ -1439,6 +1335,110 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Device**](Device.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="devicesStateList"></a>
+# **devicesStateList**
+> PaginatedDeviceStateList devicesStateList(deviceId, page)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = DevicesApi()
+val deviceId : kotlin.Int = 56 // kotlin.Int | 
+val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
+try {
+    val result : PaginatedDeviceStateList = apiInstance.devicesStateList(deviceId, page)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DevicesApi#devicesStateList")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DevicesApi#devicesStateList")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deviceId** | **kotlin.Int**|  |
+ **page** | **kotlin.Int**| A page number within the paginated result set. | [optional]
+
+### Return type
+
+[**PaginatedDeviceStateList**](PaginatedDeviceStateList.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="devicesStateRetrieve"></a>
+# **devicesStateRetrieve**
+> DeviceState devicesStateRetrieve(deviceId, id)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = DevicesApi()
+val deviceId : kotlin.Int = 56 // kotlin.Int | 
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this device state.
+try {
+    val result : DeviceState = apiInstance.devicesStateRetrieve(deviceId, id)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DevicesApi#devicesStateRetrieve")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DevicesApi#devicesStateRetrieve")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deviceId** | **kotlin.Int**|  |
+ **id** | **kotlin.Int**| A unique integer value identifying this device state. |
+
+### Return type
+
+[**DeviceState**](DeviceState.md)
 
 ### Authorization
 

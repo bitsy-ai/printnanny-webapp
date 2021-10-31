@@ -40,8 +40,8 @@ class Device(object):
         'cloudiot_device': 'CloudiotDevice',
         'cameras': 'list[Camera]',
         'dashboard_url': 'str',
-        'desired_config': 'DesiredConfig',
-        'current_state': 'CurrentState',
+        'desired_config': 'DeviceConfig',
+        'current_state': 'DeviceState',
         'printer_controllers': 'list[PrinterController]',
         'public_key': 'DevicePublicKey',
         'user': 'int',
@@ -224,7 +224,7 @@ class Device(object):
 
 
         :return: The desired_config of this Device.  # noqa: E501
-        :rtype: DesiredConfig
+        :rtype: DeviceConfig
         """
         return self._desired_config
 
@@ -234,7 +234,7 @@ class Device(object):
 
 
         :param desired_config: The desired_config of this Device.  # noqa: E501
-        :type desired_config: DesiredConfig
+        :type desired_config: DeviceConfig
         """
 
         self._desired_config = desired_config
@@ -245,7 +245,7 @@ class Device(object):
 
 
         :return: The current_state of this Device.  # noqa: E501
-        :rtype: CurrentState
+        :rtype: DeviceState
         """
         return self._current_state
 
@@ -255,7 +255,7 @@ class Device(object):
 
 
         :param current_state: The current_state of this Device.  # noqa: E501
-        :type current_state: CurrentState
+        :type current_state: DeviceState
         """
 
         self._current_state = current_state

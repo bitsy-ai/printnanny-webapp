@@ -22,9 +22,9 @@ package com.print-nanny.client.models
 
 import com.print-nanny.client.models.Camera
 import com.print-nanny.client.models.CloudiotDevice
-import com.print-nanny.client.models.CurrentState
-import com.print-nanny.client.models.DesiredConfig
+import com.print-nanny.client.models.DeviceConfig
 import com.print-nanny.client.models.DevicePublicKey
+import com.print-nanny.client.models.DeviceState
 import com.print-nanny.client.models.PrinterController
 
 import com.squareup.moshi.Json
@@ -90,10 +90,10 @@ data class Device (
     val dashboardUrl: kotlin.String? = null,
 
     @Json(name = "desired_config")
-    val desiredConfig: DesiredConfig? = null,
+    val desiredConfig: DeviceConfig? = null,
 
     @Json(name = "current_state")
-    val currentState: CurrentState? = null,
+    val currentState: DeviceState? = null,
 
     @Json(name = "printer_controllers")
     val printerControllers: kotlin.collections.List<PrinterController>? = null,

@@ -14,11 +14,9 @@ Method | HTTP request | Description
 [**devices_cloud_iot_devices_partial_update**](DevicesApi.md#devices_cloud_iot_devices_partial_update) | **PATCH** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
 [**devices_cloud_iot_devices_retrieve**](DevicesApi.md#devices_cloud_iot_devices_retrieve) | **GET** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
 [**devices_cloud_iot_devices_update**](DevicesApi.md#devices_cloud_iot_devices_update) | **PUT** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
+[**devices_config_list**](DevicesApi.md#devices_config_list) | **GET** /api/devices/{device_id}/config/ | 
+[**devices_config_retrieve**](DevicesApi.md#devices_config_retrieve) | **GET** /api/devices/{device_id}/config/{id}/ | 
 [**devices_create**](DevicesApi.md#devices_create) | **POST** /api/devices/ | 
-[**devices_current_state_list**](DevicesApi.md#devices_current_state_list) | **GET** /api/devices/{device_id}/current-state/ | 
-[**devices_current_state_retrieve**](DevicesApi.md#devices_current_state_retrieve) | **GET** /api/devices/{device_id}/current-state/{id}/ | 
-[**devices_desired_config_list**](DevicesApi.md#devices_desired_config_list) | **GET** /api/devices/{device_id}/desired-config/ | 
-[**devices_desired_config_retrieve**](DevicesApi.md#devices_desired_config_retrieve) | **GET** /api/devices/{device_id}/desired-config/{id}/ | 
 [**devices_keypairs_create**](DevicesApi.md#devices_keypairs_create) | **POST** /api/devices/{device_id}/keypairs/ | 
 [**devices_keypairs_list**](DevicesApi.md#devices_keypairs_list) | **GET** /api/devices/{device_id}/keypairs/ | 
 [**devices_keypairs_retrieve**](DevicesApi.md#devices_keypairs_retrieve) | **GET** /api/devices/{device_id}/keypairs/{id}/ | 
@@ -31,6 +29,8 @@ Method | HTTP request | Description
 [**devices_printer_controllers_update**](DevicesApi.md#devices_printer_controllers_update) | **PUT** /api/devices/{device_id}/printer-controllers/{id}/ | 
 [**devices_retrieve**](DevicesApi.md#devices_retrieve) | **GET** /api/devices/{id}/ | 
 [**devices_retrieve_hostname**](DevicesApi.md#devices_retrieve_hostname) | **GET** /api/devices/{hostname} | 
+[**devices_state_list**](DevicesApi.md#devices_state_list) | **GET** /api/devices/{device_id}/state/ | 
+[**devices_state_retrieve**](DevicesApi.md#devices_state_retrieve) | **GET** /api/devices/{device_id}/state/{id}/ | 
 [**devices_update**](DevicesApi.md#devices_update) | **PUT** /api/devices/{id}/ | 
 
 
@@ -1256,6 +1256,247 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **devices_config_list**
+> PaginatedDeviceConfigList devices_config_list(device_id, page=page)
+
+
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = print_nanny_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = print_nanny_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with print_nanny_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = print_nanny_client.DevicesApi(api_client)
+    device_id = 56 # int | 
+page = 56 # int | A page number within the paginated result set. (optional)
+
+    try:
+        api_response = api_instance.devices_config_list(device_id, page=page)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->devices_config_list: %s\n" % e)
+```
+
+* Bearer Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = print_nanny_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = print_nanny_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with print_nanny_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = print_nanny_client.DevicesApi(api_client)
+    device_id = 56 # int | 
+page = 56 # int | A page number within the paginated result set. (optional)
+
+    try:
+        api_response = api_instance.devices_config_list(device_id, page=page)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->devices_config_list: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **device_id** | **int**|  | 
+ **page** | **int**| A page number within the paginated result set. | [optional] 
+
+### Return type
+
+[**PaginatedDeviceConfigList**](PaginatedDeviceConfigList.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**0** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **devices_config_retrieve**
+> DeviceConfig devices_config_retrieve(device_id, id)
+
+
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = print_nanny_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = print_nanny_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with print_nanny_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = print_nanny_client.DevicesApi(api_client)
+    device_id = 56 # int | 
+id = 56 # int | A unique integer value identifying this device config.
+
+    try:
+        api_response = api_instance.devices_config_retrieve(device_id, id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->devices_config_retrieve: %s\n" % e)
+```
+
+* Bearer Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = print_nanny_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = print_nanny_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with print_nanny_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = print_nanny_client.DevicesApi(api_client)
+    device_id = 56 # int | 
+id = 56 # int | A unique integer value identifying this device config.
+
+    try:
+        api_response = api_instance.devices_config_retrieve(device_id, id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->devices_config_retrieve: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **device_id** | **int**|  | 
+ **id** | **int**| A unique integer value identifying this device config. | 
+
+### Return type
+
+[**DeviceConfig**](DeviceConfig.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **devices_create**
 > Device devices_create(device_request)
 
@@ -1374,488 +1615,6 @@ Name | Type | Description  | Notes
 **201** |  |  -  |
 **202** |  |  -  |
 **0** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **devices_current_state_list**
-> PaginatedCurrentStateList devices_current_state_list(device_id, page=page)
-
-
-
-### Example
-
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import print_nanny_client
-from print_nanny_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = print_nanny_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-page = 56 # int | A page number within the paginated result set. (optional)
-
-    try:
-        api_response = api_instance.devices_current_state_list(device_id, page=page)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->devices_current_state_list: %s\n" % e)
-```
-
-* Bearer Authentication (tokenAuth):
-```python
-from __future__ import print_function
-import time
-import print_nanny_client
-from print_nanny_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = print_nanny_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-page = 56 # int | A page number within the paginated result set. (optional)
-
-    try:
-        api_response = api_instance.devices_current_state_list(device_id, page=page)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->devices_current_state_list: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
- **page** | **int**| A page number within the paginated result set. | [optional] 
-
-### Return type
-
-[**PaginatedCurrentStateList**](PaginatedCurrentStateList.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
-**0** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **devices_current_state_retrieve**
-> CurrentState devices_current_state_retrieve(device_id, id)
-
-
-
-### Example
-
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import print_nanny_client
-from print_nanny_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = print_nanny_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this current state.
-
-    try:
-        api_response = api_instance.devices_current_state_retrieve(device_id, id)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->devices_current_state_retrieve: %s\n" % e)
-```
-
-* Bearer Authentication (tokenAuth):
-```python
-from __future__ import print_function
-import time
-import print_nanny_client
-from print_nanny_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = print_nanny_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this current state.
-
-    try:
-        api_response = api_instance.devices_current_state_retrieve(device_id, id)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->devices_current_state_retrieve: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
- **id** | **int**| A unique integer value identifying this current state. | 
-
-### Return type
-
-[**CurrentState**](CurrentState.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **devices_desired_config_list**
-> PaginatedDesiredConfigList devices_desired_config_list(device_id, page=page)
-
-
-
-### Example
-
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import print_nanny_client
-from print_nanny_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = print_nanny_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-page = 56 # int | A page number within the paginated result set. (optional)
-
-    try:
-        api_response = api_instance.devices_desired_config_list(device_id, page=page)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->devices_desired_config_list: %s\n" % e)
-```
-
-* Bearer Authentication (tokenAuth):
-```python
-from __future__ import print_function
-import time
-import print_nanny_client
-from print_nanny_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = print_nanny_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-page = 56 # int | A page number within the paginated result set. (optional)
-
-    try:
-        api_response = api_instance.devices_desired_config_list(device_id, page=page)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->devices_desired_config_list: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
- **page** | **int**| A page number within the paginated result set. | [optional] 
-
-### Return type
-
-[**PaginatedDesiredConfigList**](PaginatedDesiredConfigList.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
-**0** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **devices_desired_config_retrieve**
-> DesiredConfig devices_desired_config_retrieve(device_id, id)
-
-
-
-### Example
-
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import print_nanny_client
-from print_nanny_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = print_nanny_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this desired config.
-
-    try:
-        api_response = api_instance.devices_desired_config_retrieve(device_id, id)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->devices_desired_config_retrieve: %s\n" % e)
-```
-
-* Bearer Authentication (tokenAuth):
-```python
-from __future__ import print_function
-import time
-import print_nanny_client
-from print_nanny_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = print_nanny_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this desired config.
-
-    try:
-        api_response = api_instance.devices_desired_config_retrieve(device_id, id)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->devices_desired_config_retrieve: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
- **id** | **int**| A unique integer value identifying this desired config. | 
-
-### Return type
-
-[**DesiredConfig**](DesiredConfig.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3312,6 +3071,247 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** |  |  -  |
 **0** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **devices_state_list**
+> PaginatedDeviceStateList devices_state_list(device_id, page=page)
+
+
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = print_nanny_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = print_nanny_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with print_nanny_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = print_nanny_client.DevicesApi(api_client)
+    device_id = 56 # int | 
+page = 56 # int | A page number within the paginated result set. (optional)
+
+    try:
+        api_response = api_instance.devices_state_list(device_id, page=page)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->devices_state_list: %s\n" % e)
+```
+
+* Bearer Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = print_nanny_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = print_nanny_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with print_nanny_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = print_nanny_client.DevicesApi(api_client)
+    device_id = 56 # int | 
+page = 56 # int | A page number within the paginated result set. (optional)
+
+    try:
+        api_response = api_instance.devices_state_list(device_id, page=page)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->devices_state_list: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **device_id** | **int**|  | 
+ **page** | **int**| A page number within the paginated result set. | [optional] 
+
+### Return type
+
+[**PaginatedDeviceStateList**](PaginatedDeviceStateList.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**0** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **devices_state_retrieve**
+> DeviceState devices_state_retrieve(device_id, id)
+
+
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = print_nanny_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = print_nanny_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with print_nanny_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = print_nanny_client.DevicesApi(api_client)
+    device_id = 56 # int | 
+id = 56 # int | A unique integer value identifying this device state.
+
+    try:
+        api_response = api_instance.devices_state_retrieve(device_id, id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->devices_state_retrieve: %s\n" % e)
+```
+
+* Bearer Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = print_nanny_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = print_nanny_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with print_nanny_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = print_nanny_client.DevicesApi(api_client)
+    device_id = 56 # int | 
+id = 56 # int | A unique integer value identifying this device state.
+
+    try:
+        api_response = api_instance.devices_state_retrieve(device_id, id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->devices_state_retrieve: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **device_id** | **int**|  | 
+ **id** | **int**| A unique integer value identifying this device state. | 
+
+### Return type
+
+[**DeviceState**](DeviceState.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -190,6 +190,61 @@ export interface AlertRequest {
 /**
  * 
  * @export
+ * @interface AnsibleExtraVars
+ */
+export interface AnsibleExtraVars {
+    /**
+     * 
+     * @type {string}
+     * @memberof AnsibleExtraVars
+     */
+    'janus_version': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnsibleExtraVars
+     */
+    'janus_libwebsockets_version': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnsibleExtraVars
+     */
+    'janus_libnice_version': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnsibleExtraVars
+     */
+    'janus_usrsctp_version': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnsibleExtraVars
+     */
+    'janus_libsrtp_version': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnsibleExtraVars
+     */
+    'tflite_version': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnsibleExtraVars
+     */
+    'printnanny_cli_version': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnsibleExtraVars
+     */
+    'libcamera_version': string;
+}
+/**
+ * 
+ * @export
  * @enum {string}
  */
 
@@ -556,166 +611,6 @@ export enum CommandEnum {
 }
 
 /**
- * 
- * @export
- * @interface CurrentState
- */
-export interface CurrentState {
-    /**
-     * 
-     * @type {number}
-     * @memberof CurrentState
-     */
-    'id'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CurrentState
-     */
-    'deleted'?: string;
-    /**
-     * 
-     * @type {AnsibleStateEnum}
-     * @memberof CurrentState
-     */
-    'ansible_state'?: AnsibleStateEnum;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof CurrentState
-     */
-    'ansible_facts'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof CurrentState
-     */
-    'ansible_extra_vars'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {ReleaseChannelEnum}
-     * @memberof CurrentState
-     */
-    'release_channel'?: ReleaseChannelEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof CurrentState
-     */
-    'created_dt'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CurrentState
-     */
-    'device': number;
-}
-/**
- * 
- * @export
- * @interface CurrentStateRequest
- */
-export interface CurrentStateRequest {
-    /**
-     * 
-     * @type {AnsibleStateEnum}
-     * @memberof CurrentStateRequest
-     */
-    'ansible_state'?: AnsibleStateEnum;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof CurrentStateRequest
-     */
-    'ansible_facts'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof CurrentStateRequest
-     */
-    'ansible_extra_vars'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {ReleaseChannelEnum}
-     * @memberof CurrentStateRequest
-     */
-    'release_channel'?: ReleaseChannelEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof CurrentStateRequest
-     */
-    'device': number;
-}
-/**
- * 
- * @export
- * @interface DesiredConfig
- */
-export interface DesiredConfig {
-    /**
-     * 
-     * @type {number}
-     * @memberof DesiredConfig
-     */
-    'id'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof DesiredConfig
-     */
-    'deleted'?: string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof DesiredConfig
-     */
-    'ansible_extra_vars'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {ReleaseChannelEnum}
-     * @memberof DesiredConfig
-     */
-    'release_channel'?: ReleaseChannelEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof DesiredConfig
-     */
-    'created_dt'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof DesiredConfig
-     */
-    'device': number;
-}
-/**
- * 
- * @export
- * @interface DesiredConfigRequest
- */
-export interface DesiredConfigRequest {
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof DesiredConfigRequest
-     */
-    'ansible_extra_vars'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {ReleaseChannelEnum}
-     * @memberof DesiredConfigRequest
-     */
-    'release_channel'?: ReleaseChannelEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof DesiredConfigRequest
-     */
-    'device': number;
-}
-/**
  * Generic auth response serializer
  * @export
  * @interface DetailResponse
@@ -760,16 +655,16 @@ export interface Device {
     'dashboard_url'?: string;
     /**
      * 
-     * @type {DesiredConfig}
+     * @type {DeviceConfig}
      * @memberof Device
      */
-    'desired_config'?: DesiredConfig | null;
+    'desired_config'?: DeviceConfig | null;
     /**
      * 
-     * @type {CurrentState}
+     * @type {DeviceState}
      * @memberof Device
      */
-    'current_state'?: CurrentState | null;
+    'current_state'?: DeviceState | null;
     /**
      * 
      * @type {Array<PrinterController>}
@@ -950,6 +845,74 @@ export interface DeviceCalibrationRequest {
 /**
  * 
  * @export
+ * @interface DeviceConfig
+ */
+export interface DeviceConfig {
+    /**
+     * 
+     * @type {number}
+     * @memberof DeviceConfig
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceConfig
+     */
+    'deleted'?: string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof DeviceConfig
+     */
+    'ansible_extra_vars'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {ReleaseChannelEnum}
+     * @memberof DeviceConfig
+     */
+    'release_channel'?: ReleaseChannelEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceConfig
+     */
+    'created_dt'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof DeviceConfig
+     */
+    'device': number;
+}
+/**
+ * 
+ * @export
+ * @interface DeviceConfigRequest
+ */
+export interface DeviceConfigRequest {
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof DeviceConfigRequest
+     */
+    'ansible_extra_vars'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {ReleaseChannelEnum}
+     * @memberof DeviceConfigRequest
+     */
+    'release_channel'?: ReleaseChannelEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof DeviceConfigRequest
+     */
+    'device': number;
+}
+/**
+ * 
+ * @export
  * @interface DeviceKeyPair
  */
 export interface DeviceKeyPair {
@@ -1093,6 +1056,98 @@ export interface DeviceRequest {
      * @memberof DeviceRequest
      */
     'ram': number;
+}
+/**
+ * 
+ * @export
+ * @interface DeviceState
+ */
+export interface DeviceState {
+    /**
+     * 
+     * @type {number}
+     * @memberof DeviceState
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceState
+     */
+    'deleted'?: string;
+    /**
+     * 
+     * @type {AnsibleStateEnum}
+     * @memberof DeviceState
+     */
+    'ansible_state'?: AnsibleStateEnum;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof DeviceState
+     */
+    'ansible_facts'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof DeviceState
+     */
+    'ansible_extra_vars'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {ReleaseChannelEnum}
+     * @memberof DeviceState
+     */
+    'release_channel'?: ReleaseChannelEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceState
+     */
+    'created_dt'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof DeviceState
+     */
+    'device': number;
+}
+/**
+ * 
+ * @export
+ * @interface DeviceStateRequest
+ */
+export interface DeviceStateRequest {
+    /**
+     * 
+     * @type {AnsibleStateEnum}
+     * @memberof DeviceStateRequest
+     */
+    'ansible_state'?: AnsibleStateEnum;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof DeviceStateRequest
+     */
+    'ansible_facts'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof DeviceStateRequest
+     */
+    'ansible_extra_vars'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {ReleaseChannelEnum}
+     * @memberof DeviceStateRequest
+     */
+    'release_channel'?: ReleaseChannelEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof DeviceStateRequest
+     */
+    'device': number;
 }
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
@@ -2937,68 +2992,6 @@ export interface PaginatedCloudiotDeviceList {
 /**
  * 
  * @export
- * @interface PaginatedCurrentStateList
- */
-export interface PaginatedCurrentStateList {
-    /**
-     * 
-     * @type {number}
-     * @memberof PaginatedCurrentStateList
-     */
-    'count'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedCurrentStateList
-     */
-    'next'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedCurrentStateList
-     */
-    'previous'?: string | null;
-    /**
-     * 
-     * @type {Array<CurrentState>}
-     * @memberof PaginatedCurrentStateList
-     */
-    'results'?: Array<CurrentState>;
-}
-/**
- * 
- * @export
- * @interface PaginatedDesiredConfigList
- */
-export interface PaginatedDesiredConfigList {
-    /**
-     * 
-     * @type {number}
-     * @memberof PaginatedDesiredConfigList
-     */
-    'count'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedDesiredConfigList
-     */
-    'next'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedDesiredConfigList
-     */
-    'previous'?: string | null;
-    /**
-     * 
-     * @type {Array<DesiredConfig>}
-     * @memberof PaginatedDesiredConfigList
-     */
-    'results'?: Array<DesiredConfig>;
-}
-/**
- * 
- * @export
  * @interface PaginatedDeviceCalibrationList
  */
 export interface PaginatedDeviceCalibrationList {
@@ -3026,6 +3019,37 @@ export interface PaginatedDeviceCalibrationList {
      * @memberof PaginatedDeviceCalibrationList
      */
     'results'?: Array<DeviceCalibration>;
+}
+/**
+ * 
+ * @export
+ * @interface PaginatedDeviceConfigList
+ */
+export interface PaginatedDeviceConfigList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedDeviceConfigList
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedDeviceConfigList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedDeviceConfigList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<DeviceConfig>}
+     * @memberof PaginatedDeviceConfigList
+     */
+    'results'?: Array<DeviceConfig>;
 }
 /**
  * 
@@ -3088,6 +3112,37 @@ export interface PaginatedDevicePublicKeyList {
      * @memberof PaginatedDevicePublicKeyList
      */
     'results'?: Array<DevicePublicKey>;
+}
+/**
+ * 
+ * @export
+ * @interface PaginatedDeviceStateList
+ */
+export interface PaginatedDeviceStateList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedDeviceStateList
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedDeviceStateList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedDeviceStateList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<DeviceState>}
+     * @memberof PaginatedDeviceStateList
+     */
+    'results'?: Array<DeviceState>;
 }
 /**
  * 
@@ -3429,6 +3484,37 @@ export interface PaginatedPrinterProfileList {
      * @memberof PaginatedPrinterProfileList
      */
     'results'?: Array<PrinterProfile>;
+}
+/**
+ * 
+ * @export
+ * @interface PaginatedReleaseList
+ */
+export interface PaginatedReleaseList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedReleaseList
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedReleaseList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedReleaseList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<Release>}
+     * @memberof PaginatedReleaseList
+     */
+    'results'?: Array<Release>;
 }
 /**
  * 
@@ -5440,6 +5526,37 @@ export enum PrinterStateEnum {
     FirmwareData = 'FirmwareData'
 }
 
+/**
+ * 
+ * @export
+ * @interface Release
+ */
+export interface Release {
+    /**
+     * 
+     * @type {number}
+     * @memberof Release
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {AnsibleExtraVars}
+     * @memberof Release
+     */
+    'ansible_extra_vars': AnsibleExtraVars;
+    /**
+     * 
+     * @type {string}
+     * @memberof Release
+     */
+    'created_dt'?: string;
+    /**
+     * 
+     * @type {ReleaseChannelEnum}
+     * @memberof Release
+     */
+    'release_channel'?: ReleaseChannelEnum;
+}
 /**
  * 
  * @export
@@ -7655,6 +7772,93 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesConfigList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesConfigList', 'deviceId', deviceId)
+            const localVarPath = `/api/devices/{device_id}/config/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device config.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesConfigRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesConfigRetrieve', 'deviceId', deviceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesConfigRetrieve', 'id', id)
+            const localVarPath = `/api/devices/{device_id}/config/{id}/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {DeviceRequest} deviceRequest 
          * @param {*} [options] Override http request option.
@@ -7689,180 +7893,6 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(deviceRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesCurrentStateList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesCurrentStateList', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/current-state/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this current state.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesCurrentStateRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesCurrentStateRetrieve', 'deviceId', deviceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesCurrentStateRetrieve', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/current-state/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesDesiredConfigList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesDesiredConfigList', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/desired-config/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this desired config.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesDesiredConfigRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesDesiredConfigRetrieve', 'deviceId', deviceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesDesiredConfigRetrieve', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/desired-config/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -8385,6 +8415,93 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesStateList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesStateList', 'deviceId', deviceId)
+            const localVarPath = `/api/devices/{device_id}/state/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device state.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesStateRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesStateRetrieve', 'deviceId', deviceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesStateRetrieve', 'id', id)
+            const localVarPath = `/api/devices/{device_id}/state/{id}/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {number} id A unique integer value identifying this device.
          * @param {DeviceRequest} deviceRequest 
@@ -8554,6 +8671,28 @@ export const DevicesApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesConfigList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedDeviceConfigList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesConfigList(deviceId, page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device config.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesConfigRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceConfig>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesConfigRetrieve(deviceId, id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {DeviceRequest} deviceRequest 
          * @param {*} [options] Override http request option.
@@ -8561,50 +8700,6 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          */
         async devicesCreate(deviceRequest: DeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCreate(deviceRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesCurrentStateList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedCurrentStateList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCurrentStateList(deviceId, page, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this current state.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesCurrentStateRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CurrentState>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCurrentStateRetrieve(deviceId, id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesDesiredConfigList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedDesiredConfigList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesDesiredConfigList(deviceId, page, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this desired config.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesDesiredConfigRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DesiredConfig>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesDesiredConfigRetrieve(deviceId, id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -8738,6 +8833,28 @@ export const DevicesApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesStateList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedDeviceStateList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesStateList(deviceId, page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device state.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesStateRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceState>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesStateRetrieve(deviceId, id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {number} id A unique integer value identifying this device.
          * @param {DeviceRequest} deviceRequest 
@@ -8863,6 +8980,26 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.devicesCloudIotDevicesUpdate(deviceId, id, cloudiotDeviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesConfigList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedDeviceConfigList> {
+            return localVarFp.devicesConfigList(deviceId, page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device config.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesConfigRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<DeviceConfig> {
+            return localVarFp.devicesConfigRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {DeviceRequest} deviceRequest 
          * @param {*} [options] Override http request option.
@@ -8870,46 +9007,6 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          */
         devicesCreate(deviceRequest: DeviceRequest, options?: any): AxiosPromise<Device> {
             return localVarFp.devicesCreate(deviceRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesCurrentStateList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedCurrentStateList> {
-            return localVarFp.devicesCurrentStateList(deviceId, page, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this current state.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesCurrentStateRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<CurrentState> {
-            return localVarFp.devicesCurrentStateRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesDesiredConfigList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedDesiredConfigList> {
-            return localVarFp.devicesDesiredConfigList(deviceId, page, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this desired config.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesDesiredConfigRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<DesiredConfig> {
-            return localVarFp.devicesDesiredConfigRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
         },
         /**
          * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
@@ -9028,6 +9125,26 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          */
         devicesRetrieveHostname(hostname: string, options?: any): AxiosPromise<Device> {
             return localVarFp.devicesRetrieveHostname(hostname, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesStateList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedDeviceStateList> {
+            return localVarFp.devicesStateList(deviceId, page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device state.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesStateRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<DeviceState> {
+            return localVarFp.devicesStateRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
         },
         /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
@@ -9153,6 +9270,26 @@ export interface DevicesApiInterface {
     devicesCloudIotDevicesUpdate(deviceId: number, id: string, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): AxiosPromise<CloudiotDevice>;
 
     /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesConfigList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedDeviceConfigList>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this device config.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesConfigRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<DeviceConfig>;
+
+    /**
      * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
      * @param {DeviceRequest} deviceRequest 
      * @param {*} [options] Override http request option.
@@ -9160,46 +9297,6 @@ export interface DevicesApiInterface {
      * @memberof DevicesApiInterface
      */
     devicesCreate(deviceRequest: DeviceRequest, options?: AxiosRequestConfig): AxiosPromise<Device>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesCurrentStateList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedCurrentStateList>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this current state.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesCurrentStateRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<CurrentState>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesDesiredConfigList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedDesiredConfigList>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this desired config.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesDesiredConfigRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<DesiredConfig>;
 
     /**
      * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
@@ -9318,6 +9415,26 @@ export interface DevicesApiInterface {
      * @memberof DevicesApiInterface
      */
     devicesRetrieveHostname(hostname: string, options?: AxiosRequestConfig): AxiosPromise<Device>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesStateList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedDeviceStateList>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this device state.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesStateRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<DeviceState>;
 
     /**
      * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
@@ -9463,6 +9580,30 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
     }
 
     /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesConfigList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesConfigList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this device config.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesConfigRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesConfigRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
      * @param {DeviceRequest} deviceRequest 
      * @param {*} [options] Override http request option.
@@ -9471,54 +9612,6 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      */
     public devicesCreate(deviceRequest: DeviceRequest, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesCreate(deviceRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesCurrentStateList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesCurrentStateList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this current state.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesCurrentStateRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesCurrentStateRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesDesiredConfigList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesDesiredConfigList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this desired config.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesDesiredConfigRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesDesiredConfigRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -9661,6 +9754,30 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      */
     public devicesRetrieveHostname(hostname: string, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesRetrieveHostname(hostname, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesStateList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesStateList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this device state.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesStateRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesStateRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -10845,6 +10962,287 @@ export class PartnersGeeks3dApi extends BaseAPI implements PartnersGeeks3dApiInt
      */
     public metadataRetrieve(id: string, options?: AxiosRequestConfig) {
         return PartnersGeeks3dApiFp(this.configuration).metadataRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * ReleasesApi - axios parameter creator
+ * @export
+ */
+export const ReleasesApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+         * @param {string} releaseChannel 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        releasesLatestRetrieve: async (releaseChannel: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'releaseChannel' is not null or undefined
+            assertParamExists('releasesLatestRetrieve', 'releaseChannel', releaseChannel)
+            const localVarPath = `/api/releases/{release_channel}/latest/`
+                .replace(`{${"release_channel"}}`, encodeURIComponent(String(releaseChannel)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        releasesList: async (page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/releases/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+         * @param {number} id A unique integer value identifying this release.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        releasesRetrieve: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('releasesRetrieve', 'id', id)
+            const localVarPath = `/api/releases/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * ReleasesApi - functional programming interface
+ * @export
+ */
+export const ReleasesApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ReleasesApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+         * @param {string} releaseChannel 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async releasesLatestRetrieve(releaseChannel: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Release>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.releasesLatestRetrieve(releaseChannel, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async releasesList(page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedReleaseList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.releasesList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+         * @param {number} id A unique integer value identifying this release.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async releasesRetrieve(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Release>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.releasesRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * ReleasesApi - factory interface
+ * @export
+ */
+export const ReleasesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ReleasesApiFp(configuration)
+    return {
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+         * @param {string} releaseChannel 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        releasesLatestRetrieve(releaseChannel: string, options?: any): AxiosPromise<Release> {
+            return localVarFp.releasesLatestRetrieve(releaseChannel, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        releasesList(page?: number, options?: any): AxiosPromise<PaginatedReleaseList> {
+            return localVarFp.releasesList(page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+         * @param {number} id A unique integer value identifying this release.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        releasesRetrieve(id: number, options?: any): AxiosPromise<Release> {
+            return localVarFp.releasesRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * ReleasesApi - interface
+ * @export
+ * @interface ReleasesApi
+ */
+export interface ReleasesApiInterface {
+    /**
+     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+     * @param {string} releaseChannel 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReleasesApiInterface
+     */
+    releasesLatestRetrieve(releaseChannel: string, options?: AxiosRequestConfig): AxiosPromise<Release>;
+
+    /**
+     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReleasesApiInterface
+     */
+    releasesList(page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedReleaseList>;
+
+    /**
+     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+     * @param {number} id A unique integer value identifying this release.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReleasesApiInterface
+     */
+    releasesRetrieve(id: number, options?: AxiosRequestConfig): AxiosPromise<Release>;
+
+}
+
+/**
+ * ReleasesApi - object-oriented interface
+ * @export
+ * @class ReleasesApi
+ * @extends {BaseAPI}
+ */
+export class ReleasesApi extends BaseAPI implements ReleasesApiInterface {
+    /**
+     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+     * @param {string} releaseChannel 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReleasesApi
+     */
+    public releasesLatestRetrieve(releaseChannel: string, options?: AxiosRequestConfig) {
+        return ReleasesApiFp(this.configuration).releasesLatestRetrieve(releaseChannel, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReleasesApi
+     */
+    public releasesList(page?: number, options?: AxiosRequestConfig) {
+        return ReleasesApiFp(this.configuration).releasesList(page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+     * @param {number} id A unique integer value identifying this release.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReleasesApi
+     */
+    public releasesRetrieve(id: number, options?: AxiosRequestConfig) {
+        return ReleasesApiFp(this.configuration).releasesRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

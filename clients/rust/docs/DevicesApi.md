@@ -14,11 +14,9 @@ Method | HTTP request | Description
 [**devices_cloud_iot_devices_partial_update**](DevicesApi.md#devices_cloud_iot_devices_partial_update) | **PATCH** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
 [**devices_cloud_iot_devices_retrieve**](DevicesApi.md#devices_cloud_iot_devices_retrieve) | **GET** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
 [**devices_cloud_iot_devices_update**](DevicesApi.md#devices_cloud_iot_devices_update) | **PUT** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
+[**devices_config_list**](DevicesApi.md#devices_config_list) | **GET** /api/devices/{device_id}/config/ | 
+[**devices_config_retrieve**](DevicesApi.md#devices_config_retrieve) | **GET** /api/devices/{device_id}/config/{id}/ | 
 [**devices_create**](DevicesApi.md#devices_create) | **POST** /api/devices/ | 
-[**devices_current_state_list**](DevicesApi.md#devices_current_state_list) | **GET** /api/devices/{device_id}/current-state/ | 
-[**devices_current_state_retrieve**](DevicesApi.md#devices_current_state_retrieve) | **GET** /api/devices/{device_id}/current-state/{id}/ | 
-[**devices_desired_config_list**](DevicesApi.md#devices_desired_config_list) | **GET** /api/devices/{device_id}/desired-config/ | 
-[**devices_desired_config_retrieve**](DevicesApi.md#devices_desired_config_retrieve) | **GET** /api/devices/{device_id}/desired-config/{id}/ | 
 [**devices_keypairs_create**](DevicesApi.md#devices_keypairs_create) | **POST** /api/devices/{device_id}/keypairs/ | 
 [**devices_keypairs_list**](DevicesApi.md#devices_keypairs_list) | **GET** /api/devices/{device_id}/keypairs/ | 
 [**devices_keypairs_retrieve**](DevicesApi.md#devices_keypairs_retrieve) | **GET** /api/devices/{device_id}/keypairs/{id}/ | 
@@ -31,6 +29,8 @@ Method | HTTP request | Description
 [**devices_printer_controllers_update**](DevicesApi.md#devices_printer_controllers_update) | **PUT** /api/devices/{device_id}/printer-controllers/{id}/ | 
 [**devices_retrieve**](DevicesApi.md#devices_retrieve) | **GET** /api/devices/{id}/ | 
 [**devices_retrieve_hostname**](DevicesApi.md#devices_retrieve_hostname) | **GET** /api/devices/{hostname} | 
+[**devices_state_list**](DevicesApi.md#devices_state_list) | **GET** /api/devices/{device_id}/state/ | 
+[**devices_state_retrieve**](DevicesApi.md#devices_state_retrieve) | **GET** /api/devices/{device_id}/state/{id}/ | 
 [**devices_update**](DevicesApi.md#devices_update) | **PUT** /api/devices/{id}/ | 
 
 
@@ -329,6 +329,64 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## devices_config_list
+
+> crate::models::PaginatedDeviceConfigList devices_config_list(device_id, page)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_id** | **i32** |  | [required] |
+**page** | Option<**i32**> | A page number within the paginated result set. |  |
+
+### Return type
+
+[**crate::models::PaginatedDeviceConfigList**](PaginatedDeviceConfigList.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## devices_config_retrieve
+
+> crate::models::DeviceConfig devices_config_retrieve(device_id, id)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_id** | **i32** |  | [required] |
+**id** | **i32** | A unique integer value identifying this device config. | [required] |
+
+### Return type
+
+[**crate::models::DeviceConfig**](DeviceConfig.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## devices_create
 
 > crate::models::Device devices_create(device_request)
@@ -354,122 +412,6 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## devices_current_state_list
-
-> crate::models::PaginatedCurrentStateList devices_current_state_list(device_id, page)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-**page** | Option<**i32**> | A page number within the paginated result set. |  |
-
-### Return type
-
-[**crate::models::PaginatedCurrentStateList**](PaginatedCurrentStateList.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## devices_current_state_retrieve
-
-> crate::models::CurrentState devices_current_state_retrieve(device_id, id)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-**id** | **i32** | A unique integer value identifying this current state. | [required] |
-
-### Return type
-
-[**crate::models::CurrentState**](CurrentState.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## devices_desired_config_list
-
-> crate::models::PaginatedDesiredConfigList devices_desired_config_list(device_id, page)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-**page** | Option<**i32**> | A page number within the paginated result set. |  |
-
-### Return type
-
-[**crate::models::PaginatedDesiredConfigList**](PaginatedDesiredConfigList.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## devices_desired_config_retrieve
-
-> crate::models::DesiredConfig devices_desired_config_retrieve(device_id, id)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-**id** | **i32** | A unique integer value identifying this desired config. | [required] |
-
-### Return type
-
-[**crate::models::DesiredConfig**](DesiredConfig.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -820,6 +762,64 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::Device**](Device.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## devices_state_list
+
+> crate::models::PaginatedDeviceStateList devices_state_list(device_id, page)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_id** | **i32** |  | [required] |
+**page** | Option<**i32**> | A page number within the paginated result set. |  |
+
+### Return type
+
+[**crate::models::PaginatedDeviceStateList**](PaginatedDeviceStateList.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## devices_state_retrieve
+
+> crate::models::DeviceState devices_state_retrieve(device_id, id)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_id** | **i32** |  | [required] |
+**id** | **i32** | A unique integer value identifying this device state. | [required] |
+
+### Return type
+
+[**crate::models::DeviceState**](DeviceState.md)
 
 ### Authorization
 

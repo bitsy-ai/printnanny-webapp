@@ -68,6 +68,7 @@ pub mod devices_api;
 pub mod ml_ops_api;
 pub mod partners_geeks3_api;
 pub mod partners_geeks3d_api;
+pub mod releases_api;
 pub mod remote_control_api;
 pub mod schema_api;
 pub mod telemetry_api;

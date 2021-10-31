@@ -58,11 +58,9 @@ Class | Method | HTTP request | Description
 *DevicesApi* | [**devicesCloudIotDevicesPartialUpdate**](docs/DevicesApi.md#devicescloudiotdevicespartialupdate) | **PATCH** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
 *DevicesApi* | [**devicesCloudIotDevicesRetrieve**](docs/DevicesApi.md#devicescloudiotdevicesretrieve) | **GET** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
 *DevicesApi* | [**devicesCloudIotDevicesUpdate**](docs/DevicesApi.md#devicescloudiotdevicesupdate) | **PUT** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
+*DevicesApi* | [**devicesConfigList**](docs/DevicesApi.md#devicesconfiglist) | **GET** /api/devices/{device_id}/config/ | 
+*DevicesApi* | [**devicesConfigRetrieve**](docs/DevicesApi.md#devicesconfigretrieve) | **GET** /api/devices/{device_id}/config/{id}/ | 
 *DevicesApi* | [**devicesCreate**](docs/DevicesApi.md#devicescreate) | **POST** /api/devices/ | 
-*DevicesApi* | [**devicesCurrentStateList**](docs/DevicesApi.md#devicescurrentstatelist) | **GET** /api/devices/{device_id}/current-state/ | 
-*DevicesApi* | [**devicesCurrentStateRetrieve**](docs/DevicesApi.md#devicescurrentstateretrieve) | **GET** /api/devices/{device_id}/current-state/{id}/ | 
-*DevicesApi* | [**devicesDesiredConfigList**](docs/DevicesApi.md#devicesdesiredconfiglist) | **GET** /api/devices/{device_id}/desired-config/ | 
-*DevicesApi* | [**devicesDesiredConfigRetrieve**](docs/DevicesApi.md#devicesdesiredconfigretrieve) | **GET** /api/devices/{device_id}/desired-config/{id}/ | 
 *DevicesApi* | [**devicesKeypairsCreate**](docs/DevicesApi.md#deviceskeypairscreate) | **POST** /api/devices/{device_id}/keypairs/ | 
 *DevicesApi* | [**devicesKeypairsList**](docs/DevicesApi.md#deviceskeypairslist) | **GET** /api/devices/{device_id}/keypairs/ | 
 *DevicesApi* | [**devicesKeypairsRetrieve**](docs/DevicesApi.md#deviceskeypairsretrieve) | **GET** /api/devices/{device_id}/keypairs/{id}/ | 
@@ -75,6 +73,8 @@ Class | Method | HTTP request | Description
 *DevicesApi* | [**devicesPrinterControllersUpdate**](docs/DevicesApi.md#devicesprintercontrollersupdate) | **PUT** /api/devices/{device_id}/printer-controllers/{id}/ | 
 *DevicesApi* | [**devicesRetrieve**](docs/DevicesApi.md#devicesretrieve) | **GET** /api/devices/{id}/ | 
 *DevicesApi* | [**devicesRetrieveHostname**](docs/DevicesApi.md#devicesretrievehostname) | **GET** /api/devices/{hostname} | 
+*DevicesApi* | [**devicesStateList**](docs/DevicesApi.md#devicesstatelist) | **GET** /api/devices/{device_id}/state/ | 
+*DevicesApi* | [**devicesStateRetrieve**](docs/DevicesApi.md#devicesstateretrieve) | **GET** /api/devices/{device_id}/state/{id}/ | 
 *DevicesApi* | [**devicesUpdate**](docs/DevicesApi.md#devicesupdate) | **PUT** /api/devices/{id}/ | 
 *MlOpsApi* | [**deviceCalibrationUpdateOrCreate**](docs/MlOpsApi.md#devicecalibrationupdateorcreate) | **POST** /api/device-calibrations/update-or-create/ | 
 *MlOpsApi* | [**deviceCalibrationsList**](docs/MlOpsApi.md#devicecalibrationslist) | **GET** /api/device-calibrations/ | 
@@ -89,6 +89,9 @@ Class | Method | HTTP request | Description
 *MlOpsApi* | [**modelArtifactsRetrieve**](docs/MlOpsApi.md#modelartifactsretrieve) | **GET** /api/model-artifacts/{id}/ | 
 *PartnersGeeks3Api* | [**alertsList2**](docs/PartnersGeeks3Api.md#alertslist2) | **GET** /api/partners/3d-geeks/{id}/alerts/ | 
 *PartnersGeeks3dApi* | [**metadataRetrieve**](docs/PartnersGeeks3dApi.md#metadataretrieve) | **GET** /api/partners/3d-geeks/{id}/ | 
+*ReleasesApi* | [**releasesLatestRetrieve**](docs/ReleasesApi.md#releaseslatestretrieve) | **GET** /api/releases/{release_channel}/latest/ | 
+*ReleasesApi* | [**releasesList**](docs/ReleasesApi.md#releaseslist) | **GET** /api/releases/ | 
+*ReleasesApi* | [**releasesRetrieve**](docs/ReleasesApi.md#releasesretrieve) | **GET** /api/releases/{id}/ | 
 *RemoteControlApi* | [**commandsList**](docs/RemoteControlApi.md#commandslist) | **GET** /api/commands/ | 
 *RemoteControlApi* | [**commandsPartialUpdate**](docs/RemoteControlApi.md#commandspartialupdate) | **PATCH** /api/commands/{id}/ | 
 *RemoteControlApi* | [**commandsRetrieve**](docs/RemoteControlApi.md#commandsretrieve) | **GET** /api/commands/{id}/ | 
@@ -143,6 +146,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.AlertBulkResponse](docs/AlertBulkResponse.md)
  - [com.print-nanny.client.models.AlertEventTypeEnum](docs/AlertEventTypeEnum.md)
  - [com.print-nanny.client.models.AlertRequest](docs/AlertRequest.md)
+ - [com.print-nanny.client.models.AnsibleExtraVars](docs/AnsibleExtraVars.md)
  - [com.print-nanny.client.models.AnsibleStateEnum](docs/AnsibleStateEnum.md)
  - [com.print-nanny.client.models.ArtifactTypesEnum](docs/ArtifactTypesEnum.md)
  - [com.print-nanny.client.models.CACerts](docs/CACerts.md)
@@ -155,17 +159,17 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.CloudiotDevice](docs/CloudiotDevice.md)
  - [com.print-nanny.client.models.CloudiotDeviceRequest](docs/CloudiotDeviceRequest.md)
  - [com.print-nanny.client.models.CommandEnum](docs/CommandEnum.md)
- - [com.print-nanny.client.models.CurrentState](docs/CurrentState.md)
- - [com.print-nanny.client.models.CurrentStateRequest](docs/CurrentStateRequest.md)
- - [com.print-nanny.client.models.DesiredConfig](docs/DesiredConfig.md)
- - [com.print-nanny.client.models.DesiredConfigRequest](docs/DesiredConfigRequest.md)
  - [com.print-nanny.client.models.DetailResponse](docs/DetailResponse.md)
  - [com.print-nanny.client.models.Device](docs/Device.md)
  - [com.print-nanny.client.models.DeviceCalibration](docs/DeviceCalibration.md)
  - [com.print-nanny.client.models.DeviceCalibrationRequest](docs/DeviceCalibrationRequest.md)
+ - [com.print-nanny.client.models.DeviceConfig](docs/DeviceConfig.md)
+ - [com.print-nanny.client.models.DeviceConfigRequest](docs/DeviceConfigRequest.md)
  - [com.print-nanny.client.models.DeviceKeyPair](docs/DeviceKeyPair.md)
  - [com.print-nanny.client.models.DevicePublicKey](docs/DevicePublicKey.md)
  - [com.print-nanny.client.models.DeviceRequest](docs/DeviceRequest.md)
+ - [com.print-nanny.client.models.DeviceState](docs/DeviceState.md)
+ - [com.print-nanny.client.models.DeviceStateRequest](docs/DeviceStateRequest.md)
  - [com.print-nanny.client.models.EmailAuthRequest](docs/EmailAuthRequest.md)
  - [com.print-nanny.client.models.ErrorDetail](docs/ErrorDetail.md)
  - [com.print-nanny.client.models.EventSourceEnum](docs/EventSourceEnum.md)
@@ -206,11 +210,11 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.PaginatedAlertList](docs/PaginatedAlertList.md)
  - [com.print-nanny.client.models.PaginatedCameraList](docs/PaginatedCameraList.md)
  - [com.print-nanny.client.models.PaginatedCloudiotDeviceList](docs/PaginatedCloudiotDeviceList.md)
- - [com.print-nanny.client.models.PaginatedCurrentStateList](docs/PaginatedCurrentStateList.md)
- - [com.print-nanny.client.models.PaginatedDesiredConfigList](docs/PaginatedDesiredConfigList.md)
  - [com.print-nanny.client.models.PaginatedDeviceCalibrationList](docs/PaginatedDeviceCalibrationList.md)
+ - [com.print-nanny.client.models.PaginatedDeviceConfigList](docs/PaginatedDeviceConfigList.md)
  - [com.print-nanny.client.models.PaginatedDeviceList](docs/PaginatedDeviceList.md)
  - [com.print-nanny.client.models.PaginatedDevicePublicKeyList](docs/PaginatedDevicePublicKeyList.md)
+ - [com.print-nanny.client.models.PaginatedDeviceStateList](docs/PaginatedDeviceStateList.md)
  - [com.print-nanny.client.models.PaginatedExperimentDeviceConfigList](docs/PaginatedExperimentDeviceConfigList.md)
  - [com.print-nanny.client.models.PaginatedExperimentList](docs/PaginatedExperimentList.md)
  - [com.print-nanny.client.models.PaginatedGcodeFileList](docs/PaginatedGcodeFileList.md)
@@ -222,6 +226,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.PaginatedPrintSessionList](docs/PaginatedPrintSessionList.md)
  - [com.print-nanny.client.models.PaginatedPrinterControllerList](docs/PaginatedPrinterControllerList.md)
  - [com.print-nanny.client.models.PaginatedPrinterProfileList](docs/PaginatedPrinterProfileList.md)
+ - [com.print-nanny.client.models.PaginatedReleaseList](docs/PaginatedReleaseList.md)
  - [com.print-nanny.client.models.PaginatedRemoteCommandEventList](docs/PaginatedRemoteCommandEventList.md)
  - [com.print-nanny.client.models.PaginatedRemoteControlCommandList](docs/PaginatedRemoteControlCommandList.md)
  - [com.print-nanny.client.models.PaginatedTelemetryEventPolymorphicList](docs/PaginatedTelemetryEventPolymorphicList.md)
@@ -255,6 +260,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.PrinterProfile](docs/PrinterProfile.md)
  - [com.print-nanny.client.models.PrinterProfileRequest](docs/PrinterProfileRequest.md)
  - [com.print-nanny.client.models.PrinterStateEnum](docs/PrinterStateEnum.md)
+ - [com.print-nanny.client.models.Release](docs/Release.md)
  - [com.print-nanny.client.models.ReleaseChannelEnum](docs/ReleaseChannelEnum.md)
  - [com.print-nanny.client.models.RemoteCommandEvent](docs/RemoteCommandEvent.md)
  - [com.print-nanny.client.models.RemoteCommandEventEventTypeEnum](docs/RemoteCommandEventEventTypeEnum.md)

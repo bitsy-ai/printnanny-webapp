@@ -88,32 +88,20 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
+    def test_devices_config_list(self):
+        """Test case for devices_config_list
+
+        """
+        pass
+
+    def test_devices_config_retrieve(self):
+        """Test case for devices_config_retrieve
+
+        """
+        pass
+
     def test_devices_create(self):
         """Test case for devices_create
-
-        """
-        pass
-
-    def test_devices_current_state_list(self):
-        """Test case for devices_current_state_list
-
-        """
-        pass
-
-    def test_devices_current_state_retrieve(self):
-        """Test case for devices_current_state_retrieve
-
-        """
-        pass
-
-    def test_devices_desired_config_list(self):
-        """Test case for devices_desired_config_list
-
-        """
-        pass
-
-    def test_devices_desired_config_retrieve(self):
-        """Test case for devices_desired_config_retrieve
 
         """
         pass
@@ -186,6 +174,18 @@ class TestDevicesApi(unittest.TestCase):
 
     def test_devices_retrieve_hostname(self):
         """Test case for devices_retrieve_hostname
+
+        """
+        pass
+
+    def test_devices_state_list(self):
+        """Test case for devices_state_list
+
+        """
+        pass
+
+    def test_devices_state_retrieve(self):
+        """Test case for devices_state_retrieve
 
         """
         pass
