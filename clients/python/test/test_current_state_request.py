@@ -36,7 +36,7 @@ class TestCurrentStateRequest(unittest.TestCase):
         # model = print_nanny_client.models.current_state_request.CurrentStateRequest()  # noqa: E501
         if include_optional :
             return CurrentStateRequest(
-                ansible_state = None, 
+                ansible_state = 'runningSoftware update is running', 
                 ansible_facts = {
                     'key' : null
                     }, 

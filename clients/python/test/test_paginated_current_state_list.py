@@ -43,7 +43,7 @@ class TestPaginatedCurrentStateList(unittest.TestCase):
                     print_nanny_client.models.current_state.CurrentState(
                         id = 56, 
                         deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        ansible_state = null, 
+                        ansible_state = 'runningSoftware update is running', 
                         ansible_facts = {
                             'key' : null
                             }, 

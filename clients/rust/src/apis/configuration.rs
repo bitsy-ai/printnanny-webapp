@@ -9,7 +9,7 @@
 
 use reqwest;
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Configuration {
     pub base_path: String,
     pub user_agent: Option<String>,
