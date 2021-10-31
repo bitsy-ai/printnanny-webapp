@@ -183,7 +183,7 @@ class DeviceConfig(SafeDeleteModel):
         return f"/devices/{self.num_id}/config"
 
     @property
-    def user(self) -> UserModel:
+    def user(self):
         return self.device.user
 
     @property
