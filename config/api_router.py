@@ -4,7 +4,7 @@ from rest_framework_nested.routers import NestedSimpleRouter
 from print_nanny_webapp.devices.api.serializers import PrinterControllerSerializer
 
 from print_nanny_webapp.devices.api.views import (
-    DesiredConfigViewSet,
+    DeviceConfigViewSet,
     CurrentStateViewSet,
     DeviceViewSet,
     DeviceHostnameViewSet,
@@ -50,7 +50,7 @@ devices_by_hostname = [
 ]
 
 devices_router  = NestedSimpleRouter(router, r'devices', lookup='device')
-devices_router .register(r'desired-config', DesiredConfigViewSet, basename='desired-config')
+devices_router .register(r'desired-config', DeviceConfigViewSet, basename='desired-config')
 devices_router .register(r'current-state', CurrentStateViewSet, basename='current-state')
 
 devices_router .register(r'keypairs', DeviceKeyPairViewSet, basename='keypairs')

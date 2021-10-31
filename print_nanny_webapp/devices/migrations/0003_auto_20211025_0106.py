@@ -44,7 +44,7 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name="DesiredConfig",
+            name="DeviceConfig",
             fields=[
                 (
                     "id",

@@ -18,7 +18,7 @@ from rest_framework.viewsets import GenericViewSet
 import rest_framework.status
 
 from .serializers import (
-    DesiredConfigSerializer,
+    DeviceConfigSerializer,
     CurrentStateSerializer,
     DeviceKeyPairSerializer,
     DevicePublicKeySerializer,
@@ -28,7 +28,7 @@ from .serializers import (
     PrinterControllerSerializer,
 )
 from ..models import (
-    DesiredConfig,
+    DeviceConfig,
     CurrentState,
     Device,
     DevicePublicKey,
@@ -43,12 +43,12 @@ from print_nanny_webapp.utils.api.serializers import ErrorDetailSerializer
 logger = logging.getLogger(__name__)
 
 ##
-# DesiredConfig
+# DeviceConfig
 ##
 list_desired_config_schema = extend_schema(
     responses={
         "default": ErrorDetailSerializer,
-        200: DesiredConfigSerializer(many=True),
+        200: DeviceConfigSerializer(many=True),
     },
 )
 
@@ -56,13 +56,13 @@ list_desired_config_schema = extend_schema(
 @extend_schema_view(
     list=list_desired_config_schema,
 )
-class DesiredConfigViewSet(
+class DeviceConfigViewSet(
     GenericViewSet,
     ListModelMixin,
     RetrieveModelMixin,
 ):
-    serializer_class = DesiredConfigSerializer
-    queryset = DesiredConfig.objects.all()
+    serializer_class = DeviceConfigSerializer
+    queryset = DeviceConfig.objects.all()
     lookup_field = "id"
 
     def perform_create(self, serializer):

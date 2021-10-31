@@ -4,7 +4,7 @@ from print_nanny_webapp.devices.models import (
     Device,
     Camera,
     CloudiotDevice,
-    DesiredConfig,
+    DeviceConfig,
     CurrentState,
     DevicePublicKey,
     PrinterController,
@@ -99,9 +99,9 @@ class DeviceKeyPairSerializer(serializers.Serializer):
     ca_certs = CACertsSerializer(read_only=True)
 
 
-class DesiredConfigSerializer(serializers.ModelSerializer):
+class DeviceConfigSerializer(serializers.ModelSerializer):
     class Meta:
-        model = DesiredConfig
+        model = DeviceConfig
         fields = "__all__"
 
 
@@ -116,7 +116,7 @@ class DeviceSerializer(serializers.ModelSerializer):
     cameras = CameraSerializer(read_only=True, many=True)
     dashboard_url = serializers.CharField(read_only=True)
 
-    desired_config = DesiredConfigSerializer(
+    desired_config = DeviceConfigSerializer(
         read_only=True,
         required=False,
         allow_null=True,
@@ -138,3 +138,15 @@ class DeviceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Device
         fields = "__all__"
+
+
+class AnsibleExtraVarsSerializer(serializers.Serializer):
+    janus_version = serializers.CharField()
+    janus_libsockets_version = serializers.CharField()
+    janus_libnice_version = serializers.CharField()
+    janus_usrsctp_version = serializers.CharField()
+    janus_libsrtp_version = serializers.CharField()
+
+    tflite_version = serializers.CharField()
+    printnanny_cli_version = serializers.CharField()
+    libcamera_version = serializers.CharField()

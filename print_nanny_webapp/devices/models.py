@@ -151,9 +151,10 @@ class CloudiotDevice(SafeDeleteModel):
         return f"/devices/{self.num_id}/state"
 
 
-class DesiredConfig(SafeDeleteModel):
+class DeviceConfig(SafeDeleteModel):
     """
     Append-only log of msgs published to /devices/:id/config FROM webapp controller
+    Indicates desired configuration of device
 
     Fields rendered to extra vars file used with Ansible Playbook
     ansible-playbook playbook.yml --extra-vars "@some_file.json"
@@ -180,6 +181,14 @@ class DesiredConfig(SafeDeleteModel):
     @property
     def mqtt_topic(self):
         return f"/devices/{self.num_id}/config"
+
+    @property
+    def user(self) -> UserModel:
+        return self.device.user
+
+    @property
+    def cloudiot_device(self) -> CloudiotDevice:
+        return self.device.cloudiot_device
 
 
 class CurrentState(SafeDeleteModel):
