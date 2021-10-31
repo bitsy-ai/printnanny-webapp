@@ -37,6 +37,7 @@ class TestDeviceRequest(unittest.TestCase):
         if include_optional :
             return DeviceRequest(
                 hostname = '', 
+                release_channel = 'stable', 
                 hardware = '', 
                 revision = '', 
                 model = '', 

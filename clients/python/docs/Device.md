@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **created_dt** | **datetime** |  | [optional] [readonly] 
 **updated_dt** | **datetime** |  | [optional] [readonly] 
 **hostname** | **str** |  | 
+**release_channel** | [**ReleaseChannelEnum**](ReleaseChannelEnum.md) |  | [optional] 
 **hardware** | **str** |  | 
 **revision** | **str** |  | 
 **model** | **str** |  | 

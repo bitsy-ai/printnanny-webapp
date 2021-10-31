@@ -20,6 +20,7 @@
 
 package com.print-nanny.client.models
 
+import com.print-nanny.client.models.ReleaseChannelEnum
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -28,6 +29,7 @@ import java.io.Serializable
  * 
  *
  * @param hostname 
+ * @param releaseChannel 
  * @param hardware 
  * @param revision 
  * @param model 
@@ -40,6 +42,9 @@ data class PatchedDeviceRequest (
 
     @Json(name = "hostname")
     val hostname: kotlin.String? = null,
+
+    @Json(name = "release_channel")
+    val releaseChannel: ReleaseChannelEnum? = null,
 
     @Json(name = "hardware")
     val hardware: kotlin.String? = null,

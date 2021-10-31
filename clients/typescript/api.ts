@@ -709,6 +709,12 @@ export interface Device {
     'hostname': string;
     /**
      * 
+     * @type {ReleaseChannelEnum}
+     * @memberof Device
+     */
+    'release_channel'?: ReleaseChannelEnum;
+    /**
+     * 
      * @type {string}
      * @memberof Device
      */
@@ -1020,6 +1026,12 @@ export interface DeviceRequest {
      * @memberof DeviceRequest
      */
     'hostname': string;
+    /**
+     * 
+     * @type {ReleaseChannelEnum}
+     * @memberof DeviceRequest
+     */
+    'release_channel'?: ReleaseChannelEnum;
     /**
      * 
      * @type {string}
@@ -3893,6 +3905,12 @@ export interface PatchedDeviceRequest {
      * @memberof PatchedDeviceRequest
      */
     'hostname'?: string;
+    /**
+     * 
+     * @type {ReleaseChannelEnum}
+     * @memberof PatchedDeviceRequest
+     */
+    'release_channel'?: ReleaseChannelEnum;
     /**
      * 
      * @type {string}

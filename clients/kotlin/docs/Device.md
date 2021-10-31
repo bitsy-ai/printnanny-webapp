@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **updatedDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
+**releaseChannel** | [**ReleaseChannelEnum**](ReleaseChannelEnum.md) |  |  [optional]
 
 
 

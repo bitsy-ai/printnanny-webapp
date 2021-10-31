@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **hostname** | **str** |  | [optional] 
+**release_channel** | [**ReleaseChannelEnum**](ReleaseChannelEnum.md) |  | [optional] 
 **hardware** | **str** |  | [optional] 
 **revision** | **str** |  | [optional] 
 **model** | **str** |  | [optional] 

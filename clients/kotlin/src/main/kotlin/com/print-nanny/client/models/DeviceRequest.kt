@@ -20,6 +20,7 @@
 
 package com.print-nanny.client.models
 
+import com.print-nanny.client.models.ReleaseChannelEnum
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -34,6 +35,7 @@ import java.io.Serializable
  * @param serial 
  * @param cores 
  * @param ram 
+ * @param releaseChannel 
  */
 
 data class DeviceRequest (
@@ -57,7 +59,10 @@ data class DeviceRequest (
     val cores: kotlin.Int,
 
     @Json(name = "ram")
-    val ram: kotlin.Long
+    val ram: kotlin.Long,
+
+    @Json(name = "release_channel")
+    val releaseChannel: ReleaseChannelEnum? = null
 
 ) : Serializable {
     companion object {
