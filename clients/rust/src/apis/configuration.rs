@@ -14,7 +14,7 @@ pub struct Configuration {
     pub base_path: String,
     #[serde(skip_serializing_if="Option::is_none")]
     pub user_agent: Option<String>,
-    #[serde(skip_serializing)]
+    #[serde(skip)]
     pub client: reqwest::Client,
     #[serde(skip_serializing_if="Option::is_none")]
     pub basic_auth: Option<BasicAuth>,
