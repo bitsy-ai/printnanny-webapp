@@ -87,7 +87,7 @@ class CloudiotDevice(SafeDeleteModel):
     """
     Instance of cloudiot.projects.locations.registries.devices#Device
     https://cloud.google.com/iot/docs/reference/cloudiot/rest/v1/projects.locations.registries.devices#Device
-    """
+    """  # Create your models here.
 
     _safedelete_policy = SOFT_DELETE
 
@@ -151,9 +151,10 @@ class CloudiotDevice(SafeDeleteModel):
         return f"/devices/{self.num_id}/state"
 
 
-class DesiredConfig(SafeDeleteModel):
+class DeviceConfig(SafeDeleteModel):
     """
     Append-only log of msgs published to /devices/:id/config FROM webapp controller
+    Indicates desired configuration of device
 
     Fields rendered to extra vars file used with Ansible Playbook
     ansible-playbook playbook.yml --extra-vars "@some_file.json"
@@ -181,10 +182,19 @@ class DesiredConfig(SafeDeleteModel):
     def mqtt_topic(self):
         return f"/devices/{self.num_id}/config"
 
+    @property
+    def user(self):
+        return self.device.user
 
-class CurrentState(SafeDeleteModel):
+    @property
+    def cloudiot_device(self):
+        return self.device.cloudiot_device
+
+
+class DeviceState(SafeDeleteModel):
     """
     Append-only log published to /devices/:id/state FROM device
+    Indicates current state of device
 
     See: desired state design pattern for details
     https://cloud.google.com/iot/docs/concepts/devices#changing_device_behavior_or_state_using_configuration_data

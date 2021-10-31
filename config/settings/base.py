@@ -92,6 +92,8 @@ LOCAL_APPS = [
     "print_nanny_webapp.remote_control.apps.RemoteControlConfig",
     "print_nanny_webapp.telemetry.apps.TelemetryConfig",
     "print_nanny_webapp.users.apps.UsersConfig",
+    "print_nanny_webapp.releases.apps.ReleasesConfig",
+
     # "print_nanny_webapp.subscriptions.apps.SubscriptionsConfig", # Gated at the bottom
     # Your stuff: custom apps go here
 ]
@@ -493,6 +495,7 @@ GCP_MQTT_BRIDGE_HOSTNAME = "mqtt.2030.ltsapis.goog"
 GCP_MQTT_BRIDGE_PORT = 443
 GCP_LTS_CA_PRIMARY = "https://pki.goog/gtsltsr/gtsltsr.crt"
 GCP_LTS_CA_BACKUP = "https://pki.goog/gsr4/GSR4.crt"
+
 GCP_PUBSUB_UNDELIVERED_HEALTH_THRESHOLD_MINUTES=10
 
 GCP_PROJECT_ID = env("GCP_PROJECT_ID", default="print-nanny-sandbox")

@@ -4,8 +4,8 @@ from print_nanny_webapp.devices.models import (
     Device,
     Camera,
     CloudiotDevice,
-    DesiredConfig,
-    CurrentState,
+    DeviceConfig,
+    DeviceState,
     DevicePublicKey,
     PrinterController,
     # PrinterProfile,
@@ -99,15 +99,15 @@ class DeviceKeyPairSerializer(serializers.Serializer):
     ca_certs = CACertsSerializer(read_only=True)
 
 
-class DesiredConfigSerializer(serializers.ModelSerializer):
+class DeviceConfigSerializer(serializers.ModelSerializer):
     class Meta:
-        model = DesiredConfig
+        model = DeviceConfig
         fields = "__all__"
 
 
-class CurrentStateSerializer(serializers.ModelSerializer):
+class DeviceStateSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CurrentState
+        model = DeviceState
         fields = "__all__"
 
 
@@ -116,13 +116,13 @@ class DeviceSerializer(serializers.ModelSerializer):
     cameras = CameraSerializer(read_only=True, many=True)
     dashboard_url = serializers.CharField(read_only=True)
 
-    desired_config = DesiredConfigSerializer(
+    desired_config = DeviceConfigSerializer(
         read_only=True,
         required=False,
         allow_null=True,
     )
 
-    current_state = CurrentStateSerializer(
+    current_state = DeviceStateSerializer(
         read_only=True,
         required=False,
         allow_null=True,
