@@ -5,7 +5,7 @@ from ..models import Release
 
 class AnsibleExtraVarsSerializer(serializers.Serializer):
     janus_version = serializers.CharField()
-    janus_libsockets_version = serializers.CharField()
+    janus_libwebsockets_version = serializers.CharField()
     janus_libnice_version = serializers.CharField()
     janus_usrsctp_version = serializers.CharField()
     janus_libsrtp_version = serializers.CharField()

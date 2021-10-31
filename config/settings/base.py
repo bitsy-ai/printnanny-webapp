@@ -652,27 +652,3 @@ coturn_db["ENGINE"] = 'django_prometheus.db.backends.postgresql'
 DATABASES["coturn"] = coturn_db
 COTURN_SECRET_KEY = env("COTURN_SECRET_KEY")
 COTURN_REALM = env("COTURN_REALM")
-
-# Ansible Extra Vars
-ANSIBLE_EXTRA_VARS = {
-    "stable": {
-        "janus_version": "v0.11.5",
-        "janus_libnice_version": "0.1.18",
-        "janus_libsrtp_version": "2.2.0",
-        "janus_usrsctp_version": "0.9.5.0",
-        "janus_libwebsockets_version": "v3.2-stable",
-        "libcamera_version": "fd875c9016638b2cdb89c7fb17e2ddcf90817d35",
-        "printnanny_cli_version": "0.1.5",
-        "tflite_version": "v2.5.1",
-    },
-    "nightly": {
-        "janus_version": "v0.11.5",
-        "janus_libnice_version": "0.1.18",
-        "janus_libsrtp_version": "2.2.0",
-        "janus_usrsctp_version": "0.9.5.0",
-        "janus_libwebsockets_version": "v3.2-stable",
-        "libcamera_version": "fd875c9016638b2cdb89c7fb17e2ddcf90817d35",
-        "printnanny_cli_version": "0.1.5",
-        "tflite_version": "v2.5.1",
-    }
-}

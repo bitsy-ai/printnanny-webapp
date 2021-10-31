@@ -5,6 +5,7 @@ from rest_framework.mixins import (
     ListModelMixin,
     RetrieveModelMixin,
 )
+from rest_framework.permissions import AllowAny
 from rest_framework.viewsets import GenericViewSet
 
 from ..models import Release
@@ -23,7 +24,6 @@ retrieve_release_schema = extend_schema(
     responses={
         "default": ErrorDetailSerializer,
         201: ReleaseSerializer,
-        202: ReleaseSerializer,
     },
 )
 
@@ -39,11 +39,33 @@ class ReleaseViewSet(
     via print-nanny-main-<platform>-<cpu>.img
     """
 
+    permission_classes = [AllowAny]
     serializer_class = ReleaseSerializer
     queryset = Release.objects.all()
-    lookup_field = "id"
 
-    # @action(detail=True, methods=["GET"])
-    # def latest(self, request):
 
-    #     release_channel = request.data
+@extend_schema_view(retreive=retrieve_release_schema)
+class LatestReleaseViewSet(
+    GenericViewSet,
+):
+    """
+    All-in-one Print Nanny installation
+    via print-nanny-main-<platform>-<cpu>.img
+    """
+
+    permission_classes = [AllowAny]
+    serializer_class = ReleaseSerializer
+    queryset = Release.objects.all()
+    lookup_field = "release_channel"
+
+    @extend_schema(
+        tags=["releases"],
+        responses={
+            "default": ErrorDetailSerializer,
+            201: ReleaseSerializer,
+        },
+    )
+    @action(detail=False, methods=["GET"])
+    def latest(self):
+        release_channel = self.kwargs["release_channel"]
+        return Release.objects.all(release_channel=release_channel).first()
