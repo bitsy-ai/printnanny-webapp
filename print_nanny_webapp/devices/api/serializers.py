@@ -132,6 +132,10 @@ class DeviceSerializer(serializers.ModelSerializer):
     public_key = DevicePublicKeySerializer(
         read_only=True, required=False, allow_null=True
     )
+    release_channel = serializers.ChoiceField(
+        choices=DeviceReleaseChannel.choices,
+        default=DeviceReleaseChannel.STABLE,
+    )
 
     user = serializers.PrimaryKeyRelatedField(read_only=True)
 
