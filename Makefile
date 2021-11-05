@@ -16,8 +16,8 @@ PRINT_NANNY_USER ?= "${USER}""
 DJANGO_SUPERUSER_EMAIL ?= "${USER}@print-nanny.com"
 DJANGO_SUPERUSER_PASSWORD ?= $(shell test -f .password && cat .password || (makepasswd --chars=42 > .password && cat .password) )
 DJANGO_ADMIN_CMD ?= docker-compose -f local.yml run --rm django python manage.py
+NEBULA_VERSION ?= v1.4.0
 PRINT_NANNY_TOKEN ?= $(shell test -f .token && cat .token || (${DJANGO_ADMIN_CMD} drf_create_token $(DJANGO_SUPERUSER_EMAIL) | tail -n 1 | awk '{print $$3}'> .token && cat .token))
-
 PRINT_NANNY_RELEASE_CHANNEL ?= "devel"
 PRINT_NANNY_PLUGIN_ARCHIVE ?= "https://github.com/bitsy-ai/octoprint-nanny-plugin/archive/$(PRINT_NANNY_RELEASE_CHANNEL).zip"
 PRINT_NANNY_PLUGIN_SHA ?= $(shell curl https://api.github.com/repos/bitsy-ai/octoprint-nanny-plugin/branches/$(PRINT_NANNY_RELEASE_CHANNEL) | jq .commit.sha)
@@ -40,6 +40,18 @@ mypy:
 	mypy print_nanny_webapp/telemetry/
 token:
 	echo $(PRINT_NANNY_TOKEN)
+
+nebula-image:
+	docker build -f compose/production/nebula/nebula.Dockerfile \
+		-t nebula:$(NEBULA_VERSION) \
+		--build-arg NEBULA_VERSION=$(NEBULA_VERSION) \
+		compose/production/nebula/
+
+push-nebula-image: nebula-image
+	docker tag nebula:$(NEBULA_VERSION) \
+		us.gcr.io/$(GCP_PROJECT)/nebula:$(NEBULA_VERSION)
+	docker push us.gcr.io/$(GCP_PROJECT)/nebula:$(NEBULA_VERSION)
+
 octoprint-wait:
 	OCTOPRINT_URL=$(OCTOPRINT_URL) \
 		k8s/sandbox/octoprint-wait.sh

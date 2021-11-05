@@ -43,18 +43,18 @@ metadata:
   name: "webapp"
   labels:
     version: "{{ GIT_SHA }}"
-    app: django
+    app: webapp
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: "webapp"
-      branch: "{{ GIT_BRANCH }}"
+      app: webapp
+      version: "{{ GIT_SHA }}"
   template:
     metadata:
       labels:
         version: "{{ GIT_SHA}}"
-        app: "webapp"
+        app: webapp
     spec:
       serviceAccountName: webapp
       containers:
