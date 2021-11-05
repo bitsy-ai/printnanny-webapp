@@ -40,20 +40,21 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "print-nanny-sandbox"
+  name: "webapp"
+  labels:
+    version: "{{ GIT_SHA }}"
+    app: django
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: "print-nanny-sandbox"
+      app: "webapp"
       branch: "{{ GIT_BRANCH }}"
-      owner: "{{ PRINT_NANNY_USER }}"
   template:
     metadata:
       labels:
-        branch: "{{ GIT_BRANCH }}"
-        owner: "{{ PRINT_NANNY_USER }}"
-        app: "print-nanny-sandbox"
+        version: "{{ GIT_SHA}}"
+        app: "webapp"
     spec:
       serviceAccountName: webapp
       containers:

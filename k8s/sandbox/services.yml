@@ -27,7 +27,7 @@ metadata:
   name: django
 spec:
   selector:
-    app: print-nanny-sandbox
+    app: webapp
   ports:
     - protocol: TCP
       port: 80
