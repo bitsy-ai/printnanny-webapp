@@ -77,9 +77,9 @@ jobs:
     - name: Purge data & persistent volumes
       if: ${{ github.event.inputs.purge_data == true }}
       run: make sandbox-pv-clean
-    - uses: satackey/action-docker-layer-caching@v0.0.11
-      # Ignore the failure of a step and avoid terminating the job.
-      continue-on-error: true
+    # - uses: satackey/action-docker-layer-caching@v0.0.11
+    #   # Ignore the failure of a step and avoid terminating the job.
+    #   continue-on-error: true
     - name: Deploy sandbox instance
       id: deploy
       run: |
