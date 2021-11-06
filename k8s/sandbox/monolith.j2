@@ -8,13 +8,9 @@ spec:
   selector:
     matchLabels:
       app: "postgres"
-      branch: "{{ GIT_BRANCH }}"
-      owner: "{{ PRINT_NANNY_USER }}"
   template:
     metadata:
       labels: 
-        branch: "{{ GIT_BRANCH }}"
-        owner: "{{ PRINT_NANNY_USER }}"
         app: "postgres"
     spec:
       containers:
@@ -49,7 +45,6 @@ spec:
   selector:
     matchLabels:
       app: webapp
-      version: "{{ GIT_SHA }}"
   template:
     metadata:
       labels:
