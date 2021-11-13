@@ -43,11 +43,16 @@ class Device(SafeDeleteModel):
     user = models.ForeignKey(
         UserModel, on_delete=models.CASCADE, related_name="devices"
     )
-    hostname = models.CharField(max_length=255)
+    hostname = models.CharField(
+        max_length=255,
+        help_text="Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension)",
+        default="printnanny",
+    )
     release_channel = models.CharField(
         max_length=8,
         choices=DeviceReleaseChannel.choices,
         default=DeviceReleaseChannel.STABLE,
+        help_text="WARNING: you should only use the nightly developer channel when guided by Print Nanny staff! This unstable channel is intended for QA and verifying bug fixes.",
     )
 
     @property
