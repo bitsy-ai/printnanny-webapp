@@ -265,7 +265,7 @@ def generate_keypair_and_update_or_create_cloudiot_device(
     keypair = generate_keypair()
     cloudiot_device = update_or_create_cloudiot_device(device=device, keypair=keypair)
     CloudiotDevice = apps.get_model("devices", "CloudiotDevice")
-    DevicePublicKey = apps.get_model("devices", "DevicePublicKey")
+    License = apps.get_model("devices", "License")
 
     # update apppliance relationships
     if device.cloudiot_devices.first():
@@ -288,7 +288,7 @@ def generate_keypair_and_update_or_create_cloudiot_device(
             device=device,
         )
     else:
-        DevicePublicKey.objects.create(
+        License.objects.create(
             public_key=keypair["public_key"],
             public_key_checksum=keypair["public_key_checksum"],
             fingerprint=keypair["fingerprint"],

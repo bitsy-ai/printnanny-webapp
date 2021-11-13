@@ -49,18 +49,10 @@ class Device(SafeDeleteModel):
         choices=DeviceReleaseChannel.choices,
         default=DeviceReleaseChannel.STABLE,
     )
-    # immutable device info
-    # /proc/cpuinfo HARDWARE
-    hardware = models.CharField(max_length=255)
-    # /proc/cpuinfo REVISION
-    revision = models.CharField(max_length=255)
-    # /proc/cpuinfo MODEL
-    model = models.CharField(max_length=255)
-    # /proc/cpuinfo SERIAL
-    serial = models.CharField(max_length=255)
-    # /proc/cpuinfo MAX PROCESSOR
-    cores = models.IntegerField()
-    ram = models.BigIntegerField()
+
+    @property
+    def license(self):
+        return self.licenses.first()
 
     @property
     def last_state(self):
@@ -85,6 +77,45 @@ class Device(SafeDeleteModel):
     @property
     def cloudiot_device(self):
         return self.cloudiot_devices.first()
+
+
+class License(SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE
+
+    class Meta:
+        constraints = [
+            UniqueConstraint(
+                fields=["device"],
+                condition=models.Q(deleted=None),
+                name="unique_license_per_device",
+            )
+        ]
+
+    public_key = models.TextField()
+    public_key_checksum = models.CharField(max_length=255)
+    fingerprint = models.CharField(max_length=255)
+
+    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
+    device = models.ForeignKey(
+        Device, on_delete=models.CASCADE, related_name="licenses"
+    )
+
+
+class DeviceInfo(SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE
+
+    # /proc/cpuinfo HARDWARE
+    hardware = models.CharField(max_length=255)
+    # /proc/cpuinfo REVISION
+    revision = models.CharField(max_length=255)
+    # /proc/cpuinfo MODEL
+    model = models.CharField(max_length=255)
+    # /proc/cpuinfo SERIAL
+    serial = models.CharField(max_length=255)
+    # /proc/cpuinfo MAX PROCESSOR
+    cores = models.IntegerField()
+    ram = models.BigIntegerField()
+    device = models.ForeignKey(Device, on_delete=models.CASCADE)
 
 
 class CloudiotDevice(SafeDeleteModel):
@@ -227,26 +258,6 @@ class DeviceState(SafeDeleteModel):
     @property
     def mqtt_topic(self):
         return f"/devices/{self.num_id}/state"
-
-
-class DevicePublicKey(SafeDeleteModel):
-    _safedelete_policy = SOFT_DELETE
-
-    class Meta:
-        constraints = [
-            UniqueConstraint(
-                fields=["device"],
-                condition=models.Q(deleted=None),
-                name="unique_public_key_per_device",
-            )
-        ]
-
-    public_key = models.TextField()
-    public_key_checksum = models.CharField(max_length=255)
-    fingerprint = models.CharField(max_length=255)
-    device = models.ForeignKey(
-        Device, on_delete=models.CASCADE, related_name="public_keys", db_index=True
-    )
 
 
 class Camera(SafeDeleteModel):

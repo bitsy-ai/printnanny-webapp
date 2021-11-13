@@ -6,7 +6,7 @@ from print_nanny_webapp.devices.models import (
     CloudiotDevice,
     DeviceConfig,
     DeviceState,
-    DevicePublicKey,
+    License,
     PrinterController,
     # PrinterProfile,
     # OctoprintPrinterProfile,
@@ -70,13 +70,13 @@ class CloudiotDeviceSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class DevicePublicKeySerializer(serializers.ModelSerializer):
+class LicenseSerializer(serializers.ModelSerializer):
     private_key = serializers.CharField(read_only=True)
     user = serializers.PrimaryKeyRelatedField(read_only=True)
     device = serializers.PrimaryKeyRelatedField(read_only=True)
 
     class Meta:
-        model = DevicePublicKey
+        model = License
         fields = "__all__"
         read_only_fields = ("public_key", "public_key_checksum", "fingerprint", "user")
 
@@ -129,9 +129,7 @@ class DeviceSerializer(serializers.ModelSerializer):
     )
 
     printer_controllers = PrinterControllerSerializer(read_only=True, many=True)
-    public_key = DevicePublicKeySerializer(
-        read_only=True, required=False, allow_null=True
-    )
+    public_key = LicenseSerializer(read_only=True, required=False, allow_null=True)
     release_channel = serializers.ChoiceField(
         choices=DeviceReleaseChannel.choices,
         default=DeviceReleaseChannel.STABLE,
