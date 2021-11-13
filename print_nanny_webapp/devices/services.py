@@ -302,7 +302,9 @@ def generate_keypair_and_update_or_create_cloudiot_device(
     return keypair, device.cloudiot_devices.first()
 
 
-def generate_zipped_license_file(tmp: tempfile.TemporaryDirectory) -> str:
+def generate_zipped_license_file(
+    tmp: tempfile.TemporaryDirectory, api_token: str
+) -> str:
     keypair = generate_keypair(tmp)
     filename = f"{tmp}/printnanny_license.zip"
     with ZipFile(filename, "w") as zf:
@@ -314,4 +316,5 @@ def generate_zipped_license_file(tmp: tempfile.TemporaryDirectory) -> str:
             keypair["private_key_filename"],
             arcname=os.path.basename(keypair["private_key_filename"]),
         )
+        zf.writestr("printnanny_api_token", api_token)
     return filename

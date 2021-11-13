@@ -9,6 +9,7 @@ from django.views.generic import TemplateView, FormView, CreateView, DetailView
 from print_nanny_webapp.devices.models import Device
 from django.views.generic.detail import BaseDetailView
 from django.http import FileResponse
+from rest_framework.authtoken.models import Token
 
 from print_nanny_webapp.dashboard.views import DashboardView
 from .services import generate_zipped_license_file
@@ -54,10 +55,10 @@ class DeviceLicenseDownload(DetailView):
     model = Device
 
     def get(self, request, *args, **kwargs):
-        print(kwargs)
+        token, created = Token.objects.get_or_create(user=self.request.user)
 
         with tempfile.TemporaryDirectory() as tmp:
-            filename = generate_zipped_license_file(tmp)
+            filename = generate_zipped_license_file(tmp, str(token))
             # some_file = self.model.objects.get(imported_file=filename)
             response = FileResponse(
                 open(filename, "rb"), content_type="application/zip"
