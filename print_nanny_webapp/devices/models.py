@@ -1,4 +1,5 @@
 import logging
+from django.apps import apps
 from django.conf import settings
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
@@ -22,6 +23,12 @@ def pre_softdelete_cloudiot_device(instance=None, **kwargs):
 
 
 pre_softdelete.connect(pre_softdelete_cloudiot_device)
+
+
+def _get_default_stable_release():
+    from print_nanny_webapp.releases.models import Release
+
+    return Release.objects.filter(release_channel="stable").first().id
 
 
 class Device(SafeDeleteModel):
@@ -54,6 +61,12 @@ class Device(SafeDeleteModel):
         default=DeviceReleaseChannel.STABLE,
         help_text="WARNING: you should only use the nightly developer channel when guided by Print Nanny staff! This unstable channel is intended for QA and verifying bug fixes.",
     )
+    bootstrap_release = models.ForeignKey(
+        "releases.Release",
+        db_index=True,
+        on_delete=models.CASCADE,
+        default=_get_default_stable_release,
+    )
 
     @property
     def license(self):
@@ -71,12 +84,12 @@ class Device(SafeDeleteModel):
     def dashboard_url(self):
         return reverse("devices:detail", kwargs={"pk": self.id})
 
-    @property
-    def desired_config(self):
-        return self.desired_config_set.first()
+    # @property
+    # def latest_config_msg(self):
+    #     return self.device_config_set.first()
 
     @property
-    def current_state(self):
+    def latest_state_msg(self):
         return self.current_state_set.first()
 
     @property

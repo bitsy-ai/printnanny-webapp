@@ -14,6 +14,7 @@ from print_nanny_webapp.devices.models import (
 from ..choices import DeviceReleaseChannel, PrinterSoftwareType
 from print_nanny_webapp.devices.services import CACerts
 from print_nanny_webapp.users.api.serializers import UserSerializer
+from print_nanny_webapp.releases.api.serializers import ReleaseSerializer
 
 
 class CameraSerializer(serializers.ModelSerializer):
@@ -116,27 +117,21 @@ class DeviceSerializer(serializers.ModelSerializer):
     cameras = CameraSerializer(read_only=True, many=True)
     dashboard_url = serializers.CharField(read_only=True)
 
-    desired_config = DeviceConfigSerializer(
-        read_only=True,
-        required=False,
-        allow_null=True,
-    )
-
-    current_state = DeviceStateSerializer(
+    bootstrap_release = ReleaseSerializer(
         read_only=True,
         required=False,
         allow_null=True,
     )
 
     printer_controllers = PrinterControllerSerializer(read_only=True, many=True)
-    public_key = LicenseSerializer(read_only=True, required=False, allow_null=True)
     release_channel = serializers.ChoiceField(
         choices=DeviceReleaseChannel.choices,
         default=DeviceReleaseChannel.STABLE,
     )
 
-    user = serializers.PrimaryKeyRelatedField(read_only=True)
+    user = UserSerializer(read_only=True)
 
     class Meta:
         model = Device
         fields = "__all__"
+        depth = 2

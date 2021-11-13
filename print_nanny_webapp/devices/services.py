@@ -1,7 +1,8 @@
 from __future__ import annotations
 from zipfile import ZipFile
-
-from zipfile import ZipFile
+from google.cloud import iot_v1 as cloudiot_v1
+import google.api_core.exceptions
+import subprocess
 from typing import Tuple, Optional
 import hashlib
 import logging
@@ -11,9 +12,8 @@ import os
 from django.apps import apps
 from typing import TypedDict
 from django.conf import settings
-from google.cloud import iot_v1 as cloudiot_v1
-import google.api_core.exceptions
-import subprocess
+
+from rest_framework.authtoken.models import Token
 
 from .models import Device, CloudiotDevice
 
@@ -295,7 +295,6 @@ def generate_keypair_and_update_or_create_cloudiot_device(
     else:
         License.objects.create(
             public_key=keypair["public_key"],
-            public_key_checksum=keypair["public_key_checksum"],
             fingerprint=keypair["fingerprint"],
             device=device,
         )
@@ -303,10 +302,14 @@ def generate_keypair_and_update_or_create_cloudiot_device(
 
 
 def generate_zipped_license_file(
-    tmp: tempfile.TemporaryDirectory, api_token: str
+    api_token: str,
+    tmp: tempfile.TemporaryDirectory,
 ) -> str:
+    from .api.serializers import DeviceSerializer
+
     keypair = generate_keypair(tmp)
     filename = f"{tmp}/printnanny_license.zip"
+    api_token, _ = Token.objects.get_or_create(user=self.request.user)
     with ZipFile(filename, "w") as zf:
         zf.write(
             keypair["public_key_filename"],
