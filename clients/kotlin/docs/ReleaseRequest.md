@@ -1,11 +1,10 @@
 
-# DeviceConfigRequest
+# ReleaseRequest
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**device** | **kotlin.Int** |  | 
-**ansibleExtraVars** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt;**](kotlin.Any.md) |  |  [optional]
+**ansibleExtraVars** | [**AnsibleExtraVarsRequest**](AnsibleExtraVarsRequest.md) |  | 
 **releaseChannel** | [**ReleaseChannelEnum**](ReleaseChannelEnum.md) |  |  [optional]
 
 

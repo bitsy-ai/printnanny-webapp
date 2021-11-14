@@ -20,7 +20,7 @@
 
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.AnsibleStateEnum
+import com.print-nanny.client.models.AnsibleExtraVarsRequest
 import com.print-nanny.client.models.ReleaseChannelEnum
 
 import com.squareup.moshi.Json
@@ -29,26 +29,14 @@ import java.io.Serializable
 /**
  * 
  *
- * @param device 
- * @param ansibleState 
- * @param ansibleFacts 
  * @param ansibleExtraVars 
  * @param releaseChannel 
  */
 
-data class DeviceStateRequest (
-
-    @Json(name = "device")
-    val device: kotlin.Int,
-
-    @Json(name = "ansible_state")
-    val ansibleState: AnsibleStateEnum? = null,
-
-    @Json(name = "ansible_facts")
-    val ansibleFacts: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,
+data class ReleaseRequest (
 
     @Json(name = "ansible_extra_vars")
-    val ansibleExtraVars: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,
+    val ansibleExtraVars: AnsibleExtraVarsRequest,
 
     @Json(name = "release_channel")
     val releaseChannel: ReleaseChannelEnum? = null

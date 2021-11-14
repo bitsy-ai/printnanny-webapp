@@ -13,33 +13,16 @@
 pub struct DeviceRequest {
     #[serde(rename = "release_channel", skip_serializing_if = "Option::is_none")]
     pub release_channel: Option<Box<crate::models::ReleaseChannelEnum>>,
-    #[serde(rename = "hostname")]
-    pub hostname: String,
-    #[serde(rename = "hardware")]
-    pub hardware: String,
-    #[serde(rename = "revision")]
-    pub revision: String,
-    #[serde(rename = "model")]
-    pub model: String,
-    #[serde(rename = "serial")]
-    pub serial: String,
-    #[serde(rename = "cores")]
-    pub cores: i32,
-    #[serde(rename = "ram")]
-    pub ram: i64,
+    /// Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension)
+    #[serde(rename = "hostname", skip_serializing_if = "Option::is_none")]
+    pub hostname: Option<String>,
 }
 
 impl DeviceRequest {
-    pub fn new(hostname: String, hardware: String, revision: String, model: String, serial: String, cores: i32, ram: i64) -> DeviceRequest {
+    pub fn new() -> DeviceRequest {
         DeviceRequest {
             release_channel: None,
-            hostname,
-            hardware,
-            revision,
-            model,
-            serial,
-            cores,
-            ram,
+            hostname: None,
         }
     }
 }

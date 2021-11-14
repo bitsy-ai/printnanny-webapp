@@ -22,11 +22,11 @@ package com.print-nanny.client.models
 
 import com.print-nanny.client.models.Camera
 import com.print-nanny.client.models.CloudiotDevice
-import com.print-nanny.client.models.DeviceConfig
-import com.print-nanny.client.models.DevicePublicKey
-import com.print-nanny.client.models.DeviceState
+import com.print-nanny.client.models.License
 import com.print-nanny.client.models.PrinterController
+import com.print-nanny.client.models.Release
 import com.print-nanny.client.models.ReleaseChannelEnum
+import com.print-nanny.client.models.User
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -34,50 +34,22 @@ import java.io.Serializable
 /**
  * 
  *
- * @param hostname 
- * @param hardware 
- * @param revision 
- * @param model 
- * @param serial 
- * @param cores 
- * @param ram 
  * @param id 
  * @param cloudiotDevice 
  * @param cameras 
  * @param dashboardUrl 
- * @param desiredConfig 
- * @param currentState 
+ * @param bootstrapRelease 
  * @param printerControllers 
- * @param publicKey 
  * @param releaseChannel 
  * @param user 
+ * @param license 
  * @param deleted 
  * @param createdDt 
  * @param updatedDt 
+ * @param hostname Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension)
  */
 
 data class Device (
-
-    @Json(name = "hostname")
-    val hostname: kotlin.String,
-
-    @Json(name = "hardware")
-    val hardware: kotlin.String,
-
-    @Json(name = "revision")
-    val revision: kotlin.String,
-
-    @Json(name = "model")
-    val model: kotlin.String,
-
-    @Json(name = "serial")
-    val serial: kotlin.String,
-
-    @Json(name = "cores")
-    val cores: kotlin.Int,
-
-    @Json(name = "ram")
-    val ram: kotlin.Long,
 
     @Json(name = "id")
     val id: kotlin.Int? = null,
@@ -91,23 +63,20 @@ data class Device (
     @Json(name = "dashboard_url")
     val dashboardUrl: kotlin.String? = null,
 
-    @Json(name = "desired_config")
-    val desiredConfig: DeviceConfig? = null,
-
-    @Json(name = "current_state")
-    val currentState: DeviceState? = null,
+    @Json(name = "bootstrap_release")
+    val bootstrapRelease: Release? = null,
 
     @Json(name = "printer_controllers")
     val printerControllers: kotlin.collections.List<PrinterController>? = null,
-
-    @Json(name = "public_key")
-    val publicKey: DevicePublicKey? = null,
 
     @Json(name = "release_channel")
     val releaseChannel: ReleaseChannelEnum? = null,
 
     @Json(name = "user")
-    val user: kotlin.Int? = null,
+    val user: User? = null,
+
+    @Json(name = "license")
+    val license: License? = null,
 
     @Json(name = "deleted")
     val deleted: java.time.OffsetDateTime? = null,
@@ -116,7 +85,11 @@ data class Device (
     val createdDt: java.time.OffsetDateTime? = null,
 
     @Json(name = "updated_dt")
-    val updatedDt: java.time.OffsetDateTime? = null
+    val updatedDt: java.time.OffsetDateTime? = null,
+
+    /* Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension) */
+    @Json(name = "hostname")
+    val hostname: kotlin.String? = null
 
 ) : Serializable {
     companion object {

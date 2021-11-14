@@ -36,12 +36,16 @@ class TestCameraRequest(unittest.TestCase):
         # model = print_nanny_client.models.camera_request.CameraRequest()  # noqa: E501
         if include_optional :
             return CameraRequest(
+                user = 56, 
+                device = 56, 
                 name = '', 
                 camera_type = None, 
                 camera_source = ''
             )
         else :
             return CameraRequest(
+                user = 56,
+                device = 56,
                 name = '',
                 camera_source = '',
         )

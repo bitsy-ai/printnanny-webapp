@@ -17,6 +17,8 @@ pub struct PatchedCloudiotDeviceRequest {
     pub name: Option<String>,
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
     pub id: Option<String>,
+    #[serde(rename = "device", skip_serializing_if = "Option::is_none")]
+    pub device: Option<i32>,
 }
 
 impl PatchedCloudiotDeviceRequest {
@@ -25,6 +27,7 @@ impl PatchedCloudiotDeviceRequest {
             num_id: None,
             name: None,
             id: None,
+            device: None,
         }
     }
 }

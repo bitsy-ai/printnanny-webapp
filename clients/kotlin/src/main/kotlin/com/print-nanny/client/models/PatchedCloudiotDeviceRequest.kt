@@ -30,6 +30,7 @@ import java.io.Serializable
  * @param numId 
  * @param name 
  * @param id 
+ * @param device 
  */
 
 data class PatchedCloudiotDeviceRequest (
@@ -41,7 +42,10 @@ data class PatchedCloudiotDeviceRequest (
     val name: kotlin.String? = null,
 
     @Json(name = "id")
-    val id: kotlin.String? = null
+    val id: kotlin.String? = null,
+
+    @Json(name = "device")
+    val device: kotlin.Int? = null
 
 ) : Serializable {
     companion object {

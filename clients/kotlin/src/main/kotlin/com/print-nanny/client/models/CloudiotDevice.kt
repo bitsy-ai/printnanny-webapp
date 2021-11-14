@@ -30,6 +30,7 @@ import java.io.Serializable
  * @param numId 
  * @param name 
  * @param id 
+ * @param device 
  * @param desiredConfigTopic 
  * @param currentStateTopic 
  * @param gcpProjectId 
@@ -38,8 +39,6 @@ import java.io.Serializable
  * @param mqttBridgeHostname 
  * @param mqttBridgePort 
  * @param mqttClientId 
- * @param user 
- * @param device 
  * @param deleted 
  */
 
@@ -53,6 +52,9 @@ data class CloudiotDevice (
 
     @Json(name = "id")
     val id: kotlin.String,
+
+    @Json(name = "device")
+    val device: kotlin.Int,
 
     @Json(name = "desired_config_topic")
     val desiredConfigTopic: kotlin.String? = null,
@@ -77,12 +79,6 @@ data class CloudiotDevice (
 
     @Json(name = "mqtt_client_id")
     val mqttClientId: kotlin.String? = null,
-
-    @Json(name = "user")
-    val user: kotlin.String? = null,
-
-    @Json(name = "device")
-    val device: kotlin.Int? = null,
 
     @Json(name = "deleted")
     val deleted: java.time.OffsetDateTime? = null

@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**user** | Option<**i32**> |  | [optional]
+**device** | Option<**i32**> |  | [optional]
 **name** | Option<**String**> |  | [optional]
 **camera_type** | Option<[**crate::models::CameraTypeEnum**](CameraTypeEnum.md)> |  | [optional]
 **camera_source** | Option<**String**> |  | [optional]

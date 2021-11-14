@@ -37,13 +37,7 @@ class TestPatchedDeviceRequest(unittest.TestCase):
         if include_optional :
             return PatchedDeviceRequest(
                 release_channel = None, 
-                hostname = '', 
-                hardware = '', 
-                revision = '', 
-                model = '', 
-                serial = '', 
-                cores = -2147483648, 
-                ram = -9223372036854775808
+                hostname = ''
             )
         else :
             return PatchedDeviceRequest(

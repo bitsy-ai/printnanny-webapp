@@ -19,63 +19,43 @@ pub struct Device {
     pub cameras: Option<Vec<crate::models::Camera>>,
     #[serde(rename = "dashboard_url", skip_serializing_if = "Option::is_none")]
     pub dashboard_url: Option<String>,
-    #[serde(rename = "desired_config", skip_serializing_if = "Option::is_none")]
-    pub desired_config: Option<Box<crate::models::DeviceConfig>>,
-    #[serde(rename = "current_state", skip_serializing_if = "Option::is_none")]
-    pub current_state: Option<Box<crate::models::DeviceState>>,
+    #[serde(rename = "bootstrap_release", skip_serializing_if = "Option::is_none")]
+    pub bootstrap_release: Option<Box<crate::models::Release>>,
     #[serde(rename = "printer_controllers", skip_serializing_if = "Option::is_none")]
     pub printer_controllers: Option<Vec<crate::models::PrinterController>>,
-    #[serde(rename = "public_key", skip_serializing_if = "Option::is_none")]
-    pub public_key: Option<Box<crate::models::DevicePublicKey>>,
     #[serde(rename = "release_channel", skip_serializing_if = "Option::is_none")]
     pub release_channel: Option<Box<crate::models::ReleaseChannelEnum>>,
     #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
-    pub user: Option<i32>,
+    pub user: Option<Box<crate::models::User>>,
+    #[serde(rename = "license", skip_serializing_if = "Option::is_none")]
+    pub license: Option<Box<crate::models::License>>,
     #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
     pub deleted: Option<String>,
     #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
     pub created_dt: Option<String>,
     #[serde(rename = "updated_dt", skip_serializing_if = "Option::is_none")]
     pub updated_dt: Option<String>,
-    #[serde(rename = "hostname")]
-    pub hostname: String,
-    #[serde(rename = "hardware")]
-    pub hardware: String,
-    #[serde(rename = "revision")]
-    pub revision: String,
-    #[serde(rename = "model")]
-    pub model: String,
-    #[serde(rename = "serial")]
-    pub serial: String,
-    #[serde(rename = "cores")]
-    pub cores: i32,
-    #[serde(rename = "ram")]
-    pub ram: i64,
+    /// Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension)
+    #[serde(rename = "hostname", skip_serializing_if = "Option::is_none")]
+    pub hostname: Option<String>,
 }
 
 impl Device {
-    pub fn new(hostname: String, hardware: String, revision: String, model: String, serial: String, cores: i32, ram: i64) -> Device {
+    pub fn new() -> Device {
         Device {
             id: None,
             cloudiot_device: None,
             cameras: None,
             dashboard_url: None,
-            desired_config: None,
-            current_state: None,
+            bootstrap_release: None,
             printer_controllers: None,
-            public_key: None,
             release_channel: None,
             user: None,
+            license: None,
             deleted: None,
             created_dt: None,
             updated_dt: None,
-            hostname,
-            hardware,
-            revision,
-            model,
-            serial,
-            cores,
-            ram,
+            hostname: None,
         }
     }
 }

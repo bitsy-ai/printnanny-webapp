@@ -10,21 +10,18 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct DeviceConfigRequest {
-    #[serde(rename = "ansible_extra_vars", skip_serializing_if = "Option::is_none")]
-    pub ansible_extra_vars: Option<::std::collections::HashMap<String, serde_json::Value>>,
+pub struct ReleaseRequest {
+    #[serde(rename = "ansible_extra_vars")]
+    pub ansible_extra_vars: Box<crate::models::AnsibleExtraVarsRequest>,
     #[serde(rename = "release_channel", skip_serializing_if = "Option::is_none")]
     pub release_channel: Option<crate::models::ReleaseChannelEnum>,
-    #[serde(rename = "device")]
-    pub device: i32,
 }
 
-impl DeviceConfigRequest {
-    pub fn new(device: i32) -> DeviceConfigRequest {
-        DeviceConfigRequest {
-            ansible_extra_vars: None,
+impl ReleaseRequest {
+    pub fn new(ansible_extra_vars: crate::models::AnsibleExtraVarsRequest) -> ReleaseRequest {
+        ReleaseRequest {
+            ansible_extra_vars: Box::new(ansible_extra_vars),
             release_channel: None,
-            device,
         }
     }
 }

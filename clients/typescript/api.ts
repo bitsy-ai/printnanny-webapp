@@ -245,6 +245,61 @@ export interface AnsibleExtraVars {
 /**
  * 
  * @export
+ * @interface AnsibleExtraVarsRequest
+ */
+export interface AnsibleExtraVarsRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof AnsibleExtraVarsRequest
+     */
+    'janus_version': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnsibleExtraVarsRequest
+     */
+    'janus_libwebsockets_version': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnsibleExtraVarsRequest
+     */
+    'janus_libnice_version': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnsibleExtraVarsRequest
+     */
+    'janus_usrsctp_version': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnsibleExtraVarsRequest
+     */
+    'janus_libsrtp_version': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnsibleExtraVarsRequest
+     */
+    'tflite_version': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnsibleExtraVarsRequest
+     */
+    'printnanny_cli_version': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnsibleExtraVarsRequest
+     */
+    'libcamera_version': string;
+}
+/**
+ * 
+ * @export
  * @enum {string}
  */
 
@@ -408,13 +463,13 @@ export interface Camera {
      * @type {number}
      * @memberof Camera
      */
-    'user'?: number;
+    'user': number;
     /**
      * 
      * @type {number}
      * @memberof Camera
      */
-    'device'?: number;
+    'device': number;
     /**
      * 
      * @type {string}
@@ -446,6 +501,18 @@ export interface Camera {
  * @interface CameraRequest
  */
 export interface CameraRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof CameraRequest
+     */
+    'user': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CameraRequest
+     */
+    'device': number;
     /**
      * 
      * @type {string}
@@ -542,18 +609,6 @@ export interface CloudiotDevice {
      * @type {string}
      * @memberof CloudiotDevice
      */
-    'user'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CloudiotDevice
-     */
-    'device'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CloudiotDevice
-     */
     'deleted'?: string;
     /**
      * 
@@ -567,6 +622,12 @@ export interface CloudiotDevice {
      * @memberof CloudiotDevice
      */
     'id': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CloudiotDevice
+     */
+    'device': number;
 }
 /**
  * 
@@ -592,6 +653,12 @@ export interface CloudiotDeviceRequest {
      * @memberof CloudiotDeviceRequest
      */
     'id': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CloudiotDeviceRequest
+     */
+    'device': number;
 }
 /**
  * 
@@ -655,16 +722,10 @@ export interface Device {
     'dashboard_url'?: string;
     /**
      * 
-     * @type {DeviceConfig}
+     * @type {Release}
      * @memberof Device
      */
-    'desired_config'?: DeviceConfig | null;
-    /**
-     * 
-     * @type {DeviceState}
-     * @memberof Device
-     */
-    'current_state'?: DeviceState | null;
+    'bootstrap_release'?: Release | null;
     /**
      * 
      * @type {Array<PrinterController>}
@@ -673,22 +734,22 @@ export interface Device {
     'printer_controllers'?: Array<PrinterController>;
     /**
      * 
-     * @type {DevicePublicKey}
-     * @memberof Device
-     */
-    'public_key'?: DevicePublicKey | null;
-    /**
-     * 
      * @type {ReleaseChannelEnum}
      * @memberof Device
      */
     'release_channel'?: ReleaseChannelEnum;
     /**
      * 
-     * @type {number}
+     * @type {User}
      * @memberof Device
      */
-    'user'?: number;
+    'user'?: User;
+    /**
+     * 
+     * @type {License}
+     * @memberof Device
+     */
+    'license'?: License;
     /**
      * 
      * @type {string}
@@ -708,47 +769,11 @@ export interface Device {
      */
     'updated_dt'?: string;
     /**
-     * 
+     * Please enter the hostname you set in the Raspberry Pi Imager\'s Advanced Options menu (without .local extension)
      * @type {string}
      * @memberof Device
      */
-    'hostname': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Device
-     */
-    'hardware': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Device
-     */
-    'revision': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Device
-     */
-    'model': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Device
-     */
-    'serial': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof Device
-     */
-    'cores': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof Device
-     */
-    'ram': number;
+    'hostname'?: string;
 }
 /**
  * 
@@ -894,31 +919,6 @@ export interface DeviceConfig {
 /**
  * 
  * @export
- * @interface DeviceConfigRequest
- */
-export interface DeviceConfigRequest {
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof DeviceConfigRequest
-     */
-    'ansible_extra_vars'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {ReleaseChannelEnum}
-     * @memberof DeviceConfigRequest
-     */
-    'release_channel'?: ReleaseChannelEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof DeviceConfigRequest
-     */
-    'device': number;
-}
-/**
- * 
- * @export
  * @interface DeviceKeyPair
  */
 export interface DeviceKeyPair {
@@ -962,61 +962,6 @@ export interface DeviceKeyPair {
 /**
  * 
  * @export
- * @interface DevicePublicKey
- */
-export interface DevicePublicKey {
-    /**
-     * 
-     * @type {number}
-     * @memberof DevicePublicKey
-     */
-    'id'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof DevicePublicKey
-     */
-    'private_key'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DevicePublicKey
-     */
-    'user'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof DevicePublicKey
-     */
-    'device'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof DevicePublicKey
-     */
-    'deleted'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DevicePublicKey
-     */
-    'public_key'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DevicePublicKey
-     */
-    'public_key_checksum'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DevicePublicKey
-     */
-    'fingerprint'?: string;
-}
-/**
- * 
- * @export
  * @interface DeviceRequest
  */
 export interface DeviceRequest {
@@ -1027,47 +972,11 @@ export interface DeviceRequest {
      */
     'release_channel'?: ReleaseChannelEnum;
     /**
-     * 
+     * Please enter the hostname you set in the Raspberry Pi Imager\'s Advanced Options menu (without .local extension)
      * @type {string}
      * @memberof DeviceRequest
      */
-    'hostname': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceRequest
-     */
-    'hardware': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceRequest
-     */
-    'revision': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceRequest
-     */
-    'model': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceRequest
-     */
-    'serial': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof DeviceRequest
-     */
-    'cores': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof DeviceRequest
-     */
-    'ram': number;
+    'hostname'?: string;
 }
 /**
  * 
@@ -1121,43 +1030,6 @@ export interface DeviceState {
      * 
      * @type {number}
      * @memberof DeviceState
-     */
-    'device': number;
-}
-/**
- * 
- * @export
- * @interface DeviceStateRequest
- */
-export interface DeviceStateRequest {
-    /**
-     * 
-     * @type {AnsibleStateEnum}
-     * @memberof DeviceStateRequest
-     */
-    'ansible_state'?: AnsibleStateEnum;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof DeviceStateRequest
-     */
-    'ansible_facts'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof DeviceStateRequest
-     */
-    'ansible_extra_vars'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {ReleaseChannelEnum}
-     * @memberof DeviceStateRequest
-     */
-    'release_channel'?: ReleaseChannelEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof DeviceStateRequest
      */
     'device': number;
 }
@@ -1361,6 +1233,74 @@ export interface GcodeFile {
      * @memberof GcodeFile
      */
     'url'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface License
+ */
+export interface License {
+    /**
+     * 
+     * @type {number}
+     * @memberof License
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof License
+     */
+    'private_key'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof License
+     */
+    'deleted'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof License
+     */
+    'public_key'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof License
+     */
+    'public_key_checksum'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof License
+     */
+    'fingerprint'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof License
+     */
+    'created_dt'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof License
+     */
+    'device': number;
+}
+/**
+ * 
+ * @export
+ * @interface LicenseRequest
+ */
+export interface LicenseRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof LicenseRequest
+     */
+    'device': number;
 }
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
@@ -3097,37 +3037,6 @@ export interface PaginatedDeviceList {
 /**
  * 
  * @export
- * @interface PaginatedDevicePublicKeyList
- */
-export interface PaginatedDevicePublicKeyList {
-    /**
-     * 
-     * @type {number}
-     * @memberof PaginatedDevicePublicKeyList
-     */
-    'count'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedDevicePublicKeyList
-     */
-    'next'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedDevicePublicKeyList
-     */
-    'previous'?: string | null;
-    /**
-     * 
-     * @type {Array<DevicePublicKey>}
-     * @memberof PaginatedDevicePublicKeyList
-     */
-    'results'?: Array<DevicePublicKey>;
-}
-/**
- * 
- * @export
  * @interface PaginatedDeviceStateList
  */
 export interface PaginatedDeviceStateList {
@@ -3248,6 +3157,37 @@ export interface PaginatedGcodeFileList {
      * @memberof PaginatedGcodeFileList
      */
     'results'?: Array<GcodeFile>;
+}
+/**
+ * 
+ * @export
+ * @interface PaginatedLicenseList
+ */
+export interface PaginatedLicenseList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedLicenseList
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedLicenseList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedLicenseList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<License>}
+     * @memberof PaginatedLicenseList
+     */
+    'results'?: Array<License>;
 }
 /**
  * 
@@ -3814,6 +3754,18 @@ export interface PatchedAlertRequest {
 export interface PatchedCameraRequest {
     /**
      * 
+     * @type {number}
+     * @memberof PatchedCameraRequest
+     */
+    'user'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedCameraRequest
+     */
+    'device'?: number;
+    /**
+     * 
      * @type {string}
      * @memberof PatchedCameraRequest
      */
@@ -3855,6 +3807,12 @@ export interface PatchedCloudiotDeviceRequest {
      * @memberof PatchedCloudiotDeviceRequest
      */
     'id'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedCloudiotDeviceRequest
+     */
+    'device'?: number;
 }
 /**
  * 
@@ -3906,47 +3864,11 @@ export interface PatchedDeviceRequest {
      */
     'release_channel'?: ReleaseChannelEnum;
     /**
-     * 
+     * Please enter the hostname you set in the Raspberry Pi Imager\'s Advanced Options menu (without .local extension)
      * @type {string}
      * @memberof PatchedDeviceRequest
      */
     'hostname'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedDeviceRequest
-     */
-    'hardware'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedDeviceRequest
-     */
-    'revision'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedDeviceRequest
-     */
-    'model'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedDeviceRequest
-     */
-    'serial'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedDeviceRequest
-     */
-    'cores'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedDeviceRequest
-     */
-    'ram'?: number;
 }
 /**
  * 
@@ -4148,6 +4070,18 @@ export interface PatchedPrinterControllerRequest {
      * @memberof PatchedPrinterControllerRequest
      */
     'software'?: SoftwareEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedPrinterControllerRequest
+     */
+    'user'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedPrinterControllerRequest
+     */
+    'device'?: number;
 }
 /**
  * 
@@ -4966,18 +4900,6 @@ export interface PrinterController {
     'id'?: number;
     /**
      * 
-     * @type {number}
-     * @memberof PrinterController
-     */
-    'user'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrinterController
-     */
-    'device'?: number;
-    /**
-     * 
      * @type {SoftwareEnum}
      * @memberof PrinterController
      */
@@ -5006,6 +4928,18 @@ export interface PrinterController {
      * @memberof PrinterController
      */
     'polymorphic_ctype'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterController
+     */
+    'user': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterController
+     */
+    'device': number;
 }
 /**
  * 
@@ -5019,6 +4953,18 @@ export interface PrinterControllerRequest {
      * @memberof PrinterControllerRequest
      */
     'software'?: SoftwareEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterControllerRequest
+     */
+    'user': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterControllerRequest
+     */
+    'device': number;
 }
 /**
  * 
@@ -5586,6 +5532,25 @@ export enum ReleaseChannelEnum {
     Nightly = 'nightly'
 }
 
+/**
+ * 
+ * @export
+ * @interface ReleaseRequest
+ */
+export interface ReleaseRequest {
+    /**
+     * 
+     * @type {AnsibleExtraVarsRequest}
+     * @memberof ReleaseRequest
+     */
+    'ansible_extra_vars': AnsibleExtraVarsRequest;
+    /**
+     * 
+     * @type {ReleaseChannelEnum}
+     * @memberof ReleaseRequest
+     */
+    'release_channel'?: ReleaseChannelEnum;
+}
 /**
  * 
  * @export
@@ -7878,13 +7843,11 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-         * @param {DeviceRequest} deviceRequest 
+         * @param {DeviceRequest} [deviceRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCreate: async (deviceRequest: DeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceRequest' is not null or undefined
-            assertParamExists('devicesCreate', 'deviceRequest', deviceRequest)
+        devicesCreate: async (deviceRequest?: DeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/devices/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -8003,7 +7966,7 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
          * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device public key.
+         * @param {number} id A unique integer value identifying this license.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -8129,15 +8092,13 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {number} deviceId 
-         * @param {DeviceRequest} deviceRequest 
+         * @param {DeviceRequest} [deviceRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesPrinterControllersCreate: async (deviceId: number, deviceRequest: DeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesPrinterControllersCreate: async (deviceId: number, deviceRequest?: DeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
             assertParamExists('devicesPrinterControllersCreate', 'deviceId', deviceId)
-            // verify required parameter 'deviceRequest' is not null or undefined
-            assertParamExists('devicesPrinterControllersCreate', 'deviceRequest', deviceRequest)
             const localVarPath = `/api/devices/{device_id}/printer-controllers/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -8309,17 +8270,15 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
          * 
          * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this printer controller.
-         * @param {DeviceRequest} deviceRequest 
+         * @param {DeviceRequest} [deviceRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesPrinterControllersUpdate: async (deviceId: number, id: number, deviceRequest: DeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesPrinterControllersUpdate: async (deviceId: number, id: number, deviceRequest?: DeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
             assertParamExists('devicesPrinterControllersUpdate', 'deviceId', deviceId)
             // verify required parameter 'id' is not null or undefined
             assertParamExists('devicesPrinterControllersUpdate', 'id', id)
-            // verify required parameter 'deviceRequest' is not null or undefined
-            assertParamExists('devicesPrinterControllersUpdate', 'deviceRequest', deviceRequest)
             const localVarPath = `/api/devices/{device_id}/printer-controllers/{id}/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
@@ -8522,15 +8481,13 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {number} id A unique integer value identifying this device.
-         * @param {DeviceRequest} deviceRequest 
+         * @param {DeviceRequest} [deviceRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesUpdate: async (id: number, deviceRequest: DeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesUpdate: async (id: number, deviceRequest?: DeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('devicesUpdate', 'id', id)
-            // verify required parameter 'deviceRequest' is not null or undefined
-            assertParamExists('devicesUpdate', 'deviceRequest', deviceRequest)
             const localVarPath = `/api/devices/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -8712,11 +8669,11 @@ export const DevicesApiFp = function(configuration?: Configuration) {
         },
         /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-         * @param {DeviceRequest} deviceRequest 
+         * @param {DeviceRequest} [deviceRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesCreate(deviceRequest: DeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
+        async devicesCreate(deviceRequest?: DeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCreate(deviceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -8737,18 +8694,18 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesKeypairsList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedDevicePublicKeyList>> {
+        async devicesKeypairsList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedLicenseList>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesKeypairsList(deviceId, page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
          * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device public key.
+         * @param {number} id A unique integer value identifying this license.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesKeypairsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DevicePublicKey>> {
+        async devicesKeypairsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<License>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesKeypairsRetrieve(deviceId, id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -8776,11 +8733,11 @@ export const DevicesApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} deviceId 
-         * @param {DeviceRequest} deviceRequest 
+         * @param {DeviceRequest} [deviceRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesPrinterControllersCreate(deviceId: number, deviceRequest: DeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterController>> {
+        async devicesPrinterControllersCreate(deviceId: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterController>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPrinterControllersCreate(deviceId, deviceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -8822,11 +8779,11 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          * 
          * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this printer controller.
-         * @param {DeviceRequest} deviceRequest 
+         * @param {DeviceRequest} [deviceRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesPrinterControllersUpdate(deviceId: number, id: number, deviceRequest: DeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterController>> {
+        async devicesPrinterControllersUpdate(deviceId: number, id: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterController>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPrinterControllersUpdate(deviceId, id, deviceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -8875,11 +8832,11 @@ export const DevicesApiFp = function(configuration?: Configuration) {
         /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {number} id A unique integer value identifying this device.
-         * @param {DeviceRequest} deviceRequest 
+         * @param {DeviceRequest} [deviceRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesUpdate(id: number, deviceRequest: DeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
+        async devicesUpdate(id: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesUpdate(id, deviceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -9019,11 +8976,11 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-         * @param {DeviceRequest} deviceRequest 
+         * @param {DeviceRequest} [deviceRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCreate(deviceRequest: DeviceRequest, options?: any): AxiosPromise<Device> {
+        devicesCreate(deviceRequest?: DeviceRequest, options?: any): AxiosPromise<Device> {
             return localVarFp.devicesCreate(deviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -9042,17 +8999,17 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesKeypairsList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedDevicePublicKeyList> {
+        devicesKeypairsList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedLicenseList> {
             return localVarFp.devicesKeypairsList(deviceId, page, options).then((request) => request(axios, basePath));
         },
         /**
          * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
          * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device public key.
+         * @param {number} id A unique integer value identifying this license.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesKeypairsRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<DevicePublicKey> {
+        devicesKeypairsRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<License> {
             return localVarFp.devicesKeypairsRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -9077,11 +9034,11 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @param {number} deviceId 
-         * @param {DeviceRequest} deviceRequest 
+         * @param {DeviceRequest} [deviceRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesPrinterControllersCreate(deviceId: number, deviceRequest: DeviceRequest, options?: any): AxiosPromise<PrinterController> {
+        devicesPrinterControllersCreate(deviceId: number, deviceRequest?: DeviceRequest, options?: any): AxiosPromise<PrinterController> {
             return localVarFp.devicesPrinterControllersCreate(deviceId, deviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -9119,11 +9076,11 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          * 
          * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this printer controller.
-         * @param {DeviceRequest} deviceRequest 
+         * @param {DeviceRequest} [deviceRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesPrinterControllersUpdate(deviceId: number, id: number, deviceRequest: DeviceRequest, options?: any): AxiosPromise<PrinterController> {
+        devicesPrinterControllersUpdate(deviceId: number, id: number, deviceRequest?: DeviceRequest, options?: any): AxiosPromise<PrinterController> {
             return localVarFp.devicesPrinterControllersUpdate(deviceId, id, deviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -9167,11 +9124,11 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {number} id A unique integer value identifying this device.
-         * @param {DeviceRequest} deviceRequest 
+         * @param {DeviceRequest} [deviceRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesUpdate(id: number, deviceRequest: DeviceRequest, options?: any): AxiosPromise<Device> {
+        devicesUpdate(id: number, deviceRequest?: DeviceRequest, options?: any): AxiosPromise<Device> {
             return localVarFp.devicesUpdate(id, deviceRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -9309,12 +9266,12 @@ export interface DevicesApiInterface {
 
     /**
      * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-     * @param {DeviceRequest} deviceRequest 
+     * @param {DeviceRequest} [deviceRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesCreate(deviceRequest: DeviceRequest, options?: AxiosRequestConfig): AxiosPromise<Device>;
+    devicesCreate(deviceRequest?: DeviceRequest, options?: AxiosRequestConfig): AxiosPromise<Device>;
 
     /**
      * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
@@ -9333,17 +9290,17 @@ export interface DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesKeypairsList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedDevicePublicKeyList>;
+    devicesKeypairsList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedLicenseList>;
 
     /**
      * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
      * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device public key.
+     * @param {number} id A unique integer value identifying this license.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesKeypairsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<DevicePublicKey>;
+    devicesKeypairsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<License>;
 
     /**
      * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
@@ -9367,12 +9324,12 @@ export interface DevicesApiInterface {
     /**
      * 
      * @param {number} deviceId 
-     * @param {DeviceRequest} deviceRequest 
+     * @param {DeviceRequest} [deviceRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesPrinterControllersCreate(deviceId: number, deviceRequest: DeviceRequest, options?: AxiosRequestConfig): AxiosPromise<PrinterController>;
+    devicesPrinterControllersCreate(deviceId: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig): AxiosPromise<PrinterController>;
 
     /**
      * 
@@ -9409,12 +9366,12 @@ export interface DevicesApiInterface {
      * 
      * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this printer controller.
-     * @param {DeviceRequest} deviceRequest 
+     * @param {DeviceRequest} [deviceRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesPrinterControllersUpdate(deviceId: number, id: number, deviceRequest: DeviceRequest, options?: AxiosRequestConfig): AxiosPromise<PrinterController>;
+    devicesPrinterControllersUpdate(deviceId: number, id: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig): AxiosPromise<PrinterController>;
 
     /**
      * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
@@ -9457,12 +9414,12 @@ export interface DevicesApiInterface {
     /**
      * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
      * @param {number} id A unique integer value identifying this device.
-     * @param {DeviceRequest} deviceRequest 
+     * @param {DeviceRequest} [deviceRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesUpdate(id: number, deviceRequest: DeviceRequest, options?: AxiosRequestConfig): AxiosPromise<Device>;
+    devicesUpdate(id: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig): AxiosPromise<Device>;
 
 }
 
@@ -9623,12 +9580,12 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
 
     /**
      * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-     * @param {DeviceRequest} deviceRequest 
+     * @param {DeviceRequest} [deviceRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesCreate(deviceRequest: DeviceRequest, options?: AxiosRequestConfig) {
+    public devicesCreate(deviceRequest?: DeviceRequest, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesCreate(deviceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -9658,7 +9615,7 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
     /**
      * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
      * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device public key.
+     * @param {number} id A unique integer value identifying this license.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
@@ -9693,12 +9650,12 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
     /**
      * 
      * @param {number} deviceId 
-     * @param {DeviceRequest} deviceRequest 
+     * @param {DeviceRequest} [deviceRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesPrinterControllersCreate(deviceId: number, deviceRequest: DeviceRequest, options?: AxiosRequestConfig) {
+    public devicesPrinterControllersCreate(deviceId: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesPrinterControllersCreate(deviceId, deviceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -9743,12 +9700,12 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      * 
      * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this printer controller.
-     * @param {DeviceRequest} deviceRequest 
+     * @param {DeviceRequest} [deviceRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesPrinterControllersUpdate(deviceId: number, id: number, deviceRequest: DeviceRequest, options?: AxiosRequestConfig) {
+    public devicesPrinterControllersUpdate(deviceId: number, id: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesPrinterControllersUpdate(deviceId, id, deviceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -9801,12 +9758,12 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
     /**
      * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
      * @param {number} id A unique integer value identifying this device.
-     * @param {DeviceRequest} deviceRequest 
+     * @param {DeviceRequest} [deviceRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesUpdate(id: number, deviceRequest: DeviceRequest, options?: AxiosRequestConfig) {
+    public devicesUpdate(id: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesUpdate(id, deviceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }

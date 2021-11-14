@@ -7,6 +7,7 @@ docs/AlertEventTypeEnum.md
 docs/AlertRequest.md
 docs/AlertsApi.md
 docs/AnsibleExtraVars.md
+docs/AnsibleExtraVarsRequest.md
 docs/AnsibleStateEnum.md
 docs/ArtifactTypesEnum.md
 docs/AuthApi.md
@@ -25,12 +26,9 @@ docs/Device.md
 docs/DeviceCalibration.md
 docs/DeviceCalibrationRequest.md
 docs/DeviceConfig.md
-docs/DeviceConfigRequest.md
 docs/DeviceKeyPair.md
-docs/DevicePublicKey.md
 docs/DeviceRequest.md
 docs/DeviceState.md
-docs/DeviceStateRequest.md
 docs/DevicesApi.md
 docs/EmailAuthRequest.md
 docs/ErrorDetail.md
@@ -39,6 +37,8 @@ docs/EventType0c4Enum.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
+docs/License.md
+docs/LicenseRequest.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
@@ -76,11 +76,11 @@ docs/PaginatedCloudiotDeviceList.md
 docs/PaginatedDeviceCalibrationList.md
 docs/PaginatedDeviceConfigList.md
 docs/PaginatedDeviceList.md
-docs/PaginatedDevicePublicKeyList.md
 docs/PaginatedDeviceStateList.md
 docs/PaginatedExperimentDeviceConfigList.md
 docs/PaginatedExperimentList.md
 docs/PaginatedGcodeFileList.md
+docs/PaginatedLicenseList.md
 docs/PaginatedModelArtifactList.md
 docs/PaginatedOctoPrintDeviceList.md
 docs/PaginatedOctoPrintEventList.md
@@ -127,6 +127,7 @@ docs/PrinterProfileRequest.md
 docs/PrinterStateEnum.md
 docs/Release.md
 docs/ReleaseChannelEnum.md
+docs/ReleaseRequest.md
 docs/ReleasesApi.md
 docs/RemoteCommandEvent.md
 docs/RemoteCommandEventEventTypeEnum.md
@@ -183,6 +184,7 @@ src/main/kotlin/com/print-nanny/client/models/AlertBulkResponse.kt
 src/main/kotlin/com/print-nanny/client/models/AlertEventTypeEnum.kt
 src/main/kotlin/com/print-nanny/client/models/AlertRequest.kt
 src/main/kotlin/com/print-nanny/client/models/AnsibleExtraVars.kt
+src/main/kotlin/com/print-nanny/client/models/AnsibleExtraVarsRequest.kt
 src/main/kotlin/com/print-nanny/client/models/AnsibleStateEnum.kt
 src/main/kotlin/com/print-nanny/client/models/ArtifactTypesEnum.kt
 src/main/kotlin/com/print-nanny/client/models/CACerts.kt
@@ -200,12 +202,9 @@ src/main/kotlin/com/print-nanny/client/models/Device.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceCalibration.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceCalibrationRequest.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceConfig.kt
-src/main/kotlin/com/print-nanny/client/models/DeviceConfigRequest.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceKeyPair.kt
-src/main/kotlin/com/print-nanny/client/models/DevicePublicKey.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceRequest.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceState.kt
-src/main/kotlin/com/print-nanny/client/models/DeviceStateRequest.kt
 src/main/kotlin/com/print-nanny/client/models/EmailAuthRequest.kt
 src/main/kotlin/com/print-nanny/client/models/ErrorDetail.kt
 src/main/kotlin/com/print-nanny/client/models/EventSourceEnum.kt
@@ -213,6 +212,8 @@ src/main/kotlin/com/print-nanny/client/models/EventType0c4Enum.kt
 src/main/kotlin/com/print-nanny/client/models/Experiment.kt
 src/main/kotlin/com/print-nanny/client/models/ExperimentDeviceConfig.kt
 src/main/kotlin/com/print-nanny/client/models/GcodeFile.kt
+src/main/kotlin/com/print-nanny/client/models/License.kt
+src/main/kotlin/com/print-nanny/client/models/LicenseRequest.kt
 src/main/kotlin/com/print-nanny/client/models/MobileAuthRequest.kt
 src/main/kotlin/com/print-nanny/client/models/ModelArtifact.kt
 src/main/kotlin/com/print-nanny/client/models/OctoPrintDevice.kt
@@ -249,11 +250,11 @@ src/main/kotlin/com/print-nanny/client/models/PaginatedCloudiotDeviceList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedDeviceCalibrationList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedDeviceConfigList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedDeviceList.kt
-src/main/kotlin/com/print-nanny/client/models/PaginatedDevicePublicKeyList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedDeviceStateList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedExperimentDeviceConfigList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedExperimentList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedGcodeFileList.kt
+src/main/kotlin/com/print-nanny/client/models/PaginatedLicenseList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedModelArtifactList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedOctoPrintDeviceList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedOctoPrintEventList.kt
@@ -298,6 +299,7 @@ src/main/kotlin/com/print-nanny/client/models/PrinterProfileRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PrinterStateEnum.kt
 src/main/kotlin/com/print-nanny/client/models/Release.kt
 src/main/kotlin/com/print-nanny/client/models/ReleaseChannelEnum.kt
+src/main/kotlin/com/print-nanny/client/models/ReleaseRequest.kt
 src/main/kotlin/com/print-nanny/client/models/RemoteCommandEvent.kt
 src/main/kotlin/com/print-nanny/client/models/RemoteCommandEventEventTypeEnum.kt
 src/main/kotlin/com/print-nanny/client/models/RemoteCommandEventRequest.kt

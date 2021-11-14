@@ -28,19 +28,25 @@ import java.io.Serializable
 /**
  * 
  *
+ * @param user 
+ * @param device 
  * @param name 
  * @param cameraSource 
  * @param id 
  * @param deleted 
  * @param createdDt 
  * @param updatedDt 
- * @param user 
- * @param device 
  * @param cameraType 
  * @param url 
  */
 
 data class Camera (
+
+    @Json(name = "user")
+    val user: kotlin.Int,
+
+    @Json(name = "device")
+    val device: kotlin.Int,
 
     @Json(name = "name")
     val name: kotlin.String,
@@ -59,12 +65,6 @@ data class Camera (
 
     @Json(name = "updated_dt")
     val updatedDt: java.time.OffsetDateTime? = null,
-
-    @Json(name = "user")
-    val user: kotlin.Int? = null,
-
-    @Json(name = "device")
-    val device: kotlin.Int? = null,
 
     @Json(name = "camera_type")
     val cameraType: CameraTypeEnum? = null,

@@ -698,7 +698,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deviceRequest** | [**DeviceRequest**](DeviceRequest.md)|  |
+ **deviceRequest** | [**DeviceRequest**](DeviceRequest.md)|  | [optional]
 
 ### Return type
 
@@ -772,7 +772,7 @@ Configure tokenAuth:
 
 <a name="devicesKeypairsList"></a>
 # **devicesKeypairsList**
-> PaginatedDevicePublicKeyList devicesKeypairsList(deviceId, page)
+> PaginatedLicenseList devicesKeypairsList(deviceId, page)
 
 
 
@@ -788,7 +788,7 @@ val apiInstance = DevicesApi()
 val deviceId : kotlin.Int = 56 // kotlin.Int | 
 val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
 try {
-    val result : PaginatedDevicePublicKeyList = apiInstance.devicesKeypairsList(deviceId, page)
+    val result : PaginatedLicenseList = apiInstance.devicesKeypairsList(deviceId, page)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling DevicesApi#devicesKeypairsList")
@@ -808,7 +808,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedDevicePublicKeyList**](PaginatedDevicePublicKeyList.md)
+[**PaginatedLicenseList**](PaginatedLicenseList.md)
 
 ### Authorization
 
@@ -826,7 +826,7 @@ Configure tokenAuth:
 
 <a name="devicesKeypairsRetrieve"></a>
 # **devicesKeypairsRetrieve**
-> DevicePublicKey devicesKeypairsRetrieve(deviceId, id)
+> License devicesKeypairsRetrieve(deviceId, id)
 
 
 
@@ -840,9 +840,9 @@ Public key for Print Nanny Device Only one public key may be active at a time DE
 
 val apiInstance = DevicesApi()
 val deviceId : kotlin.Int = 56 // kotlin.Int | 
-val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this device public key.
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this license.
 try {
-    val result : DevicePublicKey = apiInstance.devicesKeypairsRetrieve(deviceId, id)
+    val result : License = apiInstance.devicesKeypairsRetrieve(deviceId, id)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling DevicesApi#devicesKeypairsRetrieve")
@@ -858,11 +858,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **deviceId** | **kotlin.Int**|  |
- **id** | **kotlin.Int**| A unique integer value identifying this device public key. |
+ **id** | **kotlin.Int**| A unique integer value identifying this license. |
 
 ### Return type
 
-[**DevicePublicKey**](DevicePublicKey.md)
+[**License**](License.md)
 
 ### Authorization
 
@@ -1016,7 +1016,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **deviceId** | **kotlin.Int**|  |
- **deviceRequest** | [**DeviceRequest**](DeviceRequest.md)|  |
+ **deviceRequest** | [**DeviceRequest**](DeviceRequest.md)|  | [optional]
 
 ### Return type
 
@@ -1228,7 +1228,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **deviceId** | **kotlin.Int**|  |
  **id** | **kotlin.Int**| A unique integer value identifying this printer controller. |
- **deviceRequest** | [**DeviceRequest**](DeviceRequest.md)|  |
+ **deviceRequest** | [**DeviceRequest**](DeviceRequest.md)|  | [optional]
 
 ### Return type
 
@@ -1488,7 +1488,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **kotlin.Int**| A unique integer value identifying this device. |
- **deviceRequest** | [**DeviceRequest**](DeviceRequest.md)|  |
+ **deviceRequest** | [**DeviceRequest**](DeviceRequest.md)|  | [optional]
 
 ### Return type
 

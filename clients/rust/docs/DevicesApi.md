@@ -399,7 +399,7 @@ All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**device_request** | [**DeviceRequest**](DeviceRequest.md) |  | [required] |
+**device_request** | Option<[**DeviceRequest**](DeviceRequest.md)> |  |  |
 
 ### Return type
 
@@ -449,7 +449,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_keypairs_list
 
-> crate::models::PaginatedDevicePublicKeyList devices_keypairs_list(device_id, page)
+> crate::models::PaginatedLicenseList devices_keypairs_list(device_id, page)
 
 
 Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
@@ -464,7 +464,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::PaginatedDevicePublicKeyList**](PaginatedDevicePublicKeyList.md)
+[**crate::models::PaginatedLicenseList**](PaginatedLicenseList.md)
 
 ### Authorization
 
@@ -480,7 +480,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_keypairs_retrieve
 
-> crate::models::DevicePublicKey devices_keypairs_retrieve(device_id, id)
+> crate::models::License devices_keypairs_retrieve(device_id, id)
 
 
 Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
@@ -491,11 +491,11 @@ Public key for Print Nanny Device Only one public key may be active at a time DE
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
-**id** | **i32** | A unique integer value identifying this device public key. | [required] |
+**id** | **i32** | A unique integer value identifying this license. | [required] |
 
 ### Return type
 
-[**crate::models::DevicePublicKey**](DevicePublicKey.md)
+[**crate::models::License**](License.md)
 
 ### Authorization
 
@@ -581,7 +581,7 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
-**device_request** | [**DeviceRequest**](DeviceRequest.md) |  | [required] |
+**device_request** | Option<[**DeviceRequest**](DeviceRequest.md)> |  |  |
 
 ### Return type
 
@@ -699,7 +699,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
 **id** | **i32** | A unique integer value identifying this printer controller. | [required] |
-**device_request** | [**DeviceRequest**](DeviceRequest.md) |  | [required] |
+**device_request** | Option<[**DeviceRequest**](DeviceRequest.md)> |  |  |
 
 ### Return type
 
@@ -846,7 +846,7 @@ All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **i32** | A unique integer value identifying this device. | [required] |
-**device_request** | [**DeviceRequest**](DeviceRequest.md) |  | [required] |
+**device_request** | Option<[**DeviceRequest**](DeviceRequest.md)> |  |  |
 
 ### Return type
 

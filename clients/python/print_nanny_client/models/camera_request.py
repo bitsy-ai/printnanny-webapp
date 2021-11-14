@@ -36,31 +36,85 @@ class CameraRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
+        'user': 'int',
+        'device': 'int',
         'name': 'str',
         'camera_type': 'CameraTypeEnum',
         'camera_source': 'str'
     }
 
     attribute_map = {
+        'user': 'user',
+        'device': 'device',
         'name': 'name',
         'camera_type': 'camera_type',
         'camera_source': 'camera_source'
     }
 
-    def __init__(self, name=None, camera_type=None, camera_source=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, user=None, device=None, name=None, camera_type=None, camera_source=None, local_vars_configuration=None):  # noqa: E501
         """CameraRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
+        self._user = None
+        self._device = None
         self._name = None
         self._camera_type = None
         self._camera_source = None
         self.discriminator = None
 
+        self.user = user
+        self.device = device
         self.name = name
         self.camera_type = camera_type
         self.camera_source = camera_source
+
+    @property
+    def user(self):
+        """Gets the user of this CameraRequest.  # noqa: E501
+
+
+        :return: The user of this CameraRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._user
+
+    @user.setter
+    def user(self, user):
+        """Sets the user of this CameraRequest.
+
+
+        :param user: The user of this CameraRequest.  # noqa: E501
+        :type user: int
+        """
+        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
+            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
+
+        self._user = user
+
+    @property
+    def device(self):
+        """Gets the device of this CameraRequest.  # noqa: E501
+
+
+        :return: The device of this CameraRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._device
+
+    @device.setter
+    def device(self, device):
+        """Sets the device of this CameraRequest.
+
+
+        :param device: The device of this CameraRequest.  # noqa: E501
+        :type device: int
+        """
+        if self.local_vars_configuration.client_side_validation and device is None:  # noqa: E501
+            raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
+
+        self._device = device
 
     @property
     def name(self):

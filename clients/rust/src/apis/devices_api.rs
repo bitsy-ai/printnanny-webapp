@@ -603,7 +603,7 @@ pub async fn devices_config_retrieve(configuration: &configuration::Configuratio
 }
 
 /// All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-pub async fn devices_create(configuration: &configuration::Configuration, device_request: crate::models::DeviceRequest) -> Result<crate::models::Device, Error<DevicesCreateError>> {
+pub async fn devices_create(configuration: &configuration::Configuration, device_request: Option<crate::models::DeviceRequest>) -> Result<crate::models::Device, Error<DevicesCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -666,7 +666,7 @@ pub async fn devices_keypairs_create(configuration: &configuration::Configuratio
 }
 
 /// Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-pub async fn devices_keypairs_list(configuration: &configuration::Configuration, device_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedDevicePublicKeyList, Error<DevicesKeypairsListError>> {
+pub async fn devices_keypairs_list(configuration: &configuration::Configuration, device_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedLicenseList, Error<DevicesKeypairsListError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -700,7 +700,7 @@ pub async fn devices_keypairs_list(configuration: &configuration::Configuration,
 }
 
 /// Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-pub async fn devices_keypairs_retrieve(configuration: &configuration::Configuration, device_id: i32, id: i32) -> Result<crate::models::DevicePublicKey, Error<DevicesKeypairsRetrieveError>> {
+pub async fn devices_keypairs_retrieve(configuration: &configuration::Configuration, device_id: i32, id: i32) -> Result<crate::models::License, Error<DevicesKeypairsRetrieveError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -796,7 +796,7 @@ pub async fn devices_partial_update(configuration: &configuration::Configuration
     }
 }
 
-pub async fn devices_printer_controllers_create(configuration: &configuration::Configuration, device_id: i32, device_request: crate::models::DeviceRequest) -> Result<crate::models::PrinterController, Error<DevicesPrinterControllersCreateError>> {
+pub async fn devices_printer_controllers_create(configuration: &configuration::Configuration, device_id: i32, device_request: Option<crate::models::DeviceRequest>) -> Result<crate::models::PrinterController, Error<DevicesPrinterControllersCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -921,7 +921,7 @@ pub async fn devices_printer_controllers_retrieve(configuration: &configuration:
     }
 }
 
-pub async fn devices_printer_controllers_update(configuration: &configuration::Configuration, device_id: i32, id: i32, device_request: crate::models::DeviceRequest) -> Result<crate::models::PrinterController, Error<DevicesPrinterControllersUpdateError>> {
+pub async fn devices_printer_controllers_update(configuration: &configuration::Configuration, device_id: i32, id: i32, device_request: Option<crate::models::DeviceRequest>) -> Result<crate::models::PrinterController, Error<DevicesPrinterControllersUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1077,7 +1077,7 @@ pub async fn devices_state_retrieve(configuration: &configuration::Configuration
 }
 
 /// All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-pub async fn devices_update(configuration: &configuration::Configuration, id: i32, device_request: crate::models::DeviceRequest) -> Result<crate::models::Device, Error<DevicesUpdateError>> {
+pub async fn devices_update(configuration: &configuration::Configuration, id: i32, device_request: Option<crate::models::DeviceRequest>) -> Result<crate::models::Device, Error<DevicesUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

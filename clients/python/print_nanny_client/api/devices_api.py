@@ -1816,17 +1816,17 @@ class DevicesApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def devices_create(self, device_request, **kwargs):  # noqa: E501
+    def devices_create(self, **kwargs):  # noqa: E501
         """devices_create  # noqa: E501
 
         All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_create(device_request, async_req=True)
+        >>> thread = api.devices_create(async_req=True)
         >>> result = thread.get()
 
-        :param device_request: (required)
+        :param device_request:
         :type device_request: DeviceRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1844,19 +1844,19 @@ class DevicesApi(object):
         :rtype: Device
         """
         kwargs['_return_http_data_only'] = True
-        return self.devices_create_with_http_info(device_request, **kwargs)  # noqa: E501
+        return self.devices_create_with_http_info(**kwargs)  # noqa: E501
 
-    def devices_create_with_http_info(self, device_request, **kwargs):  # noqa: E501
+    def devices_create_with_http_info(self, **kwargs):  # noqa: E501
         """devices_create  # noqa: E501
 
         All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_create_with_http_info(device_request, async_req=True)
+        >>> thread = api.devices_create_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param device_request: (required)
+        :param device_request:
         :type device_request: DeviceRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1904,10 +1904,6 @@ class DevicesApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'device_request' is set
-        if self.api_client.client_side_validation and ('device_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['device_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `device_request` when calling `devices_create`")  # noqa: E501
 
         collection_formats = {}
 
@@ -2119,7 +2115,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: PaginatedDevicePublicKeyList
+        :rtype: PaginatedLicenseList
         """
         kwargs['_return_http_data_only'] = True
         return self.devices_keypairs_list_with_http_info(device_id, **kwargs)  # noqa: E501
@@ -2158,7 +2154,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(PaginatedDevicePublicKeyList, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(PaginatedLicenseList, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -2214,7 +2210,7 @@ class DevicesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            200: "PaginatedDevicePublicKeyList",
+            200: "PaginatedLicenseList",
         }
 
         return self.api_client.call_api(
@@ -2246,7 +2242,7 @@ class DevicesApi(object):
 
         :param device_id: (required)
         :type device_id: int
-        :param id: A unique integer value identifying this device public key. (required)
+        :param id: A unique integer value identifying this license. (required)
         :type id: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2261,7 +2257,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: DevicePublicKey
+        :rtype: License
         """
         kwargs['_return_http_data_only'] = True
         return self.devices_keypairs_retrieve_with_http_info(device_id, id, **kwargs)  # noqa: E501
@@ -2278,7 +2274,7 @@ class DevicesApi(object):
 
         :param device_id: (required)
         :type device_id: int
-        :param id: A unique integer value identifying this device public key. (required)
+        :param id: A unique integer value identifying this license. (required)
         :type id: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2300,7 +2296,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(DevicePublicKey, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(License, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -2360,7 +2356,7 @@ class DevicesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            200: "DevicePublicKey",
+            200: "License",
         }
 
         return self.api_client.call_api(
@@ -2657,18 +2653,18 @@ class DevicesApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def devices_printer_controllers_create(self, device_id, device_request, **kwargs):  # noqa: E501
+    def devices_printer_controllers_create(self, device_id, **kwargs):  # noqa: E501
         """devices_printer_controllers_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_printer_controllers_create(device_id, device_request, async_req=True)
+        >>> thread = api.devices_printer_controllers_create(device_id, async_req=True)
         >>> result = thread.get()
 
         :param device_id: (required)
         :type device_id: int
-        :param device_request: (required)
+        :param device_request:
         :type device_request: DeviceRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2686,20 +2682,20 @@ class DevicesApi(object):
         :rtype: PrinterController
         """
         kwargs['_return_http_data_only'] = True
-        return self.devices_printer_controllers_create_with_http_info(device_id, device_request, **kwargs)  # noqa: E501
+        return self.devices_printer_controllers_create_with_http_info(device_id, **kwargs)  # noqa: E501
 
-    def devices_printer_controllers_create_with_http_info(self, device_id, device_request, **kwargs):  # noqa: E501
+    def devices_printer_controllers_create_with_http_info(self, device_id, **kwargs):  # noqa: E501
         """devices_printer_controllers_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_printer_controllers_create_with_http_info(device_id, device_request, async_req=True)
+        >>> thread = api.devices_printer_controllers_create_with_http_info(device_id, async_req=True)
         >>> result = thread.get()
 
         :param device_id: (required)
         :type device_id: int
-        :param device_request: (required)
+        :param device_request:
         :type device_request: DeviceRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2752,10 +2748,6 @@ class DevicesApi(object):
         if self.api_client.client_side_validation and ('device_id' not in local_var_params or  # noqa: E501
                                                         local_var_params['device_id'] is None):  # noqa: E501
             raise ApiValueError("Missing the required parameter `device_id` when calling `devices_printer_controllers_create`")  # noqa: E501
-        # verify the required parameter 'device_request' is set
-        if self.api_client.client_side_validation and ('device_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['device_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `device_request` when calling `devices_printer_controllers_create`")  # noqa: E501
 
         collection_formats = {}
 
@@ -3245,20 +3237,20 @@ class DevicesApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def devices_printer_controllers_update(self, device_id, id, device_request, **kwargs):  # noqa: E501
+    def devices_printer_controllers_update(self, device_id, id, **kwargs):  # noqa: E501
         """devices_printer_controllers_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_printer_controllers_update(device_id, id, device_request, async_req=True)
+        >>> thread = api.devices_printer_controllers_update(device_id, id, async_req=True)
         >>> result = thread.get()
 
         :param device_id: (required)
         :type device_id: int
         :param id: A unique integer value identifying this printer controller. (required)
         :type id: int
-        :param device_request: (required)
+        :param device_request:
         :type device_request: DeviceRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3276,22 +3268,22 @@ class DevicesApi(object):
         :rtype: PrinterController
         """
         kwargs['_return_http_data_only'] = True
-        return self.devices_printer_controllers_update_with_http_info(device_id, id, device_request, **kwargs)  # noqa: E501
+        return self.devices_printer_controllers_update_with_http_info(device_id, id, **kwargs)  # noqa: E501
 
-    def devices_printer_controllers_update_with_http_info(self, device_id, id, device_request, **kwargs):  # noqa: E501
+    def devices_printer_controllers_update_with_http_info(self, device_id, id, **kwargs):  # noqa: E501
         """devices_printer_controllers_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_printer_controllers_update_with_http_info(device_id, id, device_request, async_req=True)
+        >>> thread = api.devices_printer_controllers_update_with_http_info(device_id, id, async_req=True)
         >>> result = thread.get()
 
         :param device_id: (required)
         :type device_id: int
         :param id: A unique integer value identifying this printer controller. (required)
         :type id: int
-        :param device_request: (required)
+        :param device_request:
         :type device_request: DeviceRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3349,10 +3341,6 @@ class DevicesApi(object):
         if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
                                                         local_var_params['id'] is None):  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `devices_printer_controllers_update`")  # noqa: E501
-        # verify the required parameter 'device_request' is set
-        if self.api_client.client_side_validation and ('device_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['device_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `device_request` when calling `devices_printer_controllers_update`")  # noqa: E501
 
         collection_formats = {}
 
@@ -3957,19 +3945,19 @@ class DevicesApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def devices_update(self, id, device_request, **kwargs):  # noqa: E501
+    def devices_update(self, id, **kwargs):  # noqa: E501
         """devices_update  # noqa: E501
 
         All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_update(id, device_request, async_req=True)
+        >>> thread = api.devices_update(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this device. (required)
         :type id: int
-        :param device_request: (required)
+        :param device_request:
         :type device_request: DeviceRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3987,21 +3975,21 @@ class DevicesApi(object):
         :rtype: Device
         """
         kwargs['_return_http_data_only'] = True
-        return self.devices_update_with_http_info(id, device_request, **kwargs)  # noqa: E501
+        return self.devices_update_with_http_info(id, **kwargs)  # noqa: E501
 
-    def devices_update_with_http_info(self, id, device_request, **kwargs):  # noqa: E501
+    def devices_update_with_http_info(self, id, **kwargs):  # noqa: E501
         """devices_update  # noqa: E501
 
         All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_update_with_http_info(id, device_request, async_req=True)
+        >>> thread = api.devices_update_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this device. (required)
         :type id: int
-        :param device_request: (required)
+        :param device_request:
         :type device_request: DeviceRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -4054,10 +4042,6 @@ class DevicesApi(object):
         if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
                                                         local_var_params['id'] is None):  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `devices_update`")  # noqa: E501
-        # verify the required parameter 'device_request' is set
-        if self.api_client.client_side_validation and ('device_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['device_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `device_request` when calling `devices_update`")  # noqa: E501
 
         collection_formats = {}
 

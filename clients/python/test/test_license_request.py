@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.device_public_key import DevicePublicKey  # noqa: E501
+from print_nanny_client.models.license_request import LicenseRequest  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestDevicePublicKey(unittest.TestCase):
-    """DevicePublicKey unit test stubs"""
+class TestLicenseRequest(unittest.TestCase):
+    """LicenseRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,28 +29,22 @@ class TestDevicePublicKey(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test DevicePublicKey
+        """Test LicenseRequest
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.device_public_key.DevicePublicKey()  # noqa: E501
+        # model = print_nanny_client.models.license_request.LicenseRequest()  # noqa: E501
         if include_optional :
-            return DevicePublicKey(
-                id = 56, 
-                private_key = '', 
-                user = '', 
-                device = 56, 
-                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                public_key = '', 
-                public_key_checksum = '', 
-                fingerprint = ''
+            return LicenseRequest(
+                device = 56
             )
         else :
-            return DevicePublicKey(
+            return LicenseRequest(
+                device = 56,
         )
 
-    def testDevicePublicKey(self):
-        """Test DevicePublicKey"""
+    def testLicenseRequest(self):
+        """Test LicenseRequest"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

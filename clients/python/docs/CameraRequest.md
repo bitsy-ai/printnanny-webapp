@@ -4,6 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**user** | **int** |  | 
+**device** | **int** |  | 
 **name** | **str** |  | 
 **camera_type** | [**CameraTypeEnum**](CameraTypeEnum.md) |  | [optional] 
 **camera_source** | **str** |  | 

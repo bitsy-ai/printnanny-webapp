@@ -36,7 +36,9 @@ class TestPatchedPrinterControllerRequest(unittest.TestCase):
         # model = print_nanny_client.models.patched_printer_controller_request.PatchedPrinterControllerRequest()  # noqa: E501
         if include_optional :
             return PatchedPrinterControllerRequest(
-                software = None
+                software = None, 
+                user = 56, 
+                device = 56
             )
         else :
             return PatchedPrinterControllerRequest(

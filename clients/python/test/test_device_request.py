@@ -37,23 +37,10 @@ class TestDeviceRequest(unittest.TestCase):
         if include_optional :
             return DeviceRequest(
                 release_channel = None, 
-                hostname = '', 
-                hardware = '', 
-                revision = '', 
-                model = '', 
-                serial = '', 
-                cores = -2147483648, 
-                ram = -9223372036854775808
+                hostname = ''
             )
         else :
             return DeviceRequest(
-                hostname = '',
-                hardware = '',
-                revision = '',
-                model = '',
-                serial = '',
-                cores = -2147483648,
-                ram = -9223372036854775808,
         )
 
     def testDeviceRequest(self):

@@ -13,11 +13,10 @@ Name | Type | Description | Notes
 **mqtt_bridge_hostname** | Option<**String**> |  | [optional][readonly]
 **mqtt_bridge_port** | Option<**i32**> |  | [optional][readonly]
 **mqtt_client_id** | Option<**String**> |  | [optional][readonly]
-**user** | Option<**String**> |  | [optional][readonly]
-**device** | Option<**i32**> |  | [optional][readonly]
 **deleted** | Option<**String**> |  | [optional][readonly]
 **name** | **String** |  | 
 **id** | **String** |  | 
+**device** | **i32** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -29,12 +29,20 @@ import java.io.Serializable
  * 
  *
  * @param software 
+ * @param user 
+ * @param device 
  */
 
 data class PatchedPrinterControllerRequest (
 
     @Json(name = "software")
-    val software: SoftwareEnum? = null
+    val software: SoftwareEnum? = null,
+
+    @Json(name = "user")
+    val user: kotlin.Int? = null,
+
+    @Json(name = "device")
+    val device: kotlin.Int? = null
 
 ) : Serializable {
     companion object {

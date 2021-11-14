@@ -29,13 +29,7 @@ import java.io.Serializable
  * 
  *
  * @param releaseChannel 
- * @param hostname 
- * @param hardware 
- * @param revision 
- * @param model 
- * @param serial 
- * @param cores 
- * @param ram 
+ * @param hostname Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension)
  */
 
 data class PatchedDeviceRequest (
@@ -43,26 +37,9 @@ data class PatchedDeviceRequest (
     @Json(name = "release_channel")
     val releaseChannel: ReleaseChannelEnum? = null,
 
+    /* Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension) */
     @Json(name = "hostname")
-    val hostname: kotlin.String? = null,
-
-    @Json(name = "hardware")
-    val hardware: kotlin.String? = null,
-
-    @Json(name = "revision")
-    val revision: kotlin.String? = null,
-
-    @Json(name = "model")
-    val model: kotlin.String? = null,
-
-    @Json(name = "serial")
-    val serial: kotlin.String? = null,
-
-    @Json(name = "cores")
-    val cores: kotlin.Int? = null,
-
-    @Json(name = "ram")
-    val ram: kotlin.Long? = null
+    val hostname: kotlin.String? = null
 
 ) : Serializable {
     companion object {

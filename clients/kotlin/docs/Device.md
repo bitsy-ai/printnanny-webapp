@@ -4,26 +4,19 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**hostname** | **kotlin.String** |  | 
-**hardware** | **kotlin.String** |  | 
-**revision** | **kotlin.String** |  | 
-**model** | **kotlin.String** |  | 
-**serial** | **kotlin.String** |  | 
-**cores** | **kotlin.Int** |  | 
-**ram** | **kotlin.Long** |  | 
 **id** | **kotlin.Int** |  |  [optional] [readonly]
 **cloudiotDevice** | [**CloudiotDevice**](CloudiotDevice.md) |  |  [optional] [readonly]
 **cameras** | [**kotlin.collections.List&lt;Camera&gt;**](Camera.md) |  |  [optional] [readonly]
 **dashboardUrl** | **kotlin.String** |  |  [optional] [readonly]
-**desiredConfig** | [**DeviceConfig**](DeviceConfig.md) |  |  [optional] [readonly]
-**currentState** | [**DeviceState**](DeviceState.md) |  |  [optional] [readonly]
+**bootstrapRelease** | [**Release**](Release.md) |  |  [optional] [readonly]
 **printerControllers** | [**kotlin.collections.List&lt;PrinterController&gt;**](PrinterController.md) |  |  [optional] [readonly]
-**publicKey** | [**DevicePublicKey**](DevicePublicKey.md) |  |  [optional] [readonly]
 **releaseChannel** | [**ReleaseChannelEnum**](ReleaseChannelEnum.md) |  |  [optional]
-**user** | **kotlin.Int** |  |  [optional] [readonly]
+**user** | [**User**](User.md) |  |  [optional] [readonly]
+**license** | [**License**](License.md) |  |  [optional] [readonly]
 **deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **updatedDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
+**hostname** | **kotlin.String** | Please enter the hostname you set in the Raspberry Pi Imager&#39;s Advanced Options menu (without .local extension) |  [optional]
 
 
 

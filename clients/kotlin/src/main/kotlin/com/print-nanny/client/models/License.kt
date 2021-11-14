@@ -20,7 +20,6 @@
 
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.ReleaseChannelEnum
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -29,20 +28,40 @@ import java.io.Serializable
  * 
  *
  * @param device 
- * @param ansibleExtraVars 
- * @param releaseChannel 
+ * @param id 
+ * @param privateKey 
+ * @param deleted 
+ * @param publicKey 
+ * @param publicKeyChecksum 
+ * @param fingerprint 
+ * @param createdDt 
  */
 
-data class DeviceConfigRequest (
+data class License (
 
     @Json(name = "device")
     val device: kotlin.Int,
 
-    @Json(name = "ansible_extra_vars")
-    val ansibleExtraVars: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,
+    @Json(name = "id")
+    val id: kotlin.Int? = null,
 
-    @Json(name = "release_channel")
-    val releaseChannel: ReleaseChannelEnum? = null
+    @Json(name = "private_key")
+    val privateKey: kotlin.String? = null,
+
+    @Json(name = "deleted")
+    val deleted: java.time.OffsetDateTime? = null,
+
+    @Json(name = "public_key")
+    val publicKey: kotlin.String? = null,
+
+    @Json(name = "public_key_checksum")
+    val publicKeyChecksum: kotlin.String? = null,
+
+    @Json(name = "fingerprint")
+    val fingerprint: kotlin.String? = null,
+
+    @Json(name = "created_dt")
+    val createdDt: java.time.OffsetDateTime? = null
 
 ) : Serializable {
     companion object {

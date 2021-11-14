@@ -28,10 +28,18 @@ import java.io.Serializable
 /**
  * 
  *
+ * @param user 
+ * @param device 
  * @param software 
  */
 
 data class PrinterControllerRequest (
+
+    @Json(name = "user")
+    val user: kotlin.Int,
+
+    @Json(name = "device")
+    val device: kotlin.Int,
 
     @Json(name = "software")
     val software: SoftwareEnum? = null

@@ -36,10 +36,14 @@ class TestPrinterControllerRequest(unittest.TestCase):
         # model = print_nanny_client.models.printer_controller_request.PrinterControllerRequest()  # noqa: E501
         if include_optional :
             return PrinterControllerRequest(
-                software = None
+                software = None, 
+                user = 56, 
+                device = 56
             )
         else :
             return PrinterControllerRequest(
+                user = 56,
+                device = 56,
         )
 
     def testPrinterControllerRequest(self):

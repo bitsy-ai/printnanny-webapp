@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.device_state_request import DeviceStateRequest  # noqa: E501
+from print_nanny_client.models.license import License  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestDeviceStateRequest(unittest.TestCase):
-    """DeviceStateRequest unit test stubs"""
+class TestLicense(unittest.TestCase):
+    """License unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,30 +29,29 @@ class TestDeviceStateRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test DeviceStateRequest
+        """Test License
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.device_state_request.DeviceStateRequest()  # noqa: E501
+        # model = print_nanny_client.models.license.License()  # noqa: E501
         if include_optional :
-            return DeviceStateRequest(
-                ansible_state = 'runningSoftware update is running', 
-                ansible_facts = {
-                    'key' : null
-                    }, 
-                ansible_extra_vars = {
-                    'key' : null
-                    }, 
-                release_channel = 'stable', 
+            return License(
+                id = 56, 
+                private_key = '', 
+                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                public_key = '', 
+                public_key_checksum = '', 
+                fingerprint = '', 
+                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 device = 56
             )
         else :
-            return DeviceStateRequest(
+            return License(
                 device = 56,
         )
 
-    def testDeviceStateRequest(self):
-        """Test DeviceStateRequest"""
+    def testLicense(self):
+        """Test License"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

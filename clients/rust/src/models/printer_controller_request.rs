@@ -13,12 +13,18 @@
 pub struct PrinterControllerRequest {
     #[serde(rename = "software", skip_serializing_if = "Option::is_none")]
     pub software: Option<Box<crate::models::SoftwareEnum>>,
+    #[serde(rename = "user")]
+    pub user: i32,
+    #[serde(rename = "device")]
+    pub device: i32,
 }
 
 impl PrinterControllerRequest {
-    pub fn new() -> PrinterControllerRequest {
+    pub fn new(user: i32, device: i32) -> PrinterControllerRequest {
         PrinterControllerRequest {
             software: None,
+            user,
+            device,
         }
     }
 }

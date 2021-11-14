@@ -1498,7 +1498,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_create**
-> Device devices_create(device_request)
+> Device devices_create(device_request=device_request)
 
 
 
@@ -1539,10 +1539,10 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.DevicesApi(api_client)
-    device_request = print_nanny_client.DeviceRequest() # DeviceRequest | 
+    device_request = print_nanny_client.DeviceRequest() # DeviceRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_create(device_request)
+        api_response = api_instance.devices_create(device_request=device_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_create: %s\n" % e)
@@ -1581,10 +1581,10 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.DevicesApi(api_client)
-    device_request = print_nanny_client.DeviceRequest() # DeviceRequest | 
+    device_request = print_nanny_client.DeviceRequest() # DeviceRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_create(device_request)
+        api_response = api_instance.devices_create(device_request=device_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_create: %s\n" % e)
@@ -1594,7 +1594,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_request** | [**DeviceRequest**](DeviceRequest.md)|  | 
+ **device_request** | [**DeviceRequest**](DeviceRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -1740,7 +1740,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_keypairs_list**
-> PaginatedDevicePublicKeyList devices_keypairs_list(device_id, page=page)
+> PaginatedLicenseList devices_keypairs_list(device_id, page=page)
 
 
 
@@ -1843,7 +1843,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedDevicePublicKeyList**](PaginatedDevicePublicKeyList.md)
+[**PaginatedLicenseList**](PaginatedLicenseList.md)
 
 ### Authorization
 
@@ -1863,7 +1863,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_keypairs_retrieve**
-> DevicePublicKey devices_keypairs_retrieve(device_id, id)
+> License devices_keypairs_retrieve(device_id, id)
 
 
 
@@ -1905,7 +1905,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.DevicesApi(api_client)
     device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this device public key.
+id = 56 # int | A unique integer value identifying this license.
 
     try:
         api_response = api_instance.devices_keypairs_retrieve(device_id, id)
@@ -1948,7 +1948,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.DevicesApi(api_client)
     device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this device public key.
+id = 56 # int | A unique integer value identifying this license.
 
     try:
         api_response = api_instance.devices_keypairs_retrieve(device_id, id)
@@ -1962,11 +1962,11 @@ id = 56 # int | A unique integer value identifying this device public key.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **device_id** | **int**|  | 
- **id** | **int**| A unique integer value identifying this device public key. | 
+ **id** | **int**| A unique integer value identifying this license. | 
 
 ### Return type
 
-[**DevicePublicKey**](DevicePublicKey.md)
+[**License**](License.md)
 
 ### Authorization
 
@@ -2227,7 +2227,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_printer_controllers_create**
-> PrinterController devices_printer_controllers_create(device_id, device_request)
+> PrinterController devices_printer_controllers_create(device_id, device_request=device_request)
 
 
 
@@ -2267,10 +2267,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.DevicesApi(api_client)
     device_id = 56 # int | 
-device_request = print_nanny_client.DeviceRequest() # DeviceRequest | 
+device_request = print_nanny_client.DeviceRequest() # DeviceRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_printer_controllers_create(device_id, device_request)
+        api_response = api_instance.devices_printer_controllers_create(device_id, device_request=device_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_printer_controllers_create: %s\n" % e)
@@ -2310,10 +2310,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.DevicesApi(api_client)
     device_id = 56 # int | 
-device_request = print_nanny_client.DeviceRequest() # DeviceRequest | 
+device_request = print_nanny_client.DeviceRequest() # DeviceRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_printer_controllers_create(device_id, device_request)
+        api_response = api_instance.devices_printer_controllers_create(device_id, device_request=device_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_printer_controllers_create: %s\n" % e)
@@ -2324,7 +2324,7 @@ device_request = print_nanny_client.DeviceRequest() # DeviceRequest |
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **device_id** | **int**|  | 
- **device_request** | [**DeviceRequest**](DeviceRequest.md)|  | 
+ **device_request** | [**DeviceRequest**](DeviceRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -2713,7 +2713,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_printer_controllers_update**
-> PrinterController devices_printer_controllers_update(device_id, id, device_request)
+> PrinterController devices_printer_controllers_update(device_id, id, device_request=device_request)
 
 
 
@@ -2754,10 +2754,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     api_instance = print_nanny_client.DevicesApi(api_client)
     device_id = 56 # int | 
 id = 56 # int | A unique integer value identifying this printer controller.
-device_request = print_nanny_client.DeviceRequest() # DeviceRequest | 
+device_request = print_nanny_client.DeviceRequest() # DeviceRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_printer_controllers_update(device_id, id, device_request)
+        api_response = api_instance.devices_printer_controllers_update(device_id, id, device_request=device_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_printer_controllers_update: %s\n" % e)
@@ -2798,10 +2798,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     api_instance = print_nanny_client.DevicesApi(api_client)
     device_id = 56 # int | 
 id = 56 # int | A unique integer value identifying this printer controller.
-device_request = print_nanny_client.DeviceRequest() # DeviceRequest | 
+device_request = print_nanny_client.DeviceRequest() # DeviceRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_printer_controllers_update(device_id, id, device_request)
+        api_response = api_instance.devices_printer_controllers_update(device_id, id, device_request=device_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_printer_controllers_update: %s\n" % e)
@@ -2813,7 +2813,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **device_id** | **int**|  | 
  **id** | **int**| A unique integer value identifying this printer controller. | 
- **device_request** | [**DeviceRequest**](DeviceRequest.md)|  | 
+ **device_request** | [**DeviceRequest**](DeviceRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -3316,7 +3316,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_update**
-> Device devices_update(id, device_request)
+> Device devices_update(id, device_request=device_request)
 
 
 
@@ -3358,10 +3358,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.DevicesApi(api_client)
     id = 56 # int | A unique integer value identifying this device.
-device_request = print_nanny_client.DeviceRequest() # DeviceRequest | 
+device_request = print_nanny_client.DeviceRequest() # DeviceRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_update(id, device_request)
+        api_response = api_instance.devices_update(id, device_request=device_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_update: %s\n" % e)
@@ -3401,10 +3401,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.DevicesApi(api_client)
     id = 56 # int | A unique integer value identifying this device.
-device_request = print_nanny_client.DeviceRequest() # DeviceRequest | 
+device_request = print_nanny_client.DeviceRequest() # DeviceRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_update(id, device_request)
+        api_response = api_instance.devices_update(id, device_request=device_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_update: %s\n" % e)
@@ -3415,7 +3415,7 @@ device_request = print_nanny_client.DeviceRequest() # DeviceRequest |
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this device. | 
- **device_request** | [**DeviceRequest**](DeviceRequest.md)|  | 
+ **device_request** | [**DeviceRequest**](DeviceRequest.md)|  | [optional] 
 
 ### Return type
 

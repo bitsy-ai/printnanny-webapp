@@ -19,6 +19,7 @@ from print_nanny_client.models.alert_bulk_response import AlertBulkResponse
 from print_nanny_client.models.alert_event_type_enum import AlertEventTypeEnum
 from print_nanny_client.models.alert_request import AlertRequest
 from print_nanny_client.models.ansible_extra_vars import AnsibleExtraVars
+from print_nanny_client.models.ansible_extra_vars_request import AnsibleExtraVarsRequest
 from print_nanny_client.models.ansible_state_enum import AnsibleStateEnum
 from print_nanny_client.models.artifact_types_enum import ArtifactTypesEnum
 from print_nanny_client.models.ca_certs import CACerts
@@ -36,12 +37,9 @@ from print_nanny_client.models.device import Device
 from print_nanny_client.models.device_calibration import DeviceCalibration
 from print_nanny_client.models.device_calibration_request import DeviceCalibrationRequest
 from print_nanny_client.models.device_config import DeviceConfig
-from print_nanny_client.models.device_config_request import DeviceConfigRequest
 from print_nanny_client.models.device_key_pair import DeviceKeyPair
-from print_nanny_client.models.device_public_key import DevicePublicKey
 from print_nanny_client.models.device_request import DeviceRequest
 from print_nanny_client.models.device_state import DeviceState
-from print_nanny_client.models.device_state_request import DeviceStateRequest
 from print_nanny_client.models.email_auth_request import EmailAuthRequest
 from print_nanny_client.models.error_detail import ErrorDetail
 from print_nanny_client.models.event_source_enum import EventSourceEnum
@@ -49,6 +47,8 @@ from print_nanny_client.models.event_type0c4_enum import EventType0c4Enum
 from print_nanny_client.models.experiment import Experiment
 from print_nanny_client.models.experiment_device_config import ExperimentDeviceConfig
 from print_nanny_client.models.gcode_file import GcodeFile
+from print_nanny_client.models.license import License
+from print_nanny_client.models.license_request import LicenseRequest
 from print_nanny_client.models.mobile_auth_request import MobileAuthRequest
 from print_nanny_client.models.model_artifact import ModelArtifact
 from print_nanny_client.models.octo_print_device import OctoPrintDevice
@@ -85,11 +85,11 @@ from print_nanny_client.models.paginated_cloudiot_device_list import PaginatedCl
 from print_nanny_client.models.paginated_device_calibration_list import PaginatedDeviceCalibrationList
 from print_nanny_client.models.paginated_device_config_list import PaginatedDeviceConfigList
 from print_nanny_client.models.paginated_device_list import PaginatedDeviceList
-from print_nanny_client.models.paginated_device_public_key_list import PaginatedDevicePublicKeyList
 from print_nanny_client.models.paginated_device_state_list import PaginatedDeviceStateList
 from print_nanny_client.models.paginated_experiment_device_config_list import PaginatedExperimentDeviceConfigList
 from print_nanny_client.models.paginated_experiment_list import PaginatedExperimentList
 from print_nanny_client.models.paginated_gcode_file_list import PaginatedGcodeFileList
+from print_nanny_client.models.paginated_license_list import PaginatedLicenseList
 from print_nanny_client.models.paginated_model_artifact_list import PaginatedModelArtifactList
 from print_nanny_client.models.paginated_octo_print_device_list import PaginatedOctoPrintDeviceList
 from print_nanny_client.models.paginated_octo_print_event_list import PaginatedOctoPrintEventList
@@ -134,6 +134,7 @@ from print_nanny_client.models.printer_profile_request import PrinterProfileRequ
 from print_nanny_client.models.printer_state_enum import PrinterStateEnum
 from print_nanny_client.models.release import Release
 from print_nanny_client.models.release_channel_enum import ReleaseChannelEnum
+from print_nanny_client.models.release_request import ReleaseRequest
 from print_nanny_client.models.remote_command_event import RemoteCommandEvent
 from print_nanny_client.models.remote_command_event_event_type_enum import RemoteCommandEventEventTypeEnum
 from print_nanny_client.models.remote_command_event_request import RemoteCommandEventRequest

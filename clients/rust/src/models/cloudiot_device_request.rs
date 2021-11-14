@@ -17,14 +17,17 @@ pub struct CloudiotDeviceRequest {
     pub name: String,
     #[serde(rename = "id")]
     pub id: String,
+    #[serde(rename = "device")]
+    pub device: i32,
 }
 
 impl CloudiotDeviceRequest {
-    pub fn new(num_id: i64, name: String, id: String) -> CloudiotDeviceRequest {
+    pub fn new(num_id: i64, name: String, id: String, device: i32) -> CloudiotDeviceRequest {
         CloudiotDeviceRequest {
             num_id,
             name,
             id,
+            device,
         }
     }
 }

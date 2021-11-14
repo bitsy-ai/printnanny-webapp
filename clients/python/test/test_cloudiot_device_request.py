@@ -38,13 +38,15 @@ class TestCloudiotDeviceRequest(unittest.TestCase):
             return CloudiotDeviceRequest(
                 num_id = -9223372036854775808, 
                 name = '', 
-                id = ''
+                id = '', 
+                device = 56
             )
         else :
             return CloudiotDeviceRequest(
                 num_id = -9223372036854775808,
                 name = '',
                 id = '',
+                device = 56,
         )
 
     def testCloudiotDeviceRequest(self):

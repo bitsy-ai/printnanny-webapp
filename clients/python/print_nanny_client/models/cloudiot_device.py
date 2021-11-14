@@ -45,11 +45,10 @@ class CloudiotDevice(object):
         'mqtt_bridge_hostname': 'str',
         'mqtt_bridge_port': 'int',
         'mqtt_client_id': 'str',
-        'user': 'str',
-        'device': 'int',
         'deleted': 'datetime',
         'name': 'str',
-        'id': 'str'
+        'id': 'str',
+        'device': 'int'
     }
 
     attribute_map = {
@@ -62,14 +61,13 @@ class CloudiotDevice(object):
         'mqtt_bridge_hostname': 'mqtt_bridge_hostname',
         'mqtt_bridge_port': 'mqtt_bridge_port',
         'mqtt_client_id': 'mqtt_client_id',
-        'user': 'user',
-        'device': 'device',
         'deleted': 'deleted',
         'name': 'name',
-        'id': 'id'
+        'id': 'id',
+        'device': 'device'
     }
 
-    def __init__(self, num_id=None, desired_config_topic=None, current_state_topic=None, gcp_project_id=None, gcp_region=None, gcp_cloudiot_device_registry=None, mqtt_bridge_hostname=None, mqtt_bridge_port=None, mqtt_client_id=None, user=None, device=None, deleted=None, name=None, id=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, num_id=None, desired_config_topic=None, current_state_topic=None, gcp_project_id=None, gcp_region=None, gcp_cloudiot_device_registry=None, mqtt_bridge_hostname=None, mqtt_bridge_port=None, mqtt_client_id=None, deleted=None, name=None, id=None, device=None, local_vars_configuration=None):  # noqa: E501
         """CloudiotDevice - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -84,11 +82,10 @@ class CloudiotDevice(object):
         self._mqtt_bridge_hostname = None
         self._mqtt_bridge_port = None
         self._mqtt_client_id = None
-        self._user = None
-        self._device = None
         self._deleted = None
         self._name = None
         self._id = None
+        self._device = None
         self.discriminator = None
 
         self.num_id = num_id
@@ -108,14 +105,11 @@ class CloudiotDevice(object):
             self.mqtt_bridge_port = mqtt_bridge_port
         if mqtt_client_id is not None:
             self.mqtt_client_id = mqtt_client_id
-        if user is not None:
-            self.user = user
-        if device is not None:
-            self.device = device
         if deleted is not None:
             self.deleted = deleted
         self.name = name
         self.id = id
+        self.device = device
 
     @property
     def num_id(self):
@@ -315,48 +309,6 @@ class CloudiotDevice(object):
         self._mqtt_client_id = mqtt_client_id
 
     @property
-    def user(self):
-        """Gets the user of this CloudiotDevice.  # noqa: E501
-
-
-        :return: The user of this CloudiotDevice.  # noqa: E501
-        :rtype: str
-        """
-        return self._user
-
-    @user.setter
-    def user(self, user):
-        """Sets the user of this CloudiotDevice.
-
-
-        :param user: The user of this CloudiotDevice.  # noqa: E501
-        :type user: str
-        """
-
-        self._user = user
-
-    @property
-    def device(self):
-        """Gets the device of this CloudiotDevice.  # noqa: E501
-
-
-        :return: The device of this CloudiotDevice.  # noqa: E501
-        :rtype: int
-        """
-        return self._device
-
-    @device.setter
-    def device(self, device):
-        """Sets the device of this CloudiotDevice.
-
-
-        :param device: The device of this CloudiotDevice.  # noqa: E501
-        :type device: int
-        """
-
-        self._device = device
-
-    @property
     def deleted(self):
         """Gets the deleted of this CloudiotDevice.  # noqa: E501
 
@@ -428,6 +380,29 @@ class CloudiotDevice(object):
             raise ValueError("Invalid value for `id`, length must be less than or equal to `255`")  # noqa: E501
 
         self._id = id
+
+    @property
+    def device(self):
+        """Gets the device of this CloudiotDevice.  # noqa: E501
+
+
+        :return: The device of this CloudiotDevice.  # noqa: E501
+        :rtype: int
+        """
+        return self._device
+
+    @device.setter
+    def device(self, device):
+        """Sets the device of this CloudiotDevice.
+
+
+        :param device: The device of this CloudiotDevice.  # noqa: E501
+        :type device: int
+        """
+        if self.local_vars_configuration.client_side_validation and device is None:  # noqa: E501
+            raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
+
+        self._device = device
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

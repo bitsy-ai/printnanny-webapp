@@ -13,12 +13,18 @@
 pub struct PatchedPrinterControllerRequest {
     #[serde(rename = "software", skip_serializing_if = "Option::is_none")]
     pub software: Option<Box<crate::models::SoftwareEnum>>,
+    #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
+    pub user: Option<i32>,
+    #[serde(rename = "device", skip_serializing_if = "Option::is_none")]
+    pub device: Option<i32>,
 }
 
 impl PatchedPrinterControllerRequest {
     pub fn new() -> PatchedPrinterControllerRequest {
         PatchedPrinterControllerRequest {
             software: None,
+            user: None,
+            device: None,
         }
     }
 }

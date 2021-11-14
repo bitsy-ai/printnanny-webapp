@@ -38,16 +38,18 @@ class PatchedCloudiotDeviceRequest(object):
     openapi_types = {
         'num_id': 'int',
         'name': 'str',
-        'id': 'str'
+        'id': 'str',
+        'device': 'int'
     }
 
     attribute_map = {
         'num_id': 'num_id',
         'name': 'name',
-        'id': 'id'
+        'id': 'id',
+        'device': 'device'
     }
 
-    def __init__(self, num_id=None, name=None, id=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, num_id=None, name=None, id=None, device=None, local_vars_configuration=None):  # noqa: E501
         """PatchedCloudiotDeviceRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -56,6 +58,7 @@ class PatchedCloudiotDeviceRequest(object):
         self._num_id = None
         self._name = None
         self._id = None
+        self._device = None
         self.discriminator = None
 
         if num_id is not None:
@@ -64,6 +67,8 @@ class PatchedCloudiotDeviceRequest(object):
             self.name = name
         if id is not None:
             self.id = id
+        if device is not None:
+            self.device = device
 
     @property
     def num_id(self):
@@ -139,6 +144,27 @@ class PatchedCloudiotDeviceRequest(object):
             raise ValueError("Invalid value for `id`, length must be less than or equal to `255`")  # noqa: E501
 
         self._id = id
+
+    @property
+    def device(self):
+        """Gets the device of this PatchedCloudiotDeviceRequest.  # noqa: E501
+
+
+        :return: The device of this PatchedCloudiotDeviceRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._device
+
+    @device.setter
+    def device(self, device):
+        """Sets the device of this PatchedCloudiotDeviceRequest.
+
+
+        :param device: The device of this PatchedCloudiotDeviceRequest.  # noqa: E501
+        :type device: int
+        """
+
+        self._device = device
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

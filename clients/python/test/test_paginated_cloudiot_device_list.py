@@ -50,11 +50,10 @@ class TestPaginatedCloudiotDeviceList(unittest.TestCase):
                         mqtt_bridge_hostname = '', 
                         mqtt_bridge_port = 56, 
                         mqtt_client_id = '', 
-                        user = '', 
-                        device = 56, 
                         deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         name = '', 
-                        id = '', )
+                        id = '', 
+                        device = 56, )
                     ]
             )
         else :

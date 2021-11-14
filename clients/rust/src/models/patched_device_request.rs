@@ -13,20 +13,9 @@
 pub struct PatchedDeviceRequest {
     #[serde(rename = "release_channel", skip_serializing_if = "Option::is_none")]
     pub release_channel: Option<Box<crate::models::ReleaseChannelEnum>>,
+    /// Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension)
     #[serde(rename = "hostname", skip_serializing_if = "Option::is_none")]
     pub hostname: Option<String>,
-    #[serde(rename = "hardware", skip_serializing_if = "Option::is_none")]
-    pub hardware: Option<String>,
-    #[serde(rename = "revision", skip_serializing_if = "Option::is_none")]
-    pub revision: Option<String>,
-    #[serde(rename = "model", skip_serializing_if = "Option::is_none")]
-    pub model: Option<String>,
-    #[serde(rename = "serial", skip_serializing_if = "Option::is_none")]
-    pub serial: Option<String>,
-    #[serde(rename = "cores", skip_serializing_if = "Option::is_none")]
-    pub cores: Option<i32>,
-    #[serde(rename = "ram", skip_serializing_if = "Option::is_none")]
-    pub ram: Option<i64>,
 }
 
 impl PatchedDeviceRequest {
@@ -34,12 +23,6 @@ impl PatchedDeviceRequest {
         PatchedDeviceRequest {
             release_channel: None,
             hostname: None,
-            hardware: None,
-            revision: None,
-            model: None,
-            serial: None,
-            cores: None,
-            ram: None,
         }
     }
 }

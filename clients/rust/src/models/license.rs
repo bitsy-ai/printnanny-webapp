@@ -10,15 +10,11 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct DevicePublicKey {
+pub struct License {
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
     pub id: Option<i32>,
     #[serde(rename = "private_key", skip_serializing_if = "Option::is_none")]
     pub private_key: Option<String>,
-    #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
-    pub user: Option<String>,
-    #[serde(rename = "device", skip_serializing_if = "Option::is_none")]
-    pub device: Option<i32>,
     #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
     pub deleted: Option<String>,
     #[serde(rename = "public_key", skip_serializing_if = "Option::is_none")]
@@ -27,19 +23,23 @@ pub struct DevicePublicKey {
     pub public_key_checksum: Option<String>,
     #[serde(rename = "fingerprint", skip_serializing_if = "Option::is_none")]
     pub fingerprint: Option<String>,
+    #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
+    pub created_dt: Option<String>,
+    #[serde(rename = "device")]
+    pub device: i32,
 }
 
-impl DevicePublicKey {
-    pub fn new() -> DevicePublicKey {
-        DevicePublicKey {
+impl License {
+    pub fn new(device: i32) -> License {
+        License {
             id: None,
             private_key: None,
-            user: None,
-            device: None,
             deleted: None,
             public_key: None,
             public_key_checksum: None,
             fingerprint: None,
+            created_dt: None,
+            device,
         }
     }
 }

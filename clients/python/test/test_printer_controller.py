@@ -37,16 +37,18 @@ class TestPrinterController(unittest.TestCase):
         if include_optional :
             return PrinterController(
                 id = 56, 
-                user = 56, 
-                device = 56, 
                 software = None, 
                 deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                polymorphic_ctype = 56
+                polymorphic_ctype = 56, 
+                user = 56, 
+                device = 56
             )
         else :
             return PrinterController(
+                user = 56,
+                device = 56,
         )
 
     def testPrinterController(self):

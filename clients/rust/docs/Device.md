@@ -8,22 +8,15 @@ Name | Type | Description | Notes
 **cloudiot_device** | Option<[**crate::models::CloudiotDevice**](CloudiotDevice.md)> |  | [optional][readonly]
 **cameras** | Option<[**Vec<crate::models::Camera>**](Camera.md)> |  | [optional][readonly]
 **dashboard_url** | Option<**String**> |  | [optional][readonly]
-**desired_config** | Option<[**crate::models::DeviceConfig**](DeviceConfig.md)> |  | [optional][readonly]
-**current_state** | Option<[**crate::models::DeviceState**](DeviceState.md)> |  | [optional][readonly]
+**bootstrap_release** | Option<[**crate::models::Release**](Release.md)> |  | [optional][readonly]
 **printer_controllers** | Option<[**Vec<crate::models::PrinterController>**](PrinterController.md)> |  | [optional][readonly]
-**public_key** | Option<[**crate::models::DevicePublicKey**](DevicePublicKey.md)> |  | [optional][readonly]
 **release_channel** | Option<[**crate::models::ReleaseChannelEnum**](ReleaseChannelEnum.md)> |  | [optional]
-**user** | Option<**i32**> |  | [optional][readonly]
+**user** | Option<[**crate::models::User**](User.md)> |  | [optional][readonly]
+**license** | Option<[**crate::models::License**](License.md)> |  | [optional][readonly]
 **deleted** | Option<**String**> |  | [optional][readonly]
 **created_dt** | Option<**String**> |  | [optional][readonly]
 **updated_dt** | Option<**String**> |  | [optional][readonly]
-**hostname** | **String** |  | 
-**hardware** | **String** |  | 
-**revision** | **String** |  | 
-**model** | **String** |  | 
-**serial** | **String** |  | 
-**cores** | **i32** |  | 
-**ram** | **i64** |  | 
+**hostname** | Option<**String**> | Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension) | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

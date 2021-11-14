@@ -11,6 +11,10 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct CameraRequest {
+    #[serde(rename = "user")]
+    pub user: i32,
+    #[serde(rename = "device")]
+    pub device: i32,
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "camera_type", skip_serializing_if = "Option::is_none")]
@@ -20,8 +24,10 @@ pub struct CameraRequest {
 }
 
 impl CameraRequest {
-    pub fn new(name: String, camera_source: String) -> CameraRequest {
+    pub fn new(user: i32, device: i32, name: String, camera_source: String) -> CameraRequest {
         CameraRequest {
+            user,
+            device,
             name,
             camera_type: None,
             camera_source,

@@ -28,12 +28,20 @@ import java.io.Serializable
 /**
  * 
  *
+ * @param user 
+ * @param device 
  * @param name 
  * @param cameraType 
  * @param cameraSource 
  */
 
 data class PatchedCameraRequest (
+
+    @Json(name = "user")
+    val user: kotlin.Int? = null,
+
+    @Json(name = "device")
+    val device: kotlin.Int? = null,
 
     @Json(name = "name")
     val name: kotlin.String? = null,

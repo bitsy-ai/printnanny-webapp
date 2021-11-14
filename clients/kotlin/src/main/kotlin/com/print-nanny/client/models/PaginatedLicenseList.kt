@@ -20,7 +20,7 @@
 
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.DevicePublicKey
+import com.print-nanny.client.models.License
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -34,7 +34,7 @@ import java.io.Serializable
  * @param results 
  */
 
-data class PaginatedDevicePublicKeyList (
+data class PaginatedLicenseList (
 
     @Json(name = "count")
     val count: kotlin.Int? = null,
@@ -46,7 +46,7 @@ data class PaginatedDevicePublicKeyList (
     val previous: java.net.URI? = null,
 
     @Json(name = "results")
-    val results: kotlin.collections.List<DevicePublicKey>? = null
+    val results: kotlin.collections.List<License>? = null
 
 ) : Serializable {
     companion object {

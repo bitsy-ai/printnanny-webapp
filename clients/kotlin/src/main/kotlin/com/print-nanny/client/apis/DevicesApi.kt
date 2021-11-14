@@ -27,16 +27,16 @@ import com.print-nanny.client.models.CloudiotDeviceRequest
 import com.print-nanny.client.models.Device
 import com.print-nanny.client.models.DeviceConfig
 import com.print-nanny.client.models.DeviceKeyPair
-import com.print-nanny.client.models.DevicePublicKey
 import com.print-nanny.client.models.DeviceRequest
 import com.print-nanny.client.models.DeviceState
 import com.print-nanny.client.models.ErrorDetail
+import com.print-nanny.client.models.License
 import com.print-nanny.client.models.PaginatedCameraList
 import com.print-nanny.client.models.PaginatedCloudiotDeviceList
 import com.print-nanny.client.models.PaginatedDeviceConfigList
 import com.print-nanny.client.models.PaginatedDeviceList
-import com.print-nanny.client.models.PaginatedDevicePublicKeyList
 import com.print-nanny.client.models.PaginatedDeviceStateList
+import com.print-nanny.client.models.PaginatedLicenseList
 import com.print-nanny.client.models.PaginatedPrinterControllerList
 import com.print-nanny.client.models.PatchedCameraRequest
 import com.print-nanny.client.models.PatchedCloudiotDeviceRequest
@@ -750,7 +750,7 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     /**
     * 
     * All-in-one Print Nanny installation via print-nanny-main-&lt;platform&gt;-&lt;cpu&gt;.img
-    * @param deviceRequest  
+    * @param deviceRequest  (optional)
     * @return Device
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
@@ -758,7 +758,7 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun devicesCreate(deviceRequest: DeviceRequest) : Device {
+    fun devicesCreate(deviceRequest: DeviceRequest?) : Device {
         val localVariableConfig = devicesCreateRequestConfig(deviceRequest = deviceRequest)
 
         val localVarResponse = request<DeviceRequest, Device>(
@@ -783,10 +783,10 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     /**
     * To obtain the request config of the operation devicesCreate
     *
-    * @param deviceRequest  
+    * @param deviceRequest  (optional)
     * @return RequestConfig
     */
-    fun devicesCreateRequestConfig(deviceRequest: DeviceRequest) : RequestConfig<DeviceRequest> {
+    fun devicesCreateRequestConfig(deviceRequest: DeviceRequest?) : RequestConfig<DeviceRequest> {
         val localVariableBody = deviceRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -858,22 +858,22 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     * Public key for Print Nanny Device Only one public key may be active at a time DELETE &lt;:endpoint&gt; will soft-delete a key
     * @param deviceId  
     * @param page A page number within the paginated result set. (optional)
-    * @return PaginatedDevicePublicKeyList
+    * @return PaginatedLicenseList
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun devicesKeypairsList(deviceId: kotlin.Int, page: kotlin.Int?) : PaginatedDevicePublicKeyList {
+    fun devicesKeypairsList(deviceId: kotlin.Int, page: kotlin.Int?) : PaginatedLicenseList {
         val localVariableConfig = devicesKeypairsListRequestConfig(deviceId = deviceId, page = page)
 
-        val localVarResponse = request<Unit, PaginatedDevicePublicKeyList>(
+        val localVarResponse = request<Unit, PaginatedLicenseList>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedDevicePublicKeyList
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedLicenseList
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -917,23 +917,23 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     * 
     * Public key for Print Nanny Device Only one public key may be active at a time DELETE &lt;:endpoint&gt; will soft-delete a key
     * @param deviceId  
-    * @param id A unique integer value identifying this device public key. 
-    * @return DevicePublicKey
+    * @param id A unique integer value identifying this license. 
+    * @return License
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun devicesKeypairsRetrieve(deviceId: kotlin.Int, id: kotlin.Int) : DevicePublicKey {
+    fun devicesKeypairsRetrieve(deviceId: kotlin.Int, id: kotlin.Int) : License {
         val localVariableConfig = devicesKeypairsRetrieveRequestConfig(deviceId = deviceId, id = id)
 
-        val localVarResponse = request<Unit, DevicePublicKey>(
+        val localVarResponse = request<Unit, License>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as DevicePublicKey
+            ResponseType.Success -> (localVarResponse as Success<*>).data as License
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -951,7 +951,7 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     * To obtain the request config of the operation devicesKeypairsRetrieve
     *
     * @param deviceId  
-    * @param id A unique integer value identifying this device public key. 
+    * @param id A unique integer value identifying this license. 
     * @return RequestConfig
     */
     fun devicesKeypairsRetrieveRequestConfig(deviceId: kotlin.Int, id: kotlin.Int) : RequestConfig<Unit> {
@@ -1085,7 +1085,7 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     * 
     * 
     * @param deviceId  
-    * @param deviceRequest  
+    * @param deviceRequest  (optional)
     * @return PrinterController
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
@@ -1093,7 +1093,7 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun devicesPrinterControllersCreate(deviceId: kotlin.Int, deviceRequest: DeviceRequest) : PrinterController {
+    fun devicesPrinterControllersCreate(deviceId: kotlin.Int, deviceRequest: DeviceRequest?) : PrinterController {
         val localVariableConfig = devicesPrinterControllersCreateRequestConfig(deviceId = deviceId, deviceRequest = deviceRequest)
 
         val localVarResponse = request<DeviceRequest, PrinterController>(
@@ -1119,10 +1119,10 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     * To obtain the request config of the operation devicesPrinterControllersCreate
     *
     * @param deviceId  
-    * @param deviceRequest  
+    * @param deviceRequest  (optional)
     * @return RequestConfig
     */
-    fun devicesPrinterControllersCreateRequestConfig(deviceId: kotlin.Int, deviceRequest: DeviceRequest) : RequestConfig<DeviceRequest> {
+    fun devicesPrinterControllersCreateRequestConfig(deviceId: kotlin.Int, deviceRequest: DeviceRequest?) : RequestConfig<DeviceRequest> {
         val localVariableBody = deviceRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -1313,7 +1313,7 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     * 
     * @param deviceId  
     * @param id A unique integer value identifying this printer controller. 
-    * @param deviceRequest  
+    * @param deviceRequest  (optional)
     * @return PrinterController
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
@@ -1321,7 +1321,7 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun devicesPrinterControllersUpdate(deviceId: kotlin.Int, id: kotlin.Int, deviceRequest: DeviceRequest) : PrinterController {
+    fun devicesPrinterControllersUpdate(deviceId: kotlin.Int, id: kotlin.Int, deviceRequest: DeviceRequest?) : PrinterController {
         val localVariableConfig = devicesPrinterControllersUpdateRequestConfig(deviceId = deviceId, id = id, deviceRequest = deviceRequest)
 
         val localVarResponse = request<DeviceRequest, PrinterController>(
@@ -1348,10 +1348,10 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     *
     * @param deviceId  
     * @param id A unique integer value identifying this printer controller. 
-    * @param deviceRequest  
+    * @param deviceRequest  (optional)
     * @return RequestConfig
     */
-    fun devicesPrinterControllersUpdateRequestConfig(deviceId: kotlin.Int, id: kotlin.Int, deviceRequest: DeviceRequest) : RequestConfig<DeviceRequest> {
+    fun devicesPrinterControllersUpdateRequestConfig(deviceId: kotlin.Int, id: kotlin.Int, deviceRequest: DeviceRequest?) : RequestConfig<DeviceRequest> {
         val localVariableBody = deviceRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -1590,7 +1590,7 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     * 
     * All-in-one Print Nanny installation via print-nanny-main-&lt;platform&gt;-&lt;cpu&gt;.img
     * @param id A unique integer value identifying this device. 
-    * @param deviceRequest  
+    * @param deviceRequest  (optional)
     * @return Device
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
@@ -1598,7 +1598,7 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun devicesUpdate(id: kotlin.Int, deviceRequest: DeviceRequest) : Device {
+    fun devicesUpdate(id: kotlin.Int, deviceRequest: DeviceRequest?) : Device {
         val localVariableConfig = devicesUpdateRequestConfig(id = id, deviceRequest = deviceRequest)
 
         val localVarResponse = request<DeviceRequest, Device>(
@@ -1624,10 +1624,10 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     * To obtain the request config of the operation devicesUpdate
     *
     * @param id A unique integer value identifying this device. 
-    * @param deviceRequest  
+    * @param deviceRequest  (optional)
     * @return RequestConfig
     */
-    fun devicesUpdateRequestConfig(id: kotlin.Int, deviceRequest: DeviceRequest) : RequestConfig<DeviceRequest> {
+    fun devicesUpdateRequestConfig(id: kotlin.Int, deviceRequest: DeviceRequest?) : RequestConfig<DeviceRequest> {
         val localVariableBody = deviceRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()

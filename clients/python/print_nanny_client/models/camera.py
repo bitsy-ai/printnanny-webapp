@@ -87,10 +87,8 @@ class Camera(object):
             self.created_dt = created_dt
         if updated_dt is not None:
             self.updated_dt = updated_dt
-        if user is not None:
-            self.user = user
-        if device is not None:
-            self.device = device
+        self.user = user
+        self.device = device
         self.name = name
         self.camera_type = camera_type
         self.camera_source = camera_source
@@ -199,6 +197,8 @@ class Camera(object):
         :param user: The user of this Camera.  # noqa: E501
         :type user: int
         """
+        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
+            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
 
         self._user = user
 
@@ -220,6 +220,8 @@ class Camera(object):
         :param device: The device of this Camera.  # noqa: E501
         :type device: int
         """
+        if self.local_vars_configuration.client_side_validation and device is None:  # noqa: E501
+            raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
 
         self._device = device
 

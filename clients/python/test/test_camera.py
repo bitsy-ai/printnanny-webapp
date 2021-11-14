@@ -49,6 +49,8 @@ class TestCamera(unittest.TestCase):
             )
         else :
             return Camera(
+                user = 56,
+                device = 56,
                 name = '',
                 camera_source = '',
         )

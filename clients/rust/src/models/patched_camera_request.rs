@@ -11,6 +11,10 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct PatchedCameraRequest {
+    #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
+    pub user: Option<i32>,
+    #[serde(rename = "device", skip_serializing_if = "Option::is_none")]
+    pub device: Option<i32>,
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
     #[serde(rename = "camera_type", skip_serializing_if = "Option::is_none")]
@@ -22,6 +26,8 @@ pub struct PatchedCameraRequest {
 impl PatchedCameraRequest {
     pub fn new() -> PatchedCameraRequest {
         PatchedCameraRequest {
+            user: None,
+            device: None,
             name: None,
             camera_type: None,
             camera_source: None,

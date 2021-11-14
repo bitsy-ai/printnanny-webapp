@@ -36,6 +36,8 @@ class TestPatchedCameraRequest(unittest.TestCase):
         # model = print_nanny_client.models.patched_camera_request.PatchedCameraRequest()  # noqa: E501
         if include_optional :
             return PatchedCameraRequest(
+                user = 56, 
+                device = 56, 
                 name = '', 
                 camera_type = None, 
                 camera_source = ''

@@ -38,7 +38,8 @@ class TestPatchedCloudiotDeviceRequest(unittest.TestCase):
             return PatchedCloudiotDeviceRequest(
                 num_id = -9223372036854775808, 
                 name = '', 
-                id = ''
+                id = '', 
+                device = 56
             )
         else :
             return PatchedCloudiotDeviceRequest(

@@ -29,20 +29,18 @@ pub struct CloudiotDevice {
     pub mqtt_bridge_port: Option<i32>,
     #[serde(rename = "mqtt_client_id", skip_serializing_if = "Option::is_none")]
     pub mqtt_client_id: Option<String>,
-    #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
-    pub user: Option<String>,
-    #[serde(rename = "device", skip_serializing_if = "Option::is_none")]
-    pub device: Option<i32>,
     #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
     pub deleted: Option<String>,
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "id")]
     pub id: String,
+    #[serde(rename = "device")]
+    pub device: i32,
 }
 
 impl CloudiotDevice {
-    pub fn new(num_id: i64, name: String, id: String) -> CloudiotDevice {
+    pub fn new(num_id: i64, name: String, id: String, device: i32) -> CloudiotDevice {
         CloudiotDevice {
             num_id,
             desired_config_topic: None,
@@ -53,11 +51,10 @@ impl CloudiotDevice {
             mqtt_bridge_hostname: None,
             mqtt_bridge_port: None,
             mqtt_client_id: None,
-            user: None,
-            device: None,
             deleted: None,
             name,
             id,
+            device,
         }
     }
 }
