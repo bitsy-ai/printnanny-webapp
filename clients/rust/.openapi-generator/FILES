@@ -43,7 +43,6 @@ docs/LicenseRequest.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
-docs/NullEnum.md
 docs/OctoPrintDevice.md
 docs/OctoPrintDeviceKey.md
 docs/OctoPrintDeviceRequest.md
@@ -203,7 +202,6 @@ src/models/license_request.rs
 src/models/mobile_auth_request.rs
 src/models/mod.rs
 src/models/model_artifact.rs
-src/models/null_enum.rs
 src/models/octo_print_device.rs
 src/models/octo_print_device_key.rs
 src/models/octo_print_device_request.rs

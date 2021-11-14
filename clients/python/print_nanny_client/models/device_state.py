@@ -39,7 +39,7 @@ class DeviceState(object):
         'id': 'int',
         'deleted': 'datetime',
         'status': 'StatusEnum',
-        'command': 'OneOfDeviceStateCommandEnumNullEnum',
+        'command': 'DeviceStateCommandEnum',
         'ansible_facts': 'dict(str, object)',
         'ansible_extra_vars': 'dict(str, object)',
         'created_dt': 'datetime',
@@ -79,7 +79,8 @@ class DeviceState(object):
             self.deleted = deleted
         if status is not None:
             self.status = status
-        self.command = command
+        if command is not None:
+            self.command = command
         if ansible_facts is not None:
             self.ansible_facts = ansible_facts
         if ansible_extra_vars is not None:
@@ -157,7 +158,7 @@ class DeviceState(object):
 
 
         :return: The command of this DeviceState.  # noqa: E501
-        :rtype: OneOfDeviceStateCommandEnumNullEnum
+        :rtype: DeviceStateCommandEnum
         """
         return self._command
 
@@ -167,7 +168,7 @@ class DeviceState(object):
 
 
         :param command: The command of this DeviceState.  # noqa: E501
-        :type command: OneOfDeviceStateCommandEnumNullEnum
+        :type command: DeviceStateCommandEnum
         """
 
         self._command = command

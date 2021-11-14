@@ -20,7 +20,7 @@
 
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.OneOfLessThanDeviceStateCommandEnumCommaNullEnumGreaterThan
+import com.print-nanny.client.models.DeviceStateCommandEnum
 import com.print-nanny.client.models.StatusEnum
 
 import com.squareup.moshi.Json
@@ -54,7 +54,7 @@ data class DeviceState (
     val status: StatusEnum? = null,
 
     @Json(name = "command")
-    val command: OneOfLessThanDeviceStateCommandEnumCommaNullEnumGreaterThan? = null,
+    val command: DeviceStateCommandEnum? = null,
 
     @Json(name = "ansible_facts")
     val ansibleFacts: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,

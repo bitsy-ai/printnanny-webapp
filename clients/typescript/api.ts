@@ -975,10 +975,10 @@ export interface DeviceState {
     'status'?: StatusEnum;
     /**
      * 
-     * @type {DeviceStateCommandEnum | NullEnum}
+     * @type {DeviceStateCommandEnum}
      * @memberof DeviceState
      */
-    'command'?: DeviceStateCommandEnum | NullEnum | null;
+    'command'?: DeviceStateCommandEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -1351,16 +1351,6 @@ export interface ModelArtifact {
      */
     'url'?: string;
 }
-/**
- * 
- * @export
- * @enum {string}
- */
-
-export enum NullEnum {
-    Null = 'null'
-}
-
 /**
  * 
  * @export

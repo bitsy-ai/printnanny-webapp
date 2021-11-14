@@ -39,7 +39,7 @@ class TestDeviceState(unittest.TestCase):
                 id = 56, 
                 deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 status = 'initial', 
-                command = None, 
+                command = 'printnanny update', 
                 ansible_facts = {
                     'key' : null
                     }, 

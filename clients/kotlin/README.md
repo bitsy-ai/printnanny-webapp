@@ -178,7 +178,6 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.LicenseRequest](docs/LicenseRequest.md)
  - [com.print-nanny.client.models.MobileAuthRequest](docs/MobileAuthRequest.md)
  - [com.print-nanny.client.models.ModelArtifact](docs/ModelArtifact.md)
- - [com.print-nanny.client.models.NullEnum](docs/NullEnum.md)
  - [com.print-nanny.client.models.OctoPrintDevice](docs/OctoPrintDevice.md)
  - [com.print-nanny.client.models.OctoPrintDeviceKey](docs/OctoPrintDeviceKey.md)
  - [com.print-nanny.client.models.OctoPrintDeviceRequest](docs/OctoPrintDeviceRequest.md)

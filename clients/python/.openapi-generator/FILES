@@ -45,7 +45,6 @@ docs/LicenseRequest.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
-docs/NullEnum.md
 docs/OctoPrintDevice.md
 docs/OctoPrintDeviceKey.md
 docs/OctoPrintDeviceRequest.md
@@ -208,7 +207,6 @@ print_nanny_client/models/license.py
 print_nanny_client/models/license_request.py
 print_nanny_client/models/mobile_auth_request.py
 print_nanny_client/models/model_artifact.py
-print_nanny_client/models/null_enum.py
 print_nanny_client/models/octo_print_device.py
 print_nanny_client/models/octo_print_device_key.py
 print_nanny_client/models/octo_print_device_request.py
@@ -357,7 +355,6 @@ test/test_license_request.py
 test/test_ml_ops_api.py
 test/test_mobile_auth_request.py
 test/test_model_artifact.py
-test/test_null_enum.py
 test/test_octo_print_device.py
 test/test_octo_print_device_key.py
 test/test_octo_print_device_request.py

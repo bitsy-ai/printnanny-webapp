@@ -18,7 +18,7 @@ pub struct DeviceState {
     #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
     pub status: Option<crate::models::StatusEnum>,
     #[serde(rename = "command", skip_serializing_if = "Option::is_none")]
-    pub command: Option<Box<crate::models::OneOfDeviceStateCommandEnumNullEnum>>,
+    pub command: Option<crate::models::DeviceStateCommandEnum>,
     #[serde(rename = "ansible_facts", skip_serializing_if = "Option::is_none")]
     pub ansible_facts: Option<::std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "ansible_extra_vars", skip_serializing_if = "Option::is_none")]

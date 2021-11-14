@@ -70,8 +70,6 @@ pub mod mobile_auth_request;
 pub use self::mobile_auth_request::MobileAuthRequest;
 pub mod model_artifact;
 pub use self::model_artifact::ModelArtifact;
-pub mod null_enum;
-pub use self::null_enum::NullEnum;
 pub mod octo_print_device;
 pub use self::octo_print_device::OctoPrintDevice;
 pub mod octo_print_device_key;

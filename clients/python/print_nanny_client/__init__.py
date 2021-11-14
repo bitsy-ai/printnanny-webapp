@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.8.61"
+__version__ = "0.8.62"
 
 # import apis into sdk package
 from print_nanny_client.api.alerts_api import AlertsApi
@@ -76,7 +76,6 @@ from print_nanny_client.models.license import License
 from print_nanny_client.models.license_request import LicenseRequest
 from print_nanny_client.models.mobile_auth_request import MobileAuthRequest
 from print_nanny_client.models.model_artifact import ModelArtifact
-from print_nanny_client.models.null_enum import NullEnum
 from print_nanny_client.models.octo_print_device import OctoPrintDevice
 from print_nanny_client.models.octo_print_device_key import OctoPrintDeviceKey
 from print_nanny_client.models.octo_print_device_request import OctoPrintDeviceRequest
