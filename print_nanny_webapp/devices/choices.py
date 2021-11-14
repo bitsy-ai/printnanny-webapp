@@ -22,9 +22,21 @@ class DeviceStatus(models.TextChoices):
     UPDATE_FAILED = "update_failed", "Software update failed"  # TODO send crash report
     UPDATE_SUCCESS = "update_success", "Software is up-to-date"
 
+    __css__ = dict(
+        INITIAL = "warning",
+        UPDATE_RUNNING = "warning",
+        UPDATE_FAILED = "danger",
+        UPDATE_SUCCESS = "success",
+    )
+    
+    @classmethod
+    def get_css_class(cls, value):
+        return cls.__css__[cls(value).name]
+        
 
 class DeviceCommand(models.TextChoices):
     SOFTWARE_UPDATE = (
         "printnanny update",
-        "Run software updates. Please do not reboot or power down until update is finished.",
+        "Run software update",
     )
+

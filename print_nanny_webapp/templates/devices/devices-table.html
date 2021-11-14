@@ -12,16 +12,16 @@
               <thead>
                   <tr>
                       <th>Name</th>
-                      <th>Monitoring Active</th>
+                      <!-- <th>Monitoring Active</th> -->
 
-                      <th>Printer Status</th>
+                      <th>Raspberry Pi Status</th>
                       <!-- <th>Job Status</th> -->
         
-                      <th>File</th>
-                      <th>Progress</th>
-
+                      <!-- <th>File</th>
+                      <th>Progress</th> -->
+<!-- 
                       <th>Remote Control</th>
-                      <th>Metadata</th>
+                      <th>Metadata</th> -->
 
                       <th>Download License</th>  
   
@@ -39,33 +39,17 @@
                             <div class="progress-bar progress-lg bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </td> -->
-                    <td><i class="mdi mdi-circle {{device.monitoring_active_css_class}}"></i> {{device.monitoring_active}}</td>
+                    <!-- <td><i class="mdi mdi-circle {{device.monitoring_active_css_class}}"></i> {{device.monitoring_active}}</td> -->
 
-                    <td><i class="mdi mdi-circle {{device.last_printer_event_css_class}}"></i> {{device.last_printer_event.printer_state}}</td>
+                    <td><i class="mdi mdi-circle {{ device.last_state_css_class }}"></i> {{ device.last_state.get_status_display }}</td>
                     <!-- <td><i class="mdi mdi-circle {{device.print_job_status_css_class}}"></i> {{device.print_job_status}}</td> -->
 
-                    <td>{{device.active_session.octoprint_job.file.name}}</td>
+                    <!-- <td>{{device.active_session.octoprint_job.file.name}}</td>
                     <td>{%if device.active_session.print_progress %}{{device.active_session.print_progress}}% {% endif %}</td>
+ -->
 
+                    <!-- <td><a href="{% url 'devices:detail' pk=device.id %}"><button class="btn btn-primary">Manage Device</button></a></td> -->
 
-                    <td><a href="{% url 'devices:detail' pk=device.id %}"><button class="btn btn-primary">Manage Device</button></a></td>
-                    <td>
-                      <button class="btn btn-primary" data-toggle="modal" data-target="#octoprint-device-metadata-modal-{{device.id}}">View Metadata</button>
-                        <!--  Modal content for the Large example -->
-                        <div class="modal fade" id="octoprint-device-metadata-modal-{{device.id}}" tabindex="-1" role="dialog" aria-hidden="true">
-                          <div class="modal-dialog modal-lg">
-                              <div class="modal-content">
-                                  <div class="modal-header">
-                                      <h4 class="modal-title">{{device.name}} Metadata</h4>
-                                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                  </div>
-                                  <div class="modal-body">
-                                      <pre>{{device.to_json}}</pre>
-                                  </div>
-                              </div><!-- /.modal-content -->
-                          </div><!-- /.modal-dialog -->
-                        </div><!-- /.modal -->
-                    </td>
 
                     <td><a href="{% url 'devices:license' pk=device.id %}" target="_blank"><button class="btn btn-primary">Download License</button></a></td>
 

@@ -83,13 +83,17 @@ class Device(SafeDeleteModel):
 
     @property
     def last_state(self):
-        state = self.ansible_facts.first()
+        state = self.devicestate_set.first()
         if state is None:
             state = DeviceState.objects.create(
                 device=self,
                 status=DeviceStatus.INITIAL,
             )
         return state
+
+    @property
+    def last_state_css_class(self):
+        return DeviceStatus.get_css_class(self.last_state.status)
 
     @property
     def to_cloudiot_id(self):
