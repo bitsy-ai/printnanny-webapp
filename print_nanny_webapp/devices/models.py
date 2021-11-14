@@ -11,7 +11,7 @@ from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.signals import pre_softdelete
 
 from .choices import (
-    AnsibleStateChoices,
+    DeviceCommand,
     DeviceReleaseChannel,
     PrinterSoftwareType,
     DeviceStatus,
@@ -69,9 +69,6 @@ class Device(SafeDeleteModel):
         choices=DeviceReleaseChannel.choices,
         default=DeviceReleaseChannel.STABLE,
         help_text="WARNING: you should only use the nightly developer channel when guided by Print Nanny staff! This unstable channel is intended for QA and verifying bug fixes.",
-    )
-    status = models.CharField(
-        max_length=16, choices=DeviceStatus.choices, default=DeviceStatus.INITIAL
     )
     bootstrap_release = models.ForeignKey(
         "releases.Release",
@@ -285,15 +282,15 @@ class DeviceState(SafeDeleteModel):
     https://cloud.google.com/iot/docs/concepts/devices#changing_device_behavior_or_state_using_configuration_data
     """
 
-    _safedelete_policy = SOFT_DELETE
-    ansible_state = models.CharField(
-        max_length=64,
-        choices=AnsibleStateChoices.choices,
-        default=AnsibleStateChoices.RUNNING,
-    )
-
     class Meta:
         ordering = ["-created_dt"]
+        index_together = [["device", "command"], ["created_dt", "command"]]
+
+    _safedelete_policy = SOFT_DELETE
+    status = models.CharField(
+        max_length=16, choices=DeviceStatus.choices, default=DeviceStatus.INITIAL
+    )
+    command = models.CharField(max_length=255, choices=DeviceCommand.choices, null=True)
 
     device = models.ForeignKey(Device, on_delete=models.CASCADE, db_index=True)
     ansible_facts = models.JSONField(default=dict())

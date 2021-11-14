@@ -13,17 +13,18 @@ class PrinterSoftwareType(models.TextChoices):
     # MAINSAL = "Mainsail", "Mainsail printer controller"
 
 
-class AnsibleStateChoices(models.TextChoices):
-    RUNNING = "running", "Software update is running"
-    SUCCESS = "success", "Software is up-to-date"
-    FAILED = "failed", "Software update failed"
-
-
 class DeviceStatus(models.TextChoices):
     INITIAL = "initial", "Waiting for initial Raspberry Pi boot"
     UPDATE_RUNNING = (
         "update_running",
-        "Software update in-progress. Do not power down or reboot.",
+        "Software update in-progress. Please do not power down or reboot.",
     )
     UPDATE_FAILED = "update_failed", "Software update failed"  # TODO send crash report
     UPDATE_SUCCESS = "update_success", "Software is up-to-date"
+
+
+class DeviceCommand(models.TextChoices):
+    SOFTWARE_UPDATE = (
+        "printnanny update",
+        "Run software updates. Please do not reboot or power down until update is finished.",
+    )
