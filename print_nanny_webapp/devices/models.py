@@ -120,16 +120,40 @@ class License(SafeDeleteModel):
 
 
 class DeviceInfo(SafeDeleteModel):
+    """
+    Immutable device info & metadata
+    """
+
     _safedelete_policy = SOFT_DELETE
 
+    class Meta:
+        constraints = [
+            UniqueConstraint(
+                fields=["device"],
+                condition=models.Q(deleted=None),
+                name="unique_device_info_per_device",
+            )
+        ]
+
+    machine_id = models.CharField(
+        max_length=255, help_text="Populated from /etc/machine-id"
+    )
     # /proc/cpuinfo HARDWARE
-    hardware = models.CharField(max_length=255)
+    hardware = models.CharField(
+        max_length=255, help_text="Populated from /proc/cpuinfo HARDWARE"
+    )
     # /proc/cpuinfo REVISION
-    revision = models.CharField(max_length=255)
+    revision = models.CharField(
+        max_length=255, help_text="Populated from /proc/cpuinfo REVISION"
+    )
     # /proc/cpuinfo MODEL
-    model = models.CharField(max_length=255)
+    model = models.CharField(
+        max_length=255, help_text="Populated from /proc/cpuinfo MODEL"
+    )
     # /proc/cpuinfo SERIAL
-    serial = models.CharField(max_length=255)
+    serial = models.CharField(
+        max_length=255, help_text="Populated from /proc/cpuinfo SERIAL"
+    )
     # /proc/cpuinfo MAX PROCESSOR
     cores = models.IntegerField()
     ram = models.BigIntegerField()
