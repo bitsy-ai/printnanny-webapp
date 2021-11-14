@@ -10,7 +10,12 @@ from polymorphic.models import PolymorphicModel
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.signals import pre_softdelete
 
-from .choices import AnsibleStateChoices, DeviceReleaseChannel, PrinterSoftwareType
+from .choices import (
+    AnsibleStateChoices,
+    DeviceReleaseChannel,
+    PrinterSoftwareType,
+    DeviceStatus,
+)
 
 UserModel = get_user_model()
 logger = logging.getLogger(__name__)
@@ -64,6 +69,9 @@ class Device(SafeDeleteModel):
         choices=DeviceReleaseChannel.choices,
         default=DeviceReleaseChannel.STABLE,
         help_text="WARNING: you should only use the nightly developer channel when guided by Print Nanny staff! This unstable channel is intended for QA and verifying bug fixes.",
+    )
+    status = models.CharField(
+        max_length=16, choices=DeviceStatus.choices, default=DeviceStatus.INITIAL
     )
     bootstrap_release = models.ForeignKey(
         "releases.Release",

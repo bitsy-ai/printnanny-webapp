@@ -14,6 +14,16 @@ class PrinterSoftwareType(models.TextChoices):
 
 
 class AnsibleStateChoices(models.TextChoices):
-    RUNNING = "running" "Software update is running"
-    SUCCESS = "success" "Software is up-to-date"
-    FAILED = "failed" "Software update failed"
+    RUNNING = "running", "Software update is running"
+    SUCCESS = "success", "Software is up-to-date"
+    FAILED = "failed", "Software update failed"
+
+
+class DeviceStatus(models.TextChoices):
+    INITIAL = "initial", "Waiting for initial Raspberry Pi boot"
+    UPDATE_RUNNING = (
+        "update_running",
+        "Software update in-progress. Do not power down or reboot.",
+    )
+    UPDATE_FAILED = "update_failed", "Software update failed"  # TODO send crash report
+    UPDATE_SUCCESS = "update_success", "Software is up-to-date"
