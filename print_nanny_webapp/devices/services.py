@@ -1,21 +1,22 @@
 from __future__ import annotations
-from zipfile import ZipFile
-from google.cloud import iot_v1 as cloudiot_v1
-import google.api_core.exceptions
 import subprocess
-from typing import Tuple, Optional
 import hashlib
 import logging
 import tempfile
 import requests
 import os
+from typing import Tuple, TypedDict
+from zipfile import ZipFile
+
 from django.apps import apps
-from typing import TypedDict
+from django.http.request import HttpRequest
 from django.conf import settings
-
+from rest_framework.renderers import JSONRenderer
 from rest_framework.authtoken.models import Token
+from google.cloud import iot_v1 as cloudiot_v1
+import google.api_core.exceptions
 
-from .models import Device, CloudiotDevice
+from .models import Device, CloudiotDevice, License
 
 logger = logging.getLogger(__name__)
 
@@ -265,12 +266,14 @@ def update_or_create_cloudiot_device(
 
 
 def generate_keypair_and_update_or_create_cloudiot_device(
-    device: Device,
+    device: Device, tmp: tempfile.TemporaryDirectory
 ) -> Tuple[KeyPair, CloudiotDevice]:
-    keypair = generate_keypair()
+    keypair = generate_keypair(tmp)
+    # revoke all existing licenses (soft-delete)
+    device.licenses.all().delete()
+
     cloudiot_device = update_or_create_cloudiot_device(device=device, keypair=keypair)
     CloudiotDevice = apps.get_model("devices", "CloudiotDevice")
-    License = apps.get_model("devices", "License")
 
     # update apppliance relationships
     if device.cloudiot_devices.first():
@@ -285,31 +288,31 @@ def generate_keypair_and_update_or_create_cloudiot_device(
             name=cloudiot_device.name,
             device=device,
         )
-    if device.public_keys.first():
-        device.public_keys.update(
-            public_key=keypair["public_key"],
-            public_key_checksum=keypair["public_key_checksum"],
-            fingerprint=keypair["fingerprint"],
-            device=device,
-        )
-    else:
-        License.objects.create(
-            public_key=keypair["public_key"],
-            fingerprint=keypair["fingerprint"],
-            device=device,
-        )
+
+    License.objects.create(
+        public_key=keypair["public_key"],
+        public_key_checksum=keypair["public_key_checksum"],
+        fingerprint=keypair["fingerprint"],
+        device=device,
+    )
     return keypair, device.cloudiot_devices.first()
 
 
 def generate_zipped_license_file(
-    api_token: str,
+    device: Device,
+    request: HttpRequest,
     tmp: tempfile.TemporaryDirectory,
 ) -> str:
     from .api.serializers import DeviceSerializer
 
-    keypair = generate_keypair(tmp)
+    keypair, _ = generate_keypair_and_update_or_create_cloudiot_device(device, tmp)
     filename = f"{tmp}/printnanny_license.zip"
-    api_token, _ = Token.objects.get_or_create(user=self.request.user)
+    api_token, _ = Token.objects.get_or_create(user=device.user)
+    device.refresh_from_db()
+
+    serializer = DeviceSerializer(device, context=dict(request=request))
+    device_json = JSONRenderer().render(serializer.data)
+
     with ZipFile(filename, "w") as zf:
         zf.write(
             keypair["public_key_filename"],
@@ -319,5 +322,7 @@ def generate_zipped_license_file(
             keypair["private_key_filename"],
             arcname=os.path.basename(keypair["private_key_filename"]),
         )
-        zf.writestr("printnanny_api_token", api_token)
+        zf.writestr("printnanny_api_token", str(api_token))
+        zf.writestr("device.json", device_json)
+
     return filename

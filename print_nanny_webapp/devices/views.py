@@ -57,7 +57,7 @@ class DeviceLicenseDownload(DetailView):
         device = Device.objects.get(pk=kwargs["pk"])
 
         with tempfile.TemporaryDirectory() as tmp:
-            filename = generate_zipped_license_file(device, tmp)
+            filename = generate_zipped_license_file(device, request, tmp)
             # some_file = self.model.objects.get(imported_file=filename)
             response = FileResponse(
                 open(filename, "rb"), content_type="application/zip"

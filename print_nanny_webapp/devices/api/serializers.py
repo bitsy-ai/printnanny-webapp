@@ -130,6 +130,7 @@ class DeviceSerializer(serializers.ModelSerializer):
     )
 
     user = UserSerializer(read_only=True)
+    license = LicenseSerializer(read_only=True)
 
     class Meta:
         model = Device

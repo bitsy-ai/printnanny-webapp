@@ -84,10 +84,6 @@ class Device(SafeDeleteModel):
     def dashboard_url(self):
         return reverse("devices:detail", kwargs={"pk": self.id})
 
-    # @property
-    # def latest_config_msg(self):
-    #     return self.device_config_set.first()
-
     @property
     def latest_state_msg(self):
         return self.current_state_set.first()
