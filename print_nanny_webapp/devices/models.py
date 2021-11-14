@@ -300,7 +300,11 @@ class DeviceState(SafeDeleteModel):
     status = models.CharField(
         max_length=16, choices=DeviceStatus.choices, default=DeviceStatus.INITIAL
     )
-    command = models.CharField(max_length=255, choices=DeviceCommand.choices, null=True)
+    command = models.CharField(
+        max_length=255,
+        choices=DeviceCommand.choices,
+        default=DeviceCommand.SOFTWARE_UPDATE,
+    )
 
     device = models.ForeignKey(Device, on_delete=models.CASCADE, db_index=True)
     ansible_facts = models.JSONField(default=dict())
