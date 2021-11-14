@@ -83,7 +83,13 @@ class Device(SafeDeleteModel):
 
     @property
     def last_state(self):
-        return self.ansible_facts.first()
+        state = self.ansible_facts.first()
+        if state is None:
+            state = DeviceState.objects.create(
+                device=self,
+                status=DeviceStatus.INITIAL,
+            )
+        return state
 
     @property
     def to_cloudiot_id(self):
@@ -295,11 +301,7 @@ class DeviceState(SafeDeleteModel):
     device = models.ForeignKey(Device, on_delete=models.CASCADE, db_index=True)
     ansible_facts = models.JSONField(default=dict())
     ansible_extra_vars = models.JSONField(default=dict())
-    release_channel = models.CharField(
-        max_length=8,
-        choices=DeviceReleaseChannel.choices,
-        default=DeviceReleaseChannel.STABLE,
-    )
+
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
 
     @property
