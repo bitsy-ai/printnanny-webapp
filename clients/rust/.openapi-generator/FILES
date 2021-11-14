@@ -10,7 +10,6 @@ docs/AlertRequest.md
 docs/AlertsApi.md
 docs/AnsibleExtraVars.md
 docs/AnsibleExtraVarsRequest.md
-docs/AnsibleStateEnum.md
 docs/ArtifactTypesEnum.md
 docs/AuthApi.md
 docs/CaCerts.md
@@ -22,7 +21,6 @@ docs/CameraRequest.md
 docs/CameraTypeEnum.md
 docs/CloudiotDevice.md
 docs/CloudiotDeviceRequest.md
-docs/CommandEnum.md
 docs/DetailResponse.md
 docs/Device.md
 docs/DeviceCalibration.md
@@ -31,6 +29,7 @@ docs/DeviceConfig.md
 docs/DeviceKeyPair.md
 docs/DeviceRequest.md
 docs/DeviceState.md
+docs/DeviceStateCommandEnum.md
 docs/DevicesApi.md
 docs/EmailAuthRequest.md
 docs/ErrorDetail.md
@@ -44,6 +43,7 @@ docs/LicenseRequest.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
+docs/NullEnum.md
 docs/OctoPrintDevice.md
 docs/OctoPrintDeviceKey.md
 docs/OctoPrintDeviceRequest.md
@@ -136,9 +136,11 @@ docs/RemoteCommandEventEventTypeEnum.md
 docs/RemoteCommandEventRequest.md
 docs/RemoteControlApi.md
 docs/RemoteControlCommand.md
+docs/RemoteControlCommandCommandEnum.md
 docs/RemoteControlCommandRequest.md
 docs/SchemaApi.md
 docs/SoftwareEnum.md
+docs/StatusEnum.md
 docs/TelemetryApi.md
 docs/TelemetryEvent.md
 docs/TelemetryEventEventTypeEnum.md
@@ -170,7 +172,6 @@ src/models/alert_event_type_enum.rs
 src/models/alert_request.rs
 src/models/ansible_extra_vars.rs
 src/models/ansible_extra_vars_request.rs
-src/models/ansible_state_enum.rs
 src/models/artifact_types_enum.rs
 src/models/ca_certs.rs
 src/models/callback_token_auth_request.rs
@@ -181,7 +182,6 @@ src/models/camera_request.rs
 src/models/camera_type_enum.rs
 src/models/cloudiot_device.rs
 src/models/cloudiot_device_request.rs
-src/models/command_enum.rs
 src/models/detail_response.rs
 src/models/device.rs
 src/models/device_calibration.rs
@@ -190,6 +190,7 @@ src/models/device_config.rs
 src/models/device_key_pair.rs
 src/models/device_request.rs
 src/models/device_state.rs
+src/models/device_state_command_enum.rs
 src/models/email_auth_request.rs
 src/models/error_detail.rs
 src/models/event_source_enum.rs
@@ -202,6 +203,7 @@ src/models/license_request.rs
 src/models/mobile_auth_request.rs
 src/models/mod.rs
 src/models/model_artifact.rs
+src/models/null_enum.rs
 src/models/octo_print_device.rs
 src/models/octo_print_device_key.rs
 src/models/octo_print_device_request.rs
@@ -290,8 +292,10 @@ src/models/remote_command_event.rs
 src/models/remote_command_event_event_type_enum.rs
 src/models/remote_command_event_request.rs
 src/models/remote_control_command.rs
+src/models/remote_control_command_command_enum.rs
 src/models/remote_control_command_request.rs
 src/models/software_enum.rs
+src/models/status_enum.rs
 src/models/telemetry_event.rs
 src/models/telemetry_event_event_type_enum.rs
 src/models/telemetry_event_polymorphic.rs

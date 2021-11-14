@@ -6,10 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
 **deleted** | **datetime** |  | [optional] [readonly] 
-**ansible_state** | [**AnsibleStateEnum**](AnsibleStateEnum.md) |  | [optional] 
+**status** | [**StatusEnum**](StatusEnum.md) |  | [optional] 
+**command** | [**OneOfDeviceStateCommandEnumNullEnum**](OneOfDeviceStateCommandEnumNullEnum.md) |  | [optional] 
 **ansible_facts** | **dict(str, object)** |  | [optional] 
 **ansible_extra_vars** | **dict(str, object)** |  | [optional] 
-**release_channel** | [**ReleaseChannelEnum**](ReleaseChannelEnum.md) |  | [optional] 
 **created_dt** | **datetime** |  | [optional] [readonly] 
 **device** | **int** |  | 
 

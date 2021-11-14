@@ -11,7 +11,6 @@ docs/AlertRequest.md
 docs/AlertsApi.md
 docs/AnsibleExtraVars.md
 docs/AnsibleExtraVarsRequest.md
-docs/AnsibleStateEnum.md
 docs/ArtifactTypesEnum.md
 docs/AuthApi.md
 docs/AuthApi.md
@@ -24,7 +23,6 @@ docs/CameraRequest.md
 docs/CameraTypeEnum.md
 docs/CloudiotDevice.md
 docs/CloudiotDeviceRequest.md
-docs/CommandEnum.md
 docs/DetailResponse.md
 docs/Device.md
 docs/DeviceCalibration.md
@@ -33,6 +31,7 @@ docs/DeviceConfig.md
 docs/DeviceKeyPair.md
 docs/DeviceRequest.md
 docs/DeviceState.md
+docs/DeviceStateCommandEnum.md
 docs/DevicesApi.md
 docs/EmailAuthRequest.md
 docs/ErrorDetail.md
@@ -46,6 +45,7 @@ docs/LicenseRequest.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
+docs/NullEnum.md
 docs/OctoPrintDevice.md
 docs/OctoPrintDeviceKey.md
 docs/OctoPrintDeviceRequest.md
@@ -138,9 +138,11 @@ docs/RemoteCommandEventEventTypeEnum.md
 docs/RemoteCommandEventRequest.md
 docs/RemoteControlApi.md
 docs/RemoteControlCommand.md
+docs/RemoteControlCommandCommandEnum.md
 docs/RemoteControlCommandRequest.md
 docs/SchemaApi.md
 docs/SoftwareEnum.md
+docs/StatusEnum.md
 docs/TelemetryApi.md
 docs/TelemetryEvent.md
 docs/TelemetryEventEventTypeEnum.md
@@ -176,7 +178,6 @@ print_nanny_client/models/alert_event_type_enum.py
 print_nanny_client/models/alert_request.py
 print_nanny_client/models/ansible_extra_vars.py
 print_nanny_client/models/ansible_extra_vars_request.py
-print_nanny_client/models/ansible_state_enum.py
 print_nanny_client/models/artifact_types_enum.py
 print_nanny_client/models/ca_certs.py
 print_nanny_client/models/callback_token_auth_request.py
@@ -187,7 +188,6 @@ print_nanny_client/models/camera_request.py
 print_nanny_client/models/camera_type_enum.py
 print_nanny_client/models/cloudiot_device.py
 print_nanny_client/models/cloudiot_device_request.py
-print_nanny_client/models/command_enum.py
 print_nanny_client/models/detail_response.py
 print_nanny_client/models/device.py
 print_nanny_client/models/device_calibration.py
@@ -196,6 +196,7 @@ print_nanny_client/models/device_config.py
 print_nanny_client/models/device_key_pair.py
 print_nanny_client/models/device_request.py
 print_nanny_client/models/device_state.py
+print_nanny_client/models/device_state_command_enum.py
 print_nanny_client/models/email_auth_request.py
 print_nanny_client/models/error_detail.py
 print_nanny_client/models/event_source_enum.py
@@ -207,6 +208,7 @@ print_nanny_client/models/license.py
 print_nanny_client/models/license_request.py
 print_nanny_client/models/mobile_auth_request.py
 print_nanny_client/models/model_artifact.py
+print_nanny_client/models/null_enum.py
 print_nanny_client/models/octo_print_device.py
 print_nanny_client/models/octo_print_device_key.py
 print_nanny_client/models/octo_print_device_request.py
@@ -295,8 +297,10 @@ print_nanny_client/models/remote_command_event.py
 print_nanny_client/models/remote_command_event_event_type_enum.py
 print_nanny_client/models/remote_command_event_request.py
 print_nanny_client/models/remote_control_command.py
+print_nanny_client/models/remote_control_command_command_enum.py
 print_nanny_client/models/remote_control_command_request.py
 print_nanny_client/models/software_enum.py
+print_nanny_client/models/status_enum.py
 print_nanny_client/models/telemetry_event.py
 print_nanny_client/models/telemetry_event_event_type_enum.py
 print_nanny_client/models/telemetry_event_polymorphic.py
@@ -319,7 +323,6 @@ test/test_alert_request.py
 test/test_alerts_api.py
 test/test_ansible_extra_vars.py
 test/test_ansible_extra_vars_request.py
-test/test_ansible_state_enum.py
 test/test_artifact_types_enum.py
 test/test_auth__api.py
 test/test_auth_api.py
@@ -332,7 +335,6 @@ test/test_camera_request.py
 test/test_camera_type_enum.py
 test/test_cloudiot_device.py
 test/test_cloudiot_device_request.py
-test/test_command_enum.py
 test/test_detail_response.py
 test/test_device.py
 test/test_device_calibration.py
@@ -341,6 +343,7 @@ test/test_device_config.py
 test/test_device_key_pair.py
 test/test_device_request.py
 test/test_device_state.py
+test/test_device_state_command_enum.py
 test/test_devices_api.py
 test/test_email_auth_request.py
 test/test_error_detail.py
@@ -354,6 +357,7 @@ test/test_license_request.py
 test/test_ml_ops_api.py
 test/test_mobile_auth_request.py
 test/test_model_artifact.py
+test/test_null_enum.py
 test/test_octo_print_device.py
 test/test_octo_print_device_key.py
 test/test_octo_print_device_request.py
@@ -446,9 +450,11 @@ test/test_remote_command_event_event_type_enum.py
 test/test_remote_command_event_request.py
 test/test_remote_control_api.py
 test/test_remote_control_command.py
+test/test_remote_control_command_command_enum.py
 test/test_remote_control_command_request.py
 test/test_schema_api.py
 test/test_software_enum.py
+test/test_status_enum.py
 test/test_telemetry_api.py
 test/test_telemetry_event.py
 test/test_telemetry_event_event_type_enum.py

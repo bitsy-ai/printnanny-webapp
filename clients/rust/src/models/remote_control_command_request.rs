@@ -12,7 +12,7 @@
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct RemoteControlCommandRequest {
     #[serde(rename = "command", skip_serializing_if = "Option::is_none")]
-    pub command: Option<crate::models::CommandEnum>,
+    pub command: Option<crate::models::RemoteControlCommandCommandEnum>,
     #[serde(rename = "user")]
     pub user: i32,
     #[serde(rename = "device")]

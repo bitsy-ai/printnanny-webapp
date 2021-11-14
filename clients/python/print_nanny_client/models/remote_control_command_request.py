@@ -36,7 +36,7 @@ class RemoteControlCommandRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'command': 'CommandEnum',
+        'command': 'RemoteControlCommandCommandEnum',
         'user': 'int',
         'device': 'int',
         'received': 'bool',
@@ -88,7 +88,7 @@ class RemoteControlCommandRequest(object):
 
 
         :return: The command of this RemoteControlCommandRequest.  # noqa: E501
-        :rtype: CommandEnum
+        :rtype: RemoteControlCommandCommandEnum
         """
         return self._command
 
@@ -98,7 +98,7 @@ class RemoteControlCommandRequest(object):
 
 
         :param command: The command of this RemoteControlCommandRequest.  # noqa: E501
-        :type command: CommandEnum
+        :type command: RemoteControlCommandCommandEnum
         """
 
         self._command = command

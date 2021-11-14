@@ -1,7 +1,7 @@
-# CommandEnum
-
+# RemoteControlCommandCommandEnum
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

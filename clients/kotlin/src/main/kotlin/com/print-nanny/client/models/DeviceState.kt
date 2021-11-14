@@ -20,8 +20,8 @@
 
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.AnsibleStateEnum
-import com.print-nanny.client.models.ReleaseChannelEnum
+import com.print-nanny.client.models.OneOfLessThanDeviceStateCommandEnumCommaNullEnumGreaterThan
+import com.print-nanny.client.models.StatusEnum
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -32,10 +32,10 @@ import java.io.Serializable
  * @param device 
  * @param id 
  * @param deleted 
- * @param ansibleState 
+ * @param status 
+ * @param command 
  * @param ansibleFacts 
  * @param ansibleExtraVars 
- * @param releaseChannel 
  * @param createdDt 
  */
 
@@ -50,17 +50,17 @@ data class DeviceState (
     @Json(name = "deleted")
     val deleted: java.time.OffsetDateTime? = null,
 
-    @Json(name = "ansible_state")
-    val ansibleState: AnsibleStateEnum? = null,
+    @Json(name = "status")
+    val status: StatusEnum? = null,
+
+    @Json(name = "command")
+    val command: OneOfLessThanDeviceStateCommandEnumCommaNullEnumGreaterThan? = null,
 
     @Json(name = "ansible_facts")
     val ansibleFacts: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,
 
     @Json(name = "ansible_extra_vars")
     val ansibleExtraVars: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,
-
-    @Json(name = "release_channel")
-    val releaseChannel: ReleaseChannelEnum? = null,
 
     @Json(name = "created_dt")
     val createdDt: java.time.OffsetDateTime? = null

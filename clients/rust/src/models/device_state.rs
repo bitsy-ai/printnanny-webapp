@@ -15,14 +15,14 @@ pub struct DeviceState {
     pub id: Option<i32>,
     #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
     pub deleted: Option<String>,
-    #[serde(rename = "ansible_state", skip_serializing_if = "Option::is_none")]
-    pub ansible_state: Option<crate::models::AnsibleStateEnum>,
+    #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
+    pub status: Option<crate::models::StatusEnum>,
+    #[serde(rename = "command", skip_serializing_if = "Option::is_none")]
+    pub command: Option<Box<crate::models::OneOfDeviceStateCommandEnumNullEnum>>,
     #[serde(rename = "ansible_facts", skip_serializing_if = "Option::is_none")]
     pub ansible_facts: Option<::std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "ansible_extra_vars", skip_serializing_if = "Option::is_none")]
     pub ansible_extra_vars: Option<::std::collections::HashMap<String, serde_json::Value>>,
-    #[serde(rename = "release_channel", skip_serializing_if = "Option::is_none")]
-    pub release_channel: Option<crate::models::ReleaseChannelEnum>,
     #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
     pub created_dt: Option<String>,
     #[serde(rename = "device")]
@@ -34,10 +34,10 @@ impl DeviceState {
         DeviceState {
             id: None,
             deleted: None,
-            ansible_state: None,
+            status: None,
+            command: None,
             ansible_facts: None,
             ansible_extra_vars: None,
-            release_channel: None,
             created_dt: None,
             device,
         }

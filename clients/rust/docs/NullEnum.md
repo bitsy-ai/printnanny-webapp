@@ -1,4 +1,4 @@
-# AnsibleStateEnum
+# NullEnum
 
 ## Properties
 

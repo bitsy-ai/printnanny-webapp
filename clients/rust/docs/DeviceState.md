@@ -6,10 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | Option<**i32**> |  | [optional][readonly]
 **deleted** | Option<**String**> |  | [optional][readonly]
-**ansible_state** | Option<[**crate::models::AnsibleStateEnum**](AnsibleStateEnum.md)> |  | [optional]
+**status** | Option<[**crate::models::StatusEnum**](StatusEnum.md)> |  | [optional]
+**command** | Option<[**crate::models::OneOfDeviceStateCommandEnumNullEnum**](oneOf<DeviceStateCommandEnum,NullEnum>.md)> |  | [optional]
 **ansible_facts** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **ansible_extra_vars** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
-**release_channel** | Option<[**crate::models::ReleaseChannelEnum**](ReleaseChannelEnum.md)> |  | [optional]
 **created_dt** | Option<**String**> |  | [optional][readonly]
 **device** | **i32** |  | 
 

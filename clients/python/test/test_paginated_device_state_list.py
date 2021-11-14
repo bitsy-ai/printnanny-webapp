@@ -43,14 +43,14 @@ class TestPaginatedDeviceStateList(unittest.TestCase):
                     print_nanny_client.models.device_state.DeviceState(
                         id = 56, 
                         deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        ansible_state = 'runningSoftware update is running', 
+                        status = 'initial', 
+                        command = null, 
                         ansible_facts = {
                             'key' : null
                             }, 
                         ansible_extra_vars = {
                             'key' : null
                             }, 
-                        release_channel = 'stable', 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         device = 56, )
                     ]

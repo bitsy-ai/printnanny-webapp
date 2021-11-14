@@ -1,5 +1,5 @@
 
-# CommandEnum
+# RemoteControlCommandCommandEnum
 
 ## Enum
 

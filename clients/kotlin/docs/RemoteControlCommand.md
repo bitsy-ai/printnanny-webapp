@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **device** | **kotlin.Int** |  | 
 **id** | **kotlin.Int** |  |  [optional] [readonly]
 **createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
-**command** | [**CommandEnum**](CommandEnum.md) |  |  [optional]
+**command** | [**RemoteControlCommandCommandEnum**](RemoteControlCommandCommandEnum.md) |  |  [optional]
 **received** | **kotlin.Boolean** |  |  [optional]
 **success** | **kotlin.Boolean** |  |  [optional]
 **iotcoreResponse** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt;**](kotlin.Any.md) |  |  [optional]

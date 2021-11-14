@@ -20,7 +20,6 @@ from print_nanny_client.models.alert_event_type_enum import AlertEventTypeEnum
 from print_nanny_client.models.alert_request import AlertRequest
 from print_nanny_client.models.ansible_extra_vars import AnsibleExtraVars
 from print_nanny_client.models.ansible_extra_vars_request import AnsibleExtraVarsRequest
-from print_nanny_client.models.ansible_state_enum import AnsibleStateEnum
 from print_nanny_client.models.artifact_types_enum import ArtifactTypesEnum
 from print_nanny_client.models.ca_certs import CACerts
 from print_nanny_client.models.callback_token_auth_request import CallbackTokenAuthRequest
@@ -31,7 +30,6 @@ from print_nanny_client.models.camera_request import CameraRequest
 from print_nanny_client.models.camera_type_enum import CameraTypeEnum
 from print_nanny_client.models.cloudiot_device import CloudiotDevice
 from print_nanny_client.models.cloudiot_device_request import CloudiotDeviceRequest
-from print_nanny_client.models.command_enum import CommandEnum
 from print_nanny_client.models.detail_response import DetailResponse
 from print_nanny_client.models.device import Device
 from print_nanny_client.models.device_calibration import DeviceCalibration
@@ -40,6 +38,7 @@ from print_nanny_client.models.device_config import DeviceConfig
 from print_nanny_client.models.device_key_pair import DeviceKeyPair
 from print_nanny_client.models.device_request import DeviceRequest
 from print_nanny_client.models.device_state import DeviceState
+from print_nanny_client.models.device_state_command_enum import DeviceStateCommandEnum
 from print_nanny_client.models.email_auth_request import EmailAuthRequest
 from print_nanny_client.models.error_detail import ErrorDetail
 from print_nanny_client.models.event_source_enum import EventSourceEnum
@@ -51,6 +50,7 @@ from print_nanny_client.models.license import License
 from print_nanny_client.models.license_request import LicenseRequest
 from print_nanny_client.models.mobile_auth_request import MobileAuthRequest
 from print_nanny_client.models.model_artifact import ModelArtifact
+from print_nanny_client.models.null_enum import NullEnum
 from print_nanny_client.models.octo_print_device import OctoPrintDevice
 from print_nanny_client.models.octo_print_device_key import OctoPrintDeviceKey
 from print_nanny_client.models.octo_print_device_request import OctoPrintDeviceRequest
@@ -139,8 +139,10 @@ from print_nanny_client.models.remote_command_event import RemoteCommandEvent
 from print_nanny_client.models.remote_command_event_event_type_enum import RemoteCommandEventEventTypeEnum
 from print_nanny_client.models.remote_command_event_request import RemoteCommandEventRequest
 from print_nanny_client.models.remote_control_command import RemoteControlCommand
+from print_nanny_client.models.remote_control_command_command_enum import RemoteControlCommandCommandEnum
 from print_nanny_client.models.remote_control_command_request import RemoteControlCommandRequest
 from print_nanny_client.models.software_enum import SoftwareEnum
+from print_nanny_client.models.status_enum import StatusEnum
 from print_nanny_client.models.telemetry_event import TelemetryEvent
 from print_nanny_client.models.telemetry_event_event_type_enum import TelemetryEventEventTypeEnum
 from print_nanny_client.models.telemetry_event_polymorphic import TelemetryEventPolymorphic

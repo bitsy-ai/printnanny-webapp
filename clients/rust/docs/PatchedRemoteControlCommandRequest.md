@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**command** | Option<[**crate::models::CommandEnum**](CommandEnum.md)> |  | [optional]
+**command** | Option<[**crate::models::RemoteControlCommandCommandEnum**](RemoteControlCommandCommandEnum.md)> |  | [optional]
 **user** | Option<**i32**> |  | [optional]
 **device** | Option<**i32**> |  | [optional]
 **received** | Option<**bool**> |  | [optional]

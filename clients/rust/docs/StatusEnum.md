@@ -1,4 +1,4 @@
-# CommandEnum
+# StatusEnum
 
 ## Properties
 

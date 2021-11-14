@@ -8,7 +8,6 @@ docs/AlertRequest.md
 docs/AlertsApi.md
 docs/AnsibleExtraVars.md
 docs/AnsibleExtraVarsRequest.md
-docs/AnsibleStateEnum.md
 docs/ArtifactTypesEnum.md
 docs/AuthApi.md
 docs/CACerts.md
@@ -20,7 +19,6 @@ docs/CameraRequest.md
 docs/CameraTypeEnum.md
 docs/CloudiotDevice.md
 docs/CloudiotDeviceRequest.md
-docs/CommandEnum.md
 docs/DetailResponse.md
 docs/Device.md
 docs/DeviceCalibration.md
@@ -29,6 +27,7 @@ docs/DeviceConfig.md
 docs/DeviceKeyPair.md
 docs/DeviceRequest.md
 docs/DeviceState.md
+docs/DeviceStateCommandEnum.md
 docs/DevicesApi.md
 docs/EmailAuthRequest.md
 docs/ErrorDetail.md
@@ -42,6 +41,7 @@ docs/LicenseRequest.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
+docs/NullEnum.md
 docs/OctoPrintDevice.md
 docs/OctoPrintDeviceKey.md
 docs/OctoPrintDeviceRequest.md
@@ -134,9 +134,11 @@ docs/RemoteCommandEventEventTypeEnum.md
 docs/RemoteCommandEventRequest.md
 docs/RemoteControlApi.md
 docs/RemoteControlCommand.md
+docs/RemoteControlCommandCommandEnum.md
 docs/RemoteControlCommandRequest.md
 docs/SchemaApi.md
 docs/SoftwareEnum.md
+docs/StatusEnum.md
 docs/TelemetryApi.md
 docs/TelemetryEvent.md
 docs/TelemetryEventEventTypeEnum.md
@@ -185,7 +187,6 @@ src/main/kotlin/com/print-nanny/client/models/AlertEventTypeEnum.kt
 src/main/kotlin/com/print-nanny/client/models/AlertRequest.kt
 src/main/kotlin/com/print-nanny/client/models/AnsibleExtraVars.kt
 src/main/kotlin/com/print-nanny/client/models/AnsibleExtraVarsRequest.kt
-src/main/kotlin/com/print-nanny/client/models/AnsibleStateEnum.kt
 src/main/kotlin/com/print-nanny/client/models/ArtifactTypesEnum.kt
 src/main/kotlin/com/print-nanny/client/models/CACerts.kt
 src/main/kotlin/com/print-nanny/client/models/CallbackTokenAuthRequest.kt
@@ -196,7 +197,6 @@ src/main/kotlin/com/print-nanny/client/models/CameraRequest.kt
 src/main/kotlin/com/print-nanny/client/models/CameraTypeEnum.kt
 src/main/kotlin/com/print-nanny/client/models/CloudiotDevice.kt
 src/main/kotlin/com/print-nanny/client/models/CloudiotDeviceRequest.kt
-src/main/kotlin/com/print-nanny/client/models/CommandEnum.kt
 src/main/kotlin/com/print-nanny/client/models/DetailResponse.kt
 src/main/kotlin/com/print-nanny/client/models/Device.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceCalibration.kt
@@ -205,6 +205,7 @@ src/main/kotlin/com/print-nanny/client/models/DeviceConfig.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceKeyPair.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceRequest.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceState.kt
+src/main/kotlin/com/print-nanny/client/models/DeviceStateCommandEnum.kt
 src/main/kotlin/com/print-nanny/client/models/EmailAuthRequest.kt
 src/main/kotlin/com/print-nanny/client/models/ErrorDetail.kt
 src/main/kotlin/com/print-nanny/client/models/EventSourceEnum.kt
@@ -216,6 +217,7 @@ src/main/kotlin/com/print-nanny/client/models/License.kt
 src/main/kotlin/com/print-nanny/client/models/LicenseRequest.kt
 src/main/kotlin/com/print-nanny/client/models/MobileAuthRequest.kt
 src/main/kotlin/com/print-nanny/client/models/ModelArtifact.kt
+src/main/kotlin/com/print-nanny/client/models/NullEnum.kt
 src/main/kotlin/com/print-nanny/client/models/OctoPrintDevice.kt
 src/main/kotlin/com/print-nanny/client/models/OctoPrintDeviceKey.kt
 src/main/kotlin/com/print-nanny/client/models/OctoPrintDeviceRequest.kt
@@ -304,8 +306,10 @@ src/main/kotlin/com/print-nanny/client/models/RemoteCommandEvent.kt
 src/main/kotlin/com/print-nanny/client/models/RemoteCommandEventEventTypeEnum.kt
 src/main/kotlin/com/print-nanny/client/models/RemoteCommandEventRequest.kt
 src/main/kotlin/com/print-nanny/client/models/RemoteControlCommand.kt
+src/main/kotlin/com/print-nanny/client/models/RemoteControlCommandCommandEnum.kt
 src/main/kotlin/com/print-nanny/client/models/RemoteControlCommandRequest.kt
 src/main/kotlin/com/print-nanny/client/models/SoftwareEnum.kt
+src/main/kotlin/com/print-nanny/client/models/StatusEnum.kt
 src/main/kotlin/com/print-nanny/client/models/TelemetryEvent.kt
 src/main/kotlin/com/print-nanny/client/models/TelemetryEventEventTypeEnum.kt
 src/main/kotlin/com/print-nanny/client/models/TelemetryEventPolymorphic.kt

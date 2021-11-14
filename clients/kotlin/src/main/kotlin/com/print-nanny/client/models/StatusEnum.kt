@@ -26,34 +26,22 @@ import com.squareup.moshi.Json
 /**
  * 
  *
- * Values: monitoringStop,monitoringStart,printStart,printStop,printPause,printResume,moveNozzle,connectTestMqttPong
+ * Values: initial,updateRunning,updateFailed,updateSuccess
  */
 
-enum class CommandEnum(val value: kotlin.String) {
+enum class StatusEnum(val value: kotlin.String) {
 
-    @Json(name = "monitoring_stop")
-    monitoringStop("monitoring_stop"),
+    @Json(name = "initial")
+    initial("initial"),
 
-    @Json(name = "monitoring_start")
-    monitoringStart("monitoring_start"),
+    @Json(name = "update_running")
+    updateRunning("update_running"),
 
-    @Json(name = "print_start")
-    printStart("print_start"),
+    @Json(name = "update_failed")
+    updateFailed("update_failed"),
 
-    @Json(name = "print_stop")
-    printStop("print_stop"),
-
-    @Json(name = "print_pause")
-    printPause("print_pause"),
-
-    @Json(name = "print_resume")
-    printResume("print_resume"),
-
-    @Json(name = "move_nozzle")
-    moveNozzle("move_nozzle"),
-
-    @Json(name = "connect_test_mqtt_pong")
-    connectTestMqttPong("connect_test_mqtt_pong");
+    @Json(name = "update_success")
+    updateSuccess("update_success");
 
     /**
      * Override toString() to avoid using the enum variable name as the value, and instead use
@@ -68,12 +56,12 @@ enum class CommandEnum(val value: kotlin.String) {
         /**
          * Converts the provided [data] to a [String] on success, null otherwise.
          */
-        fun encode(data: Any?): kotlin.String? = if (data is CommandEnum) "$data" else null
+        fun encode(data: Any?): kotlin.String? = if (data is StatusEnum) "$data" else null
 
         /**
-         * Returns a valid [CommandEnum] for [data], null otherwise.
+         * Returns a valid [StatusEnum] for [data], null otherwise.
          */
-        fun decode(data: Any?): CommandEnum? = data?.let {
+        fun decode(data: Any?): StatusEnum? = data?.let {
           val normalizedData = "$it".lowercase()
           values().firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()

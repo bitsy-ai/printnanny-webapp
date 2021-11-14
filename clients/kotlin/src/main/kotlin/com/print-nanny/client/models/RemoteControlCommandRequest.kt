@@ -20,7 +20,7 @@
 
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.CommandEnum
+import com.print-nanny.client.models.RemoteControlCommandCommandEnum
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -46,7 +46,7 @@ data class RemoteControlCommandRequest (
     val device: kotlin.Int,
 
     @Json(name = "command")
-    val command: CommandEnum? = null,
+    val command: RemoteControlCommandCommandEnum? = null,
 
     @Json(name = "received")
     val received: kotlin.Boolean? = null,

@@ -16,7 +16,7 @@ pub struct RemoteControlCommand {
     #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
     pub created_dt: Option<String>,
     #[serde(rename = "command", skip_serializing_if = "Option::is_none")]
-    pub command: Option<crate::models::CommandEnum>,
+    pub command: Option<crate::models::RemoteControlCommandCommandEnum>,
     #[serde(rename = "user")]
     pub user: i32,
     #[serde(rename = "device")]

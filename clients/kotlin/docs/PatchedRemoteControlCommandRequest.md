@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**command** | [**CommandEnum**](CommandEnum.md) |  |  [optional]
+**command** | [**RemoteControlCommandCommandEnum**](RemoteControlCommandCommandEnum.md) |  |  [optional]
 **user** | **kotlin.Int** |  |  [optional]
 **device** | **kotlin.Int** |  |  [optional]
 **received** | **kotlin.Boolean** |  |  [optional]

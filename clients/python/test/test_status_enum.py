@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.command_enum import CommandEnum  # noqa: E501
+from print_nanny_client.models.status_enum import StatusEnum  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestCommandEnum(unittest.TestCase):
-    """CommandEnum unit test stubs"""
+class TestStatusEnum(unittest.TestCase):
+    """StatusEnum unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,20 +29,20 @@ class TestCommandEnum(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test CommandEnum
+        """Test StatusEnum
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.command_enum.CommandEnum()  # noqa: E501
+        # model = print_nanny_client.models.status_enum.StatusEnum()  # noqa: E501
         if include_optional :
-            return CommandEnum(
+            return StatusEnum(
             )
         else :
-            return CommandEnum(
+            return StatusEnum(
         )
 
-    def testCommandEnum(self):
-        """Test CommandEnum"""
+    def testStatusEnum(self):
+        """Test StatusEnum"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

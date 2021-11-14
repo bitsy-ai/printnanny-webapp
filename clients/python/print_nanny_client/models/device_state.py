@@ -38,10 +38,10 @@ class DeviceState(object):
     openapi_types = {
         'id': 'int',
         'deleted': 'datetime',
-        'ansible_state': 'AnsibleStateEnum',
+        'status': 'StatusEnum',
+        'command': 'OneOfDeviceStateCommandEnumNullEnum',
         'ansible_facts': 'dict(str, object)',
         'ansible_extra_vars': 'dict(str, object)',
-        'release_channel': 'ReleaseChannelEnum',
         'created_dt': 'datetime',
         'device': 'int'
     }
@@ -49,15 +49,15 @@ class DeviceState(object):
     attribute_map = {
         'id': 'id',
         'deleted': 'deleted',
-        'ansible_state': 'ansible_state',
+        'status': 'status',
+        'command': 'command',
         'ansible_facts': 'ansible_facts',
         'ansible_extra_vars': 'ansible_extra_vars',
-        'release_channel': 'release_channel',
         'created_dt': 'created_dt',
         'device': 'device'
     }
 
-    def __init__(self, id=None, deleted=None, ansible_state=None, ansible_facts=None, ansible_extra_vars=None, release_channel=None, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, deleted=None, status=None, command=None, ansible_facts=None, ansible_extra_vars=None, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
         """DeviceState - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -65,10 +65,10 @@ class DeviceState(object):
 
         self._id = None
         self._deleted = None
-        self._ansible_state = None
+        self._status = None
+        self._command = None
         self._ansible_facts = None
         self._ansible_extra_vars = None
-        self._release_channel = None
         self._created_dt = None
         self._device = None
         self.discriminator = None
@@ -77,14 +77,13 @@ class DeviceState(object):
             self.id = id
         if deleted is not None:
             self.deleted = deleted
-        if ansible_state is not None:
-            self.ansible_state = ansible_state
+        if status is not None:
+            self.status = status
+        self.command = command
         if ansible_facts is not None:
             self.ansible_facts = ansible_facts
         if ansible_extra_vars is not None:
             self.ansible_extra_vars = ansible_extra_vars
-        if release_channel is not None:
-            self.release_channel = release_channel
         if created_dt is not None:
             self.created_dt = created_dt
         self.device = device
@@ -132,25 +131,46 @@ class DeviceState(object):
         self._deleted = deleted
 
     @property
-    def ansible_state(self):
-        """Gets the ansible_state of this DeviceState.  # noqa: E501
+    def status(self):
+        """Gets the status of this DeviceState.  # noqa: E501
 
 
-        :return: The ansible_state of this DeviceState.  # noqa: E501
-        :rtype: AnsibleStateEnum
+        :return: The status of this DeviceState.  # noqa: E501
+        :rtype: StatusEnum
         """
-        return self._ansible_state
+        return self._status
 
-    @ansible_state.setter
-    def ansible_state(self, ansible_state):
-        """Sets the ansible_state of this DeviceState.
+    @status.setter
+    def status(self, status):
+        """Sets the status of this DeviceState.
 
 
-        :param ansible_state: The ansible_state of this DeviceState.  # noqa: E501
-        :type ansible_state: AnsibleStateEnum
+        :param status: The status of this DeviceState.  # noqa: E501
+        :type status: StatusEnum
         """
 
-        self._ansible_state = ansible_state
+        self._status = status
+
+    @property
+    def command(self):
+        """Gets the command of this DeviceState.  # noqa: E501
+
+
+        :return: The command of this DeviceState.  # noqa: E501
+        :rtype: OneOfDeviceStateCommandEnumNullEnum
+        """
+        return self._command
+
+    @command.setter
+    def command(self, command):
+        """Sets the command of this DeviceState.
+
+
+        :param command: The command of this DeviceState.  # noqa: E501
+        :type command: OneOfDeviceStateCommandEnumNullEnum
+        """
+
+        self._command = command
 
     @property
     def ansible_facts(self):
@@ -193,27 +213,6 @@ class DeviceState(object):
         """
 
         self._ansible_extra_vars = ansible_extra_vars
-
-    @property
-    def release_channel(self):
-        """Gets the release_channel of this DeviceState.  # noqa: E501
-
-
-        :return: The release_channel of this DeviceState.  # noqa: E501
-        :rtype: ReleaseChannelEnum
-        """
-        return self._release_channel
-
-    @release_channel.setter
-    def release_channel(self, release_channel):
-        """Sets the release_channel of this DeviceState.
-
-
-        :param release_channel: The release_channel of this DeviceState.  # noqa: E501
-        :type release_channel: ReleaseChannelEnum
-        """
-
-        self._release_channel = release_channel
 
     @property
     def created_dt(self):

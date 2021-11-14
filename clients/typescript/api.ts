@@ -303,18 +303,6 @@ export interface AnsibleExtraVarsRequest {
  * @enum {string}
  */
 
-export enum AnsibleStateEnum {
-    RunningSoftwareUpdateIsRunning = 'runningSoftware update is running',
-    SuccessSoftwareIsUpToDate = 'successSoftware is up-to-date',
-    FailedSoftwareUpdateFailed = 'failedSoftware update failed'
-}
-
-/**
- * 
- * @export
- * @enum {string}
- */
-
 export enum ArtifactTypesEnum {
     Tflite = 'TFLITE',
     Tf1 = 'TF1',
@@ -661,23 +649,6 @@ export interface CloudiotDeviceRequest {
     'device': number;
 }
 /**
- * 
- * @export
- * @enum {string}
- */
-
-export enum CommandEnum {
-    MonitoringStop = 'monitoring_stop',
-    MonitoringStart = 'monitoring_start',
-    PrintStart = 'print_start',
-    PrintStop = 'print_stop',
-    PrintPause = 'print_pause',
-    PrintResume = 'print_resume',
-    MoveNozzle = 'move_nozzle',
-    ConnectTestMqttPong = 'connect_test_mqtt_pong'
-}
-
-/**
  * Generic auth response serializer
  * @export
  * @interface DetailResponse
@@ -998,10 +969,16 @@ export interface DeviceState {
     'deleted'?: string;
     /**
      * 
-     * @type {AnsibleStateEnum}
+     * @type {StatusEnum}
      * @memberof DeviceState
      */
-    'ansible_state'?: AnsibleStateEnum;
+    'status'?: StatusEnum;
+    /**
+     * 
+     * @type {DeviceStateCommandEnum | NullEnum}
+     * @memberof DeviceState
+     */
+    'command'?: DeviceStateCommandEnum | NullEnum | null;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -1016,12 +993,6 @@ export interface DeviceState {
     'ansible_extra_vars'?: { [key: string]: any; };
     /**
      * 
-     * @type {ReleaseChannelEnum}
-     * @memberof DeviceState
-     */
-    'release_channel'?: ReleaseChannelEnum;
-    /**
-     * 
      * @type {string}
      * @memberof DeviceState
      */
@@ -1033,6 +1004,16 @@ export interface DeviceState {
      */
     'device': number;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export enum DeviceStateCommandEnum {
+    PrintnannyUpdate = 'printnanny update'
+}
+
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
  * @export
@@ -1370,6 +1351,16 @@ export interface ModelArtifact {
      */
     'url'?: string;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export enum NullEnum {
+    Null = 'null'
+}
+
 /**
  * 
  * @export
@@ -4236,10 +4227,10 @@ export interface PatchedPrinterProfileRequest {
 export interface PatchedRemoteControlCommandRequest {
     /**
      * 
-     * @type {CommandEnum}
+     * @type {RemoteControlCommandCommandEnum}
      * @memberof PatchedRemoteControlCommandRequest
      */
-    'command'?: CommandEnum;
+    'command'?: RemoteControlCommandCommandEnum;
     /**
      * 
      * @type {number}
@@ -5759,10 +5750,10 @@ export interface RemoteControlCommand {
     'created_dt'?: string;
     /**
      * 
-     * @type {CommandEnum}
+     * @type {RemoteControlCommandCommandEnum}
      * @memberof RemoteControlCommand
      */
-    'command'?: CommandEnum;
+    'command'?: RemoteControlCommandCommandEnum;
     /**
      * 
      * @type {number}
@@ -5815,15 +5806,32 @@ export interface RemoteControlCommand {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export enum RemoteControlCommandCommandEnum {
+    MonitoringStop = 'monitoring_stop',
+    MonitoringStart = 'monitoring_start',
+    PrintStart = 'print_start',
+    PrintStop = 'print_stop',
+    PrintPause = 'print_pause',
+    PrintResume = 'print_resume',
+    MoveNozzle = 'move_nozzle',
+    ConnectTestMqttPong = 'connect_test_mqtt_pong'
+}
+
+/**
+ * 
+ * @export
  * @interface RemoteControlCommandRequest
  */
 export interface RemoteControlCommandRequest {
     /**
      * 
-     * @type {CommandEnum}
+     * @type {RemoteControlCommandCommandEnum}
      * @memberof RemoteControlCommandRequest
      */
-    'command'?: CommandEnum;
+    'command'?: RemoteControlCommandCommandEnum;
     /**
      * 
      * @type {number}
@@ -5869,6 +5877,19 @@ export interface RemoteControlCommandRequest {
 
 export enum SoftwareEnum {
     OctoPrint = 'OctoPrint'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export enum StatusEnum {
+    Initial = 'initial',
+    UpdateRunning = 'update_running',
+    UpdateFailed = 'update_failed',
+    UpdateSuccess = 'update_success'
 }
 
 /**

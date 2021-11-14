@@ -26,19 +26,13 @@ import com.squareup.moshi.Json
 /**
  * 
  *
- * Values: runningSoftwareUpdateIsRunning,successSoftwareIsUpMinusToMinusDate,failedSoftwareUpdateFailed
+ * Values: `null`
  */
 
-enum class AnsibleStateEnum(val value: kotlin.String) {
+enum class NullEnum(val value: kotlin.String) {
 
-    @Json(name = "runningSoftware update is running")
-    runningSoftwareUpdateIsRunning("runningSoftware update is running"),
-
-    @Json(name = "successSoftware is up-to-date")
-    successSoftwareIsUpMinusToMinusDate("successSoftware is up-to-date"),
-
-    @Json(name = "failedSoftware update failed")
-    failedSoftwareUpdateFailed("failedSoftware update failed");
+    @Json(name = "null")
+    `null`("null");
 
     /**
      * Override toString() to avoid using the enum variable name as the value, and instead use
@@ -53,12 +47,12 @@ enum class AnsibleStateEnum(val value: kotlin.String) {
         /**
          * Converts the provided [data] to a [String] on success, null otherwise.
          */
-        fun encode(data: Any?): kotlin.String? = if (data is AnsibleStateEnum) "$data" else null
+        fun encode(data: Any?): kotlin.String? = if (data is NullEnum) "$data" else null
 
         /**
-         * Returns a valid [AnsibleStateEnum] for [data], null otherwise.
+         * Returns a valid [NullEnum] for [data], null otherwise.
          */
-        fun decode(data: Any?): AnsibleStateEnum? = data?.let {
+        fun decode(data: Any?): NullEnum? = data?.let {
           val normalizedData = "$it".lowercase()
           values().firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
