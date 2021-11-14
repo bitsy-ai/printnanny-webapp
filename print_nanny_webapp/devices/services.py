@@ -1,19 +1,22 @@
 from __future__ import annotations
-
-from typing import Tuple
+import subprocess
 import hashlib
 import logging
 import tempfile
 import requests
 import os
+from typing import Tuple, TypedDict
+from zipfile import ZipFile
+
 from django.apps import apps
-from typing import TypedDict
+from django.http.request import HttpRequest
 from django.conf import settings
+from rest_framework.renderers import JSONRenderer
+from rest_framework.authtoken.models import Token
 from google.cloud import iot_v1 as cloudiot_v1
 import google.api_core.exceptions
-import subprocess
 
-from .models import Device, CloudiotDevice
+from .models import Device, CloudiotDevice, License
 
 logger = logging.getLogger(__name__)
 
@@ -28,8 +31,10 @@ class CACerts(TypedDict):
 class KeyPair(TypedDict):
     private_key: str
     private_key_checksum: str
+    private_key_filename: str
     public_key: str
     public_key_checksum: str
+    public_key_filename: str
     fingerprint: str
     ca_certs: CACerts
 
@@ -86,82 +91,83 @@ def check_ca_certs():
     )
 
 
-def generate_keypair():
+def generate_keypair(tmp: tempfile.TemporaryDirectory):
 
     ca_certs = check_ca_certs()
 
-    with tempfile.TemporaryDirectory() as tmp:
-        sec1_filename = f"{tmp}/ecdsa256_sec1.pem"
-        pkcs8_filename = f"{tmp}/ecdsa256.pem"
-        public_key_filename = f"{tmp}/ecdsa_public.pem"
+    sec1_filename = f"{tmp}/ecdsa256_sec1.pem"
+    pkcs8_filename = f"{tmp}/ecdsa256.pem"
+    public_key_filename = f"{tmp}/ecdsa_public.pem"
 
-        p = subprocess.check_output(
-            [
-                "openssl",
-                "ecparam",
-                "-genkey",
-                "-name",
-                "prime256v1",
-                "-noout",
-                "-out",
-                sec1_filename,
-            ],
-        )
-        # Keats/jsonwebtoken crate only supports PKCS8 format for private EC keys
-        # https://github.com/Keats/jsonwebtoken#convert-sec1-private-key-to-pkcs8
-        p = subprocess.check_output(
-            [
-                "openssl",
-                "pkcs8",
-                "-topk8",
-                "-nocrypt",
-                "-in",
-                sec1_filename,
-                "-out",
-                pkcs8_filename,
-            ],
-        )
+    p = subprocess.check_output(
+        [
+            "openssl",
+            "ecparam",
+            "-genkey",
+            "-name",
+            "prime256v1",
+            "-noout",
+            "-out",
+            sec1_filename,
+        ],
+    )
+    # Keats/jsonwebtoken crate only supports PKCS8 format for private EC keys
+    # https://github.com/Keats/jsonwebtoken#convert-sec1-private-key-to-pkcs8
+    p = subprocess.check_output(
+        [
+            "openssl",
+            "pkcs8",
+            "-topk8",
+            "-nocrypt",
+            "-in",
+            sec1_filename,
+            "-out",
+            pkcs8_filename,
+        ],
+    )
 
-        p = subprocess.check_output(
-            [
-                "openssl",
-                "ec",
-                "-in",
-                sec1_filename,
-                "-pubout",
-                "-out",
-                public_key_filename,
-            ],
-        )
+    p = subprocess.check_output(
+        [
+            "openssl",
+            "ec",
+            "-in",
+            sec1_filename,
+            "-pubout",
+            "-out",
+            public_key_filename,
+        ],
+    )
 
-        p = subprocess.check_output(
-            [
-                "openssl",
-                "sha3-256",
-                "-c",
-                public_key_filename,
-            ],
-        )
-        fingerprint = p.decode().split("=")[-1]
-        fingerprint = fingerprint.strip()
-        logger.info(fingerprint)
+    p = subprocess.check_output(
+        [
+            "openssl",
+            "sha3-256",
+            "-c",
+            public_key_filename,
+        ],
+    )
+    fingerprint = p.decode().split("=")[-1]
+    fingerprint = fingerprint.strip()
+    logger.info(fingerprint)
 
-        with open(public_key_filename, "rb") as f:
-            public_key_content = f.read()
-            public_key_checksum = hashlib.sha256(public_key_content).hexdigest()
+    with open(public_key_filename, "rb") as f:
+        public_key_content = f.read()
+        public_key_checksum = hashlib.sha256(public_key_content).hexdigest()
 
-        with open(pkcs8_filename, "rb") as f:
-            private_key_content = f.read()
-            private_key_checksum = hashlib.sha256(private_key_content).hexdigest()
+    with open(pkcs8_filename, "rb") as f:
+        private_key_content = f.read()
+        private_key_checksum = hashlib.sha256(private_key_content).hexdigest()
 
-        return KeyPair(
-            private_key=private_key_content.decode("utf8"),
-            private_key_checksum=private_key_checksum,
-            public_key=public_key_content.decode("utf8"),
-            public_key_checksum=public_key_checksum,
-            fingerprint=fingerprint,
-            ca_certs=ca_certs,
-        )
+    return KeyPair(
+        private_key_filename=pkcs8_filename,
+        public_key_filename=public_key_filename,
+        private_key=private_key_content.decode("utf8"),
+        private_key_checksum=private_key_checksum,
+        public_key=public_key_content.decode("utf8"),
+        public_key_checksum=public_key_checksum,
+        fingerprint=fingerprint,
+        ca_certs=ca_certs,
+    )
 
 
 def delete_cloudiot_device(device_id_int64: int):
@@ -260,12 +266,14 @@ def update_or_create_cloudiot_device(
 
 
 def generate_keypair_and_update_or_create_cloudiot_device(
-    device: Device,
+    device: Device, tmp: tempfile.TemporaryDirectory
 ) -> Tuple[KeyPair, CloudiotDevice]:
-    keypair = generate_keypair()
+    keypair = generate_keypair(tmp)
+    # revoke all existing licenses (soft-delete)
+    device.licenses.all().delete()
+
     cloudiot_device = update_or_create_cloudiot_device(device=device, keypair=keypair)
     CloudiotDevice = apps.get_model("devices", "CloudiotDevice")
-    DevicePublicKey = apps.get_model("devices", "DevicePublicKey")
 
     # update apppliance relationships
     if device.cloudiot_devices.first():
@@ -280,18 +288,41 @@ def generate_keypair_and_update_or_create_cloudiot_device(
             name=cloudiot_device.name,
             device=device,
         )
-    if device.public_keys.first():
-        device.public_keys.update(
-            public_key=keypair["public_key"],
-            public_key_checksum=keypair["public_key_checksum"],
-            fingerprint=keypair["fingerprint"],
-            device=device,
-        )
-    else:
-        DevicePublicKey.objects.create(
-            public_key=keypair["public_key"],
-            public_key_checksum=keypair["public_key_checksum"],
-            fingerprint=keypair["fingerprint"],
-            device=device,
-        )
+
+    License.objects.create(
+        public_key=keypair["public_key"],
+        public_key_checksum=keypair["public_key_checksum"],
+        fingerprint=keypair["fingerprint"],
+        device=device,
+    )
     return keypair, device.cloudiot_devices.first()
+
+
+def generate_zipped_license_file(
+    device: Device,
+    request: HttpRequest,
+    tmp: tempfile.TemporaryDirectory,
+) -> str:
+    from .api.serializers import DeviceSerializer
+
+    keypair, _ = generate_keypair_and_update_or_create_cloudiot_device(device, tmp)
+    filename = f"{tmp}/printnanny_license.zip"
+    api_token, _ = Token.objects.get_or_create(user=device.user)
+    device.refresh_from_db()
+
+    serializer = DeviceSerializer(device, context=dict(request=request))
+    device_json = JSONRenderer().render(serializer.data)
+
+    with ZipFile(filename, "w") as zf:
+        zf.write(
+            keypair["public_key_filename"],
+            arcname=os.path.basename(keypair["public_key_filename"]),
+        )
+        zf.write(
+            keypair["private_key_filename"],
+            arcname=os.path.basename(keypair["private_key_filename"]),
+        )
+        zf.writestr("printnanny_api_token", str(api_token))
+        zf.writestr("device.json", device_json)
+
+    return filename

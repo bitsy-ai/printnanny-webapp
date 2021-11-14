@@ -21,7 +21,7 @@ from .serializers import (
     DeviceConfigSerializer,
     DeviceStateSerializer,
     DeviceKeyPairSerializer,
-    DevicePublicKeySerializer,
+    LicenseSerializer,
     DeviceSerializer,
     CameraSerializer,
     CloudiotDeviceSerializer,
@@ -31,7 +31,7 @@ from ..models import (
     DeviceConfig,
     DeviceState,
     Device,
-    DevicePublicKey,
+    License,
     Camera,
     CloudiotDevice,
     PrinterController,
@@ -172,12 +172,12 @@ class DeviceHostnameViewSet(
 
 
 ##
-# DevicePublicKey
+# License
 ##
 list_device_public_keys_schema = extend_schema(
     responses={
         "default": ErrorDetailSerializer,
-        200: DevicePublicKeySerializer(many=True),
+        200: LicenseSerializer(many=True),
     },
 )
 modify_device_public_keys_schema = extend_schema(
@@ -206,8 +206,8 @@ class DeviceKeyPairViewSet(
     DELETE <:endpoint> will soft-delete a key
     """
 
-    serializer_class = DevicePublicKeySerializer
-    queryset = DevicePublicKey.objects.all()
+    serializer_class = LicenseSerializer
+    queryset = License.objects.all()
     lookup_field = "id"
 
     def create(
@@ -219,7 +219,7 @@ class DeviceKeyPairViewSet(
             return Response(data=keypair, status=rest_framework.status.HTTP_201_CREATED)
         except IntegrityError:
             raise AlreadyExists(
-                detail=f"DevicePublicKey already exists for device_id={device} already exists.",
+                detail=f"License already exists for device_id={device} already exists.",
             )
 
     def perform_create(self, serializer):

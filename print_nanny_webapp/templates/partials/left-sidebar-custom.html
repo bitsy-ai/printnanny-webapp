@@ -70,10 +70,10 @@
                 </a>
                 <ul class="side-nav-second-level" aria-expanded="false">
                     <li class="{% if request.resolver_match.url_name == 'devices:list' %}active{% endif %}">
-                        <a href="{% url 'devices:list' %}">{% trans "Print Nanny OS" %}</a>
+                        <a href="{% url 'devices:list' %}">{% trans "Print Nanny OS" %}	&nbsp;<span class="badge badge-danger">NEW</span></a>
                     </li>
                     <li class="{% if request.resolver_match.url_name == 'dashboard:octoprint-devices:list' %}active{% endif %}">
-                        <a href="{% url 'dashboard:octoprint-devices:list' %}">{% trans "Octoprint Plugin (Early Access Program)" %}</a>
+                        <a href="{% url 'dashboard:octoprint-devices:list' %}">{% trans "Octoprint Plugin" %}</a>
                     </li>
                 </ul>
             </li>

@@ -40,9 +40,11 @@ def test_create_cloudiot_device(mocker, user):
         google.api_core.exceptions.NotFound("Fake Exception")
     )
 
-    keypair, cloudiot_device = generate_keypair_and_update_or_create_cloudiot_device(
-        device
-    )
+    with tempfile.TemporaryDirectory() as tmp:
+        (
+            keypair,
+            cloudiot_device,
+        ) = generate_keypair_and_update_or_create_cloudiot_device(device, tmp)
 
     assert mock_cloudiot_client.return_value.get_device.call_count == 1
     assert mock_cloudiot_client.return_value.update_device.call_count == 0
@@ -62,9 +64,11 @@ def test_update_cloudiot_device(mocker, user):
     )
     mock_cloudiot_client.return_value.update_device.return_value = MockDevice()
 
-    keypair, cloudiot_device = generate_keypair_and_update_or_create_cloudiot_device(
-        device
-    )
+    with tempfile.TemporaryDirectory() as tmp:
+        (
+            keypair,
+            cloudiot_device,
+        ) = generate_keypair_and_update_or_create_cloudiot_device(device, tmp)
 
     assert mock_cloudiot_client.return_value.get_device.call_count == 1
     assert mock_cloudiot_client.return_value.update_device.call_count == 1
@@ -73,7 +77,8 @@ def test_update_cloudiot_device(mocker, user):
 
 
 def test_generate_keypair():
-    keypair = generate_keypair()
+    with tempfile.TemporaryDirectory() as tmp:
+        keypair = generate_keypair(tmp)
 
     public_key_checksum = hashlib.sha256(
         keypair["public_key"].encode("utf8")

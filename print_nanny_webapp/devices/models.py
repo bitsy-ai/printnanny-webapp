@@ -1,4 +1,5 @@
 import logging
+from django.apps import apps
 from django.conf import settings
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
@@ -24,6 +25,16 @@ def pre_softdelete_cloudiot_device(instance=None, **kwargs):
 pre_softdelete.connect(pre_softdelete_cloudiot_device)
 
 
+def _get_default_stable_release() -> int:
+    from print_nanny_webapp.releases.models import Release
+
+    release = Release.objects.filter(release_channel="stable").first()
+    if release:
+        return release.id
+    else:
+        raise Exception("No release found")
+
+
 class Device(SafeDeleteModel):
     """ """
 
@@ -43,24 +54,27 @@ class Device(SafeDeleteModel):
     user = models.ForeignKey(
         UserModel, on_delete=models.CASCADE, related_name="devices"
     )
-    hostname = models.CharField(max_length=255)
+    hostname = models.CharField(
+        max_length=255,
+        help_text="Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension)",
+        default="printnanny",
+    )
     release_channel = models.CharField(
         max_length=8,
         choices=DeviceReleaseChannel.choices,
         default=DeviceReleaseChannel.STABLE,
+        help_text="WARNING: you should only use the nightly developer channel when guided by Print Nanny staff! This unstable channel is intended for QA and verifying bug fixes.",
     )
-    # immutable device info
-    # /proc/cpuinfo HARDWARE
-    hardware = models.CharField(max_length=255)
-    # /proc/cpuinfo REVISION
-    revision = models.CharField(max_length=255)
-    # /proc/cpuinfo MODEL
-    model = models.CharField(max_length=255)
-    # /proc/cpuinfo SERIAL
-    serial = models.CharField(max_length=255)
-    # /proc/cpuinfo MAX PROCESSOR
-    cores = models.IntegerField()
-    ram = models.BigIntegerField()
+    bootstrap_release = models.ForeignKey(
+        "releases.Release",
+        db_index=True,
+        on_delete=models.CASCADE,
+        default=_get_default_stable_release,
+    )
+
+    @property
+    def license(self):
+        return self.licenses.first()
 
     @property
     def last_state(self):
@@ -75,16 +89,51 @@ class Device(SafeDeleteModel):
         return reverse("devices:detail", kwargs={"pk": self.id})
 
     @property
-    def desired_config(self):
-        return self.desired_config_set.first()
-
-    @property
-    def current_state(self):
+    def latest_state_msg(self):
         return self.current_state_set.first()
 
     @property
     def cloudiot_device(self):
         return self.cloudiot_devices.first()
+
+
+class License(SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE
+
+    class Meta:
+        constraints = [
+            UniqueConstraint(
+                fields=["device"],
+                condition=models.Q(deleted=None),
+                name="unique_license_per_device",
+            )
+        ]
+
+    public_key = models.TextField()
+    public_key_checksum = models.CharField(max_length=255)
+    fingerprint = models.CharField(max_length=255)
+
+    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
+    device = models.ForeignKey(
+        Device, on_delete=models.CASCADE, related_name="licenses"
+    )
+
+
+class DeviceInfo(SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE
+
+    # /proc/cpuinfo HARDWARE
+    hardware = models.CharField(max_length=255)
+    # /proc/cpuinfo REVISION
+    revision = models.CharField(max_length=255)
+    # /proc/cpuinfo MODEL
+    model = models.CharField(max_length=255)
+    # /proc/cpuinfo SERIAL
+    serial = models.CharField(max_length=255)
+    # /proc/cpuinfo MAX PROCESSOR
+    cores = models.IntegerField()
+    ram = models.BigIntegerField()
+    device = models.ForeignKey(Device, on_delete=models.CASCADE)
 
 
 class CloudiotDevice(SafeDeleteModel):
@@ -227,26 +276,6 @@ class DeviceState(SafeDeleteModel):
     @property
     def mqtt_topic(self):
         return f"/devices/{self.num_id}/state"
-
-
-class DevicePublicKey(SafeDeleteModel):
-    _safedelete_policy = SOFT_DELETE
-
-    class Meta:
-        constraints = [
-            UniqueConstraint(
-                fields=["device"],
-                condition=models.Q(deleted=None),
-                name="unique_public_key_per_device",
-            )
-        ]
-
-    public_key = models.TextField()
-    public_key_checksum = models.CharField(max_length=255)
-    fingerprint = models.CharField(max_length=255)
-    device = models.ForeignKey(
-        Device, on_delete=models.CASCADE, related_name="public_keys", db_index=True
-    )
 
 
 class Camera(SafeDeleteModel):
