@@ -10,7 +10,12 @@ from polymorphic.models import PolymorphicModel
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.signals import pre_softdelete
 
-from .choices import AnsibleStateChoices, DeviceReleaseChannel, PrinterSoftwareType
+from .choices import (
+    DeviceCommand,
+    DeviceReleaseChannel,
+    PrinterSoftwareType,
+    DeviceStatus,
+)
 
 UserModel = get_user_model()
 logger = logging.getLogger(__name__)
@@ -78,7 +83,17 @@ class Device(SafeDeleteModel):
 
     @property
     def last_state(self):
-        return self.ansible_facts.first()
+        state = self.devicestate_set.first()
+        if state is None:
+            state = DeviceState.objects.create(
+                device=self,
+                status=DeviceStatus.INITIAL,
+            )
+        return state
+
+    @property
+    def last_state_css_class(self):
+        return DeviceStatus.get_css_class(self.last_state.status)
 
     @property
     def to_cloudiot_id(self):
@@ -277,24 +292,20 @@ class DeviceState(SafeDeleteModel):
     https://cloud.google.com/iot/docs/concepts/devices#changing_device_behavior_or_state_using_configuration_data
     """
 
-    _safedelete_policy = SOFT_DELETE
-    ansible_state = models.CharField(
-        max_length=64,
-        choices=AnsibleStateChoices.choices,
-        default=AnsibleStateChoices.RUNNING,
-    )
-
     class Meta:
         ordering = ["-created_dt"]
+        index_together = [["device", "command"], ["created_dt", "command"]]
+
+    _safedelete_policy = SOFT_DELETE
+    status = models.CharField(
+        max_length=16, choices=DeviceStatus.choices, default=DeviceStatus.INITIAL
+    )
+    command = models.CharField(max_length=255, choices=DeviceCommand.choices, null=True)
 
     device = models.ForeignKey(Device, on_delete=models.CASCADE, db_index=True)
     ansible_facts = models.JSONField(default=dict())
     ansible_extra_vars = models.JSONField(default=dict())
-    release_channel = models.CharField(
-        max_length=8,
-        choices=DeviceReleaseChannel.choices,
-        default=DeviceReleaseChannel.STABLE,
-    )
+
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
 
     @property
