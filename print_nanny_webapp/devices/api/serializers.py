@@ -12,14 +12,13 @@ from print_nanny_webapp.devices.models import (
     # OctoprintPrinterProfile,
 )
 from ..choices import DeviceReleaseChannel, PrinterSoftwareType
-from print_nanny_webapp.devices.services import CACerts
 from print_nanny_webapp.users.api.serializers import UserSerializer
 from print_nanny_webapp.releases.api.serializers import ReleaseSerializer
 
 
 class CameraSerializer(serializers.ModelSerializer):
-    user = serializers.PrimaryKeyRelatedField(read_only=True)
-    device = serializers.PrimaryKeyRelatedField(read_only=True)
+    # user = serializers.PrimaryKeyRelatedField(read_only=True)
+    # device = serializers.PrimaryKeyRelatedField(read_only=True)
     camera_type = serializers.ChoiceField(
         choices=Camera.CameraType.choices,
         default=Camera.CameraType.RPI_CAMERA,
@@ -37,8 +36,6 @@ class CameraSerializer(serializers.ModelSerializer):
 
 
 class PrinterControllerSerializer(serializers.ModelSerializer):
-    user = serializers.PrimaryKeyRelatedField(read_only=True)
-    device = serializers.PrimaryKeyRelatedField(read_only=True)
     software = serializers.ChoiceField(
         choices=PrinterSoftwareType.choices,
         default=PrinterSoftwareType.OCTOPRINT,
@@ -63,9 +60,6 @@ class CloudiotDeviceSerializer(serializers.ModelSerializer):
     mqtt_bridge_port = serializers.IntegerField(read_only=True)
     mqtt_client_id = serializers.CharField(read_only=True)
 
-    user = serializers.PrimaryKeyRelatedField(read_only=True)
-    device = serializers.PrimaryKeyRelatedField(read_only=True)
-
     class Meta:
         model = CloudiotDevice
         fields = "__all__"
@@ -73,8 +67,6 @@ class CloudiotDeviceSerializer(serializers.ModelSerializer):
 
 class LicenseSerializer(serializers.ModelSerializer):
     private_key = serializers.CharField(read_only=True)
-    user = serializers.PrimaryKeyRelatedField(read_only=True)
-    device = serializers.PrimaryKeyRelatedField(read_only=True)
 
     class Meta:
         model = License

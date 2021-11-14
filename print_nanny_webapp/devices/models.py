@@ -25,10 +25,14 @@ def pre_softdelete_cloudiot_device(instance=None, **kwargs):
 pre_softdelete.connect(pre_softdelete_cloudiot_device)
 
 
-def _get_default_stable_release():
+def _get_default_stable_release() -> int:
     from print_nanny_webapp.releases.models import Release
 
-    return Release.objects.filter(release_channel="stable").first().id
+    release = Release.objects.filter(release_channel="stable").first()
+    if release:
+        return release.id
+    else:
+        raise Exception("No release found")
 
 
 class Device(SafeDeleteModel):
