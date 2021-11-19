@@ -20,6 +20,7 @@ Method | HTTP request | Description
 [**devices_keypairs_create**](DevicesApi.md#devices_keypairs_create) | **POST** /api/devices/{device_id}/keypairs/ | 
 [**devices_keypairs_list**](DevicesApi.md#devices_keypairs_list) | **GET** /api/devices/{device_id}/keypairs/ | 
 [**devices_keypairs_retrieve**](DevicesApi.md#devices_keypairs_retrieve) | **GET** /api/devices/{device_id}/keypairs/{id}/ | 
+[**devices_license_retrieve**](DevicesApi.md#devices_license_retrieve) | **GET** /api/devices/{id}/license/ | 
 [**devices_list**](DevicesApi.md#devices_list) | **GET** /api/devices/ | 
 [**devices_partial_update**](DevicesApi.md#devices_partial_update) | **PATCH** /api/devices/{id}/ | 
 [**devices_printer_controllers_create**](DevicesApi.md#devices_printer_controllers_create) | **POST** /api/devices/{device_id}/printer-controllers/ | 
@@ -496,6 +497,36 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::License**](License.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## devices_license_retrieve
+
+> crate::models::Device devices_license_retrieve(id)
+
+
+All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **i32** | A unique integer value identifying this device. | [required] |
+
+### Return type
+
+[**crate::models::Device**](Device.md)
 
 ### Authorization
 

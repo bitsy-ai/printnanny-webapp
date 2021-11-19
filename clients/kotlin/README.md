@@ -64,6 +64,7 @@ Class | Method | HTTP request | Description
 *DevicesApi* | [**devicesKeypairsCreate**](docs/DevicesApi.md#deviceskeypairscreate) | **POST** /api/devices/{device_id}/keypairs/ | 
 *DevicesApi* | [**devicesKeypairsList**](docs/DevicesApi.md#deviceskeypairslist) | **GET** /api/devices/{device_id}/keypairs/ | 
 *DevicesApi* | [**devicesKeypairsRetrieve**](docs/DevicesApi.md#deviceskeypairsretrieve) | **GET** /api/devices/{device_id}/keypairs/{id}/ | 
+*DevicesApi* | [**devicesLicenseRetrieve**](docs/DevicesApi.md#deviceslicenseretrieve) | **GET** /api/devices/{id}/license/ | 
 *DevicesApi* | [**devicesList**](docs/DevicesApi.md#deviceslist) | **GET** /api/devices/ | 
 *DevicesApi* | [**devicesPartialUpdate**](docs/DevicesApi.md#devicespartialupdate) | **PATCH** /api/devices/{id}/ | 
 *DevicesApi* | [**devicesPrinterControllersCreate**](docs/DevicesApi.md#devicesprintercontrollerscreate) | **POST** /api/devices/{device_id}/printer-controllers/ | 

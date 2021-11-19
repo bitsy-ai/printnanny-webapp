@@ -124,6 +124,12 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
+    def test_devices_license_retrieve(self):
+        """Test case for devices_license_retrieve
+
+        """
+        pass
+
     def test_devices_list(self):
         """Test case for devices_list
 

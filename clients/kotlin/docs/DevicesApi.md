@@ -20,6 +20,7 @@ Method | HTTP request | Description
 [**devicesKeypairsCreate**](DevicesApi.md#devicesKeypairsCreate) | **POST** /api/devices/{device_id}/keypairs/ | 
 [**devicesKeypairsList**](DevicesApi.md#devicesKeypairsList) | **GET** /api/devices/{device_id}/keypairs/ | 
 [**devicesKeypairsRetrieve**](DevicesApi.md#devicesKeypairsRetrieve) | **GET** /api/devices/{device_id}/keypairs/{id}/ | 
+[**devicesLicenseRetrieve**](DevicesApi.md#devicesLicenseRetrieve) | **GET** /api/devices/{id}/license/ | 
 [**devicesList**](DevicesApi.md#devicesList) | **GET** /api/devices/ | 
 [**devicesPartialUpdate**](DevicesApi.md#devicesPartialUpdate) | **PATCH** /api/devices/{id}/ | 
 [**devicesPrinterControllersCreate**](DevicesApi.md#devicesPrinterControllersCreate) | **POST** /api/devices/{device_id}/printer-controllers/ | 
@@ -863,6 +864,58 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**License**](License.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="devicesLicenseRetrieve"></a>
+# **devicesLicenseRetrieve**
+> Device devicesLicenseRetrieve(id)
+
+
+
+All-in-one Print Nanny installation via print-nanny-main-&lt;platform&gt;-&lt;cpu&gt;.img
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = DevicesApi()
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this device.
+try {
+    val result : Device = apiInstance.devicesLicenseRetrieve(id)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DevicesApi#devicesLicenseRetrieve")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DevicesApi#devicesLicenseRetrieve")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **kotlin.Int**| A unique integer value identifying this device. |
+
+### Return type
+
+[**Device**](Device.md)
 
 ### Authorization
 
