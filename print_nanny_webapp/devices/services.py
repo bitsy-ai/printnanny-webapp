@@ -9,7 +9,9 @@ from typing import Tuple, TypedDict
 from zipfile import ZipFile
 
 from django.apps import apps
+from django.http import FileResponse
 from django.http.request import HttpRequest
+from django.http.response import HttpResponse
 from django.conf import settings
 from rest_framework.renderers import JSONRenderer
 from rest_framework.authtoken.models import Token
@@ -326,3 +328,18 @@ def generate_zipped_license_file(
         zf.writestr("device.json", device_json)
 
     return filename
+
+
+def generate_zipped_license_response(
+    device: Device, request: HttpRequest
+) -> HttpResponse:
+
+    with tempfile.TemporaryDirectory() as tmp:
+        filename = generate_zipped_license_file(device, request, tmp)
+        # some_file = self.model.objects.get(imported_file=filename)
+        response = FileResponse(open(filename, "rb"), content_type="application/zip")
+        # https://docs.djangoproject.com/en/1.11/howto/outputting-csv/#streaming-large-csv-files
+        response[
+            "Content-Disposition"
+        ] = 'attachment; filename="printnanny_license.zip"'
+        return response

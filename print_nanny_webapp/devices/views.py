@@ -1,17 +1,13 @@
 import logging
 
 import tempfile
-from django.http import Http404
-from django.shortcuts import render
 from django.apps import apps
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView, FormView, CreateView, DetailView
+from django.views.generic import CreateView, DetailView
 from print_nanny_webapp.devices.models import Device
-from django.views.generic.detail import BaseDetailView
-from django.http import FileResponse
 
 from print_nanny_webapp.dashboard.views import DashboardView
-from .services import generate_zipped_license_file
+from .services import generate_zipped_license_response
 
 Device = apps.get_model("devices", "Device")
 logger = logging.getLogger(__name__)
@@ -56,14 +52,4 @@ class DeviceLicenseDownload(DetailView):
     def get(self, request, *args, **kwargs):
         device = Device.objects.get(pk=kwargs["pk"])
 
-        with tempfile.TemporaryDirectory() as tmp:
-            filename = generate_zipped_license_file(device, request, tmp)
-            # some_file = self.model.objects.get(imported_file=filename)
-            response = FileResponse(
-                open(filename, "rb"), content_type="application/zip"
-            )
-            # https://docs.djangoproject.com/en/1.11/howto/outputting-csv/#streaming-large-csv-files
-            response[
-                "Content-Disposition"
-            ] = 'attachment; filename="printnanny_license.zip"'
-            return response
+        return generate_zipped_license_response(device, request)
