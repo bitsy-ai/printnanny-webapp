@@ -5,7 +5,7 @@ from drf_spectacular.utils import extend_schema, extend_schema_view
 from django.db.utils import IntegrityError
 
 from django.shortcuts import get_object_or_404
-from rest_framework import serializers
+from rest_framework.decorators import action
 from rest_framework.mixins import (
     ListModelMixin,
     RetrieveModelMixin,
@@ -36,7 +36,11 @@ from ..models import (
     CloudiotDevice,
     PrinterController,
 )
-from ..services import KeyPair, generate_keypair_and_update_or_create_cloudiot_device
+from ..services import (
+    generate_keypair_and_update_or_create_cloudiot_device,
+    generate_zipped_license_response,
+)
+
 from print_nanny_webapp.utils.api.exceptions import AlreadyExists
 from print_nanny_webapp.utils.api.serializers import ErrorDetailSerializer
 
@@ -147,6 +151,11 @@ class DeviceViewSet(
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+    @action(detail=True, methods=["GET"])
+    def license(self, request: Request, *args: Any, **kwargs: Any) -> Response:
+        device = Device.objects.get(pk=kwargs["id"])
+        return generate_zipped_license_response(device, request)
 
 
 ###
