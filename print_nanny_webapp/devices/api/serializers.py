@@ -66,8 +66,6 @@ class CloudiotDeviceSerializer(serializers.ModelSerializer):
 
 
 class LicenseSerializer(serializers.ModelSerializer):
-    private_key = serializers.CharField(read_only=True)
-
     class Meta:
         model = License
         fields = "__all__"
@@ -128,3 +126,12 @@ class DeviceSerializer(serializers.ModelSerializer):
         model = Device
         fields = "__all__"
         depth = 2
+
+
+class LicenseAPISerializer(serializers.Serializer):
+    api_token = serializers.CharField()
+    api_url = serializers.CharField()
+    user = UserSerializer()
+
+    class Meta:
+        depth = 1

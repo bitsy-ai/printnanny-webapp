@@ -17,6 +17,7 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.authtoken.models import Token
 from google.cloud import iot_v1 as cloudiot_v1
 import google.api_core.exceptions
+from print_nanny_webapp.users.api.serializers import UserSerializer
 
 from .models import Device, CloudiotDevice, License
 
@@ -93,7 +94,7 @@ def check_ca_certs():
     )
 
 
-def generate_keypair(tmp: tempfile.TemporaryDirectory):
+def generate_keypair(tmp: str):
 
     ca_certs = check_ca_certs()
 
@@ -268,7 +269,7 @@ def update_or_create_cloudiot_device(
 
 
 def generate_keypair_and_update_or_create_cloudiot_device(
-    device: Device, tmp: tempfile.TemporaryDirectory
+    device: Device, tmp: str
 ) -> Tuple[KeyPair, CloudiotDevice]:
     keypair = generate_keypair(tmp)
     # revoke all existing licenses (soft-delete)
@@ -303,19 +304,30 @@ def generate_keypair_and_update_or_create_cloudiot_device(
 def generate_zipped_license_file(
     device: Device,
     request: HttpRequest,
-    tmp: tempfile.TemporaryDirectory,
+    tmp: str,
 ) -> str:
-    from .api.serializers import DeviceSerializer
+    from .api.serializers import DeviceSerializer, LicenseAPISerializer
 
     keypair, _ = generate_keypair_and_update_or_create_cloudiot_device(device, tmp)
-    filename = f"{tmp}/printnanny_license.zip"
+    zip_filename = f"{tmp}/printnanny_license.zip"
+
     api_token, _ = Token.objects.get_or_create(user=device.user)
     device.refresh_from_db()
 
-    serializer = DeviceSerializer(device, context=dict(request=request))
-    device_json = JSONRenderer().render(serializer.data)
+    device_serializer = DeviceSerializer(device, context=dict(request=request))
+    device_json = JSONRenderer().render(device_serializer.data)
+    config_serializer = LicenseAPISerializer(
+        dict(
+            api_token=str(api_token),
+            api_url=request.build_absolute_uri("/"),
+            user=request.user,
+        ),
+        context=dict(request=request),
+    )
+    # config_serializer.is_valid()
+    config_json = JSONRenderer().render(config_serializer.data)
 
-    with ZipFile(filename, "w") as zf:
+    with ZipFile(zip_filename, "w") as zf:
         zf.write(
             keypair["public_key_filename"],
             arcname=os.path.basename(keypair["public_key_filename"]),
@@ -324,15 +336,15 @@ def generate_zipped_license_file(
             keypair["private_key_filename"],
             arcname=os.path.basename(keypair["private_key_filename"]),
         )
-        zf.writestr("printnanny_api_token", str(api_token))
-        zf.writestr("device.json", device_json)
+        zf.writestr("printnanny_api_config.json", config_json)
+        zf.writestr("printnanny_device.json", device_json)
 
-    return filename
+    return zip_filename
 
 
 def generate_zipped_license_response(
     device: Device, request: HttpRequest
-) -> HttpResponse:
+) -> FileResponse:
 
     with tempfile.TemporaryDirectory() as tmp:
         filename = generate_zipped_license_file(device, request, tmp)
