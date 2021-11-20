@@ -173,6 +173,10 @@ class DeviceInfo(SafeDeleteModel):
     cores = models.IntegerField()
     ram = models.BigIntegerField()
     device = models.ForeignKey(Device, on_delete=models.CASCADE)
+    image_version = models.CharField(
+        max_length=255,
+        help_text="Print Nanny OS version string from /boot/image_version.txt",
+    )
 
 
 class CloudiotDevice(SafeDeleteModel):
