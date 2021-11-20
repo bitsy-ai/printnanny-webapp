@@ -311,37 +311,6 @@ export enum ArtifactTypesEnum {
 }
 
 /**
- * 
- * @export
- * @interface CACerts
- */
-export interface CACerts {
-    /**
-     * 
-     * @type {string}
-     * @memberof CACerts
-     */
-    'primary'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CACerts
-     */
-    'primary_checksum'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CACerts
-     */
-    'backup'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CACerts
-     */
-    'backup_checksum'?: string;
-}
-/**
  * Abstract class inspired by DRF\'s own token serializer. Returns a user if valid, None or a message if not.
  * @export
  * @interface CallbackTokenAuthRequest
@@ -720,7 +689,7 @@ export interface Device {
      * @type {License}
      * @memberof Device
      */
-    'license'?: License;
+    'active_license'?: License;
     /**
      * 
      * @type {string}
@@ -1020,49 +989,6 @@ export interface DeviceInfoRequest {
      * @memberof DeviceInfoRequest
      */
     'device': number;
-}
-/**
- * 
- * @export
- * @interface DeviceKeyPair
- */
-export interface DeviceKeyPair {
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceKeyPair
-     */
-    'private_key'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceKeyPair
-     */
-    'private_key_checksum'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceKeyPair
-     */
-    'public_key'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceKeyPair
-     */
-    'public_key_checksum'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceKeyPair
-     */
-    'fingerprint_checksum'?: string;
-    /**
-     * 
-     * @type {CACerts}
-     * @memberof DeviceKeyPair
-     */
-    'ca_certs'?: CACerts;
 }
 /**
  * 
@@ -3297,37 +3223,6 @@ export interface PaginatedGcodeFileList {
      * @memberof PaginatedGcodeFileList
      */
     'results'?: Array<GcodeFile>;
-}
-/**
- * 
- * @export
- * @interface PaginatedLicenseList
- */
-export interface PaginatedLicenseList {
-    /**
-     * 
-     * @type {number}
-     * @memberof PaginatedLicenseList
-     */
-    'count'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedLicenseList
-     */
-    'next'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedLicenseList
-     */
-    'previous'?: string | null;
-    /**
-     * 
-     * @type {Array<License>}
-     * @memberof PaginatedLicenseList
-     */
-    'results'?: Array<License>;
 }
 /**
  * 
@@ -8340,132 +8235,6 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-         * @param {number} deviceId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesKeypairsCreate: async (deviceId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesKeypairsCreate', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/keypairs/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesKeypairsList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesKeypairsList', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/keypairs/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this license.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesKeypairsRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesKeypairsRetrieve', 'deviceId', deviceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesKeypairsRetrieve', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/keypairs/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {number} id A unique integer value identifying this device.
          * @param {*} [options] Override http request option.
@@ -9233,38 +9002,6 @@ export const DevicesApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-         * @param {number} deviceId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesKeypairsCreate(deviceId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceKeyPair>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesKeypairsCreate(deviceId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesKeypairsList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedLicenseList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesKeypairsList(deviceId, page, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this license.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesKeypairsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<License>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesKeypairsRetrieve(deviceId, id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {number} id A unique integer value identifying this device.
          * @param {*} [options] Override http request option.
@@ -9601,35 +9338,6 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.devicesInfoUpdate(deviceId, id, deviceInfoRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-         * @param {number} deviceId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesKeypairsCreate(deviceId: number, options?: any): AxiosPromise<DeviceKeyPair> {
-            return localVarFp.devicesKeypairsCreate(deviceId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesKeypairsList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedLicenseList> {
-            return localVarFp.devicesKeypairsList(deviceId, page, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this license.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesKeypairsRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<License> {
-            return localVarFp.devicesKeypairsRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
-        },
-        /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {number} id A unique integer value identifying this device.
          * @param {*} [options] Override http request option.
@@ -9950,35 +9658,6 @@ export interface DevicesApiInterface {
      * @memberof DevicesApiInterface
      */
     devicesInfoUpdate(deviceId: number, id: number, deviceInfoRequest: DeviceInfoRequest, options?: AxiosRequestConfig): AxiosPromise<DeviceInfo>;
-
-    /**
-     * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-     * @param {number} deviceId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesKeypairsCreate(deviceId: number, options?: AxiosRequestConfig): AxiosPromise<DeviceKeyPair>;
-
-    /**
-     * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-     * @param {number} deviceId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesKeypairsList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedLicenseList>;
-
-    /**
-     * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this license.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesKeypairsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<License>;
 
     /**
      * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
@@ -10336,41 +10015,6 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      */
     public devicesInfoUpdate(deviceId: number, id: number, deviceInfoRequest: DeviceInfoRequest, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesInfoUpdate(deviceId, id, deviceInfoRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-     * @param {number} deviceId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesKeypairsCreate(deviceId: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesKeypairsCreate(deviceId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-     * @param {number} deviceId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesKeypairsList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesKeypairsList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this license.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesKeypairsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesKeypairsRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

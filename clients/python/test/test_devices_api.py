@@ -136,24 +136,6 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
-    def test_devices_keypairs_create(self):
-        """Test case for devices_keypairs_create
-
-        """
-        pass
-
-    def test_devices_keypairs_list(self):
-        """Test case for devices_keypairs_list
-
-        """
-        pass
-
-    def test_devices_keypairs_retrieve(self):
-        """Test case for devices_keypairs_retrieve
-
-        """
-        pass
-
     def test_devices_license_retrieve(self):
         """Test case for devices_license_retrieve
 

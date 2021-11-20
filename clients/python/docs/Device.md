@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **printer_controllers** | [**list[PrinterController]**](PrinterController.md) |  | [optional] [readonly] 
 **release_channel** | [**ReleaseChannelEnum**](ReleaseChannelEnum.md) |  | [optional] 
 **user** | [**User**](User.md) |  | [optional] [readonly] 
-**license** | [**License**](License.md) |  | [optional] [readonly] 
+**active_license** | [**License**](License.md) |  | [optional] [readonly] 
 **deleted** | **datetime** |  | [optional] [readonly] 
 **created_dt** | **datetime** |  | [optional] [readonly] 
 **updated_dt** | **datetime** |  | [optional] [readonly] 

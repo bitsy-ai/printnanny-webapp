@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.8.65"
+__version__ = "0.8.66"
 
 # import apis into sdk package
 from print_nanny_client.api.alerts_api import AlertsApi
@@ -47,7 +47,6 @@ from print_nanny_client.models.alert_request import AlertRequest
 from print_nanny_client.models.ansible_extra_vars import AnsibleExtraVars
 from print_nanny_client.models.ansible_extra_vars_request import AnsibleExtraVarsRequest
 from print_nanny_client.models.artifact_types_enum import ArtifactTypesEnum
-from print_nanny_client.models.ca_certs import CACerts
 from print_nanny_client.models.callback_token_auth_request import CallbackTokenAuthRequest
 from print_nanny_client.models.callback_token_verification import CallbackTokenVerification
 from print_nanny_client.models.callback_token_verification_request import CallbackTokenVerificationRequest
@@ -63,7 +62,6 @@ from print_nanny_client.models.device_calibration_request import DeviceCalibrati
 from print_nanny_client.models.device_config import DeviceConfig
 from print_nanny_client.models.device_info import DeviceInfo
 from print_nanny_client.models.device_info_request import DeviceInfoRequest
-from print_nanny_client.models.device_key_pair import DeviceKeyPair
 from print_nanny_client.models.device_request import DeviceRequest
 from print_nanny_client.models.device_state import DeviceState
 from print_nanny_client.models.device_state_command_enum import DeviceStateCommandEnum
@@ -117,7 +115,6 @@ from print_nanny_client.models.paginated_device_state_list import PaginatedDevic
 from print_nanny_client.models.paginated_experiment_device_config_list import PaginatedExperimentDeviceConfigList
 from print_nanny_client.models.paginated_experiment_list import PaginatedExperimentList
 from print_nanny_client.models.paginated_gcode_file_list import PaginatedGcodeFileList
-from print_nanny_client.models.paginated_license_list import PaginatedLicenseList
 from print_nanny_client.models.paginated_model_artifact_list import PaginatedModelArtifactList
 from print_nanny_client.models.paginated_octo_print_device_list import PaginatedOctoPrintDeviceList
 from print_nanny_client.models.paginated_octo_print_event_list import PaginatedOctoPrintEventList

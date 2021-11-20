@@ -14,7 +14,6 @@ docs/AnsibleExtraVarsRequest.md
 docs/ArtifactTypesEnum.md
 docs/AuthApi.md
 docs/AuthApi.md
-docs/CACerts.md
 docs/CallbackTokenAuthRequest.md
 docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
@@ -30,7 +29,6 @@ docs/DeviceCalibrationRequest.md
 docs/DeviceConfig.md
 docs/DeviceInfo.md
 docs/DeviceInfoRequest.md
-docs/DeviceKeyPair.md
 docs/DeviceRequest.md
 docs/DeviceState.md
 docs/DeviceStateCommandEnum.md
@@ -86,7 +84,6 @@ docs/PaginatedDeviceStateList.md
 docs/PaginatedExperimentDeviceConfigList.md
 docs/PaginatedExperimentList.md
 docs/PaginatedGcodeFileList.md
-docs/PaginatedLicenseList.md
 docs/PaginatedModelArtifactList.md
 docs/PaginatedOctoPrintDeviceList.md
 docs/PaginatedOctoPrintEventList.md
@@ -182,7 +179,6 @@ print_nanny_client/models/alert_request.py
 print_nanny_client/models/ansible_extra_vars.py
 print_nanny_client/models/ansible_extra_vars_request.py
 print_nanny_client/models/artifact_types_enum.py
-print_nanny_client/models/ca_certs.py
 print_nanny_client/models/callback_token_auth_request.py
 print_nanny_client/models/callback_token_verification.py
 print_nanny_client/models/callback_token_verification_request.py
@@ -198,7 +194,6 @@ print_nanny_client/models/device_calibration_request.py
 print_nanny_client/models/device_config.py
 print_nanny_client/models/device_info.py
 print_nanny_client/models/device_info_request.py
-print_nanny_client/models/device_key_pair.py
 print_nanny_client/models/device_request.py
 print_nanny_client/models/device_state.py
 print_nanny_client/models/device_state_command_enum.py
@@ -252,7 +247,6 @@ print_nanny_client/models/paginated_device_state_list.py
 print_nanny_client/models/paginated_experiment_device_config_list.py
 print_nanny_client/models/paginated_experiment_list.py
 print_nanny_client/models/paginated_gcode_file_list.py
-print_nanny_client/models/paginated_license_list.py
 print_nanny_client/models/paginated_model_artifact_list.py
 print_nanny_client/models/paginated_octo_print_device_list.py
 print_nanny_client/models/paginated_octo_print_event_list.py
@@ -332,7 +326,6 @@ test/test_ansible_extra_vars_request.py
 test/test_artifact_types_enum.py
 test/test_auth__api.py
 test/test_auth_api.py
-test/test_ca_certs.py
 test/test_callback_token_auth_request.py
 test/test_callback_token_verification.py
 test/test_callback_token_verification_request.py
@@ -348,7 +341,6 @@ test/test_device_calibration_request.py
 test/test_device_config.py
 test/test_device_info.py
 test/test_device_info_request.py
-test/test_device_key_pair.py
 test/test_device_request.py
 test/test_device_state.py
 test/test_device_state_command_enum.py
@@ -404,7 +396,6 @@ test/test_paginated_device_state_list.py
 test/test_paginated_experiment_device_config_list.py
 test/test_paginated_experiment_list.py
 test/test_paginated_gcode_file_list.py
-test/test_paginated_license_list.py
 test/test_paginated_model_artifact_list.py
 test/test_paginated_octo_print_device_list.py
 test/test_paginated_octo_print_event_list.py

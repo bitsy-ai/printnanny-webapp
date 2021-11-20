@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **printerControllers** | [**kotlin.collections.List&lt;PrinterController&gt;**](PrinterController.md) |  |  [optional] [readonly]
 **releaseChannel** | [**ReleaseChannelEnum**](ReleaseChannelEnum.md) |  |  [optional]
 **user** | [**User**](User.md) |  |  [optional] [readonly]
-**license** | [**License**](License.md) |  |  [optional] [readonly]
+**activeLicense** | [**License**](License.md) |  |  [optional] [readonly]
 **deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **updatedDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
