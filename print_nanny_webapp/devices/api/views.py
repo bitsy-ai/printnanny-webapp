@@ -15,14 +15,11 @@ from rest_framework.mixins import (
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
-import rest_framework.status
 
 from .serializers import (
     DeviceInfoSerializer,
     DeviceConfigSerializer,
     DeviceStateSerializer,
-    DeviceKeyPairSerializer,
-    LicenseSerializer,
     DeviceSerializer,
     CameraSerializer,
     CloudiotDeviceSerializer,
@@ -33,15 +30,11 @@ from ..models import (
     DeviceConfig,
     DeviceState,
     Device,
-    License,
     Camera,
     CloudiotDevice,
     PrinterController,
 )
-from ..services import (
-    generate_keypair_and_update_or_create_cloudiot_device,
-    generate_zipped_license_response,
-)
+from ..services import generate_zipped_license_response
 
 from print_nanny_webapp.utils.api.exceptions import AlreadyExists
 from print_nanny_webapp.utils.api.serializers import ErrorDetailSerializer
@@ -219,61 +212,6 @@ class DeviceHostnameViewSet(
     serializer_class = DeviceSerializer
     queryset = Device.objects.all()
     lookup_field = "hostname"
-
-
-##
-# License
-##
-list_device_public_keys_schema = extend_schema(
-    responses={
-        "default": ErrorDetailSerializer,
-        200: LicenseSerializer(many=True),
-    },
-)
-modify_device_public_keys_schema = extend_schema(
-    request=DeviceKeyPairSerializer,
-    responses={
-        "default": ErrorDetailSerializer,
-        201: DeviceKeyPairSerializer,
-        202: DeviceKeyPairSerializer,
-    },
-)
-
-
-@extend_schema_view(
-    list=list_device_public_keys_schema,
-    create=modify_device_public_keys_schema,
-)
-class DeviceKeyPairViewSet(
-    GenericViewSet,
-    CreateModelMixin,
-    ListModelMixin,
-    RetrieveModelMixin,
-):
-    """
-    Public key for Print Nanny Device
-    Only one public key may be active at a time
-    DELETE <:endpoint> will soft-delete a key
-    """
-
-    serializer_class = LicenseSerializer
-    queryset = License.objects.all()
-    lookup_field = "id"
-
-    def create(
-        self, request: Request, device_id=None, *args: Any, **kwargs: Any
-    ) -> Response:
-        device = get_object_or_404(Device, pk=device_id)
-        try:
-            keypair, _ = generate_keypair_and_update_or_create_cloudiot_device(device)
-            return Response(data=keypair, status=rest_framework.status.HTTP_201_CREATED)
-        except IntegrityError:
-            raise AlreadyExists(
-                detail=f"License already exists for device_id={device} already exists.",
-            )
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
 
 
 ##

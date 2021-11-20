@@ -8,15 +8,16 @@ import os
 from typing import Tuple, TypedDict
 from zipfile import ZipFile
 
+from rest_framework.authtoken.models import Token
+
 from django.apps import apps
 from django.http import FileResponse
 from django.http.request import HttpRequest
-from django.http.response import HttpResponse
 from django.conf import settings
 from rest_framework.renderers import JSONRenderer
-from rest_framework.authtoken.models import Token
 from google.cloud import iot_v1 as cloudiot_v1
 import google.api_core.exceptions
+from print_nanny_webapp.devices.api.serializers import LicenseSerializer
 from print_nanny_webapp.users.api.serializers import UserSerializer
 
 from .models import Device, CloudiotDevice, License
@@ -307,25 +308,26 @@ def generate_zipped_license_file(
     request: HttpRequest,
     tmp: str,
 ) -> str:
-    from .api.serializers import DeviceSerializer, APICrentialSerializer
+    from .api.serializers import DeviceSerializer, APIConfigSerializer
 
     keypair, _ = generate_keypair_and_update_or_create_cloudiot_device(device, tmp)
     zip_filename = f"{tmp}/{FileLocator.LICENSE_ZIP_FILENAME}"
-
-    api_token, _ = Token.objects.get_or_create(user=device.user)
     device.refresh_from_db()
 
     device_serializer = DeviceSerializer(device, context=dict(request=request))
     device_json = JSONRenderer().render(device_serializer.data)
-    config_serializer = APICrentialSerializer(
-        dict(
+
+    api_token, _ = Token.objects.get_or_create(user=device.user)
+
+    config_serializer = APIConfigSerializer(
+        data=dict(
+            device=device.id,
             api_token=str(api_token),
             api_url=request.build_absolute_uri("/"),
-            user=request.user,
         ),
         context=dict(request=request),
     )
-    # config_serializer.is_valid()
+    config_serializer.is_valid()
     config_json = JSONRenderer().render(config_serializer.data)
 
     with ZipFile(zip_filename, "x") as zf:

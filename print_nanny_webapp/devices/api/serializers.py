@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.authtoken.models import Token
 
 from print_nanny_webapp.devices.models import (
     Device,
@@ -80,17 +81,6 @@ class CACertsSerializer(serializers.Serializer):
     backup_checksum = serializers.CharField(read_only=True)
 
 
-class DeviceKeyPairSerializer(serializers.Serializer):
-
-    private_key = serializers.CharField(read_only=True)
-    private_key_checksum = serializers.CharField(read_only=True)
-
-    public_key = serializers.CharField(read_only=True)
-    public_key_checksum = serializers.CharField(read_only=True)
-    fingerprint_checksum = serializers.CharField(read_only=True)
-    ca_certs = CACertsSerializer(read_only=True)
-
-
 class DeviceConfigSerializer(serializers.ModelSerializer):
     class Meta:
         model = DeviceConfig
@@ -121,7 +111,7 @@ class DeviceSerializer(serializers.ModelSerializer):
     )
 
     user = UserSerializer(read_only=True)
-    license = LicenseSerializer(read_only=True)
+    active_license = LicenseSerializer(read_only=True)
 
     class Meta:
         model = Device
@@ -129,16 +119,13 @@ class DeviceSerializer(serializers.ModelSerializer):
         depth = 2
 
 
-class APICrentialSerializer(serializers.Serializer):
-    api_token = serializers.CharField()
-    api_url = serializers.CharField()
-    user = UserSerializer()
-
-    class Meta:
-        depth = 1
-
-
 class DeviceInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = DeviceInfo
         fields = "__all__"
+
+
+class APIConfigSerializer(serializers.Serializer):
+    device = DeviceSerializer()
+    api_token = serializers.CharField()
+    api_url = serializers.CharField()
