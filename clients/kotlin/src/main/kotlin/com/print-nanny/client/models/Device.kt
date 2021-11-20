@@ -42,7 +42,7 @@ import java.io.Serializable
  * @param printerControllers 
  * @param releaseChannel 
  * @param user 
- * @param license 
+ * @param activeLicense 
  * @param deleted 
  * @param createdDt 
  * @param updatedDt 
@@ -75,8 +75,8 @@ data class Device (
     @Json(name = "user")
     val user: User? = null,
 
-    @Json(name = "license")
-    val license: License? = null,
+    @Json(name = "active_license")
+    val activeLicense: License? = null,
 
     @Json(name = "deleted")
     val deleted: java.time.OffsetDateTime? = null,

@@ -1,6 +1,8 @@
 .openapi-generator-ignore
 README.md
 build.gradle
+docs/APIConfig.md
+docs/APIConfigRequest.md
 docs/Alert.md
 docs/AlertBulkResponse.md
 docs/AlertEventTypeEnum.md
@@ -10,7 +12,6 @@ docs/AnsibleExtraVars.md
 docs/AnsibleExtraVarsRequest.md
 docs/ArtifactTypesEnum.md
 docs/AuthApi.md
-docs/CACerts.md
 docs/CallbackTokenAuthRequest.md
 docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
@@ -26,7 +27,6 @@ docs/DeviceCalibrationRequest.md
 docs/DeviceConfig.md
 docs/DeviceInfo.md
 docs/DeviceInfoRequest.md
-docs/DeviceKeyPair.md
 docs/DeviceRequest.md
 docs/DeviceState.md
 docs/DeviceStateCommandEnum.md
@@ -82,7 +82,6 @@ docs/PaginatedDeviceStateList.md
 docs/PaginatedExperimentDeviceConfigList.md
 docs/PaginatedExperimentList.md
 docs/PaginatedGcodeFileList.md
-docs/PaginatedLicenseList.md
 docs/PaginatedModelArtifactList.md
 docs/PaginatedOctoPrintDeviceList.md
 docs/PaginatedOctoPrintEventList.md
@@ -184,6 +183,8 @@ src/main/kotlin/com/print-nanny/client/infrastructure/ResponseExtensions.kt
 src/main/kotlin/com/print-nanny/client/infrastructure/Serializer.kt
 src/main/kotlin/com/print-nanny/client/infrastructure/URIAdapter.kt
 src/main/kotlin/com/print-nanny/client/infrastructure/UUIDAdapter.kt
+src/main/kotlin/com/print-nanny/client/models/APIConfig.kt
+src/main/kotlin/com/print-nanny/client/models/APIConfigRequest.kt
 src/main/kotlin/com/print-nanny/client/models/Alert.kt
 src/main/kotlin/com/print-nanny/client/models/AlertBulkResponse.kt
 src/main/kotlin/com/print-nanny/client/models/AlertEventTypeEnum.kt
@@ -191,7 +192,6 @@ src/main/kotlin/com/print-nanny/client/models/AlertRequest.kt
 src/main/kotlin/com/print-nanny/client/models/AnsibleExtraVars.kt
 src/main/kotlin/com/print-nanny/client/models/AnsibleExtraVarsRequest.kt
 src/main/kotlin/com/print-nanny/client/models/ArtifactTypesEnum.kt
-src/main/kotlin/com/print-nanny/client/models/CACerts.kt
 src/main/kotlin/com/print-nanny/client/models/CallbackTokenAuthRequest.kt
 src/main/kotlin/com/print-nanny/client/models/CallbackTokenVerification.kt
 src/main/kotlin/com/print-nanny/client/models/CallbackTokenVerificationRequest.kt
@@ -207,7 +207,6 @@ src/main/kotlin/com/print-nanny/client/models/DeviceCalibrationRequest.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceConfig.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceInfo.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceInfoRequest.kt
-src/main/kotlin/com/print-nanny/client/models/DeviceKeyPair.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceRequest.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceState.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceStateCommandEnum.kt
@@ -261,7 +260,6 @@ src/main/kotlin/com/print-nanny/client/models/PaginatedDeviceStateList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedExperimentDeviceConfigList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedExperimentList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedGcodeFileList.kt
-src/main/kotlin/com/print-nanny/client/models/PaginatedLicenseList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedModelArtifactList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedOctoPrintDeviceList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedOctoPrintEventList.kt

@@ -78,7 +78,7 @@ class Device(SafeDeleteModel):
     )
 
     @property
-    def license(self):
+    def active_license(self):
         return self.licenses.first()
 
     @property

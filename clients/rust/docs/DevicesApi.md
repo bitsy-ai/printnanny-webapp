@@ -22,9 +22,6 @@ Method | HTTP request | Description
 [**devices_info_partial_update**](DevicesApi.md#devices_info_partial_update) | **PATCH** /api/devices/{device_id}/info/{id}/ | 
 [**devices_info_retrieve**](DevicesApi.md#devices_info_retrieve) | **GET** /api/devices/{device_id}/info/{id}/ | 
 [**devices_info_update**](DevicesApi.md#devices_info_update) | **PUT** /api/devices/{device_id}/info/{id}/ | 
-[**devices_keypairs_create**](DevicesApi.md#devices_keypairs_create) | **POST** /api/devices/{device_id}/keypairs/ | 
-[**devices_keypairs_list**](DevicesApi.md#devices_keypairs_list) | **GET** /api/devices/{device_id}/keypairs/ | 
-[**devices_keypairs_retrieve**](DevicesApi.md#devices_keypairs_retrieve) | **GET** /api/devices/{device_id}/keypairs/{id}/ | 
 [**devices_license_retrieve**](DevicesApi.md#devices_license_retrieve) | **GET** /api/devices/{id}/license/ | 
 [**devices_list**](DevicesApi.md#devices_list) | **GET** /api/devices/ | 
 [**devices_partial_update**](DevicesApi.md#devices_partial_update) | **PATCH** /api/devices/{id}/ | 
@@ -565,98 +562,6 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## devices_keypairs_create
-
-> crate::models::DeviceKeyPair devices_keypairs_create(device_id)
-
-
-Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-
-### Return type
-
-[**crate::models::DeviceKeyPair**](DeviceKeyPair.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## devices_keypairs_list
-
-> crate::models::PaginatedLicenseList devices_keypairs_list(device_id, page)
-
-
-Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-**page** | Option<**i32**> | A page number within the paginated result set. |  |
-
-### Return type
-
-[**crate::models::PaginatedLicenseList**](PaginatedLicenseList.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## devices_keypairs_retrieve
-
-> crate::models::License devices_keypairs_retrieve(device_id, id)
-
-
-Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-**id** | **i32** | A unique integer value identifying this license. | [required] |
-
-### Return type
-
-[**crate::models::License**](License.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

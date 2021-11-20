@@ -71,7 +71,7 @@ class TestPaginatedDeviceList(unittest.TestCase):
                             ], 
                         release_channel = null, 
                         user = null, 
-                        license = null, 
+                        active_license = null, 
                         deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 

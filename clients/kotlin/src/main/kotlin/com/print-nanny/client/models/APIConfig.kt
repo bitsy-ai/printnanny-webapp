@@ -27,25 +27,17 @@ import java.io.Serializable
 /**
  * 
  *
- * @param primary 
- * @param primaryChecksum 
- * @param backup 
- * @param backupChecksum 
+ * @param apiToken 
+ * @param apiUrl 
  */
 
-data class CACerts (
+data class APIConfig (
 
-    @Json(name = "primary")
-    val primary: kotlin.String? = null,
+    @Json(name = "api_token")
+    val apiToken: kotlin.String,
 
-    @Json(name = "primary_checksum")
-    val primaryChecksum: kotlin.String? = null,
-
-    @Json(name = "backup")
-    val backup: kotlin.String? = null,
-
-    @Json(name = "backup_checksum")
-    val backupChecksum: kotlin.String? = null
+    @Json(name = "api_url")
+    val apiUrl: kotlin.String
 
 ) : Serializable {
     companion object {

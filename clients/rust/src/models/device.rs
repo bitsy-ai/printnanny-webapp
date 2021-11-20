@@ -27,8 +27,8 @@ pub struct Device {
     pub release_channel: Option<Box<crate::models::ReleaseChannelEnum>>,
     #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
     pub user: Option<Box<crate::models::User>>,
-    #[serde(rename = "license", skip_serializing_if = "Option::is_none")]
-    pub license: Option<Box<crate::models::License>>,
+    #[serde(rename = "active_license", skip_serializing_if = "Option::is_none")]
+    pub active_license: Option<Box<crate::models::License>>,
     #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
     pub deleted: Option<String>,
     #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
@@ -51,7 +51,7 @@ impl Device {
             printer_controllers: None,
             release_channel: None,
             user: None,
-            license: None,
+            active_license: None,
             deleted: None,
             created_dt: None,
             updated_dt: None,

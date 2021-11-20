@@ -28,18 +28,15 @@ import com.print-nanny.client.models.Device
 import com.print-nanny.client.models.DeviceConfig
 import com.print-nanny.client.models.DeviceInfo
 import com.print-nanny.client.models.DeviceInfoRequest
-import com.print-nanny.client.models.DeviceKeyPair
 import com.print-nanny.client.models.DeviceRequest
 import com.print-nanny.client.models.DeviceState
 import com.print-nanny.client.models.ErrorDetail
-import com.print-nanny.client.models.License
 import com.print-nanny.client.models.PaginatedCameraList
 import com.print-nanny.client.models.PaginatedCloudiotDeviceList
 import com.print-nanny.client.models.PaginatedDeviceConfigList
 import com.print-nanny.client.models.PaginatedDeviceInfoList
 import com.print-nanny.client.models.PaginatedDeviceList
 import com.print-nanny.client.models.PaginatedDeviceStateList
-import com.print-nanny.client.models.PaginatedLicenseList
 import com.print-nanny.client.models.PaginatedPrinterControllerList
 import com.print-nanny.client.models.PatchedCameraRequest
 import com.print-nanny.client.models.PatchedCloudiotDeviceRequest
@@ -1082,174 +1079,6 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
         return RequestConfig(
             method = RequestMethod.PUT,
             path = "/api/devices/{device_id}/info/{id}/".replace("{"+"device_id"+"}", "$deviceId").replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-    }
-
-    /**
-    * 
-    * Public key for Print Nanny Device Only one public key may be active at a time DELETE &lt;:endpoint&gt; will soft-delete a key
-    * @param deviceId  
-    * @return DeviceKeyPair
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun devicesKeypairsCreate(deviceId: kotlin.Int) : DeviceKeyPair {
-        val localVariableConfig = devicesKeypairsCreateRequestConfig(deviceId = deviceId)
-
-        val localVarResponse = request<Unit, DeviceKeyPair>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as DeviceKeyPair
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation devicesKeypairsCreate
-    *
-    * @param deviceId  
-    * @return RequestConfig
-    */
-    fun devicesKeypairsCreateRequestConfig(deviceId: kotlin.Int) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-
-        return RequestConfig(
-            method = RequestMethod.POST,
-            path = "/api/devices/{device_id}/keypairs/".replace("{"+"device_id"+"}", "$deviceId"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-    }
-
-    /**
-    * 
-    * Public key for Print Nanny Device Only one public key may be active at a time DELETE &lt;:endpoint&gt; will soft-delete a key
-    * @param deviceId  
-    * @param page A page number within the paginated result set. (optional)
-    * @return PaginatedLicenseList
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun devicesKeypairsList(deviceId: kotlin.Int, page: kotlin.Int?) : PaginatedLicenseList {
-        val localVariableConfig = devicesKeypairsListRequestConfig(deviceId = deviceId, page = page)
-
-        val localVarResponse = request<Unit, PaginatedLicenseList>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedLicenseList
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation devicesKeypairsList
-    *
-    * @param deviceId  
-    * @param page A page number within the paginated result set. (optional)
-    * @return RequestConfig
-    */
-    fun devicesKeypairsListRequestConfig(deviceId: kotlin.Int, page: kotlin.Int?) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
-            .apply {
-                if (page != null) {
-                    put("page", listOf(page.toString()))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-
-        return RequestConfig(
-            method = RequestMethod.GET,
-            path = "/api/devices/{device_id}/keypairs/".replace("{"+"device_id"+"}", "$deviceId"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-    }
-
-    /**
-    * 
-    * Public key for Print Nanny Device Only one public key may be active at a time DELETE &lt;:endpoint&gt; will soft-delete a key
-    * @param deviceId  
-    * @param id A unique integer value identifying this license. 
-    * @return License
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun devicesKeypairsRetrieve(deviceId: kotlin.Int, id: kotlin.Int) : License {
-        val localVariableConfig = devicesKeypairsRetrieveRequestConfig(deviceId = deviceId, id = id)
-
-        val localVarResponse = request<Unit, License>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as License
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation devicesKeypairsRetrieve
-    *
-    * @param deviceId  
-    * @param id A unique integer value identifying this license. 
-    * @return RequestConfig
-    */
-    fun devicesKeypairsRetrieveRequestConfig(deviceId: kotlin.Int, id: kotlin.Int) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-
-        return RequestConfig(
-            method = RequestMethod.GET,
-            path = "/api/devices/{device_id}/keypairs/{id}/".replace("{"+"device_id"+"}", "$deviceId").replace("{"+"id"+"}", "$id"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody

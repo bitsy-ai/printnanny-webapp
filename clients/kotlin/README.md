@@ -66,9 +66,6 @@ Class | Method | HTTP request | Description
 *DevicesApi* | [**devicesInfoPartialUpdate**](docs/DevicesApi.md#devicesinfopartialupdate) | **PATCH** /api/devices/{device_id}/info/{id}/ | 
 *DevicesApi* | [**devicesInfoRetrieve**](docs/DevicesApi.md#devicesinforetrieve) | **GET** /api/devices/{device_id}/info/{id}/ | 
 *DevicesApi* | [**devicesInfoUpdate**](docs/DevicesApi.md#devicesinfoupdate) | **PUT** /api/devices/{device_id}/info/{id}/ | 
-*DevicesApi* | [**devicesKeypairsCreate**](docs/DevicesApi.md#deviceskeypairscreate) | **POST** /api/devices/{device_id}/keypairs/ | 
-*DevicesApi* | [**devicesKeypairsList**](docs/DevicesApi.md#deviceskeypairslist) | **GET** /api/devices/{device_id}/keypairs/ | 
-*DevicesApi* | [**devicesKeypairsRetrieve**](docs/DevicesApi.md#deviceskeypairsretrieve) | **GET** /api/devices/{device_id}/keypairs/{id}/ | 
 *DevicesApi* | [**devicesLicenseRetrieve**](docs/DevicesApi.md#deviceslicenseretrieve) | **GET** /api/devices/{id}/license/ | 
 *DevicesApi* | [**devicesList**](docs/DevicesApi.md#deviceslist) | **GET** /api/devices/ | 
 *DevicesApi* | [**devicesPartialUpdate**](docs/DevicesApi.md#devicespartialupdate) | **PATCH** /api/devices/{id}/ | 
@@ -148,6 +145,8 @@ Class | Method | HTTP request | Description
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
+ - [com.print-nanny.client.models.APIConfig](docs/APIConfig.md)
+ - [com.print-nanny.client.models.APIConfigRequest](docs/APIConfigRequest.md)
  - [com.print-nanny.client.models.Alert](docs/Alert.md)
  - [com.print-nanny.client.models.AlertBulkResponse](docs/AlertBulkResponse.md)
  - [com.print-nanny.client.models.AlertEventTypeEnum](docs/AlertEventTypeEnum.md)
@@ -155,7 +154,6 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.AnsibleExtraVars](docs/AnsibleExtraVars.md)
  - [com.print-nanny.client.models.AnsibleExtraVarsRequest](docs/AnsibleExtraVarsRequest.md)
  - [com.print-nanny.client.models.ArtifactTypesEnum](docs/ArtifactTypesEnum.md)
- - [com.print-nanny.client.models.CACerts](docs/CACerts.md)
  - [com.print-nanny.client.models.CallbackTokenAuthRequest](docs/CallbackTokenAuthRequest.md)
  - [com.print-nanny.client.models.CallbackTokenVerification](docs/CallbackTokenVerification.md)
  - [com.print-nanny.client.models.CallbackTokenVerificationRequest](docs/CallbackTokenVerificationRequest.md)
@@ -171,7 +169,6 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.DeviceConfig](docs/DeviceConfig.md)
  - [com.print-nanny.client.models.DeviceInfo](docs/DeviceInfo.md)
  - [com.print-nanny.client.models.DeviceInfoRequest](docs/DeviceInfoRequest.md)
- - [com.print-nanny.client.models.DeviceKeyPair](docs/DeviceKeyPair.md)
  - [com.print-nanny.client.models.DeviceRequest](docs/DeviceRequest.md)
  - [com.print-nanny.client.models.DeviceState](docs/DeviceState.md)
  - [com.print-nanny.client.models.DeviceStateCommandEnum](docs/DeviceStateCommandEnum.md)
@@ -225,7 +222,6 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.PaginatedExperimentDeviceConfigList](docs/PaginatedExperimentDeviceConfigList.md)
  - [com.print-nanny.client.models.PaginatedExperimentList](docs/PaginatedExperimentList.md)
  - [com.print-nanny.client.models.PaginatedGcodeFileList](docs/PaginatedGcodeFileList.md)
- - [com.print-nanny.client.models.PaginatedLicenseList](docs/PaginatedLicenseList.md)
  - [com.print-nanny.client.models.PaginatedModelArtifactList](docs/PaginatedModelArtifactList.md)
  - [com.print-nanny.client.models.PaginatedOctoPrintDeviceList](docs/PaginatedOctoPrintDeviceList.md)
  - [com.print-nanny.client.models.PaginatedOctoPrintEventList](docs/PaginatedOctoPrintEventList.md)

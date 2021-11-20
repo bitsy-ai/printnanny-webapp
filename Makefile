@@ -38,8 +38,9 @@ docker-mypy:
 mypy:
 	. .envs/.local/.tests.sh && \
 	mypy print_nanny_webapp/telemetry/
+
 token:
-	echo $(PRINT_NANNY_TOKEN)
+	@echo $(PRINT_NANNY_TOKEN)
 
 nebula-image:
 	docker build -f compose/production/nebula/nebula.Dockerfile \
@@ -310,7 +311,7 @@ python-client-release: dist ## package and upload a release
 
 rust-client-release: rust-client
 	-git add -A
-	-git commit -m "0.8.65 client codegen ✨"
+	-git commit -m "0.8.67 client codegen ✨"
 	cd clients/rust && cargo publish
 
 clients-release: python-client-release ts-client kotlin-client rust-client-release

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **printer_controllers** | Option<[**Vec<crate::models::PrinterController>**](PrinterController.md)> |  | [optional][readonly]
 **release_channel** | Option<[**crate::models::ReleaseChannelEnum**](ReleaseChannelEnum.md)> |  | [optional]
 **user** | Option<[**crate::models::User**](User.md)> |  | [optional][readonly]
-**license** | Option<[**crate::models::License**](License.md)> |  | [optional][readonly]
+**active_license** | Option<[**crate::models::License**](License.md)> |  | [optional][readonly]
 **deleted** | Option<**String**> |  | [optional][readonly]
 **created_dt** | Option<**String**> |  | [optional][readonly]
 **updated_dt** | Option<**String**> |  | [optional][readonly]

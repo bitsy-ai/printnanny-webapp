@@ -66,7 +66,14 @@ class CloudiotDeviceSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class APIConfigSerializer(serializers.Serializer):
+    api_token = serializers.CharField()
+    api_url = serializers.CharField()
+
+
 class LicenseSerializer(serializers.ModelSerializer):
+    api_config = APIConfigSerializer(read_only=True, required=False, default=None)
+
     class Meta:
         model = License
         fields = "__all__"
@@ -78,17 +85,6 @@ class CACertsSerializer(serializers.Serializer):
     primary_checksum = serializers.CharField(read_only=True)
     backup = serializers.CharField(read_only=True)
     backup_checksum = serializers.CharField(read_only=True)
-
-
-class DeviceKeyPairSerializer(serializers.Serializer):
-
-    private_key = serializers.CharField(read_only=True)
-    private_key_checksum = serializers.CharField(read_only=True)
-
-    public_key = serializers.CharField(read_only=True)
-    public_key_checksum = serializers.CharField(read_only=True)
-    fingerprint_checksum = serializers.CharField(read_only=True)
-    ca_certs = CACertsSerializer(read_only=True)
 
 
 class DeviceConfigSerializer(serializers.ModelSerializer):
@@ -121,21 +117,12 @@ class DeviceSerializer(serializers.ModelSerializer):
     )
 
     user = UserSerializer(read_only=True)
-    license = LicenseSerializer(read_only=True)
+    active_license = LicenseSerializer(read_only=True)
 
     class Meta:
         model = Device
         fields = "__all__"
         depth = 2
-
-
-class LicenseAPISerializer(serializers.Serializer):
-    api_token = serializers.CharField()
-    api_url = serializers.CharField()
-    user = UserSerializer()
-
-    class Meta:
-        depth = 1
 
 
 class DeviceInfoSerializer(serializers.ModelSerializer):

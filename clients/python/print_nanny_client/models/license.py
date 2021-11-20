@@ -37,6 +37,7 @@ class License(object):
     """
     openapi_types = {
         'id': 'int',
+        'api_config': 'APIConfig',
         'deleted': 'datetime',
         'public_key': 'str',
         'public_key_checksum': 'str',
@@ -47,6 +48,7 @@ class License(object):
 
     attribute_map = {
         'id': 'id',
+        'api_config': 'api_config',
         'deleted': 'deleted',
         'public_key': 'public_key',
         'public_key_checksum': 'public_key_checksum',
@@ -55,13 +57,14 @@ class License(object):
         'device': 'device'
     }
 
-    def __init__(self, id=None, deleted=None, public_key=None, public_key_checksum=None, fingerprint=None, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, api_config=None, deleted=None, public_key=None, public_key_checksum=None, fingerprint=None, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
         """License - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
+        self._api_config = None
         self._deleted = None
         self._public_key = None
         self._public_key_checksum = None
@@ -72,6 +75,7 @@ class License(object):
 
         if id is not None:
             self.id = id
+        self.api_config = api_config
         if deleted is not None:
             self.deleted = deleted
         if public_key is not None:
@@ -104,6 +108,27 @@ class License(object):
         """
 
         self._id = id
+
+    @property
+    def api_config(self):
+        """Gets the api_config of this License.  # noqa: E501
+
+
+        :return: The api_config of this License.  # noqa: E501
+        :rtype: APIConfig
+        """
+        return self._api_config
+
+    @api_config.setter
+    def api_config(self, api_config):
+        """Sets the api_config of this License.
+
+
+        :param api_config: The api_config of this License.  # noqa: E501
+        :type api_config: APIConfig
+        """
+
+        self._api_config = api_config
 
     @property
     def deleted(self):

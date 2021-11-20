@@ -10,9 +10,10 @@ docs/AlertRequest.md
 docs/AlertsApi.md
 docs/AnsibleExtraVars.md
 docs/AnsibleExtraVarsRequest.md
+docs/ApiConfig.md
+docs/ApiConfigRequest.md
 docs/ArtifactTypesEnum.md
 docs/AuthApi.md
-docs/CaCerts.md
 docs/CallbackTokenAuthRequest.md
 docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
@@ -28,7 +29,6 @@ docs/DeviceCalibrationRequest.md
 docs/DeviceConfig.md
 docs/DeviceInfo.md
 docs/DeviceInfoRequest.md
-docs/DeviceKeyPair.md
 docs/DeviceRequest.md
 docs/DeviceState.md
 docs/DeviceStateCommandEnum.md
@@ -84,7 +84,6 @@ docs/PaginatedDeviceStateList.md
 docs/PaginatedExperimentDeviceConfigList.md
 docs/PaginatedExperimentList.md
 docs/PaginatedGcodeFileList.md
-docs/PaginatedLicenseList.md
 docs/PaginatedModelArtifactList.md
 docs/PaginatedOctoPrintDeviceList.md
 docs/PaginatedOctoPrintEventList.md
@@ -175,8 +174,9 @@ src/models/alert_event_type_enum.rs
 src/models/alert_request.rs
 src/models/ansible_extra_vars.rs
 src/models/ansible_extra_vars_request.rs
+src/models/api_config.rs
+src/models/api_config_request.rs
 src/models/artifact_types_enum.rs
-src/models/ca_certs.rs
 src/models/callback_token_auth_request.rs
 src/models/callback_token_verification.rs
 src/models/callback_token_verification_request.rs
@@ -192,7 +192,6 @@ src/models/device_calibration_request.rs
 src/models/device_config.rs
 src/models/device_info.rs
 src/models/device_info_request.rs
-src/models/device_key_pair.rs
 src/models/device_request.rs
 src/models/device_state.rs
 src/models/device_state_command_enum.rs
@@ -247,7 +246,6 @@ src/models/paginated_device_state_list.rs
 src/models/paginated_experiment_device_config_list.rs
 src/models/paginated_experiment_list.rs
 src/models/paginated_gcode_file_list.rs
-src/models/paginated_license_list.rs
 src/models/paginated_model_artifact_list.rs
 src/models/paginated_octo_print_device_list.rs
 src/models/paginated_octo_print_event_list.rs

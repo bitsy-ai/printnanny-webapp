@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.ca_certs import CACerts  # noqa: E501
+from print_nanny_client.models.api_config_request import APIConfigRequest  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestCACerts(unittest.TestCase):
-    """CACerts unit test stubs"""
+class TestAPIConfigRequest(unittest.TestCase):
+    """APIConfigRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,24 +29,24 @@ class TestCACerts(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test CACerts
+        """Test APIConfigRequest
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.ca_certs.CACerts()  # noqa: E501
+        # model = print_nanny_client.models.api_config_request.APIConfigRequest()  # noqa: E501
         if include_optional :
-            return CACerts(
-                primary = '', 
-                primary_checksum = '', 
-                backup = '', 
-                backup_checksum = ''
+            return APIConfigRequest(
+                api_token = '', 
+                api_url = ''
             )
         else :
-            return CACerts(
+            return APIConfigRequest(
+                api_token = '',
+                api_url = '',
         )
 
-    def testCACerts(self):
-        """Test CACerts"""
+    def testAPIConfigRequest(self):
+        """Test APIConfigRequest"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

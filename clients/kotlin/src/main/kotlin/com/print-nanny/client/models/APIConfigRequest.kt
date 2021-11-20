@@ -20,7 +20,6 @@
 
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.License
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -28,25 +27,17 @@ import java.io.Serializable
 /**
  * 
  *
- * @param count 
- * @param next 
- * @param previous 
- * @param results 
+ * @param apiToken 
+ * @param apiUrl 
  */
 
-data class PaginatedLicenseList (
+data class APIConfigRequest (
 
-    @Json(name = "count")
-    val count: kotlin.Int? = null,
+    @Json(name = "api_token")
+    val apiToken: kotlin.String,
 
-    @Json(name = "next")
-    val next: java.net.URI? = null,
-
-    @Json(name = "previous")
-    val previous: java.net.URI? = null,
-
-    @Json(name = "results")
-    val results: kotlin.collections.List<License>? = null
+    @Json(name = "api_url")
+    val apiUrl: kotlin.String
 
 ) : Serializable {
     companion object {

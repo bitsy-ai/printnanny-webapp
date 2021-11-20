@@ -44,7 +44,7 @@ class Device(object):
         'printer_controllers': 'list[PrinterController]',
         'release_channel': 'ReleaseChannelEnum',
         'user': 'User',
-        'license': 'License',
+        'active_license': 'License',
         'deleted': 'datetime',
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
@@ -60,14 +60,14 @@ class Device(object):
         'printer_controllers': 'printer_controllers',
         'release_channel': 'release_channel',
         'user': 'user',
-        'license': 'license',
+        'active_license': 'active_license',
         'deleted': 'deleted',
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
         'hostname': 'hostname'
     }
 
-    def __init__(self, id=None, cloudiot_device=None, cameras=None, dashboard_url=None, bootstrap_release=None, printer_controllers=None, release_channel=None, user=None, license=None, deleted=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, cloudiot_device=None, cameras=None, dashboard_url=None, bootstrap_release=None, printer_controllers=None, release_channel=None, user=None, active_license=None, deleted=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -81,7 +81,7 @@ class Device(object):
         self._printer_controllers = None
         self._release_channel = None
         self._user = None
-        self._license = None
+        self._active_license = None
         self._deleted = None
         self._created_dt = None
         self._updated_dt = None
@@ -100,7 +100,7 @@ class Device(object):
             self.printer_controllers = printer_controllers
         self.release_channel = release_channel
         self.user = user
-        self.license = license
+        self.active_license = active_license
         if deleted is not None:
             self.deleted = deleted
         if created_dt is not None:
@@ -279,25 +279,25 @@ class Device(object):
         self._user = user
 
     @property
-    def license(self):
-        """Gets the license of this Device.  # noqa: E501
+    def active_license(self):
+        """Gets the active_license of this Device.  # noqa: E501
 
 
-        :return: The license of this Device.  # noqa: E501
+        :return: The active_license of this Device.  # noqa: E501
         :rtype: License
         """
-        return self._license
+        return self._active_license
 
-    @license.setter
-    def license(self, license):
-        """Sets the license of this Device.
+    @active_license.setter
+    def active_license(self, active_license):
+        """Sets the active_license of this Device.
 
 
-        :param license: The license of this Device.  # noqa: E501
-        :type license: License
+        :param active_license: The active_license of this Device.  # noqa: E501
+        :type active_license: License
         """
 
-        self._license = license
+        self._active_license = active_license
 
     @property
     def deleted(self):
