@@ -94,7 +94,7 @@ def check_ca_certs():
     )
 
 
-def generate_keypair(tmp: tempfile.TemporaryDirectory):
+def generate_keypair(tmp: str):
 
     ca_certs = check_ca_certs()
 
@@ -269,7 +269,7 @@ def update_or_create_cloudiot_device(
 
 
 def generate_keypair_and_update_or_create_cloudiot_device(
-    device: Device, tmp: tempfile.TemporaryDirectory
+    device: Device, tmp: str
 ) -> Tuple[KeyPair, CloudiotDevice]:
     keypair = generate_keypair(tmp)
     # revoke all existing licenses (soft-delete)
@@ -304,7 +304,7 @@ def generate_keypair_and_update_or_create_cloudiot_device(
 def generate_zipped_license_file(
     device: Device,
     request: HttpRequest,
-    tmp: tempfile.TemporaryDirectory,
+    tmp: str,
 ) -> str:
     from .api.serializers import DeviceSerializer, LicenseAPISerializer
 
@@ -344,7 +344,7 @@ def generate_zipped_license_file(
 
 def generate_zipped_license_response(
     device: Device, request: HttpRequest
-) -> HttpResponse:
+) -> FileResponse:
 
     with tempfile.TemporaryDirectory() as tmp:
         filename = generate_zipped_license_file(device, request, tmp)
