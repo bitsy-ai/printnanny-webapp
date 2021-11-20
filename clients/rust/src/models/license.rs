@@ -13,8 +13,6 @@
 pub struct License {
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
     pub id: Option<i32>,
-    #[serde(rename = "private_key", skip_serializing_if = "Option::is_none")]
-    pub private_key: Option<String>,
     #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
     pub deleted: Option<String>,
     #[serde(rename = "public_key", skip_serializing_if = "Option::is_none")]
@@ -33,7 +31,6 @@ impl License {
     pub fn new(device: i32) -> License {
         License {
             id: None,
-            private_key: None,
             deleted: None,
             public_key: None,
             public_key_checksum: None,

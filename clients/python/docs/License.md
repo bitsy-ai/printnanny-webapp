@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
-**private_key** | **str** |  | [optional] [readonly] 
 **deleted** | **datetime** |  | [optional] [readonly] 
 **public_key** | **str** |  | [optional] [readonly] 
 **public_key_checksum** | **str** |  | [optional] [readonly] 

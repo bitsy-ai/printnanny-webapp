@@ -1232,12 +1232,6 @@ export interface License {
      * @type {string}
      * @memberof License
      */
-    'private_key'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof License
-     */
     'deleted'?: string;
     /**
      * 

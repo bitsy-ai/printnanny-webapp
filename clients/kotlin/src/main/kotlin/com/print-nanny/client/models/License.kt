@@ -29,7 +29,6 @@ import java.io.Serializable
  *
  * @param device 
  * @param id 
- * @param privateKey 
  * @param deleted 
  * @param publicKey 
  * @param publicKeyChecksum 
@@ -44,9 +43,6 @@ data class License (
 
     @Json(name = "id")
     val id: kotlin.Int? = null,
-
-    @Json(name = "private_key")
-    val privateKey: kotlin.String? = null,
 
     @Json(name = "deleted")
     val deleted: java.time.OffsetDateTime? = null,

@@ -37,7 +37,6 @@ class License(object):
     """
     openapi_types = {
         'id': 'int',
-        'private_key': 'str',
         'deleted': 'datetime',
         'public_key': 'str',
         'public_key_checksum': 'str',
@@ -48,7 +47,6 @@ class License(object):
 
     attribute_map = {
         'id': 'id',
-        'private_key': 'private_key',
         'deleted': 'deleted',
         'public_key': 'public_key',
         'public_key_checksum': 'public_key_checksum',
@@ -57,14 +55,13 @@ class License(object):
         'device': 'device'
     }
 
-    def __init__(self, id=None, private_key=None, deleted=None, public_key=None, public_key_checksum=None, fingerprint=None, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, deleted=None, public_key=None, public_key_checksum=None, fingerprint=None, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
         """License - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
-        self._private_key = None
         self._deleted = None
         self._public_key = None
         self._public_key_checksum = None
@@ -75,8 +72,6 @@ class License(object):
 
         if id is not None:
             self.id = id
-        if private_key is not None:
-            self.private_key = private_key
         if deleted is not None:
             self.deleted = deleted
         if public_key is not None:
@@ -109,27 +104,6 @@ class License(object):
         """
 
         self._id = id
-
-    @property
-    def private_key(self):
-        """Gets the private_key of this License.  # noqa: E501
-
-
-        :return: The private_key of this License.  # noqa: E501
-        :rtype: str
-        """
-        return self._private_key
-
-    @private_key.setter
-    def private_key(self, private_key):
-        """Sets the private_key of this License.
-
-
-        :param private_key: The private_key of this License.  # noqa: E501
-        :type private_key: str
-        """
-
-        self._private_key = private_key
 
     @property
     def deleted(self):

@@ -42,7 +42,6 @@ class TestPaginatedLicenseList(unittest.TestCase):
                 results = [
                     print_nanny_client.models.license.License(
                         id = 56, 
-                        private_key = '', 
                         deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         public_key = '', 
                         public_key_checksum = '', 
