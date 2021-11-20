@@ -312,23 +312,25 @@ def generate_zipped_license_file(
 
     keypair, _ = generate_keypair_and_update_or_create_cloudiot_device(device, tmp)
     zip_filename = f"{tmp}/{FileLocator.LICENSE_ZIP_FILENAME}"
-    device.refresh_from_db()
-
-    device_serializer = DeviceSerializer(device, context=dict(request=request))
-    device_json = JSONRenderer().render(device_serializer.data)
 
     api_token, _ = Token.objects.get_or_create(user=device.user)
+    device.refresh_from_db()
 
+    api_config = dict(
+        device=device.id,
+        api_token=str(api_token),
+        api_url=request.build_absolute_uri("/"),
+    )
     config_serializer = APIConfigSerializer(
-        data=dict(
-            device=device.id,
-            api_token=str(api_token),
-            api_url=request.build_absolute_uri("/"),
-        ),
+        data=api_config,
         context=dict(request=request),
     )
     config_serializer.is_valid()
     config_json = JSONRenderer().render(config_serializer.data)
+
+    device.license.api_config = api_config
+    device_serializer = DeviceSerializer(device, context=dict(request=request))
+    device_json = JSONRenderer().render(device_serializer.data)
 
     with ZipFile(zip_filename, "x") as zf:
         zf.write(

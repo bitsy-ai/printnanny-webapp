@@ -66,7 +66,14 @@ class CloudiotDeviceSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class APIConfigSerializer(serializers.Serializer):
+    api_token = serializers.CharField()
+    api_url = serializers.CharField()
+
+
 class LicenseSerializer(serializers.ModelSerializer):
+    api_config = APIConfigSerializer(read_only=True, required=False, default=None)
+
     class Meta:
         model = License
         fields = "__all__"
@@ -122,9 +129,3 @@ class DeviceInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = DeviceInfo
         fields = "__all__"
-
-
-class APIConfigSerializer(serializers.Serializer):
-    device = DeviceSerializer()
-    api_token = serializers.CharField()
-    api_url = serializers.CharField()
