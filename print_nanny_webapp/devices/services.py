@@ -20,6 +20,7 @@ import google.api_core.exceptions
 from print_nanny_webapp.users.api.serializers import UserSerializer
 
 from .models import Device, CloudiotDevice, License
+from .constants import FileLocator
 
 logger = logging.getLogger(__name__)
 
@@ -309,7 +310,7 @@ def generate_zipped_license_file(
     from .api.serializers import DeviceSerializer, LicenseAPISerializer
 
     keypair, _ = generate_keypair_and_update_or_create_cloudiot_device(device, tmp)
-    zip_filename = f"{tmp}/printnanny_license.zip"
+    zip_filename = f"{tmp}/{FileLocator.LICENSE_ZIP_FILENAME}"
 
     api_token, _ = Token.objects.get_or_create(user=device.user)
     device.refresh_from_db()
@@ -353,5 +354,5 @@ def generate_zipped_license_response(
         # https://docs.djangoproject.com/en/1.11/howto/outputting-csv/#streaming-large-csv-files
         response[
             "Content-Disposition"
-        ] = 'attachment; filename="printnanny_license.zip"'
+        ] = f'attachment; filename="{FileLocator.LICENSE_ZIP_FILENAME}"'
         return response
