@@ -24,6 +24,8 @@ docs/Device.md
 docs/DeviceCalibration.md
 docs/DeviceCalibrationRequest.md
 docs/DeviceConfig.md
+docs/DeviceInfo.md
+docs/DeviceInfoRequest.md
 docs/DeviceKeyPair.md
 docs/DeviceRequest.md
 docs/DeviceState.md
@@ -74,6 +76,7 @@ docs/PaginatedCameraList.md
 docs/PaginatedCloudiotDeviceList.md
 docs/PaginatedDeviceCalibrationList.md
 docs/PaginatedDeviceConfigList.md
+docs/PaginatedDeviceInfoList.md
 docs/PaginatedDeviceList.md
 docs/PaginatedDeviceStateList.md
 docs/PaginatedExperimentDeviceConfigList.md
@@ -102,6 +105,7 @@ docs/PatchedAlertRequest.md
 docs/PatchedCameraRequest.md
 docs/PatchedCloudiotDeviceRequest.md
 docs/PatchedDeviceCalibrationRequest.md
+docs/PatchedDeviceInfoRequest.md
 docs/PatchedDeviceRequest.md
 docs/PatchedOctoPrintDeviceRequest.md
 docs/PatchedPrintSessionRequest.md
@@ -201,6 +205,8 @@ src/main/kotlin/com/print-nanny/client/models/Device.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceCalibration.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceCalibrationRequest.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceConfig.kt
+src/main/kotlin/com/print-nanny/client/models/DeviceInfo.kt
+src/main/kotlin/com/print-nanny/client/models/DeviceInfoRequest.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceKeyPair.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceRequest.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceState.kt
@@ -249,6 +255,7 @@ src/main/kotlin/com/print-nanny/client/models/PaginatedCameraList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedCloudiotDeviceList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedDeviceCalibrationList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedDeviceConfigList.kt
+src/main/kotlin/com/print-nanny/client/models/PaginatedDeviceInfoList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedDeviceList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedDeviceStateList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedExperimentDeviceConfigList.kt
@@ -275,6 +282,7 @@ src/main/kotlin/com/print-nanny/client/models/PatchedAlertRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedCameraRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedCloudiotDeviceRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedDeviceCalibrationRequest.kt
+src/main/kotlin/com/print-nanny/client/models/PatchedDeviceInfoRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedDeviceRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedOctoPrintDeviceRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedPrintSessionRequest.kt

@@ -890,6 +890,140 @@ export interface DeviceConfig {
 /**
  * 
  * @export
+ * @interface DeviceInfo
+ */
+export interface DeviceInfo {
+    /**
+     * 
+     * @type {number}
+     * @memberof DeviceInfo
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceInfo
+     */
+    'deleted'?: string;
+    /**
+     * Populated from /etc/machine-id
+     * @type {string}
+     * @memberof DeviceInfo
+     */
+    'machine_id': string;
+    /**
+     * Populated from /proc/cpuinfo HARDWARE
+     * @type {string}
+     * @memberof DeviceInfo
+     */
+    'hardware': string;
+    /**
+     * Populated from /proc/cpuinfo REVISION
+     * @type {string}
+     * @memberof DeviceInfo
+     */
+    'revision': string;
+    /**
+     * Populated from /proc/cpuinfo MODEL
+     * @type {string}
+     * @memberof DeviceInfo
+     */
+    'model': string;
+    /**
+     * Populated from /proc/cpuinfo SERIAL
+     * @type {string}
+     * @memberof DeviceInfo
+     */
+    'serial': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof DeviceInfo
+     */
+    'cores': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DeviceInfo
+     */
+    'ram': number;
+    /**
+     * Print Nanny OS version string from /boot/image_version.txt
+     * @type {string}
+     * @memberof DeviceInfo
+     */
+    'image_version': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof DeviceInfo
+     */
+    'device': number;
+}
+/**
+ * 
+ * @export
+ * @interface DeviceInfoRequest
+ */
+export interface DeviceInfoRequest {
+    /**
+     * Populated from /etc/machine-id
+     * @type {string}
+     * @memberof DeviceInfoRequest
+     */
+    'machine_id': string;
+    /**
+     * Populated from /proc/cpuinfo HARDWARE
+     * @type {string}
+     * @memberof DeviceInfoRequest
+     */
+    'hardware': string;
+    /**
+     * Populated from /proc/cpuinfo REVISION
+     * @type {string}
+     * @memberof DeviceInfoRequest
+     */
+    'revision': string;
+    /**
+     * Populated from /proc/cpuinfo MODEL
+     * @type {string}
+     * @memberof DeviceInfoRequest
+     */
+    'model': string;
+    /**
+     * Populated from /proc/cpuinfo SERIAL
+     * @type {string}
+     * @memberof DeviceInfoRequest
+     */
+    'serial': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof DeviceInfoRequest
+     */
+    'cores': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DeviceInfoRequest
+     */
+    'ram': number;
+    /**
+     * Print Nanny OS version string from /boot/image_version.txt
+     * @type {string}
+     * @memberof DeviceInfoRequest
+     */
+    'image_version': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof DeviceInfoRequest
+     */
+    'device': number;
+}
+/**
+ * 
+ * @export
  * @interface DeviceKeyPair
  */
 export interface DeviceKeyPair {
@@ -2981,6 +3115,37 @@ export interface PaginatedDeviceConfigList {
 /**
  * 
  * @export
+ * @interface PaginatedDeviceInfoList
+ */
+export interface PaginatedDeviceInfoList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedDeviceInfoList
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedDeviceInfoList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedDeviceInfoList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<DeviceInfo>}
+     * @memberof PaginatedDeviceInfoList
+     */
+    'results'?: Array<DeviceInfo>;
+}
+/**
+ * 
+ * @export
  * @interface PaginatedDeviceList
  */
 export interface PaginatedDeviceList {
@@ -3825,6 +3990,67 @@ export interface PatchedDeviceCalibrationRequest {
      * @memberof PatchedDeviceCalibrationRequest
      */
     'width'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface PatchedDeviceInfoRequest
+ */
+export interface PatchedDeviceInfoRequest {
+    /**
+     * Populated from /etc/machine-id
+     * @type {string}
+     * @memberof PatchedDeviceInfoRequest
+     */
+    'machine_id'?: string;
+    /**
+     * Populated from /proc/cpuinfo HARDWARE
+     * @type {string}
+     * @memberof PatchedDeviceInfoRequest
+     */
+    'hardware'?: string;
+    /**
+     * Populated from /proc/cpuinfo REVISION
+     * @type {string}
+     * @memberof PatchedDeviceInfoRequest
+     */
+    'revision'?: string;
+    /**
+     * Populated from /proc/cpuinfo MODEL
+     * @type {string}
+     * @memberof PatchedDeviceInfoRequest
+     */
+    'model'?: string;
+    /**
+     * Populated from /proc/cpuinfo SERIAL
+     * @type {string}
+     * @memberof PatchedDeviceInfoRequest
+     */
+    'serial'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedDeviceInfoRequest
+     */
+    'cores'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedDeviceInfoRequest
+     */
+    'ram'?: number;
+    /**
+     * Print Nanny OS version string from /boot/image_version.txt
+     * @type {string}
+     * @memberof PatchedDeviceInfoRequest
+     */
+    'image_version'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedDeviceInfoRequest
+     */
+    'device'?: number;
 }
 /**
  * 
@@ -7886,6 +8112,234 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
+         * 
+         * @param {number} deviceId 
+         * @param {DeviceInfoRequest} deviceInfoRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesInfoCreate: async (deviceId: number, deviceInfoRequest: DeviceInfoRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesInfoCreate', 'deviceId', deviceId)
+            // verify required parameter 'deviceInfoRequest' is not null or undefined
+            assertParamExists('devicesInfoCreate', 'deviceInfoRequest', deviceInfoRequest)
+            const localVarPath = `/api/devices/{device_id}/info/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(deviceInfoRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesInfoList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesInfoList', 'deviceId', deviceId)
+            const localVarPath = `/api/devices/{device_id}/info/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device info.
+         * @param {PatchedDeviceInfoRequest} [patchedDeviceInfoRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesInfoPartialUpdate: async (deviceId: number, id: number, patchedDeviceInfoRequest?: PatchedDeviceInfoRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesInfoPartialUpdate', 'deviceId', deviceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesInfoPartialUpdate', 'id', id)
+            const localVarPath = `/api/devices/{device_id}/info/{id}/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedDeviceInfoRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device info.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesInfoRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesInfoRetrieve', 'deviceId', deviceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesInfoRetrieve', 'id', id)
+            const localVarPath = `/api/devices/{device_id}/info/{id}/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device info.
+         * @param {DeviceInfoRequest} deviceInfoRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesInfoUpdate: async (deviceId: number, id: number, deviceInfoRequest: DeviceInfoRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesInfoUpdate', 'deviceId', deviceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesInfoUpdate', 'id', id)
+            // verify required parameter 'deviceInfoRequest' is not null or undefined
+            assertParamExists('devicesInfoUpdate', 'deviceInfoRequest', deviceInfoRequest)
+            const localVarPath = `/api/devices/{device_id}/info/{id}/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(deviceInfoRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
          * @param {number} deviceId 
          * @param {*} [options] Override http request option.
@@ -8722,6 +9176,63 @@ export const DevicesApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * 
+         * @param {number} deviceId 
+         * @param {DeviceInfoRequest} deviceInfoRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesInfoCreate(deviceId: number, deviceInfoRequest: DeviceInfoRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceInfo>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesInfoCreate(deviceId, deviceInfoRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesInfoList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedDeviceInfoList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesInfoList(deviceId, page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device info.
+         * @param {PatchedDeviceInfoRequest} [patchedDeviceInfoRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesInfoPartialUpdate(deviceId: number, id: number, patchedDeviceInfoRequest?: PatchedDeviceInfoRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceInfo>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesInfoPartialUpdate(deviceId, id, patchedDeviceInfoRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device info.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesInfoRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceInfo>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesInfoRetrieve(deviceId, id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device info.
+         * @param {DeviceInfoRequest} deviceInfoRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesInfoUpdate(deviceId: number, id: number, deviceInfoRequest: DeviceInfoRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceInfo>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesInfoUpdate(deviceId, id, deviceInfoRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
          * @param {number} deviceId 
          * @param {*} [options] Override http request option.
@@ -9038,6 +9549,58 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.devicesCreate(deviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
+         * 
+         * @param {number} deviceId 
+         * @param {DeviceInfoRequest} deviceInfoRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesInfoCreate(deviceId: number, deviceInfoRequest: DeviceInfoRequest, options?: any): AxiosPromise<DeviceInfo> {
+            return localVarFp.devicesInfoCreate(deviceId, deviceInfoRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesInfoList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedDeviceInfoList> {
+            return localVarFp.devicesInfoList(deviceId, page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device info.
+         * @param {PatchedDeviceInfoRequest} [patchedDeviceInfoRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesInfoPartialUpdate(deviceId: number, id: number, patchedDeviceInfoRequest?: PatchedDeviceInfoRequest, options?: any): AxiosPromise<DeviceInfo> {
+            return localVarFp.devicesInfoPartialUpdate(deviceId, id, patchedDeviceInfoRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device info.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesInfoRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<DeviceInfo> {
+            return localVarFp.devicesInfoRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device info.
+         * @param {DeviceInfoRequest} deviceInfoRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesInfoUpdate(deviceId: number, id: number, deviceInfoRequest: DeviceInfoRequest, options?: any): AxiosPromise<DeviceInfo> {
+            return localVarFp.devicesInfoUpdate(deviceId, id, deviceInfoRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
          * @param {number} deviceId 
          * @param {*} [options] Override http request option.
@@ -9335,6 +9898,58 @@ export interface DevicesApiInterface {
      * @memberof DevicesApiInterface
      */
     devicesCreate(deviceRequest?: DeviceRequest, options?: AxiosRequestConfig): AxiosPromise<Device>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {DeviceInfoRequest} deviceInfoRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesInfoCreate(deviceId: number, deviceInfoRequest: DeviceInfoRequest, options?: AxiosRequestConfig): AxiosPromise<DeviceInfo>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesInfoList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedDeviceInfoList>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this device info.
+     * @param {PatchedDeviceInfoRequest} [patchedDeviceInfoRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesInfoPartialUpdate(deviceId: number, id: number, patchedDeviceInfoRequest?: PatchedDeviceInfoRequest, options?: AxiosRequestConfig): AxiosPromise<DeviceInfo>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this device info.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesInfoRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<DeviceInfo>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this device info.
+     * @param {DeviceInfoRequest} deviceInfoRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesInfoUpdate(deviceId: number, id: number, deviceInfoRequest: DeviceInfoRequest, options?: AxiosRequestConfig): AxiosPromise<DeviceInfo>;
 
     /**
      * Public key for Print Nanny Device Only one public key may be active at a time DELETE <:endpoint> will soft-delete a key
@@ -9659,6 +10274,68 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      */
     public devicesCreate(deviceRequest?: DeviceRequest, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesCreate(deviceRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {DeviceInfoRequest} deviceInfoRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesInfoCreate(deviceId: number, deviceInfoRequest: DeviceInfoRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesInfoCreate(deviceId, deviceInfoRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesInfoList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesInfoList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this device info.
+     * @param {PatchedDeviceInfoRequest} [patchedDeviceInfoRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesInfoPartialUpdate(deviceId: number, id: number, patchedDeviceInfoRequest?: PatchedDeviceInfoRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesInfoPartialUpdate(deviceId, id, patchedDeviceInfoRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this device info.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesInfoRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesInfoRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this device info.
+     * @param {DeviceInfoRequest} deviceInfoRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesInfoUpdate(deviceId: number, id: number, deviceInfoRequest: DeviceInfoRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesInfoUpdate(deviceId, id, deviceInfoRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

@@ -17,6 +17,11 @@ Method | HTTP request | Description
 [**devicesConfigList**](DevicesApi.md#devicesConfigList) | **GET** /api/devices/{device_id}/config/ | 
 [**devicesConfigRetrieve**](DevicesApi.md#devicesConfigRetrieve) | **GET** /api/devices/{device_id}/config/{id}/ | 
 [**devicesCreate**](DevicesApi.md#devicesCreate) | **POST** /api/devices/ | 
+[**devicesInfoCreate**](DevicesApi.md#devicesInfoCreate) | **POST** /api/devices/{device_id}/info/ | 
+[**devicesInfoList**](DevicesApi.md#devicesInfoList) | **GET** /api/devices/{device_id}/info/ | 
+[**devicesInfoPartialUpdate**](DevicesApi.md#devicesInfoPartialUpdate) | **PATCH** /api/devices/{device_id}/info/{id}/ | 
+[**devicesInfoRetrieve**](DevicesApi.md#devicesInfoRetrieve) | **GET** /api/devices/{device_id}/info/{id}/ | 
+[**devicesInfoUpdate**](DevicesApi.md#devicesInfoUpdate) | **PUT** /api/devices/{device_id}/info/{id}/ | 
 [**devicesKeypairsCreate**](DevicesApi.md#devicesKeypairsCreate) | **POST** /api/devices/{device_id}/keypairs/ | 
 [**devicesKeypairsList**](DevicesApi.md#devicesKeypairsList) | **GET** /api/devices/{device_id}/keypairs/ | 
 [**devicesKeypairsRetrieve**](DevicesApi.md#devicesKeypairsRetrieve) | **GET** /api/devices/{device_id}/keypairs/{id}/ | 
@@ -704,6 +709,270 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Device**](Device.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+<a name="devicesInfoCreate"></a>
+# **devicesInfoCreate**
+> DeviceInfo devicesInfoCreate(deviceId, deviceInfoRequest)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = DevicesApi()
+val deviceId : kotlin.Int = 56 // kotlin.Int | 
+val deviceInfoRequest : DeviceInfoRequest =  // DeviceInfoRequest | 
+try {
+    val result : DeviceInfo = apiInstance.devicesInfoCreate(deviceId, deviceInfoRequest)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DevicesApi#devicesInfoCreate")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DevicesApi#devicesInfoCreate")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deviceId** | **kotlin.Int**|  |
+ **deviceInfoRequest** | [**DeviceInfoRequest**](DeviceInfoRequest.md)|  |
+
+### Return type
+
+[**DeviceInfo**](DeviceInfo.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+<a name="devicesInfoList"></a>
+# **devicesInfoList**
+> PaginatedDeviceInfoList devicesInfoList(deviceId, page)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = DevicesApi()
+val deviceId : kotlin.Int = 56 // kotlin.Int | 
+val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
+try {
+    val result : PaginatedDeviceInfoList = apiInstance.devicesInfoList(deviceId, page)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DevicesApi#devicesInfoList")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DevicesApi#devicesInfoList")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deviceId** | **kotlin.Int**|  |
+ **page** | **kotlin.Int**| A page number within the paginated result set. | [optional]
+
+### Return type
+
+[**PaginatedDeviceInfoList**](PaginatedDeviceInfoList.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="devicesInfoPartialUpdate"></a>
+# **devicesInfoPartialUpdate**
+> DeviceInfo devicesInfoPartialUpdate(deviceId, id, patchedDeviceInfoRequest)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = DevicesApi()
+val deviceId : kotlin.Int = 56 // kotlin.Int | 
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this device info.
+val patchedDeviceInfoRequest : PatchedDeviceInfoRequest =  // PatchedDeviceInfoRequest | 
+try {
+    val result : DeviceInfo = apiInstance.devicesInfoPartialUpdate(deviceId, id, patchedDeviceInfoRequest)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DevicesApi#devicesInfoPartialUpdate")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DevicesApi#devicesInfoPartialUpdate")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deviceId** | **kotlin.Int**|  |
+ **id** | **kotlin.Int**| A unique integer value identifying this device info. |
+ **patchedDeviceInfoRequest** | [**PatchedDeviceInfoRequest**](PatchedDeviceInfoRequest.md)|  | [optional]
+
+### Return type
+
+[**DeviceInfo**](DeviceInfo.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+<a name="devicesInfoRetrieve"></a>
+# **devicesInfoRetrieve**
+> DeviceInfo devicesInfoRetrieve(deviceId, id)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = DevicesApi()
+val deviceId : kotlin.Int = 56 // kotlin.Int | 
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this device info.
+try {
+    val result : DeviceInfo = apiInstance.devicesInfoRetrieve(deviceId, id)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DevicesApi#devicesInfoRetrieve")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DevicesApi#devicesInfoRetrieve")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deviceId** | **kotlin.Int**|  |
+ **id** | **kotlin.Int**| A unique integer value identifying this device info. |
+
+### Return type
+
+[**DeviceInfo**](DeviceInfo.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="devicesInfoUpdate"></a>
+# **devicesInfoUpdate**
+> DeviceInfo devicesInfoUpdate(deviceId, id, deviceInfoRequest)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = DevicesApi()
+val deviceId : kotlin.Int = 56 // kotlin.Int | 
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this device info.
+val deviceInfoRequest : DeviceInfoRequest =  // DeviceInfoRequest | 
+try {
+    val result : DeviceInfo = apiInstance.devicesInfoUpdate(deviceId, id, deviceInfoRequest)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DevicesApi#devicesInfoUpdate")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DevicesApi#devicesInfoUpdate")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deviceId** | **kotlin.Int**|  |
+ **id** | **kotlin.Int**| A unique integer value identifying this device info. |
+ **deviceInfoRequest** | [**DeviceInfoRequest**](DeviceInfoRequest.md)|  |
+
+### Return type
+
+[**DeviceInfo**](DeviceInfo.md)
 
 ### Authorization
 

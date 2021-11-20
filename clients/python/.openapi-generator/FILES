@@ -28,6 +28,8 @@ docs/Device.md
 docs/DeviceCalibration.md
 docs/DeviceCalibrationRequest.md
 docs/DeviceConfig.md
+docs/DeviceInfo.md
+docs/DeviceInfoRequest.md
 docs/DeviceKeyPair.md
 docs/DeviceRequest.md
 docs/DeviceState.md
@@ -78,6 +80,7 @@ docs/PaginatedCameraList.md
 docs/PaginatedCloudiotDeviceList.md
 docs/PaginatedDeviceCalibrationList.md
 docs/PaginatedDeviceConfigList.md
+docs/PaginatedDeviceInfoList.md
 docs/PaginatedDeviceList.md
 docs/PaginatedDeviceStateList.md
 docs/PaginatedExperimentDeviceConfigList.md
@@ -106,6 +109,7 @@ docs/PatchedAlertRequest.md
 docs/PatchedCameraRequest.md
 docs/PatchedCloudiotDeviceRequest.md
 docs/PatchedDeviceCalibrationRequest.md
+docs/PatchedDeviceInfoRequest.md
 docs/PatchedDeviceRequest.md
 docs/PatchedOctoPrintDeviceRequest.md
 docs/PatchedPrintSessionRequest.md
@@ -192,6 +196,8 @@ print_nanny_client/models/device.py
 print_nanny_client/models/device_calibration.py
 print_nanny_client/models/device_calibration_request.py
 print_nanny_client/models/device_config.py
+print_nanny_client/models/device_info.py
+print_nanny_client/models/device_info_request.py
 print_nanny_client/models/device_key_pair.py
 print_nanny_client/models/device_request.py
 print_nanny_client/models/device_state.py
@@ -240,6 +246,7 @@ print_nanny_client/models/paginated_camera_list.py
 print_nanny_client/models/paginated_cloudiot_device_list.py
 print_nanny_client/models/paginated_device_calibration_list.py
 print_nanny_client/models/paginated_device_config_list.py
+print_nanny_client/models/paginated_device_info_list.py
 print_nanny_client/models/paginated_device_list.py
 print_nanny_client/models/paginated_device_state_list.py
 print_nanny_client/models/paginated_experiment_device_config_list.py
@@ -266,6 +273,7 @@ print_nanny_client/models/patched_alert_request.py
 print_nanny_client/models/patched_camera_request.py
 print_nanny_client/models/patched_cloudiot_device_request.py
 print_nanny_client/models/patched_device_calibration_request.py
+print_nanny_client/models/patched_device_info_request.py
 print_nanny_client/models/patched_device_request.py
 print_nanny_client/models/patched_octo_print_device_request.py
 print_nanny_client/models/patched_print_session_request.py
@@ -338,6 +346,8 @@ test/test_device.py
 test/test_device_calibration.py
 test/test_device_calibration_request.py
 test/test_device_config.py
+test/test_device_info.py
+test/test_device_info_request.py
 test/test_device_key_pair.py
 test/test_device_request.py
 test/test_device_state.py
@@ -388,6 +398,7 @@ test/test_paginated_camera_list.py
 test/test_paginated_cloudiot_device_list.py
 test/test_paginated_device_calibration_list.py
 test/test_paginated_device_config_list.py
+test/test_paginated_device_info_list.py
 test/test_paginated_device_list.py
 test/test_paginated_device_state_list.py
 test/test_paginated_experiment_device_config_list.py
@@ -416,6 +427,7 @@ test/test_patched_alert_request.py
 test/test_patched_camera_request.py
 test/test_patched_cloudiot_device_request.py
 test/test_patched_device_calibration_request.py
+test/test_patched_device_info_request.py
 test/test_patched_device_request.py
 test/test_patched_octo_print_device_request.py
 test/test_patched_print_session_request.py
