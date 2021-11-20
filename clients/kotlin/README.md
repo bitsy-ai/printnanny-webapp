@@ -61,6 +61,11 @@ Class | Method | HTTP request | Description
 *DevicesApi* | [**devicesConfigList**](docs/DevicesApi.md#devicesconfiglist) | **GET** /api/devices/{device_id}/config/ | 
 *DevicesApi* | [**devicesConfigRetrieve**](docs/DevicesApi.md#devicesconfigretrieve) | **GET** /api/devices/{device_id}/config/{id}/ | 
 *DevicesApi* | [**devicesCreate**](docs/DevicesApi.md#devicescreate) | **POST** /api/devices/ | 
+*DevicesApi* | [**devicesInfoCreate**](docs/DevicesApi.md#devicesinfocreate) | **POST** /api/devices/{device_id}/info/ | 
+*DevicesApi* | [**devicesInfoList**](docs/DevicesApi.md#devicesinfolist) | **GET** /api/devices/{device_id}/info/ | 
+*DevicesApi* | [**devicesInfoPartialUpdate**](docs/DevicesApi.md#devicesinfopartialupdate) | **PATCH** /api/devices/{device_id}/info/{id}/ | 
+*DevicesApi* | [**devicesInfoRetrieve**](docs/DevicesApi.md#devicesinforetrieve) | **GET** /api/devices/{device_id}/info/{id}/ | 
+*DevicesApi* | [**devicesInfoUpdate**](docs/DevicesApi.md#devicesinfoupdate) | **PUT** /api/devices/{device_id}/info/{id}/ | 
 *DevicesApi* | [**devicesKeypairsCreate**](docs/DevicesApi.md#deviceskeypairscreate) | **POST** /api/devices/{device_id}/keypairs/ | 
 *DevicesApi* | [**devicesKeypairsList**](docs/DevicesApi.md#deviceskeypairslist) | **GET** /api/devices/{device_id}/keypairs/ | 
 *DevicesApi* | [**devicesKeypairsRetrieve**](docs/DevicesApi.md#deviceskeypairsretrieve) | **GET** /api/devices/{device_id}/keypairs/{id}/ | 
@@ -164,6 +169,8 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.DeviceCalibration](docs/DeviceCalibration.md)
  - [com.print-nanny.client.models.DeviceCalibrationRequest](docs/DeviceCalibrationRequest.md)
  - [com.print-nanny.client.models.DeviceConfig](docs/DeviceConfig.md)
+ - [com.print-nanny.client.models.DeviceInfo](docs/DeviceInfo.md)
+ - [com.print-nanny.client.models.DeviceInfoRequest](docs/DeviceInfoRequest.md)
  - [com.print-nanny.client.models.DeviceKeyPair](docs/DeviceKeyPair.md)
  - [com.print-nanny.client.models.DeviceRequest](docs/DeviceRequest.md)
  - [com.print-nanny.client.models.DeviceState](docs/DeviceState.md)
@@ -212,6 +219,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.PaginatedCloudiotDeviceList](docs/PaginatedCloudiotDeviceList.md)
  - [com.print-nanny.client.models.PaginatedDeviceCalibrationList](docs/PaginatedDeviceCalibrationList.md)
  - [com.print-nanny.client.models.PaginatedDeviceConfigList](docs/PaginatedDeviceConfigList.md)
+ - [com.print-nanny.client.models.PaginatedDeviceInfoList](docs/PaginatedDeviceInfoList.md)
  - [com.print-nanny.client.models.PaginatedDeviceList](docs/PaginatedDeviceList.md)
  - [com.print-nanny.client.models.PaginatedDeviceStateList](docs/PaginatedDeviceStateList.md)
  - [com.print-nanny.client.models.PaginatedExperimentDeviceConfigList](docs/PaginatedExperimentDeviceConfigList.md)
@@ -238,6 +246,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.PatchedCameraRequest](docs/PatchedCameraRequest.md)
  - [com.print-nanny.client.models.PatchedCloudiotDeviceRequest](docs/PatchedCloudiotDeviceRequest.md)
  - [com.print-nanny.client.models.PatchedDeviceCalibrationRequest](docs/PatchedDeviceCalibrationRequest.md)
+ - [com.print-nanny.client.models.PatchedDeviceInfoRequest](docs/PatchedDeviceInfoRequest.md)
  - [com.print-nanny.client.models.PatchedDeviceRequest](docs/PatchedDeviceRequest.md)
  - [com.print-nanny.client.models.PatchedOctoPrintDeviceRequest](docs/PatchedOctoPrintDeviceRequest.md)
  - [com.print-nanny.client.models.PatchedPrintSessionRequest](docs/PatchedPrintSessionRequest.md)

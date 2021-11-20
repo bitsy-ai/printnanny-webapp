@@ -4,6 +4,7 @@ from rest_framework_nested.routers import NestedSimpleRouter
 from print_nanny_webapp.devices.api.serializers import PrinterControllerSerializer
 
 from print_nanny_webapp.devices.api.views import (
+    DeviceInfoViewSet,
     DeviceConfigViewSet,
     DeviceStateViewSet,
     DeviceViewSet,
@@ -13,6 +14,7 @@ from print_nanny_webapp.devices.api.views import (
     CloudiotDeviceViewSet ,
     PrinterControllerViewSet,
 )
+from print_nanny_webapp.devices.models import DeviceInfo
 from print_nanny_webapp.ml_ops.api.views import (
     ModelArtifactViewSet, ExperimentDeviceConfigViewSet, DeviceCalibrationViewSet, ExperimentViewSet
 )
@@ -52,13 +54,13 @@ devices_by_hostname = [
 ]
 
 devices_router  = NestedSimpleRouter(router, r'devices', lookup='device')
-devices_router .register(r'config', DeviceConfigViewSet, basename='config')
-devices_router .register(r'state', DeviceStateViewSet, basename='state')
-
-devices_router .register(r'keypairs', DeviceKeyPairViewSet, basename='keypairs')
-devices_router .register(r'cameras', CameraViewSet, basename='cameras')
-devices_router .register(r'cloud-iot-devices', CloudiotDeviceViewSet , basename='cloud-iot-devices')
-devices_router .register(r'printer-controllers', PrinterControllerViewSet, basename='printer-controllers')
+devices_router.register(r'config', DeviceConfigViewSet, basename='config')
+devices_router.register(r'state', DeviceStateViewSet, basename='state')
+devices_router.register(r'info', DeviceInfoViewSet, basename='info')
+devices_router.register(r'keypairs', DeviceKeyPairViewSet, basename='keypairs')
+devices_router.register(r'cameras', CameraViewSet, basename='cameras')
+devices_router.register(r'cloud-iot-devices', CloudiotDeviceViewSet , basename='cloud-iot-devices')
+devices_router.register(r'printer-controllers', PrinterControllerViewSet, basename='printer-controllers')
 
 router.register("telemetry-events", TelemetryEventViewSet, basename="telemetry-events")
 router.register("remote-command-events", RemoteCommandEventViewSet, basename="remote-command-events")

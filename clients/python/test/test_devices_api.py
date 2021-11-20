@@ -106,6 +106,36 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
+    def test_devices_info_create(self):
+        """Test case for devices_info_create
+
+        """
+        pass
+
+    def test_devices_info_list(self):
+        """Test case for devices_info_list
+
+        """
+        pass
+
+    def test_devices_info_partial_update(self):
+        """Test case for devices_info_partial_update
+
+        """
+        pass
+
+    def test_devices_info_retrieve(self):
+        """Test case for devices_info_retrieve
+
+        """
+        pass
+
+    def test_devices_info_update(self):
+        """Test case for devices_info_update
+
+        """
+        pass
+
     def test_devices_keypairs_create(self):
         """Test case for devices_keypairs_create
 
