@@ -10,6 +10,8 @@ docs/AlertRequest.md
 docs/AlertsApi.md
 docs/AnsibleExtraVars.md
 docs/AnsibleExtraVarsRequest.md
+docs/ApiConfig.md
+docs/ApiConfigRequest.md
 docs/ArtifactTypesEnum.md
 docs/AuthApi.md
 docs/CallbackTokenAuthRequest.md
@@ -172,6 +174,8 @@ src/models/alert_event_type_enum.rs
 src/models/alert_request.rs
 src/models/ansible_extra_vars.rs
 src/models/ansible_extra_vars_request.rs
+src/models/api_config.rs
+src/models/api_config_request.rs
 src/models/artifact_types_enum.rs
 src/models/callback_token_auth_request.rs
 src/models/callback_token_verification.rs

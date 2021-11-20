@@ -24,6 +24,44 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 /**
  * 
  * @export
+ * @interface APIConfig
+ */
+export interface APIConfig {
+    /**
+     * 
+     * @type {string}
+     * @memberof APIConfig
+     */
+    'api_token': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof APIConfig
+     */
+    'api_url': string;
+}
+/**
+ * 
+ * @export
+ * @interface APIConfigRequest
+ */
+export interface APIConfigRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof APIConfigRequest
+     */
+    'api_token': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof APIConfigRequest
+     */
+    'api_url': string;
+}
+/**
+ * 
+ * @export
  * @interface Alert
  */
 export interface Alert {
@@ -1287,6 +1325,12 @@ export interface License {
      * @memberof License
      */
     'id'?: number;
+    /**
+     * 
+     * @type {APIConfig}
+     * @memberof License
+     */
+    'api_config'?: APIConfig;
     /**
      * 
      * @type {string}

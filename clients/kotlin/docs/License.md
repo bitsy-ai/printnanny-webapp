@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **device** | **kotlin.Int** |  | 
 **id** | **kotlin.Int** |  |  [optional] [readonly]
+**apiConfig** | [**APIConfig**](APIConfig.md) |  |  [optional] [readonly]
 **deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **publicKey** | **kotlin.String** |  |  [optional] [readonly]
 **publicKeyChecksum** | **kotlin.String** |  |  [optional] [readonly]

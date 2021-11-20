@@ -4,6 +4,8 @@
 .travis.yml
 MANIFEST.in
 README.md
+docs/APIConfig.md
+docs/APIConfigRequest.md
 docs/Alert.md
 docs/AlertBulkResponse.md
 docs/AlertEventTypeEnum.md
@@ -178,6 +180,8 @@ print_nanny_client/models/alert_event_type_enum.py
 print_nanny_client/models/alert_request.py
 print_nanny_client/models/ansible_extra_vars.py
 print_nanny_client/models/ansible_extra_vars_request.py
+print_nanny_client/models/api_config.py
+print_nanny_client/models/api_config_request.py
 print_nanny_client/models/artifact_types_enum.py
 print_nanny_client/models/callback_token_auth_request.py
 print_nanny_client/models/callback_token_verification.py
@@ -323,6 +327,8 @@ test/test_alert_request.py
 test/test_alerts_api.py
 test/test_ansible_extra_vars.py
 test/test_ansible_extra_vars_request.py
+test/test_api_config.py
+test/test_api_config_request.py
 test/test_artifact_types_enum.py
 test/test_auth__api.py
 test/test_auth_api.py

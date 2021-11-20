@@ -145,6 +145,8 @@ Class | Method | HTTP request | Description
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
+ - [com.print-nanny.client.models.APIConfig](docs/APIConfig.md)
+ - [com.print-nanny.client.models.APIConfigRequest](docs/APIConfigRequest.md)
  - [com.print-nanny.client.models.Alert](docs/Alert.md)
  - [com.print-nanny.client.models.AlertBulkResponse](docs/AlertBulkResponse.md)
  - [com.print-nanny.client.models.AlertEventTypeEnum](docs/AlertEventTypeEnum.md)

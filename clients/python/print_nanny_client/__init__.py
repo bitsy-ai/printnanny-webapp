@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.8.66"
+__version__ = "0.8.67"
 
 # import apis into sdk package
 from print_nanny_client.api.alerts_api import AlertsApi
@@ -40,6 +40,8 @@ from print_nanny_client.exceptions import ApiKeyError
 from print_nanny_client.exceptions import ApiAttributeError
 from print_nanny_client.exceptions import ApiException
 # import models into sdk package
+from print_nanny_client.models.api_config import APIConfig
+from print_nanny_client.models.api_config_request import APIConfigRequest
 from print_nanny_client.models.alert import Alert
 from print_nanny_client.models.alert_bulk_response import AlertBulkResponse
 from print_nanny_client.models.alert_event_type_enum import AlertEventTypeEnum

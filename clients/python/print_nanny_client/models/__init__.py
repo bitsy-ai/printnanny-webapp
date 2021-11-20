@@ -14,6 +14,8 @@
 from __future__ import absolute_import
 
 # import models into model package
+from print_nanny_client.models.api_config import APIConfig
+from print_nanny_client.models.api_config_request import APIConfigRequest
 from print_nanny_client.models.alert import Alert
 from print_nanny_client.models.alert_bulk_response import AlertBulkResponse
 from print_nanny_client.models.alert_event_type_enum import AlertEventTypeEnum

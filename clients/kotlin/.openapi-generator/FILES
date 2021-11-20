@@ -1,6 +1,8 @@
 .openapi-generator-ignore
 README.md
 build.gradle
+docs/APIConfig.md
+docs/APIConfigRequest.md
 docs/Alert.md
 docs/AlertBulkResponse.md
 docs/AlertEventTypeEnum.md
@@ -181,6 +183,8 @@ src/main/kotlin/com/print-nanny/client/infrastructure/ResponseExtensions.kt
 src/main/kotlin/com/print-nanny/client/infrastructure/Serializer.kt
 src/main/kotlin/com/print-nanny/client/infrastructure/URIAdapter.kt
 src/main/kotlin/com/print-nanny/client/infrastructure/UUIDAdapter.kt
+src/main/kotlin/com/print-nanny/client/models/APIConfig.kt
+src/main/kotlin/com/print-nanny/client/models/APIConfigRequest.kt
 src/main/kotlin/com/print-nanny/client/models/Alert.kt
 src/main/kotlin/com/print-nanny/client/models/AlertBulkResponse.kt
 src/main/kotlin/com/print-nanny/client/models/AlertEventTypeEnum.kt
