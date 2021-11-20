@@ -328,7 +328,7 @@ def generate_zipped_license_file(
     config_serializer.is_valid()
     config_json = JSONRenderer().render(config_serializer.data)
 
-    device.license.api_config = api_config
+    device.active_license.api_config = api_config
     device_serializer = DeviceSerializer(device, context=dict(request=request))
     device_json = JSONRenderer().render(device_serializer.data)
 
