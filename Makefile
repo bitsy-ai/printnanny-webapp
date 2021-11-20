@@ -38,8 +38,9 @@ docker-mypy:
 mypy:
 	. .envs/.local/.tests.sh && \
 	mypy print_nanny_webapp/telemetry/
+
 token:
-	echo $(PRINT_NANNY_TOKEN)
+	@echo $(PRINT_NANNY_TOKEN)
 
 nebula-image:
 	docker build -f compose/production/nebula/nebula.Dockerfile \

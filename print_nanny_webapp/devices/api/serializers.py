@@ -129,7 +129,7 @@ class DeviceSerializer(serializers.ModelSerializer):
         depth = 2
 
 
-class LicenseAPISerializer(serializers.Serializer):
+class APICrentialSerializer(serializers.Serializer):
     api_token = serializers.CharField()
     api_url = serializers.CharField()
     user = UserSerializer()
