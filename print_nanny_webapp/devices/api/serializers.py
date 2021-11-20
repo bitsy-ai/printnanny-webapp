@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from rest_framework.authtoken.models import Token
 
 from print_nanny_webapp.devices.models import (
     Device,
