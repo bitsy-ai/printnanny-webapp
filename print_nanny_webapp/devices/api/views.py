@@ -18,6 +18,7 @@ from rest_framework.viewsets import GenericViewSet
 import rest_framework.status
 
 from .serializers import (
+    DeviceInfoSerializer,
     DeviceConfigSerializer,
     DeviceStateSerializer,
     DeviceKeyPairSerializer,
@@ -28,6 +29,7 @@ from .serializers import (
     PrinterControllerSerializer,
 )
 from ..models import (
+    DeviceInfo,
     DeviceConfig,
     DeviceState,
     Device,
@@ -156,6 +158,45 @@ class DeviceViewSet(
     def license(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         device = Device.objects.get(pk=kwargs["id"])
         return generate_zipped_license_response(device, request)
+
+
+###
+# DeviceInfo views
+###
+list_device_info_schema = extend_schema(
+    responses={
+        "default": ErrorDetailSerializer,
+        200: DeviceInfoSerializer(many=True),
+    },
+)
+modify_device_info_schema = extend_schema(
+    request=DeviceInfoSerializer,
+    responses={
+        "default": ErrorDetailSerializer,
+        201: DeviceInfoSerializer,
+        202: DeviceInfoSerializer,
+    },
+)
+
+
+@extend_schema_view(
+    list=list_device_info_schema,
+    create=modify_device_info_schema,
+    update=modify_device_info_schema,
+)
+class DeviceInfoViewSet(
+    GenericViewSet,
+    ListModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+    CreateModelMixin,
+):
+    serializer_class = DeviceInfoSerializer
+    queryset = DeviceInfo.objects.all()
+    lookup_field = "id"
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 
 ###

@@ -5,6 +5,7 @@ from print_nanny_webapp.devices.models import (
     Camera,
     CloudiotDevice,
     DeviceConfig,
+    DeviceInfo,
     DeviceState,
     License,
     PrinterController,
@@ -135,3 +136,9 @@ class LicenseAPISerializer(serializers.Serializer):
 
     class Meta:
         depth = 1
+
+
+class DeviceInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DeviceInfo
+        fields = "__all__"
