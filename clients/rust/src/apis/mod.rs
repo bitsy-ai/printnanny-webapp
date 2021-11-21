@@ -1,8 +1,7 @@
 use std::error;
 use std::fmt;
-use thiserror::{ Error as ThisError };
 
-#[derive(ThisError, Debug, Clone)]
+#[derive(Debug, Clone)]
 pub struct ResponseContent<T> {
     pub status: reqwest::StatusCode,
     pub content: String,
