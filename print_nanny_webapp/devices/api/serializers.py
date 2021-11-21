@@ -122,32 +122,31 @@ class DeviceStateSerializer(serializers.ModelSerializer):
 
 
 class DeviceSerializer(serializers.ModelSerializer):
-    cloudiot_device = CloudiotDeviceSerializer(read_only=True, allow_null=True)
+    cloudiot_device = CloudiotDeviceSerializer(
+        read_only=True, allow_null=True, required=False
+    )
     cameras = CameraSerializer(read_only=True, many=True, default=list())
     dashboard_url = serializers.CharField(read_only=True)
 
-    bootstrap_release = ReleaseSerializer(read_only=True, allow_null=True)
+    bootstrap_release = ReleaseSerializer(
+        read_only=True, allow_null=True, required=False
+    )
 
-    printer_controllers = PrinterControllerSerializer(read_only=True, many=True)
+    printer_controllers = PrinterControllerSerializer(
+        read_only=True, many=True, default=list()
+    )
     release_channel = serializers.ChoiceField(
         choices=DeviceReleaseChannel.choices,
         default=DeviceReleaseChannel.STABLE,
     )
 
-    user = UserSerializer(read_only=True)
-    active_license = LicenseSerializer(read_only=True, allow_null=True)
+    user = UserSerializer(read_only=True, required=False)
+    active_license = LicenseSerializer(read_only=True, allow_null=True, required=False)
 
     class Meta:
         model = Device
         fields = "__all__"
         depth = 4
-        read_only_fields = (
-            "active_license" "cloudiot_device",
-            "cameras",
-            "dashboard_url",
-            "printer_controllers",
-            "user",
-        )
 
 
 class DeviceInfoSerializer(serializers.ModelSerializer):
