@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **i32** |  | [readonly]
-**deleted** | **String** |  | [readonly]
-**created_dt** | **String** |  | [readonly]
-**updated_dt** | **String** |  | [readonly]
+**id** | Option<**i32**> |  | [optional][readonly]
+**deleted** | Option<**String**> |  | [optional][readonly]
+**created_dt** | Option<**String**> |  | [optional][readonly]
+**updated_dt** | Option<**String**> |  | [optional][readonly]
 **user** | **i32** |  | 
 **device** | **i32** |  | 
 **name** | **String** |  | 
 **camera_type** | Option<[**crate::models::CameraTypeEnum**](CameraTypeEnum.md)> |  | [optional]
 **camera_source** | **String** |  | 
-**url** | **String** |  | [readonly]
+**url** | Option<**String**> |  | [optional][readonly]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

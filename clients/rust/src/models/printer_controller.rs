@@ -11,18 +11,18 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct PrinterController {
-    #[serde(rename = "id")]
-    pub id: i32,
+    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
+    pub id: Option<i32>,
     #[serde(rename = "software", skip_serializing_if = "Option::is_none")]
     pub software: Option<Box<crate::models::SoftwareEnum>>,
-    #[serde(rename = "deleted")]
-    pub deleted: String,
-    #[serde(rename = "created_dt")]
-    pub created_dt: String,
-    #[serde(rename = "updated_dt")]
-    pub updated_dt: String,
-    #[serde(rename = "polymorphic_ctype")]
-    pub polymorphic_ctype: i32,
+    #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
+    pub deleted: Option<String>,
+    #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
+    pub created_dt: Option<String>,
+    #[serde(rename = "updated_dt", skip_serializing_if = "Option::is_none")]
+    pub updated_dt: Option<String>,
+    #[serde(rename = "polymorphic_ctype", skip_serializing_if = "Option::is_none")]
+    pub polymorphic_ctype: Option<i32>,
     #[serde(rename = "user")]
     pub user: i32,
     #[serde(rename = "device")]
@@ -30,14 +30,14 @@ pub struct PrinterController {
 }
 
 impl PrinterController {
-    pub fn new(id: i32, deleted: String, created_dt: String, updated_dt: String, polymorphic_ctype: i32, user: i32, device: i32) -> PrinterController {
+    pub fn new(user: i32, device: i32) -> PrinterController {
         PrinterController {
-            id,
+            id: None,
             software: None,
-            deleted,
-            created_dt,
-            updated_dt,
-            polymorphic_ctype,
+            deleted: None,
+            created_dt: None,
+            updated_dt: None,
+            polymorphic_ctype: None,
             user,
             device,
         }

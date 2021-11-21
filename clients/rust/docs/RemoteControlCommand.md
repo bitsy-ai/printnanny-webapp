@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **i32** |  | [readonly]
-**created_dt** | **String** |  | [readonly]
+**id** | Option<**i32**> |  | [optional][readonly]
+**created_dt** | Option<**String**> |  | [optional][readonly]
 **command** | Option<[**crate::models::RemoteControlCommandCommandEnum**](RemoteControlCommandCommandEnum.md)> |  | [optional]
 **user** | **i32** |  | 
 **device** | **i32** |  | 
@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 **success** | Option<**bool**> |  | [optional]
 **iotcore_response** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **metadata** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
-**url** | **String** |  | [readonly]
-**octoprint_event_type** | **String** |  | [readonly]
+**url** | Option<**String**> |  | [optional][readonly]
+**octoprint_event_type** | Option<**String**> |  | [optional][readonly]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

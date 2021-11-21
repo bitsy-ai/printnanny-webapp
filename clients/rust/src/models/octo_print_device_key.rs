@@ -15,34 +15,34 @@ pub struct OctoPrintDeviceKey {
     pub active_session: Option<Box<crate::models::PrintSession>>,
     #[serde(rename = "ca_certs")]
     pub ca_certs: ::std::collections::HashMap<String, String>,
-    #[serde(rename = "cloudiot_device_configs")]
-    pub cloudiot_device_configs: String,
-    #[serde(rename = "cloudiot_device_name")]
-    pub cloudiot_device_name: String,
-    #[serde(rename = "cloudiot_device_num_id")]
-    pub cloudiot_device_num_id: i32,
-    #[serde(rename = "cloudiot_device_path")]
-    pub cloudiot_device_path: String,
-    #[serde(rename = "cloudiot_device")]
-    pub cloudiot_device: ::std::collections::HashMap<String, serde_json::Value>,
+    #[serde(rename = "cloudiot_device_configs", skip_serializing_if = "Option::is_none")]
+    pub cloudiot_device_configs: Option<String>,
+    #[serde(rename = "cloudiot_device_name", skip_serializing_if = "Option::is_none")]
+    pub cloudiot_device_name: Option<String>,
+    #[serde(rename = "cloudiot_device_num_id", skip_serializing_if = "Option::is_none")]
+    pub cloudiot_device_num_id: Option<i32>,
+    #[serde(rename = "cloudiot_device_path", skip_serializing_if = "Option::is_none")]
+    pub cloudiot_device_path: Option<String>,
+    #[serde(rename = "cloudiot_device", skip_serializing_if = "Option::is_none")]
+    pub cloudiot_device: Option<::std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "cores")]
     pub cores: i32,
     #[serde(rename = "cpu_flags", skip_serializing_if = "Option::is_none")]
     pub cpu_flags: Option<Vec<String>>,
-    #[serde(rename = "created_dt")]
-    pub created_dt: String,
-    #[serde(rename = "fingerprint")]
-    pub fingerprint: String,
+    #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
+    pub created_dt: Option<String>,
+    #[serde(rename = "fingerprint", skip_serializing_if = "Option::is_none")]
+    pub fingerprint: Option<String>,
     #[serde(rename = "hardware", skip_serializing_if = "Option::is_none")]
     pub hardware: Option<String>,
-    #[serde(rename = "id")]
-    pub id: i32,
-    #[serde(rename = "manage_url")]
-    pub manage_url: String,
+    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
+    pub id: Option<i32>,
+    #[serde(rename = "manage_url", skip_serializing_if = "Option::is_none")]
+    pub manage_url: Option<String>,
     #[serde(rename = "model")]
     pub model: String,
-    #[serde(rename = "monitoring_active")]
-    pub monitoring_active: bool,
+    #[serde(rename = "monitoring_active", skip_serializing_if = "Option::is_none")]
+    pub monitoring_active: Option<bool>,
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "octoprint_version")]
@@ -55,14 +55,14 @@ pub struct OctoPrintDeviceKey {
     pub plugin_version: String,
     #[serde(rename = "print_nanny_client_version")]
     pub print_nanny_client_version: String,
-    #[serde(rename = "private_key_checksum")]
-    pub private_key_checksum: String,
-    #[serde(rename = "private_key")]
-    pub private_key: String,
+    #[serde(rename = "private_key_checksum", skip_serializing_if = "Option::is_none")]
+    pub private_key_checksum: Option<String>,
+    #[serde(rename = "private_key", skip_serializing_if = "Option::is_none")]
+    pub private_key: Option<String>,
     #[serde(rename = "public_key_checksum")]
     pub public_key_checksum: String,
-    #[serde(rename = "public_key")]
-    pub public_key: String,
+    #[serde(rename = "public_key", skip_serializing_if = "Option::is_none")]
+    pub public_key: Option<String>,
     #[serde(rename = "python_version")]
     pub python_version: String,
     #[serde(rename = "ram")]
@@ -71,47 +71,47 @@ pub struct OctoPrintDeviceKey {
     pub revision: Option<String>,
     #[serde(rename = "serial")]
     pub serial: String,
-    #[serde(rename = "user")]
-    pub user: i32,
-    #[serde(rename = "url")]
-    pub url: String,
+    #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
+    pub user: Option<i32>,
+    #[serde(rename = "url", skip_serializing_if = "Option::is_none")]
+    pub url: Option<String>,
 }
 
 impl OctoPrintDeviceKey {
-    pub fn new(ca_certs: ::std::collections::HashMap<String, String>, cloudiot_device_configs: String, cloudiot_device_name: String, cloudiot_device_num_id: i32, cloudiot_device_path: String, cloudiot_device: ::std::collections::HashMap<String, serde_json::Value>, cores: i32, created_dt: String, fingerprint: String, id: i32, manage_url: String, model: String, monitoring_active: bool, name: String, octoprint_version: String, pip_version: String, platform: String, plugin_version: String, print_nanny_client_version: String, private_key_checksum: String, private_key: String, public_key_checksum: String, public_key: String, python_version: String, ram: i32, serial: String, user: i32, url: String) -> OctoPrintDeviceKey {
+    pub fn new(ca_certs: ::std::collections::HashMap<String, String>, cores: i32, model: String, name: String, octoprint_version: String, pip_version: String, platform: String, plugin_version: String, print_nanny_client_version: String, public_key_checksum: String, python_version: String, ram: i32, serial: String) -> OctoPrintDeviceKey {
         OctoPrintDeviceKey {
             active_session: None,
             ca_certs,
-            cloudiot_device_configs,
-            cloudiot_device_name,
-            cloudiot_device_num_id,
-            cloudiot_device_path,
-            cloudiot_device,
+            cloudiot_device_configs: None,
+            cloudiot_device_name: None,
+            cloudiot_device_num_id: None,
+            cloudiot_device_path: None,
+            cloudiot_device: None,
             cores,
             cpu_flags: None,
-            created_dt,
-            fingerprint,
+            created_dt: None,
+            fingerprint: None,
             hardware: None,
-            id,
-            manage_url,
+            id: None,
+            manage_url: None,
             model,
-            monitoring_active,
+            monitoring_active: None,
             name,
             octoprint_version,
             pip_version,
             platform,
             plugin_version,
             print_nanny_client_version,
-            private_key_checksum,
-            private_key,
+            private_key_checksum: None,
+            private_key: None,
             public_key_checksum,
-            public_key,
+            public_key: None,
             python_version,
             ram,
             revision: None,
             serial,
-            user,
-            url,
+            user: None,
+            url: None,
         }
     }
 }

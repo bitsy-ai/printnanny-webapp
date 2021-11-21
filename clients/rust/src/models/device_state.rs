@@ -11,10 +11,10 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct DeviceState {
-    #[serde(rename = "id")]
-    pub id: i32,
-    #[serde(rename = "deleted")]
-    pub deleted: String,
+    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
+    pub id: Option<i32>,
+    #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
+    pub deleted: Option<String>,
     #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
     pub status: Option<crate::models::StatusEnum>,
     #[serde(rename = "command", skip_serializing_if = "Option::is_none")]
@@ -23,22 +23,22 @@ pub struct DeviceState {
     pub ansible_facts: Option<::std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "ansible_extra_vars", skip_serializing_if = "Option::is_none")]
     pub ansible_extra_vars: Option<::std::collections::HashMap<String, serde_json::Value>>,
-    #[serde(rename = "created_dt")]
-    pub created_dt: String,
+    #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
+    pub created_dt: Option<String>,
     #[serde(rename = "device")]
     pub device: i32,
 }
 
 impl DeviceState {
-    pub fn new(id: i32, deleted: String, created_dt: String, device: i32) -> DeviceState {
+    pub fn new(device: i32) -> DeviceState {
         DeviceState {
-            id,
-            deleted,
+            id: None,
+            deleted: None,
             status: None,
             command: None,
             ansible_facts: None,
             ansible_extra_vars: None,
-            created_dt,
+            created_dt: None,
             device,
         }
     }

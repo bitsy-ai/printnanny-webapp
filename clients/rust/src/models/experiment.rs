@@ -11,10 +11,10 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Experiment {
-    #[serde(rename = "id")]
-    pub id: i32,
-    #[serde(rename = "created_dt")]
-    pub created_dt: String,
+    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
+    pub id: Option<i32>,
+    #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
+    pub created_dt: Option<String>,
     #[serde(rename = "active", skip_serializing_if = "Option::is_none")]
     pub active: Option<bool>,
     #[serde(rename = "name")]
@@ -30,10 +30,10 @@ pub struct Experiment {
 }
 
 impl Experiment {
-    pub fn new(id: i32, created_dt: String, name: String, hypothesis: String, control: i32) -> Experiment {
+    pub fn new(name: String, hypothesis: String, control: i32) -> Experiment {
         Experiment {
-            id,
-            created_dt,
+            id: None,
+            created_dt: None,
             active: None,
             name,
             hypothesis,

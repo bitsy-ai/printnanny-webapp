@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **i32** |  | [readonly]
+**id** | Option<**i32**> |  | [optional][readonly]
 **software** | Option<[**crate::models::SoftwareEnum**](SoftwareEnum.md)> |  | [optional]
-**deleted** | **String** |  | [readonly]
-**created_dt** | **String** |  | [readonly]
-**updated_dt** | **String** |  | [readonly]
-**polymorphic_ctype** | **i32** |  | [readonly]
+**deleted** | Option<**String**> |  | [optional][readonly]
+**created_dt** | Option<**String**> |  | [optional][readonly]
+**updated_dt** | Option<**String**> |  | [optional][readonly]
+**polymorphic_ctype** | Option<**i32**> |  | [optional][readonly]
 **user** | **i32** |  | 
 **device** | **i32** |  | 
 

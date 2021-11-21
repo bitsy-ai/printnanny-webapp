@@ -11,22 +11,22 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Alert {
-    #[serde(rename = "id")]
-    pub id: i32,
-    #[serde(rename = "time")]
-    pub time: String,
-    #[serde(rename = "gcode_file")]
-    pub gcode_file: String,
-    #[serde(rename = "print_progress")]
-    pub print_progress: String,
-    #[serde(rename = "time_elapsed")]
-    pub time_elapsed: String,
-    #[serde(rename = "time_remaining")]
-    pub time_remaining: String,
-    #[serde(rename = "manage_device_url")]
+    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
+    pub id: Option<i32>,
+    #[serde(rename = "time", skip_serializing_if = "Option::is_none")]
+    pub time: Option<String>,
+    #[serde(rename = "gcode_file", skip_serializing_if = "Option::is_none")]
+    pub gcode_file: Option<String>,
+    #[serde(rename = "print_progress", skip_serializing_if = "Option::is_none")]
+    pub print_progress: Option<String>,
+    #[serde(rename = "time_elapsed", skip_serializing_if = "Option::is_none")]
+    pub time_elapsed: Option<String>,
+    #[serde(rename = "time_remaining", skip_serializing_if = "Option::is_none")]
+    pub time_remaining: Option<String>,
+    #[serde(rename = "manage_device_url", skip_serializing_if = "Option::is_none")]
     pub manage_device_url: Option<String>,
-    #[serde(rename = "user")]
-    pub user: i32,
+    #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
+    pub user: Option<i32>,
     #[serde(rename = "octoprint_device", skip_serializing_if = "Option::is_none")]
     pub octoprint_device: Option<i32>,
     #[serde(rename = "event_type", skip_serializing_if = "Option::is_none")]
@@ -35,32 +35,32 @@ pub struct Alert {
     pub seen: Option<bool>,
     #[serde(rename = "sent", skip_serializing_if = "Option::is_none")]
     pub sent: Option<bool>,
-    #[serde(rename = "created_dt")]
-    pub created_dt: String,
-    #[serde(rename = "updated_dt")]
-    pub updated_dt: String,
-    #[serde(rename = "message")]
-    pub message: String,
+    #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
+    pub created_dt: Option<String>,
+    #[serde(rename = "updated_dt", skip_serializing_if = "Option::is_none")]
+    pub updated_dt: Option<String>,
+    #[serde(rename = "message", skip_serializing_if = "Option::is_none")]
+    pub message: Option<String>,
 }
 
 impl Alert {
-    pub fn new(id: i32, time: String, gcode_file: String, print_progress: String, time_elapsed: String, time_remaining: String, manage_device_url: Option<String>, user: i32, created_dt: String, updated_dt: String, message: String) -> Alert {
+    pub fn new() -> Alert {
         Alert {
-            id,
-            time,
-            gcode_file,
-            print_progress,
-            time_elapsed,
-            time_remaining,
-            manage_device_url,
-            user,
+            id: None,
+            time: None,
+            gcode_file: None,
+            print_progress: None,
+            time_elapsed: None,
+            time_remaining: None,
+            manage_device_url: None,
+            user: None,
             octoprint_device: None,
             event_type: None,
             seen: None,
             sent: None,
-            created_dt,
-            updated_dt,
-            message,
+            created_dt: None,
+            updated_dt: None,
+            message: None,
         }
     }
 }

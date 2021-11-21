@@ -5,15 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **num_id** | **i64** |  | 
-**desired_config_topic** | **String** |  | [readonly]
-**current_state_topic** | **String** |  | [readonly]
-**gcp_project_id** | **String** |  | [readonly]
-**gcp_region** | **String** |  | [readonly]
-**gcp_cloudiot_device_registry** | **String** |  | [readonly]
-**mqtt_bridge_hostname** | **String** |  | [readonly]
-**mqtt_bridge_port** | **i32** |  | [readonly]
-**mqtt_client_id** | **String** |  | [readonly]
-**deleted** | **String** |  | [readonly]
+**desired_config_topic** | Option<**String**> |  | [optional][readonly]
+**current_state_topic** | Option<**String**> |  | [optional][readonly]
+**gcp_project_id** | Option<**String**> |  | [optional][readonly]
+**gcp_region** | Option<**String**> |  | [optional][readonly]
+**gcp_cloudiot_device_registry** | Option<**String**> |  | [optional][readonly]
+**mqtt_bridge_hostname** | Option<**String**> |  | [optional][readonly]
+**mqtt_bridge_port** | Option<**i32**> |  | [optional][readonly]
+**mqtt_client_id** | Option<**String**> |  | [optional][readonly]
+**deleted** | Option<**String**> |  | [optional][readonly]
 **name** | **String** |  | 
 **id** | **String** |  | 
 **device** | **i32** |  | 
