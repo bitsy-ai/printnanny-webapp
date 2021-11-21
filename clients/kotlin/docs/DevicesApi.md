@@ -4,6 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**deviceInfoUpdateOrCreate**](DevicesApi.md#deviceInfoUpdateOrCreate) | **POST** /api/devices/{device_id}/info/update-or-create/ | 
 [**devicesCamerasCreate**](DevicesApi.md#devicesCamerasCreate) | **POST** /api/devices/{device_id}/cameras/ | 
 [**devicesCamerasList**](DevicesApi.md#devicesCamerasList) | **GET** /api/devices/{device_id}/cameras/ | 
 [**devicesCamerasPartialUpdate**](DevicesApi.md#devicesCamerasPartialUpdate) | **PATCH** /api/devices/{device_id}/cameras/{id}/ | 
@@ -36,6 +37,58 @@ Method | HTTP request | Description
 [**devicesStateRetrieve**](DevicesApi.md#devicesStateRetrieve) | **GET** /api/devices/{device_id}/state/{id}/ | 
 [**devicesUpdate**](DevicesApi.md#devicesUpdate) | **PUT** /api/devices/{id}/ | 
 
+
+<a name="deviceInfoUpdateOrCreate"></a>
+# **deviceInfoUpdateOrCreate**
+> DeviceInfo deviceInfoUpdateOrCreate(deviceId, deviceInfoRequest)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = DevicesApi()
+val deviceId : kotlin.Int = 56 // kotlin.Int | 
+val deviceInfoRequest : DeviceInfoRequest =  // DeviceInfoRequest | 
+try {
+    val result : DeviceInfo = apiInstance.deviceInfoUpdateOrCreate(deviceId, deviceInfoRequest)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DevicesApi#deviceInfoUpdateOrCreate")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DevicesApi#deviceInfoUpdateOrCreate")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deviceId** | **kotlin.Int**|  |
+ **deviceInfoRequest** | [**DeviceInfoRequest**](DeviceInfoRequest.md)|  |
+
+### Return type
+
+[**DeviceInfo**](DeviceInfo.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
 
 <a name="devicesCamerasCreate"></a>
 # **devicesCamerasCreate**

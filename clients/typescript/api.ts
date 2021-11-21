@@ -7471,6 +7471,51 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {number} deviceId 
+         * @param {DeviceInfoRequest} deviceInfoRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deviceInfoUpdateOrCreate: async (deviceId: number, deviceInfoRequest: DeviceInfoRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('deviceInfoUpdateOrCreate', 'deviceId', deviceId)
+            // verify required parameter 'deviceInfoRequest' is not null or undefined
+            assertParamExists('deviceInfoUpdateOrCreate', 'deviceInfoRequest', deviceInfoRequest)
+            const localVarPath = `/api/devices/{device_id}/info/update-or-create/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(deviceInfoRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
          * @param {CameraRequest} cameraRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -8845,6 +8890,17 @@ export const DevicesApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} deviceId 
+         * @param {DeviceInfoRequest} deviceInfoRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deviceInfoUpdateOrCreate(deviceId: number, deviceInfoRequest: DeviceInfoRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceInfo>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deviceInfoUpdateOrCreate(deviceId, deviceInfoRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
          * @param {CameraRequest} cameraRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -9199,6 +9255,16 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @param {number} deviceId 
+         * @param {DeviceInfoRequest} deviceInfoRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deviceInfoUpdateOrCreate(deviceId: number, deviceInfoRequest: DeviceInfoRequest, options?: any): AxiosPromise<DeviceInfo> {
+            return localVarFp.deviceInfoUpdateOrCreate(deviceId, deviceInfoRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
          * @param {CameraRequest} cameraRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -9521,6 +9587,16 @@ export interface DevicesApiInterface {
     /**
      * 
      * @param {number} deviceId 
+     * @param {DeviceInfoRequest} deviceInfoRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    deviceInfoUpdateOrCreate(deviceId: number, deviceInfoRequest: DeviceInfoRequest, options?: AxiosRequestConfig): AxiosPromise<DeviceInfo>;
+
+    /**
+     * 
+     * @param {number} deviceId 
      * @param {CameraRequest} cameraRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -9840,6 +9916,18 @@ export interface DevicesApiInterface {
  * @extends {BaseAPI}
  */
 export class DevicesApi extends BaseAPI implements DevicesApiInterface {
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {DeviceInfoRequest} deviceInfoRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public deviceInfoUpdateOrCreate(deviceId: number, deviceInfoRequest: DeviceInfoRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).deviceInfoUpdateOrCreate(deviceId, deviceInfoRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @param {number} deviceId 

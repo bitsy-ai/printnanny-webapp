@@ -48,6 +48,7 @@ Class | Method | HTTP request | Description
 *AuthApi* | [**authVerifyCreate**](docs/AuthApi.md#authverifycreate) | **POST** /auth/verify/ | 
 *AuthApi* | [**authVerifyEmailCreate**](docs/AuthApi.md#authverifyemailcreate) | **POST** /auth/verify/email/ | 
 *AuthApi* | [**authVerifyMobileCreate**](docs/AuthApi.md#authverifymobilecreate) | **POST** /auth/verify/mobile/ | 
+*DevicesApi* | [**deviceInfoUpdateOrCreate**](docs/DevicesApi.md#deviceinfoupdateorcreate) | **POST** /api/devices/{device_id}/info/update-or-create/ | 
 *DevicesApi* | [**devicesCamerasCreate**](docs/DevicesApi.md#devicescamerascreate) | **POST** /api/devices/{device_id}/cameras/ | 
 *DevicesApi* | [**devicesCamerasList**](docs/DevicesApi.md#devicescameraslist) | **GET** /api/devices/{device_id}/cameras/ | 
 *DevicesApi* | [**devicesCamerasPartialUpdate**](docs/DevicesApi.md#devicescameraspartialupdate) | **PATCH** /api/devices/{device_id}/cameras/{id}/ | 
