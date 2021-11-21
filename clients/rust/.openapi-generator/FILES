@@ -20,8 +20,6 @@ docs/CameraRequest.md
 docs/CameraTypeEnum.md
 docs/CloudiotDevice.md
 docs/CloudiotDeviceRequest.md
-docs/Credential.md
-docs/CredentialRequest.md
 docs/DetailResponse.md
 docs/Device.md
 docs/DeviceCalibration.md
@@ -41,6 +39,7 @@ docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
 docs/License.md
+docs/LicenseCredentials.md
 docs/LicenseRequest.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
@@ -183,8 +182,6 @@ src/models/camera_request.rs
 src/models/camera_type_enum.rs
 src/models/cloudiot_device.rs
 src/models/cloudiot_device_request.rs
-src/models/credential.rs
-src/models/credential_request.rs
 src/models/detail_response.rs
 src/models/device.rs
 src/models/device_calibration.rs
@@ -203,6 +200,7 @@ src/models/experiment.rs
 src/models/experiment_device_config.rs
 src/models/gcode_file.rs
 src/models/license.rs
+src/models/license_credentials.rs
 src/models/license_request.rs
 src/models/mobile_auth_request.rs
 src/models/mod.rs

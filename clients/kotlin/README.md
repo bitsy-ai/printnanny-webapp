@@ -1,4 +1,4 @@
-# com.print-nanny.client - Kotlin client library for 
+# com.print-nanny.client - Kotlin client library for print-nanny-client
 
 ## Requires
 
@@ -161,8 +161,6 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.CameraTypeEnum](docs/CameraTypeEnum.md)
  - [com.print-nanny.client.models.CloudiotDevice](docs/CloudiotDevice.md)
  - [com.print-nanny.client.models.CloudiotDeviceRequest](docs/CloudiotDeviceRequest.md)
- - [com.print-nanny.client.models.Credential](docs/Credential.md)
- - [com.print-nanny.client.models.CredentialRequest](docs/CredentialRequest.md)
  - [com.print-nanny.client.models.DetailResponse](docs/DetailResponse.md)
  - [com.print-nanny.client.models.Device](docs/Device.md)
  - [com.print-nanny.client.models.DeviceCalibration](docs/DeviceCalibration.md)
@@ -181,6 +179,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.ExperimentDeviceConfig](docs/ExperimentDeviceConfig.md)
  - [com.print-nanny.client.models.GcodeFile](docs/GcodeFile.md)
  - [com.print-nanny.client.models.License](docs/License.md)
+ - [com.print-nanny.client.models.LicenseCredentials](docs/LicenseCredentials.md)
  - [com.print-nanny.client.models.LicenseRequest](docs/LicenseRequest.md)
  - [com.print-nanny.client.models.MobileAuthRequest](docs/MobileAuthRequest.md)
  - [com.print-nanny.client.models.ModelArtifact](docs/ModelArtifact.md)

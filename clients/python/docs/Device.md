@@ -6,10 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
 **cloudiot_device** | [**CloudiotDevice**](CloudiotDevice.md) |  | [optional] [readonly] 
-**cameras** | [**list[Camera]**](Camera.md) |  | [optional] [readonly] 
+**cameras** | [**list[Camera]**](Camera.md) |  | [optional] [readonly] [default to []]
 **dashboard_url** | **str** |  | [optional] [readonly] 
 **bootstrap_release** | [**Release**](Release.md) |  | [optional] [readonly] 
-**printer_controllers** | [**list[PrinterController]**](PrinterController.md) |  | [optional] [readonly] 
+**printer_controllers** | [**list[PrinterController]**](PrinterController.md) |  | [optional] [readonly] [default to []]
 **release_channel** | [**ReleaseChannelEnum**](ReleaseChannelEnum.md) |  | [optional] 
 **user** | [**User**](User.md) |  | [optional] [readonly] 
 **active_license** | [**License**](License.md) |  | [optional] [readonly] 

@@ -1,4 +1,7 @@
+from typing import TypedDict
 from rest_framework import serializers
+from django.conf import settings
+from rest_framework.authtoken.models import Token
 
 from print_nanny_webapp.devices.models import (
     Device,
@@ -66,20 +69,37 @@ class CloudiotDeviceSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class CredentialSerializer(serializers.Serializer):
-    printnanny_api_token = serializers.CharField()
-    printnanny_api_url = serializers.CharField()
-    honeycomb_dataset = serializers.CharField()  # distributed tracing dataset
-    honeycomb_api_key = serializers.CharField()  # write-only token
+class Credentials(TypedDict):
+    printnanny_api_token: str
+    printnanny_api_url: str
+    honeycomb_dataset: str  # distributed tracing dataset
+    honeycomb_api_key: str  # write-only token
 
 
 class LicenseSerializer(serializers.ModelSerializer):
-    credentials = CredentialSerializer(read_only=True, required=False, default=None)
+    credentials = serializers.SerializerMethodField(read_only=True)
+
+    def get_credentials(self, obj) -> Credentials:
+        api_token, _ = Token.objects.get_or_create(user=obj.device.user)
+        return dict(
+            printnanny_api_token=str(api_token),
+            printnanny_api_url=self.context["request"].build_absolute_uri("/")[
+                :-1
+            ],  # remove trailing slash for use in API client base_url
+            honeycomb_dataset=settings.HONEYCOMB_DATASET,
+            honeycomb_api_key=settings.HONEYCOMB_API_KEY,
+        )
 
     class Meta:
         model = License
         fields = "__all__"
-        read_only_fields = ("public_key", "public_key_checksum", "fingerprint", "user")
+        read_only_fields = (
+            "credentials",
+            "public_key",
+            "public_key_checksum",
+            "fingerprint",
+            "user",
+        )
 
 
 class CACertsSerializer(serializers.Serializer):
@@ -102,29 +122,31 @@ class DeviceStateSerializer(serializers.ModelSerializer):
 
 
 class DeviceSerializer(serializers.ModelSerializer):
-    cloudiot_device = CloudiotDeviceSerializer(read_only=True, required=False)
-    cameras = CameraSerializer(read_only=True, many=True)
+    cloudiot_device = CloudiotDeviceSerializer(
+        read_only=True, allow_null=True, required=False
+    )
+    cameras = CameraSerializer(read_only=True, many=True, default=list())
     dashboard_url = serializers.CharField(read_only=True)
 
     bootstrap_release = ReleaseSerializer(
-        read_only=True,
-        required=False,
-        allow_null=True,
+        read_only=True, allow_null=True, required=False
     )
 
-    printer_controllers = PrinterControllerSerializer(read_only=True, many=True)
+    printer_controllers = PrinterControllerSerializer(
+        read_only=True, many=True, default=list()
+    )
     release_channel = serializers.ChoiceField(
         choices=DeviceReleaseChannel.choices,
         default=DeviceReleaseChannel.STABLE,
     )
 
-    user = UserSerializer(read_only=True)
-    active_license = LicenseSerializer(read_only=True)
+    user = UserSerializer(read_only=True, required=False)
+    active_license = LicenseSerializer(read_only=True, allow_null=True, required=False)
 
     class Meta:
         model = Device
         fields = "__all__"
-        depth = 2
+        depth = 4
 
 
 class DeviceInfoSerializer(serializers.ModelSerializer):

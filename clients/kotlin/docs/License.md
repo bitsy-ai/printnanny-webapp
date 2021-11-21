@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **device** | **kotlin.Int** |  | 
 **id** | **kotlin.Int** |  |  [optional] [readonly]
-**credentials** | [**Credential**](Credential.md) |  |  [optional] [readonly]
+**credentials** | [**LicenseCredentials**](LicenseCredentials.md) |  |  [optional]
 **deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **publicKey** | **kotlin.String** |  |  [optional] [readonly]
 **publicKeyChecksum** | **kotlin.String** |  |  [optional] [readonly]

@@ -445,6 +445,16 @@ SPECTACULAR_SETTINGS = {
         'AlertMessageType': 'print_nanny_webapp.alerts.models.AlertMessage.AlertMessageType.choices',
         'AlertSettingsEventType': 'print_nanny_webapp.alerts.models.AlertSettings.AlertSettingsEventType.choices',
     },
+    'TITLE': 'print-nanny-client',
+    'DESCRIPTION': 'Official API client library for print-nanny.com',
+    'LICENSE': {
+        'name': 'AGPLv3'
+    },
+    'CONTACT': {
+        'name': 'Leigh Johnson',
+        'email': 'leigh@print-nanny.com',
+        'url': 'https://print-nanny.com'
+    }
 }
 
 # django-filters

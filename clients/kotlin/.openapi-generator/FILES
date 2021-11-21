@@ -18,8 +18,6 @@ docs/CameraRequest.md
 docs/CameraTypeEnum.md
 docs/CloudiotDevice.md
 docs/CloudiotDeviceRequest.md
-docs/Credential.md
-docs/CredentialRequest.md
 docs/DetailResponse.md
 docs/Device.md
 docs/DeviceCalibration.md
@@ -39,6 +37,7 @@ docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
 docs/License.md
+docs/LicenseCredentials.md
 docs/LicenseRequest.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
@@ -198,8 +197,6 @@ src/main/kotlin/com/print-nanny/client/models/CameraRequest.kt
 src/main/kotlin/com/print-nanny/client/models/CameraTypeEnum.kt
 src/main/kotlin/com/print-nanny/client/models/CloudiotDevice.kt
 src/main/kotlin/com/print-nanny/client/models/CloudiotDeviceRequest.kt
-src/main/kotlin/com/print-nanny/client/models/Credential.kt
-src/main/kotlin/com/print-nanny/client/models/CredentialRequest.kt
 src/main/kotlin/com/print-nanny/client/models/DetailResponse.kt
 src/main/kotlin/com/print-nanny/client/models/Device.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceCalibration.kt
@@ -218,6 +215,7 @@ src/main/kotlin/com/print-nanny/client/models/Experiment.kt
 src/main/kotlin/com/print-nanny/client/models/ExperimentDeviceConfig.kt
 src/main/kotlin/com/print-nanny/client/models/GcodeFile.kt
 src/main/kotlin/com/print-nanny/client/models/License.kt
+src/main/kotlin/com/print-nanny/client/models/LicenseCredentials.kt
 src/main/kotlin/com/print-nanny/client/models/LicenseRequest.kt
 src/main/kotlin/com/print-nanny/client/models/MobileAuthRequest.kt
 src/main/kotlin/com/print-nanny/client/models/ModelArtifact.kt
