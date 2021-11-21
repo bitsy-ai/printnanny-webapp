@@ -308,7 +308,7 @@ def generate_zipped_license_file(
     request: HttpRequest,
     tmp: str,
 ) -> str:
-    from .api.serializers import DeviceSerializer, CredentialSerializer
+    from .api.serializers import DeviceSerializer
 
     keypair, _ = generate_keypair_and_update_or_create_cloudiot_device(device, tmp)
     zip_filename = f"{tmp}/{FileLocator.LICENSE_ZIP_FILENAME}"
@@ -316,7 +316,7 @@ def generate_zipped_license_file(
     api_token, _ = Token.objects.get_or_create(user=device.user)
     device.refresh_from_db()
 
-    api_config = dict(
+    credentials = dict(
         api_token=str(api_token),
         api_url=request.build_absolute_uri("/")[
             :-1
@@ -324,14 +324,8 @@ def generate_zipped_license_file(
         honeycomb_dataset=settings.HONEYCOMB_DATASET,
         honeycomb_api_key=settings.HONEYCOMB_API_KEY,
     )
-    config_serializer = CredentialSerializer(
-        data=api_config,
-        context=dict(request=request),
-    )
-    config_serializer.is_valid()
-    config_json = JSONRenderer().render(config_serializer.data)
 
-    device.active_license.credentials = api_config
+    device.active_license.credentials = credentials
     device_serializer = DeviceSerializer(device, context=dict(request=request))
     device_json = JSONRenderer().render(device_serializer.data)
 
@@ -344,7 +338,6 @@ def generate_zipped_license_file(
             keypair["private_key_filename"],
             arcname=os.path.basename(keypair["private_key_filename"]),
         )
-        zf.writestr("printnanny_credentials.json", config_json)
         zf.writestr("printnanny_device.json", device_json)
 
     return zip_filename
