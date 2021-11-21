@@ -111,6 +111,7 @@ class TestPrinterEvent(unittest.TestCase):
             )
         else :
             return PrinterEvent(
+                id = 56,
                 octoprint_environment = print_nanny_client.models.octoprint_environment.OctoprintEnvironment(
                     os = print_nanny_client.models.octoprint_platform.OctoprintPlatform(
                         id = '', 
@@ -168,7 +169,9 @@ class TestPrinterEvent(unittest.TestCase):
                 print_nanny_plugin_version = '',
                 print_nanny_client_version = '',
                 octoprint_version = '',
+                polymorphic_ctype = 56,
                 octoprint_device = 56,
+                user = 56,
         )
 
     def testPrinterEvent(self):

@@ -51,6 +51,7 @@ class TestRelease(unittest.TestCase):
             )
         else :
             return Release(
+                id = 56,
                 ansible_extra_vars = print_nanny_client.models.ansible_extra_vars.AnsibleExtraVars(
                     janus_version = '', 
                     janus_libwebsockets_version = '', 
@@ -60,6 +61,7 @@ class TestRelease(unittest.TestCase):
                     tflite_version = '', 
                     printnanny_cli_version = '', 
                     libcamera_version = '', ),
+                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
         )
 
     def testRelease(self):

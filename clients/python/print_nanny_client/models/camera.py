@@ -79,21 +79,16 @@ class Camera(object):
         self._url = None
         self.discriminator = None
 
-        if id is not None:
-            self.id = id
-        if deleted is not None:
-            self.deleted = deleted
-        if created_dt is not None:
-            self.created_dt = created_dt
-        if updated_dt is not None:
-            self.updated_dt = updated_dt
+        self.id = id
+        self.deleted = deleted
+        self.created_dt = created_dt
+        self.updated_dt = updated_dt
         self.user = user
         self.device = device
         self.name = name
         self.camera_type = camera_type
         self.camera_source = camera_source
-        if url is not None:
-            self.url = url
+        self.url = url
 
     @property
     def id(self):
@@ -113,6 +108,8 @@ class Camera(object):
         :param id: The id of this Camera.  # noqa: E501
         :type id: int
         """
+        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -134,6 +131,8 @@ class Camera(object):
         :param deleted: The deleted of this Camera.  # noqa: E501
         :type deleted: datetime
         """
+        if self.local_vars_configuration.client_side_validation and deleted is None:  # noqa: E501
+            raise ValueError("Invalid value for `deleted`, must not be `None`")  # noqa: E501
 
         self._deleted = deleted
 
@@ -155,6 +154,8 @@ class Camera(object):
         :param created_dt: The created_dt of this Camera.  # noqa: E501
         :type created_dt: datetime
         """
+        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
 
         self._created_dt = created_dt
 
@@ -176,6 +177,8 @@ class Camera(object):
         :param updated_dt: The updated_dt of this Camera.  # noqa: E501
         :type updated_dt: datetime
         """
+        if self.local_vars_configuration.client_side_validation and updated_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `updated_dt`, must not be `None`")  # noqa: E501
 
         self._updated_dt = updated_dt
 
@@ -316,6 +319,8 @@ class Camera(object):
         :param url: The url of this Camera.  # noqa: E501
         :type url: str
         """
+        if self.local_vars_configuration.client_side_validation and url is None:  # noqa: E501
+            raise ValueError("Invalid value for `url`, must not be `None`")  # noqa: E501
 
         self._url = url
 

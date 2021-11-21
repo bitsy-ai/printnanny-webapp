@@ -4,14 +4,14 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **kotlin.Int** |  |  [readonly]
+**credentials** | [**LicenseCredentials**](LicenseCredentials.md) |  | 
+**deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
+**publicKey** | **kotlin.String** |  |  [readonly]
+**publicKeyChecksum** | **kotlin.String** |  |  [readonly]
+**fingerprint** | **kotlin.String** |  |  [readonly]
+**createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
 **device** | **kotlin.Int** |  | 
-**id** | **kotlin.Int** |  |  [optional] [readonly]
-**credentials** | [**LicenseCredentials**](LicenseCredentials.md) |  |  [optional]
-**deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
-**publicKey** | **kotlin.String** |  |  [optional] [readonly]
-**publicKeyChecksum** | **kotlin.String** |  |  [optional] [readonly]
-**fingerprint** | **kotlin.String** |  |  [optional] [readonly]
-**createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 
 
 

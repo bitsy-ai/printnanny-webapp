@@ -67,16 +67,13 @@ class DeviceConfig(object):
         self._device = None
         self.discriminator = None
 
-        if id is not None:
-            self.id = id
-        if deleted is not None:
-            self.deleted = deleted
+        self.id = id
+        self.deleted = deleted
         if ansible_extra_vars is not None:
             self.ansible_extra_vars = ansible_extra_vars
         if release_channel is not None:
             self.release_channel = release_channel
-        if created_dt is not None:
-            self.created_dt = created_dt
+        self.created_dt = created_dt
         self.device = device
 
     @property
@@ -97,6 +94,8 @@ class DeviceConfig(object):
         :param id: The id of this DeviceConfig.  # noqa: E501
         :type id: int
         """
+        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -118,6 +117,8 @@ class DeviceConfig(object):
         :param deleted: The deleted of this DeviceConfig.  # noqa: E501
         :type deleted: datetime
         """
+        if self.local_vars_configuration.client_side_validation and deleted is None:  # noqa: E501
+            raise ValueError("Invalid value for `deleted`, must not be `None`")  # noqa: E501
 
         self._deleted = deleted
 
@@ -181,6 +182,8 @@ class DeviceConfig(object):
         :param created_dt: The created_dt of this DeviceConfig.  # noqa: E501
         :type created_dt: datetime
         """
+        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
 
         self._created_dt = created_dt
 

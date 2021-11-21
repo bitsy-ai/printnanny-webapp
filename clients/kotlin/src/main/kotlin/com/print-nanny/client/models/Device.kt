@@ -40,52 +40,52 @@ import java.io.Serializable
  * @param dashboardUrl 
  * @param bootstrapRelease 
  * @param printerControllers 
- * @param releaseChannel 
  * @param user 
  * @param activeLicense 
  * @param deleted 
  * @param createdDt 
  * @param updatedDt 
+ * @param releaseChannel 
  * @param hostname Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension)
  */
 
 data class Device (
 
     @Json(name = "id")
-    val id: kotlin.Int? = null,
+    val id: kotlin.Int,
 
     @Json(name = "cloudiot_device")
-    val cloudiotDevice: CloudiotDevice? = null,
+    val cloudiotDevice: CloudiotDevice?,
 
     @Json(name = "cameras")
-    val cameras: kotlin.collections.List<Camera>? = null,
+    val cameras: kotlin.collections.List<Camera>,
 
     @Json(name = "dashboard_url")
-    val dashboardUrl: kotlin.String? = null,
+    val dashboardUrl: kotlin.String,
 
     @Json(name = "bootstrap_release")
-    val bootstrapRelease: Release? = null,
+    val bootstrapRelease: Release?,
 
     @Json(name = "printer_controllers")
-    val printerControllers: kotlin.collections.List<PrinterController>? = null,
+    val printerControllers: kotlin.collections.List<PrinterController>,
+
+    @Json(name = "user")
+    val user: User?,
+
+    @Json(name = "active_license")
+    val activeLicense: License?,
+
+    @Json(name = "deleted")
+    val deleted: java.time.OffsetDateTime,
+
+    @Json(name = "created_dt")
+    val createdDt: java.time.OffsetDateTime,
+
+    @Json(name = "updated_dt")
+    val updatedDt: java.time.OffsetDateTime,
 
     @Json(name = "release_channel")
     val releaseChannel: ReleaseChannelEnum? = null,
-
-    @Json(name = "user")
-    val user: User? = null,
-
-    @Json(name = "active_license")
-    val activeLicense: License? = null,
-
-    @Json(name = "deleted")
-    val deleted: java.time.OffsetDateTime? = null,
-
-    @Json(name = "created_dt")
-    val createdDt: java.time.OffsetDateTime? = null,
-
-    @Json(name = "updated_dt")
-    val updatedDt: java.time.OffsetDateTime? = null,
 
     /* Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension) */
     @Json(name = "hostname")

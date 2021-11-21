@@ -11,10 +11,10 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct GcodeFile {
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<i32>,
-    #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
-    pub user: Option<i32>,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "user")]
+    pub user: i32,
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "file")]
@@ -23,20 +23,20 @@ pub struct GcodeFile {
     pub file_hash: String,
     #[serde(rename = "octoprint_device")]
     pub octoprint_device: String,
-    #[serde(rename = "url", skip_serializing_if = "Option::is_none")]
-    pub url: Option<String>,
+    #[serde(rename = "url")]
+    pub url: String,
 }
 
 impl GcodeFile {
-    pub fn new(name: String, file: String, file_hash: String, octoprint_device: String) -> GcodeFile {
+    pub fn new(id: i32, user: i32, name: String, file: String, file_hash: String, octoprint_device: String, url: String) -> GcodeFile {
         GcodeFile {
-            id: None,
-            user: None,
+            id,
+            user,
             name,
             file,
             file_hash,
             octoprint_device,
-            url: None,
+            url,
         }
     }
 }

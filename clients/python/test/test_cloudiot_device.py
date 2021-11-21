@@ -53,6 +53,15 @@ class TestCloudiotDevice(unittest.TestCase):
         else :
             return CloudiotDevice(
                 num_id = -9223372036854775808,
+                desired_config_topic = '',
+                current_state_topic = '',
+                gcp_project_id = '',
+                gcp_region = '',
+                gcp_cloudiot_device_registry = '',
+                mqtt_bridge_hostname = '',
+                mqtt_bridge_port = 56,
+                mqtt_client_id = '',
+                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 name = '',
                 id = '',
                 device = 56,

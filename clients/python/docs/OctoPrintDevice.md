@@ -4,16 +4,16 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [optional] [readonly] 
-**created_dt** | **datetime** |  | [optional] [readonly] 
+**id** | **int** |  | [readonly] 
+**created_dt** | **datetime** |  | [readonly] 
 **name** | **str** |  | 
-**user** | **int** |  | [optional] [readonly] 
-**public_key** | **str** |  | [optional] [readonly] 
-**fingerprint** | **str** |  | [optional] [readonly] 
-**cloudiot_device** | **dict(str, object)** |  | [optional] [readonly] 
-**cloudiot_device_name** | **str** |  | [optional] [readonly] 
-**cloudiot_device_path** | **str** |  | [optional] [readonly] 
-**cloudiot_device_num_id** | **int** |  | [optional] [readonly] 
+**user** | **int** |  | [readonly] 
+**public_key** | **str** |  | [readonly] 
+**fingerprint** | **str** |  | [readonly] 
+**cloudiot_device** | **dict(str, object)** |  | [readonly] 
+**cloudiot_device_name** | **str** |  | [readonly] 
+**cloudiot_device_path** | **str** |  | [readonly] 
+**cloudiot_device_num_id** | **int** |  | [readonly] 
 **model** | **str** |  | 
 **platform** | **str** |  | 
 **cpu_flags** | **list[str]** |  | [optional] 
@@ -28,9 +28,9 @@ Name | Type | Description | Notes
 **octoprint_version** | **str** |  | 
 **plugin_version** | **str** |  | 
 **print_nanny_client_version** | **str** |  | 
-**cloudiot_device_configs** | **str** |  | [optional] [readonly] 
-**manage_url** | **str** |  | [optional] [readonly] 
-**monitoring_active** | **bool** |  | [optional] [readonly] 
+**cloudiot_device_configs** | **str** |  | [readonly] 
+**manage_url** | **str** |  | [readonly] 
+**monitoring_active** | **bool** |  | [readonly] 
 **active_session** | [**PrintSession**](PrintSession.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

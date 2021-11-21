@@ -94,33 +94,23 @@ class Alert(object):
         self._message = None
         self.discriminator = None
 
-        if id is not None:
-            self.id = id
-        if time is not None:
-            self.time = time
-        if gcode_file is not None:
-            self.gcode_file = gcode_file
-        if print_progress is not None:
-            self.print_progress = print_progress
-        if time_elapsed is not None:
-            self.time_elapsed = time_elapsed
-        if time_remaining is not None:
-            self.time_remaining = time_remaining
+        self.id = id
+        self.time = time
+        self.gcode_file = gcode_file
+        self.print_progress = print_progress
+        self.time_elapsed = time_elapsed
+        self.time_remaining = time_remaining
         self.manage_device_url = manage_device_url
-        if user is not None:
-            self.user = user
+        self.user = user
         self.octoprint_device = octoprint_device
         self.event_type = event_type
         if seen is not None:
             self.seen = seen
         if sent is not None:
             self.sent = sent
-        if created_dt is not None:
-            self.created_dt = created_dt
-        if updated_dt is not None:
-            self.updated_dt = updated_dt
-        if message is not None:
-            self.message = message
+        self.created_dt = created_dt
+        self.updated_dt = updated_dt
+        self.message = message
 
     @property
     def id(self):
@@ -140,6 +130,8 @@ class Alert(object):
         :param id: The id of this Alert.  # noqa: E501
         :type id: int
         """
+        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -161,6 +153,8 @@ class Alert(object):
         :param time: The time of this Alert.  # noqa: E501
         :type time: str
         """
+        if self.local_vars_configuration.client_side_validation and time is None:  # noqa: E501
+            raise ValueError("Invalid value for `time`, must not be `None`")  # noqa: E501
 
         self._time = time
 
@@ -182,6 +176,8 @@ class Alert(object):
         :param gcode_file: The gcode_file of this Alert.  # noqa: E501
         :type gcode_file: str
         """
+        if self.local_vars_configuration.client_side_validation and gcode_file is None:  # noqa: E501
+            raise ValueError("Invalid value for `gcode_file`, must not be `None`")  # noqa: E501
 
         self._gcode_file = gcode_file
 
@@ -203,6 +199,8 @@ class Alert(object):
         :param print_progress: The print_progress of this Alert.  # noqa: E501
         :type print_progress: str
         """
+        if self.local_vars_configuration.client_side_validation and print_progress is None:  # noqa: E501
+            raise ValueError("Invalid value for `print_progress`, must not be `None`")  # noqa: E501
 
         self._print_progress = print_progress
 
@@ -224,6 +222,8 @@ class Alert(object):
         :param time_elapsed: The time_elapsed of this Alert.  # noqa: E501
         :type time_elapsed: str
         """
+        if self.local_vars_configuration.client_side_validation and time_elapsed is None:  # noqa: E501
+            raise ValueError("Invalid value for `time_elapsed`, must not be `None`")  # noqa: E501
 
         self._time_elapsed = time_elapsed
 
@@ -245,6 +245,8 @@ class Alert(object):
         :param time_remaining: The time_remaining of this Alert.  # noqa: E501
         :type time_remaining: str
         """
+        if self.local_vars_configuration.client_side_validation and time_remaining is None:  # noqa: E501
+            raise ValueError("Invalid value for `time_remaining`, must not be `None`")  # noqa: E501
 
         self._time_remaining = time_remaining
 
@@ -287,6 +289,8 @@ class Alert(object):
         :param user: The user of this Alert.  # noqa: E501
         :type user: int
         """
+        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
+            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
 
         self._user = user
 
@@ -392,6 +396,8 @@ class Alert(object):
         :param created_dt: The created_dt of this Alert.  # noqa: E501
         :type created_dt: datetime
         """
+        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
 
         self._created_dt = created_dt
 
@@ -413,6 +419,8 @@ class Alert(object):
         :param updated_dt: The updated_dt of this Alert.  # noqa: E501
         :type updated_dt: datetime
         """
+        if self.local_vars_configuration.client_side_validation and updated_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `updated_dt`, must not be `None`")  # noqa: E501
 
         self._updated_dt = updated_dt
 
@@ -434,6 +442,8 @@ class Alert(object):
         :param message: The message of this Alert.  # noqa: E501
         :type message: str
         """
+        if self.local_vars_configuration.client_side_validation and message is None:  # noqa: E501
+            raise ValueError("Invalid value for `message`, must not be `None`")  # noqa: E501
 
         self._message = message
 

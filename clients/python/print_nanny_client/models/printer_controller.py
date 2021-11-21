@@ -73,17 +73,12 @@ class PrinterController(object):
         self._device = None
         self.discriminator = None
 
-        if id is not None:
-            self.id = id
+        self.id = id
         self.software = software
-        if deleted is not None:
-            self.deleted = deleted
-        if created_dt is not None:
-            self.created_dt = created_dt
-        if updated_dt is not None:
-            self.updated_dt = updated_dt
-        if polymorphic_ctype is not None:
-            self.polymorphic_ctype = polymorphic_ctype
+        self.deleted = deleted
+        self.created_dt = created_dt
+        self.updated_dt = updated_dt
+        self.polymorphic_ctype = polymorphic_ctype
         self.user = user
         self.device = device
 
@@ -105,6 +100,8 @@ class PrinterController(object):
         :param id: The id of this PrinterController.  # noqa: E501
         :type id: int
         """
+        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -147,6 +144,8 @@ class PrinterController(object):
         :param deleted: The deleted of this PrinterController.  # noqa: E501
         :type deleted: datetime
         """
+        if self.local_vars_configuration.client_side_validation and deleted is None:  # noqa: E501
+            raise ValueError("Invalid value for `deleted`, must not be `None`")  # noqa: E501
 
         self._deleted = deleted
 
@@ -168,6 +167,8 @@ class PrinterController(object):
         :param created_dt: The created_dt of this PrinterController.  # noqa: E501
         :type created_dt: datetime
         """
+        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
 
         self._created_dt = created_dt
 
@@ -189,6 +190,8 @@ class PrinterController(object):
         :param updated_dt: The updated_dt of this PrinterController.  # noqa: E501
         :type updated_dt: datetime
         """
+        if self.local_vars_configuration.client_side_validation and updated_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `updated_dt`, must not be `None`")  # noqa: E501
 
         self._updated_dt = updated_dt
 
@@ -210,6 +213,8 @@ class PrinterController(object):
         :param polymorphic_ctype: The polymorphic_ctype of this PrinterController.  # noqa: E501
         :type polymorphic_ctype: int
         """
+        if self.local_vars_configuration.client_side_validation and polymorphic_ctype is None:  # noqa: E501
+            raise ValueError("Invalid value for `polymorphic_ctype`, must not be `None`")  # noqa: E501
 
         self._polymorphic_ctype = polymorphic_ctype
 

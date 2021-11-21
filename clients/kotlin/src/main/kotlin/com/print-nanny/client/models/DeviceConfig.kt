@@ -28,33 +28,33 @@ import java.io.Serializable
 /**
  * 
  *
- * @param device 
  * @param id 
  * @param deleted 
+ * @param createdDt 
+ * @param device 
  * @param ansibleExtraVars 
  * @param releaseChannel 
- * @param createdDt 
  */
 
 data class DeviceConfig (
 
-    @Json(name = "device")
-    val device: kotlin.Int,
-
     @Json(name = "id")
-    val id: kotlin.Int? = null,
+    val id: kotlin.Int,
 
     @Json(name = "deleted")
-    val deleted: java.time.OffsetDateTime? = null,
+    val deleted: java.time.OffsetDateTime,
+
+    @Json(name = "created_dt")
+    val createdDt: java.time.OffsetDateTime,
+
+    @Json(name = "device")
+    val device: kotlin.Int,
 
     @Json(name = "ansible_extra_vars")
     val ansibleExtraVars: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,
 
     @Json(name = "release_channel")
-    val releaseChannel: ReleaseChannelEnum? = null,
-
-    @Json(name = "created_dt")
-    val createdDt: java.time.OffsetDateTime? = null
+    val releaseChannel: ReleaseChannelEnum? = null
 
 ) : Serializable {
     companion object {

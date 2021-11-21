@@ -13,24 +13,24 @@
 pub struct CloudiotDevice {
     #[serde(rename = "num_id")]
     pub num_id: i64,
-    #[serde(rename = "desired_config_topic", skip_serializing_if = "Option::is_none")]
-    pub desired_config_topic: Option<String>,
-    #[serde(rename = "current_state_topic", skip_serializing_if = "Option::is_none")]
-    pub current_state_topic: Option<String>,
-    #[serde(rename = "gcp_project_id", skip_serializing_if = "Option::is_none")]
-    pub gcp_project_id: Option<String>,
-    #[serde(rename = "gcp_region", skip_serializing_if = "Option::is_none")]
-    pub gcp_region: Option<String>,
-    #[serde(rename = "gcp_cloudiot_device_registry", skip_serializing_if = "Option::is_none")]
-    pub gcp_cloudiot_device_registry: Option<String>,
-    #[serde(rename = "mqtt_bridge_hostname", skip_serializing_if = "Option::is_none")]
-    pub mqtt_bridge_hostname: Option<String>,
-    #[serde(rename = "mqtt_bridge_port", skip_serializing_if = "Option::is_none")]
-    pub mqtt_bridge_port: Option<i32>,
-    #[serde(rename = "mqtt_client_id", skip_serializing_if = "Option::is_none")]
-    pub mqtt_client_id: Option<String>,
-    #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
-    pub deleted: Option<String>,
+    #[serde(rename = "desired_config_topic")]
+    pub desired_config_topic: String,
+    #[serde(rename = "current_state_topic")]
+    pub current_state_topic: String,
+    #[serde(rename = "gcp_project_id")]
+    pub gcp_project_id: String,
+    #[serde(rename = "gcp_region")]
+    pub gcp_region: String,
+    #[serde(rename = "gcp_cloudiot_device_registry")]
+    pub gcp_cloudiot_device_registry: String,
+    #[serde(rename = "mqtt_bridge_hostname")]
+    pub mqtt_bridge_hostname: String,
+    #[serde(rename = "mqtt_bridge_port")]
+    pub mqtt_bridge_port: i32,
+    #[serde(rename = "mqtt_client_id")]
+    pub mqtt_client_id: String,
+    #[serde(rename = "deleted")]
+    pub deleted: String,
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "id")]
@@ -40,18 +40,18 @@ pub struct CloudiotDevice {
 }
 
 impl CloudiotDevice {
-    pub fn new(num_id: i64, name: String, id: String, device: i32) -> CloudiotDevice {
+    pub fn new(num_id: i64, desired_config_topic: String, current_state_topic: String, gcp_project_id: String, gcp_region: String, gcp_cloudiot_device_registry: String, mqtt_bridge_hostname: String, mqtt_bridge_port: i32, mqtt_client_id: String, deleted: String, name: String, id: String, device: i32) -> CloudiotDevice {
         CloudiotDevice {
             num_id,
-            desired_config_topic: None,
-            current_state_topic: None,
-            gcp_project_id: None,
-            gcp_region: None,
-            gcp_cloudiot_device_registry: None,
-            mqtt_bridge_hostname: None,
-            mqtt_bridge_port: None,
-            mqtt_client_id: None,
-            deleted: None,
+            desired_config_topic,
+            current_state_topic,
+            gcp_project_id,
+            gcp_region,
+            gcp_cloudiot_device_registry,
+            mqtt_bridge_hostname,
+            mqtt_bridge_port,
+            mqtt_client_id,
+            deleted,
             name,
             id,
             device,

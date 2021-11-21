@@ -11,22 +11,22 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Release {
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<i32>,
+    #[serde(rename = "id")]
+    pub id: i32,
     #[serde(rename = "ansible_extra_vars")]
     pub ansible_extra_vars: Box<crate::models::AnsibleExtraVars>,
-    #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
-    pub created_dt: Option<String>,
+    #[serde(rename = "created_dt")]
+    pub created_dt: String,
     #[serde(rename = "release_channel", skip_serializing_if = "Option::is_none")]
     pub release_channel: Option<crate::models::ReleaseChannelEnum>,
 }
 
 impl Release {
-    pub fn new(ansible_extra_vars: crate::models::AnsibleExtraVars) -> Release {
+    pub fn new(id: i32, ansible_extra_vars: crate::models::AnsibleExtraVars, created_dt: String) -> Release {
         Release {
-            id: None,
+            id,
             ansible_extra_vars: Box::new(ansible_extra_vars),
-            created_dt: None,
+            created_dt,
             release_channel: None,
         }
     }

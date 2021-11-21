@@ -73,10 +73,8 @@ class DeviceState(object):
         self._device = None
         self.discriminator = None
 
-        if id is not None:
-            self.id = id
-        if deleted is not None:
-            self.deleted = deleted
+        self.id = id
+        self.deleted = deleted
         if status is not None:
             self.status = status
         if command is not None:
@@ -85,8 +83,7 @@ class DeviceState(object):
             self.ansible_facts = ansible_facts
         if ansible_extra_vars is not None:
             self.ansible_extra_vars = ansible_extra_vars
-        if created_dt is not None:
-            self.created_dt = created_dt
+        self.created_dt = created_dt
         self.device = device
 
     @property
@@ -107,6 +104,8 @@ class DeviceState(object):
         :param id: The id of this DeviceState.  # noqa: E501
         :type id: int
         """
+        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -128,6 +127,8 @@ class DeviceState(object):
         :param deleted: The deleted of this DeviceState.  # noqa: E501
         :type deleted: datetime
         """
+        if self.local_vars_configuration.client_side_validation and deleted is None:  # noqa: E501
+            raise ValueError("Invalid value for `deleted`, must not be `None`")  # noqa: E501
 
         self._deleted = deleted
 
@@ -233,6 +234,8 @@ class DeviceState(object):
         :param created_dt: The created_dt of this DeviceState.  # noqa: E501
         :type created_dt: datetime
         """
+        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
 
         self._created_dt = created_dt
 

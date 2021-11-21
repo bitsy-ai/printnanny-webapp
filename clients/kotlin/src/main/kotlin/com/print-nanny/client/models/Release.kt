@@ -29,22 +29,22 @@ import java.io.Serializable
 /**
  * 
  *
- * @param ansibleExtraVars 
  * @param id 
+ * @param ansibleExtraVars 
  * @param createdDt 
  * @param releaseChannel 
  */
 
 data class Release (
 
+    @Json(name = "id")
+    val id: kotlin.Int,
+
     @Json(name = "ansible_extra_vars")
     val ansibleExtraVars: AnsibleExtraVars,
 
-    @Json(name = "id")
-    val id: kotlin.Int? = null,
-
     @Json(name = "created_dt")
-    val createdDt: java.time.OffsetDateTime? = null,
+    val createdDt: java.time.OffsetDateTime,
 
     @Json(name = "release_channel")
     val releaseChannel: ReleaseChannelEnum? = null

@@ -28,20 +28,26 @@ import java.io.Serializable
 /**
  * 
  *
- * @param user 
- * @param device 
  * @param id 
  * @param createdDt 
+ * @param user 
+ * @param device 
+ * @param url 
+ * @param octoprintEventType 
  * @param command 
  * @param received 
  * @param success 
  * @param iotcoreResponse 
  * @param metadata 
- * @param url 
- * @param octoprintEventType 
  */
 
 data class RemoteControlCommand (
+
+    @Json(name = "id")
+    val id: kotlin.Int,
+
+    @Json(name = "created_dt")
+    val createdDt: java.time.OffsetDateTime,
 
     @Json(name = "user")
     val user: kotlin.Int,
@@ -49,11 +55,11 @@ data class RemoteControlCommand (
     @Json(name = "device")
     val device: kotlin.Int,
 
-    @Json(name = "id")
-    val id: kotlin.Int? = null,
+    @Json(name = "url")
+    val url: java.net.URI,
 
-    @Json(name = "created_dt")
-    val createdDt: java.time.OffsetDateTime? = null,
+    @Json(name = "octoprint_event_type")
+    val octoprintEventType: kotlin.String,
 
     @Json(name = "command")
     val command: RemoteControlCommandCommandEnum? = null,
@@ -68,13 +74,7 @@ data class RemoteControlCommand (
     val iotcoreResponse: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,
 
     @Json(name = "metadata")
-    val metadata: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,
-
-    @Json(name = "url")
-    val url: java.net.URI? = null,
-
-    @Json(name = "octoprint_event_type")
-    val octoprintEventType: kotlin.String? = null
+    val metadata: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null
 
 ) : Serializable {
     companion object {

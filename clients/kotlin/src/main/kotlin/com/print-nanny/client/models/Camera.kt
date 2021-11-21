@@ -28,19 +28,31 @@ import java.io.Serializable
 /**
  * 
  *
- * @param user 
- * @param device 
- * @param name 
- * @param cameraSource 
  * @param id 
  * @param deleted 
  * @param createdDt 
  * @param updatedDt 
- * @param cameraType 
+ * @param user 
+ * @param device 
+ * @param name 
+ * @param cameraSource 
  * @param url 
+ * @param cameraType 
  */
 
 data class Camera (
+
+    @Json(name = "id")
+    val id: kotlin.Int,
+
+    @Json(name = "deleted")
+    val deleted: java.time.OffsetDateTime,
+
+    @Json(name = "created_dt")
+    val createdDt: java.time.OffsetDateTime,
+
+    @Json(name = "updated_dt")
+    val updatedDt: java.time.OffsetDateTime,
 
     @Json(name = "user")
     val user: kotlin.Int,
@@ -54,23 +66,11 @@ data class Camera (
     @Json(name = "camera_source")
     val cameraSource: kotlin.String,
 
-    @Json(name = "id")
-    val id: kotlin.Int? = null,
-
-    @Json(name = "deleted")
-    val deleted: java.time.OffsetDateTime? = null,
-
-    @Json(name = "created_dt")
-    val createdDt: java.time.OffsetDateTime? = null,
-
-    @Json(name = "updated_dt")
-    val updatedDt: java.time.OffsetDateTime? = null,
+    @Json(name = "url")
+    val url: java.net.URI,
 
     @Json(name = "camera_type")
-    val cameraType: CameraTypeEnum? = null,
-
-    @Json(name = "url")
-    val url: java.net.URI? = null
+    val cameraType: CameraTypeEnum? = null
 
 ) : Serializable {
     companion object {

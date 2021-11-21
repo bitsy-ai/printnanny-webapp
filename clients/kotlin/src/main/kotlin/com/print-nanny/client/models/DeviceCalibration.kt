@@ -27,30 +27,33 @@ import java.io.Serializable
 /**
  * 
  *
- * @param octoprintDevice 
  * @param id 
  * @param createdDt 
  * @param updatedDt 
+ * @param octoprintDevice 
+ * @param url 
  * @param fps 
  * @param xy 
  * @param height 
  * @param width 
- * @param url 
  */
 
 data class DeviceCalibration (
 
+    @Json(name = "id")
+    val id: kotlin.Int,
+
+    @Json(name = "created_dt")
+    val createdDt: java.time.OffsetDateTime,
+
+    @Json(name = "updated_dt")
+    val updatedDt: java.time.OffsetDateTime,
+
     @Json(name = "octoprint_device")
     val octoprintDevice: kotlin.Int,
 
-    @Json(name = "id")
-    val id: kotlin.Int? = null,
-
-    @Json(name = "created_dt")
-    val createdDt: java.time.OffsetDateTime? = null,
-
-    @Json(name = "updated_dt")
-    val updatedDt: java.time.OffsetDateTime? = null,
+    @Json(name = "url")
+    val url: java.net.URI,
 
     @Json(name = "fps")
     val fps: kotlin.Float? = null,
@@ -62,10 +65,7 @@ data class DeviceCalibration (
     val height: kotlin.Int? = null,
 
     @Json(name = "width")
-    val width: kotlin.Int? = null,
-
-    @Json(name = "url")
-    val url: java.net.URI? = null
+    val width: kotlin.Int? = null
 
 ) : Serializable {
     companion object {

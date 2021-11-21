@@ -28,7 +28,6 @@ import java.io.Serializable
 /**
  * 
  *
- * @param device 
  * @param id 
  * @param credentials 
  * @param deleted 
@@ -36,33 +35,34 @@ import java.io.Serializable
  * @param publicKeyChecksum 
  * @param fingerprint 
  * @param createdDt 
+ * @param device 
  */
 
 data class License (
 
-    @Json(name = "device")
-    val device: kotlin.Int,
-
     @Json(name = "id")
-    val id: kotlin.Int? = null,
+    val id: kotlin.Int,
 
     @Json(name = "credentials")
-    val credentials: LicenseCredentials? = null,
+    val credentials: LicenseCredentials,
 
     @Json(name = "deleted")
-    val deleted: java.time.OffsetDateTime? = null,
+    val deleted: java.time.OffsetDateTime,
 
     @Json(name = "public_key")
-    val publicKey: kotlin.String? = null,
+    val publicKey: kotlin.String,
 
     @Json(name = "public_key_checksum")
-    val publicKeyChecksum: kotlin.String? = null,
+    val publicKeyChecksum: kotlin.String,
 
     @Json(name = "fingerprint")
-    val fingerprint: kotlin.String? = null,
+    val fingerprint: kotlin.String,
 
     @Json(name = "created_dt")
-    val createdDt: java.time.OffsetDateTime? = null
+    val createdDt: java.time.OffsetDateTime,
+
+    @Json(name = "device")
+    val device: kotlin.Int
 
 ) : Serializable {
     companion object {

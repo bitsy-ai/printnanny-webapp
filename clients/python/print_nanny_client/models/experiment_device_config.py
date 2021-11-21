@@ -61,10 +61,8 @@ class ExperimentDeviceConfig(object):
         self._artifact = None
         self.discriminator = None
 
-        if id is not None:
-            self.id = id
-        if created_dt is not None:
-            self.created_dt = created_dt
+        self.id = id
+        self.created_dt = created_dt
         self.experiment = experiment
         self.artifact = artifact
 
@@ -86,6 +84,8 @@ class ExperimentDeviceConfig(object):
         :param id: The id of this ExperimentDeviceConfig.  # noqa: E501
         :type id: int
         """
+        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -107,6 +107,8 @@ class ExperimentDeviceConfig(object):
         :param created_dt: The created_dt of this ExperimentDeviceConfig.  # noqa: E501
         :type created_dt: datetime
         """
+        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
 
         self._created_dt = created_dt
 

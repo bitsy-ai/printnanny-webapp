@@ -32,25 +32,28 @@ import java.io.Serializable
 /**
  * 
  *
+ * @param id 
  * @param octoprintEnvironment 
  * @param octoprintPrinterData 
  * @param printNannyPluginVersion 
  * @param printNannyClientVersion 
  * @param octoprintVersion 
+ * @param polymorphicCtype 
  * @param octoprintDevice 
- * @param id 
+ * @param user 
  * @param ts 
  * @param eventSource 
  * @param eventType 
  * @param eventData 
  * @param temperature 
  * @param printerState 
- * @param polymorphicCtype 
- * @param user 
  * @param printSession 
  */
 
 data class PrinterEvent (
+
+    @Json(name = "id")
+    val id: kotlin.Int,
 
     @Json(name = "octoprint_environment")
     val octoprintEnvironment: OctoprintEnvironment,
@@ -67,11 +70,14 @@ data class PrinterEvent (
     @Json(name = "octoprint_version")
     val octoprintVersion: kotlin.String,
 
+    @Json(name = "polymorphic_ctype")
+    val polymorphicCtype: kotlin.Int,
+
     @Json(name = "octoprint_device")
     val octoprintDevice: kotlin.Int,
 
-    @Json(name = "id")
-    val id: kotlin.Int? = null,
+    @Json(name = "user")
+    val user: kotlin.Int,
 
     @Json(name = "ts")
     val ts: kotlin.Float? = null,
@@ -90,12 +96,6 @@ data class PrinterEvent (
 
     @Json(name = "printer_state")
     val printerState: PrinterStateEnum? = null,
-
-    @Json(name = "polymorphic_ctype")
-    val polymorphicCtype: kotlin.Int? = null,
-
-    @Json(name = "user")
-    val user: kotlin.Int? = null,
 
     @Json(name = "print_session")
     val printSession: kotlin.Int? = null

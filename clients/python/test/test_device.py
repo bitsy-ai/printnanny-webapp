@@ -74,6 +74,39 @@ class TestDevice(unittest.TestCase):
             )
         else :
             return Device(
+                id = 56,
+                cloudiot_device = None,
+                cameras = [
+                    print_nanny_client.models.camera.Camera(
+                        id = 56, 
+                        deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        user = 56, 
+                        device = 56, 
+                        name = '', 
+                        camera_type = null, 
+                        camera_source = '', 
+                        url = '', )
+                    ],
+                dashboard_url = '',
+                bootstrap_release = None,
+                printer_controllers = [
+                    print_nanny_client.models.printer_controller.PrinterController(
+                        id = 56, 
+                        software = null, 
+                        deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        polymorphic_ctype = 56, 
+                        user = 56, 
+                        device = 56, )
+                    ],
+                user = None,
+                active_license = None,
+                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
         )
 
     def testDevice(self):

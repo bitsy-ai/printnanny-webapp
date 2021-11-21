@@ -5,18 +5,18 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **numId** | **kotlin.Long** |  | 
+**desiredConfigTopic** | **kotlin.String** |  |  [readonly]
+**currentStateTopic** | **kotlin.String** |  |  [readonly]
+**gcpProjectId** | **kotlin.String** |  |  [readonly]
+**gcpRegion** | **kotlin.String** |  |  [readonly]
+**gcpCloudiotDeviceRegistry** | **kotlin.String** |  |  [readonly]
+**mqttBridgeHostname** | **kotlin.String** |  |  [readonly]
+**mqttBridgePort** | **kotlin.Int** |  |  [readonly]
+**mqttClientId** | **kotlin.String** |  |  [readonly]
+**deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
 **name** | **kotlin.String** |  | 
 **id** | **kotlin.String** |  | 
 **device** | **kotlin.Int** |  | 
-**desiredConfigTopic** | **kotlin.String** |  |  [optional] [readonly]
-**currentStateTopic** | **kotlin.String** |  |  [optional] [readonly]
-**gcpProjectId** | **kotlin.String** |  |  [optional] [readonly]
-**gcpRegion** | **kotlin.String** |  |  [optional] [readonly]
-**gcpCloudiotDeviceRegistry** | **kotlin.String** |  |  [optional] [readonly]
-**mqttBridgeHostname** | **kotlin.String** |  |  [optional] [readonly]
-**mqttBridgePort** | **kotlin.Int** |  |  [optional] [readonly]
-**mqttClientId** | **kotlin.String** |  |  [optional] [readonly]
-**deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 
 
 

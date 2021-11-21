@@ -38,20 +38,20 @@ import java.io.Serializable
 /**
  * 
  *
+ * @param id 
  * @param octoprintEnvironment 
  * @param octoprintPrinterData 
  * @param printNannyPluginVersion 
  * @param printNannyClientVersion 
  * @param octoprintVersion 
+ * @param polymorphicCtype 
  * @param octoprintDevice 
- * @param id 
+ * @param user 
  * @param ts 
  * @param eventSource 
  * @param eventType 
  * @param eventData 
  * @param temperature 
- * @param polymorphicCtype 
- * @param user 
  * @param printSession 
  * @param printerState 
  */
@@ -61,6 +61,8 @@ interface TelemetryEventPolymorphic : Serializable {
         private const val serialVersionUID: Long = 123
     }
 
+    @Json(name = "id")
+    val id: kotlin.Int
     @Json(name = "octoprint_environment")
     val octoprintEnvironment: OctoprintEnvironment
     @Json(name = "octoprint_printer_data")
@@ -71,10 +73,12 @@ interface TelemetryEventPolymorphic : Serializable {
     val printNannyClientVersion: kotlin.String
     @Json(name = "octoprint_version")
     val octoprintVersion: kotlin.String
+    @Json(name = "polymorphic_ctype")
+    val polymorphicCtype: kotlin.Int
     @Json(name = "octoprint_device")
     val octoprintDevice: kotlin.Int
-    @Json(name = "id")
-    val id: kotlin.Int?
+    @Json(name = "user")
+    val user: kotlin.Int
     @Json(name = "ts")
     val ts: kotlin.Float?
     @Json(name = "event_source")
@@ -85,10 +89,6 @@ interface TelemetryEventPolymorphic : Serializable {
     val eventData: kotlin.collections.Map<kotlin.String, kotlin.Any>?
     @Json(name = "temperature")
     val temperature: kotlin.collections.Map<kotlin.String, kotlin.Any>?
-    @Json(name = "polymorphic_ctype")
-    val polymorphicCtype: kotlin.Int?
-    @Json(name = "user")
-    val user: kotlin.Int?
     @Json(name = "print_session")
     val printSession: kotlin.Int?
     @Json(name = "printer_state")

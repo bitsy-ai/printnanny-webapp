@@ -29,26 +29,29 @@ import java.io.Serializable
 /**
  * 
  *
- * @param device 
  * @param id 
  * @param deleted 
+ * @param createdDt 
+ * @param device 
  * @param status 
  * @param command 
  * @param ansibleFacts 
  * @param ansibleExtraVars 
- * @param createdDt 
  */
 
 data class DeviceState (
 
-    @Json(name = "device")
-    val device: kotlin.Int,
-
     @Json(name = "id")
-    val id: kotlin.Int? = null,
+    val id: kotlin.Int,
 
     @Json(name = "deleted")
-    val deleted: java.time.OffsetDateTime? = null,
+    val deleted: java.time.OffsetDateTime,
+
+    @Json(name = "created_dt")
+    val createdDt: java.time.OffsetDateTime,
+
+    @Json(name = "device")
+    val device: kotlin.Int,
 
     @Json(name = "status")
     val status: StatusEnum? = null,
@@ -60,10 +63,7 @@ data class DeviceState (
     val ansibleFacts: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,
 
     @Json(name = "ansible_extra_vars")
-    val ansibleExtraVars: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,
-
-    @Json(name = "created_dt")
-    val createdDt: java.time.OffsetDateTime? = null
+    val ansibleExtraVars: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null
 
 ) : Serializable {
     companion object {

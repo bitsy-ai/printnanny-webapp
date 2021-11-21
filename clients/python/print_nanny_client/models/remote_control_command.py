@@ -82,10 +82,8 @@ class RemoteControlCommand(object):
         self._octoprint_event_type = None
         self.discriminator = None
 
-        if id is not None:
-            self.id = id
-        if created_dt is not None:
-            self.created_dt = created_dt
+        self.id = id
+        self.created_dt = created_dt
         if command is not None:
             self.command = command
         self.user = user
@@ -97,10 +95,8 @@ class RemoteControlCommand(object):
             self.iotcore_response = iotcore_response
         if metadata is not None:
             self.metadata = metadata
-        if url is not None:
-            self.url = url
-        if octoprint_event_type is not None:
-            self.octoprint_event_type = octoprint_event_type
+        self.url = url
+        self.octoprint_event_type = octoprint_event_type
 
     @property
     def id(self):
@@ -120,6 +116,8 @@ class RemoteControlCommand(object):
         :param id: The id of this RemoteControlCommand.  # noqa: E501
         :type id: int
         """
+        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -141,6 +139,8 @@ class RemoteControlCommand(object):
         :param created_dt: The created_dt of this RemoteControlCommand.  # noqa: E501
         :type created_dt: datetime
         """
+        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
 
         self._created_dt = created_dt
 
@@ -313,6 +313,8 @@ class RemoteControlCommand(object):
         :param url: The url of this RemoteControlCommand.  # noqa: E501
         :type url: str
         """
+        if self.local_vars_configuration.client_side_validation and url is None:  # noqa: E501
+            raise ValueError("Invalid value for `url`, must not be `None`")  # noqa: E501
 
         self._url = url
 
@@ -334,6 +336,8 @@ class RemoteControlCommand(object):
         :param octoprint_event_type: The octoprint_event_type of this RemoteControlCommand.  # noqa: E501
         :type octoprint_event_type: str
         """
+        if self.local_vars_configuration.client_side_validation and octoprint_event_type is None:  # noqa: E501
+            raise ValueError("Invalid value for `octoprint_event_type`, must not be `None`")  # noqa: E501
 
         self._octoprint_event_type = octoprint_event_type
 

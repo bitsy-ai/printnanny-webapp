@@ -28,7 +28,16 @@ import java.io.Serializable
 /**
  * 
  *
+ * @param id 
+ * @param createdDt 
  * @param name 
+ * @param user 
+ * @param publicKey 
+ * @param fingerprint 
+ * @param cloudiotDevice 
+ * @param cloudiotDeviceName 
+ * @param cloudiotDevicePath 
+ * @param cloudiotDeviceNumId 
  * @param model 
  * @param platform 
  * @param serial 
@@ -39,29 +48,47 @@ import java.io.Serializable
  * @param octoprintVersion 
  * @param pluginVersion 
  * @param printNannyClientVersion 
- * @param id 
- * @param createdDt 
- * @param user 
- * @param publicKey 
- * @param fingerprint 
- * @param cloudiotDevice 
- * @param cloudiotDeviceName 
- * @param cloudiotDevicePath 
- * @param cloudiotDeviceNumId 
+ * @param cloudiotDeviceConfigs 
+ * @param manageUrl 
+ * @param monitoringActive 
  * @param cpuFlags 
  * @param hardware 
  * @param revision 
  * @param virtualenv 
- * @param cloudiotDeviceConfigs 
- * @param manageUrl 
- * @param monitoringActive 
  * @param activeSession 
  */
 
 data class OctoPrintDevice (
 
+    @Json(name = "id")
+    val id: kotlin.Int,
+
+    @Json(name = "created_dt")
+    val createdDt: java.time.OffsetDateTime,
+
     @Json(name = "name")
     val name: kotlin.String,
+
+    @Json(name = "user")
+    val user: kotlin.Int,
+
+    @Json(name = "public_key")
+    val publicKey: kotlin.String,
+
+    @Json(name = "fingerprint")
+    val fingerprint: kotlin.String,
+
+    @Json(name = "cloudiot_device")
+    val cloudiotDevice: kotlin.collections.Map<kotlin.String, kotlin.Any>,
+
+    @Json(name = "cloudiot_device_name")
+    val cloudiotDeviceName: kotlin.String,
+
+    @Json(name = "cloudiot_device_path")
+    val cloudiotDevicePath: kotlin.String,
+
+    @Json(name = "cloudiot_device_num_id")
+    val cloudiotDeviceNumId: kotlin.Int,
 
     @Json(name = "model")
     val model: kotlin.String,
@@ -93,32 +120,14 @@ data class OctoPrintDevice (
     @Json(name = "print_nanny_client_version")
     val printNannyClientVersion: kotlin.String,
 
-    @Json(name = "id")
-    val id: kotlin.Int? = null,
+    @Json(name = "cloudiot_device_configs")
+    val cloudiotDeviceConfigs: kotlin.String,
 
-    @Json(name = "created_dt")
-    val createdDt: java.time.OffsetDateTime? = null,
+    @Json(name = "manage_url")
+    val manageUrl: java.net.URI,
 
-    @Json(name = "user")
-    val user: kotlin.Int? = null,
-
-    @Json(name = "public_key")
-    val publicKey: kotlin.String? = null,
-
-    @Json(name = "fingerprint")
-    val fingerprint: kotlin.String? = null,
-
-    @Json(name = "cloudiot_device")
-    val cloudiotDevice: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,
-
-    @Json(name = "cloudiot_device_name")
-    val cloudiotDeviceName: kotlin.String? = null,
-
-    @Json(name = "cloudiot_device_path")
-    val cloudiotDevicePath: kotlin.String? = null,
-
-    @Json(name = "cloudiot_device_num_id")
-    val cloudiotDeviceNumId: kotlin.Int? = null,
+    @Json(name = "monitoring_active")
+    val monitoringActive: kotlin.Boolean,
 
     @Json(name = "cpu_flags")
     val cpuFlags: kotlin.collections.List<kotlin.String>? = null,
@@ -131,15 +140,6 @@ data class OctoPrintDevice (
 
     @Json(name = "virtualenv")
     val virtualenv: kotlin.String? = null,
-
-    @Json(name = "cloudiot_device_configs")
-    val cloudiotDeviceConfigs: kotlin.String? = null,
-
-    @Json(name = "manage_url")
-    val manageUrl: java.net.URI? = null,
-
-    @Json(name = "monitoring_active")
-    val monitoringActive: kotlin.Boolean? = null,
 
     @Json(name = "active_session")
     val activeSession: PrintSession? = null

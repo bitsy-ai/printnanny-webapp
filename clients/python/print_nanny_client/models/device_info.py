@@ -82,10 +82,8 @@ class DeviceInfo(object):
         self._device = None
         self.discriminator = None
 
-        if id is not None:
-            self.id = id
-        if deleted is not None:
-            self.deleted = deleted
+        self.id = id
+        self.deleted = deleted
         self.machine_id = machine_id
         self.hardware = hardware
         self.revision = revision
@@ -114,6 +112,8 @@ class DeviceInfo(object):
         :param id: The id of this DeviceInfo.  # noqa: E501
         :type id: int
         """
+        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -135,6 +135,8 @@ class DeviceInfo(object):
         :param deleted: The deleted of this DeviceInfo.  # noqa: E501
         :type deleted: datetime
         """
+        if self.local_vars_configuration.client_side_validation and deleted is None:  # noqa: E501
+            raise ValueError("Invalid value for `deleted`, must not be `None`")  # noqa: E501
 
         self._deleted = deleted
 

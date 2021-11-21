@@ -61,11 +61,9 @@ class Release(object):
         self._release_channel = None
         self.discriminator = None
 
-        if id is not None:
-            self.id = id
+        self.id = id
         self.ansible_extra_vars = ansible_extra_vars
-        if created_dt is not None:
-            self.created_dt = created_dt
+        self.created_dt = created_dt
         if release_channel is not None:
             self.release_channel = release_channel
 
@@ -87,6 +85,8 @@ class Release(object):
         :param id: The id of this Release.  # noqa: E501
         :type id: int
         """
+        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -131,6 +131,8 @@ class Release(object):
         :param created_dt: The created_dt of this Release.  # noqa: E501
         :type created_dt: datetime
         """
+        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
 
         self._created_dt = created_dt
 

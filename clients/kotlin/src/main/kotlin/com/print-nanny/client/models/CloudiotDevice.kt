@@ -28,9 +28,6 @@ import java.io.Serializable
  * 
  *
  * @param numId 
- * @param name 
- * @param id 
- * @param device 
  * @param desiredConfigTopic 
  * @param currentStateTopic 
  * @param gcpProjectId 
@@ -40,12 +37,42 @@ import java.io.Serializable
  * @param mqttBridgePort 
  * @param mqttClientId 
  * @param deleted 
+ * @param name 
+ * @param id 
+ * @param device 
  */
 
 data class CloudiotDevice (
 
     @Json(name = "num_id")
     val numId: kotlin.Long,
+
+    @Json(name = "desired_config_topic")
+    val desiredConfigTopic: kotlin.String,
+
+    @Json(name = "current_state_topic")
+    val currentStateTopic: kotlin.String,
+
+    @Json(name = "gcp_project_id")
+    val gcpProjectId: kotlin.String,
+
+    @Json(name = "gcp_region")
+    val gcpRegion: kotlin.String,
+
+    @Json(name = "gcp_cloudiot_device_registry")
+    val gcpCloudiotDeviceRegistry: kotlin.String,
+
+    @Json(name = "mqtt_bridge_hostname")
+    val mqttBridgeHostname: kotlin.String,
+
+    @Json(name = "mqtt_bridge_port")
+    val mqttBridgePort: kotlin.Int,
+
+    @Json(name = "mqtt_client_id")
+    val mqttClientId: kotlin.String,
+
+    @Json(name = "deleted")
+    val deleted: java.time.OffsetDateTime,
 
     @Json(name = "name")
     val name: kotlin.String,
@@ -54,34 +81,7 @@ data class CloudiotDevice (
     val id: kotlin.String,
 
     @Json(name = "device")
-    val device: kotlin.Int,
-
-    @Json(name = "desired_config_topic")
-    val desiredConfigTopic: kotlin.String? = null,
-
-    @Json(name = "current_state_topic")
-    val currentStateTopic: kotlin.String? = null,
-
-    @Json(name = "gcp_project_id")
-    val gcpProjectId: kotlin.String? = null,
-
-    @Json(name = "gcp_region")
-    val gcpRegion: kotlin.String? = null,
-
-    @Json(name = "gcp_cloudiot_device_registry")
-    val gcpCloudiotDeviceRegistry: kotlin.String? = null,
-
-    @Json(name = "mqtt_bridge_hostname")
-    val mqttBridgeHostname: kotlin.String? = null,
-
-    @Json(name = "mqtt_bridge_port")
-    val mqttBridgePort: kotlin.Int? = null,
-
-    @Json(name = "mqtt_client_id")
-    val mqttClientId: kotlin.String? = null,
-
-    @Json(name = "deleted")
-    val deleted: java.time.OffsetDateTime? = null
+    val device: kotlin.Int
 
 ) : Serializable {
     companion object {

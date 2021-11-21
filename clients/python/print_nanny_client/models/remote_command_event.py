@@ -94,8 +94,7 @@ class RemoteCommandEvent(object):
         self._print_session = None
         self.discriminator = None
 
-        if id is not None:
-            self.id = id
+        self.id = id
         if ts is not None:
             self.ts = ts
         self.event_source = event_source
@@ -108,11 +107,9 @@ class RemoteCommandEvent(object):
         self.print_nanny_plugin_version = print_nanny_plugin_version
         self.print_nanny_client_version = print_nanny_client_version
         self.octoprint_version = octoprint_version
-        if polymorphic_ctype is not None:
-            self.polymorphic_ctype = polymorphic_ctype
+        self.polymorphic_ctype = polymorphic_ctype
         self.octoprint_device = octoprint_device
-        if user is not None:
-            self.user = user
+        self.user = user
         self.print_session = print_session
 
     @property
@@ -133,6 +130,8 @@ class RemoteCommandEvent(object):
         :param id: The id of this RemoteCommandEvent.  # noqa: E501
         :type id: int
         """
+        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -383,6 +382,8 @@ class RemoteCommandEvent(object):
         :param polymorphic_ctype: The polymorphic_ctype of this RemoteCommandEvent.  # noqa: E501
         :type polymorphic_ctype: int
         """
+        if self.local_vars_configuration.client_side_validation and polymorphic_ctype is None:  # noqa: E501
+            raise ValueError("Invalid value for `polymorphic_ctype`, must not be `None`")  # noqa: E501
 
         self._polymorphic_ctype = polymorphic_ctype
 
@@ -427,6 +428,8 @@ class RemoteCommandEvent(object):
         :param user: The user of this RemoteCommandEvent.  # noqa: E501
         :type user: int
         """
+        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
+            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
 
         self._user = user
 

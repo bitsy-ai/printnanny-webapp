@@ -11,10 +11,10 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct RemoteControlCommand {
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<i32>,
-    #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
-    pub created_dt: Option<String>,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "created_dt")]
+    pub created_dt: String,
     #[serde(rename = "command", skip_serializing_if = "Option::is_none")]
     pub command: Option<crate::models::RemoteControlCommandCommandEnum>,
     #[serde(rename = "user")]
@@ -29,17 +29,17 @@ pub struct RemoteControlCommand {
     pub iotcore_response: Option<::std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "metadata", skip_serializing_if = "Option::is_none")]
     pub metadata: Option<::std::collections::HashMap<String, serde_json::Value>>,
-    #[serde(rename = "url", skip_serializing_if = "Option::is_none")]
-    pub url: Option<String>,
-    #[serde(rename = "octoprint_event_type", skip_serializing_if = "Option::is_none")]
-    pub octoprint_event_type: Option<String>,
+    #[serde(rename = "url")]
+    pub url: String,
+    #[serde(rename = "octoprint_event_type")]
+    pub octoprint_event_type: String,
 }
 
 impl RemoteControlCommand {
-    pub fn new(user: i32, device: i32) -> RemoteControlCommand {
+    pub fn new(id: i32, created_dt: String, user: i32, device: i32, url: String, octoprint_event_type: String) -> RemoteControlCommand {
         RemoteControlCommand {
-            id: None,
-            created_dt: None,
+            id,
+            created_dt,
             command: None,
             user,
             device,
@@ -47,8 +47,8 @@ impl RemoteControlCommand {
             success: None,
             iotcore_response: None,
             metadata: None,
-            url: None,
-            octoprint_event_type: None,
+            url,
+            octoprint_event_type,
         }
     }
 }

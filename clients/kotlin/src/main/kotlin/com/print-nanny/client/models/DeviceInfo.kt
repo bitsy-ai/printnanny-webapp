@@ -27,6 +27,8 @@ import java.io.Serializable
 /**
  * 
  *
+ * @param id 
+ * @param deleted 
  * @param machineId Populated from /etc/machine-id
  * @param hardware Populated from /proc/cpuinfo HARDWARE
  * @param revision Populated from /proc/cpuinfo REVISION
@@ -36,11 +38,15 @@ import java.io.Serializable
  * @param ram 
  * @param imageVersion Print Nanny OS version string from /boot/image_version.txt
  * @param device 
- * @param id 
- * @param deleted 
  */
 
 data class DeviceInfo (
+
+    @Json(name = "id")
+    val id: kotlin.Int,
+
+    @Json(name = "deleted")
+    val deleted: java.time.OffsetDateTime,
 
     /* Populated from /etc/machine-id */
     @Json(name = "machine_id")
@@ -73,13 +79,7 @@ data class DeviceInfo (
     val imageVersion: kotlin.String,
 
     @Json(name = "device")
-    val device: kotlin.Int,
-
-    @Json(name = "id")
-    val id: kotlin.Int? = null,
-
-    @Json(name = "deleted")
-    val deleted: java.time.OffsetDateTime? = null
+    val device: kotlin.Int
 
 ) : Serializable {
     companion object {

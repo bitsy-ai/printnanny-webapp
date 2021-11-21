@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [optional] [readonly] 
-**created_dt** | **datetime** |  | [optional] [readonly] 
+**id** | **int** |  | [readonly] 
+**created_dt** | **datetime** |  | [readonly] 
 **active** | **bool** |  | [optional] 
 **name** | **str** |  | 
 **hypothesis** | **str** |  | 

@@ -11,26 +11,26 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct OctoPrintDevice {
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<i32>,
-    #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
-    pub created_dt: Option<String>,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "created_dt")]
+    pub created_dt: String,
     #[serde(rename = "name")]
     pub name: String,
-    #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
-    pub user: Option<i32>,
-    #[serde(rename = "public_key", skip_serializing_if = "Option::is_none")]
-    pub public_key: Option<String>,
-    #[serde(rename = "fingerprint", skip_serializing_if = "Option::is_none")]
-    pub fingerprint: Option<String>,
-    #[serde(rename = "cloudiot_device", skip_serializing_if = "Option::is_none")]
-    pub cloudiot_device: Option<::std::collections::HashMap<String, serde_json::Value>>,
-    #[serde(rename = "cloudiot_device_name", skip_serializing_if = "Option::is_none")]
-    pub cloudiot_device_name: Option<String>,
-    #[serde(rename = "cloudiot_device_path", skip_serializing_if = "Option::is_none")]
-    pub cloudiot_device_path: Option<String>,
-    #[serde(rename = "cloudiot_device_num_id", skip_serializing_if = "Option::is_none")]
-    pub cloudiot_device_num_id: Option<i32>,
+    #[serde(rename = "user")]
+    pub user: i32,
+    #[serde(rename = "public_key")]
+    pub public_key: String,
+    #[serde(rename = "fingerprint")]
+    pub fingerprint: String,
+    #[serde(rename = "cloudiot_device")]
+    pub cloudiot_device: ::std::collections::HashMap<String, serde_json::Value>,
+    #[serde(rename = "cloudiot_device_name")]
+    pub cloudiot_device_name: String,
+    #[serde(rename = "cloudiot_device_path")]
+    pub cloudiot_device_path: String,
+    #[serde(rename = "cloudiot_device_num_id")]
+    pub cloudiot_device_num_id: i32,
     #[serde(rename = "model")]
     pub model: String,
     #[serde(rename = "platform")]
@@ -59,29 +59,29 @@ pub struct OctoPrintDevice {
     pub plugin_version: String,
     #[serde(rename = "print_nanny_client_version")]
     pub print_nanny_client_version: String,
-    #[serde(rename = "cloudiot_device_configs", skip_serializing_if = "Option::is_none")]
-    pub cloudiot_device_configs: Option<String>,
-    #[serde(rename = "manage_url", skip_serializing_if = "Option::is_none")]
-    pub manage_url: Option<String>,
-    #[serde(rename = "monitoring_active", skip_serializing_if = "Option::is_none")]
-    pub monitoring_active: Option<bool>,
+    #[serde(rename = "cloudiot_device_configs")]
+    pub cloudiot_device_configs: String,
+    #[serde(rename = "manage_url")]
+    pub manage_url: String,
+    #[serde(rename = "monitoring_active")]
+    pub monitoring_active: bool,
     #[serde(rename = "active_session", skip_serializing_if = "Option::is_none")]
     pub active_session: Option<Box<crate::models::PrintSession>>,
 }
 
 impl OctoPrintDevice {
-    pub fn new(name: String, model: String, platform: String, serial: String, cores: i32, ram: i32, python_version: String, pip_version: String, octoprint_version: String, plugin_version: String, print_nanny_client_version: String) -> OctoPrintDevice {
+    pub fn new(id: i32, created_dt: String, name: String, user: i32, public_key: String, fingerprint: String, cloudiot_device: ::std::collections::HashMap<String, serde_json::Value>, cloudiot_device_name: String, cloudiot_device_path: String, cloudiot_device_num_id: i32, model: String, platform: String, serial: String, cores: i32, ram: i32, python_version: String, pip_version: String, octoprint_version: String, plugin_version: String, print_nanny_client_version: String, cloudiot_device_configs: String, manage_url: String, monitoring_active: bool) -> OctoPrintDevice {
         OctoPrintDevice {
-            id: None,
-            created_dt: None,
+            id,
+            created_dt,
             name,
-            user: None,
-            public_key: None,
-            fingerprint: None,
-            cloudiot_device: None,
-            cloudiot_device_name: None,
-            cloudiot_device_path: None,
-            cloudiot_device_num_id: None,
+            user,
+            public_key,
+            fingerprint,
+            cloudiot_device,
+            cloudiot_device_name,
+            cloudiot_device_path,
+            cloudiot_device_num_id,
             model,
             platform,
             cpu_flags: None,
@@ -96,9 +96,9 @@ impl OctoPrintDevice {
             octoprint_version,
             plugin_version,
             print_nanny_client_version,
-            cloudiot_device_configs: None,
-            manage_url: None,
-            monitoring_active: None,
+            cloudiot_device_configs,
+            manage_url,
+            monitoring_active,
             active_session: None,
         }
     }

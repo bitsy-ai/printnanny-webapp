@@ -88,25 +88,18 @@ class Device(object):
         self._hostname = None
         self.discriminator = None
 
-        if id is not None:
-            self.id = id
+        self.id = id
         self.cloudiot_device = cloudiot_device
-        if cameras is not None:
-            self.cameras = cameras
-        if dashboard_url is not None:
-            self.dashboard_url = dashboard_url
+        self.cameras = cameras
+        self.dashboard_url = dashboard_url
         self.bootstrap_release = bootstrap_release
-        if printer_controllers is not None:
-            self.printer_controllers = printer_controllers
+        self.printer_controllers = printer_controllers
         self.release_channel = release_channel
         self.user = user
         self.active_license = active_license
-        if deleted is not None:
-            self.deleted = deleted
-        if created_dt is not None:
-            self.created_dt = created_dt
-        if updated_dt is not None:
-            self.updated_dt = updated_dt
+        self.deleted = deleted
+        self.created_dt = created_dt
+        self.updated_dt = updated_dt
         if hostname is not None:
             self.hostname = hostname
 
@@ -128,6 +121,8 @@ class Device(object):
         :param id: The id of this Device.  # noqa: E501
         :type id: int
         """
+        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -170,6 +165,8 @@ class Device(object):
         :param cameras: The cameras of this Device.  # noqa: E501
         :type cameras: list[Camera]
         """
+        if self.local_vars_configuration.client_side_validation and cameras is None:  # noqa: E501
+            raise ValueError("Invalid value for `cameras`, must not be `None`")  # noqa: E501
 
         self._cameras = cameras
 
@@ -191,6 +188,8 @@ class Device(object):
         :param dashboard_url: The dashboard_url of this Device.  # noqa: E501
         :type dashboard_url: str
         """
+        if self.local_vars_configuration.client_side_validation and dashboard_url is None:  # noqa: E501
+            raise ValueError("Invalid value for `dashboard_url`, must not be `None`")  # noqa: E501
 
         self._dashboard_url = dashboard_url
 
@@ -233,6 +232,8 @@ class Device(object):
         :param printer_controllers: The printer_controllers of this Device.  # noqa: E501
         :type printer_controllers: list[PrinterController]
         """
+        if self.local_vars_configuration.client_side_validation and printer_controllers is None:  # noqa: E501
+            raise ValueError("Invalid value for `printer_controllers`, must not be `None`")  # noqa: E501
 
         self._printer_controllers = printer_controllers
 
@@ -317,6 +318,8 @@ class Device(object):
         :param deleted: The deleted of this Device.  # noqa: E501
         :type deleted: datetime
         """
+        if self.local_vars_configuration.client_side_validation and deleted is None:  # noqa: E501
+            raise ValueError("Invalid value for `deleted`, must not be `None`")  # noqa: E501
 
         self._deleted = deleted
 
@@ -338,6 +341,8 @@ class Device(object):
         :param created_dt: The created_dt of this Device.  # noqa: E501
         :type created_dt: datetime
         """
+        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
 
         self._created_dt = created_dt
 
@@ -359,6 +364,8 @@ class Device(object):
         :param updated_dt: The updated_dt of this Device.  # noqa: E501
         :type updated_dt: datetime
         """
+        if self.local_vars_configuration.client_side_validation and updated_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `updated_dt`, must not be `None`")  # noqa: E501
 
         self._updated_dt = updated_dt
 
