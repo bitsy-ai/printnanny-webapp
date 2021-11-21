@@ -252,8 +252,7 @@ rust-client: clean-rust-client
 		-i http://localhost:8000/api/schema \
 		-g rust \
 		-o /local/clients/rust \
-		-c /local/clients/rust.yaml \
-		-t /local/client-templates/rust
+		-c /local/clients/rust.yaml
 # sed -i "s/Box::new(pki)/Some(Box::new(pki))/g" clients/rust/src/models/appliance.rs
 # sed -i "s/Box::new(ansible_facts)/Some(Box::new(ansible_facts))/g" clients/rust/src/models/appliance.rs
 
