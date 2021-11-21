@@ -28,6 +28,27 @@ GIT_BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD)
 
 DOCKER_COMPOSE_PROJECT_NAME="print_nanny_webapp"
 
+clean-local-requirements:
+	rm -f requirements/local.txt
+
+clean-test-requirements:
+	rm -rf requirements/test.txt
+
+clean-prod-requirements:
+	rm -rf requirements/production.txt
+
+clean-requirements: clean-local-requirements clean-test-requirements clean-prod-requirements
+	rm -f requirements/local.txt
+
+requirements/production.txt:
+	pip-compile requirements/production.in --output-file requirements/production.txt
+
+requirements/local.txt:
+	pip-compile requirements/local.in --output-file requirements/local.txt
+
+requirements/test.txt:
+	pip-compile requirements/test.in --output-file requirements/test.txt
+
 install-git-hooks:
 	cp -a hooks/. .git/hooks/
 # TODO:
@@ -304,17 +325,13 @@ bdist_wheel: python-client ## builds wheel package
 
 dist: sdist bdist_wheel
 
-python-client-release: dist ## package and upload a release
+python-client-release: dist
 	cd clients/python && twine upload dist/* && cd -
 
 rust-client-release: rust-client
 	cd clients/rust && cargo publish
 
-clients-commit: python-client ts-client rust-client
-	-git add -A
-	-git commit -m "✨ 0.11.0 printnanny-api-client openapi codegen"
-
-clients-release: clients-commit python-client-release ts-client kotlin-client rust-client-release
+clients-release: ts-client python-client-release rust-client-release
 
 cloudsql:
 	cloud_sql_proxy -dir=$(HOME)/cloudsql -instances=print-nanny:us-central1:print-nanny=tcp:5433

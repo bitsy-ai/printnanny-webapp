@@ -1,0 +1,19 @@
+# dev / testing
+black
+twine
+pip-tools
+wheel
+pytest-django
+pytest-dotenv
+pytest-mock
+pytest-sugar
+django-coverage-plugin
+factory_boy
+
+# mypy
+mypy
+django-stubs
+djangorestframework-stubs
+mypy-protobuf
+types-requests
+types-protobuf

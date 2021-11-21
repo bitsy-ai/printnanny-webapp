@@ -1,0 +1,27 @@
+name: 'Lint'
+description: 'Lint & typecheck Python webapp code'
+runs:
+  using: "composite"
+  steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - name: Set up Python virtualenv
+      shell: bash
+      run: |
+        python3 -m venv .venv
+    - name: Install dependencies
+      shell: bash
+      run: |
+        source .venv/bin/activate
+        pip install -r requirements/test.txt
+        pip install -r requirements/local.txt
+    # Runs a set of commands using the runners shell
+    - name: Linter
+      shell: bash
+      run: |
+        source .venv/bin/activate
+        make lint
+    - name: Mypy
+      shell: bash
+      run: |
+        source .venv/bin/activate
+        make mypy
