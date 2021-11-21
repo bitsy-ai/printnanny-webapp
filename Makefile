@@ -162,6 +162,16 @@ local-up: local-image-build local-creds
 	DJANGO_SUPERUSER_EMAIL=$(DJANGO_SUPERUSER_EMAIL) \
 		docker-compose -f local.yml up
 
+local-up-d: local-image-build local-creds
+	. .envs/.sandbox/.env && PROJECT=$(GCP_PROJECT) \
+	PRINT_NANNY_IOT_DEVICE_REGISTRY=$(PRINT_NANNY_IOT_DEVICE_REGISTRY) \
+	PRINT_NANNY_HONEYCOMB_DATASET=$(PRINT_NANNY_HONEYCOMB_DATASET) \
+	PRINT_NANNY_HONEYCOMB_API_KEY=$(PRINT_NANNY_HONEYCOMB_API_KEY) \
+	PRINT_NANNY_HONEYCOMB_DEBUG=$(PRINT_NANNY_HONEYCOMB_DEBUG) \
+	DJANGO_SUPERUSER_PASSWORD=$(DJANGO_SUPERUSER_PASSWORD) \
+	DJANGO_SUPERUSER_EMAIL=$(DJANGO_SUPERUSER_EMAIL) \
+		docker-compose -f -d local.yml up
+
 local-up-clean: local-clean local-image-build local-up
 
 cluster-config:
