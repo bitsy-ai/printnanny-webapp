@@ -319,7 +319,9 @@ def generate_zipped_license_file(
     api_config = dict(
         device=device.id,
         api_token=str(api_token),
-        api_url=request.build_absolute_uri("/"),
+        api_url=request.build_absolute_uri("/")[
+            :-1
+        ],  # remove trailing slash for use in API client base_url
     )
     config_serializer = APIConfigSerializer(
         data=api_config,
