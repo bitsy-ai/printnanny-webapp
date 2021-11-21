@@ -8,8 +8,6 @@ import os
 from typing import Tuple, TypedDict
 from zipfile import ZipFile
 
-from rest_framework.authtoken.models import Token
-
 from django.apps import apps
 from django.http import FileResponse
 from django.http.request import HttpRequest
@@ -312,20 +310,6 @@ def generate_zipped_license_file(
 
     keypair, _ = generate_keypair_and_update_or_create_cloudiot_device(device, tmp)
     zip_filename = f"{tmp}/{FileLocator.LICENSE_ZIP_FILENAME}"
-
-    api_token, _ = Token.objects.get_or_create(user=device.user)
-    device.refresh_from_db()
-
-    credentials = dict(
-        api_token=str(api_token),
-        api_url=request.build_absolute_uri("/")[
-            :-1
-        ],  # remove trailing slash for use in API client base_url
-        honeycomb_dataset=settings.HONEYCOMB_DATASET,
-        honeycomb_api_key=settings.HONEYCOMB_API_KEY,
-    )
-
-    device.active_license.credentials = credentials
     device_serializer = DeviceSerializer(device, context=dict(request=request))
     device_json = JSONRenderer().render(device_serializer.data)
 
