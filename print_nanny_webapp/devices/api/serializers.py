@@ -66,13 +66,15 @@ class CloudiotDeviceSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class APIConfigSerializer(serializers.Serializer):
-    api_token = serializers.CharField()
-    api_url = serializers.CharField()
+class CredentialSerializer(serializers.Serializer):
+    printnanny_api_token = serializers.CharField()
+    printnanny_api_url = serializers.CharField()
+    honeycomb_dataset = serializers.CharField()  # distributed tracing dataset
+    honeycomb_api_key = serializers.CharField()  # write-only token
 
 
 class LicenseSerializer(serializers.ModelSerializer):
-    api_config = APIConfigSerializer(read_only=True, required=False, default=None)
+    credentials = CredentialSerializer(read_only=True, required=None, default=None)
 
     class Meta:
         model = License
