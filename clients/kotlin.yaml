@@ -1,9 +1,0 @@
----
-artifactId: print-nanny-client
-artifactVersion: '0.10.0'
-serializableModel: "true"
-dateLibrary: java8
-sortModelPropertiesByRequiredFlag: true
-sortParamsByRequiredFlag: true
-groupId: com.print-nanny
-packageName: com.print-nanny.client

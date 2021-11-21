@@ -1,7 +1,7 @@
 ---
 library: asyncio
-packageName: print_nanny_client
-packageVersion: '0.10.0'
+packageName: printnanny_api_client
+packageVersion: '0.11.0'
 templateDir: /local/clients/templates
 infoName: "Leigh Johnson"
 infoEmail: "leigh@bitsy.ai"
@@ -9,7 +9,7 @@ license: "AGPL"
 files:
   api_client.mustache:
     templateType: SupportingFiles
-    destinationFilename: print_nanny_client/api_client.py
+    destinationFilename: printnanny_api_client/api_client.py
   requirements.mustache:
     templateType: SupportingFiles
     destinationFilename: requirements.txt
@@ -21,5 +21,5 @@ files:
     destinationFilename: MANIFEST.in
   py.typed.mustache:
     templateType: SupportingFiles
-    destinationFilename: print_nanny_client/py.typed
+    destinationFilename: printnanny_api_client/py.typed
   

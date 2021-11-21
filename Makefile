@@ -207,21 +207,21 @@ clean-ts-client:
 	find . -name '*.hot-update.json' -exec rm -fr {} +
 	sudo rm -rf clients/typescript
 
-clean-kotlin-client:
-	sudo rm -rf clients/kotlin
+# clean-kotlin-client:
+# 	sudo rm -rf clients/kotlin
 
-clean-rust-client:
-	sudo rm -rf clients/rust
+# clean-rust-client:
+# 	sudo rm -rf clients/rust
 
-kotlin-client: clean-kotlin-client
-	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
-		-i http://localhost:8000/api/schema --recommend
+# kotlin-client: clean-kotlin-client
+# 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
+# 		-i http://localhost:8000/api/schema --recommend
 
-	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli generate \
-		-i http://localhost:8000/api/schema \
-		-g kotlin \
-		-o /local/clients/kotlin \
-		-c /local/clients/kotlin.yaml
+# 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli generate \
+# 		-i http://localhost:8000/api/schema \
+# 		-g kotlin \
+# 		-o /local/clients/kotlin \
+# 		-c /local/clients/kotlin.yaml
 
 ts-client: clean-ts-client
 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
@@ -308,7 +308,7 @@ python-client-release: dist ## package and upload a release
 
 rust-client-release: rust-client
 	-git add -A
-	-git commit -m "0.10.0" client codegen ✨"
+	-git commit -m "0.11.0 client codegen ✨"
 	cd clients/rust && cargo publish
 
 clients-release: python-client-release ts-client kotlin-client rust-client-release
