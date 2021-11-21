@@ -207,21 +207,21 @@ clean-ts-client:
 	find . -name '*.hot-update.json' -exec rm -fr {} +
 	sudo rm -rf clients/typescript
 
-clean-kotlin-client:
-	sudo rm -rf clients/kotlin
+# clean-kotlin-client:
+# 	sudo rm -rf clients/kotlin
 
-clean-rust-client:
-	sudo rm -rf clients/rust
+# clean-rust-client:
+# 	sudo rm -rf clients/rust
 
-kotlin-client: clean-kotlin-client
-	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
-		-i http://localhost:8000/api/schema --recommend
+# kotlin-client: clean-kotlin-client
+# 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
+# 		-i http://localhost:8000/api/schema --recommend
 
-	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli generate \
-		-i http://localhost:8000/api/schema \
-		-g kotlin \
-		-o /local/clients/kotlin \
-		-c /local/clients/kotlin.yaml
+# 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli generate \
+# 		-i http://localhost:8000/api/schema \
+# 		-g kotlin \
+# 		-o /local/clients/kotlin \
+# 		-c /local/clients/kotlin.yaml
 
 ts-client: clean-ts-client
 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
