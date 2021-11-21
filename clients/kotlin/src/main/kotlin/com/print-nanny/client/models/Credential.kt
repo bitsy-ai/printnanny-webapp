@@ -27,17 +27,25 @@ import java.io.Serializable
 /**
  * 
  *
- * @param apiToken 
- * @param apiUrl 
+ * @param printnannyApiToken 
+ * @param printnannyApiUrl 
+ * @param honeycombDataset 
+ * @param honeycombApiKey 
  */
 
-data class APIConfigRequest (
+data class Credential (
 
-    @Json(name = "api_token")
-    val apiToken: kotlin.String,
+    @Json(name = "printnanny_api_token")
+    val printnannyApiToken: kotlin.String,
 
-    @Json(name = "api_url")
-    val apiUrl: kotlin.String
+    @Json(name = "printnanny_api_url")
+    val printnannyApiUrl: kotlin.String,
+
+    @Json(name = "honeycomb_dataset")
+    val honeycombDataset: kotlin.String,
+
+    @Json(name = "honeycomb_api_key")
+    val honeycombApiKey: kotlin.String
 
 ) : Serializable {
     companion object {

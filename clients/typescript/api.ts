@@ -24,44 +24,6 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 /**
  * 
  * @export
- * @interface APIConfig
- */
-export interface APIConfig {
-    /**
-     * 
-     * @type {string}
-     * @memberof APIConfig
-     */
-    'api_token': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof APIConfig
-     */
-    'api_url': string;
-}
-/**
- * 
- * @export
- * @interface APIConfigRequest
- */
-export interface APIConfigRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof APIConfigRequest
-     */
-    'api_token': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof APIConfigRequest
-     */
-    'api_url': string;
-}
-/**
- * 
- * @export
  * @interface Alert
  */
 export interface Alert {
@@ -654,6 +616,68 @@ export interface CloudiotDeviceRequest {
      * @memberof CloudiotDeviceRequest
      */
     'device': number;
+}
+/**
+ * 
+ * @export
+ * @interface Credential
+ */
+export interface Credential {
+    /**
+     * 
+     * @type {string}
+     * @memberof Credential
+     */
+    'printnanny_api_token': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Credential
+     */
+    'printnanny_api_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Credential
+     */
+    'honeycomb_dataset': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Credential
+     */
+    'honeycomb_api_key': string;
+}
+/**
+ * 
+ * @export
+ * @interface CredentialRequest
+ */
+export interface CredentialRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof CredentialRequest
+     */
+    'printnanny_api_token': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CredentialRequest
+     */
+    'printnanny_api_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CredentialRequest
+     */
+    'honeycomb_dataset': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CredentialRequest
+     */
+    'honeycomb_api_key': string;
 }
 /**
  * Generic auth response serializer
@@ -1327,10 +1351,10 @@ export interface License {
     'id'?: number;
     /**
      * 
-     * @type {APIConfig}
+     * @type {Credential}
      * @memberof License
      */
-    'api_config'?: APIConfig;
+    'credentials'?: Credential;
     /**
      * 
      * @type {string}

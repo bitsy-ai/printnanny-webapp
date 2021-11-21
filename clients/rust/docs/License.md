@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | Option<**i32**> |  | [optional][readonly]
-**api_config** | Option<[**crate::models::ApiConfig**](APIConfig.md)> |  | [optional][readonly]
+**credentials** | Option<[**crate::models::Credential**](Credential.md)> |  | [optional][readonly]
 **deleted** | Option<**String**> |  | [optional][readonly]
 **public_key** | Option<**String**> |  | [optional][readonly]
 **public_key_checksum** | Option<**String**> |  | [optional][readonly]

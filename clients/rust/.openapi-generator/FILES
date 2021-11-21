@@ -10,8 +10,6 @@ docs/AlertRequest.md
 docs/AlertsApi.md
 docs/AnsibleExtraVars.md
 docs/AnsibleExtraVarsRequest.md
-docs/ApiConfig.md
-docs/ApiConfigRequest.md
 docs/ArtifactTypesEnum.md
 docs/AuthApi.md
 docs/CallbackTokenAuthRequest.md
@@ -22,6 +20,8 @@ docs/CameraRequest.md
 docs/CameraTypeEnum.md
 docs/CloudiotDevice.md
 docs/CloudiotDeviceRequest.md
+docs/Credential.md
+docs/CredentialRequest.md
 docs/DetailResponse.md
 docs/Device.md
 docs/DeviceCalibration.md
@@ -174,8 +174,6 @@ src/models/alert_event_type_enum.rs
 src/models/alert_request.rs
 src/models/ansible_extra_vars.rs
 src/models/ansible_extra_vars_request.rs
-src/models/api_config.rs
-src/models/api_config_request.rs
 src/models/artifact_types_enum.rs
 src/models/callback_token_auth_request.rs
 src/models/callback_token_verification.rs
@@ -185,6 +183,8 @@ src/models/camera_request.rs
 src/models/camera_type_enum.rs
 src/models/cloudiot_device.rs
 src/models/cloudiot_device_request.rs
+src/models/credential.rs
+src/models/credential_request.rs
 src/models/detail_response.rs
 src/models/device.rs
 src/models/device_calibration.rs

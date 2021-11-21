@@ -13,8 +13,8 @@
 pub struct License {
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
     pub id: Option<i32>,
-    #[serde(rename = "api_config", skip_serializing_if = "Option::is_none")]
-    pub api_config: Option<Box<crate::models::ApiConfig>>,
+    #[serde(rename = "credentials", skip_serializing_if = "Option::is_none")]
+    pub credentials: Option<Box<crate::models::Credential>>,
     #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
     pub deleted: Option<String>,
     #[serde(rename = "public_key", skip_serializing_if = "Option::is_none")]
@@ -33,7 +33,7 @@ impl License {
     pub fn new(device: i32) -> License {
         License {
             id: None,
-            api_config: None,
+            credentials: None,
             deleted: None,
             public_key: None,
             public_key_checksum: None,

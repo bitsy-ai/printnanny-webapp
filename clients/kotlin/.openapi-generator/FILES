@@ -1,8 +1,6 @@
 .openapi-generator-ignore
 README.md
 build.gradle
-docs/APIConfig.md
-docs/APIConfigRequest.md
 docs/Alert.md
 docs/AlertBulkResponse.md
 docs/AlertEventTypeEnum.md
@@ -20,6 +18,8 @@ docs/CameraRequest.md
 docs/CameraTypeEnum.md
 docs/CloudiotDevice.md
 docs/CloudiotDeviceRequest.md
+docs/Credential.md
+docs/CredentialRequest.md
 docs/DetailResponse.md
 docs/Device.md
 docs/DeviceCalibration.md
@@ -183,8 +183,6 @@ src/main/kotlin/com/print-nanny/client/infrastructure/ResponseExtensions.kt
 src/main/kotlin/com/print-nanny/client/infrastructure/Serializer.kt
 src/main/kotlin/com/print-nanny/client/infrastructure/URIAdapter.kt
 src/main/kotlin/com/print-nanny/client/infrastructure/UUIDAdapter.kt
-src/main/kotlin/com/print-nanny/client/models/APIConfig.kt
-src/main/kotlin/com/print-nanny/client/models/APIConfigRequest.kt
 src/main/kotlin/com/print-nanny/client/models/Alert.kt
 src/main/kotlin/com/print-nanny/client/models/AlertBulkResponse.kt
 src/main/kotlin/com/print-nanny/client/models/AlertEventTypeEnum.kt
@@ -200,6 +198,8 @@ src/main/kotlin/com/print-nanny/client/models/CameraRequest.kt
 src/main/kotlin/com/print-nanny/client/models/CameraTypeEnum.kt
 src/main/kotlin/com/print-nanny/client/models/CloudiotDevice.kt
 src/main/kotlin/com/print-nanny/client/models/CloudiotDeviceRequest.kt
+src/main/kotlin/com/print-nanny/client/models/Credential.kt
+src/main/kotlin/com/print-nanny/client/models/CredentialRequest.kt
 src/main/kotlin/com/print-nanny/client/models/DetailResponse.kt
 src/main/kotlin/com/print-nanny/client/models/Device.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceCalibration.kt

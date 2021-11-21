@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
-**api_config** | [**APIConfig**](APIConfig.md) |  | [optional] [readonly] 
+**credentials** | [**Credential**](Credential.md) |  | [optional] [readonly] 
 **deleted** | **datetime** |  | [optional] [readonly] 
 **public_key** | **str** |  | [optional] [readonly] 
 **public_key_checksum** | **str** |  | [optional] [readonly] 

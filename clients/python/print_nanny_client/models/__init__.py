@@ -14,8 +14,6 @@
 from __future__ import absolute_import
 
 # import models into model package
-from print_nanny_client.models.api_config import APIConfig
-from print_nanny_client.models.api_config_request import APIConfigRequest
 from print_nanny_client.models.alert import Alert
 from print_nanny_client.models.alert_bulk_response import AlertBulkResponse
 from print_nanny_client.models.alert_event_type_enum import AlertEventTypeEnum
@@ -31,6 +29,8 @@ from print_nanny_client.models.camera_request import CameraRequest
 from print_nanny_client.models.camera_type_enum import CameraTypeEnum
 from print_nanny_client.models.cloudiot_device import CloudiotDevice
 from print_nanny_client.models.cloudiot_device_request import CloudiotDeviceRequest
+from print_nanny_client.models.credential import Credential
+from print_nanny_client.models.credential_request import CredentialRequest
 from print_nanny_client.models.detail_response import DetailResponse
 from print_nanny_client.models.device import Device
 from print_nanny_client.models.device_calibration import DeviceCalibration

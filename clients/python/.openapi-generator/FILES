@@ -4,8 +4,6 @@
 .travis.yml
 MANIFEST.in
 README.md
-docs/APIConfig.md
-docs/APIConfigRequest.md
 docs/Alert.md
 docs/AlertBulkResponse.md
 docs/AlertEventTypeEnum.md
@@ -24,6 +22,8 @@ docs/CameraRequest.md
 docs/CameraTypeEnum.md
 docs/CloudiotDevice.md
 docs/CloudiotDeviceRequest.md
+docs/Credential.md
+docs/CredentialRequest.md
 docs/DetailResponse.md
 docs/Device.md
 docs/DeviceCalibration.md
@@ -180,8 +180,6 @@ print_nanny_client/models/alert_event_type_enum.py
 print_nanny_client/models/alert_request.py
 print_nanny_client/models/ansible_extra_vars.py
 print_nanny_client/models/ansible_extra_vars_request.py
-print_nanny_client/models/api_config.py
-print_nanny_client/models/api_config_request.py
 print_nanny_client/models/artifact_types_enum.py
 print_nanny_client/models/callback_token_auth_request.py
 print_nanny_client/models/callback_token_verification.py
@@ -191,6 +189,8 @@ print_nanny_client/models/camera_request.py
 print_nanny_client/models/camera_type_enum.py
 print_nanny_client/models/cloudiot_device.py
 print_nanny_client/models/cloudiot_device_request.py
+print_nanny_client/models/credential.py
+print_nanny_client/models/credential_request.py
 print_nanny_client/models/detail_response.py
 print_nanny_client/models/device.py
 print_nanny_client/models/device_calibration.py
@@ -327,8 +327,6 @@ test/test_alert_request.py
 test/test_alerts_api.py
 test/test_ansible_extra_vars.py
 test/test_ansible_extra_vars_request.py
-test/test_api_config.py
-test/test_api_config_request.py
 test/test_artifact_types_enum.py
 test/test_auth__api.py
 test/test_auth_api.py
@@ -340,6 +338,8 @@ test/test_camera_request.py
 test/test_camera_type_enum.py
 test/test_cloudiot_device.py
 test/test_cloudiot_device_request.py
+test/test_credential.py
+test/test_credential_request.py
 test/test_detail_response.py
 test/test_device.py
 test/test_device_calibration.py

@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.api_config_request import APIConfigRequest  # noqa: E501
+from print_nanny_client.models.credential_request import CredentialRequest  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestAPIConfigRequest(unittest.TestCase):
-    """APIConfigRequest unit test stubs"""
+class TestCredentialRequest(unittest.TestCase):
+    """CredentialRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,24 +29,28 @@ class TestAPIConfigRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test APIConfigRequest
+        """Test CredentialRequest
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.api_config_request.APIConfigRequest()  # noqa: E501
+        # model = print_nanny_client.models.credential_request.CredentialRequest()  # noqa: E501
         if include_optional :
-            return APIConfigRequest(
-                api_token = '', 
-                api_url = ''
+            return CredentialRequest(
+                printnanny_api_token = '', 
+                printnanny_api_url = '', 
+                honeycomb_dataset = '', 
+                honeycomb_api_key = ''
             )
         else :
-            return APIConfigRequest(
-                api_token = '',
-                api_url = '',
+            return CredentialRequest(
+                printnanny_api_token = '',
+                printnanny_api_url = '',
+                honeycomb_dataset = '',
+                honeycomb_api_key = '',
         )
 
-    def testAPIConfigRequest(self):
-        """Test APIConfigRequest"""
+    def testCredentialRequest(self):
+        """Test CredentialRequest"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

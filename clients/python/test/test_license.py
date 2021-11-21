@@ -37,7 +37,7 @@ class TestLicense(unittest.TestCase):
         if include_optional :
             return License(
                 id = 56, 
-                api_config = None, 
+                credentials = None, 
                 deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 public_key = '', 
                 public_key_checksum = '', 
