@@ -322,7 +322,7 @@ ANYMAIL = {
 
 # Discord
 # ------------------------------------------------------------------------------
-DISCORD_TOKEN = env("DISCORD_TOKEN")
+DISCORD_TOKEN = env("DISCORD_TOKEN", default="")
 
 
 # ADMIN
@@ -662,3 +662,7 @@ coturn_db["ENGINE"] = 'django_prometheus.db.backends.postgresql'
 DATABASES["coturn"] = coturn_db
 COTURN_SECRET_KEY = env("COTURN_SECRET_KEY")
 COTURN_REALM = env("COTURN_REALM")
+
+# ghost user management keys
+GHOST_ADMIN_API_KEY=""
+GHOST_CONTENT_API_KEY=""

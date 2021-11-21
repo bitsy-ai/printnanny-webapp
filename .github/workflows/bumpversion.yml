@@ -33,6 +33,8 @@ jobs:
         DRY_RUN: true
         RELEASE_BRANCHES: "main"
         PRERELEASE_SUFFIX: "dev"
+    - name: Lint
+      uses: ./.github/workflows/scripts/test-secrets
     - name: Commit version bump message
       run: |
         make local-up-d
