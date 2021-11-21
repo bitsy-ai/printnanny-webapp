@@ -48,8 +48,15 @@ env:
   COTURN_DATABASE_URL: ${{ secrets.SANDBOX_COTURN_DATABASE_URL }}
   COTURN_SECRET_KEY: ${{ secrets.SANDBOX_COTURN_SECRET_KEY }}
   DJSTRIPE_WEBHOOK_SECRET: ${{ secrets.SANDBOX_DJSTRIPE_WEBHOOK_SECRET }}
+
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Lint
+        uses: ./.github/workflows/scripts/lint
   deploy:
+    needs: [ lint ]
     runs-on: ubuntu-latest
     steps:
     - name: Input Settings
@@ -104,14 +111,3 @@ jobs:
             ```
             https://pypi.org/project/printnanny-api-client/${{ steps.deploy.outputs.printnanny_client_version }}/
             https://crates.io/crates/printnanny-api-client/${{ steps.deploy.outputs.printnanny_client_version }}/
-    # - name: Run Cypress tests 
-    #   run: |
-    #     make cypress-ci \
-    #     PROJECT="print-nanny-sandbox" \
-    #     PRINT_NANNY_USER="${{ github.event.inputs.user }}" \
-    #     PRINT_NANNY_URL="$PRINT_NANNY_URL" \
-    #     OCTOPRINT_URL="$OCTOPRINT_URL" \
-    #     DJANGO_SUPERUSER_EMAIL="$DJANGO_SUPERUSER_EMAIL"
-    # - name: Show kube deployment logs
-    #   run: |
-    #     make sandbox-logs
