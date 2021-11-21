@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **cameras** | [**Vec<crate::models::Camera>**](Camera.md) |  | [readonly][default to []]
 **dashboard_url** | **String** |  | [readonly]
 **bootstrap_release** | Option<[**crate::models::Release**](Release.md)> |  | [readonly]
-**printer_controllers** | [**Vec<crate::models::PrinterController>**](PrinterController.md) |  | [readonly]
+**printer_controllers** | [**Vec<crate::models::PrinterController>**](PrinterController.md) |  | [readonly][default to []]
 **release_channel** | Option<[**crate::models::ReleaseChannelEnum**](ReleaseChannelEnum.md)> |  | [optional]
 **user** | Option<[**crate::models::User**](User.md)> |  | [readonly]
 **active_license** | Option<[**crate::models::License**](License.md)> |  | [readonly]
