@@ -4,14 +4,14 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **kotlin.Int** |  |  [readonly]
-**deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
-**createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
-**updatedDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
-**polymorphicCtype** | **kotlin.Int** |  |  [readonly]
 **user** | **kotlin.Int** |  | 
 **device** | **kotlin.Int** |  | 
+**id** | **kotlin.Int** |  |  [optional] [readonly]
 **software** | [**SoftwareEnum**](SoftwareEnum.md) |  |  [optional]
+**deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
+**createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
+**updatedDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
+**polymorphicCtype** | **kotlin.Int** |  |  [optional] [readonly]
 
 
 

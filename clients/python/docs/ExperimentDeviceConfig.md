@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [readonly] 
-**created_dt** | **datetime** |  | [readonly] 
+**id** | **int** |  | [optional] [readonly] 
+**created_dt** | **datetime** |  | [optional] [readonly] 
 **experiment** | **int** |  | 
 **artifact** | **int** |  | 
 

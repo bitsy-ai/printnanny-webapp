@@ -1,4 +1,4 @@
-# com.print-nanny.client - Kotlin client library for 
+# com.print-nanny.client - Kotlin client library for print-nanny-client
 
 ## Requires
 

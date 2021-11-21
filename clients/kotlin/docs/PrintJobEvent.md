@@ -4,20 +4,20 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **kotlin.Int** |  |  [readonly]
 **octoprintEnvironment** | [**OctoprintEnvironment**](OctoprintEnvironment.md) |  | 
 **octoprintPrinterData** | [**OctoprintPrinterData**](OctoprintPrinterData.md) |  | 
 **printNannyPluginVersion** | **kotlin.String** |  | 
 **printNannyClientVersion** | **kotlin.String** |  | 
 **octoprintVersion** | **kotlin.String** |  | 
-**polymorphicCtype** | **kotlin.Int** |  |  [readonly]
 **octoprintDevice** | **kotlin.Int** |  | 
-**user** | **kotlin.Int** |  |  [readonly]
+**id** | **kotlin.Int** |  |  [optional] [readonly]
 **ts** | **kotlin.Float** |  |  [optional]
 **eventSource** | [**EventSourceEnum**](EventSourceEnum.md) |  |  [optional]
 **eventType** | [**PrintJobEventType**](PrintJobEventType.md) |  |  [optional]
 **eventData** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt;**](kotlin.Any.md) |  |  [optional]
 **temperature** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt;**](kotlin.Any.md) |  |  [optional]
+**polymorphicCtype** | **kotlin.Int** |  |  [optional] [readonly]
+**user** | **kotlin.Int** |  |  [optional] [readonly]
 **printSession** | **kotlin.Int** |  |  [optional]
 
 

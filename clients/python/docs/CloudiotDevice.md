@@ -5,15 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **num_id** | **int** |  | 
-**desired_config_topic** | **str** |  | [readonly] 
-**current_state_topic** | **str** |  | [readonly] 
-**gcp_project_id** | **str** |  | [readonly] 
-**gcp_region** | **str** |  | [readonly] 
-**gcp_cloudiot_device_registry** | **str** |  | [readonly] 
-**mqtt_bridge_hostname** | **str** |  | [readonly] 
-**mqtt_bridge_port** | **int** |  | [readonly] 
-**mqtt_client_id** | **str** |  | [readonly] 
-**deleted** | **datetime** |  | [readonly] 
+**desired_config_topic** | **str** |  | [optional] [readonly] 
+**current_state_topic** | **str** |  | [optional] [readonly] 
+**gcp_project_id** | **str** |  | [optional] [readonly] 
+**gcp_region** | **str** |  | [optional] [readonly] 
+**gcp_cloudiot_device_registry** | **str** |  | [optional] [readonly] 
+**mqtt_bridge_hostname** | **str** |  | [optional] [readonly] 
+**mqtt_bridge_port** | **int** |  | [optional] [readonly] 
+**mqtt_client_id** | **str** |  | [optional] [readonly] 
+**deleted** | **datetime** |  | [optional] [readonly] 
 **name** | **str** |  | 
 **id** | **str** |  | 
 **device** | **int** |  | 

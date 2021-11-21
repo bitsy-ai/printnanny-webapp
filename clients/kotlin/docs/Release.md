@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **kotlin.Int** |  |  [readonly]
 **ansibleExtraVars** | [**AnsibleExtraVars**](AnsibleExtraVars.md) |  | 
-**createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
+**id** | **kotlin.Int** |  |  [optional] [readonly]
+**createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **releaseChannel** | [**ReleaseChannelEnum**](ReleaseChannelEnum.md) |  |  [optional]
 
 

@@ -4,8 +4,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **kotlin.Int** |  |  [readonly]
-**deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
 **machineId** | **kotlin.String** | Populated from /etc/machine-id | 
 **hardware** | **kotlin.String** | Populated from /proc/cpuinfo HARDWARE | 
 **revision** | **kotlin.String** | Populated from /proc/cpuinfo REVISION | 
@@ -15,6 +13,8 @@ Name | Type | Description | Notes
 **ram** | **kotlin.Long** |  | 
 **imageVersion** | **kotlin.String** | Print Nanny OS version string from /boot/image_version.txt | 
 **device** | **kotlin.Int** |  | 
+**id** | **kotlin.Int** |  |  [optional] [readonly]
+**deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 
 
 
