@@ -24,22 +24,5 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - name: Set up Python virtualenv
-        run: |
-          python3 -m venv .venv
-      - name: Install dependencies
-        run: |
-          .venv/bin/pip install --upgrade pip
-          .venv/bin/pip install --upgrade setuptools wheel twine octoprint pip-tools black
-        # Runs a set of commands using the runners shell
-      - name: Linter
-        run: |
-          source .venv/bin/activate
-          make lint
-      - name: Mypy
-        run: |
-          source .venv/bin/activate
-          pip install -r requirements/local.txt
-          pip install -r requirements/test.txt
-          source .envs/.local/.tests
-          make mypy
+      - name: Lint
+        uses: ./.github/workflows/scripts/lint
