@@ -56,22 +56,3 @@ twisted<=21 # https://github.com/django/channels/issues/1639
 uvicorn[standard]
 whitenoise
 printnanny-api-client>=0.11.0
-
-
-# dev / testing
-pip-tools
-wheel
-pytest-django
-pytest-dotenv
-pytest-mock
-pytest-sugar
-django-coverage-plugin
-factory_boy
-
-# mypy
-mypy
-django-stubs
-djangorestframework-stubs
-mypy-protobuf
-types-requests
-types-protobuf

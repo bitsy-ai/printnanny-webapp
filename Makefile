@@ -28,6 +28,27 @@ GIT_BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD)
 
 DOCKER_COMPOSE_PROJECT_NAME="print_nanny_webapp"
 
+clean-local-requirements:
+	rm -f requirements/local.txt
+
+clean-test-requirements:
+	rm -rf requirements/test.txt
+
+clean-prod-requirements:
+	rm -rf requirements/production.txt
+
+clean-requirements: clean-local-requirements clean-test-requirements clean-prod-requirements
+	rm -f requirements/local.txt
+
+requirements/production.txt:
+	pip-compile requirements/production.in --output-file requirements/production.txt
+
+requirements/local.txt:
+	pip-compile requirements/local.in --output-file requirements/local.txt
+
+requirements/test.txt:
+	pip-compile requirements/test.in --output-file requirements/test.txt
+
 install-git-hooks:
 	cp -a hooks/. .git/hooks/
 # TODO:

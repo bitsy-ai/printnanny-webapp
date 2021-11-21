@@ -62,12 +62,20 @@ jobs:
         echo "Load fixture data: ${{ github.event.inputs.fixtures }}"
     - name: Checkout branch
       uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.9' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+        architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
+    - uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
     - name: Install system dependencies
       run: |
         sudo apt-get install makepasswd
     - uses: actions/setup-node@v2
       with:
         node-version: '14'
+
     - name: Write deploy key
       run: echo $GCP_SERVICE_ACCOUNT_KEY > key.json
     - name: Active Service Account
