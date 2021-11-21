@@ -102,8 +102,8 @@ jobs:
             Client version: ${{ steps.deploy.outputs.printnanny_client_version }}
             Cluster: SANDBOX
             ```
-            https://pypi.org/project/print-nanny-client/${{ steps.deploy.outputs.printnanny_client_version }}/
-            https://crates.io/crates/print-nanny-client/${{ steps.deploy.outputs.printnanny_client_version }}/
+            https://pypi.org/project/printnanny-api-client/${{ steps.deploy.outputs.printnanny_client_version }}/
+            https://crates.io/crates/printnanny-api-client/${{ steps.deploy.outputs.printnanny_client_version }}/
     # - name: Run Cypress tests 
     #   run: |
     #     make cypress-ci \
