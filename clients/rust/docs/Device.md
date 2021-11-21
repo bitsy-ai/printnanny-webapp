@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
 **cloudiot_device** | Option<[**crate::models::CloudiotDevice**](CloudiotDevice.md)> |  | [readonly]
-**cameras** | [**Vec<crate::models::Camera>**](Camera.md) |  | [readonly]
+**cameras** | [**Vec<crate::models::Camera>**](Camera.md) |  | [readonly][default to []]
 **dashboard_url** | **String** |  | [readonly]
 **bootstrap_release** | Option<[**crate::models::Release**](Release.md)> |  | [readonly]
 **printer_controllers** | [**Vec<crate::models::PrinterController>**](PrinterController.md) |  | [readonly]
