@@ -77,7 +77,7 @@ class Credentials(TypedDict):
 
 
 class LicenseSerializer(serializers.ModelSerializer):
-    credentials = serializers.SerializerMethodField()
+    credentials = serializers.SerializerMethodField(read_only=True)
 
     def get_credentials(self, obj) -> Credentials:
         api_token, _ = Token.objects.get_or_create(user=obj.device.user)
@@ -93,7 +93,13 @@ class LicenseSerializer(serializers.ModelSerializer):
     class Meta:
         model = License
         fields = "__all__"
-        read_only_fields = ("public_key", "public_key_checksum", "fingerprint", "user")
+        read_only_fields = (
+            "read_only",
+            "public_key",
+            "public_key_checksum",
+            "fingerprint",
+            "user",
+        )
 
 
 class CACertsSerializer(serializers.Serializer):
