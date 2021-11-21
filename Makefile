@@ -301,17 +301,20 @@ sdist: python-client ## builds source package
 
 bdist_wheel: python-client ## builds wheel package
 	cd clients/python && python3 setup.py bdist_wheel && ls -l dist
+
 dist: sdist bdist_wheel
 
 python-client-release: dist ## package and upload a release
 	cd clients/python && twine upload dist/* && cd -
 
 rust-client-release: rust-client
-	-git add -A
-	-git commit -m "0.11.0 client codegen ✨"
 	cd clients/rust && cargo publish
 
-clients-release: python-client-release ts-client kotlin-client rust-client-release
+clients-commit: python-client ts-client rust-client
+	-git add -A
+	-git commit -m "✨ 0.11.0 printnanny-api-client openapi codegen"
+
+clients-release: clients-commit python-client-release ts-client kotlin-client rust-client-release
 
 cloudsql:
 	cloud_sql_proxy -dir=$(HOME)/cloudsql -instances=print-nanny:us-central1:print-nanny=tcp:5433
