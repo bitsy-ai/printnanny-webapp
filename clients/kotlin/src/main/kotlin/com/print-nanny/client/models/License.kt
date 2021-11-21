@@ -20,7 +20,7 @@
 
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.Credential
+import com.print-nanny.client.models.LicenseCredentials
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -47,7 +47,7 @@ data class License (
     val id: kotlin.Int? = null,
 
     @Json(name = "credentials")
-    val credentials: Credential? = null,
+    val credentials: LicenseCredentials? = null,
 
     @Json(name = "deleted")
     val deleted: java.time.OffsetDateTime? = null,

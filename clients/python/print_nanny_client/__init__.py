@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.8.69"
+__version__ = "0.8.70"
 
 # import apis into sdk package
 from print_nanny_client.api.alerts_api import AlertsApi
@@ -55,8 +55,6 @@ from print_nanny_client.models.camera_request import CameraRequest
 from print_nanny_client.models.camera_type_enum import CameraTypeEnum
 from print_nanny_client.models.cloudiot_device import CloudiotDevice
 from print_nanny_client.models.cloudiot_device_request import CloudiotDeviceRequest
-from print_nanny_client.models.credential import Credential
-from print_nanny_client.models.credential_request import CredentialRequest
 from print_nanny_client.models.detail_response import DetailResponse
 from print_nanny_client.models.device import Device
 from print_nanny_client.models.device_calibration import DeviceCalibration
@@ -75,6 +73,7 @@ from print_nanny_client.models.experiment import Experiment
 from print_nanny_client.models.experiment_device_config import ExperimentDeviceConfig
 from print_nanny_client.models.gcode_file import GcodeFile
 from print_nanny_client.models.license import License
+from print_nanny_client.models.license_credentials import LicenseCredentials
 from print_nanny_client.models.license_request import LicenseRequest
 from print_nanny_client.models.mobile_auth_request import MobileAuthRequest
 from print_nanny_client.models.model_artifact import ModelArtifact

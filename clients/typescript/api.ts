@@ -618,68 +618,6 @@ export interface CloudiotDeviceRequest {
     'device': number;
 }
 /**
- * 
- * @export
- * @interface Credential
- */
-export interface Credential {
-    /**
-     * 
-     * @type {string}
-     * @memberof Credential
-     */
-    'printnanny_api_token': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Credential
-     */
-    'printnanny_api_url': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Credential
-     */
-    'honeycomb_dataset': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Credential
-     */
-    'honeycomb_api_key': string;
-}
-/**
- * 
- * @export
- * @interface CredentialRequest
- */
-export interface CredentialRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof CredentialRequest
-     */
-    'printnanny_api_token': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CredentialRequest
-     */
-    'printnanny_api_url': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CredentialRequest
-     */
-    'honeycomb_dataset': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CredentialRequest
-     */
-    'honeycomb_api_key': string;
-}
-/**
  * Generic auth response serializer
  * @export
  * @interface DetailResponse
@@ -1351,10 +1289,10 @@ export interface License {
     'id'?: number;
     /**
      * 
-     * @type {Credential}
+     * @type {LicenseCredentials}
      * @memberof License
      */
-    'credentials'?: Credential;
+    'credentials'?: LicenseCredentials;
     /**
      * 
      * @type {string}
@@ -1391,6 +1329,37 @@ export interface License {
      * @memberof License
      */
     'device': number;
+}
+/**
+ * 
+ * @export
+ * @interface LicenseCredentials
+ */
+export interface LicenseCredentials {
+    /**
+     * 
+     * @type {string}
+     * @memberof LicenseCredentials
+     */
+    'printnanny_api_token'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LicenseCredentials
+     */
+    'printnanny_api_url'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LicenseCredentials
+     */
+    'honeycomb_dataset'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LicenseCredentials
+     */
+    'honeycomb_api_key'?: string;
 }
 /**
  * 

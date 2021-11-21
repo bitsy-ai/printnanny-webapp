@@ -37,7 +37,7 @@ class License(object):
     """
     openapi_types = {
         'id': 'int',
-        'credentials': 'Credential',
+        'credentials': 'LicenseCredentials',
         'deleted': 'datetime',
         'public_key': 'str',
         'public_key_checksum': 'str',
@@ -75,7 +75,8 @@ class License(object):
 
         if id is not None:
             self.id = id
-        self.credentials = credentials
+        if credentials is not None:
+            self.credentials = credentials
         if deleted is not None:
             self.deleted = deleted
         if public_key is not None:
@@ -115,7 +116,7 @@ class License(object):
 
 
         :return: The credentials of this License.  # noqa: E501
-        :rtype: Credential
+        :rtype: LicenseCredentials
         """
         return self._credentials
 
@@ -125,7 +126,7 @@ class License(object):
 
 
         :param credentials: The credentials of this License.  # noqa: E501
-        :type credentials: Credential
+        :type credentials: LicenseCredentials
         """
 
         self._credentials = credentials
