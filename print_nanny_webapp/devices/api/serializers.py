@@ -82,8 +82,8 @@ class LicenseSerializer(serializers.ModelSerializer):
     def get_credentials(self, obj) -> Credentials:
         api_token, _ = Token.objects.get_or_create(user=obj.device.user)
         return dict(
-            api_token=str(api_token),
-            api_url=self.context["request"].build_absolute_uri("/")[
+            printnanny_api_token=str(api_token),
+            printnanny_api_url=self.context["request"].build_absolute_uri("/")[
                 :-1
             ],  # remove trailing slash for use in API client base_url
             honeycomb_dataset=settings.HONEYCOMB_DATASET,
