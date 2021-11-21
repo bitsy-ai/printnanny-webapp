@@ -74,7 +74,7 @@ class CredentialSerializer(serializers.Serializer):
 
 
 class LicenseSerializer(serializers.ModelSerializer):
-    credentials = CredentialSerializer(read_only=True, required=None, default=None)
+    credentials = CredentialSerializer(read_only=True, required=False, default=None)
 
     class Meta:
         model = License
