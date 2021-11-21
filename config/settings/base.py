@@ -534,7 +534,7 @@ GCP_PUBSUB_OCTOPRINT_ALERTS_SUBSCRIPTION = env('GCP_PUBSUB_OCTOPRINT_ALERTS_SUBS
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
-HONEYCOMB_DATASET = env('HONEYCOMB_DATASET', default="print_nanny_webapp_sandbox")
+HONEYCOMB_DATASET = env('HONEYCOMB_DATASET', default="print_nanny_sandbox")
 HONEYCOMB_SERVICE_NAME = env('HONEYCOMB_SERVICE_NAME', default='django')
 HONEYCOMB_API_KEY = env('HONEYCOMB_API_KEY')
 

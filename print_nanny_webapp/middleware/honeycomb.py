@@ -5,7 +5,7 @@ from beeline.middleware.django import HoneyMiddlewareBase, HoneyDBWrapper
 
 class HoneyMiddlewareIgnoreHealthCheck(HoneyMiddlewareBase):
 
-    ignored = ["health", "static"]
+    ignored = ["health", "static", "/"]
 
     def __call__(self, request):
 
@@ -44,4 +44,5 @@ class HoneyMiddlewareIgnoreHealthCheck(HoneyMiddlewareBase):
             "request.query": request.GET.dict(),
             "request.xhr": request.headers.get("x-requested-with") == "XMLHttpRequest",
             "request.post": request.POST.dict(),
+            "request.user": request.user,
         }
