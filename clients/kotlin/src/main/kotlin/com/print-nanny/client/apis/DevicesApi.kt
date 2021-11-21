@@ -69,6 +69,61 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     * 
     * 
     * @param deviceId  
+    * @param deviceInfoRequest  
+    * @return DeviceInfo
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun deviceInfoUpdateOrCreate(deviceId: kotlin.Int, deviceInfoRequest: DeviceInfoRequest) : DeviceInfo {
+        val localVariableConfig = deviceInfoUpdateOrCreateRequestConfig(deviceId = deviceId, deviceInfoRequest = deviceInfoRequest)
+
+        val localVarResponse = request<DeviceInfoRequest, DeviceInfo>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as DeviceInfo
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation deviceInfoUpdateOrCreate
+    *
+    * @param deviceId  
+    * @param deviceInfoRequest  
+    * @return RequestConfig
+    */
+    fun deviceInfoUpdateOrCreateRequestConfig(deviceId: kotlin.Int, deviceInfoRequest: DeviceInfoRequest) : RequestConfig<DeviceInfoRequest> {
+        val localVariableBody = deviceInfoRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+
+        return RequestConfig(
+            method = RequestMethod.POST,
+            path = "/api/devices/{device_id}/info/update-or-create/".replace("{"+"device_id"+"}", "$deviceId"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+    }
+
+    /**
+    * 
+    * 
+    * @param deviceId  
     * @param cameraRequest  
     * @return Camera
     * @throws UnsupportedOperationException If the API returns an informational or redirection response

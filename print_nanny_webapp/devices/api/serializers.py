@@ -129,3 +129,8 @@ class DeviceInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = DeviceInfo
         fields = "__all__"
+
+    def update_or_create(self, validated_data, device):
+        return DeviceInfo.objects.filter(device=device).update_or_create(
+            device=device, defaults=validated_data
+        )

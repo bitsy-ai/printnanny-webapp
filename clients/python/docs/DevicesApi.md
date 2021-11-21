@@ -4,6 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**device_info_update_or_create**](DevicesApi.md#device_info_update_or_create) | **POST** /api/devices/{device_id}/info/update-or-create/ | 
 [**devices_cameras_create**](DevicesApi.md#devices_cameras_create) | **POST** /api/devices/{device_id}/cameras/ | 
 [**devices_cameras_list**](DevicesApi.md#devices_cameras_list) | **GET** /api/devices/{device_id}/cameras/ | 
 [**devices_cameras_partial_update**](DevicesApi.md#devices_cameras_partial_update) | **PATCH** /api/devices/{device_id}/cameras/{id}/ | 
@@ -36,6 +37,127 @@ Method | HTTP request | Description
 [**devices_state_retrieve**](DevicesApi.md#devices_state_retrieve) | **GET** /api/devices/{device_id}/state/{id}/ | 
 [**devices_update**](DevicesApi.md#devices_update) | **PUT** /api/devices/{id}/ | 
 
+
+# **device_info_update_or_create**
+> DeviceInfo device_info_update_or_create(device_id, device_info_request)
+
+
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = print_nanny_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = print_nanny_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with print_nanny_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = print_nanny_client.DevicesApi(api_client)
+    device_id = 56 # int | 
+device_info_request = print_nanny_client.DeviceInfoRequest() # DeviceInfoRequest | 
+
+    try:
+        api_response = api_instance.device_info_update_or_create(device_id, device_info_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->device_info_update_or_create: %s\n" % e)
+```
+
+* Bearer Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = print_nanny_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = print_nanny_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with print_nanny_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = print_nanny_client.DevicesApi(api_client)
+    device_id = 56 # int | 
+device_info_request = print_nanny_client.DeviceInfoRequest() # DeviceInfoRequest | 
+
+    try:
+        api_response = api_instance.device_info_update_or_create(device_id, device_info_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->device_info_update_or_create: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **device_id** | **int**|  | 
+ **device_info_request** | [**DeviceInfoRequest**](DeviceInfoRequest.md)|  | 
+
+### Return type
+
+[**DeviceInfo**](DeviceInfo.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**201** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_cameras_create**
 > Camera devices_cameras_create(device_id, camera_request)

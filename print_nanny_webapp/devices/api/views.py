@@ -4,7 +4,7 @@ from typing import Any
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from django.db.utils import IntegrityError
 
-from django.shortcuts import get_object_or_404
+from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.mixins import (
     ListModelMixin,
@@ -190,6 +190,28 @@ class DeviceInfoViewSet(
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+    @extend_schema(
+        operation_id="device_info_update_or_create",
+        responses={
+            # 400: PrinterProfileSerializer,
+            200: DeviceInfoSerializer,
+            201: DeviceInfoSerializer,
+        },
+    )
+    @action(methods=["post"], detail=False, url_path="update-or-create")
+    def update_or_create(self, request, device_id=None):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            instance, created = serializer.update_or_create(
+                serializer.validated_data, device_id
+            )
+            response_serializer = self.get_serializer(instance)
+            if not created:
+                return Response(response_serializer.data, status=status.HTTP_200_OK)
+            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 ###
