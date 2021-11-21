@@ -1,4 +1,6 @@
 # dev / testing
+black
+twine
 pip-tools
 wheel
 pytest-django

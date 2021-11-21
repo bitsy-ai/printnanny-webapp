@@ -39,6 +39,7 @@ jobs:
       - name: Mypy
         run: |
           source .venv/bin/activate
+          pip install -r requirements/local.txt
           pip install -r requirements/test.txt
           source .envs/.local/.tests
           make mypy
