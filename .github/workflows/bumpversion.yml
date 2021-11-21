@@ -29,7 +29,7 @@ jobs:
         PRERELEASE_SUFFIX: "dev"
     - name: Commit version bump message
       run: |
-        ./tools/bump-version.sh ${{ steps.tags.outputs.tag }} ${{ steps.tags.outputs.new_tag }} ${{ steps.git.outputs.git_branch }}
+        ./tools/bump-version-and-release-clients.sh ${{ steps.tags.outputs.tag }} ${{ steps.tags.outputs.new_tag }} ${{ steps.git.outputs.git_branch }}
     - name: Bump version and push tag
       uses: anothrNick/github-tag-action@1.36.0
       env:
