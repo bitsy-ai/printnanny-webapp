@@ -286,8 +286,8 @@ clean-python-client: ## remove build artifacts
 	find . -name '*.egg' -exec rm -rf {} +
 
 
-python-flatbuffer:
-	~/projects/flatbuffers/flatc -b -t --python --gen-object-api -o clients/python/ clients/flatbuffers/*.fbs
+# python-flatbuffer:
+# 	~/projects/flatbuffers/flatc -b -t --python --gen-object-api -o clients/python/ clients/flatbuffers/*.fbs
 
 python-protobuf:
 	mkdir -p clients/python/print_nanny_client/protobuf && touch clients/python/print_nanny_client/protobuf/modinit__.py
@@ -299,7 +299,7 @@ python-protobuf:
 	sed -i 's/monitoring_pb2/print_nanny_client.protobuf.monitoring_pb2/' clients/python/print_nanny_client/protobuf/monitoring_pb2.py
 
 
-python-client: clean-python-client python-flatbuffer python-protobuf
+python-client: clean-python-client # python-flatbuffer python-protobuf
 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
 		-i http://localhost:8000/api/schema --recommend
 
