@@ -445,7 +445,7 @@ SPECTACULAR_SETTINGS = {
         'AlertMessageType': 'print_nanny_webapp.alerts.models.AlertMessage.AlertMessageType.choices',
         'AlertSettingsEventType': 'print_nanny_webapp.alerts.models.AlertSettings.AlertSettingsEventType.choices',
     },
-    'TITLE': 'print-nanny-client',
+    'TITLE': 'printnanny-api-client',
     'DESCRIPTION': 'Official API client library for print-nanny.com',
     'LICENSE': {
         'name': 'AGPLv3'
