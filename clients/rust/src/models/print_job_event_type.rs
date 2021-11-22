@@ -1,5 +1,5 @@
 /*
- * print-nanny-client
+ * printnanny-api-client
  *
  * Official API client library for print-nanny.com
  *

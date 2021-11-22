@@ -11,7 +11,7 @@ make python-client-release
 
 make rust-client
 git add clients/
-git commit --amend -m "🦀 $2 typescript openapi client codegen"
+git commit --amend -m "🦀 $1 typescript openapi client codegen"
 make rust-client-release
 
 git push
