@@ -56,6 +56,8 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout branch
+        uses: actions/checkout@v2
       - name: Lint
         uses: ./.github/workflows/scripts/lint
   deploy:
