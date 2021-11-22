@@ -241,8 +241,8 @@ clean-ts-client:
 # clean-kotlin-client:
 # 	sudo rm -rf clients/kotlin
 
-# clean-rust-client:
-# 	sudo rm -rf clients/rust
+clean-rust-client:
+	sudo rm -rf clients/rust
 
 # kotlin-client: clean-kotlin-client
 # 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
