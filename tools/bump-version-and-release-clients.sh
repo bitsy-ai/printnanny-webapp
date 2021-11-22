@@ -1,17 +1,16 @@
 #!/usr/bin/env bash
 
-git config --global user.email "releases@bitsy.ai"
-git config --global user.name "Release Automation"
-bump2version --current-version "$1"--new-version "$2"
+bump2version --current-version $(cat version.txt) --new-version "$1" patch
 
 make python-client
 git add clients/
-git commit -m "🐍 $1 -> $2 python openapi client codegen"
+git commit --amend -m "🐍 $1 python openapi client codegen"
 make python-client-release
 
 make rust-client
 git add clients/
-git commit -m "🦀 $1 -> $2 typescript openapi client codegen"
+git commit ---amend -m "🦀 $2 typescript openapi client codegen"
 make rust-client-release
 
-git push origin "$3"
+git push
+git push --tags
