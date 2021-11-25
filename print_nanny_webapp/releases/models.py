@@ -3,6 +3,12 @@ from django.db import models
 from .choices import ReleaseChannel
 
 
+# class HelpMsg(models.Model):
+#     help_url
+#     class Meta:
+#         abstract = True
+
+
 class Release(models.Model):
     class Meta:
         ordering = ["-created_dt"]

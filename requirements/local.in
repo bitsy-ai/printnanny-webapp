@@ -55,4 +55,4 @@ stringcase
 twisted<=21 # https://github.com/django/channels/issues/1639
 uvicorn[standard]
 whitenoise
-printnanny-api-client>=0.17.8
+printnanny-api-client>=0.17.9
