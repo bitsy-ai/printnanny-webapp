@@ -286,7 +286,15 @@ class DeviceConfig(SafeDeleteModel):
         return self.device.cloudiot_device
 
 
-class SystemTask(SafeDeleteModel):
+class HelpLink(models.Model):
+    msg = models.CharField(max_length=1024, null=True)
+    wiki_url = models.CharField(max_length=1024, null=True)
+
+    class Meta:
+        abstract = True
+
+
+class SystemTask(HelpLink, SafeDeleteModel):
     """
     Append-only log published to /devices/:id/state FROM device
     Indicates current state of device
@@ -314,7 +322,6 @@ class SystemTask(SafeDeleteModel):
     device = models.ForeignKey(
         Device, on_delete=models.CASCADE, db_index=True, related_name="system_tasks"
     )
-    detail = models.CharField(max_length=1024, null=True)
     ansible_facts = models.JSONField(default=dict())
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
 
