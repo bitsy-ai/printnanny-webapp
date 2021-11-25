@@ -78,7 +78,7 @@ list_system_tasks_schemaa = extend_schema(
     },
 )
 create_system_tasks_schema = extend_schema(
-    request=DeviceSerializer,
+    request=SystemTaskSerializer,
     responses={
         "default": ErrorDetailSerializer,
         201: SystemTaskSerializer,
