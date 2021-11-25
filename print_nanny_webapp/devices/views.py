@@ -2,8 +2,7 @@ import logging
 
 import tempfile
 from django.apps import apps
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, DeleteView
 from print_nanny_webapp.devices.models import Device
 
 from print_nanny_webapp.dashboard.views import DashboardView
@@ -25,6 +24,19 @@ class DeviceCreateView(CreateView):
             kwargs["instance"] = self.model()
         kwargs["instance"].user = self.request.user
         return kwargs
+
+
+class DeviceDeleteView(DeleteView, DetailView):
+    template_name = "devices/delete-form.html"
+    success_url = "/devices"
+    model = Device
+
+    # def get_form_kwargs(self):
+    #     kwargs = super().get_form_kwargs()
+    #     if kwargs["instance"] is None:
+    #         kwargs["instance"] = self.model()
+    #     kwargs["instance"].user = self.request.user
+    #     return kwargs
 
 
 class DeviceListView(DashboardView):

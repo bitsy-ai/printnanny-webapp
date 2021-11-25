@@ -13,8 +13,9 @@
                   <tr>
                       <th>Name</th>
                       <!-- <th>Monitoring Active</th> -->
+                      <th>Current Task</th>
 
-                      <th>Raspberry Pi Status</th>
+                      <th>Raspberry Pi Task Status</th>
                       <!-- <th>Job Status</th> -->
         
                       <!-- <th>File</th>
@@ -24,7 +25,8 @@
                       <th>Metadata</th> -->
 
                       <th>Download License</th>  
-  
+                      <th>Delete Device</th>  
+
                   </tr>
               </thead>
               <tbody>
@@ -40,8 +42,9 @@
                         </div>
                     </td> -->
                     <!-- <td><i class="mdi mdi-circle {{device.monitoring_active_css_class}}"></i> {{device.monitoring_active}}</td> -->
+                    <td>{{ device.last_system_task.get_type_display }}</t>
 
-                    <td><i class="mdi mdi-circle {{ device.last_state_css_class }}"></i> {{ device.last_state.get_status_display }}</td>
+                    <td><i class="mdi mdi-circle text-{{ device.last_task.status_css_class }}"></i> {{ device.last_system_task.get_status_display }}</td>
                     <!-- <td><i class="mdi mdi-circle {{device.print_job_status_css_class}}"></i> {{device.print_job_status}}</td> -->
 
                     <!-- <td>{{device.active_session.octoprint_job.file.name}}</td>
@@ -52,6 +55,7 @@
 
 
                     <td><a href="{% url 'devices:license' pk=device.id %}" target="_blank"><button class="btn btn-primary">Download License</button></a></td>
+                    <td><a href="{% url 'devices:delete' pk=device.id %}"><button class="btn btn-danger">Delete</button></a></td>
 
 
                 </tr>
@@ -66,7 +70,7 @@
           {% endif %}
         </div>
         <div class="card-footer">
-          <p>🙇‍♀️ Please reach out to <a href="mailto:leigh@print-nanny.com">leigh@print-nanny.com</a> if you run into any issues.</p>
+          <p>Please reach out to <a href="mailto:leigh@print-nanny.com">leigh@print-nanny.com</a> if you run into any issues.</p>
           
           <p><span class="badge badge-danger">FYI</span> Raspberry Pi 3 and Pi Zero models are <strong>not supported</strong> at this time! Please check the <a href="{{ HELP_PRINTNANNY_COMPATIBLE }}" target="_blank">capatible devices</a> list to see if your Raspberry Pi is supported.</p>
 

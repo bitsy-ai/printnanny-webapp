@@ -1,20 +1,21 @@
 import logging
-from django.apps import apps
+from typing import Any
 from django.conf import settings
-from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.db.models import UniqueConstraint
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.urls import reverse
 from polymorphic.models import PolymorphicModel
-from safedelete.models import SafeDeleteModel, SOFT_DELETE
+from safedelete.models import SafeDeleteModel, SafeDeleteManager, SOFT_DELETE
 from safedelete.signals import pre_softdelete
 
 from .choices import (
-    DeviceCommand,
+    SystemTaskType,
     DeviceReleaseChannel,
     PrinterSoftwareType,
-    DeviceStatus,
+    SystemTaskStatus,
 )
 
 UserModel = get_user_model()
@@ -82,18 +83,8 @@ class Device(SafeDeleteModel):
         return self.licenses.first()
 
     @property
-    def last_state(self):
-        state = self.devicestate_set.first()
-        if state is None:
-            state = DeviceState.objects.create(
-                device=self,
-                status=DeviceStatus.INITIAL,
-            )
-        return state
-
-    @property
-    def last_state_css_class(self):
-        return DeviceStatus.get_css_class(self.last_state.status)
+    def last_system_task(self):
+        return self.system_tasks.first()
 
     @property
     def to_cloudiot_id(self):
@@ -104,12 +95,20 @@ class Device(SafeDeleteModel):
         return reverse("devices:detail", kwargs={"pk": self.id})
 
     @property
-    def latest_state_msg(self):
-        return self.current_state_set.first()
-
-    @property
     def cloudiot_device(self):
         return self.cloudiot_devices.first()
+
+
+# method for updating
+@receiver(post_save, sender=Device, dispatch_uid="create_device")
+def create_verify_license_device_action(sender, instance, created, **kwargs):
+    if created:
+        action = SystemTask.objects.create(
+            status=SystemTaskStatus.WAITING,
+            type=SystemTaskType.VERIFY_LICENSE,
+            device=instance,
+        )
+        logger.info(f"Created {instance} and VERIFY_LICENSE action {action}")
 
 
 class License(SafeDeleteModel):
@@ -287,7 +286,7 @@ class DeviceConfig(SafeDeleteModel):
         return self.device.cloudiot_device
 
 
-class DeviceState(SafeDeleteModel):
+class SystemTask(SafeDeleteModel):
     """
     Append-only log published to /devices/:id/state FROM device
     Indicates current state of device
@@ -298,27 +297,31 @@ class DeviceState(SafeDeleteModel):
 
     class Meta:
         ordering = ["-created_dt"]
-        index_together = [["device", "command"], ["created_dt", "command"]]
+        index_together = [["device", "type", "status"]]
 
     _safedelete_policy = SOFT_DELETE
     status = models.CharField(
-        max_length=16, choices=DeviceStatus.choices, default=DeviceStatus.INITIAL
+        max_length=16,
+        choices=SystemTaskStatus.choices,
+        default=SystemTaskStatus.WAITING,
     )
-    command = models.CharField(
+    type = models.CharField(
         max_length=255,
-        choices=DeviceCommand.choices,
-        default=DeviceCommand.SOFTWARE_UPDATE,
+        choices=SystemTaskType.choices,
+        default=SystemTaskType.SOFTWARE_UPDATE,
     )
 
-    device = models.ForeignKey(Device, on_delete=models.CASCADE, db_index=True)
+    device = models.ForeignKey(
+        Device, on_delete=models.CASCADE, db_index=True, related_name="system_tasks"
+    )
     ansible_facts = models.JSONField(default=dict())
     ansible_extra_vars = models.JSONField(default=dict())
 
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
 
     @property
-    def mqtt_topic(self):
-        return f"/devices/{self.num_id}/state"
+    def status_css_class(self):
+        return SystemTaskStatus.get_css_class(self.status)
 
 
 class Camera(SafeDeleteModel):

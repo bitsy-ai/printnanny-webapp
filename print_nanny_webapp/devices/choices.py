@@ -13,20 +13,17 @@ class PrinterSoftwareType(models.TextChoices):
     # MAINSAL = "Mainsail", "Mainsail printer controller"
 
 
-class DeviceStatus(models.TextChoices):
-    INITIAL = "initial", "Waiting for initial Raspberry Pi boot"
-    UPDATE_RUNNING = (
-        "update_running",
-        "Software update in-progress. Please do not power down or reboot.",
-    )
-    UPDATE_FAILED = "update_failed", "Software update failed"  # TODO send crash report
-    UPDATE_SUCCESS = "update_success", "Software is up-to-date"
+class SystemTaskStatus(models.TextChoices):
+    WAITING = "waiting", "Waiting for Pi to accept task"
+    STARTED = "started", "Running"
+    FAILED = "failed", "Failed"  # TODO prompt to send crash report
+    SUCCESS = "success", "Success"
 
     __css__ = dict(
-        INITIAL="warning",
-        UPDATE_RUNNING="warning",
-        UPDATE_FAILED="danger",
-        UPDATE_SUCCESS="success",
+        WAITING="secondary",
+        STARTED="warning",
+        FAILED="danger",
+        SUCCESS="success",
     )
 
     @classmethod
@@ -34,8 +31,9 @@ class DeviceStatus(models.TextChoices):
         return cls.__css__[cls(value).name]
 
 
-class DeviceCommand(models.TextChoices):
+class SystemTaskType(models.TextChoices):
+    VERIFY_LICENSE = "verify_license", "Verify License"
     SOFTWARE_UPDATE = (
-        "printnanny update",
-        "Run software update",
+        "software_update",
+        "Update device software",
     )
