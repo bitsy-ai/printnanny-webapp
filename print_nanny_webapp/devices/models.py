@@ -288,7 +288,7 @@ class DeviceAction(SafeDeleteModel):
 
     class Meta:
         ordering = ["-created_dt"]
-        index_together = [["device", "command"], ["created_dt", "command"]]
+        index_together = [["device", "type", "status"]]
 
     _safedelete_policy = SOFT_DELETE
     status = models.CharField(
