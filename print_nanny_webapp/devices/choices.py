@@ -13,7 +13,7 @@ class PrinterSoftwareType(models.TextChoices):
     # MAINSAL = "Mainsail", "Mainsail printer controller"
 
 
-class DeviceActionStatus(models.TextChoices):
+class SystemTaskStatus(models.TextChoices):
     WAITING = "waiting", "Waiting for Pi to accept task"
     STARTED = "started", "Running"
     FAILED = "failed", "Failed"  # TODO prompt to send crash report
@@ -31,7 +31,7 @@ class DeviceActionStatus(models.TextChoices):
         return cls.__css__[cls(value).name]
 
 
-class DeviceActionType(models.TextChoices):
+class SystemTaskType(models.TextChoices):
     VERIFY_LICENSE = "verify_license", "Verify License"
     SOFTWARE_UPDATE = (
         "software_update",

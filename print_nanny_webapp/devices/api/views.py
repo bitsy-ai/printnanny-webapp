@@ -19,7 +19,7 @@ from rest_framework.viewsets import GenericViewSet
 from .serializers import (
     DeviceInfoSerializer,
     DeviceConfigSerializer,
-    DeviceActionSerializer,
+    SystemTaskSerializer,
     DeviceSerializer,
     CameraSerializer,
     CloudiotDeviceSerializer,
@@ -28,7 +28,7 @@ from .serializers import (
 from ..models import (
     DeviceInfo,
     DeviceConfig,
-    DeviceAction,
+    SystemTask,
     Device,
     Camera,
     CloudiotDevice,
@@ -69,12 +69,12 @@ class DeviceConfigViewSet(
 
 
 ##
-# DeviceAction
+# SystemTask
 ##
 list_current_state_schema = extend_schema(
     responses={
         "default": ErrorDetailSerializer,
-        200: DeviceActionSerializer(many=True),
+        200: SystemTaskSerializer(many=True),
     },
 )
 
@@ -82,13 +82,13 @@ list_current_state_schema = extend_schema(
 @extend_schema_view(
     list=list_current_state_schema,
 )
-class DeviceActionViewSet(
+class SystemTaskViewSet(
     GenericViewSet,
     ListModelMixin,
     RetrieveModelMixin,
 ):
-    serializer_class = DeviceActionSerializer
-    queryset = DeviceAction.objects.all()
+    serializer_class = SystemTaskSerializer
+    queryset = SystemTask.objects.all()
     lookup_field = "id"
 
     def perform_create(self, serializer):

@@ -12,10 +12,10 @@ from safedelete.models import SafeDeleteModel, SafeDeleteManager, SOFT_DELETE
 from safedelete.signals import pre_softdelete
 
 from .choices import (
-    DeviceActionType,
+    SystemTaskType,
     DeviceReleaseChannel,
     PrinterSoftwareType,
-    DeviceActionStatus,
+    SystemTaskStatus,
 )
 
 UserModel = get_user_model()
@@ -83,8 +83,8 @@ class Device(SafeDeleteModel):
         return self.licenses.first()
 
     @property
-    def last_action(self):
-        return self.actions.first()
+    def last_system_task(self):
+        return self.system_tasks.first()
 
     @property
     def to_cloudiot_id(self):
@@ -103,9 +103,9 @@ class Device(SafeDeleteModel):
 @receiver(post_save, sender=Device, dispatch_uid="create_device")
 def create_verify_license_device_action(sender, instance, created, **kwargs):
     if created:
-        action = DeviceAction.objects.create(
-            status=DeviceActionStatus.WAITING,
-            type=DeviceActionType.VERIFY_LICENSE,
+        action = SystemTask.objects.create(
+            status=SystemTaskStatus.WAITING,
+            type=SystemTaskType.VERIFY_LICENSE,
             device=instance,
         )
         logger.info(f"Created {instance} and VERIFY_LICENSE action {action}")
@@ -286,7 +286,7 @@ class DeviceConfig(SafeDeleteModel):
         return self.device.cloudiot_device
 
 
-class DeviceAction(SafeDeleteModel):
+class SystemTask(SafeDeleteModel):
     """
     Append-only log published to /devices/:id/state FROM device
     Indicates current state of device
@@ -302,17 +302,17 @@ class DeviceAction(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
     status = models.CharField(
         max_length=16,
-        choices=DeviceActionStatus.choices,
-        default=DeviceActionStatus.WAITING,
+        choices=SystemTaskStatus.choices,
+        default=SystemTaskStatus.WAITING,
     )
     type = models.CharField(
         max_length=255,
-        choices=DeviceActionType.choices,
-        default=DeviceActionType.SOFTWARE_UPDATE,
+        choices=SystemTaskType.choices,
+        default=SystemTaskType.SOFTWARE_UPDATE,
     )
 
     device = models.ForeignKey(
-        Device, on_delete=models.CASCADE, db_index=True, related_name="actions"
+        Device, on_delete=models.CASCADE, db_index=True, related_name="system_tasks"
     )
     ansible_facts = models.JSONField(default=dict())
     ansible_extra_vars = models.JSONField(default=dict())
@@ -321,7 +321,7 @@ class DeviceAction(SafeDeleteModel):
 
     @property
     def status_css_class(self):
-        return DeviceActionStatus.get_css_class(self.status)
+        return SystemTaskStatus.get_css_class(self.status)
 
 
 class Camera(SafeDeleteModel):

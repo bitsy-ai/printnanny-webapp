@@ -6,7 +6,7 @@ from print_nanny_webapp.devices.models import (
     CloudiotDevice,
     DeviceConfig,
     DeviceInfo,
-    DeviceAction,
+    SystemTask,
     License,
     PrinterController,
     # PrinterProfile,
@@ -91,9 +91,9 @@ class DeviceConfigSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class DeviceActionSerializer(serializers.ModelSerializer):
+class SystemTaskSerializer(serializers.ModelSerializer):
     class Meta:
-        model = DeviceAction
+        model = SystemTask
         fields = "__all__"
 
 
@@ -107,7 +107,7 @@ class DeviceSerializer(serializers.ModelSerializer):
     cloudiot_device = CloudiotDeviceSerializer(read_only=True, required=False)
     cameras = CameraSerializer(read_only=True, many=True)
     dashboard_url = serializers.CharField(read_only=True)
-    last_action = DeviceActionSerializer(read_only=True)
+    last_action = SystemTaskSerializer(read_only=True)
     printer_controllers = PrinterControllerSerializer(read_only=True, many=True)
     release_channel = serializers.ChoiceField(
         choices=DeviceReleaseChannel.choices,
