@@ -24,7 +24,8 @@
                       <th>Metadata</th> -->
 
                       <th>Download License</th>  
-  
+                      <th>Delete Device</th>  
+
                   </tr>
               </thead>
               <tbody>
@@ -52,6 +53,7 @@
 
 
                     <td><a href="{% url 'devices:license' pk=device.id %}" target="_blank"><button class="btn btn-primary">Download License</button></a></td>
+                    <td><a href="{% url 'devices:delete' pk=device.id %}"><button class="btn btn-danger">Delete</button></a></td>
 
 
                 </tr>
@@ -66,7 +68,7 @@
           {% endif %}
         </div>
         <div class="card-footer">
-          <p>🙇‍♀️ Please reach out to <a href="mailto:leigh@print-nanny.com">leigh@print-nanny.com</a> if you run into any issues.</p>
+          <p>Please reach out to <a href="mailto:leigh@print-nanny.com">leigh@print-nanny.com</a> if you run into any issues.</p>
           
           <p><span class="badge badge-danger">FYI</span> Raspberry Pi 3 and Pi Zero models are <strong>not supported</strong> at this time! Please check the <a href="{{ HELP_PRINTNANNY_COMPATIBLE }}" target="_blank">capatible devices</a> list to see if your Raspberry Pi is supported.</p>
 
