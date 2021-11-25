@@ -445,7 +445,8 @@ SPECTACULAR_SETTINGS = {
         'AlertMessageType': 'print_nanny_webapp.alerts.models.AlertMessage.AlertMessageType.choices',
         'AlertSettingsEventType': 'print_nanny_webapp.alerts.models.AlertSettings.AlertSettingsEventType.choices',
         'SystemTaskType': 'print_nanny_webapp.devices.choices.SystemTaskType.choices',
-        'SystemTaskStatus': 'print_nanny_webapp.devices.choices.SystemTaskStatus.choices'
+        'SystemTaskStatus': 'print_nanny_webapp.devices.choices.SystemTaskStatus.choices',
+        'HelpLink': 'print_nanny_webapp.utils.help.HelpLink'
     },
     'TITLE': 'printnanny-api-client',
     'DESCRIPTION': 'Official API client library for print-nanny.com',
