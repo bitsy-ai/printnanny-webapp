@@ -81,8 +81,7 @@ create_system_tasks_schema = extend_schema(
     request=DeviceSerializer,
     responses={
         "default": ErrorDetailSerializer,
-        201: DeviceSerializer,
-        202: DeviceSerializer,
+        201: SystemTaskSerializer,
     },
 )
 
