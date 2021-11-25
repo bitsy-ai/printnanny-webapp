@@ -71,21 +71,31 @@ class DeviceConfigViewSet(
 ##
 # SystemTask
 ##
-list_current_state_schema = extend_schema(
+list_system_tasks_schemaa = extend_schema(
     responses={
         "default": ErrorDetailSerializer,
         200: SystemTaskSerializer(many=True),
     },
 )
+create_system_tasks_schema = extend_schema(
+    request=DeviceSerializer,
+    responses={
+        "default": ErrorDetailSerializer,
+        201: DeviceSerializer,
+        202: DeviceSerializer,
+    },
+)
 
 
 @extend_schema_view(
-    list=list_current_state_schema,
+    list=list_system_tasks_schemaa,
+    create=create_system_tasks_schema,
 )
 class SystemTaskViewSet(
     GenericViewSet,
     ListModelMixin,
     RetrieveModelMixin,
+    CreateModelMixin,
 ):
     serializer_class = SystemTaskSerializer
     queryset = SystemTask.objects.all()
