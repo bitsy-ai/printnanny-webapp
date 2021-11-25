@@ -107,7 +107,7 @@ class DeviceSerializer(serializers.ModelSerializer):
     cloudiot_device = CloudiotDeviceSerializer(read_only=True, required=False)
     cameras = CameraSerializer(read_only=True, many=True)
     dashboard_url = serializers.CharField(read_only=True)
-    last_action = SystemTaskSerializer(read_only=True)
+    last_system_task = SystemTaskSerializer(read_only=True)
     printer_controllers = PrinterControllerSerializer(read_only=True, many=True)
     release_channel = serializers.ChoiceField(
         choices=DeviceReleaseChannel.choices,
