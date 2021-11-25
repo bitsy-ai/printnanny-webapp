@@ -23,8 +23,8 @@ pub struct Device {
     pub cameras: Option<Vec<crate::models::Camera>>,
     #[serde(rename = "dashboard_url", skip_serializing_if = "Option::is_none")]
     pub dashboard_url: Option<String>,
-    #[serde(rename = "last_action", skip_serializing_if = "Option::is_none")]
-    pub last_action: Option<Box<crate::models::SystemTask>>,
+    #[serde(rename = "last_system_task", skip_serializing_if = "Option::is_none")]
+    pub last_system_task: Option<Box<crate::models::SystemTask>>,
     #[serde(rename = "printer_controllers", skip_serializing_if = "Option::is_none")]
     pub printer_controllers: Option<Vec<crate::models::PrinterController>>,
     #[serde(rename = "release_channel", skip_serializing_if = "Option::is_none")]
@@ -52,7 +52,7 @@ impl Device {
             cloudiot_device: None,
             cameras: None,
             dashboard_url: None,
-            last_action: None,
+            last_system_task: None,
             printer_controllers: None,
             release_channel: None,
             user: None,

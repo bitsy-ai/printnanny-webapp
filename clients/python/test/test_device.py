@@ -54,7 +54,7 @@ class TestDevice(unittest.TestCase):
                         url = '', )
                     ], 
                 dashboard_url = '', 
-                last_action = None, 
+                last_system_task = None, 
                 printer_controllers = [
                     printnanny_api_client.models.printer_controller.PrinterController(
                         id = 56, 

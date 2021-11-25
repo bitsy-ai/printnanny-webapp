@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **cloudiot_device** | [**CloudiotDevice**](CloudiotDevice.md) |  | [optional] [readonly] 
 **cameras** | [**list[Camera]**](Camera.md) |  | [optional] [readonly] 
 **dashboard_url** | **str** |  | [optional] [readonly] 
-**last_action** | [**SystemTask**](SystemTask.md) |  | [optional] [readonly] 
+**last_system_task** | [**SystemTask**](SystemTask.md) |  | [optional] [readonly] 
 **printer_controllers** | [**list[PrinterController]**](PrinterController.md) |  | [optional] [readonly] 
 **release_channel** | [**ReleaseChannelEnum**](ReleaseChannelEnum.md) |  | [optional] 
 **user** | [**User**](User.md) |  | [optional] [readonly] 

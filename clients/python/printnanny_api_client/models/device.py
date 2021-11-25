@@ -42,7 +42,7 @@ class Device(object):
         'cloudiot_device': 'CloudiotDevice',
         'cameras': 'list[Camera]',
         'dashboard_url': 'str',
-        'last_action': 'SystemTask',
+        'last_system_task': 'SystemTask',
         'printer_controllers': 'list[PrinterController]',
         'release_channel': 'ReleaseChannelEnum',
         'user': 'User',
@@ -59,7 +59,7 @@ class Device(object):
         'cloudiot_device': 'cloudiot_device',
         'cameras': 'cameras',
         'dashboard_url': 'dashboard_url',
-        'last_action': 'last_action',
+        'last_system_task': 'last_system_task',
         'printer_controllers': 'printer_controllers',
         'release_channel': 'release_channel',
         'user': 'user',
@@ -70,7 +70,7 @@ class Device(object):
         'hostname': 'hostname'
     }
 
-    def __init__(self, id=None, bootstrap_release=None, cloudiot_device=None, cameras=None, dashboard_url=None, last_action=None, printer_controllers=None, release_channel=None, user=None, active_license=None, deleted=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, bootstrap_release=None, cloudiot_device=None, cameras=None, dashboard_url=None, last_system_task=None, printer_controllers=None, release_channel=None, user=None, active_license=None, deleted=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -81,7 +81,7 @@ class Device(object):
         self._cloudiot_device = None
         self._cameras = None
         self._dashboard_url = None
-        self._last_action = None
+        self._last_system_task = None
         self._printer_controllers = None
         self._release_channel = None
         self._user = None
@@ -100,7 +100,7 @@ class Device(object):
             self.cameras = cameras
         if dashboard_url is not None:
             self.dashboard_url = dashboard_url
-        self.last_action = last_action
+        self.last_system_task = last_system_task
         if printer_controllers is not None:
             self.printer_controllers = printer_controllers
         self.release_channel = release_channel
@@ -221,25 +221,25 @@ class Device(object):
         self._dashboard_url = dashboard_url
 
     @property
-    def last_action(self):
-        """Gets the last_action of this Device.  # noqa: E501
+    def last_system_task(self):
+        """Gets the last_system_task of this Device.  # noqa: E501
 
 
-        :return: The last_action of this Device.  # noqa: E501
+        :return: The last_system_task of this Device.  # noqa: E501
         :rtype: SystemTask
         """
-        return self._last_action
+        return self._last_system_task
 
-    @last_action.setter
-    def last_action(self, last_action):
-        """Sets the last_action of this Device.
+    @last_system_task.setter
+    def last_system_task(self, last_system_task):
+        """Sets the last_system_task of this Device.
 
 
-        :param last_action: The last_action of this Device.  # noqa: E501
-        :type last_action: SystemTask
+        :param last_system_task: The last_system_task of this Device.  # noqa: E501
+        :type last_system_task: SystemTask
         """
 
-        self._last_action = last_action
+        self._last_system_task = last_system_task
 
     @property
     def printer_controllers(self):

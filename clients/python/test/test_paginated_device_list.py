@@ -59,7 +59,7 @@ class TestPaginatedDeviceList(unittest.TestCase):
                                 url = '', )
                             ], 
                         dashboard_url = '', 
-                        last_action = null, 
+                        last_system_task = null, 
                         printer_controllers = [
                             printnanny_api_client.models.printer_controller.PrinterController(
                                 id = 56, 

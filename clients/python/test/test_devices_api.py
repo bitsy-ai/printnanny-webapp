@@ -35,18 +35,6 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
-    def test_devices_actions_list(self):
-        """Test case for devices_actions_list
-
-        """
-        pass
-
-    def test_devices_actions_retrieve(self):
-        """Test case for devices_actions_retrieve
-
-        """
-        pass
-
     def test_devices_cameras_create(self):
         """Test case for devices_cameras_create
 
@@ -211,6 +199,18 @@ class TestDevicesApi(unittest.TestCase):
 
     def test_devices_retrieve_hostname(self):
         """Test case for devices_retrieve_hostname
+
+        """
+        pass
+
+    def test_devices_system_tasks_list(self):
+        """Test case for devices_system_tasks_list
+
+        """
+        pass
+
+    def test_devices_system_tasks_retrieve(self):
+        """Test case for devices_system_tasks_retrieve
 
         """
         pass
