@@ -62,6 +62,8 @@ pub mod gcode_file;
 pub use self::gcode_file::GcodeFile;
 pub mod license;
 pub use self::license::License;
+pub mod license_credentials;
+pub use self::license_credentials::LicenseCredentials;
 pub mod license_request;
 pub use self::license_request::LicenseRequest;
 pub mod mobile_auth_request;

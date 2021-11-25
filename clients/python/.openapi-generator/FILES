@@ -40,6 +40,7 @@ docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
 docs/License.md
+docs/LicenseCredentials.md
 docs/LicenseRequest.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
@@ -205,6 +206,7 @@ printnanny_api_client/models/experiment.py
 printnanny_api_client/models/experiment_device_config.py
 printnanny_api_client/models/gcode_file.py
 printnanny_api_client/models/license.py
+printnanny_api_client/models/license_credentials.py
 printnanny_api_client/models/license_request.py
 printnanny_api_client/models/mobile_auth_request.py
 printnanny_api_client/models/model_artifact.py
@@ -354,6 +356,7 @@ test/test_experiment.py
 test/test_experiment_device_config.py
 test/test_gcode_file.py
 test/test_license.py
+test/test_license_credentials.py
 test/test_license_request.py
 test/test_ml_ops_api.py
 test/test_mobile_auth_request.py
