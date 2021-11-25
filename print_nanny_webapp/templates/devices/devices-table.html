@@ -48,11 +48,15 @@
                           data-toggle="popover" 
                           data-placement="left" 
                           title="{{ device.last_system_task.get_type_display }} {{ device.last_system_task.get_status_display }}" 
-                          data-content="{{ device.last_system_task.msg }} <br><a href='{% if device.last_system_task.wiki_url %} device.last_system_task.wiki_url {% else %} {% url 'devices:detail' pk=device.id %} {% endif %}'>Click for more info</a>"
+                          {% if device.last_system_task.wiki_url %}
+                          data-content="{{ device.last_system_task.msg }} <br><a target='_blank' href='{{ device.last_system_task.wiki_url }}'>Click for more info</a>"
+                          {% else %} 
+                          data-content="{% url 'devices:detail' pk=device.id %}" 
+                          {% endif %}
                           data-html="true"
                           >
                           <span class="badge badge-{{ device.last_system_task.status_css_class }}">
-                            {% if device.last_system_task.msg %}
+                            {% if device.last_system_task.detail %}
                               <i class="mdi mdi-information"></i>
                             {% endif %}
                             {{ device.last_system_task.get_status_display }}     
