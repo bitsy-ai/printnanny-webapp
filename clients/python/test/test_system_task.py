@@ -41,10 +41,8 @@ class TestSystemTask(unittest.TestCase):
                 deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 status = 'waiting', 
                 type = 'verify_license', 
+                detail = '', 
                 ansible_facts = {
-                    'key' : null
-                    }, 
-                ansible_extra_vars = {
                     'key' : null
                     }, 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 

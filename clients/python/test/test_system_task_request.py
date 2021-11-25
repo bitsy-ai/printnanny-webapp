@@ -39,10 +39,8 @@ class TestSystemTaskRequest(unittest.TestCase):
             return SystemTaskRequest(
                 status = 'waiting', 
                 type = 'verify_license', 
+                detail = '0', 
                 ansible_facts = {
-                    'key' : null
-                    }, 
-                ansible_extra_vars = {
                     'key' : null
                     }, 
                 device = 56

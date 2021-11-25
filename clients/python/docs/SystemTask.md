@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **deleted** | **datetime** |  | [optional] [readonly] 
 **status** | [**SystemTaskStatus**](SystemTaskStatus.md) |  | [optional] 
 **type** | [**SystemTaskType**](SystemTaskType.md) |  | [optional] 
+**detail** | **str** |  | [optional] 
 **ansible_facts** | **dict(str, object)** |  | [optional] 
-**ansible_extra_vars** | **dict(str, object)** |  | [optional] 
 **created_dt** | **datetime** |  | [optional] [readonly] 
 **device** | **int** |  | 
 

@@ -39,20 +39,20 @@ class SystemTaskRequest(object):
     openapi_types = {
         'status': 'SystemTaskStatus',
         'type': 'SystemTaskType',
+        'detail': 'str',
         'ansible_facts': 'dict(str, object)',
-        'ansible_extra_vars': 'dict(str, object)',
         'device': 'int'
     }
 
     attribute_map = {
         'status': 'status',
         'type': 'type',
+        'detail': 'detail',
         'ansible_facts': 'ansible_facts',
-        'ansible_extra_vars': 'ansible_extra_vars',
         'device': 'device'
     }
 
-    def __init__(self, status=None, type=None, ansible_facts=None, ansible_extra_vars=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, status=None, type=None, detail=None, ansible_facts=None, device=None, local_vars_configuration=None):  # noqa: E501
         """SystemTaskRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -60,8 +60,8 @@ class SystemTaskRequest(object):
 
         self._status = None
         self._type = None
+        self._detail = None
         self._ansible_facts = None
-        self._ansible_extra_vars = None
         self._device = None
         self.discriminator = None
 
@@ -69,10 +69,9 @@ class SystemTaskRequest(object):
             self.status = status
         if type is not None:
             self.type = type
+        self.detail = detail
         if ansible_facts is not None:
             self.ansible_facts = ansible_facts
-        if ansible_extra_vars is not None:
-            self.ansible_extra_vars = ansible_extra_vars
         self.device = device
 
     @property
@@ -118,6 +117,33 @@ class SystemTaskRequest(object):
         self._type = type
 
     @property
+    def detail(self):
+        """Gets the detail of this SystemTaskRequest.  # noqa: E501
+
+
+        :return: The detail of this SystemTaskRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._detail
+
+    @detail.setter
+    def detail(self, detail):
+        """Sets the detail of this SystemTaskRequest.
+
+
+        :param detail: The detail of this SystemTaskRequest.  # noqa: E501
+        :type detail: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                detail is not None and len(detail) > 1024):
+            raise ValueError("Invalid value for `detail`, length must be less than or equal to `1024`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                detail is not None and len(detail) < 1):
+            raise ValueError("Invalid value for `detail`, length must be greater than or equal to `1`")  # noqa: E501
+
+        self._detail = detail
+
+    @property
     def ansible_facts(self):
         """Gets the ansible_facts of this SystemTaskRequest.  # noqa: E501
 
@@ -137,27 +163,6 @@ class SystemTaskRequest(object):
         """
 
         self._ansible_facts = ansible_facts
-
-    @property
-    def ansible_extra_vars(self):
-        """Gets the ansible_extra_vars of this SystemTaskRequest.  # noqa: E501
-
-
-        :return: The ansible_extra_vars of this SystemTaskRequest.  # noqa: E501
-        :rtype: dict(str, object)
-        """
-        return self._ansible_extra_vars
-
-    @ansible_extra_vars.setter
-    def ansible_extra_vars(self, ansible_extra_vars):
-        """Sets the ansible_extra_vars of this SystemTaskRequest.
-
-
-        :param ansible_extra_vars: The ansible_extra_vars of this SystemTaskRequest.  # noqa: E501
-        :type ansible_extra_vars: dict(str, object)
-        """
-
-        self._ansible_extra_vars = ansible_extra_vars
 
     @property
     def device(self):

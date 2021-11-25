@@ -4,18 +4,19 @@
       <div class="card col-12">
         <div class="card-body">
           <h2 class="header-title">
-            <i class="mdi mdi-printer-3d"></i> Registered Devices
+            <i class="mdi mdi-printer-3d"></i> My Devices
               <a href="{% url 'devices:create' %}"><button class="btn btn-primary float-right">Register Raspberry Pi</button></a>
+
           </h2>
             {% if devices.count > 0 %}
             <table class="table table-centered mb-4 mt-4" id="dashboard-raspberry-pis">
               <thead>
                   <tr>
-                      <th>Name</th>
+                      <th>Hostname (click to view details)</th>
                       <!-- <th>Monitoring Active</th> -->
                       <th>Current Task</th>
 
-                      <th>Raspberry Pi Task Status</th>
+                      <th>Task Status</th>
                       <!-- <th>Job Status</th> -->
         
                       <!-- <th>File</th>
@@ -31,20 +32,27 @@
               </thead>
               <tbody>
   
-  
-  
                 {% for device in devices %}
                 <tr>
-                    <td><h3><span class="badge badge-light">{{device.hostname}}</span></h3></td>
+                    <td><h4><a href="{% url 'devices:detail' pk=device.id %}">{{device.hostname}}</a></h4></td>
                     <!-- <td>
                         <div class="progress progress-sm">
                             <div class="progress-bar progress-lg bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </td> -->
                     <!-- <td><i class="mdi mdi-circle {{device.monitoring_active_css_class}}"></i> {{device.monitoring_active}}</td> -->
-                    <td>{{ device.last_system_task.get_type_display }}</t>
+                    <td>{{ device.last_system_task.get_type_display }}</td>
 
-                    <td><i class="mdi mdi-circle text-{{ device.last_task.status_css_class }}"></i> {{ device.last_system_task.get_status_display }}</td>
+                    <td>
+                        <a data-toggle="tooltip" data-placement="left" title="{{ device.last_system_task.detail }}">
+                          <span class="badge badge-{{ device.last_system_task.status_css_class }}">
+                            {% if device.last_system_task.detail %}
+                              <i class="mdi mdi-information"></i>
+                            {% endif %}
+                            {{ device.last_system_task.get_status_display }}     
+                          </span>
+                        </a>
+                    </td>
                     <!-- <td><i class="mdi mdi-circle {{device.print_job_status_css_class}}"></i> {{device.print_job_status}}</td> -->
 
                     <!-- <td>{{device.active_session.octoprint_job.file.name}}</td>
