@@ -6,28 +6,44 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devices', '0014_auto_20211125_1710'),
+        ("devices", "0014_auto_20211125_1710"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='systemtask',
-            old_name='detail',
-            new_name='msg',
+            model_name="systemtask",
+            old_name="detail",
+            new_name="msg",
         ),
         migrations.AddField(
-            model_name='systemtask',
-            name='url',
+            model_name="systemtask",
+            name="url",
             field=models.CharField(max_length=1024, null=True),
         ),
         migrations.AlterField(
-            model_name='systemtask',
-            name='status',
-            field=models.CharField(choices=[('waiting', 'Waiting for Pi'), ('started', 'Running'), ('failed', 'Failed'), ('success', 'Success')], default='waiting', max_length=16),
+            model_name="systemtask",
+            name="status",
+            field=models.CharField(
+                choices=[
+                    ("waiting", "Waiting for Pi"),
+                    ("started", "Running"),
+                    ("failed", "Failed"),
+                    ("success", "Success"),
+                ],
+                default="waiting",
+                max_length=16,
+            ),
         ),
         migrations.AlterField(
-            model_name='systemtask',
-            name='type',
-            field=models.CharField(choices=[('verify_license', 'License Verification'), ('software_update', 'Software Update')], default='software_update', max_length=255),
+            model_name="systemtask",
+            name="type",
+            field=models.CharField(
+                choices=[
+                    ("verify_license", "License Verification"),
+                    ("software_update", "Software Update"),
+                ],
+                default="software_update",
+                max_length=255,
+            ),
         ),
     ]
