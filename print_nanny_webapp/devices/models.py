@@ -288,7 +288,7 @@ class DeviceConfig(SafeDeleteModel):
 
 class HelpLink(models.Model):
     msg = models.CharField(max_length=1024, null=True)
-    url = models.CharField(max_length=1024, null=True)
+    wiki_url = models.CharField(max_length=1024, null=True)
 
     class Meta:
         abstract = True
