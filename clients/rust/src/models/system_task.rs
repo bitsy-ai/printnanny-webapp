@@ -17,12 +17,14 @@ pub struct SystemTask {
     pub id: Option<i32>,
     #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
     pub deleted: Option<String>,
+    #[serde(rename = "msg", skip_serializing_if = "Option::is_none")]
+    pub msg: Option<String>,
+    #[serde(rename = "wiki_url", skip_serializing_if = "Option::is_none")]
+    pub wiki_url: Option<String>,
     #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
     pub status: Option<crate::models::SystemTaskStatus>,
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     pub _type: Option<crate::models::SystemTaskType>,
-    #[serde(rename = "detail", skip_serializing_if = "Option::is_none")]
-    pub detail: Option<String>,
     #[serde(rename = "ansible_facts", skip_serializing_if = "Option::is_none")]
     pub ansible_facts: Option<::std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
@@ -36,9 +38,10 @@ impl SystemTask {
         SystemTask {
             id: None,
             deleted: None,
+            msg: None,
+            wiki_url: None,
             status: None,
             _type: None,
-            detail: None,
             ansible_facts: None,
             created_dt: None,
             device,

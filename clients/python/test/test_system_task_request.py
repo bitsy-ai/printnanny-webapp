@@ -37,9 +37,10 @@ class TestSystemTaskRequest(unittest.TestCase):
         # model = printnanny_api_client.models.system_task_request.SystemTaskRequest()  # noqa: E501
         if include_optional :
             return SystemTaskRequest(
+                msg = '0', 
+                wiki_url = '0', 
                 status = 'waiting', 
                 type = 'verify_license', 
-                detail = '0', 
                 ansible_facts = {
                     'key' : null
                     }, 

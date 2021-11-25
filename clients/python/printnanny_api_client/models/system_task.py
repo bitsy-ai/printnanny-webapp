@@ -39,9 +39,10 @@ class SystemTask(object):
     openapi_types = {
         'id': 'int',
         'deleted': 'datetime',
+        'msg': 'str',
+        'wiki_url': 'str',
         'status': 'SystemTaskStatus',
         'type': 'SystemTaskType',
-        'detail': 'str',
         'ansible_facts': 'dict(str, object)',
         'created_dt': 'datetime',
         'device': 'int'
@@ -50,15 +51,16 @@ class SystemTask(object):
     attribute_map = {
         'id': 'id',
         'deleted': 'deleted',
+        'msg': 'msg',
+        'wiki_url': 'wiki_url',
         'status': 'status',
         'type': 'type',
-        'detail': 'detail',
         'ansible_facts': 'ansible_facts',
         'created_dt': 'created_dt',
         'device': 'device'
     }
 
-    def __init__(self, id=None, deleted=None, status=None, type=None, detail=None, ansible_facts=None, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, deleted=None, msg=None, wiki_url=None, status=None, type=None, ansible_facts=None, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
         """SystemTask - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -66,9 +68,10 @@ class SystemTask(object):
 
         self._id = None
         self._deleted = None
+        self._msg = None
+        self._wiki_url = None
         self._status = None
         self._type = None
-        self._detail = None
         self._ansible_facts = None
         self._created_dt = None
         self._device = None
@@ -78,11 +81,12 @@ class SystemTask(object):
             self.id = id
         if deleted is not None:
             self.deleted = deleted
+        self.msg = msg
+        self.wiki_url = wiki_url
         if status is not None:
             self.status = status
         if type is not None:
             self.type = type
-        self.detail = detail
         if ansible_facts is not None:
             self.ansible_facts = ansible_facts
         if created_dt is not None:
@@ -132,6 +136,54 @@ class SystemTask(object):
         self._deleted = deleted
 
     @property
+    def msg(self):
+        """Gets the msg of this SystemTask.  # noqa: E501
+
+
+        :return: The msg of this SystemTask.  # noqa: E501
+        :rtype: str
+        """
+        return self._msg
+
+    @msg.setter
+    def msg(self, msg):
+        """Sets the msg of this SystemTask.
+
+
+        :param msg: The msg of this SystemTask.  # noqa: E501
+        :type msg: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                msg is not None and len(msg) > 1024):
+            raise ValueError("Invalid value for `msg`, length must be less than or equal to `1024`")  # noqa: E501
+
+        self._msg = msg
+
+    @property
+    def wiki_url(self):
+        """Gets the wiki_url of this SystemTask.  # noqa: E501
+
+
+        :return: The wiki_url of this SystemTask.  # noqa: E501
+        :rtype: str
+        """
+        return self._wiki_url
+
+    @wiki_url.setter
+    def wiki_url(self, wiki_url):
+        """Sets the wiki_url of this SystemTask.
+
+
+        :param wiki_url: The wiki_url of this SystemTask.  # noqa: E501
+        :type wiki_url: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                wiki_url is not None and len(wiki_url) > 1024):
+            raise ValueError("Invalid value for `wiki_url`, length must be less than or equal to `1024`")  # noqa: E501
+
+        self._wiki_url = wiki_url
+
+    @property
     def status(self):
         """Gets the status of this SystemTask.  # noqa: E501
 
@@ -172,30 +224,6 @@ class SystemTask(object):
         """
 
         self._type = type
-
-    @property
-    def detail(self):
-        """Gets the detail of this SystemTask.  # noqa: E501
-
-
-        :return: The detail of this SystemTask.  # noqa: E501
-        :rtype: str
-        """
-        return self._detail
-
-    @detail.setter
-    def detail(self, detail):
-        """Sets the detail of this SystemTask.
-
-
-        :param detail: The detail of this SystemTask.  # noqa: E501
-        :type detail: str
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                detail is not None and len(detail) > 1024):
-            raise ValueError("Invalid value for `detail`, length must be less than or equal to `1024`")  # noqa: E501
-
-        self._detail = detail
 
     @property
     def ansible_facts(self):

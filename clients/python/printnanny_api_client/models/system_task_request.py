@@ -37,42 +37,100 @@ class SystemTaskRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
+        'msg': 'str',
+        'wiki_url': 'str',
         'status': 'SystemTaskStatus',
         'type': 'SystemTaskType',
-        'detail': 'str',
         'ansible_facts': 'dict(str, object)',
         'device': 'int'
     }
 
     attribute_map = {
+        'msg': 'msg',
+        'wiki_url': 'wiki_url',
         'status': 'status',
         'type': 'type',
-        'detail': 'detail',
         'ansible_facts': 'ansible_facts',
         'device': 'device'
     }
 
-    def __init__(self, status=None, type=None, detail=None, ansible_facts=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, msg=None, wiki_url=None, status=None, type=None, ansible_facts=None, device=None, local_vars_configuration=None):  # noqa: E501
         """SystemTaskRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
+        self._msg = None
+        self._wiki_url = None
         self._status = None
         self._type = None
-        self._detail = None
         self._ansible_facts = None
         self._device = None
         self.discriminator = None
 
+        self.msg = msg
+        self.wiki_url = wiki_url
         if status is not None:
             self.status = status
         if type is not None:
             self.type = type
-        self.detail = detail
         if ansible_facts is not None:
             self.ansible_facts = ansible_facts
         self.device = device
+
+    @property
+    def msg(self):
+        """Gets the msg of this SystemTaskRequest.  # noqa: E501
+
+
+        :return: The msg of this SystemTaskRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._msg
+
+    @msg.setter
+    def msg(self, msg):
+        """Sets the msg of this SystemTaskRequest.
+
+
+        :param msg: The msg of this SystemTaskRequest.  # noqa: E501
+        :type msg: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                msg is not None and len(msg) > 1024):
+            raise ValueError("Invalid value for `msg`, length must be less than or equal to `1024`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                msg is not None and len(msg) < 1):
+            raise ValueError("Invalid value for `msg`, length must be greater than or equal to `1`")  # noqa: E501
+
+        self._msg = msg
+
+    @property
+    def wiki_url(self):
+        """Gets the wiki_url of this SystemTaskRequest.  # noqa: E501
+
+
+        :return: The wiki_url of this SystemTaskRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._wiki_url
+
+    @wiki_url.setter
+    def wiki_url(self, wiki_url):
+        """Sets the wiki_url of this SystemTaskRequest.
+
+
+        :param wiki_url: The wiki_url of this SystemTaskRequest.  # noqa: E501
+        :type wiki_url: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                wiki_url is not None and len(wiki_url) > 1024):
+            raise ValueError("Invalid value for `wiki_url`, length must be less than or equal to `1024`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                wiki_url is not None and len(wiki_url) < 1):
+            raise ValueError("Invalid value for `wiki_url`, length must be greater than or equal to `1`")  # noqa: E501
+
+        self._wiki_url = wiki_url
 
     @property
     def status(self):
@@ -115,33 +173,6 @@ class SystemTaskRequest(object):
         """
 
         self._type = type
-
-    @property
-    def detail(self):
-        """Gets the detail of this SystemTaskRequest.  # noqa: E501
-
-
-        :return: The detail of this SystemTaskRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._detail
-
-    @detail.setter
-    def detail(self, detail):
-        """Sets the detail of this SystemTaskRequest.
-
-
-        :param detail: The detail of this SystemTaskRequest.  # noqa: E501
-        :type detail: str
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                detail is not None and len(detail) > 1024):
-            raise ValueError("Invalid value for `detail`, length must be less than or equal to `1024`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                detail is not None and len(detail) < 1):
-            raise ValueError("Invalid value for `detail`, length must be greater than or equal to `1`")  # noqa: E501
-
-        self._detail = detail
 
     @property
     def ansible_facts(self):

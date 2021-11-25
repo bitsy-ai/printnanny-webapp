@@ -4,9 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**msg** | Option<**String**> |  | [optional]
+**wiki_url** | Option<**String**> |  | [optional]
 **status** | Option<[**crate::models::SystemTaskStatus**](SystemTaskStatus.md)> |  | [optional]
 **_type** | Option<[**crate::models::SystemTaskType**](SystemTaskType.md)> |  | [optional]
-**detail** | Option<**String**> |  | [optional]
 **ansible_facts** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **device** | **i32** |  | 
 

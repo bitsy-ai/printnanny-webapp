@@ -6,9 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | Option<**i32**> |  | [optional][readonly]
 **deleted** | Option<**String**> |  | [optional][readonly]
+**msg** | Option<**String**> |  | [optional]
+**wiki_url** | Option<**String**> |  | [optional]
 **status** | Option<[**crate::models::SystemTaskStatus**](SystemTaskStatus.md)> |  | [optional]
 **_type** | Option<[**crate::models::SystemTaskType**](SystemTaskType.md)> |  | [optional]
-**detail** | Option<**String**> |  | [optional]
 **ansible_facts** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **created_dt** | Option<**String**> |  | [optional][readonly]
 **device** | **i32** |  | 

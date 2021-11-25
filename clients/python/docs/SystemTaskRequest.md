@@ -4,9 +4,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**msg** | **str** |  | [optional] 
+**wiki_url** | **str** |  | [optional] 
 **status** | [**SystemTaskStatus**](SystemTaskStatus.md) |  | [optional] 
 **type** | [**SystemTaskType**](SystemTaskType.md) |  | [optional] 
-**detail** | **str** |  | [optional] 
 **ansible_facts** | **dict(str, object)** |  | [optional] 
 **device** | **int** |  | 
 

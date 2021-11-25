@@ -44,9 +44,10 @@ class TestPaginatedSystemTaskList(unittest.TestCase):
                     printnanny_api_client.models.system_task.SystemTask(
                         id = 56, 
                         deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        msg = '', 
+                        wiki_url = '', 
                         status = 'waiting', 
                         type = 'verify_license', 
-                        detail = '', 
                         ansible_facts = {
                             'key' : null
                             }, 

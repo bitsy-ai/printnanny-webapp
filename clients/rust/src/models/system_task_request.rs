@@ -13,12 +13,14 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct SystemTaskRequest {
+    #[serde(rename = "msg", skip_serializing_if = "Option::is_none")]
+    pub msg: Option<String>,
+    #[serde(rename = "wiki_url", skip_serializing_if = "Option::is_none")]
+    pub wiki_url: Option<String>,
     #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
     pub status: Option<crate::models::SystemTaskStatus>,
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     pub _type: Option<crate::models::SystemTaskType>,
-    #[serde(rename = "detail", skip_serializing_if = "Option::is_none")]
-    pub detail: Option<String>,
     #[serde(rename = "ansible_facts", skip_serializing_if = "Option::is_none")]
     pub ansible_facts: Option<::std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "device")]
@@ -28,9 +30,10 @@ pub struct SystemTaskRequest {
 impl SystemTaskRequest {
     pub fn new(device: i32) -> SystemTaskRequest {
         SystemTaskRequest {
+            msg: None,
+            wiki_url: None,
             status: None,
             _type: None,
-            detail: None,
             ansible_facts: None,
             device,
         }
