@@ -37,11 +37,11 @@ class TestEmailAuthRequest(unittest.TestCase):
         # model = printnanny_api_client.models.email_auth_request.EmailAuthRequest()  # noqa: E501
         if include_optional :
             return EmailAuthRequest(
-                email = ''
+                email = '0'
             )
         else :
             return EmailAuthRequest(
-                email = '',
+                email = '0',
         )
 
     def testEmailAuthRequest(self):

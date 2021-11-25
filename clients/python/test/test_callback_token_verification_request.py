@@ -37,8 +37,8 @@ class TestCallbackTokenVerificationRequest(unittest.TestCase):
         # model = printnanny_api_client.models.callback_token_verification_request.CallbackTokenVerificationRequest()  # noqa: E501
         if include_optional :
             return CallbackTokenVerificationRequest(
-                email = '', 
-                mobile = '+680728880015', 
+                email = '0', 
+                mobile = '+6807288800150', 
                 token = '012345'
             )
         else :

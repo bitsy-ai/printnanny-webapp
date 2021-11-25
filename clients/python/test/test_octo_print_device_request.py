@@ -37,35 +37,35 @@ class TestOctoPrintDeviceRequest(unittest.TestCase):
         # model = printnanny_api_client.models.octo_print_device_request.OctoPrintDeviceRequest()  # noqa: E501
         if include_optional :
             return OctoPrintDeviceRequest(
-                name = '', 
-                model = '', 
-                platform = '', 
+                name = '0', 
+                model = '0', 
+                platform = '0', 
                 cpu_flags = [
-                    ''
+                    '0'
                     ], 
-                hardware = '', 
-                revision = '', 
-                serial = '', 
+                hardware = '0', 
+                revision = '0', 
+                serial = '0', 
                 cores = -2147483648, 
                 ram = -2147483648, 
-                python_version = '', 
-                pip_version = '', 
-                virtualenv = '', 
-                octoprint_version = '', 
-                plugin_version = '', 
-                print_nanny_client_version = '', 
+                python_version = '0', 
+                pip_version = '0', 
+                virtualenv = '0', 
+                octoprint_version = '0', 
+                plugin_version = '0', 
+                print_nanny_client_version = '0', 
                 active_session = printnanny_api_client.models.print_session_request.PrintSessionRequest(
                     created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     octoprint_device = 56, 
                     active = True, 
-                    session = '', 
+                    session = '0', 
                     filepos = -2147483648, 
                     print_progress = -2147483648, 
                     time_elapsed = -2147483648, 
                     time_remaining = -2147483648, 
                     printer_profile = 56, 
                     gcode_file = 56, 
-                    gcode_filename = '', 
+                    gcode_filename = '0', 
                     octoprint_job = {
                         'key' : null
                         }, 
@@ -73,17 +73,17 @@ class TestOctoPrintDeviceRequest(unittest.TestCase):
             )
         else :
             return OctoPrintDeviceRequest(
-                name = '',
-                model = '',
-                platform = '',
-                serial = '',
+                name = '0',
+                model = '0',
+                platform = '0',
+                serial = '0',
                 cores = -2147483648,
                 ram = -2147483648,
-                python_version = '',
-                pip_version = '',
-                octoprint_version = '',
-                plugin_version = '',
-                print_nanny_client_version = '',
+                python_version = '0',
+                pip_version = '0',
+                octoprint_version = '0',
+                plugin_version = '0',
+                print_nanny_client_version = '0',
         )
 
     def testOctoPrintDeviceRequest(self):

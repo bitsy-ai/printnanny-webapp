@@ -37,11 +37,11 @@ class TestMobileAuthRequest(unittest.TestCase):
         # model = printnanny_api_client.models.mobile_auth_request.MobileAuthRequest()  # noqa: E501
         if include_optional :
             return MobileAuthRequest(
-                mobile = '+680728880015'
+                mobile = '+6807288800150'
             )
         else :
             return MobileAuthRequest(
-                mobile = '+680728880015',
+                mobile = '+6807288800150',
         )
 
     def testMobileAuthRequest(self):

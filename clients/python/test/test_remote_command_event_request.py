@@ -42,21 +42,21 @@ class TestRemoteCommandEventRequest(unittest.TestCase):
                 event_type = None, 
                 octoprint_environment = printnanny_api_client.models.octoprint_environment_request.OctoprintEnvironmentRequest(
                     os = printnanny_api_client.models.octoprint_platform_request.OctoprintPlatformRequest(
-                        id = '', 
-                        platform = '', 
-                        bits = '', ), 
+                        id = '0', 
+                        platform = '0', 
+                        bits = '0', ), 
                     python = printnanny_api_client.models.octoprint_python_request.OctoprintPythonRequest(
-                        version = '', 
-                        pip = '', 
-                        virtualenv = '', ), 
+                        version = '0', 
+                        pip = '0', 
+                        virtualenv = '0', ), 
                     hardware = printnanny_api_client.models.octoprint_hardware_request.OctoprintHardwareRequest(
                         cores = 56, 
                         freq = 1.337, 
                         ram = 56, ), 
                     pi_support = printnanny_api_client.models.octoprint_pi_support_request.OctoprintPiSupportRequest(
-                        model = '', 
-                        throttle_state = '', 
-                        octopi_version = '', ), ), 
+                        model = '0', 
+                        throttle_state = '0', 
+                        octopi_version = '0', ), ), 
                 octoprint_printer_data = printnanny_api_client.models.octoprint_printer_data_request.OctoprintPrinterDataRequest(
                     job = printnanny_api_client.models.octoprint_job_request.OctoprintJobRequest(
                         file = null, 
@@ -67,7 +67,7 @@ class TestRemoteCommandEventRequest(unittest.TestCase):
                             'key' : null
                             }, ), 
                     state = printnanny_api_client.models.octoprint_printer_state_request.OctoprintPrinterStateRequest(
-                        text = '', 
+                        text = '0', 
                         flags = printnanny_api_client.models.octoprint_printer_flags_request.OctoprintPrinterFlagsRequest(
                             operational = True, 
                             printing = True, 
@@ -80,14 +80,14 @@ class TestRemoteCommandEventRequest(unittest.TestCase):
                             paused = True, 
                             ready = True, 
                             sd_ready = True, ), ), 
-                    user = '', 
+                    user = '0', 
                     current_z = 1.337, 
                     progress = printnanny_api_client.models.octoprint_progress_request.OctoprintProgressRequest(
                         completion = 1.337, 
                         filepos = 56, 
                         print_time = 56, 
                         print_time_left = 56, 
-                        print_time_origin = '', ), 
+                        print_time_origin = '0', ), 
                     resends = {
                         'key' : null
                         }, 
@@ -100,9 +100,9 @@ class TestRemoteCommandEventRequest(unittest.TestCase):
                 temperature = {
                     'key' : null
                     }, 
-                print_nanny_plugin_version = '', 
-                print_nanny_client_version = '', 
-                octoprint_version = '', 
+                print_nanny_plugin_version = '0', 
+                print_nanny_client_version = '0', 
+                octoprint_version = '0', 
                 octoprint_device = 56, 
                 print_session = 56
             )
@@ -110,21 +110,21 @@ class TestRemoteCommandEventRequest(unittest.TestCase):
             return RemoteCommandEventRequest(
                 octoprint_environment = printnanny_api_client.models.octoprint_environment_request.OctoprintEnvironmentRequest(
                     os = printnanny_api_client.models.octoprint_platform_request.OctoprintPlatformRequest(
-                        id = '', 
-                        platform = '', 
-                        bits = '', ), 
+                        id = '0', 
+                        platform = '0', 
+                        bits = '0', ), 
                     python = printnanny_api_client.models.octoprint_python_request.OctoprintPythonRequest(
-                        version = '', 
-                        pip = '', 
-                        virtualenv = '', ), 
+                        version = '0', 
+                        pip = '0', 
+                        virtualenv = '0', ), 
                     hardware = printnanny_api_client.models.octoprint_hardware_request.OctoprintHardwareRequest(
                         cores = 56, 
                         freq = 1.337, 
                         ram = 56, ), 
                     pi_support = printnanny_api_client.models.octoprint_pi_support_request.OctoprintPiSupportRequest(
-                        model = '', 
-                        throttle_state = '', 
-                        octopi_version = '', ), ),
+                        model = '0', 
+                        throttle_state = '0', 
+                        octopi_version = '0', ), ),
                 octoprint_printer_data = printnanny_api_client.models.octoprint_printer_data_request.OctoprintPrinterDataRequest(
                     job = printnanny_api_client.models.octoprint_job_request.OctoprintJobRequest(
                         file = null, 
@@ -135,7 +135,7 @@ class TestRemoteCommandEventRequest(unittest.TestCase):
                             'key' : null
                             }, ), 
                     state = printnanny_api_client.models.octoprint_printer_state_request.OctoprintPrinterStateRequest(
-                        text = '', 
+                        text = '0', 
                         flags = printnanny_api_client.models.octoprint_printer_flags_request.OctoprintPrinterFlagsRequest(
                             operational = True, 
                             printing = True, 
@@ -148,23 +148,23 @@ class TestRemoteCommandEventRequest(unittest.TestCase):
                             paused = True, 
                             ready = True, 
                             sd_ready = True, ), ), 
-                    user = '', 
+                    user = '0', 
                     current_z = 1.337, 
                     progress = printnanny_api_client.models.octoprint_progress_request.OctoprintProgressRequest(
                         completion = 1.337, 
                         filepos = 56, 
                         print_time = 56, 
                         print_time_left = 56, 
-                        print_time_origin = '', ), 
+                        print_time_origin = '0', ), 
                     resends = {
                         'key' : null
                         }, 
                     offsets = {
                         'key' : null
                         }, ),
-                print_nanny_plugin_version = '',
-                print_nanny_client_version = '',
-                octoprint_version = '',
+                print_nanny_plugin_version = '0',
+                print_nanny_client_version = '0',
+                octoprint_version = '0',
                 octoprint_device = 56,
         )
 

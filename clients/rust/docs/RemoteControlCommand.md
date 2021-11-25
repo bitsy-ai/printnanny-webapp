@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | Option<**i32**> |  | [optional][readonly]
 **created_dt** | Option<**String**> |  | [optional][readonly]
-**command** | Option<[**crate::models::RemoteControlCommandCommandEnum**](RemoteControlCommandCommandEnum.md)> |  | [optional]
+**command** | Option<[**crate::models::CommandEnum**](CommandEnum.md)> |  | [optional]
 **user** | **i32** |  | 
 **device** | **i32** |  | 
 **received** | Option<**bool**> |  | [optional]

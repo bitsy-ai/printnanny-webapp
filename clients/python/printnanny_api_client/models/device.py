@@ -38,10 +38,11 @@ class Device(object):
     """
     openapi_types = {
         'id': 'int',
+        'bootstrap_release': 'Release',
         'cloudiot_device': 'CloudiotDevice',
         'cameras': 'list[Camera]',
         'dashboard_url': 'str',
-        'bootstrap_release': 'Release',
+        'last_action': 'SystemTask',
         'printer_controllers': 'list[PrinterController]',
         'release_channel': 'ReleaseChannelEnum',
         'user': 'User',
@@ -54,10 +55,11 @@ class Device(object):
 
     attribute_map = {
         'id': 'id',
+        'bootstrap_release': 'bootstrap_release',
         'cloudiot_device': 'cloudiot_device',
         'cameras': 'cameras',
         'dashboard_url': 'dashboard_url',
-        'bootstrap_release': 'bootstrap_release',
+        'last_action': 'last_action',
         'printer_controllers': 'printer_controllers',
         'release_channel': 'release_channel',
         'user': 'user',
@@ -68,17 +70,18 @@ class Device(object):
         'hostname': 'hostname'
     }
 
-    def __init__(self, id=None, cloudiot_device=None, cameras=[], dashboard_url=None, bootstrap_release=None, printer_controllers=[], release_channel=None, user=None, active_license=None, deleted=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, bootstrap_release=None, cloudiot_device=None, cameras=None, dashboard_url=None, last_action=None, printer_controllers=None, release_channel=None, user=None, active_license=None, deleted=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
+        self._bootstrap_release = None
         self._cloudiot_device = None
         self._cameras = None
         self._dashboard_url = None
-        self._bootstrap_release = None
+        self._last_action = None
         self._printer_controllers = None
         self._release_channel = None
         self._user = None
@@ -91,12 +94,13 @@ class Device(object):
 
         if id is not None:
             self.id = id
+        self.bootstrap_release = bootstrap_release
         self.cloudiot_device = cloudiot_device
         if cameras is not None:
             self.cameras = cameras
         if dashboard_url is not None:
             self.dashboard_url = dashboard_url
-        self.bootstrap_release = bootstrap_release
+        self.last_action = last_action
         if printer_controllers is not None:
             self.printer_controllers = printer_controllers
         self.release_channel = release_channel
@@ -131,6 +135,27 @@ class Device(object):
         """
 
         self._id = id
+
+    @property
+    def bootstrap_release(self):
+        """Gets the bootstrap_release of this Device.  # noqa: E501
+
+
+        :return: The bootstrap_release of this Device.  # noqa: E501
+        :rtype: Release
+        """
+        return self._bootstrap_release
+
+    @bootstrap_release.setter
+    def bootstrap_release(self, bootstrap_release):
+        """Sets the bootstrap_release of this Device.
+
+
+        :param bootstrap_release: The bootstrap_release of this Device.  # noqa: E501
+        :type bootstrap_release: Release
+        """
+
+        self._bootstrap_release = bootstrap_release
 
     @property
     def cloudiot_device(self):
@@ -196,25 +221,25 @@ class Device(object):
         self._dashboard_url = dashboard_url
 
     @property
-    def bootstrap_release(self):
-        """Gets the bootstrap_release of this Device.  # noqa: E501
+    def last_action(self):
+        """Gets the last_action of this Device.  # noqa: E501
 
 
-        :return: The bootstrap_release of this Device.  # noqa: E501
-        :rtype: Release
+        :return: The last_action of this Device.  # noqa: E501
+        :rtype: SystemTask
         """
-        return self._bootstrap_release
+        return self._last_action
 
-    @bootstrap_release.setter
-    def bootstrap_release(self, bootstrap_release):
-        """Sets the bootstrap_release of this Device.
+    @last_action.setter
+    def last_action(self, last_action):
+        """Sets the last_action of this Device.
 
 
-        :param bootstrap_release: The bootstrap_release of this Device.  # noqa: E501
-        :type bootstrap_release: Release
+        :param last_action: The last_action of this Device.  # noqa: E501
+        :type last_action: SystemTask
         """
 
-        self._bootstrap_release = bootstrap_release
+        self._last_action = last_action
 
     @property
     def printer_controllers(self):

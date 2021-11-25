@@ -148,6 +148,9 @@ class PatchedOctoPrintDeviceRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 name is not None and len(name) > 255):
             raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                name is not None and len(name) < 1):
+            raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._name = name
 
@@ -172,6 +175,9 @@ class PatchedOctoPrintDeviceRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 model is not None and len(model) > 255):
             raise ValueError("Invalid value for `model`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                model is not None and len(model) < 1):
+            raise ValueError("Invalid value for `model`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._model = model
 
@@ -196,6 +202,9 @@ class PatchedOctoPrintDeviceRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 platform is not None and len(platform) > 255):
             raise ValueError("Invalid value for `platform`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                platform is not None and len(platform) < 1):
+            raise ValueError("Invalid value for `platform`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._platform = platform
 
@@ -241,6 +250,9 @@ class PatchedOctoPrintDeviceRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 hardware is not None and len(hardware) > 255):
             raise ValueError("Invalid value for `hardware`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                hardware is not None and len(hardware) < 1):
+            raise ValueError("Invalid value for `hardware`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._hardware = hardware
 
@@ -265,6 +277,9 @@ class PatchedOctoPrintDeviceRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 revision is not None and len(revision) > 255):
             raise ValueError("Invalid value for `revision`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                revision is not None and len(revision) < 1):
+            raise ValueError("Invalid value for `revision`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._revision = revision
 
@@ -289,6 +304,9 @@ class PatchedOctoPrintDeviceRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 serial is not None and len(serial) > 255):
             raise ValueError("Invalid value for `serial`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                serial is not None and len(serial) < 1):
+            raise ValueError("Invalid value for `serial`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._serial = serial
 
@@ -367,6 +385,9 @@ class PatchedOctoPrintDeviceRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 python_version is not None and len(python_version) > 255):
             raise ValueError("Invalid value for `python_version`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                python_version is not None and len(python_version) < 1):
+            raise ValueError("Invalid value for `python_version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._python_version = python_version
 
@@ -391,6 +412,9 @@ class PatchedOctoPrintDeviceRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 pip_version is not None and len(pip_version) > 255):
             raise ValueError("Invalid value for `pip_version`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                pip_version is not None and len(pip_version) < 1):
+            raise ValueError("Invalid value for `pip_version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._pip_version = pip_version
 
@@ -415,6 +439,9 @@ class PatchedOctoPrintDeviceRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 virtualenv is not None and len(virtualenv) > 255):
             raise ValueError("Invalid value for `virtualenv`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                virtualenv is not None and len(virtualenv) < 1):
+            raise ValueError("Invalid value for `virtualenv`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._virtualenv = virtualenv
 
@@ -439,6 +466,9 @@ class PatchedOctoPrintDeviceRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 octoprint_version is not None and len(octoprint_version) > 255):
             raise ValueError("Invalid value for `octoprint_version`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                octoprint_version is not None and len(octoprint_version) < 1):
+            raise ValueError("Invalid value for `octoprint_version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._octoprint_version = octoprint_version
 
@@ -463,6 +493,9 @@ class PatchedOctoPrintDeviceRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 plugin_version is not None and len(plugin_version) > 255):
             raise ValueError("Invalid value for `plugin_version`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                plugin_version is not None and len(plugin_version) < 1):
+            raise ValueError("Invalid value for `plugin_version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._plugin_version = plugin_version
 
@@ -487,6 +520,9 @@ class PatchedOctoPrintDeviceRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 print_nanny_client_version is not None and len(print_nanny_client_version) > 255):
             raise ValueError("Invalid value for `print_nanny_client_version`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                print_nanny_client_version is not None and len(print_nanny_client_version) < 1):
+            raise ValueError("Invalid value for `print_nanny_client_version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._print_nanny_client_version = print_nanny_client_version
 

@@ -20,6 +20,7 @@ docs/CameraRequest.md
 docs/CameraTypeEnum.md
 docs/CloudiotDevice.md
 docs/CloudiotDeviceRequest.md
+docs/CommandEnum.md
 docs/DetailResponse.md
 docs/Device.md
 docs/DeviceCalibration.md
@@ -28,8 +29,6 @@ docs/DeviceConfig.md
 docs/DeviceInfo.md
 docs/DeviceInfoRequest.md
 docs/DeviceRequest.md
-docs/DeviceState.md
-docs/DeviceStateCommandEnum.md
 docs/DevicesApi.md
 docs/EmailAuthRequest.md
 docs/ErrorDetail.md
@@ -39,7 +38,6 @@ docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
 docs/License.md
-docs/LicenseCredentials.md
 docs/LicenseRequest.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
@@ -79,7 +77,6 @@ docs/PaginatedDeviceCalibrationList.md
 docs/PaginatedDeviceConfigList.md
 docs/PaginatedDeviceInfoList.md
 docs/PaginatedDeviceList.md
-docs/PaginatedDeviceStateList.md
 docs/PaginatedExperimentDeviceConfigList.md
 docs/PaginatedExperimentList.md
 docs/PaginatedGcodeFileList.md
@@ -94,6 +91,7 @@ docs/PaginatedPrinterProfileList.md
 docs/PaginatedReleaseList.md
 docs/PaginatedRemoteCommandEventList.md
 docs/PaginatedRemoteControlCommandList.md
+docs/PaginatedSystemTaskList.md
 docs/PaginatedTelemetryEventPolymorphicList.md
 docs/PaginatedUserList.md
 docs/Partner3DGeeksAlert.md
@@ -137,11 +135,12 @@ docs/RemoteCommandEventEventTypeEnum.md
 docs/RemoteCommandEventRequest.md
 docs/RemoteControlApi.md
 docs/RemoteControlCommand.md
-docs/RemoteControlCommandCommandEnum.md
 docs/RemoteControlCommandRequest.md
 docs/SchemaApi.md
 docs/SoftwareEnum.md
 docs/StatusEnum.md
+docs/SystemTask.md
+docs/SystemTaskRequest.md
 docs/TelemetryApi.md
 docs/TelemetryEvent.md
 docs/TelemetryEventEventTypeEnum.md
@@ -149,6 +148,7 @@ docs/TelemetryEventPolymorphic.md
 docs/TelemetryEventPolymorphicRequest.md
 docs/TelemetryEventRequest.md
 docs/TokenResponse.md
+docs/TypeEnum.md
 docs/User.md
 docs/UserRequest.md
 docs/UsersApi.md
@@ -182,6 +182,7 @@ src/models/camera_request.rs
 src/models/camera_type_enum.rs
 src/models/cloudiot_device.rs
 src/models/cloudiot_device_request.rs
+src/models/command_enum.rs
 src/models/detail_response.rs
 src/models/device.rs
 src/models/device_calibration.rs
@@ -190,8 +191,6 @@ src/models/device_config.rs
 src/models/device_info.rs
 src/models/device_info_request.rs
 src/models/device_request.rs
-src/models/device_state.rs
-src/models/device_state_command_enum.rs
 src/models/email_auth_request.rs
 src/models/error_detail.rs
 src/models/event_source_enum.rs
@@ -200,7 +199,6 @@ src/models/experiment.rs
 src/models/experiment_device_config.rs
 src/models/gcode_file.rs
 src/models/license.rs
-src/models/license_credentials.rs
 src/models/license_request.rs
 src/models/mobile_auth_request.rs
 src/models/mod.rs
@@ -240,7 +238,6 @@ src/models/paginated_device_calibration_list.rs
 src/models/paginated_device_config_list.rs
 src/models/paginated_device_info_list.rs
 src/models/paginated_device_list.rs
-src/models/paginated_device_state_list.rs
 src/models/paginated_experiment_device_config_list.rs
 src/models/paginated_experiment_list.rs
 src/models/paginated_gcode_file_list.rs
@@ -255,6 +252,7 @@ src/models/paginated_printer_profile_list.rs
 src/models/paginated_release_list.rs
 src/models/paginated_remote_command_event_list.rs
 src/models/paginated_remote_control_command_list.rs
+src/models/paginated_system_task_list.rs
 src/models/paginated_telemetry_event_polymorphic_list.rs
 src/models/paginated_user_list.rs
 src/models/partner3_d_geeks_alert.rs
@@ -294,15 +292,17 @@ src/models/remote_command_event.rs
 src/models/remote_command_event_event_type_enum.rs
 src/models/remote_command_event_request.rs
 src/models/remote_control_command.rs
-src/models/remote_control_command_command_enum.rs
 src/models/remote_control_command_request.rs
 src/models/software_enum.rs
 src/models/status_enum.rs
+src/models/system_task.rs
+src/models/system_task_request.rs
 src/models/telemetry_event.rs
 src/models/telemetry_event_event_type_enum.rs
 src/models/telemetry_event_polymorphic.rs
 src/models/telemetry_event_polymorphic_request.rs
 src/models/telemetry_event_request.rs
 src/models/token_response.rs
+src/models/type_enum.rs
 src/models/user.rs
 src/models/user_request.rs

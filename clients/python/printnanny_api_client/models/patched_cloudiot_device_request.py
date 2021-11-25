@@ -119,6 +119,9 @@ class PatchedCloudiotDeviceRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 name is not None and len(name) > 255):
             raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                name is not None and len(name) < 1):
+            raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._name = name
 
@@ -143,6 +146,9 @@ class PatchedCloudiotDeviceRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 id is not None and len(id) > 255):
             raise ValueError("Invalid value for `id`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                id is not None and len(id) < 1):
+            raise ValueError("Invalid value for `id`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._id = id
 

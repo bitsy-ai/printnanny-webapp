@@ -43,6 +43,7 @@ class TestPaginatedDeviceList(unittest.TestCase):
                 results = [
                     printnanny_api_client.models.device.Device(
                         id = 56, 
+                        bootstrap_release = null, 
                         cloudiot_device = null, 
                         cameras = [
                             printnanny_api_client.models.camera.Camera(
@@ -58,7 +59,7 @@ class TestPaginatedDeviceList(unittest.TestCase):
                                 url = '', )
                             ], 
                         dashboard_url = '', 
-                        bootstrap_release = null, 
+                        last_action = null, 
                         printer_controllers = [
                             printnanny_api_client.models.printer_controller.PrinterController(
                                 id = 56, 

@@ -112,6 +112,9 @@ class DeviceInfoRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 machine_id is not None and len(machine_id) > 255):
             raise ValueError("Invalid value for `machine_id`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                machine_id is not None and len(machine_id) < 1):
+            raise ValueError("Invalid value for `machine_id`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._machine_id = machine_id
 
@@ -140,6 +143,9 @@ class DeviceInfoRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 hardware is not None and len(hardware) > 255):
             raise ValueError("Invalid value for `hardware`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                hardware is not None and len(hardware) < 1):
+            raise ValueError("Invalid value for `hardware`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._hardware = hardware
 
@@ -168,6 +174,9 @@ class DeviceInfoRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 revision is not None and len(revision) > 255):
             raise ValueError("Invalid value for `revision`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                revision is not None and len(revision) < 1):
+            raise ValueError("Invalid value for `revision`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._revision = revision
 
@@ -196,6 +205,9 @@ class DeviceInfoRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 model is not None and len(model) > 255):
             raise ValueError("Invalid value for `model`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                model is not None and len(model) < 1):
+            raise ValueError("Invalid value for `model`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._model = model
 
@@ -224,6 +236,9 @@ class DeviceInfoRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 serial is not None and len(serial) > 255):
             raise ValueError("Invalid value for `serial`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                serial is not None and len(serial) < 1):
+            raise ValueError("Invalid value for `serial`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._serial = serial
 
@@ -310,6 +325,9 @@ class DeviceInfoRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 image_version is not None and len(image_version) > 255):
             raise ValueError("Invalid value for `image_version`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                image_version is not None and len(image_version) < 1):
+            raise ValueError("Invalid value for `image_version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._image_version = image_version
 

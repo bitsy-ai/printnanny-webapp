@@ -138,6 +138,9 @@ class PatchedCameraRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 name is not None and len(name) > 255):
             raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                name is not None and len(name) < 1):
+            raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._name = name
 
@@ -183,6 +186,9 @@ class PatchedCameraRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 camera_source is not None and len(camera_source) > 255):
             raise ValueError("Invalid value for `camera_source`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                camera_source is not None and len(camera_source) < 1):
+            raise ValueError("Invalid value for `camera_source`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._camera_source = camera_source
 

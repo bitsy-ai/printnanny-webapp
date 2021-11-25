@@ -517,6 +517,9 @@ class PrinterProfileRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 name is not None and len(name) > 255):
             raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                name is not None and len(name) < 1):
+            raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._name = name
 
@@ -543,6 +546,9 @@ class PrinterProfileRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 octoprint_key is not None and len(octoprint_key) > 255):
             raise ValueError("Invalid value for `octoprint_key`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                octoprint_key is not None and len(octoprint_key) < 1):
+            raise ValueError("Invalid value for `octoprint_key`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._octoprint_key = octoprint_key
 
@@ -609,6 +615,9 @@ class PrinterProfileRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 volume_formfactor is not None and len(volume_formfactor) > 255):
             raise ValueError("Invalid value for `volume_formfactor`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                volume_formfactor is not None and len(volume_formfactor) < 1):
+            raise ValueError("Invalid value for `volume_formfactor`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._volume_formfactor = volume_formfactor
 
@@ -654,6 +663,9 @@ class PrinterProfileRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 volume_origin is not None and len(volume_origin) > 255):
             raise ValueError("Invalid value for `volume_origin`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                volume_origin is not None and len(volume_origin) < 1):
+            raise ValueError("Invalid value for `volume_origin`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._volume_origin = volume_origin
 

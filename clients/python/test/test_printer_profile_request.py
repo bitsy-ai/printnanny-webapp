@@ -52,22 +52,22 @@ class TestPrinterProfileRequest(unittest.TestCase):
                 heated_bed = True, 
                 heated_chamber = True, 
                 model = '', 
-                name = '', 
-                octoprint_key = '', 
+                name = '0', 
+                octoprint_key = '0', 
                 volume_custom_box = {
                     'key' : null
                     }, 
                 volume_depth = 1.337, 
-                volume_formfactor = '', 
+                volume_formfactor = '0', 
                 volume_height = 1.337, 
-                volume_origin = '', 
+                volume_origin = '0', 
                 volume_width = 1.337
             )
         else :
             return PrinterProfileRequest(
                 octoprint_device = 56,
-                name = '',
-                octoprint_key = '',
+                name = '0',
+                octoprint_key = '0',
         )
 
     def testPrinterProfileRequest(self):

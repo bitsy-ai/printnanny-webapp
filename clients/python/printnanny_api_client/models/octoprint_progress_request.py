@@ -173,6 +173,9 @@ class OctoprintProgressRequest(object):
         :param print_time_origin: The print_time_origin of this OctoprintProgressRequest.  # noqa: E501
         :type print_time_origin: str
         """
+        if (self.local_vars_configuration.client_side_validation and
+                print_time_origin is not None and len(print_time_origin) < 1):
+            raise ValueError("Invalid value for `print_time_origin`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._print_time_origin = print_time_origin
 

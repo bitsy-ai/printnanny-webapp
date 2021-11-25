@@ -11,7 +11,7 @@
 
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum RemoteControlCommandCommandEnum {
+pub enum CommandEnum {
     #[serde(rename = "monitoring_stop")]
     MonitoringStop,
     #[serde(rename = "monitoring_start")]
@@ -31,7 +31,7 @@ pub enum RemoteControlCommandCommandEnum {
 
 }
 
-impl ToString for RemoteControlCommandCommandEnum {
+impl ToString for CommandEnum {
     fn to_string(&self) -> String {
         match self {
             Self::MonitoringStop => String::from("monitoring_stop"),
@@ -46,8 +46,8 @@ impl ToString for RemoteControlCommandCommandEnum {
     }
 }
 
-impl Default for RemoteControlCommandCommandEnum {
-    fn default() -> RemoteControlCommandCommandEnum {
+impl Default for CommandEnum {
+    fn default() -> CommandEnum {
         Self::MonitoringStop
     }
 }

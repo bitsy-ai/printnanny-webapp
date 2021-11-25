@@ -75,6 +75,9 @@ class EmailAuthRequest(object):
         """
         if self.local_vars_configuration.client_side_validation and email is None:  # noqa: E501
             raise ValueError("Invalid value for `email`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                email is not None and len(email) < 1):
+            raise ValueError("Invalid value for `email`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._email = email
 

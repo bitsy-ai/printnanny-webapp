@@ -194,6 +194,9 @@ class PrintSessionRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 session is not None and len(session) > 255):
             raise ValueError("Invalid value for `session`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                session is not None and len(session) < 1):
+            raise ValueError("Invalid value for `session`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._session = session
 
@@ -368,6 +371,9 @@ class PrintSessionRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 gcode_filename is not None and len(gcode_filename) > 255):
             raise ValueError("Invalid value for `gcode_filename`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                gcode_filename is not None and len(gcode_filename) < 1):
+            raise ValueError("Invalid value for `gcode_filename`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._gcode_filename = gcode_filename
 

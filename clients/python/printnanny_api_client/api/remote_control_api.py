@@ -712,9 +712,18 @@ class RemoteControlApi(object):
         if self.api_client.client_side_validation and ('name' in local_var_params and  # noqa: E501
                                                         len(local_var_params['name']) > 255):  # noqa: E501
             raise ApiValueError("Invalid value for parameter `name` when calling `gcode_files_create`, length must be less than or equal to `255`")  # noqa: E501
+        if self.api_client.client_side_validation and ('name' in local_var_params and  # noqa: E501
+                                                        len(local_var_params['name']) < 1):  # noqa: E501
+            raise ApiValueError("Invalid value for parameter `name` when calling `gcode_files_create`, length must be greater than or equal to `1`")  # noqa: E501
         if self.api_client.client_side_validation and ('file_hash' in local_var_params and  # noqa: E501
                                                         len(local_var_params['file_hash']) > 255):  # noqa: E501
             raise ApiValueError("Invalid value for parameter `file_hash` when calling `gcode_files_create`, length must be less than or equal to `255`")  # noqa: E501
+        if self.api_client.client_side_validation and ('file_hash' in local_var_params and  # noqa: E501
+                                                        len(local_var_params['file_hash']) < 1):  # noqa: E501
+            raise ApiValueError("Invalid value for parameter `file_hash` when calling `gcode_files_create`, length must be greater than or equal to `1`")  # noqa: E501
+        if self.api_client.client_side_validation and ('octoprint_device' in local_var_params and  # noqa: E501
+                                                        len(local_var_params['octoprint_device']) < 1):  # noqa: E501
+            raise ApiValueError("Invalid value for parameter `octoprint_device` when calling `gcode_files_create`, length must be greater than or equal to `1`")  # noqa: E501
         collection_formats = {}
 
         path_params = {}
@@ -1011,9 +1020,18 @@ class RemoteControlApi(object):
         if self.api_client.client_side_validation and ('name' in local_var_params and  # noqa: E501
                                                         len(local_var_params['name']) > 255):  # noqa: E501
             raise ApiValueError("Invalid value for parameter `name` when calling `gcode_files_partial_update`, length must be less than or equal to `255`")  # noqa: E501
+        if self.api_client.client_side_validation and ('name' in local_var_params and  # noqa: E501
+                                                        len(local_var_params['name']) < 1):  # noqa: E501
+            raise ApiValueError("Invalid value for parameter `name` when calling `gcode_files_partial_update`, length must be greater than or equal to `1`")  # noqa: E501
         if self.api_client.client_side_validation and ('file_hash' in local_var_params and  # noqa: E501
                                                         len(local_var_params['file_hash']) > 255):  # noqa: E501
             raise ApiValueError("Invalid value for parameter `file_hash` when calling `gcode_files_partial_update`, length must be less than or equal to `255`")  # noqa: E501
+        if self.api_client.client_side_validation and ('file_hash' in local_var_params and  # noqa: E501
+                                                        len(local_var_params['file_hash']) < 1):  # noqa: E501
+            raise ApiValueError("Invalid value for parameter `file_hash` when calling `gcode_files_partial_update`, length must be greater than or equal to `1`")  # noqa: E501
+        if self.api_client.client_side_validation and ('octoprint_device' in local_var_params and  # noqa: E501
+                                                        len(local_var_params['octoprint_device']) < 1):  # noqa: E501
+            raise ApiValueError("Invalid value for parameter `octoprint_device` when calling `gcode_files_partial_update`, length must be greater than or equal to `1`")  # noqa: E501
         collection_formats = {}
 
         path_params = {}
@@ -1331,9 +1349,18 @@ class RemoteControlApi(object):
         if self.api_client.client_side_validation and ('name' in local_var_params and  # noqa: E501
                                                         len(local_var_params['name']) > 255):  # noqa: E501
             raise ApiValueError("Invalid value for parameter `name` when calling `gcode_files_update`, length must be less than or equal to `255`")  # noqa: E501
+        if self.api_client.client_side_validation and ('name' in local_var_params and  # noqa: E501
+                                                        len(local_var_params['name']) < 1):  # noqa: E501
+            raise ApiValueError("Invalid value for parameter `name` when calling `gcode_files_update`, length must be greater than or equal to `1`")  # noqa: E501
         if self.api_client.client_side_validation and ('file_hash' in local_var_params and  # noqa: E501
                                                         len(local_var_params['file_hash']) > 255):  # noqa: E501
             raise ApiValueError("Invalid value for parameter `file_hash` when calling `gcode_files_update`, length must be less than or equal to `255`")  # noqa: E501
+        if self.api_client.client_side_validation and ('file_hash' in local_var_params and  # noqa: E501
+                                                        len(local_var_params['file_hash']) < 1):  # noqa: E501
+            raise ApiValueError("Invalid value for parameter `file_hash` when calling `gcode_files_update`, length must be greater than or equal to `1`")  # noqa: E501
+        if self.api_client.client_side_validation and ('octoprint_device' in local_var_params and  # noqa: E501
+                                                        len(local_var_params['octoprint_device']) < 1):  # noqa: E501
+            raise ApiValueError("Invalid value for parameter `octoprint_device` when calling `gcode_files_update`, length must be greater than or equal to `1`")  # noqa: E501
         collection_formats = {}
 
         path_params = {}
@@ -1509,9 +1536,18 @@ class RemoteControlApi(object):
         if self.api_client.client_side_validation and ('name' in local_var_params and  # noqa: E501
                                                         len(local_var_params['name']) > 255):  # noqa: E501
             raise ApiValueError("Invalid value for parameter `name` when calling `gcode_files_update_or_create`, length must be less than or equal to `255`")  # noqa: E501
+        if self.api_client.client_side_validation and ('name' in local_var_params and  # noqa: E501
+                                                        len(local_var_params['name']) < 1):  # noqa: E501
+            raise ApiValueError("Invalid value for parameter `name` when calling `gcode_files_update_or_create`, length must be greater than or equal to `1`")  # noqa: E501
         if self.api_client.client_side_validation and ('file_hash' in local_var_params and  # noqa: E501
                                                         len(local_var_params['file_hash']) > 255):  # noqa: E501
             raise ApiValueError("Invalid value for parameter `file_hash` when calling `gcode_files_update_or_create`, length must be less than or equal to `255`")  # noqa: E501
+        if self.api_client.client_side_validation and ('file_hash' in local_var_params and  # noqa: E501
+                                                        len(local_var_params['file_hash']) < 1):  # noqa: E501
+            raise ApiValueError("Invalid value for parameter `file_hash` when calling `gcode_files_update_or_create`, length must be greater than or equal to `1`")  # noqa: E501
+        if self.api_client.client_side_validation and ('octoprint_device' in local_var_params and  # noqa: E501
+                                                        len(local_var_params['octoprint_device']) < 1):  # noqa: E501
+            raise ApiValueError("Invalid value for parameter `octoprint_device` when calling `gcode_files_update_or_create`, length must be greater than or equal to `1`")  # noqa: E501
         collection_formats = {}
 
         path_params = {}

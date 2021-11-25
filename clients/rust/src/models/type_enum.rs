@@ -11,23 +11,26 @@
 
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum DeviceStateCommandEnum {
-    #[serde(rename = "printnanny update")]
-    PrintnannyUpdate,
+pub enum TypeEnum {
+    #[serde(rename = "verify_license")]
+    VerifyLicense,
+    #[serde(rename = "software_update")]
+    SoftwareUpdate,
 
 }
 
-impl ToString for DeviceStateCommandEnum {
+impl ToString for TypeEnum {
     fn to_string(&self) -> String {
         match self {
-            Self::PrintnannyUpdate => String::from("printnanny update"),
+            Self::VerifyLicense => String::from("verify_license"),
+            Self::SoftwareUpdate => String::from("software_update"),
         }
     }
 }
 
-impl Default for DeviceStateCommandEnum {
-    fn default() -> DeviceStateCommandEnum {
-        Self::PrintnannyUpdate
+impl Default for TypeEnum {
+    fn default() -> TypeEnum {
+        Self::VerifyLicense
     }
 }
 

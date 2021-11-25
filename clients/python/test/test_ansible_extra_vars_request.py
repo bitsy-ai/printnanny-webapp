@@ -37,25 +37,25 @@ class TestAnsibleExtraVarsRequest(unittest.TestCase):
         # model = printnanny_api_client.models.ansible_extra_vars_request.AnsibleExtraVarsRequest()  # noqa: E501
         if include_optional :
             return AnsibleExtraVarsRequest(
-                janus_version = '', 
-                janus_libwebsockets_version = '', 
-                janus_libnice_version = '', 
-                janus_usrsctp_version = '', 
-                janus_libsrtp_version = '', 
-                tflite_version = '', 
-                printnanny_cli_version = '', 
-                libcamera_version = ''
+                janus_version = '0', 
+                janus_libwebsockets_version = '0', 
+                janus_libnice_version = '0', 
+                janus_usrsctp_version = '0', 
+                janus_libsrtp_version = '0', 
+                tflite_version = '0', 
+                printnanny_cli_version = '0', 
+                libcamera_version = '0'
             )
         else :
             return AnsibleExtraVarsRequest(
-                janus_version = '',
-                janus_libwebsockets_version = '',
-                janus_libnice_version = '',
-                janus_usrsctp_version = '',
-                janus_libsrtp_version = '',
-                tflite_version = '',
-                printnanny_cli_version = '',
-                libcamera_version = '',
+                janus_version = '0',
+                janus_libwebsockets_version = '0',
+                janus_libnice_version = '0',
+                janus_usrsctp_version = '0',
+                janus_libsrtp_version = '0',
+                tflite_version = '0',
+                printnanny_cli_version = '0',
+                libcamera_version = '0',
         )
 
     def testAnsibleExtraVarsRequest(self):

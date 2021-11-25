@@ -38,15 +38,15 @@ class TestCloudiotDeviceRequest(unittest.TestCase):
         if include_optional :
             return CloudiotDeviceRequest(
                 num_id = -9223372036854775808, 
-                name = '', 
-                id = '', 
+                name = '0', 
+                id = '0', 
                 device = 56
             )
         else :
             return CloudiotDeviceRequest(
                 num_id = -9223372036854775808,
-                name = '',
-                id = '',
+                name = '0',
+                id = '0',
                 device = 56,
         )
 

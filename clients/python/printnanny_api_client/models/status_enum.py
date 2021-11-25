@@ -32,12 +32,12 @@ class StatusEnum(object):
     """
     allowed enum values
     """
-    INITIAL = "initial"
-    UPDATE_RUNNING = "update_running"
-    UPDATE_FAILED = "update_failed"
-    UPDATE_SUCCESS = "update_success"
+    WAITING = "waiting"
+    STARTED = "started"
+    FAILED = "failed"
+    SUCCESS = "success"
 
-    allowable_values = [INITIAL, UPDATE_RUNNING, UPDATE_FAILED, UPDATE_SUCCESS]  # noqa: E501
+    allowable_values = [WAITING, STARTED, FAILED, SUCCESS]  # noqa: E501
 
     """
     Attributes:

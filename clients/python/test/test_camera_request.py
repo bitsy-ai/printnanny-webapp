@@ -39,16 +39,16 @@ class TestCameraRequest(unittest.TestCase):
             return CameraRequest(
                 user = 56, 
                 device = 56, 
-                name = '', 
+                name = '0', 
                 camera_type = None, 
-                camera_source = ''
+                camera_source = '0'
             )
         else :
             return CameraRequest(
                 user = 56,
                 device = 56,
-                name = '',
-                camera_source = '',
+                name = '0',
+                camera_source = '0',
         )
 
     def testCameraRequest(self):

@@ -12,31 +12,31 @@
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum StatusEnum {
-    #[serde(rename = "initial")]
-    Initial,
-    #[serde(rename = "update_running")]
-    UpdateRunning,
-    #[serde(rename = "update_failed")]
-    UpdateFailed,
-    #[serde(rename = "update_success")]
-    UpdateSuccess,
+    #[serde(rename = "waiting")]
+    Waiting,
+    #[serde(rename = "started")]
+    Started,
+    #[serde(rename = "failed")]
+    Failed,
+    #[serde(rename = "success")]
+    Success,
 
 }
 
 impl ToString for StatusEnum {
     fn to_string(&self) -> String {
         match self {
-            Self::Initial => String::from("initial"),
-            Self::UpdateRunning => String::from("update_running"),
-            Self::UpdateFailed => String::from("update_failed"),
-            Self::UpdateSuccess => String::from("update_success"),
+            Self::Waiting => String::from("waiting"),
+            Self::Started => String::from("started"),
+            Self::Failed => String::from("failed"),
+            Self::Success => String::from("success"),
         }
     }
 }
 
 impl Default for StatusEnum {
     fn default() -> StatusEnum {
-        Self::Initial
+        Self::Waiting
     }
 }
 

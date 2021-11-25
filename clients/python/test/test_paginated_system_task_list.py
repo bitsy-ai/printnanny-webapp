@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.paginated_device_state_list import PaginatedDeviceStateList  # noqa: E501
+from printnanny_api_client.models.paginated_system_task_list import PaginatedSystemTaskList  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestPaginatedDeviceStateList(unittest.TestCase):
-    """PaginatedDeviceStateList unit test stubs"""
+class TestPaginatedSystemTaskList(unittest.TestCase):
+    """PaginatedSystemTaskList unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,22 +30,22 @@ class TestPaginatedDeviceStateList(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test PaginatedDeviceStateList
+        """Test PaginatedSystemTaskList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.paginated_device_state_list.PaginatedDeviceStateList()  # noqa: E501
+        # model = printnanny_api_client.models.paginated_system_task_list.PaginatedSystemTaskList()  # noqa: E501
         if include_optional :
-            return PaginatedDeviceStateList(
+            return PaginatedSystemTaskList(
                 count = 123, 
                 next = 'http://api.example.org/accounts/?page=4', 
                 previous = 'http://api.example.org/accounts/?page=2', 
                 results = [
-                    printnanny_api_client.models.device_state.DeviceState(
+                    printnanny_api_client.models.system_task.SystemTask(
                         id = 56, 
                         deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        status = 'initial', 
-                        command = 'printnanny update', 
+                        status = 'waiting', 
+                        type = 'verify_license', 
                         ansible_facts = {
                             'key' : null
                             }, 
@@ -57,11 +57,11 @@ class TestPaginatedDeviceStateList(unittest.TestCase):
                     ]
             )
         else :
-            return PaginatedDeviceStateList(
+            return PaginatedSystemTaskList(
         )
 
-    def testPaginatedDeviceStateList(self):
-        """Test PaginatedDeviceStateList"""
+    def testPaginatedSystemTaskList(self):
+        """Test PaginatedSystemTaskList"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

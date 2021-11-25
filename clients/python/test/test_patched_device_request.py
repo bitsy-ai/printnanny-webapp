@@ -38,7 +38,7 @@ class TestPatchedDeviceRequest(unittest.TestCase):
         if include_optional :
             return PatchedDeviceRequest(
                 release_channel = None, 
-                hostname = ''
+                hostname = '0'
             )
         else :
             return PatchedDeviceRequest(

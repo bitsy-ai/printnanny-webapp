@@ -1,13 +1,13 @@
-# LicenseCredentials
+# PaginatedSystemTaskList
 
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**printnanny_api_token** | **str** |  | [optional] 
-**printnanny_api_url** | **str** |  | [optional] 
-**honeycomb_dataset** | **str** |  | [optional] 
-**honeycomb_api_key** | **str** |  | [optional] 
+**count** | **int** |  | [optional] 
+**next** | **str** |  | [optional] 
+**previous** | **str** |  | [optional] 
+**results** | [**list[SystemTask]**](SystemTask.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

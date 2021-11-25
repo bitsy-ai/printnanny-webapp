@@ -37,7 +37,7 @@ class TestOctoprintPrinterStateRequest(unittest.TestCase):
         # model = printnanny_api_client.models.octoprint_printer_state_request.OctoprintPrinterStateRequest()  # noqa: E501
         if include_optional :
             return OctoprintPrinterStateRequest(
-                text = '', 
+                text = '0', 
                 flags = printnanny_api_client.models.octoprint_printer_flags_request.OctoprintPrinterFlagsRequest(
                     operational = True, 
                     printing = True, 
@@ -53,7 +53,7 @@ class TestOctoprintPrinterStateRequest(unittest.TestCase):
             )
         else :
             return OctoprintPrinterStateRequest(
-                text = '',
+                text = '0',
                 flags = printnanny_api_client.models.octoprint_printer_flags_request.OctoprintPrinterFlagsRequest(
                     operational = True, 
                     printing = True, 

@@ -38,40 +38,40 @@ class TestOctoprintEnvironmentRequest(unittest.TestCase):
         if include_optional :
             return OctoprintEnvironmentRequest(
                 os = printnanny_api_client.models.octoprint_platform_request.OctoprintPlatformRequest(
-                    id = '', 
-                    platform = '', 
-                    bits = '', ), 
+                    id = '0', 
+                    platform = '0', 
+                    bits = '0', ), 
                 python = printnanny_api_client.models.octoprint_python_request.OctoprintPythonRequest(
-                    version = '', 
-                    pip = '', 
-                    virtualenv = '', ), 
+                    version = '0', 
+                    pip = '0', 
+                    virtualenv = '0', ), 
                 hardware = printnanny_api_client.models.octoprint_hardware_request.OctoprintHardwareRequest(
                     cores = 56, 
                     freq = 1.337, 
                     ram = 56, ), 
                 pi_support = printnanny_api_client.models.octoprint_pi_support_request.OctoprintPiSupportRequest(
-                    model = '', 
-                    throttle_state = '', 
-                    octopi_version = '', )
+                    model = '0', 
+                    throttle_state = '0', 
+                    octopi_version = '0', )
             )
         else :
             return OctoprintEnvironmentRequest(
                 os = printnanny_api_client.models.octoprint_platform_request.OctoprintPlatformRequest(
-                    id = '', 
-                    platform = '', 
-                    bits = '', ),
+                    id = '0', 
+                    platform = '0', 
+                    bits = '0', ),
                 python = printnanny_api_client.models.octoprint_python_request.OctoprintPythonRequest(
-                    version = '', 
-                    pip = '', 
-                    virtualenv = '', ),
+                    version = '0', 
+                    pip = '0', 
+                    virtualenv = '0', ),
                 hardware = printnanny_api_client.models.octoprint_hardware_request.OctoprintHardwareRequest(
                     cores = 56, 
                     freq = 1.337, 
                     ram = 56, ),
                 pi_support = printnanny_api_client.models.octoprint_pi_support_request.OctoprintPiSupportRequest(
-                    model = '', 
-                    throttle_state = '', 
-                    octopi_version = '', ),
+                    model = '0', 
+                    throttle_state = '0', 
+                    octopi_version = '0', ),
         )
 
     def testOctoprintEnvironmentRequest(self):

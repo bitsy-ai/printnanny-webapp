@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
 **created_dt** | **datetime** |  | [optional] [readonly] 
-**command** | [**RemoteControlCommandCommandEnum**](RemoteControlCommandCommandEnum.md) |  | [optional] 
+**command** | [**CommandEnum**](CommandEnum.md) |  | [optional] 
 **user** | **int** |  | 
 **device** | **int** |  | 
 **received** | **bool** |  | [optional] 

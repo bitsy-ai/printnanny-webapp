@@ -83,6 +83,9 @@ class CallbackTokenVerificationRequest(object):
         :param email: The email of this CallbackTokenVerificationRequest.  # noqa: E501
         :type email: str
         """
+        if (self.local_vars_configuration.client_side_validation and
+                email is not None and len(email) < 1):
+            raise ValueError("Invalid value for `email`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._email = email
 
@@ -107,6 +110,9 @@ class CallbackTokenVerificationRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 mobile is not None and len(mobile) > 17):
             raise ValueError("Invalid value for `mobile`, length must be less than or equal to `17`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                mobile is not None and len(mobile) < 1):
+            raise ValueError("Invalid value for `mobile`, length must be greater than or equal to `1`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 mobile is not None and not re.search(r'^\+[1-9]\d{1,14}$', mobile)):  # noqa: E501
             raise ValueError(r"Invalid value for `mobile`, must be a follow pattern or equal to `/^\+[1-9]\d{1,14}$/`")  # noqa: E501

@@ -1,7 +1,7 @@
-# DeviceStateCommandEnum
+# CommandEnum
+
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

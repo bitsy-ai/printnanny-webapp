@@ -84,6 +84,9 @@ class OctoprintPiSupportRequest(object):
         """
         if self.local_vars_configuration.client_side_validation and model is None:  # noqa: E501
             raise ValueError("Invalid value for `model`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                model is not None and len(model) < 1):
+            raise ValueError("Invalid value for `model`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._model = model
 
@@ -107,6 +110,9 @@ class OctoprintPiSupportRequest(object):
         """
         if self.local_vars_configuration.client_side_validation and throttle_state is None:  # noqa: E501
             raise ValueError("Invalid value for `throttle_state`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                throttle_state is not None and len(throttle_state) < 1):
+            raise ValueError("Invalid value for `throttle_state`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._throttle_state = throttle_state
 
@@ -128,6 +134,9 @@ class OctoprintPiSupportRequest(object):
         :param octopi_version: The octopi_version of this OctoprintPiSupportRequest.  # noqa: E501
         :type octopi_version: str
         """
+        if (self.local_vars_configuration.client_side_validation and
+                octopi_version is not None and len(octopi_version) < 1):
+            raise ValueError("Invalid value for `octopi_version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._octopi_version = octopi_version
 

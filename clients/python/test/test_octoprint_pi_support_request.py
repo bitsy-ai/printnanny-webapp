@@ -37,14 +37,14 @@ class TestOctoprintPiSupportRequest(unittest.TestCase):
         # model = printnanny_api_client.models.octoprint_pi_support_request.OctoprintPiSupportRequest()  # noqa: E501
         if include_optional :
             return OctoprintPiSupportRequest(
-                model = '', 
-                throttle_state = '', 
-                octopi_version = ''
+                model = '0', 
+                throttle_state = '0', 
+                octopi_version = '0'
             )
         else :
             return OctoprintPiSupportRequest(
-                model = '',
-                throttle_state = '',
+                model = '0',
+                throttle_state = '0',
         )
 
     def testOctoprintPiSupportRequest(self):

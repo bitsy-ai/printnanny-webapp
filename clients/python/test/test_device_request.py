@@ -38,7 +38,7 @@ class TestDeviceRequest(unittest.TestCase):
         if include_optional :
             return DeviceRequest(
                 release_channel = None, 
-                hostname = ''
+                hostname = '0'
             )
         else :
             return DeviceRequest(

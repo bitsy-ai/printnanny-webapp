@@ -37,15 +37,15 @@ class TestOctoprintPlatformRequest(unittest.TestCase):
         # model = printnanny_api_client.models.octoprint_platform_request.OctoprintPlatformRequest()  # noqa: E501
         if include_optional :
             return OctoprintPlatformRequest(
-                id = '', 
-                platform = '', 
-                bits = ''
+                id = '0', 
+                platform = '0', 
+                bits = '0'
             )
         else :
             return OctoprintPlatformRequest(
-                id = '',
-                platform = '',
-                bits = '',
+                id = '0',
+                platform = '0',
+                bits = '0',
         )
 
     def testOctoprintPlatformRequest(self):

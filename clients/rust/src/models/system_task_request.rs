@@ -12,35 +12,26 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct DeviceState {
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<i32>,
-    #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
-    pub deleted: Option<String>,
+pub struct SystemTaskRequest {
     #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
     pub status: Option<crate::models::StatusEnum>,
-    #[serde(rename = "command", skip_serializing_if = "Option::is_none")]
-    pub command: Option<crate::models::DeviceStateCommandEnum>,
+    #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
+    pub _type: Option<crate::models::TypeEnum>,
     #[serde(rename = "ansible_facts", skip_serializing_if = "Option::is_none")]
     pub ansible_facts: Option<::std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "ansible_extra_vars", skip_serializing_if = "Option::is_none")]
     pub ansible_extra_vars: Option<::std::collections::HashMap<String, serde_json::Value>>,
-    #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
-    pub created_dt: Option<String>,
     #[serde(rename = "device")]
     pub device: i32,
 }
 
-impl DeviceState {
-    pub fn new(device: i32) -> DeviceState {
-        DeviceState {
-            id: None,
-            deleted: None,
+impl SystemTaskRequest {
+    pub fn new(device: i32) -> SystemTaskRequest {
+        SystemTaskRequest {
             status: None,
-            command: None,
+            _type: None,
             ansible_facts: None,
             ansible_extra_vars: None,
-            created_dt: None,
             device,
         }
     }

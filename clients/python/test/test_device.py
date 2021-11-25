@@ -38,6 +38,7 @@ class TestDevice(unittest.TestCase):
         if include_optional :
             return Device(
                 id = 56, 
+                bootstrap_release = None, 
                 cloudiot_device = None, 
                 cameras = [
                     printnanny_api_client.models.camera.Camera(
@@ -53,7 +54,7 @@ class TestDevice(unittest.TestCase):
                         url = '', )
                     ], 
                 dashboard_url = '', 
-                bootstrap_release = None, 
+                last_action = None, 
                 printer_controllers = [
                     printnanny_api_client.models.printer_controller.PrinterController(
                         id = 56, 

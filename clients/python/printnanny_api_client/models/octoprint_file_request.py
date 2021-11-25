@@ -93,6 +93,9 @@ class OctoprintFileRequest(object):
         :param name: The name of this OctoprintFileRequest.  # noqa: E501
         :type name: str
         """
+        if (self.local_vars_configuration.client_side_validation and
+                name is not None and len(name) < 1):
+            raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._name = name
 
@@ -114,6 +117,9 @@ class OctoprintFileRequest(object):
         :param path: The path of this OctoprintFileRequest.  # noqa: E501
         :type path: str
         """
+        if (self.local_vars_configuration.client_side_validation and
+                path is not None and len(path) < 1):
+            raise ValueError("Invalid value for `path`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._path = path
 
@@ -135,6 +141,9 @@ class OctoprintFileRequest(object):
         :param display: The display of this OctoprintFileRequest.  # noqa: E501
         :type display: str
         """
+        if (self.local_vars_configuration.client_side_validation and
+                display is not None and len(display) < 1):
+            raise ValueError("Invalid value for `display`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._display = display
 
@@ -156,6 +165,9 @@ class OctoprintFileRequest(object):
         :param origin: The origin of this OctoprintFileRequest.  # noqa: E501
         :type origin: str
         """
+        if (self.local_vars_configuration.client_side_validation and
+                origin is not None and len(origin) < 1):
+            raise ValueError("Invalid value for `origin`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._origin = origin
 

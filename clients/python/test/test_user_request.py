@@ -37,11 +37,11 @@ class TestUserRequest(unittest.TestCase):
         # model = printnanny_api_client.models.user_request.UserRequest()  # noqa: E501
         if include_optional :
             return UserRequest(
-                email = ''
+                email = '0'
             )
         else :
             return UserRequest(
-                email = '',
+                email = '0',
         )
 
     def testUserRequest(self):

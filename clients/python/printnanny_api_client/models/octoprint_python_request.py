@@ -83,6 +83,9 @@ class OctoprintPythonRequest(object):
         """
         if self.local_vars_configuration.client_side_validation and version is None:  # noqa: E501
             raise ValueError("Invalid value for `version`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                version is not None and len(version) < 1):
+            raise ValueError("Invalid value for `version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._version = version
 
@@ -106,6 +109,9 @@ class OctoprintPythonRequest(object):
         """
         if self.local_vars_configuration.client_side_validation and pip is None:  # noqa: E501
             raise ValueError("Invalid value for `pip`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                pip is not None and len(pip) < 1):
+            raise ValueError("Invalid value for `pip`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._pip = pip
 
@@ -129,6 +135,9 @@ class OctoprintPythonRequest(object):
         """
         if self.local_vars_configuration.client_side_validation and virtualenv is None:  # noqa: E501
             raise ValueError("Invalid value for `virtualenv`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                virtualenv is not None and len(virtualenv) < 1):
+            raise ValueError("Invalid value for `virtualenv`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._virtualenv = virtualenv
 

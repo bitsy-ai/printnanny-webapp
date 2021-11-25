@@ -37,18 +37,18 @@ class TestOctoprintFileRequest(unittest.TestCase):
         # model = printnanny_api_client.models.octoprint_file_request.OctoprintFileRequest()  # noqa: E501
         if include_optional :
             return OctoprintFileRequest(
-                name = '', 
-                path = '', 
-                display = '', 
-                origin = '', 
+                name = '0', 
+                path = '0', 
+                display = '0', 
+                origin = '0', 
                 size = 56, 
                 date = 56
             )
         else :
             return OctoprintFileRequest(
-                name = '',
-                path = '',
-                origin = '',
+                name = '0',
+                path = '0',
+                origin = '0',
                 size = 56,
                 date = 56,
         )

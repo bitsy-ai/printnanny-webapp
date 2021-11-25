@@ -104,6 +104,9 @@ class DeviceRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 hostname is not None and len(hostname) > 255):
             raise ValueError("Invalid value for `hostname`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                hostname is not None and len(hostname) < 1):
+            raise ValueError("Invalid value for `hostname`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._hostname = hostname
 

@@ -46,7 +46,7 @@ class TestOctoprintPrinterDataRequest(unittest.TestCase):
                         'key' : null
                         }, ), 
                 state = printnanny_api_client.models.octoprint_printer_state_request.OctoprintPrinterStateRequest(
-                    text = '', 
+                    text = '0', 
                     flags = printnanny_api_client.models.octoprint_printer_flags_request.OctoprintPrinterFlagsRequest(
                         operational = True, 
                         printing = True, 
@@ -59,14 +59,14 @@ class TestOctoprintPrinterDataRequest(unittest.TestCase):
                         paused = True, 
                         ready = True, 
                         sd_ready = True, ), ), 
-                user = '', 
+                user = '0', 
                 current_z = 1.337, 
                 progress = printnanny_api_client.models.octoprint_progress_request.OctoprintProgressRequest(
                     completion = 1.337, 
                     filepos = 56, 
                     print_time = 56, 
                     print_time_left = 56, 
-                    print_time_origin = '', ), 
+                    print_time_origin = '0', ), 
                 resends = {
                     'key' : null
                     }, 
@@ -85,7 +85,7 @@ class TestOctoprintPrinterDataRequest(unittest.TestCase):
                         'key' : null
                         }, ),
                 state = printnanny_api_client.models.octoprint_printer_state_request.OctoprintPrinterStateRequest(
-                    text = '', 
+                    text = '0', 
                     flags = printnanny_api_client.models.octoprint_printer_flags_request.OctoprintPrinterFlagsRequest(
                         operational = True, 
                         printing = True, 
@@ -103,7 +103,7 @@ class TestOctoprintPrinterDataRequest(unittest.TestCase):
                     filepos = 56, 
                     print_time = 56, 
                     print_time_left = 56, 
-                    print_time_origin = '', ),
+                    print_time_origin = '0', ),
                 resends = {
                     'key' : null
                     },

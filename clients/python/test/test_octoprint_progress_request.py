@@ -41,7 +41,7 @@ class TestOctoprintProgressRequest(unittest.TestCase):
                 filepos = 56, 
                 print_time = 56, 
                 print_time_left = 56, 
-                print_time_origin = ''
+                print_time_origin = '0'
             )
         else :
             return OctoprintProgressRequest(

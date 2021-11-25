@@ -15,14 +15,16 @@
 pub struct Device {
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
     pub id: Option<i32>,
+    #[serde(rename = "bootstrap_release", skip_serializing_if = "Option::is_none")]
+    pub bootstrap_release: Option<Box<crate::models::Release>>,
     #[serde(rename = "cloudiot_device", skip_serializing_if = "Option::is_none")]
     pub cloudiot_device: Option<Box<crate::models::CloudiotDevice>>,
     #[serde(rename = "cameras", skip_serializing_if = "Option::is_none")]
     pub cameras: Option<Vec<crate::models::Camera>>,
     #[serde(rename = "dashboard_url", skip_serializing_if = "Option::is_none")]
     pub dashboard_url: Option<String>,
-    #[serde(rename = "bootstrap_release", skip_serializing_if = "Option::is_none")]
-    pub bootstrap_release: Option<Box<crate::models::Release>>,
+    #[serde(rename = "last_action", skip_serializing_if = "Option::is_none")]
+    pub last_action: Option<Box<crate::models::SystemTask>>,
     #[serde(rename = "printer_controllers", skip_serializing_if = "Option::is_none")]
     pub printer_controllers: Option<Vec<crate::models::PrinterController>>,
     #[serde(rename = "release_channel", skip_serializing_if = "Option::is_none")]
@@ -46,10 +48,11 @@ impl Device {
     pub fn new() -> Device {
         Device {
             id: None,
+            bootstrap_release: None,
             cloudiot_device: None,
             cameras: None,
             dashboard_url: None,
-            bootstrap_release: None,
+            last_action: None,
             printer_controllers: None,
             release_channel: None,
             user: None,

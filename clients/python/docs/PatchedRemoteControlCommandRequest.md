@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**command** | [**RemoteControlCommandCommandEnum**](RemoteControlCommandCommandEnum.md) |  | [optional] 
+**command** | [**CommandEnum**](CommandEnum.md) |  | [optional] 
 **user** | **int** |  | [optional] 
 **device** | **int** |  | [optional] 
 **received** | **bool** |  | [optional] 

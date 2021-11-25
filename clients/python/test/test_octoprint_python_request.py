@@ -37,15 +37,15 @@ class TestOctoprintPythonRequest(unittest.TestCase):
         # model = printnanny_api_client.models.octoprint_python_request.OctoprintPythonRequest()  # noqa: E501
         if include_optional :
             return OctoprintPythonRequest(
-                version = '', 
-                pip = '', 
-                virtualenv = ''
+                version = '0', 
+                pip = '0', 
+                virtualenv = '0'
             )
         else :
             return OctoprintPythonRequest(
-                version = '',
-                pip = '',
-                virtualenv = '',
+                version = '0',
+                pip = '0',
+                virtualenv = '0',
         )
 
     def testOctoprintPythonRequest(self):

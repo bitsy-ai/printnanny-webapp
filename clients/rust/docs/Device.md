@@ -5,11 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | Option<**i32**> |  | [optional][readonly]
-**cloudiot_device** | Option<[**crate::models::CloudiotDevice**](CloudiotDevice.md)> |  | [optional][readonly]
-**cameras** | Option<[**Vec<crate::models::Camera>**](Camera.md)> |  | [optional][readonly][default to []]
-**dashboard_url** | Option<**String**> |  | [optional][readonly]
 **bootstrap_release** | Option<[**crate::models::Release**](Release.md)> |  | [optional][readonly]
-**printer_controllers** | Option<[**Vec<crate::models::PrinterController>**](PrinterController.md)> |  | [optional][readonly][default to []]
+**cloudiot_device** | Option<[**crate::models::CloudiotDevice**](CloudiotDevice.md)> |  | [optional][readonly]
+**cameras** | Option<[**Vec<crate::models::Camera>**](Camera.md)> |  | [optional][readonly]
+**dashboard_url** | Option<**String**> |  | [optional][readonly]
+**last_action** | Option<[**crate::models::SystemTask**](SystemTask.md)> |  | [optional][readonly]
+**printer_controllers** | Option<[**Vec<crate::models::PrinterController>**](PrinterController.md)> |  | [optional][readonly]
 **release_channel** | Option<[**crate::models::ReleaseChannelEnum**](ReleaseChannelEnum.md)> |  | [optional]
 **user** | Option<[**crate::models::User**](User.md)> |  | [optional][readonly]
 **active_license** | Option<[**crate::models::License**](License.md)> |  | [optional][readonly]

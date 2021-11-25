@@ -37,7 +37,7 @@ class TestPatchedUserRequest(unittest.TestCase):
         # model = printnanny_api_client.models.patched_user_request.PatchedUserRequest()  # noqa: E501
         if include_optional :
             return PatchedUserRequest(
-                email = ''
+                email = '0'
             )
         else :
             return PatchedUserRequest(

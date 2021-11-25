@@ -1,4 +1,4 @@
-# RemoteControlCommandCommandEnum
+# CommandEnum
 
 ## Properties
 

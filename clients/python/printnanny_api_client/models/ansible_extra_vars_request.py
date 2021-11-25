@@ -103,6 +103,9 @@ class AnsibleExtraVarsRequest(object):
         """
         if self.local_vars_configuration.client_side_validation and janus_version is None:  # noqa: E501
             raise ValueError("Invalid value for `janus_version`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                janus_version is not None and len(janus_version) < 1):
+            raise ValueError("Invalid value for `janus_version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._janus_version = janus_version
 
@@ -126,6 +129,9 @@ class AnsibleExtraVarsRequest(object):
         """
         if self.local_vars_configuration.client_side_validation and janus_libwebsockets_version is None:  # noqa: E501
             raise ValueError("Invalid value for `janus_libwebsockets_version`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                janus_libwebsockets_version is not None and len(janus_libwebsockets_version) < 1):
+            raise ValueError("Invalid value for `janus_libwebsockets_version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._janus_libwebsockets_version = janus_libwebsockets_version
 
@@ -149,6 +155,9 @@ class AnsibleExtraVarsRequest(object):
         """
         if self.local_vars_configuration.client_side_validation and janus_libnice_version is None:  # noqa: E501
             raise ValueError("Invalid value for `janus_libnice_version`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                janus_libnice_version is not None and len(janus_libnice_version) < 1):
+            raise ValueError("Invalid value for `janus_libnice_version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._janus_libnice_version = janus_libnice_version
 
@@ -172,6 +181,9 @@ class AnsibleExtraVarsRequest(object):
         """
         if self.local_vars_configuration.client_side_validation and janus_usrsctp_version is None:  # noqa: E501
             raise ValueError("Invalid value for `janus_usrsctp_version`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                janus_usrsctp_version is not None and len(janus_usrsctp_version) < 1):
+            raise ValueError("Invalid value for `janus_usrsctp_version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._janus_usrsctp_version = janus_usrsctp_version
 
@@ -195,6 +207,9 @@ class AnsibleExtraVarsRequest(object):
         """
         if self.local_vars_configuration.client_side_validation and janus_libsrtp_version is None:  # noqa: E501
             raise ValueError("Invalid value for `janus_libsrtp_version`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                janus_libsrtp_version is not None and len(janus_libsrtp_version) < 1):
+            raise ValueError("Invalid value for `janus_libsrtp_version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._janus_libsrtp_version = janus_libsrtp_version
 
@@ -218,6 +233,9 @@ class AnsibleExtraVarsRequest(object):
         """
         if self.local_vars_configuration.client_side_validation and tflite_version is None:  # noqa: E501
             raise ValueError("Invalid value for `tflite_version`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                tflite_version is not None and len(tflite_version) < 1):
+            raise ValueError("Invalid value for `tflite_version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._tflite_version = tflite_version
 
@@ -241,6 +259,9 @@ class AnsibleExtraVarsRequest(object):
         """
         if self.local_vars_configuration.client_side_validation and printnanny_cli_version is None:  # noqa: E501
             raise ValueError("Invalid value for `printnanny_cli_version`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                printnanny_cli_version is not None and len(printnanny_cli_version) < 1):
+            raise ValueError("Invalid value for `printnanny_cli_version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._printnanny_cli_version = printnanny_cli_version
 
@@ -264,6 +285,9 @@ class AnsibleExtraVarsRequest(object):
         """
         if self.local_vars_configuration.client_side_validation and libcamera_version is None:  # noqa: E501
             raise ValueError("Invalid value for `libcamera_version`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                libcamera_version is not None and len(libcamera_version) < 1):
+            raise ValueError("Invalid value for `libcamera_version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._libcamera_version = libcamera_version
 

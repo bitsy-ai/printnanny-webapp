@@ -22,6 +22,7 @@ docs/CameraRequest.md
 docs/CameraTypeEnum.md
 docs/CloudiotDevice.md
 docs/CloudiotDeviceRequest.md
+docs/CommandEnum.md
 docs/DetailResponse.md
 docs/Device.md
 docs/DeviceCalibration.md
@@ -30,8 +31,6 @@ docs/DeviceConfig.md
 docs/DeviceInfo.md
 docs/DeviceInfoRequest.md
 docs/DeviceRequest.md
-docs/DeviceState.md
-docs/DeviceStateCommandEnum.md
 docs/DevicesApi.md
 docs/EmailAuthRequest.md
 docs/ErrorDetail.md
@@ -41,7 +40,6 @@ docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
 docs/License.md
-docs/LicenseCredentials.md
 docs/LicenseRequest.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
@@ -81,7 +79,6 @@ docs/PaginatedDeviceCalibrationList.md
 docs/PaginatedDeviceConfigList.md
 docs/PaginatedDeviceInfoList.md
 docs/PaginatedDeviceList.md
-docs/PaginatedDeviceStateList.md
 docs/PaginatedExperimentDeviceConfigList.md
 docs/PaginatedExperimentList.md
 docs/PaginatedGcodeFileList.md
@@ -96,6 +93,7 @@ docs/PaginatedPrinterProfileList.md
 docs/PaginatedReleaseList.md
 docs/PaginatedRemoteCommandEventList.md
 docs/PaginatedRemoteControlCommandList.md
+docs/PaginatedSystemTaskList.md
 docs/PaginatedTelemetryEventPolymorphicList.md
 docs/PaginatedUserList.md
 docs/Partner3DGeeksAlert.md
@@ -139,11 +137,12 @@ docs/RemoteCommandEventEventTypeEnum.md
 docs/RemoteCommandEventRequest.md
 docs/RemoteControlApi.md
 docs/RemoteControlCommand.md
-docs/RemoteControlCommandCommandEnum.md
 docs/RemoteControlCommandRequest.md
 docs/SchemaApi.md
 docs/SoftwareEnum.md
 docs/StatusEnum.md
+docs/SystemTask.md
+docs/SystemTaskRequest.md
 docs/TelemetryApi.md
 docs/TelemetryEvent.md
 docs/TelemetryEventEventTypeEnum.md
@@ -151,6 +150,7 @@ docs/TelemetryEventPolymorphic.md
 docs/TelemetryEventPolymorphicRequest.md
 docs/TelemetryEventRequest.md
 docs/TokenResponse.md
+docs/TypeEnum.md
 docs/User.md
 docs/UserRequest.md
 docs/UsersApi.md
@@ -188,6 +188,7 @@ printnanny_api_client/models/camera_request.py
 printnanny_api_client/models/camera_type_enum.py
 printnanny_api_client/models/cloudiot_device.py
 printnanny_api_client/models/cloudiot_device_request.py
+printnanny_api_client/models/command_enum.py
 printnanny_api_client/models/detail_response.py
 printnanny_api_client/models/device.py
 printnanny_api_client/models/device_calibration.py
@@ -196,8 +197,6 @@ printnanny_api_client/models/device_config.py
 printnanny_api_client/models/device_info.py
 printnanny_api_client/models/device_info_request.py
 printnanny_api_client/models/device_request.py
-printnanny_api_client/models/device_state.py
-printnanny_api_client/models/device_state_command_enum.py
 printnanny_api_client/models/email_auth_request.py
 printnanny_api_client/models/error_detail.py
 printnanny_api_client/models/event_source_enum.py
@@ -206,7 +205,6 @@ printnanny_api_client/models/experiment.py
 printnanny_api_client/models/experiment_device_config.py
 printnanny_api_client/models/gcode_file.py
 printnanny_api_client/models/license.py
-printnanny_api_client/models/license_credentials.py
 printnanny_api_client/models/license_request.py
 printnanny_api_client/models/mobile_auth_request.py
 printnanny_api_client/models/model_artifact.py
@@ -245,7 +243,6 @@ printnanny_api_client/models/paginated_device_calibration_list.py
 printnanny_api_client/models/paginated_device_config_list.py
 printnanny_api_client/models/paginated_device_info_list.py
 printnanny_api_client/models/paginated_device_list.py
-printnanny_api_client/models/paginated_device_state_list.py
 printnanny_api_client/models/paginated_experiment_device_config_list.py
 printnanny_api_client/models/paginated_experiment_list.py
 printnanny_api_client/models/paginated_gcode_file_list.py
@@ -260,6 +257,7 @@ printnanny_api_client/models/paginated_printer_profile_list.py
 printnanny_api_client/models/paginated_release_list.py
 printnanny_api_client/models/paginated_remote_command_event_list.py
 printnanny_api_client/models/paginated_remote_control_command_list.py
+printnanny_api_client/models/paginated_system_task_list.py
 printnanny_api_client/models/paginated_telemetry_event_polymorphic_list.py
 printnanny_api_client/models/paginated_user_list.py
 printnanny_api_client/models/partner3_d_geeks_alert.py
@@ -299,16 +297,18 @@ printnanny_api_client/models/remote_command_event.py
 printnanny_api_client/models/remote_command_event_event_type_enum.py
 printnanny_api_client/models/remote_command_event_request.py
 printnanny_api_client/models/remote_control_command.py
-printnanny_api_client/models/remote_control_command_command_enum.py
 printnanny_api_client/models/remote_control_command_request.py
 printnanny_api_client/models/software_enum.py
 printnanny_api_client/models/status_enum.py
+printnanny_api_client/models/system_task.py
+printnanny_api_client/models/system_task_request.py
 printnanny_api_client/models/telemetry_event.py
 printnanny_api_client/models/telemetry_event_event_type_enum.py
 printnanny_api_client/models/telemetry_event_polymorphic.py
 printnanny_api_client/models/telemetry_event_polymorphic_request.py
 printnanny_api_client/models/telemetry_event_request.py
 printnanny_api_client/models/token_response.py
+printnanny_api_client/models/type_enum.py
 printnanny_api_client/models/user.py
 printnanny_api_client/models/user_request.py
 printnanny_api_client/py.typed
@@ -336,6 +336,7 @@ test/test_camera_request.py
 test/test_camera_type_enum.py
 test/test_cloudiot_device.py
 test/test_cloudiot_device_request.py
+test/test_command_enum.py
 test/test_detail_response.py
 test/test_device.py
 test/test_device_calibration.py
@@ -344,8 +345,6 @@ test/test_device_config.py
 test/test_device_info.py
 test/test_device_info_request.py
 test/test_device_request.py
-test/test_device_state.py
-test/test_device_state_command_enum.py
 test/test_devices_api.py
 test/test_email_auth_request.py
 test/test_error_detail.py
@@ -355,7 +354,6 @@ test/test_experiment.py
 test/test_experiment_device_config.py
 test/test_gcode_file.py
 test/test_license.py
-test/test_license_credentials.py
 test/test_license_request.py
 test/test_ml_ops_api.py
 test/test_mobile_auth_request.py
@@ -395,7 +393,6 @@ test/test_paginated_device_calibration_list.py
 test/test_paginated_device_config_list.py
 test/test_paginated_device_info_list.py
 test/test_paginated_device_list.py
-test/test_paginated_device_state_list.py
 test/test_paginated_experiment_device_config_list.py
 test/test_paginated_experiment_list.py
 test/test_paginated_gcode_file_list.py
@@ -410,6 +407,7 @@ test/test_paginated_printer_profile_list.py
 test/test_paginated_release_list.py
 test/test_paginated_remote_command_event_list.py
 test/test_paginated_remote_control_command_list.py
+test/test_paginated_system_task_list.py
 test/test_paginated_telemetry_event_polymorphic_list.py
 test/test_paginated_user_list.py
 test/test_partner3_d_geeks_alert.py
@@ -453,11 +451,12 @@ test/test_remote_command_event_event_type_enum.py
 test/test_remote_command_event_request.py
 test/test_remote_control_api.py
 test/test_remote_control_command.py
-test/test_remote_control_command_command_enum.py
 test/test_remote_control_command_request.py
 test/test_schema_api.py
 test/test_software_enum.py
 test/test_status_enum.py
+test/test_system_task.py
+test/test_system_task_request.py
 test/test_telemetry_api.py
 test/test_telemetry_event.py
 test/test_telemetry_event_event_type_enum.py
@@ -465,6 +464,7 @@ test/test_telemetry_event_polymorphic.py
 test/test_telemetry_event_polymorphic_request.py
 test/test_telemetry_event_request.py
 test/test_token_response.py
+test/test_type_enum.py
 test/test_user.py
 test/test_user_request.py
 test/test_users_api.py

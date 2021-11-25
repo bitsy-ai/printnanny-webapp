@@ -37,14 +37,14 @@ class TestPatchedDeviceInfoRequest(unittest.TestCase):
         # model = printnanny_api_client.models.patched_device_info_request.PatchedDeviceInfoRequest()  # noqa: E501
         if include_optional :
             return PatchedDeviceInfoRequest(
-                machine_id = '', 
-                hardware = '', 
-                revision = '', 
-                model = '', 
-                serial = '', 
+                machine_id = '0', 
+                hardware = '0', 
+                revision = '0', 
+                model = '0', 
+                serial = '0', 
                 cores = -2147483648, 
                 ram = -9223372036854775808, 
-                image_version = '', 
+                image_version = '0', 
                 device = 56
             )
         else :

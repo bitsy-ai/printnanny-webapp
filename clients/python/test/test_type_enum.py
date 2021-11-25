@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.license_credentials import LicenseCredentials  # noqa: E501
+from printnanny_api_client.models.type_enum import TypeEnum  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestLicenseCredentials(unittest.TestCase):
-    """LicenseCredentials unit test stubs"""
+class TestTypeEnum(unittest.TestCase):
+    """TypeEnum unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,24 +30,20 @@ class TestLicenseCredentials(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test LicenseCredentials
+        """Test TypeEnum
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.license_credentials.LicenseCredentials()  # noqa: E501
+        # model = printnanny_api_client.models.type_enum.TypeEnum()  # noqa: E501
         if include_optional :
-            return LicenseCredentials(
-                printnanny_api_token = '', 
-                printnanny_api_url = '', 
-                honeycomb_dataset = '', 
-                honeycomb_api_key = ''
+            return TypeEnum(
             )
         else :
-            return LicenseCredentials(
+            return TypeEnum(
         )
 
-    def testLicenseCredentials(self):
-        """Test LicenseCredentials"""
+    def testTypeEnum(self):
+        """Test TypeEnum"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

@@ -38,11 +38,6 @@ class TestLicense(unittest.TestCase):
         if include_optional :
             return License(
                 id = 56, 
-                credentials = printnanny_api_client.models.license_credentials.License_credentials(
-                    printnanny_api_token = '', 
-                    printnanny_api_url = '', 
-                    honeycomb_dataset = '', 
-                    honeycomb_api_key = '', ), 
                 deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 public_key = '', 
                 public_key_checksum = '', 

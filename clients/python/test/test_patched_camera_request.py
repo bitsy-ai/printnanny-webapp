@@ -39,9 +39,9 @@ class TestPatchedCameraRequest(unittest.TestCase):
             return PatchedCameraRequest(
                 user = 56, 
                 device = 56, 
-                name = '', 
+                name = '0', 
                 camera_type = None, 
-                camera_source = ''
+                camera_source = '0'
             )
         else :
             return PatchedCameraRequest(
