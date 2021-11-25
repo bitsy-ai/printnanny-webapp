@@ -33,6 +33,7 @@ Method | HTTP request | Description
 [**devices_printer_controllers_update**](DevicesApi.md#devices_printer_controllers_update) | **PUT** /api/devices/{device_id}/printer-controllers/{id}/ | 
 [**devices_retrieve**](DevicesApi.md#devices_retrieve) | **GET** /api/devices/{id}/ | 
 [**devices_retrieve_hostname**](DevicesApi.md#devices_retrieve_hostname) | **GET** /api/devices/{hostname} | 
+[**devices_system_tasks_create**](DevicesApi.md#devices_system_tasks_create) | **POST** /api/devices/{device_id}/system-tasks/ | 
 [**devices_system_tasks_list**](DevicesApi.md#devices_system_tasks_list) | **GET** /api/devices/{device_id}/system-tasks/ | 
 [**devices_system_tasks_retrieve**](DevicesApi.md#devices_system_tasks_retrieve) | **GET** /api/devices/{device_id}/system-tasks/{id}/ | 
 [**devices_update**](DevicesApi.md#devices_update) | **PUT** /api/devices/{id}/ | 
@@ -888,6 +889,35 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## devices_system_tasks_create
+
+> crate::models::Device devices_system_tasks_create(device_id, device_request)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_id** | **i32** |  | [required] |
+**device_request** | Option<[**DeviceRequest**](DeviceRequest.md)> |  |  |
+
+### Return type
+
+[**crate::models::Device**](Device.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

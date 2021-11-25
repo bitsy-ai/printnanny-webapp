@@ -203,6 +203,12 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
+    def test_devices_system_tasks_create(self):
+        """Test case for devices_system_tasks_create
+
+        """
+        pass
+
     def test_devices_system_tasks_list(self):
         """Test case for devices_system_tasks_list
 
