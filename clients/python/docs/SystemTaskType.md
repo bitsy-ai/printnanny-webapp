@@ -1,7 +1,7 @@
-# TypeEnum
+# SystemTaskType
+
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

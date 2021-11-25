@@ -11,7 +11,7 @@
 
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum StatusEnum {
+pub enum SystemTaskStatus {
     #[serde(rename = "waiting")]
     Waiting,
     #[serde(rename = "started")]
@@ -23,7 +23,7 @@ pub enum StatusEnum {
 
 }
 
-impl ToString for StatusEnum {
+impl ToString for SystemTaskStatus {
     fn to_string(&self) -> String {
         match self {
             Self::Waiting => String::from("waiting"),
@@ -34,8 +34,8 @@ impl ToString for StatusEnum {
     }
 }
 
-impl Default for StatusEnum {
-    fn default() -> StatusEnum {
+impl Default for SystemTaskStatus {
+    fn default() -> SystemTaskStatus {
         Self::Waiting
     }
 }

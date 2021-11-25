@@ -11,7 +11,7 @@
 
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum TypeEnum {
+pub enum SystemTaskType {
     #[serde(rename = "verify_license")]
     VerifyLicense,
     #[serde(rename = "software_update")]
@@ -19,7 +19,7 @@ pub enum TypeEnum {
 
 }
 
-impl ToString for TypeEnum {
+impl ToString for SystemTaskType {
     fn to_string(&self) -> String {
         match self {
             Self::VerifyLicense => String::from("verify_license"),
@@ -28,8 +28,8 @@ impl ToString for TypeEnum {
     }
 }
 
-impl Default for TypeEnum {
-    fn default() -> TypeEnum {
+impl Default for SystemTaskType {
+    fn default() -> SystemTaskType {
         Self::VerifyLicense
     }
 }

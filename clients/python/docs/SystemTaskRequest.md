@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**status** | [**StatusEnum**](StatusEnum.md) |  | [optional] 
-**type** | [**TypeEnum**](TypeEnum.md) |  | [optional] 
+**status** | [**SystemTaskStatus**](SystemTaskStatus.md) |  | [optional] 
+**type** | [**SystemTaskType**](SystemTaskType.md) |  | [optional] 
 **ansible_facts** | **dict(str, object)** |  | [optional] 
 **ansible_extra_vars** | **dict(str, object)** |  | [optional] 
 **device** | **int** |  | 

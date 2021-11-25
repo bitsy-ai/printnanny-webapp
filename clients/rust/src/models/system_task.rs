@@ -18,9 +18,9 @@ pub struct SystemTask {
     #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
     pub deleted: Option<String>,
     #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
-    pub status: Option<crate::models::StatusEnum>,
+    pub status: Option<crate::models::SystemTaskStatus>,
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
-    pub _type: Option<crate::models::TypeEnum>,
+    pub _type: Option<crate::models::SystemTaskType>,
     #[serde(rename = "ansible_facts", skip_serializing_if = "Option::is_none")]
     pub ansible_facts: Option<::std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "ansible_extra_vars", skip_serializing_if = "Option::is_none")]

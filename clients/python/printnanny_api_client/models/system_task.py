@@ -39,8 +39,8 @@ class SystemTask(object):
     openapi_types = {
         'id': 'int',
         'deleted': 'datetime',
-        'status': 'StatusEnum',
-        'type': 'TypeEnum',
+        'status': 'SystemTaskStatus',
+        'type': 'SystemTaskType',
         'ansible_facts': 'dict(str, object)',
         'ansible_extra_vars': 'dict(str, object)',
         'created_dt': 'datetime',
@@ -138,7 +138,7 @@ class SystemTask(object):
 
 
         :return: The status of this SystemTask.  # noqa: E501
-        :rtype: StatusEnum
+        :rtype: SystemTaskStatus
         """
         return self._status
 
@@ -148,7 +148,7 @@ class SystemTask(object):
 
 
         :param status: The status of this SystemTask.  # noqa: E501
-        :type status: StatusEnum
+        :type status: SystemTaskStatus
         """
 
         self._status = status
@@ -159,7 +159,7 @@ class SystemTask(object):
 
 
         :return: The type of this SystemTask.  # noqa: E501
-        :rtype: TypeEnum
+        :rtype: SystemTaskType
         """
         return self._type
 
@@ -169,7 +169,7 @@ class SystemTask(object):
 
 
         :param type: The type of this SystemTask.  # noqa: E501
-        :type type: TypeEnum
+        :type type: SystemTaskType
         """
 
         self._type = type

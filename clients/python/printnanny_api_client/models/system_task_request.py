@@ -37,8 +37,8 @@ class SystemTaskRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'status': 'StatusEnum',
-        'type': 'TypeEnum',
+        'status': 'SystemTaskStatus',
+        'type': 'SystemTaskType',
         'ansible_facts': 'dict(str, object)',
         'ansible_extra_vars': 'dict(str, object)',
         'device': 'int'
@@ -81,7 +81,7 @@ class SystemTaskRequest(object):
 
 
         :return: The status of this SystemTaskRequest.  # noqa: E501
-        :rtype: StatusEnum
+        :rtype: SystemTaskStatus
         """
         return self._status
 
@@ -91,7 +91,7 @@ class SystemTaskRequest(object):
 
 
         :param status: The status of this SystemTaskRequest.  # noqa: E501
-        :type status: StatusEnum
+        :type status: SystemTaskStatus
         """
 
         self._status = status
@@ -102,7 +102,7 @@ class SystemTaskRequest(object):
 
 
         :return: The type of this SystemTaskRequest.  # noqa: E501
-        :rtype: TypeEnum
+        :rtype: SystemTaskType
         """
         return self._type
 
@@ -112,7 +112,7 @@ class SystemTaskRequest(object):
 
 
         :param type: The type of this SystemTaskRequest.  # noqa: E501
-        :type type: TypeEnum
+        :type type: SystemTaskType
         """
 
         self._type = type
