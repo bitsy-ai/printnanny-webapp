@@ -19,3 +19,9 @@ $value in $theme-colors {
     @include badge-variant-outline($value);
   }
 }
+
+// Set table > badge font-size to 100% (from 75%) for readability
+
+table .badge {
+  font-size: 100% !important;
+}
