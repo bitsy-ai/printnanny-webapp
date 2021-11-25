@@ -99,16 +99,15 @@ class DeviceActionSerializer(serializers.ModelSerializer):
 
 class DeviceSerializer(serializers.ModelSerializer):
     ansible_facts = AnsibleFacts
-    cloudiot_device = CloudiotDeviceSerializer(read_only=True, required=False)
-    cameras = CameraSerializer(read_only=True, many=True)
-    dashboard_url = serializers.CharField(read_only=True)
-
     bootstrap_release = ReleaseSerializer(
         read_only=True,
         required=False,
         allow_null=True,
     )
-
+    cloudiot_device = CloudiotDeviceSerializer(read_only=True, required=False)
+    cameras = CameraSerializer(read_only=True, many=True)
+    dashboard_url = serializers.CharField(read_only=True)
+    last_action = DeviceActionSerializer(read_only=True)
     printer_controllers = PrinterControllerSerializer(read_only=True, many=True)
     release_channel = serializers.ChoiceField(
         choices=DeviceReleaseChannel.choices,

@@ -4,6 +4,8 @@ from django.conf import settings
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.db.models import UniqueConstraint
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.urls import reverse
 from polymorphic.models import PolymorphicModel
 from safedelete.models import SafeDeleteModel, SafeDeleteManager, SOFT_DELETE
@@ -39,23 +41,9 @@ def _get_default_stable_release() -> int:
         raise Exception("No release found")
 
 
-class DeviceManager(SafeDeleteManager):
-    def create(self, *args, **kwargs):
-        obj = super().create(*args, **kwargs)
-        # create initial DeviceAction (license verification) with WAITING status
-        action = DeviceAction.objects.create(
-            status=DeviceActionStatus.WAITING,
-            type=DeviceActionType.VERIFY_LICENSE,
-            device=obj,
-        )
-        logger.info(f"Created {obj} and VERIFY_LICENSE action {action}")
-        return obj
-
-
 class Device(SafeDeleteModel):
     """ """
 
-    objects = DeviceManager()
     _safedelete_policy = SOFT_DELETE
 
     class Meta:
@@ -107,12 +95,20 @@ class Device(SafeDeleteModel):
         return reverse("devices:detail", kwargs={"pk": self.id})
 
     @property
-    def latest_state_msg(self):
-        return self.current_state_set.first()
-
-    @property
     def cloudiot_device(self):
         return self.cloudiot_devices.first()
+
+
+# method for updating
+@receiver(post_save, sender=Device, dispatch_uid="create_device")
+def create_verify_license_device_action(sender, instance, created, **kwargs):
+    if created:
+        action = DeviceAction.objects.create(
+            status=DeviceActionStatus.WAITING,
+            type=DeviceActionType.VERIFY_LICENSE,
+            device=instance,
+        )
+        logger.info(f"Created {instance} and VERIFY_LICENSE action {action}")
 
 
 class License(SafeDeleteModel):

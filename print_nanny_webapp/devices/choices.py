@@ -14,13 +14,13 @@ class PrinterSoftwareType(models.TextChoices):
 
 
 class DeviceActionStatus(models.TextChoices):
-    WAITING = "waiting", "Waiting for device"
+    WAITING = "waiting", "Waiting for Pi to accept task"
     STARTED = "started", "Running"
     FAILED = "failed", "Failed"  # TODO prompt to send crash report
     SUCCESS = "success", "Success"
 
     __css__ = dict(
-        WAITING="warning",
+        WAITING="secondary",
         STARTED="warning",
         FAILED="danger",
         SUCCESS="success",
@@ -32,7 +32,7 @@ class DeviceActionStatus(models.TextChoices):
 
 
 class DeviceActionType(models.TextChoices):
-    VERIFY_LICENSE = "verify_license", "License Verification"
+    VERIFY_LICENSE = "verify_license", "Verify License"
     SOFTWARE_UPDATE = (
         "software_update",
         "Update device software",

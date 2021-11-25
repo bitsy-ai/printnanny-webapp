@@ -13,8 +13,9 @@
                   <tr>
                       <th>Name</th>
                       <!-- <th>Monitoring Active</th> -->
+                      <th>Current Task</th>
 
-                      <th>Raspberry Pi Status</th>
+                      <th>Raspberry Pi Task Status</th>
                       <!-- <th>Job Status</th> -->
         
                       <!-- <th>File</th>
@@ -41,8 +42,9 @@
                         </div>
                     </td> -->
                     <!-- <td><i class="mdi mdi-circle {{device.monitoring_active_css_class}}"></i> {{device.monitoring_active}}</td> -->
+                    <td>{{ device.last_action.get_type_display }}</t>
 
-                    <td><i class="mdi mdi-circle {{ device.last_state_css_class }}"></i> {{ device.last_state.get_status_display }}</td>
+                    <td><i class="mdi mdi-circle text-{{ device.last_action.status_css_class }}"></i> {{ device.last_action.get_status_display }}</td>
                     <!-- <td><i class="mdi mdi-circle {{device.print_job_status_css_class}}"></i> {{device.print_job_status}}</td> -->
 
                     <!-- <td>{{device.active_session.octoprint_job.file.name}}</td>
