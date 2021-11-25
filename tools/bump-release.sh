@@ -11,7 +11,7 @@ make python-client-release
 
 make rust-client
 git add clients/
-git commit --amend -m --no-edit
+git commit --amend --no-edit
 make rust-client-release
 
 git push
