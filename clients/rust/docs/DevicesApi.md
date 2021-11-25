@@ -896,7 +896,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_system_tasks_create
 
-> crate::models::Device devices_system_tasks_create(device_id, device_request)
+> crate::models::SystemTask devices_system_tasks_create(device_id, device_request)
 
 
 ### Parameters
@@ -909,7 +909,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Device**](Device.md)
+[**crate::models::SystemTask**](SystemTask.md)
 
 ### Authorization
 
