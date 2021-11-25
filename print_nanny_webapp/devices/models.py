@@ -11,10 +11,10 @@ from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.signals import pre_softdelete
 
 from .choices import (
-    DeviceCommand,
+    DeviceActionType,
     DeviceReleaseChannel,
     PrinterSoftwareType,
-    DeviceStatus,
+    DeviceActionStatus,
 )
 
 UserModel = get_user_model()
@@ -82,18 +82,8 @@ class Device(SafeDeleteModel):
         return self.licenses.first()
 
     @property
-    def last_state(self):
-        state = self.devicestate_set.first()
-        if state is None:
-            state = DeviceState.objects.create(
-                device=self,
-                status=DeviceStatus.INITIAL,
-            )
-        return state
-
-    @property
-    def last_state_css_class(self):
-        return DeviceStatus.get_css_class(self.last_state.status)
+    def last_action(self):
+        return self.actions.first()
 
     @property
     def to_cloudiot_id(self):
@@ -287,7 +277,7 @@ class DeviceConfig(SafeDeleteModel):
         return self.device.cloudiot_device
 
 
-class DeviceState(SafeDeleteModel):
+class DeviceAction(SafeDeleteModel):
     """
     Append-only log published to /devices/:id/state FROM device
     Indicates current state of device
@@ -302,23 +292,27 @@ class DeviceState(SafeDeleteModel):
 
     _safedelete_policy = SOFT_DELETE
     status = models.CharField(
-        max_length=16, choices=DeviceStatus.choices, default=DeviceStatus.INITIAL
+        max_length=16,
+        choices=DeviceActionStatus.choices,
+        default=DeviceActionStatus.WAITING,
     )
-    command = models.CharField(
+    type = models.CharField(
         max_length=255,
-        choices=DeviceCommand.choices,
-        default=DeviceCommand.SOFTWARE_UPDATE,
+        choices=DeviceActionType.choices,
+        default=DeviceActionType.SOFTWARE_UPDATE,
     )
 
-    device = models.ForeignKey(Device, on_delete=models.CASCADE, db_index=True)
+    device = models.ForeignKey(
+        Device, on_delete=models.CASCADE, db_index=True, related_name="actions"
+    )
     ansible_facts = models.JSONField(default=dict())
     ansible_extra_vars = models.JSONField(default=dict())
 
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
 
     @property
-    def mqtt_topic(self):
-        return f"/devices/{self.num_id}/state"
+    def status_css_class(self):
+        return DeviceActionStatus.get_css_class(self.status)
 
 
 class Camera(SafeDeleteModel):

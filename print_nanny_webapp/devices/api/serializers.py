@@ -1,7 +1,4 @@
-from typing import TypedDict
 from rest_framework import serializers
-from django.conf import settings
-from rest_framework.authtoken.models import Token
 
 from print_nanny_webapp.devices.models import (
     Device,
@@ -9,7 +6,7 @@ from print_nanny_webapp.devices.models import (
     CloudiotDevice,
     DeviceConfig,
     DeviceInfo,
-    DeviceState,
+    DeviceAction,
     License,
     PrinterController,
     # PrinterProfile,
@@ -69,37 +66,16 @@ class CloudiotDeviceSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class Credentials(TypedDict):
-    printnanny_api_token: str
-    printnanny_api_url: str
-    honeycomb_dataset: str  # distributed tracing dataset
-    honeycomb_api_key: str  # write-only token
+class AnsibleFacts(serializers.Serializer):
+    api_token = serializers.CharField()
+    api_base_url = serializers.CharField()
 
 
 class LicenseSerializer(serializers.ModelSerializer):
-    credentials = serializers.SerializerMethodField(read_only=True)
-
-    def get_credentials(self, obj) -> Credentials:
-        api_token, _ = Token.objects.get_or_create(user=obj.device.user)
-        return dict(
-            printnanny_api_token=str(api_token),
-            printnanny_api_url=self.context["request"].build_absolute_uri("/")[
-                :-1
-            ],  # remove trailing slash for use in API client base_url
-            honeycomb_dataset=settings.HONEYCOMB_DATASET,
-            honeycomb_api_key=settings.HONEYCOMB_API_KEY,
-        )
-
     class Meta:
         model = License
         fields = "__all__"
-        read_only_fields = (
-            "credentials",
-            "public_key",
-            "public_key_checksum",
-            "fingerprint",
-            "user",
-        )
+        read_only_fields = ("public_key", "public_key_checksum", "fingerprint", "user")
 
 
 class CACertsSerializer(serializers.Serializer):
@@ -115,38 +91,37 @@ class DeviceConfigSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class DeviceStateSerializer(serializers.ModelSerializer):
+class DeviceActionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = DeviceState
+        model = DeviceAction
         fields = "__all__"
 
 
 class DeviceSerializer(serializers.ModelSerializer):
-    cloudiot_device = CloudiotDeviceSerializer(
-        read_only=True, allow_null=True, required=False
-    )
-    cameras = CameraSerializer(read_only=True, many=True, default=list())
+    ansible_facts = AnsibleFacts
+    cloudiot_device = CloudiotDeviceSerializer(read_only=True, required=False)
+    cameras = CameraSerializer(read_only=True, many=True)
     dashboard_url = serializers.CharField(read_only=True)
 
     bootstrap_release = ReleaseSerializer(
-        read_only=True, allow_null=True, required=False
+        read_only=True,
+        required=False,
+        allow_null=True,
     )
 
-    printer_controllers = PrinterControllerSerializer(
-        read_only=True, many=True, default=list()
-    )
+    printer_controllers = PrinterControllerSerializer(read_only=True, many=True)
     release_channel = serializers.ChoiceField(
         choices=DeviceReleaseChannel.choices,
         default=DeviceReleaseChannel.STABLE,
     )
 
-    user = UserSerializer(read_only=True, required=False)
-    active_license = LicenseSerializer(read_only=True, allow_null=True, required=False)
+    user = UserSerializer(read_only=True)
+    active_license = LicenseSerializer(read_only=True)
 
     class Meta:
         model = Device
         fields = "__all__"
-        depth = 4
+        depth = 2
 
 
 class DeviceInfoSerializer(serializers.ModelSerializer):
