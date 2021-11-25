@@ -1,13 +1,12 @@
 import logging
-from django.apps import apps
+from typing import Any
 from django.conf import settings
-from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.db.models import UniqueConstraint
 from django.urls import reverse
 from polymorphic.models import PolymorphicModel
-from safedelete.models import SafeDeleteModel, SOFT_DELETE
+from safedelete.models import SafeDeleteModel, SafeDeleteManager, SOFT_DELETE
 from safedelete.signals import pre_softdelete
 
 from .choices import (
@@ -40,9 +39,23 @@ def _get_default_stable_release() -> int:
         raise Exception("No release found")
 
 
+class DeviceManager(SafeDeleteManager):
+    def create(self, *args, **kwargs):
+        obj = super().create(*args, **kwargs)
+        # create initial DeviceAction (license verification) with WAITING status
+        action = DeviceAction.objects.create(
+            status=DeviceActionStatus.WAITING,
+            type=DeviceActionType.VERIFY_LICENSE,
+            device=obj,
+        )
+        logger.info(f"Created {obj} and VERIFY_LICENSE action {action}")
+        return obj
+
+
 class Device(SafeDeleteModel):
     """ """
 
+    objects = DeviceManager()
     _safedelete_policy = SOFT_DELETE
 
     class Meta:
