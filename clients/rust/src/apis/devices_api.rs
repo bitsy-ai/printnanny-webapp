@@ -1174,7 +1174,7 @@ pub async fn devices_retrieve_hostname(configuration: &configuration::Configurat
     }
 }
 
-pub async fn devices_system_tasks_create(configuration: &configuration::Configuration, device_id: i32, device_request: Option<crate::models::DeviceRequest>) -> Result<crate::models::SystemTask, Error<DevicesSystemTasksCreateError>> {
+pub async fn devices_system_tasks_create(configuration: &configuration::Configuration, device_id: i32, system_task_request: crate::models::SystemTaskRequest) -> Result<crate::models::SystemTask, Error<DevicesSystemTasksCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1188,7 +1188,7 @@ pub async fn devices_system_tasks_create(configuration: &configuration::Configur
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&device_request);
+    local_var_req_builder = local_var_req_builder.json(&system_task_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;

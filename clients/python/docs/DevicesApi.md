@@ -3565,7 +3565,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_system_tasks_create**
-> SystemTask devices_system_tasks_create(device_id, device_request=device_request)
+> SystemTask devices_system_tasks_create(device_id, system_task_request)
 
 
 
@@ -3605,10 +3605,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
-device_request = printnanny_api_client.DeviceRequest() # DeviceRequest |  (optional)
+system_task_request = printnanny_api_client.SystemTaskRequest() # SystemTaskRequest | 
 
     try:
-        api_response = api_instance.devices_system_tasks_create(device_id, device_request=device_request)
+        api_response = api_instance.devices_system_tasks_create(device_id, system_task_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_system_tasks_create: %s\n" % e)
@@ -3648,10 +3648,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
-device_request = printnanny_api_client.DeviceRequest() # DeviceRequest |  (optional)
+system_task_request = printnanny_api_client.SystemTaskRequest() # SystemTaskRequest | 
 
     try:
-        api_response = api_instance.devices_system_tasks_create(device_id, device_request=device_request)
+        api_response = api_instance.devices_system_tasks_create(device_id, system_task_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_system_tasks_create: %s\n" % e)
@@ -3662,7 +3662,7 @@ device_request = printnanny_api_client.DeviceRequest() # DeviceRequest |  (optio
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **device_id** | **int**|  | 
- **device_request** | [**DeviceRequest**](DeviceRequest.md)|  | [optional] 
+ **system_task_request** | [**SystemTaskRequest**](SystemTaskRequest.md)|  | 
 
 ### Return type
 

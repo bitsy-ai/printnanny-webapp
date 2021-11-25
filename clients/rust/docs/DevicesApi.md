@@ -896,7 +896,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_system_tasks_create
 
-> crate::models::SystemTask devices_system_tasks_create(device_id, device_request)
+> crate::models::SystemTask devices_system_tasks_create(device_id, system_task_request)
 
 
 ### Parameters
@@ -905,7 +905,7 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
-**device_request** | Option<[**DeviceRequest**](DeviceRequest.md)> |  |  |
+**system_task_request** | [**SystemTaskRequest**](SystemTaskRequest.md) |  | [required] |
 
 ### Return type
 

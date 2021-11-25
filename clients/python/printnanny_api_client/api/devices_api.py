@@ -4270,19 +4270,19 @@ class DevicesApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def devices_system_tasks_create(self, device_id, **kwargs):  # noqa: E501
+    def devices_system_tasks_create(self, device_id, system_task_request, **kwargs):  # noqa: E501
         """devices_system_tasks_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_system_tasks_create(device_id, async_req=True)
+        >>> thread = api.devices_system_tasks_create(device_id, system_task_request, async_req=True)
         >>> result = thread.get()
 
         :param device_id: (required)
         :type device_id: int
-        :param device_request:
-        :type device_request: DeviceRequest
+        :param system_task_request: (required)
+        :type system_task_request: SystemTaskRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -4299,21 +4299,21 @@ class DevicesApi(object):
         :rtype: SystemTask
         """
         kwargs['_return_http_data_only'] = True
-        return self.devices_system_tasks_create_with_http_info(device_id, **kwargs)  # noqa: E501
+        return self.devices_system_tasks_create_with_http_info(device_id, system_task_request, **kwargs)  # noqa: E501
 
-    def devices_system_tasks_create_with_http_info(self, device_id, **kwargs):  # noqa: E501
+    def devices_system_tasks_create_with_http_info(self, device_id, system_task_request, **kwargs):  # noqa: E501
         """devices_system_tasks_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_system_tasks_create_with_http_info(device_id, async_req=True)
+        >>> thread = api.devices_system_tasks_create_with_http_info(device_id, system_task_request, async_req=True)
         >>> result = thread.get()
 
         :param device_id: (required)
         :type device_id: int
-        :param device_request:
-        :type device_request: DeviceRequest
+        :param system_task_request: (required)
+        :type system_task_request: SystemTaskRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -4341,7 +4341,7 @@ class DevicesApi(object):
 
         all_params = [
             'device_id',
-            'device_request'
+            'system_task_request'
         ]
         all_params.extend(
             [
@@ -4365,6 +4365,10 @@ class DevicesApi(object):
         if self.api_client.client_side_validation and ('device_id' not in local_var_params or  # noqa: E501
                                                         local_var_params['device_id'] is None):  # noqa: E501
             raise ApiValueError("Missing the required parameter `device_id` when calling `devices_system_tasks_create`")  # noqa: E501
+        # verify the required parameter 'system_task_request' is set
+        if self.api_client.client_side_validation and ('system_task_request' not in local_var_params or  # noqa: E501
+                                                        local_var_params['system_task_request'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `system_task_request` when calling `devices_system_tasks_create`")  # noqa: E501
 
         collection_formats = {}
 
@@ -4380,8 +4384,8 @@ class DevicesApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'device_request' in local_var_params:
-            body_params = local_var_params['device_request']
+        if 'system_task_request' in local_var_params:
+            body_params = local_var_params['system_task_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
