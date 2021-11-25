@@ -1,4 +1,7 @@
+from typing import TypedDict
 from rest_framework import serializers
+from rest_framework.authtoken.models import Token
+from django.conf import settings
 
 from print_nanny_webapp.devices.models import (
     Device,
@@ -66,16 +69,37 @@ class CloudiotDeviceSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class AnsibleFacts(serializers.Serializer):
-    api_token = serializers.CharField()
-    api_base_url = serializers.CharField()
+class Credentials(TypedDict):
+    printnanny_api_token: str
+    printnanny_api_url: str
+    honeycomb_dataset: str  # distributed tracing dataset
+    honeycomb_api_key: str  # write-only token
 
 
 class LicenseSerializer(serializers.ModelSerializer):
+    credentials = serializers.SerializerMethodField(read_only=True)
+
+    def get_credentials(self, obj) -> Credentials:
+        api_token, _ = Token.objects.get_or_create(user=obj.device.user)
+        return dict(
+            printnanny_api_token=str(api_token),
+            printnanny_api_url=self.context["request"].build_absolute_uri("/")[
+                :-1
+            ],  # remove trailing slash for use in API client base_url
+            honeycomb_dataset=settings.HONEYCOMB_DATASET,
+            honeycomb_api_key=settings.HONEYCOMB_API_KEY,
+        )
+
     class Meta:
         model = License
         fields = "__all__"
-        read_only_fields = ("public_key", "public_key_checksum", "fingerprint", "user")
+        read_only_fields = (
+            "credentials",
+            "public_key",
+            "public_key_checksum",
+            "fingerprint",
+            "user",
+        )
 
 
 class CACertsSerializer(serializers.Serializer):
@@ -98,7 +122,7 @@ class SystemTaskSerializer(serializers.ModelSerializer):
 
 
 class DeviceSerializer(serializers.ModelSerializer):
-    ansible_facts = AnsibleFacts
+
     bootstrap_release = ReleaseSerializer(
         read_only=True,
         required=False,
