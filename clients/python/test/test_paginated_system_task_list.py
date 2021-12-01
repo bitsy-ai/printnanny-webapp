@@ -47,7 +47,7 @@ class TestPaginatedSystemTaskList(unittest.TestCase):
                         msg = '', 
                         wiki_url = '', 
                         status = 'waiting', 
-                        type = 'verify_license', 
+                        type = 'activate_license', 
                         ansible_facts = {
                             'key' : null
                             }, 
