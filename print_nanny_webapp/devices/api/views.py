@@ -19,6 +19,7 @@ from rest_framework.viewsets import GenericViewSet
 from .serializers import (
     DeviceInfoSerializer,
     DeviceConfigSerializer,
+    LicenseSerializer,
     SystemTaskSerializer,
     DeviceSerializer,
     CameraSerializer,
@@ -153,8 +154,8 @@ class DeviceViewSet(
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-    @action(detail=True, methods=["GET"])
-    def license(self, request: Request, *args: Any, **kwargs: Any) -> Response:
+    @action(detail=True, methods=["GET"], url_path="generate-license")
+    def generate_license(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         device = Device.objects.get(pk=kwargs["id"])
         return generate_zipped_license_response(device, request)
 
