@@ -105,10 +105,10 @@ def create_verify_license_device_action(sender, instance, created, **kwargs):
     if created:
         action = SystemTask.objects.create(
             status=SystemTaskStatus.WAITING,
-            type=SystemTaskType.VERIFY_LICENSE,
+            type=SystemTaskType.ACTIVATE_LICENSE,
             device=instance,
         )
-        logger.info(f"Created {instance} and VERIFY_LICENSE action {action}")
+        logger.info(f"Created {instance} and ACTIVATE_LICENSE action {action}")
 
 
 class License(SafeDeleteModel):
