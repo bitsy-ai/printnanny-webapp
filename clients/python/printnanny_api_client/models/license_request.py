@@ -37,28 +37,24 @@ class LicenseRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'activated': 'bool',
-        'device': 'int'
+        'activated': 'bool'
     }
 
     attribute_map = {
-        'activated': 'activated',
-        'device': 'device'
+        'activated': 'activated'
     }
 
-    def __init__(self, activated=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, activated=None, local_vars_configuration=None):  # noqa: E501
         """LicenseRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._activated = None
-        self._device = None
         self.discriminator = None
 
         if activated is not None:
             self.activated = activated
-        self.device = device
 
     @property
     def activated(self):
@@ -80,29 +76,6 @@ class LicenseRequest(object):
         """
 
         self._activated = activated
-
-    @property
-    def device(self):
-        """Gets the device of this LicenseRequest.  # noqa: E501
-
-
-        :return: The device of this LicenseRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._device
-
-    @device.setter
-    def device(self, device):
-        """Sets the device of this LicenseRequest.
-
-
-        :param device: The device of this LicenseRequest.  # noqa: E501
-        :type device: int
-        """
-        if self.local_vars_configuration.client_side_validation and device is None:  # noqa: E501
-            raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
-
-        self._device = device
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

@@ -53,7 +53,6 @@ class TestLicense(unittest.TestCase):
             )
         else :
             return License(
-                device = 56,
         )
 
     def testLicense(self):

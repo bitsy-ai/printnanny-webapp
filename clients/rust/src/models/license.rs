@@ -29,12 +29,12 @@ pub struct License {
     pub fingerprint: Option<String>,
     #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
     pub created_dt: Option<String>,
-    #[serde(rename = "device")]
-    pub device: i32,
+    #[serde(rename = "device", skip_serializing_if = "Option::is_none")]
+    pub device: Option<i32>,
 }
 
 impl License {
-    pub fn new(device: i32) -> License {
+    pub fn new() -> License {
         License {
             id: None,
             credentials: None,
@@ -44,7 +44,7 @@ impl License {
             public_key_checksum: None,
             fingerprint: None,
             created_dt: None,
-            device,
+            device: None,
         }
     }
 }

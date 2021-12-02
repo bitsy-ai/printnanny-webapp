@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **public_key_checksum** | **str** |  | [optional] [readonly] 
 **fingerprint** | **str** |  | [optional] [readonly] 
 **created_dt** | **datetime** |  | [optional] [readonly] 
-**device** | **int** |  | 
+**device** | **int** |  | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -93,7 +93,8 @@ class License(object):
             self.fingerprint = fingerprint
         if created_dt is not None:
             self.created_dt = created_dt
-        self.device = device
+        if device is not None:
+            self.device = device
 
     @property
     def id(self):
@@ -281,8 +282,6 @@ class License(object):
         :param device: The device of this License.  # noqa: E501
         :type device: int
         """
-        if self.local_vars_configuration.client_side_validation and device is None:  # noqa: E501
-            raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
 
         self._device = device
 
