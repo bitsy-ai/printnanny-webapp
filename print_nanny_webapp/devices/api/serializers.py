@@ -95,6 +95,7 @@ class LicenseSerializer(serializers.ModelSerializer):
         fields = "__all__"
         read_only_fields = (
             "credentials",
+            "device",
             "public_key",
             "public_key_checksum",
             "fingerprint",
