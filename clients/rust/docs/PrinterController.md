@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
 **software** | Option<[**crate::models::SoftwareEnum**](SoftwareEnum.md)> |  | [optional]
-**deleted** | **String** |  | [readonly]
 **created_dt** | **String** |  | [readonly]
 **updated_dt** | **String** |  | [readonly]
 **polymorphic_ctype** | **i32** |  | [readonly]

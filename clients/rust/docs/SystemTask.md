@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
-**deleted** | **String** |  | [readonly]
 **msg** | Option<**String**> |  | [optional]
 **wiki_url** | Option<**String**> |  | [optional]
 **status** | Option<[**crate::models::SystemTaskStatus**](SystemTaskStatus.md)> |  | [optional]

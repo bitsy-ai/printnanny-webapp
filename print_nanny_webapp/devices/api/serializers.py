@@ -47,7 +47,7 @@ class PrinterControllerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PrinterController
-        fields = "__all__"
+        exclude = ("deleted",)
 
 
 ##
@@ -66,7 +66,7 @@ class CloudiotDeviceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CloudiotDevice
-        fields = "__all__"
+        exclude = ("deleted",)
 
 
 class Credentials(TypedDict):
@@ -92,7 +92,6 @@ class LicenseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = License
-        fields = "__all__"
         read_only_fields = (
             "credentials",
             "device",
@@ -101,6 +100,7 @@ class LicenseSerializer(serializers.ModelSerializer):
             "fingerprint",
             "user",
         )
+        exclude = ("deleted",)
 
 
 class CACertsSerializer(serializers.Serializer):
@@ -113,13 +113,13 @@ class CACertsSerializer(serializers.Serializer):
 class DeviceConfigSerializer(serializers.ModelSerializer):
     class Meta:
         model = DeviceConfig
-        fields = "__all__"
+        exclude = ("deleted",)
 
 
 class SystemTaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = SystemTask
-        fields = "__all__"
+        exclude = ("deleted",)
 
 
 class DeviceSerializer(serializers.ModelSerializer):
@@ -142,15 +142,15 @@ class DeviceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Device
-        fields = "__all__"
         depth = 2
         read_only = ("active_license", "bootstrap_release", "user", "last_system_task")
+        exclude = ("deleted",)
 
 
 class DeviceInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = DeviceInfo
-        fields = "__all__"
+        exclude = ("deleted",)
 
     def update_or_create(self, validated_data, device):
         return DeviceInfo.objects.filter(device=device).update_or_create(

@@ -38,7 +38,6 @@ class DeviceInfo(object):
     """
     openapi_types = {
         'id': 'int',
-        'deleted': 'datetime',
         'machine_id': 'str',
         'hardware': 'str',
         'revision': 'str',
@@ -52,7 +51,6 @@ class DeviceInfo(object):
 
     attribute_map = {
         'id': 'id',
-        'deleted': 'deleted',
         'machine_id': 'machine_id',
         'hardware': 'hardware',
         'revision': 'revision',
@@ -64,14 +62,13 @@ class DeviceInfo(object):
         'device': 'device'
     }
 
-    def __init__(self, id=None, deleted=None, machine_id=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, image_version=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, machine_id=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, image_version=None, device=None, local_vars_configuration=None):  # noqa: E501
         """DeviceInfo - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
-        self._deleted = None
         self._machine_id = None
         self._hardware = None
         self._revision = None
@@ -84,7 +81,6 @@ class DeviceInfo(object):
         self.discriminator = None
 
         self.id = id
-        self.deleted = deleted
         self.machine_id = machine_id
         self.hardware = hardware
         self.revision = revision
@@ -117,29 +113,6 @@ class DeviceInfo(object):
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
-
-    @property
-    def deleted(self):
-        """Gets the deleted of this DeviceInfo.  # noqa: E501
-
-
-        :return: The deleted of this DeviceInfo.  # noqa: E501
-        :rtype: datetime
-        """
-        return self._deleted
-
-    @deleted.setter
-    def deleted(self, deleted):
-        """Sets the deleted of this DeviceInfo.
-
-
-        :param deleted: The deleted of this DeviceInfo.  # noqa: E501
-        :type deleted: datetime
-        """
-        if self.local_vars_configuration.client_side_validation and deleted is None:  # noqa: E501
-            raise ValueError("Invalid value for `deleted`, must not be `None`")  # noqa: E501
-
-        self._deleted = deleted
 
     @property
     def machine_id(self):

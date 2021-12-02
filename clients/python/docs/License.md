@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
 **credentials** | [**LicenseCredentials**](LicenseCredentials.md) |  | 
-**deleted** | **datetime** |  | [readonly] 
 **activated** | **bool** |  | [optional] 
 **public_key** | **str** |  | [readonly] 
 **public_key_checksum** | **str** |  | [readonly] 

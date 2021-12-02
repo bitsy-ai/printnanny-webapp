@@ -15,8 +15,6 @@
 pub struct SystemTask {
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "deleted")]
-    pub deleted: String,
     #[serde(rename = "msg", skip_serializing_if = "Option::is_none")]
     pub msg: Option<String>,
     #[serde(rename = "wiki_url", skip_serializing_if = "Option::is_none")]
@@ -34,10 +32,9 @@ pub struct SystemTask {
 }
 
 impl SystemTask {
-    pub fn new(id: i32, deleted: String, created_dt: String, device: i32) -> SystemTask {
+    pub fn new(id: i32, created_dt: String, device: i32) -> SystemTask {
         SystemTask {
             id,
-            deleted,
             msg: None,
             wiki_url: None,
             status: None,

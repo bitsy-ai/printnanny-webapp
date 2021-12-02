@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
-**deleted** | **datetime** |  | [readonly] 
 **msg** | **str** |  | [optional] 
 **wiki_url** | **str** |  | [optional] 
 **status** | [**SystemTaskStatus**](SystemTaskStatus.md) |  | [optional] 

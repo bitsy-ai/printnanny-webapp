@@ -15,8 +15,6 @@
 pub struct DeviceInfo {
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "deleted")]
-    pub deleted: String,
     /// Populated from /etc/machine-id
     #[serde(rename = "machine_id")]
     pub machine_id: String,
@@ -44,10 +42,9 @@ pub struct DeviceInfo {
 }
 
 impl DeviceInfo {
-    pub fn new(id: i32, deleted: String, machine_id: String, hardware: String, revision: String, model: String, serial: String, cores: i32, ram: i64, image_version: String, device: i32) -> DeviceInfo {
+    pub fn new(id: i32, machine_id: String, hardware: String, revision: String, model: String, serial: String, cores: i32, ram: i64, image_version: String, device: i32) -> DeviceInfo {
         DeviceInfo {
             id,
-            deleted,
             machine_id,
             hardware,
             revision,

@@ -46,7 +46,6 @@ class CloudiotDevice(object):
         'mqtt_bridge_hostname': 'str',
         'mqtt_bridge_port': 'int',
         'mqtt_client_id': 'str',
-        'deleted': 'datetime',
         'name': 'str',
         'id': 'str',
         'device': 'int'
@@ -62,13 +61,12 @@ class CloudiotDevice(object):
         'mqtt_bridge_hostname': 'mqtt_bridge_hostname',
         'mqtt_bridge_port': 'mqtt_bridge_port',
         'mqtt_client_id': 'mqtt_client_id',
-        'deleted': 'deleted',
         'name': 'name',
         'id': 'id',
         'device': 'device'
     }
 
-    def __init__(self, num_id=None, desired_config_topic=None, current_state_topic=None, gcp_project_id=None, gcp_region=None, gcp_cloudiot_device_registry=None, mqtt_bridge_hostname=None, mqtt_bridge_port=None, mqtt_client_id=None, deleted=None, name=None, id=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, num_id=None, desired_config_topic=None, current_state_topic=None, gcp_project_id=None, gcp_region=None, gcp_cloudiot_device_registry=None, mqtt_bridge_hostname=None, mqtt_bridge_port=None, mqtt_client_id=None, name=None, id=None, device=None, local_vars_configuration=None):  # noqa: E501
         """CloudiotDevice - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -83,7 +81,6 @@ class CloudiotDevice(object):
         self._mqtt_bridge_hostname = None
         self._mqtt_bridge_port = None
         self._mqtt_client_id = None
-        self._deleted = None
         self._name = None
         self._id = None
         self._device = None
@@ -98,7 +95,6 @@ class CloudiotDevice(object):
         self.mqtt_bridge_hostname = mqtt_bridge_hostname
         self.mqtt_bridge_port = mqtt_bridge_port
         self.mqtt_client_id = mqtt_client_id
-        self.deleted = deleted
         self.name = name
         self.id = id
         self.device = device
@@ -315,29 +311,6 @@ class CloudiotDevice(object):
             raise ValueError("Invalid value for `mqtt_client_id`, must not be `None`")  # noqa: E501
 
         self._mqtt_client_id = mqtt_client_id
-
-    @property
-    def deleted(self):
-        """Gets the deleted of this CloudiotDevice.  # noqa: E501
-
-
-        :return: The deleted of this CloudiotDevice.  # noqa: E501
-        :rtype: datetime
-        """
-        return self._deleted
-
-    @deleted.setter
-    def deleted(self, deleted):
-        """Sets the deleted of this CloudiotDevice.
-
-
-        :param deleted: The deleted of this CloudiotDevice.  # noqa: E501
-        :type deleted: datetime
-        """
-        if self.local_vars_configuration.client_side_validation and deleted is None:  # noqa: E501
-            raise ValueError("Invalid value for `deleted`, must not be `None`")  # noqa: E501
-
-        self._deleted = deleted
 
     @property
     def name(self):

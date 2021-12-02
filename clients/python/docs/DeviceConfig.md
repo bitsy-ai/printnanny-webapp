@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
-**deleted** | **datetime** |  | [readonly] 
 **ansible_extra_vars** | **dict(str, object)** |  | [optional] 
 **release_channel** | [**ReleaseChannelEnum**](ReleaseChannelEnum.md) |  | [optional] 
 **created_dt** | **datetime** |  | [readonly] 
