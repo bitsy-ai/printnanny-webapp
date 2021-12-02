@@ -4,14 +4,15 @@ from rest_framework_nested.routers import NestedSimpleRouter
 from print_nanny_webapp.devices.api.serializers import PrinterControllerSerializer
 
 from print_nanny_webapp.devices.api.views import (
-    DeviceInfoViewSet,
-    DeviceConfigViewSet,
-    SystemTaskViewSet,
-    DeviceViewSet,
-    DeviceHostnameViewSet,
     CameraViewSet,
     CloudiotDeviceViewSet ,
+    DeviceConfigViewSet,
+    DeviceHostnameViewSet,
+    DeviceInfoViewSet,
+    DeviceViewSet,
+    LicenseViewSet,
     PrinterControllerViewSet,
+    SystemTaskViewSet,
 )
 from print_nanny_webapp.devices.models import DeviceInfo
 from print_nanny_webapp.ml_ops.api.views import (
@@ -53,6 +54,8 @@ devices_by_hostname = [
 ]
 
 devices_router  = NestedSimpleRouter(router, r'devices', lookup='device')
+devices_router.register("licenses", LicenseViewSet, basename='licenses')
+
 devices_router.register(r'config', DeviceConfigViewSet, basename='config')
 devices_router.register(r'system-tasks', SystemTaskViewSet, basename='system-tasks')
 devices_router.register(r'info', DeviceInfoViewSet, basename='info')
