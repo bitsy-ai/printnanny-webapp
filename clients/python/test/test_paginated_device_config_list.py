@@ -43,7 +43,6 @@ class TestPaginatedDeviceConfigList(unittest.TestCase):
                 results = [
                     printnanny_api_client.models.device_config.DeviceConfig(
                         id = 56, 
-                        deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         ansible_extra_vars = {
                             'key' : null
                             }, 

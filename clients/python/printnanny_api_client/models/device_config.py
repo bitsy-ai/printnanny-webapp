@@ -38,7 +38,6 @@ class DeviceConfig(object):
     """
     openapi_types = {
         'id': 'int',
-        'deleted': 'datetime',
         'ansible_extra_vars': 'dict(str, object)',
         'release_channel': 'ReleaseChannelEnum',
         'created_dt': 'datetime',
@@ -47,21 +46,19 @@ class DeviceConfig(object):
 
     attribute_map = {
         'id': 'id',
-        'deleted': 'deleted',
         'ansible_extra_vars': 'ansible_extra_vars',
         'release_channel': 'release_channel',
         'created_dt': 'created_dt',
         'device': 'device'
     }
 
-    def __init__(self, id=None, deleted=None, ansible_extra_vars=None, release_channel=None, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, ansible_extra_vars=None, release_channel=None, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
         """DeviceConfig - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
-        self._deleted = None
         self._ansible_extra_vars = None
         self._release_channel = None
         self._created_dt = None
@@ -69,7 +66,6 @@ class DeviceConfig(object):
         self.discriminator = None
 
         self.id = id
-        self.deleted = deleted
         if ansible_extra_vars is not None:
             self.ansible_extra_vars = ansible_extra_vars
         if release_channel is not None:
@@ -99,29 +95,6 @@ class DeviceConfig(object):
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
-
-    @property
-    def deleted(self):
-        """Gets the deleted of this DeviceConfig.  # noqa: E501
-
-
-        :return: The deleted of this DeviceConfig.  # noqa: E501
-        :rtype: datetime
-        """
-        return self._deleted
-
-    @deleted.setter
-    def deleted(self, deleted):
-        """Sets the deleted of this DeviceConfig.
-
-
-        :param deleted: The deleted of this DeviceConfig.  # noqa: E501
-        :type deleted: datetime
-        """
-        if self.local_vars_configuration.client_side_validation and deleted is None:  # noqa: E501
-            raise ValueError("Invalid value for `deleted`, must not be `None`")  # noqa: E501
-
-        self._deleted = deleted
 
     @property
     def ansible_extra_vars(self):

@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
 **software** | [**SoftwareEnum**](SoftwareEnum.md) |  | [optional] 
-**deleted** | **datetime** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
 **updated_dt** | **datetime** |  | [readonly] 
 **polymorphic_ctype** | **int** |  | [readonly] 

@@ -13,7 +13,6 @@ Name | Type | Description | Notes
 **mqtt_bridge_hostname** | **str** |  | [readonly] 
 **mqtt_bridge_port** | **int** |  | [readonly] 
 **mqtt_client_id** | **str** |  | [readonly] 
-**deleted** | **datetime** |  | [readonly] 
 **name** | **str** |  | 
 **id** | **str** |  | 
 **device** | **int** |  | 

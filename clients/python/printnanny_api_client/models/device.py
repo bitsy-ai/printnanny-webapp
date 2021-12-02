@@ -47,7 +47,6 @@ class Device(object):
         'release_channel': 'ReleaseChannelEnum',
         'user': 'User',
         'active_license': 'License',
-        'deleted': 'datetime',
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
         'hostname': 'str'
@@ -64,13 +63,12 @@ class Device(object):
         'release_channel': 'release_channel',
         'user': 'user',
         'active_license': 'active_license',
-        'deleted': 'deleted',
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
         'hostname': 'hostname'
     }
 
-    def __init__(self, id=None, bootstrap_release=None, cloudiot_device=None, cameras=None, dashboard_url=None, last_system_task=None, printer_controllers=None, release_channel=None, user=None, active_license=None, deleted=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, bootstrap_release=None, cloudiot_device=None, cameras=None, dashboard_url=None, last_system_task=None, printer_controllers=None, release_channel=None, user=None, active_license=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -86,7 +84,6 @@ class Device(object):
         self._release_channel = None
         self._user = None
         self._active_license = None
-        self._deleted = None
         self._created_dt = None
         self._updated_dt = None
         self._hostname = None
@@ -102,7 +99,6 @@ class Device(object):
         self.release_channel = release_channel
         self.user = user
         self.active_license = active_license
-        self.deleted = deleted
         self.created_dt = created_dt
         self.updated_dt = updated_dt
         if hostname is not None:
@@ -325,29 +321,6 @@ class Device(object):
         """
 
         self._active_license = active_license
-
-    @property
-    def deleted(self):
-        """Gets the deleted of this Device.  # noqa: E501
-
-
-        :return: The deleted of this Device.  # noqa: E501
-        :rtype: datetime
-        """
-        return self._deleted
-
-    @deleted.setter
-    def deleted(self, deleted):
-        """Sets the deleted of this Device.
-
-
-        :param deleted: The deleted of this Device.  # noqa: E501
-        :type deleted: datetime
-        """
-        if self.local_vars_configuration.client_side_validation and deleted is None:  # noqa: E501
-            raise ValueError("Invalid value for `deleted`, must not be `None`")  # noqa: E501
-
-        self._deleted = deleted
 
     @property
     def created_dt(self):

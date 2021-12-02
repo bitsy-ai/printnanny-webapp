@@ -39,7 +39,6 @@ class License(object):
     openapi_types = {
         'id': 'int',
         'credentials': 'LicenseCredentials',
-        'deleted': 'datetime',
         'activated': 'bool',
         'public_key': 'str',
         'public_key_checksum': 'str',
@@ -51,7 +50,6 @@ class License(object):
     attribute_map = {
         'id': 'id',
         'credentials': 'credentials',
-        'deleted': 'deleted',
         'activated': 'activated',
         'public_key': 'public_key',
         'public_key_checksum': 'public_key_checksum',
@@ -60,7 +58,7 @@ class License(object):
         'device': 'device'
     }
 
-    def __init__(self, id=None, credentials=None, deleted=None, activated=None, public_key=None, public_key_checksum=None, fingerprint=None, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, credentials=None, activated=None, public_key=None, public_key_checksum=None, fingerprint=None, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
         """License - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -68,7 +66,6 @@ class License(object):
 
         self._id = None
         self._credentials = None
-        self._deleted = None
         self._activated = None
         self._public_key = None
         self._public_key_checksum = None
@@ -79,7 +76,6 @@ class License(object):
 
         self.id = id
         self.credentials = credentials
-        self.deleted = deleted
         if activated is not None:
             self.activated = activated
         self.public_key = public_key
@@ -133,29 +129,6 @@ class License(object):
             raise ValueError("Invalid value for `credentials`, must not be `None`")  # noqa: E501
 
         self._credentials = credentials
-
-    @property
-    def deleted(self):
-        """Gets the deleted of this License.  # noqa: E501
-
-
-        :return: The deleted of this License.  # noqa: E501
-        :rtype: datetime
-        """
-        return self._deleted
-
-    @deleted.setter
-    def deleted(self, deleted):
-        """Sets the deleted of this License.
-
-
-        :param deleted: The deleted of this License.  # noqa: E501
-        :type deleted: datetime
-        """
-        if self.local_vars_configuration.client_side_validation and deleted is None:  # noqa: E501
-            raise ValueError("Invalid value for `deleted`, must not be `None`")  # noqa: E501
-
-        self._deleted = deleted
 
     @property
     def activated(self):

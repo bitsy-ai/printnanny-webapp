@@ -44,7 +44,6 @@ class TestPaginatedPrinterControllerList(unittest.TestCase):
                     printnanny_api_client.models.printer_controller.PrinterController(
                         id = 56, 
                         software = null, 
-                        deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         polymorphic_ctype = 56, 

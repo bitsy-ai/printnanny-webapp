@@ -15,8 +15,6 @@
 pub struct DeviceConfig {
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "deleted")]
-    pub deleted: String,
     #[serde(rename = "ansible_extra_vars", skip_serializing_if = "Option::is_none")]
     pub ansible_extra_vars: Option<::std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "release_channel", skip_serializing_if = "Option::is_none")]
@@ -28,10 +26,9 @@ pub struct DeviceConfig {
 }
 
 impl DeviceConfig {
-    pub fn new(id: i32, deleted: String, created_dt: String, device: i32) -> DeviceConfig {
+    pub fn new(id: i32, created_dt: String, device: i32) -> DeviceConfig {
         DeviceConfig {
             id,
-            deleted,
             ansible_extra_vars: None,
             release_channel: None,
             created_dt,

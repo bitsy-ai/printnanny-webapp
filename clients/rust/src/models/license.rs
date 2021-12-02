@@ -17,8 +17,6 @@ pub struct License {
     pub id: i32,
     #[serde(rename = "credentials")]
     pub credentials: Box<crate::models::LicenseCredentials>,
-    #[serde(rename = "deleted")]
-    pub deleted: String,
     #[serde(rename = "activated", skip_serializing_if = "Option::is_none")]
     pub activated: Option<bool>,
     #[serde(rename = "public_key")]
@@ -34,11 +32,10 @@ pub struct License {
 }
 
 impl License {
-    pub fn new(id: i32, credentials: crate::models::LicenseCredentials, deleted: String, public_key: String, public_key_checksum: String, fingerprint: String, created_dt: String, device: i32) -> License {
+    pub fn new(id: i32, credentials: crate::models::LicenseCredentials, public_key: String, public_key_checksum: String, fingerprint: String, created_dt: String, device: i32) -> License {
         License {
             id,
             credentials: Box::new(credentials),
-            deleted,
             activated: None,
             public_key,
             public_key_checksum,

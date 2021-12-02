@@ -46,7 +46,6 @@ class TestCloudiotDevice(unittest.TestCase):
                 mqtt_bridge_hostname = '', 
                 mqtt_bridge_port = 56, 
                 mqtt_client_id = '', 
-                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 name = '', 
                 id = '', 
                 device = 56
@@ -62,7 +61,6 @@ class TestCloudiotDevice(unittest.TestCase):
                 mqtt_bridge_hostname = '',
                 mqtt_bridge_port = 56,
                 mqtt_client_id = '',
-                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 name = '',
                 id = '',
                 device = 56,

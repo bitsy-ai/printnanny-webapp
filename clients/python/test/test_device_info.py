@@ -38,7 +38,6 @@ class TestDeviceInfo(unittest.TestCase):
         if include_optional :
             return DeviceInfo(
                 id = 56, 
-                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 machine_id = '', 
                 hardware = '', 
                 revision = '', 
@@ -52,7 +51,6 @@ class TestDeviceInfo(unittest.TestCase):
         else :
             return DeviceInfo(
                 id = 56,
-                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 machine_id = '',
                 hardware = '',
                 revision = '',

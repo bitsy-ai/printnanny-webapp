@@ -14,7 +14,6 @@ Name | Type | Description | Notes
 **release_channel** | [**ReleaseChannelEnum**](ReleaseChannelEnum.md) |  | [optional] 
 **user** | [**User**](User.md) |  | [readonly] 
 **active_license** | [**License**](License.md) |  | [readonly] 
-**deleted** | **datetime** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
 **updated_dt** | **datetime** |  | [readonly] 
 **hostname** | **str** | Please enter the hostname you set in the Raspberry Pi Imager&#39;s Advanced Options menu (without .local extension) | [optional] 
