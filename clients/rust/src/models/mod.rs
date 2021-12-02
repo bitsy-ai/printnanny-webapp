@@ -258,8 +258,6 @@ pub mod system_task;
 pub use self::system_task::SystemTask;
 pub mod system_task_request;
 pub use self::system_task_request::SystemTaskRequest;
-pub mod system_task_status;
-pub use self::system_task_status::SystemTaskStatus;
 pub mod system_task_type;
 pub use self::system_task_type::SystemTaskType;
 pub mod telemetry_event;

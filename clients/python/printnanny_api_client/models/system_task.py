@@ -38,51 +38,33 @@ class SystemTask(object):
     """
     openapi_types = {
         'id': 'int',
-        'msg': 'str',
-        'wiki_url': 'str',
-        'status': 'SystemTaskStatus',
-        'type': 'SystemTaskType',
-        'ansible_facts': 'dict(str, object)',
+        'task_type': 'SystemTaskType',
         'created_dt': 'datetime',
         'device': 'int'
     }
 
     attribute_map = {
         'id': 'id',
-        'msg': 'msg',
-        'wiki_url': 'wiki_url',
-        'status': 'status',
-        'type': 'type',
-        'ansible_facts': 'ansible_facts',
+        'task_type': 'task_type',
         'created_dt': 'created_dt',
         'device': 'device'
     }
 
-    def __init__(self, id=None, msg=None, wiki_url=None, status=None, type=None, ansible_facts=None, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, task_type=None, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
         """SystemTask - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
-        self._msg = None
-        self._wiki_url = None
-        self._status = None
-        self._type = None
-        self._ansible_facts = None
+        self._task_type = None
         self._created_dt = None
         self._device = None
         self.discriminator = None
 
         self.id = id
-        self.msg = msg
-        self.wiki_url = wiki_url
-        if status is not None:
-            self.status = status
-        if type is not None:
-            self.type = type
-        if ansible_facts is not None:
-            self.ansible_facts = ansible_facts
+        if task_type is not None:
+            self.task_type = task_type
         self.created_dt = created_dt
         self.device = device
 
@@ -110,115 +92,25 @@ class SystemTask(object):
         self._id = id
 
     @property
-    def msg(self):
-        """Gets the msg of this SystemTask.  # noqa: E501
+    def task_type(self):
+        """Gets the task_type of this SystemTask.  # noqa: E501
 
 
-        :return: The msg of this SystemTask.  # noqa: E501
-        :rtype: str
-        """
-        return self._msg
-
-    @msg.setter
-    def msg(self, msg):
-        """Sets the msg of this SystemTask.
-
-
-        :param msg: The msg of this SystemTask.  # noqa: E501
-        :type msg: str
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                msg is not None and len(msg) > 1024):
-            raise ValueError("Invalid value for `msg`, length must be less than or equal to `1024`")  # noqa: E501
-
-        self._msg = msg
-
-    @property
-    def wiki_url(self):
-        """Gets the wiki_url of this SystemTask.  # noqa: E501
-
-
-        :return: The wiki_url of this SystemTask.  # noqa: E501
-        :rtype: str
-        """
-        return self._wiki_url
-
-    @wiki_url.setter
-    def wiki_url(self, wiki_url):
-        """Sets the wiki_url of this SystemTask.
-
-
-        :param wiki_url: The wiki_url of this SystemTask.  # noqa: E501
-        :type wiki_url: str
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                wiki_url is not None and len(wiki_url) > 1024):
-            raise ValueError("Invalid value for `wiki_url`, length must be less than or equal to `1024`")  # noqa: E501
-
-        self._wiki_url = wiki_url
-
-    @property
-    def status(self):
-        """Gets the status of this SystemTask.  # noqa: E501
-
-
-        :return: The status of this SystemTask.  # noqa: E501
-        :rtype: SystemTaskStatus
-        """
-        return self._status
-
-    @status.setter
-    def status(self, status):
-        """Sets the status of this SystemTask.
-
-
-        :param status: The status of this SystemTask.  # noqa: E501
-        :type status: SystemTaskStatus
-        """
-
-        self._status = status
-
-    @property
-    def type(self):
-        """Gets the type of this SystemTask.  # noqa: E501
-
-
-        :return: The type of this SystemTask.  # noqa: E501
+        :return: The task_type of this SystemTask.  # noqa: E501
         :rtype: SystemTaskType
         """
-        return self._type
+        return self._task_type
 
-    @type.setter
-    def type(self, type):
-        """Sets the type of this SystemTask.
+    @task_type.setter
+    def task_type(self, task_type):
+        """Sets the task_type of this SystemTask.
 
 
-        :param type: The type of this SystemTask.  # noqa: E501
-        :type type: SystemTaskType
+        :param task_type: The task_type of this SystemTask.  # noqa: E501
+        :type task_type: SystemTaskType
         """
 
-        self._type = type
-
-    @property
-    def ansible_facts(self):
-        """Gets the ansible_facts of this SystemTask.  # noqa: E501
-
-
-        :return: The ansible_facts of this SystemTask.  # noqa: E501
-        :rtype: dict(str, object)
-        """
-        return self._ansible_facts
-
-    @ansible_facts.setter
-    def ansible_facts(self, ansible_facts):
-        """Sets the ansible_facts of this SystemTask.
-
-
-        :param ansible_facts: The ansible_facts of this SystemTask.  # noqa: E501
-        :type ansible_facts: dict(str, object)
-        """
-
-        self._ansible_facts = ansible_facts
+        self._task_type = task_type
 
     @property
     def created_dt(self):

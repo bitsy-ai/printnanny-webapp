@@ -145,7 +145,6 @@ docs/SchemaApi.md
 docs/SoftwareEnum.md
 docs/SystemTask.md
 docs/SystemTaskRequest.md
-docs/SystemTaskStatus.md
 docs/SystemTaskType.md
 docs/TelemetryApi.md
 docs/TelemetryEvent.md
@@ -307,7 +306,6 @@ printnanny_api_client/models/remote_control_command_request.py
 printnanny_api_client/models/software_enum.py
 printnanny_api_client/models/system_task.py
 printnanny_api_client/models/system_task_request.py
-printnanny_api_client/models/system_task_status.py
 printnanny_api_client/models/system_task_type.py
 printnanny_api_client/models/telemetry_event.py
 printnanny_api_client/models/telemetry_event_event_type_enum.py
@@ -465,7 +463,6 @@ test/test_schema_api.py
 test/test_software_enum.py
 test/test_system_task.py
 test/test_system_task_request.py
-test/test_system_task_status.py
 test/test_system_task_type.py
 test/test_telemetry_api.py
 test/test_telemetry_event.py
