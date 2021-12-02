@@ -5,11 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
-**msg** | **str** |  | [optional] 
-**wiki_url** | **str** |  | [optional] 
-**status** | [**SystemTaskStatus**](SystemTaskStatus.md) |  | [optional] 
-**type** | [**SystemTaskType**](SystemTaskType.md) |  | [optional] 
-**ansible_facts** | **dict(str, object)** |  | [optional] 
+**task_type** | [**SystemTaskType**](SystemTaskType.md) |  | [optional] 
 **created_dt** | **datetime** |  | [readonly] 
 **device** | **int** |  | 
 

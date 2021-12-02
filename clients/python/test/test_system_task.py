@@ -38,13 +38,7 @@ class TestSystemTask(unittest.TestCase):
         if include_optional :
             return SystemTask(
                 id = 56, 
-                msg = '', 
-                wiki_url = '', 
-                status = 'waiting', 
-                type = 'activate_license', 
-                ansible_facts = {
-                    'key' : null
-                    }, 
+                task_type = 'activate_license', 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 device = 56
             )

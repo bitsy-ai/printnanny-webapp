@@ -1,0 +1,28 @@
+{% load humanize %}
+<div class="card col-7">
+    <div class="card-body">
+        <h4>
+            <i class="mdi mdi-id-card"></i><strong> License Key</strong>
+        </h4>
+        <div class="alert alert-info col-12" role="alert">
+            <h4 class="alert-heading">Download printnanny_license.zip</h4>
+
+            <p>Click the <strong>Generate License</strong> button to begin
+            </p>
+        </div>
+        <p>
+            <a href="{% url 'devices:license' pk=device.id %}">
+                <button class="btn btn-primary" onClick="setTimeout(function () { console.log('reloading'); window.location.reload(true); }, 2000);">Generate License</button></a>
+
+            <a href="{% url 'devices:delete' pk=device.id %}"><button class="btn btn-danger float-right">Delete Device</button></a>
+        </p>
+    </div>
+    <div class="card-footer">
+        <p>
+            For your safety, <strong>do not share</strong> the contents of <code>printnanny_license.zip</code>. Print Nanny Staff will <span class="text-danger"><strong>never</strong></span> ask for your license keys!
+        </p> 
+        <p><a href="{{ help.ABOUT_DEVICE_PKI }}">Click here</a> to learn more about how your device is protected.
+        </p>
+    </div>
+    </div>
+</div>

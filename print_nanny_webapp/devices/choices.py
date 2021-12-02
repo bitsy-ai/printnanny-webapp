@@ -13,14 +13,14 @@ class PrinterSoftwareType(models.TextChoices):
     # MAINSAL = "Mainsail", "Mainsail printer controller"
 
 
-class SystemTaskStatus(models.TextChoices):
-    WAITING = "waiting", "Waiting for Pi to accept task"
+class SystemTaskStatusType(models.TextChoices):
+    REQUESTED = "requested", "Requested"
     STARTED = "started", "Running"
     FAILED = "failed", "Failed"  # TODO prompt to send crash report
     SUCCESS = "success", "Success"
 
     __css__ = dict(
-        WAITING="secondary",
+        REQUESTED="secondary",
         STARTED="warning",
         FAILED="danger",
         SUCCESS="success",
