@@ -40,7 +40,7 @@ class TestSystemTaskRequest(unittest.TestCase):
                 msg = '0', 
                 wiki_url = '0', 
                 status = 'waiting', 
-                type = 'verify_license', 
+                type = 'activate_license', 
                 ansible_facts = {
                     'key' : null
                     }, 

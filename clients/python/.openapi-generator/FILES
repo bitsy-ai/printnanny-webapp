@@ -83,6 +83,7 @@ docs/PaginatedDeviceList.md
 docs/PaginatedExperimentDeviceConfigList.md
 docs/PaginatedExperimentList.md
 docs/PaginatedGcodeFileList.md
+docs/PaginatedLicenseList.md
 docs/PaginatedModelArtifactList.md
 docs/PaginatedOctoPrintDeviceList.md
 docs/PaginatedOctoPrintEventList.md
@@ -248,6 +249,7 @@ printnanny_api_client/models/paginated_device_list.py
 printnanny_api_client/models/paginated_experiment_device_config_list.py
 printnanny_api_client/models/paginated_experiment_list.py
 printnanny_api_client/models/paginated_gcode_file_list.py
+printnanny_api_client/models/paginated_license_list.py
 printnanny_api_client/models/paginated_model_artifact_list.py
 printnanny_api_client/models/paginated_octo_print_device_list.py
 printnanny_api_client/models/paginated_octo_print_event_list.py
@@ -399,6 +401,7 @@ test/test_paginated_device_list.py
 test/test_paginated_experiment_device_config_list.py
 test/test_paginated_experiment_list.py
 test/test_paginated_gcode_file_list.py
+test/test_paginated_license_list.py
 test/test_paginated_model_artifact_list.py
 test/test_paginated_octo_print_device_list.py
 test/test_paginated_octo_print_event_list.py

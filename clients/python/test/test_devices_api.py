@@ -113,6 +113,12 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
+    def test_devices_generate_license_retrieve(self):
+        """Test case for devices_generate_license_retrieve
+
+        """
+        pass
+
     def test_devices_info_create(self):
         """Test case for devices_info_create
 
@@ -143,8 +149,14 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
-    def test_devices_license_retrieve(self):
-        """Test case for devices_license_retrieve
+    def test_devices_licenses_activate_update(self):
+        """Test case for devices_licenses_activate_update
+
+        """
+        pass
+
+    def test_devices_licenses_list(self):
+        """Test case for devices_licenses_list
 
         """
         pass

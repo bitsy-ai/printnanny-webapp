@@ -81,6 +81,7 @@ docs/PaginatedDeviceList.md
 docs/PaginatedExperimentDeviceConfigList.md
 docs/PaginatedExperimentList.md
 docs/PaginatedGcodeFileList.md
+docs/PaginatedLicenseList.md
 docs/PaginatedModelArtifactList.md
 docs/PaginatedOctoPrintDeviceList.md
 docs/PaginatedOctoPrintEventList.md
@@ -243,6 +244,7 @@ src/models/paginated_device_list.rs
 src/models/paginated_experiment_device_config_list.rs
 src/models/paginated_experiment_list.rs
 src/models/paginated_gcode_file_list.rs
+src/models/paginated_license_list.rs
 src/models/paginated_model_artifact_list.rs
 src/models/paginated_octo_print_device_list.rs
 src/models/paginated_octo_print_event_list.rs

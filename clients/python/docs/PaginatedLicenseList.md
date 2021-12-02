@@ -1,11 +1,13 @@
-# LicenseRequest
+# PaginatedLicenseList
+
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**activated** | Option<**bool**> |  | [optional]
-**device** | **i32** |  | 
+**count** | **int** |  | [optional] 
+**next** | **str** |  | [optional] 
+**previous** | **str** |  | [optional] 
+**results** | [**list[License]**](License.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

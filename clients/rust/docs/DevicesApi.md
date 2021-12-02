@@ -18,12 +18,14 @@ Method | HTTP request | Description
 [**devices_config_list**](DevicesApi.md#devices_config_list) | **GET** /api/devices/{device_id}/config/ | 
 [**devices_config_retrieve**](DevicesApi.md#devices_config_retrieve) | **GET** /api/devices/{device_id}/config/{id}/ | 
 [**devices_create**](DevicesApi.md#devices_create) | **POST** /api/devices/ | 
+[**devices_generate_license_retrieve**](DevicesApi.md#devices_generate_license_retrieve) | **GET** /api/devices/{id}/generate-license/ | 
 [**devices_info_create**](DevicesApi.md#devices_info_create) | **POST** /api/devices/{device_id}/info/ | 
 [**devices_info_list**](DevicesApi.md#devices_info_list) | **GET** /api/devices/{device_id}/info/ | 
 [**devices_info_partial_update**](DevicesApi.md#devices_info_partial_update) | **PATCH** /api/devices/{device_id}/info/{id}/ | 
 [**devices_info_retrieve**](DevicesApi.md#devices_info_retrieve) | **GET** /api/devices/{device_id}/info/{id}/ | 
 [**devices_info_update**](DevicesApi.md#devices_info_update) | **PUT** /api/devices/{device_id}/info/{id}/ | 
-[**devices_license_retrieve**](DevicesApi.md#devices_license_retrieve) | **GET** /api/devices/{id}/license/ | 
+[**devices_licenses_activate_update**](DevicesApi.md#devices_licenses_activate_update) | **PUT** /api/devices/{device_id}/licenses/{id}/activate/ | 
+[**devices_licenses_list**](DevicesApi.md#devices_licenses_list) | **GET** /api/devices/{device_id}/licenses/ | 
 [**devices_list**](DevicesApi.md#devices_list) | **GET** /api/devices/ | 
 [**devices_partial_update**](DevicesApi.md#devices_partial_update) | **PATCH** /api/devices/{id}/ | 
 [**devices_printer_controllers_create**](DevicesApi.md#devices_printer_controllers_create) | **POST** /api/devices/{device_id}/printer-controllers/ | 
@@ -451,6 +453,36 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## devices_generate_license_retrieve
+
+> crate::models::Device devices_generate_license_retrieve(id)
+
+
+All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **i32** | A unique integer value identifying this device. | [required] |
+
+### Return type
+
+[**crate::models::Device**](Device.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## devices_info_create
 
 > crate::models::DeviceInfo devices_info_create(device_id, device_info_request)
@@ -598,9 +630,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## devices_license_retrieve
+## devices_licenses_activate_update
 
-> crate::models::Device devices_license_retrieve(id)
+> crate::models::License devices_licenses_activate_update(device_id, id, license_request)
 
 
 All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
@@ -610,11 +642,44 @@ All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **i32** | A unique integer value identifying this device. | [required] |
+**device_id** | **i32** |  | [required] |
+**id** | **i32** | A unique integer value identifying this license. | [required] |
+**license_request** | [**LicenseRequest**](LicenseRequest.md) |  | [required] |
 
 ### Return type
 
-[**crate::models::Device**](Device.md)
+[**crate::models::License**](License.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## devices_licenses_list
+
+> crate::models::PaginatedLicenseList devices_licenses_list(device_id, page)
+
+
+All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_id** | **i32** |  | [required] |
+**page** | Option<**i32**> | A page number within the paginated result set. |  |
+
+### Return type
+
+[**crate::models::PaginatedLicenseList**](PaginatedLicenseList.md)
 
 ### Authorization
 

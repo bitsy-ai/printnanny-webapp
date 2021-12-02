@@ -11,25 +11,17 @@
             {% if devices.count > 0 %}
             <table class="table table-centered mb-4 mt-4" id="dashboard-raspberry-pis">
               <p>In the table below, click/tap <strong class="text-primary"><i class="mdi mdi-open-in-new"></i> highlighted links</strong> or 
-                <span class="badge badge-primary"> <i class="mdi mdi-information"></i> status</span> to see more detail.</p>
+                <span class="badge badge-primary"> <i class="mdi mdi-information"></i></span> to see more information.</p>
               <thead>
                   <tr>
                       <th>Hostname</th>
                       <!-- <th>Monitoring Active</th> -->
-                      <th>Current Task</th>
-
-                      <th>Task Status </th>
+                      <th>Status</th>
                       <!-- <th>Job Status</th> -->
         
                       <!-- <th>File</th>
                       <th>Progress</th> -->
-<!-- 
-                      <th>Remote Control</th>
-                      <th>Metadata</th> -->
-
-                      <th>Download License</th>  
-                      <th>Delete Device</th>  
-
+                      <th>Livestream</th>
                   </tr>
               </thead>
               <tbody>
@@ -43,41 +35,27 @@
                         </div>
                     </td> -->
                     <!-- <td><i class="mdi mdi-circle {{device.monitoring_active_css_class}}"></i> {{device.monitoring_active}}</td> -->
-                    <td>{{ device.last_system_task.get_type_display }}</td>
+                <td>
+                    <a 
+                    data-toggle="popover" 
+                    data-placement="right" 
+                    title="Task: {{ device.last_system_task.get_type_display }}" 
+                    {% if device.last_system_task.wiki_url %}
+                    data-content="{{ device.last_system_task.msg }} <br><a target='_blank' href='{{ device.last_system_task.wiki_url }}'>Get more info</a>"
+                    {% else %} 
+                    data-content="{{ device.last_system_task.get_status_display }} <br> <a href='{% url 'devices:detail' pk=device.id %}'>See device details</a>" 
+                    {% endif %}
+                    data-html="true"
+                    class="badge badge-{{ device.last_system_task.status_css_class }}"
+                    >
+                    <i class="mdi mdi-information"></i>
+                    {{ device.last_system_task.get_type_display }}
 
-                    <td>
-                        <a 
-                          data-toggle="popover" 
-                          data-placement="left" 
-                          title="{{ device.last_system_task.get_type_display }} {{ device.last_system_task.get_status_display }}" 
-                          {% if device.last_system_task.wiki_url %}
-                          data-content="{{ device.last_system_task.msg }} <br><a target='_blank' href='{{ device.last_system_task.wiki_url }}'>Click for more info</a>"
-                          {% else %} 
-                          data-content="{% url 'devices:detail' pk=device.id %}" 
-                          {% endif %}
-                          data-html="true"
-                          >
-                          <span class="badge badge-{{ device.last_system_task.status_css_class }}">
-                            {% if device.last_system_task.msg %}
-                              <i class="mdi mdi-information"></i>
-                            {% endif %}
-                            {{ device.last_system_task.get_status_display }}     
-                          </span>
-                        </a>
-                    </td>
-                    <!-- <td><i class="mdi mdi-circle {{device.print_job_status_css_class}}"></i> {{device.print_job_status}}</td> -->
-
-                    <!-- <td>{{device.active_session.octoprint_job.file.name}}</td>
-                    <td>{%if device.active_session.print_progress %}{{device.active_session.print_progress}}% {% endif %}</td>
- -->
-
-                    <!-- <td><a href="{% url 'devices:detail' pk=device.id %}"><button class="btn btn-primary">Manage Device</button></a></td> -->
-
-
-                    <td><a href="{% url 'devices:license' pk=device.id %}" target="_blank"><button class="btn btn-primary">Download License</button></a></td>
-                    <td><a href="{% url 'devices:delete' pk=device.id %}"><button class="btn btn-danger">Delete</button></a></td>
-
-
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'devices:license' pk=device.id %}" target="_blank"><button class="btn btn-primary">View Livestream</button></a>
+                </td>
                 </tr>
               {% endfor %}
   

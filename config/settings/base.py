@@ -567,7 +567,7 @@ INSTALLED_APPS += [
 
 HELP_OCTOPRINT_PLUGIN_SETUP = "https://help.print-nanny.com/octoprint-plugin-setup/"
 HELP_PRINTNANNY_OS_SETUP = "https://help.print-nanny.com/how-to-setup-printnanny-os/"
-
+HELP_WIKI_URL = "https://www.notion.so/bitsy-ai/Print-Nanny-Guides-Support-ac1079fafc944d769aa21cf8bffe4692"
 
 # dj-stripe
 # ------------------------------------------------------------------------------

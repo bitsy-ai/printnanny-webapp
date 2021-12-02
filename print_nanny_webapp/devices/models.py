@@ -99,18 +99,6 @@ class Device(SafeDeleteModel):
         return self.cloudiot_devices.first()
 
 
-# method for updating
-@receiver(post_save, sender=Device, dispatch_uid="create_device")
-def create_verify_license_device_action(sender, instance, created, **kwargs):
-    if created:
-        action = SystemTask.objects.create(
-            status=SystemTaskStatus.WAITING,
-            type=SystemTaskType.VERIFY_LICENSE,
-            device=instance,
-        )
-        logger.info(f"Created {instance} and VERIFY_LICENSE action {action}")
-
-
 class License(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
 
@@ -118,11 +106,12 @@ class License(SafeDeleteModel):
         constraints = [
             UniqueConstraint(
                 fields=["device"],
-                condition=models.Q(deleted=None),
-                name="unique_license_per_device",
+                condition=models.Q(deleted=None, activated=True),
+                name="unique_activated_license_per_device",
             )
         ]
 
+    activated = models.BooleanField(default=False)
     public_key = models.TextField()
     public_key_checksum = models.CharField(max_length=255)
     fingerprint = models.CharField(max_length=255)
@@ -131,6 +120,18 @@ class License(SafeDeleteModel):
     device = models.ForeignKey(
         Device, on_delete=models.CASCADE, related_name="licenses"
     )
+
+
+# method for updating
+@receiver(post_save, sender=Device, dispatch_uid="create_license")
+def create_license_activate_system_task(sender, instance, created, **kwargs):
+    if created:
+        action = SystemTask.objects.create(
+            status=SystemTaskStatus.WAITING,
+            type=SystemTaskType.ACTIVATE_LICENSE,
+            device=instance,
+        )
+        logger.info(f"Created {instance} and ACTIVATE_LICENSE action {action}")
 
 
 class DeviceInfo(SafeDeleteModel):

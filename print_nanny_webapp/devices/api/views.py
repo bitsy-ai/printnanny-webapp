@@ -19,6 +19,7 @@ from rest_framework.viewsets import GenericViewSet
 from .serializers import (
     DeviceInfoSerializer,
     DeviceConfigSerializer,
+    LicenseSerializer,
     SystemTaskSerializer,
     DeviceSerializer,
     CameraSerializer,
@@ -28,6 +29,7 @@ from .serializers import (
 from ..models import (
     DeviceInfo,
     DeviceConfig,
+    License,
     SystemTask,
     Device,
     Camera,
@@ -102,6 +104,51 @@ class SystemTaskViewSet(
 
 
 ##
+# License
+##
+list_licenses_schema = extend_schema(
+    responses={
+        "default": ErrorDetailSerializer,
+        200: LicenseSerializer(many=True),
+    },
+)
+modify_licenses_schema = extend_schema(
+    request=DeviceSerializer,
+    responses={
+        "default": ErrorDetailSerializer,
+        202: DeviceSerializer,
+    },
+)
+
+
+@extend_schema_view(
+    list=list_licenses_schema,
+    update=modify_licenses_schema,
+    tags=["devices"],
+)
+class LicenseViewSet(
+    GenericViewSet,
+    ListModelMixin,
+):
+    """
+    All-in-one Print Nanny installation
+    via print-nanny-main-<platform>-<cpu>.img
+    """
+
+    serializer_class = LicenseSerializer
+    queryset = License.objects.all()
+    lookup_field = "id"
+
+    @action(detail=True, methods=["PUT"], url_path="activate")
+    def activate(self, request: Request, *args: Any, **kwargs: Any) -> Response:
+        license = License.objects.get(pk=kwargs["id"])
+        license.activated = True
+        license.save()
+        response_serializer = self.get_serializer(license)
+        return Response(response_serializer.data, status=status.HTTP_202_ACCEPTED)
+
+
+##
 # Device (by id)
 ##
 list_devices_schema = extend_schema(
@@ -153,8 +200,8 @@ class DeviceViewSet(
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-    @action(detail=True, methods=["GET"])
-    def license(self, request: Request, *args: Any, **kwargs: Any) -> Response:
+    @action(detail=True, methods=["GET"], url_path="generate-license")
+    def generate_license(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         device = Device.objects.get(pk=kwargs["id"])
         return generate_zipped_license_response(device, request)
 

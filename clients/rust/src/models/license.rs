@@ -19,6 +19,8 @@ pub struct License {
     pub credentials: Option<Box<crate::models::LicenseCredentials>>,
     #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
     pub deleted: Option<String>,
+    #[serde(rename = "activated", skip_serializing_if = "Option::is_none")]
+    pub activated: Option<bool>,
     #[serde(rename = "public_key", skip_serializing_if = "Option::is_none")]
     pub public_key: Option<String>,
     #[serde(rename = "public_key_checksum", skip_serializing_if = "Option::is_none")]
@@ -37,6 +39,7 @@ impl License {
             id: None,
             credentials: None,
             deleted: None,
+            activated: None,
             public_key: None,
             public_key_checksum: None,
             fingerprint: None,
