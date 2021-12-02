@@ -90,24 +90,15 @@ class CloudiotDevice(object):
         self.discriminator = None
 
         self.num_id = num_id
-        if desired_config_topic is not None:
-            self.desired_config_topic = desired_config_topic
-        if current_state_topic is not None:
-            self.current_state_topic = current_state_topic
-        if gcp_project_id is not None:
-            self.gcp_project_id = gcp_project_id
-        if gcp_region is not None:
-            self.gcp_region = gcp_region
-        if gcp_cloudiot_device_registry is not None:
-            self.gcp_cloudiot_device_registry = gcp_cloudiot_device_registry
-        if mqtt_bridge_hostname is not None:
-            self.mqtt_bridge_hostname = mqtt_bridge_hostname
-        if mqtt_bridge_port is not None:
-            self.mqtt_bridge_port = mqtt_bridge_port
-        if mqtt_client_id is not None:
-            self.mqtt_client_id = mqtt_client_id
-        if deleted is not None:
-            self.deleted = deleted
+        self.desired_config_topic = desired_config_topic
+        self.current_state_topic = current_state_topic
+        self.gcp_project_id = gcp_project_id
+        self.gcp_region = gcp_region
+        self.gcp_cloudiot_device_registry = gcp_cloudiot_device_registry
+        self.mqtt_bridge_hostname = mqtt_bridge_hostname
+        self.mqtt_bridge_port = mqtt_bridge_port
+        self.mqtt_client_id = mqtt_client_id
+        self.deleted = deleted
         self.name = name
         self.id = id
         self.device = device
@@ -159,6 +150,8 @@ class CloudiotDevice(object):
         :param desired_config_topic: The desired_config_topic of this CloudiotDevice.  # noqa: E501
         :type desired_config_topic: str
         """
+        if self.local_vars_configuration.client_side_validation and desired_config_topic is None:  # noqa: E501
+            raise ValueError("Invalid value for `desired_config_topic`, must not be `None`")  # noqa: E501
 
         self._desired_config_topic = desired_config_topic
 
@@ -180,6 +173,8 @@ class CloudiotDevice(object):
         :param current_state_topic: The current_state_topic of this CloudiotDevice.  # noqa: E501
         :type current_state_topic: str
         """
+        if self.local_vars_configuration.client_side_validation and current_state_topic is None:  # noqa: E501
+            raise ValueError("Invalid value for `current_state_topic`, must not be `None`")  # noqa: E501
 
         self._current_state_topic = current_state_topic
 
@@ -201,6 +196,8 @@ class CloudiotDevice(object):
         :param gcp_project_id: The gcp_project_id of this CloudiotDevice.  # noqa: E501
         :type gcp_project_id: str
         """
+        if self.local_vars_configuration.client_side_validation and gcp_project_id is None:  # noqa: E501
+            raise ValueError("Invalid value for `gcp_project_id`, must not be `None`")  # noqa: E501
 
         self._gcp_project_id = gcp_project_id
 
@@ -222,6 +219,8 @@ class CloudiotDevice(object):
         :param gcp_region: The gcp_region of this CloudiotDevice.  # noqa: E501
         :type gcp_region: str
         """
+        if self.local_vars_configuration.client_side_validation and gcp_region is None:  # noqa: E501
+            raise ValueError("Invalid value for `gcp_region`, must not be `None`")  # noqa: E501
 
         self._gcp_region = gcp_region
 
@@ -243,6 +242,8 @@ class CloudiotDevice(object):
         :param gcp_cloudiot_device_registry: The gcp_cloudiot_device_registry of this CloudiotDevice.  # noqa: E501
         :type gcp_cloudiot_device_registry: str
         """
+        if self.local_vars_configuration.client_side_validation and gcp_cloudiot_device_registry is None:  # noqa: E501
+            raise ValueError("Invalid value for `gcp_cloudiot_device_registry`, must not be `None`")  # noqa: E501
 
         self._gcp_cloudiot_device_registry = gcp_cloudiot_device_registry
 
@@ -264,6 +265,8 @@ class CloudiotDevice(object):
         :param mqtt_bridge_hostname: The mqtt_bridge_hostname of this CloudiotDevice.  # noqa: E501
         :type mqtt_bridge_hostname: str
         """
+        if self.local_vars_configuration.client_side_validation and mqtt_bridge_hostname is None:  # noqa: E501
+            raise ValueError("Invalid value for `mqtt_bridge_hostname`, must not be `None`")  # noqa: E501
 
         self._mqtt_bridge_hostname = mqtt_bridge_hostname
 
@@ -285,6 +288,8 @@ class CloudiotDevice(object):
         :param mqtt_bridge_port: The mqtt_bridge_port of this CloudiotDevice.  # noqa: E501
         :type mqtt_bridge_port: int
         """
+        if self.local_vars_configuration.client_side_validation and mqtt_bridge_port is None:  # noqa: E501
+            raise ValueError("Invalid value for `mqtt_bridge_port`, must not be `None`")  # noqa: E501
 
         self._mqtt_bridge_port = mqtt_bridge_port
 
@@ -306,6 +311,8 @@ class CloudiotDevice(object):
         :param mqtt_client_id: The mqtt_client_id of this CloudiotDevice.  # noqa: E501
         :type mqtt_client_id: str
         """
+        if self.local_vars_configuration.client_side_validation and mqtt_client_id is None:  # noqa: E501
+            raise ValueError("Invalid value for `mqtt_client_id`, must not be `None`")  # noqa: E501
 
         self._mqtt_client_id = mqtt_client_id
 
@@ -327,6 +334,8 @@ class CloudiotDevice(object):
         :param deleted: The deleted of this CloudiotDevice.  # noqa: E501
         :type deleted: datetime
         """
+        if self.local_vars_configuration.client_side_validation and deleted is None:  # noqa: E501
+            raise ValueError("Invalid value for `deleted`, must not be `None`")  # noqa: E501
 
         self._deleted = deleted
 

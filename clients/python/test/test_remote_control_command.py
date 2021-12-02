@@ -55,8 +55,12 @@ class TestRemoteControlCommand(unittest.TestCase):
             )
         else :
             return RemoteControlCommand(
+                id = 56,
+                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 user = 56,
                 device = 56,
+                url = '',
+                octoprint_event_type = '',
         )
 
     def testRemoteControlCommand(self):

@@ -44,6 +44,8 @@ class TestUser(unittest.TestCase):
         else :
             return User(
                 email = '',
+                url = '',
+                id = 56,
         )
 
     def testUser(self):

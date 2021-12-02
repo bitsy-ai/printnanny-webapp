@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [optional] [readonly] 
-**user** | **int** |  | [optional] [readonly] 
+**id** | **int** |  | [readonly] 
+**user** | **int** |  | [readonly] 
 **octoprint_device** | **int** |  | 
 **axes_e_inverted** | **bool** |  | [optional] 
 **axes_e_speed** | **int** |  | [optional] 
@@ -29,7 +29,7 @@ Name | Type | Description | Notes
 **volume_height** | **float** |  | [optional] 
 **volume_origin** | **str** |  | [optional] 
 **volume_width** | **float** |  | [optional] 
-**url** | **str** |  | [optional] [readonly] 
+**url** | **str** |  | [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

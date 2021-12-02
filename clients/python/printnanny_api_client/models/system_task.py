@@ -77,10 +77,8 @@ class SystemTask(object):
         self._device = None
         self.discriminator = None
 
-        if id is not None:
-            self.id = id
-        if deleted is not None:
-            self.deleted = deleted
+        self.id = id
+        self.deleted = deleted
         self.msg = msg
         self.wiki_url = wiki_url
         if status is not None:
@@ -89,8 +87,7 @@ class SystemTask(object):
             self.type = type
         if ansible_facts is not None:
             self.ansible_facts = ansible_facts
-        if created_dt is not None:
-            self.created_dt = created_dt
+        self.created_dt = created_dt
         self.device = device
 
     @property
@@ -111,6 +108,8 @@ class SystemTask(object):
         :param id: The id of this SystemTask.  # noqa: E501
         :type id: int
         """
+        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -132,6 +131,8 @@ class SystemTask(object):
         :param deleted: The deleted of this SystemTask.  # noqa: E501
         :type deleted: datetime
         """
+        if self.local_vars_configuration.client_side_validation and deleted is None:  # noqa: E501
+            raise ValueError("Invalid value for `deleted`, must not be `None`")  # noqa: E501
 
         self._deleted = deleted
 
@@ -264,6 +265,8 @@ class SystemTask(object):
         :param created_dt: The created_dt of this SystemTask.  # noqa: E501
         :type created_dt: datetime
         """
+        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
 
         self._created_dt = created_dt
 

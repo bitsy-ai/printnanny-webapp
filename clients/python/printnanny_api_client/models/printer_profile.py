@@ -128,10 +128,8 @@ class PrinterProfile(object):
         self._url = None
         self.discriminator = None
 
-        if id is not None:
-            self.id = id
-        if user is not None:
-            self.user = user
+        self.id = id
+        self.user = user
         self.octoprint_device = octoprint_device
         self.axes_e_inverted = axes_e_inverted
         self.axes_e_speed = axes_e_speed
@@ -156,8 +154,7 @@ class PrinterProfile(object):
         self.volume_height = volume_height
         self.volume_origin = volume_origin
         self.volume_width = volume_width
-        if url is not None:
-            self.url = url
+        self.url = url
 
     @property
     def id(self):
@@ -177,6 +174,8 @@ class PrinterProfile(object):
         :param id: The id of this PrinterProfile.  # noqa: E501
         :type id: int
         """
+        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -198,6 +197,8 @@ class PrinterProfile(object):
         :param user: The user of this PrinterProfile.  # noqa: E501
         :type user: int
         """
+        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
+            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
 
         self._user = user
 
@@ -753,6 +754,8 @@ class PrinterProfile(object):
         :param url: The url of this PrinterProfile.  # noqa: E501
         :type url: str
         """
+        if self.local_vars_configuration.client_side_validation and url is None:  # noqa: E501
+            raise ValueError("Invalid value for `url`, must not be `None`")  # noqa: E501
 
         self._url = url
 
