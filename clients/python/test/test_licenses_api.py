@@ -29,8 +29,8 @@ class TestLicensesApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_licenses_activate_create(self):
-        """Test case for licenses_activate_create
+    def test_license_activate(self):
+        """Test case for license_activate
 
         """
         pass
