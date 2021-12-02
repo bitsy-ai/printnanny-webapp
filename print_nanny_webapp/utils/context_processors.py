@@ -10,6 +10,7 @@ def help_context(_request):
     return {
         "HELP_WIKI_URL": settings.HELP_WIKI_URL,
         "HELP_ACTIVATE_LICENSE": "https://www.notion.so/bitsy-ai/License-Activation-Failed-99bb98ebc01546979717da214d2198c8",
+        "ABOUT_DEVICE_PKI": "https://www.notion.so/bitsy-ai/Securing-IoT-Devices-with-PKI-f9e728fb1e734e6d95efb930d9f23620",
     }
 
 

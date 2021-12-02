@@ -4,18 +4,16 @@ from django.conf import settings
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.db.models import UniqueConstraint
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 from django.urls import reverse
 from polymorphic.models import PolymorphicModel
-from safedelete.models import SafeDeleteModel, SafeDeleteManager, SOFT_DELETE
+from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.signals import pre_softdelete
 
 from .choices import (
     SystemTaskType,
     DeviceReleaseChannel,
     PrinterSoftwareType,
-    SystemTaskStatus,
+    SystemTaskStatusType,
 )
 
 UserModel = get_user_model()
@@ -120,18 +118,6 @@ class License(SafeDeleteModel):
     device = models.ForeignKey(
         Device, on_delete=models.CASCADE, related_name="licenses"
     )
-
-
-# method for updating
-@receiver(post_save, sender=Device, dispatch_uid="create_license")
-def create_license_activate_system_task(sender, instance, created, **kwargs):
-    if created:
-        action = SystemTask.objects.create(
-            status=SystemTaskStatus.WAITING,
-            type=SystemTaskType.ACTIVATE_LICENSE,
-            device=instance,
-        )
-        logger.info(f"Created {instance} and ACTIVATE_LICENSE action {action}")
 
 
 class DeviceInfo(SafeDeleteModel):
@@ -288,14 +274,14 @@ class DeviceConfig(SafeDeleteModel):
 
 
 class HelpLink(models.Model):
-    msg = models.CharField(max_length=1024, null=True)
+    detail = models.CharField(max_length=1024, null=True)
     wiki_url = models.CharField(max_length=1024, null=True)
 
     class Meta:
         abstract = True
 
 
-class SystemTask(HelpLink, SafeDeleteModel):
+class SystemTask(SafeDeleteModel):
     """
     Append-only log published to /devices/:id/state FROM device
     Indicates current state of device
@@ -304,17 +290,13 @@ class SystemTask(HelpLink, SafeDeleteModel):
     https://cloud.google.com/iot/docs/concepts/devices#changing_device_behavior_or_state_using_configuration_data
     """
 
+    _safedelete_policy = SOFT_DELETE
+
     class Meta:
         ordering = ["-created_dt"]
-        index_together = [["device", "type", "status"]]
+        index_together = [["device", "task_type"]]
 
-    _safedelete_policy = SOFT_DELETE
-    status = models.CharField(
-        max_length=16,
-        choices=SystemTaskStatus.choices,
-        default=SystemTaskStatus.WAITING,
-    )
-    type = models.CharField(
+    task_type = models.CharField(
         max_length=255,
         choices=SystemTaskType.choices,
         default=SystemTaskType.SOFTWARE_UPDATE,
@@ -323,12 +305,33 @@ class SystemTask(HelpLink, SafeDeleteModel):
     device = models.ForeignKey(
         Device, on_delete=models.CASCADE, db_index=True, related_name="system_tasks"
     )
-    ansible_facts = models.JSONField(default=dict())
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
 
     @property
-    def status_css_class(self):
-        return SystemTaskStatus.get_css_class(self.status)
+    def last_status(self):
+        return self.status_set.first()
+
+
+class SystemTaskStatus(HelpLink, SafeDeleteModel):
+    class Meta:
+        ordering = ["-created_dt"]
+        index_together = [["system_task", "status"]]
+
+    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
+
+    system_task = models.ForeignKey(
+        SystemTask, on_delete=models.CASCADE, related_name="status_set"
+    )
+
+    status = models.CharField(
+        max_length=16,
+        choices=SystemTaskStatusType.choices,
+        default=SystemTaskStatusType.REQUESTED,
+    )
+
+    @property
+    def css_class(self):
+        return SystemTaskStatusType.get_css_class(self.status)
 
 
 class Camera(SafeDeleteModel):
