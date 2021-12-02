@@ -40,6 +40,7 @@ class License(object):
         'id': 'int',
         'credentials': 'LicenseCredentials',
         'deleted': 'datetime',
+        'activated': 'bool',
         'public_key': 'str',
         'public_key_checksum': 'str',
         'fingerprint': 'str',
@@ -51,6 +52,7 @@ class License(object):
         'id': 'id',
         'credentials': 'credentials',
         'deleted': 'deleted',
+        'activated': 'activated',
         'public_key': 'public_key',
         'public_key_checksum': 'public_key_checksum',
         'fingerprint': 'fingerprint',
@@ -58,7 +60,7 @@ class License(object):
         'device': 'device'
     }
 
-    def __init__(self, id=None, credentials=None, deleted=None, public_key=None, public_key_checksum=None, fingerprint=None, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, credentials=None, deleted=None, activated=None, public_key=None, public_key_checksum=None, fingerprint=None, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
         """License - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -67,6 +69,7 @@ class License(object):
         self._id = None
         self._credentials = None
         self._deleted = None
+        self._activated = None
         self._public_key = None
         self._public_key_checksum = None
         self._fingerprint = None
@@ -80,6 +83,8 @@ class License(object):
             self.credentials = credentials
         if deleted is not None:
             self.deleted = deleted
+        if activated is not None:
+            self.activated = activated
         if public_key is not None:
             self.public_key = public_key
         if public_key_checksum is not None:
@@ -152,6 +157,27 @@ class License(object):
         """
 
         self._deleted = deleted
+
+    @property
+    def activated(self):
+        """Gets the activated of this License.  # noqa: E501
+
+
+        :return: The activated of this License.  # noqa: E501
+        :rtype: bool
+        """
+        return self._activated
+
+    @activated.setter
+    def activated(self, activated):
+        """Sets the activated of this License.
+
+
+        :param activated: The activated of this License.  # noqa: E501
+        :type activated: bool
+        """
+
+        self._activated = activated
 
     @property
     def public_key(self):

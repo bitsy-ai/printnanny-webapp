@@ -37,23 +37,49 @@ class LicenseRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
+        'activated': 'bool',
         'device': 'int'
     }
 
     attribute_map = {
+        'activated': 'activated',
         'device': 'device'
     }
 
-    def __init__(self, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, activated=None, device=None, local_vars_configuration=None):  # noqa: E501
         """LicenseRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
+        self._activated = None
         self._device = None
         self.discriminator = None
 
+        if activated is not None:
+            self.activated = activated
         self.device = device
+
+    @property
+    def activated(self):
+        """Gets the activated of this LicenseRequest.  # noqa: E501
+
+
+        :return: The activated of this LicenseRequest.  # noqa: E501
+        :rtype: bool
+        """
+        return self._activated
+
+    @activated.setter
+    def activated(self, activated):
+        """Sets the activated of this LicenseRequest.
+
+
+        :param activated: The activated of this LicenseRequest.  # noqa: E501
+        :type activated: bool
+        """
+
+        self._activated = activated
 
     @property
     def device(self):

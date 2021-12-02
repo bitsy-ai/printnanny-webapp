@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **id** | Option<**i32**> |  | [optional][readonly]
 **credentials** | Option<[**crate::models::LicenseCredentials**](License_credentials.md)> |  | [optional]
 **deleted** | Option<**String**> |  | [optional][readonly]
+**activated** | Option<**bool**> |  | [optional]
 **public_key** | Option<**String**> |  | [optional][readonly]
 **public_key_checksum** | Option<**String**> |  | [optional][readonly]
 **fingerprint** | Option<**String**> |  | [optional][readonly]
