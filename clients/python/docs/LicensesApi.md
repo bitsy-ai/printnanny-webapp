@@ -4,12 +4,12 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**licenses_activate_create**](LicensesApi.md#licenses_activate_create) | **POST** /api/licenses/{id}/activate/ | 
+[**license_activate**](LicensesApi.md#license_activate) | **POST** /api/licenses/{id}/activate/ | 
 [**licenses_list**](LicensesApi.md#licenses_list) | **GET** /api/licenses/ | 
 
 
-# **licenses_activate_create**
-> License licenses_activate_create(id, license_request=license_request)
+# **license_activate**
+> License license_activate(id, license_request=license_request)
 
 
 
@@ -54,10 +54,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 license_request = printnanny_api_client.LicenseRequest() # LicenseRequest |  (optional)
 
     try:
-        api_response = api_instance.licenses_activate_create(id, license_request=license_request)
+        api_response = api_instance.license_activate(id, license_request=license_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling LicensesApi->licenses_activate_create: %s\n" % e)
+        print("Exception when calling LicensesApi->license_activate: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -97,10 +97,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 license_request = printnanny_api_client.LicenseRequest() # LicenseRequest |  (optional)
 
     try:
-        api_response = api_instance.licenses_activate_create(id, license_request=license_request)
+        api_response = api_instance.license_activate(id, license_request=license_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling LicensesApi->licenses_activate_create: %s\n" % e)
+        print("Exception when calling LicensesApi->license_activate: %s\n" % e)
 ```
 
 ### Parameters
@@ -126,7 +126,8 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
+**202** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -15,10 +15,11 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method [`licenses_activate_create`]
+/// struct for typed errors of method [`license_activate`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum LicensesActivateCreateError {
+pub enum LicenseActivateError {
+    DefaultResponse(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -32,7 +33,7 @@ pub enum LicensesListError {
 
 
 /// All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-pub async fn licenses_activate_create(configuration: &configuration::Configuration, id: i32, license_request: Option<crate::models::LicenseRequest>) -> Result<crate::models::License, Error<LicensesActivateCreateError>> {
+pub async fn license_activate(configuration: &configuration::Configuration, id: i32, license_request: Option<crate::models::LicenseRequest>) -> Result<crate::models::License, Error<LicenseActivateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -57,7 +58,7 @@ pub async fn licenses_activate_create(configuration: &configuration::Configurati
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<LicensesActivateCreateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<LicenseActivateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
