@@ -149,6 +149,18 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
+    def test_devices_licenses_activate_update(self):
+        """Test case for devices_licenses_activate_update
+
+        """
+        pass
+
+    def test_devices_licenses_list(self):
+        """Test case for devices_licenses_list
+
+        """
+        pass
+
     def test_devices_list(self):
         """Test case for devices_list
 

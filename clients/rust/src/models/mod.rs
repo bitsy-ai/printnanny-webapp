@@ -146,6 +146,8 @@ pub mod paginated_experiment_list;
 pub use self::paginated_experiment_list::PaginatedExperimentList;
 pub mod paginated_gcode_file_list;
 pub use self::paginated_gcode_file_list::PaginatedGcodeFileList;
+pub mod paginated_license_list;
+pub use self::paginated_license_list::PaginatedLicenseList;
 pub mod paginated_model_artifact_list;
 pub use self::paginated_model_artifact_list::PaginatedModelArtifactList;
 pub mod paginated_octo_print_device_list;

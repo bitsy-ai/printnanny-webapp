@@ -15,7 +15,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.18.0"
+__version__ = "0.18.1"
 
 # import apis into sdk package
 from printnanny_api_client.api.alerts_api import AlertsApi
@@ -115,6 +115,7 @@ from printnanny_api_client.models.paginated_device_list import PaginatedDeviceLi
 from printnanny_api_client.models.paginated_experiment_device_config_list import PaginatedExperimentDeviceConfigList
 from printnanny_api_client.models.paginated_experiment_list import PaginatedExperimentList
 from printnanny_api_client.models.paginated_gcode_file_list import PaginatedGcodeFileList
+from printnanny_api_client.models.paginated_license_list import PaginatedLicenseList
 from printnanny_api_client.models.paginated_model_artifact_list import PaginatedModelArtifactList
 from printnanny_api_client.models.paginated_octo_print_device_list import PaginatedOctoPrintDeviceList
 from printnanny_api_client.models.paginated_octo_print_event_list import PaginatedOctoPrintEventList
