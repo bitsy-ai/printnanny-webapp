@@ -1,0 +1,32 @@
+{% load static %}
+
+<div class="card">
+    <div class="card-body">
+        <h2 class="header-title"><i class="mdi mdi-printer-3d"></i>
+            <i class="mdi mdi-video-box-off"></i>Camera Livestream</h2>
+        <img style="max-height: 320px" class="img-fluid" src="{% static 'images/sleep.svg' %}" alt="Print Nanny monitoring is offline">
+        <div class="alert alert-info col-12 text-center mt-2" role="alert">
+            <p>{{object.name}} Monitoring is offline</p>
+        </div>
+
+    </div>
+</div>
+<script>
+    const loading = document.querySelector('#stream-loading-{{object.id}}');
+  
+    const video = document.querySelector('#stream-{{object.id}}');
+    
+    const WS_URL = "{{ WS_BASE_URL }}/{{object.id}}/video/upload/";
+    const ws = new WebSocket(WS_URL);
+  
+    ws.onmessage = (msg) => {
+      console.log(msg)
+
+      video.src = "data:image/jpeg;base64," + msg.data
+      loading.style.display = 'none';
+    }
+    ws.onopen = () => {
+      console.log(`Connected to ${WS_URL}`);
+      ws.send('{"event_type": "video_subscribe"}')
+    }
+</script>

@@ -6,6 +6,13 @@ from djstripe.settings import STRIPE_PUBLIC_KEY
 from django.utils import timezone
 
 
+def help_context(_request):
+    return {
+        "HELP_WIKI_URL": settings.HELP_WIKI_URL,
+        "HELP_ACTIVATE_LICENSE": "https://www.notion.so/bitsy-ai/License-Activation-Failed-99bb98ebc01546979717da214d2198c8",
+    }
+
+
 def settings_context(_request):
     """Settings available by default to the templates context."""
     # Note: we intentionally do NOT expose the entire settings

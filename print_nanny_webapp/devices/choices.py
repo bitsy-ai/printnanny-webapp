@@ -14,7 +14,7 @@ class PrinterSoftwareType(models.TextChoices):
 
 
 class SystemTaskStatus(models.TextChoices):
-    WAITING = "waiting", "Waiting for Pi to acknowledge task"
+    WAITING = "waiting", "Waiting for Pi to accept task"
     STARTED = "started", "Running"
     FAILED = "failed", "Failed"  # TODO prompt to send crash report
     SUCCESS = "success", "Success"
@@ -32,8 +32,8 @@ class SystemTaskStatus(models.TextChoices):
 
 
 class SystemTaskType(models.TextChoices):
-    ACTIVATE_LICENSE = "activate_license", "Activate License"
+    ACTIVATE_LICENSE = "activate_license", "License Activation"
     SOFTWARE_UPDATE = (
         "software_update",
-        "Software Update",
+        "Software Updating",
     )
