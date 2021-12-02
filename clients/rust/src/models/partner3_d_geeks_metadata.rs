@@ -22,25 +22,25 @@ pub struct Partner3DGeeksMetadata {
     pub platform: String,
     #[serde(rename = "octoprint_version")]
     pub octoprint_version: String,
-    #[serde(rename = "print_nanny_plugin_version", skip_serializing_if = "Option::is_none")]
-    pub print_nanny_plugin_version: Option<String>,
+    #[serde(rename = "print_nanny_plugin_version")]
+    pub print_nanny_plugin_version: String,
     #[serde(rename = "print_nanny_client_version")]
     pub print_nanny_client_version: String,
-    #[serde(rename = "verified", skip_serializing_if = "Option::is_none")]
-    pub verified: Option<String>,
+    #[serde(rename = "verified")]
+    pub verified: String,
 }
 
 impl Partner3DGeeksMetadata {
     /// Please do not include any personally-identifying info or sensitive info in partner serializers
-    pub fn new(name: String, model: String, platform: String, octoprint_version: String, print_nanny_client_version: String) -> Partner3DGeeksMetadata {
+    pub fn new(name: String, model: String, platform: String, octoprint_version: String, print_nanny_plugin_version: String, print_nanny_client_version: String, verified: String) -> Partner3DGeeksMetadata {
         Partner3DGeeksMetadata {
             name,
             model,
             platform,
             octoprint_version,
-            print_nanny_plugin_version: None,
+            print_nanny_plugin_version,
             print_nanny_client_version,
-            verified: None,
+            verified,
         }
     }
 }

@@ -14,39 +14,39 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Partner3DGeeksAlert {
-    #[serde(rename = "event", skip_serializing_if = "Option::is_none")]
-    pub event: Option<String>,
-    #[serde(rename = "token", skip_serializing_if = "Option::is_none")]
-    pub token: Option<String>,
-    #[serde(rename = "printer", skip_serializing_if = "Option::is_none")]
-    pub printer: Option<String>,
-    #[serde(rename = "print", skip_serializing_if = "Option::is_none")]
-    pub print: Option<String>,
-    #[serde(rename = "currentTime", skip_serializing_if = "Option::is_none")]
-    pub current_time: Option<i32>,
-    #[serde(rename = "timeLeft", skip_serializing_if = "Option::is_none")]
-    pub time_left: Option<i32>,
-    #[serde(rename = "percent", skip_serializing_if = "Option::is_none")]
-    pub percent: Option<i32>,
-    #[serde(rename = "image", skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "event")]
+    pub event: String,
+    #[serde(rename = "token")]
+    pub token: String,
+    #[serde(rename = "printer")]
+    pub printer: String,
+    #[serde(rename = "print")]
+    pub print: String,
+    #[serde(rename = "currentTime")]
+    pub current_time: i32,
+    #[serde(rename = "timeLeft")]
+    pub time_left: i32,
+    #[serde(rename = "percent")]
+    pub percent: i32,
+    #[serde(rename = "image")]
     pub image: Option<String>,
-    #[serde(rename = "action", skip_serializing_if = "Option::is_none")]
-    pub action: Option<String>,
+    #[serde(rename = "action")]
+    pub action: String,
 }
 
 impl Partner3DGeeksAlert {
     /// Do not use underscores in this serializer - linitation of Firebase Cloud Messaging
-    pub fn new() -> Partner3DGeeksAlert {
+    pub fn new(event: String, token: String, printer: String, print: String, current_time: i32, time_left: i32, percent: i32, image: Option<String>, action: String) -> Partner3DGeeksAlert {
         Partner3DGeeksAlert {
-            event: None,
-            token: None,
-            printer: None,
-            print: None,
-            current_time: None,
-            time_left: None,
-            percent: None,
-            image: None,
-            action: None,
+            event,
+            token,
+            printer,
+            print,
+            current_time,
+            time_left,
+            percent,
+            image,
+            action,
         }
     }
 }

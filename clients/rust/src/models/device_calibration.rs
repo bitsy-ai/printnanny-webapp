@@ -13,12 +13,12 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct DeviceCalibration {
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<i32>,
-    #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
-    pub created_dt: Option<String>,
-    #[serde(rename = "updated_dt", skip_serializing_if = "Option::is_none")]
-    pub updated_dt: Option<String>,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "created_dt")]
+    pub created_dt: String,
+    #[serde(rename = "updated_dt")]
+    pub updated_dt: String,
     #[serde(rename = "octoprint_device")]
     pub octoprint_device: i32,
     #[serde(rename = "fps", skip_serializing_if = "Option::is_none")]
@@ -29,22 +29,22 @@ pub struct DeviceCalibration {
     pub height: Option<i32>,
     #[serde(rename = "width", skip_serializing_if = "Option::is_none")]
     pub width: Option<i32>,
-    #[serde(rename = "url", skip_serializing_if = "Option::is_none")]
-    pub url: Option<String>,
+    #[serde(rename = "url")]
+    pub url: String,
 }
 
 impl DeviceCalibration {
-    pub fn new(octoprint_device: i32) -> DeviceCalibration {
+    pub fn new(id: i32, created_dt: String, updated_dt: String, octoprint_device: i32, url: String) -> DeviceCalibration {
         DeviceCalibration {
-            id: None,
-            created_dt: None,
-            updated_dt: None,
+            id,
+            created_dt,
+            updated_dt,
             octoprint_device,
             fps: None,
             xy: None,
             height: None,
             width: None,
-            url: None,
+            url,
         }
     }
 }

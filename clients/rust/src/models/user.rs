@@ -15,18 +15,18 @@
 pub struct User {
     #[serde(rename = "email")]
     pub email: String,
-    #[serde(rename = "url", skip_serializing_if = "Option::is_none")]
-    pub url: Option<String>,
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<i32>,
+    #[serde(rename = "url")]
+    pub url: String,
+    #[serde(rename = "id")]
+    pub id: i32,
 }
 
 impl User {
-    pub fn new(email: String) -> User {
+    pub fn new(email: String, url: String, id: i32) -> User {
         User {
             email,
-            url: None,
-            id: None,
+            url,
+            id,
         }
     }
 }

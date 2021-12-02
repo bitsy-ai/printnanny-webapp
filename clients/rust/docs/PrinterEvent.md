@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | Option<**i32**> |  | [optional][readonly]
+**id** | **i32** |  | [readonly]
 **ts** | Option<**f32**> |  | [optional]
 **event_source** | Option<[**crate::models::EventSourceEnum**](EventSourceEnum.md)> |  | [optional]
 **event_type** | Option<[**crate::models::EventType0c4Enum**](EventType0c4Enum.md)> |  | [optional]
@@ -16,9 +16,9 @@ Name | Type | Description | Notes
 **print_nanny_client_version** | **String** |  | 
 **octoprint_version** | **String** |  | 
 **printer_state** | Option<[**crate::models::PrinterStateEnum**](PrinterStateEnum.md)> |  | [optional]
-**polymorphic_ctype** | Option<**i32**> |  | [optional][readonly]
+**polymorphic_ctype** | **i32** |  | [readonly]
 **octoprint_device** | **i32** |  | 
-**user** | Option<**i32**> |  | [optional][readonly]
+**user** | **i32** |  | [readonly]
 **print_session** | Option<**i32**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
