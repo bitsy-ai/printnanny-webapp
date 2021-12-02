@@ -13,35 +13,35 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ModelArtifact {
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<i32>,
-    #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
-    pub created_dt: Option<String>,
-    #[serde(rename = "version", skip_serializing_if = "Option::is_none")]
-    pub version: Option<String>,
-    #[serde(rename = "labels", skip_serializing_if = "Option::is_none")]
-    pub labels: Option<String>,
-    #[serde(rename = "artifacts", skip_serializing_if = "Option::is_none")]
-    pub artifacts: Option<String>,
-    #[serde(rename = "artifact_types", skip_serializing_if = "Option::is_none")]
-    pub artifact_types: Option<Vec<crate::models::ArtifactTypesEnum>>,
-    #[serde(rename = "metadata", skip_serializing_if = "Option::is_none")]
-    pub metadata: Option<::std::collections::HashMap<String, serde_json::Value>>,
-    #[serde(rename = "url", skip_serializing_if = "Option::is_none")]
-    pub url: Option<String>,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "created_dt")]
+    pub created_dt: String,
+    #[serde(rename = "version")]
+    pub version: String,
+    #[serde(rename = "labels")]
+    pub labels: String,
+    #[serde(rename = "artifacts")]
+    pub artifacts: String,
+    #[serde(rename = "artifact_types")]
+    pub artifact_types: Vec<crate::models::ArtifactTypesEnum>,
+    #[serde(rename = "metadata")]
+    pub metadata: ::std::collections::HashMap<String, serde_json::Value>,
+    #[serde(rename = "url")]
+    pub url: String,
 }
 
 impl ModelArtifact {
-    pub fn new() -> ModelArtifact {
+    pub fn new(id: i32, created_dt: String, version: String, labels: String, artifacts: String, artifact_types: Vec<crate::models::ArtifactTypesEnum>, metadata: ::std::collections::HashMap<String, serde_json::Value>, url: String) -> ModelArtifact {
         ModelArtifact {
-            id: None,
-            created_dt: None,
-            version: None,
-            labels: None,
-            artifacts: None,
-            artifact_types: None,
-            metadata: None,
-            url: None,
+            id,
+            created_dt,
+            version,
+            labels,
+            artifacts,
+            artifact_types,
+            metadata,
+            url,
         }
     }
 }

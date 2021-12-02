@@ -13,10 +13,10 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct SystemTask {
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<i32>,
-    #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
-    pub deleted: Option<String>,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "deleted")]
+    pub deleted: String,
     #[serde(rename = "msg", skip_serializing_if = "Option::is_none")]
     pub msg: Option<String>,
     #[serde(rename = "wiki_url", skip_serializing_if = "Option::is_none")]
@@ -27,23 +27,23 @@ pub struct SystemTask {
     pub _type: Option<crate::models::SystemTaskType>,
     #[serde(rename = "ansible_facts", skip_serializing_if = "Option::is_none")]
     pub ansible_facts: Option<::std::collections::HashMap<String, serde_json::Value>>,
-    #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
-    pub created_dt: Option<String>,
+    #[serde(rename = "created_dt")]
+    pub created_dt: String,
     #[serde(rename = "device")]
     pub device: i32,
 }
 
 impl SystemTask {
-    pub fn new(device: i32) -> SystemTask {
+    pub fn new(id: i32, deleted: String, created_dt: String, device: i32) -> SystemTask {
         SystemTask {
-            id: None,
-            deleted: None,
+            id,
+            deleted,
             msg: None,
             wiki_url: None,
             status: None,
             _type: None,
             ansible_facts: None,
-            created_dt: None,
+            created_dt,
             device,
         }
     }

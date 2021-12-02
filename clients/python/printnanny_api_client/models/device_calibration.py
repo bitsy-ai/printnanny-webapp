@@ -77,12 +77,9 @@ class DeviceCalibration(object):
         self._url = None
         self.discriminator = None
 
-        if id is not None:
-            self.id = id
-        if created_dt is not None:
-            self.created_dt = created_dt
-        if updated_dt is not None:
-            self.updated_dt = updated_dt
+        self.id = id
+        self.created_dt = created_dt
+        self.updated_dt = updated_dt
         self.octoprint_device = octoprint_device
         if fps is not None:
             self.fps = fps
@@ -91,8 +88,7 @@ class DeviceCalibration(object):
             self.height = height
         if width is not None:
             self.width = width
-        if url is not None:
-            self.url = url
+        self.url = url
 
     @property
     def id(self):
@@ -112,6 +108,8 @@ class DeviceCalibration(object):
         :param id: The id of this DeviceCalibration.  # noqa: E501
         :type id: int
         """
+        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -133,6 +131,8 @@ class DeviceCalibration(object):
         :param created_dt: The created_dt of this DeviceCalibration.  # noqa: E501
         :type created_dt: datetime
         """
+        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
 
         self._created_dt = created_dt
 
@@ -154,6 +154,8 @@ class DeviceCalibration(object):
         :param updated_dt: The updated_dt of this DeviceCalibration.  # noqa: E501
         :type updated_dt: datetime
         """
+        if self.local_vars_configuration.client_side_validation and updated_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `updated_dt`, must not be `None`")  # noqa: E501
 
         self._updated_dt = updated_dt
 
@@ -294,6 +296,8 @@ class DeviceCalibration(object):
         :param url: The url of this DeviceCalibration.  # noqa: E501
         :type url: str
         """
+        if self.local_vars_configuration.client_side_validation and url is None:  # noqa: E501
+            raise ValueError("Invalid value for `url`, must not be `None`")  # noqa: E501
 
         self._url = url
 

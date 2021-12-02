@@ -48,14 +48,14 @@ router = DefaultRouter()
 
 router.register("alerts", AlertViewSet)
 router.register("devices", DeviceViewSet)
+router.register("licenses", LicenseViewSet)
+
 # enables /api/devices/:hostname lookup (no nested routing)
 devices_by_hostname = [
     path("devices/<slug:hostname>", DeviceHostnameViewSet.as_view({'get': 'retrieve'})),
 ]
 
 devices_router  = NestedSimpleRouter(router, r'devices', lookup='device')
-devices_router.register("licenses", LicenseViewSet, basename='licenses')
-
 devices_router.register(r'config', DeviceConfigViewSet, basename='config')
 devices_router.register(r'system-tasks', SystemTaskViewSet, basename='system-tasks')
 devices_router.register(r'info', DeviceInfoViewSet, basename='info')

@@ -77,22 +77,15 @@ class License(object):
         self._device = None
         self.discriminator = None
 
-        if id is not None:
-            self.id = id
-        if credentials is not None:
-            self.credentials = credentials
-        if deleted is not None:
-            self.deleted = deleted
+        self.id = id
+        self.credentials = credentials
+        self.deleted = deleted
         if activated is not None:
             self.activated = activated
-        if public_key is not None:
-            self.public_key = public_key
-        if public_key_checksum is not None:
-            self.public_key_checksum = public_key_checksum
-        if fingerprint is not None:
-            self.fingerprint = fingerprint
-        if created_dt is not None:
-            self.created_dt = created_dt
+        self.public_key = public_key
+        self.public_key_checksum = public_key_checksum
+        self.fingerprint = fingerprint
+        self.created_dt = created_dt
         self.device = device
 
     @property
@@ -113,6 +106,8 @@ class License(object):
         :param id: The id of this License.  # noqa: E501
         :type id: int
         """
+        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -134,6 +129,8 @@ class License(object):
         :param credentials: The credentials of this License.  # noqa: E501
         :type credentials: LicenseCredentials
         """
+        if self.local_vars_configuration.client_side_validation and credentials is None:  # noqa: E501
+            raise ValueError("Invalid value for `credentials`, must not be `None`")  # noqa: E501
 
         self._credentials = credentials
 
@@ -155,6 +152,8 @@ class License(object):
         :param deleted: The deleted of this License.  # noqa: E501
         :type deleted: datetime
         """
+        if self.local_vars_configuration.client_side_validation and deleted is None:  # noqa: E501
+            raise ValueError("Invalid value for `deleted`, must not be `None`")  # noqa: E501
 
         self._deleted = deleted
 
@@ -197,6 +196,8 @@ class License(object):
         :param public_key: The public_key of this License.  # noqa: E501
         :type public_key: str
         """
+        if self.local_vars_configuration.client_side_validation and public_key is None:  # noqa: E501
+            raise ValueError("Invalid value for `public_key`, must not be `None`")  # noqa: E501
 
         self._public_key = public_key
 
@@ -218,6 +219,8 @@ class License(object):
         :param public_key_checksum: The public_key_checksum of this License.  # noqa: E501
         :type public_key_checksum: str
         """
+        if self.local_vars_configuration.client_side_validation and public_key_checksum is None:  # noqa: E501
+            raise ValueError("Invalid value for `public_key_checksum`, must not be `None`")  # noqa: E501
 
         self._public_key_checksum = public_key_checksum
 
@@ -239,6 +242,8 @@ class License(object):
         :param fingerprint: The fingerprint of this License.  # noqa: E501
         :type fingerprint: str
         """
+        if self.local_vars_configuration.client_side_validation and fingerprint is None:  # noqa: E501
+            raise ValueError("Invalid value for `fingerprint`, must not be `None`")  # noqa: E501
 
         self._fingerprint = fingerprint
 
@@ -260,6 +265,8 @@ class License(object):
         :param created_dt: The created_dt of this License.  # noqa: E501
         :type created_dt: datetime
         """
+        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
 
         self._created_dt = created_dt
 

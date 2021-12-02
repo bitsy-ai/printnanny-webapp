@@ -13,10 +13,10 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct PrinterProfile {
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<i32>,
-    #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
-    pub user: Option<i32>,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "user")]
+    pub user: i32,
     #[serde(rename = "octoprint_device")]
     pub octoprint_device: i32,
     #[serde(rename = "axes_e_inverted", skip_serializing_if = "Option::is_none")]
@@ -63,15 +63,15 @@ pub struct PrinterProfile {
     pub volume_origin: Option<String>,
     #[serde(rename = "volume_width", skip_serializing_if = "Option::is_none")]
     pub volume_width: Option<f32>,
-    #[serde(rename = "url", skip_serializing_if = "Option::is_none")]
-    pub url: Option<String>,
+    #[serde(rename = "url")]
+    pub url: String,
 }
 
 impl PrinterProfile {
-    pub fn new(octoprint_device: i32, name: String, octoprint_key: String) -> PrinterProfile {
+    pub fn new(id: i32, user: i32, octoprint_device: i32, name: String, octoprint_key: String, url: String) -> PrinterProfile {
         PrinterProfile {
-            id: None,
-            user: None,
+            id,
+            user,
             octoprint_device,
             axes_e_inverted: None,
             axes_e_speed: None,
@@ -95,7 +95,7 @@ impl PrinterProfile {
             volume_height: None,
             volume_origin: None,
             volume_width: None,
-            url: None,
+            url,
         }
     }
 }

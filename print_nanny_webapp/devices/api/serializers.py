@@ -95,6 +95,7 @@ class LicenseSerializer(serializers.ModelSerializer):
         fields = "__all__"
         read_only_fields = (
             "credentials",
+            "device",
             "public_key",
             "public_key_checksum",
             "fingerprint",
@@ -123,12 +124,10 @@ class SystemTaskSerializer(serializers.ModelSerializer):
 
 class DeviceSerializer(serializers.ModelSerializer):
 
-    bootstrap_release = ReleaseSerializer(
-        read_only=True,
-        required=False,
-        allow_null=True,
+    bootstrap_release = ReleaseSerializer(read_only=True)
+    cloudiot_device = CloudiotDeviceSerializer(
+        read_only=True, required=False, allow_null=True
     )
-    cloudiot_device = CloudiotDeviceSerializer(read_only=True, required=False)
     cameras = CameraSerializer(read_only=True, many=True)
     dashboard_url = serializers.CharField(read_only=True)
     last_system_task = SystemTaskSerializer(read_only=True)
@@ -145,6 +144,7 @@ class DeviceSerializer(serializers.ModelSerializer):
         model = Device
         fields = "__all__"
         depth = 2
+        read_only = ("active_license", "bootstrap_release", "user", "last_system_task")
 
 
 class DeviceInfoSerializer(serializers.ModelSerializer):

@@ -4,19 +4,19 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [optional] [readonly] 
-**bootstrap_release** | [**Release**](Release.md) |  | [optional] [readonly] 
-**cloudiot_device** | [**CloudiotDevice**](CloudiotDevice.md) |  | [optional] [readonly] 
-**cameras** | [**list[Camera]**](Camera.md) |  | [optional] [readonly] 
-**dashboard_url** | **str** |  | [optional] [readonly] 
-**last_system_task** | [**SystemTask**](SystemTask.md) |  | [optional] [readonly] 
-**printer_controllers** | [**list[PrinterController]**](PrinterController.md) |  | [optional] [readonly] 
+**id** | **int** |  | [readonly] 
+**bootstrap_release** | [**Release**](Release.md) |  | [readonly] 
+**cloudiot_device** | [**CloudiotDevice**](CloudiotDevice.md) |  | [readonly] 
+**cameras** | [**list[Camera]**](Camera.md) |  | [readonly] 
+**dashboard_url** | **str** |  | [readonly] 
+**last_system_task** | [**SystemTask**](SystemTask.md) |  | [readonly] 
+**printer_controllers** | [**list[PrinterController]**](PrinterController.md) |  | [readonly] 
 **release_channel** | [**ReleaseChannelEnum**](ReleaseChannelEnum.md) |  | [optional] 
-**user** | [**User**](User.md) |  | [optional] [readonly] 
-**active_license** | [**License**](License.md) |  | [optional] [readonly] 
-**deleted** | **datetime** |  | [optional] [readonly] 
-**created_dt** | **datetime** |  | [optional] [readonly] 
-**updated_dt** | **datetime** |  | [optional] [readonly] 
+**user** | [**User**](User.md) |  | [readonly] 
+**active_license** | [**License**](License.md) |  | [readonly] 
+**deleted** | **datetime** |  | [readonly] 
+**created_dt** | **datetime** |  | [readonly] 
+**updated_dt** | **datetime** |  | [readonly] 
 **hostname** | **str** | Please enter the hostname you set in the Raspberry Pi Imager&#39;s Advanced Options menu (without .local extension) | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -40,6 +40,7 @@ docs/GcodeFile.md
 docs/License.md
 docs/LicenseCredentials.md
 docs/LicenseRequest.md
+docs/LicensesApi.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
@@ -159,6 +160,7 @@ src/apis/alerts_api.rs
 src/apis/auth_api.rs
 src/apis/configuration.rs
 src/apis/devices_api.rs
+src/apis/licenses_api.rs
 src/apis/ml_ops_api.rs
 src/apis/mod.rs
 src/apis/partners_geeks3_api.rs

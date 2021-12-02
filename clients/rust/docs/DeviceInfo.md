@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | Option<**i32**> |  | [optional][readonly]
-**deleted** | Option<**String**> |  | [optional][readonly]
+**id** | **i32** |  | [readonly]
+**deleted** | **String** |  | [readonly]
 **machine_id** | **String** | Populated from /etc/machine-id | 
 **hardware** | **String** | Populated from /proc/cpuinfo HARDWARE | 
 **revision** | **String** | Populated from /proc/cpuinfo REVISION | 

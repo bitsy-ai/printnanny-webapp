@@ -149,51 +149,36 @@ class OctoPrintDeviceKey(object):
         if active_session is not None:
             self.active_session = active_session
         self.ca_certs = ca_certs
-        if cloudiot_device_configs is not None:
-            self.cloudiot_device_configs = cloudiot_device_configs
-        if cloudiot_device_name is not None:
-            self.cloudiot_device_name = cloudiot_device_name
-        if cloudiot_device_num_id is not None:
-            self.cloudiot_device_num_id = cloudiot_device_num_id
-        if cloudiot_device_path is not None:
-            self.cloudiot_device_path = cloudiot_device_path
-        if cloudiot_device is not None:
-            self.cloudiot_device = cloudiot_device
+        self.cloudiot_device_configs = cloudiot_device_configs
+        self.cloudiot_device_name = cloudiot_device_name
+        self.cloudiot_device_num_id = cloudiot_device_num_id
+        self.cloudiot_device_path = cloudiot_device_path
+        self.cloudiot_device = cloudiot_device
         self.cores = cores
         self.cpu_flags = cpu_flags
-        if created_dt is not None:
-            self.created_dt = created_dt
-        if fingerprint is not None:
-            self.fingerprint = fingerprint
+        self.created_dt = created_dt
+        self.fingerprint = fingerprint
         self.hardware = hardware
-        if id is not None:
-            self.id = id
-        if manage_url is not None:
-            self.manage_url = manage_url
+        self.id = id
+        self.manage_url = manage_url
         self.model = model
-        if monitoring_active is not None:
-            self.monitoring_active = monitoring_active
+        self.monitoring_active = monitoring_active
         self.name = name
         self.octoprint_version = octoprint_version
         self.pip_version = pip_version
         self.platform = platform
         self.plugin_version = plugin_version
         self.print_nanny_client_version = print_nanny_client_version
-        if private_key_checksum is not None:
-            self.private_key_checksum = private_key_checksum
-        if private_key is not None:
-            self.private_key = private_key
+        self.private_key_checksum = private_key_checksum
+        self.private_key = private_key
         self.public_key_checksum = public_key_checksum
-        if public_key is not None:
-            self.public_key = public_key
+        self.public_key = public_key
         self.python_version = python_version
         self.ram = ram
         self.revision = revision
         self.serial = serial
-        if user is not None:
-            self.user = user
-        if url is not None:
-            self.url = url
+        self.user = user
+        self.url = url
 
     @property
     def active_session(self):
@@ -257,6 +242,8 @@ class OctoPrintDeviceKey(object):
         :param cloudiot_device_configs: The cloudiot_device_configs of this OctoPrintDeviceKey.  # noqa: E501
         :type cloudiot_device_configs: str
         """
+        if self.local_vars_configuration.client_side_validation and cloudiot_device_configs is None:  # noqa: E501
+            raise ValueError("Invalid value for `cloudiot_device_configs`, must not be `None`")  # noqa: E501
 
         self._cloudiot_device_configs = cloudiot_device_configs
 
@@ -278,6 +265,8 @@ class OctoPrintDeviceKey(object):
         :param cloudiot_device_name: The cloudiot_device_name of this OctoPrintDeviceKey.  # noqa: E501
         :type cloudiot_device_name: str
         """
+        if self.local_vars_configuration.client_side_validation and cloudiot_device_name is None:  # noqa: E501
+            raise ValueError("Invalid value for `cloudiot_device_name`, must not be `None`")  # noqa: E501
 
         self._cloudiot_device_name = cloudiot_device_name
 
@@ -299,6 +288,8 @@ class OctoPrintDeviceKey(object):
         :param cloudiot_device_num_id: The cloudiot_device_num_id of this OctoPrintDeviceKey.  # noqa: E501
         :type cloudiot_device_num_id: int
         """
+        if self.local_vars_configuration.client_side_validation and cloudiot_device_num_id is None:  # noqa: E501
+            raise ValueError("Invalid value for `cloudiot_device_num_id`, must not be `None`")  # noqa: E501
 
         self._cloudiot_device_num_id = cloudiot_device_num_id
 
@@ -320,6 +311,8 @@ class OctoPrintDeviceKey(object):
         :param cloudiot_device_path: The cloudiot_device_path of this OctoPrintDeviceKey.  # noqa: E501
         :type cloudiot_device_path: str
         """
+        if self.local_vars_configuration.client_side_validation and cloudiot_device_path is None:  # noqa: E501
+            raise ValueError("Invalid value for `cloudiot_device_path`, must not be `None`")  # noqa: E501
 
         self._cloudiot_device_path = cloudiot_device_path
 
@@ -341,6 +334,8 @@ class OctoPrintDeviceKey(object):
         :param cloudiot_device: The cloudiot_device of this OctoPrintDeviceKey.  # noqa: E501
         :type cloudiot_device: dict(str, object)
         """
+        if self.local_vars_configuration.client_side_validation and cloudiot_device is None:  # noqa: E501
+            raise ValueError("Invalid value for `cloudiot_device`, must not be `None`")  # noqa: E501
 
         self._cloudiot_device = cloudiot_device
 
@@ -412,6 +407,8 @@ class OctoPrintDeviceKey(object):
         :param created_dt: The created_dt of this OctoPrintDeviceKey.  # noqa: E501
         :type created_dt: datetime
         """
+        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
 
         self._created_dt = created_dt
 
@@ -433,6 +430,8 @@ class OctoPrintDeviceKey(object):
         :param fingerprint: The fingerprint of this OctoPrintDeviceKey.  # noqa: E501
         :type fingerprint: str
         """
+        if self.local_vars_configuration.client_side_validation and fingerprint is None:  # noqa: E501
+            raise ValueError("Invalid value for `fingerprint`, must not be `None`")  # noqa: E501
 
         self._fingerprint = fingerprint
 
@@ -478,6 +477,8 @@ class OctoPrintDeviceKey(object):
         :param id: The id of this OctoPrintDeviceKey.  # noqa: E501
         :type id: int
         """
+        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -499,6 +500,8 @@ class OctoPrintDeviceKey(object):
         :param manage_url: The manage_url of this OctoPrintDeviceKey.  # noqa: E501
         :type manage_url: str
         """
+        if self.local_vars_configuration.client_side_validation and manage_url is None:  # noqa: E501
+            raise ValueError("Invalid value for `manage_url`, must not be `None`")  # noqa: E501
 
         self._manage_url = manage_url
 
@@ -546,6 +549,8 @@ class OctoPrintDeviceKey(object):
         :param monitoring_active: The monitoring_active of this OctoPrintDeviceKey.  # noqa: E501
         :type monitoring_active: bool
         """
+        if self.local_vars_configuration.client_side_validation and monitoring_active is None:  # noqa: E501
+            raise ValueError("Invalid value for `monitoring_active`, must not be `None`")  # noqa: E501
 
         self._monitoring_active = monitoring_active
 
@@ -723,6 +728,8 @@ class OctoPrintDeviceKey(object):
         :param private_key_checksum: The private_key_checksum of this OctoPrintDeviceKey.  # noqa: E501
         :type private_key_checksum: str
         """
+        if self.local_vars_configuration.client_side_validation and private_key_checksum is None:  # noqa: E501
+            raise ValueError("Invalid value for `private_key_checksum`, must not be `None`")  # noqa: E501
 
         self._private_key_checksum = private_key_checksum
 
@@ -744,6 +751,8 @@ class OctoPrintDeviceKey(object):
         :param private_key: The private_key of this OctoPrintDeviceKey.  # noqa: E501
         :type private_key: str
         """
+        if self.local_vars_configuration.client_side_validation and private_key is None:  # noqa: E501
+            raise ValueError("Invalid value for `private_key`, must not be `None`")  # noqa: E501
 
         self._private_key = private_key
 
@@ -788,6 +797,8 @@ class OctoPrintDeviceKey(object):
         :param public_key: The public_key of this OctoPrintDeviceKey.  # noqa: E501
         :type public_key: str
         """
+        if self.local_vars_configuration.client_side_validation and public_key is None:  # noqa: E501
+            raise ValueError("Invalid value for `public_key`, must not be `None`")  # noqa: E501
 
         self._public_key = public_key
 
@@ -914,6 +925,8 @@ class OctoPrintDeviceKey(object):
         :param user: The user of this OctoPrintDeviceKey.  # noqa: E501
         :type user: int
         """
+        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
+            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
 
         self._user = user
 
@@ -935,6 +948,8 @@ class OctoPrintDeviceKey(object):
         :param url: The url of this OctoPrintDeviceKey.  # noqa: E501
         :type url: str
         """
+        if self.local_vars_configuration.client_side_validation and url is None:  # noqa: E501
+            raise ValueError("Invalid value for `url`, must not be `None`")  # noqa: E501
 
         self._url = url
 

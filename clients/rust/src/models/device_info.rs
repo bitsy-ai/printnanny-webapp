@@ -13,10 +13,10 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct DeviceInfo {
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<i32>,
-    #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
-    pub deleted: Option<String>,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "deleted")]
+    pub deleted: String,
     /// Populated from /etc/machine-id
     #[serde(rename = "machine_id")]
     pub machine_id: String,
@@ -44,10 +44,10 @@ pub struct DeviceInfo {
 }
 
 impl DeviceInfo {
-    pub fn new(machine_id: String, hardware: String, revision: String, model: String, serial: String, cores: i32, ram: i64, image_version: String, device: i32) -> DeviceInfo {
+    pub fn new(id: i32, deleted: String, machine_id: String, hardware: String, revision: String, model: String, serial: String, cores: i32, ram: i64, image_version: String, device: i32) -> DeviceInfo {
         DeviceInfo {
-            id: None,
-            deleted: None,
+            id,
+            deleted,
             machine_id,
             hardware,
             revision,
