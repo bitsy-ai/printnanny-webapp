@@ -118,6 +118,7 @@ modify_licenses_schema = extend_schema(
         "default": ErrorDetailSerializer,
         202: LicenseSerializer,
     },
+    operation_id="license_activate",
 )
 
 
@@ -125,7 +126,6 @@ modify_licenses_schema = extend_schema(
     list=list_licenses_schema,
     update=modify_licenses_schema,
     tags=["devices"],
-    operation_id="devices_license_activate",
 )
 class LicenseViewSet(
     GenericViewSet,
