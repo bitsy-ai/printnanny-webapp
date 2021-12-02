@@ -112,19 +112,10 @@ list_licenses_schema = extend_schema(
         200: LicenseSerializer(many=True),
     },
 )
-modify_licenses_schema = extend_schema(
-    request=LicenseSerializer,
-    responses={
-        "default": ErrorDetailSerializer,
-        202: LicenseSerializer,
-    },
-    operation_id="license_activate",
-)
 
 
 @extend_schema_view(
     list=list_licenses_schema,
-    update=modify_licenses_schema,
     tags=["devices"],
 )
 class LicenseViewSet(
@@ -140,6 +131,14 @@ class LicenseViewSet(
     queryset = License.objects.all()
     lookup_field = "id"
 
+    @extend_schema(
+        request=LicenseSerializer,
+        responses={
+            "default": ErrorDetailSerializer,
+            202: LicenseSerializer,
+        },
+        operation_id="license_activate",
+    )
     @action(detail=True, methods=["POST"], url_path="activate")
     def activate(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         license = License.objects.get(pk=kwargs["id"])
