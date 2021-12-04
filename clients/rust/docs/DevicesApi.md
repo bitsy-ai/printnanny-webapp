@@ -986,7 +986,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_tasks_status_create
 
-> crate::models::Task devices_tasks_status_create(device_id, task_id, task_request)
+> crate::models::TaskStatus devices_tasks_status_create(device_id, task_id, task_status_request)
 
 
 ### Parameters
@@ -996,11 +996,11 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **String** |  | [required] |
 **task_id** | **i32** |  | [required] |
-**task_request** | [**TaskRequest**](TaskRequest.md) |  | [required] |
+**task_status_request** | [**TaskStatusRequest**](TaskStatusRequest.md) |  | [required] |
 
 ### Return type
 
-[**crate::models::Task**](Task.md)
+[**crate::models::TaskStatus**](TaskStatus.md)
 
 ### Authorization
 

@@ -65,7 +65,7 @@ devices_router.register(r'printer-controllers', PrinterControllerViewSet, basena
 devices_router.register(r'tasks', TaskViewSet, basename='tasks')
 
 task_router = NestedSimpleRouter(devices_router, r'tasks', lookup='task')
-task_router.register(r'status', TaskStatusViewSet, basename='tasks')
+task_router.register(r'status', TaskStatusViewSet, basename='status')
 
 router.register("telemetry-events", TelemetryEventViewSet, basename="telemetry-events")
 router.register("remote-command-events", RemoteCommandEventViewSet, basename="remote-command-events")

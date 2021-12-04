@@ -1291,7 +1291,7 @@ pub async fn devices_tasks_retrieve(configuration: &configuration::Configuration
     }
 }
 
-pub async fn devices_tasks_status_create(configuration: &configuration::Configuration, device_id: &str, task_id: i32, task_request: crate::models::TaskRequest) -> Result<crate::models::Task, Error<DevicesTasksStatusCreateError>> {
+pub async fn devices_tasks_status_create(configuration: &configuration::Configuration, device_id: &str, task_id: i32, task_status_request: crate::models::TaskStatusRequest) -> Result<crate::models::TaskStatus, Error<DevicesTasksStatusCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1305,7 +1305,7 @@ pub async fn devices_tasks_status_create(configuration: &configuration::Configur
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&task_request);
+    local_var_req_builder = local_var_req_builder.json(&task_status_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
