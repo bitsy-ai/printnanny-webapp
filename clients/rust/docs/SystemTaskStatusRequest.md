@@ -1,14 +1,13 @@
-# SystemTask
-
+# SystemTaskStatusRequest
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [readonly] 
-**last_status** | [**SystemTaskStatus**](SystemTaskStatus.md) |  | [readonly] 
-**task_type** | [**SystemTaskType**](SystemTaskType.md) |  | [optional] 
-**created_dt** | **datetime** |  | [readonly] 
-**device** | **int** |  | 
+**detail** | Option<**String**> |  | [optional]
+**wiki_url** | Option<**String**> |  | [optional]
+**status** | Option<[**crate::models::StatusEnum**](StatusEnum.md)> |  | [optional]
+**system_task** | **i32** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

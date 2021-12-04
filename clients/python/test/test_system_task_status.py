@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.system_task import SystemTask  # noqa: E501
+from printnanny_api_client.models.system_task_status import SystemTaskStatus  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestSystemTask(unittest.TestCase):
-    """SystemTask unit test stubs"""
+class TestSystemTaskStatus(unittest.TestCase):
+    """SystemTaskStatus unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,29 +30,29 @@ class TestSystemTask(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test SystemTask
+        """Test SystemTaskStatus
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.system_task.SystemTask()  # noqa: E501
+        # model = printnanny_api_client.models.system_task_status.SystemTaskStatus()  # noqa: E501
         if include_optional :
-            return SystemTask(
+            return SystemTaskStatus(
                 id = 56, 
-                last_status = None, 
-                task_type = 'activate_license', 
+                detail = '', 
+                wiki_url = '', 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                device = 56
+                status = 'requested', 
+                system_task = 56
             )
         else :
-            return SystemTask(
+            return SystemTaskStatus(
                 id = 56,
-                last_status = None,
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                device = 56,
+                system_task = 56,
         )
 
-    def testSystemTask(self):
-        """Test SystemTask"""
+    def testSystemTaskStatus(self):
+        """Test SystemTaskStatus"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

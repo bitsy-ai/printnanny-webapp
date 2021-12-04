@@ -1,14 +1,15 @@
-# SystemTask
+# SystemTaskStatus
 
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
-**last_status** | [**SystemTaskStatus**](SystemTaskStatus.md) |  | [readonly] 
-**task_type** | [**SystemTaskType**](SystemTaskType.md) |  | [optional] 
+**detail** | **str** |  | [optional] 
+**wiki_url** | **str** |  | [optional] 
 **created_dt** | **datetime** |  | [readonly] 
-**device** | **int** |  | 
+**status** | [**StatusEnum**](StatusEnum.md) |  | [optional] 
+**system_task** | **int** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

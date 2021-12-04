@@ -15,6 +15,8 @@
 pub struct SystemTask {
     #[serde(rename = "id")]
     pub id: i32,
+    #[serde(rename = "last_status")]
+    pub last_status: Option<Box<crate::models::SystemTaskStatus>>,
     #[serde(rename = "task_type", skip_serializing_if = "Option::is_none")]
     pub task_type: Option<crate::models::SystemTaskType>,
     #[serde(rename = "created_dt")]
@@ -24,9 +26,10 @@ pub struct SystemTask {
 }
 
 impl SystemTask {
-    pub fn new(id: i32, created_dt: String, device: i32) -> SystemTask {
+    pub fn new(id: i32, last_status: Option<crate::models::SystemTaskStatus>, created_dt: String, device: i32) -> SystemTask {
         SystemTask {
             id,
+            last_status: last_status.map(Box::new),
             task_type: None,
             created_dt,
             device,

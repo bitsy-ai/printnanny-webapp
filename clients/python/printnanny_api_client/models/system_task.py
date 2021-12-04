@@ -38,6 +38,7 @@ class SystemTask(object):
     """
     openapi_types = {
         'id': 'int',
+        'last_status': 'SystemTaskStatus',
         'task_type': 'SystemTaskType',
         'created_dt': 'datetime',
         'device': 'int'
@@ -45,24 +46,27 @@ class SystemTask(object):
 
     attribute_map = {
         'id': 'id',
+        'last_status': 'last_status',
         'task_type': 'task_type',
         'created_dt': 'created_dt',
         'device': 'device'
     }
 
-    def __init__(self, id=None, task_type=None, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, last_status=None, task_type=None, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
         """SystemTask - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
+        self._last_status = None
         self._task_type = None
         self._created_dt = None
         self._device = None
         self.discriminator = None
 
         self.id = id
+        self.last_status = last_status
         if task_type is not None:
             self.task_type = task_type
         self.created_dt = created_dt
@@ -90,6 +94,27 @@ class SystemTask(object):
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
+
+    @property
+    def last_status(self):
+        """Gets the last_status of this SystemTask.  # noqa: E501
+
+
+        :return: The last_status of this SystemTask.  # noqa: E501
+        :rtype: SystemTaskStatus
+        """
+        return self._last_status
+
+    @last_status.setter
+    def last_status(self, last_status):
+        """Sets the last_status of this SystemTask.
+
+
+        :param last_status: The last_status of this SystemTask.  # noqa: E501
+        :type last_status: SystemTaskStatus
+        """
+
+        self._last_status = last_status
 
     @property
     def task_type(self):

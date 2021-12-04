@@ -10,6 +10,7 @@ from print_nanny_webapp.devices.models import (
     DeviceConfig,
     DeviceInfo,
     SystemTask,
+    SystemTaskStatus,
     License,
     PrinterController,
     # PrinterProfile,
@@ -116,7 +117,15 @@ class DeviceConfigSerializer(serializers.ModelSerializer):
         exclude = ("deleted",)
 
 
+class SystemTaskStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SystemTaskStatus
+        exclude = ("deleted",)
+
+
 class SystemTaskSerializer(serializers.ModelSerializer):
+    last_status = SystemTaskStatusSerializer(read_only=True)
+
     class Meta:
         model = SystemTask
         exclude = ("deleted",)
