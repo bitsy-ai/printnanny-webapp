@@ -122,26 +122,17 @@ create_system_tasks_status_schema = extend_schema(
         201: TaskStatusSerializer,
     },
 )
-update_system_tasks_status_schema = extend_schema(
-    request=TaskStatusSerializer,
-    responses={
-        "default": ErrorDetailSerializer,
-        202: TaskStatusSerializer,
-    },
-)
 
 
 @extend_schema_view(
     list=list_system_tasks_status_schema,
     create=create_system_tasks_schema,
-    update=update_system_tasks_status_schema,
 )
 class TaskStatusViewSet(
     GenericViewSet,
     ListModelMixin,
     RetrieveModelMixin,
     CreateModelMixin,
-    UpdateModelMixin,
 ):
     serializer_class = TaskStatusSerializer
     queryset = TaskStatus.objects.all()
