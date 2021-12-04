@@ -24,7 +24,7 @@ pub struct Device {
     #[serde(rename = "dashboard_url")]
     pub dashboard_url: String,
     #[serde(rename = "last_system_task")]
-    pub last_system_task: Option<Box<crate::models::SystemTask>>,
+    pub last_system_task: Option<Box<crate::models::Task>>,
     #[serde(rename = "printer_controllers")]
     pub printer_controllers: Vec<crate::models::PrinterController>,
     #[serde(rename = "release_channel", skip_serializing_if = "Option::is_none")]
@@ -43,7 +43,7 @@ pub struct Device {
 }
 
 impl Device {
-    pub fn new(id: i32, bootstrap_release: Option<crate::models::Release>, cloudiot_device: Option<crate::models::CloudiotDevice>, cameras: Vec<crate::models::Camera>, dashboard_url: String, last_system_task: Option<crate::models::SystemTask>, printer_controllers: Vec<crate::models::PrinterController>, user: Option<crate::models::User>, active_license: Option<crate::models::License>, created_dt: String, updated_dt: String) -> Device {
+    pub fn new(id: i32, bootstrap_release: Option<crate::models::Release>, cloudiot_device: Option<crate::models::CloudiotDevice>, cameras: Vec<crate::models::Camera>, dashboard_url: String, last_system_task: Option<crate::models::Task>, printer_controllers: Vec<crate::models::PrinterController>, user: Option<crate::models::User>, active_license: Option<crate::models::License>, created_dt: String, updated_dt: String) -> Device {
         Device {
             id,
             bootstrap_release: bootstrap_release.map(Box::new),

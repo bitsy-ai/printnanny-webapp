@@ -13,7 +13,7 @@ class PrinterSoftwareType(models.TextChoices):
     # MAINSAL = "Mainsail", "Mainsail printer controller"
 
 
-class SystemTaskStatusType(models.TextChoices):
+class TaskStatusType(models.TextChoices):
     REQUESTED = "requested", "Requested"
     STARTED = "started", "Running"
     FAILED = "failed", "Failed"  # TODO prompt to send crash report
@@ -31,7 +31,7 @@ class SystemTaskStatusType(models.TextChoices):
         return cls.__css__[cls(value).name]
 
 
-class SystemTaskType(models.TextChoices):
+class TaskType(models.TextChoices):
     ACTIVATE_LICENSE = "activate_license", "License Activation"
     SOFTWARE_UPDATE = (
         "software_update",

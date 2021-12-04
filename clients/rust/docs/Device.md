@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **cloudiot_device** | Option<[**crate::models::CloudiotDevice**](CloudiotDevice.md)> |  | [readonly]
 **cameras** | [**Vec<crate::models::Camera>**](Camera.md) |  | [readonly]
 **dashboard_url** | **String** |  | [readonly]
-**last_system_task** | Option<[**crate::models::SystemTask**](SystemTask.md)> |  | [readonly]
+**last_system_task** | Option<[**crate::models::Task**](Task.md)> |  | [readonly]
 **printer_controllers** | [**Vec<crate::models::PrinterController>**](PrinterController.md) |  | [readonly]
 **release_channel** | Option<[**crate::models::ReleaseChannelEnum**](ReleaseChannelEnum.md)> |  | [optional]
 **user** | Option<[**crate::models::User**](User.md)> |  | [readonly]

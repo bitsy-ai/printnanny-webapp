@@ -9,8 +9,8 @@ from print_nanny_webapp.devices.models import (
     CloudiotDevice,
     DeviceConfig,
     DeviceInfo,
-    SystemTask,
-    SystemTaskStatus,
+    Task,
+    TaskStatus,
     License,
     PrinterController,
     # PrinterProfile,
@@ -117,17 +117,17 @@ class DeviceConfigSerializer(serializers.ModelSerializer):
         exclude = ("deleted",)
 
 
-class SystemTaskStatusSerializer(serializers.ModelSerializer):
+class TaskStatusSerializer(serializers.ModelSerializer):
     class Meta:
-        model = SystemTaskStatus
+        model = TaskStatus
         exclude = ("deleted",)
 
 
-class SystemTaskSerializer(serializers.ModelSerializer):
-    last_status = SystemTaskStatusSerializer(read_only=True)
+class TaskSerializer(serializers.ModelSerializer):
+    last_status = TaskStatusSerializer(read_only=True)
 
     class Meta:
-        model = SystemTask
+        model = Task
         exclude = ("deleted",)
 
 
@@ -139,7 +139,7 @@ class DeviceSerializer(serializers.ModelSerializer):
     )
     cameras = CameraSerializer(read_only=True, many=True)
     dashboard_url = serializers.CharField(read_only=True)
-    last_system_task = SystemTaskSerializer(read_only=True)
+    last_system_task = TaskSerializer(read_only=True)
     printer_controllers = PrinterControllerSerializer(read_only=True, many=True)
     release_channel = serializers.ChoiceField(
         choices=DeviceReleaseChannel.choices,

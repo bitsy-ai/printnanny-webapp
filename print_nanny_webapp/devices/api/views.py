@@ -17,24 +17,26 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 from .serializers import (
-    DeviceInfoSerializer,
-    DeviceConfigSerializer,
-    LicenseSerializer,
-    SystemTaskSerializer,
-    DeviceSerializer,
     CameraSerializer,
     CloudiotDeviceSerializer,
+    DeviceConfigSerializer,
+    DeviceInfoSerializer,
+    DeviceSerializer,
+    LicenseSerializer,
     PrinterControllerSerializer,
+    TaskSerializer,
+    TaskStatusSerializer,
 )
 from ..models import (
-    DeviceInfo,
-    DeviceConfig,
-    License,
-    SystemTask,
-    Device,
     Camera,
     CloudiotDevice,
+    Device,
+    DeviceConfig,
+    DeviceInfo,
+    License,
     PrinterController,
+    Task,
+    TaskStatus,
 )
 from ..services import generate_zipped_license_response
 
@@ -71,19 +73,19 @@ class DeviceConfigViewSet(
 
 
 ##
-# SystemTask
+# Task
 ##
 list_system_tasks_schemaa = extend_schema(
     responses={
         "default": ErrorDetailSerializer,
-        200: SystemTaskSerializer(many=True),
+        200: TaskSerializer(many=True),
     },
 )
 create_system_tasks_schema = extend_schema(
-    request=SystemTaskSerializer,
+    request=TaskSerializer,
     responses={
         "default": ErrorDetailSerializer,
-        201: SystemTaskSerializer,
+        201: TaskSerializer,
     },
 )
 
@@ -92,14 +94,57 @@ create_system_tasks_schema = extend_schema(
     list=list_system_tasks_schemaa,
     create=create_system_tasks_schema,
 )
-class SystemTaskViewSet(
+class TaskViewSet(
     GenericViewSet,
     ListModelMixin,
     RetrieveModelMixin,
     CreateModelMixin,
 ):
-    serializer_class = SystemTaskSerializer
-    queryset = SystemTask.objects.all()
+    serializer_class = TaskSerializer
+    queryset = Task.objects.all()
+    lookup_field = "id"
+
+
+##
+# TaskStatus
+##
+
+list_system_tasks_status_schema = extend_schema(
+    responses={
+        "default": ErrorDetailSerializer,
+        200: TaskStatusSerializer(many=True),
+    },
+)
+create_system_tasks_status_schema = extend_schema(
+    request=TaskStatusSerializer,
+    responses={
+        "default": ErrorDetailSerializer,
+        201: TaskStatusSerializer,
+    },
+)
+update_system_tasks_status_schema = extend_schema(
+    request=TaskStatusSerializer,
+    responses={
+        "default": ErrorDetailSerializer,
+        202: TaskStatusSerializer,
+    },
+)
+
+
+@extend_schema_view(
+    list=list_system_tasks_status_schema,
+    create=create_system_tasks_schema,
+    update=update_system_tasks_status_schema,
+)
+class TaskStatusViewSet(
+    GenericViewSet,
+    ListModelMixin,
+    RetrieveModelMixin,
+    CreateModelMixin,
+    UpdateModelMixin,
+):
+    serializer_class = TaskStatusSerializer
+    queryset = TaskStatus.objects.all()
     lookup_field = "id"
 
 

@@ -42,7 +42,7 @@ class Device(object):
         'cloudiot_device': 'CloudiotDevice',
         'cameras': 'list[Camera]',
         'dashboard_url': 'str',
-        'last_system_task': 'SystemTask',
+        'last_system_task': 'Task',
         'printer_controllers': 'list[PrinterController]',
         'release_channel': 'ReleaseChannelEnum',
         'user': 'User',
@@ -221,7 +221,7 @@ class Device(object):
 
 
         :return: The last_system_task of this Device.  # noqa: E501
-        :rtype: SystemTask
+        :rtype: Task
         """
         return self._last_system_task
 
@@ -231,7 +231,7 @@ class Device(object):
 
 
         :param last_system_task: The last_system_task of this Device.  # noqa: E501
-        :type last_system_task: SystemTask
+        :type last_system_task: Task
         """
 
         self._last_system_task = last_system_task

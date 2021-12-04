@@ -203,20 +203,50 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
-    def test_devices_system_tasks_create(self):
-        """Test case for devices_system_tasks_create
+    def test_devices_tasks_create(self):
+        """Test case for devices_tasks_create
 
         """
         pass
 
-    def test_devices_system_tasks_list(self):
-        """Test case for devices_system_tasks_list
+    def test_devices_tasks_list(self):
+        """Test case for devices_tasks_list
 
         """
         pass
 
-    def test_devices_system_tasks_retrieve(self):
-        """Test case for devices_system_tasks_retrieve
+    def test_devices_tasks_retrieve(self):
+        """Test case for devices_tasks_retrieve
+
+        """
+        pass
+
+    def test_devices_tasks_status_create(self):
+        """Test case for devices_tasks_status_create
+
+        """
+        pass
+
+    def test_devices_tasks_status_list(self):
+        """Test case for devices_tasks_status_list
+
+        """
+        pass
+
+    def test_devices_tasks_status_partial_update(self):
+        """Test case for devices_tasks_status_partial_update
+
+        """
+        pass
+
+    def test_devices_tasks_status_retrieve(self):
+        """Test case for devices_tasks_status_retrieve
+
+        """
+        pass
+
+    def test_devices_tasks_status_update(self):
+        """Test case for devices_tasks_status_update
 
         """
         pass
