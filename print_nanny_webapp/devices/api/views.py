@@ -75,13 +75,13 @@ class DeviceConfigViewSet(
 ##
 # Task
 ##
-list_system_tasks_schemaa = extend_schema(
+list_tasks_schemaa = extend_schema(
     responses={
         "default": ErrorDetailSerializer,
         200: TaskSerializer(many=True),
     },
 )
-create_system_tasks_schema = extend_schema(
+create_tasks_schema = extend_schema(
     request=TaskSerializer,
     responses={
         "default": ErrorDetailSerializer,
@@ -91,8 +91,8 @@ create_system_tasks_schema = extend_schema(
 
 
 @extend_schema_view(
-    list=list_system_tasks_schemaa,
-    create=create_system_tasks_schema,
+    list=list_tasks_schemaa,
+    create=create_tasks_schema,
 )
 class TaskViewSet(
     GenericViewSet,
@@ -109,13 +109,13 @@ class TaskViewSet(
 # TaskStatus
 ##
 
-list_system_tasks_status_schema = extend_schema(
+list_tasks_status_schema = extend_schema(
     responses={
         "default": ErrorDetailSerializer,
         200: TaskStatusSerializer(many=True),
     },
 )
-create_system_tasks_status_schema = extend_schema(
+create_tasks_status_schema = extend_schema(
     request=TaskStatusSerializer,
     responses={
         "default": ErrorDetailSerializer,
@@ -125,8 +125,8 @@ create_system_tasks_status_schema = extend_schema(
 
 
 @extend_schema_view(
-    list=list_system_tasks_status_schema,
-    create=create_system_tasks_schema,
+    list=list_tasks_status_schema,
+    create=create_tasks_schema,
 )
 class TaskStatusViewSet(
     GenericViewSet,

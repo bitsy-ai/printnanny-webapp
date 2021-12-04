@@ -139,7 +139,6 @@ class DeviceSerializer(serializers.ModelSerializer):
     )
     cameras = CameraSerializer(read_only=True, many=True)
     dashboard_url = serializers.CharField(read_only=True)
-    last_system_task = TaskSerializer(read_only=True)
     printer_controllers = PrinterControllerSerializer(read_only=True, many=True)
     release_channel = serializers.ChoiceField(
         choices=DeviceReleaseChannel.choices,
@@ -148,11 +147,13 @@ class DeviceSerializer(serializers.ModelSerializer):
 
     user = UserSerializer(read_only=True)
     active_license = LicenseSerializer(read_only=True)
+    last_task = TaskSerializer(read_only=True)
+    active_tasks = TaskSerializer(many=True, read_only=True)
 
     class Meta:
         model = Device
         depth = 2
-        read_only = ("active_license", "bootstrap_release", "user", "last_system_task")
+        read_only = ("active_license", "bootstrap_release", "user", "last_task")
         exclude = ("deleted",)
 
 

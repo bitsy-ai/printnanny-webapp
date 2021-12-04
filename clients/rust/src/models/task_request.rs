@@ -13,6 +13,8 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct TaskRequest {
+    #[serde(rename = "active", skip_serializing_if = "Option::is_none")]
+    pub active: Option<bool>,
     #[serde(rename = "task_type", skip_serializing_if = "Option::is_none")]
     pub task_type: Option<crate::models::TaskType>,
     #[serde(rename = "device")]
@@ -22,6 +24,7 @@ pub struct TaskRequest {
 impl TaskRequest {
     pub fn new(device: i32) -> TaskRequest {
         TaskRequest {
+            active: None,
             task_type: None,
             device,
         }

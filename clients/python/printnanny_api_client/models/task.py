@@ -39,6 +39,7 @@ class Task(object):
     openapi_types = {
         'id': 'int',
         'last_status': 'TaskStatus',
+        'active': 'bool',
         'task_type': 'TaskType',
         'created_dt': 'datetime',
         'device': 'int'
@@ -47,12 +48,13 @@ class Task(object):
     attribute_map = {
         'id': 'id',
         'last_status': 'last_status',
+        'active': 'active',
         'task_type': 'task_type',
         'created_dt': 'created_dt',
         'device': 'device'
     }
 
-    def __init__(self, id=None, last_status=None, task_type=None, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, last_status=None, active=None, task_type=None, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
         """Task - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -60,6 +62,7 @@ class Task(object):
 
         self._id = None
         self._last_status = None
+        self._active = None
         self._task_type = None
         self._created_dt = None
         self._device = None
@@ -67,6 +70,8 @@ class Task(object):
 
         self.id = id
         self.last_status = last_status
+        if active is not None:
+            self.active = active
         if task_type is not None:
             self.task_type = task_type
         self.created_dt = created_dt
@@ -115,6 +120,27 @@ class Task(object):
         """
 
         self._last_status = last_status
+
+    @property
+    def active(self):
+        """Gets the active of this Task.  # noqa: E501
+
+
+        :return: The active of this Task.  # noqa: E501
+        :rtype: bool
+        """
+        return self._active
+
+    @active.setter
+    def active(self, active):
+        """Sets the active of this Task.
+
+
+        :param active: The active of this Task.  # noqa: E501
+        :type active: bool
+        """
+
+        self._active = active
 
     @property
     def task_type(self):

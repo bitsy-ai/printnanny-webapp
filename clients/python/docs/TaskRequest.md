@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**active** | **bool** |  | [optional] 
 **task_type** | [**TaskType**](TaskType.md) |  | [optional] 
 **device** | **int** |  | 
 

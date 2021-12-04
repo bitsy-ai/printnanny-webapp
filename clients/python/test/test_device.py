@@ -54,7 +54,6 @@ class TestDevice(unittest.TestCase):
                         url = '', )
                     ], 
                 dashboard_url = '', 
-                last_system_task = None, 
                 printer_controllers = [
                     printnanny_api_client.models.printer_controller.PrinterController(
                         id = 56, 
@@ -68,6 +67,16 @@ class TestDevice(unittest.TestCase):
                 release_channel = None, 
                 user = None, 
                 active_license = None, 
+                last_task = None, 
+                active_tasks = [
+                    printnanny_api_client.models.task.Task(
+                        id = 56, 
+                        last_status = null, 
+                        active = True, 
+                        task_type = 'activate_license', 
+                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        device = 56, )
+                    ], 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 hostname = ''
@@ -91,7 +100,6 @@ class TestDevice(unittest.TestCase):
                         url = '', )
                     ],
                 dashboard_url = '',
-                last_system_task = None,
                 printer_controllers = [
                     printnanny_api_client.models.printer_controller.PrinterController(
                         id = 56, 
@@ -104,6 +112,16 @@ class TestDevice(unittest.TestCase):
                     ],
                 user = None,
                 active_license = None,
+                last_task = None,
+                active_tasks = [
+                    printnanny_api_client.models.task.Task(
+                        id = 56, 
+                        last_status = null, 
+                        active = True, 
+                        task_type = 'activate_license', 
+                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        device = 56, )
+                    ],
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
         )

@@ -1,5 +1,5 @@
 import logging
-from typing import Any
+from django.db.models import Q
 from django.conf import settings
 from django.db import models
 from django.contrib.auth import get_user_model
@@ -81,8 +81,12 @@ class Device(SafeDeleteModel):
         return self.licenses.first()
 
     @property
-    def last_system_task(self):
-        return self.system_tasks.first()
+    def last_task(self):
+        return self.tasks.first()
+
+    @property
+    def active_tasks(self):
+        return self.tasks.filter(active=True).all()
 
     @property
     def to_cloudiot_id(self):
@@ -294,7 +298,9 @@ class Task(SafeDeleteModel):
 
     class Meta:
         ordering = ["-created_dt"]
-        index_together = [["device", "task_type"]]
+        index_together = [["device", "task_type", "active"]]
+
+    active = models.BooleanField(default=True)
 
     task_type = models.CharField(
         max_length=255,

@@ -42,11 +42,12 @@ class Device(object):
         'cloudiot_device': 'CloudiotDevice',
         'cameras': 'list[Camera]',
         'dashboard_url': 'str',
-        'last_system_task': 'Task',
         'printer_controllers': 'list[PrinterController]',
         'release_channel': 'ReleaseChannelEnum',
         'user': 'User',
         'active_license': 'License',
+        'last_task': 'Task',
+        'active_tasks': 'list[Task]',
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
         'hostname': 'str'
@@ -58,17 +59,18 @@ class Device(object):
         'cloudiot_device': 'cloudiot_device',
         'cameras': 'cameras',
         'dashboard_url': 'dashboard_url',
-        'last_system_task': 'last_system_task',
         'printer_controllers': 'printer_controllers',
         'release_channel': 'release_channel',
         'user': 'user',
         'active_license': 'active_license',
+        'last_task': 'last_task',
+        'active_tasks': 'active_tasks',
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
         'hostname': 'hostname'
     }
 
-    def __init__(self, id=None, bootstrap_release=None, cloudiot_device=None, cameras=None, dashboard_url=None, last_system_task=None, printer_controllers=None, release_channel=None, user=None, active_license=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, bootstrap_release=None, cloudiot_device=None, cameras=None, dashboard_url=None, printer_controllers=None, release_channel=None, user=None, active_license=None, last_task=None, active_tasks=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -79,11 +81,12 @@ class Device(object):
         self._cloudiot_device = None
         self._cameras = None
         self._dashboard_url = None
-        self._last_system_task = None
         self._printer_controllers = None
         self._release_channel = None
         self._user = None
         self._active_license = None
+        self._last_task = None
+        self._active_tasks = None
         self._created_dt = None
         self._updated_dt = None
         self._hostname = None
@@ -94,11 +97,12 @@ class Device(object):
         self.cloudiot_device = cloudiot_device
         self.cameras = cameras
         self.dashboard_url = dashboard_url
-        self.last_system_task = last_system_task
         self.printer_controllers = printer_controllers
         self.release_channel = release_channel
         self.user = user
         self.active_license = active_license
+        self.last_task = last_task
+        self.active_tasks = active_tasks
         self.created_dt = created_dt
         self.updated_dt = updated_dt
         if hostname is not None:
@@ -216,27 +220,6 @@ class Device(object):
         self._dashboard_url = dashboard_url
 
     @property
-    def last_system_task(self):
-        """Gets the last_system_task of this Device.  # noqa: E501
-
-
-        :return: The last_system_task of this Device.  # noqa: E501
-        :rtype: Task
-        """
-        return self._last_system_task
-
-    @last_system_task.setter
-    def last_system_task(self, last_system_task):
-        """Sets the last_system_task of this Device.
-
-
-        :param last_system_task: The last_system_task of this Device.  # noqa: E501
-        :type last_system_task: Task
-        """
-
-        self._last_system_task = last_system_task
-
-    @property
     def printer_controllers(self):
         """Gets the printer_controllers of this Device.  # noqa: E501
 
@@ -321,6 +304,50 @@ class Device(object):
         """
 
         self._active_license = active_license
+
+    @property
+    def last_task(self):
+        """Gets the last_task of this Device.  # noqa: E501
+
+
+        :return: The last_task of this Device.  # noqa: E501
+        :rtype: Task
+        """
+        return self._last_task
+
+    @last_task.setter
+    def last_task(self, last_task):
+        """Sets the last_task of this Device.
+
+
+        :param last_task: The last_task of this Device.  # noqa: E501
+        :type last_task: Task
+        """
+
+        self._last_task = last_task
+
+    @property
+    def active_tasks(self):
+        """Gets the active_tasks of this Device.  # noqa: E501
+
+
+        :return: The active_tasks of this Device.  # noqa: E501
+        :rtype: list[Task]
+        """
+        return self._active_tasks
+
+    @active_tasks.setter
+    def active_tasks(self, active_tasks):
+        """Sets the active_tasks of this Device.
+
+
+        :param active_tasks: The active_tasks of this Device.  # noqa: E501
+        :type active_tasks: list[Task]
+        """
+        if self.local_vars_configuration.client_side_validation and active_tasks is None:  # noqa: E501
+            raise ValueError("Invalid value for `active_tasks`, must not be `None`")  # noqa: E501
+
+        self._active_tasks = active_tasks
 
     @property
     def created_dt(self):
