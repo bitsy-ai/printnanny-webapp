@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.status_enum import StatusEnum  # noqa: E501
+from printnanny_api_client.models.task_status_type import TaskStatusType  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestStatusEnum(unittest.TestCase):
-    """StatusEnum unit test stubs"""
+class TestTaskStatusType(unittest.TestCase):
+    """TaskStatusType unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,20 +30,20 @@ class TestStatusEnum(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test StatusEnum
+        """Test TaskStatusType
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.status_enum.StatusEnum()  # noqa: E501
+        # model = printnanny_api_client.models.task_status_type.TaskStatusType()  # noqa: E501
         if include_optional :
-            return StatusEnum(
+            return TaskStatusType(
             )
         else :
-            return StatusEnum(
+            return TaskStatusType(
         )
 
-    def testStatusEnum(self):
-        """Test StatusEnum"""
+    def testTaskStatusType(self):
+        """Test TaskStatusType"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

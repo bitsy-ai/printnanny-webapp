@@ -41,7 +41,7 @@ class TaskStatus(object):
         'detail': 'str',
         'wiki_url': 'str',
         'created_dt': 'datetime',
-        'status': 'StatusEnum',
+        'status': 'TaskStatusType',
         'task': 'int'
     }
 
@@ -176,7 +176,7 @@ class TaskStatus(object):
 
 
         :return: The status of this TaskStatus.  # noqa: E501
-        :rtype: StatusEnum
+        :rtype: TaskStatusType
         """
         return self._status
 
@@ -186,7 +186,7 @@ class TaskStatus(object):
 
 
         :param status: The status of this TaskStatus.  # noqa: E501
-        :type status: StatusEnum
+        :type status: TaskStatusType
         """
 
         self._status = status

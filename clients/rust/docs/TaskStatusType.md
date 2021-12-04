@@ -1,7 +1,7 @@
-# StatusEnum
-
+# TaskStatusType
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

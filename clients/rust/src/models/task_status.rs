@@ -22,7 +22,7 @@ pub struct TaskStatus {
     #[serde(rename = "created_dt")]
     pub created_dt: String,
     #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
-    pub status: Option<crate::models::StatusEnum>,
+    pub status: Option<crate::models::TaskStatusType>,
     #[serde(rename = "task")]
     pub task: i32,
 }

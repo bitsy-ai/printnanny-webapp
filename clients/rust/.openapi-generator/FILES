@@ -143,11 +143,11 @@ docs/RemoteControlCommand.md
 docs/RemoteControlCommandRequest.md
 docs/SchemaApi.md
 docs/SoftwareEnum.md
-docs/StatusEnum.md
 docs/Task.md
 docs/TaskRequest.md
 docs/TaskStatus.md
 docs/TaskStatusRequest.md
+docs/TaskStatusType.md
 docs/TaskType.md
 docs/TelemetryApi.md
 docs/TelemetryEvent.md
@@ -306,11 +306,11 @@ src/models/remote_command_event_request.rs
 src/models/remote_control_command.rs
 src/models/remote_control_command_request.rs
 src/models/software_enum.rs
-src/models/status_enum.rs
 src/models/task.rs
 src/models/task_request.rs
 src/models/task_status.rs
 src/models/task_status_request.rs
+src/models/task_status_type.rs
 src/models/task_type.rs
 src/models/telemetry_event.rs
 src/models/telemetry_event_event_type_enum.rs
