@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**active** | Option<**bool**> |  | [optional]
 **task_type** | Option<[**crate::models::TaskType**](TaskType.md)> |  | [optional]
 **device** | **i32** |  | 
 

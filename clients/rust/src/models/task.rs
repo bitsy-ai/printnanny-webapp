@@ -17,6 +17,8 @@ pub struct Task {
     pub id: i32,
     #[serde(rename = "last_status")]
     pub last_status: Option<Box<crate::models::TaskStatus>>,
+    #[serde(rename = "active", skip_serializing_if = "Option::is_none")]
+    pub active: Option<bool>,
     #[serde(rename = "task_type", skip_serializing_if = "Option::is_none")]
     pub task_type: Option<crate::models::TaskType>,
     #[serde(rename = "created_dt")]
@@ -30,6 +32,7 @@ impl Task {
         Task {
             id,
             last_status: last_status.map(Box::new),
+            active: None,
             task_type: None,
             created_dt,
             device,

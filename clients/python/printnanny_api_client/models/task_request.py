@@ -37,28 +37,54 @@ class TaskRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
+        'active': 'bool',
         'task_type': 'TaskType',
         'device': 'int'
     }
 
     attribute_map = {
+        'active': 'active',
         'task_type': 'task_type',
         'device': 'device'
     }
 
-    def __init__(self, task_type=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, active=None, task_type=None, device=None, local_vars_configuration=None):  # noqa: E501
         """TaskRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
+        self._active = None
         self._task_type = None
         self._device = None
         self.discriminator = None
 
+        if active is not None:
+            self.active = active
         if task_type is not None:
             self.task_type = task_type
         self.device = device
+
+    @property
+    def active(self):
+        """Gets the active of this TaskRequest.  # noqa: E501
+
+
+        :return: The active of this TaskRequest.  # noqa: E501
+        :rtype: bool
+        """
+        return self._active
+
+    @active.setter
+    def active(self, active):
+        """Sets the active of this TaskRequest.
+
+
+        :param active: The active of this TaskRequest.  # noqa: E501
+        :type active: bool
+        """
+
+        self._active = active
 
     @property
     def task_type(self):

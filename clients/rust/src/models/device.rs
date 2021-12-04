@@ -23,8 +23,6 @@ pub struct Device {
     pub cameras: Vec<crate::models::Camera>,
     #[serde(rename = "dashboard_url")]
     pub dashboard_url: String,
-    #[serde(rename = "last_system_task")]
-    pub last_system_task: Option<Box<crate::models::Task>>,
     #[serde(rename = "printer_controllers")]
     pub printer_controllers: Vec<crate::models::PrinterController>,
     #[serde(rename = "release_channel", skip_serializing_if = "Option::is_none")]
@@ -33,6 +31,10 @@ pub struct Device {
     pub user: Option<Box<crate::models::User>>,
     #[serde(rename = "active_license")]
     pub active_license: Option<Box<crate::models::License>>,
+    #[serde(rename = "last_task")]
+    pub last_task: Option<Box<crate::models::Task>>,
+    #[serde(rename = "active_tasks")]
+    pub active_tasks: Vec<crate::models::Task>,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
     #[serde(rename = "updated_dt")]
@@ -43,18 +45,19 @@ pub struct Device {
 }
 
 impl Device {
-    pub fn new(id: i32, bootstrap_release: Option<crate::models::Release>, cloudiot_device: Option<crate::models::CloudiotDevice>, cameras: Vec<crate::models::Camera>, dashboard_url: String, last_system_task: Option<crate::models::Task>, printer_controllers: Vec<crate::models::PrinterController>, user: Option<crate::models::User>, active_license: Option<crate::models::License>, created_dt: String, updated_dt: String) -> Device {
+    pub fn new(id: i32, bootstrap_release: Option<crate::models::Release>, cloudiot_device: Option<crate::models::CloudiotDevice>, cameras: Vec<crate::models::Camera>, dashboard_url: String, printer_controllers: Vec<crate::models::PrinterController>, user: Option<crate::models::User>, active_license: Option<crate::models::License>, last_task: Option<crate::models::Task>, active_tasks: Vec<crate::models::Task>, created_dt: String, updated_dt: String) -> Device {
         Device {
             id,
             bootstrap_release: bootstrap_release.map(Box::new),
             cloudiot_device: cloudiot_device.map(Box::new),
             cameras,
             dashboard_url,
-            last_system_task: last_system_task.map(Box::new),
             printer_controllers,
             release_channel: None,
             user: user.map(Box::new),
             active_license: active_license.map(Box::new),
+            last_task: last_task.map(Box::new),
+            active_tasks,
             created_dt,
             updated_dt,
             hostname: None,
