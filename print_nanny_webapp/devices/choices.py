@@ -14,16 +14,18 @@ class PrinterSoftwareType(models.TextChoices):
 
 
 class TaskStatusType(models.TextChoices):
+    FAILED = "failed", "Failed"  # TODO prompt to send crash report
     REQUESTED = "requested", "Requested"
     STARTED = "started", "Running"
-    FAILED = "failed", "Failed"  # TODO prompt to send crash report
     SUCCESS = "success", "Success"
+    TIMEOUT = "timeout", "Timeout"
 
     __css__ = dict(
+        FAILED="danger",
         REQUESTED="secondary",
         STARTED="warning",
-        FAILED="danger",
         SUCCESS="success",
+        TIMEOUT="timeout",
     )
 
     @classmethod

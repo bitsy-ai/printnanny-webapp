@@ -8,8 +8,8 @@ from .choices import (
 )
 
 # when device is created, automatically create Task with type ACTIVATE_LICENSE
-@receiver(post_save, sender=Device, dispatch_uid="create_system_task_activate_license")
-def create_license_activate_system_task(sender, instance, created, **kwargs):
+@receiver(post_save, sender=Device, dispatch_uid="create_task_activate_license")
+def create_license_activate_task(sender, instance, created, **kwargs):
     if created:
         Task.objects.create(
             task_type=TaskType.ACTIVATE_LICENSE,
@@ -18,7 +18,19 @@ def create_license_activate_system_task(sender, instance, created, **kwargs):
 
 
 # when Task is created, automatically create first status in WAITING state
-@receiver(post_save, sender=Task, dispatch_uid="create_system_task_status_waiting")
-def create_license_activate_system_task_status(sender, instance, created, **kwargs):
+@receiver(post_save, sender=Task, dispatch_uid="create_task_requested_status")
+def create_task_requested_status(sender, instance, created, **kwargs):
     if created:
         TaskStatus.objects.create(status=TaskStatusType.REQUESTED, system_task=instance)
+
+
+# when TaskStatus is created, update Task.active parent field
+@receiver(post_save, sender=TaskStatus, dispatch_uid="update_task_active_field")
+def update_task_active_field(sender, instance, created, **kwargs):
+    if instance.status in (
+        TaskStatusType.FAILED,
+        TaskStatusType.SUCCESS,
+        TaskStatusType.TIMEOUT,
+    ):
+        instance.task.active = False
+        instance.save()

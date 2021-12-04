@@ -55,8 +55,8 @@ class DeviceDetailView(DetailView, MultipleObjectMixin):
     paginate_by = 10
 
     def get_context_data(self, **kwargs):
-        system_tasks = self.get_object().system_tasks.all()
-        context = super().get_context_data(object_list=system_tasks, **kwargs)
+        tasks = self.get_object().tasks.all()
+        context = super().get_context_data(object_list=tasks, **kwargs)
         return context
 
 
