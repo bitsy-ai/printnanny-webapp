@@ -126,7 +126,7 @@ create_tasks_status_schema = extend_schema(
 
 @extend_schema_view(
     list=list_tasks_status_schema,
-    create=create_tasks_schema,
+    create=create_tasks_status_schema,
 )
 class TaskStatusViewSet(
     GenericViewSet,
