@@ -12,9 +12,9 @@ from print_nanny_webapp.devices.api.views import (
     DeviceViewSet,
     LicenseViewSet,
     PrinterControllerViewSet,
-    SystemTaskViewSet,
+    TaskViewSet,
+    TaskStatusViewSet
 )
-from print_nanny_webapp.devices.models import DeviceInfo
 from print_nanny_webapp.ml_ops.api.views import (
     ModelArtifactViewSet, ExperimentDeviceConfigViewSet, DeviceCalibrationViewSet, ExperimentViewSet
 )
@@ -55,13 +55,17 @@ devices_by_hostname = [
     path("devices/<slug:hostname>", DeviceHostnameViewSet.as_view({'get': 'retrieve'})),
 ]
 
-devices_router  = NestedSimpleRouter(router, r'devices', lookup='device')
+devices_router = NestedSimpleRouter(router, r'devices', lookup='device')
 devices_router.register(r'config', DeviceConfigViewSet, basename='config')
-devices_router.register(r'system-tasks', SystemTaskViewSet, basename='system-tasks')
 devices_router.register(r'info', DeviceInfoViewSet, basename='info')
 devices_router.register(r'cameras', CameraViewSet, basename='cameras')
 devices_router.register(r'cloud-iot-devices', CloudiotDeviceViewSet , basename='cloud-iot-devices')
 devices_router.register(r'printer-controllers', PrinterControllerViewSet, basename='printer-controllers')
+
+devices_router.register(r'tasks', TaskViewSet, basename='tasks')
+
+task_router = NestedSimpleRouter(devices_router, r'tasks', lookup='task')
+task_router.register(r'status', TaskStatusViewSet, basename='tasks')
 
 router.register("telemetry-events", TelemetryEventViewSet, basename="telemetry-events")
 router.register("remote-command-events", RemoteCommandEventViewSet, basename="remote-command-events")
@@ -91,4 +95,10 @@ releases_by_channel = [
 
 app_name = "api"
 
-urlpatterns = router.urls + devices_router .urls + devices_by_hostname + releases_by_channel
+urlpatterns = (
+    router.urls +
+    devices_router.urls +
+    task_router.urls +
+    devices_by_hostname +
+    releases_by_channel
+)

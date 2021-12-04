@@ -10,10 +10,10 @@ from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.signals import pre_softdelete
 
 from .choices import (
-    SystemTaskType,
+    TaskType,
     DeviceReleaseChannel,
     PrinterSoftwareType,
-    SystemTaskStatusType,
+    TaskStatusType,
 )
 
 UserModel = get_user_model()
@@ -281,7 +281,7 @@ class HelpLink(models.Model):
         abstract = True
 
 
-class SystemTask(SafeDeleteModel):
+class Task(SafeDeleteModel):
     """
     Append-only log published to /devices/:id/state FROM device
     Indicates current state of device
@@ -298,12 +298,12 @@ class SystemTask(SafeDeleteModel):
 
     task_type = models.CharField(
         max_length=255,
-        choices=SystemTaskType.choices,
-        default=SystemTaskType.SOFTWARE_UPDATE,
+        choices=TaskType.choices,
+        default=TaskType.SOFTWARE_UPDATE,
     )
 
     device = models.ForeignKey(
-        Device, on_delete=models.CASCADE, db_index=True, related_name="system_tasks"
+        Device, on_delete=models.CASCADE, db_index=True, related_name="tasks"
     )
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
 
@@ -312,26 +312,24 @@ class SystemTask(SafeDeleteModel):
         return self.status_set.first()
 
 
-class SystemTaskStatus(HelpLink, SafeDeleteModel):
+class TaskStatus(HelpLink, SafeDeleteModel):
     class Meta:
         ordering = ["-created_dt"]
-        index_together = [["system_task", "status"]]
+        index_together = [["task", "status"]]
 
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
 
-    system_task = models.ForeignKey(
-        SystemTask, on_delete=models.CASCADE, related_name="status_set"
-    )
+    task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name="status_set")
 
     status = models.CharField(
         max_length=16,
-        choices=SystemTaskStatusType.choices,
-        default=SystemTaskStatusType.REQUESTED,
+        choices=TaskStatusType.choices,
+        default=TaskStatusType.REQUESTED,
     )
 
     @property
     def css_class(self):
-        return SystemTaskStatusType.get_css_class(self.status)
+        return TaskStatusType.get_css_class(self.status)
 
 
 class Camera(SafeDeleteModel):
