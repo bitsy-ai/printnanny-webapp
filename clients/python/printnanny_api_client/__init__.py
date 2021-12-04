@@ -15,7 +15,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.19.0"
+__version__ = "0.19.1"
 
 # import apis into sdk package
 from printnanny_api_client.api.alerts_api import AlertsApi
@@ -172,11 +172,11 @@ from printnanny_api_client.models.remote_command_event_request import RemoteComm
 from printnanny_api_client.models.remote_control_command import RemoteControlCommand
 from printnanny_api_client.models.remote_control_command_request import RemoteControlCommandRequest
 from printnanny_api_client.models.software_enum import SoftwareEnum
-from printnanny_api_client.models.status_enum import StatusEnum
 from printnanny_api_client.models.task import Task
 from printnanny_api_client.models.task_request import TaskRequest
 from printnanny_api_client.models.task_status import TaskStatus
 from printnanny_api_client.models.task_status_request import TaskStatusRequest
+from printnanny_api_client.models.task_status_type import TaskStatusType
 from printnanny_api_client.models.task_type import TaskType
 from printnanny_api_client.models.telemetry_event import TelemetryEvent
 from printnanny_api_client.models.telemetry_event_event_type_enum import TelemetryEventEventTypeEnum

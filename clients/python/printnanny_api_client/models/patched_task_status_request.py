@@ -39,7 +39,7 @@ class PatchedTaskStatusRequest(object):
     openapi_types = {
         'detail': 'str',
         'wiki_url': 'str',
-        'status': 'StatusEnum',
+        'status': 'TaskStatusType',
         'task': 'int'
     }
 
@@ -129,7 +129,7 @@ class PatchedTaskStatusRequest(object):
 
 
         :return: The status of this PatchedTaskStatusRequest.  # noqa: E501
-        :rtype: StatusEnum
+        :rtype: TaskStatusType
         """
         return self._status
 
@@ -139,7 +139,7 @@ class PatchedTaskStatusRequest(object):
 
 
         :param status: The status of this PatchedTaskStatusRequest.  # noqa: E501
-        :type status: StatusEnum
+        :type status: TaskStatusType
         """
 
         self._status = status

@@ -18,7 +18,7 @@ pub struct PatchedTaskStatusRequest {
     #[serde(rename = "wiki_url", skip_serializing_if = "Option::is_none")]
     pub wiki_url: Option<String>,
     #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
-    pub status: Option<crate::models::StatusEnum>,
+    pub status: Option<crate::models::TaskStatusType>,
     #[serde(rename = "task", skip_serializing_if = "Option::is_none")]
     pub task: Option<i32>,
 }
