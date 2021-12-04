@@ -4702,21 +4702,21 @@ class DevicesApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def devices_tasks_status_create(self, device_id, task_id, task_request, **kwargs):  # noqa: E501
+    def devices_tasks_status_create(self, device_id, task_id, task_status_request, **kwargs):  # noqa: E501
         """devices_tasks_status_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_tasks_status_create(device_id, task_id, task_request, async_req=True)
+        >>> thread = api.devices_tasks_status_create(device_id, task_id, task_status_request, async_req=True)
         >>> result = thread.get()
 
         :param device_id: (required)
         :type device_id: str
         :param task_id: (required)
         :type task_id: int
-        :param task_request: (required)
-        :type task_request: TaskRequest
+        :param task_status_request: (required)
+        :type task_status_request: TaskStatusRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -4730,26 +4730,26 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: Task
+        :rtype: TaskStatus
         """
         kwargs['_return_http_data_only'] = True
-        return self.devices_tasks_status_create_with_http_info(device_id, task_id, task_request, **kwargs)  # noqa: E501
+        return self.devices_tasks_status_create_with_http_info(device_id, task_id, task_status_request, **kwargs)  # noqa: E501
 
-    def devices_tasks_status_create_with_http_info(self, device_id, task_id, task_request, **kwargs):  # noqa: E501
+    def devices_tasks_status_create_with_http_info(self, device_id, task_id, task_status_request, **kwargs):  # noqa: E501
         """devices_tasks_status_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_tasks_status_create_with_http_info(device_id, task_id, task_request, async_req=True)
+        >>> thread = api.devices_tasks_status_create_with_http_info(device_id, task_id, task_status_request, async_req=True)
         >>> result = thread.get()
 
         :param device_id: (required)
         :type device_id: str
         :param task_id: (required)
         :type task_id: int
-        :param task_request: (required)
-        :type task_request: TaskRequest
+        :param task_status_request: (required)
+        :type task_status_request: TaskStatusRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -4770,7 +4770,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(Task, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(TaskStatus, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -4778,7 +4778,7 @@ class DevicesApi(object):
         all_params = [
             'device_id',
             'task_id',
-            'task_request'
+            'task_status_request'
         ]
         all_params.extend(
             [
@@ -4806,10 +4806,10 @@ class DevicesApi(object):
         if self.api_client.client_side_validation and ('task_id' not in local_var_params or  # noqa: E501
                                                         local_var_params['task_id'] is None):  # noqa: E501
             raise ApiValueError("Missing the required parameter `task_id` when calling `devices_tasks_status_create`")  # noqa: E501
-        # verify the required parameter 'task_request' is set
-        if self.api_client.client_side_validation and ('task_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['task_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `task_request` when calling `devices_tasks_status_create`")  # noqa: E501
+        # verify the required parameter 'task_status_request' is set
+        if self.api_client.client_side_validation and ('task_status_request' not in local_var_params or  # noqa: E501
+                                                        local_var_params['task_status_request'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `task_status_request` when calling `devices_tasks_status_create`")  # noqa: E501
 
         collection_formats = {}
 
@@ -4827,8 +4827,8 @@ class DevicesApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'task_request' in local_var_params:
-            body_params = local_var_params['task_request']
+        if 'task_status_request' in local_var_params:
+            body_params = local_var_params['task_status_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -4841,7 +4841,7 @@ class DevicesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            201: "Task",
+            201: "TaskStatus",
         }
 
         return self.api_client.call_api(

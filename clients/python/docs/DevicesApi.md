@@ -3930,7 +3930,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_tasks_status_create**
-> Task devices_tasks_status_create(device_id, task_id, task_request)
+> TaskStatus devices_tasks_status_create(device_id, task_id, task_status_request)
 
 
 
@@ -3971,10 +3971,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 'device_id_example' # str | 
 task_id = 56 # int | 
-task_request = printnanny_api_client.TaskRequest() # TaskRequest | 
+task_status_request = printnanny_api_client.TaskStatusRequest() # TaskStatusRequest | 
 
     try:
-        api_response = api_instance.devices_tasks_status_create(device_id, task_id, task_request)
+        api_response = api_instance.devices_tasks_status_create(device_id, task_id, task_status_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_tasks_status_create: %s\n" % e)
@@ -4015,10 +4015,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 'device_id_example' # str | 
 task_id = 56 # int | 
-task_request = printnanny_api_client.TaskRequest() # TaskRequest | 
+task_status_request = printnanny_api_client.TaskStatusRequest() # TaskStatusRequest | 
 
     try:
-        api_response = api_instance.devices_tasks_status_create(device_id, task_id, task_request)
+        api_response = api_instance.devices_tasks_status_create(device_id, task_id, task_status_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_tasks_status_create: %s\n" % e)
@@ -4030,11 +4030,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **device_id** | **str**|  | 
  **task_id** | **int**|  | 
- **task_request** | [**TaskRequest**](TaskRequest.md)|  | 
+ **task_status_request** | [**TaskStatusRequest**](TaskStatusRequest.md)|  | 
 
 ### Return type
 
-[**Task**](Task.md)
+[**TaskStatus**](TaskStatus.md)
 
 ### Authorization
 
