@@ -114,7 +114,6 @@ docs/PatchedPrintSessionRequest.md
 docs/PatchedPrinterControllerRequest.md
 docs/PatchedPrinterProfileRequest.md
 docs/PatchedRemoteControlCommandRequest.md
-docs/PatchedTaskStatusRequest.md
 docs/PatchedUserRequest.md
 docs/PrintJobEvent.md
 docs/PrintJobEventRequest.md
@@ -280,7 +279,6 @@ src/models/patched_print_session_request.rs
 src/models/patched_printer_controller_request.rs
 src/models/patched_printer_profile_request.rs
 src/models/patched_remote_control_command_request.rs
-src/models/patched_task_status_request.rs
 src/models/patched_user_request.rs
 src/models/print_job_event.rs
 src/models/print_job_event_request.rs

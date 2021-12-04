@@ -233,20 +233,8 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
-    def test_devices_tasks_status_partial_update(self):
-        """Test case for devices_tasks_status_partial_update
-
-        """
-        pass
-
     def test_devices_tasks_status_retrieve(self):
         """Test case for devices_tasks_status_retrieve
-
-        """
-        pass
-
-    def test_devices_tasks_status_update(self):
-        """Test case for devices_tasks_status_update
 
         """
         pass

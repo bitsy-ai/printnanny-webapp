@@ -206,8 +206,6 @@ pub mod patched_printer_profile_request;
 pub use self::patched_printer_profile_request::PatchedPrinterProfileRequest;
 pub mod patched_remote_control_command_request;
 pub use self::patched_remote_control_command_request::PatchedRemoteControlCommandRequest;
-pub mod patched_task_status_request;
-pub use self::patched_task_status_request::PatchedTaskStatusRequest;
 pub mod patched_user_request;
 pub use self::patched_user_request::PatchedUserRequest;
 pub mod print_job_event;

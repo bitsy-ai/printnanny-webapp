@@ -38,9 +38,7 @@ Method | HTTP request | Description
 [**devices_tasks_retrieve**](DevicesApi.md#devices_tasks_retrieve) | **GET** /api/devices/{device_id}/tasks/{id}/ | 
 [**devices_tasks_status_create**](DevicesApi.md#devices_tasks_status_create) | **POST** /api/devices/{device_id}/tasks/{task_id}/status/ | 
 [**devices_tasks_status_list**](DevicesApi.md#devices_tasks_status_list) | **GET** /api/devices/{device_id}/tasks/{task_id}/status/ | 
-[**devices_tasks_status_partial_update**](DevicesApi.md#devices_tasks_status_partial_update) | **PATCH** /api/devices/{device_id}/tasks/{task_id}/status/{id}/ | 
 [**devices_tasks_status_retrieve**](DevicesApi.md#devices_tasks_status_retrieve) | **GET** /api/devices/{device_id}/tasks/{task_id}/status/{id}/ | 
-[**devices_tasks_status_update**](DevicesApi.md#devices_tasks_status_update) | **PUT** /api/devices/{device_id}/tasks/{task_id}/status/{id}/ | 
 [**devices_update**](DevicesApi.md#devices_update) | **PUT** /api/devices/{id}/ | 
 
 
@@ -1046,37 +1044,6 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## devices_tasks_status_partial_update
-
-> crate::models::TaskStatus devices_tasks_status_partial_update(device_id, id, task_id, patched_task_status_request)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **String** |  | [required] |
-**id** | **i32** | A unique integer value identifying this task status. | [required] |
-**task_id** | **i32** |  | [required] |
-**patched_task_status_request** | Option<[**PatchedTaskStatusRequest**](PatchedTaskStatusRequest.md)> |  |  |
-
-### Return type
-
-[**crate::models::TaskStatus**](TaskStatus.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
 ## devices_tasks_status_retrieve
 
 > crate::models::TaskStatus devices_tasks_status_retrieve(device_id, id, task_id)
@@ -1102,37 +1069,6 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## devices_tasks_status_update
-
-> crate::models::TaskStatus devices_tasks_status_update(device_id, id, task_id, task_status_request)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **String** |  | [required] |
-**id** | **i32** | A unique integer value identifying this task status. | [required] |
-**task_id** | **i32** |  | [required] |
-**task_status_request** | [**TaskStatusRequest**](TaskStatusRequest.md) |  | [required] |
-
-### Return type
-
-[**crate::models::TaskStatus**](TaskStatus.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

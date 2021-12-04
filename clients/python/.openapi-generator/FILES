@@ -116,7 +116,6 @@ docs/PatchedPrintSessionRequest.md
 docs/PatchedPrinterControllerRequest.md
 docs/PatchedPrinterProfileRequest.md
 docs/PatchedRemoteControlCommandRequest.md
-docs/PatchedTaskStatusRequest.md
 docs/PatchedUserRequest.md
 docs/PrintJobEvent.md
 docs/PrintJobEventRequest.md
@@ -285,7 +284,6 @@ printnanny_api_client/models/patched_print_session_request.py
 printnanny_api_client/models/patched_printer_controller_request.py
 printnanny_api_client/models/patched_printer_profile_request.py
 printnanny_api_client/models/patched_remote_control_command_request.py
-printnanny_api_client/models/patched_task_status_request.py
 printnanny_api_client/models/patched_user_request.py
 printnanny_api_client/models/print_job_event.py
 printnanny_api_client/models/print_job_event_request.py
@@ -444,7 +442,6 @@ test/test_patched_print_session_request.py
 test/test_patched_printer_controller_request.py
 test/test_patched_printer_profile_request.py
 test/test_patched_remote_control_command_request.py
-test/test_patched_task_status_request.py
 test/test_patched_user_request.py
 test/test_print_job_event.py
 test/test_print_job_event_request.py
