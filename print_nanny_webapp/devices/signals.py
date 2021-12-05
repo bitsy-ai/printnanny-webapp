@@ -27,7 +27,7 @@ def create_task_requested_status(sender, instance, created, **kwargs):
         f"create_task_requested_status sender={sender} instance={instance} created={created} kwargs={kwargs}"
     )
     if created:
-        TaskStatus.objects.create(status=TaskStatusType.REQUESTED, system_task=instance)
+        TaskStatus.objects.create(status=TaskStatusType.REQUESTED, task=instance)
 
 
 # when TaskStatus is created, update Task.active parent field
