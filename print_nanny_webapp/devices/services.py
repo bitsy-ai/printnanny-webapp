@@ -16,7 +16,6 @@ from rest_framework.renderers import JSONRenderer
 from google.cloud import iot_v1 as cloudiot_v1
 import google.api_core.exceptions
 from print_nanny_webapp.devices.api.serializers import LicenseSerializer
-from print_nanny_webapp.users.api.serializers import UserSerializer
 
 from .models import Device, CloudiotDevice, License
 from .constants import FileLocator
@@ -25,29 +24,27 @@ logger = logging.getLogger(__name__)
 
 
 class CACerts(TypedDict):
-    primary: str
-    primary_checksum: str
-    backup: str
-    backup_checksum: str
+    ca_certs: str
+    checksum: str
 
 
 class KeyPair(TypedDict):
     private_key: str
-    private_key_checksum: str
     private_key_filename: str
     public_key: str
-    public_key_checksum: str
     public_key_filename: str
     fingerprint: str
-    ca_certs: CACerts
+    # ca_certs: CACerts
 
 
 def check_ca_certs():
 
-    if not os.path.exists("primary_ca.pem"):
+    if not os.path.exists(FileLocator.CA_CERTS_FILENAME):
+
         with open("primary_ca.crt", "wb+") as f:
             res = requests.get(settings.GCP_LTS_CA_PRIMARY)
             f.write(res.content)
+
         subprocess.run(
             [
                 "openssl",
@@ -61,11 +58,6 @@ def check_ca_certs():
             ],
             capture_output=True,
         )
-    with open("primary_ca.pem", "rb") as f:
-        primary_ca_content = f.read()
-        primary_ca_checksum = hashlib.sha256(primary_ca_content).hexdigest()
-
-    if not os.path.exists("backup_ca.pem"):
         with open("backup_ca.crt", "wb+") as f:
             res = requests.get(settings.GCP_LTS_CA_BACKUP)
             f.write(res.content)
@@ -82,25 +74,24 @@ def check_ca_certs():
             ],
             capture_output=True,
         )
-    with open("backup_ca.pem", "rb") as f:
-        backup_ca_content = f.read()
-        backup_ca_checksum = hashlib.sha256(backup_ca_content).hexdigest()
+
+    with open(FileLocator.CA_CERTS_FILENAME, "rb") as f:
+        ca_certs_content = f.read()
+        ca_certs_checksum = hashlib.sha256(ca_certs_content).hexdigest()
 
     return CACerts(
-        primary=primary_ca_content.decode("utf8"),
-        backup=backup_ca_content.decode("utf8"),
-        primary_checksum=primary_ca_checksum,
-        backup_checksum=backup_ca_checksum,
+        ca_certs=ca_certs_content.decode("utf8"),
+        checksum=ca_certs_checksum,
     )
 
 
 def generate_keypair(tmp: str):
 
-    ca_certs = check_ca_certs()
+    # ca_certs = check_ca_certs()
 
-    sec1_filename = f"{tmp}/ecdsa256_sec1.pem"
-    pkcs8_filename = f"{tmp}/ecdsa256.pem"
-    public_key_filename = f"{tmp}/ecdsa_public.pem"
+    sec1_filename = f"{tmp}/{FileLocator.KEY_PRIVATE_SEC1_FILENAME}"
+    pkcs8_filename = f"{tmp}/{FileLocator.KEY_PRIVATE_PKCS8_FILENAME}"
+    public_key_filename = f"{tmp}/{FileLocator.KEY_PUBLIC_FILENAME}"
 
     p = subprocess.check_output(
         [
@@ -155,21 +146,17 @@ def generate_keypair(tmp: str):
 
     with open(public_key_filename, "rb") as f:
         public_key_content = f.read()
-        public_key_checksum = hashlib.sha256(public_key_content).hexdigest()
 
     with open(pkcs8_filename, "rb") as f:
         private_key_content = f.read()
-        private_key_checksum = hashlib.sha256(private_key_content).hexdigest()
 
     return KeyPair(
         private_key_filename=pkcs8_filename,
         public_key_filename=public_key_filename,
         private_key=private_key_content.decode("utf8"),
-        private_key_checksum=private_key_checksum,
         public_key=public_key_content.decode("utf8"),
-        public_key_checksum=public_key_checksum,
         fingerprint=fingerprint,
-        ca_certs=ca_certs,
+        # ca_certs=ca_certs,
     )
 
 
@@ -270,7 +257,7 @@ def update_or_create_cloudiot_device(
 
 def generate_keypair_and_update_or_create_cloudiot_device(
     device: Device, tmp: str
-) -> Tuple[KeyPair, CloudiotDevice]:
+) -> Tuple[KeyPair, License, CloudiotDevice]:
     keypair = generate_keypair(tmp)
     # revoke all existing licenses (soft-delete)
     device.licenses.all().delete()
@@ -292,13 +279,12 @@ def generate_keypair_and_update_or_create_cloudiot_device(
             device=device,
         )
 
-    License.objects.create(
+    license = License.objects.create(
         public_key=keypair["public_key"],
-        public_key_checksum=keypair["public_key_checksum"],
         fingerprint=keypair["fingerprint"],
         device=device,
     )
-    return keypair, device.cloudiot_devices.first()
+    return keypair, license, device.cloudiot_devices.first()
 
 
 def generate_zipped_license_file(
@@ -308,12 +294,19 @@ def generate_zipped_license_file(
 ) -> str:
     from .api.serializers import DeviceSerializer
 
-    keypair, _ = generate_keypair_and_update_or_create_cloudiot_device(device, tmp)
+    keypair, license, _ = generate_keypair_and_update_or_create_cloudiot_device(
+        device, tmp
+    )
     zip_filename = f"{tmp}/{FileLocator.LICENSE_ZIP_FILENAME}"
+
     device_serializer = DeviceSerializer(device, context=dict(request=request))
     device_json = JSONRenderer().render(device_serializer.data)
 
+    license_serializer = LicenseSerializer(license, context=dict(request=request))
+    license_json = JSONRenderer().render(license_serializer.data)
+
     with ZipFile(zip_filename, "x") as zf:
+
         zf.write(
             keypair["public_key_filename"],
             arcname=os.path.basename(keypair["public_key_filename"]),
@@ -322,7 +315,8 @@ def generate_zipped_license_file(
             keypair["private_key_filename"],
             arcname=os.path.basename(keypair["private_key_filename"]),
         )
-        zf.writestr("printnanny_device.json", device_json)
+        zf.writestr("device.json", device_json)
+        zf.writestr("license.json", license_json)
 
     return zip_filename
 

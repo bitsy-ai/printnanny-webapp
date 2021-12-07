@@ -9,7 +9,7 @@ from polymorphic.models import PolymorphicModel
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.signals import pre_softdelete
 
-from .choices import (
+from .enum import (
     TaskType,
     DeviceReleaseChannel,
     PrinterSoftwareType,
@@ -115,7 +115,6 @@ class License(SafeDeleteModel):
 
     activated = models.BooleanField(default=False)
     public_key = models.TextField()
-    public_key_checksum = models.CharField(max_length=255)
     fingerprint = models.CharField(max_length=255)
 
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)

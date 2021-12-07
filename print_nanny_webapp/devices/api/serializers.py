@@ -16,7 +16,7 @@ from print_nanny_webapp.devices.models import (
     # PrinterProfile,
     # OctoprintPrinterProfile,
 )
-from ..choices import DeviceReleaseChannel, PrinterSoftwareType
+from ..enum import DeviceReleaseChannel, PrinterSoftwareType
 from print_nanny_webapp.users.api.serializers import UserSerializer
 from print_nanny_webapp.releases.api.serializers import ReleaseSerializer
 
@@ -70,7 +70,7 @@ class CloudiotDeviceSerializer(serializers.ModelSerializer):
         exclude = ("deleted",)
 
 
-class Credentials(TypedDict):
+class Tokens(TypedDict):
     printnanny_api_token: str
     printnanny_api_url: str
     honeycomb_dataset: str  # distributed tracing dataset
@@ -78,9 +78,13 @@ class Credentials(TypedDict):
 
 
 class LicenseSerializer(serializers.ModelSerializer):
-    credentials = serializers.SerializerMethodField(read_only=True)
+    """
+    Deserialize data/license info into /opt/printnanny during License Activation
+    """
 
-    def get_credentials(self, obj) -> Credentials:
+    tokens = serializers.SerializerMethodField(read_only=True)
+
+    def get_tokens(self, obj) -> Tokens:
         api_token, _ = Token.objects.get_or_create(user=obj.device.user)
         return dict(
             printnanny_api_token=str(api_token),
@@ -94,10 +98,9 @@ class LicenseSerializer(serializers.ModelSerializer):
     class Meta:
         model = License
         read_only_fields = (
-            "credentials",
+            "tokens",
             "device",
             "public_key",
-            "public_key_checksum",
             "fingerprint",
             "user",
         )
@@ -146,14 +149,13 @@ class DeviceSerializer(serializers.ModelSerializer):
     )
 
     user = UserSerializer(read_only=True)
-    active_license = LicenseSerializer(read_only=True)
     last_task = TaskSerializer(read_only=True)
     active_tasks = TaskSerializer(many=True, read_only=True)
 
     class Meta:
         model = Device
         depth = 2
-        read_only = ("active_license", "bootstrap_release", "user", "last_task")
+        read_only = ("bootstrap_release", "user", "last_task")
         exclude = ("deleted",)
 
 

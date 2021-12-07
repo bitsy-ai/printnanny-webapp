@@ -3,6 +3,7 @@ import logging
 from typing import Any
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from django.db.utils import IntegrityError
+from django.http import Http404
 
 from rest_framework import status
 from rest_framework.decorators import action
@@ -240,6 +241,23 @@ class DeviceViewSet(
     def generate_license(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         device = Device.objects.get(pk=kwargs["id"])
         return generate_zipped_license_response(device, request)
+
+    @extend_schema(
+        responses={
+            "default": ErrorDetailSerializer,
+            200: LicenseSerializer,
+        },
+    )
+    @action(detail=True, methods=["GET"], url_path="active-license")
+    def active_license(self, request: Request, *args: Any, **kwargs: Any) -> Response:
+        device = Device.objects.get(pk=kwargs["id"])
+
+        if device.active_license:
+            serializer = LicenseSerializer(
+                device.active_license, context=dict(request=request)
+            )
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        raise Http404
 
 
 ###
