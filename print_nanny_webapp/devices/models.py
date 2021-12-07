@@ -9,6 +9,8 @@ from polymorphic.models import PolymorphicModel
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.signals import pre_softdelete
 
+from print_nanny_webapp.devices.constants import FileLocator
+
 from .enum import (
     TaskType,
     DeviceReleaseChannel,
@@ -99,6 +101,10 @@ class Device(SafeDeleteModel):
     @property
     def cloudiot_device(self):
         return self.cloudiot_devices.first()
+
+    @property
+    def file_locator(self):
+        return FileLocator.__dict__
 
 
 class License(SafeDeleteModel):
