@@ -2,7 +2,6 @@ from typing import TypedDict
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 from django.conf import settings
-from print_nanny_webapp.devices.constants import FileLocator
 
 from print_nanny_webapp.devices.models import (
     Device,
@@ -17,7 +16,7 @@ from print_nanny_webapp.devices.models import (
     # PrinterProfile,
     # OctoprintPrinterProfile,
 )
-from ..enum import DeviceReleaseChannel, PrinterSoftwareType
+from ..enum import DeviceReleaseChannel, PrinterSoftwareType, FileLocator
 from print_nanny_webapp.users.api.serializers import UserSerializer
 from print_nanny_webapp.releases.api.serializers import ReleaseSerializer
 
@@ -135,49 +134,11 @@ class TaskSerializer(serializers.ModelSerializer):
         exclude = ("deleted",)
 
 
-class FileLocatorSerializer(serializers.Serializer):
-    INSTALL_PATH = serializers.CharField(default=FileLocator.INSTALL_PATH)
-    FACT_PATH = serializers.CharField(default=FileLocator.FACT_PATH)
-
-    BOOT_PATH = serializers.CharField(default=FileLocator.BOOT_PATH)
-
-    LICENSE_PATH = serializers.CharField(default=FileLocator.LICENSE_PATH)
-
-    DATA_PATH = serializers.CharField(default=FileLocator.DATA_PATH)
-
-    FACT_DEVICE_PATH = serializers.CharField(default=FileLocator.FACT_DEVICE_PATH)
-    FACT_LICENSE_PATH = serializers.CharField(default=FileLocator.FACT_LICENSE_PATH)
-
-    CA_CERTS = serializers.CharField(default=FileLocator.CA_CERTS)
-
-    LICENSE_ZIP_FILENAME = serializers.CharField(
-        default=FileLocator.LICENSE_ZIP_FILENAME
-    )
-    LICENSE_ZIP_PATH = serializers.CharField(default=FileLocator.LICENSE_ZIP_PATH)
-
-    KEY_PRIVATE_PKCS8_FILENAME = serializers.CharField(
-        default=FileLocator.KEY_PRIVATE_PKCS8_FILENAME
-    )
-    KEY_PRIVATE_SEC1_FILENAME = serializers.CharField(
-        default=FileLocator.KEY_PRIVATE_SEC1_FILENAME
-    )
-    KEY_PUBLIC_FILENAME = serializers.CharField(default=FileLocator.KEY_PUBLIC_FILENAME)
-
-    KEY_PRIVATE_PKCS8_PATH = serializers.CharField(
-        default=FileLocator.KEY_PRIVATE_PKCS8_PATH
-    )
-    KEY_PRIVATE_SEC1_PATH = serializers.CharField(
-        default=FileLocator.KEY_PRIVATE_SEC1_PATH
-    )
-    KEY_PUBLIC_PATH = serializers.CharField(default=FileLocator.KEY_PUBLIC_PATH)
-
-    CA_CERTS_FILENAME = serializers.CharField(default=FileLocator.CA_CERTS_FILENAME)
-    CA_CERTS_PATH = serializers.CharField(default=FileLocator.CA_CERTS_PATH)
-
-
 class DeviceSerializer(serializers.ModelSerializer):
 
-    file_locator = FileLocatorSerializer(read_only=True)
+    install_path = serializers.ChoiceField(
+        choices=FileLocator.choices, default=FileLocator.INSTALL_PATH, read_only=True
+    )
 
     bootstrap_release = ReleaseSerializer(read_only=True)
     cloudiot_device = CloudiotDeviceSerializer(

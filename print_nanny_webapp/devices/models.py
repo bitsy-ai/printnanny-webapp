@@ -102,10 +102,6 @@ class Device(SafeDeleteModel):
     def cloudiot_device(self):
         return self.cloudiot_devices.first()
 
-    @property
-    def file_locator(self):
-        return FileLocator.__dict__
-
 
 class License(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE

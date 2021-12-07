@@ -18,7 +18,7 @@ import google.api_core.exceptions
 from print_nanny_webapp.devices.api.serializers import LicenseSerializer
 
 from .models import Device, CloudiotDevice, License
-from .constants import FileLocator
+from .enum import FileLocator
 
 logger = logging.getLogger(__name__)
 
