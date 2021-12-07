@@ -71,7 +71,6 @@ class TestPaginatedDeviceList(unittest.TestCase):
                             ], 
                         release_channel = null, 
                         user = null, 
-                        active_license = null, 
                         last_task = null, 
                         active_tasks = [
                             printnanny_api_client.models.task.Task(

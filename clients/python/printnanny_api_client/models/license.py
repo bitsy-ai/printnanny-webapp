@@ -38,10 +38,9 @@ class License(object):
     """
     openapi_types = {
         'id': 'int',
-        'credentials': 'LicenseCredentials',
+        'tokens': 'LicenseTokens',
         'activated': 'bool',
         'public_key': 'str',
-        'public_key_checksum': 'str',
         'fingerprint': 'str',
         'created_dt': 'datetime',
         'device': 'int'
@@ -49,37 +48,34 @@ class License(object):
 
     attribute_map = {
         'id': 'id',
-        'credentials': 'credentials',
+        'tokens': 'tokens',
         'activated': 'activated',
         'public_key': 'public_key',
-        'public_key_checksum': 'public_key_checksum',
         'fingerprint': 'fingerprint',
         'created_dt': 'created_dt',
         'device': 'device'
     }
 
-    def __init__(self, id=None, credentials=None, activated=None, public_key=None, public_key_checksum=None, fingerprint=None, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, tokens=None, activated=None, public_key=None, fingerprint=None, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
         """License - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
-        self._credentials = None
+        self._tokens = None
         self._activated = None
         self._public_key = None
-        self._public_key_checksum = None
         self._fingerprint = None
         self._created_dt = None
         self._device = None
         self.discriminator = None
 
         self.id = id
-        self.credentials = credentials
+        self.tokens = tokens
         if activated is not None:
             self.activated = activated
         self.public_key = public_key
-        self.public_key_checksum = public_key_checksum
         self.fingerprint = fingerprint
         self.created_dt = created_dt
         self.device = device
@@ -108,27 +104,27 @@ class License(object):
         self._id = id
 
     @property
-    def credentials(self):
-        """Gets the credentials of this License.  # noqa: E501
+    def tokens(self):
+        """Gets the tokens of this License.  # noqa: E501
 
 
-        :return: The credentials of this License.  # noqa: E501
-        :rtype: LicenseCredentials
+        :return: The tokens of this License.  # noqa: E501
+        :rtype: LicenseTokens
         """
-        return self._credentials
+        return self._tokens
 
-    @credentials.setter
-    def credentials(self, credentials):
-        """Sets the credentials of this License.
+    @tokens.setter
+    def tokens(self, tokens):
+        """Sets the tokens of this License.
 
 
-        :param credentials: The credentials of this License.  # noqa: E501
-        :type credentials: LicenseCredentials
+        :param tokens: The tokens of this License.  # noqa: E501
+        :type tokens: LicenseTokens
         """
-        if self.local_vars_configuration.client_side_validation and credentials is None:  # noqa: E501
-            raise ValueError("Invalid value for `credentials`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and tokens is None:  # noqa: E501
+            raise ValueError("Invalid value for `tokens`, must not be `None`")  # noqa: E501
 
-        self._credentials = credentials
+        self._tokens = tokens
 
     @property
     def activated(self):
@@ -173,29 +169,6 @@ class License(object):
             raise ValueError("Invalid value for `public_key`, must not be `None`")  # noqa: E501
 
         self._public_key = public_key
-
-    @property
-    def public_key_checksum(self):
-        """Gets the public_key_checksum of this License.  # noqa: E501
-
-
-        :return: The public_key_checksum of this License.  # noqa: E501
-        :rtype: str
-        """
-        return self._public_key_checksum
-
-    @public_key_checksum.setter
-    def public_key_checksum(self, public_key_checksum):
-        """Sets the public_key_checksum of this License.
-
-
-        :param public_key_checksum: The public_key_checksum of this License.  # noqa: E501
-        :type public_key_checksum: str
-        """
-        if self.local_vars_configuration.client_side_validation and public_key_checksum is None:  # noqa: E501
-            raise ValueError("Invalid value for `public_key_checksum`, must not be `None`")  # noqa: E501
-
-        self._public_key_checksum = public_key_checksum
 
     @property
     def fingerprint(self):

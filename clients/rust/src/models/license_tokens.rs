@@ -12,7 +12,7 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct LicenseCredentials {
+pub struct LicenseTokens {
     #[serde(rename = "printnanny_api_token", skip_serializing_if = "Option::is_none")]
     pub printnanny_api_token: Option<String>,
     #[serde(rename = "printnanny_api_url", skip_serializing_if = "Option::is_none")]
@@ -23,9 +23,9 @@ pub struct LicenseCredentials {
     pub honeycomb_api_key: Option<String>,
 }
 
-impl LicenseCredentials {
-    pub fn new() -> LicenseCredentials {
-        LicenseCredentials {
+impl LicenseTokens {
+    pub fn new() -> LicenseTokens {
+        LicenseTokens {
             printnanny_api_token: None,
             printnanny_api_url: None,
             honeycomb_dataset: None,

@@ -12,7 +12,6 @@ Name | Type | Description | Notes
 **printer_controllers** | [**Vec<crate::models::PrinterController>**](PrinterController.md) |  | [readonly]
 **release_channel** | Option<[**crate::models::ReleaseChannelEnum**](ReleaseChannelEnum.md)> |  | [optional]
 **user** | Option<[**crate::models::User**](User.md)> |  | [readonly]
-**active_license** | Option<[**crate::models::License**](License.md)> |  | [readonly]
 **last_task** | Option<[**crate::models::Task**](Task.md)> |  | [readonly]
 **active_tasks** | [**Vec<crate::models::Task>**](Task.md) |  | [readonly]
 **created_dt** | **String** |  | [readonly]

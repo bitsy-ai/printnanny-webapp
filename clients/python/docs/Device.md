@@ -12,7 +12,6 @@ Name | Type | Description | Notes
 **printer_controllers** | [**list[PrinterController]**](PrinterController.md) |  | [readonly] 
 **release_channel** | [**ReleaseChannelEnum**](ReleaseChannelEnum.md) |  | [optional] 
 **user** | [**User**](User.md) |  | [readonly] 
-**active_license** | [**License**](License.md) |  | [readonly] 
 **last_task** | [**Task**](Task.md) |  | [readonly] 
 **active_tasks** | [**list[Task]**](Task.md) |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 

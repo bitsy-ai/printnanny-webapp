@@ -66,7 +66,6 @@ class TestDevice(unittest.TestCase):
                     ], 
                 release_channel = None, 
                 user = None, 
-                active_license = None, 
                 last_task = None, 
                 active_tasks = [
                     printnanny_api_client.models.task.Task(
@@ -111,7 +110,6 @@ class TestDevice(unittest.TestCase):
                         device = 56, )
                     ],
                 user = None,
-                active_license = None,
                 last_task = None,
                 active_tasks = [
                     printnanny_api_client.models.task.Task(

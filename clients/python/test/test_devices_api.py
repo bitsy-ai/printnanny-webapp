@@ -35,6 +35,12 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
+    def test_devices_active_license_retrieve(self):
+        """Test case for devices_active_license_retrieve
+
+        """
+        pass
+
     def test_devices_cameras_create(self):
         """Test case for devices_cameras_create
 

@@ -1,4 +1,4 @@
-# LicenseCredentials
+# LicenseTokens
 
 ## Properties
 

@@ -43,14 +43,13 @@ class TestPaginatedLicenseList(unittest.TestCase):
                 results = [
                     printnanny_api_client.models.license.License(
                         id = 56, 
-                        credentials = printnanny_api_client.models.license_credentials.License_credentials(
+                        tokens = printnanny_api_client.models.license_tokens.License_tokens(
                             printnanny_api_token = '', 
                             printnanny_api_url = '', 
                             honeycomb_dataset = '', 
                             honeycomb_api_key = '', ), 
                         activated = True, 
                         public_key = '', 
-                        public_key_checksum = '', 
                         fingerprint = '', 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         device = 56, )

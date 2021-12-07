@@ -45,7 +45,6 @@ class Device(object):
         'printer_controllers': 'list[PrinterController]',
         'release_channel': 'ReleaseChannelEnum',
         'user': 'User',
-        'active_license': 'License',
         'last_task': 'Task',
         'active_tasks': 'list[Task]',
         'created_dt': 'datetime',
@@ -62,7 +61,6 @@ class Device(object):
         'printer_controllers': 'printer_controllers',
         'release_channel': 'release_channel',
         'user': 'user',
-        'active_license': 'active_license',
         'last_task': 'last_task',
         'active_tasks': 'active_tasks',
         'created_dt': 'created_dt',
@@ -70,7 +68,7 @@ class Device(object):
         'hostname': 'hostname'
     }
 
-    def __init__(self, id=None, bootstrap_release=None, cloudiot_device=None, cameras=None, dashboard_url=None, printer_controllers=None, release_channel=None, user=None, active_license=None, last_task=None, active_tasks=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, bootstrap_release=None, cloudiot_device=None, cameras=None, dashboard_url=None, printer_controllers=None, release_channel=None, user=None, last_task=None, active_tasks=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -84,7 +82,6 @@ class Device(object):
         self._printer_controllers = None
         self._release_channel = None
         self._user = None
-        self._active_license = None
         self._last_task = None
         self._active_tasks = None
         self._created_dt = None
@@ -100,7 +97,6 @@ class Device(object):
         self.printer_controllers = printer_controllers
         self.release_channel = release_channel
         self.user = user
-        self.active_license = active_license
         self.last_task = last_task
         self.active_tasks = active_tasks
         self.created_dt = created_dt
@@ -283,27 +279,6 @@ class Device(object):
         """
 
         self._user = user
-
-    @property
-    def active_license(self):
-        """Gets the active_license of this Device.  # noqa: E501
-
-
-        :return: The active_license of this Device.  # noqa: E501
-        :rtype: License
-        """
-        return self._active_license
-
-    @active_license.setter
-    def active_license(self, active_license):
-        """Sets the active_license of this Device.
-
-
-        :param active_license: The active_license of this Device.  # noqa: E501
-        :type active_license: License
-        """
-
-        self._active_license = active_license
 
     @property
     def last_task(self):

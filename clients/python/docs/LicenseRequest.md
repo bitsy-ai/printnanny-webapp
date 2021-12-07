@@ -1,5 +1,6 @@
 # LicenseRequest
 
+Deserialize data/license info into /opt/printnanny during License Activation
 
 ## Properties
 Name | Type | Description | Notes

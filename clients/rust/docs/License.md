@@ -5,10 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
-**credentials** | [**crate::models::LicenseCredentials**](License_credentials.md) |  | 
+**tokens** | [**crate::models::LicenseTokens**](License_tokens.md) |  | 
 **activated** | Option<**bool**> |  | [optional]
 **public_key** | **String** |  | [readonly]
-**public_key_checksum** | **String** |  | [readonly]
 **fingerprint** | **String** |  | [readonly]
 **created_dt** | **String** |  | [readonly]
 **device** | **i32** |  | [readonly]

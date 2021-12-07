@@ -38,8 +38,8 @@ docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
 docs/License.md
-docs/LicenseCredentials.md
 docs/LicenseRequest.md
+docs/LicenseTokens.md
 docs/LicensesApi.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
@@ -206,8 +206,8 @@ src/models/experiment.rs
 src/models/experiment_device_config.rs
 src/models/gcode_file.rs
 src/models/license.rs
-src/models/license_credentials.rs
 src/models/license_request.rs
+src/models/license_tokens.rs
 src/models/mobile_auth_request.rs
 src/models/mod.rs
 src/models/model_artifact.rs
