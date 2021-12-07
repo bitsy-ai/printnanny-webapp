@@ -3,7 +3,7 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 
 from .models import Device, TaskStatus, Task
-from .choices import (
+from .enum import (
     TaskType,
     TaskStatusType,
 )

@@ -1,14 +1,12 @@
 {% load humanize %}
-<div class="card col-7">
+<div class="card col-8">
     <div class="card-body">
         <h4>
             <i class="mdi mdi-id-card"></i><strong> License Key</strong>
         </h4>
         <div class="alert alert-info col-12" role="alert">
-            <h4 class="alert-heading">Download printnanny_license.zip</h4>
-
-            <p>Click the <strong>Generate License</strong> button to begin
-            </p>
+            <h4 class="alert-heading">Click the <strong>Generate License</strong> button to begin download</h4>
+            <p>Follow the <a href="{{ help.GETTING_STARTED }}" target="_blank"> Getting Started</a> guide to copy <strong>printnanny_license.zip</strong> to your Raspberry Pi.</p>
         </div>
         <p>
             <a href="{% url 'devices:license' pk=device.id %}">
@@ -19,9 +17,8 @@
     </div>
     <div class="card-footer">
         <p>
-            For your safety, <strong>do not share</strong> the contents of <code>printnanny_license.zip</code>. Print Nanny Staff will <span class="text-danger"><strong>never</strong></span> ask for your license keys!
-        </p> 
-        <p><a href="{{ help.ABOUT_DEVICE_PKI }}">Click here</a> to learn more about how your device is protected.
+            For your safety, <strong>do not share</strong> the contents of <code>printnanny_license.zip</code> with anyone!
+            <br>Print Nanny Staff will <span class="text-danger"><strong>never</strong></span> ask for your license keys. <a href="{{ help.ABOUT_DEVICE_PKI }}">Click here</a> to learn more about how your device is protected.
         </p>
     </div>
     </div>

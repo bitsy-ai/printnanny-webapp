@@ -444,8 +444,8 @@ SPECTACULAR_SETTINGS = {
         'PrintProgressAlertEventType': 'print_nanny_webapp.alerts.models.PrintProgressAlert.PrintProgressAlertEventType.choices',
         'AlertMessageType': 'print_nanny_webapp.alerts.models.AlertMessage.AlertMessageType.choices',
         'AlertSettingsEventType': 'print_nanny_webapp.alerts.models.AlertSettings.AlertSettingsEventType.choices',
-        'TaskType': 'print_nanny_webapp.devices.choices.TaskType.choices',
-        'TaskStatusType': 'print_nanny_webapp.devices.choices.TaskStatusType.choices',
+        'TaskType': 'print_nanny_webapp.devices.enum.TaskType.choices',
+        'TaskStatusType': 'print_nanny_webapp.devices.enum.TaskStatusType.choices',
     },
     'TITLE': 'printnanny-api-client',
     'DESCRIPTION': 'Official API client library for print-nanny.com',
@@ -566,8 +566,10 @@ INSTALLED_APPS += [
 # help guides
 
 HELP_OCTOPRINT_PLUGIN_SETUP = "https://help.print-nanny.com/octoprint-plugin-setup/"
-HELP_PRINTNANNY_OS_SETUP = "https://help.print-nanny.com/how-to-setup-printnanny-os/"
-HELP_WIKI_URL = "https://www.notion.so/bitsy-ai/Print-Nanny-Guides-Support-ac1079fafc944d769aa21cf8bffe4692"
+HELP_WIKI = "https://www.notion.so/bitsy-ai/Print-Nanny-Guides-Support-ac1079fafc944d769aa21cf8bffe4692"
+HELP_GETTING_STARTED = "https://bitsy-ai.notion.site/Getting-Started-with-Print-Nanny-817bc65297ff44a085120c663dced5f3"
+HELP_DEVICE_PKI = "https://www.notion.so/bitsy-ai/Securing-IoT-Devices-with-PKI-f9e728fb1e734e6d95efb930d9f23620"
+ERROR_ACTIVATE_LICENSE = "https://www.notion.so/bitsy-ai/License-Activation-Failed-99bb98ebc01546979717da214d2198c8"
 
 # dj-stripe
 # ------------------------------------------------------------------------------

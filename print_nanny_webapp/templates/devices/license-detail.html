@@ -4,17 +4,7 @@
         <h4>
             <i class="mdi mdi-id-card"></i><strong> License Key</strong>
         </h4>
-        {% if not object.active_license %}
-        <div class="alert alert-info col-12" role="alert">
-            <h4 class="alert-heading">Generate your License Key</h4>
-
-            <p>Click the <strong>Generate License</strong> button to download a new license.
-        </div>
-        <p>
-            <a href="{% url 'devices:detail' pk=device.id %}" onclick="window.reload()"><button class="
-                btn btn-primary">Generate License</button></a>
-        </p>
-        {% elif object.active_license.activated == False %}
+        {% if object.active_license.activated == False %}
             <div class="alert alert-info col-12" role="alert">
                 <h4 class="alert-heading">Your license hasn't been activated yet!</h4>
                 <p>
