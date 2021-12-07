@@ -5,7 +5,6 @@ class FileLocator:
     INSTALL_PATH = "/opt/printnanny/"
     ANSIBLE_FACT_PATH = os.path.join(INSTALL_PATH, "facts.d")
     BOOT_PATH = "/boot"
-    LICENSE_PATH = os.path.join(INSTALL_PATH, "license")
 
     DATA_PATH = os.path.join(INSTALL_PATH, "data")
 
@@ -23,9 +22,9 @@ class FileLocator:
     KEY_PRIVATE_SEC1_FILENAME = "ecdsa256_sec1.pem"
     KEY_PUBLIC_FILENAME = "ecdsa_public.pem"
 
-    KEY_PRIVATE_PKCS8_PATH = LICENSE_PATH.join(KEY_PRIVATE_PKCS8_FILENAME)
-    KEY_PRIVATE_SEC1_PATH = LICENSE_PATH.join(KEY_PRIVATE_SEC1_FILENAME)
-    KEY_PUBLIC_PATH = LICENSE_PATH.join(KEY_PUBLIC_FILENAME)
+    KEY_PRIVATE_PKCS8_PATH = DATA_PATH.join(KEY_PRIVATE_PKCS8_FILENAME)
+    KEY_PRIVATE_SEC1_PATH = DATA_PATH.join(KEY_PRIVATE_SEC1_FILENAME)
+    KEY_PUBLIC_PATH = DATA_PATH.join(KEY_PUBLIC_FILENAME)
 
     CA_CERTS_FILENAME = "ca_certs.pem"
     CA_CERTS_PATH = INSTALL_PATH.join("ca-certificates").join(CA_CERTS_FILENAME)
