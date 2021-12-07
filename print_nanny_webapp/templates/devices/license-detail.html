@@ -4,24 +4,12 @@
         <h4>
             <i class="mdi mdi-id-card"></i><strong> License Key</strong>
         </h4>
-        {% if not object.active_license %}
         <div class="alert alert-info col-12" role="alert">
-            <h4 class="alert-heading">Generate your License Key</h4>
-
-            <p>Click the <strong>Generate License</strong> button to download a new license.
+            <h4 class="alert-heading">Your license hasn't been activated yet!</h4>
+            <p>
+            Follow <a href="{{ help.HELP_ACTIVATE_LICENSE }}">this guide</a> to install Print Nanny OS and activate your license.
+            </p>
         </div>
-        <p>
-            <a href="{% url 'devices:detail' pk=device.id %}" onclick="window.reload()"><button class="
-                btn btn-primary">Generate License</button></a>
-        </p>
-        {% elif object.active_license.activated == False %}
-            <div class="alert alert-info col-12" role="alert">
-                <h4 class="alert-heading">Your license hasn't been activated yet!</h4>
-                <p>
-                Follow <a href="{{ help.HELP_ACTIVATE_LICENSE }}">this guide</a> to install Print Nanny OS and activate your license.
-                </p>
-            </div>
-        {% endif %}
         <dl class="row">
             <dt class="col-sm-3">Activated</dt>
             <dd class="col-sm-9">{{ object.active_license.activated }}</dd>

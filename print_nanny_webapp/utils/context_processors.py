@@ -8,9 +8,10 @@ from django.utils import timezone
 
 def help_context(_request):
     return {
-        "HELP_WIKI_URL": settings.HELP_WIKI_URL,
-        "HELP_ACTIVATE_LICENSE": "https://www.notion.so/bitsy-ai/License-Activation-Failed-99bb98ebc01546979717da214d2198c8",
-        "ABOUT_DEVICE_PKI": "https://www.notion.so/bitsy-ai/Securing-IoT-Devices-with-PKI-f9e728fb1e734e6d95efb930d9f23620",
+        "HELP_WIKI_URL": settings.HELP_WIKI,
+        "ERROR_ACTIVATE_LICENSE": settings.ERROR_ACTIVATE_LICENSE,
+        "DEVICE_PKI": settings.HELP_DEVICE_PKI,
+        "GETTING_STARTED": settings.HELP_GETTING_STARTED,
     }
 
 
@@ -37,7 +38,6 @@ def settings_context(_request):
         "ABOUT_URL": settings.ABOUT_URL,
         "BLOG_SITE_URL": settings.BLOG_SITE_URL,
         "HELP_OCTOPRINT_PLUGIN_SETUP": settings.HELP_OCTOPRINT_PLUGIN_SETUP,
-        "HELP_PRINTNANNY_OS_SETUP": settings.HELP_PRINTNANNY_OS_SETUP,
         "IS_SOLD_OUT": sold_out,
         "AVAILABLE_SUBSCRIPTIONS_COUNT": num_subscriptions_available,
         "PAID_BETA_SUBSCRIPTION_LIMIT": PAID_BETA_SUBSCRIPTION_LIMIT,
