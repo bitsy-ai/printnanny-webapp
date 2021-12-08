@@ -155,10 +155,7 @@ list_licenses_schema = extend_schema(
     list=list_licenses_schema,
     tags=["devices"],
 )
-class LicenseViewSet(
-    GenericViewSet,
-    ListModelMixin,
-):
+class LicenseViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
     """
     All-in-one Print Nanny installation
     via print-nanny-main-<platform>-<cpu>.img
