@@ -102,7 +102,7 @@ class LicenseSerializer(serializers.ModelSerializer):
 
     honeycomb_api_key = serializers.SerializerMethodField(read_only=True)
 
-    def get_honeycomb_dataset(self, obj) -> str:
+    def get_honeycomb_api_key(self, obj) -> str:
         return settings.HONEYCOMB_API_KEY
 
     class Meta:
