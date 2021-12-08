@@ -41,6 +41,12 @@ class TestLicensesApi(unittest.TestCase):
         """
         pass
 
+    def test_licenses_retrieve(self):
+        """Test case for licenses_retrieve
+
+        """
+        pass
+
 
 if __name__ == '__main__':
     unittest.main()
