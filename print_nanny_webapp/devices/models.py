@@ -1,5 +1,5 @@
 import logging
-from django.db.models import Q
+from secrets import token_urlsafe
 from django.conf import settings
 from django.db import models
 from django.contrib.auth import get_user_model
@@ -112,6 +112,9 @@ class License(SafeDeleteModel):
                 name="unique_activated_license_per_device",
             )
         ]
+
+    janus_admin_secret = models.CharField(max_length=255, default=token_urlsafe)
+    janus_token = models.CharField(max_length=255, default=token_urlsafe)
 
     activated = models.BooleanField(default=False)
     public_key = models.TextField()
