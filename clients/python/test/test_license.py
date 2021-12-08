@@ -38,11 +38,12 @@ class TestLicense(unittest.TestCase):
         if include_optional :
             return License(
                 id = 56, 
-                tokens = printnanny_api_client.models.license_tokens.License_tokens(
-                    printnanny_api_token = '', 
-                    printnanny_api_url = '', 
-                    honeycomb_dataset = '', 
-                    honeycomb_api_key = '', ), 
+                printnanny_api_token = '', 
+                printnanny_api_url = '', 
+                honeycomb_dataset = '', 
+                honeycomb_api_key = '', 
+                janus_admin_secret = '', 
+                janus_token = '', 
                 activated = True, 
                 public_key = '', 
                 fingerprint = '', 
@@ -52,11 +53,12 @@ class TestLicense(unittest.TestCase):
         else :
             return License(
                 id = 56,
-                tokens = printnanny_api_client.models.license_tokens.License_tokens(
-                    printnanny_api_token = '', 
-                    printnanny_api_url = '', 
-                    honeycomb_dataset = '', 
-                    honeycomb_api_key = '', ),
+                printnanny_api_token = '',
+                printnanny_api_url = '',
+                honeycomb_dataset = '',
+                honeycomb_api_key = '',
+                janus_admin_secret = '',
+                janus_token = '',
                 public_key = '',
                 fingerprint = '',
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),

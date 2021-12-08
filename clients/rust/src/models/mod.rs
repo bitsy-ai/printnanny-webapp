@@ -64,8 +64,6 @@ pub mod license;
 pub use self::license::License;
 pub mod license_request;
 pub use self::license_request::LicenseRequest;
-pub mod license_tokens;
-pub use self::license_tokens::LicenseTokens;
 pub mod mobile_auth_request;
 pub use self::mobile_auth_request::MobileAuthRequest;
 pub mod model_artifact;
