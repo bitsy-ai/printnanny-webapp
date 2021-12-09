@@ -29,7 +29,7 @@
         </div>
     {% elif object.active_license.activated == False %}
     <div class="row">
-        <div class="col-12 col-md-8 d-flex align-items-stretch">
+        <div class="col-12 col-md-8">
             {% include "devices/license-detail.html" %}
         </div>
         <div class="col-12-md-4">
@@ -43,14 +43,14 @@
     </div>
     {% else %}
     <div class="row">
-        <div class="col-12-md-4">
+        <div class="col-12 col-md-4 d-flex align-items-stretch">
             {% include "partials/livestream-webrtc.html" %}
+        </div>
+        <div class="col-12 col-md-4 d-flex align-items-stretch">
+            {% include "partials/system-tasks-table.html" %}
         </div>
     </div>
     <div class="row">
-        <div class="col-12 col-md-8">
-            {% include "partials/system-tasks-table.html" %}
-        </div>
         <div class="col-12 col-md-4 d-flex align-items-stretch">
             {% include "devices/license-detail.html" %}
         </div>
@@ -58,3 +58,12 @@
     {% endif %}
 </div>
 {% endblock content %}
+
+{% if object.active_license.activated %}
+
+{% block extra_javascript %}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/8.1.0/adapter.min.js" ></script>
+    <script src="{% static 'js/vendor/janus.js' %}"></script>
+    <script src="{% static 'js/streamingtest.js' %}"></script>
+{% endblock %}
+{% endif %}
