@@ -4,29 +4,38 @@
     <div class="card-body">
         <h2 class="header-title"><i class="mdi mdi-printer-3d"></i>
             <i class="mdi mdi-video-box-off"></i>Camera Livestream</h2>
-        <img style="max-height: 320px" class="img-fluid" src="{% static 'images/sleep.svg' %}" alt="Print Nanny monitoring is offline">
+
+        <div class="container hide" id="streams">
+            <div class="col-md-6">
+                <div class="row hide" id="info">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-info-circle"></i> Metadata</h3>
+                        </div>
+                        <div class="panel-body">
+                            <pre id="metadata" style="word-break: break-word;"></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Stream
+                            <span class="label label-info hide" id="status"></span>
+                            <span class="label label-primary hide" id="curres"></span>
+                            <span class="label label-info hide" id="curbitrate"></span>
+                        </h3>
+                    </div>
+                    <div class="panel-body" id="stream"></div>
+                </div>
+            </div>
+        </div>
+        <img id="stream-placeholder" style="max-height: 320px" class="img-fluid" src="{% static 'images/sleep.svg' %}" alt="Print Nanny monitoring is offline">
         <div class="alert alert-info col-12 text-center mt-2" role="alert">
-            <h4 class="alert-heading">Monitoring Paused</h4>
+            <h4 id="stream-status" class="alert-heading">Monitoring Paused</h4>
+            <button class="btn btn-primary" id="start">Start</button>
         </div>
 
     </div>
 </div>
-<script>
-    const loading = document.querySelector('#stream-loading-{{object.id}}');
-  
-    const video = document.querySelector('#stream-{{object.id}}');
-    
-    const WS_URL = "{{ WS_BASE_URL }}/{{object.id}}/video/upload/";
-    const ws = new WebSocket(WS_URL);
-  
-    ws.onmessage = (msg) => {
-      console.log(msg)
-
-      video.src = "data:image/jpeg;base64," + msg.data
-      loading.style.display = 'none';
-    }
-    ws.onopen = () => {
-      console.log(`Connected to ${WS_URL}`);
-      ws.send('{"event_type": "video_subscribe"}')
-    }
-</script>
