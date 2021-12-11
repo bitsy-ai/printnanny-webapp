@@ -42,12 +42,12 @@
 // in the presented order. The first working server will be used for
 // the whole session.
 //
-var server = null;
-if(window.location.protocol === 'http:')
-	// server = "http://" + window.location.hostname + ":8088/janus";
-	server = "http://printnanny-2:8088/janus";
-else
-	server = "https://" + window.location.hostname + ":8089/janus";
+// var server = null;
+// if(window.location.protocol === 'http:')
+// 	// server = "http://" + window.location.hostname + ":8088/janus";
+// 	server = "http://printnanny:8088/janus";
+// else
+// 	server = "https://" + window.location.hostname + ":8089/janus";
 
 var janus = null;
 var streaming = null;
@@ -69,13 +69,14 @@ $(document).ready(function() {
 			$(this).attr('disabled', true).unbind('click');
 			// Make sure the browser supports WebRTC
 			if(!Janus.isWebrtcSupported()) {
-				bootbox.alert("No WebRTC support... ");
+				alert("No WebRTC support... ");
 				return;
 			}
 			// Create session
 			janus = new Janus(
 				{
-					server: server,
+					server: window.JANUS_SERVER_URL,
+					token: window.JANUS_TOKEN,
 					success: function() {
 						// Attach to Streaming plugin
 						janus.attach(
@@ -94,14 +95,14 @@ $(document).ready(function() {
 											$(this).attr('disabled', true);
 											clearInterval(bitrateTimer);
 											janus.destroy();
-											$('#streamslist').attr('disabled', true);
-											$('#watch').attr('disabled', true).unbind('click');
+											// $('#streamslist').attr('disabled', true);
+											// $('#watch').attr('disabled', true).unbind('click');
 											$('#start').attr('disabled', true).html("Bye").unbind('click');
 										});
 								},
 								error: function(error) {
 									Janus.error("  -- Error attaching plugin... ", error);
-									bootbox.alert("Error attaching plugin... " + error);
+									alert("Error attaching plugin... " + error);
 								},
 								iceState: function(state) {
 									Janus.log("ICE state changed to " + state);
@@ -146,7 +147,7 @@ $(document).ready(function() {
 											}
 										}
 									} else if(msg["error"]) {
-										bootbox.alert(msg["error"]);
+										alert(msg["error"]);
 										stopStream();
 										return;
 									}
@@ -173,7 +174,7 @@ $(document).ready(function() {
 												},
 												error: function(error) {
 													Janus.error("WebRTC error:", error);
-													bootbox.alert("WebRTC error... " + error.message);
+													alert("WebRTC error... " + error.message);
 												}
 											});
 									}
@@ -282,7 +283,7 @@ $(document).ready(function() {
 					},
 					error: function(error) {
 						Janus.error(error);
-						bootbox.alert(error, function() {
+						alert(error, function() {
 							window.location.reload();
 						});
 					},
@@ -303,7 +304,7 @@ function updateStreamsList() {
 			$('#update-streams').removeClass('fa-spin').click(updateStreamsList);
 		}, 500);
 		if(!result) {
-			bootbox.alert("Got no response to our query for available streams");
+			alert("Got no response to our query for available streams");
 			return;
 		}
 		if(result["list"]) {
@@ -321,18 +322,20 @@ function updateStreamsList() {
 					return 0;
 				});
 			}
-			Janus.debug(list);
-			for(var mp in list) {
-				Janus.debug("  >> [" + list[mp]["id"] + "] " + list[mp]["description"] + " (" + list[mp]["type"] + ")");
-				$('#streamslist').append("<li><a href='#' id='" + list[mp]["id"] + "'>" + escapeXmlTags(list[mp]["description"]) + " (" + list[mp]["type"] + ")" + "</a></li>");
-			}
-			$('#streamslist a').unbind('click').click(function() {
-				selectedStream = $(this).attr("id");
-				$('#streamset').html($(this).html()).parent().removeClass('open');
-				return false;
+			Janus.log(list);
+			selectedStream = list[0].id
+			startStream()
+			// for(var mp in list) {
+			// 	Janus.debug("  >> [" + list[mp]["id"] + "] " + list[mp]["description"] + " (" + list[mp]["type"] + ")");
+			// 	$('#streamslist').append("<li><a href='#' id='" + list[mp]["id"] + "'>" + escapeXmlTags(list[mp]["description"]) + " (" + list[mp]["type"] + ")" + "</a></li>");
+			// }
+			// $('#streamslist a').unbind('click').click(function() {
+			// 	selectedStream = $(this).attr("id");
+			// 	$('#streamset').html($(this).html()).parent().removeClass('open');
+			// 	return false;
 
-			});
-			$('#watch').removeAttr('disabled').unbind('click').click(startStream);
+			// });
+			// $('#watch').removeAttr('disabled').unbind('click').click(startStream);
 		}
 	}});
 }
@@ -355,15 +358,11 @@ function getStreamInfo() {
 function startStream() {
 	Janus.log("Selected video id #" + selectedStream);
 	if(!selectedStream) {
-		bootbox.alert("Select a stream from the list");
+		alert("No stream was detected");
 		return;
 	}
-	$('#streamset').attr('disabled', true);
-	$('#streamslist').attr('disabled', true);
-	$('#watch').attr('disabled', true).unbind('click');
 	var body = { request: "watch", id: parseInt(selectedStream) || selectedStream};
 	streaming.send({ message: body });
-	// No remote video yet
 	$('#stream').append('<video class="rounded centered" id="waitingvideo" width="100%" height="100%" />');
 	if(spinner == null) {
 		var target = document.getElementById('stream');
@@ -371,6 +370,14 @@ function startStream() {
 	} else {
 		spinner.spin();
 	}
+	// $('#streamset').attr('disabled', true);
+	// $('#streamslist').attr('disabled', true);
+	// $('#watch').attr('disabled', true).unbind('click');
+	// var body = { request: "watch", id: parseInt(selectedStream) || selectedStream};
+	// streaming.send({ message: body });
+	// // No remote video yet
+	// $('#stream').append('<video class="rounded centered" id="waitingvideo" width="100%" height="100%" />');
+
 	// Get some more info for the mountpoint to display, if any
 	getStreamInfo();
 }
