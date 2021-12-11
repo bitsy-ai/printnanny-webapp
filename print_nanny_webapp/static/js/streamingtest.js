@@ -54,7 +54,6 @@ var streaming = null;
 var opaqueId = "streamingtest-"+Janus.randomString(12);
 
 var bitrateTimer = null;
-var spinner = null;
 
 var simulcastStarted = false, svcStarted = false;
 
@@ -184,16 +183,13 @@ $(document).ready(function() {
 									var addButtons = false;
 									if($('#remotevideo').length === 0) {
 										addButtons = true;
-										$('#stream').append('<video class="rounded centered hide" id="remotevideo" width="100%" height="100%" playsinline/>');
+										$('#stream').append('<video class="rounded centered hide" id="remotevideo" width="100%" height="100%" playsinline controls/>');
 										$('#remotevideo').get(0).volume = 0;
 										// Show the stream and hide the spinner when we get a playing event
 										$("#remotevideo").bind("playing", function () {
 											$('#waitingvideo').remove();
 											if(this.videoWidth)
 												$('#remotevideo').removeClass('hide').show();
-											if(spinner)
-												spinner.stop();
-											spinner = null;
 											var videoTracks = stream.getVideoTracks();
 											if(!videoTracks || videoTracks.length === 0)
 												return;
@@ -253,9 +249,6 @@ $(document).ready(function() {
 									$('#stream').append(
 										'<input class="form-control" type="text" id="datarecv" disabled></input>'
 									);
-									if(spinner)
-										spinner.stop();
-									spinner = null;
 								},
 								ondata: function(data) {
 									Janus.debug("We got data from the DataChannel!", data);
@@ -364,12 +357,6 @@ function startStream() {
 	var body = { request: "watch", id: parseInt(selectedStream) || selectedStream};
 	streaming.send({ message: body });
 	$('#stream').append('<video class="rounded centered" id="waitingvideo" width="100%" height="100%" />');
-	if(spinner == null) {
-		var target = document.getElementById('stream');
-		spinner = new Spinner({top:100}).spin(target);
-	} else {
-		spinner.spin();
-	}
 	// $('#streamset').attr('disabled', true);
 	// $('#streamslist').attr('disabled', true);
 	// $('#watch').attr('disabled', true).unbind('click');
