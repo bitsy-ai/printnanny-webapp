@@ -33,7 +33,7 @@
                     class="badge badge-{{ task.last_status.css_class }}"
                     >
                     <i class="mdi mdi-information"></i>
-                    {{ task.last_status.get_status_display }}
+                    {{ device.last_task.last_status.status | capfirst }}
 
                     </a>
                 </td>

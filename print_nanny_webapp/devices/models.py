@@ -368,7 +368,7 @@ class TaskStatus(HelpLink, SafeDeleteModel):
     status = models.CharField(
         max_length=16,
         choices=TaskStatusType.choices,
-        default=TaskStatusType.REQUESTED,
+        default=TaskStatusType.PENDING,
     )
 
     @property

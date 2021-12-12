@@ -16,7 +16,7 @@
                   <tr>
                       <th>Hostname</th>
                       <!-- <th>Monitoring Active</th> -->
-                      <th>Status</th>
+                      <th>Task Status</th>
                       <!-- <th>Job Status</th> -->
         
                       <!-- <th>File</th>
@@ -49,7 +49,8 @@
                       class="badge badge-{{ device.last_task.last_status.css_class }}"
                       >
                       <i class="mdi mdi-information"></i>
-                      {{ device.last_task.last_status.get_status_display }}
+                      {{ device.last_task.get_task_type_display }}:
+                      {{ device.last_task.last_status.status | capfirst }}
   
                       </a>
                 </td>
