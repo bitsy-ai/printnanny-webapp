@@ -4,11 +4,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**user** | **int** |  | 
+**active** | **bool** |  | [optional] 
 **device** | **int** |  | 
-**name** | **str** |  | 
-**camera_type** | [**CameraTypeEnum**](CameraTypeEnum.md) |  | [optional] 
-**camera_source** | **str** |  | 
+**name** | **str** | Descriptive name to identify this camera | [optional] [default to 'Raspberry Pi Cam']
+**camera_type** | [**CameraType**](CameraType.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

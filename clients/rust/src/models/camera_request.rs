@@ -13,26 +13,24 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct CameraRequest {
-    #[serde(rename = "user")]
-    pub user: i32,
+    #[serde(rename = "active", skip_serializing_if = "Option::is_none")]
+    pub active: Option<bool>,
     #[serde(rename = "device")]
     pub device: i32,
-    #[serde(rename = "name")]
-    pub name: String,
+    /// Descriptive name to identify this camera
+    #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
     #[serde(rename = "camera_type", skip_serializing_if = "Option::is_none")]
-    pub camera_type: Option<Box<crate::models::CameraTypeEnum>>,
-    #[serde(rename = "camera_source")]
-    pub camera_source: String,
+    pub camera_type: Option<Box<crate::models::CameraType>>,
 }
 
 impl CameraRequest {
-    pub fn new(user: i32, device: i32, name: String, camera_source: String) -> CameraRequest {
+    pub fn new(device: i32) -> CameraRequest {
         CameraRequest {
-            user,
+            active: None,
             device,
-            name,
+            name: None,
             camera_type: None,
-            camera_source,
         }
     }
 }

@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **public_key** | **str** |  | [readonly] 
 **fingerprint** | **str** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
+**updated_dt** | **datetime** |  | [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

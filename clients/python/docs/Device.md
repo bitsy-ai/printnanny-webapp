@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **user** | [**User**](User.md) |  | [readonly] 
 **last_task** | [**Task**](Task.md) |  | [readonly] 
 **active_tasks** | [**list[Task]**](Task.md) |  | [readonly] 
+**active_cameras** | [**list[Camera]**](Camera.md) |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
 **updated_dt** | **datetime** |  | [readonly] 
 **hostname** | **str** | Please enter the hostname you set in the Raspberry Pi Imager&#39;s Advanced Options menu (without .local extension) | [optional] 

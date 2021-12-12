@@ -33,6 +33,8 @@ pub struct Device {
     pub last_task: Option<Box<crate::models::Task>>,
     #[serde(rename = "active_tasks")]
     pub active_tasks: Vec<crate::models::Task>,
+    #[serde(rename = "active_cameras")]
+    pub active_cameras: Vec<crate::models::Camera>,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
     #[serde(rename = "updated_dt")]
@@ -43,7 +45,7 @@ pub struct Device {
 }
 
 impl Device {
-    pub fn new(id: i32, bootstrap_release: Option<crate::models::Release>, cloudiot_device: Option<crate::models::CloudiotDevice>, cameras: Vec<crate::models::Camera>, dashboard_url: String, printer_controllers: Vec<crate::models::PrinterController>, user: Option<crate::models::User>, last_task: Option<crate::models::Task>, active_tasks: Vec<crate::models::Task>, created_dt: String, updated_dt: String) -> Device {
+    pub fn new(id: i32, bootstrap_release: Option<crate::models::Release>, cloudiot_device: Option<crate::models::CloudiotDevice>, cameras: Vec<crate::models::Camera>, dashboard_url: String, printer_controllers: Vec<crate::models::PrinterController>, user: Option<crate::models::User>, last_task: Option<crate::models::Task>, active_tasks: Vec<crate::models::Task>, active_cameras: Vec<crate::models::Camera>, created_dt: String, updated_dt: String) -> Device {
         Device {
             id,
             bootstrap_release: bootstrap_release.map(Box::new),
@@ -55,6 +57,7 @@ impl Device {
             user: user.map(Box::new),
             last_task: last_task.map(Box::new),
             active_tasks,
+            active_cameras,
             created_dt,
             updated_dt,
             hostname: None,

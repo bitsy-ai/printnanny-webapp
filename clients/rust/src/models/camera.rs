@@ -21,32 +21,30 @@ pub struct Camera {
     pub created_dt: String,
     #[serde(rename = "updated_dt")]
     pub updated_dt: String,
-    #[serde(rename = "user")]
-    pub user: i32,
+    #[serde(rename = "active", skip_serializing_if = "Option::is_none")]
+    pub active: Option<bool>,
     #[serde(rename = "device")]
     pub device: i32,
-    #[serde(rename = "name")]
-    pub name: String,
+    /// Descriptive name to identify this camera
+    #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
     #[serde(rename = "camera_type", skip_serializing_if = "Option::is_none")]
-    pub camera_type: Option<Box<crate::models::CameraTypeEnum>>,
-    #[serde(rename = "camera_source")]
-    pub camera_source: String,
+    pub camera_type: Option<Box<crate::models::CameraType>>,
     #[serde(rename = "url")]
     pub url: String,
 }
 
 impl Camera {
-    pub fn new(id: i32, deleted: String, created_dt: String, updated_dt: String, user: i32, device: i32, name: String, camera_source: String, url: String) -> Camera {
+    pub fn new(id: i32, deleted: String, created_dt: String, updated_dt: String, device: i32, url: String) -> Camera {
         Camera {
             id,
             deleted,
             created_dt,
             updated_dt,
-            user,
+            active: None,
             device,
-            name,
+            name: None,
             camera_type: None,
-            camera_source,
             url,
         }
     }

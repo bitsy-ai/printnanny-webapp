@@ -48,7 +48,8 @@ class License(object):
         'activated': 'bool',
         'public_key': 'str',
         'fingerprint': 'str',
-        'created_dt': 'datetime'
+        'created_dt': 'datetime',
+        'updated_dt': 'datetime'
     }
 
     attribute_map = {
@@ -63,10 +64,11 @@ class License(object):
         'activated': 'activated',
         'public_key': 'public_key',
         'fingerprint': 'fingerprint',
-        'created_dt': 'created_dt'
+        'created_dt': 'created_dt',
+        'updated_dt': 'updated_dt'
     }
 
-    def __init__(self, id=None, device=None, printnanny_api_token=None, printnanny_api_url=None, honeycomb_dataset=None, honeycomb_api_key=None, janus_admin_secret=None, janus_token=None, activated=None, public_key=None, fingerprint=None, created_dt=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, device=None, printnanny_api_token=None, printnanny_api_url=None, honeycomb_dataset=None, honeycomb_api_key=None, janus_admin_secret=None, janus_token=None, activated=None, public_key=None, fingerprint=None, created_dt=None, updated_dt=None, local_vars_configuration=None):  # noqa: E501
         """License - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -84,6 +86,7 @@ class License(object):
         self._public_key = None
         self._fingerprint = None
         self._created_dt = None
+        self._updated_dt = None
         self.discriminator = None
 
         self.id = id
@@ -99,6 +102,7 @@ class License(object):
         self.public_key = public_key
         self.fingerprint = fingerprint
         self.created_dt = created_dt
+        self.updated_dt = updated_dt
 
     @property
     def id(self):
@@ -371,6 +375,29 @@ class License(object):
             raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
 
         self._created_dt = created_dt
+
+    @property
+    def updated_dt(self):
+        """Gets the updated_dt of this License.  # noqa: E501
+
+
+        :return: The updated_dt of this License.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._updated_dt
+
+    @updated_dt.setter
+    def updated_dt(self, updated_dt):
+        """Sets the updated_dt of this License.
+
+
+        :param updated_dt: The updated_dt of this License.  # noqa: E501
+        :type updated_dt: datetime
+        """
+        if self.local_vars_configuration.client_side_validation and updated_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `updated_dt`, must not be `None`")  # noqa: E501
+
+        self._updated_dt = updated_dt
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

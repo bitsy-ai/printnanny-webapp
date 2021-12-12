@@ -19,7 +19,7 @@ docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
 docs/Camera.md
 docs/CameraRequest.md
-docs/CameraTypeEnum.md
+docs/CameraType.md
 docs/CloudiotDevice.md
 docs/CloudiotDeviceRequest.md
 docs/CommandEnum.md
@@ -191,7 +191,7 @@ printnanny_api_client/models/callback_token_verification.py
 printnanny_api_client/models/callback_token_verification_request.py
 printnanny_api_client/models/camera.py
 printnanny_api_client/models/camera_request.py
-printnanny_api_client/models/camera_type_enum.py
+printnanny_api_client/models/camera_type.py
 printnanny_api_client/models/cloudiot_device.py
 printnanny_api_client/models/cloudiot_device_request.py
 printnanny_api_client/models/command_enum.py
@@ -343,7 +343,7 @@ test/test_callback_token_verification.py
 test/test_callback_token_verification_request.py
 test/test_camera.py
 test/test_camera_request.py
-test/test_camera_type_enum.py
+test/test_camera_type.py
 test/test_cloudiot_device.py
 test/test_cloudiot_device_request.py
 test/test_command_enum.py

@@ -37,62 +37,58 @@ class CameraRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'user': 'int',
+        'active': 'bool',
         'device': 'int',
         'name': 'str',
-        'camera_type': 'CameraTypeEnum',
-        'camera_source': 'str'
+        'camera_type': 'CameraType'
     }
 
     attribute_map = {
-        'user': 'user',
+        'active': 'active',
         'device': 'device',
         'name': 'name',
-        'camera_type': 'camera_type',
-        'camera_source': 'camera_source'
+        'camera_type': 'camera_type'
     }
 
-    def __init__(self, user=None, device=None, name=None, camera_type=None, camera_source=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, active=None, device=None, name='Raspberry Pi Cam', camera_type=None, local_vars_configuration=None):  # noqa: E501
         """CameraRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
-        self._user = None
+        self._active = None
         self._device = None
         self._name = None
         self._camera_type = None
-        self._camera_source = None
         self.discriminator = None
 
-        self.user = user
+        if active is not None:
+            self.active = active
         self.device = device
-        self.name = name
+        if name is not None:
+            self.name = name
         self.camera_type = camera_type
-        self.camera_source = camera_source
 
     @property
-    def user(self):
-        """Gets the user of this CameraRequest.  # noqa: E501
+    def active(self):
+        """Gets the active of this CameraRequest.  # noqa: E501
 
 
-        :return: The user of this CameraRequest.  # noqa: E501
-        :rtype: int
+        :return: The active of this CameraRequest.  # noqa: E501
+        :rtype: bool
         """
-        return self._user
+        return self._active
 
-    @user.setter
-    def user(self, user):
-        """Sets the user of this CameraRequest.
+    @active.setter
+    def active(self, active):
+        """Sets the active of this CameraRequest.
 
 
-        :param user: The user of this CameraRequest.  # noqa: E501
-        :type user: int
+        :param active: The active of this CameraRequest.  # noqa: E501
+        :type active: bool
         """
-        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
-            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
 
-        self._user = user
+        self._active = active
 
     @property
     def device(self):
@@ -121,6 +117,7 @@ class CameraRequest(object):
     def name(self):
         """Gets the name of this CameraRequest.  # noqa: E501
 
+        Descriptive name to identify this camera  # noqa: E501
 
         :return: The name of this CameraRequest.  # noqa: E501
         :rtype: str
@@ -131,12 +128,11 @@ class CameraRequest(object):
     def name(self, name):
         """Sets the name of this CameraRequest.
 
+        Descriptive name to identify this camera  # noqa: E501
 
         :param name: The name of this CameraRequest.  # noqa: E501
         :type name: str
         """
-        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 name is not None and len(name) > 255):
             raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
@@ -152,7 +148,7 @@ class CameraRequest(object):
 
 
         :return: The camera_type of this CameraRequest.  # noqa: E501
-        :rtype: CameraTypeEnum
+        :rtype: CameraType
         """
         return self._camera_type
 
@@ -162,39 +158,10 @@ class CameraRequest(object):
 
 
         :param camera_type: The camera_type of this CameraRequest.  # noqa: E501
-        :type camera_type: CameraTypeEnum
+        :type camera_type: CameraType
         """
 
         self._camera_type = camera_type
-
-    @property
-    def camera_source(self):
-        """Gets the camera_source of this CameraRequest.  # noqa: E501
-
-
-        :return: The camera_source of this CameraRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._camera_source
-
-    @camera_source.setter
-    def camera_source(self, camera_source):
-        """Sets the camera_source of this CameraRequest.
-
-
-        :param camera_source: The camera_source of this CameraRequest.  # noqa: E501
-        :type camera_source: str
-        """
-        if self.local_vars_configuration.client_side_validation and camera_source is None:  # noqa: E501
-            raise ValueError("Invalid value for `camera_source`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                camera_source is not None and len(camera_source) > 255):
-            raise ValueError("Invalid value for `camera_source`, length must be less than or equal to `255`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                camera_source is not None and len(camera_source) < 1):
-            raise ValueError("Invalid value for `camera_source`, length must be greater than or equal to `1`")  # noqa: E501
-
-        self._camera_source = camera_source
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

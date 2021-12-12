@@ -4,11 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**user** | **i32** |  | 
+**active** | Option<**bool**> |  | [optional]
 **device** | **i32** |  | 
-**name** | **String** |  | 
-**camera_type** | Option<[**crate::models::CameraTypeEnum**](CameraTypeEnum.md)> |  | [optional]
-**camera_source** | **String** |  | 
+**name** | Option<**String**> | Descriptive name to identify this camera | [optional][default to Raspberry Pi Cam]
+**camera_type** | Option<[**crate::models::CameraType**](CameraType.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

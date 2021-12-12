@@ -17,7 +17,7 @@ docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
 docs/Camera.md
 docs/CameraRequest.md
-docs/CameraTypeEnum.md
+docs/CameraType.md
 docs/CloudiotDevice.md
 docs/CloudiotDeviceRequest.md
 docs/CommandEnum.md
@@ -185,7 +185,7 @@ src/models/callback_token_verification.rs
 src/models/callback_token_verification_request.rs
 src/models/camera.rs
 src/models/camera_request.rs
-src/models/camera_type_enum.rs
+src/models/camera_type.rs
 src/models/cloudiot_device.rs
 src/models/cloudiot_device_request.rs
 src/models/command_enum.rs

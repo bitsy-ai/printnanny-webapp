@@ -47,6 +47,7 @@ class Device(object):
         'user': 'User',
         'last_task': 'Task',
         'active_tasks': 'list[Task]',
+        'active_cameras': 'list[Camera]',
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
         'hostname': 'str'
@@ -63,12 +64,13 @@ class Device(object):
         'user': 'user',
         'last_task': 'last_task',
         'active_tasks': 'active_tasks',
+        'active_cameras': 'active_cameras',
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
         'hostname': 'hostname'
     }
 
-    def __init__(self, id=None, bootstrap_release=None, cloudiot_device=None, cameras=None, dashboard_url=None, printer_controllers=None, release_channel=None, user=None, last_task=None, active_tasks=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, bootstrap_release=None, cloudiot_device=None, cameras=None, dashboard_url=None, printer_controllers=None, release_channel=None, user=None, last_task=None, active_tasks=None, active_cameras=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -84,6 +86,7 @@ class Device(object):
         self._user = None
         self._last_task = None
         self._active_tasks = None
+        self._active_cameras = None
         self._created_dt = None
         self._updated_dt = None
         self._hostname = None
@@ -99,6 +102,7 @@ class Device(object):
         self.user = user
         self.last_task = last_task
         self.active_tasks = active_tasks
+        self.active_cameras = active_cameras
         self.created_dt = created_dt
         self.updated_dt = updated_dt
         if hostname is not None:
@@ -323,6 +327,29 @@ class Device(object):
             raise ValueError("Invalid value for `active_tasks`, must not be `None`")  # noqa: E501
 
         self._active_tasks = active_tasks
+
+    @property
+    def active_cameras(self):
+        """Gets the active_cameras of this Device.  # noqa: E501
+
+
+        :return: The active_cameras of this Device.  # noqa: E501
+        :rtype: list[Camera]
+        """
+        return self._active_cameras
+
+    @active_cameras.setter
+    def active_cameras(self, active_cameras):
+        """Sets the active_cameras of this Device.
+
+
+        :param active_cameras: The active_cameras of this Device.  # noqa: E501
+        :type active_cameras: list[Camera]
+        """
+        if self.local_vars_configuration.client_side_validation and active_cameras is None:  # noqa: E501
+            raise ValueError("Invalid value for `active_cameras`, must not be `None`")  # noqa: E501
+
+        self._active_cameras = active_cameras
 
     @property
     def created_dt(self):

@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.camera_type_enum import CameraTypeEnum  # noqa: E501
+from printnanny_api_client.models.camera_type import CameraType  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestCameraTypeEnum(unittest.TestCase):
-    """CameraTypeEnum unit test stubs"""
+class TestCameraType(unittest.TestCase):
+    """CameraType unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,20 +30,20 @@ class TestCameraTypeEnum(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test CameraTypeEnum
+        """Test CameraType
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.camera_type_enum.CameraTypeEnum()  # noqa: E501
+        # model = printnanny_api_client.models.camera_type.CameraType()  # noqa: E501
         if include_optional :
-            return CameraTypeEnum(
+            return CameraType(
             )
         else :
-            return CameraTypeEnum(
+            return CameraType(
         )
 
-    def testCameraTypeEnum(self):
-        """Test CameraTypeEnum"""
+    def testCameraType(self):
+        """Test CameraType"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

@@ -33,12 +33,12 @@ class TaskStatusType(object):
     allowed enum values
     """
     FAILED = "failed"
-    REQUESTED = "requested"
+    PENDING = "pending"
     STARTED = "started"
     SUCCESS = "success"
     TIMEOUT = "timeout"
 
-    allowable_values = [FAILED, REQUESTED, STARTED, SUCCESS, TIMEOUT]  # noqa: E501
+    allowable_values = [FAILED, PENDING, STARTED, SUCCESS, TIMEOUT]  # noqa: E501
 
     """
     Attributes:

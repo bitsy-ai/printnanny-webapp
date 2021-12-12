@@ -37,18 +37,14 @@ class TestCameraRequest(unittest.TestCase):
         # model = printnanny_api_client.models.camera_request.CameraRequest()  # noqa: E501
         if include_optional :
             return CameraRequest(
-                user = 56, 
+                active = True, 
                 device = 56, 
-                name = '0', 
-                camera_type = None, 
-                camera_source = '0'
+                name = 'Raspberry Pi Cam', 
+                camera_type = None
             )
         else :
             return CameraRequest(
-                user = 56,
                 device = 56,
-                name = '0',
-                camera_source = '0',
         )
 
     def testCameraRequest(self):

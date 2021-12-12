@@ -14,8 +14,8 @@
 pub enum TaskStatusType {
     #[serde(rename = "failed")]
     Failed,
-    #[serde(rename = "requested")]
-    Requested,
+    #[serde(rename = "pending")]
+    Pending,
     #[serde(rename = "started")]
     Started,
     #[serde(rename = "success")]
@@ -29,7 +29,7 @@ impl ToString for TaskStatusType {
     fn to_string(&self) -> String {
         match self {
             Self::Failed => String::from("failed"),
-            Self::Requested => String::from("requested"),
+            Self::Pending => String::from("pending"),
             Self::Started => String::from("started"),
             Self::Success => String::from("success"),
             Self::Timeout => String::from("timeout"),

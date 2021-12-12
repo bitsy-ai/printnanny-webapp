@@ -51,11 +51,10 @@ class TestPaginatedDeviceList(unittest.TestCase):
                                 deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                user = 56, 
+                                active = True, 
                                 device = 56, 
-                                name = '', 
+                                name = 'Raspberry Pi Cam', 
                                 camera_type = null, 
-                                camera_source = '', 
                                 url = '', )
                             ], 
                         dashboard_url = '', 
@@ -80,6 +79,18 @@ class TestPaginatedDeviceList(unittest.TestCase):
                                 task_type = 'activate_license', 
                                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                                 device = 56, )
+                            ], 
+                        active_cameras = [
+                            printnanny_api_client.models.camera.Camera(
+                                id = 56, 
+                                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                active = True, 
+                                device = 56, 
+                                name = 'Raspberry Pi Cam', 
+                                camera_type = null, 
+                                url = '', )
                             ], 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
