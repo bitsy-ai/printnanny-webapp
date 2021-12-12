@@ -90,6 +90,10 @@ class Device(SafeDeleteModel):
         return self.tasks.filter(active=True).all()
 
     @property
+    def active_cameras(self):
+        return self.cameras.filter(active=True).all()
+
+    @property
     def to_cloudiot_id(self):
         return f"device-id-{self.id}"
 
@@ -382,6 +386,7 @@ class Camera(SafeDeleteModel):
 
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     updated_dt = models.DateTimeField(db_index=True, auto_now=True)
+    active = models.BooleanField(default=False)
     device = models.ForeignKey(Device, on_delete=models.CASCADE, related_name="cameras")
     name = models.CharField(
         max_length=255,

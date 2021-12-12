@@ -122,6 +122,7 @@ class DeviceSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
     last_task = TaskSerializer(read_only=True)
     active_tasks = TaskSerializer(many=True, read_only=True)
+    active_cameras = CameraSerializer(many=True, read_only=True)
 
     class Meta:
         model = Device
