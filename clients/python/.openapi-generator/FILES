@@ -45,8 +45,6 @@ docs/LicensesApi.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
-docs/Nested.md
-docs/NestedRequest.md
 docs/OctoPrintDevice.md
 docs/OctoPrintDeviceKey.md
 docs/OctoPrintDeviceRequest.md
@@ -216,8 +214,6 @@ printnanny_api_client/models/license.py
 printnanny_api_client/models/license_request.py
 printnanny_api_client/models/mobile_auth_request.py
 printnanny_api_client/models/model_artifact.py
-printnanny_api_client/models/nested.py
-printnanny_api_client/models/nested_request.py
 printnanny_api_client/models/octo_print_device.py
 printnanny_api_client/models/octo_print_device_key.py
 printnanny_api_client/models/octo_print_device_request.py
@@ -373,8 +369,6 @@ test/test_licenses_api.py
 test/test_ml_ops_api.py
 test/test_mobile_auth_request.py
 test/test_model_artifact.py
-test/test_nested.py
-test/test_nested_request.py
 test/test_octo_print_device.py
 test/test_octo_print_device_key.py
 test/test_octo_print_device_request.py

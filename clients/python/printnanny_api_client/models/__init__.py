@@ -50,8 +50,6 @@ from printnanny_api_client.models.license import License
 from printnanny_api_client.models.license_request import LicenseRequest
 from printnanny_api_client.models.mobile_auth_request import MobileAuthRequest
 from printnanny_api_client.models.model_artifact import ModelArtifact
-from printnanny_api_client.models.nested import Nested
-from printnanny_api_client.models.nested_request import NestedRequest
 from printnanny_api_client.models.octo_print_device import OctoPrintDevice
 from printnanny_api_client.models.octo_print_device_key import OctoPrintDeviceKey
 from printnanny_api_client.models.octo_print_device_request import OctoPrintDeviceRequest

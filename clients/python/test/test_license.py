@@ -38,6 +38,7 @@ class TestLicense(unittest.TestCase):
         if include_optional :
             return License(
                 id = 56, 
+                device = None, 
                 printnanny_api_token = '', 
                 printnanny_api_url = '', 
                 honeycomb_dataset = '', 
@@ -47,12 +48,12 @@ class TestLicense(unittest.TestCase):
                 activated = True, 
                 public_key = '', 
                 fingerprint = '', 
-                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                device = None
+                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )
         else :
             return License(
                 id = 56,
+                device = None,
                 printnanny_api_token = '',
                 printnanny_api_url = '',
                 honeycomb_dataset = '',
@@ -62,7 +63,6 @@ class TestLicense(unittest.TestCase):
                 public_key = '',
                 fingerprint = '',
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                device = None,
         )
 
     def testLicense(self):

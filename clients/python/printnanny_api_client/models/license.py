@@ -38,6 +38,7 @@ class License(object):
     """
     openapi_types = {
         'id': 'int',
+        'device': 'Device',
         'printnanny_api_token': 'str',
         'printnanny_api_url': 'str',
         'honeycomb_dataset': 'str',
@@ -47,12 +48,12 @@ class License(object):
         'activated': 'bool',
         'public_key': 'str',
         'fingerprint': 'str',
-        'created_dt': 'datetime',
-        'device': 'Nested'
+        'created_dt': 'datetime'
     }
 
     attribute_map = {
         'id': 'id',
+        'device': 'device',
         'printnanny_api_token': 'printnanny_api_token',
         'printnanny_api_url': 'printnanny_api_url',
         'honeycomb_dataset': 'honeycomb_dataset',
@@ -62,17 +63,17 @@ class License(object):
         'activated': 'activated',
         'public_key': 'public_key',
         'fingerprint': 'fingerprint',
-        'created_dt': 'created_dt',
-        'device': 'device'
+        'created_dt': 'created_dt'
     }
 
-    def __init__(self, id=None, printnanny_api_token=None, printnanny_api_url=None, honeycomb_dataset=None, honeycomb_api_key=None, janus_admin_secret=None, janus_token=None, activated=None, public_key=None, fingerprint=None, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, device=None, printnanny_api_token=None, printnanny_api_url=None, honeycomb_dataset=None, honeycomb_api_key=None, janus_admin_secret=None, janus_token=None, activated=None, public_key=None, fingerprint=None, created_dt=None, local_vars_configuration=None):  # noqa: E501
         """License - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
+        self._device = None
         self._printnanny_api_token = None
         self._printnanny_api_url = None
         self._honeycomb_dataset = None
@@ -83,10 +84,10 @@ class License(object):
         self._public_key = None
         self._fingerprint = None
         self._created_dt = None
-        self._device = None
         self.discriminator = None
 
         self.id = id
+        self.device = device
         self.printnanny_api_token = printnanny_api_token
         self.printnanny_api_url = printnanny_api_url
         self.honeycomb_dataset = honeycomb_dataset
@@ -98,7 +99,6 @@ class License(object):
         self.public_key = public_key
         self.fingerprint = fingerprint
         self.created_dt = created_dt
-        self.device = device
 
     @property
     def id(self):
@@ -122,6 +122,27 @@ class License(object):
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
+
+    @property
+    def device(self):
+        """Gets the device of this License.  # noqa: E501
+
+
+        :return: The device of this License.  # noqa: E501
+        :rtype: Device
+        """
+        return self._device
+
+    @device.setter
+    def device(self, device):
+        """Sets the device of this License.
+
+
+        :param device: The device of this License.  # noqa: E501
+        :type device: Device
+        """
+
+        self._device = device
 
     @property
     def printnanny_api_token(self):
@@ -350,27 +371,6 @@ class License(object):
             raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
 
         self._created_dt = created_dt
-
-    @property
-    def device(self):
-        """Gets the device of this License.  # noqa: E501
-
-
-        :return: The device of this License.  # noqa: E501
-        :rtype: Nested
-        """
-        return self._device
-
-    @device.setter
-    def device(self, device):
-        """Sets the device of this License.
-
-
-        :param device: The device of this License.  # noqa: E501
-        :type device: Nested
-        """
-
-        self._device = device
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

@@ -6,6 +6,7 @@ Deserialize data/license info into /opt/printnanny during License Activation
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
+**device** | [**Device**](Device.md) |  | [readonly] 
 **printnanny_api_token** | **str** |  | [readonly] 
 **printnanny_api_url** | **str** |  | [readonly] 
 **honeycomb_dataset** | **str** |  | [readonly] 
@@ -16,7 +17,6 @@ Name | Type | Description | Notes
 **public_key** | **str** |  | [readonly] 
 **fingerprint** | **str** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
-**device** | [**Nested**](Nested.md) |  | [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
