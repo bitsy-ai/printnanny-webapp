@@ -1,6 +1,15 @@
 from django.db import models
 
 
+class CameraType(models.TextChoices):
+    PICAM = "picam", "Raspberry Pi Camera Module"
+    USB = (
+        "usb",
+        "USB Camera (coming soon)",
+    )
+    IP = "ip", "Generic RTP/RTSP IP Camera (coming soon)"
+
+
 class DeviceReleaseChannel(models.TextChoices):
     STABLE = "stable", "Stable mainline release channel"
     NIGHTLY = "nightly", "Nightly developer release channel"
@@ -14,15 +23,15 @@ class PrinterSoftwareType(models.TextChoices):
 
 
 class TaskStatusType(models.TextChoices):
-    FAILED = "failed", "Failed"  # TODO prompt to send crash report
-    REQUESTED = "requested", "Requested"
-    STARTED = "started", "Running"
-    SUCCESS = "success", "Success"
-    TIMEOUT = "timeout", "Timeout"
+    FAILED = "failed", "Task failed."  # TODO prompt to send crash report
+    PENDING = "pending", "Waiting for device to acknowledge task."
+    STARTED = "started", "Task is running."
+    SUCCESS = "success", "Task succeeded."
+    TIMEOUT = "timeout", "Task timed out. Please try again."
 
     __css__ = dict(
         FAILED="danger",
-        REQUESTED="secondary",
+        PENDING="secondary",
         STARTED="warning",
         SUCCESS="success",
         TIMEOUT="timeout",

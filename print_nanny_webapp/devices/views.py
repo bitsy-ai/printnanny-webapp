@@ -4,17 +4,49 @@ from django.apps import apps
 from django.urls import reverse
 from django.views.generic.list import MultipleObjectMixin
 from django.views.generic import CreateView, DetailView, DeleteView
+from print_nanny_webapp.devices.forms import CameraCreateForm
 from print_nanny_webapp.devices.models import Device
 
 from print_nanny_webapp.dashboard.views import DashboardView
+from .forms import CameraCreateForm
 from .services import generate_zipped_license_response
 
 Device = apps.get_model("devices", "Device")
+Camera = apps.get_model("devices", "Camera")
 logger = logging.getLogger(__name__)
 
 
+class CameraCreateView(CreateView):
+    template_name = "devices/camera-form.html"
+    model = Camera
+    form_class = CameraCreateForm
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        device_id = self.kwargs["device_id"]
+        device = Device.objects.get(id=device_id)
+        if kwargs["instance"] is None:
+            kwargs["instance"] = self.model()
+        kwargs["instance"].device = device
+        return kwargs
+
+    def form_valid(self, *args, **kwargs):
+        return super().form_valid(*args, **kwargs)
+
+    def get_success_url(self):
+        return reverse("devices:detail", args=(self.object.device.id,))
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(CameraCreateView, self).get_context_data(*args, **kwargs)
+
+        context["user"] = self.request.user
+        device_id = self.kwargs["device_id"]
+        context["device"] = Device.objects.get(id=device_id)
+        return context
+
+
 class DeviceCreateView(CreateView):
-    template_name = "devices/create-form.html"
+    template_name = "devices/device-form.html"
     model = Device
     fields = ["hostname", "release_channel"]
 

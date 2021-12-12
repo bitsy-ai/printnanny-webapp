@@ -16,7 +16,7 @@ from print_nanny_webapp.devices.models import (
     # PrinterProfile,
     # OctoprintPrinterProfile,
 )
-from ..enum import DeviceReleaseChannel, PrinterSoftwareType
+from ..enum import CameraType, DeviceReleaseChannel, PrinterSoftwareType
 from print_nanny_webapp.users.api.serializers import UserSerializer
 from print_nanny_webapp.releases.api.serializers import ReleaseSerializer
 
@@ -25,8 +25,8 @@ class CameraSerializer(serializers.ModelSerializer):
     # user = serializers.PrimaryKeyRelatedField(read_only=True)
     # device = serializers.PrimaryKeyRelatedField(read_only=True)
     camera_type = serializers.ChoiceField(
-        choices=Camera.CameraType.choices,
-        default=Camera.CameraType.RPI_CAMERA,
+        choices=CameraType.choices,
+        default=CameraType.PICAM,
     )
 
     class Meta:
@@ -122,6 +122,7 @@ class DeviceSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
     last_task = TaskSerializer(read_only=True)
     active_tasks = TaskSerializer(many=True, read_only=True)
+    active_cameras = CameraSerializer(many=True, read_only=True)
 
     class Meta:
         model = Device

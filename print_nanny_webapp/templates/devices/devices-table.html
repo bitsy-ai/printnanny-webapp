@@ -16,7 +16,7 @@
                   <tr>
                       <th>Hostname</th>
                       <!-- <th>Monitoring Active</th> -->
-                      <th>Status</th>
+                      <th>Task Status</th>
                       <!-- <th>Job Status</th> -->
         
                       <!-- <th>File</th>
@@ -36,22 +36,23 @@
                     </td> -->
                     <!-- <td><i class="mdi mdi-circle {{device.monitoring_active_css_class}}"></i> {{device.monitoring_active}}</td> -->
                 <td>
-                    <a 
-                    data-toggle="popover" 
-                    data-placement="right" 
-                    title="Task: {{ device.last_task.get_type_display }}" 
-                    {% if device.last_task.wiki_url %}
-                    data-content="{{ device.last_task.msg }} <br><a target='_blank' href='{{ device.last_task.wiki_url }}'>Get more info</a>"
-                    {% else %} 
-                    data-content="{{ device.last_task.get_status_display }} <br> <a href='{% url 'devices:detail' pk=device.id %}'>See device details</a>" 
-                    {% endif %}
-                    data-html="true"
-                    class="badge badge-{{ device.last_task.status_css_class }}"
-                    >
-                    <i class="mdi mdi-information"></i>
-                    {{ device.last_task.get_type_display }}
-
-                    </a>
+                      <a 
+                      data-toggle="popover" 
+                      data-placement="right" 
+                      title="Task: {{ device.last_task.get_task_type_display }}" 
+                      {% if task.last_status.wiki_url %}
+                      data-content="{{ device.last_task.last_status.msg }} <br><a target='_blank' href='{{ device.last_task.last_status.wiki_url}'>Get more info</a>"
+                      {% else %} 
+                      data-content="{{ device.last_task.last_status.get_status_display }}" 
+                      {% endif %}
+                      data-html="true"
+                      class="badge badge-{{ device.last_task.last_status.css_class }}"
+                      >
+                      <i class="mdi mdi-information"></i>
+                      {{ device.last_task.get_task_type_display }}:
+                      {{ device.last_task.last_status.status | capfirst }}
+  
+                      </a>
                 </td>
                 <td>
                     <a href="{% url 'devices:license' pk=device.id %}" target="_blank"><button class="btn btn-primary">View Livestream</button></a>

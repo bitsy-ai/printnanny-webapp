@@ -10,10 +10,11 @@ from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.signals import pre_softdelete
 
 from .enum import (
-    TaskType,
+    CameraType,
     DeviceReleaseChannel,
     PrinterSoftwareType,
     TaskStatusType,
+    TaskType,
 )
 
 UserModel = get_user_model()
@@ -87,6 +88,10 @@ class Device(SafeDeleteModel):
     @property
     def active_tasks(self):
         return self.tasks.filter(active=True).all()
+
+    @property
+    def active_cameras(self):
+        return self.cameras.filter(active=True).all()
 
     @property
     def to_cloudiot_id(self):
@@ -363,7 +368,7 @@ class TaskStatus(HelpLink, SafeDeleteModel):
     status = models.CharField(
         max_length=16,
         choices=TaskStatusType.choices,
-        default=TaskStatusType.REQUESTED,
+        default=TaskStatusType.PENDING,
     )
 
     @property
@@ -375,25 +380,25 @@ class Camera(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
 
     class Meta:
-        unique_together = ("user", "name")
-
-    class CameraType(models.TextChoices):
-        RPI_CAMERA = "Raspberry Pi Camera Module", "Raspberry Pi Camera Module"
-        USB_CAMERA = (
-            "Raspberry Pi USB Camera",
-            "Raspberry Pi USB Camera",
-        )
-        IP_CAMERA = "Generic RTSP/RTMP IP Camera", "Generic RTSP/RTMP IP Camera"
+        unique_together = ("device", "name")
 
     _safedelete_policy = SOFT_DELETE
 
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     updated_dt = models.DateTimeField(db_index=True, auto_now=True)
-    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    active = models.BooleanField(default=False)
     device = models.ForeignKey(Device, on_delete=models.CASCADE, related_name="cameras")
-    name = models.CharField(max_length=255)
-    camera_type = models.CharField(max_length=255, choices=CameraType.choices)
-    camera_source = models.CharField(max_length=255)
+    name = models.CharField(
+        max_length=255,
+        default="Raspberry Pi Cam",
+        help_text="Descriptive name to identify this camera",
+    )
+    camera_type = models.CharField(
+        max_length=255,
+        choices=CameraType.choices,
+        default=CameraType.choices,
+        help_text="Specify camera connection type",
+    )
 
 
 class PrinterController(PolymorphicModel, SafeDeleteModel):
