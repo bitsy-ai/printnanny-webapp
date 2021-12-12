@@ -306,6 +306,10 @@ def generate_zipped_license_file(
     license_json = JSONRenderer().render(license_serializer.data)
 
     with ZipFile(zip_filename, "x") as zf:
+        # serialize single-field .txt files as a fallback for model serde bugs
+        zf.writestr("device_id.txt", device.id)
+        zf.writestr("user_id.txt", device.user.id)
+        zf.writestr("user_email.txt", device.user.email)
 
         zf.write(
             keypair["public_key_filename"],
