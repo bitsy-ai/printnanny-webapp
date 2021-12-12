@@ -231,11 +231,41 @@ class CloudiotDevice(SafeDeleteModel):
         return self.name
 
     @property
-    def desired_config_topic(self):
+    def task_topic(self):
+        """
+        A queue of outstanding Tasks that run on Device
+        """
+        return f"/devices/{self.num_id}/task"
+
+    @property
+    def config_topic(self):
+        """
+        Reference: https://cloud.google.com/iot/docs/how-tos/config/configuring-devices
+        With Cloud IoT Core, you can control a device by sending it a device configuration.
+        A device configuration is an arbitrary user-defined blob of data sent from Cloud IoT Core to a device.
+        The data can be structured or unstructured. It can also be of any format, such as arbitrary binary data, text, JSON, or serialized protocol buffers.
+
+        Device configuration is persisted in storage by Cloud IoT Core.
+        The maximum size for configuration data is 64 KB. For additional limits, see Quotas and Limits.
+        https://cloud.google.com/iot/quotas
+
+        For best results, a device configuration should focus on desired values or results, rather than on a sequence of commands.
+        If you specify commands, intermediate configuration versions may create conflicts,
+        and it won't be possible to restore the state of a device (without executing every sequence of commands since the device was first initialized).
+        If your configurations emphasize values and results, you'll be able to more easily restore the device state.
+        """
         return f"/devices/{self.num_id}/config"
 
     @property
-    def current_state_topic(self):
+    def state_topic(self):
+        """
+        https://cloud.google.com/iot/docs/concepts/devices#device_state
+        Device state information captures the current status of the device, not the environment.
+        Devices can describe their state with an arbitrary user-defined blob of data sent from the device to the cloud.
+        The data can be structured or unstructured. It can also be of any format, such as binary data, text, JSON, or serialized protocol buffers.
+        Some examples of device state include the health of the device or its firmware version.
+        Typically, device state information is not updated frequently.
+        """
         return f"/devices/{self.num_id}/state"
 
 
