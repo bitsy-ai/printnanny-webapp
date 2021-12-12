@@ -5,7 +5,19 @@
     <div class="card-body">
         <h2 class="header-title">
             <i class="mdi mdi-camera"></i> Manage Cameras
-              <a href="{% url 'devices:create-camera' device_id=object.id %}"><button class="btn btn-primary float-right">Add New Camera</button></a>
+            {% if object.cameras.count == 0 %}
+                <a href="{% url 'devices:create-camera' device_id=object.id %}">
+                    <button class="btn btn-primary float-right">Add New Camera</button>
+                </a>
+            {% else %}
+                <button 
+                    class="btn btn-primary float-right disabled"
+                    data-toggle="tooltip" 
+                    data-placement="bottom"
+                    data-html="true"
+                    title="Multi camera support is coming soon! <br>Email leigh@print-nanny.com for Alpha access to this feature."
+                >Add New Camera</button>
+            {% endif %}
         </h2>
         <div class="row mt-3">
             {% if object.cameras.count > 0 %}
