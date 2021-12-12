@@ -29,11 +29,8 @@
         </div>
     {% elif object.active_license.activated == False %}
     <div class="row">
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-8 align-items-stretch">
             {% include "devices/license-detail.html" %}
-        </div>
-        <div class="col-12-md-4">
-            {% include "partials/livestream-webrtc.html" %}
         </div>
     </div>
     <div class="row">
@@ -46,11 +43,11 @@
         <div class="col-12 col-md-6 d-flex align-items-stretch">
             {% include "partials/livestream-webrtc.html" %}
         </div>
+    </div>
+    <div class="row">
         <div class="col-12 col-md-6 d-flex align-items-stretch">
             {% include "partials/system-tasks-table.html" %}
         </div>
-    </div>
-    <div class="row">
         <div class="col-12 col-md-6 d-flex align-items-stretch">
             {% include "devices/license-detail.html" %}
         </div>
