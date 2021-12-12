@@ -25,26 +25,23 @@
                 <div class="card col-4">
                     <div class="card-body">
                         <h2 class="header-title">{{ camera.name }}</h2>
-                
+
+                        <button class="btn btn-primary" id="start">Start Monitoring</button>
+
                         <div class="container hide" id="streams">
                             <div class="col-md-6">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">Stream
+                                        <h4 class="panel-title">
                                             <span class="label label-info hide" id="status"></span>
                                             <span class="label label-primary hide" id="curres"></span>
                                             <span class="label label-info hide" id="curbitrate"></span>
-                                        </h3>
+                                        </h4>
                                     </div>
                                     <div class="panel-body" id="stream"></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="alert alert-info col-12 text-center mt-2" role="alert">
-                            <h4 id="stream-status" class="alert-heading">Monitoring Paused</h4>
-                            <button class="btn btn-primary" id="start">Start</button>
-                        </div>
-                
                     </div>
                 </div>
             {% endfor %}
