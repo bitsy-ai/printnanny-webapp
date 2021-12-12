@@ -10,11 +10,28 @@ from print_nanny_webapp.dashboard.views import DashboardView
 from .services import generate_zipped_license_response
 
 Device = apps.get_model("devices", "Device")
+Camera = apps.get_model("devices", "Camera")
 logger = logging.getLogger(__name__)
 
 
+class CameraCreateView(CreateView):
+    template_name = "devices/camera-form.html"
+    model = Camera
+    fields = ["name", "camera_type", "camera_source"]
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        if kwargs["instance"] is None:
+            kwargs["instance"] = self.model()
+        kwargs["instance"].user = self.request.user
+        return kwargs
+
+    def get_success_url(self):
+        return reverse("devices:detail", args=(self.object.id,))
+
+
 class DeviceCreateView(CreateView):
-    template_name = "devices/create-form.html"
+    template_name = "devices/device-form.html"
     model = Device
     fields = ["hostname", "release_channel"]
 

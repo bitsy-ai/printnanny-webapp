@@ -14,11 +14,19 @@
         {% endif %}
         <dl class="row">
             <dt class="col-sm-3">Activated</dt>
-            <dd class="col-sm-9">{{ object.active_license.activated }}</dd>
+            <dd class="col-sm-9">{{ object.active_license.updated_dt | naturaltime }}</dd>
             <dt class="col-sm-3">Fingerprint</dt>
-            <dd class="col-sm-9">{{ object.active_license.fingerprint }}</dd>
-            <dt class="col-sm-3">Created</dt>
-            <dd class="col-sm-9">{{ object.active_license.created_dt | naturaltime }}</dd>
+            <dd class="col-sm-9">
+                <samp>
+                {{ object.active_license.fingerprint }}
+                </samp>
+            </dd>
+            <dt class="col-sm-3">Public Key</dt>
+            <dd class="col-sm-9">
+                <samp>
+                {{ object.active_license.public_key }}
+                </samp>
+            </dd>
         </dl>
         <p>
             <a href="{% url 'devices:delete' pk=device.id %}"><button class="
@@ -27,9 +35,9 @@
         </div>
     <div class="card-footer">
         <p>
-            Print Nanny Staff will <span class="text-danger"><strong>never</strong></span> ask for your license keys. For your safety, do not share these with anyone!
+            Print Nanny Staff will <span class="text-danger"><strong>never</strong></span> ask for your license keys. <strong>Do not share these with anyone!</strong>
             <br>
-            <a href="{{ help.ABOUT_DEVICE_PKI }}" target="_blank">This wiki article</a> explains how your device is protected from unauthorized access.
+            <a href="{{ help.ABOUT_DEVICE_PKI }}" target="_blank">This wiki article</a> explains how your keys protect your device from unauthorized access.
         </p>
     </div>
 </div>

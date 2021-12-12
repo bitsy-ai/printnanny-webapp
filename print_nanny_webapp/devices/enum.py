@@ -1,6 +1,15 @@
 from django.db import models
 
 
+class CameraType(models.TextChoices):
+    PICAM = "picam", "Raspberry Pi Camera Module"
+    USB = (
+        "usb",
+        "USB Camera (coming soon)",
+    )
+    IP = "ip", "Generic RTP/RTSP IP Camera (coming soon)"
+
+
 class DeviceReleaseChannel(models.TextChoices):
     STABLE = "stable", "Stable mainline release channel"
     NIGHTLY = "nightly", "Nightly developer release channel"

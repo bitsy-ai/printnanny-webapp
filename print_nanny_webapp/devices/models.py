@@ -10,10 +10,11 @@ from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.signals import pre_softdelete
 
 from .enum import (
-    TaskType,
+    CameraType,
     DeviceReleaseChannel,
     PrinterSoftwareType,
     TaskStatusType,
+    TaskType,
 )
 
 UserModel = get_user_model()
@@ -120,10 +121,11 @@ class License(SafeDeleteModel):
     public_key = models.TextField()
     fingerprint = models.CharField(max_length=255)
 
-    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     device = models.ForeignKey(
         Device, on_delete=models.CASCADE, related_name="licenses"
     )
+    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
+    updated_dt = models.DateTimeField(db_index=True, auto_now=True)
 
 
 class DeviceInfo(SafeDeleteModel):
@@ -376,23 +378,16 @@ class Camera(SafeDeleteModel):
     class Meta:
         unique_together = ("user", "name")
 
-    class CameraType(models.TextChoices):
-        RPI_CAMERA = "Raspberry Pi Camera Module", "Raspberry Pi Camera Module"
-        USB_CAMERA = (
-            "Raspberry Pi USB Camera",
-            "Raspberry Pi USB Camera",
-        )
-        IP_CAMERA = "Generic RTSP/RTMP IP Camera", "Generic RTSP/RTMP IP Camera"
-
     _safedelete_policy = SOFT_DELETE
 
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     updated_dt = models.DateTimeField(db_index=True, auto_now=True)
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     device = models.ForeignKey(Device, on_delete=models.CASCADE, related_name="cameras")
-    name = models.CharField(max_length=255)
-    camera_type = models.CharField(max_length=255, choices=CameraType.choices)
-    camera_source = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, default="Raspberry Pi Cam")
+    camera_type = models.CharField(
+        max_length=255, choices=CameraType.choices, default=CameraType.choices
+    )
 
 
 class PrinterController(PolymorphicModel, SafeDeleteModel):
