@@ -1,23 +1,14 @@
 {% load static %}
 
+{% for camera in object.camera %}
+
+{% endfor %}
 <div class="card">
     <div class="card-body">
         <h2 class="header-title"><i class="mdi mdi-printer-3d"></i>
             <i class="mdi mdi-video-box-off"></i>Camera Livestream</h2>
 
         <div class="container hide" id="streams">
-            <div class="col-md-6">
-                <div class="row hide" id="info">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-info-circle"></i> Metadata</h3>
-                        </div>
-                        <div class="panel-body">
-                            <pre id="metadata" style="word-break: break-word;"></pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">

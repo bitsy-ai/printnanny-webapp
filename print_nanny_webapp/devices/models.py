@@ -120,10 +120,11 @@ class License(SafeDeleteModel):
     public_key = models.TextField()
     fingerprint = models.CharField(max_length=255)
 
-    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     device = models.ForeignKey(
         Device, on_delete=models.CASCADE, related_name="licenses"
     )
+    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
+    updated_dt = models.DateTimeField(db_index=True, auto_now=True)
 
 
 class DeviceInfo(SafeDeleteModel):
