@@ -78,52 +78,6 @@ class Tokens(TypedDict):
     honeycomb_api_key: str  # write-only token
 
 
-class LicenseSerializer(serializers.ModelSerializer):
-    """
-    Deserialize data/license info into /opt/printnanny during License Activation
-    """
-
-    printnanny_api_token = serializers.SerializerMethodField(read_only=True)
-
-    def get_printnanny_api_token(self, obj) -> str:
-        api_token, _ = Token.objects.get_or_create(user=obj.device.user)
-        return str(api_token)
-
-    printnanny_api_url = serializers.SerializerMethodField(read_only=True)
-
-    def get_printnanny_api_url(self, obj) -> str:
-        return self.context["request"].build_absolute_uri("/")[
-            :-1
-        ]  # remove trailing slash for use in API client base_url
-
-    honeycomb_dataset = serializers.SerializerMethodField(read_only=True)
-
-    def get_honeycomb_dataset(self, obj) -> str:
-        return settings.HONEYCOMB_DATASET
-
-    honeycomb_api_key = serializers.SerializerMethodField(read_only=True)
-
-    def get_honeycomb_api_key(self, obj) -> str:
-        return settings.HONEYCOMB_API_KEY
-
-    class Meta:
-        model = License
-        read_only_fields = (
-            "printnanny_api_token",
-            "printnanny_api_url",
-            "honeycomb_dataset",
-            "honeycomb_api_key",
-            "janus_admin_secret",
-            "janus_token",
-            "device",
-            "public_key",
-            "fingerprint",
-            "user",
-        )
-        exclude = ("deleted",)
-        depth = 1
-
-
 class CACertsSerializer(serializers.Serializer):
     primary = serializers.CharField(read_only=True)
     primary_checksum = serializers.CharField(read_only=True)
@@ -185,3 +139,51 @@ class DeviceInfoSerializer(serializers.ModelSerializer):
         return DeviceInfo.objects.filter(device=device).update_or_create(
             device=device, defaults=validated_data
         )
+
+
+class LicenseSerializer(serializers.ModelSerializer):
+    """
+    Deserialize data/license info into /opt/printnanny during License Activation
+    """
+
+    device = DeviceSerializer(read_only=True)
+
+    printnanny_api_token = serializers.SerializerMethodField(read_only=True)
+
+    def get_printnanny_api_token(self, obj) -> str:
+        api_token, _ = Token.objects.get_or_create(user=obj.device.user)
+        return str(api_token)
+
+    printnanny_api_url = serializers.SerializerMethodField(read_only=True)
+
+    def get_printnanny_api_url(self, obj) -> str:
+        return self.context["request"].build_absolute_uri("/")[
+            :-1
+        ]  # remove trailing slash for use in API client base_url
+
+    honeycomb_dataset = serializers.SerializerMethodField(read_only=True)
+
+    def get_honeycomb_dataset(self, obj) -> str:
+        return settings.HONEYCOMB_DATASET
+
+    honeycomb_api_key = serializers.SerializerMethodField(read_only=True)
+
+    def get_honeycomb_api_key(self, obj) -> str:
+        return settings.HONEYCOMB_API_KEY
+
+    class Meta:
+        model = License
+        read_only_fields = (
+            "printnanny_api_token",
+            "printnanny_api_url",
+            "honeycomb_dataset",
+            "honeycomb_api_key",
+            "janus_admin_secret",
+            "janus_token",
+            "device",
+            "public_key",
+            "fingerprint",
+            "user",
+        )
+        exclude = ("deleted",)
+        depth = 1
