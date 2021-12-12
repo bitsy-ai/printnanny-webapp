@@ -37,12 +37,12 @@ pub struct License {
     #[serde(rename = "created_dt")]
     pub created_dt: String,
     #[serde(rename = "device")]
-    pub device: i32,
+    pub device: Option<Box<crate::models::Nested>>,
 }
 
 impl License {
     /// Deserialize data/license info into /opt/printnanny during License Activation
-    pub fn new(id: i32, printnanny_api_token: String, printnanny_api_url: String, honeycomb_dataset: String, honeycomb_api_key: String, janus_admin_secret: String, janus_token: String, public_key: String, fingerprint: String, created_dt: String, device: i32) -> License {
+    pub fn new(id: i32, printnanny_api_token: String, printnanny_api_url: String, honeycomb_dataset: String, honeycomb_api_key: String, janus_admin_secret: String, janus_token: String, public_key: String, fingerprint: String, created_dt: String, device: Option<crate::models::Nested>) -> License {
         License {
             id,
             printnanny_api_token,
@@ -55,7 +55,7 @@ impl License {
             public_key,
             fingerprint,
             created_dt,
-            device,
+            device: device.map(Box::new),
         }
     }
 }

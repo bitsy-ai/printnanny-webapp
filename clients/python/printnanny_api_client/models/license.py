@@ -48,7 +48,7 @@ class License(object):
         'public_key': 'str',
         'fingerprint': 'str',
         'created_dt': 'datetime',
-        'device': 'int'
+        'device': 'Nested'
     }
 
     attribute_map = {
@@ -357,7 +357,7 @@ class License(object):
 
 
         :return: The device of this License.  # noqa: E501
-        :rtype: int
+        :rtype: Nested
         """
         return self._device
 
@@ -367,10 +367,8 @@ class License(object):
 
 
         :param device: The device of this License.  # noqa: E501
-        :type device: int
+        :type device: Nested
         """
-        if self.local_vars_configuration.client_side_validation and device is None:  # noqa: E501
-            raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
 
         self._device = device
 
