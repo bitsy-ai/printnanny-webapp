@@ -38,8 +38,9 @@ class CloudiotDevice(object):
     """
     openapi_types = {
         'num_id': 'int',
-        'desired_config_topic': 'str',
-        'current_state_topic': 'str',
+        'task_topic': 'str',
+        'config_topic': 'str',
+        'state_topic': 'str',
         'gcp_project_id': 'str',
         'gcp_region': 'str',
         'gcp_cloudiot_device_registry': 'str',
@@ -53,8 +54,9 @@ class CloudiotDevice(object):
 
     attribute_map = {
         'num_id': 'num_id',
-        'desired_config_topic': 'desired_config_topic',
-        'current_state_topic': 'current_state_topic',
+        'task_topic': 'task_topic',
+        'config_topic': 'config_topic',
+        'state_topic': 'state_topic',
         'gcp_project_id': 'gcp_project_id',
         'gcp_region': 'gcp_region',
         'gcp_cloudiot_device_registry': 'gcp_cloudiot_device_registry',
@@ -66,15 +68,16 @@ class CloudiotDevice(object):
         'device': 'device'
     }
 
-    def __init__(self, num_id=None, desired_config_topic=None, current_state_topic=None, gcp_project_id=None, gcp_region=None, gcp_cloudiot_device_registry=None, mqtt_bridge_hostname=None, mqtt_bridge_port=None, mqtt_client_id=None, name=None, id=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, num_id=None, task_topic=None, config_topic=None, state_topic=None, gcp_project_id=None, gcp_region=None, gcp_cloudiot_device_registry=None, mqtt_bridge_hostname=None, mqtt_bridge_port=None, mqtt_client_id=None, name=None, id=None, device=None, local_vars_configuration=None):  # noqa: E501
         """CloudiotDevice - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._num_id = None
-        self._desired_config_topic = None
-        self._current_state_topic = None
+        self._task_topic = None
+        self._config_topic = None
+        self._state_topic = None
         self._gcp_project_id = None
         self._gcp_region = None
         self._gcp_cloudiot_device_registry = None
@@ -87,8 +90,9 @@ class CloudiotDevice(object):
         self.discriminator = None
 
         self.num_id = num_id
-        self.desired_config_topic = desired_config_topic
-        self.current_state_topic = current_state_topic
+        self.task_topic = task_topic
+        self.config_topic = config_topic
+        self.state_topic = state_topic
         self.gcp_project_id = gcp_project_id
         self.gcp_region = gcp_region
         self.gcp_cloudiot_device_registry = gcp_cloudiot_device_registry
@@ -129,50 +133,73 @@ class CloudiotDevice(object):
         self._num_id = num_id
 
     @property
-    def desired_config_topic(self):
-        """Gets the desired_config_topic of this CloudiotDevice.  # noqa: E501
+    def task_topic(self):
+        """Gets the task_topic of this CloudiotDevice.  # noqa: E501
 
 
-        :return: The desired_config_topic of this CloudiotDevice.  # noqa: E501
+        :return: The task_topic of this CloudiotDevice.  # noqa: E501
         :rtype: str
         """
-        return self._desired_config_topic
+        return self._task_topic
 
-    @desired_config_topic.setter
-    def desired_config_topic(self, desired_config_topic):
-        """Sets the desired_config_topic of this CloudiotDevice.
+    @task_topic.setter
+    def task_topic(self, task_topic):
+        """Sets the task_topic of this CloudiotDevice.
 
 
-        :param desired_config_topic: The desired_config_topic of this CloudiotDevice.  # noqa: E501
-        :type desired_config_topic: str
+        :param task_topic: The task_topic of this CloudiotDevice.  # noqa: E501
+        :type task_topic: str
         """
-        if self.local_vars_configuration.client_side_validation and desired_config_topic is None:  # noqa: E501
-            raise ValueError("Invalid value for `desired_config_topic`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and task_topic is None:  # noqa: E501
+            raise ValueError("Invalid value for `task_topic`, must not be `None`")  # noqa: E501
 
-        self._desired_config_topic = desired_config_topic
+        self._task_topic = task_topic
 
     @property
-    def current_state_topic(self):
-        """Gets the current_state_topic of this CloudiotDevice.  # noqa: E501
+    def config_topic(self):
+        """Gets the config_topic of this CloudiotDevice.  # noqa: E501
 
 
-        :return: The current_state_topic of this CloudiotDevice.  # noqa: E501
+        :return: The config_topic of this CloudiotDevice.  # noqa: E501
         :rtype: str
         """
-        return self._current_state_topic
+        return self._config_topic
 
-    @current_state_topic.setter
-    def current_state_topic(self, current_state_topic):
-        """Sets the current_state_topic of this CloudiotDevice.
+    @config_topic.setter
+    def config_topic(self, config_topic):
+        """Sets the config_topic of this CloudiotDevice.
 
 
-        :param current_state_topic: The current_state_topic of this CloudiotDevice.  # noqa: E501
-        :type current_state_topic: str
+        :param config_topic: The config_topic of this CloudiotDevice.  # noqa: E501
+        :type config_topic: str
         """
-        if self.local_vars_configuration.client_side_validation and current_state_topic is None:  # noqa: E501
-            raise ValueError("Invalid value for `current_state_topic`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and config_topic is None:  # noqa: E501
+            raise ValueError("Invalid value for `config_topic`, must not be `None`")  # noqa: E501
 
-        self._current_state_topic = current_state_topic
+        self._config_topic = config_topic
+
+    @property
+    def state_topic(self):
+        """Gets the state_topic of this CloudiotDevice.  # noqa: E501
+
+
+        :return: The state_topic of this CloudiotDevice.  # noqa: E501
+        :rtype: str
+        """
+        return self._state_topic
+
+    @state_topic.setter
+    def state_topic(self, state_topic):
+        """Sets the state_topic of this CloudiotDevice.
+
+
+        :param state_topic: The state_topic of this CloudiotDevice.  # noqa: E501
+        :type state_topic: str
+        """
+        if self.local_vars_configuration.client_side_validation and state_topic is None:  # noqa: E501
+            raise ValueError("Invalid value for `state_topic`, must not be `None`")  # noqa: E501
+
+        self._state_topic = state_topic
 
     @property
     def gcp_project_id(self):

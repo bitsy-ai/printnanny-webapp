@@ -15,10 +15,12 @@
 pub struct CloudiotDevice {
     #[serde(rename = "num_id")]
     pub num_id: i64,
-    #[serde(rename = "desired_config_topic")]
-    pub desired_config_topic: String,
-    #[serde(rename = "current_state_topic")]
-    pub current_state_topic: String,
+    #[serde(rename = "task_topic")]
+    pub task_topic: String,
+    #[serde(rename = "config_topic")]
+    pub config_topic: String,
+    #[serde(rename = "state_topic")]
+    pub state_topic: String,
     #[serde(rename = "gcp_project_id")]
     pub gcp_project_id: String,
     #[serde(rename = "gcp_region")]
@@ -40,11 +42,12 @@ pub struct CloudiotDevice {
 }
 
 impl CloudiotDevice {
-    pub fn new(num_id: i64, desired_config_topic: String, current_state_topic: String, gcp_project_id: String, gcp_region: String, gcp_cloudiot_device_registry: String, mqtt_bridge_hostname: String, mqtt_bridge_port: i32, mqtt_client_id: String, name: String, id: String, device: i32) -> CloudiotDevice {
+    pub fn new(num_id: i64, task_topic: String, config_topic: String, state_topic: String, gcp_project_id: String, gcp_region: String, gcp_cloudiot_device_registry: String, mqtt_bridge_hostname: String, mqtt_bridge_port: i32, mqtt_client_id: String, name: String, id: String, device: i32) -> CloudiotDevice {
         CloudiotDevice {
             num_id,
-            desired_config_topic,
-            current_state_topic,
+            task_topic,
+            config_topic,
+            state_topic,
             gcp_project_id,
             gcp_region,
             gcp_cloudiot_device_registry,

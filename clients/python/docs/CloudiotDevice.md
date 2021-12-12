@@ -5,8 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **num_id** | **int** |  | 
-**desired_config_topic** | **str** |  | [readonly] 
-**current_state_topic** | **str** |  | [readonly] 
+**task_topic** | **str** |  | [readonly] 
+**config_topic** | **str** |  | [readonly] 
+**state_topic** | **str** |  | [readonly] 
 **gcp_project_id** | **str** |  | [readonly] 
 **gcp_region** | **str** |  | [readonly] 
 **gcp_cloudiot_device_registry** | **str** |  | [readonly] 
