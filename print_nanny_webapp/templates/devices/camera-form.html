@@ -1,0 +1,42 @@
+{% extends "vertical_base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block blocktitle %}Add Camera{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item">Home</li>
+                        <li class="breadcrumb-item"><a href="{% url 'devices:list' %}">Manage Raspberry Pis</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'devices:detail' pk=device.id %}">{{ device.hostname }}</a></li>
+
+                        <li class="breadcrumb-item active">Add Camera</li>
+                    </ol>
+                </div>
+                <h3 class="page-title d-inline-flex">Add Camera Connection</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6 d-flex align-items-stretch">
+          <div class="card col-12">
+            <div class="card-body">
+                <h2 class="header-title">
+                    <i class="mdi mdi-printer-3d"></i> Enter Camera Details
+                </h2>
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{ device.id }}" name="device_id">
+                    {{form|crispy }}
+                    <input type="submit" value="Save" class="btn btn-primary">
+                </form>
+            </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

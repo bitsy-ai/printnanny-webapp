@@ -376,17 +376,23 @@ class Camera(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
 
     class Meta:
-        unique_together = ("user", "name")
+        unique_together = ("device", "name")
 
     _safedelete_policy = SOFT_DELETE
 
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     updated_dt = models.DateTimeField(db_index=True, auto_now=True)
-    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     device = models.ForeignKey(Device, on_delete=models.CASCADE, related_name="cameras")
-    name = models.CharField(max_length=255, default="Raspberry Pi Cam")
+    name = models.CharField(
+        max_length=255,
+        default="Raspberry Pi Cam",
+        help_text="Descriptive name to identify this camera",
+    )
     camera_type = models.CharField(
-        max_length=255, choices=CameraType.choices, default=CameraType.choices
+        max_length=255,
+        choices=CameraType.choices,
+        default=CameraType.choices,
+        help_text="Specify camera connection type",
     )
 
 

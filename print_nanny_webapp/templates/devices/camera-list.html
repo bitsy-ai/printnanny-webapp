@@ -5,16 +5,14 @@
     <div class="card-body">
         <h2 class="header-title">
             <i class="mdi mdi-camera"></i> Manage Cameras
-              <a href="{% url 'devices:create' %}"><button class="btn btn-primary float-right">Add New Camera</button></a>
+              <a href="{% url 'devices:create-camera' device_id=object.id %}"><button class="btn btn-primary float-right">Add New Camera</button></a>
         </h2>
 
         {% if object.cameras.count > 0 %}
-            <p></p>
+            <p> {{ object.cameras }}</p>
         {% else %}
             <div class="alert alert-info col-6" role="alert">
-                <h4 class="alert-heading">Click the
-                     <a href="">
-                    <strong class="badge badge-primary">Add New Camera</strong></a>button to get started.
+                <h4 class="alert-heading">Click <a href="{% url 'devices:create-camera' device_id=object.id %}"><strong class="badge badge-primary"> Add New Camera </strong></a> to get started.
             </h4>
             </div>
         {% endif %}
