@@ -1,5 +1,6 @@
 from typing import TypedDict, Optional
 
+from django.contrib.auth import AnonymousUser
 from django.http import HttpRequest
 from rest_framework.authtoken.models import Token
 
@@ -13,10 +14,8 @@ class PrintNannyApiConfig(TypedDict):
 
 
 def get_api_config(request: HttpRequest, device=None) -> PrintNannyApiConfig:
-    if not request.user:
+    if type(request.user) == AnonymousUser:
         raise Exception("APIConfig requires authenticated user to retreive")
-    if not request.user.email:
-        raise Exception("User.email is required")
 
     token, _ = Token.objects.get_or_create(user=request.user)
 
@@ -27,7 +26,7 @@ def get_api_config(request: HttpRequest, device=None) -> PrintNannyApiConfig:
     return PrintNannyApiConfig(
         bearer_access_token=str(token),
         base_path=base_path,
-        device_id=device_id,
-        user_id=request.user.id,
+        device_id=int(device_id),
+        user_id=int(request.user.id),
         user_email=request.user.email,
     )
