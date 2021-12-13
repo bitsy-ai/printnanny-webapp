@@ -46,7 +46,7 @@ from print_nanny_webapp.utils.api.views import PrintNannyApiConfigViewset
 
 router = DefaultRouter()
 
-router.register("api-config", PrintNannyApiConfigViewset, basename="api-config"), 
+router.register("client-config", PrintNannyApiConfigViewset, basename="client-config"), 
 
 router.register("alerts", AlertViewSet)
 router.register("devices", DeviceViewSet)
