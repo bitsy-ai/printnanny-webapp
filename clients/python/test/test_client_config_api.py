@@ -16,21 +16,21 @@ from __future__ import absolute_import
 import unittest
 
 import printnanny_api_client
-from printnanny_api_client.api.api_config_api import ApiConfigApi  # noqa: E501
+from printnanny_api_client.api.client_config_api import ClientConfigApi  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
 
-class TestApiConfigApi(unittest.TestCase):
-    """ApiConfigApi unit test stubs"""
+class TestClientConfigApi(unittest.TestCase):
+    """ClientConfigApi unit test stubs"""
 
     def setUp(self):
-        self.api = printnanny_api_client.api.api_config_api.ApiConfigApi()  # noqa: E501
+        self.api = printnanny_api_client.api.client_config_api.ClientConfigApi()  # noqa: E501
 
     def tearDown(self):
         pass
 
-    def test_api_config_retrieve(self):
-        """Test case for api_config_retrieve
+    def test_client_config_list(self):
+        """Test case for client_config_list
 
         """
         pass

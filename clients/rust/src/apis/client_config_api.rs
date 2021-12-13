@@ -15,20 +15,21 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method [`api_config_retrieve`]
+/// struct for typed errors of method [`client_config_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ApiConfigRetrieveError {
+pub enum ClientConfigListError {
+    DefaultResponse(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
 
-pub async fn api_config_retrieve(configuration: &configuration::Configuration, ) -> Result<(), Error<ApiConfigRetrieveError>> {
+pub async fn client_config_list(configuration: &configuration::Configuration, ) -> Result<Vec<crate::models::PrintNannyApiConfig>, Error<ClientConfigListError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/api-config/", local_var_configuration.base_path);
+    let local_var_uri_str = format!("{}/api/client-config/", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -45,9 +46,9 @@ pub async fn api_config_retrieve(configuration: &configuration::Configuration, )
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ApiConfigRetrieveError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<ClientConfigListError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }

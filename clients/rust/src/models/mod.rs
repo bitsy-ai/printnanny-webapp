@@ -212,6 +212,8 @@ pub mod print_job_event_request;
 pub use self::print_job_event_request::PrintJobEventRequest;
 pub mod print_job_event_type;
 pub use self::print_job_event_type::PrintJobEventType;
+pub mod print_nanny_api_config;
+pub use self::print_nanny_api_config::PrintNannyApiConfig;
 pub mod print_nanny_plugin_event;
 pub use self::print_nanny_plugin_event::PrintNannyPluginEvent;
 pub mod print_nanny_plugin_event_event_type_enum;
