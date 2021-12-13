@@ -1,6 +1,5 @@
 from typing import TypedDict
 from rest_framework import serializers
-from rest_framework.authtoken.models import Token
 from django.conf import settings
 
 from print_nanny_webapp.devices.models import (
@@ -71,20 +70,6 @@ class CloudiotDeviceSerializer(serializers.ModelSerializer):
         exclude = ("deleted",)
 
 
-class Tokens(TypedDict):
-    printnanny_api_token: str
-    printnanny_api_url: str
-    honeycomb_dataset: str  # distributed tracing dataset
-    honeycomb_api_key: str  # write-only token
-
-
-class CACertsSerializer(serializers.Serializer):
-    primary = serializers.CharField(read_only=True)
-    primary_checksum = serializers.CharField(read_only=True)
-    backup = serializers.CharField(read_only=True)
-    backup_checksum = serializers.CharField(read_only=True)
-
-
 class DeviceConfigSerializer(serializers.ModelSerializer):
     class Meta:
         model = DeviceConfig
@@ -148,19 +133,6 @@ class LicenseSerializer(serializers.ModelSerializer):
     """
 
     device = DeviceSerializer(read_only=True)
-
-    printnanny_api_token = serializers.SerializerMethodField(read_only=True)
-
-    def get_printnanny_api_token(self, obj) -> str:
-        api_token, _ = Token.objects.get_or_create(user=obj.device.user)
-        return str(api_token)
-
-    printnanny_api_url = serializers.SerializerMethodField(read_only=True)
-
-    def get_printnanny_api_url(self, obj) -> str:
-        return self.context["request"].build_absolute_uri("/")[
-            :-1
-        ]  # remove trailing slash for use in API client base_url
 
     honeycomb_dataset = serializers.SerializerMethodField(read_only=True)
 

@@ -41,10 +41,17 @@ from print_nanny_webapp.alerts.api.views import (
 )
 
 from print_nanny_webapp.partners.api.views import ( GeeksViewSet )
-
 from print_nanny_webapp.releases.api.views import ReleaseViewSet, LatestReleaseViewSet
+from print_nanny_webapp.utils.api.views import PrintNannyApiConfigViewset
 
 router = DefaultRouter()
+
+# router.register("config", PrintNannyApiConfigViewset.as_view(), basename="config")
+# api_config = [
+#     path("api-config", PrintNannyApiConfigViewset.as_view())
+# ]
+
+router.register("api-config", PrintNannyApiConfigViewset, basename="api-config"), 
 
 router.register("alerts", AlertViewSet)
 router.register("devices", DeviceViewSet)

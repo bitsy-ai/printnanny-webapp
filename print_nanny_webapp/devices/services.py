@@ -16,6 +16,8 @@ from rest_framework.renderers import JSONRenderer
 from google.cloud import iot_v1 as cloudiot_v1
 import google.api_core.exceptions
 from print_nanny_webapp.devices.api.serializers import LicenseSerializer
+from print_nanny_webapp.utils.api.service import get_api_config
+from print_nanny_webapp.utils.api.serializers import PrintNannyApiConfigSerializer
 
 from .models import Device, CloudiotDevice, License
 from .constants import FileLocator
@@ -305,12 +307,11 @@ def generate_zipped_license_file(
     license_serializer = LicenseSerializer(license, context=dict(request=request))
     license_json = JSONRenderer().render(license_serializer.data)
 
-    with ZipFile(zip_filename, "x") as zf:
-        # serialize single-field .txt files as a fallback for model serde bugs
-        zf.writestr("device_id.txt", device.id)
-        zf.writestr("user_id.txt", device.user.id)
-        zf.writestr("user_email.txt", device.user.email)
+    api_config = get_api_config()
+    api_config_serializer = PrintNannyApiConfigSerializer(instance=api_config)
+    api_config_json = JSONRenderer().render(api_config_serializer.data)
 
+    with ZipFile(zip_filename, "x") as zf:
         zf.write(
             keypair["public_key_filename"],
             arcname=os.path.basename(keypair["public_key_filename"]),
@@ -321,6 +322,7 @@ def generate_zipped_license_file(
         )
         zf.writestr("device.json", device_json)
         zf.writestr("license.json", license_json)
+        zf.writestr("api_config.json", api_config_json)
 
     return zip_filename
 
