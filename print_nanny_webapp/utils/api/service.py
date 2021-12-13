@@ -15,6 +15,8 @@ class PrintNannyApiConfig(TypedDict):
 def get_api_config(request: HttpRequest, device=None) -> PrintNannyApiConfig:
     if not request.user:
         raise Exception("APIConfig requires authenticated user to retreive")
+    if not request.user.email:
+        raise Exception("User.email is required")
 
     token, _ = Token.objects.get_or_create(user=request.user)
 
