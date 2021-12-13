@@ -18,6 +18,7 @@ docs/CallbackTokenVerificationRequest.md
 docs/Camera.md
 docs/CameraRequest.md
 docs/CameraType.md
+docs/ClientConfigApi.md
 docs/CloudiotDevice.md
 docs/CloudiotDeviceRequest.md
 docs/CommandEnum.md
@@ -117,6 +118,7 @@ docs/PatchedUserRequest.md
 docs/PrintJobEvent.md
 docs/PrintJobEventRequest.md
 docs/PrintJobEventType.md
+docs/PrintNannyApiConfig.md
 docs/PrintNannyPluginEvent.md
 docs/PrintNannyPluginEventEventTypeEnum.md
 docs/PrintNannyPluginEventRequest.md
@@ -160,6 +162,7 @@ docs/UsersApi.md
 git_push.sh
 src/apis/alerts_api.rs
 src/apis/auth_api.rs
+src/apis/client_config_api.rs
 src/apis/configuration.rs
 src/apis/devices_api.rs
 src/apis/licenses_api.rs
@@ -281,6 +284,7 @@ src/models/patched_user_request.rs
 src/models/print_job_event.rs
 src/models/print_job_event_request.rs
 src/models/print_job_event_type.rs
+src/models/print_nanny_api_config.rs
 src/models/print_nanny_plugin_event.rs
 src/models/print_nanny_plugin_event_event_type_enum.rs
 src/models/print_nanny_plugin_event_request.rs

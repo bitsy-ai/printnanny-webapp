@@ -44,8 +44,6 @@ class TestPaginatedLicenseList(unittest.TestCase):
                     printnanny_api_client.models.license.License(
                         id = 56, 
                         device = null, 
-                        printnanny_api_token = '', 
-                        printnanny_api_url = '', 
                         honeycomb_dataset = '', 
                         honeycomb_api_key = '', 
                         janus_admin_secret = '', 

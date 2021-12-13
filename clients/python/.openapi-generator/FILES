@@ -20,6 +20,7 @@ docs/CallbackTokenVerificationRequest.md
 docs/Camera.md
 docs/CameraRequest.md
 docs/CameraType.md
+docs/ClientConfigApi.md
 docs/CloudiotDevice.md
 docs/CloudiotDeviceRequest.md
 docs/CommandEnum.md
@@ -119,6 +120,7 @@ docs/PatchedUserRequest.md
 docs/PrintJobEvent.md
 docs/PrintJobEventRequest.md
 docs/PrintJobEventType.md
+docs/PrintNannyApiConfig.md
 docs/PrintNannyPluginEvent.md
 docs/PrintNannyPluginEventEventTypeEnum.md
 docs/PrintNannyPluginEventRequest.md
@@ -165,6 +167,7 @@ printnanny_api_client/api/__init__.py
 printnanny_api_client/api/alerts_api.py
 printnanny_api_client/api/auth__api.py
 printnanny_api_client/api/auth_api.py
+printnanny_api_client/api/client_config_api.py
 printnanny_api_client/api/devices_api.py
 printnanny_api_client/api/licenses_api.py
 printnanny_api_client/api/ml_ops_api.py
@@ -286,6 +289,7 @@ printnanny_api_client/models/patched_user_request.py
 printnanny_api_client/models/print_job_event.py
 printnanny_api_client/models/print_job_event_request.py
 printnanny_api_client/models/print_job_event_type.py
+printnanny_api_client/models/print_nanny_api_config.py
 printnanny_api_client/models/print_nanny_plugin_event.py
 printnanny_api_client/models/print_nanny_plugin_event_event_type_enum.py
 printnanny_api_client/models/print_nanny_plugin_event_request.py
@@ -344,6 +348,7 @@ test/test_callback_token_verification_request.py
 test/test_camera.py
 test/test_camera_request.py
 test/test_camera_type.py
+test/test_client_config_api.py
 test/test_cloudiot_device.py
 test/test_cloudiot_device_request.py
 test/test_command_enum.py
@@ -443,6 +448,7 @@ test/test_patched_user_request.py
 test/test_print_job_event.py
 test/test_print_job_event_request.py
 test/test_print_job_event_type.py
+test/test_print_nanny_api_config.py
 test/test_print_nanny_plugin_event.py
 test/test_print_nanny_plugin_event_event_type_enum.py
 test/test_print_nanny_plugin_event_request.py

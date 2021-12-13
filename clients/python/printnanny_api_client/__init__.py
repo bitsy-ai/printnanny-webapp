@@ -15,12 +15,13 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.21.0"
+__version__ = "0.21.2"
 
 # import apis into sdk package
 from printnanny_api_client.api.alerts_api import AlertsApi
 from printnanny_api_client.api.auth_api import AuthApi
 from printnanny_api_client.api.auth__api import AuthApi
+from printnanny_api_client.api.client_config_api import ClientConfigApi
 from printnanny_api_client.api.devices_api import DevicesApi
 from printnanny_api_client.api.licenses_api import LicensesApi
 from printnanny_api_client.api.ml_ops_api import MlOpsApi
@@ -149,6 +150,7 @@ from printnanny_api_client.models.patched_user_request import PatchedUserRequest
 from printnanny_api_client.models.print_job_event import PrintJobEvent
 from printnanny_api_client.models.print_job_event_request import PrintJobEventRequest
 from printnanny_api_client.models.print_job_event_type import PrintJobEventType
+from printnanny_api_client.models.print_nanny_api_config import PrintNannyApiConfig
 from printnanny_api_client.models.print_nanny_plugin_event import PrintNannyPluginEvent
 from printnanny_api_client.models.print_nanny_plugin_event_event_type_enum import PrintNannyPluginEventEventTypeEnum
 from printnanny_api_client.models.print_nanny_plugin_event_request import PrintNannyPluginEventRequest

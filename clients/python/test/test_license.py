@@ -39,8 +39,6 @@ class TestLicense(unittest.TestCase):
             return License(
                 id = 56, 
                 device = None, 
-                printnanny_api_token = '', 
-                printnanny_api_url = '', 
                 honeycomb_dataset = '', 
                 honeycomb_api_key = '', 
                 janus_admin_secret = '', 
@@ -55,8 +53,6 @@ class TestLicense(unittest.TestCase):
             return License(
                 id = 56,
                 device = None,
-                printnanny_api_token = '',
-                printnanny_api_url = '',
                 honeycomb_dataset = '',
                 honeycomb_api_key = '',
                 janus_admin_secret = '',

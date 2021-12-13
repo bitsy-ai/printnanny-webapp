@@ -39,8 +39,6 @@ class License(object):
     openapi_types = {
         'id': 'int',
         'device': 'Device',
-        'printnanny_api_token': 'str',
-        'printnanny_api_url': 'str',
         'honeycomb_dataset': 'str',
         'honeycomb_api_key': 'str',
         'janus_admin_secret': 'str',
@@ -55,8 +53,6 @@ class License(object):
     attribute_map = {
         'id': 'id',
         'device': 'device',
-        'printnanny_api_token': 'printnanny_api_token',
-        'printnanny_api_url': 'printnanny_api_url',
         'honeycomb_dataset': 'honeycomb_dataset',
         'honeycomb_api_key': 'honeycomb_api_key',
         'janus_admin_secret': 'janus_admin_secret',
@@ -68,7 +64,7 @@ class License(object):
         'updated_dt': 'updated_dt'
     }
 
-    def __init__(self, id=None, device=None, printnanny_api_token=None, printnanny_api_url=None, honeycomb_dataset=None, honeycomb_api_key=None, janus_admin_secret=None, janus_token=None, activated=None, public_key=None, fingerprint=None, created_dt=None, updated_dt=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, device=None, honeycomb_dataset=None, honeycomb_api_key=None, janus_admin_secret=None, janus_token=None, activated=None, public_key=None, fingerprint=None, created_dt=None, updated_dt=None, local_vars_configuration=None):  # noqa: E501
         """License - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -76,8 +72,6 @@ class License(object):
 
         self._id = None
         self._device = None
-        self._printnanny_api_token = None
-        self._printnanny_api_url = None
         self._honeycomb_dataset = None
         self._honeycomb_api_key = None
         self._janus_admin_secret = None
@@ -91,8 +85,6 @@ class License(object):
 
         self.id = id
         self.device = device
-        self.printnanny_api_token = printnanny_api_token
-        self.printnanny_api_url = printnanny_api_url
         self.honeycomb_dataset = honeycomb_dataset
         self.honeycomb_api_key = honeycomb_api_key
         self.janus_admin_secret = janus_admin_secret
@@ -147,52 +139,6 @@ class License(object):
         """
 
         self._device = device
-
-    @property
-    def printnanny_api_token(self):
-        """Gets the printnanny_api_token of this License.  # noqa: E501
-
-
-        :return: The printnanny_api_token of this License.  # noqa: E501
-        :rtype: str
-        """
-        return self._printnanny_api_token
-
-    @printnanny_api_token.setter
-    def printnanny_api_token(self, printnanny_api_token):
-        """Sets the printnanny_api_token of this License.
-
-
-        :param printnanny_api_token: The printnanny_api_token of this License.  # noqa: E501
-        :type printnanny_api_token: str
-        """
-        if self.local_vars_configuration.client_side_validation and printnanny_api_token is None:  # noqa: E501
-            raise ValueError("Invalid value for `printnanny_api_token`, must not be `None`")  # noqa: E501
-
-        self._printnanny_api_token = printnanny_api_token
-
-    @property
-    def printnanny_api_url(self):
-        """Gets the printnanny_api_url of this License.  # noqa: E501
-
-
-        :return: The printnanny_api_url of this License.  # noqa: E501
-        :rtype: str
-        """
-        return self._printnanny_api_url
-
-    @printnanny_api_url.setter
-    def printnanny_api_url(self, printnanny_api_url):
-        """Sets the printnanny_api_url of this License.
-
-
-        :param printnanny_api_url: The printnanny_api_url of this License.  # noqa: E501
-        :type printnanny_api_url: str
-        """
-        if self.local_vars_configuration.client_side_validation and printnanny_api_url is None:  # noqa: E501
-            raise ValueError("Invalid value for `printnanny_api_url`, must not be `None`")  # noqa: E501
-
-        self._printnanny_api_url = printnanny_api_url
 
     @property
     def honeycomb_dataset(self):

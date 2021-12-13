@@ -6,8 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
 **device** | Option<[**crate::models::Device**](Device.md)> |  | [readonly]
-**printnanny_api_token** | **String** |  | [readonly]
-**printnanny_api_url** | **String** |  | [readonly]
 **honeycomb_dataset** | **String** |  | [readonly]
 **honeycomb_api_key** | **String** |  | [readonly]
 **janus_admin_secret** | **String** |  | [readonly]
