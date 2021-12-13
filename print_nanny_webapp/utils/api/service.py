@@ -1,6 +1,6 @@
 from typing import TypedDict, Optional
 
-from django.contrib.auth import AnonymousUser
+from django.contrib.auth.models import AnonymousUser
 from django.http import HttpRequest
 from rest_framework.authtoken.models import Token
 
