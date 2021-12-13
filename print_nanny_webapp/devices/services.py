@@ -307,7 +307,7 @@ def generate_zipped_license_file(
     license_serializer = LicenseSerializer(license, context=dict(request=request))
     license_json = JSONRenderer().render(license_serializer.data)
 
-    api_config = get_api_config(request)
+    api_config = get_api_config(request, device=device)
     api_config_serializer = PrintNannyApiConfigSerializer(instance=api_config)
     api_config_json = JSONRenderer().render(api_config_serializer.data)
 

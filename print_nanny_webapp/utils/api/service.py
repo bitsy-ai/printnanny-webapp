@@ -3,7 +3,6 @@ from typing import TypedDict, Optional
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.auth import get_user_model
 
-from rest_framework.request import Request
 from rest_framework.authtoken.models import Token
 
 User = get_user_model()
