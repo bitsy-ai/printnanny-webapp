@@ -1,4 +1,3 @@
-from typing import TypedDict
 from rest_framework import serializers
 from django.conf import settings
 
@@ -21,8 +20,6 @@ from print_nanny_webapp.releases.api.serializers import ReleaseSerializer
 
 
 class CameraSerializer(serializers.ModelSerializer):
-    # user = serializers.PrimaryKeyRelatedField(read_only=True)
-    # device = serializers.PrimaryKeyRelatedField(read_only=True)
     camera_type = serializers.ChoiceField(
         choices=CameraType.choices,
         default=CameraType.PICAM,

@@ -46,11 +46,6 @@ from print_nanny_webapp.utils.api.views import PrintNannyApiConfigViewset
 
 router = DefaultRouter()
 
-# router.register("config", PrintNannyApiConfigViewset.as_view(), basename="config")
-# api_config = [
-#     path("api-config", PrintNannyApiConfigViewset.as_view())
-# ]
-
 router.register("api-config", PrintNannyApiConfigViewset, basename="api-config"), 
 
 router.register("alerts", AlertViewSet)
