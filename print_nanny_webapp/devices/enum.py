@@ -39,7 +39,7 @@ class TaskStatusType(models.TextChoices):
 
     @classmethod
     def get_css_class(cls, value):
-        return cls.__css__[cls(value).name]
+        return cls.__css__.get(cls(value).name, "unknown")
 
 
 class TaskType(models.TextChoices):
