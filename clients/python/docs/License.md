@@ -7,8 +7,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
 **device** | [**Device**](Device.md) |  | [readonly] 
-**printnanny_api_token** | **str** |  | [readonly] 
-**printnanny_api_url** | **str** |  | [readonly] 
 **honeycomb_dataset** | **str** |  | [readonly] 
 **honeycomb_api_key** | **str** |  | [readonly] 
 **janus_admin_secret** | **str** |  | [readonly] 

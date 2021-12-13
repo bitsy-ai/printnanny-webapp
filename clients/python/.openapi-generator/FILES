@@ -11,6 +11,7 @@ docs/AlertRequest.md
 docs/AlertsApi.md
 docs/AnsibleExtraVars.md
 docs/AnsibleExtraVarsRequest.md
+docs/ApiConfigApi.md
 docs/ArtifactTypesEnum.md
 docs/AuthApi.md
 docs/AuthApi.md
@@ -163,6 +164,7 @@ git_push.sh
 printnanny_api_client/__init__.py
 printnanny_api_client/api/__init__.py
 printnanny_api_client/api/alerts_api.py
+printnanny_api_client/api/api_config_api.py
 printnanny_api_client/api/auth__api.py
 printnanny_api_client/api/auth_api.py
 printnanny_api_client/api/devices_api.py
@@ -335,6 +337,7 @@ test/test_alert_request.py
 test/test_alerts_api.py
 test/test_ansible_extra_vars.py
 test/test_ansible_extra_vars_request.py
+test/test_api_config_api.py
 test/test_artifact_types_enum.py
 test/test_auth__api.py
 test/test_auth_api.py
