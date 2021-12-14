@@ -155,4 +155,3 @@ class LicenseSerializer(serializers.ModelSerializer):
             "user",
         )
         exclude = ("deleted",)
-        depth = 1
