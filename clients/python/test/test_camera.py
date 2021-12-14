@@ -44,8 +44,7 @@ class TestCamera(unittest.TestCase):
                 active = True, 
                 device = 56, 
                 name = 'Raspberry Pi Cam', 
-                camera_type = None, 
-                url = ''
+                camera_type = None
             )
         else :
             return Camera(
@@ -54,7 +53,6 @@ class TestCamera(unittest.TestCase):
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 device = 56,
-                url = '',
         )
 
     def testCamera(self):

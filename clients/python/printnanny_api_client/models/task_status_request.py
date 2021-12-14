@@ -87,9 +87,6 @@ class TaskStatusRequest(object):
         :type detail: str
         """
         if (self.local_vars_configuration.client_side_validation and
-                detail is not None and len(detail) > 1024):
-            raise ValueError("Invalid value for `detail`, length must be less than or equal to `1024`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
                 detail is not None and len(detail) < 1):
             raise ValueError("Invalid value for `detail`, length must be greater than or equal to `1`")  # noqa: E501
 
@@ -113,9 +110,6 @@ class TaskStatusRequest(object):
         :param wiki_url: The wiki_url of this TaskStatusRequest.  # noqa: E501
         :type wiki_url: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                wiki_url is not None and len(wiki_url) > 1024):
-            raise ValueError("Invalid value for `wiki_url`, length must be less than or equal to `1024`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 wiki_url is not None and len(wiki_url) < 1):
             raise ValueError("Invalid value for `wiki_url`, length must be greater than or equal to `1`")  # noqa: E501

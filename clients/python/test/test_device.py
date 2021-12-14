@@ -49,8 +49,7 @@ class TestDevice(unittest.TestCase):
                         active = True, 
                         device = 56, 
                         name = 'Raspberry Pi Cam', 
-                        camera_type = null, 
-                        url = '', )
+                        camera_type = null, )
                     ], 
                 dashboard_url = '', 
                 printer_controllers = [
@@ -84,8 +83,7 @@ class TestDevice(unittest.TestCase):
                         active = True, 
                         device = 56, 
                         name = 'Raspberry Pi Cam', 
-                        camera_type = null, 
-                        url = '', )
+                        camera_type = null, )
                     ], 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
@@ -105,8 +103,7 @@ class TestDevice(unittest.TestCase):
                         active = True, 
                         device = 56, 
                         name = 'Raspberry Pi Cam', 
-                        camera_type = null, 
-                        url = '', )
+                        camera_type = null, )
                     ],
                 dashboard_url = '',
                 printer_controllers = [
@@ -139,8 +136,7 @@ class TestDevice(unittest.TestCase):
                         active = True, 
                         device = 56, 
                         name = 'Raspberry Pi Cam', 
-                        camera_type = null, 
-                        url = '', )
+                        camera_type = null, )
                     ],
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),

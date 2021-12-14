@@ -30,12 +30,10 @@ pub struct Camera {
     pub name: Option<String>,
     #[serde(rename = "camera_type", skip_serializing_if = "Option::is_none")]
     pub camera_type: Option<Box<crate::models::CameraType>>,
-    #[serde(rename = "url")]
-    pub url: String,
 }
 
 impl Camera {
-    pub fn new(id: i32, deleted: String, created_dt: String, updated_dt: String, device: i32, url: String) -> Camera {
+    pub fn new(id: i32, deleted: String, created_dt: String, updated_dt: String, device: i32) -> Camera {
         Camera {
             id,
             deleted,
@@ -45,7 +43,6 @@ impl Camera {
             device,
             name: None,
             camera_type: None,
-            url,
         }
     }
 }
