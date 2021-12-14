@@ -28,12 +28,8 @@ class CameraSerializer(serializers.ModelSerializer):
     class Meta:
         model = Camera
         fields = [field.name for field in Camera._meta.fields] + [
-            "url",
             "camera_type",
         ]
-        extra_kwargs = {
-            "url": {"view_name": "api:devices:camera-detail", "lookup_field": "id"},
-        }
 
 
 class PrinterControllerSerializer(serializers.ModelSerializer):
@@ -74,6 +70,9 @@ class DeviceConfigSerializer(serializers.ModelSerializer):
 
 
 class TaskStatusSerializer(serializers.ModelSerializer):
+    detail = serializers.CharField(required=False, allow_null=True)
+    wiki_url = serializers.CharField(required=False, allow_null=True)
+
     class Meta:
         model = TaskStatus
         exclude = ("deleted",)
