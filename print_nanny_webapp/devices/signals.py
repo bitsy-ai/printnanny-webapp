@@ -11,11 +11,11 @@ from .enum import (
 logger = logging.getLogger(__name__)
 
 # when device is created, automatically create Task with type ACTIVATE_LICENSE
-@receiver(post_save, sender=Device, dispatch_uid="create_task_activate_license")
+@receiver(post_save, sender=Device, dispatch_uid="create_task_check_license")
 def create_license_activate_task(sender, instance, created, **kwargs):
     if created:
         Task.objects.create(
-            task_type=TaskType.ACTIVATE_LICENSE,
+            task_type=TaskType.CHECK_LICENSE,
             device=instance,
         )
 

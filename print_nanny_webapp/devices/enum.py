@@ -43,7 +43,7 @@ class TaskStatusType(models.TextChoices):
 
 
 class TaskType(models.TextChoices):
-    ACTIVATE_LICENSE = "activate_license", "License Activation"
+    CHECK_LICENSE = "check_license", "License Verification"
     SOFTWARE_UPDATE = (
         "software_update",
         "Software Updating",
