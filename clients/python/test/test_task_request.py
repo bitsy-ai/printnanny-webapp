@@ -38,7 +38,7 @@ class TestTaskRequest(unittest.TestCase):
         if include_optional :
             return TaskRequest(
                 active = True, 
-                task_type = 'activate_license', 
+                task_type = 'check_license', 
                 device = 56
             )
         else :

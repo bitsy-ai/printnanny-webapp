@@ -45,7 +45,7 @@ class TestPaginatedTaskList(unittest.TestCase):
                         id = 56, 
                         last_status = null, 
                         active = True, 
-                        task_type = 'activate_license', 
+                        task_type = 'check_license', 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         device = 56, )
                     ]

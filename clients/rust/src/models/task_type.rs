@@ -12,8 +12,8 @@
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum TaskType {
-    #[serde(rename = "activate_license")]
-    ActivateLicense,
+    #[serde(rename = "check_license")]
+    CheckLicense,
     #[serde(rename = "software_update")]
     SoftwareUpdate,
 
@@ -22,7 +22,7 @@ pub enum TaskType {
 impl ToString for TaskType {
     fn to_string(&self) -> String {
         match self {
-            Self::ActivateLicense => String::from("activate_license"),
+            Self::CheckLicense => String::from("check_license"),
             Self::SoftwareUpdate => String::from("software_update"),
         }
     }
@@ -30,7 +30,7 @@ impl ToString for TaskType {
 
 impl Default for TaskType {
     fn default() -> TaskType {
-        Self::ActivateLicense
+        Self::CheckLicense
     }
 }
 
