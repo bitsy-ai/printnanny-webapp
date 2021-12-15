@@ -12,7 +12,6 @@ Name | Type | Description | Notes
 **device** | **int** |  | 
 **name** | **str** | Descriptive name to identify this camera | [optional] [default to 'Raspberry Pi Cam']
 **camera_type** | [**CameraType**](CameraType.md) |  | [optional] 
-**url** | **str** |  | [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

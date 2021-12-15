@@ -49,8 +49,7 @@ class TestPaginatedCameraList(unittest.TestCase):
                         active = True, 
                         device = 56, 
                         name = 'Raspberry Pi Cam', 
-                        camera_type = null, 
-                        url = '', )
+                        camera_type = null, )
                     ]
             )
         else :

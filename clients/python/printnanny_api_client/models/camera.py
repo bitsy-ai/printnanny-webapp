@@ -44,8 +44,7 @@ class Camera(object):
         'active': 'bool',
         'device': 'int',
         'name': 'str',
-        'camera_type': 'CameraType',
-        'url': 'str'
+        'camera_type': 'CameraType'
     }
 
     attribute_map = {
@@ -56,11 +55,10 @@ class Camera(object):
         'active': 'active',
         'device': 'device',
         'name': 'name',
-        'camera_type': 'camera_type',
-        'url': 'url'
+        'camera_type': 'camera_type'
     }
 
-    def __init__(self, id=None, deleted=None, created_dt=None, updated_dt=None, active=None, device=None, name='Raspberry Pi Cam', camera_type=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, deleted=None, created_dt=None, updated_dt=None, active=None, device=None, name='Raspberry Pi Cam', camera_type=None, local_vars_configuration=None):  # noqa: E501
         """Camera - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -74,7 +72,6 @@ class Camera(object):
         self._device = None
         self._name = None
         self._camera_type = None
-        self._url = None
         self.discriminator = None
 
         self.id = id
@@ -87,7 +84,6 @@ class Camera(object):
         if name is not None:
             self.name = name
         self.camera_type = camera_type
-        self.url = url
 
     @property
     def id(self):
@@ -271,29 +267,6 @@ class Camera(object):
         """
 
         self._camera_type = camera_type
-
-    @property
-    def url(self):
-        """Gets the url of this Camera.  # noqa: E501
-
-
-        :return: The url of this Camera.  # noqa: E501
-        :rtype: str
-        """
-        return self._url
-
-    @url.setter
-    def url(self, url):
-        """Sets the url of this Camera.
-
-
-        :param url: The url of this Camera.  # noqa: E501
-        :type url: str
-        """
-        if self.local_vars_configuration.client_side_validation and url is None:  # noqa: E501
-            raise ValueError("Invalid value for `url`, must not be `None`")  # noqa: E501
-
-        self._url = url
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

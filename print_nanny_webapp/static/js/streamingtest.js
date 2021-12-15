@@ -146,6 +146,7 @@ $(document).ready(function() {
 											// }
 										}
 									} else if(msg["error"]) {
+										console.error("onmessage received error", msg);
 										alert(msg["error"]);
 										stopStream();
 										return;

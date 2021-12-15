@@ -320,7 +320,6 @@ def generate_zipped_license_file(
             keypair["private_key_filename"],
             arcname=os.path.basename(keypair["private_key_filename"]),
         )
-        zf.writestr("device.json", device_json)
         zf.writestr("license.json", license_json)
         zf.writestr("api_config.json", api_config_json)
 

@@ -128,6 +128,7 @@ class License(SafeDeleteModel):
     device = models.ForeignKey(
         Device, on_delete=models.CASCADE, related_name="licenses"
     )
+
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     updated_dt = models.DateTimeField(db_index=True, auto_now=True)
 
