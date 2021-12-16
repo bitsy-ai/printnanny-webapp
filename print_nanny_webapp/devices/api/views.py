@@ -106,20 +106,6 @@ class TaskViewSet(
     queryset = Task.objects.all()
     lookup_field = "id"
 
-    @extend_schema(
-        request=LicenseSerializer,
-        responses={
-            "default": ErrorDetailSerializer,
-            202: LicenseSerializer,
-        },
-        operation_id="license_activate",
-    )
-    @action(detail=True, methods=["POST"], url_path="task_retrieve_or_create")
-    def retrieve_or_create(
-        self, request: Request, *args: Any, **kwargs: Any
-    ) -> Response:
-        return super().retrieve(request, *args, **kwargs)
-
 
 ##
 # TaskStatus
