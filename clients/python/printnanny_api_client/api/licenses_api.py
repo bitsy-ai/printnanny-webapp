@@ -37,14 +37,14 @@ class LicensesApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def license_activate2(self, id, **kwargs):  # noqa: E501
-        """license_activate2  # noqa: E501
+    def license_activate(self, id, **kwargs):  # noqa: E501
+        """license_activate  # noqa: E501
 
         All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.license_activate2(id, async_req=True)
+        >>> thread = api.license_activate(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this license. (required)
@@ -67,16 +67,16 @@ class LicensesApi(object):
         :rtype: License
         """
         kwargs['_return_http_data_only'] = True
-        return self.license_activate2_with_http_info(id, **kwargs)  # noqa: E501
+        return self.license_activate_with_http_info(id, **kwargs)  # noqa: E501
 
-    def license_activate2_with_http_info(self, id, **kwargs):  # noqa: E501
-        """license_activate2  # noqa: E501
+    def license_activate_with_http_info(self, id, **kwargs):  # noqa: E501
+        """license_activate  # noqa: E501
 
         All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.license_activate2_with_http_info(id, async_req=True)
+        >>> thread = api.license_activate_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this license. (required)
@@ -126,14 +126,14 @@ class LicensesApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method license_activate2" % key
+                    " to method license_activate" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
         if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
                                                         local_var_params['id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `id` when calling `license_activate2`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `id` when calling `license_activate`")  # noqa: E501
 
         collection_formats = {}
 
