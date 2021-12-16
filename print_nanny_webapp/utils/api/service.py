@@ -11,9 +11,6 @@ User = get_user_model()
 class PrintNannyApiConfig(TypedDict):
     bearer_access_token: str
     base_path: str
-    device_id: Optional[int]
-    user_id: int
-    user_email: str
 
 
 def get_api_config(request) -> PrintNannyApiConfig:
