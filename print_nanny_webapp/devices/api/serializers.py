@@ -137,7 +137,7 @@ class LicenseSerializer(serializers.ModelSerializer):
     Deserialize data/license info into /opt/printnanny during License Activation
     """
 
-    device: Device = serializers.PrimaryKeyRelatedField(read_only=True)
+    device: int = serializers.PrimaryKeyRelatedField(read_only=True)
 
     user = UserSerializer(read_only=True)
 
