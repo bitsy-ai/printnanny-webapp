@@ -251,6 +251,12 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
+    def test_license_activate(self):
+        """Test case for license_activate
+
+        """
+        pass
+
 
 if __name__ == '__main__':
     unittest.main()

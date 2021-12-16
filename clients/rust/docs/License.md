@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
 **device** | Option<[**crate::models::Device**](Device.md)> |  | [readonly]
+**user** | Option<[**crate::models::User**](User.md)> |  | [readonly]
+**last_check_task** | Option<[**crate::models::Task**](Task.md)> |  | [readonly]
 **honeycomb_dataset** | **String** |  | [readonly]
 **honeycomb_api_key** | **String** |  | [readonly]
 **janus_admin_secret** | **String** |  | [readonly]

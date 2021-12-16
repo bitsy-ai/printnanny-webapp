@@ -41,6 +41,7 @@ Method | HTTP request | Description
 [**devices_tasks_status_list**](DevicesApi.md#devices_tasks_status_list) | **GET** /api/devices/{device_id}/tasks/{task_id}/status/ | 
 [**devices_tasks_status_retrieve**](DevicesApi.md#devices_tasks_status_retrieve) | **GET** /api/devices/{device_id}/tasks/{task_id}/status/{id}/ | 
 [**devices_update**](DevicesApi.md#devices_update) | **PUT** /api/devices/{id}/ | 
+[**license_activate**](DevicesApi.md#license_activate) | **POST** /api/devices/{device_id}/tasks/{id}/task_retrieve_or_create/ | 
 
 
 
@@ -1123,6 +1124,36 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::Device**](Device.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## license_activate
+
+> crate::models::License license_activate(device_id, id, license_request)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_id** | **i32** |  | [required] |
+**id** | **i32** | A unique integer value identifying this task. | [required] |
+**license_request** | Option<[**LicenseRequest**](LicenseRequest.md)> |  |  |
+
+### Return type
+
+[**crate::models::License**](License.md)
 
 ### Authorization
 

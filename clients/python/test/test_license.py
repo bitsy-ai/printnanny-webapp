@@ -39,6 +39,8 @@ class TestLicense(unittest.TestCase):
             return License(
                 id = 56, 
                 device = None, 
+                user = None, 
+                last_check_task = None, 
                 honeycomb_dataset = '', 
                 honeycomb_api_key = '', 
                 janus_admin_secret = '', 
@@ -53,6 +55,8 @@ class TestLicense(unittest.TestCase):
             return License(
                 id = 56,
                 device = None,
+                user = None,
+                last_check_task = None,
                 honeycomb_dataset = '',
                 honeycomb_api_key = '',
                 janus_admin_secret = '',

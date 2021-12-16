@@ -4,15 +4,15 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**license_activate**](LicensesApi.md#license_activate) | **POST** /api/licenses/{id}/activate/ | 
+[**license_activate2**](LicensesApi.md#license_activate2) | **POST** /api/licenses/{id}/activate/ | 
 [**licenses_list**](LicensesApi.md#licenses_list) | **GET** /api/licenses/ | 
 [**licenses_retrieve**](LicensesApi.md#licenses_retrieve) | **GET** /api/licenses/{id}/ | 
 
 
 
-## license_activate
+## license_activate2
 
-> crate::models::License license_activate(id, license_request)
+> crate::models::License license_activate2(id, license_request)
 
 
 All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img

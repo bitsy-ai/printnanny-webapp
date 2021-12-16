@@ -38,21 +38,15 @@ class PrintNannyApiConfig(object):
     """
     openapi_types = {
         'bearer_access_token': 'str',
-        'base_path': 'str',
-        'device_id': 'int',
-        'user_id': 'str',
-        'user_email': 'str'
+        'base_path': 'str'
     }
 
     attribute_map = {
         'bearer_access_token': 'bearer_access_token',
-        'base_path': 'base_path',
-        'device_id': 'device_id',
-        'user_id': 'user_id',
-        'user_email': 'user_email'
+        'base_path': 'base_path'
     }
 
-    def __init__(self, bearer_access_token=None, base_path=None, device_id=None, user_id=None, user_email=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, bearer_access_token=None, base_path=None, local_vars_configuration=None):  # noqa: E501
         """PrintNannyApiConfig - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -60,16 +54,10 @@ class PrintNannyApiConfig(object):
 
         self._bearer_access_token = None
         self._base_path = None
-        self._device_id = None
-        self._user_id = None
-        self._user_email = None
         self.discriminator = None
 
         self.bearer_access_token = bearer_access_token
         self.base_path = base_path
-        self.device_id = device_id
-        self.user_id = user_id
-        self.user_email = user_email
 
     @property
     def bearer_access_token(self):
@@ -116,75 +104,6 @@ class PrintNannyApiConfig(object):
             raise ValueError("Invalid value for `base_path`, must not be `None`")  # noqa: E501
 
         self._base_path = base_path
-
-    @property
-    def device_id(self):
-        """Gets the device_id of this PrintNannyApiConfig.  # noqa: E501
-
-
-        :return: The device_id of this PrintNannyApiConfig.  # noqa: E501
-        :rtype: int
-        """
-        return self._device_id
-
-    @device_id.setter
-    def device_id(self, device_id):
-        """Sets the device_id of this PrintNannyApiConfig.
-
-
-        :param device_id: The device_id of this PrintNannyApiConfig.  # noqa: E501
-        :type device_id: int
-        """
-        if self.local_vars_configuration.client_side_validation and device_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `device_id`, must not be `None`")  # noqa: E501
-
-        self._device_id = device_id
-
-    @property
-    def user_id(self):
-        """Gets the user_id of this PrintNannyApiConfig.  # noqa: E501
-
-
-        :return: The user_id of this PrintNannyApiConfig.  # noqa: E501
-        :rtype: str
-        """
-        return self._user_id
-
-    @user_id.setter
-    def user_id(self, user_id):
-        """Sets the user_id of this PrintNannyApiConfig.
-
-
-        :param user_id: The user_id of this PrintNannyApiConfig.  # noqa: E501
-        :type user_id: str
-        """
-        if self.local_vars_configuration.client_side_validation and user_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `user_id`, must not be `None`")  # noqa: E501
-
-        self._user_id = user_id
-
-    @property
-    def user_email(self):
-        """Gets the user_email of this PrintNannyApiConfig.  # noqa: E501
-
-
-        :return: The user_email of this PrintNannyApiConfig.  # noqa: E501
-        :rtype: str
-        """
-        return self._user_email
-
-    @user_email.setter
-    def user_email(self, user_email):
-        """Sets the user_email of this PrintNannyApiConfig.
-
-
-        :param user_email: The user_email of this PrintNannyApiConfig.  # noqa: E501
-        :type user_email: str
-        """
-        if self.local_vars_configuration.client_side_validation and user_email is None:  # noqa: E501
-            raise ValueError("Invalid value for `user_email`, must not be `None`")  # noqa: E501
-
-        self._user_email = user_email
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

@@ -38,18 +38,12 @@ class TestPrintNannyApiConfig(unittest.TestCase):
         if include_optional :
             return PrintNannyApiConfig(
                 bearer_access_token = '', 
-                base_path = '', 
-                device_id = 56, 
-                user_id = '', 
-                user_email = ''
+                base_path = ''
             )
         else :
             return PrintNannyApiConfig(
                 bearer_access_token = '',
                 base_path = '',
-                device_id = 56,
-                user_id = '',
-                user_email = '',
         )
 
     def testPrintNannyApiConfig(self):

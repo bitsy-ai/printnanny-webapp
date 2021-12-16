@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
 **device** | [**Device**](Device.md) |  | [readonly] 
+**user** | [**User**](User.md) |  | [readonly] 
+**last_check_task** | [**Task**](Task.md) |  | [readonly] 
 **honeycomb_dataset** | **str** |  | [readonly] 
 **honeycomb_api_key** | **str** |  | [readonly] 
 **janus_admin_secret** | **str** |  | [readonly] 

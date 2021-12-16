@@ -17,22 +17,13 @@ pub struct PrintNannyApiConfig {
     pub bearer_access_token: String,
     #[serde(rename = "base_path")]
     pub base_path: String,
-    #[serde(rename = "device_id")]
-    pub device_id: i32,
-    #[serde(rename = "user_id")]
-    pub user_id: String,
-    #[serde(rename = "user_email")]
-    pub user_email: String,
 }
 
 impl PrintNannyApiConfig {
-    pub fn new(bearer_access_token: String, base_path: String, device_id: i32, user_id: String, user_email: String) -> PrintNannyApiConfig {
+    pub fn new(bearer_access_token: String, base_path: String) -> PrintNannyApiConfig {
         PrintNannyApiConfig {
             bearer_access_token,
             base_path,
-            device_id,
-            user_id,
-            user_email,
         }
     }
 }

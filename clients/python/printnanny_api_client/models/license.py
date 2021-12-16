@@ -39,6 +39,8 @@ class License(object):
     openapi_types = {
         'id': 'int',
         'device': 'Device',
+        'user': 'User',
+        'last_check_task': 'Task',
         'honeycomb_dataset': 'str',
         'honeycomb_api_key': 'str',
         'janus_admin_secret': 'str',
@@ -53,6 +55,8 @@ class License(object):
     attribute_map = {
         'id': 'id',
         'device': 'device',
+        'user': 'user',
+        'last_check_task': 'last_check_task',
         'honeycomb_dataset': 'honeycomb_dataset',
         'honeycomb_api_key': 'honeycomb_api_key',
         'janus_admin_secret': 'janus_admin_secret',
@@ -64,7 +68,7 @@ class License(object):
         'updated_dt': 'updated_dt'
     }
 
-    def __init__(self, id=None, device=None, honeycomb_dataset=None, honeycomb_api_key=None, janus_admin_secret=None, janus_token=None, activated=None, public_key=None, fingerprint=None, created_dt=None, updated_dt=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, device=None, user=None, last_check_task=None, honeycomb_dataset=None, honeycomb_api_key=None, janus_admin_secret=None, janus_token=None, activated=None, public_key=None, fingerprint=None, created_dt=None, updated_dt=None, local_vars_configuration=None):  # noqa: E501
         """License - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -72,6 +76,8 @@ class License(object):
 
         self._id = None
         self._device = None
+        self._user = None
+        self._last_check_task = None
         self._honeycomb_dataset = None
         self._honeycomb_api_key = None
         self._janus_admin_secret = None
@@ -85,6 +91,8 @@ class License(object):
 
         self.id = id
         self.device = device
+        self.user = user
+        self.last_check_task = last_check_task
         self.honeycomb_dataset = honeycomb_dataset
         self.honeycomb_api_key = honeycomb_api_key
         self.janus_admin_secret = janus_admin_secret
@@ -139,6 +147,48 @@ class License(object):
         """
 
         self._device = device
+
+    @property
+    def user(self):
+        """Gets the user of this License.  # noqa: E501
+
+
+        :return: The user of this License.  # noqa: E501
+        :rtype: User
+        """
+        return self._user
+
+    @user.setter
+    def user(self, user):
+        """Sets the user of this License.
+
+
+        :param user: The user of this License.  # noqa: E501
+        :type user: User
+        """
+
+        self._user = user
+
+    @property
+    def last_check_task(self):
+        """Gets the last_check_task of this License.  # noqa: E501
+
+
+        :return: The last_check_task of this License.  # noqa: E501
+        :rtype: Task
+        """
+        return self._last_check_task
+
+    @last_check_task.setter
+    def last_check_task(self, last_check_task):
+        """Sets the last_check_task of this License.
+
+
+        :param last_check_task: The last_check_task of this License.  # noqa: E501
+        :type last_check_task: Task
+        """
+
+        self._last_check_task = last_check_task
 
     @property
     def honeycomb_dataset(self):
