@@ -137,12 +137,7 @@ class LicenseSerializer(serializers.ModelSerializer):
     Deserialize data/license info into /opt/printnanny during License Activation
     """
 
-    device: int = serializers.PrimaryKeyRelatedField(read_only=True)
-
-    user = UserSerializer(read_only=True)
-
-    def get_user(self, obj):
-        return self.context["request"].user
+    device= serializers.PrimaryKeyRelatedField(read_only=True)
 
     last_check_task = TaskSerializer(read_only=True)
 
@@ -169,7 +164,6 @@ class LicenseSerializer(serializers.ModelSerializer):
             "device",
             "public_key",
             "fingerprint",
-            "user",
         )
         exclude = ("deleted",)
         depth = 1
