@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.conf import settings
 
+from django.contrib.auth import get_user_model
 from print_nanny_webapp.devices.models import (
     Device,
     Camera,
@@ -14,9 +15,17 @@ from print_nanny_webapp.devices.models import (
     # PrinterProfile,
     # OctoprintPrinterProfile,
 )
-from ..enum import CameraType, DeviceReleaseChannel, PrinterSoftwareType
+from ..enum import (
+    CameraType,
+    DeviceReleaseChannel,
+    PrinterSoftwareType,
+    TaskType,
+    TaskStatusType,
+)
 from print_nanny_webapp.users.api.serializers import UserSerializer
 from print_nanny_webapp.releases.api.serializers import ReleaseSerializer
+
+User = get_user_model()
 
 
 class CameraSerializer(serializers.ModelSerializer):
@@ -128,7 +137,14 @@ class LicenseSerializer(serializers.ModelSerializer):
     Deserialize data/license info into /opt/printnanny during License Activation
     """
 
-    device = DeviceSerializer(read_only=True)
+    device = serializers.PrimaryKeyRelatedField(read_only=True)
+
+    user = UserSerializer(read_only=True)
+
+    def get_user(self, obj) -> User:
+        return self.request.user
+
+    last_check_task = TaskSerializer(read_only=True)
 
     honeycomb_dataset = serializers.SerializerMethodField(read_only=True)
 
@@ -145,6 +161,7 @@ class LicenseSerializer(serializers.ModelSerializer):
         read_only_fields = (
             "printnanny_api_token",
             "printnanny_api_url",
+            "last_check_task",
             "honeycomb_dataset",
             "honeycomb_api_key",
             "janus_admin_secret",
@@ -155,3 +172,4 @@ class LicenseSerializer(serializers.ModelSerializer):
             "user",
         )
         exclude = ("deleted",)
+        depth = 1

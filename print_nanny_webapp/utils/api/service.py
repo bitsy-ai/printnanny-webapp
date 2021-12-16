@@ -16,22 +16,15 @@ class PrintNannyApiConfig(TypedDict):
     user_email: str
 
 
-def get_api_config(request, device=None) -> PrintNannyApiConfig:
+def get_api_config(request) -> PrintNannyApiConfig:
     if type(request.user) == AnonymousUser:
         raise Exception("APIConfig requires authenticated user to retreive")
 
     token, _ = Token.objects.get_or_create(user=request.user)
-    user_email = str(request.user.email)
-
-    device_id = int(device.id) if device else None
-    user_id = int(request.user.id)
     base_path = request.build_absolute_uri("/")[
         :-1
     ]  # remove trailing slash for use in API client base_url
     return PrintNannyApiConfig(
         bearer_access_token=str(token),
         base_path=base_path,
-        device_id=device_id,
-        user_id=user_id,
-        user_email=request.user.email,
     )

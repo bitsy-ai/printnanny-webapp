@@ -132,6 +132,10 @@ class License(SafeDeleteModel):
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     updated_dt = models.DateTimeField(db_index=True, auto_now=True)
 
+    @property
+    def last_check_task(self):
+        return self.tasks.filter(task_type=TaskType.CHECK_LICENSE).first()
+
 
 class DeviceInfo(SafeDeleteModel):
     """
