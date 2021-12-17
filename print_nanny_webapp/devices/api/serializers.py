@@ -83,6 +83,7 @@ class DeviceConfigSerializer(serializers.ModelSerializer):
 class TaskStatusSerializer(serializers.ModelSerializer):
     detail = serializers.CharField(required=False, allow_null=True)
     wiki_url = serializers.CharField(required=False, allow_null=True)
+    status = serializers.ChoiceField(choices=TaskStatusType.choices)
 
     class Meta:
         model = TaskStatus
@@ -92,6 +93,7 @@ class TaskStatusSerializer(serializers.ModelSerializer):
 class TaskSerializer(serializers.ModelSerializer):
     last_status = TaskStatusSerializer(read_only=True)
     task_type = serializers.ChoiceField(choices=TaskType.choices)
+    active = serializers.BooleanField(default=True)
 
     class Meta:
         model = Task
