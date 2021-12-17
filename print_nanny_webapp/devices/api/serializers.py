@@ -137,12 +137,15 @@ class LicenseSerializer(serializers.ModelSerializer):
     Deserialize data/license info into /opt/printnanny during License Activation
     """
 
-    device = DeviceSerializer(read_only=True)
+    user = serializers.SerializerMethodField(read_only=True)
 
-    user = UserSerializer(read_only=True)
+    def get_user(self, obj) -> int:
+        return obj.user.id
 
-    def get_user(self, obj):
-        return self.context["request"].user
+    cloudiot_device = serializers.SerializerMethodField(read_only=True)
+
+    def get_cloudiot_device(self, obj) -> int:
+        return obj.cloudiot_device.num_id
 
     last_check_task = TaskSerializer(read_only=True)
 
@@ -159,16 +162,14 @@ class LicenseSerializer(serializers.ModelSerializer):
     class Meta:
         model = License
         read_only_fields = (
-            "printnanny_api_token",
-            "printnanny_api_url",
-            "last_check_task",
-            "honeycomb_dataset",
+            "cloudiot_device" "device",
+            "fingerprint",
             "honeycomb_api_key",
+            "honeycomb_dataset",
             "janus_admin_secret",
             "janus_token",
-            "device",
+            "last_check_task",
             "public_key",
-            "fingerprint",
             "user",
         )
         exclude = ("deleted",)

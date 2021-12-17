@@ -136,6 +136,14 @@ class License(SafeDeleteModel):
     def last_check_task(self):
         return self.tasks.filter(task_type=TaskType.CHECK_LICENSE).first()
 
+    @property
+    def user(self):
+        return self.device.user
+
+    @property
+    def cloudiot_device(self):
+        return self.device.cloudiot_device
+
 
 class DeviceInfo(SafeDeleteModel):
     """
