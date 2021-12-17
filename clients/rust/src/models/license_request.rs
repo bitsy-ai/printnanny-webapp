@@ -16,13 +16,16 @@
 pub struct LicenseRequest {
     #[serde(rename = "activated", skip_serializing_if = "Option::is_none")]
     pub activated: Option<bool>,
+    #[serde(rename = "device")]
+    pub device: i32,
 }
 
 impl LicenseRequest {
     /// Deserialize data/license info into /opt/printnanny during License Activation
-    pub fn new() -> LicenseRequest {
+    pub fn new(device: i32) -> LicenseRequest {
         LicenseRequest {
             activated: None,
+            device,
         }
     }
 }

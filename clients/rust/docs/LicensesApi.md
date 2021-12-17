@@ -23,7 +23,7 @@ All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **i32** | A unique integer value identifying this license. | [required] |
-**license_request** | Option<[**LicenseRequest**](LicenseRequest.md)> |  |  |
+**license_request** | [**LicenseRequest**](LicenseRequest.md) |  | [required] |
 
 ### Return type
 

@@ -38,8 +38,8 @@ class License(object):
     """
     openapi_types = {
         'id': 'int',
-        'device': 'Device',
-        'user': 'User',
+        'user': 'int',
+        'cloudiot_device': 'int',
         'last_check_task': 'Task',
         'honeycomb_dataset': 'str',
         'honeycomb_api_key': 'str',
@@ -49,13 +49,14 @@ class License(object):
         'public_key': 'str',
         'fingerprint': 'str',
         'created_dt': 'datetime',
-        'updated_dt': 'datetime'
+        'updated_dt': 'datetime',
+        'device': 'int'
     }
 
     attribute_map = {
         'id': 'id',
-        'device': 'device',
         'user': 'user',
+        'cloudiot_device': 'cloudiot_device',
         'last_check_task': 'last_check_task',
         'honeycomb_dataset': 'honeycomb_dataset',
         'honeycomb_api_key': 'honeycomb_api_key',
@@ -65,18 +66,19 @@ class License(object):
         'public_key': 'public_key',
         'fingerprint': 'fingerprint',
         'created_dt': 'created_dt',
-        'updated_dt': 'updated_dt'
+        'updated_dt': 'updated_dt',
+        'device': 'device'
     }
 
-    def __init__(self, id=None, device=None, user=None, last_check_task=None, honeycomb_dataset=None, honeycomb_api_key=None, janus_admin_secret=None, janus_token=None, activated=None, public_key=None, fingerprint=None, created_dt=None, updated_dt=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, user=None, cloudiot_device=None, last_check_task=None, honeycomb_dataset=None, honeycomb_api_key=None, janus_admin_secret=None, janus_token=None, activated=None, public_key=None, fingerprint=None, created_dt=None, updated_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
         """License - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
-        self._device = None
         self._user = None
+        self._cloudiot_device = None
         self._last_check_task = None
         self._honeycomb_dataset = None
         self._honeycomb_api_key = None
@@ -87,11 +89,12 @@ class License(object):
         self._fingerprint = None
         self._created_dt = None
         self._updated_dt = None
+        self._device = None
         self.discriminator = None
 
         self.id = id
-        self.device = device
         self.user = user
+        self.cloudiot_device = cloudiot_device
         self.last_check_task = last_check_task
         self.honeycomb_dataset = honeycomb_dataset
         self.honeycomb_api_key = honeycomb_api_key
@@ -103,6 +106,7 @@ class License(object):
         self.fingerprint = fingerprint
         self.created_dt = created_dt
         self.updated_dt = updated_dt
+        self.device = device
 
     @property
     def id(self):
@@ -128,33 +132,12 @@ class License(object):
         self._id = id
 
     @property
-    def device(self):
-        """Gets the device of this License.  # noqa: E501
-
-
-        :return: The device of this License.  # noqa: E501
-        :rtype: Device
-        """
-        return self._device
-
-    @device.setter
-    def device(self, device):
-        """Sets the device of this License.
-
-
-        :param device: The device of this License.  # noqa: E501
-        :type device: Device
-        """
-
-        self._device = device
-
-    @property
     def user(self):
         """Gets the user of this License.  # noqa: E501
 
 
         :return: The user of this License.  # noqa: E501
-        :rtype: User
+        :rtype: int
         """
         return self._user
 
@@ -164,10 +147,35 @@ class License(object):
 
 
         :param user: The user of this License.  # noqa: E501
-        :type user: User
+        :type user: int
         """
+        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
+            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
 
         self._user = user
+
+    @property
+    def cloudiot_device(self):
+        """Gets the cloudiot_device of this License.  # noqa: E501
+
+
+        :return: The cloudiot_device of this License.  # noqa: E501
+        :rtype: int
+        """
+        return self._cloudiot_device
+
+    @cloudiot_device.setter
+    def cloudiot_device(self, cloudiot_device):
+        """Sets the cloudiot_device of this License.
+
+
+        :param cloudiot_device: The cloudiot_device of this License.  # noqa: E501
+        :type cloudiot_device: int
+        """
+        if self.local_vars_configuration.client_side_validation and cloudiot_device is None:  # noqa: E501
+            raise ValueError("Invalid value for `cloudiot_device`, must not be `None`")  # noqa: E501
+
+        self._cloudiot_device = cloudiot_device
 
     @property
     def last_check_task(self):
@@ -394,6 +402,29 @@ class License(object):
             raise ValueError("Invalid value for `updated_dt`, must not be `None`")  # noqa: E501
 
         self._updated_dt = updated_dt
+
+    @property
+    def device(self):
+        """Gets the device of this License.  # noqa: E501
+
+
+        :return: The device of this License.  # noqa: E501
+        :rtype: int
+        """
+        return self._device
+
+    @device.setter
+    def device(self, device):
+        """Sets the device of this License.
+
+
+        :param device: The device of this License.  # noqa: E501
+        :type device: int
+        """
+        if self.local_vars_configuration.client_side_validation and device is None:  # noqa: E501
+            raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
+
+        self._device = device
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

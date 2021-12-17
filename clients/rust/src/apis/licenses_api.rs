@@ -40,7 +40,7 @@ pub enum LicensesRetrieveError {
 
 
 /// All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-pub async fn license_activate(configuration: &configuration::Configuration, id: i32, license_request: Option<crate::models::LicenseRequest>) -> Result<crate::models::License, Error<LicenseActivateError>> {
+pub async fn license_activate(configuration: &configuration::Configuration, id: i32, license_request: crate::models::LicenseRequest) -> Result<crate::models::License, Error<LicenseActivateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

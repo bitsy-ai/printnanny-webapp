@@ -6,8 +6,8 @@ Deserialize data/license info into /opt/printnanny during License Activation
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
-**device** | [**Device**](Device.md) |  | [readonly] 
-**user** | [**User**](User.md) |  | [readonly] 
+**user** | **int** |  | [readonly] 
+**cloudiot_device** | **int** |  | [readonly] 
 **last_check_task** | [**Task**](Task.md) |  | [readonly] 
 **honeycomb_dataset** | **str** |  | [readonly] 
 **honeycomb_api_key** | **str** |  | [readonly] 
@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **fingerprint** | **str** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
 **updated_dt** | **datetime** |  | [readonly] 
+**device** | **int** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
