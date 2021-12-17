@@ -1,7 +1,8 @@
 import logging
 
 from typing import Any
-from drf_spectacular.utils import extend_schema, extend_schema_view
+
+from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiParameter
 from django.db.utils import IntegrityError
 from django.http import Http404
 
@@ -85,12 +86,27 @@ class TaskViewSet(
 ##
 
 list_tasks_status_schema = extend_schema(
+    parameters=[
+        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+    ],
     responses={
         "default": ErrorDetailSerializer,
         200: TaskStatusSerializer(many=True),
     },
 )
+retrieve_tasks_status_schema = extend_schema(
+    parameters=[
+        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+    ],
+    responses={
+        "default": ErrorDetailSerializer,
+        200: TaskStatusSerializer(),
+    },
+)
 create_tasks_status_schema = extend_schema(
+    parameters=[
+        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+    ],
     request=TaskStatusSerializer,
     responses={
         "default": ErrorDetailSerializer,
@@ -102,6 +118,7 @@ create_tasks_status_schema = extend_schema(
 @extend_schema_view(
     list=list_tasks_status_schema,
     create=create_tasks_status_schema,
+    retrieve=retrieve_tasks_status_schema,
 )
 class TaskStatusViewSet(
     GenericViewSet,
