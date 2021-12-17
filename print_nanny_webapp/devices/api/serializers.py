@@ -91,6 +91,7 @@ class TaskStatusSerializer(serializers.ModelSerializer):
 
 class TaskSerializer(serializers.ModelSerializer):
     last_status = TaskStatusSerializer(read_only=True)
+    task_type = serializers.ChoiceField(choices=TaskType.choices)
 
     class Meta:
         model = Task
