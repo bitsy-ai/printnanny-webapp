@@ -1330,7 +1330,7 @@ pub async fn devices_tasks_retrieve(configuration: &configuration::Configuration
     }
 }
 
-pub async fn devices_tasks_status_create(configuration: &configuration::Configuration, device_id: &str, task_id: i32, task_status_request: crate::models::TaskStatusRequest) -> Result<crate::models::TaskStatus, Error<DevicesTasksStatusCreateError>> {
+pub async fn devices_tasks_status_create(configuration: &configuration::Configuration, device_id: &str, task_id: i32, task_status_request: crate::models::TaskStatusRequest) -> Result<crate::models::Task, Error<DevicesTasksStatusCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

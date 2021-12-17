@@ -4052,7 +4052,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_tasks_status_create**
-> TaskStatus devices_tasks_status_create(device_id, task_id, task_status_request)
+> Task devices_tasks_status_create(device_id, task_id, task_status_request)
 
 
 
@@ -4156,7 +4156,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TaskStatus**](TaskStatus.md)
+[**Task**](Task.md)
 
 ### Authorization
 
