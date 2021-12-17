@@ -14,10 +14,10 @@ Name | Type | Description | Notes
 **janus_token** | **String** |  | [readonly]
 **activated** | Option<**bool**> |  | [optional]
 **public_key** | **String** |  | [readonly]
-**fingerprint** | **String** |  | 
+**fingerprint** | **String** |  | [readonly]
 **created_dt** | **String** |  | [readonly]
 **updated_dt** | **String** |  | [readonly]
-**device** | **i32** |  | 
+**device** | **i32** |  | [readonly]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

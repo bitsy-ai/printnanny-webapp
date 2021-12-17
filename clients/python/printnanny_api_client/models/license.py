@@ -354,9 +354,6 @@ class License(object):
         """
         if self.local_vars_configuration.client_side_validation and fingerprint is None:  # noqa: E501
             raise ValueError("Invalid value for `fingerprint`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                fingerprint is not None and len(fingerprint) > 255):
-            raise ValueError("Invalid value for `fingerprint`, length must be less than or equal to `255`")  # noqa: E501
 
         self._fingerprint = fingerprint
 

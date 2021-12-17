@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **license_activate**
-> License license_activate(id, license_request)
+> License license_activate(id, license_request=license_request)
 
 
 
@@ -52,10 +52,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.LicensesApi(api_client)
     id = 56 # int | A unique integer value identifying this license.
-license_request = printnanny_api_client.LicenseRequest() # LicenseRequest | 
+license_request = printnanny_api_client.LicenseRequest() # LicenseRequest |  (optional)
 
     try:
-        api_response = api_instance.license_activate(id, license_request)
+        api_response = api_instance.license_activate(id, license_request=license_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling LicensesApi->license_activate: %s\n" % e)
@@ -95,10 +95,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.LicensesApi(api_client)
     id = 56 # int | A unique integer value identifying this license.
-license_request = printnanny_api_client.LicenseRequest() # LicenseRequest | 
+license_request = printnanny_api_client.LicenseRequest() # LicenseRequest |  (optional)
 
     try:
-        api_response = api_instance.license_activate(id, license_request)
+        api_response = api_instance.license_activate(id, license_request=license_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling LicensesApi->license_activate: %s\n" % e)
@@ -109,7 +109,7 @@ license_request = printnanny_api_client.LicenseRequest() # LicenseRequest |
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this license. | 
- **license_request** | [**LicenseRequest**](LicenseRequest.md)|  | 
+ **license_request** | [**LicenseRequest**](LicenseRequest.md)|  | [optional] 
 
 ### Return type
 

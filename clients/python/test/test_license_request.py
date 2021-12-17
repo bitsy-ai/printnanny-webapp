@@ -37,14 +37,10 @@ class TestLicenseRequest(unittest.TestCase):
         # model = printnanny_api_client.models.license_request.LicenseRequest()  # noqa: E501
         if include_optional :
             return LicenseRequest(
-                activated = True, 
-                fingerprint = '0', 
-                device = 56
+                activated = True
             )
         else :
             return LicenseRequest(
-                fingerprint = '0',
-                device = 56,
         )
 
     def testLicenseRequest(self):
