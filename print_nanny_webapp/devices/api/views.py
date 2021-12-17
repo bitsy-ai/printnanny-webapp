@@ -47,33 +47,6 @@ from print_nanny_webapp.utils.api.serializers import ErrorDetailSerializer
 logger = logging.getLogger(__name__)
 
 ##
-# DeviceConfig
-##
-list_desired_config_schema = extend_schema(
-    responses={
-        "default": ErrorDetailSerializer,
-        200: DeviceConfigSerializer(many=True),
-    },
-)
-
-
-@extend_schema_view(
-    list=list_desired_config_schema,
-)
-class DeviceConfigViewSet(
-    GenericViewSet,
-    ListModelMixin,
-    RetrieveModelMixin,
-):
-    serializer_class = DeviceConfigSerializer
-    queryset = DeviceConfig.objects.all()
-    lookup_field = "id"
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-
-
-##
 # Task
 ##
 list_tasks_schemaa = extend_schema(
