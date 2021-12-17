@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
 **last_status** | [**TaskStatus**](TaskStatus.md) |  | [readonly] 
+**task_type** | [**TaskType**](TaskType.md) |  | 
 **active** | **bool** |  | [optional] 
-**task_type** | [**TaskType**](TaskType.md) |  | [optional] 
 **created_dt** | **datetime** |  | [readonly] 
 **device** | **int** |  | 
 
