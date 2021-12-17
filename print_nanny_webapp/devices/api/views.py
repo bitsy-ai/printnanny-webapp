@@ -121,7 +121,7 @@ create_tasks_status_schema = extend_schema(
     request=TaskStatusSerializer,
     responses={
         "default": ErrorDetailSerializer,
-        201: TaskStatusSerializer,
+        201: TaskSerializer,
     },
 )
 
@@ -139,6 +139,16 @@ class TaskStatusViewSet(
     serializer_class = TaskStatusSerializer
     queryset = TaskStatus.objects.all()
     lookup_field = "id"
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        obj = self.perform_create(serializer)
+        task_serializer = TaskSerializer(instance=obj)
+        headers = self.get_success_headers(task_serializer.data)
+        return Response(
+            task_serializer.data, status=status.HTTP_201_CREATED, headers=headers
+        )
 
 
 ##
