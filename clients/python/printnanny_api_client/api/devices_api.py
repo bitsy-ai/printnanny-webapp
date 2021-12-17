@@ -4866,7 +4866,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: TaskStatus
+        :rtype: Task
         """
         kwargs['_return_http_data_only'] = True
         return self.devices_tasks_status_create_with_http_info(device_id, task_id, task_status_request, **kwargs)  # noqa: E501
@@ -4906,7 +4906,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(TaskStatus, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(Task, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -4977,7 +4977,7 @@ class DevicesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            201: "TaskStatus",
+            201: "Task",
         }
 
         return self.api_client.call_api(
