@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
 **user** | **i32** |  | [readonly]
-**cloudiot_device** | **i32** |  | [readonly]
+**cloudiot_device** | **i64** |  | [readonly]
 **last_check_task** | Option<[**crate::models::Task**](Task.md)> |  | [readonly]
 **honeycomb_dataset** | **String** |  | [readonly]
 **honeycomb_api_key** | **String** |  | [readonly]
