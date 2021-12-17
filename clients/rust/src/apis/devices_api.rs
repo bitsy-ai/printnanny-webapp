@@ -106,21 +106,6 @@ pub enum DevicesCloudIotDevicesUpdateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`devices_config_list`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum DevicesConfigListError {
-    DefaultResponse(crate::models::ErrorDetail),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`devices_config_retrieve`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum DevicesConfigRetrieveError {
-    UnknownValue(serde_json::Value),
-}
-
 /// struct for typed errors of method [`devices_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -285,6 +270,7 @@ pub enum DevicesTasksStatusListError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesTasksStatusRetrieveError {
+    DefaultResponse(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -666,69 +652,6 @@ pub async fn devices_cloud_iot_devices_update(configuration: &configuration::Con
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<DevicesCloudIotDevicesUpdateError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn devices_config_list(configuration: &configuration::Configuration, device_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedDeviceConfigList, Error<DevicesConfigListError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/config/", local_var_configuration.base_path, device_id=device_id);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_str) = page {
-        local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<DevicesConfigListError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn devices_config_retrieve(configuration: &configuration::Configuration, device_id: i32, id: i32) -> Result<crate::models::DeviceConfig, Error<DevicesConfigRetrieveError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/config/{id}/", local_var_configuration.base_path, device_id=device_id, id=id);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<DevicesConfigRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
@@ -1330,12 +1253,12 @@ pub async fn devices_tasks_retrieve(configuration: &configuration::Configuration
     }
 }
 
-pub async fn devices_tasks_status_create(configuration: &configuration::Configuration, device_id: &str, task_id: i32, task_status_request: crate::models::TaskStatusRequest) -> Result<crate::models::Task, Error<DevicesTasksStatusCreateError>> {
+pub async fn devices_tasks_status_create(configuration: &configuration::Configuration, device_id: i32, task_id: i32, task_status_request: crate::models::TaskStatusRequest) -> Result<crate::models::Task, Error<DevicesTasksStatusCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/tasks/{task_id}/status/", local_var_configuration.base_path, device_id=crate::apis::urlencode(device_id), task_id=task_id);
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/tasks/{task_id}/status/", local_var_configuration.base_path, device_id=device_id, task_id=task_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -1361,12 +1284,12 @@ pub async fn devices_tasks_status_create(configuration: &configuration::Configur
     }
 }
 
-pub async fn devices_tasks_status_list(configuration: &configuration::Configuration, device_id: &str, task_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedTaskStatusList, Error<DevicesTasksStatusListError>> {
+pub async fn devices_tasks_status_list(configuration: &configuration::Configuration, device_id: i32, task_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedTaskStatusList, Error<DevicesTasksStatusListError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/tasks/{task_id}/status/", local_var_configuration.base_path, device_id=crate::apis::urlencode(device_id), task_id=task_id);
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/tasks/{task_id}/status/", local_var_configuration.base_path, device_id=device_id, task_id=task_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
@@ -1394,12 +1317,12 @@ pub async fn devices_tasks_status_list(configuration: &configuration::Configurat
     }
 }
 
-pub async fn devices_tasks_status_retrieve(configuration: &configuration::Configuration, device_id: &str, id: i32, task_id: i32) -> Result<crate::models::TaskStatus, Error<DevicesTasksStatusRetrieveError>> {
+pub async fn devices_tasks_status_retrieve(configuration: &configuration::Configuration, device_id: i32, id: i32, task_id: i32) -> Result<crate::models::TaskStatus, Error<DevicesTasksStatusRetrieveError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/tasks/{task_id}/status/{id}/", local_var_configuration.base_path, device_id=crate::apis::urlencode(device_id), id=id, task_id=task_id);
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/tasks/{task_id}/status/{id}/", local_var_configuration.base_path, device_id=device_id, id=id, task_id=task_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {

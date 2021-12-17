@@ -1,7 +1,8 @@
 import logging
 
 from typing import Any
-from drf_spectacular.utils import extend_schema, extend_schema_view
+
+from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiParameter
 from django.db.utils import IntegrityError
 from django.http import Http404
 
@@ -47,33 +48,6 @@ from print_nanny_webapp.utils.api.serializers import ErrorDetailSerializer
 logger = logging.getLogger(__name__)
 
 ##
-# DeviceConfig
-##
-list_desired_config_schema = extend_schema(
-    responses={
-        "default": ErrorDetailSerializer,
-        200: DeviceConfigSerializer(many=True),
-    },
-)
-
-
-@extend_schema_view(
-    list=list_desired_config_schema,
-)
-class DeviceConfigViewSet(
-    GenericViewSet,
-    ListModelMixin,
-    RetrieveModelMixin,
-):
-    serializer_class = DeviceConfigSerializer
-    queryset = DeviceConfig.objects.all()
-    lookup_field = "id"
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-
-
-##
 # Task
 ##
 list_tasks_schemaa = extend_schema(
@@ -112,12 +86,27 @@ class TaskViewSet(
 ##
 
 list_tasks_status_schema = extend_schema(
+    parameters=[
+        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+    ],
     responses={
         "default": ErrorDetailSerializer,
         200: TaskStatusSerializer(many=True),
     },
 )
+retrieve_tasks_status_schema = extend_schema(
+    parameters=[
+        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+    ],
+    responses={
+        "default": ErrorDetailSerializer,
+        200: TaskStatusSerializer(),
+    },
+)
 create_tasks_status_schema = extend_schema(
+    parameters=[
+        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+    ],
     request=TaskStatusSerializer,
     responses={
         "default": ErrorDetailSerializer,
@@ -129,6 +118,7 @@ create_tasks_status_schema = extend_schema(
 @extend_schema_view(
     list=list_tasks_status_schema,
     create=create_tasks_status_schema,
+    retrieve=retrieve_tasks_status_schema,
 )
 class TaskStatusViewSet(
     GenericViewSet,
