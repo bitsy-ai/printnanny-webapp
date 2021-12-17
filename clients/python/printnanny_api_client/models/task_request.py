@@ -37,33 +37,55 @@ class TaskRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'active': 'bool',
         'task_type': 'TaskType',
+        'active': 'bool',
         'device': 'int'
     }
 
     attribute_map = {
-        'active': 'active',
         'task_type': 'task_type',
+        'active': 'active',
         'device': 'device'
     }
 
-    def __init__(self, active=None, task_type=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, task_type=None, active=None, device=None, local_vars_configuration=None):  # noqa: E501
         """TaskRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
-        self._active = None
         self._task_type = None
+        self._active = None
         self._device = None
         self.discriminator = None
 
+        self.task_type = task_type
         if active is not None:
             self.active = active
-        if task_type is not None:
-            self.task_type = task_type
         self.device = device
+
+    @property
+    def task_type(self):
+        """Gets the task_type of this TaskRequest.  # noqa: E501
+
+
+        :return: The task_type of this TaskRequest.  # noqa: E501
+        :rtype: TaskType
+        """
+        return self._task_type
+
+    @task_type.setter
+    def task_type(self, task_type):
+        """Sets the task_type of this TaskRequest.
+
+
+        :param task_type: The task_type of this TaskRequest.  # noqa: E501
+        :type task_type: TaskType
+        """
+        if self.local_vars_configuration.client_side_validation and task_type is None:  # noqa: E501
+            raise ValueError("Invalid value for `task_type`, must not be `None`")  # noqa: E501
+
+        self._task_type = task_type
 
     @property
     def active(self):
@@ -85,27 +107,6 @@ class TaskRequest(object):
         """
 
         self._active = active
-
-    @property
-    def task_type(self):
-        """Gets the task_type of this TaskRequest.  # noqa: E501
-
-
-        :return: The task_type of this TaskRequest.  # noqa: E501
-        :rtype: TaskType
-        """
-        return self._task_type
-
-    @task_type.setter
-    def task_type(self, task_type):
-        """Sets the task_type of this TaskRequest.
-
-
-        :param task_type: The task_type of this TaskRequest.  # noqa: E501
-        :type task_type: TaskType
-        """
-
-        self._task_type = task_type
 
     @property
     def device(self):

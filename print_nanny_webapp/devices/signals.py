@@ -26,6 +26,7 @@ def create_task_requested_status(sender, instance, created, **kwargs):
     logger.info(
         f"create_task_requested_status sender={sender} instance={instance} created={created} kwargs={kwargs}"
     )
+    # if task was created without a status, initialize status to PENDING (requires acknowledgement from device)
     if created:
         TaskStatus.objects.create(status=TaskStatusType.PENDING, task=instance)
 
