@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **id** | **i32** |  | [readonly]
 **last_status** | Option<[**crate::models::TaskStatus**](TaskStatus.md)> |  | [readonly]
 **task_type** | [**crate::models::TaskType**](TaskType.md) |  | 
-**active** | Option<**bool**> |  | [optional]
+**active** | Option<**bool**> |  | [optional][default to true]
 **created_dt** | **String** |  | [readonly]
 **device** | **i32** |  | 
 

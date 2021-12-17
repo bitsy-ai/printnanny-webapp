@@ -40,8 +40,8 @@ class TaskStatus(object):
         'id': 'int',
         'detail': 'str',
         'wiki_url': 'str',
-        'created_dt': 'datetime',
         'status': 'TaskStatusType',
+        'created_dt': 'datetime',
         'task': 'int'
     }
 
@@ -49,12 +49,12 @@ class TaskStatus(object):
         'id': 'id',
         'detail': 'detail',
         'wiki_url': 'wiki_url',
-        'created_dt': 'created_dt',
         'status': 'status',
+        'created_dt': 'created_dt',
         'task': 'task'
     }
 
-    def __init__(self, id=None, detail=None, wiki_url=None, created_dt=None, status=None, task=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, detail=None, wiki_url=None, status=None, created_dt=None, task=None, local_vars_configuration=None):  # noqa: E501
         """TaskStatus - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -63,17 +63,16 @@ class TaskStatus(object):
         self._id = None
         self._detail = None
         self._wiki_url = None
-        self._created_dt = None
         self._status = None
+        self._created_dt = None
         self._task = None
         self.discriminator = None
 
         self.id = id
         self.detail = detail
         self.wiki_url = wiki_url
+        self.status = status
         self.created_dt = created_dt
-        if status is not None:
-            self.status = status
         self.task = task
 
     @property
@@ -142,6 +141,29 @@ class TaskStatus(object):
         self._wiki_url = wiki_url
 
     @property
+    def status(self):
+        """Gets the status of this TaskStatus.  # noqa: E501
+
+
+        :return: The status of this TaskStatus.  # noqa: E501
+        :rtype: TaskStatusType
+        """
+        return self._status
+
+    @status.setter
+    def status(self, status):
+        """Sets the status of this TaskStatus.
+
+
+        :param status: The status of this TaskStatus.  # noqa: E501
+        :type status: TaskStatusType
+        """
+        if self.local_vars_configuration.client_side_validation and status is None:  # noqa: E501
+            raise ValueError("Invalid value for `status`, must not be `None`")  # noqa: E501
+
+        self._status = status
+
+    @property
     def created_dt(self):
         """Gets the created_dt of this TaskStatus.  # noqa: E501
 
@@ -163,27 +185,6 @@ class TaskStatus(object):
             raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
 
         self._created_dt = created_dt
-
-    @property
-    def status(self):
-        """Gets the status of this TaskStatus.  # noqa: E501
-
-
-        :return: The status of this TaskStatus.  # noqa: E501
-        :rtype: TaskStatusType
-        """
-        return self._status
-
-    @status.setter
-    def status(self, status):
-        """Sets the status of this TaskStatus.
-
-
-        :param status: The status of this TaskStatus.  # noqa: E501
-        :type status: TaskStatusType
-        """
-
-        self._status = status
 
     @property
     def task(self):
