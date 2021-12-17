@@ -44,6 +44,7 @@ class TestTaskStatusRequest(unittest.TestCase):
             )
         else :
             return TaskStatusRequest(
+                status = 'failed',
                 task = 56,
         )
 

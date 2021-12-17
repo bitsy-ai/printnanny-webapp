@@ -54,7 +54,7 @@ class Task(object):
         'device': 'device'
     }
 
-    def __init__(self, id=None, last_status=None, task_type=None, active=None, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, last_status=None, task_type=None, active=True, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
         """Task - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()

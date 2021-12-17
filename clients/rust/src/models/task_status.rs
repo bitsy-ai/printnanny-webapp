@@ -19,22 +19,22 @@ pub struct TaskStatus {
     pub detail: Option<String>,
     #[serde(rename = "wiki_url", skip_serializing_if = "Option::is_none")]
     pub wiki_url: Option<String>,
+    #[serde(rename = "status")]
+    pub status: crate::models::TaskStatusType,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
-    #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
-    pub status: Option<crate::models::TaskStatusType>,
     #[serde(rename = "task")]
     pub task: i32,
 }
 
 impl TaskStatus {
-    pub fn new(id: i32, created_dt: String, task: i32) -> TaskStatus {
+    pub fn new(id: i32, status: crate::models::TaskStatusType, created_dt: String, task: i32) -> TaskStatus {
         TaskStatus {
             id,
             detail: None,
             wiki_url: None,
+            status,
             created_dt,
-            status: None,
             task,
         }
     }

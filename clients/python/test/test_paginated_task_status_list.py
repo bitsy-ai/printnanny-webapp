@@ -45,8 +45,8 @@ class TestPaginatedTaskStatusList(unittest.TestCase):
                         id = 56, 
                         detail = '', 
                         wiki_url = '', 
-                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         status = 'failed', 
+                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         task = 56, )
                     ]
             )

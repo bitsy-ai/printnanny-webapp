@@ -64,8 +64,7 @@ class TaskStatusRequest(object):
 
         self.detail = detail
         self.wiki_url = wiki_url
-        if status is not None:
-            self.status = status
+        self.status = status
         self.task = task
 
     @property
@@ -134,6 +133,8 @@ class TaskStatusRequest(object):
         :param status: The status of this TaskStatusRequest.  # noqa: E501
         :type status: TaskStatusType
         """
+        if self.local_vars_configuration.client_side_validation and status is None:  # noqa: E501
+            raise ValueError("Invalid value for `status`, must not be `None`")  # noqa: E501
 
         self._status = status
 
