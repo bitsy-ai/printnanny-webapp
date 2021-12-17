@@ -38,10 +38,12 @@ class TestLicenseRequest(unittest.TestCase):
         if include_optional :
             return LicenseRequest(
                 activated = True, 
+                fingerprint = '0', 
                 device = 56
             )
         else :
             return LicenseRequest(
+                fingerprint = '0',
                 device = 56,
         )
 

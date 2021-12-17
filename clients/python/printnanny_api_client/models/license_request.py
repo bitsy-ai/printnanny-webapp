@@ -38,26 +38,30 @@ class LicenseRequest(object):
     """
     openapi_types = {
         'activated': 'bool',
+        'fingerprint': 'str',
         'device': 'int'
     }
 
     attribute_map = {
         'activated': 'activated',
+        'fingerprint': 'fingerprint',
         'device': 'device'
     }
 
-    def __init__(self, activated=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, activated=None, fingerprint=None, device=None, local_vars_configuration=None):  # noqa: E501
         """LicenseRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._activated = None
+        self._fingerprint = None
         self._device = None
         self.discriminator = None
 
         if activated is not None:
             self.activated = activated
+        self.fingerprint = fingerprint
         self.device = device
 
     @property
@@ -80,6 +84,35 @@ class LicenseRequest(object):
         """
 
         self._activated = activated
+
+    @property
+    def fingerprint(self):
+        """Gets the fingerprint of this LicenseRequest.  # noqa: E501
+
+
+        :return: The fingerprint of this LicenseRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._fingerprint
+
+    @fingerprint.setter
+    def fingerprint(self, fingerprint):
+        """Sets the fingerprint of this LicenseRequest.
+
+
+        :param fingerprint: The fingerprint of this LicenseRequest.  # noqa: E501
+        :type fingerprint: str
+        """
+        if self.local_vars_configuration.client_side_validation and fingerprint is None:  # noqa: E501
+            raise ValueError("Invalid value for `fingerprint`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                fingerprint is not None and len(fingerprint) > 255):
+            raise ValueError("Invalid value for `fingerprint`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                fingerprint is not None and len(fingerprint) < 1):
+            raise ValueError("Invalid value for `fingerprint`, length must be greater than or equal to `1`")  # noqa: E501
+
+        self._fingerprint = fingerprint
 
     @property
     def device(self):

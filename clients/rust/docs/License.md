@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **janus_token** | **String** |  | [readonly]
 **activated** | Option<**bool**> |  | [optional]
 **public_key** | **String** |  | [readonly]
-**fingerprint** | **String** |  | [readonly]
+**fingerprint** | **String** |  | 
 **created_dt** | **String** |  | [readonly]
 **updated_dt** | **String** |  | [readonly]
 **device** | **i32** |  | 
