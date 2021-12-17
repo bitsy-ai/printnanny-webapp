@@ -26,7 +26,6 @@ docs/DetailResponse.md
 docs/Device.md
 docs/DeviceCalibration.md
 docs/DeviceCalibrationRequest.md
-docs/DeviceConfig.md
 docs/DeviceInfo.md
 docs/DeviceInfoRequest.md
 docs/DeviceRequest.md
@@ -76,7 +75,6 @@ docs/PaginatedAlertList.md
 docs/PaginatedCameraList.md
 docs/PaginatedCloudiotDeviceList.md
 docs/PaginatedDeviceCalibrationList.md
-docs/PaginatedDeviceConfigList.md
 docs/PaginatedDeviceInfoList.md
 docs/PaginatedDeviceList.md
 docs/PaginatedExperimentDeviceConfigList.md
@@ -196,7 +194,6 @@ src/models/detail_response.rs
 src/models/device.rs
 src/models/device_calibration.rs
 src/models/device_calibration_request.rs
-src/models/device_config.rs
 src/models/device_info.rs
 src/models/device_info_request.rs
 src/models/device_request.rs
@@ -244,7 +241,6 @@ src/models/paginated_alert_list.rs
 src/models/paginated_camera_list.rs
 src/models/paginated_cloudiot_device_list.rs
 src/models/paginated_device_calibration_list.rs
-src/models/paginated_device_config_list.rs
 src/models/paginated_device_info_list.rs
 src/models/paginated_device_list.rs
 src/models/paginated_experiment_device_config_list.rs

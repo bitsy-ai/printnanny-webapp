@@ -101,18 +101,6 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
-    def test_devices_config_list(self):
-        """Test case for devices_config_list
-
-        """
-        pass
-
-    def test_devices_config_retrieve(self):
-        """Test case for devices_config_retrieve
-
-        """
-        pass
-
     def test_devices_create(self):
         """Test case for devices_create
 

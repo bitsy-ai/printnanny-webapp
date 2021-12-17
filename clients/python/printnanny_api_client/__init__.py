@@ -15,7 +15,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.23.8"
+__version__ = "0.23.9"
 
 # import apis into sdk package
 from printnanny_api_client.api.alerts_api import AlertsApi
@@ -63,7 +63,6 @@ from printnanny_api_client.models.detail_response import DetailResponse
 from printnanny_api_client.models.device import Device
 from printnanny_api_client.models.device_calibration import DeviceCalibration
 from printnanny_api_client.models.device_calibration_request import DeviceCalibrationRequest
-from printnanny_api_client.models.device_config import DeviceConfig
 from printnanny_api_client.models.device_info import DeviceInfo
 from printnanny_api_client.models.device_info_request import DeviceInfoRequest
 from printnanny_api_client.models.device_request import DeviceRequest
@@ -110,7 +109,6 @@ from printnanny_api_client.models.paginated_alert_list import PaginatedAlertList
 from printnanny_api_client.models.paginated_camera_list import PaginatedCameraList
 from printnanny_api_client.models.paginated_cloudiot_device_list import PaginatedCloudiotDeviceList
 from printnanny_api_client.models.paginated_device_calibration_list import PaginatedDeviceCalibrationList
-from printnanny_api_client.models.paginated_device_config_list import PaginatedDeviceConfigList
 from printnanny_api_client.models.paginated_device_info_list import PaginatedDeviceInfoList
 from printnanny_api_client.models.paginated_device_list import PaginatedDeviceList
 from printnanny_api_client.models.paginated_experiment_device_config_list import PaginatedExperimentDeviceConfigList
