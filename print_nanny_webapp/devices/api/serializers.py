@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from django.conf import settings
 
+from drf_spectacular.utils import extend_schema_field
+from drf_spectacular.types import OpenApiTypes
 from django.contrib.auth import get_user_model
 from print_nanny_webapp.devices.models import (
     Device,
@@ -144,6 +146,7 @@ class LicenseSerializer(serializers.ModelSerializer):
 
     cloudiot_device = serializers.SerializerMethodField(read_only=True)
 
+    @extend_schema_field(OpenApiTypes.INT64)
     def get_cloudiot_device(self, obj) -> int:
         return obj.cloudiot_device.num_id
 
