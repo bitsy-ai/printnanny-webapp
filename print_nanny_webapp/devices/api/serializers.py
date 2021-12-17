@@ -163,7 +163,7 @@ class LicenseSerializer(serializers.ModelSerializer):
         model = License
         read_only_fields = (
             "cloudiot_device" "device",
-            "fingerprint",
+            "device" "fingerprint",
             "honeycomb_api_key",
             "honeycomb_dataset",
             "janus_admin_secret",
