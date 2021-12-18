@@ -250,7 +250,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_cloud_iot_devices_create
 
-> crate::models::CloudiotDevice devices_cloud_iot_devices_create(device_id, cloudiot_device_request)
+> crate::models::CloudiotDevice devices_cloud_iot_devices_create(device_id, id, cloudiot_device_request)
 
 
 ### Parameters
@@ -259,6 +259,7 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
+**id** | **i32** |  | [required] |
 **cloudiot_device_request** | [**CloudiotDeviceRequest**](CloudiotDeviceRequest.md) |  | [required] |
 
 ### Return type
@@ -347,7 +348,7 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
-**id** | **String** |  | [required] |
+**id** | **i32** |  | [required] |
 
 ### Return type
 
@@ -376,7 +377,7 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
-**id** | **String** |  | [required] |
+**id** | **i32** |  | [required] |
 **cloudiot_device_request** | [**CloudiotDeviceRequest**](CloudiotDeviceRequest.md) |  | [required] |
 
 ### Return type
