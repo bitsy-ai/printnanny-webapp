@@ -142,6 +142,8 @@ class LicenseSerializer(serializers.ModelSerializer):
     Deserialize data/license info into /opt/printnanny during License Activation
     """
 
+    activated = serializers.BooleanField(default=False)
+
     user = serializers.SerializerMethodField(read_only=True)
 
     def get_user(self, obj) -> int:

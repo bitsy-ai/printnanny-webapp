@@ -1198,7 +1198,6 @@ class DevicesApi(object):
 
         response_types_map = {
             201: "CloudiotDevice",
-            202: "CloudiotDevice",
         }
 
         return self.api_client.call_api(
@@ -1525,7 +1524,7 @@ class DevicesApi(object):
         :param device_id: (required)
         :type device_id: int
         :param id: (required)
-        :type id: str
+        :type id: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -1556,7 +1555,7 @@ class DevicesApi(object):
         :param device_id: (required)
         :type device_id: int
         :param id: (required)
-        :type id: str
+        :type id: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -1669,7 +1668,7 @@ class DevicesApi(object):
         :param device_id: (required)
         :type device_id: int
         :param id: (required)
-        :type id: str
+        :type id: int
         :param cloudiot_device_request: (required)
         :type cloudiot_device_request: CloudiotDeviceRequest
         :param async_req: Whether to execute the request asynchronously.
@@ -1702,7 +1701,7 @@ class DevicesApi(object):
         :param device_id: (required)
         :type device_id: int
         :param id: (required)
-        :type id: str
+        :type id: int
         :param cloudiot_device_request: (required)
         :type cloudiot_device_request: CloudiotDeviceRequest
         :param async_req: Whether to execute the request asynchronously.

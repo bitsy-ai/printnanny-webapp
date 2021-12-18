@@ -6,6 +6,7 @@ Deserialize data/license info into /opt/printnanny during License Activation
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
+**activated** | **bool** |  | [optional] [default to False]
 **user** | **int** |  | [readonly] 
 **cloudiot_device** | **int** |  | [readonly] 
 **last_check_task** | [**Task**](Task.md) |  | [readonly] 
@@ -13,7 +14,6 @@ Name | Type | Description | Notes
 **honeycomb_api_key** | **str** |  | [readonly] 
 **janus_admin_secret** | **str** |  | [readonly] 
 **janus_token** | **str** |  | [readonly] 
-**activated** | **bool** |  | [optional] 
 **public_key** | **str** |  | [readonly] 
 **fingerprint** | **str** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
