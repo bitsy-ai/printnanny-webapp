@@ -371,6 +371,16 @@ retrieve_cloud_iot_devices_schema = extend_schema(
         200: CloudiotDeviceSerializer(),
     },
 )
+create_cloud_iot_devices_schema = extend_schema(
+    parameters=[
+        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH),
+    ],
+    request=CloudiotDeviceSerializer,
+    responses={
+        "default": ErrorDetailSerializer,
+        201: CloudiotDeviceSerializer,
+    },
+)
 modify_cloud_iot_devices_schema = extend_schema(
     parameters=[
         OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH),
@@ -388,7 +398,7 @@ modify_cloud_iot_devices_schema = extend_schema(
 @extend_schema_view(
     retrieve=retrieve_cloud_iot_devices_schema,
     list=list_cloud_iot_devices_schema,
-    create=modify_cloud_iot_devices_schema,
+    create=create_cloud_iot_devices_schema,
     update=modify_cloud_iot_devices_schema,
 )
 class CloudiotDeviceViewSet(
