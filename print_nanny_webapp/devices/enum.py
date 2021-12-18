@@ -32,7 +32,7 @@ class TaskStatusType(models.TextChoices):
     __css__ = dict(
         FAILED="danger",
         PENDING="secondary",
-        STARTED="warning",
+        STARTED="primary",
         SUCCESS="success",
         TIMEOUT="timeout",
     )
