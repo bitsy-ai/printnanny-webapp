@@ -264,12 +264,18 @@ class DeviceViewSet(
 # DeviceInfo views
 ###
 list_device_info_schema = extend_schema(
+    parameters=[
+        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+    ],
     responses={
         "default": ErrorDetailSerializer,
         200: DeviceInfoSerializer(many=True),
     },
 )
 modify_device_info_schema = extend_schema(
+    parameters=[
+        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+    ],
     request=DeviceInfoSerializer,
     responses={
         "default": ErrorDetailSerializer,
@@ -347,12 +353,18 @@ class DeviceHostnameViewSet(
 # Cloud IoT Device
 ##
 list_cloud_iot_devices_schema = extend_schema(
+    parameters=[
+        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+    ],
     responses={
         "default": ErrorDetailSerializer,
         200: CloudiotDeviceSerializer(many=True),
     },
 )
 modify_cloud_iot_devices_schema = extend_schema(
+    parameters=[
+        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+    ],
     request=CloudiotDeviceSerializer,
     responses={
         "default": ErrorDetailSerializer,
@@ -386,12 +398,18 @@ class CloudiotDeviceViewSet(
 # Camera
 ##
 list_cameras_schema = extend_schema(
+    parameters=[
+        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+    ],
     responses={
         "default": ErrorDetailSerializer,
         200: CameraSerializer(many=True),
     },
 )
 modify_cameras_schema = extend_schema(
+    parameters=[
+        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+    ],
     request=CameraSerializer,
     responses={
         "default": ErrorDetailSerializer,
@@ -425,12 +443,18 @@ class CameraViewSet(
 # PrinterController
 ##
 list_printer_controllers_schema = extend_schema(
+    parameters=[
+        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+    ],
     responses={
         "default": ErrorDetailSerializer,
         200: PrinterControllerSerializer(many=True),
     },
 )
 modify_printer_controllers_schema = extend_schema(
+    parameters=[
+        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+    ],
     request=DeviceSerializer,
     responses={
         "default": ErrorDetailSerializer,
