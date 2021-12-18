@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
+**activated** | Option<**bool**> |  | [optional][default to false]
 **user** | **i32** |  | [readonly]
 **cloudiot_device** | **i64** |  | [readonly]
 **last_check_task** | Option<[**crate::models::Task**](Task.md)> |  | [readonly]
@@ -12,7 +13,6 @@ Name | Type | Description | Notes
 **honeycomb_api_key** | **String** |  | [readonly]
 **janus_admin_secret** | **String** |  | [readonly]
 **janus_token** | **String** |  | [readonly]
-**activated** | Option<**bool**> |  | [optional]
 **public_key** | **String** |  | [readonly]
 **fingerprint** | **String** |  | [readonly]
 **created_dt** | **String** |  | [readonly]

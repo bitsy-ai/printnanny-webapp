@@ -16,6 +16,8 @@
 pub struct License {
     #[serde(rename = "id")]
     pub id: i32,
+    #[serde(rename = "activated", skip_serializing_if = "Option::is_none")]
+    pub activated: Option<bool>,
     #[serde(rename = "user")]
     pub user: i32,
     #[serde(rename = "cloudiot_device")]
@@ -30,8 +32,6 @@ pub struct License {
     pub janus_admin_secret: String,
     #[serde(rename = "janus_token")]
     pub janus_token: String,
-    #[serde(rename = "activated", skip_serializing_if = "Option::is_none")]
-    pub activated: Option<bool>,
     #[serde(rename = "public_key")]
     pub public_key: String,
     #[serde(rename = "fingerprint")]
@@ -49,6 +49,7 @@ impl License {
     pub fn new(id: i32, user: i32, cloudiot_device: i64, last_check_task: Option<crate::models::Task>, honeycomb_dataset: String, honeycomb_api_key: String, janus_admin_secret: String, janus_token: String, public_key: String, fingerprint: String, created_dt: String, updated_dt: String, device: i32) -> License {
         License {
             id,
+            activated: None,
             user,
             cloudiot_device,
             last_check_task: last_check_task.map(Box::new),
@@ -56,7 +57,6 @@ impl License {
             honeycomb_api_key,
             janus_admin_secret,
             janus_token,
-            activated: None,
             public_key,
             fingerprint,
             created_dt,

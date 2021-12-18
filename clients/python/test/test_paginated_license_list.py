@@ -43,6 +43,7 @@ class TestPaginatedLicenseList(unittest.TestCase):
                 results = [
                     printnanny_api_client.models.license.License(
                         id = 56, 
+                        activated = True, 
                         user = 56, 
                         cloudiot_device = 56, 
                         last_check_task = null, 
@@ -50,7 +51,6 @@ class TestPaginatedLicenseList(unittest.TestCase):
                         honeycomb_api_key = '', 
                         janus_admin_secret = '', 
                         janus_token = '', 
-                        activated = True, 
                         public_key = '', 
                         fingerprint = '', 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 

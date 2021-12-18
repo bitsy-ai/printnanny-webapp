@@ -38,6 +38,7 @@ class License(object):
     """
     openapi_types = {
         'id': 'int',
+        'activated': 'bool',
         'user': 'int',
         'cloudiot_device': 'int',
         'last_check_task': 'Task',
@@ -45,7 +46,6 @@ class License(object):
         'honeycomb_api_key': 'str',
         'janus_admin_secret': 'str',
         'janus_token': 'str',
-        'activated': 'bool',
         'public_key': 'str',
         'fingerprint': 'str',
         'created_dt': 'datetime',
@@ -55,6 +55,7 @@ class License(object):
 
     attribute_map = {
         'id': 'id',
+        'activated': 'activated',
         'user': 'user',
         'cloudiot_device': 'cloudiot_device',
         'last_check_task': 'last_check_task',
@@ -62,7 +63,6 @@ class License(object):
         'honeycomb_api_key': 'honeycomb_api_key',
         'janus_admin_secret': 'janus_admin_secret',
         'janus_token': 'janus_token',
-        'activated': 'activated',
         'public_key': 'public_key',
         'fingerprint': 'fingerprint',
         'created_dt': 'created_dt',
@@ -70,13 +70,14 @@ class License(object):
         'device': 'device'
     }
 
-    def __init__(self, id=None, user=None, cloudiot_device=None, last_check_task=None, honeycomb_dataset=None, honeycomb_api_key=None, janus_admin_secret=None, janus_token=None, activated=None, public_key=None, fingerprint=None, created_dt=None, updated_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, activated=False, user=None, cloudiot_device=None, last_check_task=None, honeycomb_dataset=None, honeycomb_api_key=None, janus_admin_secret=None, janus_token=None, public_key=None, fingerprint=None, created_dt=None, updated_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
         """License - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
+        self._activated = None
         self._user = None
         self._cloudiot_device = None
         self._last_check_task = None
@@ -84,7 +85,6 @@ class License(object):
         self._honeycomb_api_key = None
         self._janus_admin_secret = None
         self._janus_token = None
-        self._activated = None
         self._public_key = None
         self._fingerprint = None
         self._created_dt = None
@@ -93,6 +93,8 @@ class License(object):
         self.discriminator = None
 
         self.id = id
+        if activated is not None:
+            self.activated = activated
         self.user = user
         self.cloudiot_device = cloudiot_device
         self.last_check_task = last_check_task
@@ -100,8 +102,6 @@ class License(object):
         self.honeycomb_api_key = honeycomb_api_key
         self.janus_admin_secret = janus_admin_secret
         self.janus_token = janus_token
-        if activated is not None:
-            self.activated = activated
         self.public_key = public_key
         self.fingerprint = fingerprint
         self.created_dt = created_dt
@@ -130,6 +130,27 @@ class License(object):
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
+
+    @property
+    def activated(self):
+        """Gets the activated of this License.  # noqa: E501
+
+
+        :return: The activated of this License.  # noqa: E501
+        :rtype: bool
+        """
+        return self._activated
+
+    @activated.setter
+    def activated(self, activated):
+        """Sets the activated of this License.
+
+
+        :param activated: The activated of this License.  # noqa: E501
+        :type activated: bool
+        """
+
+        self._activated = activated
 
     @property
     def user(self):
@@ -289,27 +310,6 @@ class License(object):
             raise ValueError("Invalid value for `janus_token`, must not be `None`")  # noqa: E501
 
         self._janus_token = janus_token
-
-    @property
-    def activated(self):
-        """Gets the activated of this License.  # noqa: E501
-
-
-        :return: The activated of this License.  # noqa: E501
-        :rtype: bool
-        """
-        return self._activated
-
-    @activated.setter
-    def activated(self, activated):
-        """Sets the activated of this License.
-
-
-        :param activated: The activated of this License.  # noqa: E501
-        :type activated: bool
-        """
-
-        self._activated = activated
 
     @property
     def public_key(self):

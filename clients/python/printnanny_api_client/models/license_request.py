@@ -44,7 +44,7 @@ class LicenseRequest(object):
         'activated': 'activated'
     }
 
-    def __init__(self, activated=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, activated=False, local_vars_configuration=None):  # noqa: E501
         """LicenseRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
