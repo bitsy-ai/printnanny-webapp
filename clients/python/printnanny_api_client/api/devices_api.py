@@ -1069,19 +1069,17 @@ class DevicesApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def devices_cloud_iot_devices_create(self, device_id, id, cloudiot_device_request, **kwargs):  # noqa: E501
+    def devices_cloud_iot_devices_create(self, device_id, cloudiot_device_request, **kwargs):  # noqa: E501
         """devices_cloud_iot_devices_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_cloud_iot_devices_create(device_id, id, cloudiot_device_request, async_req=True)
+        >>> thread = api.devices_cloud_iot_devices_create(device_id, cloudiot_device_request, async_req=True)
         >>> result = thread.get()
 
         :param device_id: (required)
         :type device_id: int
-        :param id: (required)
-        :type id: int
         :param cloudiot_device_request: (required)
         :type cloudiot_device_request: CloudiotDeviceRequest
         :param async_req: Whether to execute the request asynchronously.
@@ -1100,21 +1098,19 @@ class DevicesApi(object):
         :rtype: CloudiotDevice
         """
         kwargs['_return_http_data_only'] = True
-        return self.devices_cloud_iot_devices_create_with_http_info(device_id, id, cloudiot_device_request, **kwargs)  # noqa: E501
+        return self.devices_cloud_iot_devices_create_with_http_info(device_id, cloudiot_device_request, **kwargs)  # noqa: E501
 
-    def devices_cloud_iot_devices_create_with_http_info(self, device_id, id, cloudiot_device_request, **kwargs):  # noqa: E501
+    def devices_cloud_iot_devices_create_with_http_info(self, device_id, cloudiot_device_request, **kwargs):  # noqa: E501
         """devices_cloud_iot_devices_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_cloud_iot_devices_create_with_http_info(device_id, id, cloudiot_device_request, async_req=True)
+        >>> thread = api.devices_cloud_iot_devices_create_with_http_info(device_id, cloudiot_device_request, async_req=True)
         >>> result = thread.get()
 
         :param device_id: (required)
         :type device_id: int
-        :param id: (required)
-        :type id: int
         :param cloudiot_device_request: (required)
         :type cloudiot_device_request: CloudiotDeviceRequest
         :param async_req: Whether to execute the request asynchronously.
@@ -1144,7 +1140,6 @@ class DevicesApi(object):
 
         all_params = [
             'device_id',
-            'id',
             'cloudiot_device_request'
         ]
         all_params.extend(
@@ -1169,10 +1164,6 @@ class DevicesApi(object):
         if self.api_client.client_side_validation and ('device_id' not in local_var_params or  # noqa: E501
                                                         local_var_params['device_id'] is None):  # noqa: E501
             raise ApiValueError("Missing the required parameter `device_id` when calling `devices_cloud_iot_devices_create`")  # noqa: E501
-        # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `id` when calling `devices_cloud_iot_devices_create`")  # noqa: E501
         # verify the required parameter 'cloudiot_device_request' is set
         if self.api_client.client_side_validation and ('cloudiot_device_request' not in local_var_params or  # noqa: E501
                                                         local_var_params['cloudiot_device_request'] is None):  # noqa: E501
@@ -1183,8 +1174,6 @@ class DevicesApi(object):
         path_params = {}
         if 'device_id' in local_var_params:
             path_params['device_id'] = local_var_params['device_id']  # noqa: E501
-        if 'id' in local_var_params:
-            path_params['id'] = local_var_params['id']  # noqa: E501
 
         query_params = []
 
@@ -1209,7 +1198,6 @@ class DevicesApi(object):
 
         response_types_map = {
             201: "CloudiotDevice",
-            202: "CloudiotDevice",
         }
 
         return self.api_client.call_api(

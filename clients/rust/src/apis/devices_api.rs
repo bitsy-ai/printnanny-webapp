@@ -502,12 +502,12 @@ pub async fn devices_cameras_update(configuration: &configuration::Configuration
     }
 }
 
-pub async fn devices_cloud_iot_devices_create(configuration: &configuration::Configuration, device_id: i32, id: i32, cloudiot_device_request: crate::models::CloudiotDeviceRequest) -> Result<crate::models::CloudiotDevice, Error<DevicesCloudIotDevicesCreateError>> {
+pub async fn devices_cloud_iot_devices_create(configuration: &configuration::Configuration, device_id: i32, cloudiot_device_request: crate::models::CloudiotDeviceRequest) -> Result<crate::models::CloudiotDevice, Error<DevicesCloudIotDevicesCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/cloud-iot-devices/", local_var_configuration.base_path, device_id=device_id, id=id);
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/cloud-iot-devices/", local_var_configuration.base_path, device_id=device_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {

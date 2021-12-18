@@ -894,7 +894,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_cloud_iot_devices_create**
-> CloudiotDevice devices_cloud_iot_devices_create(device_id, id, cloudiot_device_request)
+> CloudiotDevice devices_cloud_iot_devices_create(device_id, cloudiot_device_request)
 
 
 
@@ -934,11 +934,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
-id = 56 # int | 
 cloudiot_device_request = printnanny_api_client.CloudiotDeviceRequest() # CloudiotDeviceRequest | 
 
     try:
-        api_response = api_instance.devices_cloud_iot_devices_create(device_id, id, cloudiot_device_request)
+        api_response = api_instance.devices_cloud_iot_devices_create(device_id, cloudiot_device_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_cloud_iot_devices_create: %s\n" % e)
@@ -978,11 +977,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
-id = 56 # int | 
 cloudiot_device_request = printnanny_api_client.CloudiotDeviceRequest() # CloudiotDeviceRequest | 
 
     try:
-        api_response = api_instance.devices_cloud_iot_devices_create(device_id, id, cloudiot_device_request)
+        api_response = api_instance.devices_cloud_iot_devices_create(device_id, cloudiot_device_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_cloud_iot_devices_create: %s\n" % e)
@@ -993,7 +991,6 @@ cloudiot_device_request = printnanny_api_client.CloudiotDeviceRequest() # Cloudi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **device_id** | **int**|  | 
- **id** | **int**|  | 
  **cloudiot_device_request** | [**CloudiotDeviceRequest**](CloudiotDeviceRequest.md)|  | 
 
 ### Return type
@@ -1013,7 +1010,6 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** |  |  -  |
-**202** |  |  -  |
 **0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
