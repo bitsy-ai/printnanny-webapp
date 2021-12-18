@@ -133,9 +133,12 @@ class TaskStatusViewSet(
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        obj = self.perform_create(serializer)
-        task_serializer = TaskSerializer(instance=obj)
+        self.perform_create(serializer)
+        logger.info(f"Created TaskStatus={serializer.instance}")
+        task_serializer = TaskSerializer(instance=serializer.instance.task)
         headers = self.get_success_headers(task_serializer.data)
+        logger.info(f"Returning response Task={serializer.instance}")
+
         return Response(
             task_serializer.data, status=status.HTTP_201_CREATED, headers=headers
         )
