@@ -44,7 +44,7 @@ class TestPaginatedTaskList(unittest.TestCase):
                     printnanny_api_client.models.task.Task(
                         id = 56, 
                         last_status = null, 
-                        task_type = 'check_license', 
+                        task_type = 'monitor_start', 
                         active = True, 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         device = 56, )
