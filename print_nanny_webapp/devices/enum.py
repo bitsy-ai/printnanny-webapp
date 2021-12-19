@@ -43,6 +43,9 @@ class TaskStatusType(models.TextChoices):
 
 
 class TaskType(models.TextChoices):
+    MONITOR_START = "monitor_start", "Start Monitor"
+    MONITOR_STOP = "monitor_stop", "Stop Monitor"
+
     CHECK_LICENSE = "check_license", "License Verification"
     SOFTWARE_UPDATE = (
         "software_update",

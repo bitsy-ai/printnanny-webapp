@@ -32,10 +32,12 @@ class TaskType(object):
     """
     allowed enum values
     """
+    MONITOR_START = "monitor_start"
+    MONITOR_STOP = "monitor_stop"
     CHECK_LICENSE = "check_license"
     SOFTWARE_UPDATE = "software_update"
 
-    allowable_values = [CHECK_LICENSE, SOFTWARE_UPDATE]  # noqa: E501
+    allowable_values = [MONITOR_START, MONITOR_STOP, CHECK_LICENSE, SOFTWARE_UPDATE]  # noqa: E501
 
     """
     Attributes:
