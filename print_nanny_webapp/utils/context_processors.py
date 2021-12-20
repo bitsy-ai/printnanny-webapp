@@ -1,9 +1,12 @@
+import logging
 from config.settings.base import PAID_BETA_SUBSCRIPTION_LIMIT
 import djstripe.models
 import djstripe.enums
 from django.conf import settings
 from djstripe.settings import STRIPE_PUBLIC_KEY
 from django.utils import timezone
+
+logger = logging.getLogger(__name__)
 
 
 def help_context(_request):
@@ -15,7 +18,7 @@ def help_context(_request):
     }
 
 
-def settings_context(_request):
+def settings_context(request):
     """Settings available by default to the templates context."""
     # Note: we intentionally do NOT expose the entire settings
     # to prevent accidental leaking of sensitive information
@@ -28,7 +31,25 @@ def settings_context(_request):
     num_subscriptions_available = int(
         settings.PAID_BETA_SUBSCRIPTION_LIMIT - num_subscriptions
     )
-    return {
+
+    base_api_url = request.build_absolute_uri("/")[
+        :-1
+    ]  # remove trailing slash for use in API client base_url
+
+    if "http://" in base_api_url:
+        ws_base_url = base_api_url.replace("http://", "ws://")
+    elif "https://" in base_api_url:
+        ws_base_url = base_api_url.replace("https://", "wss://")
+    else:
+        raise Exception("Failed to parse base api URL into base ws url")
+    ws_base_url = f"{ws_base_url}/ws"
+    alerts_ws_url = f"{ws_base_url}/alerts/"
+    tasks_ws_url = f"{ws_base_url}/alerts/"
+
+    obj = {
+        "BASE_API_URL": base_api_url,
+        "ALERTS_WS_URL": alerts_ws_url,
+        "TASKS_WS_URL": tasks_ws_url,
         "DEBUG": settings.DEBUG,
         "GOOGLE_ANALYTICS": settings.GOOGLE_ANALYTICS,
         "WS_BASE_URL": settings.WS_BASE_URL,
@@ -45,3 +66,6 @@ def settings_context(_request):
         "CURRENT_UTC_TS": int(timezone.now().timestamp()),
         "PAID_BETA_LAUNCH_TIMESTAMP": int(settings.PAID_BETA_LAUNCH_TIMESTAMP),
     }
+
+    logger.info(f"Settings context {obj}")
+    return obj

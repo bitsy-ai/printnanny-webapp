@@ -23,6 +23,8 @@ export default {
   //     }
   //   },
   created: function () {
+    const url = process.env.TASKS_WS_URL + this.taskId
+    this.$connect(url)
     console.log(this) // And here is - in $attrs object
     // this.data = this.$attrs
   }
@@ -39,7 +41,7 @@ export default {
     Status: <strong>{{ status }}</strong>
     <p>{{ taskStatusDisplay }}</p>
     <p v-if="msg != 'undefined'">{{ msg }}</p>
-    <a v-if="wikiUrl != 'undefined'" target='_blank' :href="`${wikiUrl}">See Wiki for more info</a>
+    <a v-if="wikiUrl != 'undefined'" target='_blank' :href="`${wikiUrl}`">See Wiki for more info</a>
   </b-popover>
 </span>
 

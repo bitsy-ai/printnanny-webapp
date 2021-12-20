@@ -14,5 +14,29 @@ export default {
   [SET_DATA] (state, data) {
     console.log('setting data state', data)
     state.data = data
+  },
+
+  SOCKET_ONOPEN (state, event) {
+    Vue.prototype.$socket = event.currentTarget
+    state.socket.isConnected = true
+    console.log('Socket connected', event)
+  },
+  SOCKET_ONCLOSE (state, event) {
+    state.socket.isConnected = false
+  },
+  SOCKET_ONERROR (state, event) {
+    console.error(state, event)
+  },
+  // default handler called for all methods
+  SOCKET_ONMESSAGE (state, message) {
+    console.log('Socket message received', message)
+    state.socket.message = message
+  },
+  // mutations for reconnect methods
+  SOCKET_RECONNECT (state, count) {
+    console.info(state, count)
+  },
+  SOCKET_RECONNECT_ERROR (state) {
+    state.socket.reconnectError = true
   }
 }

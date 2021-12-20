@@ -1,16 +1,8 @@
+import VueNativeSock from 'vue-native-websocket'
 import { Vue, store } from './AppFactory'
 import TaskStatus from '@/components/TaskStatus'
-// import router from './router'
 
-/* eslint-disable no-new */
-
-// export default new Vue({
-//   el: '.task-status-app',
-//   // router,
-//   store,
-//   components: { TaskStatus },
-//   template: '<TaskStatus/>'
-// })
+Vue.use(VueNativeSock, process.env.TASKS_WS_URL, { store: store, format: 'json', reconnection: true, connectManually: true })
 
 const apps = document.querySelectorAll('.task-status-app')
 export default Array.prototype.forEach.call(apps, (el, index) => new Vue({
