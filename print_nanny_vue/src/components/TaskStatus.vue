@@ -23,8 +23,22 @@ export default {
   //     }
   //   },
   created: function () {
-    const url = process.env.TASKS_WS_URL + this.taskId
-    this.$connect(url)
+    const url = process.env.TASKS_WS_URL + this.taskId + '/'
+    console.log('Starting connection to WebSocket Server')
+    this.connection = new WebSocket(url)
+
+    this.connection.onmessage = function (event) {
+      console.log('Received msg', event)
+      const data = JSON.parse(event.data)
+      console.log('Received parsed data', data)
+    }
+
+    this.connection.onopen = function (event) {
+      console.log(event)
+      console.log('Successfully connected to the echo websocket server...')
+    }
+
+    // this.$connect(url)
     console.log(this) // And here is - in $attrs object
     // this.data = this.$attrs
   }

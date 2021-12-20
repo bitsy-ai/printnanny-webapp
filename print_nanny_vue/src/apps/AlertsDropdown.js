@@ -5,8 +5,6 @@ import AlertsDropdown from '@/components/AlertsDropdown'
 
 /* eslint-disable no-new */
 
-Vue.use(VueNativeSock, process.env.ALERTS_WS_URL, { store: store, format: 'json', reconnection: true, connectManually: true })
-
 export default new Vue({
   el: '#alerts-dropdown-app',
   // router,

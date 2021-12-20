@@ -2,8 +2,8 @@ import Vue from 'vue'
 
 export default {
   SOCKET_ONOPEN (state, event) {
-    Vue.prototype.$socket = event.currentTarget
-    state.socket.isConnected = true
+    // Vue.prototype.$socket = event.currentTarget
+    // state.socket.isConnected = true
     console.log('Socket connected', event)
   },
   SOCKET_ONCLOSE (state, event) {
@@ -19,9 +19,10 @@ export default {
   },
   // mutations for reconnect methods
   SOCKET_RECONNECT (state, count) {
-    console.info(state, count)
+    console.info('Socket reconnected', state, count)
   },
   SOCKET_RECONNECT_ERROR (state) {
     state.socket.reconnectError = true
+    console.info('Socket reconnect error', state)
   }
 }

@@ -1,5 +1,4 @@
 import logging
-from asgiref.sync import async_to_sync
 from channels.generic.websocket import AsyncJsonWebsocketConsumer
 
 logger = logging.getLogger(__name__)
@@ -14,6 +13,7 @@ class TaskStatusConsumer(AsyncJsonWebsocketConsumer):
         self.group_name = f"task_{self.task_id}"
 
         logger.info(f"Websocket connection accepted scope={self.scope}")
+        await self.channel_layer.group_add(self.group_name, self.channel_name)
 
     async def disconnect(self, close_code):
 
@@ -23,3 +23,7 @@ class TaskStatusConsumer(AsyncJsonWebsocketConsumer):
     async def receive_json(self, content):
 
         logger.info(f"Recevied JSON Task {content}")
+
+    async def task_status(self, event):
+        logger.info(f"Received {self.group_name} event={event}")
+        await self.send_json(event)

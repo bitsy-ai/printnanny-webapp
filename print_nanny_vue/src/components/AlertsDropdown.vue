@@ -27,7 +27,7 @@ export default {
     }
   },
   created () {
-    this.$connect(process.env.ALERT_WS_URL)
+    // this.$connect(process.env.ALERT_WS_URL)
     this.fetchAlerts({ page: '1', seen: false })
   }
 }

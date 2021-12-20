@@ -66,6 +66,4 @@ def settings_context(request):
         "CURRENT_UTC_TS": int(timezone.now().timestamp()),
         "PAID_BETA_LAUNCH_TIMESTAMP": int(settings.PAID_BETA_LAUNCH_TIMESTAMP),
     }
-
-    logger.info(f"Settings context {obj}")
     return obj
