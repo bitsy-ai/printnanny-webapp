@@ -35,11 +35,11 @@ export default {
     <i class="mdi mdi-information"></i>
     {{taskTypeDisplay}}: {{ status }}</b-badge>
   <b-popover v-bind:target="`task-status-${taskId}`" triggers="hover focus click" placement="right">
-    <template #title>Task: {{taskDisplay}} </template>
+    <template #title>Task: {{taskTypeDisplay}} </template>
     Status: <strong>{{ status }}</strong>
     <p>{{ taskStatusDisplay }}</p>
     <p v-if="msg != 'undefined'">{{ msg }}</p>
-    <a v-if="wikiUrl != 'undefined'" target='_blank' :href="wikiUrl">See Wiki for more info</a>
+    <a v-if="wikiUrl != 'undefined'" target='_blank' :href="`${wikiUrl}">See Wiki for more info</a>
   </b-popover>
 </span>
 

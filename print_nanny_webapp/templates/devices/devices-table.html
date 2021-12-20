@@ -36,31 +36,14 @@
                     </td> -->
                     <!-- <td><i class="mdi mdi-circle {{device.monitoring_active_css_class}}"></i> {{device.monitoring_active}}</td> -->
                 <td>
-                      <a 
-                      data-toggle="popover" 
-                      data-placement="right" 
-                      title="Task: {{ device.last_task.get_task_type_display }}" 
-                      {% if device.last_task.last_status.wiki_url %}
-                      data-content="{{ device.last_task.last_status.msg }} <br><a target='_blank' href='{{ device.last_task.last_status.wiki_url}'>Get more info</a>"
-                      {% else %} 
-                      data-content="{{ device.last_task.last_status.get_status_display }}" 
-                      {% endif %}
-                      data-html="true"
-                      class="badge badge-{{ device.last_task.last_status.css_class }}"
-                      >
-                      <i class="mdi mdi-information"></i>
-                      {{ device.last_task.get_task_type_display }}:
-                      {{ device.last_task.last_status.status | capfirst }}
-  
-                      </a>
                       <span class="task-status-app" 
                       data-task-id="{{ device.last_task.id }}"
-                      data-task-status-display="{{  device.last_task.last_status.get_status_display }}"
+                      data-task-status-display="{{ device.last_task.last_status.get_status_display }}"
                       data-task-type-display="{{ device.last_task.get_task_type_display }}"
                       {% if device.last_task.last_status.wiki_url %}
                       data-task-wiki-url="{{ device.last_task.last_status.wiki_url }}"
                       {% endif %}
-                      {% if device.last_task.last_status.wiki_url %}
+                      {% if device.last_task.last_status.msg %}
                       data-task-msg="{{ device.last_task.last_status.msg }}"
                       {% endif %}
                       data-color="{{ device.last_task.last_status.css_class }}"
