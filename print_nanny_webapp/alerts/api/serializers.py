@@ -29,7 +29,7 @@ class AlertSerializer(serializers.ModelSerializer):
     gcode_file = serializers.SerializerMethodField()
 
     def get_gcode_file(self, obj):
-        if obj.print_session:
+        if getattr(obj, "print_session", None):
             return obj.print_session.gcode_file
         else:
             return None
@@ -37,36 +37,36 @@ class AlertSerializer(serializers.ModelSerializer):
     print_progress = serializers.SerializerMethodField()
 
     def get_print_progress(self, obj):
-        if obj.print_session:
+        if getattr(obj, "print_session", None):
             return obj.print_session.print_progress
 
     time_elapsed = serializers.SerializerMethodField()
 
     def get_time_elapsed(self, obj):
-        if obj.print_session and obj.print_session.time_elapsed:
-            return time.strftime(
-                "%H:%M:%S", time.gmtime(obj.print_session.time_elapsed)
-            )
+        if getattr(obj, "print_session", None):
+            if obj.print_session and obj.print_session.time_elapsed:
+                return time.strftime(
+                    "%H:%M:%S", time.gmtime(obj.print_session.time_elapsed)
+                )
 
     time_remaining = serializers.SerializerMethodField()
 
     def get_time_remaining(self, obj):
-
-        if obj.print_session and obj.print_session.time_remaining:
-            return time.strftime(
-                "%H:%M:%S", time.gmtime(obj.print_session.time_remaining)
-            )
+        if getattr(obj, "print_session", None):
+            if obj.print_session and obj.print_session.time_remaining:
+                return time.strftime(
+                    "%H:%M:%S", time.gmtime(obj.print_session.time_remaining)
+                )
 
     manage_device_url = serializers.SerializerMethodField()
 
     def get_manage_device_url(self, obj) -> Optional[str]:
-        if obj.octoprint_device:
+        if getattr(obj, "octoprint_device", None):
             device_url = reverse(
                 "dashboard:octoprint-devices:detail",
                 kwargs={"pk": obj.octoprint_device.id},
             )
             return device_url
-        return
 
     message = serializers.SerializerMethodField()
 
