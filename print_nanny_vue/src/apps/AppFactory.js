@@ -15,5 +15,6 @@ Vue.use(VueCookies)
 Vue.use(BootstrapVue)
 
 Vue.use(VueNativeSock, process.env.ALERTS_WEBSOCKET, { store: store, format: 'json', reconnection: true })
+Vue.use(VueNativeSock, process.env.TASKS_WEBSOCKET, { store: store, format: 'json', reconnection: true })
 
 export { Vue, store }
