@@ -44,12 +44,12 @@ def settings_context(request):
         raise Exception("Failed to parse base api URL into base ws url")
     ws_base_url = f"{ws_base_url}/ws"
     alerts_ws_url = f"{ws_base_url}/alerts/"
-    tasks_ws_url = f"{ws_base_url}/alerts/"
+    DEVICE_US_URL = f"{ws_base_url}/alerts/"
 
     obj = {
         "BASE_API_URL": base_api_url,
         "ALERTS_WS_URL": alerts_ws_url,
-        "TASKS_WS_URL": tasks_ws_url,
+        "DEVICE_US_URL": DEVICE_US_URL,
         "DEBUG": settings.DEBUG,
         "GOOGLE_ANALYTICS": settings.GOOGLE_ANALYTICS,
         "WS_BASE_URL": settings.WS_BASE_URL,

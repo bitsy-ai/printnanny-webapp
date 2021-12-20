@@ -54,7 +54,7 @@ def update_task_active_field(sender, instance, created, **kwargs):
     channel_layer = get_channel_layer()
     serializer = TaskSerializer(instance=instance.task)
     data = JSONRenderer().render(serializer.data)
-    layer = f"task_{instance.task.id}"
+    layer = f"device_{instance.task.device.id}"
 
     payload = dict(type="task.status", data=serializer.data)
     logger.info(f"Sending to layer={layer} payload={payload}")

@@ -4,13 +4,13 @@ from channels.generic.websocket import AsyncJsonWebsocketConsumer
 logger = logging.getLogger(__name__)
 
 
-class TaskStatusConsumer(AsyncJsonWebsocketConsumer):
+class DeviceConsumer(AsyncJsonWebsocketConsumer):
     async def connect(self):
         await self.accept()
 
         self.user = self.scope["user"]
-        self.task_id = self.scope["url_route"]["kwargs"]["task_id"]
-        self.group_name = f"task_{self.task_id}"
+        self.device_id = self.scope["url_route"]["kwargs"]["device_id"]
+        self.group_name = f"device_{self.device_id}"
 
         logger.info(f"Websocket connection accepted scope={self.scope}")
         await self.channel_layer.group_add(self.group_name, self.channel_name)

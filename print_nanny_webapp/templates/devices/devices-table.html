@@ -36,7 +36,8 @@
                     </td> -->
                     <!-- <td><i class="mdi mdi-circle {{device.monitoring_active_css_class}}"></i> {{device.monitoring_active}}</td> -->
                 <td>
-                      <span class="task-status-app" 
+                      <span class="task-status-app"
+                      data-device-id="{{ device.id }}"
                       data-task-id="{{ device.last_task.id }}"
                       data-task-status-display="{{ device.last_task.last_status.get_status_display }}"
                       data-task-type-display="{{ device.last_task.get_task_type_display }}"

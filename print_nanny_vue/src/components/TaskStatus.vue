@@ -4,6 +4,7 @@ import { SET_DATA, TASKS_DROPDOWN_MODULE } from '@/store/tasks'
 
 export default {
   props: {
+    deviceId: Number,
     taskId: Number,
     taskTypeDisplay: String,
     taskStatusDisplay: String,
@@ -23,13 +24,23 @@ export default {
   //     }
   //   },
   created: function () {
-    const url = process.env.TASKS_WS_URL + this.taskId + '/'
+    const url = process.env.DEVICE_US_URL + this.deviceId + '/'
     console.log('Starting connection to WebSocket Server')
     this.connection = new WebSocket(url)
 
-    this.connection.onmessage = function (event) {
-      console.log('Received msg', event)
-      const data = JSON.parse(event.data)
+    this.connection.onmessage = function (msg) {
+      const data = JSON.parse(msg.data)
+      console.log('Received event', data)
+      if (data.type != 'task.status') {
+        console.debug(`TaskStatus id=${this.taskId} ignoring ws event type`, data.type)
+      } else if (data.type == 'task.status' && data.data.id != this.deviceId) {
+        console.debug(`TaskStatus id=${this.taskId} ignoring event for other task`, data)
+      } else {
+        this.data.taskDisplay = data.data.last_status.status_display
+        this.data.status = data.data.last_status.status
+        this.data.color = data.data.last_status.css_class
+        this.data.taskStatusDisplay = data.data.task_type_display
+      }
       console.log('Received parsed data', data)
     }
 

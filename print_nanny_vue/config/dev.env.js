@@ -7,5 +7,5 @@ module.exports = merge(prodEnv, {
   BASE_API_URL: '"http://aurora:8000"',
   BASE_WS_URL: '"ws://aurora:8000/ws/"',
   ALERTS_WS_URL: '"ws://aurora:8000/ws/alerts/"',
-  TASKS_WS_URL: '"ws://aurora:8000/ws/tasks/"'
+  DEVICE_US_URL: '"ws://aurora:8000/ws/devices/"'
 })

@@ -1,5 +1,5 @@
 from django.urls import path
 
-from .consumers import TaskStatusConsumer
+from .consumers import DeviceConsumer
 
-websocket_urlpatterns = [path("ws/tasks/<int:task_id>/", TaskStatusConsumer.as_asgi())]
+websocket_urlpatterns = [path("ws/devices/<int:device_id>/", DeviceConsumer.as_asgi())]
