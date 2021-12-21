@@ -39,41 +39,18 @@
                 </a>
             </li>
 
-            {% comment %}
-
             <li class="side-nav-item">
-                <a hhref="javascript: void(0);" class="side-nav-link">
-                    <i class="mdi mdi-bell"></i>
-                    <span> {% trans "Notifications" %} </span>
-                    {% if object.unread_alerts.count > 0 %}
-                    <span class="badge badge-danger float-right"> {{ object.unread_alerts.count }}</span>
-                    {% endif %}
-                </a>
-
-                <ul class="side-nav-second-level mm-collapse mm-show" aria-expanded="false" style="">
-                    <li>
-                        <a href="{% url 'alerts:list' %}">View History</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'alerts:settings' %}">Change Settings</a>
-                    </li>
-                </ul>
-            </li>
-
-            {% endcomment %}
-
-            <li class="side-nav-item">
-                <a href="javascript: void(0);" class="side-nav-link">
+                <a href="javascript: void(0);" class="side-nav-link" aria-expanded="true">
                     <i class="mdi mdi-printer-3d"></i>
                     <span> {% trans "Devices & Printers" %} </span>
-                    <span class="menu-arrow"></span>
+                    <!-- <span class="menu-arrow"></span> -->
                 </a>
-                <ul class="side-nav-second-level" aria-expanded="false">
+                <ul class="side-nav-second-level  mm-collapse mm-show" aria-expanded="true">
                     <li class="{% if request.resolver_match.url_name == 'devices:list' %}active{% endif %}">
-                        <a href="{% url 'devices:list' %}">{% trans "Print Nanny OS" %}	&nbsp;<span class="badge badge-danger">NEW</span></a>
+                        <a href="{% url 'devices:list' %}">{% trans "Print Nanny OS" %}	&nbsp;<span class="badge badge-danger">New</span></a>
                     </li>
                     <li class="{% if request.resolver_match.url_name == 'dashboard:octoprint-devices:list' %}active{% endif %}">
-                        <a href="{% url 'dashboard:octoprint-devices:list' %}">{% trans "Octoprint Plugin" %}</a>
+                        <a href="{% url 'dashboard:octoprint-devices:list' %}">{% trans "Octoprint Plugin" %}&nbsp;<span class="badge badge-secondary">Legacy</span></a>
                     </li>
                 </ul>
             </li>

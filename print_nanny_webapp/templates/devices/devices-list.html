@@ -5,6 +5,8 @@
 
 {% block blocktitle %}Devices{% endblock %}
 
+{% include "devices/list-nav.html" %}
+
 {% block content %}
 <div class="container-fluid">
     <div class="row">
@@ -12,16 +14,18 @@
             <div class="page-title-box">
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'dashboard:home' %}">Home</a></li>
                       
-                        <li class="breadcrumb-item active">Devices</li>
+                        <li class="breadcrumb-item active">Manage Devices</li>
                     </ol>
                 </div>
-                <h3 class="page-title d-inline-flex">Your Print Nanny Devices</h3>
+                <h3 class="page-title d-inline-flex">Manage Devices</h3>
+                Click/tap <strong class="text-primary"><i class="mdi mdi-open-in-new"></i> highlighted links</strong> or 
+                    <span class="badge badge-secondary"> <i class="mdi mdi-information"></i> status indicators</span> to see more information.
             </div>
         </div>
     </div>
-    {% include "devices/devices-table.html" %}
+{% include "devices/devices-cards.html" %}
 
 
 </div>
