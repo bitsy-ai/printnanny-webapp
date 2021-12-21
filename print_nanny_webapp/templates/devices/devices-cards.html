@@ -1,0 +1,27 @@
+{% load humanize %}
+
+<div class="row">
+    <div class="col-12 col-md-4 d-flex align-items-stretch">
+      <div class="card col-12">
+        <div class="card-body">
+          {% if devices.count == 0 %}
+          <p>Click <strong>Add New Device</strong> to get started.</p>
+          {% endif %}
+          <h2 class="header-title">
+            <!-- <i class="mdi mdi-printer-3d"></i> Register My Pi -->
+              <a href="{% url 'devices:create' %}"><button class="btn btn-primary"><i class="mdi mdi-plus"></i>Add New Device</button></a>
+          </h2>
+
+
+        </div>
+        <div class="card-footer">          
+          <p>View list of <a href="{{ HELP_PRINTNANNY_COMPATIBLE }}" target="_blank">capatible devices</a>.
+          </p>
+
+          <p>Pi 3 and Pi Zero models are <strong>not supported</strong>! 
+          </p>
+        </div>
+      </div>
+    </div>
+  
+  </div>
