@@ -79,11 +79,6 @@
     <!-- Placed at the end of the document so the pages load faster -->
     {% block javascript %}
         <!-- global -->
-        <script>
-            var WS_BASE_URL = "{{ WS_BASE_URL }}";
-            window.ALERTS_WS_URL = "{{ ALERTS_WS_URL }}";
-            window.DEVICE_US_URL = "{{ DEVICE_US_URL }}";
-        </script>
         <!-- bundle -->
         <script src="{% static 'js/vendor.min.js' %}"></script>
         <script src="{% static 'js/app.min.js' %}"></script>

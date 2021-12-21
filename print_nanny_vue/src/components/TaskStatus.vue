@@ -27,7 +27,7 @@ export default {
   created: function () {
     const self = this
 
-    const url = process.env.DEVICE_US_URL + this.taskLocal.device + '/'
+    const url = process.env.DEVICE_WS_URL + this.taskLocal.device + '/'
     console.log('Starting connection to WebSocket Server')
     this.connection = new WebSocket(url)
 
