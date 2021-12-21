@@ -1,6 +1,6 @@
 from discord import channel
-from django.urls import path
+from django.conf.urls import url
 
 from .consumers import AlertConsumer, DiscordConsumer
 
-websocket_urlpatterns = [path("ws/alerts/", AlertConsumer.as_asgi())]
+websocket_urlpatterns = [url(r"^ws/alerts/$", AlertConsumer.as_asgi())]

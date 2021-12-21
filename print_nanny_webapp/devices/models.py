@@ -5,6 +5,8 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.db.models import UniqueConstraint
 from django.urls import reverse
+from rest_framework.renderers import JSONRenderer
+
 from polymorphic.models import PolymorphicModel
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.signals import pre_softdelete
@@ -367,6 +369,17 @@ class Task(SafeDeleteModel):
     @property
     def last_status(self):
         return self.status_set.first()
+
+    @property
+    def to_json_str(self):
+        from .api.serializers import TaskSerializer
+
+        serializer = TaskSerializer(instance=self)
+        return JSONRenderer().render(serializer.data).decode("utf8")
+
+    @property
+    def html_id(self) -> str:
+        return f"task-{self.id}"
 
 
 class TaskStatus(HelpLink, SafeDeleteModel):

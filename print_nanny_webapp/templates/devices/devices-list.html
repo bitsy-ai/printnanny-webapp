@@ -26,3 +26,7 @@
 
 </div>
 {% endblock content %}
+{% load render_bundle from webpack_loader %}
+{% block extra_javascript %}
+{% render_bundle 'taskStatus' %}
+{% endblock %}

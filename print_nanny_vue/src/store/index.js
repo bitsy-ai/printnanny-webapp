@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import alerts, { ALERTS_DROPDOWN_MODULE, ALERTS_TABLE_MODULE } from './alerts'
 import settings, { SETTINGS_MODULE } from './settings'
+import tasks, { TASK_STATUS_MODULE } from './tasks'
 
 import mutations from './mutations'
 
@@ -13,7 +14,8 @@ export default new Vuex.Store({
   modules: {
     [ALERTS_DROPDOWN_MODULE]: alerts,
     [ALERTS_TABLE_MODULE]: alerts,
-    [SETTINGS_MODULE]: settings
+    [SETTINGS_MODULE]: settings,
+    [TASK_STATUS_MODULE]: tasks
   },
   state: () => ({
     socket: {

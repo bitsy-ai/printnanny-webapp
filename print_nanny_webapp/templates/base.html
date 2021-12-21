@@ -78,6 +78,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     {% block javascript %}
+        <!-- global -->
         <!-- bundle -->
         <script src="{% static 'js/vendor.min.js' %}"></script>
         <script src="{% static 'js/app.min.js' %}"></script>
@@ -97,6 +98,9 @@
 
     {% endblock javascript %}
 
+    {% block alert_javascript %}
+
+    {% endblock %}
     <!-- extra javascripts -->
 
     {% block extra_javascript %}

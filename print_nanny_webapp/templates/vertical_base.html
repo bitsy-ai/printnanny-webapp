@@ -50,10 +50,8 @@ data-layout-qconfig='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSideba
 {% endblock %}
 
 
-{% block extra_javascript %}
+{% block alert_javascript %}
 {% load render_bundle from webpack_loader %}
-
-
 {% render_bundle 'alerts' %}
 
 {% endblock %}

@@ -1,12 +1,16 @@
 import logging
+from asgiref.sync import async_to_sync
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from channels.layers import get_channel_layer
+from rest_framework.renderers import JSONRenderer
 
 from .models import Device, TaskStatus, Task
 from .enum import (
     TaskType,
     TaskStatusType,
 )
+from .api.serializers import TaskSerializer
 
 logger = logging.getLogger(__name__)
 
@@ -45,3 +49,13 @@ def update_task_active_field(sender, instance, created, **kwargs):
     ):
         instance.task.active = False
         instance.task.save()
+
+    # send task to websocket channel
+    channel_layer = get_channel_layer()
+    serializer = TaskSerializer(instance=instance.task)
+    data = JSONRenderer().render(serializer.data)
+    layer = f"device_{instance.task.device.id}"
+
+    payload = dict(type="task.status", data=serializer.data)
+    logger.info(f"Sending to layer={layer} payload={payload}")
+    async_to_sync(channel_layer.group_send)(layer, payload)

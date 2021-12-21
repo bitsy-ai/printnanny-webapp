@@ -35,6 +35,7 @@ from channels.routing import ChannelNameRouter, ProtocolTypeRouter, URLRouter
 import print_nanny_webapp.telemetry.routing
 import print_nanny_webapp.alerts.routing
 import print_nanny_webapp.alerts.consumers
+import print_nanny_webapp.devices.routing
 
 from rest_framework.authtoken.models import Token
 from channels.db import database_sync_to_async
@@ -70,7 +71,8 @@ TokenAuthMiddlewareStack = lambda inner: TokenAuthMiddleware(AuthMiddlewareStack
 
 websocket_urlpatterns = (
     print_nanny_webapp.telemetry.routing.websocket_urlpatterns +
-    print_nanny_webapp.alerts.routing.websocket_urlpatterns
+    print_nanny_webapp.alerts.routing.websocket_urlpatterns +
+    print_nanny_webapp.devices.routing.websocket_urlpatterns
 )
 logging.info(f'Registering websocket urlpatterns {websocket_urlpatterns}')
 application = ProtocolTypeRouter({

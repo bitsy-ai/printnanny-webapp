@@ -4,6 +4,8 @@ const prodEnv = require('./prod.env')
 
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
-  BASE_API_URL: '"http://localhost:8000"',
-  ALERTS_WEBSOCKET: '"ws://localhost:8000/ws/alerts/"'
+  BASE_API_URL: '"http://aurora:8000"',
+  BASE_WS_URL: '"ws://aurora:8000/ws/"',
+  ALERTS_WS_URL: '"ws://aurora:8000/ws/alerts/"',
+  DEVICE_WS_URL: '"ws://aurora:8000/ws/devices/"'
 })

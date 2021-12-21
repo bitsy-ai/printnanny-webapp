@@ -19,9 +19,10 @@ export default {
   },
   // mutations for reconnect methods
   SOCKET_RECONNECT (state, count) {
-    console.info(state, count)
+    console.info('Socket reconnected', state, count)
   },
   SOCKET_RECONNECT_ERROR (state) {
     state.socket.reconnectError = true
+    console.info('Socket reconnect error', state)
   }
 }
