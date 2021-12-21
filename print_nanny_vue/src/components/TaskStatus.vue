@@ -40,15 +40,6 @@ export default {
         console.log(self)
         self.taskLocal = data.data
       }
-      // if (data.type != 'taskLocal.status') {
-      //   console.debug(`TaskStatus id=${this.taskId} ignoring ws event type`, data.type)
-      // } else if (data.type == 'taskLocal.status' && data.id != this.taskLocal.id) {
-      //   console.debug(`TaskStatus id=${this.taskLocal.id} ignoring event for other task`, data)
-      // } else {
-      //   console.log('Updating task', data.data)
-      //   this.task = data.data
-      // }
-      // console.log('Received parsed data', data)
     }
 
     this.connection.onopen = function (event) {
