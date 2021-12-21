@@ -5,19 +5,21 @@
             <i class="mdi mdi-id-card"></i><strong> License Key</strong>
         </h4>
         <div class="alert alert-info col-12" role="alert">
-            <h4 class="alert-heading">Click the <strong>Generate License</strong> button to begin download</h4>
-            <p>Follow the <a href="{{ help.GETTING_STARTED }}" target="_blank"> Getting Started</a> guide to copy <strong>printnanny_license.zip</strong> to your Raspberry Pi.</p>
+            <h4 class="alert-heading">Click <strong><i class="mdi mdi-download-outline"></i>Download License</strong> to generate a new license.</h4>
+            <p>Follow the <a href="{{ help.GETTING_STARTED }}" target="_blank"> Getting Started</a> guide to finish setting up your Raspberry Pi.</p>
         </div>
         <p>
             <a href="{% url 'devices:license' pk=device.id %}">
-                <button class="btn btn-primary" onClick="setTimeout(function () { console.log('reloading'); window.location.reload(true); }, 2000);">Generate License</button></a>
+                <button class="btn btn-primary" onClick="setTimeout(function () { console.log('reloading'); window.location.reload(true); }, 2000);">
+                    <i class="mdi mdi-download-outline"></i> Download License</button></a>
 
-            <a href="{% url 'devices:delete' pk=device.id %}"><button class="btn btn-danger float-right">Delete Device</button></a>
+            <a href="{% url 'devices:delete' pk=device.id %}"><button class="btn btn-danger float-right">
+                <i class="mdi mdi-delete"></i> Delete Device</button></a>
         </p>
     </div>
     <div class="card-footer">
         <p>
-            For your safety, <strong>do not share</strong> the contents of <code>printnanny_license.zip</code> with anyone!
+            For your safety, <strong>do not share</strong> your license keys with anyone!
             <br>Print Nanny Staff will <span class="text-danger"><strong>never</strong></span> ask for your license keys. <a href="{{ help.ABOUT_DEVICE_PKI }}">Click here</a> to learn more about how your device is protected.
         </p>
     </div>
