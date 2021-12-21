@@ -47,10 +47,10 @@
                 </a>
                 <ul class="side-nav-second-level  mm-collapse mm-show" aria-expanded="true">
                     <li class="{% if request.resolver_match.url_name == 'devices:list' %}active{% endif %}">
-                        <a href="{% url 'devices:list' %}">{% trans "Print Nanny OS" %}	&nbsp;<span class="badge badge-danger">NEW</span></a>
+                        <a href="{% url 'devices:list' %}">{% trans "Print Nanny OS" %}	&nbsp;<span class="badge badge-danger">New</span></a>
                     </li>
                     <li class="{% if request.resolver_match.url_name == 'dashboard:octoprint-devices:list' %}active{% endif %}">
-                        <a href="{% url 'dashboard:octoprint-devices:list' %}">{% trans "Octoprint Plugin" %}</a>
+                        <a href="{% url 'dashboard:octoprint-devices:list' %}">{% trans "Octoprint Plugin" %}&nbsp;<span class="badge badge-secondary">Legacy</span></a>
                     </li>
                 </ul>
             </li>
