@@ -17,8 +17,8 @@ export default {
   },
 
   SOCKET_ONOPEN (state, event) {
-    Vue.prototype.$socket = event.currentTarget
-    state.socket.isConnected = true
+    // Vue.prototype.$socket = event.currentTarget
+    // state.socket.isConnected = true
     console.log('Socket connected', event)
   },
   SOCKET_ONCLOSE (state, event) {

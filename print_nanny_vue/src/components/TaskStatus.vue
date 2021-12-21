@@ -1,6 +1,6 @@
 <script>
-import { mapActions, mapState } from 'vuex'
-import { SET_DATA, TASKS_DROPDOWN_MODULE } from '@/store/tasks'
+// import { mapActions, mapState } from 'vuex'
+// import { SET_DATA, TASKS_DROPDOWN_MODULE } from '@/store/tasks'
 
 export default {
   props: {
@@ -34,7 +34,7 @@ export default {
     this.connection.onmessage = function (msg) {
       const data = JSON.parse(msg.data)
       console.log('Received event', data)
-      if (data.type == 'task.status') {
+      if (data.type === 'task.status') {
         console.log('Received taskLocal.status event', data)
         console.log(this)
         console.log(self)
