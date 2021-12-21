@@ -13,6 +13,6 @@ Vue.config.productionTip = false
 
 Vue.use(VueCookies)
 Vue.use(BootstrapVue)
-// Vue.use(VueNativeSock, process.env.BASE_WS_URL, { store: store, format: 'json', reconnection: true })
+// Vue.use(VueNativeSock, process.env.ALERTS_WS_URL, { store: store, format: 'json', reconnection: true })
 
 export { Vue, store }

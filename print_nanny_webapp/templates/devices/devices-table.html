@@ -36,20 +36,8 @@
                     </td> -->
                     <!-- <td><i class="mdi mdi-circle {{device.monitoring_active_css_class}}"></i> {{device.monitoring_active}}</td> -->
                 <td>
-                      <span class="task-status-app"
-                      data-device-id="{{ device.id }}"
-                      data-task-id="{{ device.last_task.id }}"
-                      data-task-status-display="{{ device.last_task.last_status.get_status_display }}"
-                      data-task-type-display="{{ device.last_task.get_task_type_display }}"
-                      {% if device.last_task.last_status.wiki_url %}
-                      data-task-wiki-url="{{ device.last_task.last_status.wiki_url }}"
-                      {% endif %}
-                      {% if device.last_task.last_status.msg %}
-                      data-task-msg="{{ device.last_task.last_status.msg }}"
-                      {% endif %}
-                      data-color="{{ device.last_task.last_status.css_class }}"
-                      data-task-status="{{ device.last_task.last_status.status | capfirst }}"
-                      >
+                  {{ device.last_task.to_json_str|safe|json_script:device.last_task.html_id }}
+                    <span class="task-status-app" data-html-id="{{ device.last_task.html_id }}">
                     </span>
                 </td>
                 <td>
@@ -76,4 +64,3 @@
     </div>
   
   </div>
-  
