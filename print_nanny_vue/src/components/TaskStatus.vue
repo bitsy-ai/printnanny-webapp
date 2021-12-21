@@ -26,27 +26,21 @@ export default {
   },
   created: function () {
     const self = this
-
     const url = process.env.DEVICE_WS_URL + this.taskLocal.device + '/'
-    console.log('Starting connection to WebSocket Server')
     this.connection = new WebSocket(url)
 
     this.connection.onmessage = function (msg) {
       const data = JSON.parse(msg.data)
-      console.log('Received event', data)
+      console.debug('Received event', data)
       if (data.type === 'task.status') {
-        console.log('Received taskLocal.status event', data)
-        console.log(this)
-        console.log(self)
+        console.debug('Received taskLocal.status event', data)
         self.taskLocal = data.data
       }
     }
 
     this.connection.onopen = function (event) {
-      console.log(event)
-      console.log('Successfully connected to the echo websocket server...')
+      console.log('Successfully connected to websocket', event)
     }
-
     this.$connect(url)
   }
 }
@@ -56,9 +50,9 @@ export default {
 <span>
     <b-badge :variant="taskLocal.last_status.css_class" v-bind:id="`task-status-${taskLocal.id}`">
     <i class="mdi mdi-information"></i>
-    {{taskLocal.task_type_display}}: {{ taskLocal.last_status.status_display }}</b-badge>
+    {{taskLocal.task_type_display}}: {{ taskLocal.last_status.status }}</b-badge>
   <b-popover v-bind:target="`task-status-${taskLocal.id}`" triggers="hover focus click" placement="right">
-    <template #title>Task: {{taskLocal.task_type_display}} </template>
+    <template #title>Task: {{taskLocal.task_type_display }} </template>
     <p>{{ taskLocal.last_status.status_display }}</p>
     <p>{{ taskLocal.last_status.detail }}</p>
     <a target='_blank' :href="`${ taskLocal.last_status.wiki_url }`">See Wiki for more info</a>

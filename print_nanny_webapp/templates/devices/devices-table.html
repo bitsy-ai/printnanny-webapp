@@ -36,9 +36,7 @@
                     </td> -->
                     <!-- <td><i class="mdi mdi-circle {{device.monitoring_active_css_class}}"></i> {{device.monitoring_active}}</td> -->
                 <td>
-                  {{ device.last_task.to_json_str|safe|json_script:device.last_task.html_id }}
-                    <span class="task-status-app" data-html-id="{{ device.last_task.html_id }}">
-                    </span>
+                  {% include "partials/task-status-badge.html" with task=device.last_task %}
                 </td>
                 <td>
                     <a href="{% url 'devices:license' pk=device.id %}" target="_blank"><button class="btn btn-primary">View Livestream</button></a>
