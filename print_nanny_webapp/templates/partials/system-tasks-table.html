@@ -22,7 +22,7 @@
                 <td>
                     <a 
                     data-toggle="popover" 
-                    data-placement="right" 
+                    data-placement="right"
                     title="Task: {{ task.get_task_type_display }}" 
                     {% if task.last_status.wiki_url %}
                     data-content="{{ task.last_status.msg }} <br><a target='_blank' href='{{ task.last_status.wiki_url}'>Get more info</a>"

@@ -26,27 +26,21 @@ export default {
   },
   created: function () {
     const self = this
-
     const url = process.env.DEVICE_WS_URL + this.taskLocal.device + '/'
-    console.log('Starting connection to WebSocket Server')
     this.connection = new WebSocket(url)
 
     this.connection.onmessage = function (msg) {
       const data = JSON.parse(msg.data)
-      console.log('Received event', data)
+      console.debug('Received event', data)
       if (data.type === 'task.status') {
-        console.log('Received taskLocal.status event', data)
-        console.log(this)
-        console.log(self)
+        console.debug('Received taskLocal.status event', data)
         self.taskLocal = data.data
       }
     }
 
     this.connection.onopen = function (event) {
-      console.log(event)
-      console.log('Successfully connected to the echo websocket server...')
+      console.log('Successfully connected to websocket', event)
     }
-
     this.$connect(url)
   }
 }
