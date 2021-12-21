@@ -7,8 +7,7 @@
         <table class="table table-centered mb-4 mt-4" id="dashboard-raspberry-pis">
             <thead>
                 <tr>
-                    <th>Task</th>
-                    <th>Status</th>
+                    <th>Task Status</th>
                     <th>Last Update</th>
 
                 </tr>
@@ -18,26 +17,10 @@
             {% for task in object_list %}
 
             <tr>
-                <td>{{ task.get_task_type_display }}</td>
                 <td>
-                    <a 
-                    data-toggle="popover" 
-                    data-placement="right"
-                    title="Task: {{ task.get_task_type_display }}" 
-                    {% if task.last_status.wiki_url %}
-                    data-content="{{ task.last_status.msg }} <br><a target='_blank' href='{{ task.last_status.wiki_url}'>Get more info</a>"
-                    {% else %} 
-                    data-content="{{ task.last_status.get_status_display }}" 
-                    {% endif %}
-                    data-html="true"
-                    class="badge badge-{{ task.last_status.css_class }}"
-                    >
-                    <i class="mdi mdi-information"></i>
-                    {{ device.last_task.last_status.status | capfirst }}
-
-                    </a>
+                    {% include "partials/task-status-badge.html" %}
                 </td>
-                <td>{{ object.created_dt | naturaltime }}</td>
+                <td>{{ task.last_status.created_dt | naturaltime }}</td>
             </tr>
             {% endfor %}
 
