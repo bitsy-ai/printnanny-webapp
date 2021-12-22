@@ -136,7 +136,7 @@ class License(SafeDeleteModel):
 
     @property
     def last_check_task(self):
-        return self.tasks.filter(task_type=TaskType.CHECK_LICENSE).first()
+        return self.device.tasks.filter(task_type=TaskType.CHECK_LICENSE).first()
 
     @property
     def user(self):
