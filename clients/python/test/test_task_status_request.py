@@ -40,15 +40,11 @@ class TestTaskStatusRequest(unittest.TestCase):
                 detail = '0', 
                 wiki_url = '0', 
                 status = 'failed', 
-                status_display = '0', 
-                css_class = '0', 
                 task = 56
             )
         else :
             return TaskStatusRequest(
                 status = 'failed',
-                status_display = '0',
-                css_class = '0',
                 task = 56,
         )
 

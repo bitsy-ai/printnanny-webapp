@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **detail** | **str** |  | [optional] 
 **wiki_url** | **str** |  | [optional] 
 **status** | [**TaskStatusType**](TaskStatusType.md) |  | 
-**status_display** | **str** |  | 
-**css_class** | **str** |  | 
+**status_display** | **str** |  | [readonly] 
+**css_class** | **str** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
 **task** | **int** |  | 
 

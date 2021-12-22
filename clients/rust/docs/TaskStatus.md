@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **detail** | Option<**String**> |  | [optional]
 **wiki_url** | Option<**String**> |  | [optional]
 **status** | [**crate::models::TaskStatusType**](TaskStatusType.md) |  | 
-**status_display** | **String** |  | 
-**css_class** | **String** |  | 
+**status_display** | **String** |  | [readonly]
+**css_class** | **String** |  | [readonly]
 **created_dt** | **String** |  | [readonly]
 **task** | **i32** |  | 
 
