@@ -84,8 +84,8 @@ class TaskStatusSerializer(serializers.ModelSerializer):
     detail = serializers.CharField(required=False, allow_null=True)
     wiki_url = serializers.CharField(required=False, allow_null=True)
     status = serializers.ChoiceField(choices=TaskStatusType.choices)
-    status_display = serializers.CharField(source="get_status_display")
-    css_class = serializers.CharField()
+    status_display = serializers.CharField(source="get_status_display", read_only=True)
+    css_class = serializers.CharField(read_only=True)
 
     class Meta:
         model = TaskStatus
