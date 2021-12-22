@@ -48,7 +48,7 @@ export default {
 
 <template>
 <span>
-    <b-badge :variant="taskLocal.last_status.css_class" v-bind:id="`task-status-${taskLocal.id}`">
+    <b-badge href="#" :variant="taskLocal.last_status.css_class" v-bind:id="`task-status-${taskLocal.id}`">
     <i class="mdi mdi-information"></i>
     {{taskLocal.task_type_display}}: {{ taskLocal.last_status.status }}</b-badge>
   <b-popover v-bind:target="`task-status-${taskLocal.id}`" triggers="hover focus click" placement="right">

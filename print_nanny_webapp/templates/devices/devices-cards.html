@@ -1,16 +1,18 @@
 {% load humanize %}
+{% load static %}
 
 <div class="row">
     {% for device in devices %}
       <div class="col-12 col-md-6 d-flex align-items-stretch">
         <div class="card col-12">
-          <div class="card-body">
+          <div class="card-header">
             <h2 class="header-title">
               <a href="{% url 'devices:detail' pk=device.id %}" target="_blank"><i class="mdi mdi-printer-3d"></i> {{device.hostname}}</a>
               
               <span class="float-right">{% include "partials/task-status-badge.html" with task=device.last_task %}</span>
-
             </h2>
+          </div>
+          <div class="card-body">
             <!-- alert box if license not activated -->
             {% if not device.active_license %}
             <div class="alert alert-info col-12" role="alert">
@@ -29,9 +31,24 @@
               <h4 class="alert-heading"><i class="mdi mdi-warning"></i> Additional Setup Needed!</h4>
               <p>Camera not configured</p>
               <p>Click/tap <a href="{% url 'devices:detail' pk=device.id %}" target="_blank"><i class="mdi mdi-printer-3d"></i> {{device.hostname}}</a>
-              or use the <i class="mdi mdi-printer-camera"></i><strong>Add Camera</strong> button to setup a camera.</p>
+              or <i class="mdi mdi-printer-camera"></i><strong>Add Camera</strong> button to setup a camera.</p>
                 
               <p>Follow the instructions in <a href="{{ help.GETTING_STARTED }}" target="_blank"> Getting Started with Print Nanny OS</a> to finish installation.</p>
+            </div>
+            {% endif %}
+
+            {% if device.active_cameras.count == 0 %}
+            <div class="row">
+              <div class="col-5 mt-2">
+                <img src="{% static 'images/sleep.svg' %}" style="opacity: 30%" class="d-none d-md-block img-fluid"/>
+              </div>
+            </div>
+            <div class="row">
+              <div class="alert alert-info col-12 mt-2 mb-0" role="alert">
+                <h4 class="alert-heading"><i class="mdi mdi-warning"></i>Monitoring Offline</h4>
+                <p>Click/tap <a href="{% url 'devices:detail' pk=device.id %}" target="_blank"><i class="mdi mdi-printer-3d"></i> {{device.hostname}}</a>
+                or <i class="mdi mdi-printer-camera"></i><strong>Start Monitoring</strong> button to start camera</p>
+                </div>
             </div>
             {% endif %}
 
