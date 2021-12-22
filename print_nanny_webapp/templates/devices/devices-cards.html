@@ -7,8 +7,10 @@
         <div class="card col-12">
           <div class="card-header">
             <h2 class="header-title">
-              <a href="{% url 'devices:detail' pk=device.id %}" target="_blank"><i class="mdi mdi-printer-3d"></i> {{device.hostname}}</a>
-              
+              <a class="badge badge-light" href="{% url 'devices:detail' pk=device.id %}" target="_blank">
+                <i class="mdi mdi-printer-3d"></i> {{device.hostname}} - {{ device.updated_dt | naturaltime }}</a> 
+
+              </a>              
               <span class="float-right">{% include "partials/task-status-badge.html" with task=device.last_task %}</span>
             </h2>
           </div>
@@ -39,7 +41,7 @@
 
             {% if device.active_cameras.count == 0 %}
             <div class="row">
-              <div class="col-5 mt-2">
+              <div class="col-6 offset-3 mt-2">
                 <img src="{% static 'images/sleep.svg' %}" style="opacity: 30%" class="d-none d-md-block img-fluid"/>
               </div>
             </div>
