@@ -284,7 +284,7 @@ pub enum DevicesUpdateError {
 }
 
 
-pub async fn device_info_update_or_create(configuration: &configuration::Configuration, device_id: i32, device_info_request: crate::models::DeviceInfoRequest) -> Result<crate::models::DeviceInfo, Error<DeviceInfoUpdateOrCreateError>> {
+pub async fn device_info_update_or_create(configuration: &configuration::Configuration, device_id: i32, system_info_request: crate::models::SystemInfoRequest) -> Result<crate::models::SystemInfo, Error<DeviceInfoUpdateOrCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -298,7 +298,7 @@ pub async fn device_info_update_or_create(configuration: &configuration::Configu
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&device_info_request);
+    local_var_req_builder = local_var_req_builder.json(&system_info_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -721,7 +721,7 @@ pub async fn devices_generate_license_retrieve(configuration: &configuration::Co
     }
 }
 
-pub async fn devices_info_create(configuration: &configuration::Configuration, device_id: i32, device_info_request: crate::models::DeviceInfoRequest) -> Result<crate::models::DeviceInfo, Error<DevicesInfoCreateError>> {
+pub async fn devices_info_create(configuration: &configuration::Configuration, device_id: i32, system_info_request: crate::models::SystemInfoRequest) -> Result<crate::models::SystemInfo, Error<DevicesInfoCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -735,7 +735,7 @@ pub async fn devices_info_create(configuration: &configuration::Configuration, d
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&device_info_request);
+    local_var_req_builder = local_var_req_builder.json(&system_info_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -752,7 +752,7 @@ pub async fn devices_info_create(configuration: &configuration::Configuration, d
     }
 }
 
-pub async fn devices_info_list(configuration: &configuration::Configuration, device_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedDeviceInfoList, Error<DevicesInfoListError>> {
+pub async fn devices_info_list(configuration: &configuration::Configuration, device_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedSystemInfoList, Error<DevicesInfoListError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -785,7 +785,7 @@ pub async fn devices_info_list(configuration: &configuration::Configuration, dev
     }
 }
 
-pub async fn devices_info_partial_update(configuration: &configuration::Configuration, device_id: i32, id: i32, patched_device_info_request: Option<crate::models::PatchedDeviceInfoRequest>) -> Result<crate::models::DeviceInfo, Error<DevicesInfoPartialUpdateError>> {
+pub async fn devices_info_partial_update(configuration: &configuration::Configuration, device_id: i32, id: i32, patched_system_info_request: Option<crate::models::PatchedSystemInfoRequest>) -> Result<crate::models::SystemInfo, Error<DevicesInfoPartialUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -799,7 +799,7 @@ pub async fn devices_info_partial_update(configuration: &configuration::Configur
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&patched_device_info_request);
+    local_var_req_builder = local_var_req_builder.json(&patched_system_info_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -816,7 +816,7 @@ pub async fn devices_info_partial_update(configuration: &configuration::Configur
     }
 }
 
-pub async fn devices_info_retrieve(configuration: &configuration::Configuration, device_id: i32, id: i32) -> Result<crate::models::DeviceInfo, Error<DevicesInfoRetrieveError>> {
+pub async fn devices_info_retrieve(configuration: &configuration::Configuration, device_id: i32, id: i32) -> Result<crate::models::SystemInfo, Error<DevicesInfoRetrieveError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -846,7 +846,7 @@ pub async fn devices_info_retrieve(configuration: &configuration::Configuration,
     }
 }
 
-pub async fn devices_info_update(configuration: &configuration::Configuration, device_id: i32, id: i32, device_info_request: crate::models::DeviceInfoRequest) -> Result<crate::models::DeviceInfo, Error<DevicesInfoUpdateError>> {
+pub async fn devices_info_update(configuration: &configuration::Configuration, device_id: i32, id: i32, system_info_request: crate::models::SystemInfoRequest) -> Result<crate::models::SystemInfo, Error<DevicesInfoUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -860,7 +860,7 @@ pub async fn devices_info_update(configuration: &configuration::Configuration, d
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&device_info_request);
+    local_var_req_builder = local_var_req_builder.json(&system_info_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;

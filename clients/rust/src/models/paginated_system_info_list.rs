@@ -12,7 +12,7 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct PaginatedDeviceInfoList {
+pub struct PaginatedSystemInfoList {
     #[serde(rename = "count", skip_serializing_if = "Option::is_none")]
     pub count: Option<i32>,
     #[serde(rename = "next", skip_serializing_if = "Option::is_none")]
@@ -20,12 +20,12 @@ pub struct PaginatedDeviceInfoList {
     #[serde(rename = "previous", skip_serializing_if = "Option::is_none")]
     pub previous: Option<String>,
     #[serde(rename = "results", skip_serializing_if = "Option::is_none")]
-    pub results: Option<Vec<crate::models::DeviceInfo>>,
+    pub results: Option<Vec<crate::models::SystemInfo>>,
 }
 
-impl PaginatedDeviceInfoList {
-    pub fn new() -> PaginatedDeviceInfoList {
-        PaginatedDeviceInfoList {
+impl PaginatedSystemInfoList {
+    pub fn new() -> PaginatedSystemInfoList {
+        PaginatedSystemInfoList {
             count: None,
             next: None,
             previous: None,

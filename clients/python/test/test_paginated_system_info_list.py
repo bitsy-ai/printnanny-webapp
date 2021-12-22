@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.paginated_device_info_list import PaginatedDeviceInfoList  # noqa: E501
+from printnanny_api_client.models.paginated_system_info_list import PaginatedSystemInfoList  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestPaginatedDeviceInfoList(unittest.TestCase):
-    """PaginatedDeviceInfoList unit test stubs"""
+class TestPaginatedSystemInfoList(unittest.TestCase):
+    """PaginatedSystemInfoList unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,18 +30,18 @@ class TestPaginatedDeviceInfoList(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test PaginatedDeviceInfoList
+        """Test PaginatedSystemInfoList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.paginated_device_info_list.PaginatedDeviceInfoList()  # noqa: E501
+        # model = printnanny_api_client.models.paginated_system_info_list.PaginatedSystemInfoList()  # noqa: E501
         if include_optional :
-            return PaginatedDeviceInfoList(
+            return PaginatedSystemInfoList(
                 count = 123, 
                 next = 'http://api.example.org/accounts/?page=4', 
                 previous = 'http://api.example.org/accounts/?page=2', 
                 results = [
-                    printnanny_api_client.models.device_info.DeviceInfo(
+                    printnanny_api_client.models.system_info.SystemInfo(
                         id = 56, 
                         machine_id = '', 
                         hardware = '', 
@@ -55,11 +55,11 @@ class TestPaginatedDeviceInfoList(unittest.TestCase):
                     ]
             )
         else :
-            return PaginatedDeviceInfoList(
+            return PaginatedSystemInfoList(
         )
 
-    def testPaginatedDeviceInfoList(self):
-        """Test PaginatedDeviceInfoList"""
+    def testPaginatedSystemInfoList(self):
+        """Test PaginatedSystemInfoList"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

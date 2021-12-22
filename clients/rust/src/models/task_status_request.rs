@@ -19,16 +19,22 @@ pub struct TaskStatusRequest {
     pub wiki_url: Option<String>,
     #[serde(rename = "status")]
     pub status: crate::models::TaskStatusType,
+    #[serde(rename = "status_display")]
+    pub status_display: String,
+    #[serde(rename = "css_class")]
+    pub css_class: String,
     #[serde(rename = "task")]
     pub task: i32,
 }
 
 impl TaskStatusRequest {
-    pub fn new(status: crate::models::TaskStatusType, task: i32) -> TaskStatusRequest {
+    pub fn new(status: crate::models::TaskStatusType, status_display: String, css_class: String, task: i32) -> TaskStatusRequest {
         TaskStatusRequest {
             detail: None,
             wiki_url: None,
             status,
+            status_display,
+            css_class,
             task,
         }
     }

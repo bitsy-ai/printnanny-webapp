@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.patched_device_info_request import PatchedDeviceInfoRequest  # noqa: E501
+from printnanny_api_client.models.system_info import SystemInfo  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestPatchedDeviceInfoRequest(unittest.TestCase):
-    """PatchedDeviceInfoRequest unit test stubs"""
+class TestSystemInfo(unittest.TestCase):
+    """SystemInfo unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,29 +30,40 @@ class TestPatchedDeviceInfoRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test PatchedDeviceInfoRequest
+        """Test SystemInfo
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.patched_device_info_request.PatchedDeviceInfoRequest()  # noqa: E501
+        # model = printnanny_api_client.models.system_info.SystemInfo()  # noqa: E501
         if include_optional :
-            return PatchedDeviceInfoRequest(
-                machine_id = '0', 
-                hardware = '0', 
-                revision = '0', 
-                model = '0', 
-                serial = '0', 
+            return SystemInfo(
+                id = 56, 
+                machine_id = '', 
+                hardware = '', 
+                revision = '', 
+                model = '', 
+                serial = '', 
                 cores = -2147483648, 
                 ram = -9223372036854775808, 
-                image_version = '0', 
+                image_version = '', 
                 device = 56
             )
         else :
-            return PatchedDeviceInfoRequest(
+            return SystemInfo(
+                id = 56,
+                machine_id = '',
+                hardware = '',
+                revision = '',
+                model = '',
+                serial = '',
+                cores = -2147483648,
+                ram = -9223372036854775808,
+                image_version = '',
+                device = 56,
         )
 
-    def testPatchedDeviceInfoRequest(self):
-        """Test PatchedDeviceInfoRequest"""
+    def testSystemInfo(self):
+        """Test SystemInfo"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

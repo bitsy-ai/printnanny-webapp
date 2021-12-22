@@ -42,7 +42,7 @@ Method | HTTP request | Description
 
 
 # **device_info_update_or_create**
-> DeviceInfo device_info_update_or_create(device_id, device_info_request)
+> SystemInfo device_info_update_or_create(device_id, system_info_request)
 
 
 
@@ -82,10 +82,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
-device_info_request = printnanny_api_client.DeviceInfoRequest() # DeviceInfoRequest | 
+system_info_request = printnanny_api_client.SystemInfoRequest() # SystemInfoRequest | 
 
     try:
-        api_response = api_instance.device_info_update_or_create(device_id, device_info_request)
+        api_response = api_instance.device_info_update_or_create(device_id, system_info_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->device_info_update_or_create: %s\n" % e)
@@ -125,10 +125,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
-device_info_request = printnanny_api_client.DeviceInfoRequest() # DeviceInfoRequest | 
+system_info_request = printnanny_api_client.SystemInfoRequest() # SystemInfoRequest | 
 
     try:
-        api_response = api_instance.device_info_update_or_create(device_id, device_info_request)
+        api_response = api_instance.device_info_update_or_create(device_id, system_info_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->device_info_update_or_create: %s\n" % e)
@@ -139,11 +139,11 @@ device_info_request = printnanny_api_client.DeviceInfoRequest() # DeviceInfoRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **device_id** | **int**|  | 
- **device_info_request** | [**DeviceInfoRequest**](DeviceInfoRequest.md)|  | 
+ **system_info_request** | [**SystemInfoRequest**](SystemInfoRequest.md)|  | 
 
 ### Return type
 
-[**DeviceInfo**](DeviceInfo.md)
+[**SystemInfo**](SystemInfo.md)
 
 ### Authorization
 
@@ -1745,7 +1745,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_info_create**
-> DeviceInfo devices_info_create(device_id, device_info_request)
+> SystemInfo devices_info_create(device_id, system_info_request)
 
 
 
@@ -1785,10 +1785,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
-device_info_request = printnanny_api_client.DeviceInfoRequest() # DeviceInfoRequest | 
+system_info_request = printnanny_api_client.SystemInfoRequest() # SystemInfoRequest | 
 
     try:
-        api_response = api_instance.devices_info_create(device_id, device_info_request)
+        api_response = api_instance.devices_info_create(device_id, system_info_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_info_create: %s\n" % e)
@@ -1828,10 +1828,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
-device_info_request = printnanny_api_client.DeviceInfoRequest() # DeviceInfoRequest | 
+system_info_request = printnanny_api_client.SystemInfoRequest() # SystemInfoRequest | 
 
     try:
-        api_response = api_instance.devices_info_create(device_id, device_info_request)
+        api_response = api_instance.devices_info_create(device_id, system_info_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_info_create: %s\n" % e)
@@ -1842,11 +1842,11 @@ device_info_request = printnanny_api_client.DeviceInfoRequest() # DeviceInfoRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **device_id** | **int**|  | 
- **device_info_request** | [**DeviceInfoRequest**](DeviceInfoRequest.md)|  | 
+ **system_info_request** | [**SystemInfoRequest**](SystemInfoRequest.md)|  | 
 
 ### Return type
 
-[**DeviceInfo**](DeviceInfo.md)
+[**SystemInfo**](SystemInfo.md)
 
 ### Authorization
 
@@ -1867,7 +1867,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_info_list**
-> PaginatedDeviceInfoList devices_info_list(device_id, page=page)
+> PaginatedSystemInfoList devices_info_list(device_id, page=page)
 
 
 
@@ -1968,7 +1968,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedDeviceInfoList**](PaginatedDeviceInfoList.md)
+[**PaginatedSystemInfoList**](PaginatedSystemInfoList.md)
 
 ### Authorization
 
@@ -1988,7 +1988,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_info_partial_update**
-> DeviceInfo devices_info_partial_update(device_id, id, patched_device_info_request=patched_device_info_request)
+> SystemInfo devices_info_partial_update(device_id, id, patched_system_info_request=patched_system_info_request)
 
 
 
@@ -2028,11 +2028,11 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this device info.
-patched_device_info_request = printnanny_api_client.PatchedDeviceInfoRequest() # PatchedDeviceInfoRequest |  (optional)
+id = 56 # int | A unique integer value identifying this system info.
+patched_system_info_request = printnanny_api_client.PatchedSystemInfoRequest() # PatchedSystemInfoRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_info_partial_update(device_id, id, patched_device_info_request=patched_device_info_request)
+        api_response = api_instance.devices_info_partial_update(device_id, id, patched_system_info_request=patched_system_info_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_info_partial_update: %s\n" % e)
@@ -2072,11 +2072,11 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this device info.
-patched_device_info_request = printnanny_api_client.PatchedDeviceInfoRequest() # PatchedDeviceInfoRequest |  (optional)
+id = 56 # int | A unique integer value identifying this system info.
+patched_system_info_request = printnanny_api_client.PatchedSystemInfoRequest() # PatchedSystemInfoRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_info_partial_update(device_id, id, patched_device_info_request=patched_device_info_request)
+        api_response = api_instance.devices_info_partial_update(device_id, id, patched_system_info_request=patched_system_info_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_info_partial_update: %s\n" % e)
@@ -2087,12 +2087,12 @@ patched_device_info_request = printnanny_api_client.PatchedDeviceInfoRequest() #
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **device_id** | **int**|  | 
- **id** | **int**| A unique integer value identifying this device info. | 
- **patched_device_info_request** | [**PatchedDeviceInfoRequest**](PatchedDeviceInfoRequest.md)|  | [optional] 
+ **id** | **int**| A unique integer value identifying this system info. | 
+ **patched_system_info_request** | [**PatchedSystemInfoRequest**](PatchedSystemInfoRequest.md)|  | [optional] 
 
 ### Return type
 
-[**DeviceInfo**](DeviceInfo.md)
+[**SystemInfo**](SystemInfo.md)
 
 ### Authorization
 
@@ -2111,7 +2111,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_info_retrieve**
-> DeviceInfo devices_info_retrieve(device_id, id)
+> SystemInfo devices_info_retrieve(device_id, id)
 
 
 
@@ -2151,7 +2151,7 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this device info.
+id = 56 # int | A unique integer value identifying this system info.
 
     try:
         api_response = api_instance.devices_info_retrieve(device_id, id)
@@ -2194,7 +2194,7 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this device info.
+id = 56 # int | A unique integer value identifying this system info.
 
     try:
         api_response = api_instance.devices_info_retrieve(device_id, id)
@@ -2208,11 +2208,11 @@ id = 56 # int | A unique integer value identifying this device info.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **device_id** | **int**|  | 
- **id** | **int**| A unique integer value identifying this device info. | 
+ **id** | **int**| A unique integer value identifying this system info. | 
 
 ### Return type
 
-[**DeviceInfo**](DeviceInfo.md)
+[**SystemInfo**](SystemInfo.md)
 
 ### Authorization
 
@@ -2231,7 +2231,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_info_update**
-> DeviceInfo devices_info_update(device_id, id, device_info_request)
+> SystemInfo devices_info_update(device_id, id, system_info_request)
 
 
 
@@ -2271,11 +2271,11 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this device info.
-device_info_request = printnanny_api_client.DeviceInfoRequest() # DeviceInfoRequest | 
+id = 56 # int | A unique integer value identifying this system info.
+system_info_request = printnanny_api_client.SystemInfoRequest() # SystemInfoRequest | 
 
     try:
-        api_response = api_instance.devices_info_update(device_id, id, device_info_request)
+        api_response = api_instance.devices_info_update(device_id, id, system_info_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_info_update: %s\n" % e)
@@ -2315,11 +2315,11 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this device info.
-device_info_request = printnanny_api_client.DeviceInfoRequest() # DeviceInfoRequest | 
+id = 56 # int | A unique integer value identifying this system info.
+system_info_request = printnanny_api_client.SystemInfoRequest() # SystemInfoRequest | 
 
     try:
-        api_response = api_instance.devices_info_update(device_id, id, device_info_request)
+        api_response = api_instance.devices_info_update(device_id, id, system_info_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_info_update: %s\n" % e)
@@ -2330,12 +2330,12 @@ device_info_request = printnanny_api_client.DeviceInfoRequest() # DeviceInfoRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **device_id** | **int**|  | 
- **id** | **int**| A unique integer value identifying this device info. | 
- **device_info_request** | [**DeviceInfoRequest**](DeviceInfoRequest.md)|  | 
+ **id** | **int**| A unique integer value identifying this system info. | 
+ **system_info_request** | [**SystemInfoRequest**](SystemInfoRequest.md)|  | 
 
 ### Return type
 
-[**DeviceInfo**](DeviceInfo.md)
+[**SystemInfo**](SystemInfo.md)
 
 ### Authorization
 

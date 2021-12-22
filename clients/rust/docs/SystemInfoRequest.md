@@ -1,10 +1,9 @@
-# DeviceInfo
+# SystemInfoRequest
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **i32** |  | [readonly]
 **machine_id** | **String** | Populated from /etc/machine-id | 
 **hardware** | **String** | Populated from /proc/cpuinfo HARDWARE | 
 **revision** | **String** | Populated from /proc/cpuinfo REVISION | 

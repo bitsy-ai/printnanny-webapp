@@ -76,6 +76,7 @@ class TestPaginatedDeviceList(unittest.TestCase):
                                 last_status = null, 
                                 task_type = 'monitor_start', 
                                 active = True, 
+                                task_type_display = '', 
                                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                                 device = 56, )
                             ], 

@@ -17,15 +17,18 @@ pub struct TaskRequest {
     pub task_type: crate::models::TaskType,
     #[serde(rename = "active", skip_serializing_if = "Option::is_none")]
     pub active: Option<bool>,
+    #[serde(rename = "task_type_display")]
+    pub task_type_display: String,
     #[serde(rename = "device")]
     pub device: i32,
 }
 
 impl TaskRequest {
-    pub fn new(task_type: crate::models::TaskType, device: i32) -> TaskRequest {
+    pub fn new(task_type: crate::models::TaskType, task_type_display: String, device: i32) -> TaskRequest {
         TaskRequest {
             task_type,
             active: None,
+            task_type_display,
             device,
         }
     }

@@ -44,7 +44,7 @@ Method | HTTP request | Description
 
 ## device_info_update_or_create
 
-> crate::models::DeviceInfo device_info_update_or_create(device_id, device_info_request)
+> crate::models::SystemInfo device_info_update_or_create(device_id, system_info_request)
 
 
 ### Parameters
@@ -53,11 +53,11 @@ Method | HTTP request | Description
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
-**device_info_request** | [**DeviceInfoRequest**](DeviceInfoRequest.md) |  | [required] |
+**system_info_request** | [**SystemInfoRequest**](SystemInfoRequest.md) |  | [required] |
 
 ### Return type
 
-[**crate::models::DeviceInfo**](DeviceInfo.md)
+[**crate::models::SystemInfo**](SystemInfo.md)
 
 ### Authorization
 
@@ -457,7 +457,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_info_create
 
-> crate::models::DeviceInfo devices_info_create(device_id, device_info_request)
+> crate::models::SystemInfo devices_info_create(device_id, system_info_request)
 
 
 ### Parameters
@@ -466,11 +466,11 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
-**device_info_request** | [**DeviceInfoRequest**](DeviceInfoRequest.md) |  | [required] |
+**system_info_request** | [**SystemInfoRequest**](SystemInfoRequest.md) |  | [required] |
 
 ### Return type
 
-[**crate::models::DeviceInfo**](DeviceInfo.md)
+[**crate::models::SystemInfo**](SystemInfo.md)
 
 ### Authorization
 
@@ -486,7 +486,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_info_list
 
-> crate::models::PaginatedDeviceInfoList devices_info_list(device_id, page)
+> crate::models::PaginatedSystemInfoList devices_info_list(device_id, page)
 
 
 ### Parameters
@@ -499,7 +499,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::PaginatedDeviceInfoList**](PaginatedDeviceInfoList.md)
+[**crate::models::PaginatedSystemInfoList**](PaginatedSystemInfoList.md)
 
 ### Authorization
 
@@ -515,7 +515,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_info_partial_update
 
-> crate::models::DeviceInfo devices_info_partial_update(device_id, id, patched_device_info_request)
+> crate::models::SystemInfo devices_info_partial_update(device_id, id, patched_system_info_request)
 
 
 ### Parameters
@@ -524,12 +524,12 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
-**id** | **i32** | A unique integer value identifying this device info. | [required] |
-**patched_device_info_request** | Option<[**PatchedDeviceInfoRequest**](PatchedDeviceInfoRequest.md)> |  |  |
+**id** | **i32** | A unique integer value identifying this system info. | [required] |
+**patched_system_info_request** | Option<[**PatchedSystemInfoRequest**](PatchedSystemInfoRequest.md)> |  |  |
 
 ### Return type
 
-[**crate::models::DeviceInfo**](DeviceInfo.md)
+[**crate::models::SystemInfo**](SystemInfo.md)
 
 ### Authorization
 
@@ -545,7 +545,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_info_retrieve
 
-> crate::models::DeviceInfo devices_info_retrieve(device_id, id)
+> crate::models::SystemInfo devices_info_retrieve(device_id, id)
 
 
 ### Parameters
@@ -554,11 +554,11 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
-**id** | **i32** | A unique integer value identifying this device info. | [required] |
+**id** | **i32** | A unique integer value identifying this system info. | [required] |
 
 ### Return type
 
-[**crate::models::DeviceInfo**](DeviceInfo.md)
+[**crate::models::SystemInfo**](SystemInfo.md)
 
 ### Authorization
 
@@ -574,7 +574,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_info_update
 
-> crate::models::DeviceInfo devices_info_update(device_id, id, device_info_request)
+> crate::models::SystemInfo devices_info_update(device_id, id, system_info_request)
 
 
 ### Parameters
@@ -583,12 +583,12 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
-**id** | **i32** | A unique integer value identifying this device info. | [required] |
-**device_info_request** | [**DeviceInfoRequest**](DeviceInfoRequest.md) |  | [required] |
+**id** | **i32** | A unique integer value identifying this system info. | [required] |
+**system_info_request** | [**SystemInfoRequest**](SystemInfoRequest.md) |  | [required] |
 
 ### Return type
 
-[**crate::models::DeviceInfo**](DeviceInfo.md)
+[**crate::models::SystemInfo**](SystemInfo.md)
 
 ### Authorization
 
