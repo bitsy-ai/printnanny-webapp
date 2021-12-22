@@ -7,7 +7,7 @@ from print_nanny_webapp.devices.api.views import (
     CameraViewSet,
     CloudiotDeviceViewSet ,
     DeviceHostnameViewSet,
-    DeviceInfoViewSet,
+    SystemInfoViewSet,
     DeviceViewSet,
     LicenseViewSet,
     PrinterControllerViewSet,
@@ -57,7 +57,7 @@ devices_by_hostname = [
 ]
 
 devices_router = NestedSimpleRouter(router, r'devices', lookup='device')
-devices_router.register(r'info', DeviceInfoViewSet, basename='info')
+devices_router.register(r'info', SystemInfoViewSet, basename='info')
 devices_router.register(r'cameras', CameraViewSet, basename='cameras')
 devices_router.register(r'cloud-iot-devices', CloudiotDeviceViewSet , basename='cloud-iot-devices')
 devices_router.register(r'printer-controllers', PrinterControllerViewSet, basename='printer-controllers')

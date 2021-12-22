@@ -147,7 +147,7 @@ class License(SafeDeleteModel):
         return self.device.cloudiot_device
 
 
-class DeviceInfo(SafeDeleteModel):
+class SystemInfo(SafeDeleteModel):
     """
     Immutable device info & metadata
     """
