@@ -22,7 +22,7 @@ from .serializers import (
     CameraSerializer,
     CloudiotDeviceSerializer,
     DeviceConfigSerializer,
-    DeviceInfoSerializer,
+    SystemInfoSerializer,
     DeviceSerializer,
     LicenseSerializer,
     PrinterControllerSerializer,
@@ -34,7 +34,7 @@ from ..models import (
     CloudiotDevice,
     Device,
     DeviceConfig,
-    DeviceInfo,
+    SystemInfo,
     License,
     PrinterController,
     Task,
@@ -261,7 +261,7 @@ class DeviceViewSet(
 
 
 ###
-# DeviceInfo views
+# SystemInfo views
 ###
 list_device_info_schema = extend_schema(
     parameters=[
@@ -269,18 +269,18 @@ list_device_info_schema = extend_schema(
     ],
     responses={
         "default": ErrorDetailSerializer,
-        200: DeviceInfoSerializer(many=True),
+        200: SystemInfoSerializer(many=True),
     },
 )
 modify_device_info_schema = extend_schema(
     parameters=[
         OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
     ],
-    request=DeviceInfoSerializer,
+    request=SystemInfoSerializer,
     responses={
         "default": ErrorDetailSerializer,
-        201: DeviceInfoSerializer,
-        202: DeviceInfoSerializer,
+        201: SystemInfoSerializer,
+        202: SystemInfoSerializer,
     },
 )
 
@@ -290,15 +290,15 @@ modify_device_info_schema = extend_schema(
     create=modify_device_info_schema,
     update=modify_device_info_schema,
 )
-class DeviceInfoViewSet(
+class SystemInfoViewSet(
     GenericViewSet,
     ListModelMixin,
     RetrieveModelMixin,
     UpdateModelMixin,
     CreateModelMixin,
 ):
-    serializer_class = DeviceInfoSerializer
-    queryset = DeviceInfo.objects.all()
+    serializer_class = SystemInfoSerializer
+    queryset = SystemInfo.objects.all()
     lookup_field = "id"
 
     def perform_create(self, serializer):
@@ -308,8 +308,8 @@ class DeviceInfoViewSet(
         operation_id="device_info_update_or_create",
         responses={
             # 400: PrinterProfileSerializer,
-            200: DeviceInfoSerializer,
-            201: DeviceInfoSerializer,
+            200: SystemInfoSerializer,
+            201: SystemInfoSerializer,
         },
     )
     @action(methods=["post"], detail=False, url_path="update-or-create")

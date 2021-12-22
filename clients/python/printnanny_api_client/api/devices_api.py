@@ -37,19 +37,19 @@ class DevicesApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def device_info_update_or_create(self, device_id, device_info_request, **kwargs):  # noqa: E501
+    def device_info_update_or_create(self, device_id, system_info_request, **kwargs):  # noqa: E501
         """device_info_update_or_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.device_info_update_or_create(device_id, device_info_request, async_req=True)
+        >>> thread = api.device_info_update_or_create(device_id, system_info_request, async_req=True)
         >>> result = thread.get()
 
         :param device_id: (required)
         :type device_id: int
-        :param device_info_request: (required)
-        :type device_info_request: DeviceInfoRequest
+        :param system_info_request: (required)
+        :type system_info_request: SystemInfoRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -63,24 +63,24 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: DeviceInfo
+        :rtype: SystemInfo
         """
         kwargs['_return_http_data_only'] = True
-        return self.device_info_update_or_create_with_http_info(device_id, device_info_request, **kwargs)  # noqa: E501
+        return self.device_info_update_or_create_with_http_info(device_id, system_info_request, **kwargs)  # noqa: E501
 
-    def device_info_update_or_create_with_http_info(self, device_id, device_info_request, **kwargs):  # noqa: E501
+    def device_info_update_or_create_with_http_info(self, device_id, system_info_request, **kwargs):  # noqa: E501
         """device_info_update_or_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.device_info_update_or_create_with_http_info(device_id, device_info_request, async_req=True)
+        >>> thread = api.device_info_update_or_create_with_http_info(device_id, system_info_request, async_req=True)
         >>> result = thread.get()
 
         :param device_id: (required)
         :type device_id: int
-        :param device_info_request: (required)
-        :type device_info_request: DeviceInfoRequest
+        :param system_info_request: (required)
+        :type system_info_request: SystemInfoRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -101,14 +101,14 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(DeviceInfo, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(SystemInfo, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
 
         all_params = [
             'device_id',
-            'device_info_request'
+            'system_info_request'
         ]
         all_params.extend(
             [
@@ -132,10 +132,10 @@ class DevicesApi(object):
         if self.api_client.client_side_validation and ('device_id' not in local_var_params or  # noqa: E501
                                                         local_var_params['device_id'] is None):  # noqa: E501
             raise ApiValueError("Missing the required parameter `device_id` when calling `device_info_update_or_create`")  # noqa: E501
-        # verify the required parameter 'device_info_request' is set
-        if self.api_client.client_side_validation and ('device_info_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['device_info_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `device_info_request` when calling `device_info_update_or_create`")  # noqa: E501
+        # verify the required parameter 'system_info_request' is set
+        if self.api_client.client_side_validation and ('system_info_request' not in local_var_params or  # noqa: E501
+                                                        local_var_params['system_info_request'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `system_info_request` when calling `device_info_update_or_create`")  # noqa: E501
 
         collection_formats = {}
 
@@ -151,8 +151,8 @@ class DevicesApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'device_info_request' in local_var_params:
-            body_params = local_var_params['device_info_request']
+        if 'system_info_request' in local_var_params:
+            body_params = local_var_params['system_info_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -165,8 +165,8 @@ class DevicesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            200: "DeviceInfo",
-            201: "DeviceInfo",
+            200: "SystemInfo",
+            201: "SystemInfo",
         }
 
         return self.api_client.call_api(
@@ -2087,19 +2087,19 @@ class DevicesApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def devices_info_create(self, device_id, device_info_request, **kwargs):  # noqa: E501
+    def devices_info_create(self, device_id, system_info_request, **kwargs):  # noqa: E501
         """devices_info_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_info_create(device_id, device_info_request, async_req=True)
+        >>> thread = api.devices_info_create(device_id, system_info_request, async_req=True)
         >>> result = thread.get()
 
         :param device_id: (required)
         :type device_id: int
-        :param device_info_request: (required)
-        :type device_info_request: DeviceInfoRequest
+        :param system_info_request: (required)
+        :type system_info_request: SystemInfoRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -2113,24 +2113,24 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: DeviceInfo
+        :rtype: SystemInfo
         """
         kwargs['_return_http_data_only'] = True
-        return self.devices_info_create_with_http_info(device_id, device_info_request, **kwargs)  # noqa: E501
+        return self.devices_info_create_with_http_info(device_id, system_info_request, **kwargs)  # noqa: E501
 
-    def devices_info_create_with_http_info(self, device_id, device_info_request, **kwargs):  # noqa: E501
+    def devices_info_create_with_http_info(self, device_id, system_info_request, **kwargs):  # noqa: E501
         """devices_info_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_info_create_with_http_info(device_id, device_info_request, async_req=True)
+        >>> thread = api.devices_info_create_with_http_info(device_id, system_info_request, async_req=True)
         >>> result = thread.get()
 
         :param device_id: (required)
         :type device_id: int
-        :param device_info_request: (required)
-        :type device_info_request: DeviceInfoRequest
+        :param system_info_request: (required)
+        :type system_info_request: SystemInfoRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -2151,14 +2151,14 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(DeviceInfo, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(SystemInfo, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
 
         all_params = [
             'device_id',
-            'device_info_request'
+            'system_info_request'
         ]
         all_params.extend(
             [
@@ -2182,10 +2182,10 @@ class DevicesApi(object):
         if self.api_client.client_side_validation and ('device_id' not in local_var_params or  # noqa: E501
                                                         local_var_params['device_id'] is None):  # noqa: E501
             raise ApiValueError("Missing the required parameter `device_id` when calling `devices_info_create`")  # noqa: E501
-        # verify the required parameter 'device_info_request' is set
-        if self.api_client.client_side_validation and ('device_info_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['device_info_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `device_info_request` when calling `devices_info_create`")  # noqa: E501
+        # verify the required parameter 'system_info_request' is set
+        if self.api_client.client_side_validation and ('system_info_request' not in local_var_params or  # noqa: E501
+                                                        local_var_params['system_info_request'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `system_info_request` when calling `devices_info_create`")  # noqa: E501
 
         collection_formats = {}
 
@@ -2201,8 +2201,8 @@ class DevicesApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'device_info_request' in local_var_params:
-            body_params = local_var_params['device_info_request']
+        if 'system_info_request' in local_var_params:
+            body_params = local_var_params['system_info_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -2215,8 +2215,8 @@ class DevicesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            201: "DeviceInfo",
-            202: "DeviceInfo",
+            201: "SystemInfo",
+            202: "SystemInfo",
         }
 
         return self.api_client.call_api(
@@ -2262,7 +2262,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: PaginatedDeviceInfoList
+        :rtype: PaginatedSystemInfoList
         """
         kwargs['_return_http_data_only'] = True
         return self.devices_info_list_with_http_info(device_id, **kwargs)  # noqa: E501
@@ -2300,7 +2300,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(PaginatedDeviceInfoList, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(PaginatedSystemInfoList, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -2356,7 +2356,7 @@ class DevicesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            200: "PaginatedDeviceInfoList",
+            200: "PaginatedSystemInfoList",
         }
 
         return self.api_client.call_api(
@@ -2387,10 +2387,10 @@ class DevicesApi(object):
 
         :param device_id: (required)
         :type device_id: int
-        :param id: A unique integer value identifying this device info. (required)
+        :param id: A unique integer value identifying this system info. (required)
         :type id: int
-        :param patched_device_info_request:
-        :type patched_device_info_request: PatchedDeviceInfoRequest
+        :param patched_system_info_request:
+        :type patched_system_info_request: PatchedSystemInfoRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -2404,7 +2404,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: DeviceInfo
+        :rtype: SystemInfo
         """
         kwargs['_return_http_data_only'] = True
         return self.devices_info_partial_update_with_http_info(device_id, id, **kwargs)  # noqa: E501
@@ -2420,10 +2420,10 @@ class DevicesApi(object):
 
         :param device_id: (required)
         :type device_id: int
-        :param id: A unique integer value identifying this device info. (required)
+        :param id: A unique integer value identifying this system info. (required)
         :type id: int
-        :param patched_device_info_request:
-        :type patched_device_info_request: PatchedDeviceInfoRequest
+        :param patched_system_info_request:
+        :type patched_system_info_request: PatchedSystemInfoRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -2444,7 +2444,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(DeviceInfo, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(SystemInfo, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -2452,7 +2452,7 @@ class DevicesApi(object):
         all_params = [
             'device_id',
             'id',
-            'patched_device_info_request'
+            'patched_system_info_request'
         ]
         all_params.extend(
             [
@@ -2497,8 +2497,8 @@ class DevicesApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'patched_device_info_request' in local_var_params:
-            body_params = local_var_params['patched_device_info_request']
+        if 'patched_system_info_request' in local_var_params:
+            body_params = local_var_params['patched_system_info_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -2511,7 +2511,7 @@ class DevicesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            200: "DeviceInfo",
+            200: "SystemInfo",
         }
 
         return self.api_client.call_api(
@@ -2542,7 +2542,7 @@ class DevicesApi(object):
 
         :param device_id: (required)
         :type device_id: int
-        :param id: A unique integer value identifying this device info. (required)
+        :param id: A unique integer value identifying this system info. (required)
         :type id: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2557,7 +2557,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: DeviceInfo
+        :rtype: SystemInfo
         """
         kwargs['_return_http_data_only'] = True
         return self.devices_info_retrieve_with_http_info(device_id, id, **kwargs)  # noqa: E501
@@ -2573,7 +2573,7 @@ class DevicesApi(object):
 
         :param device_id: (required)
         :type device_id: int
-        :param id: A unique integer value identifying this device info. (required)
+        :param id: A unique integer value identifying this system info. (required)
         :type id: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2595,7 +2595,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(DeviceInfo, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(SystemInfo, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -2655,7 +2655,7 @@ class DevicesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            200: "DeviceInfo",
+            200: "SystemInfo",
         }
 
         return self.api_client.call_api(
@@ -2675,21 +2675,21 @@ class DevicesApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def devices_info_update(self, device_id, id, device_info_request, **kwargs):  # noqa: E501
+    def devices_info_update(self, device_id, id, system_info_request, **kwargs):  # noqa: E501
         """devices_info_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_info_update(device_id, id, device_info_request, async_req=True)
+        >>> thread = api.devices_info_update(device_id, id, system_info_request, async_req=True)
         >>> result = thread.get()
 
         :param device_id: (required)
         :type device_id: int
-        :param id: A unique integer value identifying this device info. (required)
+        :param id: A unique integer value identifying this system info. (required)
         :type id: int
-        :param device_info_request: (required)
-        :type device_info_request: DeviceInfoRequest
+        :param system_info_request: (required)
+        :type system_info_request: SystemInfoRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -2703,26 +2703,26 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: DeviceInfo
+        :rtype: SystemInfo
         """
         kwargs['_return_http_data_only'] = True
-        return self.devices_info_update_with_http_info(device_id, id, device_info_request, **kwargs)  # noqa: E501
+        return self.devices_info_update_with_http_info(device_id, id, system_info_request, **kwargs)  # noqa: E501
 
-    def devices_info_update_with_http_info(self, device_id, id, device_info_request, **kwargs):  # noqa: E501
+    def devices_info_update_with_http_info(self, device_id, id, system_info_request, **kwargs):  # noqa: E501
         """devices_info_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_info_update_with_http_info(device_id, id, device_info_request, async_req=True)
+        >>> thread = api.devices_info_update_with_http_info(device_id, id, system_info_request, async_req=True)
         >>> result = thread.get()
 
         :param device_id: (required)
         :type device_id: int
-        :param id: A unique integer value identifying this device info. (required)
+        :param id: A unique integer value identifying this system info. (required)
         :type id: int
-        :param device_info_request: (required)
-        :type device_info_request: DeviceInfoRequest
+        :param system_info_request: (required)
+        :type system_info_request: SystemInfoRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -2743,7 +2743,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(DeviceInfo, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(SystemInfo, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -2751,7 +2751,7 @@ class DevicesApi(object):
         all_params = [
             'device_id',
             'id',
-            'device_info_request'
+            'system_info_request'
         ]
         all_params.extend(
             [
@@ -2779,10 +2779,10 @@ class DevicesApi(object):
         if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
                                                         local_var_params['id'] is None):  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `devices_info_update`")  # noqa: E501
-        # verify the required parameter 'device_info_request' is set
-        if self.api_client.client_side_validation and ('device_info_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['device_info_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `device_info_request` when calling `devices_info_update`")  # noqa: E501
+        # verify the required parameter 'system_info_request' is set
+        if self.api_client.client_side_validation and ('system_info_request' not in local_var_params or  # noqa: E501
+                                                        local_var_params['system_info_request'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `system_info_request` when calling `devices_info_update`")  # noqa: E501
 
         collection_formats = {}
 
@@ -2800,8 +2800,8 @@ class DevicesApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'device_info_request' in local_var_params:
-            body_params = local_var_params['device_info_request']
+        if 'system_info_request' in local_var_params:
+            body_params = local_var_params['system_info_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -2814,8 +2814,8 @@ class DevicesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            201: "DeviceInfo",
-            202: "DeviceInfo",
+            201: "SystemInfo",
+            202: "SystemInfo",
         }
 
         return self.api_client.call_api(

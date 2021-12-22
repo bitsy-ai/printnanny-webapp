@@ -41,6 +41,8 @@ class TaskStatus(object):
         'detail': 'str',
         'wiki_url': 'str',
         'status': 'TaskStatusType',
+        'status_display': 'str',
+        'css_class': 'str',
         'created_dt': 'datetime',
         'task': 'int'
     }
@@ -50,11 +52,13 @@ class TaskStatus(object):
         'detail': 'detail',
         'wiki_url': 'wiki_url',
         'status': 'status',
+        'status_display': 'status_display',
+        'css_class': 'css_class',
         'created_dt': 'created_dt',
         'task': 'task'
     }
 
-    def __init__(self, id=None, detail=None, wiki_url=None, status=None, created_dt=None, task=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, detail=None, wiki_url=None, status=None, status_display=None, css_class=None, created_dt=None, task=None, local_vars_configuration=None):  # noqa: E501
         """TaskStatus - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -64,6 +68,8 @@ class TaskStatus(object):
         self._detail = None
         self._wiki_url = None
         self._status = None
+        self._status_display = None
+        self._css_class = None
         self._created_dt = None
         self._task = None
         self.discriminator = None
@@ -72,6 +78,8 @@ class TaskStatus(object):
         self.detail = detail
         self.wiki_url = wiki_url
         self.status = status
+        self.status_display = status_display
+        self.css_class = css_class
         self.created_dt = created_dt
         self.task = task
 
@@ -162,6 +170,52 @@ class TaskStatus(object):
             raise ValueError("Invalid value for `status`, must not be `None`")  # noqa: E501
 
         self._status = status
+
+    @property
+    def status_display(self):
+        """Gets the status_display of this TaskStatus.  # noqa: E501
+
+
+        :return: The status_display of this TaskStatus.  # noqa: E501
+        :rtype: str
+        """
+        return self._status_display
+
+    @status_display.setter
+    def status_display(self, status_display):
+        """Sets the status_display of this TaskStatus.
+
+
+        :param status_display: The status_display of this TaskStatus.  # noqa: E501
+        :type status_display: str
+        """
+        if self.local_vars_configuration.client_side_validation and status_display is None:  # noqa: E501
+            raise ValueError("Invalid value for `status_display`, must not be `None`")  # noqa: E501
+
+        self._status_display = status_display
+
+    @property
+    def css_class(self):
+        """Gets the css_class of this TaskStatus.  # noqa: E501
+
+
+        :return: The css_class of this TaskStatus.  # noqa: E501
+        :rtype: str
+        """
+        return self._css_class
+
+    @css_class.setter
+    def css_class(self, css_class):
+        """Sets the css_class of this TaskStatus.
+
+
+        :param css_class: The css_class of this TaskStatus.  # noqa: E501
+        :type css_class: str
+        """
+        if self.local_vars_configuration.client_side_validation and css_class is None:  # noqa: E501
+            raise ValueError("Invalid value for `css_class`, must not be `None`")  # noqa: E501
+
+        self._css_class = css_class
 
     @property
     def created_dt(self):

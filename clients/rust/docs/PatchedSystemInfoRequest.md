@@ -1,4 +1,4 @@
-# PatchedDeviceInfoRequest
+# PatchedSystemInfoRequest
 
 ## Properties
 

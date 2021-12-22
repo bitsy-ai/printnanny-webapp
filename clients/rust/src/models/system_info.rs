@@ -12,7 +12,7 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct DeviceInfo {
+pub struct SystemInfo {
     #[serde(rename = "id")]
     pub id: i32,
     /// Populated from /etc/machine-id
@@ -41,9 +41,9 @@ pub struct DeviceInfo {
     pub device: i32,
 }
 
-impl DeviceInfo {
-    pub fn new(id: i32, machine_id: String, hardware: String, revision: String, model: String, serial: String, cores: i32, ram: i64, image_version: String, device: i32) -> DeviceInfo {
-        DeviceInfo {
+impl SystemInfo {
+    pub fn new(id: i32, machine_id: String, hardware: String, revision: String, model: String, serial: String, cores: i32, ram: i64, image_version: String, device: i32) -> SystemInfo {
+        SystemInfo {
             id,
             machine_id,
             hardware,

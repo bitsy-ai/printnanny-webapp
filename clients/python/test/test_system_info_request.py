@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.device_info import DeviceInfo  # noqa: E501
+from printnanny_api_client.models.system_info_request import SystemInfoRequest  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestDeviceInfo(unittest.TestCase):
-    """DeviceInfo unit test stubs"""
+class TestSystemInfoRequest(unittest.TestCase):
+    """SystemInfoRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,40 +30,38 @@ class TestDeviceInfo(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test DeviceInfo
+        """Test SystemInfoRequest
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.device_info.DeviceInfo()  # noqa: E501
+        # model = printnanny_api_client.models.system_info_request.SystemInfoRequest()  # noqa: E501
         if include_optional :
-            return DeviceInfo(
-                id = 56, 
-                machine_id = '', 
-                hardware = '', 
-                revision = '', 
-                model = '', 
-                serial = '', 
+            return SystemInfoRequest(
+                machine_id = '0', 
+                hardware = '0', 
+                revision = '0', 
+                model = '0', 
+                serial = '0', 
                 cores = -2147483648, 
                 ram = -9223372036854775808, 
-                image_version = '', 
+                image_version = '0', 
                 device = 56
             )
         else :
-            return DeviceInfo(
-                id = 56,
-                machine_id = '',
-                hardware = '',
-                revision = '',
-                model = '',
-                serial = '',
+            return SystemInfoRequest(
+                machine_id = '0',
+                hardware = '0',
+                revision = '0',
+                model = '0',
+                serial = '0',
                 cores = -2147483648,
                 ram = -9223372036854775808,
-                image_version = '',
+                image_version = '0',
                 device = 56,
         )
 
-    def testDeviceInfo(self):
-        """Test DeviceInfo"""
+    def testSystemInfoRequest(self):
+        """Test SystemInfoRequest"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

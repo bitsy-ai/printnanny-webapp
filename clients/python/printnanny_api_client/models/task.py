@@ -41,6 +41,7 @@ class Task(object):
         'last_status': 'TaskStatus',
         'task_type': 'TaskType',
         'active': 'bool',
+        'task_type_display': 'str',
         'created_dt': 'datetime',
         'device': 'int'
     }
@@ -50,11 +51,12 @@ class Task(object):
         'last_status': 'last_status',
         'task_type': 'task_type',
         'active': 'active',
+        'task_type_display': 'task_type_display',
         'created_dt': 'created_dt',
         'device': 'device'
     }
 
-    def __init__(self, id=None, last_status=None, task_type=None, active=True, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, last_status=None, task_type=None, active=True, task_type_display=None, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
         """Task - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -64,6 +66,7 @@ class Task(object):
         self._last_status = None
         self._task_type = None
         self._active = None
+        self._task_type_display = None
         self._created_dt = None
         self._device = None
         self.discriminator = None
@@ -73,6 +76,7 @@ class Task(object):
         self.task_type = task_type
         if active is not None:
             self.active = active
+        self.task_type_display = task_type_display
         self.created_dt = created_dt
         self.device = device
 
@@ -163,6 +167,29 @@ class Task(object):
         """
 
         self._active = active
+
+    @property
+    def task_type_display(self):
+        """Gets the task_type_display of this Task.  # noqa: E501
+
+
+        :return: The task_type_display of this Task.  # noqa: E501
+        :rtype: str
+        """
+        return self._task_type_display
+
+    @task_type_display.setter
+    def task_type_display(self, task_type_display):
+        """Sets the task_type_display of this Task.
+
+
+        :param task_type_display: The task_type_display of this Task.  # noqa: E501
+        :type task_type_display: str
+        """
+        if self.local_vars_configuration.client_side_validation and task_type_display is None:  # noqa: E501
+            raise ValueError("Invalid value for `task_type_display`, must not be `None`")  # noqa: E501
+
+        self._task_type_display = task_type_display
 
     @property
     def created_dt(self):

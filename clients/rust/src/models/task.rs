@@ -21,6 +21,8 @@ pub struct Task {
     pub task_type: crate::models::TaskType,
     #[serde(rename = "active", skip_serializing_if = "Option::is_none")]
     pub active: Option<bool>,
+    #[serde(rename = "task_type_display")]
+    pub task_type_display: String,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
     #[serde(rename = "device")]
@@ -28,12 +30,13 @@ pub struct Task {
 }
 
 impl Task {
-    pub fn new(id: i32, last_status: Option<crate::models::TaskStatus>, task_type: crate::models::TaskType, created_dt: String, device: i32) -> Task {
+    pub fn new(id: i32, last_status: Option<crate::models::TaskStatus>, task_type: crate::models::TaskType, task_type_display: String, created_dt: String, device: i32) -> Task {
         Task {
             id,
             last_status: last_status.map(Box::new),
             task_type,
             active: None,
+            task_type_display,
             created_dt,
             device,
         }

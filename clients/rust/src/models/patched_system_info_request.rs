@@ -12,7 +12,7 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct PatchedDeviceInfoRequest {
+pub struct PatchedSystemInfoRequest {
     /// Populated from /etc/machine-id
     #[serde(rename = "machine_id", skip_serializing_if = "Option::is_none")]
     pub machine_id: Option<String>,
@@ -39,9 +39,9 @@ pub struct PatchedDeviceInfoRequest {
     pub device: Option<i32>,
 }
 
-impl PatchedDeviceInfoRequest {
-    pub fn new() -> PatchedDeviceInfoRequest {
-        PatchedDeviceInfoRequest {
+impl PatchedSystemInfoRequest {
+    pub fn new() -> PatchedSystemInfoRequest {
+        PatchedSystemInfoRequest {
             machine_id: None,
             hardware: None,
             revision: None,

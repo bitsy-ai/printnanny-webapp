@@ -1,13 +1,13 @@
-# TaskRequest
+# PaginatedSystemInfoList
+
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**task_type** | [**crate::models::TaskType**](TaskType.md) |  | 
-**active** | Option<**bool**> |  | [optional][default to true]
-**task_type_display** | **String** |  | 
-**device** | **i32** |  | 
+**count** | **int** |  | [optional] 
+**next** | **str** |  | [optional] 
+**previous** | **str** |  | [optional] 
+**results** | [**list[SystemInfo]**](SystemInfo.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

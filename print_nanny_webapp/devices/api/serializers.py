@@ -9,7 +9,7 @@ from print_nanny_webapp.devices.models import (
     Camera,
     CloudiotDevice,
     DeviceConfig,
-    DeviceInfo,
+    SystemInfo,
     Task,
     TaskStatus,
     License,
@@ -129,13 +129,13 @@ class DeviceSerializer(serializers.ModelSerializer):
         exclude = ("deleted",)
 
 
-class DeviceInfoSerializer(serializers.ModelSerializer):
+class SystemInfoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = DeviceInfo
+        model = SystemInfo
         exclude = ("deleted",)
 
     def update_or_create(self, validated_data, device):
-        return DeviceInfo.objects.filter(device=device).update_or_create(
+        return SystemInfo.objects.filter(device=device).update_or_create(
             device=device, defaults=validated_data
         )
 

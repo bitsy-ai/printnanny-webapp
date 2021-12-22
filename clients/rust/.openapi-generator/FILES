@@ -26,8 +26,6 @@ docs/DetailResponse.md
 docs/Device.md
 docs/DeviceCalibration.md
 docs/DeviceCalibrationRequest.md
-docs/DeviceInfo.md
-docs/DeviceInfoRequest.md
 docs/DeviceRequest.md
 docs/DevicesApi.md
 docs/EmailAuthRequest.md
@@ -75,7 +73,6 @@ docs/PaginatedAlertList.md
 docs/PaginatedCameraList.md
 docs/PaginatedCloudiotDeviceList.md
 docs/PaginatedDeviceCalibrationList.md
-docs/PaginatedDeviceInfoList.md
 docs/PaginatedDeviceList.md
 docs/PaginatedExperimentDeviceConfigList.md
 docs/PaginatedExperimentList.md
@@ -92,6 +89,7 @@ docs/PaginatedPrinterProfileList.md
 docs/PaginatedReleaseList.md
 docs/PaginatedRemoteCommandEventList.md
 docs/PaginatedRemoteControlCommandList.md
+docs/PaginatedSystemInfoList.md
 docs/PaginatedTaskList.md
 docs/PaginatedTaskStatusList.md
 docs/PaginatedTelemetryEventPolymorphicList.md
@@ -105,13 +103,13 @@ docs/PatchedAlertRequest.md
 docs/PatchedCameraRequest.md
 docs/PatchedCloudiotDeviceRequest.md
 docs/PatchedDeviceCalibrationRequest.md
-docs/PatchedDeviceInfoRequest.md
 docs/PatchedDeviceRequest.md
 docs/PatchedOctoPrintDeviceRequest.md
 docs/PatchedPrintSessionRequest.md
 docs/PatchedPrinterControllerRequest.md
 docs/PatchedPrinterProfileRequest.md
 docs/PatchedRemoteControlCommandRequest.md
+docs/PatchedSystemInfoRequest.md
 docs/PatchedUserRequest.md
 docs/PrintJobEvent.md
 docs/PrintJobEventRequest.md
@@ -141,6 +139,8 @@ docs/RemoteControlCommand.md
 docs/RemoteControlCommandRequest.md
 docs/SchemaApi.md
 docs/SoftwareEnum.md
+docs/SystemInfo.md
+docs/SystemInfoRequest.md
 docs/Task.md
 docs/TaskRequest.md
 docs/TaskStatus.md
@@ -194,8 +194,6 @@ src/models/detail_response.rs
 src/models/device.rs
 src/models/device_calibration.rs
 src/models/device_calibration_request.rs
-src/models/device_info.rs
-src/models/device_info_request.rs
 src/models/device_request.rs
 src/models/email_auth_request.rs
 src/models/error_detail.rs
@@ -241,7 +239,6 @@ src/models/paginated_alert_list.rs
 src/models/paginated_camera_list.rs
 src/models/paginated_cloudiot_device_list.rs
 src/models/paginated_device_calibration_list.rs
-src/models/paginated_device_info_list.rs
 src/models/paginated_device_list.rs
 src/models/paginated_experiment_device_config_list.rs
 src/models/paginated_experiment_list.rs
@@ -258,6 +255,7 @@ src/models/paginated_printer_profile_list.rs
 src/models/paginated_release_list.rs
 src/models/paginated_remote_command_event_list.rs
 src/models/paginated_remote_control_command_list.rs
+src/models/paginated_system_info_list.rs
 src/models/paginated_task_list.rs
 src/models/paginated_task_status_list.rs
 src/models/paginated_telemetry_event_polymorphic_list.rs
@@ -269,13 +267,13 @@ src/models/patched_alert_request.rs
 src/models/patched_camera_request.rs
 src/models/patched_cloudiot_device_request.rs
 src/models/patched_device_calibration_request.rs
-src/models/patched_device_info_request.rs
 src/models/patched_device_request.rs
 src/models/patched_octo_print_device_request.rs
 src/models/patched_print_session_request.rs
 src/models/patched_printer_controller_request.rs
 src/models/patched_printer_profile_request.rs
 src/models/patched_remote_control_command_request.rs
+src/models/patched_system_info_request.rs
 src/models/patched_user_request.rs
 src/models/print_job_event.rs
 src/models/print_job_event_request.rs
@@ -302,6 +300,8 @@ src/models/remote_command_event_request.rs
 src/models/remote_control_command.rs
 src/models/remote_control_command_request.rs
 src/models/software_enum.rs
+src/models/system_info.rs
+src/models/system_info_request.rs
 src/models/task.rs
 src/models/task_request.rs
 src/models/task_status.rs

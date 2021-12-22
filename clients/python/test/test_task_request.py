@@ -39,11 +39,13 @@ class TestTaskRequest(unittest.TestCase):
             return TaskRequest(
                 task_type = 'monitor_start', 
                 active = True, 
+                task_type_display = '0', 
                 device = 56
             )
         else :
             return TaskRequest(
                 task_type = 'monitor_start',
+                task_type_display = '0',
                 device = 56,
         )
 
