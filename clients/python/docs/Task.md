@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **last_status** | [**TaskStatus**](TaskStatus.md) |  | [readonly] 
 **task_type** | [**TaskType**](TaskType.md) |  | 
 **active** | **bool** |  | [optional] [default to True]
-**task_type_display** | **str** |  | 
+**task_type_display** | **str** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
 **device** | **int** |  | 
 

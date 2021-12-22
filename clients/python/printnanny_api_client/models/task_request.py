@@ -39,18 +39,16 @@ class TaskRequest(object):
     openapi_types = {
         'task_type': 'TaskType',
         'active': 'bool',
-        'task_type_display': 'str',
         'device': 'int'
     }
 
     attribute_map = {
         'task_type': 'task_type',
         'active': 'active',
-        'task_type_display': 'task_type_display',
         'device': 'device'
     }
 
-    def __init__(self, task_type=None, active=True, task_type_display=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, task_type=None, active=True, device=None, local_vars_configuration=None):  # noqa: E501
         """TaskRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -58,14 +56,12 @@ class TaskRequest(object):
 
         self._task_type = None
         self._active = None
-        self._task_type_display = None
         self._device = None
         self.discriminator = None
 
         self.task_type = task_type
         if active is not None:
             self.active = active
-        self.task_type_display = task_type_display
         self.device = device
 
     @property
@@ -111,32 +107,6 @@ class TaskRequest(object):
         """
 
         self._active = active
-
-    @property
-    def task_type_display(self):
-        """Gets the task_type_display of this TaskRequest.  # noqa: E501
-
-
-        :return: The task_type_display of this TaskRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._task_type_display
-
-    @task_type_display.setter
-    def task_type_display(self, task_type_display):
-        """Sets the task_type_display of this TaskRequest.
-
-
-        :param task_type_display: The task_type_display of this TaskRequest.  # noqa: E501
-        :type task_type_display: str
-        """
-        if self.local_vars_configuration.client_side_validation and task_type_display is None:  # noqa: E501
-            raise ValueError("Invalid value for `task_type_display`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                task_type_display is not None and len(task_type_display) < 1):
-            raise ValueError("Invalid value for `task_type_display`, length must be greater than or equal to `1`")  # noqa: E501
-
-        self._task_type_display = task_type_display
 
     @property
     def device(self):
