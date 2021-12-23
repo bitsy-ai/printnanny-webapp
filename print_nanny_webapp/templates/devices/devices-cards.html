@@ -37,9 +37,14 @@
                 
               <p>Follow the instructions in <a href="{{ help.GETTING_STARTED }}" target="_blank"> Getting Started with Print Nanny OS</a> to finish installation.</p>
             </div>
-            {% endif %}
 
-            {% if device.active_cameras.count == 0 %}
+            {% else %}
+              {% include "partials/webrtc-stream.html" with device=device %}
+              
+            {% endif %}
+            
+
+            <!-- {% if device.active_cameras.count == 0 %}
             <div class="row">
               <div class="col-6 offset-3 mt-2">
                 <img src="{% static 'images/sleep.svg' %}" style="opacity: 30%" class="d-none d-md-block img-fluid"/>
@@ -52,7 +57,10 @@
                 or <i class="mdi mdi-printer-camera"></i><strong>Start Monitoring</strong> button to start camera</p>
                 </div>
             </div>
-            {% endif %}
+
+            {% else %}
+              {% include "partials/webrtc-stream.html" with device=device %}
+            {% endif %} -->
 
           </div>
           <div class="card-footer d-flex justify-content-center">
@@ -70,11 +78,7 @@
                   </button>
                 </a>
               {% else %}
-                <a href="{% url 'devices:detail' pk=device.id %}" target="_blank">
-                  <button class="btn btn-light btn-sm mr-2 ml-2" id="start-monitoring-{{ device.cameras.first }}">
-                    <i class="mdi mdi-camera"></i> Start Monitoring
-                  </button>
-                </a>
+
               {% endif %}
 
               <a href="{% url 'devices:detail' pk=device.id %}" target="_blank">

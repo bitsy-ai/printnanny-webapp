@@ -110,6 +110,7 @@ class Device(SafeDeleteModel):
     @property
     def html_id(self) -> str:
         return f"device-{self.id}"
+
     @property
     def to_json_str(self):
         from .api.serializers import DeviceSerializer

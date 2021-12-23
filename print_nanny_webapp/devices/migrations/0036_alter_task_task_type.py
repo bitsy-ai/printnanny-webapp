@@ -6,13 +6,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devices', '0035_rename_deviceinfo_systeminfo'),
+        ("devices", "0035_rename_deviceinfo_systeminfo"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='task',
-            name='task_type',
-            field=models.CharField(choices=[('monitor_start', 'Start Monitor'), ('monitor_stop', 'Stop Monitor'), ('system_check', 'System Check'), ('software_update', 'Software Updating')], default='software_update', max_length=255),
+            model_name="task",
+            name="task_type",
+            field=models.CharField(
+                choices=[
+                    ("monitor_start", "Start Monitor"),
+                    ("monitor_stop", "Stop Monitor"),
+                    ("system_check", "System Check"),
+                    ("software_update", "Software Updating"),
+                ],
+                default="software_update",
+                max_length=255,
+            ),
         ),
     ]
