@@ -34,10 +34,10 @@ class TaskType(object):
     """
     MONITOR_START = "monitor_start"
     MONITOR_STOP = "monitor_stop"
-    CHECK_LICENSE = "check_license"
+    SYSTEM_CHECK = "system_check"
     SOFTWARE_UPDATE = "software_update"
 
-    allowable_values = [MONITOR_START, MONITOR_STOP, CHECK_LICENSE, SOFTWARE_UPDATE]  # noqa: E501
+    allowable_values = [MONITOR_START, MONITOR_STOP, SYSTEM_CHECK, SOFTWARE_UPDATE]  # noqa: E501
 
     """
     Attributes:

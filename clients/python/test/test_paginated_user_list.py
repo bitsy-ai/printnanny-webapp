@@ -43,7 +43,6 @@ class TestPaginatedUserList(unittest.TestCase):
                 results = [
                     printnanny_api_client.models.user.User(
                         email = '', 
-                        url = '', 
                         id = 56, )
                     ]
             )

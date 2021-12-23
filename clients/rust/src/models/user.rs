@@ -15,17 +15,14 @@
 pub struct User {
     #[serde(rename = "email")]
     pub email: String,
-    #[serde(rename = "url")]
-    pub url: String,
     #[serde(rename = "id")]
     pub id: i32,
 }
 
 impl User {
-    pub fn new(email: String, url: String, id: i32) -> User {
+    pub fn new(email: String, id: i32) -> User {
         User {
             email,
-            url,
             id,
         }
     }

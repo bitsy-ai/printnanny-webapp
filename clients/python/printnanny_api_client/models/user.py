@@ -38,29 +38,25 @@ class User(object):
     """
     openapi_types = {
         'email': 'str',
-        'url': 'str',
         'id': 'int'
     }
 
     attribute_map = {
         'email': 'email',
-        'url': 'url',
         'id': 'id'
     }
 
-    def __init__(self, email=None, url=None, id=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, email=None, id=None, local_vars_configuration=None):  # noqa: E501
         """User - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._email = None
-        self._url = None
         self._id = None
         self.discriminator = None
 
         self.email = email
-        self.url = url
         self.id = id
 
     @property
@@ -88,29 +84,6 @@ class User(object):
             raise ValueError("Invalid value for `email`, length must be less than or equal to `254`")  # noqa: E501
 
         self._email = email
-
-    @property
-    def url(self):
-        """Gets the url of this User.  # noqa: E501
-
-
-        :return: The url of this User.  # noqa: E501
-        :rtype: str
-        """
-        return self._url
-
-    @url.setter
-    def url(self, url):
-        """Sets the url of this User.
-
-
-        :param url: The url of this User.  # noqa: E501
-        :type url: str
-        """
-        if self.local_vars_configuration.client_side_validation and url is None:  # noqa: E501
-            raise ValueError("Invalid value for `url`, must not be `None`")  # noqa: E501
-
-        self._url = url
 
     @property
     def id(self):

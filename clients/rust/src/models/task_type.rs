@@ -16,8 +16,8 @@ pub enum TaskType {
     MonitorStart,
     #[serde(rename = "monitor_stop")]
     MonitorStop,
-    #[serde(rename = "check_license")]
-    CheckLicense,
+    #[serde(rename = "system_check")]
+    SystemCheck,
     #[serde(rename = "software_update")]
     SoftwareUpdate,
 
@@ -28,7 +28,7 @@ impl ToString for TaskType {
         match self {
             Self::MonitorStart => String::from("monitor_start"),
             Self::MonitorStop => String::from("monitor_stop"),
-            Self::CheckLicense => String::from("check_license"),
+            Self::SystemCheck => String::from("system_check"),
             Self::SoftwareUpdate => String::from("software_update"),
         }
     }
