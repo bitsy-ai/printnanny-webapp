@@ -1,17 +1,21 @@
 {% load humanize %}
+{% load static %}
 
 <div class="row">
     {% for device in devices %}
-      <div class="col-12 col-md-5 d-flex align-items-stretch">
+      <div class="col-12 col-md-6 d-flex align-items-stretch">
         <div class="card col-12">
-          <div class="card-body">
+          <div class="card-header">
             <h2 class="header-title">
-              <a href="{% url 'devices:detail' pk=device.id %}" target="_blank"><i class="mdi mdi-printer-3d"></i> {{device.hostname}}</a>
-              
+              <a class="badge badge-light" href="{% url 'devices:detail' pk=device.id %}" target="_blank">
+                <i class="mdi mdi-printer-3d"></i> {{device.hostname}} - {{ device.updated_dt | naturaltime }}</a> 
+
+              </a>              
               <span class="float-right">{% include "partials/task-status-badge.html" with task=device.last_task %}</span>
-
             </h2>
-
+          </div>
+          <div class="card-body">
+            <!-- alert box if license not activated -->
             {% if not device.active_license %}
             <div class="alert alert-info col-12" role="alert">
               <h4 class="alert-heading"><i class="mdi mdi-warning"></i> Additional Setup Needed!</h4>
@@ -22,13 +26,66 @@
               <p>Follow the instructions in <a href="{{ help.GETTING_STARTED }}" target="_blank"> Getting Started with Print Nanny OS</a> to finish installation.</p>
             </div>
             {% endif %}
-          </div>
-          <div class="card-footer">
-            <a href="{% url 'devices:detail' pk=device.id %}" target="_blank">
-              <button class="btn btn-primary btn-sm">
-                <i class="mdi mdi-printer-3d"></i> Manage
-              </button></a>
+
+            <!-- alert box if camera not added -->
+            {% if device.cameras.count == 0 %}
+            <div class="alert alert-info col-12" role="alert">
+              <h4 class="alert-heading"><i class="mdi mdi-warning"></i> Additional Setup Needed!</h4>
+              <p>Camera not configured</p>
+              <p>Click/tap <a href="{% url 'devices:detail' pk=device.id %}" target="_blank"><i class="mdi mdi-printer-3d"></i> {{device.hostname}}</a>
+              or <i class="mdi mdi-printer-camera"></i><strong>Add Camera</strong> button to setup a camera.</p>
+                
+              <p>Follow the instructions in <a href="{{ help.GETTING_STARTED }}" target="_blank"> Getting Started with Print Nanny OS</a> to finish installation.</p>
+            </div>
+
+            {% else %}
+              {% include "partials/webrtc-stream.html" with device=device %}
               
+            {% endif %}
+            
+
+            <!-- {% if device.active_cameras.count == 0 %}
+            <div class="row">
+              <div class="col-6 offset-3 mt-2">
+                <img src="{% static 'images/sleep.svg' %}" style="opacity: 30%" class="d-none d-md-block img-fluid"/>
+              </div>
+            </div>
+            <div class="row">
+              <div class="alert alert-info col-12 mt-2 mb-0" role="alert">
+                <h4 class="alert-heading"><i class="mdi mdi-warning"></i>Monitoring Offline</h4>
+                <p>Click/tap <a href="{% url 'devices:detail' pk=device.id %}" target="_blank"><i class="mdi mdi-printer-3d"></i> {{device.hostname}}</a>
+                or <i class="mdi mdi-printer-camera"></i><strong>Start Monitoring</strong> button to start camera</p>
+                </div>
+            </div>
+
+            {% else %}
+              {% include "partials/webrtc-stream.html" with device=device %}
+            {% endif %} -->
+
+          </div>
+          <div class="card-footer d-flex justify-content-center">
+              
+              {% if device.active_cameras.count > 0 %}
+                <a href="{% url 'devices:detail' pk=device.id %}" target="_blank">
+                  <button class="btn btn-light btn-sm mr-2 ml-2">
+                    <i class="mdi mdi-printer-3d"></i> Stop Cameras
+                  </button>
+                </a>
+              {% elif device.cameras.count == 0 %}
+              <a href="{% url 'devices:create-camera' device_id=device.id %}">
+                  <button class="btn btn-primary btn-sm mr-2 ml-2" id="start-monitoring-{{ device.cameras.first }}">
+                    <i class="mdi mdi-camera"></i> Add New Camera
+                  </button>
+                </a>
+              {% else %}
+
+              {% endif %}
+
+              <a href="{% url 'devices:detail' pk=device.id %}" target="_blank">
+                <button class="btn btn-light btn-sm mr-2 ml-2">
+                  <i class="mdi mdi-printer-3d"></i> Manage Pi
+                </button>
+              </a>
           </div>
         </div>
       </div>
@@ -36,7 +93,7 @@
   
 </div>
 <div class="row">
-  <div class="col-12 col-md-5 d-flex align-items-stretch">
+  <div class="col-12 col-md-6 d-flex align-items-stretch">
     <div class="card col-12">
       <div class="card-body">
         <p>Click <strong>Add New Device</strong> to get started.</p>
