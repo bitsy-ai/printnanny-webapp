@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 def create_license_activate_task(sender, instance, created, **kwargs):
     if created:
         Task.objects.create(
-            task_type=TaskType.CHECK_LICENSE,
+            task_type=TaskType.SYSTEM_CHECK,
             device=instance,
         )
 

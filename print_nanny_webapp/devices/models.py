@@ -107,6 +107,16 @@ class Device(SafeDeleteModel):
     def cloudiot_device(self):
         return self.cloudiot_devices.first()
 
+    @property
+    def html_id(self) -> str:
+        return f"device-{self.id}"
+    @property
+    def to_json_str(self):
+        from .api.serializers import DeviceSerializer
+
+        serializer = DeviceSerializer(instance=self)
+        return JSONRenderer().render(serializer.data).decode("utf8")
+
 
 class License(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
@@ -136,7 +146,7 @@ class License(SafeDeleteModel):
 
     @property
     def last_check_task(self):
-        return self.device.tasks.filter(task_type=TaskType.CHECK_LICENSE).first()
+        return self.device.tasks.filter(task_type=TaskType.SYSTEM_CHECK).first()
 
     @property
     def user(self):
