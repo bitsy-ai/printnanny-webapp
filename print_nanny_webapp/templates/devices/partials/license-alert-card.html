@@ -11,9 +11,9 @@
           <span class="float-right">{% include "devices/partials/task-status-app.html" with task=device.last_task %}</span>
         </h2>
       </div>
-      <div class="card-body">
+      <div class="card-body d-flex">
         <!-- alert box if license not activated -->
-        <div class="alert alert-info col-12" role="alert">
+        <div class="alert alert-info col-12 align-items-stretch" role="alert">
           <h4 class="alert-heading"><i class="mdi mdi-warning"></i> Additional Setup Needed!</h4>
           <p>This device is not yet registered.</p>
           <p>Click/tap <a href="{% url 'devices:detail' pk=device.id %}" target="_blank"><i class="mdi mdi-printer-3d"></i> {{device.hostname}}</a>
