@@ -112,6 +112,7 @@ class DeviceSerializer(serializers.ModelSerializer):
         read_only=True, required=False, allow_null=True
     )
     cameras = CameraSerializer(read_only=True, many=True)
+    janus_local_url = serializers.CharField(read_only=True)
     dashboard_url = serializers.CharField(read_only=True)
     printer_controllers = PrinterControllerSerializer(read_only=True, many=True)
     release_channel = serializers.ChoiceField(
