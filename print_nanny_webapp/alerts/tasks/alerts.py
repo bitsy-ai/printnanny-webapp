@@ -102,7 +102,7 @@ class AlertTask:
         data["action"] = "alertMessage"
         logger.info("Sending alert.message to channel_layer")
         async_to_sync(channel_layer.group_send)(
-            f"alerts_{self.instance.user.id}",
+            self.instance.user.events_channel,
             {
                 "type": "alert.message",
                 # https://github.com/nathantsoi/vue-native-websocket#with-format-json-enabled

@@ -1,5 +1,5 @@
-export const TASK_STATUS = 'data'
+export const TASKS = 'data'
 
 export default {
-  [TASK_STATUS]: { }
+  [TASKS]: {}
 }

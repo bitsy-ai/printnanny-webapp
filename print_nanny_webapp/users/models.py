@@ -153,6 +153,10 @@ class User(AbstractUser):
     def __str__(self):
         return self.email
 
+    @property
+    def event_channel(self) -> str:
+        return f"events_{self.id}"
+
     # @property
     # def is_subscribed(self) -> bool:
     #     customer = djstripe.models.Customer.objects.get(subscriber=self)

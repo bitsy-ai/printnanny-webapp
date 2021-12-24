@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import { SET_TASK } from './tasks/mutations'
 
 export default {
   SOCKET_ONOPEN (state, event) {

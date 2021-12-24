@@ -1,8 +1,5 @@
-import VueNativeSock from 'vue-native-websocket'
 import { Vue, store } from './AppFactory'
 import TaskStatus from '@/components/TaskStatus'
-
-Vue.use(VueNativeSock, process.env.DEVICE_WS_URL, { store: store, format: 'json', reconnection: true, connectManually: true })
 
 const apps = document.querySelectorAll('.task-status-app')
 export default Array.prototype.forEach.call(apps, (el, index) => new Vue({
@@ -12,7 +9,7 @@ export default Array.prototype.forEach.call(apps, (el, index) => new Vue({
   data: function () {
     const htmlId = el.dataset.htmlId
     const d = JSON.parse(JSON.parse(document.getElementById(htmlId).textContent))
-    return { task: d }
+    return { task: d, taskIdx: index }
   },
-  template: '<task-status v-model="task" />'
+  template: '<task-status :task-id="task.id" :task-idx="taskIdx" />'
 }))

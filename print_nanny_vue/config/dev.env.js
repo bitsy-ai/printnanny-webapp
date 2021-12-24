@@ -5,7 +5,5 @@ const prodEnv = require('./prod.env')
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
   BASE_API_URL: '"http://aurora:8000"',
-  BASE_WS_URL: '"ws://aurora:8000/ws/"',
-  ALERTS_WS_URL: '"ws://aurora:8000/ws/alerts/"',
-  DEVICE_WS_URL: '"ws://aurora:8000/ws/devices/"'
+  BASE_WS_URL: '"ws://aurora:8000/ws/events/"',
 })
