@@ -118,6 +118,10 @@ class Device(SafeDeleteModel):
         serializer = DeviceSerializer(instance=self)
         return JSONRenderer().render(serializer.data).decode("utf8")
 
+    @property
+    def janus_local_url(self):
+        return "http://{self.hostname}:8088/janus"
+
 
 class License(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
