@@ -1,10 +1,10 @@
 {{ device.to_json_str|safe|json_script:device.html_id }}
 {{ device.last_task.to_json_str|safe|json_script:device.last_task.html_id }}
-<!-- <span class="webcam-stream-app" 
+<span class="webcam-stream-app" 
     data-device-html-id="{{ device.html_id }}"
     data-task-html-id="{{ device.last_task.html_id }}">
     <web-cam-stream 
         device-id="{{ device.id }}"
         device-url="{% url 'devices:detail' pk=device.id %}" />
 
-</span> -->
+</span>

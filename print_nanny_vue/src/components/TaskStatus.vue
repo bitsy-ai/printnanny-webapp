@@ -9,7 +9,7 @@ import {
 export default {
   props: {
     taskId: {
-      type: Number,
+      type: String,
       required: true
     }
   },

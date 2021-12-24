@@ -1,5 +1,6 @@
 {{ task.to_json_str|safe|json_script:task.html_id }}
 <span class="task-status-app" 
-    data-html-id="{{ task.html_id }}"
-    data-task-id="{{ task.id }}">
+    data-html-id="{{ task.html_id }}">
+    <task-status 
+        :task-id="{{ task.id }}" />'
 </span>

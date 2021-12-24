@@ -17,25 +17,14 @@ export default Array.prototype.forEach.call(apps, (el, index) => new Vue({
       SET_TASK_DATA
     ])
   },
-  data: {
-    taskId: {
-      type: Number,
-      required: true
-    }
-  },
   computed: {
     ...mapState(TASK_MODULE, {
       tasks: TASKS
     })
   },
-  data: function () {
-    const taskId = parseInt(el.dataset.taskId)
-    return { taskId }
-  },
   created: function () {
     const htmlId = el.dataset.htmlId
     const d = JSON.parse(JSON.parse(document.getElementById(htmlId).textContent))
     this.SET_TASK_DATA({ data: d })
-  },
-  template: '<task-status :task-id=taskId />'
+  }
 }))
