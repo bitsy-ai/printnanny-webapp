@@ -3,7 +3,7 @@ import { mapActions, mapState } from 'vuex'
 import {
   FETCH_ALERTS,
   SEEN_ALL,
-  ALERTS_DROPDOWN_MODULE,
+  ALERTS_MODULE,
   ALERTS
 } from '@/store/alerts'
 import simplebar from 'simplebar-vue'
@@ -12,18 +12,18 @@ import 'simplebar/dist/simplebar.min.css'
 export default {
   components: { simplebar },
   methods: {
-    ...mapActions(ALERTS_DROPDOWN_MODULE, {
+    ...mapActions(ALERTS_MODULE, {
       fetchAlerts: FETCH_ALERTS,
       seenAll: SEEN_ALL
     })
   },
   computed: {
-    ...mapState(ALERTS_DROPDOWN_MODULE, {
+    ...mapState(ALERTS_MODULE, {
       alerts: ALERTS
     }),
     unreadAlerts () {
       console.log('this.$store.state', this.$store.state)
-      return this.$store.state[ALERTS_DROPDOWN_MODULE].data.results.filter(alert => !alert.seen)
+      return this.$store.state[ALERTS_MODULE].data.results.filter(alert => !alert.seen)
     }
   },
   created () {

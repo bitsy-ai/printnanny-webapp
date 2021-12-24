@@ -2,8 +2,7 @@ import state from './state'
 import actions from './actions'
 import mutations from './mutations'
 
-export const ALERTS_DROPDOWN_MODULE = 'alerts_dropdown'
-export const ALERTS_TABLE_MODULE = 'alerts_table'
+export const ALERTS_MODULE = 'ALERTS'
 
 export default {
   namespaced: true,
