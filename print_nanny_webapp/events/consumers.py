@@ -9,7 +9,8 @@ class EventConsumer(AsyncJsonWebsocketConsumer):
     TASK_NAMESPACE = "TASKS"
     ALERT_NAMESPACE = "ALERTS"
 
-    MUTATION_SET_DATA = "SET_DATA"
+    MUTATION_SET_TASK_DATA = "SET_TASK_DATA"
+    MUTATION_SET_DEVICE_DATA = "SET_DEVICE_DATA"
 
     async def connect(self):
         await self.accept()
@@ -37,7 +38,7 @@ class EventConsumer(AsyncJsonWebsocketConsumer):
         .action - automatically call action
         """
         event["namespace"] = self.TASK_NAMESPACE
-        event["mutation"] = self.MUTATION_SET_DATA
+        event["mutation"] = self.MUTATION_SET_TASK_DATA
         logger.info(
             f"Sending event scope={self.scope} group_name={self.group_name} event={event}"
         )

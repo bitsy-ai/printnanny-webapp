@@ -1,11 +1,8 @@
-export const SET_DATA = 'SET_DATA'
-export const SET_INDEX = 'SET_INDEX'
+import { TASKS } from './state'
+export const SET_TASK_DATA = 'SET_TASK_DATA'
 export default {
-  [SET_INDEX] (state, index, data) {
-
-  },
-  [SET_DATA] (state, data) {
+  [SET_TASK_DATA] (state, data) {
     console.debug('setting task data', data, 'state', state)
-    state.data = { ...state.data, [data.data.id]: data.data }
+    state[TASKS] = { ...state[TASKS], [data.data.id]: data.data }
   }
 }

@@ -7,8 +7,11 @@ export default Array.prototype.forEach.call(apps, (el, index) => new Vue({
   components: { WebCamStream },
   store,
   data: function () {
-    const htmlId = el.dataset.htmlId
-    const d = JSON.parse(JSON.parse(document.getElementById(htmlId).textContent))
-    return { device: d }
+    const deviceHtmlId = el.dataset.deviceHtmlId
+    const taskHtmlId = el.dataset.taskHtmlId
+    const d = JSON.parse(JSON.parse(document.getElementById(deviceHtmlId).textContent))
+    const t = JSON.parse(JSON.parse(document.getElementById(taskHtmlId).textContent))
+
+    return { device: d, task: t }
   }
 }))

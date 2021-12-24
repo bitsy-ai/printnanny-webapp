@@ -8,7 +8,7 @@
             <i class="mdi mdi-printer-3d"></i> {{device.hostname}} - {{ device.updated_dt | naturaltime }}</a> 
 
           </a>              
-          <span class="float-right">{% include "partials/task-status-badge.html" with task=device.last_task %}</span>
+          <span class="float-right">{% include "devices/partials/task-status-app.html" with task=device.last_task %}</span>
         </h2>
       </div>
       <div class="card-body">
@@ -35,4 +35,4 @@
         </a>
       </div>
     </div>
-  </div>
+</div>
