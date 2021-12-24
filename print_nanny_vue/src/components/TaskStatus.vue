@@ -9,7 +9,7 @@ import {
 export default {
   props: {
     taskId: {
-      type: String,
+      type: Number,
       required: true
     }
   },
@@ -23,11 +23,6 @@ export default {
       SET_TASK_DATA
     ])
   }
-  // created: function () {
-  //   // set initial task data from parent TaskStatus.js module
-  //   console.log('Calling SET_TASK_DATA with data=', this.$parent.task)
-  //   this.SET_TASK_DATA({ data: this.$parent.task })
-  // }
 }
 </script>
 

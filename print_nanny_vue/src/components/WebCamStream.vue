@@ -36,11 +36,6 @@ export default {
     ...mapMutations(TASK_MODULE, [
       SET_TASK_DATA
     ])
-  },
-  created: function () {
-    // set initial task data from parent WebCamStream.js module
-    this.SET_DEVICE_DATA({ data: this.$parent.device })
-    this.SET_TASK_DATA({ data: this.$parent.task })
   }
 }
 </script>
