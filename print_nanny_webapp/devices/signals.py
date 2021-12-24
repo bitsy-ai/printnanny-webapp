@@ -58,4 +58,6 @@ def update_task_active_field(sender, instance, created, **kwargs):
 
     payload = dict(type="task.status", data=serializer.data)
     logger.info(f"Sending to layer={layer} payload={payload}")
-    async_to_sync(channel_layer.group_send)(layer, payload)
+    async_to_sync(channel_layer.group_send)(
+        instance.task.device.user.event_channel, payload
+    )

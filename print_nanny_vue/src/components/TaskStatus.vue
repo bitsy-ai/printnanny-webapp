@@ -25,23 +25,23 @@ export default {
     }
   },
   created: function () {
-    const self = this
-    const url = process.env.DEVICE_WS_URL + this.taskLocal.device + '/'
-    this.connection = new WebSocket(url)
+    // const self = this
+    // const url = process.env.DEVICE_WS_URL + this.taskLocal.device + '/'
+    // this.connection = new WebSocket(url)
 
-    this.connection.onmessage = function (msg) {
-      const data = JSON.parse(msg.data)
-      console.debug('Received event', data)
-      if (data.type === 'task.status') {
-        console.debug('Received taskLocal.status event', data)
-        self.taskLocal = data.data
-      }
-    }
+    // this.connection.onmessage = function (msg) {
+    //   const data = JSON.parse(msg.data)
+    //   console.debug('Received event', data)
+    //   if (data.type === 'task.status') {
+    //     console.debug('Received taskLocal.status event', data)
+    //     self.taskLocal = data.data
+    //   }
+    // }
 
-    this.connection.onopen = function (event) {
-      console.log('Successfully connected to websocket', event)
-    }
-    this.$connect(url)
+    // this.connection.onopen = function (event) {
+    //   console.log('Successfully connected to websocket', event)
+    // }
+    // this.$connect(url)
   }
 }
 </script>
