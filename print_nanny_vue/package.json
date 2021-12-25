@@ -19,7 +19,7 @@
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.21.2",
     "metismenujs": "^1.2.1",
-    "print-nanny-client": "file:../clients/typescript",
+    "printnanny-api-client": "file:../clients/typescript",
     "simplebar-vue": "^1.6.0",
     "vue": "^2.6.12",
     "vue-cookies": "^1.7.4",
