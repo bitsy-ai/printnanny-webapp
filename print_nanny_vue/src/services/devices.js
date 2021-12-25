@@ -1,4 +1,4 @@
-import { DevicesApiFactory, Configuration, PatchedDeviceRequest } from 'print-nanny-client'
+import { DevicesApiFactory, Configuration, PatchedDeviceRequest } from 'printnanny-api-client'
 
 const configuration = new Configuration({
   basePath: process.env.BASE_API_URL,
@@ -25,6 +25,14 @@ export default {
     const res = await thisapi.devicesPartialUpdate(
       device.id,
       req
+    )
+    return res
+  },
+
+  async getActiveLicense  (device) {
+    const thisapi = DevicesApiFactory(configuration, process.env.BASE_API_URL)
+    const res = await thisapi.devicesActiveLicenseRetrieve(
+      device.id
     )
     return res
   }

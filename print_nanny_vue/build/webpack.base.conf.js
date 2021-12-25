@@ -56,7 +56,7 @@ module.exports = {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
       '__STATIC__': resolve('../print_nanny_webapp/static')
-    }
+    },
   },
   plugins: [
     new BundleTracker({filename: './webpack-stats.json'})
@@ -72,9 +72,10 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
+        include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')],
       },
       { test: /\.tsx?$/, loader: "ts-loader" },
+      { test: /\.ts?$/, loader: "ts-loader" },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
