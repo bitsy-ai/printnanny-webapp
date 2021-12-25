@@ -20,8 +20,7 @@ export default {
   components: { TaskStatus },
   data: function () {
     return {
-      error: null,
-      loading: true
+      error: null
     }
   },
   methods: {
@@ -47,8 +46,8 @@ export default {
     },
     async handleError (error) {
       this.error = error
-      this.loading = false
       await this.stopMonitoring(this.device)
+      this.loading = false
     },
     async connectStream () {
       const url = `ws://${this.device.hostname}:8188/janus`
@@ -74,10 +73,14 @@ export default {
         return await this.handleError(error)
       }
     },
-    startMonitoring () {
+    async startMonitoring () {
       this.loading = true
       this.error = null
       this.$store.dispatch(`${DEVICE_MODULE}/${START_MONITORING}`, this.device)
+      await this.connectStream()
+    },
+    stopMonitoring () {
+      this.$store.dispatch(`${DEVICE_MODULE}/${STOP_MONITORING}`, this.device)
     }
   },
   props: {
@@ -101,10 +104,13 @@ export default {
       return `#webcam-stream-${this.device.id}`
     },
     showVideo: function () {
-      return !this.loading && this.device.monitoring_active
+      return this.loading === false && this.device.monitoring_active === true
     },
     showLoading: function () {
       return this.loading
+    },
+    showInfo: function () {
+      return this.device.monitoring_active === false && this.error === null
     }
   },
   created: async function () {
@@ -166,7 +172,7 @@ export default {
 
         <div>
             <video
-              v-if="showVideo"
+              v-show="showVideo"
               class="rounded centered hide" :id="webcamStreamEl"
               width="100%"
               height="100%"
@@ -181,22 +187,24 @@ export default {
 
               <h4 class="alert-heading"><i class="mdi mdi-warning"></i>Please reboot your Raspberry Pi and then try again.</h4>
 
-              <p>Error name: {{ error.name }}
-              <br>Error code: {{ error.code}}
-              <br>Message: {{ error.message }}
-              <br>Transaction: {{ error.janusMessage._plainMessage.transaction }}
-              </p>
+              <p>Need help? Email <strong>leigh@print-nanny.com</strong> with error code, message, and transaction id.</p>
 
-              <p>Need help? Email <strong>leigh@print-nanny.com</strong> with the error code, message, and transaction id.</p>
+              <pre>
+Name: {{ error.name }}
+Code: {{ error.code}}
+Message: {{ error.message }}
+Transaction: {{ error.janusMessage._plainMessage.transaction }}
+              </pre>
+
             </div>
 
-            <div v-if="error" class="col-4">
+            <div v-show="error" class="col-4">
             <img src="/static/images/confused.svg" style="opacity: 30%" class="d-none d-md-block img-fluid"/>
             </div>
           </div>
         </div>
 
-        <div v-if="!devices[deviceId].monitoring_active" class="alert alert-info col-12 d-flex" role="alert">
+        <div v-if="showInfo" class="alert alert-info col-12 d-flex" role="alert">
           <div class="row">
             <div class="col-8">
               <h4 class="alert-heading"><i class="mdi mdi-warning"></i>Camera is offline</h4>
