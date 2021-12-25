@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * print-nanny-client
+ * printnanny-api-client
  * Official API client library for print-nanny.com
  *
  * The version of the OpenAPI document: 0.0.0

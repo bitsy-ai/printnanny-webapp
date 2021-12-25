@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * print-nanny-client
+ * printnanny-api-client
  * Official API client library for print-nanny.com
  *
  * The version of the OpenAPI document: 0.0.0
@@ -32,49 +32,49 @@ export interface Alert {
      * @type {number}
      * @memberof Alert
      */
-    'id'?: number;
+    'id': number;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    'time'?: string;
+    'time': string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    'gcode_file'?: string;
+    'gcode_file': string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    'print_progress'?: string;
+    'print_progress': string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    'time_elapsed'?: string;
+    'time_elapsed': string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    'time_remaining'?: string;
+    'time_remaining': string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    'manage_device_url'?: string | null;
+    'manage_device_url': string | null;
     /**
      * 
      * @type {number}
      * @memberof Alert
      */
-    'user'?: number;
+    'user': number;
     /**
      * 
      * @type {number}
@@ -104,19 +104,19 @@ export interface Alert {
      * @type {string}
      * @memberof Alert
      */
-    'created_dt'?: string;
+    'created_dt': string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    'updated_dt'?: string;
+    'updated_dt': string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    'message'?: string;
+    'message': string;
 }
 /**
  * Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests
@@ -396,31 +396,31 @@ export interface Camera {
      * @type {number}
      * @memberof Camera
      */
-    'id'?: number;
+    'id': number;
     /**
      * 
      * @type {string}
      * @memberof Camera
      */
-    'deleted'?: string;
+    'deleted': string;
     /**
      * 
      * @type {string}
      * @memberof Camera
      */
-    'created_dt'?: string;
+    'created_dt': string;
     /**
      * 
      * @type {string}
      * @memberof Camera
      */
-    'updated_dt'?: string;
+    'updated_dt': string;
     /**
      * 
-     * @type {number}
+     * @type {boolean}
      * @memberof Camera
      */
-    'user': number;
+    'active'?: boolean;
     /**
      * 
      * @type {number}
@@ -428,29 +428,17 @@ export interface Camera {
      */
     'device': number;
     /**
-     * 
+     * Descriptive name to identify this camera
      * @type {string}
      * @memberof Camera
      */
-    'name': string;
+    'name'?: string;
     /**
      * 
-     * @type {CameraTypeEnum}
+     * @type {CameraType}
      * @memberof Camera
      */
-    'camera_type'?: CameraTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof Camera
-     */
-    'camera_source': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Camera
-     */
-    'url'?: string;
+    'camera_type'?: CameraType;
 }
 /**
  * 
@@ -460,10 +448,10 @@ export interface Camera {
 export interface CameraRequest {
     /**
      * 
-     * @type {number}
+     * @type {boolean}
      * @memberof CameraRequest
      */
-    'user': number;
+    'active'?: boolean;
     /**
      * 
      * @type {number}
@@ -471,23 +459,17 @@ export interface CameraRequest {
      */
     'device': number;
     /**
-     * 
+     * Descriptive name to identify this camera
      * @type {string}
      * @memberof CameraRequest
      */
-    'name': string;
+    'name'?: string;
     /**
      * 
-     * @type {CameraTypeEnum}
+     * @type {CameraType}
      * @memberof CameraRequest
      */
-    'camera_type'?: CameraTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof CameraRequest
-     */
-    'camera_source': string;
+    'camera_type'?: CameraType;
 }
 /**
  * 
@@ -495,10 +477,10 @@ export interface CameraRequest {
  * @enum {string}
  */
 
-export enum CameraTypeEnum {
-    RaspberryPiCameraModule = 'Raspberry Pi Camera Module',
-    RaspberryPiUsbCamera = 'Raspberry Pi USB Camera',
-    GenericRtspRtmpIpCamera = 'Generic RTSP/RTMP IP Camera'
+export enum CameraType {
+    Picam = 'picam',
+    Usb = 'usb',
+    Ip = 'ip'
 }
 
 /**
@@ -518,55 +500,55 @@ export interface CloudiotDevice {
      * @type {string}
      * @memberof CloudiotDevice
      */
-    'desired_config_topic'?: string;
+    'task_topic': string;
     /**
      * 
      * @type {string}
      * @memberof CloudiotDevice
      */
-    'current_state_topic'?: string;
+    'config_topic': string;
     /**
      * 
      * @type {string}
      * @memberof CloudiotDevice
      */
-    'gcp_project_id'?: string;
+    'state_topic': string;
     /**
      * 
      * @type {string}
      * @memberof CloudiotDevice
      */
-    'gcp_region'?: string;
+    'gcp_project_id': string;
     /**
      * 
      * @type {string}
      * @memberof CloudiotDevice
      */
-    'gcp_cloudiot_device_registry'?: string;
+    'gcp_region': string;
     /**
      * 
      * @type {string}
      * @memberof CloudiotDevice
      */
-    'mqtt_bridge_hostname'?: string;
+    'gcp_cloudiot_device_registry': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CloudiotDevice
+     */
+    'mqtt_bridge_hostname': string;
     /**
      * 
      * @type {number}
      * @memberof CloudiotDevice
      */
-    'mqtt_bridge_port'?: number;
+    'mqtt_bridge_port': number;
     /**
      * 
      * @type {string}
      * @memberof CloudiotDevice
      */
-    'mqtt_client_id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CloudiotDevice
-     */
-    'deleted'?: string;
+    'mqtt_client_id': string;
     /**
      * 
      * @type {string}
@@ -618,6 +600,23 @@ export interface CloudiotDeviceRequest {
     'device': number;
 }
 /**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export enum CommandEnum {
+    MonitoringStop = 'monitoring_stop',
+    MonitoringStart = 'monitoring_start',
+    PrintStart = 'print_start',
+    PrintStop = 'print_stop',
+    PrintPause = 'print_pause',
+    PrintResume = 'print_resume',
+    MoveNozzle = 'move_nozzle',
+    ConnectTestMqttPong = 'connect_test_mqtt_pong'
+}
+
+/**
  * Generic auth response serializer
  * @export
  * @interface DetailResponse
@@ -641,37 +640,43 @@ export interface Device {
      * @type {number}
      * @memberof Device
      */
-    'id'?: number;
-    /**
-     * 
-     * @type {CloudiotDevice}
-     * @memberof Device
-     */
-    'cloudiot_device'?: CloudiotDevice | null;
-    /**
-     * 
-     * @type {Array<Camera>}
-     * @memberof Device
-     */
-    'cameras'?: Array<Camera>;
-    /**
-     * 
-     * @type {string}
-     * @memberof Device
-     */
-    'dashboard_url'?: string;
+    'id': number;
     /**
      * 
      * @type {Release}
      * @memberof Device
      */
-    'bootstrap_release'?: Release | null;
+    'bootstrap_release': Release;
+    /**
+     * 
+     * @type {CloudiotDevice}
+     * @memberof Device
+     */
+    'cloudiot_device': CloudiotDevice | null;
+    /**
+     * 
+     * @type {Array<Camera>}
+     * @memberof Device
+     */
+    'cameras': Array<Camera>;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    'janus_local_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    'dashboard_url': string;
     /**
      * 
      * @type {Array<PrinterController>}
      * @memberof Device
      */
-    'printer_controllers'?: Array<PrinterController>;
+    'printer_controllers': Array<PrinterController>;
     /**
      * 
      * @type {ReleaseChannelEnum}
@@ -683,31 +688,43 @@ export interface Device {
      * @type {User}
      * @memberof Device
      */
-    'user'?: User;
+    'user': User;
     /**
      * 
-     * @type {License}
+     * @type {Task}
      * @memberof Device
      */
-    'active_license'?: License | null;
+    'last_task': Task;
+    /**
+     * 
+     * @type {Array<Task>}
+     * @memberof Device
+     */
+    'active_tasks': Array<Task>;
+    /**
+     * 
+     * @type {Array<Camera>}
+     * @memberof Device
+     */
+    'active_cameras': Array<Camera>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Device
+     */
+    'monitoring_active'?: boolean;
     /**
      * 
      * @type {string}
      * @memberof Device
      */
-    'deleted'?: string;
+    'created_dt': string;
     /**
      * 
      * @type {string}
      * @memberof Device
      */
-    'created_dt'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Device
-     */
-    'updated_dt'?: string;
+    'updated_dt': string;
     /**
      * Please enter the hostname you set in the Raspberry Pi Imager\'s Advanced Options menu (without .local extension)
      * @type {string}
@@ -726,19 +743,19 @@ export interface DeviceCalibration {
      * @type {number}
      * @memberof DeviceCalibration
      */
-    'id'?: number;
+    'id': number;
     /**
      * 
      * @type {string}
      * @memberof DeviceCalibration
      */
-    'created_dt'?: string;
+    'created_dt': string;
     /**
      * 
      * @type {string}
      * @memberof DeviceCalibration
      */
-    'updated_dt'?: string;
+    'updated_dt': string;
     /**
      * 
      * @type {number}
@@ -774,7 +791,7 @@ export interface DeviceCalibration {
      * @type {string}
      * @memberof DeviceCalibration
      */
-    'url'?: string;
+    'url': string;
 }
 /**
  * 
@@ -816,183 +833,6 @@ export interface DeviceCalibrationRequest {
 /**
  * 
  * @export
- * @interface DeviceConfig
- */
-export interface DeviceConfig {
-    /**
-     * 
-     * @type {number}
-     * @memberof DeviceConfig
-     */
-    'id'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceConfig
-     */
-    'deleted'?: string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof DeviceConfig
-     */
-    'ansible_extra_vars'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {ReleaseChannelEnum}
-     * @memberof DeviceConfig
-     */
-    'release_channel'?: ReleaseChannelEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceConfig
-     */
-    'created_dt'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof DeviceConfig
-     */
-    'device': number;
-}
-/**
- * 
- * @export
- * @interface DeviceInfo
- */
-export interface DeviceInfo {
-    /**
-     * 
-     * @type {number}
-     * @memberof DeviceInfo
-     */
-    'id'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceInfo
-     */
-    'deleted'?: string;
-    /**
-     * Populated from /etc/machine-id
-     * @type {string}
-     * @memberof DeviceInfo
-     */
-    'machine_id': string;
-    /**
-     * Populated from /proc/cpuinfo HARDWARE
-     * @type {string}
-     * @memberof DeviceInfo
-     */
-    'hardware': string;
-    /**
-     * Populated from /proc/cpuinfo REVISION
-     * @type {string}
-     * @memberof DeviceInfo
-     */
-    'revision': string;
-    /**
-     * Populated from /proc/cpuinfo MODEL
-     * @type {string}
-     * @memberof DeviceInfo
-     */
-    'model': string;
-    /**
-     * Populated from /proc/cpuinfo SERIAL
-     * @type {string}
-     * @memberof DeviceInfo
-     */
-    'serial': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof DeviceInfo
-     */
-    'cores': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof DeviceInfo
-     */
-    'ram': number;
-    /**
-     * Print Nanny OS version string from /boot/image_version.txt
-     * @type {string}
-     * @memberof DeviceInfo
-     */
-    'image_version': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof DeviceInfo
-     */
-    'device': number;
-}
-/**
- * 
- * @export
- * @interface DeviceInfoRequest
- */
-export interface DeviceInfoRequest {
-    /**
-     * Populated from /etc/machine-id
-     * @type {string}
-     * @memberof DeviceInfoRequest
-     */
-    'machine_id': string;
-    /**
-     * Populated from /proc/cpuinfo HARDWARE
-     * @type {string}
-     * @memberof DeviceInfoRequest
-     */
-    'hardware': string;
-    /**
-     * Populated from /proc/cpuinfo REVISION
-     * @type {string}
-     * @memberof DeviceInfoRequest
-     */
-    'revision': string;
-    /**
-     * Populated from /proc/cpuinfo MODEL
-     * @type {string}
-     * @memberof DeviceInfoRequest
-     */
-    'model': string;
-    /**
-     * Populated from /proc/cpuinfo SERIAL
-     * @type {string}
-     * @memberof DeviceInfoRequest
-     */
-    'serial': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof DeviceInfoRequest
-     */
-    'cores': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof DeviceInfoRequest
-     */
-    'ram': number;
-    /**
-     * Print Nanny OS version string from /boot/image_version.txt
-     * @type {string}
-     * @memberof DeviceInfoRequest
-     */
-    'image_version': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof DeviceInfoRequest
-     */
-    'device': number;
-}
-/**
- * 
- * @export
  * @interface DeviceRequest
  */
 export interface DeviceRequest {
@@ -1003,77 +843,18 @@ export interface DeviceRequest {
      */
     'release_channel'?: ReleaseChannelEnum;
     /**
+     * 
+     * @type {boolean}
+     * @memberof DeviceRequest
+     */
+    'monitoring_active'?: boolean;
+    /**
      * Please enter the hostname you set in the Raspberry Pi Imager\'s Advanced Options menu (without .local extension)
      * @type {string}
      * @memberof DeviceRequest
      */
     'hostname'?: string;
 }
-/**
- * 
- * @export
- * @interface DeviceState
- */
-export interface DeviceState {
-    /**
-     * 
-     * @type {number}
-     * @memberof DeviceState
-     */
-    'id'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceState
-     */
-    'deleted'?: string;
-    /**
-     * 
-     * @type {StatusEnum}
-     * @memberof DeviceState
-     */
-    'status'?: StatusEnum;
-    /**
-     * 
-     * @type {DeviceStateCommandEnum}
-     * @memberof DeviceState
-     */
-    'command'?: DeviceStateCommandEnum;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof DeviceState
-     */
-    'ansible_facts'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof DeviceState
-     */
-    'ansible_extra_vars'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceState
-     */
-    'created_dt'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof DeviceState
-     */
-    'device': number;
-}
-/**
- * 
- * @export
- * @enum {string}
- */
-
-export enum DeviceStateCommandEnum {
-    PrintnannyUpdate = 'printnanny update'
-}
-
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
  * @export
@@ -1151,13 +932,13 @@ export interface Experiment {
      * @type {number}
      * @memberof Experiment
      */
-    'id'?: number;
+    'id': number;
     /**
      * 
      * @type {string}
      * @memberof Experiment
      */
-    'created_dt'?: string;
+    'created_dt': string;
     /**
      * 
      * @type {boolean}
@@ -1206,13 +987,13 @@ export interface ExperimentDeviceConfig {
      * @type {number}
      * @memberof ExperimentDeviceConfig
      */
-    'id'?: number;
+    'id': number;
     /**
      * 
      * @type {string}
      * @memberof ExperimentDeviceConfig
      */
-    'created_dt'?: string;
+    'created_dt': string;
     /**
      * 
      * @type {number}
@@ -1237,13 +1018,13 @@ export interface GcodeFile {
      * @type {number}
      * @memberof GcodeFile
      */
-    'id'?: number;
+    'id': number;
     /**
      * 
      * @type {number}
      * @memberof GcodeFile
      */
-    'user'?: number;
+    'user': number;
     /**
      * 
      * @type {string}
@@ -1273,10 +1054,10 @@ export interface GcodeFile {
      * @type {string}
      * @memberof GcodeFile
      */
-    'url'?: string;
+    'url': string;
 }
 /**
- * 
+ * Deserialize data/license info into /opt/printnanny during License Activation
  * @export
  * @interface License
  */
@@ -1286,43 +1067,79 @@ export interface License {
      * @type {number}
      * @memberof License
      */
-    'id'?: number;
+    'id': number;
     /**
      * 
-     * @type {LicenseCredentials}
+     * @type {boolean}
      * @memberof License
      */
-    'credentials'?: LicenseCredentials;
+    'activated'?: boolean;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof License
      */
-    'deleted'?: string;
+    'user': number;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof License
      */
-    'public_key'?: string;
+    'cloudiot_device': number;
     /**
      * 
-     * @type {string}
+     * @type {Task}
      * @memberof License
      */
-    'public_key_checksum'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof License
-     */
-    'fingerprint'?: string;
+    'last_check_task': Task;
     /**
      * 
      * @type {string}
      * @memberof License
      */
-    'created_dt'?: string;
+    'honeycomb_dataset': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof License
+     */
+    'honeycomb_api_key': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof License
+     */
+    'janus_admin_secret': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof License
+     */
+    'janus_token': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof License
+     */
+    'public_key': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof License
+     */
+    'fingerprint': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof License
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof License
+     */
+    'updated_dt': string;
     /**
      * 
      * @type {number}
@@ -1331,48 +1148,17 @@ export interface License {
     'device': number;
 }
 /**
- * 
- * @export
- * @interface LicenseCredentials
- */
-export interface LicenseCredentials {
-    /**
-     * 
-     * @type {string}
-     * @memberof LicenseCredentials
-     */
-    'printnanny_api_token'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LicenseCredentials
-     */
-    'printnanny_api_url'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LicenseCredentials
-     */
-    'honeycomb_dataset'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LicenseCredentials
-     */
-    'honeycomb_api_key'?: string;
-}
-/**
- * 
+ * Deserialize data/license info into /opt/printnanny during License Activation
  * @export
  * @interface LicenseRequest
  */
 export interface LicenseRequest {
     /**
      * 
-     * @type {number}
+     * @type {boolean}
      * @memberof LicenseRequest
      */
-    'device': number;
+    'activated'?: boolean;
 }
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
@@ -1398,49 +1184,49 @@ export interface ModelArtifact {
      * @type {number}
      * @memberof ModelArtifact
      */
-    'id'?: number;
+    'id': number;
     /**
      * 
      * @type {string}
      * @memberof ModelArtifact
      */
-    'created_dt'?: string;
+    'created_dt': string;
     /**
      * 
      * @type {string}
      * @memberof ModelArtifact
      */
-    'version'?: string;
+    'version': string;
     /**
      * 
      * @type {string}
      * @memberof ModelArtifact
      */
-    'labels'?: string;
+    'labels': string;
     /**
      * 
      * @type {string}
      * @memberof ModelArtifact
      */
-    'artifacts'?: string;
+    'artifacts': string;
     /**
      * 
      * @type {Array<ArtifactTypesEnum>}
      * @memberof ModelArtifact
      */
-    'artifact_types'?: Array<ArtifactTypesEnum>;
+    'artifact_types': Array<ArtifactTypesEnum>;
     /**
      * 
      * @type {{ [key: string]: any; }}
      * @memberof ModelArtifact
      */
-    'metadata'?: { [key: string]: any; };
+    'metadata': { [key: string]: any; };
     /**
      * 
      * @type {string}
      * @memberof ModelArtifact
      */
-    'url'?: string;
+    'url': string;
 }
 /**
  * 
@@ -1453,13 +1239,13 @@ export interface OctoPrintDevice {
      * @type {number}
      * @memberof OctoPrintDevice
      */
-    'id'?: number;
+    'id': number;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    'created_dt'?: string;
+    'created_dt': string;
     /**
      * 
      * @type {string}
@@ -1471,43 +1257,43 @@ export interface OctoPrintDevice {
      * @type {number}
      * @memberof OctoPrintDevice
      */
-    'user'?: number;
+    'user': number;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    'public_key'?: string;
+    'public_key': string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    'fingerprint'?: string;
+    'fingerprint': string;
     /**
      * 
      * @type {{ [key: string]: any; }}
      * @memberof OctoPrintDevice
      */
-    'cloudiot_device'?: { [key: string]: any; };
+    'cloudiot_device': { [key: string]: any; };
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    'cloudiot_device_name'?: string;
+    'cloudiot_device_name': string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    'cloudiot_device_path'?: string;
+    'cloudiot_device_path': string;
     /**
      * 
      * @type {number}
      * @memberof OctoPrintDevice
      */
-    'cloudiot_device_num_id'?: number;
+    'cloudiot_device_num_id': number;
     /**
      * 
      * @type {string}
@@ -1597,19 +1383,19 @@ export interface OctoPrintDevice {
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    'cloudiot_device_configs'?: string;
+    'cloudiot_device_configs': string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    'manage_url'?: string;
+    'manage_url': string;
     /**
      * 
      * @type {boolean}
      * @memberof OctoPrintDevice
      */
-    'monitoring_active'?: boolean;
+    'monitoring_active': boolean;
     /**
      * 
      * @type {PrintSession}
@@ -1640,31 +1426,31 @@ export interface OctoPrintDeviceKey {
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    'cloudiot_device_configs'?: string;
+    'cloudiot_device_configs': string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    'cloudiot_device_name'?: string;
+    'cloudiot_device_name': string;
     /**
      * 
      * @type {number}
      * @memberof OctoPrintDeviceKey
      */
-    'cloudiot_device_num_id'?: number;
+    'cloudiot_device_num_id': number;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    'cloudiot_device_path'?: string;
+    'cloudiot_device_path': string;
     /**
      * 
      * @type {{ [key: string]: any; }}
      * @memberof OctoPrintDeviceKey
      */
-    'cloudiot_device'?: { [key: string]: any; };
+    'cloudiot_device': { [key: string]: any; };
     /**
      * 
      * @type {number}
@@ -1682,13 +1468,13 @@ export interface OctoPrintDeviceKey {
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    'created_dt'?: string;
+    'created_dt': string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    'fingerprint'?: string;
+    'fingerprint': string;
     /**
      * 
      * @type {string}
@@ -1700,13 +1486,13 @@ export interface OctoPrintDeviceKey {
      * @type {number}
      * @memberof OctoPrintDeviceKey
      */
-    'id'?: number;
+    'id': number;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    'manage_url'?: string;
+    'manage_url': string;
     /**
      * 
      * @type {string}
@@ -1718,7 +1504,7 @@ export interface OctoPrintDeviceKey {
      * @type {boolean}
      * @memberof OctoPrintDeviceKey
      */
-    'monitoring_active'?: boolean;
+    'monitoring_active': boolean;
     /**
      * 
      * @type {string}
@@ -1760,13 +1546,13 @@ export interface OctoPrintDeviceKey {
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    'private_key_checksum'?: string;
+    'private_key_checksum': string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    'private_key'?: string;
+    'private_key': string;
     /**
      * 
      * @type {string}
@@ -1778,7 +1564,7 @@ export interface OctoPrintDeviceKey {
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    'public_key'?: string;
+    'public_key': string;
     /**
      * 
      * @type {string}
@@ -1808,13 +1594,13 @@ export interface OctoPrintDeviceKey {
      * @type {number}
      * @memberof OctoPrintDeviceKey
      */
-    'user'?: number;
+    'user': number;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    'url'?: string;
+    'url': string;
 }
 /**
  * 
@@ -1930,7 +1716,7 @@ export interface OctoPrintEvent {
      * @type {number}
      * @memberof OctoPrintEvent
      */
-    'id'?: number;
+    'id': number;
     /**
      * 
      * @type {number}
@@ -1996,7 +1782,7 @@ export interface OctoPrintEvent {
      * @type {number}
      * @memberof OctoPrintEvent
      */
-    'polymorphic_ctype'?: number;
+    'polymorphic_ctype': number;
     /**
      * 
      * @type {number}
@@ -2008,7 +1794,7 @@ export interface OctoPrintEvent {
      * @type {number}
      * @memberof OctoPrintEvent
      */
-    'user'?: number;
+    'user': number;
     /**
      * 
      * @type {number}
@@ -3047,68 +2833,6 @@ export interface PaginatedDeviceCalibrationList {
 /**
  * 
  * @export
- * @interface PaginatedDeviceConfigList
- */
-export interface PaginatedDeviceConfigList {
-    /**
-     * 
-     * @type {number}
-     * @memberof PaginatedDeviceConfigList
-     */
-    'count'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedDeviceConfigList
-     */
-    'next'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedDeviceConfigList
-     */
-    'previous'?: string | null;
-    /**
-     * 
-     * @type {Array<DeviceConfig>}
-     * @memberof PaginatedDeviceConfigList
-     */
-    'results'?: Array<DeviceConfig>;
-}
-/**
- * 
- * @export
- * @interface PaginatedDeviceInfoList
- */
-export interface PaginatedDeviceInfoList {
-    /**
-     * 
-     * @type {number}
-     * @memberof PaginatedDeviceInfoList
-     */
-    'count'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedDeviceInfoList
-     */
-    'next'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedDeviceInfoList
-     */
-    'previous'?: string | null;
-    /**
-     * 
-     * @type {Array<DeviceInfo>}
-     * @memberof PaginatedDeviceInfoList
-     */
-    'results'?: Array<DeviceInfo>;
-}
-/**
- * 
- * @export
  * @interface PaginatedDeviceList
  */
 export interface PaginatedDeviceList {
@@ -3136,37 +2860,6 @@ export interface PaginatedDeviceList {
      * @memberof PaginatedDeviceList
      */
     'results'?: Array<Device>;
-}
-/**
- * 
- * @export
- * @interface PaginatedDeviceStateList
- */
-export interface PaginatedDeviceStateList {
-    /**
-     * 
-     * @type {number}
-     * @memberof PaginatedDeviceStateList
-     */
-    'count'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedDeviceStateList
-     */
-    'next'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedDeviceStateList
-     */
-    'previous'?: string | null;
-    /**
-     * 
-     * @type {Array<DeviceState>}
-     * @memberof PaginatedDeviceStateList
-     */
-    'results'?: Array<DeviceState>;
 }
 /**
  * 
@@ -3260,6 +2953,37 @@ export interface PaginatedGcodeFileList {
      * @memberof PaginatedGcodeFileList
      */
     'results'?: Array<GcodeFile>;
+}
+/**
+ * 
+ * @export
+ * @interface PaginatedLicenseList
+ */
+export interface PaginatedLicenseList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedLicenseList
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedLicenseList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedLicenseList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<License>}
+     * @memberof PaginatedLicenseList
+     */
+    'results'?: Array<License>;
 }
 /**
  * 
@@ -3605,6 +3329,99 @@ export interface PaginatedRemoteControlCommandList {
 /**
  * 
  * @export
+ * @interface PaginatedSystemInfoList
+ */
+export interface PaginatedSystemInfoList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedSystemInfoList
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedSystemInfoList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedSystemInfoList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<SystemInfo>}
+     * @memberof PaginatedSystemInfoList
+     */
+    'results'?: Array<SystemInfo>;
+}
+/**
+ * 
+ * @export
+ * @interface PaginatedTaskList
+ */
+export interface PaginatedTaskList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedTaskList
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedTaskList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedTaskList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<Task>}
+     * @memberof PaginatedTaskList
+     */
+    'results'?: Array<Task>;
+}
+/**
+ * 
+ * @export
+ * @interface PaginatedTaskStatusList
+ */
+export interface PaginatedTaskStatusList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedTaskStatusList
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedTaskStatusList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedTaskStatusList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<TaskStatus>}
+     * @memberof PaginatedTaskStatusList
+     */
+    'results'?: Array<TaskStatus>;
+}
+/**
+ * 
+ * @export
  * @interface PaginatedTelemetryEventPolymorphicList
  */
 export interface PaginatedTelemetryEventPolymorphicList {
@@ -3675,55 +3492,55 @@ export interface Partner3DGeeksAlert {
      * @type {string}
      * @memberof Partner3DGeeksAlert
      */
-    'event'?: string;
+    'event': string;
     /**
      * 
      * @type {string}
      * @memberof Partner3DGeeksAlert
      */
-    'token'?: string;
+    'token': string;
     /**
      * 
      * @type {string}
      * @memberof Partner3DGeeksAlert
      */
-    'printer'?: string;
+    'printer': string;
     /**
      * 
      * @type {string}
      * @memberof Partner3DGeeksAlert
      */
-    'print'?: string;
+    'print': string;
     /**
      * 
      * @type {number}
      * @memberof Partner3DGeeksAlert
      */
-    'currentTime'?: number;
+    'currentTime': number;
     /**
      * 
      * @type {number}
      * @memberof Partner3DGeeksAlert
      */
-    'timeLeft'?: number;
+    'timeLeft': number;
     /**
      * 
      * @type {number}
      * @memberof Partner3DGeeksAlert
      */
-    'percent'?: number;
+    'percent': number;
     /**
      * 
      * @type {string}
      * @memberof Partner3DGeeksAlert
      */
-    'image'?: string | null;
+    'image': string | null;
     /**
      * 
      * @type {string}
      * @memberof Partner3DGeeksAlert
      */
-    'action'?: string;
+    'action': string;
 }
 /**
  * Please do not include any personally-identifying info or sensitive info in partner serializers
@@ -3760,7 +3577,7 @@ export interface Partner3DGeeksMetadata {
      * @type {string}
      * @memberof Partner3DGeeksMetadata
      */
-    'print_nanny_plugin_version'?: string;
+    'print_nanny_plugin_version': string;
     /**
      * 
      * @type {string}
@@ -3772,7 +3589,7 @@ export interface Partner3DGeeksMetadata {
      * @type {string}
      * @memberof Partner3DGeeksMetadata
      */
-    'verified'?: string;
+    'verified': string;
 }
 /**
  * Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests
@@ -3826,10 +3643,10 @@ export interface PatchedAlertRequest {
 export interface PatchedCameraRequest {
     /**
      * 
-     * @type {number}
+     * @type {boolean}
      * @memberof PatchedCameraRequest
      */
-    'user'?: number;
+    'active'?: boolean;
     /**
      * 
      * @type {number}
@@ -3837,23 +3654,17 @@ export interface PatchedCameraRequest {
      */
     'device'?: number;
     /**
-     * 
+     * Descriptive name to identify this camera
      * @type {string}
      * @memberof PatchedCameraRequest
      */
     'name'?: string;
     /**
      * 
-     * @type {CameraTypeEnum}
+     * @type {CameraType}
      * @memberof PatchedCameraRequest
      */
-    'camera_type'?: CameraTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedCameraRequest
-     */
-    'camera_source'?: string;
+    'camera_type'?: CameraType;
 }
 /**
  * 
@@ -3926,67 +3737,6 @@ export interface PatchedDeviceCalibrationRequest {
 /**
  * 
  * @export
- * @interface PatchedDeviceInfoRequest
- */
-export interface PatchedDeviceInfoRequest {
-    /**
-     * Populated from /etc/machine-id
-     * @type {string}
-     * @memberof PatchedDeviceInfoRequest
-     */
-    'machine_id'?: string;
-    /**
-     * Populated from /proc/cpuinfo HARDWARE
-     * @type {string}
-     * @memberof PatchedDeviceInfoRequest
-     */
-    'hardware'?: string;
-    /**
-     * Populated from /proc/cpuinfo REVISION
-     * @type {string}
-     * @memberof PatchedDeviceInfoRequest
-     */
-    'revision'?: string;
-    /**
-     * Populated from /proc/cpuinfo MODEL
-     * @type {string}
-     * @memberof PatchedDeviceInfoRequest
-     */
-    'model'?: string;
-    /**
-     * Populated from /proc/cpuinfo SERIAL
-     * @type {string}
-     * @memberof PatchedDeviceInfoRequest
-     */
-    'serial'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedDeviceInfoRequest
-     */
-    'cores'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedDeviceInfoRequest
-     */
-    'ram'?: number;
-    /**
-     * Print Nanny OS version string from /boot/image_version.txt
-     * @type {string}
-     * @memberof PatchedDeviceInfoRequest
-     */
-    'image_version'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedDeviceInfoRequest
-     */
-    'device'?: number;
-}
-/**
- * 
- * @export
  * @interface PatchedDeviceRequest
  */
 export interface PatchedDeviceRequest {
@@ -3996,6 +3746,12 @@ export interface PatchedDeviceRequest {
      * @memberof PatchedDeviceRequest
      */
     'release_channel'?: ReleaseChannelEnum;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedDeviceRequest
+     */
+    'monitoring_active'?: boolean;
     /**
      * Please enter the hostname you set in the Raspberry Pi Imager\'s Advanced Options menu (without .local extension)
      * @type {string}
@@ -4369,10 +4125,10 @@ export interface PatchedPrinterProfileRequest {
 export interface PatchedRemoteControlCommandRequest {
     /**
      * 
-     * @type {RemoteControlCommandCommandEnum}
+     * @type {CommandEnum}
      * @memberof PatchedRemoteControlCommandRequest
      */
-    'command'?: RemoteControlCommandCommandEnum;
+    'command'?: CommandEnum;
     /**
      * 
      * @type {number}
@@ -4413,6 +4169,67 @@ export interface PatchedRemoteControlCommandRequest {
 /**
  * 
  * @export
+ * @interface PatchedSystemInfoRequest
+ */
+export interface PatchedSystemInfoRequest {
+    /**
+     * Populated from /etc/machine-id
+     * @type {string}
+     * @memberof PatchedSystemInfoRequest
+     */
+    'machine_id'?: string;
+    /**
+     * Populated from /proc/cpuinfo HARDWARE
+     * @type {string}
+     * @memberof PatchedSystemInfoRequest
+     */
+    'hardware'?: string;
+    /**
+     * Populated from /proc/cpuinfo REVISION
+     * @type {string}
+     * @memberof PatchedSystemInfoRequest
+     */
+    'revision'?: string;
+    /**
+     * Populated from /proc/cpuinfo MODEL
+     * @type {string}
+     * @memberof PatchedSystemInfoRequest
+     */
+    'model'?: string;
+    /**
+     * Populated from /proc/cpuinfo SERIAL
+     * @type {string}
+     * @memberof PatchedSystemInfoRequest
+     */
+    'serial'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedSystemInfoRequest
+     */
+    'cores'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedSystemInfoRequest
+     */
+    'ram'?: number;
+    /**
+     * Print Nanny OS version string from /boot/image_version.txt
+     * @type {string}
+     * @memberof PatchedSystemInfoRequest
+     */
+    'image_version'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedSystemInfoRequest
+     */
+    'device'?: number;
+}
+/**
+ * 
+ * @export
  * @interface PatchedUserRequest
  */
 export interface PatchedUserRequest {
@@ -4434,7 +4251,7 @@ export interface PrintJobEvent {
      * @type {number}
      * @memberof PrintJobEvent
      */
-    'id'?: number;
+    'id': number;
     /**
      * 
      * @type {number}
@@ -4500,7 +4317,7 @@ export interface PrintJobEvent {
      * @type {number}
      * @memberof PrintJobEvent
      */
-    'polymorphic_ctype'?: number;
+    'polymorphic_ctype': number;
     /**
      * 
      * @type {number}
@@ -4512,7 +4329,7 @@ export interface PrintJobEvent {
      * @type {number}
      * @memberof PrintJobEvent
      */
-    'user'?: number;
+    'user': number;
     /**
      * 
      * @type {number}
@@ -4618,6 +4435,25 @@ export enum PrintJobEventType {
 /**
  * 
  * @export
+ * @interface PrintNannyApiConfig
+ */
+export interface PrintNannyApiConfig {
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintNannyApiConfig
+     */
+    'bearer_access_token': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintNannyApiConfig
+     */
+    'base_path': string;
+}
+/**
+ * 
+ * @export
  * @interface PrintNannyPluginEvent
  */
 export interface PrintNannyPluginEvent {
@@ -4626,7 +4462,7 @@ export interface PrintNannyPluginEvent {
      * @type {number}
      * @memberof PrintNannyPluginEvent
      */
-    'id'?: number;
+    'id': number;
     /**
      * 
      * @type {number}
@@ -4692,7 +4528,7 @@ export interface PrintNannyPluginEvent {
      * @type {number}
      * @memberof PrintNannyPluginEvent
      */
-    'polymorphic_ctype'?: number;
+    'polymorphic_ctype': number;
     /**
      * 
      * @type {number}
@@ -4704,7 +4540,7 @@ export interface PrintNannyPluginEvent {
      * @type {number}
      * @memberof PrintNannyPluginEvent
      */
-    'user'?: number;
+    'user': number;
     /**
      * 
      * @type {number}
@@ -4830,7 +4666,7 @@ export interface PrintSession {
      * @type {number}
      * @memberof PrintSession
      */
-    'id'?: number;
+    'id': number;
     /**
      * 
      * @type {string}
@@ -4842,7 +4678,7 @@ export interface PrintSession {
      * @type {string}
      * @memberof PrintSession
      */
-    'updated_dt'?: string;
+    'updated_dt': string;
     /**
      * 
      * @type {number}
@@ -4890,7 +4726,7 @@ export interface PrintSession {
      * @type {number}
      * @memberof PrintSession
      */
-    'user'?: number;
+    'user': number;
     /**
      * 
      * @type {number}
@@ -4926,13 +4762,13 @@ export interface PrintSession {
      * @type {string}
      * @memberof PrintSession
      */
-    'url'?: string;
+    'url': string;
     /**
      * 
      * @type {string}
      * @memberof PrintSession
      */
-    'datesegment'?: string;
+    'datesegment': string;
 }
 /**
  * 
@@ -5030,7 +4866,7 @@ export interface PrinterController {
      * @type {number}
      * @memberof PrinterController
      */
-    'id'?: number;
+    'id': number;
     /**
      * 
      * @type {SoftwareEnum}
@@ -5042,25 +4878,19 @@ export interface PrinterController {
      * @type {string}
      * @memberof PrinterController
      */
-    'deleted'?: string;
+    'created_dt': string;
     /**
      * 
      * @type {string}
      * @memberof PrinterController
      */
-    'created_dt'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrinterController
-     */
-    'updated_dt'?: string;
+    'updated_dt': string;
     /**
      * 
      * @type {number}
      * @memberof PrinterController
      */
-    'polymorphic_ctype'?: number;
+    'polymorphic_ctype': number;
     /**
      * 
      * @type {number}
@@ -5110,7 +4940,7 @@ export interface PrinterEvent {
      * @type {number}
      * @memberof PrinterEvent
      */
-    'id'?: number;
+    'id': number;
     /**
      * 
      * @type {number}
@@ -5182,7 +5012,7 @@ export interface PrinterEvent {
      * @type {number}
      * @memberof PrinterEvent
      */
-    'polymorphic_ctype'?: number;
+    'polymorphic_ctype': number;
     /**
      * 
      * @type {number}
@@ -5194,7 +5024,7 @@ export interface PrinterEvent {
      * @type {number}
      * @memberof PrinterEvent
      */
-    'user'?: number;
+    'user': number;
     /**
      * 
      * @type {number}
@@ -5298,13 +5128,13 @@ export interface PrinterProfile {
      * @type {number}
      * @memberof PrinterProfile
      */
-    'id'?: number;
+    'id': number;
     /**
      * 
      * @type {number}
      * @memberof PrinterProfile
      */
-    'user'?: number;
+    'user': number;
     /**
      * 
      * @type {number}
@@ -5448,7 +5278,7 @@ export interface PrinterProfile {
      * @type {string}
      * @memberof PrinterProfile
      */
-    'url'?: string;
+    'url': string;
 }
 /**
  * 
@@ -5634,7 +5464,7 @@ export interface Release {
      * @type {number}
      * @memberof Release
      */
-    'id'?: number;
+    'id': number;
     /**
      * 
      * @type {AnsibleExtraVars}
@@ -5646,7 +5476,7 @@ export interface Release {
      * @type {string}
      * @memberof Release
      */
-    'created_dt'?: string;
+    'created_dt': string;
     /**
      * 
      * @type {ReleaseChannelEnum}
@@ -5695,7 +5525,7 @@ export interface RemoteCommandEvent {
      * @type {number}
      * @memberof RemoteCommandEvent
      */
-    'id'?: number;
+    'id': number;
     /**
      * 
      * @type {number}
@@ -5761,7 +5591,7 @@ export interface RemoteCommandEvent {
      * @type {number}
      * @memberof RemoteCommandEvent
      */
-    'polymorphic_ctype'?: number;
+    'polymorphic_ctype': number;
     /**
      * 
      * @type {number}
@@ -5773,7 +5603,7 @@ export interface RemoteCommandEvent {
      * @type {number}
      * @memberof RemoteCommandEvent
      */
-    'user'?: number;
+    'user': number;
     /**
      * 
      * @type {number}
@@ -5883,19 +5713,19 @@ export interface RemoteControlCommand {
      * @type {number}
      * @memberof RemoteControlCommand
      */
-    'id'?: number;
+    'id': number;
     /**
      * 
      * @type {string}
      * @memberof RemoteControlCommand
      */
-    'created_dt'?: string;
+    'created_dt': string;
     /**
      * 
-     * @type {RemoteControlCommandCommandEnum}
+     * @type {CommandEnum}
      * @memberof RemoteControlCommand
      */
-    'command'?: RemoteControlCommandCommandEnum;
+    'command'?: CommandEnum;
     /**
      * 
      * @type {number}
@@ -5937,31 +5767,14 @@ export interface RemoteControlCommand {
      * @type {string}
      * @memberof RemoteControlCommand
      */
-    'url'?: string;
+    'url': string;
     /**
      * 
      * @type {string}
      * @memberof RemoteControlCommand
      */
-    'octoprint_event_type'?: string;
+    'octoprint_event_type': string;
 }
-/**
- * 
- * @export
- * @enum {string}
- */
-
-export enum RemoteControlCommandCommandEnum {
-    MonitoringStop = 'monitoring_stop',
-    MonitoringStart = 'monitoring_start',
-    PrintStart = 'print_start',
-    PrintStop = 'print_stop',
-    PrintPause = 'print_pause',
-    PrintResume = 'print_resume',
-    MoveNozzle = 'move_nozzle',
-    ConnectTestMqttPong = 'connect_test_mqtt_pong'
-}
-
 /**
  * 
  * @export
@@ -5970,10 +5783,10 @@ export enum RemoteControlCommandCommandEnum {
 export interface RemoteControlCommandRequest {
     /**
      * 
-     * @type {RemoteControlCommandCommandEnum}
+     * @type {CommandEnum}
      * @memberof RemoteControlCommandRequest
      */
-    'command'?: RemoteControlCommandCommandEnum;
+    'command'?: CommandEnum;
     /**
      * 
      * @type {number}
@@ -6024,14 +5837,316 @@ export enum SoftwareEnum {
 /**
  * 
  * @export
+ * @interface SystemInfo
+ */
+export interface SystemInfo {
+    /**
+     * 
+     * @type {number}
+     * @memberof SystemInfo
+     */
+    'id': number;
+    /**
+     * Populated from /etc/machine-id
+     * @type {string}
+     * @memberof SystemInfo
+     */
+    'machine_id': string;
+    /**
+     * Populated from /proc/cpuinfo HARDWARE
+     * @type {string}
+     * @memberof SystemInfo
+     */
+    'hardware': string;
+    /**
+     * Populated from /proc/cpuinfo REVISION
+     * @type {string}
+     * @memberof SystemInfo
+     */
+    'revision': string;
+    /**
+     * Populated from /proc/cpuinfo MODEL
+     * @type {string}
+     * @memberof SystemInfo
+     */
+    'model': string;
+    /**
+     * Populated from /proc/cpuinfo SERIAL
+     * @type {string}
+     * @memberof SystemInfo
+     */
+    'serial': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof SystemInfo
+     */
+    'cores': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SystemInfo
+     */
+    'ram': number;
+    /**
+     * Print Nanny OS version string from /boot/image_version.txt
+     * @type {string}
+     * @memberof SystemInfo
+     */
+    'image_version': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof SystemInfo
+     */
+    'device': number;
+}
+/**
+ * 
+ * @export
+ * @interface SystemInfoRequest
+ */
+export interface SystemInfoRequest {
+    /**
+     * Populated from /etc/machine-id
+     * @type {string}
+     * @memberof SystemInfoRequest
+     */
+    'machine_id': string;
+    /**
+     * Populated from /proc/cpuinfo HARDWARE
+     * @type {string}
+     * @memberof SystemInfoRequest
+     */
+    'hardware': string;
+    /**
+     * Populated from /proc/cpuinfo REVISION
+     * @type {string}
+     * @memberof SystemInfoRequest
+     */
+    'revision': string;
+    /**
+     * Populated from /proc/cpuinfo MODEL
+     * @type {string}
+     * @memberof SystemInfoRequest
+     */
+    'model': string;
+    /**
+     * Populated from /proc/cpuinfo SERIAL
+     * @type {string}
+     * @memberof SystemInfoRequest
+     */
+    'serial': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof SystemInfoRequest
+     */
+    'cores': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SystemInfoRequest
+     */
+    'ram': number;
+    /**
+     * Print Nanny OS version string from /boot/image_version.txt
+     * @type {string}
+     * @memberof SystemInfoRequest
+     */
+    'image_version': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof SystemInfoRequest
+     */
+    'device': number;
+}
+/**
+ * 
+ * @export
+ * @interface Task
+ */
+export interface Task {
+    /**
+     * 
+     * @type {number}
+     * @memberof Task
+     */
+    'id': number;
+    /**
+     * 
+     * @type {TaskStatus}
+     * @memberof Task
+     */
+    'last_status': TaskStatus;
+    /**
+     * 
+     * @type {TaskType}
+     * @memberof Task
+     */
+    'task_type': TaskType;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Task
+     */
+    'active'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof Task
+     */
+    'task_type_display': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Task
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Task
+     */
+    'device': number;
+}
+/**
+ * 
+ * @export
+ * @interface TaskRequest
+ */
+export interface TaskRequest {
+    /**
+     * 
+     * @type {TaskType}
+     * @memberof TaskRequest
+     */
+    'task_type': TaskType;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof TaskRequest
+     */
+    'active'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof TaskRequest
+     */
+    'device': number;
+}
+/**
+ * 
+ * @export
+ * @interface TaskStatus
+ */
+export interface TaskStatus {
+    /**
+     * 
+     * @type {number}
+     * @memberof TaskStatus
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof TaskStatus
+     */
+    'detail'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof TaskStatus
+     */
+    'wiki_url'?: string | null;
+    /**
+     * 
+     * @type {TaskStatusType}
+     * @memberof TaskStatus
+     */
+    'status': TaskStatusType;
+    /**
+     * 
+     * @type {string}
+     * @memberof TaskStatus
+     */
+    'status_display': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TaskStatus
+     */
+    'css_class': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TaskStatus
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof TaskStatus
+     */
+    'task': number;
+}
+/**
+ * 
+ * @export
+ * @interface TaskStatusRequest
+ */
+export interface TaskStatusRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof TaskStatusRequest
+     */
+    'detail'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof TaskStatusRequest
+     */
+    'wiki_url'?: string | null;
+    /**
+     * 
+     * @type {TaskStatusType}
+     * @memberof TaskStatusRequest
+     */
+    'status': TaskStatusType;
+    /**
+     * 
+     * @type {number}
+     * @memberof TaskStatusRequest
+     */
+    'task': number;
+}
+/**
+ * 
+ * @export
  * @enum {string}
  */
 
-export enum StatusEnum {
-    Initial = 'initial',
-    UpdateRunning = 'update_running',
-    UpdateFailed = 'update_failed',
-    UpdateSuccess = 'update_success'
+export enum TaskStatusType {
+    Failed = 'failed',
+    Pending = 'pending',
+    Started = 'started',
+    Success = 'success',
+    Timeout = 'timeout'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export enum TaskType {
+    MonitorStart = 'monitor_start',
+    MonitorStop = 'monitor_stop',
+    SystemCheck = 'system_check',
+    SoftwareUpdate = 'software_update'
 }
 
 /**
@@ -6045,7 +6160,7 @@ export interface TelemetryEvent {
      * @type {number}
      * @memberof TelemetryEvent
      */
-    'id'?: number;
+    'id': number;
     /**
      * 
      * @type {number}
@@ -6111,7 +6226,7 @@ export interface TelemetryEvent {
      * @type {number}
      * @memberof TelemetryEvent
      */
-    'polymorphic_ctype'?: number;
+    'polymorphic_ctype': number;
     /**
      * 
      * @type {number}
@@ -6123,7 +6238,7 @@ export interface TelemetryEvent {
      * @type {number}
      * @memberof TelemetryEvent
      */
-    'user'?: number;
+    'user': number;
     /**
      * 
      * @type {number}
@@ -6331,16 +6446,10 @@ export interface User {
     'email': string;
     /**
      * 
-     * @type {string}
-     * @memberof User
-     */
-    'url'?: string;
-    /**
-     * 
      * @type {number}
      * @memberof User
      */
-    'id'?: number;
+    'id': number;
 }
 /**
  * 
@@ -7456,6 +7565,122 @@ export class AuthApi extends BaseAPI implements AuthApiInterface {
 
 
 /**
+ * ClientConfigApi - axios parameter creator
+ * @export
+ */
+export const ClientConfigApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        clientConfigList: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/client-config/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * ClientConfigApi - functional programming interface
+ * @export
+ */
+export const ClientConfigApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ClientConfigApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async clientConfigList(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PrintNannyApiConfig>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.clientConfigList(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * ClientConfigApi - factory interface
+ * @export
+ */
+export const ClientConfigApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ClientConfigApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        clientConfigList(options?: any): AxiosPromise<Array<PrintNannyApiConfig>> {
+            return localVarFp.clientConfigList(options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * ClientConfigApi - interface
+ * @export
+ * @interface ClientConfigApi
+ */
+export interface ClientConfigApiInterface {
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ClientConfigApiInterface
+     */
+    clientConfigList(options?: AxiosRequestConfig): AxiosPromise<Array<PrintNannyApiConfig>>;
+
+}
+
+/**
+ * ClientConfigApi - object-oriented interface
+ * @export
+ * @class ClientConfigApi
+ * @extends {BaseAPI}
+ */
+export class ClientConfigApi extends BaseAPI implements ClientConfigApiInterface {
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ClientConfigApi
+     */
+    public clientConfigList(options?: AxiosRequestConfig) {
+        return ClientConfigApiFp(this.configuration).clientConfigList(options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
  * DevicesApi - axios parameter creator
  * @export
  */
@@ -7464,15 +7689,15 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {number} deviceId 
-         * @param {DeviceInfoRequest} deviceInfoRequest 
+         * @param {SystemInfoRequest} systemInfoRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deviceInfoUpdateOrCreate: async (deviceId: number, deviceInfoRequest: DeviceInfoRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deviceInfoUpdateOrCreate: async (deviceId: number, systemInfoRequest: SystemInfoRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
             assertParamExists('deviceInfoUpdateOrCreate', 'deviceId', deviceId)
-            // verify required parameter 'deviceInfoRequest' is not null or undefined
-            assertParamExists('deviceInfoUpdateOrCreate', 'deviceInfoRequest', deviceInfoRequest)
+            // verify required parameter 'systemInfoRequest' is not null or undefined
+            assertParamExists('deviceInfoUpdateOrCreate', 'systemInfoRequest', systemInfoRequest)
             const localVarPath = `/api/devices/{device_id}/info/update-or-create/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -7499,7 +7724,46 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(deviceInfoRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(systemInfoRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+         * @param {number} id A unique integer value identifying this device.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesActiveLicenseRetrieve: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesActiveLicenseRetrieve', 'id', id)
+            const localVarPath = `/api/devices/{id}/active-license/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -7873,11 +8137,11 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {number} deviceId 
-         * @param {string} id 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCloudIotDevicesRetrieve: async (deviceId: number, id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesCloudIotDevicesRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
             assertParamExists('devicesCloudIotDevicesRetrieve', 'deviceId', deviceId)
             // verify required parameter 'id' is not null or undefined
@@ -7916,12 +8180,12 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {number} deviceId 
-         * @param {string} id 
+         * @param {number} id 
          * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCloudIotDevicesUpdate: async (deviceId: number, id: string, cloudiotDeviceRequest: CloudiotDeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesCloudIotDevicesUpdate: async (deviceId: number, id: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
             assertParamExists('devicesCloudIotDevicesUpdate', 'deviceId', deviceId)
             // verify required parameter 'id' is not null or undefined
@@ -7956,93 +8220,6 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(cloudiotDeviceRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesConfigList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesConfigList', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/config/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device config.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesConfigRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesConfigRetrieve', 'deviceId', deviceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesConfigRetrieve', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/config/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -8089,17 +8266,56 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * 
-         * @param {number} deviceId 
-         * @param {DeviceInfoRequest} deviceInfoRequest 
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+         * @param {number} id A unique integer value identifying this device.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesInfoCreate: async (deviceId: number, deviceInfoRequest: DeviceInfoRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesGenerateLicenseRetrieve: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesGenerateLicenseRetrieve', 'id', id)
+            const localVarPath = `/api/devices/{id}/generate-license/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {SystemInfoRequest} systemInfoRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesInfoCreate: async (deviceId: number, systemInfoRequest: SystemInfoRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
             assertParamExists('devicesInfoCreate', 'deviceId', deviceId)
-            // verify required parameter 'deviceInfoRequest' is not null or undefined
-            assertParamExists('devicesInfoCreate', 'deviceInfoRequest', deviceInfoRequest)
+            // verify required parameter 'systemInfoRequest' is not null or undefined
+            assertParamExists('devicesInfoCreate', 'systemInfoRequest', systemInfoRequest)
             const localVarPath = `/api/devices/{device_id}/info/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -8126,7 +8342,7 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(deviceInfoRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(systemInfoRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -8180,12 +8396,12 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device info.
-         * @param {PatchedDeviceInfoRequest} [patchedDeviceInfoRequest] 
+         * @param {number} id A unique integer value identifying this system info.
+         * @param {PatchedSystemInfoRequest} [patchedSystemInfoRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesInfoPartialUpdate: async (deviceId: number, id: number, patchedDeviceInfoRequest?: PatchedDeviceInfoRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesInfoPartialUpdate: async (deviceId: number, id: number, patchedSystemInfoRequest?: PatchedSystemInfoRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
             assertParamExists('devicesInfoPartialUpdate', 'deviceId', deviceId)
             // verify required parameter 'id' is not null or undefined
@@ -8217,7 +8433,7 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(patchedDeviceInfoRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedSystemInfoRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -8227,7 +8443,7 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device info.
+         * @param {number} id A unique integer value identifying this system info.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -8270,18 +8486,18 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device info.
-         * @param {DeviceInfoRequest} deviceInfoRequest 
+         * @param {number} id A unique integer value identifying this system info.
+         * @param {SystemInfoRequest} systemInfoRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesInfoUpdate: async (deviceId: number, id: number, deviceInfoRequest: DeviceInfoRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesInfoUpdate: async (deviceId: number, id: number, systemInfoRequest: SystemInfoRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
             assertParamExists('devicesInfoUpdate', 'deviceId', deviceId)
             // verify required parameter 'id' is not null or undefined
             assertParamExists('devicesInfoUpdate', 'id', id)
-            // verify required parameter 'deviceInfoRequest' is not null or undefined
-            assertParamExists('devicesInfoUpdate', 'deviceInfoRequest', deviceInfoRequest)
+            // verify required parameter 'systemInfoRequest' is not null or undefined
+            assertParamExists('devicesInfoUpdate', 'systemInfoRequest', systemInfoRequest)
             const localVarPath = `/api/devices/{device_id}/info/{id}/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
@@ -8309,46 +8525,7 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(deviceInfoRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-         * @param {number} id A unique integer value identifying this device.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesLicenseRetrieve: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesLicenseRetrieve', 'id', id)
-            const localVarPath = `/api/devices/{id}/license/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(systemInfoRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -8743,14 +8920,59 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {number} deviceId 
+         * @param {TaskRequest} taskRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesTasksCreate: async (deviceId: number, taskRequest: TaskRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesTasksCreate', 'deviceId', deviceId)
+            // verify required parameter 'taskRequest' is not null or undefined
+            assertParamExists('devicesTasksCreate', 'taskRequest', taskRequest)
+            const localVarPath = `/api/devices/{device_id}/tasks/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(taskRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesStateList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesTasksList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesStateList', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/state/`
+            assertParamExists('devicesTasksList', 'deviceId', deviceId)
+            const localVarPath = `/api/devices/{device_id}/tasks/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -8787,18 +9009,162 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device state.
+         * @param {number} id A unique integer value identifying this task.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesStateRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesTasksRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesStateRetrieve', 'deviceId', deviceId)
+            assertParamExists('devicesTasksRetrieve', 'deviceId', deviceId)
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesStateRetrieve', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/state/{id}/`
+            assertParamExists('devicesTasksRetrieve', 'id', id)
+            const localVarPath = `/api/devices/{device_id}/tasks/{id}/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} taskId 
+         * @param {TaskStatusRequest} taskStatusRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesTasksStatusCreate: async (deviceId: number, taskId: number, taskStatusRequest: TaskStatusRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesTasksStatusCreate', 'deviceId', deviceId)
+            // verify required parameter 'taskId' is not null or undefined
+            assertParamExists('devicesTasksStatusCreate', 'taskId', taskId)
+            // verify required parameter 'taskStatusRequest' is not null or undefined
+            assertParamExists('devicesTasksStatusCreate', 'taskStatusRequest', taskStatusRequest)
+            const localVarPath = `/api/devices/{device_id}/tasks/{task_id}/status/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+                .replace(`{${"task_id"}}`, encodeURIComponent(String(taskId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(taskStatusRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} taskId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesTasksStatusList: async (deviceId: number, taskId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesTasksStatusList', 'deviceId', deviceId)
+            // verify required parameter 'taskId' is not null or undefined
+            assertParamExists('devicesTasksStatusList', 'taskId', taskId)
+            const localVarPath = `/api/devices/{device_id}/tasks/{task_id}/status/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+                .replace(`{${"task_id"}}`, encodeURIComponent(String(taskId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this task status.
+         * @param {number} taskId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesTasksStatusRetrieve: async (deviceId: number, id: number, taskId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesTasksStatusRetrieve', 'deviceId', deviceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesTasksStatusRetrieve', 'id', id)
+            // verify required parameter 'taskId' is not null or undefined
+            assertParamExists('devicesTasksStatusRetrieve', 'taskId', taskId)
+            const localVarPath = `/api/devices/{device_id}/tasks/{task_id}/status/{id}/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"task_id"}}`, encodeURIComponent(String(taskId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -8883,12 +9249,22 @@ export const DevicesApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} deviceId 
-         * @param {DeviceInfoRequest} deviceInfoRequest 
+         * @param {SystemInfoRequest} systemInfoRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deviceInfoUpdateOrCreate(deviceId: number, deviceInfoRequest: DeviceInfoRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceInfo>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deviceInfoUpdateOrCreate(deviceId, deviceInfoRequest, options);
+        async deviceInfoUpdateOrCreate(deviceId: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SystemInfo>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deviceInfoUpdateOrCreate(deviceId, systemInfoRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+         * @param {number} id A unique integer value identifying this device.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesActiveLicenseRetrieve(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<License>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesActiveLicenseRetrieve(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -8985,46 +9361,24 @@ export const DevicesApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} deviceId 
-         * @param {string} id 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesCloudIotDevicesRetrieve(deviceId: number, id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CloudiotDevice>> {
+        async devicesCloudIotDevicesRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CloudiotDevice>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCloudIotDevicesRetrieve(deviceId, id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @param {number} deviceId 
-         * @param {string} id 
+         * @param {number} id 
          * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesCloudIotDevicesUpdate(deviceId: number, id: string, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CloudiotDevice>> {
+        async devicesCloudIotDevicesUpdate(deviceId: number, id: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CloudiotDevice>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCloudIotDevicesUpdate(deviceId, id, cloudiotDeviceRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesConfigList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedDeviceConfigList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesConfigList(deviceId, page, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device config.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesConfigRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceConfig>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesConfigRetrieve(deviceId, id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -9038,14 +9392,24 @@ export const DevicesApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * 
-         * @param {number} deviceId 
-         * @param {DeviceInfoRequest} deviceInfoRequest 
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+         * @param {number} id A unique integer value identifying this device.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesInfoCreate(deviceId: number, deviceInfoRequest: DeviceInfoRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceInfo>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesInfoCreate(deviceId, deviceInfoRequest, options);
+        async devicesGenerateLicenseRetrieve(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesGenerateLicenseRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {SystemInfoRequest} systemInfoRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesInfoCreate(deviceId: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SystemInfo>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesInfoCreate(deviceId, systemInfoRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -9055,53 +9419,43 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesInfoList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedDeviceInfoList>> {
+        async devicesInfoList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedSystemInfoList>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesInfoList(deviceId, page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device info.
-         * @param {PatchedDeviceInfoRequest} [patchedDeviceInfoRequest] 
+         * @param {number} id A unique integer value identifying this system info.
+         * @param {PatchedSystemInfoRequest} [patchedSystemInfoRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesInfoPartialUpdate(deviceId: number, id: number, patchedDeviceInfoRequest?: PatchedDeviceInfoRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceInfo>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesInfoPartialUpdate(deviceId, id, patchedDeviceInfoRequest, options);
+        async devicesInfoPartialUpdate(deviceId: number, id: number, patchedSystemInfoRequest?: PatchedSystemInfoRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SystemInfo>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesInfoPartialUpdate(deviceId, id, patchedSystemInfoRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device info.
+         * @param {number} id A unique integer value identifying this system info.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesInfoRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceInfo>> {
+        async devicesInfoRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SystemInfo>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesInfoRetrieve(deviceId, id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device info.
-         * @param {DeviceInfoRequest} deviceInfoRequest 
+         * @param {number} id A unique integer value identifying this system info.
+         * @param {SystemInfoRequest} systemInfoRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesInfoUpdate(deviceId: number, id: number, deviceInfoRequest: DeviceInfoRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceInfo>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesInfoUpdate(deviceId, id, deviceInfoRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-         * @param {number} id A unique integer value identifying this device.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesLicenseRetrieve(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesLicenseRetrieve(id, options);
+        async devicesInfoUpdate(deviceId: number, id: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SystemInfo>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesInfoUpdate(deviceId, id, systemInfoRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -9205,23 +9559,70 @@ export const DevicesApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
+         * @param {TaskRequest} taskRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesStateList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedDeviceStateList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesStateList(deviceId, page, options);
+        async devicesTasksCreate(deviceId: number, taskRequest: TaskRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Task>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksCreate(deviceId, taskRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device state.
+         * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesStateRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceState>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesStateRetrieve(deviceId, id, options);
+        async devicesTasksList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedTaskList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksList(deviceId, page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this task.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesTasksRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Task>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksRetrieve(deviceId, id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} taskId 
+         * @param {TaskStatusRequest} taskStatusRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesTasksStatusCreate(deviceId: number, taskId: number, taskStatusRequest: TaskStatusRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Task>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksStatusCreate(deviceId, taskId, taskStatusRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} taskId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesTasksStatusList(deviceId: number, taskId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedTaskStatusList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksStatusList(deviceId, taskId, page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this task status.
+         * @param {number} taskId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesTasksStatusRetrieve(deviceId: number, id: number, taskId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TaskStatus>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksStatusRetrieve(deviceId, id, taskId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -9248,12 +9649,21 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @param {number} deviceId 
-         * @param {DeviceInfoRequest} deviceInfoRequest 
+         * @param {SystemInfoRequest} systemInfoRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deviceInfoUpdateOrCreate(deviceId: number, deviceInfoRequest: DeviceInfoRequest, options?: any): AxiosPromise<DeviceInfo> {
-            return localVarFp.deviceInfoUpdateOrCreate(deviceId, deviceInfoRequest, options).then((request) => request(axios, basePath));
+        deviceInfoUpdateOrCreate(deviceId: number, systemInfoRequest: SystemInfoRequest, options?: any): AxiosPromise<SystemInfo> {
+            return localVarFp.deviceInfoUpdateOrCreate(deviceId, systemInfoRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+         * @param {number} id A unique integer value identifying this device.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesActiveLicenseRetrieve(id: number, options?: any): AxiosPromise<License> {
+            return localVarFp.devicesActiveLicenseRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9341,43 +9751,23 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @param {number} deviceId 
-         * @param {string} id 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCloudIotDevicesRetrieve(deviceId: number, id: string, options?: any): AxiosPromise<CloudiotDevice> {
+        devicesCloudIotDevicesRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<CloudiotDevice> {
             return localVarFp.devicesCloudIotDevicesRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {number} deviceId 
-         * @param {string} id 
+         * @param {number} id 
          * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCloudIotDevicesUpdate(deviceId: number, id: string, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: any): AxiosPromise<CloudiotDevice> {
+        devicesCloudIotDevicesUpdate(deviceId: number, id: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: any): AxiosPromise<CloudiotDevice> {
             return localVarFp.devicesCloudIotDevicesUpdate(deviceId, id, cloudiotDeviceRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesConfigList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedDeviceConfigList> {
-            return localVarFp.devicesConfigList(deviceId, page, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device config.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesConfigRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<DeviceConfig> {
-            return localVarFp.devicesConfigRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
         },
         /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
@@ -9389,14 +9779,23 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.devicesCreate(deviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
-         * @param {number} deviceId 
-         * @param {DeviceInfoRequest} deviceInfoRequest 
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+         * @param {number} id A unique integer value identifying this device.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesInfoCreate(deviceId: number, deviceInfoRequest: DeviceInfoRequest, options?: any): AxiosPromise<DeviceInfo> {
-            return localVarFp.devicesInfoCreate(deviceId, deviceInfoRequest, options).then((request) => request(axios, basePath));
+        devicesGenerateLicenseRetrieve(id: number, options?: any): AxiosPromise<Device> {
+            return localVarFp.devicesGenerateLicenseRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {SystemInfoRequest} systemInfoRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesInfoCreate(deviceId: number, systemInfoRequest: SystemInfoRequest, options?: any): AxiosPromise<SystemInfo> {
+            return localVarFp.devicesInfoCreate(deviceId, systemInfoRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9405,49 +9804,40 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesInfoList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedDeviceInfoList> {
+        devicesInfoList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedSystemInfoList> {
             return localVarFp.devicesInfoList(deviceId, page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device info.
-         * @param {PatchedDeviceInfoRequest} [patchedDeviceInfoRequest] 
+         * @param {number} id A unique integer value identifying this system info.
+         * @param {PatchedSystemInfoRequest} [patchedSystemInfoRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesInfoPartialUpdate(deviceId: number, id: number, patchedDeviceInfoRequest?: PatchedDeviceInfoRequest, options?: any): AxiosPromise<DeviceInfo> {
-            return localVarFp.devicesInfoPartialUpdate(deviceId, id, patchedDeviceInfoRequest, options).then((request) => request(axios, basePath));
+        devicesInfoPartialUpdate(deviceId: number, id: number, patchedSystemInfoRequest?: PatchedSystemInfoRequest, options?: any): AxiosPromise<SystemInfo> {
+            return localVarFp.devicesInfoPartialUpdate(deviceId, id, patchedSystemInfoRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device info.
+         * @param {number} id A unique integer value identifying this system info.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesInfoRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<DeviceInfo> {
+        devicesInfoRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<SystemInfo> {
             return localVarFp.devicesInfoRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device info.
-         * @param {DeviceInfoRequest} deviceInfoRequest 
+         * @param {number} id A unique integer value identifying this system info.
+         * @param {SystemInfoRequest} systemInfoRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesInfoUpdate(deviceId: number, id: number, deviceInfoRequest: DeviceInfoRequest, options?: any): AxiosPromise<DeviceInfo> {
-            return localVarFp.devicesInfoUpdate(deviceId, id, deviceInfoRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-         * @param {number} id A unique integer value identifying this device.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesLicenseRetrieve(id: number, options?: any): AxiosPromise<Device> {
-            return localVarFp.devicesLicenseRetrieve(id, options).then((request) => request(axios, basePath));
+        devicesInfoUpdate(deviceId: number, id: number, systemInfoRequest: SystemInfoRequest, options?: any): AxiosPromise<SystemInfo> {
+            return localVarFp.devicesInfoUpdate(deviceId, id, systemInfoRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
@@ -9541,22 +9931,65 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
+         * @param {TaskRequest} taskRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesStateList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedDeviceStateList> {
-            return localVarFp.devicesStateList(deviceId, page, options).then((request) => request(axios, basePath));
+        devicesTasksCreate(deviceId: number, taskRequest: TaskRequest, options?: any): AxiosPromise<Task> {
+            return localVarFp.devicesTasksCreate(deviceId, taskRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device state.
+         * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesStateRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<DeviceState> {
-            return localVarFp.devicesStateRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
+        devicesTasksList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedTaskList> {
+            return localVarFp.devicesTasksList(deviceId, page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this task.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesTasksRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<Task> {
+            return localVarFp.devicesTasksRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} taskId 
+         * @param {TaskStatusRequest} taskStatusRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesTasksStatusCreate(deviceId: number, taskId: number, taskStatusRequest: TaskStatusRequest, options?: any): AxiosPromise<Task> {
+            return localVarFp.devicesTasksStatusCreate(deviceId, taskId, taskStatusRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} taskId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesTasksStatusList(deviceId: number, taskId: number, page?: number, options?: any): AxiosPromise<PaginatedTaskStatusList> {
+            return localVarFp.devicesTasksStatusList(deviceId, taskId, page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this task status.
+         * @param {number} taskId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesTasksStatusRetrieve(deviceId: number, id: number, taskId: number, options?: any): AxiosPromise<TaskStatus> {
+            return localVarFp.devicesTasksStatusRetrieve(deviceId, id, taskId, options).then((request) => request(axios, basePath));
         },
         /**
          * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
@@ -9580,12 +10013,21 @@ export interface DevicesApiInterface {
     /**
      * 
      * @param {number} deviceId 
-     * @param {DeviceInfoRequest} deviceInfoRequest 
+     * @param {SystemInfoRequest} systemInfoRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    deviceInfoUpdateOrCreate(deviceId: number, deviceInfoRequest: DeviceInfoRequest, options?: AxiosRequestConfig): AxiosPromise<DeviceInfo>;
+    deviceInfoUpdateOrCreate(deviceId: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig): AxiosPromise<SystemInfo>;
+
+    /**
+     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+     * @param {number} id A unique integer value identifying this device.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesActiveLicenseRetrieve(id: number, options?: AxiosRequestConfig): AxiosPromise<License>;
 
     /**
      * 
@@ -9673,43 +10115,23 @@ export interface DevicesApiInterface {
     /**
      * 
      * @param {number} deviceId 
-     * @param {string} id 
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesCloudIotDevicesRetrieve(deviceId: number, id: string, options?: AxiosRequestConfig): AxiosPromise<CloudiotDevice>;
+    devicesCloudIotDevicesRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<CloudiotDevice>;
 
     /**
      * 
      * @param {number} deviceId 
-     * @param {string} id 
+     * @param {number} id 
      * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesCloudIotDevicesUpdate(deviceId: number, id: string, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): AxiosPromise<CloudiotDevice>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesConfigList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedDeviceConfigList>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device config.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesConfigRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<DeviceConfig>;
+    devicesCloudIotDevicesUpdate(deviceId: number, id: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): AxiosPromise<CloudiotDevice>;
 
     /**
      * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
@@ -9721,14 +10143,23 @@ export interface DevicesApiInterface {
     devicesCreate(deviceRequest?: DeviceRequest, options?: AxiosRequestConfig): AxiosPromise<Device>;
 
     /**
-     * 
-     * @param {number} deviceId 
-     * @param {DeviceInfoRequest} deviceInfoRequest 
+     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+     * @param {number} id A unique integer value identifying this device.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesInfoCreate(deviceId: number, deviceInfoRequest: DeviceInfoRequest, options?: AxiosRequestConfig): AxiosPromise<DeviceInfo>;
+    devicesGenerateLicenseRetrieve(id: number, options?: AxiosRequestConfig): AxiosPromise<Device>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {SystemInfoRequest} systemInfoRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesInfoCreate(deviceId: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig): AxiosPromise<SystemInfo>;
 
     /**
      * 
@@ -9738,48 +10169,39 @@ export interface DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesInfoList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedDeviceInfoList>;
+    devicesInfoList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedSystemInfoList>;
 
     /**
      * 
      * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device info.
-     * @param {PatchedDeviceInfoRequest} [patchedDeviceInfoRequest] 
+     * @param {number} id A unique integer value identifying this system info.
+     * @param {PatchedSystemInfoRequest} [patchedSystemInfoRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesInfoPartialUpdate(deviceId: number, id: number, patchedDeviceInfoRequest?: PatchedDeviceInfoRequest, options?: AxiosRequestConfig): AxiosPromise<DeviceInfo>;
+    devicesInfoPartialUpdate(deviceId: number, id: number, patchedSystemInfoRequest?: PatchedSystemInfoRequest, options?: AxiosRequestConfig): AxiosPromise<SystemInfo>;
 
     /**
      * 
      * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device info.
+     * @param {number} id A unique integer value identifying this system info.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesInfoRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<DeviceInfo>;
+    devicesInfoRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<SystemInfo>;
 
     /**
      * 
      * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device info.
-     * @param {DeviceInfoRequest} deviceInfoRequest 
+     * @param {number} id A unique integer value identifying this system info.
+     * @param {SystemInfoRequest} systemInfoRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesInfoUpdate(deviceId: number, id: number, deviceInfoRequest: DeviceInfoRequest, options?: AxiosRequestConfig): AxiosPromise<DeviceInfo>;
-
-    /**
-     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-     * @param {number} id A unique integer value identifying this device.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesLicenseRetrieve(id: number, options?: AxiosRequestConfig): AxiosPromise<Device>;
+    devicesInfoUpdate(deviceId: number, id: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig): AxiosPromise<SystemInfo>;
 
     /**
      * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
@@ -9873,22 +10295,65 @@ export interface DevicesApiInterface {
     /**
      * 
      * @param {number} deviceId 
+     * @param {TaskRequest} taskRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesTasksCreate(deviceId: number, taskRequest: TaskRequest, options?: AxiosRequestConfig): AxiosPromise<Task>;
+
+    /**
+     * 
+     * @param {number} deviceId 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesStateList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedDeviceStateList>;
+    devicesTasksList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedTaskList>;
 
     /**
      * 
      * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device state.
+     * @param {number} id A unique integer value identifying this task.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesStateRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<DeviceState>;
+    devicesTasksRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<Task>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} taskId 
+     * @param {TaskStatusRequest} taskStatusRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesTasksStatusCreate(deviceId: number, taskId: number, taskStatusRequest: TaskStatusRequest, options?: AxiosRequestConfig): AxiosPromise<Task>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} taskId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesTasksStatusList(deviceId: number, taskId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedTaskStatusList>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this task status.
+     * @param {number} taskId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesTasksStatusRetrieve(deviceId: number, id: number, taskId: number, options?: AxiosRequestConfig): AxiosPromise<TaskStatus>;
 
     /**
      * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
@@ -9912,13 +10377,24 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
     /**
      * 
      * @param {number} deviceId 
-     * @param {DeviceInfoRequest} deviceInfoRequest 
+     * @param {SystemInfoRequest} systemInfoRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public deviceInfoUpdateOrCreate(deviceId: number, deviceInfoRequest: DeviceInfoRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).deviceInfoUpdateOrCreate(deviceId, deviceInfoRequest, options).then((request) => request(this.axios, this.basePath));
+    public deviceInfoUpdateOrCreate(deviceId: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).deviceInfoUpdateOrCreate(deviceId, systemInfoRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+     * @param {number} id A unique integer value identifying this device.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesActiveLicenseRetrieve(id: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesActiveLicenseRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -10023,50 +10499,26 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
     /**
      * 
      * @param {number} deviceId 
-     * @param {string} id 
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesCloudIotDevicesRetrieve(deviceId: number, id: string, options?: AxiosRequestConfig) {
+    public devicesCloudIotDevicesRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesCloudIotDevicesRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @param {number} deviceId 
-     * @param {string} id 
+     * @param {number} id 
      * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesCloudIotDevicesUpdate(deviceId: number, id: string, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig) {
+    public devicesCloudIotDevicesUpdate(deviceId: number, id: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesCloudIotDevicesUpdate(deviceId, id, cloudiotDeviceRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesConfigList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesConfigList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device config.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesConfigRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesConfigRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -10081,15 +10533,26 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
     }
 
     /**
-     * 
-     * @param {number} deviceId 
-     * @param {DeviceInfoRequest} deviceInfoRequest 
+     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+     * @param {number} id A unique integer value identifying this device.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesInfoCreate(deviceId: number, deviceInfoRequest: DeviceInfoRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesInfoCreate(deviceId, deviceInfoRequest, options).then((request) => request(this.axios, this.basePath));
+    public devicesGenerateLicenseRetrieve(id: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesGenerateLicenseRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {SystemInfoRequest} systemInfoRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesInfoCreate(deviceId: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesInfoCreate(deviceId, systemInfoRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -10107,20 +10570,20 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
     /**
      * 
      * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device info.
-     * @param {PatchedDeviceInfoRequest} [patchedDeviceInfoRequest] 
+     * @param {number} id A unique integer value identifying this system info.
+     * @param {PatchedSystemInfoRequest} [patchedSystemInfoRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesInfoPartialUpdate(deviceId: number, id: number, patchedDeviceInfoRequest?: PatchedDeviceInfoRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesInfoPartialUpdate(deviceId, id, patchedDeviceInfoRequest, options).then((request) => request(this.axios, this.basePath));
+    public devicesInfoPartialUpdate(deviceId: number, id: number, patchedSystemInfoRequest?: PatchedSystemInfoRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesInfoPartialUpdate(deviceId, id, patchedSystemInfoRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device info.
+     * @param {number} id A unique integer value identifying this system info.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
@@ -10132,25 +10595,14 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
     /**
      * 
      * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device info.
-     * @param {DeviceInfoRequest} deviceInfoRequest 
+     * @param {number} id A unique integer value identifying this system info.
+     * @param {SystemInfoRequest} systemInfoRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesInfoUpdate(deviceId: number, id: number, deviceInfoRequest: DeviceInfoRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesInfoUpdate(deviceId, id, deviceInfoRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-     * @param {number} id A unique integer value identifying this device.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesLicenseRetrieve(id: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesLicenseRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    public devicesInfoUpdate(deviceId: number, id: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesInfoUpdate(deviceId, id, systemInfoRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -10263,25 +10715,76 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
     /**
      * 
      * @param {number} deviceId 
-     * @param {number} [page] A page number within the paginated result set.
+     * @param {TaskRequest} taskRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesStateList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesStateList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
+    public devicesTasksCreate(deviceId: number, taskRequest: TaskRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesTasksCreate(deviceId, taskRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device state.
+     * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesStateRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesStateRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
+    public devicesTasksList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesTasksList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this task.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesTasksRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesTasksRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} taskId 
+     * @param {TaskStatusRequest} taskStatusRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesTasksStatusCreate(deviceId: number, taskId: number, taskStatusRequest: TaskStatusRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesTasksStatusCreate(deviceId, taskId, taskStatusRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} taskId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesTasksStatusList(deviceId: number, taskId: number, page?: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesTasksStatusList(deviceId, taskId, page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this task status.
+     * @param {number} taskId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesTasksStatusRetrieve(deviceId: number, id: number, taskId: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesTasksStatusRetrieve(deviceId, id, taskId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -10294,6 +10797,295 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      */
     public devicesUpdate(id: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesUpdate(id, deviceRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * LicensesApi - axios parameter creator
+ * @export
+ */
+export const LicensesApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+         * @param {number} id A unique integer value identifying this license.
+         * @param {LicenseRequest} [licenseRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        licenseActivate: async (id: number, licenseRequest?: LicenseRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('licenseActivate', 'id', id)
+            const localVarPath = `/api/licenses/{id}/activate/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(licenseRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        licensesList: async (page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/licenses/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+         * @param {number} id A unique integer value identifying this license.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        licensesRetrieve: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('licensesRetrieve', 'id', id)
+            const localVarPath = `/api/licenses/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * LicensesApi - functional programming interface
+ * @export
+ */
+export const LicensesApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = LicensesApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+         * @param {number} id A unique integer value identifying this license.
+         * @param {LicenseRequest} [licenseRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async licenseActivate(id: number, licenseRequest?: LicenseRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<License>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.licenseActivate(id, licenseRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async licensesList(page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedLicenseList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.licensesList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+         * @param {number} id A unique integer value identifying this license.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async licensesRetrieve(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<License>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.licensesRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * LicensesApi - factory interface
+ * @export
+ */
+export const LicensesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = LicensesApiFp(configuration)
+    return {
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+         * @param {number} id A unique integer value identifying this license.
+         * @param {LicenseRequest} [licenseRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        licenseActivate(id: number, licenseRequest?: LicenseRequest, options?: any): AxiosPromise<License> {
+            return localVarFp.licenseActivate(id, licenseRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        licensesList(page?: number, options?: any): AxiosPromise<PaginatedLicenseList> {
+            return localVarFp.licensesList(page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+         * @param {number} id A unique integer value identifying this license.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        licensesRetrieve(id: number, options?: any): AxiosPromise<License> {
+            return localVarFp.licensesRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * LicensesApi - interface
+ * @export
+ * @interface LicensesApi
+ */
+export interface LicensesApiInterface {
+    /**
+     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+     * @param {number} id A unique integer value identifying this license.
+     * @param {LicenseRequest} [licenseRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LicensesApiInterface
+     */
+    licenseActivate(id: number, licenseRequest?: LicenseRequest, options?: AxiosRequestConfig): AxiosPromise<License>;
+
+    /**
+     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LicensesApiInterface
+     */
+    licensesList(page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedLicenseList>;
+
+    /**
+     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+     * @param {number} id A unique integer value identifying this license.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LicensesApiInterface
+     */
+    licensesRetrieve(id: number, options?: AxiosRequestConfig): AxiosPromise<License>;
+
+}
+
+/**
+ * LicensesApi - object-oriented interface
+ * @export
+ * @class LicensesApi
+ * @extends {BaseAPI}
+ */
+export class LicensesApi extends BaseAPI implements LicensesApiInterface {
+    /**
+     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+     * @param {number} id A unique integer value identifying this license.
+     * @param {LicenseRequest} [licenseRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LicensesApi
+     */
+    public licenseActivate(id: number, licenseRequest?: LicenseRequest, options?: AxiosRequestConfig) {
+        return LicensesApiFp(this.configuration).licenseActivate(id, licenseRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LicensesApi
+     */
+    public licensesList(page?: number, options?: AxiosRequestConfig) {
+        return LicensesApiFp(this.configuration).licensesList(page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+     * @param {number} id A unique integer value identifying this license.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LicensesApi
+     */
+    public licensesRetrieve(id: number, options?: AxiosRequestConfig) {
+        return LicensesApiFp(this.configuration).licensesRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
