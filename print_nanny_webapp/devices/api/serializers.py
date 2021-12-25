@@ -120,6 +120,8 @@ class DeviceSerializer(serializers.ModelSerializer):
         default=DeviceReleaseChannel.STABLE,
     )
 
+    # monitoring_active = serializers.BooleanField()
+
     user = UserSerializer(read_only=True)
     last_task = TaskSerializer(read_only=True)
     active_tasks = TaskSerializer(many=True, read_only=True)

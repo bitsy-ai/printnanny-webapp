@@ -4,7 +4,9 @@ import TaskStatus from '@/components/TaskStatus'
 import {
   DEVICES,
   DEVICE_MODULE,
-  SET_DEVICE_DATA
+  SET_DEVICE_DATA,
+  START_MONITORING,
+  STOP_MONITORING
 } from '@/store/devices'
 import {
   TASKS,
@@ -14,6 +16,18 @@ import {
 
 export default {
   components: { TaskStatus },
+  methods: {
+    ...mapActions(DEVICE_MODULE, {
+      startMonitoring: START_MONITORING,
+      stopMonitoring: STOP_MONITORING
+    }),
+    ...mapMutations(DEVICE_MODULE, [
+      SET_DEVICE_DATA
+    ]),
+    ...mapMutations(TASK_MODULE, [
+      SET_TASK_DATA
+    ])
+  },
   props: {
     deviceId: {
       type: String,
@@ -28,14 +42,6 @@ export default {
     ...mapState(DEVICE_MODULE, {
       devices: DEVICES
     })
-  },
-  methods: {
-    ...mapMutations(DEVICE_MODULE, [
-      SET_DEVICE_DATA
-    ]),
-    ...mapMutations(TASK_MODULE, [
-      SET_TASK_DATA
-    ])
   }
 }
 </script>
@@ -70,11 +76,9 @@ export default {
                 <i class="mdi mdi-printer-3d"></i> Manage Pi
             </button>
         </a>
-        <a href="#" target="_blank">
-            <button class="btn btn-light btn-sm mr-2 ml-2">
-            <i class="mdi mdi-camera"></i> Start Monitoring
-            </button>
-        </a>
+          <button @click="startMonitoring(devices[deviceId])" class="btn btn-light btn-sm mr-2 ml-2">
+          <i class="mdi mdi-camera"></i> Start Monitoring
+          </button>
     </div>
 </div>
 </template>
