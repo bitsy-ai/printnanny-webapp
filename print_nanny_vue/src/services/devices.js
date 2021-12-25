@@ -27,5 +27,13 @@ export default {
       req
     )
     return res
+  },
+
+  async getActiveLicense  (device) {
+    const thisapi = DevicesApiFactory(configuration, process.env.BASE_API_URL)
+    const res = await thisapi.devicesActiveLicenseRetrieve(
+      device.id
+    )
+    return res
   }
 }
