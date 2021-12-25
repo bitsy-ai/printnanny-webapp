@@ -126,6 +126,7 @@ Janus.useDefaultDependencies = function (deps) {
 			}
 
 			var fetching = f(url, fetchOptions).catch(function(error) {
+				console.error(error)
 				return p.reject({message: 'Probably a network error, is the server down?', error: error});
 			});
 

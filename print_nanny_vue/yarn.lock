@@ -7670,8 +7670,10 @@ pretty@2.0.0:
     extend-shallow "^2.0.1"
     js-beautify "^1.6.12"
 
-"printnanny-api-client@file:../clients/typescript":
+printnanny-api-client@^0.26.0:
   version "0.26.0"
+  resolved "https://registry.yarnpkg.com/printnanny-api-client/-/printnanny-api-client-0.26.0.tgz#c5af2919c0938dbb2ac5e4603cfca6c60ca9f377"
+  integrity sha512-fNxs8ffEf3Fo6NScjPomca/rjlzGe2vQIDu9pniR9LFoMPzcTXBDBJvJOmAzaRiFp4tcjVRFYglljIe5SDk8wA==
   dependencies:
     axios "^0.21.4"
 
@@ -8328,6 +8330,11 @@ schema-utils@^3.0.0:
     "@types/json-schema" "^7.0.6"
     ajv "^6.12.5"
     ajv-keywords "^3.5.2"
+
+sdp@^3.0.2:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/sdp/-/sdp-3.0.3.tgz#669958d54663ea9f4a46cc66518c9d980c52c61e"
+  integrity sha512-8EkfckS+XZQaPLyChu4ey7PghrdcraCVNpJe2Gfdi2ON1ylQ7OasuKX+b37R9slnRChwIAiQgt+oj8xXGD8x+A==
 
 select-hose@^2.0.0:
   version "2.0.0"
@@ -9821,6 +9828,13 @@ webpack@^5.15.0:
     terser-webpack-plugin "^5.1.1"
     watchpack "^2.0.0"
     webpack-sources "^2.1.1"
+
+webrtc-adapter@^8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/webrtc-adapter/-/webrtc-adapter-8.1.0.tgz#89429d837eb43c7a2885a0eb66390af6c552bba6"
+  integrity sha512-I+y/LWBiGYPVhIb8Ww7nyoNWhrCYENeGoRvZuyytLn/h+ahDBgItvuIfMdzT+xhOnjLIMVkOykttGJPv1dr6kA==
+  dependencies:
+    sdp "^3.0.2"
 
 websocket-driver@>=0.5.1, websocket-driver@^0.7.4:
   version "0.7.4"

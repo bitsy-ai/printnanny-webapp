@@ -1,7 +1,7 @@
 <script>
 import { mapActions, mapState, mapMutations } from 'vuex'
 import TaskStatus from '@/components/TaskStatus'
-import JanusService from '@/services/janus'
+import { JanusSession, JanusConstructorOptions } from '@/services/janus'
 import {
   DEVICES,
   DEVICE_MODULE,
@@ -17,6 +17,11 @@ import {
 
 export default {
   components: { TaskStatus },
+  data: function () {
+    return {
+      jSession: JanusSession
+    }
+  },
   methods: {
     ...mapActions(DEVICE_MODULE, {
       startMonitoring: START_MONITORING,
@@ -27,7 +32,17 @@ export default {
     ]),
     ...mapMutations(TASK_MODULE, [
       SET_TASK_DATA
-    ])
+    ]),
+
+    onSession () {
+      console.log('Janus session initialized')
+    },
+    onSessionError (error) {
+      console.error('Janus session error', error)
+    },
+    onSessionDetroyed () {
+      console.info('Janus session destroyed')
+    }
   },
   props: {
     deviceId: {
@@ -43,6 +58,29 @@ export default {
     ...mapState(DEVICE_MODULE, {
       devices: DEVICES
     })
+  },
+  created: function () {
+    JanusSession.init()
+
+    const sessionOpts = {
+      server: `http://${this.devices[this.deviceId].hostname}:8088/janus`,
+      success: this.onSession,
+      error: this.onSessionError,
+      destroyed: this.onSessionDetroyed
+    }
+    this.jSession = new JanusSession(sessionOpts)
+    // const protocol = 'http://'
+    // const hostname = this.devices[this.deviceId].hostname
+    // const port = '8088'
+    // const url = new URL(
+    //   `${protocol}${hostname}${port}/janus`
+    // )
+    // // const token = this.devices[deviceId].activ
+    // this.janusService = new JanusService(
+    //   url,
+    //   'TODO',
+    //   this.devices[this.deviceId]
+    // )
   }
 }
 </script>
