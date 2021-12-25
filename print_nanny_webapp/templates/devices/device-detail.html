@@ -61,17 +61,6 @@
 {% if object.active_license.activated %}
 
 {% block extra_javascript %}
-    <script type="text/javascript">
-        if(window.location.protocol === 'http:')
-            window.JANUS_SERVER_URL = "http://" + "{{ object.hostname }}" + ":8088/janus";
-        else
-            window.JANUS_SERVER_URL = "https://" + "{{ object.hostname }}" + ":8089/janus";
-
-        window.JANUS_TOKEN = "{{ object.active_license.janus_token }}";
-    </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/8.1.0/adapter.min.js" ></script>
-    <script src="{% static 'js/vendor/janus.js' %}"></script>
-    <script src="{% static 'js/streamingtest.js' %}"></script>
     {% load render_bundle from webpack_loader %}
     {% render_bundle 'taskStatus' %}
 {% endblock %}
