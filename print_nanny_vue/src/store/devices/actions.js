@@ -1,15 +1,18 @@
 import {
-  SET_DATA
+  SET_DEVICE_DATA
 } from './mutations'
 import api from '@/services/devices'
 
 export const START_MONITORING = 'start_monitoring'
 export const STOP_MONITORING = 'stop_monitoring'
+
 export default {
-  [START_MONITORING] ({ commit, state, dispatch }, device) {
-    await api.startMonitoring(device)
+  async [START_MONITORING] ({ commit, state, dispatch }, device) {
+    const res = await api.startMonitoring(device)
+    commit(SET_DEVICE_DATA, res)
   },
-  [STOP_MONITORING] ({ device, commit, state, dispatch }, device) {
-    await api.stopMonitoring(device)
+  async [STOP_MONITORING] ({ commit, state, dispatch }, device) {
+    const res = await api.stopMonitoring(device)
+    commit(SET_DEVICE_DATA, res)
   }
 }

@@ -1,4 +1,4 @@
-import { AlertsApiFactory, Configuration, DeviceRequest } from 'print-nanny-client'
+import { DevicesApiFactory, Configuration, PatchedDeviceRequest } from 'print-nanny-client'
 
 const configuration = new Configuration({
   basePath: process.env.BASE_API_URL,
@@ -10,12 +10,22 @@ const configuration = new Configuration({
 })
 
 export default {
-  async startMonitoring(device) {
-    const instance = AlertsApiFactory(configuration, process.env.BASE_API_URL)
-    const request = 
+  async startMonitoring (device) {
+    const thisapi = DevicesApiFactory(configuration, process.env.BASE_API_URL)
+    const req = { monitoring_active: true }
+    const res = await thisapi.devicesPartialUpdate(
+      device.id,
+      req
+    )
+    return res
   },
-  async stopMonitoring(device){
-    const instance = AlertsApiFactory(configuration, process.env.BASE_API_URL)
-    const response = await instance.alertsList(pageNum)
+  async stopMonitoring (device) {
+    const thisapi = DevicesApiFactory(configuration, process.env.BASE_API_URL)
+    const req = { monitoring_active: false }
+    const res = await thisapi.devicesPartialUpdate(
+      device.id,
+      req
+    )
+    return res
   }
 }

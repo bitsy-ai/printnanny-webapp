@@ -76,8 +76,13 @@ export default {
                 <i class="mdi mdi-printer-3d"></i> Manage Pi
             </button>
         </a>
-          <button @click="startMonitoring(devices[deviceId])" class="btn btn-light btn-sm mr-2 ml-2">
+          <button v-if="!devices[deviceId].monitoring_active"
+            @click="startMonitoring(devices[deviceId])" class="btn btn-light btn-sm mr-2 ml-2">
           <i class="mdi mdi-camera"></i> Start Monitoring
+          </button>
+          <button v-if="devices[deviceId].monitoring_active"
+            @click="stopMonitoring(devices[deviceId])" class="btn btn-light btn-sm mr-2 ml-2">
+          <i class="mdi mdi-camera"></i> Stop Monitoring
           </button>
     </div>
 </div>
