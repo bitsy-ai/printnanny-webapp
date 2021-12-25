@@ -56,6 +56,8 @@ class Device(SafeDeleteModel):
             )
         ]
 
+    monitoring_active = models.BooleanField(default=False)
+
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     updated_dt = models.DateTimeField(db_index=True, auto_now=True)
     user = models.ForeignKey(
@@ -117,6 +119,10 @@ class Device(SafeDeleteModel):
 
         serializer = DeviceSerializer(instance=self)
         return JSONRenderer().render(serializer.data).decode("utf8")
+
+    @property
+    def janus_local_url(self):
+        return "http://{self.hostname}:8088/janus"
 
 
 class License(SafeDeleteModel):

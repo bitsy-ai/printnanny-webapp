@@ -112,12 +112,15 @@ class DeviceSerializer(serializers.ModelSerializer):
         read_only=True, required=False, allow_null=True
     )
     cameras = CameraSerializer(read_only=True, many=True)
+    janus_local_url = serializers.CharField(read_only=True)
     dashboard_url = serializers.CharField(read_only=True)
     printer_controllers = PrinterControllerSerializer(read_only=True, many=True)
     release_channel = serializers.ChoiceField(
         choices=DeviceReleaseChannel.choices,
         default=DeviceReleaseChannel.STABLE,
     )
+
+    # monitoring_active = serializers.BooleanField()
 
     user = UserSerializer(read_only=True)
     last_task = TaskSerializer(read_only=True)

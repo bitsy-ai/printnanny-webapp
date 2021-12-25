@@ -1,18 +1,14 @@
 <script>
-import { mapActions, mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import {
   TASKS,
   TASK_MODULE,
-  SET_DATA
+  SET_TASK_DATA
 } from '@/store/tasks'
 
 export default {
   props: {
     taskId: {
-      type: Number,
-      required: true
-    },
-    taskIdx: {
       type: Number,
       required: true
     }
@@ -24,14 +20,8 @@ export default {
   },
   methods: {
     ...mapMutations(TASK_MODULE, [
-      SET_DATA
+      SET_TASK_DATA
     ])
-  },
-  created: function () {
-    // set initial task data from parent TaskStatus.js module
-    console.log(this)
-    this.SET_DATA({ data: this.$parent.task })
-    // this.$store.state[TASK_MODULE].data = this.$parent.task
   }
 }
 </script>

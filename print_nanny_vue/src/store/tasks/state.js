@@ -1,4 +1,4 @@
-export const TASKS = 'data'
+export const TASKS = 'tasks'
 
 export default {
   [TASKS]: {}
