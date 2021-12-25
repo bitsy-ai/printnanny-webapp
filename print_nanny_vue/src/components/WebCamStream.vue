@@ -1,6 +1,7 @@
 <script>
 import { mapActions, mapState, mapMutations } from 'vuex'
 import TaskStatus from '@/components/TaskStatus'
+import JanusService from '@/services/janus'
 import {
   DEVICES,
   DEVICE_MODULE,
@@ -58,7 +59,7 @@ export default {
     </h2>
   </div>
     <div class="card-body">
-        <div class="alert alert-info col-12 d-flex" role="alert">
+        <div v-if="!devices[deviceId].monitoring_active" class="alert alert-info col-12 d-flex" role="alert">
           <div class="row">
             <div class="col-8">
               <h4 class="alert-heading"><i class="mdi mdi-warning"></i>Camera is offline</h4>
@@ -67,6 +68,12 @@ export default {
             <div class="col-4">
             <img src="/static/images/sleep.svg" style="opacity: 30%" class="d-none d-md-block img-fluid"/>
             </div>
+          </div>
+        </div>
+
+        <div v-if="devices[deviceId].monitoring_active">
+          <div class="row">
+
           </div>
         </div>
     </div>

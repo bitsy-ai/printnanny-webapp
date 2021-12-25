@@ -1,4 +1,4 @@
-import { AlertsApiFactory, Configuration } from 'print-nanny-client'
+import { AlertsApiFactory, Configuration } from 'printnanny-api-client'
 
 const configuration = new Configuration({
   basePath: process.env.BASE_API_URL,
