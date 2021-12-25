@@ -15,6 +15,8 @@
 pub struct DeviceRequest {
     #[serde(rename = "release_channel", skip_serializing_if = "Option::is_none")]
     pub release_channel: Option<Box<crate::models::ReleaseChannelEnum>>,
+    #[serde(rename = "monitoring_active", skip_serializing_if = "Option::is_none")]
+    pub monitoring_active: Option<bool>,
     /// Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension)
     #[serde(rename = "hostname", skip_serializing_if = "Option::is_none")]
     pub hostname: Option<String>,
@@ -24,6 +26,7 @@ impl DeviceRequest {
     pub fn new() -> DeviceRequest {
         DeviceRequest {
             release_channel: None,
+            monitoring_active: None,
             hostname: None,
         }
     }

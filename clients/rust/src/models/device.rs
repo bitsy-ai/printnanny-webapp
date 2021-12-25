@@ -21,6 +21,8 @@ pub struct Device {
     pub cloudiot_device: Option<Box<crate::models::CloudiotDevice>>,
     #[serde(rename = "cameras")]
     pub cameras: Vec<crate::models::Camera>,
+    #[serde(rename = "janus_local_url")]
+    pub janus_local_url: String,
     #[serde(rename = "dashboard_url")]
     pub dashboard_url: String,
     #[serde(rename = "printer_controllers")]
@@ -35,6 +37,8 @@ pub struct Device {
     pub active_tasks: Vec<crate::models::Task>,
     #[serde(rename = "active_cameras")]
     pub active_cameras: Vec<crate::models::Camera>,
+    #[serde(rename = "monitoring_active", skip_serializing_if = "Option::is_none")]
+    pub monitoring_active: Option<bool>,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
     #[serde(rename = "updated_dt")]
@@ -45,12 +49,13 @@ pub struct Device {
 }
 
 impl Device {
-    pub fn new(id: i32, bootstrap_release: Option<crate::models::Release>, cloudiot_device: Option<crate::models::CloudiotDevice>, cameras: Vec<crate::models::Camera>, dashboard_url: String, printer_controllers: Vec<crate::models::PrinterController>, user: Option<crate::models::User>, last_task: Option<crate::models::Task>, active_tasks: Vec<crate::models::Task>, active_cameras: Vec<crate::models::Camera>, created_dt: String, updated_dt: String) -> Device {
+    pub fn new(id: i32, bootstrap_release: Option<crate::models::Release>, cloudiot_device: Option<crate::models::CloudiotDevice>, cameras: Vec<crate::models::Camera>, janus_local_url: String, dashboard_url: String, printer_controllers: Vec<crate::models::PrinterController>, user: Option<crate::models::User>, last_task: Option<crate::models::Task>, active_tasks: Vec<crate::models::Task>, active_cameras: Vec<crate::models::Camera>, created_dt: String, updated_dt: String) -> Device {
         Device {
             id,
             bootstrap_release: bootstrap_release.map(Box::new),
             cloudiot_device: cloudiot_device.map(Box::new),
             cameras,
+            janus_local_url,
             dashboard_url,
             printer_controllers,
             release_channel: None,
@@ -58,6 +63,7 @@ impl Device {
             last_task: last_task.map(Box::new),
             active_tasks,
             active_cameras,
+            monitoring_active: None,
             created_dt,
             updated_dt,
             hostname: None,

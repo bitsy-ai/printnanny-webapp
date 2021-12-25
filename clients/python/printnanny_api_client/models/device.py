@@ -41,6 +41,7 @@ class Device(object):
         'bootstrap_release': 'Release',
         'cloudiot_device': 'CloudiotDevice',
         'cameras': 'list[Camera]',
+        'janus_local_url': 'str',
         'dashboard_url': 'str',
         'printer_controllers': 'list[PrinterController]',
         'release_channel': 'ReleaseChannelEnum',
@@ -48,6 +49,7 @@ class Device(object):
         'last_task': 'Task',
         'active_tasks': 'list[Task]',
         'active_cameras': 'list[Camera]',
+        'monitoring_active': 'bool',
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
         'hostname': 'str'
@@ -58,6 +60,7 @@ class Device(object):
         'bootstrap_release': 'bootstrap_release',
         'cloudiot_device': 'cloudiot_device',
         'cameras': 'cameras',
+        'janus_local_url': 'janus_local_url',
         'dashboard_url': 'dashboard_url',
         'printer_controllers': 'printer_controllers',
         'release_channel': 'release_channel',
@@ -65,12 +68,13 @@ class Device(object):
         'last_task': 'last_task',
         'active_tasks': 'active_tasks',
         'active_cameras': 'active_cameras',
+        'monitoring_active': 'monitoring_active',
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
         'hostname': 'hostname'
     }
 
-    def __init__(self, id=None, bootstrap_release=None, cloudiot_device=None, cameras=None, dashboard_url=None, printer_controllers=None, release_channel=None, user=None, last_task=None, active_tasks=None, active_cameras=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, bootstrap_release=None, cloudiot_device=None, cameras=None, janus_local_url=None, dashboard_url=None, printer_controllers=None, release_channel=None, user=None, last_task=None, active_tasks=None, active_cameras=None, monitoring_active=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -80,6 +84,7 @@ class Device(object):
         self._bootstrap_release = None
         self._cloudiot_device = None
         self._cameras = None
+        self._janus_local_url = None
         self._dashboard_url = None
         self._printer_controllers = None
         self._release_channel = None
@@ -87,6 +92,7 @@ class Device(object):
         self._last_task = None
         self._active_tasks = None
         self._active_cameras = None
+        self._monitoring_active = None
         self._created_dt = None
         self._updated_dt = None
         self._hostname = None
@@ -96,6 +102,7 @@ class Device(object):
         self.bootstrap_release = bootstrap_release
         self.cloudiot_device = cloudiot_device
         self.cameras = cameras
+        self.janus_local_url = janus_local_url
         self.dashboard_url = dashboard_url
         self.printer_controllers = printer_controllers
         self.release_channel = release_channel
@@ -103,6 +110,8 @@ class Device(object):
         self.last_task = last_task
         self.active_tasks = active_tasks
         self.active_cameras = active_cameras
+        if monitoring_active is not None:
+            self.monitoring_active = monitoring_active
         self.created_dt = created_dt
         self.updated_dt = updated_dt
         if hostname is not None:
@@ -195,6 +204,29 @@ class Device(object):
             raise ValueError("Invalid value for `cameras`, must not be `None`")  # noqa: E501
 
         self._cameras = cameras
+
+    @property
+    def janus_local_url(self):
+        """Gets the janus_local_url of this Device.  # noqa: E501
+
+
+        :return: The janus_local_url of this Device.  # noqa: E501
+        :rtype: str
+        """
+        return self._janus_local_url
+
+    @janus_local_url.setter
+    def janus_local_url(self, janus_local_url):
+        """Sets the janus_local_url of this Device.
+
+
+        :param janus_local_url: The janus_local_url of this Device.  # noqa: E501
+        :type janus_local_url: str
+        """
+        if self.local_vars_configuration.client_side_validation and janus_local_url is None:  # noqa: E501
+            raise ValueError("Invalid value for `janus_local_url`, must not be `None`")  # noqa: E501
+
+        self._janus_local_url = janus_local_url
 
     @property
     def dashboard_url(self):
@@ -350,6 +382,27 @@ class Device(object):
             raise ValueError("Invalid value for `active_cameras`, must not be `None`")  # noqa: E501
 
         self._active_cameras = active_cameras
+
+    @property
+    def monitoring_active(self):
+        """Gets the monitoring_active of this Device.  # noqa: E501
+
+
+        :return: The monitoring_active of this Device.  # noqa: E501
+        :rtype: bool
+        """
+        return self._monitoring_active
+
+    @monitoring_active.setter
+    def monitoring_active(self, monitoring_active):
+        """Sets the monitoring_active of this Device.
+
+
+        :param monitoring_active: The monitoring_active of this Device.  # noqa: E501
+        :type monitoring_active: bool
+        """
+
+        self._monitoring_active = monitoring_active
 
     @property
     def created_dt(self):

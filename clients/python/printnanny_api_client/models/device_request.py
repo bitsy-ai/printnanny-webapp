@@ -38,25 +38,30 @@ class DeviceRequest(object):
     """
     openapi_types = {
         'release_channel': 'ReleaseChannelEnum',
+        'monitoring_active': 'bool',
         'hostname': 'str'
     }
 
     attribute_map = {
         'release_channel': 'release_channel',
+        'monitoring_active': 'monitoring_active',
         'hostname': 'hostname'
     }
 
-    def __init__(self, release_channel=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, release_channel=None, monitoring_active=None, hostname=None, local_vars_configuration=None):  # noqa: E501
         """DeviceRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._release_channel = None
+        self._monitoring_active = None
         self._hostname = None
         self.discriminator = None
 
         self.release_channel = release_channel
+        if monitoring_active is not None:
+            self.monitoring_active = monitoring_active
         if hostname is not None:
             self.hostname = hostname
 
@@ -80,6 +85,27 @@ class DeviceRequest(object):
         """
 
         self._release_channel = release_channel
+
+    @property
+    def monitoring_active(self):
+        """Gets the monitoring_active of this DeviceRequest.  # noqa: E501
+
+
+        :return: The monitoring_active of this DeviceRequest.  # noqa: E501
+        :rtype: bool
+        """
+        return self._monitoring_active
+
+    @monitoring_active.setter
+    def monitoring_active(self, monitoring_active):
+        """Sets the monitoring_active of this DeviceRequest.
+
+
+        :param monitoring_active: The monitoring_active of this DeviceRequest.  # noqa: E501
+        :type monitoring_active: bool
+        """
+
+        self._monitoring_active = monitoring_active
 
     @property
     def hostname(self):
