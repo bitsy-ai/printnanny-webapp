@@ -155,6 +155,7 @@ Janus.useDefaultDependencies = function (deps) {
 								Janus.error('Unhandled httpAPICall success callback error', error);
 							}
 						}, function(error) {
+							console.error("Failed to parse response body", error, response)
 							return p.reject({message: 'Failed to parse response body', error: error, response: response});
 						});
 					}
