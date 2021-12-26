@@ -74,13 +74,6 @@ export default {
         const plugin = await session.attachPlugin(Janus.StreamingPlugin.NAME)
         this.plugin = plugin
 
-        // plugin.createPeerConnection()
-        // plugin._addPcEventListener('addstream', function (event) {
-        //   plugin.emit('pc:track:remote', { streams: [event.stream] })
-        // })
-        // const video = document.getElementById(this.webcamStreamEl)
-        // console.
-        // video.srcObject = stream
         this.timer = setInterval(this.getVideoStats, 3000)
         const webcamStreamEl = this.webcamStreamEl
         const videoReady = this.videoReady
@@ -104,16 +97,6 @@ export default {
           }
           videoReady()
         })
-
-        // await plugin.createPeerConnection()
-        // plugin._addPcEventListener('ontrack', function (event) {
-        //   console.log('RTCPeerConnection.ontrack event', event)
-        // })
-        // console.log('Created peer connection', peerConn)
-
-        // await plugin.create(mountId)
-        // await plugin.connect(mountId)
-        // await plugin.start()
 
         const streamsList = await plugin.list()
         console.log('Retreived stream list: ', streamsList)
@@ -203,7 +186,6 @@ export default {
             break
         }
       })
-      // console.log('retreived stats', peer, stats)
     }
   },
   props: {
