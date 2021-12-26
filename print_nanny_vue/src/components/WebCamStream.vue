@@ -1,8 +1,11 @@
 <script>
-import Janus from 'janus-gateway-js'
+import adapter from 'webrtc-adapter'
+import Janus, { JanusMessage } from 'janus-gateway-js'
+
 import { mapActions, mapState, mapMutations } from 'vuex'
 import TaskStatus from '@/components/TaskStatus'
 import deviceApi from '@/services/devices'
+
 // import { JanusSession, JanusConstructorOptions } from '@/services/janus'
 import {
   DEVICES,
@@ -20,7 +23,12 @@ export default {
   components: { TaskStatus },
   data: function () {
     return {
-      error: null
+      error: null,
+      loading: false,
+      janusConnection: null,
+      janusSession: null,
+      janusPlugin: null,
+      janusStream: null
     }
   },
   methods: {
@@ -50,27 +58,78 @@ export default {
       this.loading = false
     },
     async connectStream () {
+      this.loading = true
       const url = `ws://${this.device.hostname}:8188/janus`
       const license = (await deviceApi.getActiveLicense(this.device)).data
       console.debug('Retreive license', license)
       const janus = new Janus.Client(url, {
-        // token: license.janus_token,
+        token: license.janus_token,
         keepalive: 'true'
       })
 
+      console.log('Browser details detected', adapter.browserDetails.browser, adapter.browserDetails.version)
       const connection = await janus.createConnection('id')
+      this.connection = connection
       console.log('Created janus connection', connection)
+
+      const mountId = Math.floor(Math.random() * 1000 + 1)
 
       try {
         const session = await connection.createSession()
+        this.session = session
 
         console.log('Created janus session', session)
 
-        const plugin = await session.attachPlugin('janus.plugin.streaming')
+        const plugin = await session.attachPlugin(Janus.StreamingPlugin.NAME)
+        this.plugin = plugin
+        console.log('Plugin attached', plugin)
+        plugin.on('message', (message, jesp) => {
+          console.log('plugin.on message', message, jesp)
+        })
+        plugin.on('addstream', function (event) {
+          console.log('plugin.on pc:track:remote', message, jesp)
+          Janus.webrtc.browserShim.attachMediaStream(document.getElementById('audio'), event.stream)
+        })
+        // await plugin.create(mountId)
+        // await plugin.connect(mountId)
+        // await plugin.start()
 
-        console.log('Created janus plugin janus.plugin.streaming', plugin)
+        const streamsList = await plugin.list()
+        console.log('Retreived stream list: ', streamsList)
+
+        const stream = streamsList._plainMessage.plugindata.data.list[0]
+        console.log('Selected stream', stream)
+
+        const watch = await plugin.watch(stream.id, {
+          video: true
+        })
+        console.log('Now watching stream', watch)
+        const start = await plugin.start(watch._plainMessage.jsep)
+        console.log('Started stream', start)
+
+        const info = await plugin.send({ body: { request: 'info', id: stream.id }, janus: 'message' })
+        //   .then(msg => console.log('After msg', msg))
+
+        // const peer = await plugin.getPeerConnection()
+        console.log('Retreived stream info', info)
+
+        // const start = await plugin.start()
+        // console.log('Started stream', start)
+
+        const video = document.getElementById(this.webcamStreamEl)
+        // video.srcObject = stream
+
+        // plugin.send({ body: { request: 'info', id: stream.id }, janus: 'message' })
+        //   .then(msg => console.log('After msg', msg))
+
+        // plugin.on('pc.track.remote', (message, jesp) => {
+        //   console.log('plugin.on pc.track.remote', message, jesp)
+        // })
       } catch (error) {
-        return await this.handleError(error)
+        if (error.name == 'JanusName') {
+          return await this.handleError(error)
+        }
+        throw error
       }
     },
     async startMonitoring () {
@@ -101,7 +160,7 @@ export default {
       return this.devices[this.deviceId]
     },
     webcamStreamEl: function () {
-      return `#webcam-stream-${this.device.id}`
+      return `webcam-stream-${this.device.id}`
     },
     showVideo: function () {
       return this.loading === false && this.device.monitoring_active === true
@@ -115,44 +174,8 @@ export default {
   },
   created: async function () {
     if (this.device.monitoring_active) {
-      this.connectStream()
+      await this.connectStream()
     }
-
-    // return janus.createConnection('id').then(function (connection) {
-    //   console.log('Created janus connection', connection)
-    //   connection.createSession().then(function (session) {
-    //     console.log('Created janus session')
-    //     session.attachPlugin('janus.plugin.streaming').then(function (plugin) {
-    //       console.log('Attached janus.plugin.streaming', plugin)
-    //       plugin.send({}).then(function (response) {})
-    //       plugin.on('message', function (message) {})
-    //       plugin.detach()
-    //     })
-    //   })
-    // }).catch(function (error) {
-    //   console.error(error)
-    // })
-    // JanusSession.init()
-
-    // const sessionOpts = {
-    //   server: `http://${this.devices[this.deviceId].hostname}:8088/janus`,
-    //   success: this.onSession,
-    //   error: this.onSessionError,
-    //   destroyed: this.onSessionDetroyed
-    // }
-    // this.jSession = new JanusSession(sessionOpts)
-    // const protocol = 'http://'
-    // const hostname = this.devices[this.deviceId].hostname
-    // const port = '8088'
-    // const url = new URL(
-    //   `${protocol}${hostname}${port}/janus`
-    // )
-    // // const token = this.devices[deviceId].activ
-    // this.janusService = new JanusService(
-    //   url,
-    //   'TODO',
-    //   this.devices[this.deviceId]
-    // )
   }
 }
 </script>
