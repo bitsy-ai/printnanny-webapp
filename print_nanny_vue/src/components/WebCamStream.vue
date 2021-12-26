@@ -17,19 +17,20 @@ import {
   SET_TASK_DATA
 } from '@/store/tasks'
 
+const initialData = {
+  error: null,
+  loading: false,
+  janusConnection: null,
+  janusSession: null,
+  janusPlugin: null,
+  janusStream: null,
+  timer: null,
+  videoStats: null
+}
 export default {
   components: { TaskStatus },
   data: function () {
-    return {
-      error: null,
-      loading: false,
-      janusConnection: null,
-      janusSession: null,
-      janusPlugin: null,
-      janusStream: null,
-      timer: null,
-      videoStats: null
-    }
+    return initialData
   },
   methods: {
     // ...mapActions(DEVICE_MODULE, {
@@ -46,6 +47,10 @@ export default {
       this.error = error
       await this.stopMonitoring(this.device)
       this.loading = false
+    },
+
+    reset () {
+      this.data = initialData
     },
 
     async connectStream () {
@@ -94,8 +99,8 @@ export default {
           }
           video.onloadedmetadata = function (e) {
             video.play()
+            return videoReady()
           }
-          videoReady()
         })
 
         const streamsList = await plugin.list()
@@ -133,13 +138,13 @@ export default {
     },
     stopMonitoring () {
       this.$store.dispatch(`${DEVICE_MODULE}/${STOP_MONITORING}`, this.device)
+      this.reset()
     },
     videoReady () {
       this.loading = false
     },
 
     parseInboundRtpStat (stat) {
-      console.log(stat)
       const prevStat = this.videoStats
       const nextStat = {}
       nextStat.bsnow = stat.bytesReceived
@@ -240,6 +245,9 @@ export default {
     <div class="card-body">
 
         <div>
+          <div v-show="loading">
+            <h3 class="header-title">Video is loading...</h3>
+          </div>
             <video
               v-show="showVideo"
               class="rounded centered" :id="webcamStreamEl"
