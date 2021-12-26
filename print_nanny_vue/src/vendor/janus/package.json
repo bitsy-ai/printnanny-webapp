@@ -1,0 +1,18 @@
+{
+	"name": "janus",
+	"version": "0.11.6",
+	"description": "The Janus WebRTC Server",
+	"author": "Meetecho",
+	"license": "GPL-3.0",
+	"repository": "github:meetecho/janus-gateway",
+	"types": "janus.d.ts",
+	"typings": "janus.d.ts",
+	"scripts": {
+	},
+	"dependencies": {
+		"webrtc-adapter": "8.1.0"
+	},
+	"devDependencies": {
+		"typescript": "^4.2.4"
+	}
+}

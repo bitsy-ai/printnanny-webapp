@@ -74,8 +74,15 @@ module.exports = {
         loader: 'babel-loader',
         include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')],
       },
-      { test: /\.tsx?$/, loader: "ts-loader" },
-      { test: /\.ts?$/, loader: "ts-loader" },
+      { 
+        test: /\.tsx?$/, 
+        loader: "ts-loader",
+        include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')],
+      },
+      { test: /\.ts?$/, 
+        loader: "ts-loader",
+        include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')],
+      },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',

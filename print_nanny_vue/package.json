@@ -15,9 +15,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.12.5",
+    "add": "^2.0.6",
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.21.2",
-    "janus-gateway-js": "^2.0.2",
+    "janus": "file:./src/vendor/janus",
     "metismenujs": "^1.2.1",
     "printnanny-api-client": "^0.26.0",
     "simplebar-vue": "^1.6.0",
@@ -28,7 +29,8 @@
     "vue-native-websocket": "^2.0.14",
     "vue-router": "^3.4.9",
     "vuex": "^3.6.0",
-    "webrtc-adapter": "^8.1.0"
+    "webrtc-adapter": "^8.1.0",
+    "yarn": "^1.22.17"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

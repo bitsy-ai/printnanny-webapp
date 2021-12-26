@@ -1,12 +1,10 @@
 <script>
 import adapter from 'webrtc-adapter'
-import Janus, { JanusMessage } from 'janus-gateway-js'
+import Janus from 'janus'
 
 import { mapActions, mapState, mapMutations } from 'vuex'
 import TaskStatus from '@/components/TaskStatus'
 import deviceApi from '@/services/devices'
-
-// import { JanusSession, JanusConstructorOptions } from '@/services/janus'
 import {
   DEVICES,
   DEVICE_MODULE,
@@ -42,16 +40,6 @@ export default {
     ...mapMutations(TASK_MODULE, [
       SET_TASK_DATA
     ]),
-
-    onSession () {
-      console.log('Janus session initialized')
-    },
-    onSessionError (error) {
-      console.error('Janus session error', error)
-    },
-    onSessionDetroyed () {
-      console.info('Janus session destroyed')
-    },
     async handleError (error) {
       this.error = error
       await this.stopMonitoring(this.device)
@@ -61,87 +49,97 @@ export default {
       this.loading = true
       const url = `ws://${this.device.hostname}:8188/janus`
       const license = (await deviceApi.getActiveLicense(this.device)).data
-      console.debug('Retreive license', license)
-      const janus = new Janus.Client(url, {
-        token: license.janus_token,
-        keepalive: 'true'
-      })
-
-      console.log('Browser details detected', adapter.browserDetails.browser, adapter.browserDetails.version)
-      const connection = await janus.createConnection('id')
-      this.connection = connection
-      console.log('Created janus connection', connection)
-
-      const mountId = Math.floor(Math.random() * 1000 + 1)
-
-      try {
-        const session = await connection.createSession()
-        this.session = session
-
-        console.log('Created janus session', session)
-
-        const plugin = await session.attachPlugin(Janus.StreamingPlugin.NAME)
-        this.plugin = plugin
-
-        console.log('Plugin attached', plugin)
-        plugin.on('message', (message, jesp) => {
-          console.log('plugin.on message', message, jesp)
-        })
-        plugin.on('addstream', function (event) {
-          console.log('plugin.on pc:track:remote', message, jesp)
-          Janus.webrtc.browserShim.attachMediaStream(document.getElementById('audio'), event.stream)
-        })
-
-        await plugin.createPeerConnection()
-        // plugin._addPcEventListener('ontrack', function (event) {
-        //   console.log('RTCPeerConnection.ontrack event', event)
-        // })
-        // console.log('Created peer connection', peerConn)
-
-        // await plugin.create(mountId)
-        // await plugin.connect(mountId)
-        // await plugin.start()
-
-        const streamsList = await plugin.list()
-        console.log('Retreived stream list: ', streamsList)
-
-        const stream = streamsList._plainMessage.plugindata.data.list[0]
-        console.log('Selected stream', stream)
-
-        const watch = await plugin.watch(stream.id, {
-          video: true
-        })
-        console.log('Now watching stream', watch)
-        // const start = await plugin.start(watch._plainMessage.jsep)
-        const start = await plugin.start()
-
-        console.log('Started stream', start)
-
-        const info = await plugin.send({ body: { request: 'info', id: stream.id }, janus: 'message' })
-        //   .then(msg => console.log('After msg', msg))
-
-        // const peer = await plugin.getPeerConnection()
-        console.log('Retreived stream info', info)
-
-        // const start = await plugin.start()
-        // console.log('Started stream', start)
-
-        const video = document.getElementById(this.webcamStreamEl)
-        // video.srcObject = stream
-
-        // plugin.send({ body: { request: 'info', id: stream.id }, janus: 'message' })
-        //   .then(msg => console.log('After msg', msg))
-
-        // plugin.on('pc.track.remote', (message, jesp) => {
-        //   console.log('plugin.on pc.track.remote', message, jesp)
-        // })
-      } catch (error) {
-        if (error.name == 'JanusName') {
-          return await this.handleError(error)
-        }
-        throw error
-      }
+      await Janus.init({ debug: true })
+      console.log('Janus initialized')
     },
+    // async connectStream () {
+    //   this.loading = true
+    //   const url = `ws://${this.device.hostname}:8188/janus`
+    //   const license = (await deviceApi.getActiveLicense(this.device)).data
+    //   console.debug('Retreive license', license)
+    //   const janus = new Janus.Client(url, {
+    //     token: license.janus_token,
+    //     keepalive: 'true'
+    //   })
+
+    //   console.log('Browser details detected', adapter.browserDetails.browser, adapter.browserDetails.version)
+    //   const connection = await janus.createConnection('id')
+    //   this.connection = connection
+    //   console.log('Created janus connection', connection)
+
+    //   const mountId = Math.floor(Math.random() * 1000 + 1)
+
+    //   try {
+    //     const session = await connection.createSession()
+    //     this.session = session
+
+    //     console.log('Created janus session', session)
+
+    //     const plugin = await session.attachPlugin(Janus.StreamingPlugin.NAME)
+    //     this.plugin = plugin
+
+    //     console.log('Plugin attached', plugin)
+    //     plugin.on('message', (message, jesp) => {
+    //       console.log('plugin.on message', message, jesp)
+    //     })
+    //     plugin.on('addstream', function (event) {
+    //       console.log('plugin.on pc:track:remote', message, jesp)
+    //       Janus.webrtc.browserShim.attachMediaStream(document.getElementById('audio'), event.stream)
+    //     })
+
+    //     await plugin.createPeerConnection()
+    //     // plugin._addPcEventListener('ontrack', function (event) {
+    //     //   console.log('RTCPeerConnection.ontrack event', event)
+    //     // })
+    //     // console.log('Created peer connection', peerConn)
+
+    //     // await plugin.create(mountId)
+    //     // await plugin.connect(mountId)
+    //     // await plugin.start()
+
+    //     const streamsList = await plugin.list()
+    //     console.log('Retreived stream list: ', streamsList)
+
+    //     const stream = streamsList._plainMessage.plugindata.data.list[0]
+    //     console.log('Selected stream', stream)
+
+    //     const watch = await plugin.watch(stream.id, {
+    //       video: true
+    //     })
+    //     console.log('Now watching stream', watch)
+    //     // const start = await plugin.start(watch._plainMessage.jsep)
+    //     const start = await plugin.start()
+
+    //     console.log('Started stream', start)
+
+    //     const info = await plugin.send({ body: { request: 'info', id: stream.id }, janus: 'message' })
+    //     //   .then(msg => console.log('After msg', msg))
+
+    //     // const peer = await plugin.getPeerConnection()
+    //     console.log('Retreived stream info', info)
+
+    //     stream.getTracks().forEach(function (track) {
+    //       self.addTrack(track, stream)
+    //     })
+    //     // const start = await plugin.start()
+    //     // console.log('Started stream', start)
+
+    //     const video = document.getElementById(this.webcamStreamEl)
+    //     // video.srcObject = stream
+
+    //     // plugin.send({ body: { request: 'info', id: stream.id }, janus: 'message' })
+    //     //   .then(msg => console.log('After msg', msg))
+
+    //     // plugin.on('pc.track.remote', (message, jesp) => {
+    //     //   console.log('plugin.on pc.track.remote', message, jesp)
+    //     // })
+    //   } catch (error) {
+    //     if (error.name == 'JanusName') {
+    //       return await this.handleError(error)
+    //     }
+    //     throw error
+    //   }
+    // },
     async startMonitoring () {
       this.loading = true
       this.error = null
