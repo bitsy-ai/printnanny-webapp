@@ -82,6 +82,7 @@ export default {
 
         const plugin = await session.attachPlugin(Janus.StreamingPlugin.NAME)
         this.plugin = plugin
+
         console.log('Plugin attached', plugin)
         plugin.on('message', (message, jesp) => {
           console.log('plugin.on message', message, jesp)
@@ -90,6 +91,13 @@ export default {
           console.log('plugin.on pc:track:remote', message, jesp)
           Janus.webrtc.browserShim.attachMediaStream(document.getElementById('audio'), event.stream)
         })
+
+        await plugin.createPeerConnection()
+        // plugin._addPcEventListener('ontrack', function (event) {
+        //   console.log('RTCPeerConnection.ontrack event', event)
+        // })
+        // console.log('Created peer connection', peerConn)
+
         // await plugin.create(mountId)
         // await plugin.connect(mountId)
         // await plugin.start()
@@ -104,7 +112,9 @@ export default {
           video: true
         })
         console.log('Now watching stream', watch)
-        const start = await plugin.start(watch._plainMessage.jsep)
+        // const start = await plugin.start(watch._plainMessage.jsep)
+        const start = await plugin.start()
+
         console.log('Started stream', start)
 
         const info = await plugin.send({ body: { request: 'info', id: stream.id }, janus: 'message' })
