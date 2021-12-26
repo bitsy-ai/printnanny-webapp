@@ -5,8 +5,8 @@
 	"author": "Meetecho",
 	"license": "GPL-3.0",
 	"repository": "github:meetecho/janus-gateway",
-	"types": "janus.d.ts",
-	"typings": "janus.d.ts",
+	"types": "index.d.ts",
+	"typings": "index.d.ts",
 	"scripts": {
 	},
 	"dependencies": {

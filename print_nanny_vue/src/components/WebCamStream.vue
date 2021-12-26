@@ -1,6 +1,6 @@
 <script>
 import adapter from 'webrtc-adapter'
-import Janus from 'janus'
+import Janus from 'janus-gateway-js'
 
 import { mapActions, mapState, mapMutations } from 'vuex'
 import TaskStatus from '@/components/TaskStatus'
@@ -45,101 +45,109 @@ export default {
       await this.stopMonitoring(this.device)
       this.loading = false
     },
+
     async connectStream () {
       this.loading = true
       const url = `ws://${this.device.hostname}:8188/janus`
       const license = (await deviceApi.getActiveLicense(this.device)).data
-      await Janus.init({ debug: true })
-      console.log('Janus initialized')
+      console.debug('Retreive license', license)
+      const janus = new Janus.Client(url, {
+        token: license.janus_token,
+        keepalive: 'true'
+      })
+
+      console.log('Browser details detected', adapter.browserDetails.browser, adapter.browserDetails.version)
+      const connection = await janus.createConnection('id')
+      this.connection = connection
+      console.log('Created janus connection', connection)
+
+      const mountId = Math.floor(Math.random() * 1000 + 1)
+
+      try {
+        const session = await connection.createSession()
+        this.session = session
+
+        console.log('Created janus session', session)
+
+        const plugin = await session.attachPlugin(Janus.StreamingPlugin.NAME)
+        this.plugin = plugin
+
+        // plugin.createPeerConnection()
+        // plugin._addPcEventListener('addstream', function (event) {
+        //   plugin.emit('pc:track:remote', { streams: [event.stream] })
+        // })
+        // const video = document.getElementById(this.webcamStreamEl)
+        // console.
+        // video.srcObject = stream
+        const webcamStreamEl = this.webcamStreamEl
+        const videoReady = this.videoReady
+        console.log('Plugin attached', plugin)
+        plugin.on('message', (message, jesp) => {
+          console.log('plugin.on message', message, jesp)
+        })
+        plugin.on('pc:track:remote', function (event) {
+          console.log('plugin.on pc:track:remote', event)
+          const video = document.getElementById(webcamStreamEl)
+          const mediaStream = event.streams[0]
+          console.log('Attaching stream', mediaStream, 'to video element', video)
+          if ('srcObject' in video) {
+            video.srcObject = mediaStream
+          } else {
+            // Avoid using this in new browsers, as it is going away.
+            video.src = URL.createObjectURL(mediaStream)
+          }
+          video.onloadedmetadata = function (e) {
+            video.play()
+          }
+          videoReady()
+        })
+
+        // await plugin.createPeerConnection()
+        // plugin._addPcEventListener('ontrack', function (event) {
+        //   console.log('RTCPeerConnection.ontrack event', event)
+        // })
+        // console.log('Created peer connection', peerConn)
+
+        // await plugin.create(mountId)
+        // await plugin.connect(mountId)
+        // await plugin.start()
+
+        const streamsList = await plugin.list()
+        console.log('Retreived stream list: ', streamsList)
+
+        const stream = streamsList._plainMessage.plugindata.data.list[0]
+        console.log('Selected stream', stream)
+
+        const watch = await plugin.watch(stream.id, {
+          video: true
+        })
+        console.log('Now watching stream', watch)
+        // const start = await plugin.start(watch._plainMessage.jsep)
+        const start = await plugin.start()
+
+        console.log('Started stream', start)
+
+        const info = await plugin.send({ body: { request: 'info', id: stream.id }, janus: 'message' })
+        //   .then(msg => console.log('After msg', msg))
+
+        // const peer = await plugin.getPeerConnection()
+        console.log('Retreived stream info', info)
+
+        // stream.getTracks().forEach(function (track) {
+        //   self.addTrack(track, stream)
+        // })
+        // const start = await plugin.start()
+        // console.log('Started stream', start)
+
+        // plugin.send({ body: { request: 'info', id: stream.id }, janus: 'message' })
+        //   .then(msg => console.log('After msg', msg))local-vue
+      } catch (error) {
+        if (error.name == 'JanusError') {
+          return await this.handleError(error)
+        }
+        throw error
+      }
     },
-    // async connectStream () {
-    //   this.loading = true
-    //   const url = `ws://${this.device.hostname}:8188/janus`
-    //   const license = (await deviceApi.getActiveLicense(this.device)).data
-    //   console.debug('Retreive license', license)
-    //   const janus = new Janus.Client(url, {
-    //     token: license.janus_token,
-    //     keepalive: 'true'
-    //   })
-
-    //   console.log('Browser details detected', adapter.browserDetails.browser, adapter.browserDetails.version)
-    //   const connection = await janus.createConnection('id')
-    //   this.connection = connection
-    //   console.log('Created janus connection', connection)
-
-    //   const mountId = Math.floor(Math.random() * 1000 + 1)
-
-    //   try {
-    //     const session = await connection.createSession()
-    //     this.session = session
-
-    //     console.log('Created janus session', session)
-
-    //     const plugin = await session.attachPlugin(Janus.StreamingPlugin.NAME)
-    //     this.plugin = plugin
-
-    //     console.log('Plugin attached', plugin)
-    //     plugin.on('message', (message, jesp) => {
-    //       console.log('plugin.on message', message, jesp)
-    //     })
-    //     plugin.on('addstream', function (event) {
-    //       console.log('plugin.on pc:track:remote', message, jesp)
-    //       Janus.webrtc.browserShim.attachMediaStream(document.getElementById('audio'), event.stream)
-    //     })
-
-    //     await plugin.createPeerConnection()
-    //     // plugin._addPcEventListener('ontrack', function (event) {
-    //     //   console.log('RTCPeerConnection.ontrack event', event)
-    //     // })
-    //     // console.log('Created peer connection', peerConn)
-
-    //     // await plugin.create(mountId)
-    //     // await plugin.connect(mountId)
-    //     // await plugin.start()
-
-    //     const streamsList = await plugin.list()
-    //     console.log('Retreived stream list: ', streamsList)
-
-    //     const stream = streamsList._plainMessage.plugindata.data.list[0]
-    //     console.log('Selected stream', stream)
-
-    //     const watch = await plugin.watch(stream.id, {
-    //       video: true
-    //     })
-    //     console.log('Now watching stream', watch)
-    //     // const start = await plugin.start(watch._plainMessage.jsep)
-    //     const start = await plugin.start()
-
-    //     console.log('Started stream', start)
-
-    //     const info = await plugin.send({ body: { request: 'info', id: stream.id }, janus: 'message' })
-    //     //   .then(msg => console.log('After msg', msg))
-
-    //     // const peer = await plugin.getPeerConnection()
-    //     console.log('Retreived stream info', info)
-
-    //     stream.getTracks().forEach(function (track) {
-    //       self.addTrack(track, stream)
-    //     })
-    //     // const start = await plugin.start()
-    //     // console.log('Started stream', start)
-
-    //     const video = document.getElementById(this.webcamStreamEl)
-    //     // video.srcObject = stream
-
-    //     // plugin.send({ body: { request: 'info', id: stream.id }, janus: 'message' })
-    //     //   .then(msg => console.log('After msg', msg))
-
-    //     // plugin.on('pc.track.remote', (message, jesp) => {
-    //     //   console.log('plugin.on pc.track.remote', message, jesp)
-    //     // })
-    //   } catch (error) {
-    //     if (error.name == 'JanusName') {
-    //       return await this.handleError(error)
-    //     }
-    //     throw error
-    //   }
-    // },
     async startMonitoring () {
       this.loading = true
       this.error = null
@@ -148,6 +156,9 @@ export default {
     },
     stopMonitoring () {
       this.$store.dispatch(`${DEVICE_MODULE}/${STOP_MONITORING}`, this.device)
+    },
+    videoReady () {
+      this.loading = false
     }
   },
   props: {
@@ -204,11 +215,12 @@ export default {
         <div>
             <video
               v-show="showVideo"
-              class="rounded centered hide" :id="webcamStreamEl"
+              class="rounded centered" :id="webcamStreamEl"
               width="100%"
               height="100%"
               playsinline
-              controls/>
+              autoplay="autoplay"
+              />
         </div>
 
         <div v-if="error" class="alert alert-danger col-12 d-flex" role="alert">
