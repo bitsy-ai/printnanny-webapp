@@ -15,6 +15,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.12.5",
+    "add": "^2.0.6",
+    "bluebird": "^3.7.2",
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.21.2",
     "janus-gateway-js": "^2.0.2",
@@ -28,13 +30,15 @@
     "vue-native-websocket": "^2.0.14",
     "vue-router": "^3.4.9",
     "vuex": "^3.6.0",
-    "webrtc-adapter": "^8.1.0"
+    "webrtc-adapter": "^8.1.0",
+    "yarn": "^1.22.17"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/eslint-parser": "^7.12.1",
     "@babel/plugin-transform-runtime": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
+    "@types/bluebird": "^3.5.36",
     "@types/node": "^12.11.5",
     "autoprefixer": "^10.2.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
@@ -75,6 +79,7 @@
     "sass-loader": "^10.1.1",
     "semver": "^7.3.4",
     "shelljs": "^0.8.4",
+    "source-map-loader": "^3.0.0",
     "style-loader": "^2.0.0",
     "ts-loader": "^9.2.2",
     "typescript": "^4.2.4",
