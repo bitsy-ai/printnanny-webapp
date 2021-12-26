@@ -26,7 +26,9 @@ export default {
       janusConnection: null,
       janusSession: null,
       janusPlugin: null,
-      janusStream: null
+      janusStream: null,
+      timer: null,
+      videoStats: null
     }
   },
   methods: {
@@ -79,6 +81,7 @@ export default {
         // const video = document.getElementById(this.webcamStreamEl)
         // console.
         // video.srcObject = stream
+        this.timer = setInterval(this.getVideoStats, 3000)
         const webcamStreamEl = this.webcamStreamEl
         const videoReady = this.videoReady
         console.log('Plugin attached', plugin)
@@ -132,15 +135,6 @@ export default {
 
         // const peer = await plugin.getPeerConnection()
         console.log('Retreived stream info', info)
-
-        // stream.getTracks().forEach(function (track) {
-        //   self.addTrack(track, stream)
-        // })
-        // const start = await plugin.start()
-        // console.log('Started stream', start)
-
-        // plugin.send({ body: { request: 'info', id: stream.id }, janus: 'message' })
-        //   .then(msg => console.log('After msg', msg))local-vue
       } catch (error) {
         if (error.name == 'JanusError') {
           return await this.handleError(error)
@@ -159,6 +153,57 @@ export default {
     },
     videoReady () {
       this.loading = false
+    },
+
+    parseInboundRtpStat (stat) {
+      console.log(stat)
+      const prevStat = this.videoStats
+      const nextStat = {}
+      nextStat.bsnow = stat.bytesReceived
+      nextStat.tsnow = stat.timestamp
+      nextStat.fps = stat.framesPerSecond
+      nextStat.packetsLost = stat.packetsLost
+      nextStat.height = stat.frameHeight
+      nextStat.width = stat.frameWidth
+      nextStat.decoderImplementation = stat.decoderImplementation
+
+      if (prevStat == null) {
+        nextStat.bsbefore = nextStat.bsnow
+        nextStat.tsbefore = nextStat.tsnow
+      } else {
+        nextStat.bsbefore = prevStat.bsbefore
+        nextStat.tsbefore = prevStat.tsbefore
+        let timePassed = nextStat.tsnow - nextStat.tsbefore
+        // timestamp is in microseconds in Safari, otherwise miliseconds
+        if (adapter.browserDetails.browser == 'safari') {
+          timePassed = timePassed / 1000
+        }
+        let bitRate = Math.round((nextStat.bsnow - nextStat.bsbefore) * 8 / timePassed)
+        if (adapter.browserDetails.browser == 'safari') {
+          bitRate = parseInt(bitRate / 1000)
+        }
+        bitRate = bitRate + ' kbits/sec'
+
+        nextStat.bsbefore = nextStat.bsnow
+        nextStat.tsbefore = nextStat.tsnow
+        nextStat.bitrate = bitRate
+      }
+      this.videoStats = nextStat
+    },
+    async getVideoStats () {
+      const _self = this
+      const peer = this.plugin.getPeerConnection()
+      const stats = await peer.getStats()
+      stats.forEach((stat) => {
+        switch (stat.type) {
+          case 'inbound-rtp':
+            _self.parseInboundRtpStat(stat)
+            break
+          default:
+            break
+        }
+      })
+      // console.log('retreived stats', peer, stats)
     }
   },
   props: {
@@ -220,7 +265,20 @@ export default {
               height="100%"
               playsinline
               autoplay="autoplay"
+              muted
               />
+              <dl v-if="videoStats !== null" class="row">
+                <dt class="col-sm-3">Bitrate</dt>
+                <dd class="col-sm-3">{{ videoStats.bitrate }}</dd>
+                <dt class="col-sm-3">Packets Lost</dt>
+                <dd class="col-sm-3">{{ videoStats.packetsLost }}</dd>
+                <dt class="col-sm-3">Frames / Second</dt>
+                <dd class="col-sm-3">{{ videoStats.fps }}</dd>
+                <dt class="col-sm-3">Video Dimensions</dt>
+                <dd class="col-sm-3">{{ videoStats.height }} x {{ videoStats.width }}</dd>
+                <!-- <dt class="col-sm-3">Decoder</dt>
+                <dd class="col-sm-3">{{ videoStats.decoderImplementation }}</dd> -->
+              </dl>
         </div>
 
         <div v-if="error" class="alert alert-danger col-12 d-flex" role="alert">
