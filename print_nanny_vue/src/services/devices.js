@@ -1,4 +1,4 @@
-import { DevicesApiFactory, Configuration, PatchedDeviceRequest } from 'printnanny-api-client'
+import { DevicesApiFactory, Configuration } from 'printnanny-api-client'
 
 const configuration = new Configuration({
   basePath: process.env.BASE_API_URL,

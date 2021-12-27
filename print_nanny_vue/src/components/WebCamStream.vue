@@ -2,7 +2,7 @@
 import adapter from 'webrtc-adapter'
 import Janus from 'janus-gateway-js'
 
-import { mapActions, mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import TaskStatus from '@/components/TaskStatus'
 import deviceApi from '@/services/devices'
 import {
@@ -33,10 +33,6 @@ export default {
     return initialData
   },
   methods: {
-    // ...mapActions(DEVICE_MODULE, {
-    //   startMonitoring: START_MONITORING,
-    //   stopMonitoring: STOP_MONITORING
-    // }),
     ...mapMutations(DEVICE_MODULE, [
       SET_DEVICE_DATA
     ]),
@@ -45,11 +41,26 @@ export default {
     ]),
     async handleError (error) {
       this.error = error
+      this.resetTimer()
       await this.stopMonitoring(this.device)
       this.loading = false
     },
-
-    reset () {
+    resetTimer () {
+      if (this.timer !== null) {
+        clearInterval(this.timer)
+      }
+    },
+    async resetJanus () {
+      if (this.plugin !== null) {
+        await this.plugin.detach()
+        console.info('Detatched plugin', this.plugin)
+        await this.plugin.cleanup()
+        console.info('Cleaned up all streaming resources')
+      }
+    },
+    async reset () {
+      await this.resetJanus()
+      this.resetTimer()
       this.data = initialData
     },
 
@@ -68,8 +79,6 @@ export default {
       this.connection = connection
       console.log('Created janus connection', connection)
 
-      const mountId = Math.floor(Math.random() * 1000 + 1)
-
       try {
         const session = await connection.createSession()
         this.session = session
@@ -79,7 +88,7 @@ export default {
         const plugin = await session.attachPlugin(Janus.StreamingPlugin.NAME)
         this.plugin = plugin
 
-        this.timer = setInterval(this.getVideoStats, 3000)
+        this.timer = setInterval(this.getVideoStats, 200)
         const webcamStreamEl = this.webcamStreamEl
         const videoReady = this.videoReady
         console.log('Plugin attached', plugin)
@@ -124,7 +133,7 @@ export default {
         // const peer = await plugin.getPeerConnection()
         console.log('Retreived stream info', info)
       } catch (error) {
-        if (error.name == 'JanusError') {
+        if (error.name === 'JanusError') {
           return await this.handleError(error)
         }
         throw error
@@ -136,9 +145,9 @@ export default {
       this.$store.dispatch(`${DEVICE_MODULE}/${START_MONITORING}`, this.device)
       await this.connectStream()
     },
-    stopMonitoring () {
+    async stopMonitoring () {
       this.$store.dispatch(`${DEVICE_MODULE}/${STOP_MONITORING}`, this.device)
-      this.reset()
+      await this.reset()
     },
     videoReady () {
       this.loading = false
@@ -163,11 +172,11 @@ export default {
         nextStat.tsbefore = prevStat.tsbefore
         let timePassed = nextStat.tsnow - nextStat.tsbefore
         // timestamp is in microseconds in Safari, otherwise miliseconds
-        if (adapter.browserDetails.browser == 'safari') {
+        if (adapter.browserDetails.browser === 'safari') {
           timePassed = timePassed / 1000
         }
         let bitRate = Math.round((nextStat.bsnow - nextStat.bsbefore) * 8 / timePassed)
-        if (adapter.browserDetails.browser == 'safari') {
+        if (adapter.browserDetails.browser === 'safari') {
           bitRate = parseInt(bitRate / 1000)
         }
         bitRate = bitRate + ' kbits/sec'
@@ -256,8 +265,9 @@ export default {
               playsinline
               autoplay="autoplay"
               muted
+              controls
               />
-              <dl v-if="videoStats !== null" class="row">
+              <dl v-if="videoStats !== null && device.monitoring_active" class="row">
                 <dt class="col-sm-3">Bitrate</dt>
                 <dd class="col-sm-3">{{ videoStats.bitrate }}</dd>
                 <dt class="col-sm-3">Packets Lost</dt>
