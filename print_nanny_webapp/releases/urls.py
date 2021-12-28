@@ -5,6 +5,6 @@ from .views import ReleaseListView, ReleaseDetailView
 app_name = "releases"
 
 urlpatterns = [
-    path("", ReleaseListView, name="list"),
-    path("<slug:variant>/<slug:name>", ReleaseDetailView, name="detail"),
+    path("", ReleaseListView.as_view(), name="list"),
+    path("<slug:variant>/<slug:name>", ReleaseDetailView.as_view(), name="detail"),
 ]
