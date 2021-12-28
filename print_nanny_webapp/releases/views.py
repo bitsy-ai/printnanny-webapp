@@ -1,3 +1,12 @@
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 
-# Create your views here.
+from .models import Release
+
+
+class ReleaseListView(ListView):
+    model = Release
+
+
+class ReleaseDetailView(DetailView):
+    model = Release
