@@ -230,6 +230,9 @@ export default {
     },
     showInfo: function () {
       return this.device.monitoring_active === false && this.error === null
+    },
+    remoteAccessEl: function () {
+      return `remote-access-${this.device.id}`
     }
   },
   created: async function () {
@@ -339,10 +342,10 @@ Transaction: {{ error.janusMessage._plainMessage.transaction }}
           <i class="mdi mdi-camera"></i> Stop Monitoring
           </button>
 
-          <b-button :id="remote-access-{{ device.id }}">
+          <b-button :id="remoteAccessEl">
             Remote Access
           </b-button>
-          <b-popover target="remote-access-{{ device.id }}" triggers="hover" placement="bottom">
+          <b-popover :target="remoteAccessEl" triggers="hover" placement="bottom">
             <template #title>Coming in the next stable release!</template>
             <strong>Remote Access</strong> allows you to access your Raspberry Pi from anywhere in the world.
 

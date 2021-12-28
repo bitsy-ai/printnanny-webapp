@@ -4,15 +4,9 @@ from django.forms import (
     MultipleChoiceField,
     CheckboxSelectMultiple,
 )
-from crispy_forms.helper import FormHelper, Layout
-from crispy_forms.layout import Div, Field
 from .choices import PrimaryOS, MobileOS, VPNExperience, UserScale, PrinterSoftware
 
 from .models import RemoteAccessSurvey1
-
-
-class Row(Div):
-    css_class = "form-row"
 
 
 class RemoteAccessSurvey1Form(ModelForm):
