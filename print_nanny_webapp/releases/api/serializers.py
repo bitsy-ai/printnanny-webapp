@@ -16,8 +16,6 @@ class AnsibleExtraVarsSerializer(serializers.Serializer):
 
 
 class ReleaseSerializer(serializers.ModelSerializer):
-    ansible_extra_vars = AnsibleExtraVarsSerializer()
-
     class Meta:
         model = Release
         fields = "__all__"
