@@ -49,6 +49,9 @@
                     <li class="{% if request.resolver_match.url_name == 'devices:list' %}active{% endif %}">
                         <a href="{% url 'devices:list' %}">{% trans "Print Nanny OS" %}	&nbsp;<span class="badge badge-danger">New</span></a>
                     </li>
+                    <li class="{% if request.resolver_match.url_name == 'surveys:remote-access' %}active{% endif %}">
+                        <a href="{% url 'surveys:remote-access' %}">{% trans "Network" %}	&nbsp;<span class="badge badge-light">Coming Soon</span></a>
+                    </li>
                     <li class="{% if request.resolver_match.url_name == 'dashboard:octoprint-devices:list' %}active{% endif %}">
                         <a href="{% url 'dashboard:octoprint-devices:list' %}">{% trans "Octoprint Plugin" %}&nbsp;<span class="badge badge-secondary">Legacy</span></a>
                     </li>
@@ -116,6 +119,9 @@
                 {% for badge in user.member_badges.all %}
                     <span class="badge badge-secondary">{{badge.type}}</span>
                 {% endfor %}
+                {% if user.is_anonymous %}
+                <a class="btn btn-light btn-sm" href="{{ login_url }}">Login to view</a>
+                {% endif %}
         </div>
 
         <!-- End Sidebar -->

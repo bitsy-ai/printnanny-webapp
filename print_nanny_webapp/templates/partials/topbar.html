@@ -126,6 +126,7 @@
                 <i class="dripicons-brightness-medium noti-icon"></i> Toggle Dark/Light
             </a>
         </li> {% endcomment %}
+        {% if user.email %}
 
         <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="false"
@@ -197,6 +198,7 @@
             </div>
         </li>
 
+        {% endif %}
 
     </ul>
     <button class="button-menu-mobile open-left disable-btn">
