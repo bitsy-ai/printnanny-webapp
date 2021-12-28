@@ -36,7 +36,6 @@ class RemoteAccessSurvey1(models.Model):
         models.CharField(
             max_length=32,
             choices=VPNExperience.choices,
-            help_text="Have you ever used a Virtual Private Network (VPN) or other remote access software? Select all that apply",
         )
     )
 
@@ -52,7 +51,6 @@ class RemoteAccessSurvey1(models.Model):
         models.CharField(
             max_length=32,
             choices=UserScale.choices,
-            help_text="Select all that apply. Please email leigh@print-nanny.com or add extra details in the 'other' field below",
         )
     )
     user_scale_other = models.CharField(

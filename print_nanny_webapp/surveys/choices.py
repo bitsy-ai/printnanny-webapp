@@ -28,7 +28,10 @@ class VPNExperience(models.TextChoices):
         "vpn_user",
         "I currently/recently use a managed VPN service (examples: TailScale, ZeroTier)",
     )
-    VPN_ADMIn = "vpn_admin", "I manage my own VPN or mesh network"
+    VPN_ADMIn = (
+        "vpn_admin",
+        "I manage my own VPN or mesh network at work, home, or school",
+    )
 
 
 class UserScale(models.TextChoices):
