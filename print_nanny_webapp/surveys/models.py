@@ -6,7 +6,7 @@ from .choices import PrimaryOS, PrinterSoftware, UserScale, VPNExperience, Netwo
 # Create your models here.
 
 
-class RemoteAccessSurvey(models.Model):
+class RemoteAccessSurvey1(models.Model):
 
     created_dt = models.DateTimeField(auto_now_add=True)
     email = models.EmailField(unique=True)
