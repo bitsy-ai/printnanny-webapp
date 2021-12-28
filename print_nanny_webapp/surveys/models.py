@@ -1,7 +1,14 @@
 from django.db import models
 
 from print_nanny_webapp.utils.fields import ChoiceArrayField
-from .choices import PrimaryOS, PrinterSoftware, UserScale, VPNExperience, NetworkType
+from .choices import (
+    PrimaryOS,
+    PrinterSoftware,
+    UserScale,
+    VPNExperience,
+    NetworkType,
+    MobileOS,
+)
 
 # Create your models here.
 
@@ -16,14 +23,12 @@ class RemoteAccessSurvey1(models.Model):
         models.CharField(
             max_length=32,
             choices=PrimaryOS.choices,
-            help_text="What kind of mobile phone do you use?",
         )
     )
     mobile_os = ChoiceArrayField(
         models.CharField(
             max_length=32,
-            choices=PrimaryOS.choices,
-            help_text="Which computer operating system do you use? Select all that apply.",
+            choices=MobileOS.choices,
         )
     )
 

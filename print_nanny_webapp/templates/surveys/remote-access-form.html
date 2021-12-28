@@ -1,0 +1,93 @@
+{% extends "vertical_base.html" %}
+{% load static %}
+{% load crispy_forms_tags feature_flags %}
+
+{% block content %}
+<div class="account-pages mt-2 mb-5">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="card-header pt-4 pb-4 mb-2 text-center bg-primary text-white">
+                    <h1>Print Nanny Network</h1>
+                    <a target="_blank" href="{% url 'subscriptions:checkout' %}" class="btn btn-lg btn-light pull-left">Become a Founding Member</a>
+
+                    <h3>{{ AVAILABLE_SUBSCRIPTIONS_COUNT }} spots left</h3>
+                    <h3>🌍 Manage your 3D printers from anywhere in the world 🌏
+                    </h3>
+                
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <h3 class="mb-2">Print Nanny OS + Network  <span class="badge badge-danger">Early Access</span></h3>
+                        <p>Answer the survey to request access to the <strong>Print Nanny Network</strong>. 
+                        </p>
+                        <p><strong>Note:</strong> you must be a <a target="_blank" href="{% url 'subscriptions:checkout' %}">Founding Member</a>  to use Print Nanny!
+                        </p>
+                        <form class="form" id="remote_access" method="post" action="{% url 'surveys:remote-access' %}">
+                            <div class="form-group">
+                                {% csrf_token %}
+                                {{ form|crispy }}
+                            </div>
+                            {% if redirect_field_value %}
+                            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                            {% endif %}
+                            <button class="btn btn-primary" type="submit">Submit &raquo;</button>
+                        </form>
+                    </div>
+                    <div class="col-12 col-md-6 ribbon-box  bg-light">                            
+                            <div class="ribbon ribbon-primary float-left">
+                                <h4><strong>🎨 Mix and match any printer software.</strong></h4>
+                            </div>
+                            <div class="ribbon-content">
+                                <p>Compatible with:
+                                    <ul>
+                                        <li>OctoPrint</li>
+                                        <li>Mainsail + Moonraker</li>
+                                        <li>Repetier</li>
+                                    </ul>
+                                </p>
+                                <p>Email <a href="mailto:leigh@print-nanny.com">leigh@print-nanny.com</a> to request a new platform.</p>
+                                
+                                </p>
+                            </div>
+     
+
+                            <div class="ribbon ribbon-primary float-left">
+                                <h4><strong>💜 One easy install with Print Nanny OS</strong></h4>
+                            </div>
+                            <div class="ribbon-content">
+                                <p>Designed by a Raspberry Pi devotee, for Raspberry Pi lovers worldwide.
+                                    <img class="img-fluid" src="{% static 'images/rpi-imager-printnanny-os.png'%}"/>
+                                    <small class="text-muted text-center">Raspberry Pi is a trademark of Raspberry Pi Trading.</small>
+                                </p>
+                            </div>
+
+                            <div class="ribbon ribbon-primary float-left">
+                                <h4>🔐 <strong>Secure remote access.</strong></h4>
+                            </div>
+
+                            <div class="ribbon-content">
+                                <p>Battle-tested <a href="https://www.wireguard.com/">WireGuard</a> VPN tunnel. Easy setup and white-glove support.
+                                </p>
+                                <p>Seamless connection between mobile, home, and warehouse.</p>
+                            </div>
+
+                            <div class="ribbon ribbon-primary float-left">
+                                <h4>📡 Site to site networking.</h4>
+                            </div>
+
+                            <div class="ribbon-content">
+                                <p>Link multiple printer farms.</p>
+                                <p>Sync files across all of your devices.</p>
+                                <p>Real-time monitoring across all work sites.</p>
+                            </div>
+                            </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

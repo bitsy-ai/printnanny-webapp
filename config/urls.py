@@ -46,7 +46,8 @@ urlpatterns = [
 
     path("devices/",
          include("print_nanny_webapp.devices.urls", namespace="devices"), ),
-    path("surveys/", include("print_nanny_webapp.surveys.urls"), namespace="urls")
+    
+    path("surveys/", include("print_nanny_webapp.surveys.urls", namespace="urls"))
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
