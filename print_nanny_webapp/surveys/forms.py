@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.forms import (
     ModelForm,
     CharField,
@@ -7,6 +8,8 @@ from django.forms import (
 from .choices import PrimaryOS, MobileOS, VPNExperience, UserScale, PrinterSoftware
 
 from .models import RemoteAccessSurvey1
+
+User = get_user_model()
 
 
 class RemoteAccessSurvey1Form(ModelForm):
@@ -51,3 +54,15 @@ class RemoteAccessSurvey1Form(ModelForm):
     class Meta:
         model = RemoteAccessSurvey1
         exclude = ["user", "user_agent"]
+
+    def save(self, request=None, *args, **kwargs):
+        # check to see if provided email matches user
+        if request.user.is_anonymous:
+            email = self.cleaned_data["email"]
+            user = User.objects.filter(email=email).first()
+        else:
+            user = request.user
+
+        self.instance.user = user
+        self.instance.user_agent = request.META
+        return super(RemoteAccessSurvey1Form, self).save(*args, **kwargs)

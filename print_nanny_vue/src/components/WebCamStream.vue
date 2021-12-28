@@ -351,7 +351,6 @@ Transaction: {{ error.janusMessage._plainMessage.transaction }}
 
             <a href="">Click here to let me know</a> you're interested in <strong>Remote Access</strong>
           </b-popover>
-          </button>
     </div>
 </div>
 </template>
