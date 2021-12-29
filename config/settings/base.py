@@ -477,7 +477,6 @@ PROMETHEUS_METRICS_EXPORT_ADDRESS = ''  # all addresses
 # https://github.com/korfuri/django-prometheus/issues/252
 PROMETHEUS_EXPORT_MIGRATIONS = False
 
-PRINT_NANNY_CLIENT_VERSION = '>=0.1.0'
 
 # ------------------------------------------------------------------------------
 # django-polymorphic
@@ -680,3 +679,7 @@ GHOST_CONTENT_API_KEY=""
 # serviceusers
 # ------------------------------------------------------------------------------
 SERVICEUSER_AUTH = env("DJANGO_SERVICEUSER_AUTH", default=dict)
+
+# internal PRINTNANNY_ vars
+# ------------------------------------------------------------------------------
+PRINTNANNY_ENV = env("PRINTNANNY_ENV", default="sandbox")

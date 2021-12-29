@@ -1,6 +1,11 @@
 from django.db import models
 
 
+class PrintNannyEnv(models.TextChoices):
+    SANDBOX = "sandbox", "Sandbox Environment"
+    PROD = "prod", "Prod Environment"
+
+
 class CameraType(models.TextChoices):
     PICAM = "picam", "Raspberry Pi Camera Module"
     USB = (
