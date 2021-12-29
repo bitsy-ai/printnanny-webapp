@@ -38,33 +38,61 @@ class Release(object):
     """
     openapi_types = {
         'id': 'int',
-        'ansible_extra_vars': 'AnsibleExtraVars',
+        'deleted': 'datetime',
         'created_dt': 'datetime',
+        'name': 'str',
+        'variant': 'VariantEnum',
+        'image_url': 'str',
+        'manifest_url': 'str',
+        'sig_url': 'str',
+        'checksum': 'str',
+        'checksum_url': 'str',
         'release_channel': 'ReleaseChannelEnum'
     }
 
     attribute_map = {
         'id': 'id',
-        'ansible_extra_vars': 'ansible_extra_vars',
+        'deleted': 'deleted',
         'created_dt': 'created_dt',
+        'name': 'name',
+        'variant': 'variant',
+        'image_url': 'image_url',
+        'manifest_url': 'manifest_url',
+        'sig_url': 'sig_url',
+        'checksum': 'checksum',
+        'checksum_url': 'checksum_url',
         'release_channel': 'release_channel'
     }
 
-    def __init__(self, id=None, ansible_extra_vars=None, created_dt=None, release_channel=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, deleted=None, created_dt=None, name=None, variant=None, image_url=None, manifest_url=None, sig_url=None, checksum=None, checksum_url=None, release_channel=None, local_vars_configuration=None):  # noqa: E501
         """Release - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
-        self._ansible_extra_vars = None
+        self._deleted = None
         self._created_dt = None
+        self._name = None
+        self._variant = None
+        self._image_url = None
+        self._manifest_url = None
+        self._sig_url = None
+        self._checksum = None
+        self._checksum_url = None
         self._release_channel = None
         self.discriminator = None
 
         self.id = id
-        self.ansible_extra_vars = ansible_extra_vars
+        self.deleted = deleted
         self.created_dt = created_dt
+        self.name = name
+        self.variant = variant
+        self.image_url = image_url
+        self.manifest_url = manifest_url
+        self.sig_url = sig_url
+        self.checksum = checksum
+        self.checksum_url = checksum_url
         if release_channel is not None:
             self.release_channel = release_channel
 
@@ -92,27 +120,27 @@ class Release(object):
         self._id = id
 
     @property
-    def ansible_extra_vars(self):
-        """Gets the ansible_extra_vars of this Release.  # noqa: E501
+    def deleted(self):
+        """Gets the deleted of this Release.  # noqa: E501
 
 
-        :return: The ansible_extra_vars of this Release.  # noqa: E501
-        :rtype: AnsibleExtraVars
+        :return: The deleted of this Release.  # noqa: E501
+        :rtype: datetime
         """
-        return self._ansible_extra_vars
+        return self._deleted
 
-    @ansible_extra_vars.setter
-    def ansible_extra_vars(self, ansible_extra_vars):
-        """Sets the ansible_extra_vars of this Release.
+    @deleted.setter
+    def deleted(self, deleted):
+        """Sets the deleted of this Release.
 
 
-        :param ansible_extra_vars: The ansible_extra_vars of this Release.  # noqa: E501
-        :type ansible_extra_vars: AnsibleExtraVars
+        :param deleted: The deleted of this Release.  # noqa: E501
+        :type deleted: datetime
         """
-        if self.local_vars_configuration.client_side_validation and ansible_extra_vars is None:  # noqa: E501
-            raise ValueError("Invalid value for `ansible_extra_vars`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and deleted is None:  # noqa: E501
+            raise ValueError("Invalid value for `deleted`, must not be `None`")  # noqa: E501
 
-        self._ansible_extra_vars = ansible_extra_vars
+        self._deleted = deleted
 
     @property
     def created_dt(self):
@@ -136,6 +164,185 @@ class Release(object):
             raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
 
         self._created_dt = created_dt
+
+    @property
+    def name(self):
+        """Gets the name of this Release.  # noqa: E501
+
+
+        :return: The name of this Release.  # noqa: E501
+        :rtype: str
+        """
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        """Sets the name of this Release.
+
+
+        :param name: The name of this Release.  # noqa: E501
+        :type name: str
+        """
+        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                name is not None and len(name) > 255):
+            raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._name = name
+
+    @property
+    def variant(self):
+        """Gets the variant of this Release.  # noqa: E501
+
+
+        :return: The variant of this Release.  # noqa: E501
+        :rtype: VariantEnum
+        """
+        return self._variant
+
+    @variant.setter
+    def variant(self, variant):
+        """Sets the variant of this Release.
+
+
+        :param variant: The variant of this Release.  # noqa: E501
+        :type variant: VariantEnum
+        """
+        if self.local_vars_configuration.client_side_validation and variant is None:  # noqa: E501
+            raise ValueError("Invalid value for `variant`, must not be `None`")  # noqa: E501
+
+        self._variant = variant
+
+    @property
+    def image_url(self):
+        """Gets the image_url of this Release.  # noqa: E501
+
+
+        :return: The image_url of this Release.  # noqa: E501
+        :rtype: str
+        """
+        return self._image_url
+
+    @image_url.setter
+    def image_url(self, image_url):
+        """Sets the image_url of this Release.
+
+
+        :param image_url: The image_url of this Release.  # noqa: E501
+        :type image_url: str
+        """
+        if self.local_vars_configuration.client_side_validation and image_url is None:  # noqa: E501
+            raise ValueError("Invalid value for `image_url`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                image_url is not None and len(image_url) > 255):
+            raise ValueError("Invalid value for `image_url`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._image_url = image_url
+
+    @property
+    def manifest_url(self):
+        """Gets the manifest_url of this Release.  # noqa: E501
+
+
+        :return: The manifest_url of this Release.  # noqa: E501
+        :rtype: str
+        """
+        return self._manifest_url
+
+    @manifest_url.setter
+    def manifest_url(self, manifest_url):
+        """Sets the manifest_url of this Release.
+
+
+        :param manifest_url: The manifest_url of this Release.  # noqa: E501
+        :type manifest_url: str
+        """
+        if self.local_vars_configuration.client_side_validation and manifest_url is None:  # noqa: E501
+            raise ValueError("Invalid value for `manifest_url`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                manifest_url is not None and len(manifest_url) > 255):
+            raise ValueError("Invalid value for `manifest_url`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._manifest_url = manifest_url
+
+    @property
+    def sig_url(self):
+        """Gets the sig_url of this Release.  # noqa: E501
+
+
+        :return: The sig_url of this Release.  # noqa: E501
+        :rtype: str
+        """
+        return self._sig_url
+
+    @sig_url.setter
+    def sig_url(self, sig_url):
+        """Sets the sig_url of this Release.
+
+
+        :param sig_url: The sig_url of this Release.  # noqa: E501
+        :type sig_url: str
+        """
+        if self.local_vars_configuration.client_side_validation and sig_url is None:  # noqa: E501
+            raise ValueError("Invalid value for `sig_url`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                sig_url is not None and len(sig_url) > 255):
+            raise ValueError("Invalid value for `sig_url`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._sig_url = sig_url
+
+    @property
+    def checksum(self):
+        """Gets the checksum of this Release.  # noqa: E501
+
+
+        :return: The checksum of this Release.  # noqa: E501
+        :rtype: str
+        """
+        return self._checksum
+
+    @checksum.setter
+    def checksum(self, checksum):
+        """Sets the checksum of this Release.
+
+
+        :param checksum: The checksum of this Release.  # noqa: E501
+        :type checksum: str
+        """
+        if self.local_vars_configuration.client_side_validation and checksum is None:  # noqa: E501
+            raise ValueError("Invalid value for `checksum`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                checksum is not None and len(checksum) > 255):
+            raise ValueError("Invalid value for `checksum`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._checksum = checksum
+
+    @property
+    def checksum_url(self):
+        """Gets the checksum_url of this Release.  # noqa: E501
+
+
+        :return: The checksum_url of this Release.  # noqa: E501
+        :rtype: str
+        """
+        return self._checksum_url
+
+    @checksum_url.setter
+    def checksum_url(self, checksum_url):
+        """Sets the checksum_url of this Release.
+
+
+        :param checksum_url: The checksum_url of this Release.  # noqa: E501
+        :type checksum_url: str
+        """
+        if self.local_vars_configuration.client_side_validation and checksum_url is None:  # noqa: E501
+            raise ValueError("Invalid value for `checksum_url`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                checksum_url is not None and len(checksum_url) > 255):
+            raise ValueError("Invalid value for `checksum_url`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._checksum_url = checksum_url
 
     @property
     def release_channel(self):

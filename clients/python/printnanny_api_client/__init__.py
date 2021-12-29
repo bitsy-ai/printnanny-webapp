@@ -15,7 +15,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.27.0"
+__version__ = "0.28.0"
 
 # import apis into sdk package
 from printnanny_api_client.api.alerts_api import AlertsApi
@@ -47,8 +47,6 @@ from printnanny_api_client.models.alert import Alert
 from printnanny_api_client.models.alert_bulk_response import AlertBulkResponse
 from printnanny_api_client.models.alert_event_type_enum import AlertEventTypeEnum
 from printnanny_api_client.models.alert_request import AlertRequest
-from printnanny_api_client.models.ansible_extra_vars import AnsibleExtraVars
-from printnanny_api_client.models.ansible_extra_vars_request import AnsibleExtraVarsRequest
 from printnanny_api_client.models.artifact_types_enum import ArtifactTypesEnum
 from printnanny_api_client.models.callback_token_auth_request import CallbackTokenAuthRequest
 from printnanny_api_client.models.callback_token_verification import CallbackTokenVerification
@@ -184,4 +182,5 @@ from printnanny_api_client.models.telemetry_event_request import TelemetryEventR
 from printnanny_api_client.models.token_response import TokenResponse
 from printnanny_api_client.models.user import User
 from printnanny_api_client.models.user_request import UserRequest
+from printnanny_api_client.models.variant_enum import VariantEnum
 

@@ -9,8 +9,6 @@ docs/AlertBulkResponse.md
 docs/AlertEventTypeEnum.md
 docs/AlertRequest.md
 docs/AlertsApi.md
-docs/AnsibleExtraVars.md
-docs/AnsibleExtraVarsRequest.md
 docs/ArtifactTypesEnum.md
 docs/AuthApi.md
 docs/AuthApi.md
@@ -159,6 +157,7 @@ docs/TokenResponse.md
 docs/User.md
 docs/UserRequest.md
 docs/UsersApi.md
+docs/VariantEnum.md
 git_push.sh
 printnanny_api_client/__init__.py
 printnanny_api_client/api/__init__.py
@@ -184,8 +183,6 @@ printnanny_api_client/models/alert.py
 printnanny_api_client/models/alert_bulk_response.py
 printnanny_api_client/models/alert_event_type_enum.py
 printnanny_api_client/models/alert_request.py
-printnanny_api_client/models/ansible_extra_vars.py
-printnanny_api_client/models/ansible_extra_vars_request.py
 printnanny_api_client/models/artifact_types_enum.py
 printnanny_api_client/models/callback_token_auth_request.py
 printnanny_api_client/models/callback_token_verification.py
@@ -321,6 +318,7 @@ printnanny_api_client/models/telemetry_event_request.py
 printnanny_api_client/models/token_response.py
 printnanny_api_client/models/user.py
 printnanny_api_client/models/user_request.py
+printnanny_api_client/models/variant_enum.py
 printnanny_api_client/py.typed
 printnanny_api_client/rest.py
 requirements.txt
@@ -333,8 +331,6 @@ test/test_alert_bulk_response.py
 test/test_alert_event_type_enum.py
 test/test_alert_request.py
 test/test_alerts_api.py
-test/test_ansible_extra_vars.py
-test/test_ansible_extra_vars_request.py
 test/test_artifact_types_enum.py
 test/test_auth__api.py
 test/test_auth_api.py
@@ -483,4 +479,5 @@ test/test_token_response.py
 test/test_user.py
 test/test_user_request.py
 test/test_users_api.py
+test/test_variant_enum.py
 tox.ini

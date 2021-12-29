@@ -37,18 +37,18 @@ class ReleasesApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def releases_latest_retrieve(self, release_channel, **kwargs):  # noqa: E501
-        """releases_latest_retrieve  # noqa: E501
+    def releases_create(self, release_request, **kwargs):  # noqa: E501
+        """releases_create  # noqa: E501
 
         All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.releases_latest_retrieve(release_channel, async_req=True)
+        >>> thread = api.releases_create(release_request, async_req=True)
         >>> result = thread.get()
 
-        :param release_channel: (required)
-        :type release_channel: str
+        :param release_request: (required)
+        :type release_request: ReleaseRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -65,20 +65,20 @@ class ReleasesApi(object):
         :rtype: Release
         """
         kwargs['_return_http_data_only'] = True
-        return self.releases_latest_retrieve_with_http_info(release_channel, **kwargs)  # noqa: E501
+        return self.releases_create_with_http_info(release_request, **kwargs)  # noqa: E501
 
-    def releases_latest_retrieve_with_http_info(self, release_channel, **kwargs):  # noqa: E501
-        """releases_latest_retrieve  # noqa: E501
+    def releases_create_with_http_info(self, release_request, **kwargs):  # noqa: E501
+        """releases_create  # noqa: E501
 
         All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.releases_latest_retrieve_with_http_info(release_channel, async_req=True)
+        >>> thread = api.releases_create_with_http_info(release_request, async_req=True)
         >>> result = thread.get()
 
-        :param release_channel: (required)
-        :type release_channel: str
+        :param release_request: (required)
+        :type release_request: ReleaseRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -105,7 +105,7 @@ class ReleasesApi(object):
         local_var_params = locals()
 
         all_params = [
-            'release_channel'
+            'release_request'
         ]
         all_params.extend(
             [
@@ -121,20 +121,18 @@ class ReleasesApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method releases_latest_retrieve" % key
+                    " to method releases_create" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'release_channel' is set
-        if self.api_client.client_side_validation and ('release_channel' not in local_var_params or  # noqa: E501
-                                                        local_var_params['release_channel'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `release_channel` when calling `releases_latest_retrieve`")  # noqa: E501
+        # verify the required parameter 'release_request' is set
+        if self.api_client.client_side_validation and ('release_request' not in local_var_params or  # noqa: E501
+                                                        local_var_params['release_request'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `release_request` when calling `releases_create`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'release_channel' in local_var_params:
-            path_params['release_channel'] = local_var_params['release_channel']  # noqa: E501
 
         query_params = []
 
@@ -144,19 +142,25 @@ class ReleasesApi(object):
         local_var_files = {}
 
         body_params = None
+        if 'release_request' in local_var_params:
+            body_params = local_var_params['release_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'])  # noqa: E501
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            200: "Release",
+            201: "Release",
         }
 
         return self.api_client.call_api(
-            '/api/releases/{release_channel}/latest', 'GET',
+            '/api/releases/', 'POST',
             path_params,
             query_params,
             header_params,

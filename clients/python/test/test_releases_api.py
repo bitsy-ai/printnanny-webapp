@@ -29,8 +29,8 @@ class TestReleasesApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_releases_latest_retrieve(self):
-        """Test case for releases_latest_retrieve
+    def test_releases_create(self):
+        """Test case for releases_create
 
         """
         pass

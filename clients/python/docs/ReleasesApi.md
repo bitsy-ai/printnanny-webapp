@@ -4,13 +4,13 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**releases_latest_retrieve**](ReleasesApi.md#releases_latest_retrieve) | **GET** /api/releases/{release_channel}/latest | 
+[**releases_create**](ReleasesApi.md#releases_create) | **POST** /api/releases/ | 
 [**releases_list**](ReleasesApi.md#releases_list) | **GET** /api/releases/ | 
 [**releases_retrieve**](ReleasesApi.md#releases_retrieve) | **GET** /api/releases/{id}/ | 
 
 
-# **releases_latest_retrieve**
-> Release releases_latest_retrieve(release_channel)
+# **releases_create**
+> Release releases_create(release_request)
 
 
 
@@ -51,13 +51,13 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.ReleasesApi(api_client)
-    release_channel = 'release_channel_example' # str | 
+    release_request = printnanny_api_client.ReleaseRequest() # ReleaseRequest | 
 
     try:
-        api_response = api_instance.releases_latest_retrieve(release_channel)
+        api_response = api_instance.releases_create(release_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling ReleasesApi->releases_latest_retrieve: %s\n" % e)
+        print("Exception when calling ReleasesApi->releases_create: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -93,20 +93,20 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.ReleasesApi(api_client)
-    release_channel = 'release_channel_example' # str | 
+    release_request = printnanny_api_client.ReleaseRequest() # ReleaseRequest | 
 
     try:
-        api_response = api_instance.releases_latest_retrieve(release_channel)
+        api_response = api_instance.releases_create(release_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling ReleasesApi->releases_latest_retrieve: %s\n" % e)
+        print("Exception when calling ReleasesApi->releases_create: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **release_channel** | **str**|  | 
+ **release_request** | [**ReleaseRequest**](ReleaseRequest.md)|  | 
 
 ### Return type
 
@@ -118,13 +118,14 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
+**201** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

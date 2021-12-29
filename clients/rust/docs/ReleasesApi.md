@@ -4,15 +4,15 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**releases_latest_retrieve**](ReleasesApi.md#releases_latest_retrieve) | **GET** /api/releases/{release_channel}/latest | 
+[**releases_create**](ReleasesApi.md#releases_create) | **POST** /api/releases/ | 
 [**releases_list**](ReleasesApi.md#releases_list) | **GET** /api/releases/ | 
 [**releases_retrieve**](ReleasesApi.md#releases_retrieve) | **GET** /api/releases/{id}/ | 
 
 
 
-## releases_latest_retrieve
+## releases_create
 
-> crate::models::Release releases_latest_retrieve(release_channel)
+> crate::models::Release releases_create(release_request)
 
 
 All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
@@ -22,7 +22,7 @@ All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**release_channel** | **String** |  | [required] |
+**release_request** | [**ReleaseRequest**](ReleaseRequest.md) |  | [required] |
 
 ### Return type
 
@@ -34,7 +34,7 @@ Name | Type | Description  | Required | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

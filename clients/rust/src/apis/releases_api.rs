@@ -15,10 +15,11 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method [`releases_latest_retrieve`]
+/// struct for typed errors of method [`releases_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ReleasesLatestRetrieveError {
+pub enum ReleasesCreateError {
+    DefaultResponse(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -39,13 +40,13 @@ pub enum ReleasesRetrieveError {
 
 
 /// All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-pub async fn releases_latest_retrieve(configuration: &configuration::Configuration, release_channel: &str) -> Result<crate::models::Release, Error<ReleasesLatestRetrieveError>> {
+pub async fn releases_create(configuration: &configuration::Configuration, release_request: crate::models::ReleaseRequest) -> Result<crate::models::Release, Error<ReleasesCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/releases/{release_channel}/latest", local_var_configuration.base_path, release_channel=crate::apis::urlencode(release_channel));
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/releases/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -53,6 +54,7 @@ pub async fn releases_latest_retrieve(configuration: &configuration::Configurati
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
+    local_var_req_builder = local_var_req_builder.json(&release_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -63,7 +65,7 @@ pub async fn releases_latest_retrieve(configuration: &configuration::Configurati
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ReleasesLatestRetrieveError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<ReleasesCreateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }

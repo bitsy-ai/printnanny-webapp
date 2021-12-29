@@ -15,20 +15,41 @@
 pub struct Release {
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "ansible_extra_vars")]
-    pub ansible_extra_vars: Box<crate::models::AnsibleExtraVars>,
+    #[serde(rename = "deleted")]
+    pub deleted: String,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
+    #[serde(rename = "name")]
+    pub name: String,
+    #[serde(rename = "variant")]
+    pub variant: crate::models::VariantEnum,
+    #[serde(rename = "image_url")]
+    pub image_url: String,
+    #[serde(rename = "manifest_url")]
+    pub manifest_url: String,
+    #[serde(rename = "sig_url")]
+    pub sig_url: String,
+    #[serde(rename = "checksum")]
+    pub checksum: String,
+    #[serde(rename = "checksum_url")]
+    pub checksum_url: String,
     #[serde(rename = "release_channel", skip_serializing_if = "Option::is_none")]
     pub release_channel: Option<crate::models::ReleaseChannelEnum>,
 }
 
 impl Release {
-    pub fn new(id: i32, ansible_extra_vars: crate::models::AnsibleExtraVars, created_dt: String) -> Release {
+    pub fn new(id: i32, deleted: String, created_dt: String, name: String, variant: crate::models::VariantEnum, image_url: String, manifest_url: String, sig_url: String, checksum: String, checksum_url: String) -> Release {
         Release {
             id,
-            ansible_extra_vars: Box::new(ansible_extra_vars),
+            deleted,
             created_dt,
+            name,
+            variant,
+            image_url,
+            manifest_url,
+            sig_url,
+            checksum,
+            checksum_url,
             release_channel: None,
         }
     }

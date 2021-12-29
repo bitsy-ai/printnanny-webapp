@@ -43,16 +43,15 @@ class TestPaginatedReleaseList(unittest.TestCase):
                 results = [
                     printnanny_api_client.models.release.Release(
                         id = 56, 
-                        ansible_extra_vars = printnanny_api_client.models.ansible_extra_vars.AnsibleExtraVars(
-                            janus_version = '', 
-                            janus_libwebsockets_version = '', 
-                            janus_libnice_version = '', 
-                            janus_usrsctp_version = '', 
-                            janus_libsrtp_version = '', 
-                            tflite_version = '', 
-                            printnanny_cli_version = '', 
-                            libcamera_version = '', ), 
+                        deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        name = '', 
+                        variant = 'Desktop', 
+                        image_url = '', 
+                        manifest_url = '', 
+                        sig_url = '', 
+                        checksum = '', 
+                        checksum_url = '', 
                         release_channel = 'stable', )
                     ]
             )
