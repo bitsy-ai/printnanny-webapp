@@ -23,6 +23,7 @@ class UserAdmin(auth_admin.UserAdmin):
         "last_login",
         "is_free_beta_tester",
         "is_paid_beta_tester",
+        "is_serviceuser",
     )
     list_filter = ("email", "is_staff", "is_superuser")
     readonly_fields = ("is_free_beta_tester", "is_paid_beta_tester")
@@ -39,14 +40,21 @@ class UserAdmin(auth_admin.UserAdmin):
                 )
             },
         ),
-        ("Permissions", {"fields": ("is_staff", "is_active")}),
+        ("Permissions", {"fields": ("is_staff", "is_active", "is_serviceuser")}),
     )
     add_fieldsets = (
         (
             None,
             {
                 "classes": ("wide",),
-                "fields": ("email", "password1", "password2", "is_staff", "is_active"),
+                "fields": (
+                    "email",
+                    "password1",
+                    "password2",
+                    "is_staff",
+                    "is_active",
+                    "is_serviceuser",
+                ),
             },
         ),
     )

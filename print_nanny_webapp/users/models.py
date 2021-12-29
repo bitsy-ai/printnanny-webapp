@@ -128,6 +128,7 @@ class InviteRequestSerializer(serializers.ModelSerializer):
 class User(AbstractUser):
     username = None  # type: ignore
 
+    is_serviceuser = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
