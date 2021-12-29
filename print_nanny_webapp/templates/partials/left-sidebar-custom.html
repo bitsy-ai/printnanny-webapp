@@ -46,6 +46,9 @@
                     <!-- <span class="menu-arrow"></span> -->
                 </a>
                 <ul class="side-nav-second-level  mm-collapse mm-show" aria-expanded="true">
+                    <li class="{% if request.resolver_match.url_name == 'releases:list' or '' %}active{% endif %}">
+                        <a href="{% url 'releases:list' %}">{% trans "Download Latest" %}</a>
+                    </li>
                     <li class="{% if request.resolver_match.url_name == 'devices:list' %}active{% endif %}">
                         <a href="{% url 'devices:list' %}">{% trans "My Devices" %}</a>
                     </li>
@@ -55,9 +58,6 @@
                     </li>
                     <li class="{% if request.resolver_match.url_name == 'surveys:remote-access' %}active{% endif %}">
                         <a href="{% url 'surveys:remote-access' %}">{% trans "My Files" %}	&nbsp;<span class="badge badge-light">Coming Soon</span></a>
-                    </li>
-                    <li class="{% if request.resolver_match.url_name == 'releases:list' or '' %}active{% endif %}">
-                        <a href="{% url 'releases:list' %}">{% trans "Download Now" %}</a>
                     </li>
                 </ul>
             </li>

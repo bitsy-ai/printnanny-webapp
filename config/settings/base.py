@@ -39,6 +39,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#locale-paths
 LOCALE_PATHS = [str(ROOT_DIR / "locale")]
 
+# externally-managed CDN (Google Storage CDN)
+CDN_BASE_URL = "https://cdn.print-nanny.com"
+
 # DATABASES
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
@@ -565,8 +568,9 @@ INSTALLED_APPS += [
 ]
 
 # ------------------------------------------------------------------------------
-# help guides
+# help guides + other notion wiki links
 
+ROADMAP_URL = "https://bitsy-ai.notion.site/Print-Nanny-Roadmap-7b48a2c8d83248eea2de14edfeaf52ee"
 HELP_OCTOPRINT_PLUGIN_SETUP = "https://help.print-nanny.com/octoprint-plugin-setup/"
 HELP_WIKI = "https://www.notion.so/bitsy-ai/Print-Nanny-Guides-Support-ac1079fafc944d769aa21cf8bffe4692"
 HELP_GETTING_STARTED = "https://bitsy-ai.notion.site/Getting-Started-with-Print-Nanny-817bc65297ff44a085120c663dced5f3"
