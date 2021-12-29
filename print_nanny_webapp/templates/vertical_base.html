@@ -23,10 +23,12 @@ data-layout-qconfig='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSideba
 
     <div class="content-page">
         <div class="content">
-
             {% block topbar %}
-            {% include 'partials/topbar.html' %}
+            {% if user.is_authenticated %}
+                {% include 'partials/topbar.html' %}
+            {% endif %}
             {% endblock %}
+
             {% block content %}
 
             {% endblock %}

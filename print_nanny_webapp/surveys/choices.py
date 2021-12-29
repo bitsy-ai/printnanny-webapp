@@ -41,19 +41,39 @@ class UserScale(models.TextChoices):
     )
     MULTISITE = (
         "multisite",
-        "I want to manage 3D printers across multiple networks or job sites",
+        "Manage 3D printers across multiple networks or job sites",
     )
     MULTIUSER = "multiuser", "I want to provide access to my employees"
-    CRM = "crm", "I want to automatically send status updates to customers"
+    CRM = "crm", "Automatically send status updates to customers"
+    CRM2 = "crm2", "Allow customers to browse inventory and schedule new order"
+    CRM3 = "crm3", "Connect customer communication with parts, revisions, and SKUs"
+
     SOCIAL = (
         "social",
-        "I want to share a camera feed with my followers, classroom, or other large audience",
+        "Share camera feed with followers, classroom, or large audience",
+    )
+    QUEUE = (
+        "queue",
+        "One queue of print jobs sent to first available/compatible printer",
     )
     TIMESHARE = (
         "timeshare",
-        "I want to manage/schedule timeshares for 3D printers, 3D scanners, or other hardware",
+        "Manage/schedule timeshares for 3D printers, 3D scanners, or other hardware",
     )
-    OTHER = "other", "Other"
+    MONITORING = ("monitoring", "I want failed prints to be paused and re-queued")
+    FILE_SYNC = (
+        "filesync",
+        "Sync gcode across all printers and track part/model revisions",
+    )
+    CONTRACT_PRINT = (
+        "contract_print",
+        "Connect me with opportunities to get paid for 3D printing parts",
+    )
+    CONTRACT_CAD = (
+        "contract_cad",
+        "Connect me with opportunities to get paid for CAD design",
+    )
+    OTHER = "other", "I want something not listed! (please describe below)"
 
 
 class PrinterSoftware(models.TextChoices):

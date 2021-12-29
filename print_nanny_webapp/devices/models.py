@@ -326,7 +326,6 @@ class DeviceConfig(SafeDeleteModel):
         ordering = ["-created_dt"]
 
     device = models.ForeignKey(Device, on_delete=models.CASCADE, db_index=True)
-    ansible_extra_vars = models.JSONField(default=dict())
     release_channel = models.CharField(
         max_length=8,
         choices=DeviceReleaseChannel.choices,

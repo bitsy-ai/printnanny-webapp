@@ -34,7 +34,9 @@ def settings_context(request):
 
     obj = {
         "DEBUG": settings.DEBUG,
+        "ROADMAP_URL": settings.ROADMAP_URL,
         "GOOGLE_ANALYTICS": settings.GOOGLE_ANALYTICS,
+        "CDN_BASE_URL": settings.CDN_BASE_URL,
         "WS_BASE_URL": settings.WS_BASE_URL,
         "DISCORD_URL": settings.DISCORD_URL,
         "REPORT_ISSUE_URL": settings.REPORT_ISSUE_URL,

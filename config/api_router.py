@@ -40,7 +40,7 @@ from print_nanny_webapp.alerts.api.views import (
 )
 
 from print_nanny_webapp.partners.api.views import ( GeeksViewSet )
-from print_nanny_webapp.releases.api.views import ReleaseViewSet, LatestReleaseViewSet
+from print_nanny_webapp.releases.api.views import ReleaseViewSet
 from print_nanny_webapp.utils.api.views import PrintNannyApiConfigViewset
 
 router = DefaultRouter()
@@ -88,10 +88,6 @@ router.register(r"experiments", ExperimentViewSet, basename="experiment")
 router.register(r"partners/3d-geeks", GeeksViewSet, basename='partner-3d-geeks')
 router.register(r"releases", ReleaseViewSet, basename='releases')
 
-releases_by_channel = [
-    path("releases/<slug:release_channel>/latest", LatestReleaseViewSet.as_view({'get': 'retrieve'})),
-]
-
 
 app_name = "api"
 
@@ -99,6 +95,5 @@ urlpatterns = (
     router.urls +
     devices_router.urls +
     task_router.urls +
-    devices_by_hostname +
-    releases_by_channel
+    devices_by_hostname
 )
