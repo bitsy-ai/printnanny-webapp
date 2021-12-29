@@ -10,4 +10,4 @@ class ReleaseVariant(models.TextChoices):
     DESKTOP = "Desktop", "Customizable Desktop Edition"
     OCTOPRINT = "OctoPrint", "OctoPrint Edition"
     MAINSAIL = "Mainsail", "Mainsail Edition"
-    REPETIER = "Rctoprint", "Repetier Edition"
+    REPETIER = "REPETIER", "Repetier Edition"
