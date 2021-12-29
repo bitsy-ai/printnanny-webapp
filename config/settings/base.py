@@ -676,3 +676,7 @@ COTURN_REALM = env("COTURN_REALM")
 # ghost user management keys
 GHOST_ADMIN_API_KEY=""
 GHOST_CONTENT_API_KEY=""
+
+# serviceusers
+# ------------------------------------------------------------------------------
+SERVICEUSER_AUTH = env("DJANGO_SERVICEUSER_AUTH", default=dict)

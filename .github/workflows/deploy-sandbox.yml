@@ -31,6 +31,8 @@ on:
         required: true
 env:
   PRINT_NANNY_USER: ${{ github.event.inputs.user }}
+  RELEASE_SERVICE_EMAIL: ${{ secrets.SANDBOX_RELEASE_SERVICE_EMAIL }}
+  RELEASE_SERVICE_TOKEN: ${{ secrets.SANDBOX_RELEASE_SERVICE_TOKEN }}
   DJANGO_SUPERUSER_PASSWORD: ${{ secrets.SANDBOX_DJANGO_SUPERUSER_PASSWORD }}
   PRINT_NANNY_URL: https://webapp.sandbox.print-nanny.com/
   PRINT_NANNY_WS_URL: wss://webapp.sandbox.print-nanny.com/ws
