@@ -53,7 +53,7 @@
                         <a href="{% url 'surveys:remote-access' %}">{% trans "My Network" %}	&nbsp;<span class="badge badge-light">Coming Soon</span></a>
                     </li>
                     <li class="{% if request.resolver_match.url_name == 'dashboard:octoprint-devices:list' %}active{% endif %}">
-                        <a href="{% url 'dashboard:octoprint-devices:list' %}">{% trans "Octoprint Plugin" %}&nbsp;<span class="badge badge-secondary">Legacy</span></a>
+                        <a href="{% url 'dashboard:octoprint-devices:list' %}">{% trans "Octoprint Plugin" %}&nbsp;</a>
                     </li>
                 </ul>
             </li>
@@ -104,7 +104,7 @@
             <li class="side-nav-item">
                 <a href="{% url 'releases:list' %}" class="side-nav-link">
                     <i class="mdi mdi-remote-desktop"></i>
-                    <span> {% trans "Print Nanny OS" %} </span> <span class="badge badge-danger">New</span>
+                    <span> {% trans "Print Nanny OS" %}&nbsp;</span><span class="badge badge-danger"> New</span>
 
                 </a>
             </li>
@@ -120,10 +120,10 @@
 
         </ul>
         {% if not user.is_authenticated or not user.is_paid_beta %}
-            {% if not SOLD_OUT %}
+            {% if SOLD_OUT %}
                 <div class="help-box text-white text-center">
                     <h4>Founding Membership</h4>
-                        <p>Sold out.</p>
+                        <p>Sold out.</div>p>
 
                         </p>Watch your email inbox or join Discord for updates.</p>
                         <a class="btn btn-light btn-sm" href="{% url 'surveys:remote-access' %}">Notify Me</a>
