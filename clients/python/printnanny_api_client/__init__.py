@@ -15,7 +15,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.28.0"
+__version__ = "0.29.0"
 
 # import apis into sdk package
 from printnanny_api_client.api.alerts_api import AlertsApi
@@ -157,6 +157,7 @@ from printnanny_api_client.models.printer_event_request import PrinterEventReque
 from printnanny_api_client.models.printer_profile import PrinterProfile
 from printnanny_api_client.models.printer_profile_request import PrinterProfileRequest
 from printnanny_api_client.models.printer_state_enum import PrinterStateEnum
+from printnanny_api_client.models.printnanny_env_enum import PrintnannyEnvEnum
 from printnanny_api_client.models.release import Release
 from printnanny_api_client.models.release_channel_enum import ReleaseChannelEnum
 from printnanny_api_client.models.release_request import ReleaseRequest

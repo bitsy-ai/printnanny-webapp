@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
+**printnanny_env** | Option<[**crate::models::PrintnannyEnvEnum**](PrintnannyEnvEnum.md)> |  | [readonly]
 **activated** | Option<**bool**> |  | [optional][default to false]
 **user** | **i32** |  | [readonly]
 **cloudiot_device** | **i64** |  | [readonly]

@@ -226,6 +226,8 @@ pub mod printer_profile_request;
 pub use self::printer_profile_request::PrinterProfileRequest;
 pub mod printer_state_enum;
 pub use self::printer_state_enum::PrinterStateEnum;
+pub mod printnanny_env_enum;
+pub use self::printnanny_env_enum::PrintnannyEnvEnum;
 pub mod release;
 pub use self::release::Release;
 pub mod release_channel_enum;
