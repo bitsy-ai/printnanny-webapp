@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth import admin as auth_admin
 from django.contrib.auth import get_user_model
-
+from rest_framework.authtoken.models import Token
 from print_nanny_webapp.users.forms import UserChangeForm, UserCreationForm
 from print_nanny_webapp.users.models import InviteRequest
 from invitations.utils import get_invitation_model
@@ -9,6 +9,11 @@ from invitations.utils import get_invitation_model
 User = get_user_model()
 
 Invitation = get_invitation_model()
+
+
+def create_token(modeladmin, request, queryset):
+    for user in queryset:
+        Token.objects.get_or_create(user=user)
 
 
 @admin.register(User)
@@ -24,9 +29,10 @@ class UserAdmin(auth_admin.UserAdmin):
         "is_free_beta_tester",
         "is_paid_beta_tester",
         "is_serviceuser",
+        "auth_token",
     )
     list_filter = ("email", "is_staff", "is_superuser")
-    readonly_fields = ("is_free_beta_tester", "is_paid_beta_tester")
+    readonly_fields = ("is_free_beta_tester", "is_paid_beta_tester", "auth_token")
 
     fieldsets = (
         (
@@ -60,6 +66,8 @@ class UserAdmin(auth_admin.UserAdmin):
     )
     search_fields = ("email",)
     ordering = ("email",)
+
+    actions = [create_token]
 
 
 def send_beta_invite(modeladmin, request, queryset):

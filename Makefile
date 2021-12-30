@@ -124,7 +124,7 @@ docker-image:
 	-f compose/production/django/Dockerfile \
 	-t print_nanny_webapp:$(GIT_SHA) \
 	.
-build: vue ui docker-image
+build: vue docker-image
 
 local-clean: 
 	rm .token || echo "Skipping .token cleanup"
