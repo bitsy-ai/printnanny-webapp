@@ -21,16 +21,12 @@ on:
         description: 'Load default fixture data?'
         default: true
         required: true
-      user:
-        description: 'Username'
-        required: true
-        default: sandbox
       purge_data:
         description: 'Purge database and persistent volumes'
         default: false
         required: true
 env:
-  PRINT_NANNY_USER: ${{ github.event.inputs.user }}
+  PRINT_NANNY_USER: ${{ secrets.SANDBOX_DJANGO_SUPERUSER_USERNAME }}
   RELEASE_SERVICE_EMAIL: ${{ secrets.SANDBOX_RELEASE_SERVICE_EMAIL }}
   RELEASE_SERVICE_TOKEN: ${{ secrets.SANDBOX_RELEASE_SERVICE_TOKEN }}
   DJANGO_SUPERUSER_PASSWORD: ${{ secrets.SANDBOX_DJANGO_SUPERUSER_PASSWORD }}
@@ -38,7 +34,8 @@ env:
   PRINT_NANNY_WS_URL: wss://webapp.sandbox.print-nanny.com/ws
   PRINT_NANNY_STATIC_URL: https://webapp.sandbox.print-nanny.com/static/
   OCTOPRINT_URL: https://octoprint.sandbox.print-nanny.com
-  DJANGO_SUPERUSER_EMAIL: ${{ github.event.inputs.user }}@print-nanny.com
+  DJANGO_SUPERUSER_EMAIL: ${{ secrets.SANDBOX_DJANGO_SUPERUSER_EMAIL }}
+  DJANG_SUPERUSER_USERNAME: ${{ secrets.SANDBOX_DJANGO_SUPERUSER_USERNAME }}
   DJANGO_SECRET_KEY: ${{ secrets.SANDBOX_DJANGO_SECRET_KEY }}
   STRIPE_PUBLIC_KEY: ${{ secrets.SANDBOX_STRIPE_PUBLIC_KEY }}
   STRIPE_SECRET_KEY: ${{ secrets.SANDBOX_STRIPE_SECRET_KEY }}
@@ -68,7 +65,6 @@ jobs:
     steps:
     - name: Input Settings
       run: |
-        echo "User: ${{ github.event.inputs.user }}" 
         echo "Branch: ${{ github.event.inputs.branch }}"
         echo "Loglevel: ${{ github.event.inputs.loglevel }}"
         echo "Plugin Version: ${{ github.event.inputs.plugin_version }}"
@@ -99,7 +95,7 @@ jobs:
       run: |
         make sandbox-deploy \
         PROJECT="print-nanny-sandbox" \
-        PRINT_NANNY_USER="${{ github.event.inputs.user }}" \
+        PRINT_NANNY_USER="${{ secrets.SANDBOX_DJANGO_SUPERUSER_USERNAME }}" \
         PRINT_NANNY_URL="$PRINT_NANNY_URL" \
         OCTOPRINT_URL="$OCTOPRINT_URL" \
         DJANGO_SUPERUSER_EMAIL="$DJANGO_SUPERUSER_EMAIL"
