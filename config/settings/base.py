@@ -676,16 +676,6 @@ COTURN_REALM = env("COTURN_REALM")
 GHOST_ADMIN_API_KEY=""
 GHOST_CONTENT_API_KEY=""
 
-# serviceusers
-# ------------------------------------------------------------------------------
-SERVICEUSER_AUTH = dict()
-
-RELEASE_EMAIL = env("DJANGO_SERVICEUSER_RELEASE_EMAIL", default=None)
-RELEASE_TOKEN = env("DJANGO_SERVICEUSER_RELEASE_TOKEN", default=None)
-
-if RELEASE_EMAIL is not None and RELEASE_TOKEN is not None:
-    SERVICEUSER_AUTH[RELEASE_EMAIL] = RELEASE_TOKEN
-
 # internal PRINTNANNY_ vars
 # ------------------------------------------------------------------------------
 PRINTNANNY_ENV = env("PRINTNANNY_ENV", default="sandbox")
