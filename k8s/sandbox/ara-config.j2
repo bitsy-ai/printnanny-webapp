@@ -1,0 +1,16 @@
+---
+kind: ConfigMap 
+apiVersion: v1 
+metadata:
+  name: "ara-config"
+data:
+  ARA_DATABASE_ENGINE: django.db.backends.postgresql
+  ARA_DATABASE_NAME: ara
+  # throwaway database credentials
+  ARA_DATABASE_USER: postgres
+  ARA_DATABASE_PASSWORD: postgres
+  ARA_DATABASE_PORT: "5432"
+  ARA_WRITE_LOGIN_REQUIRED: "False"
+  ARA_READ_LOGIN_REQUIRED: "True"
+  DJANGO_SUPERUSER_PASSWORD: "{{ DJANGO_SUPERUSER_PASSWORD }}"
+  DJANGO_SUPERUSER_EMAIL: "{{ DJANGO_SUPERUSER_EMAIL }}"

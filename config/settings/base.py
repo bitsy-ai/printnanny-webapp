@@ -678,7 +678,13 @@ GHOST_CONTENT_API_KEY=""
 
 # serviceusers
 # ------------------------------------------------------------------------------
-SERVICEUSER_AUTH = env("DJANGO_SERVICEUSER_AUTH", default=dict)
+SERVICEUSER_AUTH = dict()
+
+RELEASE_EMAIL = env("DJANGO_SERVICEUSER_RELEASE_EMAIL", default=None)
+RELEASE_TOKEN = env("DJANGO_SERVICEUSER_RELEASE_TOKEN", default=None)
+
+if RELEASE_EMAIL is not None and RELEASE_TOKEN is not None:
+    SERVICEUSER_AUTH[RELEASE_EMAIL] = RELEASE_TOKEN
 
 # internal PRINTNANNY_ vars
 # ------------------------------------------------------------------------------
