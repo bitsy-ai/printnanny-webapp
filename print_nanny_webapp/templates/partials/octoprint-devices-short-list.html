@@ -4,10 +4,10 @@
       <div class="card col-12">
         <div class="card-body">
             <h2 class="header-title">
-              <i class="mdi mdi-printer-3d"></i> OctoPrint Devices
+              <i class="mdi mdi-printer-3d"></i> OctoPrint Plugin Connections
             </h2>
+            {% include 'devices/partials/plugin-deprecation.html' %}
             {% if octoprint_devices.count > 0 %}
-  
             <table class="table table-centered mb-0" id="dashboard-octoprint-devices">
               <thead>
                   <tr>
@@ -76,10 +76,9 @@
               {% endfor %}
   
               </tbody>
-          </table>
+            </table>
   
           {% else %}
-          <p>You haven't registered any OctoPrint Devices yet. Please follow <a href="{{ HELP_OCTOPRINT_PLUGIN_SETUP }}" target="_blank">this guide</a> to install the OctoPrint Nanny plugin and register your device.</p>
           {% endif %}
         </div>
       </div>

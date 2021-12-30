@@ -26,6 +26,8 @@
         </div>     
         <!-- end page title -->
 
+          {% include 'devices/partials/plugin-deprecation.html' %}
+
           <!-- done cards -->
           {% if alerts.count > 0 %}
                     <!-- videos -->
@@ -66,18 +68,7 @@
                         </div>
                     
                         {% endfor %}
-                    </div>  
-
-        {% else %}
-    
-            <div class="card col-sm-12">
-                <div class="card-body">
-
-                    <p>Print Nanny will automatically create timelapse videos of your print jobs.</p>
-                    <p>Having trouble getting started?</p>
-                    <p>Check out the <a href="https://help.print-nanny.com/octoprint-plugin-setup/">OctoPrint Plugin Guide</a> to start monitoring your prints.</p>
-                </div>
-            </div>
+                    </div>
         {% endif %}
 
 
