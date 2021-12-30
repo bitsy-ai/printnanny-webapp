@@ -1,9 +1,6 @@
 
 on:
-  push:
-    # Sequence of patterns matched against refs/tags
-  on:
-    repository_dispatch:
+  repository_dispatch:
       types: [deploy-stable]
   workflow_dispatch:
 env:
