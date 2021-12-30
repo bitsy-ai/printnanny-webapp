@@ -1,8 +1,9 @@
 
 on:
   repository_dispatch:
-      types: [deploy-stable]
+    types: [deploy-stable]
   workflow_dispatch:
+
 env:
   CELERY_FLOWER_PASSWORD: ${{ secrets.PROD_CELERY_FLOWER_PASSWORD }}
   CELERY_FLOWER_USER: ${{ secrets.PROD_CELERY_FLOWER_USER }}
