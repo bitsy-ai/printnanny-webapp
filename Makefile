@@ -351,3 +351,9 @@ test:
 
 stripe-local-webhooks:
 	stripe listen --forward-to localhost:8000/stripe/webhook/
+
+ara-image:
+	docker build \
+		--tag bitsyai/ara:fedora33-source-latest \
+		-f compose/production/ara/Dockerfile compose/production/ara
+	docker push bitsyai/ara:fedora33-source-latest
