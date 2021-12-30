@@ -6,6 +6,7 @@ Deserialize data/license info into /opt/printnanny during License Activation
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
+**printnanny_env** | [**PrintnannyEnvEnum**](PrintnannyEnvEnum.md) |  | [readonly] 
 **activated** | **bool** |  | [optional] [default to False]
 **user** | **int** |  | [readonly] 
 **cloudiot_device** | **int** |  | [readonly] 

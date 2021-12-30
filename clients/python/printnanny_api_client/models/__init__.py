@@ -129,6 +129,7 @@ from printnanny_api_client.models.printer_event_request import PrinterEventReque
 from printnanny_api_client.models.printer_profile import PrinterProfile
 from printnanny_api_client.models.printer_profile_request import PrinterProfileRequest
 from printnanny_api_client.models.printer_state_enum import PrinterStateEnum
+from printnanny_api_client.models.printnanny_env_enum import PrintnannyEnvEnum
 from printnanny_api_client.models.release import Release
 from printnanny_api_client.models.release_channel_enum import ReleaseChannelEnum
 from printnanny_api_client.models.release_request import ReleaseRequest

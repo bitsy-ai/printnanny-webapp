@@ -14,15 +14,15 @@ from print_nanny_webapp.devices.models import (
     TaskStatus,
     License,
     PrinterController,
-    # PrinterProfile,
-    # OctoprintPrinterProfile,
 )
 from ..enum import (
     CameraType,
     DeviceReleaseChannel,
+    PrintNannyEnv,
     PrinterSoftwareType,
     TaskType,
     TaskStatusType,
+    PrintNannyEnv,
 )
 from print_nanny_webapp.users.api.serializers import UserSerializer
 from print_nanny_webapp.releases.api.serializers import ReleaseSerializer
@@ -150,6 +150,10 @@ class LicenseSerializer(serializers.ModelSerializer):
     Deserialize data/license info into /opt/printnanny during License Activation
     """
 
+    printnanny_env = serializers.ChoiceField(
+        read_only=True, choices=PrintNannyEnv.choices
+    )
+
     activated = serializers.BooleanField(default=False)
 
     user = serializers.SerializerMethodField(read_only=True)
@@ -188,6 +192,7 @@ class LicenseSerializer(serializers.ModelSerializer):
             "janus_token",
             "last_check_task",
             "public_key",
+            "printnanny_env",
             "user",
         )
         exclude = ("deleted",)

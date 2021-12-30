@@ -16,6 +16,8 @@
 pub struct License {
     #[serde(rename = "id")]
     pub id: i32,
+    #[serde(rename = "printnanny_env")]
+    pub printnanny_env: Option<Box<crate::models::PrintnannyEnvEnum>>,
     #[serde(rename = "activated", skip_serializing_if = "Option::is_none")]
     pub activated: Option<bool>,
     #[serde(rename = "user")]
@@ -46,9 +48,10 @@ pub struct License {
 
 impl License {
     /// Deserialize data/license info into /opt/printnanny during License Activation
-    pub fn new(id: i32, user: i32, cloudiot_device: i64, last_check_task: Option<crate::models::Task>, honeycomb_dataset: String, honeycomb_api_key: String, janus_admin_secret: String, janus_token: String, public_key: String, fingerprint: String, created_dt: String, updated_dt: String, device: i32) -> License {
+    pub fn new(id: i32, printnanny_env: Option<crate::models::PrintnannyEnvEnum>, user: i32, cloudiot_device: i64, last_check_task: Option<crate::models::Task>, honeycomb_dataset: String, honeycomb_api_key: String, janus_admin_secret: String, janus_token: String, public_key: String, fingerprint: String, created_dt: String, updated_dt: String, device: i32) -> License {
         License {
             id,
+            printnanny_env: printnanny_env.map(Box::new),
             activated: None,
             user,
             cloudiot_device,

@@ -38,6 +38,7 @@ class TestLicense(unittest.TestCase):
         if include_optional :
             return License(
                 id = 56, 
+                printnanny_env = None, 
                 activated = True, 
                 user = 56, 
                 cloudiot_device = 56, 
@@ -55,6 +56,7 @@ class TestLicense(unittest.TestCase):
         else :
             return License(
                 id = 56,
+                printnanny_env = None,
                 user = 56,
                 cloudiot_device = 56,
                 last_check_task = None,

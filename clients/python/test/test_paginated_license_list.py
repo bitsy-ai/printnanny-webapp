@@ -43,6 +43,7 @@ class TestPaginatedLicenseList(unittest.TestCase):
                 results = [
                     printnanny_api_client.models.license.License(
                         id = 56, 
+                        printnanny_env = null, 
                         activated = True, 
                         user = 56, 
                         cloudiot_device = 56, 

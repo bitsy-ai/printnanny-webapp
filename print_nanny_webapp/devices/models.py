@@ -17,6 +17,7 @@ from .enum import (
     PrinterSoftwareType,
     TaskStatusType,
     TaskType,
+    PrintNannyEnv,
 )
 
 UserModel = get_user_model()
@@ -123,6 +124,10 @@ class Device(SafeDeleteModel):
     @property
     def janus_local_url(self):
         return "http://{self.hostname}:8088/janus"
+
+    @property
+    def printnanny_env(self):
+        return PrintNannyEnv(settings.PRINTNANNY_ENV)
 
 
 class License(SafeDeleteModel):

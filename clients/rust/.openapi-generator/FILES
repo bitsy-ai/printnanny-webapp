@@ -125,6 +125,7 @@ docs/PrinterEventRequest.md
 docs/PrinterProfile.md
 docs/PrinterProfileRequest.md
 docs/PrinterStateEnum.md
+docs/PrintnannyEnvEnum.md
 docs/Release.md
 docs/ReleaseChannelEnum.md
 docs/ReleaseRequest.md
@@ -288,6 +289,7 @@ src/models/printer_event_request.rs
 src/models/printer_profile.rs
 src/models/printer_profile_request.rs
 src/models/printer_state_enum.rs
+src/models/printnanny_env_enum.rs
 src/models/release.rs
 src/models/release_channel_enum.rs
 src/models/release_request.rs

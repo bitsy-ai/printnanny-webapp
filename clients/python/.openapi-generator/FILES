@@ -127,6 +127,7 @@ docs/PrinterEventRequest.md
 docs/PrinterProfile.md
 docs/PrinterProfileRequest.md
 docs/PrinterStateEnum.md
+docs/PrintnannyEnvEnum.md
 docs/Release.md
 docs/ReleaseChannelEnum.md
 docs/ReleaseRequest.md
@@ -293,6 +294,7 @@ printnanny_api_client/models/printer_event_request.py
 printnanny_api_client/models/printer_profile.py
 printnanny_api_client/models/printer_profile_request.py
 printnanny_api_client/models/printer_state_enum.py
+printnanny_api_client/models/printnanny_env_enum.py
 printnanny_api_client/models/release.py
 printnanny_api_client/models/release_channel_enum.py
 printnanny_api_client/models/release_request.py
@@ -449,6 +451,7 @@ test/test_printer_event_request.py
 test/test_printer_profile.py
 test/test_printer_profile_request.py
 test/test_printer_state_enum.py
+test/test_printnanny_env_enum.py
 test/test_release.py
 test/test_release_channel_enum.py
 test/test_release_request.py
