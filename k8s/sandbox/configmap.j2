@@ -1,6 +1,6 @@
 ---
-kind: ConfigMap 
-apiVersion: v1 
+kind: ConfigMap
+apiVersion: v1
 metadata:
   name: "sandbox-config"
 data:
@@ -41,7 +41,7 @@ data:
   HONEYCOMB_API_KEY: "{{ HONEYCOMB_API_KEY }}"
   DISCORD_TOKEN: "{{ DISCORD_TOKEN }}"
   DJSTRIPE_WEBHOOK_SECRET: "{{ DJSTRIPE_WEBHOOK_SECRET }}"
-  DJANGO_SERVICEUSER_AUTH: >-
+  DJANGO_SERVICEUSER_AUTH: |-
     {
-      "{{ RELEASE_SERVICE_EMAIL}}": "{{ RELEASE_SERVICE_TOKEN}}"
+      "{{ RELEASE_SERVICE_EMAIL }}": "{{ RELEASE_SERVICE_TOKEN }}"
     }
