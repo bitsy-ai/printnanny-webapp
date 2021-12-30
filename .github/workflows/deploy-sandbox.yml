@@ -27,8 +27,6 @@ on:
         required: true
 env:
   PRINT_NANNY_USER: ${{ secrets.SANDBOX_DJANGO_SUPERUSER_USERNAME }}
-  RELEASE_SERVICE_EMAIL: ${{ secrets.SANDBOX_RELEASE_SERVICE_EMAIL }}
-  RELEASE_SERVICE_TOKEN: ${{ secrets.SANDBOX_RELEASE_SERVICE_TOKEN }}
   PRINT_NANNY_URL: https://webapp.sandbox.print-nanny.com/
   PRINT_NANNY_WS_URL: wss://webapp.sandbox.print-nanny.com/ws
   PRINT_NANNY_STATIC_URL: https://webapp.sandbox.print-nanny.com/static/
@@ -114,3 +112,16 @@ jobs:
             ```
             https://pypi.org/project/printnanny-api-client/${{ steps.deploy.outputs.printnanny_client_version }}/
             https://crates.io/crates/printnanny-api-client/${{ steps.deploy.outputs.printnanny_client_version }}/
+  promote:
+    needs: [ deploy ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v2
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.REPO_GITHUB_TOKEN }}
+          repository: bitsy-ai/printnanny-webapp
+          event-type: deploy-stable
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'

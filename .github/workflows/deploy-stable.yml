@@ -1,0 +1,96 @@
+
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+  on:
+    repository_dispatch:
+      types: [deploy-stable]
+  workflow_dispatch:
+env:
+  CELERY_FLOWER_PASSWORD: ${{ secrets.PROD_CELERY_FLOWER_PASSWORD }}
+  CELERY_FLOWER_USER: ${{ secrets.PROD_CELERY_FLOWER_USER }}
+  COTURN_DATABASE_URL: ${{ secrets.PROD_COTURN_DATABASE_URL }}
+  COTURN_SECRET_KEY: ${{ secrets.PROD_COTURN_SECRET_KEY }}
+  DATABASE_URL: ${{ secrets.PROD_DATABASE_URL }}
+  DISCORD_TOKEN: ${{ secrets.PROD_DISCORD_TOKEN }}
+  DJANGO_ADMIN_URL: ${{ secrets.PROD_DJANGO_ADMIN_URL }}
+  DJANGO_SECRET_KEY: ${{ secrets.PROD_DJANGO_SECRET_KEY }}
+  DJANGO_SUPERUSER_EMAIL: ${{ secrets.PROD_DJANGO_SUPERUSER_EMAIL }}
+  DJANGO_SUPERUSER_PASSWORD: ${{ secrets.PROD_DJANGO_SUPERUSER_PASSWORD }}
+  DJANGO_SUPERUSER_USERNAME: ${{ secrets.PROD_DJANGO_SUPERUSER_USERNAME }}
+  DJSTRIPE_WEBHOOK_SECRET: ${{ secrets.PROD_DJSTRIPE_WEBHOOK_SECRET }}
+  GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.PROD_GCP_SERVICE_ACCOUNT_KEY }}
+  GCP_SERVICE_ACCOUNT: ${{ secrets.PROD_GCP_SERVICE_ACCOUNT }}
+  HONEYCOMB_API_KEY: ${{ secrets.HONEYCOMB_API_KEY }}
+  MAILGUN_API_KEY: ${{ secrets.PROD_MAILGUN_API_KEY }}
+  MAILGUN_DOMAIN: ${{ secrets.PROD_MAILGUN_DOMAIN }}
+  OCTOPRINT_URL: https://octoprint.sandbox.print-nanny.com
+  POSTGRES_PASSWORD: ${{ secrets.PROD_POSTGRES_PASSWORD }}
+  POSTGRES_USER: ${{ secrets.PROD_POSTGRES_USER }}
+  PRINT_NANNY_BASE_URL: https://print-nanny.com
+  PRINT_NANNY_STATIC_URL: https://print-nanny.com/static/
+  PRINT_NANNY_USER: ${{ secrets.PROD_DJANGO_SUPERUSER_USERNAME }}
+  PRINT_NANNY_WS_URL: wss://webapp.sandbox.print-nanny.com/ws
+  STRIPE_PUBLIC_KEY: ${{ secrets.PROD_STRIPE_PUBLIC_KEY }}
+  STRIPE_SECRET_KEY: ${{ secrets.PROD_STRIPE_SECRET_KEY }}
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v2
+      - name: Lint
+        uses: ./.github/workflows/scripts/lint
+  deploy:
+    needs: [ lint ]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Input Settings
+      run: |
+        echo "Branch: ${{ github.event.inputs.branch }}"
+        echo "Loglevel: ${{ github.event.inputs.loglevel }}"
+        echo "Plugin Version: ${{ github.event.inputs.plugin_version }}"
+        echo "Octoprint Version: ${{ github.event.inputs.octoprint_version }}"
+        echo "Load fixture data: ${{ github.event.inputs.fixtures }}"
+    - name: Checkout branch
+      uses: actions/checkout@v2
+    - name: Install system dependencies
+      run: |
+        sudo apt-get install makepasswd
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    - name: Write deploy key
+      run: echo $GCP_SERVICE_ACCOUNT_KEY > key.json
+    - name: Active Service Account
+      run: gcloud auth activate-service-account $GCP_SERVICE_ACCOUNT --key-file=key.json
+    - name: Configure docker registry credentials
+      run: gcloud auth configure-docker
+    # - uses: satackey/action-docker-layer-caching@v0.0.11
+    #   # Ignore the failure of a step and avoid terminating the job.
+    #   continue-on-error: true
+    - name: Deploy sandbox instance
+      id: deploy
+      run: |
+        make prod-deploy \
+        PROJECT="print-nanny" \
+        PRINT_NANNY_USER="${{ secrets.PROD_DJANGO_SUPERUSER_USERNAME }}" \
+        PRINT_NANNY_BASE_URL="$PRINT_NANNY_BASE_URL" \
+        OCTOPRINT_URL="$OCTOPRINT_URL" \
+        DJANGO_SUPERUSER_EMAIL="$DJANGO_SUPERUSER_EMAIL"
+        echo ::set-output name=printnanny_client_version::"$(cat version.txt)"
+
+    - name: Send Discord notification
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.PRINT_NANNY_DISCORD_DEPLOY_WEBHOOK }}
+      uses: Ilshidur/action-discord@master
+      with:
+        args: |
+            🚀 Deployed {{ EVENT_PAYLOAD.repository.full_name }}@{{ GITHUB_SHA }} 🚀
+            ```
+            Client version: ${{ steps.deploy.outputs.printnanny_client_version }}
+            Cluster: SANDBOX
+            ```
+            https://pypi.org/project/printnanny-api-client/${{ steps.deploy.outputs.printnanny_client_version }}/
+            https://crates.io/crates/printnanny-api-client/${{ steps.deploy.outputs.printnanny_client_version }}/

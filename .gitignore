@@ -303,6 +303,7 @@ print_nanny_webapp/media/
 .envs/.sandbox
 # !.envs/.local/.postgres
 k8s/prod/configmap.yml
+k8s/prod/ara-config.yml
 
 # ignore generated vue files
 print_nanny_webapp/static/vue/
