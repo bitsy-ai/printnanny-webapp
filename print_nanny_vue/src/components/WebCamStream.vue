@@ -210,6 +210,10 @@ export default {
     deviceUrl: {
       type: String,
       required: true
+    },
+    surveyUrl: {
+      type: String,
+      required: true
     }
   },
   computed: {
@@ -348,8 +352,9 @@ Transaction: {{ error.janusMessage._plainMessage.transaction }}
           <b-popover :target="remoteAccessEl" triggers="hover" placement="bottom">
             <template #title>Coming in the next stable release!</template>
             <strong>Remote Access</strong> allows you to access your Raspberry Pi from anywhere in the world.
-
-            <a href="">Click here to let me know</a> you're interested in <strong>Remote Access</strong>
+            <br>
+            <br>
+            <a :href="surveyUrl">Sign up </a> to try <strong> Remote Access via Print Nanny Network</strong>
           </b-popover>
     </div>
 </div>
