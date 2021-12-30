@@ -42,7 +42,11 @@
             <li class="side-nav-item">
                 <a href="javascript: void(0);" class="side-nav-link" aria-expanded="true">
                     <i class="mdi mdi-printer-3d"></i>
-                    <span> {% trans "Print Nanny OS" %} &nbsp;<span class="badge badge-danger">New</span></span>
+                    <span> {% trans "Print Nanny OS" %} &nbsp;
+                        {% if user.devices.count == 0 %}
+                        <span class="badge badge-danger">New</span>
+                        {% endif %}
+                    </span>
                     <!-- <span class="menu-arrow"></span> -->
                 </a>
                 <ul class="side-nav-second-level  mm-collapse mm-show" aria-expanded="true">
