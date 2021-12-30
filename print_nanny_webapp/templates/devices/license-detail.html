@@ -21,12 +21,12 @@
                 {{ object.active_license.fingerprint }}
                 </samp>
             </dd>
-            <dt class="col-sm-3">Public Key</dt>
-            <dd class="col-sm-9">
+            <!-- <dt class="col-sm-3">Public Key</dt> -->
+            <!-- <dd class="col-sm-9">
                 <samp>
                 {{ object.active_license.public_key }}
                 </samp>
-            </dd>
+            </dd> -->
         </dl>
         <p>
             <a href="{% url 'devices:delete' pk=device.id %}"><button class="
@@ -35,9 +35,9 @@
         </div>
     <div class="card-footer">
         <p>
-            Print Nanny Staff will <span class="text-danger"><strong>never</strong></span> ask for your license keys. <strong>Do not share these with anyone!</strong>
+            Print Nanny Staff will <span class="text-danger"><strong>never</strong></span> ask you to share the contents of printnanny_license.zip. <strong>Do not share these with anyone!</strong>
             <br>
-            <a href="{{ help.ABOUT_DEVICE_PKI }}" target="_blank">This wiki article</a> explains how your keys protect your device from unauthorized access.
+            <a href="{{ help.ABOUT_DEVICE_PKI }}" target="_blank">This wiki article</a> explains how your license keys protect your device from unauthorized access.
         </p>
     </div>
 </div>

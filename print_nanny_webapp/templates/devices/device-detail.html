@@ -42,15 +42,11 @@
     </div>
     {% else %}
     <div class="row">
-        <div class="col-12 d-flex align-items-stretch">
-            {% include "devices/camera-list.html" %}
-        </div>
-    </div>
-    <div class="row">
+        {% include "devices/partials/camera-stream-card.html" with device=object %}
         <div class="col-12 col-md-6 d-flex align-items-stretch">
             {% include "partials/system-tasks-table.html" %}
         </div>
-        <div class="col-12 col-md-6 d-flex align-items-stretch">
+        <div class="col-12 d-flex align-items-stretch">
             {% include "devices/license-detail.html" %}
         </div>
     </div>
@@ -63,5 +59,6 @@
 {% block extra_javascript %}
     {% load render_bundle from webpack_loader %}
     {% render_bundle 'taskStatus' %}
+    {% render_bundle 'webCamStream' %}
 {% endblock %}
 {% endif %}

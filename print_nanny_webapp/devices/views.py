@@ -75,7 +75,9 @@ class DeviceListView(DashboardView):
 
         context["user"] = self.request.user
 
-        context["devices"] = Device.objects.filter(user=self.request.user).all()
+        context["devices"] = (
+            Device.objects.filter(user=self.request.user).order_by("-updated_dt").all()
+        )
         logger.info(context)
 
         return context
