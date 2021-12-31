@@ -1,4 +1,5 @@
 
+name: Sandbox Deploy
 on:
   push:
     # Sequence of patterns matched against refs/tags
@@ -75,7 +76,7 @@ jobs:
         sudo apt-get install makepasswd
     - uses: actions/setup-node@v2
       with:
-        node-version: '14'
+       node-version: '14'
     - name: Write deploy key
       run: echo $GCP_SERVICE_ACCOUNT_KEY > key.json
     - name: Active Service Account
@@ -125,3 +126,8 @@ jobs:
           repository: bitsy-ai/printnanny-webapp
           event-type: deploy-stable
           client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+      - name: Invoke workflow without inputs
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: Deploy Stable
+          token: ${{ secrets.REPO_GITHUB_TOKEN }}

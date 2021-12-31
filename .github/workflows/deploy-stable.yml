@@ -1,7 +1,6 @@
 
+name: Stable Deploy
 on:
-  repository_dispatch:
-    types: [deploy-stable]
   workflow_dispatch:
 
 env:
