@@ -2,7 +2,7 @@
 # app base image
 ##
 
-set -u
+set -eu
 
 docker tag print_nanny_webapp:$(git rev-parse HEAD) \
     us.gcr.io/print-nanny-sandbox/print_nanny_webapp:$(git rev-parse --abbrev-ref HEAD)
