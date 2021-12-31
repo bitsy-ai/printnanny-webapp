@@ -70,6 +70,7 @@ jobs:
       id: deploy
       run: |
         make prod-deploy \
+        CLUSTER="www-beta" \
         PROJECT="print-nanny" \
         PRINT_NANNY_USER="${{ secrets.PROD_DJANGO_SUPERUSER_USERNAME }}" \
         PRINT_NANNY_BASE_URL="$PRINT_NANNY_BASE_URL" \
