@@ -39,6 +39,19 @@ spec:
         envFrom:
           - configMapRef:
               name: "ara-config"
+      - name: cloud-sql-proxy
+        image: gcr.io/cloudsql-docker/gce-proxy:1.27
+        command:
+          - "/cloud_sql_proxy"
+          - "-quiet"
+          - "-verbose=false"
+          - "-instances=print-nanny:us-central1:print-nanny=tcp:5432"
+        securityContext:
+          # The default Cloud SQL proxy image runs as the
+          # "nonroot" user and group (uid: 65532) by default.
+          runAsNonRoot: true
+        ports:
+          - containerPort: 5432
 ---
 apiVersion: v1
 kind: Service
