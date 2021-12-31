@@ -115,6 +115,7 @@ jobs:
   promote:
     needs: [ deploy ]
     runs-on: ubuntu-latest
+    environment: stable
     steps:
       - name: Checkout branch
         uses: actions/checkout@v2
