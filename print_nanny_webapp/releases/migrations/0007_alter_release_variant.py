@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
             field=models.CharField(
                 choices=[
                     ("desktop", "Customizable Desktop Edition"),
-                    ("cctoPrint", "OctoPrint Edition"),
+                    ("octoprint", "OctoPrint Edition"),
                     ("mainsail", "Mainsail Edition"),
                     ("repetier", "Repetier Edition"),
                 ],

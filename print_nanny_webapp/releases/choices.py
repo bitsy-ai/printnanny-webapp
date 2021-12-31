@@ -8,6 +8,6 @@ class ReleaseChannel(models.TextChoices):
 
 class ReleaseVariant(models.TextChoices):
     DESKTOP = "desktop", "Customizable Desktop Edition"
-    OCTOPRINT = "cctoPrint", "OctoPrint Edition"
+    OCTOPRINT = "octoprint", "OctoPrint Edition"
     MAINSAIL = "mainsail", "Mainsail Edition"
     REPETIER = "repetier", "Repetier Edition"
