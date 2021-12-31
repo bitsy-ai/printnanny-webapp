@@ -103,9 +103,11 @@ class PrintNannyPluginEvent(TelemetryEvent):
     """
 
     def __init__(self, *args, **kwargs):
-        return super().__init__(
-            *args, event_source=EventSource.PRINT_NANNY_PLUGIN, **kwargs
-        )
+        if "event_source" in kwargs.keys():
+            event_source = kwargs.pop("event_source")
+        else:
+            event_source = event_source = EventSource.PRINT_NANNY_PLUGIN
+        return super().__init__(*args, event_source=event_source, **kwargs)
 
     plugin_identifier = "octoprint_nanny"
     octoprint_event_prefix = "plugin_octoprint_nanny_"
@@ -125,14 +127,22 @@ class OctoPrintEvent(TelemetryEvent):
     """
 
     def __init__(self, *args, **kwargs):
-        return super().__init__(*args, event_source=EventSource.OCTOPRINT, **kwargs)
+        if "event_source" in kwargs.keys():
+            event_source = kwargs.pop("event_source")
+        else:
+            event_source = EventSource.OCTOPRINT
+        return super().__init__(*args, event_source=event_source, **kwargs)
 
     event_codes = [x.value for x in OctoprintEventType.__members__.values()]
 
 
 class PrinterEvent(TelemetryEvent):
     def __init__(self, *args, **kwargs):
-        return super().__init__(*args, event_source=EventSource.OCTOPRINT, **kwargs)
+        if "event_source" in kwargs.keys():
+            event_source = kwargs.pop("event_source")
+        else:
+            event_source = EventSource.OCTOPRINT
+        return super().__init__(*args, event_source=event_source, **kwargs)
 
     CSS_CLASS_MAP = {
         "closedOrError": "text-danger",
@@ -165,7 +175,11 @@ class PrinterEvent(TelemetryEvent):
 
 class PrintJobEvent(TelemetryEvent):
     def __init__(self, *args, **kwargs):
-        return super().__init__(*args, event_source=EventSource.OCTOPRINT, **kwargs)
+        if "event_source" in kwargs.keys():
+            event_source = kwargs.pop("event_source")
+        else:
+            event_source = EventSource.OCTOPRINT
+        return super().__init__(*args, event_source=event_source, **kwargs)
 
     event_codes = [x.value for x in PrintJobEventType.__members__.values()]
     CSS_CLASS_MAP = {
