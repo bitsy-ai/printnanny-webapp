@@ -42,11 +42,7 @@ class Release(object):
         'created_dt': 'datetime',
         'name': 'str',
         'variant': 'ReleaseVariant',
-        'image_url': 'str',
-        'manifest_url': 'str',
-        'sig_url': 'str',
-        'checksum': 'str',
-        'checksum_url': 'str',
+        'zip_url': 'str',
         'release_channel': 'ReleaseChannelEnum'
     }
 
@@ -56,15 +52,11 @@ class Release(object):
         'created_dt': 'created_dt',
         'name': 'name',
         'variant': 'variant',
-        'image_url': 'image_url',
-        'manifest_url': 'manifest_url',
-        'sig_url': 'sig_url',
-        'checksum': 'checksum',
-        'checksum_url': 'checksum_url',
+        'zip_url': 'zip_url',
         'release_channel': 'release_channel'
     }
 
-    def __init__(self, id=None, deleted=None, created_dt=None, name=None, variant=None, image_url=None, manifest_url=None, sig_url=None, checksum=None, checksum_url=None, release_channel=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, deleted=None, created_dt=None, name=None, variant=None, zip_url=None, release_channel=None, local_vars_configuration=None):  # noqa: E501
         """Release - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -75,11 +67,7 @@ class Release(object):
         self._created_dt = None
         self._name = None
         self._variant = None
-        self._image_url = None
-        self._manifest_url = None
-        self._sig_url = None
-        self._checksum = None
-        self._checksum_url = None
+        self._zip_url = None
         self._release_channel = None
         self.discriminator = None
 
@@ -88,11 +76,7 @@ class Release(object):
         self.created_dt = created_dt
         self.name = name
         self.variant = variant
-        self.image_url = image_url
-        self.manifest_url = manifest_url
-        self.sig_url = sig_url
-        self.checksum = checksum
-        self.checksum_url = checksum_url
+        self.zip_url = zip_url
         if release_channel is not None:
             self.release_channel = release_channel
 
@@ -215,134 +199,30 @@ class Release(object):
         self._variant = variant
 
     @property
-    def image_url(self):
-        """Gets the image_url of this Release.  # noqa: E501
+    def zip_url(self):
+        """Gets the zip_url of this Release.  # noqa: E501
 
 
-        :return: The image_url of this Release.  # noqa: E501
+        :return: The zip_url of this Release.  # noqa: E501
         :rtype: str
         """
-        return self._image_url
+        return self._zip_url
 
-    @image_url.setter
-    def image_url(self, image_url):
-        """Sets the image_url of this Release.
+    @zip_url.setter
+    def zip_url(self, zip_url):
+        """Sets the zip_url of this Release.
 
 
-        :param image_url: The image_url of this Release.  # noqa: E501
-        :type image_url: str
+        :param zip_url: The zip_url of this Release.  # noqa: E501
+        :type zip_url: str
         """
-        if self.local_vars_configuration.client_side_validation and image_url is None:  # noqa: E501
-            raise ValueError("Invalid value for `image_url`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and zip_url is None:  # noqa: E501
+            raise ValueError("Invalid value for `zip_url`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
-                image_url is not None and len(image_url) > 255):
-            raise ValueError("Invalid value for `image_url`, length must be less than or equal to `255`")  # noqa: E501
+                zip_url is not None and len(zip_url) > 255):
+            raise ValueError("Invalid value for `zip_url`, length must be less than or equal to `255`")  # noqa: E501
 
-        self._image_url = image_url
-
-    @property
-    def manifest_url(self):
-        """Gets the manifest_url of this Release.  # noqa: E501
-
-
-        :return: The manifest_url of this Release.  # noqa: E501
-        :rtype: str
-        """
-        return self._manifest_url
-
-    @manifest_url.setter
-    def manifest_url(self, manifest_url):
-        """Sets the manifest_url of this Release.
-
-
-        :param manifest_url: The manifest_url of this Release.  # noqa: E501
-        :type manifest_url: str
-        """
-        if self.local_vars_configuration.client_side_validation and manifest_url is None:  # noqa: E501
-            raise ValueError("Invalid value for `manifest_url`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                manifest_url is not None and len(manifest_url) > 255):
-            raise ValueError("Invalid value for `manifest_url`, length must be less than or equal to `255`")  # noqa: E501
-
-        self._manifest_url = manifest_url
-
-    @property
-    def sig_url(self):
-        """Gets the sig_url of this Release.  # noqa: E501
-
-
-        :return: The sig_url of this Release.  # noqa: E501
-        :rtype: str
-        """
-        return self._sig_url
-
-    @sig_url.setter
-    def sig_url(self, sig_url):
-        """Sets the sig_url of this Release.
-
-
-        :param sig_url: The sig_url of this Release.  # noqa: E501
-        :type sig_url: str
-        """
-        if self.local_vars_configuration.client_side_validation and sig_url is None:  # noqa: E501
-            raise ValueError("Invalid value for `sig_url`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                sig_url is not None and len(sig_url) > 255):
-            raise ValueError("Invalid value for `sig_url`, length must be less than or equal to `255`")  # noqa: E501
-
-        self._sig_url = sig_url
-
-    @property
-    def checksum(self):
-        """Gets the checksum of this Release.  # noqa: E501
-
-
-        :return: The checksum of this Release.  # noqa: E501
-        :rtype: str
-        """
-        return self._checksum
-
-    @checksum.setter
-    def checksum(self, checksum):
-        """Sets the checksum of this Release.
-
-
-        :param checksum: The checksum of this Release.  # noqa: E501
-        :type checksum: str
-        """
-        if self.local_vars_configuration.client_side_validation and checksum is None:  # noqa: E501
-            raise ValueError("Invalid value for `checksum`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                checksum is not None and len(checksum) > 255):
-            raise ValueError("Invalid value for `checksum`, length must be less than or equal to `255`")  # noqa: E501
-
-        self._checksum = checksum
-
-    @property
-    def checksum_url(self):
-        """Gets the checksum_url of this Release.  # noqa: E501
-
-
-        :return: The checksum_url of this Release.  # noqa: E501
-        :rtype: str
-        """
-        return self._checksum_url
-
-    @checksum_url.setter
-    def checksum_url(self, checksum_url):
-        """Sets the checksum_url of this Release.
-
-
-        :param checksum_url: The checksum_url of this Release.  # noqa: E501
-        :type checksum_url: str
-        """
-        if self.local_vars_configuration.client_side_validation and checksum_url is None:  # noqa: E501
-            raise ValueError("Invalid value for `checksum_url`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                checksum_url is not None and len(checksum_url) > 255):
-            raise ValueError("Invalid value for `checksum_url`, length must be less than or equal to `255`")  # noqa: E501
-
-        self._checksum_url = checksum_url
+        self._zip_url = zip_url
 
     @property
     def release_channel(self):

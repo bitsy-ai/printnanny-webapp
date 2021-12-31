@@ -46,12 +46,8 @@ class TestPaginatedReleaseList(unittest.TestCase):
                         deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         name = '', 
-                        variant = 'desktop', 
-                        image_url = '', 
-                        manifest_url = '', 
-                        sig_url = '', 
-                        checksum = '', 
-                        checksum_url = '', 
+                        variant = 'base_desktop', 
+                        zip_url = '', 
                         release_channel = 'stable', )
                     ]
             )

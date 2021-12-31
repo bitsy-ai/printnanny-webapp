@@ -12,31 +12,31 @@
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum ReleaseVariant {
-    #[serde(rename = "desktop")]
-    Desktop,
-    #[serde(rename = "octoprint")]
-    Octoprint,
-    #[serde(rename = "mainsail")]
-    Mainsail,
-    #[serde(rename = "repetier")]
-    Repetier,
+    #[serde(rename = "base_desktop")]
+    BaseDesktop,
+    #[serde(rename = "base_slim")]
+    BaseSlim,
+    #[serde(rename = "octoprint_desktop")]
+    OctoprintDesktop,
+    #[serde(rename = "octoprint_slim")]
+    OctoprintSlim,
 
 }
 
 impl ToString for ReleaseVariant {
     fn to_string(&self) -> String {
         match self {
-            Self::Desktop => String::from("desktop"),
-            Self::Octoprint => String::from("octoprint"),
-            Self::Mainsail => String::from("mainsail"),
-            Self::Repetier => String::from("repetier"),
+            Self::BaseDesktop => String::from("base_desktop"),
+            Self::BaseSlim => String::from("base_slim"),
+            Self::OctoprintDesktop => String::from("octoprint_desktop"),
+            Self::OctoprintSlim => String::from("octoprint_slim"),
         }
     }
 }
 
 impl Default for ReleaseVariant {
     fn default() -> ReleaseVariant {
-        Self::Desktop
+        Self::BaseDesktop
     }
 }
 

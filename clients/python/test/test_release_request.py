@@ -38,23 +38,15 @@ class TestReleaseRequest(unittest.TestCase):
         if include_optional :
             return ReleaseRequest(
                 name = '0', 
-                variant = 'desktop', 
-                image_url = '0', 
-                manifest_url = '0', 
-                sig_url = '0', 
-                checksum = '0', 
-                checksum_url = '0', 
+                variant = 'base_desktop', 
+                zip_url = '0', 
                 release_channel = 'stable'
             )
         else :
             return ReleaseRequest(
                 name = '0',
-                variant = 'desktop',
-                image_url = '0',
-                manifest_url = '0',
-                sig_url = '0',
-                checksum = '0',
-                checksum_url = '0',
+                variant = 'base_desktop',
+                zip_url = '0',
         )
 
     def testReleaseRequest(self):

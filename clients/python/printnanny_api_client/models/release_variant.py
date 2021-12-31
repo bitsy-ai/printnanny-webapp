@@ -32,12 +32,12 @@ class ReleaseVariant(object):
     """
     allowed enum values
     """
-    DESKTOP = "desktop"
-    OCTOPRINT = "octoprint"
-    MAINSAIL = "mainsail"
-    REPETIER = "repetier"
+    BASE_DESKTOP = "base_desktop"
+    BASE_SLIM = "base_slim"
+    OCTOPRINT_DESKTOP = "octoprint_desktop"
+    OCTOPRINT_SLIM = "octoprint_slim"
 
-    allowable_values = [DESKTOP, OCTOPRINT, MAINSAIL, REPETIER]  # noqa: E501
+    allowable_values = [BASE_DESKTOP, BASE_SLIM, OCTOPRINT_DESKTOP, OCTOPRINT_SLIM]  # noqa: E501
 
     """
     Attributes:

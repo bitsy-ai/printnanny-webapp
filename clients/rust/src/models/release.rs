@@ -23,33 +23,21 @@ pub struct Release {
     pub name: String,
     #[serde(rename = "variant")]
     pub variant: crate::models::ReleaseVariant,
-    #[serde(rename = "image_url")]
-    pub image_url: String,
-    #[serde(rename = "manifest_url")]
-    pub manifest_url: String,
-    #[serde(rename = "sig_url")]
-    pub sig_url: String,
-    #[serde(rename = "checksum")]
-    pub checksum: String,
-    #[serde(rename = "checksum_url")]
-    pub checksum_url: String,
+    #[serde(rename = "zip_url")]
+    pub zip_url: String,
     #[serde(rename = "release_channel", skip_serializing_if = "Option::is_none")]
     pub release_channel: Option<crate::models::ReleaseChannelEnum>,
 }
 
 impl Release {
-    pub fn new(id: i32, deleted: String, created_dt: String, name: String, variant: crate::models::ReleaseVariant, image_url: String, manifest_url: String, sig_url: String, checksum: String, checksum_url: String) -> Release {
+    pub fn new(id: i32, deleted: String, created_dt: String, name: String, variant: crate::models::ReleaseVariant, zip_url: String) -> Release {
         Release {
             id,
             deleted,
             created_dt,
             name,
             variant,
-            image_url,
-            manifest_url,
-            sig_url,
-            checksum,
-            checksum_url,
+            zip_url,
             release_channel: None,
         }
     }
