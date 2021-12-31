@@ -84,10 +84,11 @@ class RemoteCommandEvent(TelemetryEvent):
     """
 
     def __init__(self, *args, **kwargs):
-        event_source = kwargs.get(
-            "event_source", event_source=EventSource.REMOTE_COMMAND
-        )
-        return super().__init__(*args, **kwargs)
+        if "event_source" in kwargs.keys():
+            event_source = kwargs.pop("event_source")
+        else:
+            event_source = EventSource.REMOTE_COMMAND
+        return super().__init__(*args, event_source=event_source, **kwargs)
 
     event_codes = [x.value for x in RemoteCommandEventType.__members__.values()]
 
