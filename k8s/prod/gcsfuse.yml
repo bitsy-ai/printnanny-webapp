@@ -1,4 +1,11 @@
 ---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: cdn
+  annotations:
+    iam.gke.io/gcp-service-account: cdn@print-nanny.iam.gserviceaccount.com
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -67,8 +74,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  namespace: cdn-how-to
-  name: my-ingress
+  name: gcsfuse-nginx
   annotations:
     kubernetes.io/ingress.global-static-ip-name: "downloads-static-ip"
 spec:
