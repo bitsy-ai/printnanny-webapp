@@ -20,11 +20,11 @@ on:
         default: 'latest'
       fixtures:
         description: 'Load default fixture data?'
-        default: true
+        default: 'true'
         required: true
       purge_data:
         description: 'Purge database and persistent volumes'
-        default: false
+        default: 'false'
         required: true
 env:
   PRINT_NANNY_USER: ${{ secrets.SANDBOX_DJANGO_SUPERUSER_USERNAME }}
