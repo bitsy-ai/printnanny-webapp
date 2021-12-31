@@ -14,8 +14,8 @@ docker push us.gcr.io/print-nanny/print_nanny_webapp:latest
 docker push us.gcr.io/print-nanny/print_nanny_webapp:${GIT_SHA}
 
 
-kubectl apply -f k8s/prod/configmap.yml
-kubectl apply -f k8s/prod/ara-config.yml
+kubectl apply -f k8s/stable/configmap.yml
+kubectl apply -f k8s/stable/ara-config.yml
 kubectl apply -f k8s/prod/ara.yml
 kubectl apply -f k8s/prod/octoprint-events.yml
 kubectl apply -f k8s/prod/celery-worker.yml
