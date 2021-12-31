@@ -93,7 +93,7 @@ jobs:
       id: deploy
       run: |
         make sandbox-deploy \
-        PROJECT="print-nanny-sandbox" \
+        GCP_PROJECT="print-nanny-sandbox" \
         PRINT_NANNY_USER="${{ secrets.SANDBOX_DJANGO_SUPERUSER_USERNAME }}" \
         PRINT_NANNY_URL="$PRINT_NANNY_URL" \
         OCTOPRINT_URL="$OCTOPRINT_URL" \
