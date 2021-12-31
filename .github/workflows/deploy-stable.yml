@@ -75,7 +75,7 @@ jobs:
         CLUSTER="www-beta" \
         GCP_PROJECT="print-nanny" \
         PRINT_NANNY_USER="${{ secrets.PROD_DJANGO_SUPERUSER_USERNAME }}" \
-        PRINT_NANNY_BASE_URL="$PRINT_NANNY_BASE_URL" \
+        PRINT_NANNY_URL="$PRINT_NANNY_BASE_URL" \
         DJANGO_SUPERUSER_EMAIL="$DJANGO_SUPERUSER_EMAIL"
         echo ::set-output name=printnanny_client_version::"$(cat version.txt)"
 
