@@ -108,11 +108,10 @@ jobs:
         args: |
             🚀 Deployed {{ EVENT_PAYLOAD.repository.full_name }}@{{ GITHUB_SHA }} 🚀
             ```
-            Client version: ${{ steps.deploy.outputs.printnanny_client_version }}
+            API Client version: ${{ steps.deploy.outputs.printnanny_client_version }}
             Cluster: SANDBOX
             ```
-            https://pypi.org/project/printnanny-api-client/${{ steps.deploy.outputs.printnanny_client_version }}/
-            https://crates.io/crates/printnanny-api-client/${{ steps.deploy.outputs.printnanny_client_version }}/
+            Cluster status: https://console.cloud.google.com/kubernetes/workload/overview?project=print-nanny-sandbox
   promote:
     needs: [ deploy ]
     runs-on: ubuntu-latest
