@@ -129,5 +129,5 @@ jobs:
       - name: Invoke workflow without inputs
         uses: benc-uk/workflow-dispatch@v1
         with:
-          workflow: Deploy Stable
+          workflow: Stable Deploy
           token: ${{ secrets.REPO_GITHUB_TOKEN }}
