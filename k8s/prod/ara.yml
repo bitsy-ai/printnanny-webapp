@@ -1,0 +1,75 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ara
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ara
+  template:
+    metadata:
+      labels:
+        app: ara
+    spec:
+      serviceAccountName: webapp
+      containers:
+      - name: ara
+        imagePullPolicy: Always
+        image: bitsyai/ara:fedora33-source-latest
+        livenessProbe:
+          httpGet:
+            path: /healthcheck/ # root path serves 302 (login) which is not followed by health check
+            port: 5000
+          initialDelaySeconds: 30
+          periodSeconds: 15
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 4
+        readinessProbe:
+          httpGet:
+            path: /healthcheck/ # root path serves 302 (login) which is not followed by health check
+            port: 5000
+          initialDelaySeconds: 30
+          periodSeconds: 15
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 4
+        envFrom:
+          - configMapRef:
+              name: "ara-config"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ara
+spec:
+  selector:
+    app: ara
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+  type: NodePort
+---
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: "ara-print-nanny-com-tls"
+spec:
+  domains:
+    - "ara.print-nanny.com"
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ara
+  annotations:
+    networking.gke.io/v1beta1.FrontendConfig: "http-to-https"
+    kubernetes.io/ingress.global-static-ip-name: "ara-static-ip"
+    networking.gke.io/managed-certificates: "ara-print-nanny-com-tls"
+spec:
+  backend:
+    serviceName: ara
+    servicePort: 80
