@@ -40,7 +40,7 @@ spec:
           - configMapRef:
               name: "ara-config"
       - name: cloud-sql-proxy
-        image: gcr.io/cloudsql-docker/gce-proxy:1.27
+        image: gcr.io/cloudsql-docker/gce-proxy:1.17
         command:
           - "/cloud_sql_proxy"
           - "-quiet"
