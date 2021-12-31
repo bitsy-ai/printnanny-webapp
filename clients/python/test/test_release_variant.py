@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.variant_enum import VariantEnum  # noqa: E501
+from printnanny_api_client.models.release_variant import ReleaseVariant  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestVariantEnum(unittest.TestCase):
-    """VariantEnum unit test stubs"""
+class TestReleaseVariant(unittest.TestCase):
+    """ReleaseVariant unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,20 +30,20 @@ class TestVariantEnum(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test VariantEnum
+        """Test ReleaseVariant
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.variant_enum.VariantEnum()  # noqa: E501
+        # model = printnanny_api_client.models.release_variant.ReleaseVariant()  # noqa: E501
         if include_optional :
-            return VariantEnum(
+            return ReleaseVariant(
             )
         else :
-            return VariantEnum(
+            return ReleaseVariant(
         )
 
-    def testVariantEnum(self):
-        """Test VariantEnum"""
+    def testReleaseVariant(self):
+        """Test ReleaseVariant"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

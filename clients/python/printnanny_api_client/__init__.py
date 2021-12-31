@@ -15,7 +15,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.30.0"
+__version__ = "0.31.0"
 
 # import apis into sdk package
 from printnanny_api_client.api.alerts_api import AlertsApi
@@ -161,6 +161,7 @@ from printnanny_api_client.models.printnanny_env_enum import PrintnannyEnvEnum
 from printnanny_api_client.models.release import Release
 from printnanny_api_client.models.release_channel_enum import ReleaseChannelEnum
 from printnanny_api_client.models.release_request import ReleaseRequest
+from printnanny_api_client.models.release_variant import ReleaseVariant
 from printnanny_api_client.models.remote_command_event import RemoteCommandEvent
 from printnanny_api_client.models.remote_command_event_event_type_enum import RemoteCommandEventEventTypeEnum
 from printnanny_api_client.models.remote_command_event_request import RemoteCommandEventRequest
@@ -183,5 +184,4 @@ from printnanny_api_client.models.telemetry_event_request import TelemetryEventR
 from printnanny_api_client.models.token_response import TokenResponse
 from printnanny_api_client.models.user import User
 from printnanny_api_client.models.user_request import UserRequest
-from printnanny_api_client.models.variant_enum import VariantEnum
 

@@ -22,7 +22,7 @@ pub struct Release {
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "variant")]
-    pub variant: crate::models::VariantEnum,
+    pub variant: crate::models::ReleaseVariant,
     #[serde(rename = "image_url")]
     pub image_url: String,
     #[serde(rename = "manifest_url")]
@@ -38,7 +38,7 @@ pub struct Release {
 }
 
 impl Release {
-    pub fn new(id: i32, deleted: String, created_dt: String, name: String, variant: crate::models::VariantEnum, image_url: String, manifest_url: String, sig_url: String, checksum: String, checksum_url: String) -> Release {
+    pub fn new(id: i32, deleted: String, created_dt: String, name: String, variant: crate::models::ReleaseVariant, image_url: String, manifest_url: String, sig_url: String, checksum: String, checksum_url: String) -> Release {
         Release {
             id,
             deleted,

@@ -38,7 +38,7 @@ class TestReleaseRequest(unittest.TestCase):
         if include_optional :
             return ReleaseRequest(
                 name = '0', 
-                variant = 'Desktop', 
+                variant = 'desktop', 
                 image_url = '0', 
                 manifest_url = '0', 
                 sig_url = '0', 
@@ -49,7 +49,7 @@ class TestReleaseRequest(unittest.TestCase):
         else :
             return ReleaseRequest(
                 name = '0',
-                variant = 'Desktop',
+                variant = 'desktop',
                 image_url = '0',
                 manifest_url = '0',
                 sig_url = '0',

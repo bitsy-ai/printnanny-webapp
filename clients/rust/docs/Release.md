@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **deleted** | **String** |  | [readonly]
 **created_dt** | **String** |  | [readonly]
 **name** | **String** |  | 
-**variant** | [**crate::models::VariantEnum**](VariantEnum.md) |  | 
+**variant** | [**crate::models::ReleaseVariant**](ReleaseVariant.md) |  | 
 **image_url** | **String** |  | 
 **manifest_url** | **String** |  | 
 **sig_url** | **String** |  | 

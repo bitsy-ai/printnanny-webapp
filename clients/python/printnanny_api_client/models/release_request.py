@@ -38,7 +38,7 @@ class ReleaseRequest(object):
     """
     openapi_types = {
         'name': 'str',
-        'variant': 'VariantEnum',
+        'variant': 'ReleaseVariant',
         'image_url': 'str',
         'manifest_url': 'str',
         'sig_url': 'str',
@@ -119,7 +119,7 @@ class ReleaseRequest(object):
 
 
         :return: The variant of this ReleaseRequest.  # noqa: E501
-        :rtype: VariantEnum
+        :rtype: ReleaseVariant
         """
         return self._variant
 
@@ -129,7 +129,7 @@ class ReleaseRequest(object):
 
 
         :param variant: The variant of this ReleaseRequest.  # noqa: E501
-        :type variant: VariantEnum
+        :type variant: ReleaseVariant
         """
         if self.local_vars_configuration.client_side_validation and variant is None:  # noqa: E501
             raise ValueError("Invalid value for `variant`, must not be `None`")  # noqa: E501

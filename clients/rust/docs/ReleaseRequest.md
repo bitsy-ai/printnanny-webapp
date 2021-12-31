@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **String** |  | 
-**variant** | [**crate::models::VariantEnum**](VariantEnum.md) |  | 
+**variant** | [**crate::models::ReleaseVariant**](ReleaseVariant.md) |  | 
 **image_url** | **String** |  | 
 **manifest_url** | **String** |  | 
 **sig_url** | **String** |  | 

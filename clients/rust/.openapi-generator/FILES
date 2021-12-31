@@ -129,6 +129,7 @@ docs/PrintnannyEnvEnum.md
 docs/Release.md
 docs/ReleaseChannelEnum.md
 docs/ReleaseRequest.md
+docs/ReleaseVariant.md
 docs/ReleasesApi.md
 docs/RemoteCommandEvent.md
 docs/RemoteCommandEventEventTypeEnum.md
@@ -156,7 +157,6 @@ docs/TokenResponse.md
 docs/User.md
 docs/UserRequest.md
 docs/UsersApi.md
-docs/VariantEnum.md
 git_push.sh
 src/apis/alerts_api.rs
 src/apis/auth_api.rs
@@ -293,6 +293,7 @@ src/models/printnanny_env_enum.rs
 src/models/release.rs
 src/models/release_channel_enum.rs
 src/models/release_request.rs
+src/models/release_variant.rs
 src/models/remote_command_event.rs
 src/models/remote_command_event_event_type_enum.rs
 src/models/remote_command_event_request.rs
@@ -315,4 +316,3 @@ src/models/telemetry_event_request.rs
 src/models/token_response.rs
 src/models/user.rs
 src/models/user_request.rs
-src/models/variant_enum.rs

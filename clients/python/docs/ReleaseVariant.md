@@ -1,7 +1,7 @@
-# VariantEnum
+# ReleaseVariant
+
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

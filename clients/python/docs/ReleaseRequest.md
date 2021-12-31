@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | 
-**variant** | [**VariantEnum**](VariantEnum.md) |  | 
+**variant** | [**ReleaseVariant**](ReleaseVariant.md) |  | 
 **image_url** | **str** |  | 
 **manifest_url** | **str** |  | 
 **sig_url** | **str** |  | 

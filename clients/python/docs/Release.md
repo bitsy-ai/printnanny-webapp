@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **deleted** | **datetime** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
 **name** | **str** |  | 
-**variant** | [**VariantEnum**](VariantEnum.md) |  | 
+**variant** | [**ReleaseVariant**](ReleaseVariant.md) |  | 
 **image_url** | **str** |  | 
 **manifest_url** | **str** |  | 
 **sig_url** | **str** |  | 
