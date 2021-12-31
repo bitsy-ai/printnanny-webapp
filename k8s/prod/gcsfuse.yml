@@ -47,7 +47,6 @@ spec:
   apiVersion: cloud.google.com/v1
   kind: BackendConfig
   metadata:
-    namespace: cdn-how-to
     name: nginx-gcsfuse
   spec:
     cdn:
