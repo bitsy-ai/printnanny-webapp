@@ -191,6 +191,20 @@ sandbox-config:
 	PRINT_NANNY_HONEYCOMB_DEBUG=$(PRINT_NANNY_HONEYCOMB_DEBUG) \
 		k8s/sandbox/render.sh
 
+prod-config:
+	GIT_SHA=$(GIT_SHA) \
+	GIT_BRANCH=$(GIT_BRANCH) \
+	PRINT_NANNY_USER=$(PRINT_NANNY_USER) \
+	DJANGO_SUPERUSER_PASSWORD=$(DJANGO_SUPERUSER_PASSWORD) \
+	PRINT_NANNY_API_URL=$(PRINT_NANNY_API_URL) \
+	PRINT_NANNY_WS_URL=$(PRINT_NANNY_WS_URL) \
+	PRINT_NANNY_BASE_URL=$(PRINT_NANNY_BASE_URL) \
+	PRINT_NANNY_IOT_DEVICE_REGISTRY=$(PRINT_NANNY_IOT_DEVICE_REGISTRY) \
+	PRINT_NANNY_HONEYCOMB_DATASET=$(PRINT_NANNY_HONEYCOMB_DATASET) \
+	PRINT_NANNY_HONEYCOMB_API_KEY=$(PRINT_NANNY_HONEYCOMB_API_KEY) \
+	PRINT_NANNY_HONEYCOMB_DEBUG=$(PRINT_NANNY_HONEYCOMB_DEBUG) \
+		k8s/stable/render.sh
+
 sandbox-pv-clean: sandbox-config
 	k8s/sandbox/delete-resource.sh k8s/sandbox/pv.yml
 
@@ -222,7 +236,7 @@ sandbox-ci: sandbox-deploy sandbox-email cypress-ci
 prod-apply: cluster-config
 	GIT_SHA=$(GIT_SHA) k8s/prod/push.sh
 
-prod-deploy: build cluster-config prod-apply
+prod-deploy: build cluster-config prod-config prod-apply
 
 blog-deploy:
 	k8s/push-blog.sh
