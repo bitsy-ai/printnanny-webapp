@@ -26,7 +26,7 @@ env:
   PRINT_NANNY_BASE_URL: https://print-nanny.com
   PRINT_NANNY_STATIC_URL: https://print-nanny.com/static/
   PRINT_NANNY_USER: ${{ secrets.PROD_DJANGO_SUPERUSER_USERNAME }}
-  PRINT_NANNY_WS_URL: wss://webapp.sandbox.print-nanny.com/ws
+  PRINT_NANNY_WS_URL: wss://print-nanny.com/ws
   STRIPE_PUBLIC_KEY: ${{ secrets.PROD_STRIPE_PUBLIC_KEY }}
   STRIPE_SECRET_KEY: ${{ secrets.PROD_STRIPE_SECRET_KEY }}
 
@@ -66,7 +66,7 @@ jobs:
     # - uses: satackey/action-docker-layer-caching@v0.0.11
     #   # Ignore the failure of a step and avoid terminating the job.
     #   continue-on-error: true
-    - name: Deploy sandbox instance
+    - name: Deploy to stable cluster
       id: deploy
       run: |
         make prod-deploy \
