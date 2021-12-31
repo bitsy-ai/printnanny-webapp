@@ -13,14 +13,7 @@ class Release(SafeDeleteModel):
 
     name = models.CharField(max_length=255)
     variant = models.CharField(max_length=32, choices=ReleaseVariant.choices)
-    image_url = models.CharField(max_length=255)
-
-    manifest_url = models.CharField(max_length=255)
-
-    sig_url = models.CharField(max_length=255)
-
-    checksum = models.CharField(max_length=255)
-    checksum_url = models.CharField(max_length=255)
+    zip_url = models.CharField(max_length=255)
 
     release_channel = models.CharField(
         max_length=8,
