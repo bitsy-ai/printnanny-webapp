@@ -39,7 +39,7 @@ spec:
           lifecycle:
             postStart:
               exec:
-                command: ["gcsfuse", "-o", "nonempty,allow_other", "printnanny-downloads", "/usr/share/nginx/public-data"]
+                command: ["gcsfuse", "-o", "allow_other", "printnanny-downloads", "/usr/share/nginx/public-data"]
             preStop:
               exec:
                 command: ["fusermount", "-u", "/usr/share/nginx/public-data"]
