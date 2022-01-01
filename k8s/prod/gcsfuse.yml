@@ -96,7 +96,7 @@ spec:
   domains:
     - downloads.print-nanny.com
     - download.print-nanny.com
-    - api.print-nanny.com
+    - dl.print-nanny.com
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
