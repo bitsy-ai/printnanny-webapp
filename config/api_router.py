@@ -40,7 +40,6 @@ from print_nanny_webapp.alerts.api.views import (
 )
 
 from print_nanny_webapp.partners.api.views import ( GeeksViewSet )
-from print_nanny_webapp.releases.api.views import ReleaseViewSet
 from print_nanny_webapp.utils.api.views import PrintNannyApiConfigViewset
 
 router = DefaultRouter()
@@ -86,8 +85,6 @@ router.register(r"model-artifacts", ModelArtifactViewSet, basename='model-artifa
 router.register(r"experiment-device-configs", ExperimentDeviceConfigViewSet, basename="experiment-device-config")
 router.register(r"experiments", ExperimentViewSet, basename="experiment")
 router.register(r"partners/3d-geeks", GeeksViewSet, basename='partner-3d-geeks')
-router.register(r"releases", ReleaseViewSet, basename='releases')
-
 
 app_name = "api"
 

@@ -26,9 +26,12 @@
         </div>     
         <!-- end page title -->
 
-          {% include 'devices/partials/plugin-deprecation.html' %}
-
           <!-- done cards -->
+          <div class="row">
+            <div class="col-12 col-md-6">
+                {% include 'devices/partials/plugin-deprecation.html' %}
+            </div>
+          </div>
           {% if alerts.count > 0 %}
                     <!-- videos -->
                     <div class="row">
@@ -38,6 +41,7 @@
                         <!-- card wrapper -->
                         <div class="card col-sm-12 col-lg-6">
                             <!-- critical failure detected -->
+                            
                             <div class="card-body">
                                 <h4 class="card-title">Finished {{obj.created_dt | naturaltime }}</h4>
                                 <!-- {% if not obj.seen %}

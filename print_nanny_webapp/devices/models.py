@@ -75,12 +75,6 @@ class Device(SafeDeleteModel):
         default=DeviceReleaseChannel.STABLE,
         help_text="WARNING: you should only use the nightly developer channel when guided by Print Nanny staff! This unstable channel is intended for QA and verifying bug fixes.",
     )
-    bootstrap_release = models.ForeignKey(
-        "releases.Release",
-        db_index=True,
-        on_delete=models.CASCADE,
-        default=_get_default_stable_release,
-    )
 
     @property
     def active_license(self):
