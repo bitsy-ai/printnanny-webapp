@@ -43,6 +43,24 @@ spec:
             preStop:
               exec:
                 command: ["fusermount", "-u", "/usr/share/nginx/public-data"]
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 60
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 60
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
 ---
   apiVersion: cloud.google.com/v1
   kind: BackendConfig
