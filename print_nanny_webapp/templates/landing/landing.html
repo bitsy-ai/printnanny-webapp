@@ -50,10 +50,10 @@
                     <!-- right menu -->
                     <ul class="navbar-nav ml-auto align-items-center">
                         <!-- <li class="nav-item mr-1">
-                            {% comment %} <a href="{% url 'request-invite' %}" class="nav-link d-lg-none">Register</a> {% endcomment %}
+                            {% comment %} <a href="{% url 'subscriptions:checkout' %}" class="nav-link d-lg-none">Register</a> {% endcomment %}
                             <a href="#" class="nav-link d-lg-none">Register</a>
-                            {% comment %} <a href="{% url 'request-invite' %}" class="btn btn-sm btn-light btn-rounded d-none d-lg-inline-flex"> {% endcomment %}
-                            <a href="{% url 'request-invite' %}" class="btn btn-sm btn-light btn-rounded d-none d-lg-inline-flex">
+                            {% comment %} <a href="{% url 'subscriptions:checkout' %}" class="btn btn-sm btn-light btn-rounded d-none d-lg-inline-flex"> {% endcomment %}
+                            <a href="{% url 'subscriptions:checkout' %}" class="btn btn-sm btn-light btn-rounded d-none d-lg-inline-flex">
                                 Register
                             </a>
                         </li> -->
@@ -76,18 +76,18 @@
         <section class="hero-section">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="mt-md-2">
                             <h1 class="text-white hero-title">
                                 Stop Babysitting your 3D Printer
                             </h1>
                             <h4 class="text-white">
-                                Are you still wasting time, fretting over your prints?
+                                Still wasting time fretting over your prints?
                             </h4>
                             <h4 class="text-white">
-                                Hire a nanny instead. 👶
+                                Hire a nanny instead 👶
                             </h4>
-
+                            
                             <h3 class="text-white mb-4 mt-4">
                                 Get notified of print defects 🔔
                             </h3>
@@ -95,18 +95,18 @@
                                 Pause from anywhere 🌎
                             </h3>
                             <h3 class="text-white mb-4 mt-4">
-                                Automate shipping & post-processing 🦾
+                                Sync & Backup Files 📄
                             </h3>
-                    
-                            <a href="{% url 'request-invite' %}" target="_blank" class="btn btn-success btn-lg"><strong class="h1">Get Early Access</strong></a>
+                            <h3 class="text-white mb-4 mt-4">
+                                Easy Install for Raspberry Pi
+                            </h3>
+                            <a href="{% url 'subscriptions:checkout' %}" class="btn btn-success btn-lg"><strong class="h1">Get Early Access</strong></a>
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="text-md-right mt-3 mt-md-0">
-                            {% include 'partials/demo-carousel.html' %}
+                    <div class="col-8">
+                        {% include 'partials/demo-carousel.html' %}
 
                             <!-- <img src="{% static 'images/logo-square-white.svg' %}" alt="" class="img-fluid" /> -->
-                        </div>
                     </div>
                 </div>
             </div>
@@ -132,101 +132,202 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mt-2 py-5 align-items-center">
-                    <div class="col-lg-5">
-                        <div class="card-img-top embed-responsive embed-responsive-16by9">
+                <div class="row mt-2 align-items-center">
+                    <div class="col-md-6 p-5">
+                        <div class="bg-primary rounded-circle text-center p-5">
+                            <img src="{% static 'images/logo-square-white.svg' %}" alt="" class="img-fluid p-4" />
+
+                            <a href="{% url 'subscriptions:checkout' %}" class="btn btn-success btn-lg btn-rounded">Sign up for Beta<i class="mdi mdi-arrow-right ml-1"></i></a>
+
+                        </div>
+
+                        <!-- <div class="card-img-top embed-responsive embed-responsive-16by9">
 
                         <video id="report-card-video" class="embed-responsive-item" controls>
                             <source src="{% static 'images/detection-demo.mp4' %}" type="video/mp4">
                         </video>
-                        </div>
+                        </div> -->
                     </div>
-                    <div class="col-lg-6 offset-lg-1">
+                    <div class="col-md-6 pt-4 pb-4">
                         <h1 id="live-monitoring">🔮 Live Monitoring </h1>
-                        <p class="lead col-lg-7 text-muted">
-                        Print Nanny will <strong class="text-primary">watch your job</strong>, so you can focus on other things. <br>
-                        
-                        </p>
-
-                        <p class="lead col-lg-7 text-muted"> You'll be <strong class="text-primary">automatically notified</strong> of common issues:
+                        <p class="lead text-muted"> You'll be <strong class="text-primary">automatically notified</strong> of common issues:
                         </p>
                         <div>
-                            <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>Print bed adhesion and layer warping</p>
-                            <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>Blisters, zits, and retraction issues</p>
-                            <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>Low filament supply<p>
-                            <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>Clogged print nozzle<p>
+                            <p class="h2 py-1">Layer Warping & Adhesion Issues</p>
+                            <p class="lead text-muted">Print Nanny can spot <strong class="text-primary">warping in bottom layers</strong> and detects <strong class="text-primary">unexpected shifts</strong>.</p>
+                            <div class="row">
+                                <div class="col-6">
+                                    <img src="{% static 'images/landing-adhesion.png' %}" alt="" class="img-fluid h-100" />
+                                </div>
+                                <div class="col-6">
+                                    <img src="{% static 'images/landing-warp.png' %}" alt="" class="img-fluid h-100" />
+                                </div>
+                            </div>
 
+                            <p class="h2 py-1">Clogged Nozzle & Low Filament<p>
+                                <p class="lead text-muted">Print Nanny has an eye for 
+                                    <strong class="text-primary">irregular extrusion</strong> 
+                                    like a <strong class="text-primary">clogged nozzle</strong> and  <strong class="text-primary">spaghetti</strong> </p>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <img src="{% static 'images/landing-nozzle-1.png' %}" alt="" class="img-fluid h-100" />
+                                    </div>
+                                    <div class="col-6">
+                                        <img src="{% static 'images/landing-nozzle-2.png' %}" alt="" class="img-fluid h-100" />
+                                    </div>
+                                </div>
 
                         </div>
-                        <a href="{% url 'request-invite' %}" class="btn btn-primary btn-lg btn-rounded mt-3">Sign up for Beta<i class="mdi mdi-arrow-right ml-1"></i></a>
 
                     </div>
                 </div>
 
-                <div class="row pb-3 pt-2 align-items-center">
-                    <div class="col-lg-4 offset-lg-1">
-                        <h1 id="remote-management">🌏 Remote Control</h1>
-
-                        <p class="lead text-muted"">Need <strong class="text-primary">more control?</strong><br>
-                        Print Nanny lets you manage your <strong>3D printer from anywhere.</strong>
-                        </p>
-
-                        <div>
-                            <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>Pause, resume, stop prints</p>
-                            <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>No bandwidth limits</p>
-                            <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>Re-order low filament</p>
-
-                            <a href="{% url 'request-invite' %}" class="btn btn-primary btn-lg btn-rounded mt-3">Request Beta invite<i class="mdi mdi-arrow-right ml-1"></i></a>
+                <div class="row pt-2 align-items-center">
+                    <div class="jumbotron">
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <h1 class="display-3">Print Nanny OS</h1>
+                                    <p class="lead">Connect your menagerie of 3D printers with <strong>one easy installer.</strong></p>
+                                    <p class="lead">
+                                        <a class="btn btn-primary btn-lg" href="{% url 'subscriptions:checkout' %}" role="button">Get Early Access</a>
+                                    </p>
+                                    <hr class="my-2">
+                                    <h4>🎨 Mix and match OctoPrint, Mainsail, and more!</h4>
+                                    <hr class="my-2">
+                
+                                    <h4 class="my-2">❤️ Easy Install for Raspberry Pi</h4>
+                
+                                    <hr class="my-2">
+                
+                                    <h4>🔐 Secure Remote Access - Worldwide</h4>
+                
+                                    <hr class="my-2">
+                                    <h4>☁️ Sync Files & Backup Automatically</h4>
+                                    <hr class="my-2">
+                
+                                    <h4>💜 Growing Community of Makers, Artists, Entrepreneurs</h4>
+                
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <img class="img-fluid pull-left" src="{% static 'images/rpi-imager-printnanny-os.png'%}"/>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-7">
-                        <img class="img-fluid" src="{% static 'images/dashboard-demo.png' %}">
+                
                     </div>
                 </div>
 
-                <div class="row pb-3 pt-5 align-items-center">
-                    <div class="col-lg-7">
-                        <img class="img-fluid" src="{% static 'images/demo-workflow.png' %}">
-                    </div>
-                    <div class="col-lg-4 offset-lg-1">
-                        <h1 id="automation">🦾 Automated Workflows<h1>
-
-                        <p class="lead text-muted"">Are you <strong>wasting time</strong> on routine tasks, like <strong class="text-primary">watermarking your timelapse videos</strong> videos or  <strong class="text-primary">updating your in-stock products by hand?</strong></p>
-
-                        <div>
-                            <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>Point and click workflow builder</p>
-                            <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>2,000+ no-code tasks via 
-                                <a href="https://zapier.com/">Zapier</a> and <a href="https://ifttt.com/">IFTTT</a>.
+                <div class="row align-items-center">
+                    <div class="row p-3">
+                        <div class="col-12 col-md-4">
+                            <div class="card h-100">
+                                    <div class="card-header bg-primary text-center bg-primary text-white">
+                                        <h3>Base Edition</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4>HQ Video Stream & Monitoring</h4>
+                                        <p>The Base Edition comes pre-installed with:
+                
+                                            <ul>
+                                                <li>Defect & Failure Detection
+                                                </li>
+                                                <li>High Quality Video
+                                                <li>Runs on Raspberry Pi 4
+                                                </li>
+                                                <li>Based on Debian Bullseye (64-bit)
+                                                </li>
+                                                <li>Secure remote tunnel - <i>coming soon!</i></li>
+                                                <li>File sync - <i>coming soon!</i></li>
+                
+                                            </ul>
+                                        </p>
+                                        <p><small>Raspberry Pi is a trademark of Raspberry Pi Trading.</small></p>
+                                    </div>
+                            </div>
                             
-                            </p>
-
-                            <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>Developer API (Swagger) and Webhooks</p>
-                            <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>Easy Raspberry Pi installation</p>
-                            <a href="{% url 'request-invite' %}" class="btn btn-primary btn-lg btn-rounded mt-3">Sign up for Beta<i class="mdi mdi-arrow-right ml-1"></i></a>
-
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="card h-100">
+                                    <div class="card-header bg-success text-center bg-primary text-white">
+                                        <h3>OctoPrint Edition</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4>Compatible with OctoPrint</h4>
+                                        <p>Comes pre-installed with:
+                                            <ul>
+                                                <li>Everything in the Base Edition</strong>
+                                                </li>
+                                                <li>OctoPrint Web Interface</li>
+                                                <li>PrintNanny Event Adaptor</li>
+                                            </ul>
+                                            
+                                        </p>
+                                        <p>A portion of your subscription will be donated to support OctoPrint's development. 💚</p>
+                                        <p><small><a href="https://octoprint.org">OctoPrint is a registered trademark.</a></small> 
+                                        </p>
+                                    </div>
+                            </div>
+                            
+                        </div>
+                        <div class="col-12 col-md-4 d-flex align-items-stretch">
+                            <div class="card h-100">
+                                <div class="card-header primary-gradient text-center bg-primary text-white">
+                                    <h3>Other Editions</h3>
+                                </div>
+                                <div class="card-body">
+                                    <h4><i>Coming in 2022!</i></h4>
+                                    <h4><i>Compatible with Moonraker, Mainsail, Fluidd</i></h4>
+                                    <p>
+                                       Please email <a href="mailto:leigh@print-nanny.com">leigh@print-nanny.com</a> if you're interested in early access.
+                                    </p>
+                                    <p>
+                                        Don't see your favorite printer software? Let me know about it!
+                                    </p>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <a href="{% url 'subscriptions:checkout' %}" class="margin-auto btn btn-success btn-lg"><strong class="h1">Get Early Access</strong></a>
+
+                    </div>
+
                 </div>
             </div>
+
         </section>
     
 
         <!-- START FAQ -->
-        <section class="py-5">
+        <section class="py-2">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-12">
+                
+                    </div>
+                    <div class="col-12">
                         <div class="text-center">
-                            <h1 id="faq" class="mt-0"><i class="mdi mdi-frequently-asked-questions"></i></h1>
-                            <h3>Frequently Asked <span class="text-primary">Questions</span></h3>
 
-                            <p class="text-muted mt-2">Do you have a question about Print Nanny?</p>
+                            <h1 id="faq" class="mt-0"><i class="mdi mdi-frequently-asked-questions"></i></h1>
+                            <!-- <h3> <span class="text-primary">Frequently Asked Questions</span></h3> -->
+                            <h2> <span>Learn More</span></h2>
+                            <h3>Publications & Talks</h3>
+
+                            <h4><a target="_blank" href="https://towardsdatascience.com/soft-launching-an-ai-ml-product-as-a-solo-founder-87ee81bbe6f6">Featured in Towards Data Science</a></h4>
+                            <h4><a target="_blank" href="https://www.youtube.com/watch?v=eJqV5nPjOZQ&t=8559s">Presented @ TensorFlow Everywhere</a></h4>
+                            <h4><a target="_blank" href="https://bit.ly/google-io-21-print-nanny">Presented @ Google IO 2021</a></h4>
+                            <h4><a target="_blank" href="https://blog.print-nanny.com/">Read the Blog</a></h4>
+                            
+                            <!-- <p class="text-muted mt-2">Want to learn more about Print Nanny?</p> -->
                             <a  target="_blank"  id="discord-faq" href="{{DISCORD_URL}}">
-                                <button target="_blank" href="{{DISCORD_URL}}" type="button" class="discord btn btn-primary btn-sm mt-2 ml-1"><i class="mdi mdi-discord mr-1"></i> Ask on Discord</button>
+                                <button target="_blank" href="{{DISCORD_URL}}" type="button" class="discord btn btn-primary btn-sm mt-2 ml-1"><i class="mdi mdi-discord mr-1"></i>Join Discord</button>
     
                             </a>
-                            <a target="_blank" href="mailto:hi@print-nanny.com">
-                                <button  type="button" class="btn btn-success btn-sm mt-2"><i class="mdi mdi-email-outline mr-1"></i> Email us your question</button>
+                            <a target="_blank" href="mailto:leigh@print-nanny.com">
+                                <button  type="button" class="btn btn-success btn-sm mt-2"><i class="mdi mdi-email-outline mr-1"></i> Email</button>
     
                             </a>
                             <a target="_blank" href="https://twitter.com/intent/tweet?text=Hey%20@grepLeigh%20-%20question%20about%20PrintNanny">
@@ -234,47 +335,27 @@
           
                             </a>
                             
-
                         </div>
                     </div>
                 </div>
 
                 <div class="row mt-5">
-                    <div class="col-lg-5 offset-lg-1">
-                        <!-- Question/Answer -->
+                    <!-- <div class="col-lg-5 offset-lg-1">
                         <div>
-                            <div class="faq-question-q-box">Q.</div>
-                            <h4 class="faq-question text-body">How does Print Nanny work?</h4>
-                            <p class="faq-answer mb-2 pb-1 text-muted">
-                                The defect detection system uses a <a href="https://ai.googleblog.com/2019/11/introducing-next-generation-on-device.html">neural network</a> to monitor your printer's webcam stream. 
-                                This state-of-the art <strong>computer vision model</strong> was developed at Google for use on mobile devices like the Pixel phone. 
-                                A compression technique called <strong>quantization</strong> reduces the footprint of the model, enabling real-time performance entirely on-device - <strong>no internet connection required.</strong>
-                            <p class="faq-answer mb-2 pb-1 text-muted">
-                                Print Nanny's detector model is deployed to a Raspberry Pi, and integrates directly with <strong>OctoPrint </strong> for printer control. 
-                                We engineered this system with <strong>reliability </strong> in mind. A 3D printer is a <strong>hazardous home device,</strong> 
-                                like a gas oven.
-                                
-
+                            <div class="faq-question-q-box">Hi!</div>
+                            <h4 class="faq-question text-body">My name is Leigh, and I'm the creator of Print Nanny</h4>
+                            <p>Thank you for the interest in Print Nanny!</p>
+                            
+                            <p>I've been working on computer vision for embedded devices for the 5 years.
                             </p>
-                            <p class="faq-answer mb-2 pb-1 text-muted">
-                                 You wouldn't trust a "smart" <strong>internet-connected stove</strong>, right? (please don't, see below for examples of what could happen 😬)
-                                
-
-                            </p>
-                            <img class="faq-answer img-fluid col-sm-5 mb-4" src="{% static 'images/iot-tweet-1.png' %}">
-                            <img class="img-fluid col-sm-5 mb-4" src="{% static 'images/iot-tweet-2.png' %}">
-
 
 
                         </div>
 
-                        <!-- Question/Answer -->
 
-                    </div>
-                    <!--/col-lg-5 -->
+                    </div> -->
 
-                    <div class="col-lg-5">
-                        <!-- Question/Answer -->
+                    <!-- <div class="col-lg-5">
                         <div class="faq-question-q-box">Q.</div>
                         <h4 class="faq-question text-body">Can you hurry up and invite me already?</h4>
                         <p class="faq-answer text-muted">
@@ -284,17 +365,9 @@
                             Does this sound like you?
                         </p>
                         <p class="faq-answer mb-4 pb-1 text-muted">
-                            <a href="{% url 'request-invite' %}" class="btn btn-primary btn-rounded pt-1">Request an Invite<i class="mdi mdi-arrow-right ml-1"></i></a>
+                            <a href="{% url 'subscriptions:checkout' %}" class="btn btn-primary btn-rounded pt-1">Request an Invite<i class="mdi mdi-arrow-right ml-1"></i></a>
                         </p>
                         
-                        <!-- Question/Answer -->
-                        <!-- <div>
-                            <div class="faq-question-q-box">Q.</div>
-                            <h4 class="faq-question text-body">Wait, this service is not free?</h4>
-                            <p class="faq-answer mb-2 pb-1 text-muted">Good AI isn't cheap. Our mission: build a dead-simple automation system which saves you so much <strong>time and money </strong> that you would be silly not to use it.</p>
-                            <img class="faq-answer img-fluid col-sm-3 mb-4" src="{% static 'images/take-my-money.png' %}">
-
-                        </div> -->
                         <div class="faq-question-q-box">Q.</div>
                         <h4 class="faq-question text-body">I tinker and print occasionally as a hobby. Is Print Nanny for me?</h4>
                         <p class="faq-answer mb-2 pb-1 text-muted">
@@ -315,9 +388,8 @@
                         <p class="faq-answer mb-2 pb-1 text-muted">
                             You can also <a target="_blank" href="http://bitsy.ai/tag/print-nanny/">follow the development of Print Nanny on the Bitsy.ai blog, if you are curious about how a computer vision AI is built.</a> 
                         </p>
-                        <!-- Question/Answer -->
 
-                    </div>
+                    </div> -->
                     <!--/col-lg-5-->
                 </div>
                 <!-- end row -->
