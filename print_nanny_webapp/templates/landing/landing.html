@@ -80,33 +80,48 @@
 
         <!-- START HERO -->
         <section class="hero-section">
-            <div class="container">
-                <div class="row align-items-center">
+            <div class="container-fluid">
+                <h1 class="text-center text-white display-4 p-4">
+                    Stop Babysitting your 3D Printer!
+                </h1>
+                <div class="row pl-5">
+                    
                     <div class="col-md-4">
                         <div class="mt-md-2">
-                            <h1 class="text-white hero-title">
-                                Stop Babysitting your 3D Printer
-                            </h1>
-                            <h4 class="text-white">
+                            <h2 class="text-white">
                                 Still wasting time fretting over your prints?
-                            </h4>
-                            <h4 class="text-white">
-                                Hire a nanny instead 👶
-                            </h4>
+                            </h2>
+                            <h3 class="text-white mb-4">
+                                Hire a Print Nanny instead 👶
+                            </h3>
                             
-                            <h3 class="text-white mb-4 mt-4">
-                                Get notified of print defects 🔔
+                            <h1 class="text-white mt-4">
+                                Progress & Defect Alerts 🔔
+                            </h1>
+                            <h3 class="text-white mb-4">
+                                Get notified when print quality is low.
                             </h3>
-                            <h3 class="text-white mb-4 mt-4">
-                                Pause from anywhere 🌎
+                            <h1 class="text-white mt-4">
+                                Pause from Anywhere 🌎
+                            </h1>
+                            <h3 class="text-white mb-4">
+                                Stop wasting filament on defective prints.
                             </h3>
-                            <h3 class="text-white mb-4 mt-4">
+                            <h1 class="text-white mt-4">
                                 Sync & Backup Files 📄
+                            </h1>
+                            <h3 class="text-white mb-4">
+                                Upload a file once. Send to any printer.
                             </h3>
-                            <h3 class="text-white mb-4 mt-4">
-                                Easy Install for Raspberry Pi
+                            <h1 class="text-white mt-4">
+                                Compatible with OctoPrint
+                            </h1>
+                            <h3 class="text-white mb-5">
+                                Easy install to Raspberry Pi.
                             </h3>
-                            <a href="{% url 'subscriptions:checkout' %}" class="btn btn-success btn-lg"><strong class="h1">Get Early Access</strong></a>
+                            <a href="{% url 'subscriptions:checkout' %}" class="btn btn-success btn-lg"><strong class="h1">Get Early Access</strong>
+                            </a>
+ 
                         </div>
                     </div>
                     <div class="col-8">
@@ -132,9 +147,10 @@
                     <div class="col-lg-12">
                         <div class="text-center">
                             <h1 class="mt-2"><i class="mdi mdi-heart-multiple-outline"></i></h1>
-                            <h3>Spend <span class="text-primary">less time</span> fretting over your prints</h3>
+                            <h3>Become a <a href="{% url 'subscriptions:checkout' %}">Founding Member</a> to skip the waitlist</h3>
+                            <h4><a href="{% url 'subscriptions:checkout' %}">Get Notified</a> when more membership options are available</h4>
+                            <h4 class="text-dark-50 text-center mt-0 font-weight-bold">({{ AVAILABLE_SUBSCRIPTIONS_COUNT }} available spots)</h4>
 
-                            <h3>Automatic <span class="text-danger">safety hazard</span> and <span class="text-success">print quality</span> alerts</h3>
                         </div>
                     </div>
                 </div>
@@ -143,8 +159,8 @@
                         <div class="bg-primary rounded-circle text-center p-5">
                             <img src="{% static 'images/logo-square-white.svg' %}" alt="" class="img-fluid p-4" />
 
-                            <a href="{% url 'subscriptions:checkout' %}" class="btn btn-success btn-lg btn-rounded">Get Access Now<i class="mdi mdi-arrow-right ml-1"></i></a>
-                            <a href="{% url 'subscriptions:checkout' %}" class="btn btn-success btn-lg btn-rounded">Get Access Now<i class="mdi mdi-arrow-right ml-1"></i></a>
+                            <a href="{% url 'subscriptions:checkout' %}" class="btn btn-success btn-lg btn-rounded">Get Access Now</i></a>
+                            <a href="{% url 'request-invite' %}" class="btn btn-success btn-sm btn-light btn-rounded">Join Waitlist</i></a>
 
                         </div>
 
@@ -198,6 +214,7 @@
                                     <p class="lead">Connect your menagerie of 3D printers with <strong>one easy installer.</strong></p>
                                     <p class="lead">
                                         <a class="btn btn-primary btn-lg" href="{% url 'subscriptions:checkout' %}" role="button">Get Early Access</a>
+                                        <a class="btn btn-secondary btn-lg" href="{% url 'request-invite' %}" role="button">Join Waitlist</a>
                                     </p>
                                     <hr class="my-2">
                                     <h4>🎨 Mix and match OctoPrint, Mainsail, and more!</h4>
@@ -296,6 +313,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col-12 text-center">
                         <a href="{% url 'subscriptions:checkout' %}" class="margin-auto btn btn-success btn-lg"><strong class="h1">Become a Founding Member</strong></a>
@@ -305,6 +323,42 @@
                 </div>
             </div>
 
+        </section>
+
+        <section class="py-2">
+            <div class="row pt-2 align-items-center" id="print-nanny-os">
+                <div class="jumbotron">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <h1 class="display-3">Print Nanny OS</h1>
+                                <p class="lead">Connect your menagerie of 3D printers with <strong>one easy installer.</strong></p>
+                                <p class="lead">
+                                    <a class="btn btn-primary btn-lg" href="{% url 'subscriptions:checkout' %}" role="button">Get Early Access</a>
+                                </p>
+                                <hr class="my-2">
+                                <h4>🎨 Mix and match OctoPrint, Mainsail, and more!</h4>
+                                <hr class="my-2">
+            
+                                <h4 class="my-2">❤️ Easy Install for Raspberry Pi</h4>
+            
+                                <hr class="my-2">
+            
+                                <h4>🔐 Secure Remote Access - Worldwide</h4>
+            
+                                <hr class="my-2">
+                                <h4>☁️ Sync Files & Backup Automatically</h4>
+                                <hr class="my-2">
+            
+                                <h4>💜 Growing Community of Makers, Artists, Entrepreneurs</h4>
+            
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <img class="img-fluid pull-left" src="{% static 'images/rpi-imager-printnanny-os.png'%}"/>
+                        </div>
+                    </div>
+            
+                </div>
+            </div>
         </section>
     
 
