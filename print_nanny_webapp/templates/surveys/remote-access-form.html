@@ -25,12 +25,8 @@
                             <h4 class="mb-2">Print Nanny Network & File Manager <span class="badge badge-light">Early Access</span></h4>
                         </div>
                         <div class="ribbon-content">
-                            <p>Answer the survey to request access to the <strong>Print Nanny Network</strong>, which allows you to connect to Print Nanny devices from <strong>anywhere in the world.</strong>
-                            </p>
-                            {% if not user.is_paid_beta_tester %}
-                            <p><strong>Note:</strong> you must be a <a target="_blank" href="{% url 'subscriptions:checkout' %}">Founding Member</a>  to use Print Nanny!
-                            {% endif %}
-                            </p>
+                            <h3>Answer the survey to join the waitlist.</strong>
+                            </h3>
                             <form class="form" id="remote_access" method="post" action="{% url 'surveys:remote-access' %}">
                                 <div class="form-group">
                                     {% csrf_token %}

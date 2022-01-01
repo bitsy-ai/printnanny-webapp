@@ -1,26 +1,17 @@
 <div id="demo-video-carousel" class="carousel carousel-fade bg-dark">
 
     <div class="carousel-inner">
-        <div class="carousel-item embed-responsive embed-responsive-16by9">
-            <video class="embed-responsive-item" autoplay muted loop>
-                <source src="https://cdn.print-nanny.com/www/demo-video-1.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="carousel-item active embed-responsive embed-responsive-16by9">
-            <video class="embed-responsive-item" autoplay muted loop>
-                <source src="https://cdn.print-nanny.com/www/demo-video-2.mp4" type="video/mp4">
-            </video>      
-        </div>
-        <div class="carousel-item embed-responsive embed-responsive-16by9">
-            <video class="embed-responsive-item" autoplay muted loop>
-                <source src="https://cdn.print-nanny.com/www/demo-video-3.mp4" type="video/mp4">
-            </video>      
-        </div>
-        <div class="carousel-item embed-responsive embed-responsive-16by9">
-            <video class="embed-responsive-item" autoplay muted loop>
-                <source src="https://cdn.print-nanny.com/www/demo-video-4.mp4" type="video/mp4">
-            </video>      
-        </div>
+
+        {% for video in DEMO_VIDEOS %}
+            <div class="{% if forloop.counter == active %} active {% endif %}carousel-item embed-responsive embed-responsive-16by9">
+                <video class="embed-responsive-item" autoplay muted loop>
+                    <source 
+                    src="{{video}}" 
+                    type="video/mp4">
+                </video>
+            </div>
+
+        {% endfor %}
 
     </div>
     <a class="carousel-control-prev" href="#demo-video-carousel" role="button" data-slide="prev">

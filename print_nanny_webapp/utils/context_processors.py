@@ -50,5 +50,11 @@ def settings_context(request):
         "STRIPE_PUBLIC_KEY": STRIPE_PUBLIC_KEY,
         "CURRENT_UTC_TS": int(timezone.now().timestamp()),
         "PAID_BETA_LAUNCH_TIMESTAMP": int(settings.PAID_BETA_LAUNCH_TIMESTAMP),
+        "DEMO_VIDEOS": [
+            "https://cdn.print-nanny.com/www/demo-video-1.mp4",
+            "https://cdn.print-nanny.com/www/demo-video-2.mp4",
+            "https://cdn.print-nanny.com/www/demo-video-3.mp4",
+            "https://cdn.print-nanny.com/www/demo-video-4.mp4",
+        ],
     }
     return obj
