@@ -39,7 +39,7 @@ spec:
           lifecycle:
             postStart:
               exec:
-                command: ["gcsfuse", "-o", "allow_other", "printnanny-downloads", "/usr/share/nginx/public-data"]
+                command: ["gcsfuse", "-o", "nonempty,allow_other", "printnanny-downloads", "/usr/share/nginx/public-data"]
             preStop:
               exec:
                 command: ["fusermount", "-u", "/usr/share/nginx/public-data"]
@@ -63,8 +63,8 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - port: 8080
-      targetPort: http
+    - port: 80
+      targetPort: 8080
       protocol: TCP
       name: http
   selector:
