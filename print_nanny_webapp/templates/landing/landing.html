@@ -31,13 +31,19 @@
                             <a class="nav-link" href="#live-monitoring">Live Monitoring</a>
                         </li>
                         <li class="nav-item mx-lg-1">
-                            <a class="nav-link" href="#remote-management">Remote Management</a>
+                            <a class="nav-link" href="#print-nanny-os">Print Nanny OS</a>
                         </li>
-                        <li class="nav-item mx-lg-1">
+                        <!-- <li class="nav-item mx-lg-1">
                             <a class="nav-link" href="#automation">Automation</a>
+                        </li> -->
+                        <li class="nav-item mx-lg-1">
+                            <a class="nav-link" href="#faq">Learn More</a>
                         </li>
                         <li class="nav-item mx-lg-1">
-                            <a class="nav-link" href="#faq">FAQs</a>
+                            <a class="nav-link" href="{% url 'subscriptions:checkout' %}">Become a Founding Member</a>
+                        </li>
+                        <li class="nav-item mx-lg-1">
+                            <a class="nav-link" href="{% url 'surveys:remote-access' %}">Join Waitlist</a>
                         </li>
                         <!-- <li class="nav-item mx-lg-1">
                             <a class="nav-link" href="">Clients</a>
@@ -137,7 +143,7 @@
                         <div class="bg-primary rounded-circle text-center p-5">
                             <img src="{% static 'images/logo-square-white.svg' %}" alt="" class="img-fluid p-4" />
 
-                            <a href="{% url 'subscriptions:checkout' %}" class="btn btn-success btn-lg btn-rounded">Sign up for Beta<i class="mdi mdi-arrow-right ml-1"></i></a>
+                            <a href="{% url 'subscriptions:checkout' %}" class="btn btn-success btn-lg btn-rounded">Join Beta<i class="mdi mdi-arrow-right ml-1"></i></a>
 
                         </div>
 
@@ -183,7 +189,7 @@
                     </div>
                 </div>
 
-                <div class="row pt-2 align-items-center">
+                <div class="row pt-2 align-items-center" id="print-nanny-os">
                     <div class="jumbotron">
                         <div class="row">
                             <div class="col-12 col-md-6">
@@ -425,9 +431,11 @@
 
                         <ul class="list-unstyled pl-0 mb-0 mt-3">
                             <li class="mt-2"><a href="#live-monitoring" class="text-white-50">Live Monitoring</a></li>
-                            <li class="mt-2"><a href="#remote-management" class="text-white-50">Remote Management</a></li>
-                            <li class="mt-2"><a href="#automation" class="text-white-50">Automation</a></li>
-                            <li class="mt-2"><a href="#faq" class="text-white-50">FAQ</a></li>
+                            <li class="mt-2"><a href="#print-nanny-os" class="text-white-50">Print Nanny OS</a></li>
+                            <!-- <li class="mt-2"><a href="#automation" class="text-white-50">Automation</a></li> -->
+                            <li class="mt-2"><a href="#faq" class="text-white-50">Learn More</a></li>
+                            <li class="mt-2"><a href="https://blog.print-nanny.com/" class="text-white-50">Newsletter</a></li>
+
                             <li class="mt-2"><a href="https://help.print-nanny.com/" class="text-white-50">Help</a></li>
                         </ul>
                     </div>
