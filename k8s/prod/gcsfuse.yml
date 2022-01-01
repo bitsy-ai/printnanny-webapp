@@ -22,7 +22,7 @@ spec:
       labels:
         app.kubernetes.io/name: nginx-gcsfuse
     spec:
-      serviceAccountName: cdn
+      serviceAccountName: webapp
       containers:
         - name: nginx-gcsfuse
           image: bitsyai/nginx-gcsfuse:latest
