@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
             model_name="device",
             name="bootstrap_release",
             field=models.ForeignKey(
-                default=print_nanny_webapp.devices.models._get_default_stable_release,
+                default="",
                 on_delete=django.db.models.deletion.CASCADE,
                 to="releases.release",
             ),
