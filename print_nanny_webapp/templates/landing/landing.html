@@ -79,10 +79,13 @@
                     <div class="col-md-6">
                         <div class="mt-md-2">
                             <h1 class="text-white hero-title">
-                                Sick of Babysitting your 3D Printer? 👶
+                                Stop Babysitting your 3D Printer
                             </h1>
                             <h4 class="text-white">
-                                Hire a nanny.
+                                Are you still wasting time, fretting over your prints?
+                            </h4>
+                            <h4 class="text-white">
+                                Hire a nanny instead. 👶
                             </h4>
 
                             <h3 class="text-white mb-4 mt-4">
@@ -94,12 +97,15 @@
                             <h3 class="text-white mb-4 mt-4">
                                 Automate shipping & post-processing 🦾
                             </h3>
-                            <a href="{% url 'request-invite' %}" target="_blank" class="btn btn-success btn-lg"><strong class="h1">Sign Up for Beta</strong></a>
+                    
+                            <a href="{% url 'request-invite' %}" target="_blank" class="btn btn-success btn-lg"><strong class="h1">Get Early Access</strong></a>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-4 offset-md-2">
+                    <div class="col-6">
                         <div class="text-md-right mt-3 mt-md-0">
-                            <img src="{% static 'images/logo-square-white.svg' %}" alt="" class="img-fluid" />
+                            {% include 'partials/demo-carousel.html' %}
+
+                            <!-- <img src="{% static 'images/logo-square-white.svg' %}" alt="" class="img-fluid" /> -->
                         </div>
                     </div>
                 </div>
