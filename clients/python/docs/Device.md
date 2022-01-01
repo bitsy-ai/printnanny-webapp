@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
-**bootstrap_release** | [**Release**](Release.md) |  | [readonly] 
 **cloudiot_device** | [**CloudiotDevice**](CloudiotDevice.md) |  | [readonly] 
 **cameras** | [**list[Camera]**](Camera.md) |  | [readonly] 
 **janus_local_url** | **str** |  | [readonly] 

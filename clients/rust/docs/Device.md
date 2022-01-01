@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
-**bootstrap_release** | Option<[**crate::models::Release**](Release.md)> |  | [readonly]
 **cloudiot_device** | Option<[**crate::models::CloudiotDevice**](CloudiotDevice.md)> |  | [readonly]
 **cameras** | [**Vec<crate::models::Camera>**](Camera.md) |  | [readonly]
 **janus_local_url** | **String** |  | [readonly]

@@ -12,7 +12,6 @@ from printnanny_api_client.api.licenses_api import LicensesApi
 from printnanny_api_client.api.ml_ops_api import MlOpsApi
 from printnanny_api_client.api.partners_geeks3_api import PartnersGeeks3Api
 from printnanny_api_client.api.partners_geeks3d_api import PartnersGeeks3dApi
-from printnanny_api_client.api.releases_api import ReleasesApi
 from printnanny_api_client.api.remote_control_api import RemoteControlApi
 from printnanny_api_client.api.schema_api import SchemaApi
 from printnanny_api_client.api.telemetry_api import TelemetryApi

@@ -38,7 +38,6 @@ class Device(object):
     """
     openapi_types = {
         'id': 'int',
-        'bootstrap_release': 'Release',
         'cloudiot_device': 'CloudiotDevice',
         'cameras': 'list[Camera]',
         'janus_local_url': 'str',
@@ -57,7 +56,6 @@ class Device(object):
 
     attribute_map = {
         'id': 'id',
-        'bootstrap_release': 'bootstrap_release',
         'cloudiot_device': 'cloudiot_device',
         'cameras': 'cameras',
         'janus_local_url': 'janus_local_url',
@@ -74,14 +72,13 @@ class Device(object):
         'hostname': 'hostname'
     }
 
-    def __init__(self, id=None, bootstrap_release=None, cloudiot_device=None, cameras=None, janus_local_url=None, dashboard_url=None, printer_controllers=None, release_channel=None, user=None, last_task=None, active_tasks=None, active_cameras=None, monitoring_active=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, cloudiot_device=None, cameras=None, janus_local_url=None, dashboard_url=None, printer_controllers=None, release_channel=None, user=None, last_task=None, active_tasks=None, active_cameras=None, monitoring_active=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
-        self._bootstrap_release = None
         self._cloudiot_device = None
         self._cameras = None
         self._janus_local_url = None
@@ -99,7 +96,6 @@ class Device(object):
         self.discriminator = None
 
         self.id = id
-        self.bootstrap_release = bootstrap_release
         self.cloudiot_device = cloudiot_device
         self.cameras = cameras
         self.janus_local_url = janus_local_url
@@ -139,27 +135,6 @@ class Device(object):
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
-
-    @property
-    def bootstrap_release(self):
-        """Gets the bootstrap_release of this Device.  # noqa: E501
-
-
-        :return: The bootstrap_release of this Device.  # noqa: E501
-        :rtype: Release
-        """
-        return self._bootstrap_release
-
-    @bootstrap_release.setter
-    def bootstrap_release(self, bootstrap_release):
-        """Sets the bootstrap_release of this Device.
-
-
-        :param bootstrap_release: The bootstrap_release of this Device.  # noqa: E501
-        :type bootstrap_release: Release
-        """
-
-        self._bootstrap_release = bootstrap_release
 
     @property
     def cloudiot_device(self):

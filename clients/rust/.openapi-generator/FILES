@@ -84,7 +84,6 @@ docs/PaginatedPrintNannyPluginEventList.md
 docs/PaginatedPrintSessionList.md
 docs/PaginatedPrinterControllerList.md
 docs/PaginatedPrinterProfileList.md
-docs/PaginatedReleaseList.md
 docs/PaginatedRemoteCommandEventList.md
 docs/PaginatedRemoteControlCommandList.md
 docs/PaginatedSystemInfoList.md
@@ -126,11 +125,7 @@ docs/PrinterProfile.md
 docs/PrinterProfileRequest.md
 docs/PrinterStateEnum.md
 docs/PrintnannyEnvEnum.md
-docs/Release.md
 docs/ReleaseChannelEnum.md
-docs/ReleaseRequest.md
-docs/ReleaseVariant.md
-docs/ReleasesApi.md
 docs/RemoteCommandEvent.md
 docs/RemoteCommandEventEventTypeEnum.md
 docs/RemoteCommandEventRequest.md
@@ -168,7 +163,6 @@ src/apis/ml_ops_api.rs
 src/apis/mod.rs
 src/apis/partners_geeks3_api.rs
 src/apis/partners_geeks3d_api.rs
-src/apis/releases_api.rs
 src/apis/remote_control_api.rs
 src/apis/schema_api.rs
 src/apis/telemetry_api.rs
@@ -250,7 +244,6 @@ src/models/paginated_print_nanny_plugin_event_list.rs
 src/models/paginated_print_session_list.rs
 src/models/paginated_printer_controller_list.rs
 src/models/paginated_printer_profile_list.rs
-src/models/paginated_release_list.rs
 src/models/paginated_remote_command_event_list.rs
 src/models/paginated_remote_control_command_list.rs
 src/models/paginated_system_info_list.rs
@@ -290,10 +283,7 @@ src/models/printer_profile.rs
 src/models/printer_profile_request.rs
 src/models/printer_state_enum.rs
 src/models/printnanny_env_enum.rs
-src/models/release.rs
 src/models/release_channel_enum.rs
-src/models/release_request.rs
-src/models/release_variant.rs
 src/models/remote_command_event.rs
 src/models/remote_command_event_event_type_enum.rs
 src/models/remote_command_event_request.rs

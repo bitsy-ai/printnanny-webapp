@@ -15,8 +15,6 @@
 pub struct Device {
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "bootstrap_release")]
-    pub bootstrap_release: Option<Box<crate::models::Release>>,
     #[serde(rename = "cloudiot_device")]
     pub cloudiot_device: Option<Box<crate::models::CloudiotDevice>>,
     #[serde(rename = "cameras")]
@@ -49,10 +47,9 @@ pub struct Device {
 }
 
 impl Device {
-    pub fn new(id: i32, bootstrap_release: Option<crate::models::Release>, cloudiot_device: Option<crate::models::CloudiotDevice>, cameras: Vec<crate::models::Camera>, janus_local_url: String, dashboard_url: String, printer_controllers: Vec<crate::models::PrinterController>, user: Option<crate::models::User>, last_task: Option<crate::models::Task>, active_tasks: Vec<crate::models::Task>, active_cameras: Vec<crate::models::Camera>, created_dt: String, updated_dt: String) -> Device {
+    pub fn new(id: i32, cloudiot_device: Option<crate::models::CloudiotDevice>, cameras: Vec<crate::models::Camera>, janus_local_url: String, dashboard_url: String, printer_controllers: Vec<crate::models::PrinterController>, user: Option<crate::models::User>, last_task: Option<crate::models::Task>, active_tasks: Vec<crate::models::Task>, active_cameras: Vec<crate::models::Camera>, created_dt: String, updated_dt: String) -> Device {
         Device {
             id,
-            bootstrap_release: bootstrap_release.map(Box::new),
             cloudiot_device: cloudiot_device.map(Box::new),
             cameras,
             janus_local_url,

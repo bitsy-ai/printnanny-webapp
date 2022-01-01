@@ -38,7 +38,6 @@ class TestDevice(unittest.TestCase):
         if include_optional :
             return Device(
                 id = 56, 
-                bootstrap_release = None, 
                 cloudiot_device = None, 
                 cameras = [
                     printnanny_api_client.models.camera.Camera(
@@ -95,7 +94,6 @@ class TestDevice(unittest.TestCase):
         else :
             return Device(
                 id = 56,
-                bootstrap_release = None,
                 cloudiot_device = None,
                 cameras = [
                     printnanny_api_client.models.camera.Camera(
