@@ -25,7 +25,6 @@ from ..enum import (
     PrintNannyEnv,
 )
 from print_nanny_webapp.users.api.serializers import UserSerializer
-from print_nanny_webapp.releases.api.serializers import ReleaseSerializer
 
 User = get_user_model()
 
@@ -107,7 +106,6 @@ class TaskSerializer(serializers.ModelSerializer):
 
 class DeviceSerializer(serializers.ModelSerializer):
 
-    bootstrap_release = ReleaseSerializer(read_only=True)
     cloudiot_device = CloudiotDeviceSerializer(
         read_only=True, required=False, allow_null=True
     )
@@ -130,7 +128,7 @@ class DeviceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Device
         depth = 2
-        read_only = ("bootstrap_release", "user", "last_task")
+        read_only = ("user", "last_task")
         exclude = ("deleted",)
 
 
