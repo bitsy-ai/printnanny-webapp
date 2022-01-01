@@ -6,7 +6,11 @@
             <h2 class="header-title">
               <i class="mdi mdi-printer-3d"></i> OctoPrint Plugin Connections
             </h2>
-            {% include 'devices/partials/plugin-deprecation.html' %}
+            <div class="row">
+              <div class="col-12 col-md-6">
+                {% include 'devices/partials/plugin-deprecation.html' %}
+              </div>
+            </div>
             {% if octoprint_devices.count > 0 %}
             <table class="table table-centered mb-0" id="dashboard-octoprint-devices">
               <thead>
