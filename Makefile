@@ -371,3 +371,9 @@ ara-image:
 		--tag bitsyai/ara:fedora33-source-latest \
 		-f compose/production/ara/Dockerfile compose/production/ara
 	docker push bitsyai/ara:fedora33-source-latest
+
+gcs-fuse-image:
+	docker build \
+		--tag bitsyai/nginx-gcsfuse \
+		-f compose/production/gcsfuse/Dockerfile compose/production/gcsfuse
+	docker push bitsyai/nginx-gcsfuse
