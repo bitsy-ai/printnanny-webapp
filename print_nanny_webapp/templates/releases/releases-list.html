@@ -14,10 +14,10 @@
                     <p class="lead">Connect your menagerie of 3D printers with <strong>one easy installer.</strong></p>
 
                     <p class="lead">
-                        <a class="btn btn-primary btn-lg" href="#" role="button">Get Early Access</a>
+                        <a class="btn btn-primary btn-lg" href="{% url 'subscriptions:checkout' %}" role="button">Get Early Access</a>
                     </p>
                     <hr class="my-2">
-                    <h4>🎨 Mix and match OctoPrint, Mainsail, Repetier, and more!</h4>
+                    <h4>🎨 Mix and match OctoPrint, Mainsail, and more!</h4>
                     <hr class="my-2">
 
                     <h4 class="my-2">⚠️ Failure Detection & Real-time Monitoring</h4>
@@ -39,18 +39,57 @@
         </div>
 
     </div>
-    <div class="row d-flex align-items-stretch">
-        <div class="col-12 col-md-4 d-flex align-items-stretch">
-            <div class="card">
-                    <div class="card-header bg-success text-center bg-primary text-white">
-                        <h3>OctoPrint x Desktop Edition</h3>
+    <div class="row">
+        <div class="col-12 col-md-4">
+            <div class="card h-100">
+                    <div class="card-header bg-primary text-center bg-primary text-white">
+                        <h3>Base Edition</h3>
                     </div>
                     <div class="card-body">
-                        <h4>Supports Raspberry Pi 4</h4>
-                        <p>Preinstalled with OctoPrint & Print Nanny's video streaming stack.</p>
-                        <p>A portion of your subscription is donated to support OctoPrint development. 💚 </p>
-                        <p> Best used with a keyboard/mouse/monitor.</p> 
+                        <h4>HQ Video Stream & Monitoring</h4>
+                        <p>The Base Edition comes pre-installed with:
 
+                            <ul>
+                                <li>Defect & Failure Detection
+                                </li>
+                                <li>High Quality Video
+                                <li>Runs on Raspberry Pi 4
+                                </li>
+                                <li>Based on Debian Bullseye (64-bit)
+                                </li>
+                                <li>Secure remote tunnel - <i>coming soon!</i></li>
+                                <li>File sync - <i>coming soon!</i></li>
+
+                            </ul>
+                        </p>
+                        <p><small>Raspberry Pi is a trademark of Raspberry Pi Trading.</small></p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-around">
+                        <a class="btn btn-primary btn-sm" href="">Download Latest</a>
+                        <a class="btn btn-light btn-sm" href="">View Past Releases</a>
+                    </div>
+            </div>
+            
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="card h-100">
+                    <div class="card-header bg-success text-center bg-primary text-white">
+                        <h3>OctoPrint Edition</h3>
+                    </div>
+                    <div class="card-body">
+                        <h4>Compatible with OctoPrint</h4>
+                        <p>Comes pre-installed with:
+                            <ul>
+                                <li>Everything in the Base Edition</strong>
+                                </li>
+                                <li>OctoPrint Web Interface</li>
+                                <li>PrintNanny Event Adaptor</li>
+                            </ul>
+                            
+                        </p>
+                        <p>A portion of your subscription will be donated to support OctoPrint's development. 💚</p>
+                        <p><small><a href="https://octoprint.org">OctoPrint is a registered trademark.</a></small> 
+                        </p>
                     </div>
                     <div class="card-footer d-flex justify-content-around">
                         <a class="btn btn-success btn-sm" href="{{ slim_stable.image_url }}">Download Latest</a>
@@ -60,60 +99,32 @@
             
         </div>
         <div class="col-12 col-md-4 d-flex align-items-stretch">
-            <div class="card">
+            <div class="card h-100">
                 <div class="card-header primary-gradient text-center bg-primary text-white">
-                    <h3>Base Desktop Edition</h3>
+                    <h3>Other Editions</h3>
                 </div>
                 <div class="card-body">
-                    <h4>Supports Raspberry Pi 4</h4>
-                    <p>Add a portable, customizable computer to your workshop or warehouse.</p>
-                    <p>Preinstalled with Print Nanny's video streaming stack</p>
-                    <p> Best used with a keyboard/mouse/monitor.</p> 
+                    <h4><i>Coming in 2022!</i></h4>
+                    <h4><i>Compatible with Moonraker, Mainsail, Fluidd</i></h4>
+                    <p>
+                       Please email <a href="mailto:leigh@print-nanny.com">leigh@print-nanny.com</a> if you're interested in early access.
+                    </p>
+                    <p>
+                        Don't see your favorite printer software? Let me know about it!
+                    </p>
                 </div>
                 <div class="card-footer d-flex justify-content-around">
-                    <a class="btn btn-primary btn-sm" href="{{ slim_stable.image_url }}">Download Latest</a>
-                    <a class="btn btn-light btn-sm" href="{{ slim_stable.image_url }}">View Past Releases</a>
+                    <button disabled class="btn btn-primary btn-sm" href="">Download Latest</button>
+                    <button disabled class="btn btn-light btn-sm" href="">View Past Releases</button>
                 </div>
-            </div>
-            
-        </div>
-        <div class="col-12 col-md-4 d-flex align-items-stretch">
-            <div class="card">
-                    <div class="card-header primary-gradient text-center bg-primary text-white">
-                        <h3>Base Slim Edition</h3>
-                    </div>
-                    <div class="card-body">
-                        <h4>Supports Raspberry Pi 3 & 4</h4>
-
-                        <p>Minimal install for older devices like Raspberry Pi 3.</p>
-                        <p>Comes pre-installed with Print Nanny's video streaming stack.</p>
-                        <p><i>Sorry, Raspberry Pi Zero is not supported.</i></p>
-
-                    </div>
-                    <div class="card-footer d-flex justify-content-around">
-                        <a class="btn btn-primary btn-sm" href="{{ slim_stable.image_url }}">Download Latest</a>
-                        <a class="btn btn-light btn-sm" href="{{ slim_stable.image_url }}">View Past Releases</a>
-                    </div>
-            </div>
-            
-        </div>
-
-        <div class="col-12 col-md-4 offset-md-4">
-            <div class="card">
-                    <div class="card-header primary-gradient text-center bg-danger text-white">
-                        <h3>Coming in 2022</h3>
-                    </div>
-                    <div class="card-body">
-                        <h4>Repetier, Mainsail, Fluidd, and more!</h4>
-                        <p>Email <a href="mailto:leigh@print-nanny.com">leigh@print-nanny.com</a> to test new editions 🚧</p>
-                    </div>
             </div>
             
         </div>
     </div>
+    <hr>
     <div class="row">
         <div class="col-12">
-            <h1 class="display-3 text-center">Supported Features</h1>
+            <h1 class="display-3 text-center">Compare Editions</h1>
             <p class="text-center"> <a class="btn btn-sm btn-success"target="_blank" href="{{ ROADMAP_URL }}">View the Roadmap</a></p>
 
             <p></p>

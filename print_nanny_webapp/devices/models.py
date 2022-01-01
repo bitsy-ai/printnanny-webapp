@@ -17,7 +17,6 @@ from .enum import (
     PrinterSoftwareType,
     TaskStatusType,
     TaskType,
-    PrintNannyEnv,
 )
 
 UserModel = get_user_model()
@@ -31,16 +30,6 @@ def pre_softdelete_cloudiot_device(instance=None, **kwargs):
 
 
 pre_softdelete.connect(pre_softdelete_cloudiot_device)
-
-
-def _get_default_stable_release() -> int:
-    from print_nanny_webapp.releases.models import Release
-
-    release = Release.objects.filter(release_channel="stable").first()
-    if release:
-        return release.id
-    else:
-        raise Exception("No release found")
 
 
 class Device(SafeDeleteModel):
@@ -119,9 +108,12 @@ class Device(SafeDeleteModel):
     def janus_local_url(self):
         return "http://{self.hostname}:8088/janus"
 
-    @property
-    def printnanny_env(self):
-        return PrintNannyEnv(settings.PRINTNANNY_ENV)
+
+class AnsibleFactsd(models.Model):
+
+    namespace = models.CharField(max_length=64, default="printnanny")
+    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
+    updated_dt = models.DateTimeField(db_index=True, auto_now=True)
 
 
 class License(SafeDeleteModel):
