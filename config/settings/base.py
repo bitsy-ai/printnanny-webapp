@@ -444,6 +444,7 @@ SPECTACULAR_SETTINGS = {
     'ENUM_ADD_EXPLICIT_BLANK_NULL_CHOICE': True,
     'SCHEMA_COERCE_PATH_PK_SUFFIX': True,
     'ENUM_NAME_OVERRIDES': {
+        # TODO refactor event apps+namespaces for clarity before adding mainsail
         # begin printnanny os types
         'CameraType': 'print_nanny_webapp.devices.enum.CameraType',
         'PrintProgressAlertEventType': 'print_nanny_webapp.alerts.models.PrintProgressAlert.PrintProgressAlertEventType.choices',
@@ -452,6 +453,9 @@ SPECTACULAR_SETTINGS = {
         'TaskType': 'print_nanny_webapp.devices.enum.TaskType.choices',
         'TaskStatusType': 'print_nanny_webapp.devices.enum.TaskStatusType.choices',
         # begin octoprint event types
+        'OctoTelemetryEvent': 'print_nanny_webapp.telemetry.types.TelemetryEventType',
+        'OctoPrintNannyEvent': 'print_nanny_webapp.telemetry.types.PrintNannyPluginEventType',
+        'OctoGenericEvent': 'print_nanny_webapp.telemetry.types.OctoprintEventType',
         'OctoJobEvent': 'print_nanny_webapp.telemetry.types.PrintJobEventType',
         'OctoPrinterEvent': 'print_nanny_webapp.telemetry.types.PrinterEventType'
     },
