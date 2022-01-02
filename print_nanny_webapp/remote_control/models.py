@@ -163,6 +163,7 @@ class OctoPrintDevice(SafeDeleteModel):
     octoprint_version = models.CharField(max_length=255)
     plugin_version = models.CharField(max_length=255)
     print_nanny_client_version = models.CharField(max_length=255)
+    print_nanny_beta_client_version = models.CharField(max_length=255, null=True)
 
     def to_json(self):
         from print_nanny_webapp.remote_control.api.serializers import (
