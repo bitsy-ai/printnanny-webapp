@@ -44,5 +44,4 @@ class HoneyMiddlewareIgnoreHealthCheck(HoneyMiddlewareBase):
             "request.query": request.GET.dict(),
             "request.xhr": request.headers.get("x-requested-with") == "XMLHttpRequest",
             "request.post": request.POST.dict(),
-            "request.user": request.user,
         }
