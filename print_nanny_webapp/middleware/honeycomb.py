@@ -5,7 +5,7 @@ from beeline.middleware.django import HoneyMiddlewareBase, HoneyDBWrapper
 
 class HoneyMiddlewareIgnoreHealthCheck(HoneyMiddlewareBase):
 
-    ignored = ["health", "static", "/"]
+    ignored = ["health", "static"]
 
     def __call__(self, request):
 
