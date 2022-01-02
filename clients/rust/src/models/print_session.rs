@@ -44,7 +44,7 @@ pub struct PrintSession {
     #[serde(rename = "octoprint_job", skip_serializing_if = "Option::is_none")]
     pub octoprint_job: Option<::std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "print_job_status", skip_serializing_if = "Option::is_none")]
-    pub print_job_status: Option<Box<crate::models::PrintJobEventType>>,
+    pub print_job_status: Option<Box<crate::models::OctoJobEvent>>,
     #[serde(rename = "url")]
     pub url: String,
     #[serde(rename = "datesegment")]

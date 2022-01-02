@@ -39,7 +39,7 @@ class PrinterEventRequest(object):
     openapi_types = {
         'ts': 'float',
         'event_source': 'EventSourceEnum',
-        'event_type': 'EventType0c4Enum',
+        'event_type': 'OctoPrinterEvent',
         'octoprint_environment': 'OctoprintEnvironmentRequest',
         'octoprint_printer_data': 'OctoprintPrinterDataRequest',
         'event_data': 'dict(str, object)',
@@ -47,7 +47,7 @@ class PrinterEventRequest(object):
         'print_nanny_plugin_version': 'str',
         'print_nanny_client_version': 'str',
         'octoprint_version': 'str',
-        'printer_state': 'PrinterStateEnum',
+        'printer_state': 'OctoPrinterEvent',
         'octoprint_device': 'int',
         'print_session': 'int'
     }
@@ -154,7 +154,7 @@ class PrinterEventRequest(object):
 
 
         :return: The event_type of this PrinterEventRequest.  # noqa: E501
-        :rtype: EventType0c4Enum
+        :rtype: OctoPrinterEvent
         """
         return self._event_type
 
@@ -164,7 +164,7 @@ class PrinterEventRequest(object):
 
 
         :param event_type: The event_type of this PrinterEventRequest.  # noqa: E501
-        :type event_type: EventType0c4Enum
+        :type event_type: OctoPrinterEvent
         """
 
         self._event_type = event_type
@@ -350,7 +350,7 @@ class PrinterEventRequest(object):
 
 
         :return: The printer_state of this PrinterEventRequest.  # noqa: E501
-        :rtype: PrinterStateEnum
+        :rtype: OctoPrinterEvent
         """
         return self._printer_state
 
@@ -360,7 +360,7 @@ class PrinterEventRequest(object):
 
 
         :param printer_state: The printer_state of this PrinterEventRequest.  # noqa: E501
-        :type printer_state: PrinterStateEnum
+        :type printer_state: OctoPrinterEvent
         """
 
         self._printer_state = printer_state

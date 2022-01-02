@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **id** | **i32** |  | [readonly]
 **ts** | Option<**f32**> |  | [optional]
 **event_source** | Option<[**crate::models::EventSourceEnum**](EventSourceEnum.md)> |  | [optional]
-**event_type** | Option<[**crate::models::PrintJobEventType**](PrintJobEventType.md)> |  | [optional]
+**event_type** | Option<[**crate::models::OctoJobEvent**](OctoJobEvent.md)> |  | [optional]
 **octoprint_environment** | [**crate::models::OctoprintEnvironment**](OctoprintEnvironment.md) |  | 
 **octoprint_printer_data** | [**crate::models::OctoprintPrinterData**](OctoprintPrinterData.md) |  | 
 **event_data** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]

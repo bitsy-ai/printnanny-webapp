@@ -11,7 +11,7 @@
 
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum PrintNannyPluginEventEventTypeEnum {
+pub enum OctoPrintNannyEvent {
     #[serde(rename = "plugin_octoprint_nanny_monitoring_start")]
     MonitoringStart,
     #[serde(rename = "plugin_octoprint_nanny_monitoring_stop")]
@@ -53,7 +53,7 @@ pub enum PrintNannyPluginEventEventTypeEnum {
 
 }
 
-impl ToString for PrintNannyPluginEventEventTypeEnum {
+impl ToString for OctoPrintNannyEvent {
     fn to_string(&self) -> String {
         match self {
             Self::MonitoringStart => String::from("plugin_octoprint_nanny_monitoring_start"),
@@ -79,8 +79,8 @@ impl ToString for PrintNannyPluginEventEventTypeEnum {
     }
 }
 
-impl Default for PrintNannyPluginEventEventTypeEnum {
-    fn default() -> PrintNannyPluginEventEventTypeEnum {
+impl Default for OctoPrintNannyEvent {
+    fn default() -> OctoPrintNannyEvent {
         Self::MonitoringStart
     }
 }

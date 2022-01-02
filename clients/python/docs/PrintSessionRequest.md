@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **gcode_file** | **int** |  | [optional] 
 **gcode_filename** | **str** |  | [optional] 
 **octoprint_job** | **dict(str, object)** |  | [optional] 
-**print_job_status** | [**PrintJobEventType**](PrintJobEventType.md) |  | [optional] 
+**print_job_status** | [**OctoJobEvent**](OctoJobEvent.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

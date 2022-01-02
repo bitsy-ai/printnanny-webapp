@@ -39,7 +39,7 @@ class OctoPrintEventRequest(object):
     openapi_types = {
         'ts': 'float',
         'event_source': 'EventSourceEnum',
-        'event_type': 'OctoPrintEventEventTypeEnum',
+        'event_type': 'OctoGenericEvent',
         'octoprint_environment': 'OctoprintEnvironmentRequest',
         'octoprint_printer_data': 'OctoprintPrinterDataRequest',
         'event_data': 'dict(str, object)',
@@ -149,7 +149,7 @@ class OctoPrintEventRequest(object):
 
 
         :return: The event_type of this OctoPrintEventRequest.  # noqa: E501
-        :rtype: OctoPrintEventEventTypeEnum
+        :rtype: OctoGenericEvent
         """
         return self._event_type
 
@@ -159,7 +159,7 @@ class OctoPrintEventRequest(object):
 
 
         :param event_type: The event_type of this OctoPrintEventRequest.  # noqa: E501
-        :type event_type: OctoPrintEventEventTypeEnum
+        :type event_type: OctoGenericEvent
         """
 
         self._event_type = event_type

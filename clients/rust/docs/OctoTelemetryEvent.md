@@ -1,7 +1,7 @@
-# PrintJobEventType
-
+# OctoTelemetryEvent
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

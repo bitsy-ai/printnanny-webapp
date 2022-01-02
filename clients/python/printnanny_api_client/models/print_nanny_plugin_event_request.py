@@ -39,7 +39,7 @@ class PrintNannyPluginEventRequest(object):
     openapi_types = {
         'ts': 'float',
         'event_source': 'EventSourceEnum',
-        'event_type': 'PrintNannyPluginEventEventTypeEnum',
+        'event_type': 'OctoPrintNannyEvent',
         'octoprint_environment': 'OctoprintEnvironmentRequest',
         'octoprint_printer_data': 'OctoprintPrinterDataRequest',
         'event_data': 'dict(str, object)',
@@ -149,7 +149,7 @@ class PrintNannyPluginEventRequest(object):
 
 
         :return: The event_type of this PrintNannyPluginEventRequest.  # noqa: E501
-        :rtype: PrintNannyPluginEventEventTypeEnum
+        :rtype: OctoPrintNannyEvent
         """
         return self._event_type
 
@@ -159,7 +159,7 @@ class PrintNannyPluginEventRequest(object):
 
 
         :param event_type: The event_type of this PrintNannyPluginEventRequest.  # noqa: E501
-        :type event_type: PrintNannyPluginEventEventTypeEnum
+        :type event_type: OctoPrintNannyEvent
         """
 
         self._event_type = event_type

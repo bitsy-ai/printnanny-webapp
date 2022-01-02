@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **gcode_file** | **int** |  | [optional] 
 **gcode_filename** | **str** |  | [optional] 
 **octoprint_job** | **dict(str, object)** |  | [optional] 
-**print_job_status** | [**PrintJobEventType**](PrintJobEventType.md) |  | [optional] 
+**print_job_status** | [**OctoJobEvent**](OctoJobEvent.md) |  | [optional] 
 **url** | **str** |  | [readonly] 
 **datesegment** | **str** |  | [readonly] 
 

@@ -20,7 +20,7 @@ pub struct PrintNannyPluginEvent {
     #[serde(rename = "event_source", skip_serializing_if = "Option::is_none")]
     pub event_source: Option<Box<crate::models::EventSourceEnum>>,
     #[serde(rename = "event_type", skip_serializing_if = "Option::is_none")]
-    pub event_type: Option<Box<crate::models::PrintNannyPluginEventEventTypeEnum>>,
+    pub event_type: Option<Box<crate::models::OctoPrintNannyEvent>>,
     #[serde(rename = "octoprint_environment")]
     pub octoprint_environment: Box<crate::models::OctoprintEnvironment>,
     #[serde(rename = "octoprint_printer_data")]

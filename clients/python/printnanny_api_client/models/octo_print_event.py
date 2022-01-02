@@ -40,7 +40,7 @@ class OctoPrintEvent(object):
         'id': 'int',
         'ts': 'float',
         'event_source': 'EventSourceEnum',
-        'event_type': 'OctoPrintEventEventTypeEnum',
+        'event_type': 'OctoGenericEvent',
         'octoprint_environment': 'OctoprintEnvironment',
         'octoprint_printer_data': 'OctoprintPrinterData',
         'event_data': 'dict(str, object)',
@@ -184,7 +184,7 @@ class OctoPrintEvent(object):
 
 
         :return: The event_type of this OctoPrintEvent.  # noqa: E501
-        :rtype: OctoPrintEventEventTypeEnum
+        :rtype: OctoGenericEvent
         """
         return self._event_type
 
@@ -194,7 +194,7 @@ class OctoPrintEvent(object):
 
 
         :param event_type: The event_type of this OctoPrintEvent.  # noqa: E501
-        :type event_type: OctoPrintEventEventTypeEnum
+        :type event_type: OctoGenericEvent
         """
 
         self._event_type = event_type

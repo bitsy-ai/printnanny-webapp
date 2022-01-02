@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **id** | **int** |  | [readonly] 
 **ts** | **float** |  | [optional] 
 **event_source** | [**EventSourceEnum**](EventSourceEnum.md) |  | [optional] 
-**event_type** | [**TelemetryEventEventTypeEnum**](TelemetryEventEventTypeEnum.md) |  | [optional] 
+**event_type** | [**OctoTelemetryEvent**](OctoTelemetryEvent.md) |  | [optional] 
 **octoprint_environment** | [**OctoprintEnvironment**](OctoprintEnvironment.md) |  | 
 **octoprint_printer_data** | [**OctoprintPrinterData**](OctoprintPrinterData.md) |  | 
 **event_data** | **dict(str, object)** |  | [optional] 

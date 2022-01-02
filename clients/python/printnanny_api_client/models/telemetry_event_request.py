@@ -39,7 +39,7 @@ class TelemetryEventRequest(object):
     openapi_types = {
         'ts': 'float',
         'event_source': 'EventSourceEnum',
-        'event_type': 'TelemetryEventEventTypeEnum',
+        'event_type': 'OctoTelemetryEvent',
         'octoprint_environment': 'OctoprintEnvironmentRequest',
         'octoprint_printer_data': 'OctoprintPrinterDataRequest',
         'event_data': 'dict(str, object)',
@@ -149,7 +149,7 @@ class TelemetryEventRequest(object):
 
 
         :return: The event_type of this TelemetryEventRequest.  # noqa: E501
-        :rtype: TelemetryEventEventTypeEnum
+        :rtype: OctoTelemetryEvent
         """
         return self._event_type
 
@@ -159,7 +159,7 @@ class TelemetryEventRequest(object):
 
 
         :param event_type: The event_type of this TelemetryEventRequest.  # noqa: E501
-        :type event_type: TelemetryEventEventTypeEnum
+        :type event_type: OctoTelemetryEvent
         """
 
         self._event_type = event_type

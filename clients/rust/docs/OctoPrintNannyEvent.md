@@ -1,7 +1,7 @@
-# PrinterStateEnum
-
+# OctoPrintNannyEvent
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

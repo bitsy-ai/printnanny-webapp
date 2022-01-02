@@ -40,7 +40,7 @@ class TelemetryEvent(object):
         'id': 'int',
         'ts': 'float',
         'event_source': 'EventSourceEnum',
-        'event_type': 'TelemetryEventEventTypeEnum',
+        'event_type': 'OctoTelemetryEvent',
         'octoprint_environment': 'OctoprintEnvironment',
         'octoprint_printer_data': 'OctoprintPrinterData',
         'event_data': 'dict(str, object)',
@@ -184,7 +184,7 @@ class TelemetryEvent(object):
 
 
         :return: The event_type of this TelemetryEvent.  # noqa: E501
-        :rtype: TelemetryEventEventTypeEnum
+        :rtype: OctoTelemetryEvent
         """
         return self._event_type
 
@@ -194,7 +194,7 @@ class TelemetryEvent(object):
 
 
         :param event_type: The event_type of this TelemetryEvent.  # noqa: E501
-        :type event_type: TelemetryEventEventTypeEnum
+        :type event_type: OctoTelemetryEvent
         """
 
         self._event_type = event_type

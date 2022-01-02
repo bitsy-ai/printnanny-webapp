@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ts** | **float** |  | [optional] 
 **event_source** | [**EventSourceEnum**](EventSourceEnum.md) |  | [optional] 
-**event_type** | [**EventType0c4Enum**](EventType0c4Enum.md) |  | [optional] 
+**event_type** | [**OctoPrinterEvent**](OctoPrinterEvent.md) |  | [optional] 
 **octoprint_environment** | [**OctoprintEnvironmentRequest**](OctoprintEnvironmentRequest.md) |  | 
 **octoprint_printer_data** | [**OctoprintPrinterDataRequest**](OctoprintPrinterDataRequest.md) |  | 
 **event_data** | **dict(str, object)** |  | [optional] 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **print_nanny_plugin_version** | **str** |  | 
 **print_nanny_client_version** | **str** |  | 
 **octoprint_version** | **str** |  | 
-**printer_state** | [**PrinterStateEnum**](PrinterStateEnum.md) |  | [optional] 
+**printer_state** | [**OctoPrinterEvent**](OctoPrinterEvent.md) |  | [optional] 
 **octoprint_device** | **int** |  | 
 **print_session** | **int** |  | [optional] 
 

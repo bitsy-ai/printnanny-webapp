@@ -40,7 +40,7 @@ class TelemetryEventPolymorphic(object):
         'id': 'int',
         'ts': 'float',
         'event_source': 'EventSourceEnum',
-        'event_type': 'PrintNannyPluginEventEventTypeEnum',
+        'event_type': 'OctoPrintNannyEvent',
         'octoprint_environment': 'OctoprintEnvironment',
         'octoprint_printer_data': 'OctoprintPrinterData',
         'event_data': 'dict(str, object)',
@@ -52,7 +52,7 @@ class TelemetryEventPolymorphic(object):
         'octoprint_device': 'int',
         'user': 'int',
         'print_session': 'int',
-        'printer_state': 'PrinterStateEnum'
+        'printer_state': 'OctoPrinterEvent'
     }
 
     attribute_map = {
@@ -192,7 +192,7 @@ class TelemetryEventPolymorphic(object):
 
 
         :return: The event_type of this TelemetryEventPolymorphic.  # noqa: E501
-        :rtype: PrintNannyPluginEventEventTypeEnum
+        :rtype: OctoPrintNannyEvent
         """
         return self._event_type
 
@@ -202,7 +202,7 @@ class TelemetryEventPolymorphic(object):
 
 
         :param event_type: The event_type of this TelemetryEventPolymorphic.  # noqa: E501
-        :type event_type: PrintNannyPluginEventEventTypeEnum
+        :type event_type: OctoPrintNannyEvent
         """
 
         self._event_type = event_type
@@ -469,7 +469,7 @@ class TelemetryEventPolymorphic(object):
 
 
         :return: The printer_state of this TelemetryEventPolymorphic.  # noqa: E501
-        :rtype: PrinterStateEnum
+        :rtype: OctoPrinterEvent
         """
         return self._printer_state
 
@@ -479,7 +479,7 @@ class TelemetryEventPolymorphic(object):
 
 
         :param printer_state: The printer_state of this TelemetryEventPolymorphic.  # noqa: E501
-        :type printer_state: PrinterStateEnum
+        :type printer_state: OctoPrinterEvent
         """
 
         self._printer_state = printer_state

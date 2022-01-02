@@ -39,7 +39,7 @@ class TelemetryEventPolymorphicRequest(object):
     openapi_types = {
         'ts': 'float',
         'event_source': 'EventSourceEnum',
-        'event_type': 'PrintNannyPluginEventEventTypeEnum',
+        'event_type': 'OctoPrintNannyEvent',
         'octoprint_environment': 'OctoprintEnvironmentRequest',
         'octoprint_printer_data': 'OctoprintPrinterDataRequest',
         'event_data': 'dict(str, object)',
@@ -49,7 +49,7 @@ class TelemetryEventPolymorphicRequest(object):
         'octoprint_version': 'str',
         'octoprint_device': 'int',
         'print_session': 'int',
-        'printer_state': 'PrinterStateEnum'
+        'printer_state': 'OctoPrinterEvent'
     }
 
     attribute_map = {
@@ -157,7 +157,7 @@ class TelemetryEventPolymorphicRequest(object):
 
 
         :return: The event_type of this TelemetryEventPolymorphicRequest.  # noqa: E501
-        :rtype: PrintNannyPluginEventEventTypeEnum
+        :rtype: OctoPrintNannyEvent
         """
         return self._event_type
 
@@ -167,7 +167,7 @@ class TelemetryEventPolymorphicRequest(object):
 
 
         :param event_type: The event_type of this TelemetryEventPolymorphicRequest.  # noqa: E501
-        :type event_type: PrintNannyPluginEventEventTypeEnum
+        :type event_type: OctoPrintNannyEvent
         """
 
         self._event_type = event_type
@@ -397,7 +397,7 @@ class TelemetryEventPolymorphicRequest(object):
 
 
         :return: The printer_state of this TelemetryEventPolymorphicRequest.  # noqa: E501
-        :rtype: PrinterStateEnum
+        :rtype: OctoPrinterEvent
         """
         return self._printer_state
 
@@ -407,7 +407,7 @@ class TelemetryEventPolymorphicRequest(object):
 
 
         :param printer_state: The printer_state of this TelemetryEventPolymorphicRequest.  # noqa: E501
-        :type printer_state: PrinterStateEnum
+        :type printer_state: OctoPrinterEvent
         """
 
         self._printer_state = printer_state
