@@ -69,7 +69,7 @@ class TelemetryEvent(PolymorphicModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
     print_nanny_plugin_version = models.CharField(max_length=60)
     print_nanny_client_version = models.CharField(max_length=60)
-    print_nanny_beta_client_version = models.CharField(max_length=60, null=True)
+    print_nanny_beta_client_version = models.CharField(max_length=60)
     octoprint_version = models.CharField(max_length=36)
     print_session = models.ForeignKey(
         "remote_control.PrintSession",
@@ -86,9 +86,8 @@ class RemoteCommandEvent(TelemetryEvent):
 
     def __init__(self, *args, **kwargs):
         if "event_source" in kwargs.keys():
-            event_source = kwargs.pop("event_source")
-        else:
-            event_source = EventSource.REMOTE_COMMAND
+            kwargs.pop("event_source")
+        event_source = EventSource.REMOTE_COMMAND
         return super().__init__(*args, event_source=event_source, **kwargs)
 
     event_codes = [x.value for x in RemoteCommandEventType.__members__.values()]
@@ -105,9 +104,8 @@ class PrintNannyPluginEvent(TelemetryEvent):
 
     def __init__(self, *args, **kwargs):
         if "event_source" in kwargs.keys():
-            event_source = kwargs.pop("event_source")
-        else:
-            event_source = event_source = EventSource.PRINT_NANNY_PLUGIN
+            kwargs.pop("event_source")
+        event_source = event_source = EventSource.PRINT_NANNY_PLUGIN
         return super().__init__(*args, event_source=event_source, **kwargs)
 
     plugin_identifier = "octoprint_nanny"
@@ -129,9 +127,8 @@ class OctoPrintEvent(TelemetryEvent):
 
     def __init__(self, *args, **kwargs):
         if "event_source" in kwargs.keys():
-            event_source = kwargs.pop("event_source")
-        else:
-            event_source = EventSource.OCTOPRINT
+            kwargs.pop("event_source")
+        event_source = EventSource.OCTOPRINT
         return super().__init__(*args, event_source=event_source, **kwargs)
 
     event_codes = [x.value for x in OctoprintEventType.__members__.values()]
@@ -140,9 +137,8 @@ class OctoPrintEvent(TelemetryEvent):
 class PrinterEvent(TelemetryEvent):
     def __init__(self, *args, **kwargs):
         if "event_source" in kwargs.keys():
-            event_source = kwargs.pop("event_source")
-        else:
-            event_source = EventSource.OCTOPRINT
+            kwargs.pop("event_source")
+        event_source = EventSource.OCTOPRINT
         return super().__init__(*args, event_source=event_source, **kwargs)
 
     CSS_CLASS_MAP = {
@@ -177,9 +173,8 @@ class PrinterEvent(TelemetryEvent):
 class PrintJobEvent(TelemetryEvent):
     def __init__(self, *args, **kwargs):
         if "event_source" in kwargs.keys():
-            event_source = kwargs.pop("event_source")
-        else:
-            event_source = EventSource.OCTOPRINT
+            kwargs.pop("event_source")
+        event_source = EventSource.OCTOPRINT
         return super().__init__(*args, event_source=event_source, **kwargs)
 
     event_codes = [x.value for x in PrintJobEventType.__members__.values()]
