@@ -4,6 +4,9 @@ from django.forms import (
     CharField,
     MultipleChoiceField,
     CheckboxSelectMultiple,
+    BooleanField,
+    CharField,
+    Textarea,
 )
 from .choices import PrimaryOS, MobileOS, VPNExperience, UserScale, PrinterSoftware
 
@@ -13,6 +16,10 @@ User = get_user_model()
 
 
 class RemoteAccessSurvey1Form(ModelForm):
+    opt_in = BooleanField(
+        required=True,
+        label="I agree to receive email updates about Print Nanny development, patch notes, and upcoming features.",
+    )
     primary_os = MultipleChoiceField(
         widget=CheckboxSelectMultiple,
         choices=PrimaryOS.choices,
@@ -48,6 +55,13 @@ class RemoteAccessSurvey1Form(ModelForm):
 
     printer_software_other = CharField(
         label="If you checked Other, please add details here or email leigh@print-nanny.com",
+        required=False,
+    )
+
+    worst = CharField(
+        label="If you could wave a magic wand and change ONE thing about 3D printing, what would that be?",
+        widget=Textarea,
+        help_text="Tell me what you hate most about 3D printing today",
         required=False,
     )
 

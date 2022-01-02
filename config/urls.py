@@ -6,10 +6,8 @@ from django.urls import include, path, re_path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
 from django.views.generic.base import RedirectView
-from django.urls import reverse
 
-from rest_framework.permissions import AllowAny
-import django_prometheus
+from print_nanny_webapp.surveys.views import RemoteAccessSurvey1Create
 #from drf_yasg.views import get_schema_view
 #from drf_yasg import openapi
 from print_nanny_webapp.users.views import InviteRequestView, ThanksView
@@ -24,7 +22,10 @@ urlpatterns = [
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),
-    path("request-invite/", InviteRequestView.as_view(), name="request-invite"),
+    path("request-invite/", RemoteAccessSurvey1Create.as_view(), name="request-invite"),
+    path("invite/", RemoteAccessSurvey1Create.as_view(), name="invite"),
+    path("waitlist/", RemoteAccessSurvey1Create.as_view(), name="waitlist"),
+
     path("thanks/", ThanksView.as_view(), name="thanks"),
 
     # Django Admin, use {% url 'admin:index' %}

@@ -116,13 +116,13 @@
                             <h3 class="text-white mb-5">
                                 Easy install to Raspberry Pi.
                             </h3>
-                            <a href="{% url 'subscriptions:checkout' %}" class="btn btn-success btn-lg"><strong class="h1">Get Early Access</strong>
+                            <a href="{% url 'subscriptions:checkout' %}" class="btn btn-danger btn-lg"><strong class="h1">Get Early Access</strong>
                             </a>
  
                         </div>
                     </div>
                     <div class="col-8">
-                        {% include 'partials/demo-carousel.html' %}
+                        {% include 'partials/demo-carousel.html' with active=2 %}
 
                             <!-- <img src="{% static 'images/logo-square-white.svg' %}" alt="" class="img-fluid" /> -->
                     </div>
@@ -145,7 +145,7 @@
                         <div class="text-center">
                             <h1 class="mt-2"><i class="mdi mdi-heart-multiple-outline"></i></h1>
                             <h3>Become a <a href="{% url 'subscriptions:checkout' %}">Founding Member</a> to skip the waitlist</h3>
-                            <h4><a href="{% url 'subscriptions:checkout' %}">Get Notified</a> when more membership options are available</h4>
+                            <h4><a href="{% url 'request-invite' %}">Get Notified</a> when more membership options are available</h4>
                             <h4 class="text-dark-50 text-center mt-0 font-weight-bold">({{ AVAILABLE_SUBSCRIPTIONS_COUNT }} available spots)</h4>
 
                         </div>
@@ -160,13 +160,6 @@
                             <a href="{% url 'request-invite' %}" class="btn btn-success btn-sm btn-light btn-rounded">Join Waitlist</i></a>
 
                         </div>
-
-                        <!-- <div class="card-img-top embed-responsive embed-responsive-16by9">
-
-                        <video id="report-card-video" class="embed-responsive-item" controls>
-                            <source src="{% static 'images/detection-demo.mp4' %}" type="video/mp4">
-                        </video>
-                        </div> -->
                     </div>
                     <div class="col-md-6 pt-4 pb-4">
                         <h1 id="live-monitoring">🔮 Live Monitoring </h1>
@@ -191,10 +184,10 @@
 
                                 <div class="row">
                                     <div class="col-6">
-                                        <img src="{% static 'images/landing-nozzle-1.png' %}" alt="" class="img-fluid h-100" />
+                                        {% include 'partials/demo-carousel.html' with active=1 %}
                                     </div>
                                     <div class="col-6">
-                                        <img src="{% static 'images/landing-nozzle-2.png' %}" alt="" class="img-fluid h-100" />
+                                        {% include 'partials/demo-carousel.html' with active=4 %}
                                     </div>
                                 </div>
 
@@ -210,8 +203,9 @@
                                 <h1 class="display-3">Print Nanny OS</h1>
                                     <p class="lead">Connect your menagerie of 3D printers with <strong>one easy installer.</strong></p>
                                     <p class="lead">
-                                        <a class="btn btn-primary btn-lg" href="{% url 'subscriptions:checkout' %}" role="button">Get Early Access</a>
+                                        <a class="btn btn-danger btn-lg" href="{% url 'subscriptions:checkout' %}" role="button">Get Early Access</a>
                                         <a class="btn btn-secondary btn-lg" href="{% url 'request-invite' %}" role="button">Join Waitlist</a>
+
                                     </p>
                                     <hr class="my-2">
                                     <h2>🎨 Mix and match OctoPrint, Mainsail, and more!</h2>
@@ -320,42 +314,6 @@
                 </div>
             </div>
 
-        </section>
-
-        <section class="py-2">
-            <div class="row pt-2 align-items-center" id="print-nanny-os">
-                <div class="jumbotron">
-                    <div class="row">
-                        <div class="col-12 col-md-6">
-                            <h1 class="display-3">Print Nanny OS</h1>
-                                <p class="lead">Connect your menagerie of 3D printers with <strong>one easy installer.</strong></p>
-                                <p class="lead">
-                                    <a class="btn btn-primary btn-lg" href="{% url 'subscriptions:checkout' %}" role="button">Get Early Access</a>
-                                </p>
-                                <hr class="my-2">
-                                <h4>🎨 Mix and match OctoPrint, Mainsail, and more!</h4>
-                                <hr class="my-2">
-            
-                                <h4 class="my-2">❤️ Easy Install for Raspberry Pi</h4>
-            
-                                <hr class="my-2">
-            
-                                <h4>🔐 Secure Remote Access - Worldwide</h4>
-            
-                                <hr class="my-2">
-                                <h4>☁️ Sync Files & Backup Automatically</h4>
-                                <hr class="my-2">
-            
-                                <h4>💜 Growing Community of Makers, Artists, Entrepreneurs</h4>
-            
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <img class="img-fluid pull-left" src="{% static 'images/rpi-imager-printnanny-os.png'%}"/>
-                        </div>
-                    </div>
-            
-                </div>
-            </div>
         </section>
     
 

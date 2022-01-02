@@ -14,10 +14,49 @@ from .choices import (
 
 
 class RemoteAccessSurvey1(models.Model):
+    class PrintFrequency(models.TextChoices):
+        DAILY = "DAILY", "At least once per day"
+        WEEKLY = "WEEKLY", "At least once per week"
+        MONTHLY = "MONTHLY", "At least once per month"
+        YEARLY = "YEARLY", "Occasionally, a few times a year"
+
+    class PrinterBrand(models.TextChoices):
+        PRUSA = "PRUSA", "Prusa"
+        CREALITY = "CREALITY", "Creality"
+        FLASHFORGE = "FLASHFORGE", "Flashforge"
+        MONOPRICE = "MONOPRICE", "Monoprice"
+        FORMLABS = "FORMLABS", "Formlabs"
+        LULZBOT = "LULZBOT", "LulzBot"
+        ULTIMAKER = "ULTIMAKER", "Ultimaker"
+        MARKFORGED = "MARKFORGED", "Markforged"
+        PEOPOLY = "PEOPOLY", "Peopoly"
+        TOYBOX = "TOYBOX", "Toybox"
+        MAKERBOT = "MAKERBOT", "Makerbot"
+        DREMEL = "DREMEL", "Dremel"
+        OTHER = "OTHER", "Other"
 
     created_dt = models.DateTimeField(auto_now_add=True)
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
+    referrer = models.CharField(
+        max_length=255, help_text="How did you hear about Print Nanny?"
+    )
     user = models.ForeignKey("users.User", null=True, on_delete=models.SET_NULL)
+
+    print_frequency = models.CharField(max_length=32, choices=PrintFrequency.choices)
+    num_printers = models.PositiveSmallIntegerField()
+    business = models.BooleanField(
+        help_text="Do you operate a 3D printing or model design business?"
+    )
+    usage = models.TextField(
+        help_text="Describe your 3D printer usage. What type of things to you make?"
+    )
+    printer_models = ChoiceArrayField(
+        models.CharField(max_length=32, choices=PrinterBrand.choices),
+        help_text="Check all that apply",
+    )
+    printer_models_other = models.CharField(max_length=255, null=True)
 
     primary_os = ChoiceArrayField(
         models.CharField(
@@ -46,7 +85,11 @@ class RemoteAccessSurvey1(models.Model):
             help_text="What kind of network are your 3D printers on? Select all that apply",
         )
     )
-
+    worst = models.TextField(
+        blank=True,
+        null=True,
+        help_text="Tell me what you hate most about 3D printing today",
+    )
     user_scale = ChoiceArrayField(
         models.CharField(
             max_length=32,
