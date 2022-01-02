@@ -444,13 +444,16 @@ SPECTACULAR_SETTINGS = {
     'ENUM_ADD_EXPLICIT_BLANK_NULL_CHOICE': True,
     'SCHEMA_COERCE_PATH_PK_SUFFIX': True,
     'ENUM_NAME_OVERRIDES': {
+        # begin printnanny os types
         'CameraType': 'print_nanny_webapp.devices.enum.CameraType',
-        'PrintJobEventType': 'print_nanny_webapp.telemetry.types.PrintJobEventType',
         'PrintProgressAlertEventType': 'print_nanny_webapp.alerts.models.PrintProgressAlert.PrintProgressAlertEventType.choices',
         'AlertMessageType': 'print_nanny_webapp.alerts.models.AlertMessage.AlertMessageType.choices',
         'AlertSettingsEventType': 'print_nanny_webapp.alerts.models.AlertSettings.AlertSettingsEventType.choices',
         'TaskType': 'print_nanny_webapp.devices.enum.TaskType.choices',
         'TaskStatusType': 'print_nanny_webapp.devices.enum.TaskStatusType.choices',
+        # begin octoprint event types
+        'OctoJobEvent': 'print_nanny_webapp.telemetry.types.PrintJobEventType',
+        'OctoPrinterEvent': 'print_nanny_webapp.telemetry.types.PrinterEventType'
     },
     'TITLE': 'printnanny-api-client',
     'DESCRIPTION': 'Official API client library for print-nanny.com',
