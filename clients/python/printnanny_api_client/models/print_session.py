@@ -52,7 +52,7 @@ class PrintSession(object):
         'gcode_file': 'int',
         'gcode_filename': 'str',
         'octoprint_job': 'dict(str, object)',
-        'print_job_status': 'PrintJobEventType',
+        'print_job_status': 'OctoJobEvent',
         'url': 'str',
         'datesegment': 'str'
     }
@@ -487,7 +487,7 @@ class PrintSession(object):
 
 
         :return: The print_job_status of this PrintSession.  # noqa: E501
-        :rtype: PrintJobEventType
+        :rtype: OctoJobEvent
         """
         return self._print_job_status
 
@@ -497,7 +497,7 @@ class PrintSession(object):
 
 
         :param print_job_status: The print_job_status of this PrintSession.  # noqa: E501
-        :type print_job_status: PrintJobEventType
+        :type print_job_status: OctoJobEvent
         """
 
         self._print_job_status = print_job_status

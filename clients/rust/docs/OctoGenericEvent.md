@@ -1,4 +1,4 @@
-# PrinterStateEnum
+# OctoGenericEvent
 
 ## Properties
 

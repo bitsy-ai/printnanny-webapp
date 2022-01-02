@@ -40,13 +40,14 @@ class TelemetryEvent(object):
         'id': 'int',
         'ts': 'float',
         'event_source': 'EventSourceEnum',
-        'event_type': 'TelemetryEventEventTypeEnum',
+        'event_type': 'OctoTelemetryEvent',
         'octoprint_environment': 'OctoprintEnvironment',
         'octoprint_printer_data': 'OctoprintPrinterData',
         'event_data': 'dict(str, object)',
         'temperature': 'dict(str, object)',
         'print_nanny_plugin_version': 'str',
         'print_nanny_client_version': 'str',
+        'print_nanny_beta_client_version': 'str',
         'octoprint_version': 'str',
         'polymorphic_ctype': 'int',
         'octoprint_device': 'int',
@@ -65,6 +66,7 @@ class TelemetryEvent(object):
         'temperature': 'temperature',
         'print_nanny_plugin_version': 'print_nanny_plugin_version',
         'print_nanny_client_version': 'print_nanny_client_version',
+        'print_nanny_beta_client_version': 'print_nanny_beta_client_version',
         'octoprint_version': 'octoprint_version',
         'polymorphic_ctype': 'polymorphic_ctype',
         'octoprint_device': 'octoprint_device',
@@ -72,7 +74,7 @@ class TelemetryEvent(object):
         'print_session': 'print_session'
     }
 
-    def __init__(self, id=None, ts=None, event_source=None, event_type=None, octoprint_environment=None, octoprint_printer_data=None, event_data=None, temperature=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, polymorphic_ctype=None, octoprint_device=None, user=None, print_session=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, ts=None, event_source=None, event_type=None, octoprint_environment=None, octoprint_printer_data=None, event_data=None, temperature=None, print_nanny_plugin_version=None, print_nanny_client_version=None, print_nanny_beta_client_version=None, octoprint_version=None, polymorphic_ctype=None, octoprint_device=None, user=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """TelemetryEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -88,6 +90,7 @@ class TelemetryEvent(object):
         self._temperature = None
         self._print_nanny_plugin_version = None
         self._print_nanny_client_version = None
+        self._print_nanny_beta_client_version = None
         self._octoprint_version = None
         self._polymorphic_ctype = None
         self._octoprint_device = None
@@ -107,6 +110,7 @@ class TelemetryEvent(object):
             self.temperature = temperature
         self.print_nanny_plugin_version = print_nanny_plugin_version
         self.print_nanny_client_version = print_nanny_client_version
+        self.print_nanny_beta_client_version = print_nanny_beta_client_version
         self.octoprint_version = octoprint_version
         self.polymorphic_ctype = polymorphic_ctype
         self.octoprint_device = octoprint_device
@@ -184,7 +188,7 @@ class TelemetryEvent(object):
 
 
         :return: The event_type of this TelemetryEvent.  # noqa: E501
-        :rtype: TelemetryEventEventTypeEnum
+        :rtype: OctoTelemetryEvent
         """
         return self._event_type
 
@@ -194,7 +198,7 @@ class TelemetryEvent(object):
 
 
         :param event_type: The event_type of this TelemetryEvent.  # noqa: E501
-        :type event_type: TelemetryEventEventTypeEnum
+        :type event_type: OctoTelemetryEvent
         """
 
         self._event_type = event_type
@@ -338,6 +342,30 @@ class TelemetryEvent(object):
             raise ValueError("Invalid value for `print_nanny_client_version`, length must be less than or equal to `60`")  # noqa: E501
 
         self._print_nanny_client_version = print_nanny_client_version
+
+    @property
+    def print_nanny_beta_client_version(self):
+        """Gets the print_nanny_beta_client_version of this TelemetryEvent.  # noqa: E501
+
+
+        :return: The print_nanny_beta_client_version of this TelemetryEvent.  # noqa: E501
+        :rtype: str
+        """
+        return self._print_nanny_beta_client_version
+
+    @print_nanny_beta_client_version.setter
+    def print_nanny_beta_client_version(self, print_nanny_beta_client_version):
+        """Sets the print_nanny_beta_client_version of this TelemetryEvent.
+
+
+        :param print_nanny_beta_client_version: The print_nanny_beta_client_version of this TelemetryEvent.  # noqa: E501
+        :type print_nanny_beta_client_version: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                print_nanny_beta_client_version is not None and len(print_nanny_beta_client_version) > 60):
+            raise ValueError("Invalid value for `print_nanny_beta_client_version`, length must be less than or equal to `60`")  # noqa: E501
+
+        self._print_nanny_beta_client_version = print_nanny_beta_client_version
 
     @property
     def octoprint_version(self):

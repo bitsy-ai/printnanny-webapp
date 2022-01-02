@@ -43,6 +43,8 @@ pub struct PatchedOctoPrintDeviceRequest {
     pub plugin_version: Option<String>,
     #[serde(rename = "print_nanny_client_version", skip_serializing_if = "Option::is_none")]
     pub print_nanny_client_version: Option<String>,
+    #[serde(rename = "print_nanny_beta_client_version", skip_serializing_if = "Option::is_none")]
+    pub print_nanny_beta_client_version: Option<String>,
     #[serde(rename = "active_session", skip_serializing_if = "Option::is_none")]
     pub active_session: Option<Box<crate::models::PrintSessionRequest>>,
 }
@@ -65,6 +67,7 @@ impl PatchedOctoPrintDeviceRequest {
             octoprint_version: None,
             plugin_version: None,
             print_nanny_client_version: None,
+            print_nanny_beta_client_version: None,
             active_session: None,
         }
     }

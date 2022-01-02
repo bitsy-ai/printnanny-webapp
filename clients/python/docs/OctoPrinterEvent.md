@@ -1,7 +1,7 @@
-# PrintNannyPluginEventEventTypeEnum
+# OctoPrinterEvent
+
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

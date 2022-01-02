@@ -102,6 +102,7 @@ class TestTelemetryEventRequest(unittest.TestCase):
                     }, 
                 print_nanny_plugin_version = '0', 
                 print_nanny_client_version = '0', 
+                print_nanny_beta_client_version = '0', 
                 octoprint_version = '0', 
                 octoprint_device = 56, 
                 print_session = 56

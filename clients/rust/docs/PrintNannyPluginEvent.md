@@ -7,13 +7,14 @@ Name | Type | Description | Notes
 **id** | **i32** |  | [readonly]
 **ts** | Option<**f32**> |  | [optional]
 **event_source** | Option<[**crate::models::EventSourceEnum**](EventSourceEnum.md)> |  | [optional]
-**event_type** | Option<[**crate::models::PrintNannyPluginEventEventTypeEnum**](PrintNannyPluginEventEventTypeEnum.md)> |  | [optional]
+**event_type** | Option<[**crate::models::OctoPrintNannyEvent**](OctoPrintNannyEvent.md)> |  | [optional]
 **octoprint_environment** | [**crate::models::OctoprintEnvironment**](OctoprintEnvironment.md) |  | 
 **octoprint_printer_data** | [**crate::models::OctoprintPrinterData**](OctoprintPrinterData.md) |  | 
 **event_data** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **temperature** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **print_nanny_plugin_version** | **String** |  | 
 **print_nanny_client_version** | **String** |  | 
+**print_nanny_beta_client_version** | Option<**String**> |  | [optional]
 **octoprint_version** | **String** |  | 
 **polymorphic_ctype** | **i32** |  | [readonly]
 **octoprint_device** | **i32** |  | 

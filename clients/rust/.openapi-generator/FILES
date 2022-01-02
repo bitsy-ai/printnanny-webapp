@@ -29,7 +29,6 @@ docs/DevicesApi.md
 docs/EmailAuthRequest.md
 docs/ErrorDetail.md
 docs/EventSourceEnum.md
-docs/EventType0c4Enum.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
@@ -39,12 +38,16 @@ docs/LicensesApi.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
+docs/OctoGenericEvent.md
+docs/OctoJobEvent.md
 docs/OctoPrintDevice.md
 docs/OctoPrintDeviceKey.md
 docs/OctoPrintDeviceRequest.md
 docs/OctoPrintEvent.md
-docs/OctoPrintEventEventTypeEnum.md
 docs/OctoPrintEventRequest.md
+docs/OctoPrintNannyEvent.md
+docs/OctoPrinterEvent.md
+docs/OctoTelemetryEvent.md
 docs/OctoprintEnvironment.md
 docs/OctoprintEnvironmentRequest.md
 docs/OctoprintFile.md
@@ -110,10 +113,8 @@ docs/PatchedSystemInfoRequest.md
 docs/PatchedUserRequest.md
 docs/PrintJobEvent.md
 docs/PrintJobEventRequest.md
-docs/PrintJobEventType.md
 docs/PrintNannyApiConfig.md
 docs/PrintNannyPluginEvent.md
-docs/PrintNannyPluginEventEventTypeEnum.md
 docs/PrintNannyPluginEventRequest.md
 docs/PrintSession.md
 docs/PrintSessionRequest.md
@@ -123,7 +124,6 @@ docs/PrinterEvent.md
 docs/PrinterEventRequest.md
 docs/PrinterProfile.md
 docs/PrinterProfileRequest.md
-docs/PrinterStateEnum.md
 docs/PrintnannyEnvEnum.md
 docs/ReleaseChannelEnum.md
 docs/RemoteCommandEvent.md
@@ -144,7 +144,6 @@ docs/TaskStatusType.md
 docs/TaskType.md
 docs/TelemetryApi.md
 docs/TelemetryEvent.md
-docs/TelemetryEventEventTypeEnum.md
 docs/TelemetryEventPolymorphic.md
 docs/TelemetryEventPolymorphicRequest.md
 docs/TelemetryEventRequest.md
@@ -190,7 +189,6 @@ src/models/device_request.rs
 src/models/email_auth_request.rs
 src/models/error_detail.rs
 src/models/event_source_enum.rs
-src/models/event_type0c4_enum.rs
 src/models/experiment.rs
 src/models/experiment_device_config.rs
 src/models/gcode_file.rs
@@ -199,12 +197,16 @@ src/models/license_request.rs
 src/models/mobile_auth_request.rs
 src/models/mod.rs
 src/models/model_artifact.rs
+src/models/octo_generic_event.rs
+src/models/octo_job_event.rs
 src/models/octo_print_device.rs
 src/models/octo_print_device_key.rs
 src/models/octo_print_device_request.rs
 src/models/octo_print_event.rs
-src/models/octo_print_event_event_type_enum.rs
 src/models/octo_print_event_request.rs
+src/models/octo_print_nanny_event.rs
+src/models/octo_printer_event.rs
+src/models/octo_telemetry_event.rs
 src/models/octoprint_environment.rs
 src/models/octoprint_environment_request.rs
 src/models/octoprint_file.rs
@@ -268,10 +270,8 @@ src/models/patched_system_info_request.rs
 src/models/patched_user_request.rs
 src/models/print_job_event.rs
 src/models/print_job_event_request.rs
-src/models/print_job_event_type.rs
 src/models/print_nanny_api_config.rs
 src/models/print_nanny_plugin_event.rs
-src/models/print_nanny_plugin_event_event_type_enum.rs
 src/models/print_nanny_plugin_event_request.rs
 src/models/print_session.rs
 src/models/print_session_request.rs
@@ -281,7 +281,6 @@ src/models/printer_event.rs
 src/models/printer_event_request.rs
 src/models/printer_profile.rs
 src/models/printer_profile_request.rs
-src/models/printer_state_enum.rs
 src/models/printnanny_env_enum.rs
 src/models/release_channel_enum.rs
 src/models/remote_command_event.rs
@@ -299,7 +298,6 @@ src/models/task_status_request.rs
 src/models/task_status_type.rs
 src/models/task_type.rs
 src/models/telemetry_event.rs
-src/models/telemetry_event_event_type_enum.rs
 src/models/telemetry_event_polymorphic.rs
 src/models/telemetry_event_polymorphic_request.rs
 src/models/telemetry_event_request.rs

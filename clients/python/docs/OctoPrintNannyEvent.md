@@ -1,7 +1,7 @@
-# TelemetryEventEventTypeEnum
+# OctoPrintNannyEvent
+
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

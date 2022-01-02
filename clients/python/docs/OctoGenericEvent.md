@@ -1,4 +1,4 @@
-# OctoPrintEventEventTypeEnum
+# OctoGenericEvent
 
 
 ## Properties

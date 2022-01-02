@@ -11,7 +11,7 @@
 
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum TelemetryEventEventTypeEnum {
+pub enum OctoTelemetryEvent {
     #[serde(rename = "plugin_octoprint_nanny_monitoring_start")]
     PluginOctoprintNannyMonitoringStart,
     #[serde(rename = "plugin_octoprint_nanny_monitoring_stop")]
@@ -161,7 +161,7 @@ pub enum TelemetryEventEventTypeEnum {
 
 }
 
-impl ToString for TelemetryEventEventTypeEnum {
+impl ToString for OctoTelemetryEvent {
     fn to_string(&self) -> String {
         match self {
             Self::PluginOctoprintNannyMonitoringStart => String::from("plugin_octoprint_nanny_monitoring_start"),
@@ -241,8 +241,8 @@ impl ToString for TelemetryEventEventTypeEnum {
     }
 }
 
-impl Default for TelemetryEventEventTypeEnum {
-    fn default() -> TelemetryEventEventTypeEnum {
+impl Default for OctoTelemetryEvent {
+    fn default() -> OctoTelemetryEvent {
         Self::PluginOctoprintNannyMonitoringStart
     }
 }

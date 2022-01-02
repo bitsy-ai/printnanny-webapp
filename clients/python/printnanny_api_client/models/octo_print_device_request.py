@@ -52,6 +52,7 @@ class OctoPrintDeviceRequest(object):
         'octoprint_version': 'str',
         'plugin_version': 'str',
         'print_nanny_client_version': 'str',
+        'print_nanny_beta_client_version': 'str',
         'active_session': 'PrintSessionRequest'
     }
 
@@ -71,10 +72,11 @@ class OctoPrintDeviceRequest(object):
         'octoprint_version': 'octoprint_version',
         'plugin_version': 'plugin_version',
         'print_nanny_client_version': 'print_nanny_client_version',
+        'print_nanny_beta_client_version': 'print_nanny_beta_client_version',
         'active_session': 'active_session'
     }
 
-    def __init__(self, name=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, active_session=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, print_nanny_beta_client_version=None, active_session=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintDeviceRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -95,6 +97,7 @@ class OctoPrintDeviceRequest(object):
         self._octoprint_version = None
         self._plugin_version = None
         self._print_nanny_client_version = None
+        self._print_nanny_beta_client_version = None
         self._active_session = None
         self.discriminator = None
 
@@ -113,6 +116,7 @@ class OctoPrintDeviceRequest(object):
         self.octoprint_version = octoprint_version
         self.plugin_version = plugin_version
         self.print_nanny_client_version = print_nanny_client_version
+        self.print_nanny_beta_client_version = print_nanny_beta_client_version
         if active_session is not None:
             self.active_session = active_session
 
@@ -536,6 +540,33 @@ class OctoPrintDeviceRequest(object):
             raise ValueError("Invalid value for `print_nanny_client_version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._print_nanny_client_version = print_nanny_client_version
+
+    @property
+    def print_nanny_beta_client_version(self):
+        """Gets the print_nanny_beta_client_version of this OctoPrintDeviceRequest.  # noqa: E501
+
+
+        :return: The print_nanny_beta_client_version of this OctoPrintDeviceRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._print_nanny_beta_client_version
+
+    @print_nanny_beta_client_version.setter
+    def print_nanny_beta_client_version(self, print_nanny_beta_client_version):
+        """Sets the print_nanny_beta_client_version of this OctoPrintDeviceRequest.
+
+
+        :param print_nanny_beta_client_version: The print_nanny_beta_client_version of this OctoPrintDeviceRequest.  # noqa: E501
+        :type print_nanny_beta_client_version: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                print_nanny_beta_client_version is not None and len(print_nanny_beta_client_version) > 255):
+            raise ValueError("Invalid value for `print_nanny_beta_client_version`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                print_nanny_beta_client_version is not None and len(print_nanny_beta_client_version) < 1):
+            raise ValueError("Invalid value for `print_nanny_beta_client_version`, length must be greater than or equal to `1`")  # noqa: E501
+
+        self._print_nanny_beta_client_version = print_nanny_beta_client_version
 
     @property
     def active_session(self):

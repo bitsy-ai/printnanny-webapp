@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.printer_state_enum import PrinterStateEnum  # noqa: E501
+from printnanny_api_client.models.octo_print_nanny_event import OctoPrintNannyEvent  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestPrinterStateEnum(unittest.TestCase):
-    """PrinterStateEnum unit test stubs"""
+class TestOctoPrintNannyEvent(unittest.TestCase):
+    """OctoPrintNannyEvent unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,20 +30,20 @@ class TestPrinterStateEnum(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test PrinterStateEnum
+        """Test OctoPrintNannyEvent
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.printer_state_enum.PrinterStateEnum()  # noqa: E501
+        # model = printnanny_api_client.models.octo_print_nanny_event.OctoPrintNannyEvent()  # noqa: E501
         if include_optional :
-            return PrinterStateEnum(
+            return OctoPrintNannyEvent(
             )
         else :
-            return PrinterStateEnum(
+            return OctoPrintNannyEvent(
         )
 
-    def testPrinterStateEnum(self):
-        """Test PrinterStateEnum"""
+    def testOctoPrintNannyEvent(self):
+        """Test OctoPrintNannyEvent"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

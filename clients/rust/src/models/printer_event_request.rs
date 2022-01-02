@@ -18,7 +18,7 @@ pub struct PrinterEventRequest {
     #[serde(rename = "event_source", skip_serializing_if = "Option::is_none")]
     pub event_source: Option<Box<crate::models::EventSourceEnum>>,
     #[serde(rename = "event_type", skip_serializing_if = "Option::is_none")]
-    pub event_type: Option<Box<crate::models::EventType0c4Enum>>,
+    pub event_type: Option<Box<crate::models::OctoPrinterEvent>>,
     #[serde(rename = "octoprint_environment")]
     pub octoprint_environment: Box<crate::models::OctoprintEnvironmentRequest>,
     #[serde(rename = "octoprint_printer_data")]
@@ -31,10 +31,12 @@ pub struct PrinterEventRequest {
     pub print_nanny_plugin_version: String,
     #[serde(rename = "print_nanny_client_version")]
     pub print_nanny_client_version: String,
+    #[serde(rename = "print_nanny_beta_client_version", skip_serializing_if = "Option::is_none")]
+    pub print_nanny_beta_client_version: Option<String>,
     #[serde(rename = "octoprint_version")]
     pub octoprint_version: String,
     #[serde(rename = "printer_state", skip_serializing_if = "Option::is_none")]
-    pub printer_state: Option<crate::models::PrinterStateEnum>,
+    pub printer_state: Option<crate::models::OctoPrinterEvent>,
     #[serde(rename = "octoprint_device")]
     pub octoprint_device: i32,
     #[serde(rename = "print_session", skip_serializing_if = "Option::is_none")]
@@ -53,6 +55,7 @@ impl PrinterEventRequest {
             temperature: None,
             print_nanny_plugin_version,
             print_nanny_client_version,
+            print_nanny_beta_client_version: None,
             octoprint_version,
             printer_state: None,
             octoprint_device,

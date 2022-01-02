@@ -1,7 +1,7 @@
-# EventType0c4Enum
+# OctoTelemetryEvent
+
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

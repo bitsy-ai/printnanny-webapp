@@ -39,17 +39,18 @@ class TelemetryEventPolymorphicRequest(object):
     openapi_types = {
         'ts': 'float',
         'event_source': 'EventSourceEnum',
-        'event_type': 'PrintNannyPluginEventEventTypeEnum',
+        'event_type': 'OctoPrintNannyEvent',
         'octoprint_environment': 'OctoprintEnvironmentRequest',
         'octoprint_printer_data': 'OctoprintPrinterDataRequest',
         'event_data': 'dict(str, object)',
         'temperature': 'dict(str, object)',
         'print_nanny_plugin_version': 'str',
         'print_nanny_client_version': 'str',
+        'print_nanny_beta_client_version': 'str',
         'octoprint_version': 'str',
         'octoprint_device': 'int',
         'print_session': 'int',
-        'printer_state': 'PrinterStateEnum'
+        'printer_state': 'OctoPrinterEvent'
     }
 
     attribute_map = {
@@ -62,6 +63,7 @@ class TelemetryEventPolymorphicRequest(object):
         'temperature': 'temperature',
         'print_nanny_plugin_version': 'print_nanny_plugin_version',
         'print_nanny_client_version': 'print_nanny_client_version',
+        'print_nanny_beta_client_version': 'print_nanny_beta_client_version',
         'octoprint_version': 'octoprint_version',
         'octoprint_device': 'octoprint_device',
         'print_session': 'print_session',
@@ -71,7 +73,7 @@ class TelemetryEventPolymorphicRequest(object):
     discriminator_value_class_map = {
     }
 
-    def __init__(self, ts=None, event_source=None, event_type=None, octoprint_environment=None, octoprint_printer_data=None, event_data=None, temperature=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, octoprint_device=None, print_session=None, printer_state=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, ts=None, event_source=None, event_type=None, octoprint_environment=None, octoprint_printer_data=None, event_data=None, temperature=None, print_nanny_plugin_version=None, print_nanny_client_version=None, print_nanny_beta_client_version=None, octoprint_version=None, octoprint_device=None, print_session=None, printer_state=None, local_vars_configuration=None):  # noqa: E501
         """TelemetryEventPolymorphicRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -86,6 +88,7 @@ class TelemetryEventPolymorphicRequest(object):
         self._temperature = None
         self._print_nanny_plugin_version = None
         self._print_nanny_client_version = None
+        self._print_nanny_beta_client_version = None
         self._octoprint_version = None
         self._octoprint_device = None
         self._print_session = None
@@ -103,6 +106,7 @@ class TelemetryEventPolymorphicRequest(object):
             self.temperature = temperature
         self.print_nanny_plugin_version = print_nanny_plugin_version
         self.print_nanny_client_version = print_nanny_client_version
+        self.print_nanny_beta_client_version = print_nanny_beta_client_version
         self.octoprint_version = octoprint_version
         self.octoprint_device = octoprint_device
         self.print_session = print_session
@@ -157,7 +161,7 @@ class TelemetryEventPolymorphicRequest(object):
 
 
         :return: The event_type of this TelemetryEventPolymorphicRequest.  # noqa: E501
-        :rtype: PrintNannyPluginEventEventTypeEnum
+        :rtype: OctoPrintNannyEvent
         """
         return self._event_type
 
@@ -167,7 +171,7 @@ class TelemetryEventPolymorphicRequest(object):
 
 
         :param event_type: The event_type of this TelemetryEventPolymorphicRequest.  # noqa: E501
-        :type event_type: PrintNannyPluginEventEventTypeEnum
+        :type event_type: OctoPrintNannyEvent
         """
 
         self._event_type = event_type
@@ -319,6 +323,33 @@ class TelemetryEventPolymorphicRequest(object):
         self._print_nanny_client_version = print_nanny_client_version
 
     @property
+    def print_nanny_beta_client_version(self):
+        """Gets the print_nanny_beta_client_version of this TelemetryEventPolymorphicRequest.  # noqa: E501
+
+
+        :return: The print_nanny_beta_client_version of this TelemetryEventPolymorphicRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._print_nanny_beta_client_version
+
+    @print_nanny_beta_client_version.setter
+    def print_nanny_beta_client_version(self, print_nanny_beta_client_version):
+        """Sets the print_nanny_beta_client_version of this TelemetryEventPolymorphicRequest.
+
+
+        :param print_nanny_beta_client_version: The print_nanny_beta_client_version of this TelemetryEventPolymorphicRequest.  # noqa: E501
+        :type print_nanny_beta_client_version: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                print_nanny_beta_client_version is not None and len(print_nanny_beta_client_version) > 60):
+            raise ValueError("Invalid value for `print_nanny_beta_client_version`, length must be less than or equal to `60`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                print_nanny_beta_client_version is not None and len(print_nanny_beta_client_version) < 1):
+            raise ValueError("Invalid value for `print_nanny_beta_client_version`, length must be greater than or equal to `1`")  # noqa: E501
+
+        self._print_nanny_beta_client_version = print_nanny_beta_client_version
+
+    @property
     def octoprint_version(self):
         """Gets the octoprint_version of this TelemetryEventPolymorphicRequest.  # noqa: E501
 
@@ -397,7 +428,7 @@ class TelemetryEventPolymorphicRequest(object):
 
 
         :return: The printer_state of this TelemetryEventPolymorphicRequest.  # noqa: E501
-        :rtype: PrinterStateEnum
+        :rtype: OctoPrinterEvent
         """
         return self._printer_state
 
@@ -407,7 +438,7 @@ class TelemetryEventPolymorphicRequest(object):
 
 
         :param printer_state: The printer_state of this TelemetryEventPolymorphicRequest.  # noqa: E501
-        :type printer_state: PrinterStateEnum
+        :type printer_state: OctoPrinterEvent
         """
 
         self._printer_state = printer_state

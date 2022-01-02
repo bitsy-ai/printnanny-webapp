@@ -11,7 +11,7 @@
 
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum OctoPrintEventEventTypeEnum {
+pub enum OctoGenericEvent {
     #[serde(rename = "ClientAuthed")]
     ClientAuthed,
     #[serde(rename = "ClientClosed")]
@@ -91,7 +91,7 @@ pub enum OctoPrintEventEventTypeEnum {
 
 }
 
-impl ToString for OctoPrintEventEventTypeEnum {
+impl ToString for OctoGenericEvent {
     fn to_string(&self) -> String {
         match self {
             Self::ClientAuthed => String::from("ClientAuthed"),
@@ -136,8 +136,8 @@ impl ToString for OctoPrintEventEventTypeEnum {
     }
 }
 
-impl Default for OctoPrintEventEventTypeEnum {
-    fn default() -> OctoPrintEventEventTypeEnum {
+impl Default for OctoGenericEvent {
+    fn default() -> OctoGenericEvent {
         Self::ClientAuthed
     }
 }

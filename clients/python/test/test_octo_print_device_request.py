@@ -54,6 +54,7 @@ class TestOctoPrintDeviceRequest(unittest.TestCase):
                 octoprint_version = '0', 
                 plugin_version = '0', 
                 print_nanny_client_version = '0', 
+                print_nanny_beta_client_version = '0', 
                 active_session = printnanny_api_client.models.print_session_request.PrintSessionRequest(
                     created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     octoprint_device = 56, 

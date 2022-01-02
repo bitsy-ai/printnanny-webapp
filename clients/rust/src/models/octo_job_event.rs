@@ -11,7 +11,7 @@
 
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum PrintJobEventType {
+pub enum OctoJobEvent {
     #[serde(rename = "PrintCancelled")]
     PrintCancelled,
     #[serde(rename = "PrintCancelling")]
@@ -29,7 +29,7 @@ pub enum PrintJobEventType {
 
 }
 
-impl ToString for PrintJobEventType {
+impl ToString for OctoJobEvent {
     fn to_string(&self) -> String {
         match self {
             Self::PrintCancelled => String::from("PrintCancelled"),
@@ -43,8 +43,8 @@ impl ToString for PrintJobEventType {
     }
 }
 
-impl Default for PrintJobEventType {
-    fn default() -> PrintJobEventType {
+impl Default for OctoJobEvent {
+    fn default() -> OctoJobEvent {
         Self::PrintCancelled
     }
 }

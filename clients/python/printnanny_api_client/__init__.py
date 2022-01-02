@@ -15,7 +15,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.33.0"
+__version__ = "0.34.1"
 
 # import apis into sdk package
 from printnanny_api_client.api.alerts_api import AlertsApi
@@ -64,7 +64,6 @@ from printnanny_api_client.models.device_request import DeviceRequest
 from printnanny_api_client.models.email_auth_request import EmailAuthRequest
 from printnanny_api_client.models.error_detail import ErrorDetail
 from printnanny_api_client.models.event_source_enum import EventSourceEnum
-from printnanny_api_client.models.event_type0c4_enum import EventType0c4Enum
 from printnanny_api_client.models.experiment import Experiment
 from printnanny_api_client.models.experiment_device_config import ExperimentDeviceConfig
 from printnanny_api_client.models.gcode_file import GcodeFile
@@ -72,12 +71,16 @@ from printnanny_api_client.models.license import License
 from printnanny_api_client.models.license_request import LicenseRequest
 from printnanny_api_client.models.mobile_auth_request import MobileAuthRequest
 from printnanny_api_client.models.model_artifact import ModelArtifact
+from printnanny_api_client.models.octo_generic_event import OctoGenericEvent
+from printnanny_api_client.models.octo_job_event import OctoJobEvent
 from printnanny_api_client.models.octo_print_device import OctoPrintDevice
 from printnanny_api_client.models.octo_print_device_key import OctoPrintDeviceKey
 from printnanny_api_client.models.octo_print_device_request import OctoPrintDeviceRequest
 from printnanny_api_client.models.octo_print_event import OctoPrintEvent
-from printnanny_api_client.models.octo_print_event_event_type_enum import OctoPrintEventEventTypeEnum
 from printnanny_api_client.models.octo_print_event_request import OctoPrintEventRequest
+from printnanny_api_client.models.octo_print_nanny_event import OctoPrintNannyEvent
+from printnanny_api_client.models.octo_printer_event import OctoPrinterEvent
+from printnanny_api_client.models.octo_telemetry_event import OctoTelemetryEvent
 from printnanny_api_client.models.octoprint_environment import OctoprintEnvironment
 from printnanny_api_client.models.octoprint_environment_request import OctoprintEnvironmentRequest
 from printnanny_api_client.models.octoprint_file import OctoprintFile
@@ -141,10 +144,8 @@ from printnanny_api_client.models.patched_system_info_request import PatchedSyst
 from printnanny_api_client.models.patched_user_request import PatchedUserRequest
 from printnanny_api_client.models.print_job_event import PrintJobEvent
 from printnanny_api_client.models.print_job_event_request import PrintJobEventRequest
-from printnanny_api_client.models.print_job_event_type import PrintJobEventType
 from printnanny_api_client.models.print_nanny_api_config import PrintNannyApiConfig
 from printnanny_api_client.models.print_nanny_plugin_event import PrintNannyPluginEvent
-from printnanny_api_client.models.print_nanny_plugin_event_event_type_enum import PrintNannyPluginEventEventTypeEnum
 from printnanny_api_client.models.print_nanny_plugin_event_request import PrintNannyPluginEventRequest
 from printnanny_api_client.models.print_session import PrintSession
 from printnanny_api_client.models.print_session_request import PrintSessionRequest
@@ -154,7 +155,6 @@ from printnanny_api_client.models.printer_event import PrinterEvent
 from printnanny_api_client.models.printer_event_request import PrinterEventRequest
 from printnanny_api_client.models.printer_profile import PrinterProfile
 from printnanny_api_client.models.printer_profile_request import PrinterProfileRequest
-from printnanny_api_client.models.printer_state_enum import PrinterStateEnum
 from printnanny_api_client.models.printnanny_env_enum import PrintnannyEnvEnum
 from printnanny_api_client.models.release_channel_enum import ReleaseChannelEnum
 from printnanny_api_client.models.remote_command_event import RemoteCommandEvent
@@ -172,7 +172,6 @@ from printnanny_api_client.models.task_status_request import TaskStatusRequest
 from printnanny_api_client.models.task_status_type import TaskStatusType
 from printnanny_api_client.models.task_type import TaskType
 from printnanny_api_client.models.telemetry_event import TelemetryEvent
-from printnanny_api_client.models.telemetry_event_event_type_enum import TelemetryEventEventTypeEnum
 from printnanny_api_client.models.telemetry_event_polymorphic import TelemetryEventPolymorphic
 from printnanny_api_client.models.telemetry_event_polymorphic_request import TelemetryEventPolymorphicRequest
 from printnanny_api_client.models.telemetry_event_request import TelemetryEventRequest

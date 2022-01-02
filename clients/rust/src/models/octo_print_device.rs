@@ -61,6 +61,8 @@ pub struct OctoPrintDevice {
     pub plugin_version: String,
     #[serde(rename = "print_nanny_client_version")]
     pub print_nanny_client_version: String,
+    #[serde(rename = "print_nanny_beta_client_version", skip_serializing_if = "Option::is_none")]
+    pub print_nanny_beta_client_version: Option<String>,
     #[serde(rename = "cloudiot_device_configs")]
     pub cloudiot_device_configs: String,
     #[serde(rename = "manage_url")]
@@ -98,6 +100,7 @@ impl OctoPrintDevice {
             octoprint_version,
             plugin_version,
             print_nanny_client_version,
+            print_nanny_beta_client_version: None,
             cloudiot_device_configs,
             manage_url,
             monitoring_active,

@@ -7,13 +7,14 @@ Name | Type | Description | Notes
 **id** | **int** |  | [readonly] 
 **ts** | **float** |  | [optional] 
 **event_source** | [**EventSourceEnum**](EventSourceEnum.md) |  | [optional] 
-**event_type** | [**TelemetryEventEventTypeEnum**](TelemetryEventEventTypeEnum.md) |  | [optional] 
+**event_type** | [**OctoTelemetryEvent**](OctoTelemetryEvent.md) |  | [optional] 
 **octoprint_environment** | [**OctoprintEnvironment**](OctoprintEnvironment.md) |  | 
 **octoprint_printer_data** | [**OctoprintPrinterData**](OctoprintPrinterData.md) |  | 
 **event_data** | **dict(str, object)** |  | [optional] 
 **temperature** | **dict(str, object)** |  | [optional] 
 **print_nanny_plugin_version** | **str** |  | 
 **print_nanny_client_version** | **str** |  | 
+**print_nanny_beta_client_version** | **str** |  | [optional] 
 **octoprint_version** | **str** |  | 
 **polymorphic_ctype** | **int** |  | [readonly] 
 **octoprint_device** | **int** |  | 

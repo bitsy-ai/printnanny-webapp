@@ -22,7 +22,7 @@ pub enum TelemetryEventPolymorphic {
         #[serde(rename = "event_source", skip_serializing_if = "Option::is_none")]
         event_source: Option<Box<crate::models::EventSourceEnum>>,
         #[serde(rename = "event_type", skip_serializing_if = "Option::is_none")]
-        event_type: Option<Box<crate::models::OctoPrintEventEventTypeEnum>>,
+        event_type: Option<Box<crate::models::OctoGenericEvent>>,
         #[serde(rename = "octoprint_environment")]
         octoprint_environment: Box<crate::models::OctoprintEnvironment>,
         #[serde(rename = "octoprint_printer_data")]
@@ -35,6 +35,8 @@ pub enum TelemetryEventPolymorphic {
         print_nanny_plugin_version: String,
         #[serde(rename = "print_nanny_client_version")]
         print_nanny_client_version: String,
+        #[serde(rename = "print_nanny_beta_client_version", skip_serializing_if = "Option::is_none")]
+        print_nanny_beta_client_version: Option<String>,
         #[serde(rename = "octoprint_version")]
         octoprint_version: String,
         #[serde(rename = "polymorphic_ctype")]
@@ -55,7 +57,7 @@ pub enum TelemetryEventPolymorphic {
         #[serde(rename = "event_source", skip_serializing_if = "Option::is_none")]
         event_source: Option<Box<crate::models::EventSourceEnum>>,
         #[serde(rename = "event_type", skip_serializing_if = "Option::is_none")]
-        event_type: Option<Box<crate::models::PrintJobEventType>>,
+        event_type: Option<Box<crate::models::OctoJobEvent>>,
         #[serde(rename = "octoprint_environment")]
         octoprint_environment: Box<crate::models::OctoprintEnvironment>,
         #[serde(rename = "octoprint_printer_data")]
@@ -68,6 +70,8 @@ pub enum TelemetryEventPolymorphic {
         print_nanny_plugin_version: String,
         #[serde(rename = "print_nanny_client_version")]
         print_nanny_client_version: String,
+        #[serde(rename = "print_nanny_beta_client_version", skip_serializing_if = "Option::is_none")]
+        print_nanny_beta_client_version: Option<String>,
         #[serde(rename = "octoprint_version")]
         octoprint_version: String,
         #[serde(rename = "polymorphic_ctype")]
@@ -88,7 +92,7 @@ pub enum TelemetryEventPolymorphic {
         #[serde(rename = "event_source", skip_serializing_if = "Option::is_none")]
         event_source: Option<Box<crate::models::EventSourceEnum>>,
         #[serde(rename = "event_type", skip_serializing_if = "Option::is_none")]
-        event_type: Option<Box<crate::models::PrintNannyPluginEventEventTypeEnum>>,
+        event_type: Option<Box<crate::models::OctoPrintNannyEvent>>,
         #[serde(rename = "octoprint_environment")]
         octoprint_environment: Box<crate::models::OctoprintEnvironment>,
         #[serde(rename = "octoprint_printer_data")]
@@ -101,6 +105,8 @@ pub enum TelemetryEventPolymorphic {
         print_nanny_plugin_version: String,
         #[serde(rename = "print_nanny_client_version")]
         print_nanny_client_version: String,
+        #[serde(rename = "print_nanny_beta_client_version", skip_serializing_if = "Option::is_none")]
+        print_nanny_beta_client_version: Option<String>,
         #[serde(rename = "octoprint_version")]
         octoprint_version: String,
         #[serde(rename = "polymorphic_ctype")]
@@ -121,7 +127,7 @@ pub enum TelemetryEventPolymorphic {
         #[serde(rename = "event_source", skip_serializing_if = "Option::is_none")]
         event_source: Option<Box<crate::models::EventSourceEnum>>,
         #[serde(rename = "event_type", skip_serializing_if = "Option::is_none")]
-        event_type: Option<Box<crate::models::EventType0c4Enum>>,
+        event_type: Option<Box<crate::models::OctoPrinterEvent>>,
         #[serde(rename = "octoprint_environment")]
         octoprint_environment: Box<crate::models::OctoprintEnvironment>,
         #[serde(rename = "octoprint_printer_data")]
@@ -134,10 +140,12 @@ pub enum TelemetryEventPolymorphic {
         print_nanny_plugin_version: String,
         #[serde(rename = "print_nanny_client_version")]
         print_nanny_client_version: String,
+        #[serde(rename = "print_nanny_beta_client_version", skip_serializing_if = "Option::is_none")]
+        print_nanny_beta_client_version: Option<String>,
         #[serde(rename = "octoprint_version")]
         octoprint_version: String,
         #[serde(rename = "printer_state", skip_serializing_if = "Option::is_none")]
-        printer_state: Option<crate::models::PrinterStateEnum>,
+        printer_state: Option<crate::models::OctoPrinterEvent>,
         #[serde(rename = "polymorphic_ctype")]
         polymorphic_ctype: i32,
         #[serde(rename = "octoprint_device")]
@@ -169,6 +177,8 @@ pub enum TelemetryEventPolymorphic {
         print_nanny_plugin_version: String,
         #[serde(rename = "print_nanny_client_version")]
         print_nanny_client_version: String,
+        #[serde(rename = "print_nanny_beta_client_version", skip_serializing_if = "Option::is_none")]
+        print_nanny_beta_client_version: Option<String>,
         #[serde(rename = "octoprint_version")]
         octoprint_version: String,
         #[serde(rename = "polymorphic_ctype")]
@@ -189,7 +199,7 @@ pub enum TelemetryEventPolymorphic {
         #[serde(rename = "event_source", skip_serializing_if = "Option::is_none")]
         event_source: Option<Box<crate::models::EventSourceEnum>>,
         #[serde(rename = "event_type", skip_serializing_if = "Option::is_none")]
-        event_type: Option<Box<crate::models::TelemetryEventEventTypeEnum>>,
+        event_type: Option<Box<crate::models::OctoTelemetryEvent>>,
         #[serde(rename = "octoprint_environment")]
         octoprint_environment: Box<crate::models::OctoprintEnvironment>,
         #[serde(rename = "octoprint_printer_data")]
@@ -202,6 +212,8 @@ pub enum TelemetryEventPolymorphic {
         print_nanny_plugin_version: String,
         #[serde(rename = "print_nanny_client_version")]
         print_nanny_client_version: String,
+        #[serde(rename = "print_nanny_beta_client_version", skip_serializing_if = "Option::is_none")]
+        print_nanny_beta_client_version: Option<String>,
         #[serde(rename = "octoprint_version")]
         octoprint_version: String,
         #[serde(rename = "polymorphic_ctype")]
