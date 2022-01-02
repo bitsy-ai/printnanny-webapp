@@ -39,4 +39,4 @@ then
 fi
 set -u
 
-daphne -b 0.0.0.0 config.asgi:application
+uvicorn config.asgi:application --host 0.0.0.0 print_nanny_webapp --timeout-keep-alive $TIMEOUT_KEEP_ALIVE --log-level $LOGLEVEL

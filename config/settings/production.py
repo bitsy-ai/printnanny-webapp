@@ -133,13 +133,13 @@ LOGGING = {
     "root": {"level": "INFO", "handlers": ["console"]},
     "loggers": {
         "django.db.backends": {
-            "level": "WARNING",
+            "level": "INFO",
             "handlers": ["console"],
             "propagate": False,
         },
         # Errors logged by the SDK itself
         "django.security.DisallowedHost": {
-            "level": "ERROR",
+            "level": "INFO",
             "handlers": ["console"],
             "propagate": False,
         },
