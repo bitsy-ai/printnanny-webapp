@@ -103,6 +103,7 @@ class TestPrintJobEvent(unittest.TestCase):
                     }, 
                 print_nanny_plugin_version = '', 
                 print_nanny_client_version = '', 
+                print_nanny_beta_client_version = '', 
                 octoprint_version = '', 
                 polymorphic_ctype = 56, 
                 octoprint_device = 56, 

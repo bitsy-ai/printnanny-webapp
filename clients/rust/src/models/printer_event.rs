@@ -33,6 +33,8 @@ pub struct PrinterEvent {
     pub print_nanny_plugin_version: String,
     #[serde(rename = "print_nanny_client_version")]
     pub print_nanny_client_version: String,
+    #[serde(rename = "print_nanny_beta_client_version", skip_serializing_if = "Option::is_none")]
+    pub print_nanny_beta_client_version: Option<String>,
     #[serde(rename = "octoprint_version")]
     pub octoprint_version: String,
     #[serde(rename = "printer_state", skip_serializing_if = "Option::is_none")]
@@ -60,6 +62,7 @@ impl PrinterEvent {
             temperature: None,
             print_nanny_plugin_version,
             print_nanny_client_version,
+            print_nanny_beta_client_version: None,
             octoprint_version,
             printer_state: None,
             polymorphic_ctype,

@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **temperature** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **print_nanny_plugin_version** | **String** |  | 
 **print_nanny_client_version** | **String** |  | 
+**print_nanny_beta_client_version** | Option<**String**> |  | [optional]
 **octoprint_version** | **String** |  | 
 **polymorphic_ctype** | **i32** |  | [readonly]
 **octoprint_device** | **i32** |  | 

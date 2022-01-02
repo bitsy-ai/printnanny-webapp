@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **octoprint_version** | **str** |  | 
 **plugin_version** | **str** |  | 
 **print_nanny_client_version** | **str** |  | 
+**print_nanny_beta_client_version** | **str** |  | [optional] 
 **cloudiot_device_configs** | **str** |  | [readonly] 
 **manage_url** | **str** |  | [readonly] 
 **monitoring_active** | **bool** |  | [readonly] 

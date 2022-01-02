@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **temperature** | **dict(str, object)** |  | [optional] 
 **print_nanny_plugin_version** | **str** |  | 
 **print_nanny_client_version** | **str** |  | 
+**print_nanny_beta_client_version** | **str** |  | [optional] 
 **octoprint_version** | **str** |  | 
 **polymorphic_ctype** | **int** |  | [readonly] 
 **octoprint_device** | **int** |  | 

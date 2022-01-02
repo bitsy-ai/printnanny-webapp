@@ -35,6 +35,8 @@ pub enum TelemetryEventPolymorphic {
         print_nanny_plugin_version: String,
         #[serde(rename = "print_nanny_client_version")]
         print_nanny_client_version: String,
+        #[serde(rename = "print_nanny_beta_client_version", skip_serializing_if = "Option::is_none")]
+        print_nanny_beta_client_version: Option<String>,
         #[serde(rename = "octoprint_version")]
         octoprint_version: String,
         #[serde(rename = "polymorphic_ctype")]
@@ -68,6 +70,8 @@ pub enum TelemetryEventPolymorphic {
         print_nanny_plugin_version: String,
         #[serde(rename = "print_nanny_client_version")]
         print_nanny_client_version: String,
+        #[serde(rename = "print_nanny_beta_client_version", skip_serializing_if = "Option::is_none")]
+        print_nanny_beta_client_version: Option<String>,
         #[serde(rename = "octoprint_version")]
         octoprint_version: String,
         #[serde(rename = "polymorphic_ctype")]
@@ -101,6 +105,8 @@ pub enum TelemetryEventPolymorphic {
         print_nanny_plugin_version: String,
         #[serde(rename = "print_nanny_client_version")]
         print_nanny_client_version: String,
+        #[serde(rename = "print_nanny_beta_client_version", skip_serializing_if = "Option::is_none")]
+        print_nanny_beta_client_version: Option<String>,
         #[serde(rename = "octoprint_version")]
         octoprint_version: String,
         #[serde(rename = "polymorphic_ctype")]
@@ -134,6 +140,8 @@ pub enum TelemetryEventPolymorphic {
         print_nanny_plugin_version: String,
         #[serde(rename = "print_nanny_client_version")]
         print_nanny_client_version: String,
+        #[serde(rename = "print_nanny_beta_client_version", skip_serializing_if = "Option::is_none")]
+        print_nanny_beta_client_version: Option<String>,
         #[serde(rename = "octoprint_version")]
         octoprint_version: String,
         #[serde(rename = "printer_state", skip_serializing_if = "Option::is_none")]
@@ -169,6 +177,8 @@ pub enum TelemetryEventPolymorphic {
         print_nanny_plugin_version: String,
         #[serde(rename = "print_nanny_client_version")]
         print_nanny_client_version: String,
+        #[serde(rename = "print_nanny_beta_client_version", skip_serializing_if = "Option::is_none")]
+        print_nanny_beta_client_version: Option<String>,
         #[serde(rename = "octoprint_version")]
         octoprint_version: String,
         #[serde(rename = "polymorphic_ctype")]
@@ -202,6 +212,8 @@ pub enum TelemetryEventPolymorphic {
         print_nanny_plugin_version: String,
         #[serde(rename = "print_nanny_client_version")]
         print_nanny_client_version: String,
+        #[serde(rename = "print_nanny_beta_client_version", skip_serializing_if = "Option::is_none")]
+        print_nanny_beta_client_version: Option<String>,
         #[serde(rename = "octoprint_version")]
         octoprint_version: String,
         #[serde(rename = "polymorphic_ctype")]

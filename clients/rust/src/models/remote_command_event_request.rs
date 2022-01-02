@@ -31,6 +31,8 @@ pub struct RemoteCommandEventRequest {
     pub print_nanny_plugin_version: String,
     #[serde(rename = "print_nanny_client_version")]
     pub print_nanny_client_version: String,
+    #[serde(rename = "print_nanny_beta_client_version", skip_serializing_if = "Option::is_none")]
+    pub print_nanny_beta_client_version: Option<String>,
     #[serde(rename = "octoprint_version")]
     pub octoprint_version: String,
     #[serde(rename = "octoprint_device")]
@@ -51,6 +53,7 @@ impl RemoteCommandEventRequest {
             temperature: None,
             print_nanny_plugin_version,
             print_nanny_client_version,
+            print_nanny_beta_client_version: None,
             octoprint_version,
             octoprint_device,
             print_session: None,
