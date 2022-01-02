@@ -4,7 +4,6 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-
 python /app/manage.py collectstatic --noinput
 
 compress_enabled() {
@@ -39,4 +38,4 @@ then
 fi
 set -u
 
-daphne -b 0.0.0.0 config.asgi:application
+uvicorn config.asgi:application --host 0.0.0.0 --log-level $LOGLEVEL
