@@ -36,6 +36,7 @@ env:
   GOOGLE_APPLICATION_CREDENTIALS: /etc/service-account/print-nanny-f296cdb68802.json
   ARA_POSTGRES_USER: ${{ secrets.PROD_ARA_POSTGRES_USER }}
   ARA_POSTGRES_PASSWORD: ${{ secrets.PROD_ARA_POSTGRES_PASSWORD }}
+  ARA_POSTGRES_HOST: "127.0.0.1"
 jobs:
   lint:
     runs-on: ubuntu-latest
