@@ -82,6 +82,8 @@ metadata:
     kubernetes.io/ingress.global-static-ip-name: metabase
     networking.gke.io/managed-certificates: metabase
 spec:
-  backend:
-    serviceName: metabase
-    servicePort: 80
+  defaultBackend:
+    service:
+      name: metabase
+      port:
+        number: 80

@@ -131,7 +131,7 @@ metadata:
     kubernetes.io/ingress.global-static-ip-name: "django-static-ip"
     networking.gke.io/managed-certificates: print-nanny-dot-com
 spec:
-  backend:
+  defaultBackend:
     service:
       name: django
       port: 80

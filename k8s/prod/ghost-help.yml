@@ -162,9 +162,11 @@ metadata:
     kubernetes.io/ingress.global-static-ip-name: ghost-help-static-up
     networking.gke.io/managed-certificates: print-nanny-help
 spec:
-  backend:
-    serviceName: print-nanny-help
-    servicePort: 80
+  defaultBackend:
+    service:
+      name: print-nanny-help
+      port: 
+        number: 80
 ---
 apiVersion: v1
 kind: ConfigMap

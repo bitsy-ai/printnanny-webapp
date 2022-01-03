@@ -17,10 +17,11 @@ metadata:
     kubernetes.io/ingress.global-static-ip-name: "print-nanny-static-ip"
     networking.gke.io/managed-certificates: "sandbox-print-nanny-com-tls"
 spec:
-  backend:
+  defaultBackend:
     service:
       name: webapp
-      port: 80
+      port:
+        number: 80
 
 ---
 apiVersion: v1
