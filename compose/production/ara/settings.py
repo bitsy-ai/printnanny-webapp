@@ -22,6 +22,6 @@ MIDDLEWARE = [
 ]
 MIDDLEWARE += [ 'allow_cidr.middleware.AllowCIDRMiddleware']
 ALLOWED_CIDR_NETS = [
-    '10.12.0.0/14',
-    '10.16.0.0/20'
+    '10.12.1.0/14',
+    '10.16.1.0/20'
 ]
