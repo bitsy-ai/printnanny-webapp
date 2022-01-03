@@ -53,10 +53,22 @@ spec:
         ports:
           - containerPort: 5432
 ---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: ara-backendconfig
+spec:
+  customRequestHeaders:
+    headers:
+      - "Host:ara.print-nanny.com"
+      - "X-Forwarded-Host:ara.print-nanny.com"
+---
 apiVersion: v1
 kind: Service
 metadata:
   name: ara
+  annotations:
+    cloud.google.com/backend-config: '{"default": "ara-backendconfig"}'
 spec:
   selector:
     app: ara
