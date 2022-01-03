@@ -21,7 +21,7 @@ spec:
         livenessProbe:
           httpGet:
             path: /healthcheck/ # root path serves 302 (login) which is not followed by health check
-            port: 5000
+            port: 8000
           initialDelaySeconds: 30
           periodSeconds: 15
           timeoutSeconds: 5
@@ -30,7 +30,7 @@ spec:
         readinessProbe:
           httpGet:
             path: /healthcheck/ # root path serves 302 (login) which is not followed by health check
-            port: 5000
+            port: 8000
           initialDelaySeconds: 30
           periodSeconds: 15
           timeoutSeconds: 5
@@ -58,10 +58,11 @@ kind: BackendConfig
 metadata:
   name: ara-backendconfig
 spec:
-  customRequestHeaders:
-    headers:
-      - "Host:ara.print-nanny.com"
-      - "X-Forwarded-Host:ara.print-nanny.com"
+  healthCheck:
+    checkIntervalSec: 15
+    port: 8000
+    type: HTTP
+    requestPath: /healthcheck/
 ---
 apiVersion: v1
 kind: Service
