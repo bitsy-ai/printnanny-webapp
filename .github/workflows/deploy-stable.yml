@@ -34,6 +34,8 @@ env:
   GHOST_ADMIN_API_KEY: ${{ secrets.PROD_GHOST_ADMIN_API_KEY }}
   GHOST_CONTENT_API_KEY: ${{ secrets.PROD_GHOST_CONTENT_API_KEY }}
   GOOGLE_APPLICATION_CREDENTIALS: /etc/service-account/print-nanny-f296cdb68802.json
+  ARA_POSTGRES_USER: ${{ secrets.PROD_ARA_POSTGRES_USER }}
+  ARA_POSTGRES_PASSWORD: ${{ secrets.PROD_ARA_POSTGRES_PASSWORD }}
 jobs:
   lint:
     runs-on: ubuntu-latest
