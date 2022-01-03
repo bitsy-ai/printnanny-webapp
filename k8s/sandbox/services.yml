@@ -18,8 +18,10 @@ metadata:
     networking.gke.io/managed-certificates: "sandbox-print-nanny-com-tls"
 spec:
   backend:
-    serviceName: webapp
-    servicePort: 80
+    service:
+      name: webapp
+      port: 80
+
 ---
 apiVersion: v1
 kind: Service

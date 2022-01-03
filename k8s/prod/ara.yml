@@ -96,5 +96,7 @@ metadata:
     networking.gke.io/managed-certificates: "ara-print-nanny-com-tls"
 spec:
   backend:
-    serviceName: ara
-    servicePort: 80
+    service:
+      name: ara
+      port:
+        number: 80

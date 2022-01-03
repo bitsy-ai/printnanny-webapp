@@ -132,5 +132,6 @@ metadata:
     networking.gke.io/managed-certificates: print-nanny-dot-com
 spec:
   backend:
-    serviceName: django
-    servicePort: 80
+    service:
+      name: django
+      port: 80
