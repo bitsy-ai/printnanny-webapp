@@ -134,4 +134,5 @@ spec:
   defaultBackend:
     service:
       name: django
-      port: 80
+      port: 
+        number: 80

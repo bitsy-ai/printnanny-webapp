@@ -85,4 +85,6 @@ spec:
   defaultBackend:
     service:
       name: metabase
-      port: 80
+      port: 
+        number: 80
+
