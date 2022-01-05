@@ -70,7 +70,7 @@ metadata:
     kubernetes.io/ingress.global-static-ip-name: "ara-static-ip"
     networking.gke.io/managed-certificates: "ara-sandbox-print-nanny-com-tls"
 spec:
-  backend:
+  defaultBackend:
     service:
       name: ara
       port:
