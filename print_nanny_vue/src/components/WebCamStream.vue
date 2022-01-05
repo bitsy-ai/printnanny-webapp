@@ -66,7 +66,7 @@ export default {
 
     async connectStream () {
       this.loading = true
-      const url = `ws://${this.device.hostname}:8188/janus`
+      const url = `wss://${this.device.hostname}:8189/janus`
       const license = (await deviceApi.getActiveLicense(this.device)).data
       console.debug('Retreive license', license)
       const janus = new Janus.Client(url, {
