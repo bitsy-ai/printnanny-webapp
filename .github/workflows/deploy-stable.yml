@@ -37,6 +37,7 @@ env:
   ARA_POSTGRES_USER: ${{ secrets.PROD_ARA_POSTGRES_USER }}
   ARA_POSTGRES_PASSWORD: ${{ secrets.PROD_ARA_POSTGRES_PASSWORD }}
   ARA_POSTGRES_HOST: "127.0.0.1"
+  ARA_SECRET_KEY: ${{ secrets.PROD_ARA_SECRET_KEY }}
 jobs:
   lint:
     runs-on: ubuntu-latest
