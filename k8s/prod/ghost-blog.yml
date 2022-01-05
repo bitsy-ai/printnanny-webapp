@@ -165,7 +165,8 @@ spec:
   defaultBackend:
     service:
       name: print-nanny-blog
-      port: 80
+      port: 
+        number: 80
 
 ---
 apiVersion: v1
