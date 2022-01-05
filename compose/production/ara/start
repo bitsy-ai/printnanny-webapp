@@ -6,7 +6,7 @@ set -o nounset
 
 /usr/local/bin/ara-manage migrate
 
-if [ "$DJANGO_SUPERUSER_EMAIL" && "$DJANGO_SUPERUSER_PASSWORD" ]
+if [[ "$DJANGO_SUPERUSER_EMAIL" && "$DJANGO_SUPERUSER_PASSWORD" ]]
 then
     /usr/local/bin/ara-manage createsuperuser \
         --noinput \
