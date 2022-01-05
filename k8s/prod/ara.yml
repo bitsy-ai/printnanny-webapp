@@ -17,7 +17,7 @@ spec:
       containers:
       - name: ara
         imagePullPolicy: Always
-        image: bitsyai/ara:fedora33-source-latest
+        image: us.gcr.io/print-nanny/ara:fedora33-source-latest
         livenessProbe:
           httpGet:
             path: /healthcheck/ # root path serves 302 (login) which is not followed by health check

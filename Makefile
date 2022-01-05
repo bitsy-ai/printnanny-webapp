@@ -368,14 +368,14 @@ stripe-local-webhooks:
 
 ara-image:
 	docker build \
-		--tag bitsyai/ara:${GIT_SHA} \
+		--tag us.gcr.io/print-nanny/ara:${GIT_SHA} \
 		-f compose/production/ara/Dockerfile compose/production/ara
-	docker tag bitsyai/ara:${GIT_SHA} bitsyai/ara:fedora33-source-latest
-	docker push bitsyai/ara:fedora33-source-latest
-	docker push bitsyai/ara:${GIT_SHA}
+	docker tag us.gcr.io/print-nanny/ara:${GIT_SHA} us.gcr.io/print-nanny/ara:fedora33-source-latest
+	docker push us.gcr.io/print-nanny/ara:fedora33-source-latest
+	docker push us.gcr.io/print-nanny/ara:${GIT_SHA}
 
 ara-rollout: ara-image
-	kubectl set image deployment/ara ara=bitsyai/ara:${GIT_SHA} --record
+	kubectl set image deployment/ara ara=us.gcr.io/print-nanny/ara:${GIT_SHA} --record
 
 gcs-fuse-image:
 	docker build \
