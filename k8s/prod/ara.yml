@@ -99,5 +99,4 @@ spec:
   defaultBackend:
     service:
       name: ara
-      port:
-        number: 80
+      port: 80
