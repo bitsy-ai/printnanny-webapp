@@ -20,7 +20,8 @@ spec:
   defaultBackend:
     service:
       name: webapp
-      port: 80
+      port:
+        number: 80
 
 ---
 apiVersion: v1
