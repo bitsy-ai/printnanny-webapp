@@ -382,3 +382,8 @@ gcs-fuse-image:
 		--tag bitsyai/nginx-gcsfuse \
 		-f compose/production/gcsfuse/Dockerfile compose/production/gcsfuse
 	docker push bitsyai/nginx-gcsfuse
+
+upgrade-ghost:
+	kubectl set image statefulset/bitsy-ai-blog ghost=sha256:eaf658adc70df6381f16e5693d75ce2829a657af462a1d89cf0787c8ca6489fa --record
+	kubectl set image statefulset/print-nanny-blog ghost=sha256:eaf658adc70df6381f16e5693d75ce2829a657af462a1d89cf0787c8ca6489fa --record
+	kubectl set image statefulset/print-nanny-help ghost=sha256:eaf658adc70df6381f16e5693d75ce2829a657af462a1d89cf0787c8ca6489fa --record
