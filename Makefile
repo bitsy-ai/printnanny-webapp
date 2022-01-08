@@ -27,6 +27,7 @@ GIT_SHA ?= $(shell git rev-parse HEAD)
 GIT_BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD)
 
 DOCKER_COMPOSE_PROJECT_NAME="print_nanny_webapp"
+GHOST_VERSION ?=4.32-alpine
 
 clean-local-requirements:
 	rm -f requirements/local.txt
@@ -383,7 +384,11 @@ gcs-fuse-image:
 		-f compose/production/gcsfuse/Dockerfile compose/production/gcsfuse
 	docker push bitsyai/nginx-gcsfuse
 
+
 upgrade-ghost:
-	kubectl set image statefulset/bitsy-ai-blog ghost=sha256:eaf658adc70df6381f16e5693d75ce2829a657af462a1d89cf0787c8ca6489fa --record
-	kubectl set image statefulset/print-nanny-blog ghost=sha256:eaf658adc70df6381f16e5693d75ce2829a657af462a1d89cf0787c8ca6489fa --record
-	kubectl set image statefulset/print-nanny-help ghost=sha256:eaf658adc70df6381f16e5693d75ce2829a657af462a1d89cf0787c8ca6489fa --record
+	docker pull ghost:$(GHOST_VERSION)
+	docker tag ghost:$(GHOST_VERSION) us.gcr.io/print-nanny/ghost:$(GHOST_VERSION)
+	docker push us.gcr.io/print-nanny/ghost:$(GHOST_VERSION)
+	kubectl set image statefulset/bitsy-ai-blog ghost=us.gcr.io/print-nanny/ghost:$(GHOST_VERSION) --record
+	kubectl set image statefulset/print-nanny-blog ghost=us.gcr.io/print-nanny/ghost:$(GHOST_VERSION) --record
+	kubectl set image statefulset/print-nanny-help ghost=ghost=us.gcr.io/print-nanny/ghost:$(GHOST_VERSION) --record
