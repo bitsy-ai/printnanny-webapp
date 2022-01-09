@@ -1,25 +1,47 @@
 from django.contrib.auth import get_user_model
-from rest_framework import status
-from rest_framework.decorators import action, api_view, authentication_classes
+from rest_framework.decorators import action
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, UpdateModelMixin
 from rest_framework.response import Response
-from rest_framework.viewsets import GenericViewSet, ViewSet
+from rest_framework.viewsets import GenericViewSet
 from drf_spectacular.utils import extend_schema, extend_schema_view
 
-# from drf_yasg.utils import swagger_auto_schema
-# from drf_yasg import openapi
-
+from print_nanny_webapp.utils.api.views import (
+    generic_update_errors,
+    generic_get_errors,
+)
 from .serializers import UserSerializer
 
 
 User = get_user_model()
 
 
-@extend_schema(
-    tags=["users"],
-    responses={200: UserSerializer, 201: UserSerializer, 202: UserSerializer},
+@extend_schema_view(
+    update=extend_schema(
+        request=UserSerializer,
+        responses=generic_update_errors.merge(
+            {
+                201: UserSerializer,
+            }
+        ),
+    ),
+    retreive=extend_schema(
+        request=UserSerializer,
+        responses=generic_get_errors.merge(
+            {
+                200: UserSerializer,
+            }
+        ),
+    ),
+    me=extend_schema(
+        request=UserSerializer,
+        responses=generic_get_errors.merge(
+            {
+                200: UserSerializer,
+            }
+        ),
+    ),
 )
-class UserViewSet(RetrieveModelMixin, ListModelMixin, UpdateModelMixin, GenericViewSet):
+class UserViewSet(RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
 
     serializer_class = UserSerializer
     queryset = User.objects.all()
