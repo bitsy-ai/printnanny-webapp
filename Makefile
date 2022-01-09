@@ -27,7 +27,7 @@ GIT_SHA ?= $(shell git rev-parse HEAD)
 GIT_BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD)
 
 DOCKER_COMPOSE_PROJECT_NAME="print_nanny_webapp"
-GHOST_VERSION ?=4.32-alpine
+GHOST_VERSION ?=4.32
 
 clean-local-requirements:
 	rm -f requirements/local.txt
