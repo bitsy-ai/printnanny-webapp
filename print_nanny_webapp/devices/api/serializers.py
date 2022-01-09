@@ -126,7 +126,6 @@ class DeviceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Device
         depth = 2
-        read_only = ("user", "last_task")
         exclude = ("deleted",)
 
 

@@ -204,19 +204,19 @@ list_devices_schema = extend_schema(
         200: DeviceSerializer(many=True),
     },
 )
-create_devices_schema = extend_schema(
-    request=DeviceSerializer,
-    responses={
-        # todo create a generic model response serializer to capture expected errors for create, update, get, etc
-        400: ErrorDetailSerializer,
-        401: ErrorDetailSerializer,
-        403: ErrorDetailSerializer,
-        404: ErrorDetailSerializer,
-        409: ErrorDetailSerializer,
-        500: ErrorDetailSerializer,
-        201: DeviceSerializer,
-    },
-)
+# create_devices_schema = extend_schema(
+#     request=DeviceSerializer,
+#     responses={
+#         # todo create a generic model response serializer to capture expected errors for create, update, get, etc
+#         400: ErrorDetailSerializer,
+#         401: ErrorDetailSerializer,
+#         403: ErrorDetailSerializer,
+#         404: ErrorDetailSerializer,
+#         409: ErrorDetailSerializer,
+#         500: ErrorDetailSerializer,
+#         201: DeviceSerializer,
+#     },
+# )
 modify_devices_schema = extend_schema(
     request=DeviceSerializer,
     responses={
@@ -231,11 +231,105 @@ modify_devices_schema = extend_schema(
     },
 )
 
+# override device_create_operation to set required = true on requestBody
+# for some reason (yet unknown) DRF AutoSchema is omitting required on the POST method for this endpoint
+# copied from /api/schema/
+device_create_operation = {
+    "operationId": "devices_create",
+    "description": "A device (Raspberry Pi) running Print Nanny OS",
+    "tags": ["devices"],
+    "requestBody": {
+        "content": {
+            "application/json": {
+                "schema": {"$ref": "#/components/schemas/DeviceRequest"}
+            },
+            "application/x-www-form-urlencoded": {
+                "schema": {"$ref": "#/components/schemas/DeviceRequest"}
+            },
+            "multipart/form-data": {
+                "schema": {"$ref": "#/components/schemas/DeviceRequest"}
+            },
+        },
+        # this is the only line added to AutoSchema generated @ /api/schema/
+        "required": True,
+    },
+    "security": [{"cookieAuth": []}, {"tokenAuth": []}],
+    "responses": {
+        "400": {
+            "content": {
+                "application/json": {
+                    "schema": {"$ref": "#/components/schemas/ErrorDetail"}
+                }
+            },
+            "description": "",
+        },
+        "401": {
+            "content": {
+                "application/json": {
+                    "schema": {"$ref": "#/components/schemas/ErrorDetail"}
+                }
+            },
+            "description": "",
+        },
+        "403": {
+            "content": {
+                "application/json": {
+                    "schema": {"$ref": "#/components/schemas/ErrorDetail"}
+                }
+            },
+            "description": "",
+        },
+        "404": {
+            "content": {
+                "application/json": {
+                    "schema": {"$ref": "#/components/schemas/ErrorDetail"}
+                }
+            },
+            "description": "",
+        },
+        "409": {
+            "content": {
+                "application/json": {
+                    "schema": {"$ref": "#/components/schemas/ErrorDetail"}
+                }
+            },
+            "description": "",
+        },
+        "500": {
+            "content": {
+                "application/json": {
+                    "schema": {"$ref": "#/components/schemas/ErrorDetail"}
+                }
+            },
+            "description": "",
+        },
+        "201": {
+            "content": {
+                "application/json": {"schema": {"$ref": "#/components/schemas/Device"}}
+            },
+            "description": "",
+        },
+    },
+}
+
 
 @extend_schema_view(
     list=list_devices_schema,
-    create=create_devices_schema,
     update=modify_devices_schema,
+    create=extend_schema(
+        operation=device_create_operation,
+    ),
+    active_license=extend_schema(
+        responses={
+            "default": ErrorDetailSerializer,
+            200: LicenseSerializer,
+        },
+    ),
+    generate_license=extend_schema(
+        request=None,
+        responses={(200): OpenApiResponse(response=OpenApiTypes.BINARY)},
+        operation_id="devices_generate_license",
+    ),
 )
 class DeviceViewSet(
     GenericViewSet,
@@ -264,22 +358,11 @@ class DeviceViewSet(
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-    @extend_schema(
-        request=None,
-        responses={(200): OpenApiResponse(response=OpenApiTypes.BINARY)},
-        operation_id="devices_generate_license",
-    )
     @action(detail=True, methods=["POST"], url_path="generate-license")
     def generate_license(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         device = Device.objects.get(pk=kwargs["id"])
         return generate_zipped_license_response(device, request)
 
-    @extend_schema(
-        responses={
-            "default": ErrorDetailSerializer,
-            200: LicenseSerializer,
-        },
-    )
     @action(detail=True, methods=["GET"], url_path="active-license")
     def active_license(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         device = Device.objects.get(pk=kwargs["id"])
