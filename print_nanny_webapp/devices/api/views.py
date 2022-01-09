@@ -9,7 +9,7 @@ from drf_spectacular.utils import (
     OpenApiParameter,
     OpenApiResponse,
 )
-from django.db.utils import IntegrityError
+from django.db.utils import Error, IntegrityError
 from django.http import Http404
 
 from rest_framework import status
@@ -198,8 +198,23 @@ class LicenseViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
 ##
 list_devices_schema = extend_schema(
     responses={
-        "default": ErrorDetailSerializer,
+        401: ErrorDetailSerializer,
+        403: ErrorDetailSerializer,
+        500: ErrorDetailSerializer,
         200: DeviceSerializer(many=True),
+    },
+)
+create_devices_schema = extend_schema(
+    request=DeviceSerializer,
+    responses={
+        # todo create a generic model response serializer to capture expected errors for create, update, get, etc
+        400: ErrorDetailSerializer,
+        401: ErrorDetailSerializer,
+        403: ErrorDetailSerializer,
+        404: ErrorDetailSerializer,
+        409: ErrorDetailSerializer,
+        500: ErrorDetailSerializer,
+        201: DeviceSerializer,
     },
 )
 modify_devices_schema = extend_schema(
@@ -210,10 +225,8 @@ modify_devices_schema = extend_schema(
         401: ErrorDetailSerializer,
         403: ErrorDetailSerializer,
         404: ErrorDetailSerializer,
-        406: ErrorDetailSerializer,
         409: ErrorDetailSerializer,
         500: ErrorDetailSerializer,
-        201: DeviceSerializer,
         202: DeviceSerializer,
     },
 )
@@ -221,7 +234,7 @@ modify_devices_schema = extend_schema(
 
 @extend_schema_view(
     list=list_devices_schema,
-    create=modify_devices_schema,
+    create=create_devices_schema,
     update=modify_devices_schema,
 )
 class DeviceViewSet(
@@ -232,8 +245,7 @@ class DeviceViewSet(
     UpdateModelMixin,
 ):
     """
-    All-in-one Print Nanny installation
-    via print-nanny-main-<platform>-<cpu>.img
+    A device (Raspberry Pi) running Print Nanny OS
     """
 
     serializer_class = DeviceSerializer
