@@ -44,6 +44,7 @@ from printnanny_api_client.models.license import License
 from printnanny_api_client.models.license_request import LicenseRequest
 from printnanny_api_client.models.mobile_auth_request import MobileAuthRequest
 from printnanny_api_client.models.model_artifact import ModelArtifact
+from printnanny_api_client.models.null_enum import NullEnum
 from printnanny_api_client.models.octo_generic_event import OctoGenericEvent
 from printnanny_api_client.models.octo_job_event import OctoJobEvent
 from printnanny_api_client.models.octo_print_device import OctoPrintDevice

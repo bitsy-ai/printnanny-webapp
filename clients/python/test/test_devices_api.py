@@ -107,8 +107,8 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
-    def test_devices_generate_license_retrieve(self):
-        """Test case for devices_generate_license_retrieve
+    def test_devices_generate_license(self):
+        """Test case for devices_generate_license
 
         """
         pass

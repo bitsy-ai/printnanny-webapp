@@ -17,7 +17,7 @@ Method | HTTP request | Description
 [**devices_cloud_iot_devices_retrieve**](DevicesApi.md#devices_cloud_iot_devices_retrieve) | **GET** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
 [**devices_cloud_iot_devices_update**](DevicesApi.md#devices_cloud_iot_devices_update) | **PUT** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
 [**devices_create**](DevicesApi.md#devices_create) | **POST** /api/devices/ | 
-[**devices_generate_license_retrieve**](DevicesApi.md#devices_generate_license_retrieve) | **GET** /api/devices/{id}/generate-license/ | 
+[**devices_generate_license**](DevicesApi.md#devices_generate_license) | **POST** /api/devices/{id}/generate-license/ | 
 [**devices_info_create**](DevicesApi.md#devices_info_create) | **POST** /api/devices/{device_id}/info/ | 
 [**devices_info_list**](DevicesApi.md#devices_info_list) | **GET** /api/devices/{device_id}/info/ | 
 [**devices_info_partial_update**](DevicesApi.md#devices_info_partial_update) | **PATCH** /api/devices/{device_id}/info/{id}/ | 
@@ -1625,8 +1625,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_generate_license_retrieve**
-> Device devices_generate_license_retrieve(id)
+# **devices_generate_license**
+> file devices_generate_license(id)
 
 
 
@@ -1670,10 +1670,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this device.
 
     try:
-        api_response = api_instance.devices_generate_license_retrieve(id)
+        api_response = api_instance.devices_generate_license(id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_generate_license_retrieve: %s\n" % e)
+        print("Exception when calling DevicesApi->devices_generate_license: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -1712,10 +1712,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this device.
 
     try:
-        api_response = api_instance.devices_generate_license_retrieve(id)
+        api_response = api_instance.devices_generate_license(id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_generate_license_retrieve: %s\n" % e)
+        print("Exception when calling DevicesApi->devices_generate_license: %s\n" % e)
 ```
 
 ### Parameters
@@ -1726,7 +1726,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Device**](Device.md)
+**file**
 
 ### Authorization
 
