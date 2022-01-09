@@ -205,7 +205,14 @@ list_devices_schema = extend_schema(
 modify_devices_schema = extend_schema(
     request=DeviceSerializer,
     responses={
-        "default": ErrorDetailSerializer,
+        # todo create a generic model response serializer to capture expected errors for create, update, get, etc
+        400: ErrorDetailSerializer,
+        401: ErrorDetailSerializer,
+        403: ErrorDetailSerializer,
+        404: ErrorDetailSerializer,
+        406: ErrorDetailSerializer,
+        409: ErrorDetailSerializer,
+        500: ErrorDetailSerializer,
         201: DeviceSerializer,
         202: DeviceSerializer,
     },
