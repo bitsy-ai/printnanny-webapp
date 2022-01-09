@@ -246,7 +246,8 @@ class DeviceViewSet(
         serializer.save(user=self.request.user)
 
     @extend_schema(
-        responses={201: OpenApiResponse(response=OpenApiTypes.BINARY)},
+        request=None,
+        responses={(200): OpenApiResponse(response=OpenApiTypes.BINARY)},
         operation_id="devices_generate_license",
     )
     @action(detail=True, methods=["POST"], url_path="generate-license")
