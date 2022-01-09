@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework.decorators import action
-from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, UpdateModelMixin
+from rest_framework.mixins import RetrieveModelMixin, UpdateModelMixin
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from drf_spectacular.utils import extend_schema, extend_schema_view
