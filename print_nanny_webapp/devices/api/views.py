@@ -1,8 +1,14 @@
 import logging
 
 from typing import Any
+from drf_spectacular.types import OpenApiTypes
 
-from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiParameter
+from drf_spectacular.utils import (
+    extend_schema,
+    extend_schema_view,
+    OpenApiParameter,
+    OpenApiResponse,
+)
 from django.db.utils import IntegrityError
 from django.http import Http404
 
@@ -239,7 +245,12 @@ class DeviceViewSet(
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-    @action(detail=True, methods=["GET"], url_path="generate-license")
+    @extend_schema(
+        request=None,
+        responses={(200): OpenApiResponse(response=OpenApiTypes.BINARY)},
+        operation_id="devices_generate_license",
+    )
+    @action(detail=True, methods=["POST"], url_path="generate-license")
     def generate_license(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         device = Device.objects.get(pk=kwargs["id"])
         return generate_zipped_license_response(device, request)
