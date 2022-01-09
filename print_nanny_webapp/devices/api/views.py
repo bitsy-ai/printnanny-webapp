@@ -108,40 +108,43 @@ class TaskViewSet(
 # TaskStatus
 ##
 
-list_tasks_status_schema = extend_schema(
-    parameters=[
-        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
-    ],
-    responses={
-        "default": ErrorDetailSerializer,
-        200: TaskStatusSerializer(many=True),
-    },
-)
-retrieve_tasks_status_schema = extend_schema(
-    parameters=[
-        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH),
-    ],
-    responses={
-        "default": ErrorDetailSerializer,
-        200: TaskStatusSerializer(),
-    },
-)
-create_tasks_status_schema = extend_schema(
-    parameters=[
-        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
-    ],
-    request=TaskStatusSerializer,
-    responses={
-        "default": ErrorDetailSerializer,
-        201: TaskSerializer,
-    },
-)
-
 
 @extend_schema_view(
-    list=list_tasks_status_schema,
-    create=create_tasks_status_schema,
-    retrieve=retrieve_tasks_status_schema,
+    list=extend_schema(
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        responses=generic_list_errors.merge(
+            {
+                "default": ErrorDetailSerializer,
+                200: TaskStatusSerializer(many=True),
+            }
+        ),
+    ),
+    create=extend_schema(
+        parameters=[
+            OpenApiParameter(
+                name="device_id", type=int, location=OpenApiParameter.PATH
+            ),
+        ],
+        responses=generic_create_errors.merge(
+            {
+                200: TaskStatusSerializer(),
+            }
+        ),
+    ),
+    retrieve=extend_schema(
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        request=TaskStatusSerializer,
+        responses=generic_get_errors.merge(
+            {
+                "default": ErrorDetailSerializer,
+                201: TaskSerializer,
+            }
+        ),
+    ),
 )
 class TaskStatusViewSet(
     GenericViewSet,
