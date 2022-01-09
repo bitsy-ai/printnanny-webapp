@@ -113,7 +113,6 @@ class TelemetryEventSerializer(serializers.ModelSerializer):
     event_source = serializers.ChoiceField(
         choices=EventSource.choices,
         default=EventSource.PRINT_NANNY_PLUGIN,
-        allow_null=True,
     )
     event_type = serializers.ChoiceField(
         choices=TelemetryEventType.choices, default=TelemetryEventType.CONNECT_TEST_NOOP
@@ -134,7 +133,6 @@ class PrinterEventSerializer(TelemetryEventSerializer):
     event_source = serializers.ChoiceField(
         choices=EventSource.choices,
         default=EventSource.OCTOPRINT,
-        allow_null=True,
     )
 
     class Meta:
@@ -150,7 +148,6 @@ class PrintJobEventSerializer(TelemetryEventSerializer):
     event_source = serializers.ChoiceField(
         choices=EventSource.choices,
         default=EventSource.OCTOPRINT,
-        allow_null=True,
     )
 
     class Meta:
@@ -167,7 +164,6 @@ class OctoPrintEventSerializer(TelemetryEventSerializer):
     event_source = serializers.ChoiceField(
         choices=EventSource.choices,
         default=EventSource.OCTOPRINT,
-        allow_null=True,
     )
 
     class Meta:
@@ -184,7 +180,6 @@ class PrintNannyPluginEventSerializer(TelemetryEventSerializer):
     event_source = serializers.ChoiceField(
         choices=EventSource.choices,
         default=EventSource.OCTOPRINT,
-        allow_null=True,
     )
 
     class Meta:
@@ -201,7 +196,6 @@ class RemoteCommandEventSerializer(TelemetryEventSerializer):
     event_source = serializers.ChoiceField(
         choices=EventSource.choices,
         default=EventSource.PRINT_NANNY_PLUGIN,
-        allow_null=True,
     )
 
     class Meta:
