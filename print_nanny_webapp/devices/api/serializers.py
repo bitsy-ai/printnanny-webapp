@@ -106,9 +106,7 @@ class TaskSerializer(serializers.ModelSerializer):
 
 class DeviceSerializer(serializers.ModelSerializer):
 
-    cloudiot_device = CloudiotDeviceSerializer(
-        read_only=True, required=False, allow_null=True
-    )
+    cloudiot_device = CloudiotDeviceSerializer(read_only=True)
     cameras = CameraSerializer(read_only=True, many=True)
     janus_local_url = serializers.CharField(read_only=True)
     dashboard_url = serializers.CharField(read_only=True)
@@ -118,7 +116,7 @@ class DeviceSerializer(serializers.ModelSerializer):
         default=DeviceReleaseChannel.STABLE,
     )
 
-    # monitoring_active = serializers.BooleanField()
+    monitoring_active = serializers.BooleanField(default=False)
 
     user = UserSerializer(read_only=True)
     last_task = TaskSerializer(read_only=True)
@@ -128,7 +126,6 @@ class DeviceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Device
         depth = 2
-        read_only = ("user", "last_task")
         exclude = ("deleted",)
 
 

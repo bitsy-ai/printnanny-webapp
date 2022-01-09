@@ -9,7 +9,7 @@ from drf_spectacular.utils import (
     OpenApiParameter,
     OpenApiResponse,
 )
-from django.db.utils import IntegrityError
+from django.db.utils import Error, IntegrityError
 from django.http import Http404
 
 from rest_framework import status
@@ -51,30 +51,39 @@ from ..services import generate_zipped_license_response
 from print_nanny_webapp.utils.api.exceptions import AlreadyExists
 from print_nanny_webapp.utils.api.serializers import ErrorDetailSerializer
 
+from print_nanny_webapp.utils.api.views import (
+    generic_create_errors,
+    generic_list_errors,
+    generic_get_errors,
+    generic_update_errors,
+)
+
 logger = logging.getLogger(__name__)
 
 ##
 # Task
 ##
-list_tasks_schemaa = extend_schema(
-    responses={
-        "default": ErrorDetailSerializer,
-        200: TaskSerializer(many=True),
-    },
-)
-create_tasks_schema = extend_schema(
-    request=TaskSerializer,
-    responses={
-        "default": ErrorDetailSerializer,
-        200: TaskSerializer,
-        201: TaskSerializer,
-    },
-)
-
-
 @extend_schema_view(
-    list=list_tasks_schemaa,
-    create=create_tasks_schema,
+    # GET many tasks
+    list=extend_schema(
+        responses={
+            200: TaskSerializer(many=True),
+        }.update(generic_list_errors)
+    ),
+    # POST tasks
+    create=extend_schema(
+        request=TaskSerializer,
+        responses={
+            201: TaskSerializer,
+        }.update(generic_create_errors),
+    ),
+    # GET one task
+    retreive=extend_schema(
+        request=TaskSerializer,
+        responses={
+            200: TaskSerializer,
+        }.update(generic_get_errors),
+    ),
 )
 class TaskViewSet(
     GenericViewSet,
@@ -90,41 +99,34 @@ class TaskViewSet(
 ##
 # TaskStatus
 ##
-
-list_tasks_status_schema = extend_schema(
-    parameters=[
-        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
-    ],
-    responses={
-        "default": ErrorDetailSerializer,
-        200: TaskStatusSerializer(many=True),
-    },
-)
-retrieve_tasks_status_schema = extend_schema(
-    parameters=[
-        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH),
-    ],
-    responses={
-        "default": ErrorDetailSerializer,
-        200: TaskStatusSerializer(),
-    },
-)
-create_tasks_status_schema = extend_schema(
-    parameters=[
-        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
-    ],
-    request=TaskStatusSerializer,
-    responses={
-        "default": ErrorDetailSerializer,
-        201: TaskSerializer,
-    },
-)
-
-
 @extend_schema_view(
-    list=list_tasks_status_schema,
-    create=create_tasks_status_schema,
-    retrieve=retrieve_tasks_status_schema,
+    list=extend_schema(
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        responses={
+            200: TaskStatusSerializer(many=True),
+        }.update(generic_list_errors),
+    ),
+    create=extend_schema(
+        parameters=[
+            OpenApiParameter(
+                name="device_id", type=int, location=OpenApiParameter.PATH
+            ),
+        ],
+        responses={
+            200: TaskStatusSerializer(),
+        }.update(generic_create_errors),
+    ),
+    retrieve=extend_schema(
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        request=TaskStatusSerializer,
+        responses={
+            201: TaskSerializer,
+        }.update(generic_get_errors),
+    ),
 )
 class TaskStatusViewSet(
     GenericViewSet,
@@ -154,16 +156,12 @@ class TaskStatusViewSet(
 ##
 # License
 ##
-list_licenses_schema = extend_schema(
-    responses={
-        "default": ErrorDetailSerializer,
-        200: LicenseSerializer(many=True),
-    },
-)
-
-
 @extend_schema_view(
-    list=list_licenses_schema,
+    list=extend_schema(
+        responses={
+            200: LicenseSerializer(many=True),
+        }.update(generic_list_errors)
+    ),
     tags=["devices"],
 )
 class LicenseViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
@@ -196,26 +194,116 @@ class LicenseViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
 ##
 # Device (by id)
 ##
-list_devices_schema = extend_schema(
-    responses={
-        "default": ErrorDetailSerializer,
-        200: DeviceSerializer(many=True),
+
+# override device_create_operation to set required = true on requestBody
+# for some reason (yet unknown) DRF AutoSchema is omitting required on the POST method for this endpoint
+# copied from /api/schema/
+device_create_operation = {
+    "operationId": "devices_create",
+    "description": "A device (Raspberry Pi) running Print Nanny OS",
+    "tags": ["devices"],
+    "requestBody": {
+        "content": {
+            "application/json": {
+                "schema": {"$ref": "#/components/schemas/DeviceRequest"}
+            },
+            "application/x-www-form-urlencoded": {
+                "schema": {"$ref": "#/components/schemas/DeviceRequest"}
+            },
+            "multipart/form-data": {
+                "schema": {"$ref": "#/components/schemas/DeviceRequest"}
+            },
+        },
+        # this is the only line added to AutoSchema generated @ /api/schema/
+        "required": True,
     },
-)
-modify_devices_schema = extend_schema(
-    request=DeviceSerializer,
-    responses={
-        "default": ErrorDetailSerializer,
-        201: DeviceSerializer,
-        202: DeviceSerializer,
+    "security": [{"cookieAuth": []}, {"tokenAuth": []}],
+    "responses": {
+        "400": {
+            "content": {
+                "application/json": {
+                    "schema": {"$ref": "#/components/schemas/ErrorDetail"}
+                }
+            },
+            "description": "",
+        },
+        "401": {
+            "content": {
+                "application/json": {
+                    "schema": {"$ref": "#/components/schemas/ErrorDetail"}
+                }
+            },
+            "description": "",
+        },
+        "403": {
+            "content": {
+                "application/json": {
+                    "schema": {"$ref": "#/components/schemas/ErrorDetail"}
+                }
+            },
+            "description": "",
+        },
+        "404": {
+            "content": {
+                "application/json": {
+                    "schema": {"$ref": "#/components/schemas/ErrorDetail"}
+                }
+            },
+            "description": "",
+        },
+        "409": {
+            "content": {
+                "application/json": {
+                    "schema": {"$ref": "#/components/schemas/ErrorDetail"}
+                }
+            },
+            "description": "",
+        },
+        "500": {
+            "content": {
+                "application/json": {
+                    "schema": {"$ref": "#/components/schemas/ErrorDetail"}
+                }
+            },
+            "description": "",
+        },
+        "201": {
+            "content": {
+                "application/json": {"schema": {"$ref": "#/components/schemas/Device"}}
+            },
+            "description": "",
+        },
     },
-)
+}
 
 
 @extend_schema_view(
-    list=list_devices_schema,
-    create=modify_devices_schema,
-    update=modify_devices_schema,
+    list=extend_schema(
+        responses={
+            200: DeviceSerializer(many=True),
+        }.update(generic_list_errors)
+    ),
+    update=extend_schema(
+        request=DeviceSerializer,
+        responses={
+            202: DeviceSerializer,
+        }.update(generic_update_errors),
+    ),
+    create=extend_schema(
+        operation=device_create_operation,
+    ),
+    active_license=extend_schema(
+        responses={
+            200: LicenseSerializer,
+        }.update(generic_get_errors)
+    ),
+    generate_license=extend_schema(
+        request=None,
+        responses={200: OpenApiResponse(response=OpenApiTypes.BINARY)}.update(
+            generic_get_errors
+        ),
+        operation_id="devices_generate_license",
+    ),
 )
 class DeviceViewSet(
     GenericViewSet,
@@ -225,8 +313,7 @@ class DeviceViewSet(
     UpdateModelMixin,
 ):
     """
-    All-in-one Print Nanny installation
-    via print-nanny-main-<platform>-<cpu>.img
+    A device (Raspberry Pi) running Print Nanny OS
     """
 
     serializer_class = DeviceSerializer
@@ -245,22 +332,11 @@ class DeviceViewSet(
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-    @extend_schema(
-        request=None,
-        responses={(200): OpenApiResponse(response=OpenApiTypes.BINARY)},
-        operation_id="devices_generate_license",
-    )
     @action(detail=True, methods=["POST"], url_path="generate-license")
     def generate_license(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         device = Device.objects.get(pk=kwargs["id"])
         return generate_zipped_license_response(device, request)
 
-    @extend_schema(
-        responses={
-            "default": ErrorDetailSerializer,
-            200: LicenseSerializer,
-        },
-    )
     @action(detail=True, methods=["GET"], url_path="active-license")
     def active_license(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         device = Device.objects.get(pk=kwargs["id"])
@@ -276,32 +352,35 @@ class DeviceViewSet(
 ###
 # SystemInfo views
 ###
-list_device_info_schema = extend_schema(
-    parameters=[
-        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
-    ],
-    responses={
-        "default": ErrorDetailSerializer,
-        200: SystemInfoSerializer(many=True),
-    },
-)
-modify_device_info_schema = extend_schema(
-    parameters=[
-        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
-    ],
-    request=SystemInfoSerializer,
-    responses={
-        "default": ErrorDetailSerializer,
-        201: SystemInfoSerializer,
-        202: SystemInfoSerializer,
-    },
-)
 
 
 @extend_schema_view(
-    list=list_device_info_schema,
-    create=modify_device_info_schema,
-    update=modify_device_info_schema,
+    list=extend_schema(
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        responses={
+            200: SystemInfoSerializer(many=True),
+        }.update(generic_list_errors),
+    ),
+    create=extend_schema(
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        request=SystemInfoSerializer,
+        responses={
+            201: SystemInfoSerializer,
+        }.update(generic_create_errors),
+    ),
+    update=extend_schema(
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        request=SystemInfoSerializer,
+        responses={
+            202: SystemInfoSerializer,
+        }.update(generic_create_errors),
+    ),
 )
 class SystemInfoViewSet(
     GenericViewSet,
@@ -343,16 +422,16 @@ class SystemInfoViewSet(
 ###
 # Devices (by hostname)
 ##
-retrieve_devices_schema = extend_schema(
-    operation_id="devices_retrieve_hostname",
-    responses={
-        "default": ErrorDetailSerializer,
-        200: DeviceSerializer,
-    },
+
+
+@extend_schema_view(
+    retrieve=extend_schema(
+        operation_id="devices_retrieve_hostname",
+        responses={
+            200: DeviceSerializer,
+        }.update(generic_get_errors),
+    )
 )
-
-
-@extend_schema_view(retrieve=retrieve_devices_schema)
 class DeviceHostnameViewSet(
     GenericViewSet,
     RetrieveModelMixin,
@@ -365,54 +444,50 @@ class DeviceHostnameViewSet(
 ##
 # Cloud IoT Device
 ##
-list_cloud_iot_devices_schema = extend_schema(
-    parameters=[
-        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
-    ],
-    responses={
-        "default": ErrorDetailSerializer,
-        200: CloudiotDeviceSerializer(many=True),
-    },
-)
-retrieve_cloud_iot_devices_schema = extend_schema(
-    parameters=[
-        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH),
-        OpenApiParameter(name="id", type=int, location=OpenApiParameter.PATH),
-    ],
-    responses={
-        "default": ErrorDetailSerializer,
-        200: CloudiotDeviceSerializer(),
-    },
-)
-create_cloud_iot_devices_schema = extend_schema(
-    parameters=[
-        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH),
-    ],
-    request=CloudiotDeviceSerializer,
-    responses={
-        "default": ErrorDetailSerializer,
-        201: CloudiotDeviceSerializer,
-    },
-)
-modify_cloud_iot_devices_schema = extend_schema(
-    parameters=[
-        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH),
-        OpenApiParameter(name="id", type=int, location=OpenApiParameter.PATH),
-    ],
-    request=CloudiotDeviceSerializer,
-    responses={
-        "default": ErrorDetailSerializer,
-        201: CloudiotDeviceSerializer,
-        202: CloudiotDeviceSerializer,
-    },
-)
 
 
 @extend_schema_view(
-    retrieve=retrieve_cloud_iot_devices_schema,
-    list=list_cloud_iot_devices_schema,
-    create=create_cloud_iot_devices_schema,
-    update=modify_cloud_iot_devices_schema,
+    retrieve=extend_schema(
+        parameters=[
+            OpenApiParameter(
+                name="device_id", type=int, location=OpenApiParameter.PATH
+            ),
+            OpenApiParameter(name="id", type=int, location=OpenApiParameter.PATH),
+        ],
+        responses={
+            200: CloudiotDeviceSerializer(),
+        }.merge(generic_get_errors),
+    ),
+    list=extend_schema(
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        responses={
+            200: CloudiotDeviceSerializer(many=True),
+        }.merge(generic_list_errors),
+    ),
+    create=extend_schema(
+        parameters=[
+            OpenApiParameter(
+                name="device_id", type=int, location=OpenApiParameter.PATH
+            ),
+        ],
+        request=CloudiotDeviceSerializer,
+        responses={
+            201: CloudiotDeviceSerializer,
+        }.update(generic_create_errors),
+    ),
+    update=extend_schema(
+        parameters=[
+            OpenApiParameter(
+                name="device_id", type=int, location=OpenApiParameter.PATH
+            ),
+        ],
+        request=CloudiotDeviceSerializer,
+        responses={
+            202: CloudiotDeviceSerializer,
+        }.update(generic_update_errors),
+    ),
 )
 class CloudiotDeviceViewSet(
     GenericViewSet,
@@ -432,32 +507,33 @@ class CloudiotDeviceViewSet(
 ##
 # Camera
 ##
-list_cameras_schema = extend_schema(
-    parameters=[
-        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
-    ],
-    responses={
-        "default": ErrorDetailSerializer,
-        200: CameraSerializer(many=True),
-    },
-)
-modify_cameras_schema = extend_schema(
-    parameters=[
-        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
-    ],
-    request=CameraSerializer,
-    responses={
-        "default": ErrorDetailSerializer,
-        201: CameraSerializer,
-        202: CameraSerializer,
-    },
-)
-
-
 @extend_schema_view(
-    list=list_cameras_schema,
-    create=modify_cameras_schema,
-    update=modify_cameras_schema,
+    list=extend_schema(
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        responses={
+            200: CameraSerializer(many=True),
+        }.update(generic_list_errors),
+    ),
+    create=extend_schema(
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        request=CameraSerializer,
+        responses={
+            201: CameraSerializer,
+        }.update(generic_create_errors),
+    ),
+    update=extend_schema(
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        request=CameraSerializer,
+        responses={
+            202: CameraSerializer,
+        }.update(generic_update_errors),
+    ),
 )
 class CameraViewSet(
     GenericViewSet,
@@ -477,32 +553,35 @@ class CameraViewSet(
 ##
 # PrinterController
 ##
-list_printer_controllers_schema = extend_schema(
-    parameters=[
-        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
-    ],
-    responses={
-        "default": ErrorDetailSerializer,
-        200: PrinterControllerSerializer(many=True),
-    },
-)
-modify_printer_controllers_schema = extend_schema(
-    parameters=[
-        OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
-    ],
-    request=DeviceSerializer,
-    responses={
-        "default": ErrorDetailSerializer,
-        201: PrinterControllerSerializer,
-        202: PrinterControllerSerializer,
-    },
-)
 
 
 @extend_schema_view(
-    list=list_printer_controllers_schema,
-    create=modify_printer_controllers_schema,
-    update=modify_printer_controllers_schema,
+    list=extend_schema(
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        responses={
+            200: PrinterControllerSerializer(many=True),
+        }.update(generic_list_errors),
+    ),
+    create=extend_schema(
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        request=DeviceSerializer,
+        responses={
+            201: PrinterControllerSerializer,
+        }.update(generic_create_errors),
+    ),
+    update=extend_schema(
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        request=DeviceSerializer,
+        responses={
+            202: PrinterControllerSerializer,
+        }.update(generic_update_errors),
+    ),
 )
 class PrinterControllerViewSet(
     GenericViewSet,
