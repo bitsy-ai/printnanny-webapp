@@ -2,4 +2,4 @@
 
 echo "Running Python linter from pre-commit hook"
 make lint
-git add -A && git commit --amend
+git add -A
