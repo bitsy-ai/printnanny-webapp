@@ -131,6 +131,11 @@ class PrinterEventSerializer(TelemetryEventSerializer):
     event_type = serializers.ChoiceField(
         choices=PrinterEventType.choices, default=PrinterEventType.DISCONNECTED
     )
+    event_source = serializers.ChoiceField(
+        choices=EventSource.choices,
+        default=EventSource.OCTOPRINT,
+        allow_null=True,
+    )
 
     class Meta:
         model = PrinterEvent
@@ -141,6 +146,11 @@ class PrinterEventSerializer(TelemetryEventSerializer):
 class PrintJobEventSerializer(TelemetryEventSerializer):
     event_type = serializers.ChoiceField(
         choices=PrintJobEventType.choices, default=PrintJobEventType.PRINT_STARTED
+    )
+    event_source = serializers.ChoiceField(
+        choices=EventSource.choices,
+        default=EventSource.OCTOPRINT,
+        allow_null=True,
     )
 
     class Meta:
@@ -154,6 +164,11 @@ class OctoPrintEventSerializer(TelemetryEventSerializer):
     event_type = serializers.ChoiceField(
         choices=OctoprintEventType.choices, default=OctoprintEventType.STARTUP
     )
+    event_source = serializers.ChoiceField(
+        choices=EventSource.choices,
+        default=EventSource.OCTOPRINT,
+        allow_null=True,
+    )
 
     class Meta:
         model = OctoPrintEvent
@@ -166,6 +181,11 @@ class PrintNannyPluginEventSerializer(TelemetryEventSerializer):
         choices=PrintNannyPluginEventType.choices,
         default=PrintNannyPluginEventType.MONITORING_START,
     )
+    event_source = serializers.ChoiceField(
+        choices=EventSource.choices,
+        default=EventSource.OCTOPRINT,
+        allow_null=True,
+    )
 
     class Meta:
         model = PrintNannyPluginEvent
@@ -177,6 +197,11 @@ class RemoteCommandEventSerializer(TelemetryEventSerializer):
     event_type = serializers.ChoiceField(
         choices=RemoteCommandEventType.choices,
         default=RemoteCommandEventType.REMOTE_COMMAND_FAILED,
+    )
+    event_source = serializers.ChoiceField(
+        choices=EventSource.choices,
+        default=EventSource.PRINT_NANNY_PLUGIN,
+        allow_null=True,
     )
 
     class Meta:
