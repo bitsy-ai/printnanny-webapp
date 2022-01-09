@@ -457,7 +457,8 @@ SPECTACULAR_SETTINGS = {
         'OctoPrintNannyEvent': 'print_nanny_webapp.telemetry.types.PrintNannyPluginEventType',
         'OctoGenericEvent': 'print_nanny_webapp.telemetry.types.OctoprintEventType',
         'OctoJobEvent': 'print_nanny_webapp.telemetry.types.PrintJobEventType',
-        'OctoPrinterEvent': 'print_nanny_webapp.telemetry.types.PrinterEventType'
+        'OctoPrinterEvent': 'print_nanny_webapp.telemetry.types.PrinterEventType',
+        'AlphaEventSource': 'print_nanny_webapp.telemetry.types.EventSource'
     },
     'TITLE': 'printnanny-api-client',
     'DESCRIPTION': 'Official API client library for print-nanny.com',
