@@ -51,30 +51,47 @@ from ..services import generate_zipped_license_response
 from print_nanny_webapp.utils.api.exceptions import AlreadyExists
 from print_nanny_webapp.utils.api.serializers import ErrorDetailSerializer
 
+from print_nanny_webapp.utils.api.views import (
+    generic_create_errors,
+    generic_list_errors,
+    generic_get_errors,
+    generic_update_errors,
+)
+
 logger = logging.getLogger(__name__)
 
 ##
 # Task
 ##
-list_tasks_schemaa = extend_schema(
-    responses={
-        "default": ErrorDetailSerializer,
-        200: TaskSerializer(many=True),
-    },
-)
-create_tasks_schema = extend_schema(
-    request=TaskSerializer,
-    responses={
-        "default": ErrorDetailSerializer,
-        200: TaskSerializer,
-        201: TaskSerializer,
-    },
-)
 
 
 @extend_schema_view(
-    list=list_tasks_schemaa,
-    create=create_tasks_schema,
+    # GET many tasks
+    list=extend_schema(
+        responses=generic_list_errors.merge(
+            {
+                200: TaskSerializer(many=True),
+            },
+        )
+    ),
+    # POST tasks
+    create=extend_schema(
+        request=TaskSerializer,
+        responses=generic_create_errors.merge(
+            {
+                201: TaskSerializer,
+            }
+        ),
+    ),
+    # GET one task
+    retreive=extend_schema(
+        request=TaskSerializer,
+        responses=generic_get_errors.merge(
+            {
+                200: TaskSerializer,
+            }
+        ),
+    ),
 )
 class TaskViewSet(
     GenericViewSet,
@@ -204,19 +221,6 @@ list_devices_schema = extend_schema(
         200: DeviceSerializer(many=True),
     },
 )
-# create_devices_schema = extend_schema(
-#     request=DeviceSerializer,
-#     responses={
-#         # todo create a generic model response serializer to capture expected errors for create, update, get, etc
-#         400: ErrorDetailSerializer,
-#         401: ErrorDetailSerializer,
-#         403: ErrorDetailSerializer,
-#         404: ErrorDetailSerializer,
-#         409: ErrorDetailSerializer,
-#         500: ErrorDetailSerializer,
-#         201: DeviceSerializer,
-#     },
-# )
 modify_devices_schema = extend_schema(
     request=DeviceSerializer,
     responses={
