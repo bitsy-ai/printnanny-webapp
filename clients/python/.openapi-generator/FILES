@@ -9,6 +9,7 @@ docs/AlertBulkResponse.md
 docs/AlertEventTypeEnum.md
 docs/AlertRequest.md
 docs/AlertsApi.md
+docs/AlphaEventSource.md
 docs/ArtifactTypesEnum.md
 docs/AuthApi.md
 docs/AuthApi.md
@@ -30,7 +31,6 @@ docs/DeviceRequest.md
 docs/DevicesApi.md
 docs/EmailAuthRequest.md
 docs/ErrorDetail.md
-docs/EventSourceEnum.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
@@ -40,7 +40,6 @@ docs/LicensesApi.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
-docs/NullEnum.md
 docs/OctoGenericEvent.md
 docs/OctoJobEvent.md
 docs/OctoPrintDevice.md
@@ -178,6 +177,7 @@ printnanny_api_client/models/alert.py
 printnanny_api_client/models/alert_bulk_response.py
 printnanny_api_client/models/alert_event_type_enum.py
 printnanny_api_client/models/alert_request.py
+printnanny_api_client/models/alpha_event_source.py
 printnanny_api_client/models/artifact_types_enum.py
 printnanny_api_client/models/callback_token_auth_request.py
 printnanny_api_client/models/callback_token_verification.py
@@ -195,7 +195,6 @@ printnanny_api_client/models/device_calibration_request.py
 printnanny_api_client/models/device_request.py
 printnanny_api_client/models/email_auth_request.py
 printnanny_api_client/models/error_detail.py
-printnanny_api_client/models/event_source_enum.py
 printnanny_api_client/models/experiment.py
 printnanny_api_client/models/experiment_device_config.py
 printnanny_api_client/models/gcode_file.py
@@ -203,7 +202,6 @@ printnanny_api_client/models/license.py
 printnanny_api_client/models/license_request.py
 printnanny_api_client/models/mobile_auth_request.py
 printnanny_api_client/models/model_artifact.py
-printnanny_api_client/models/null_enum.py
 printnanny_api_client/models/octo_generic_event.py
 printnanny_api_client/models/octo_job_event.py
 printnanny_api_client/models/octo_print_device.py
@@ -323,6 +321,7 @@ test/test_alert_bulk_response.py
 test/test_alert_event_type_enum.py
 test/test_alert_request.py
 test/test_alerts_api.py
+test/test_alpha_event_source.py
 test/test_artifact_types_enum.py
 test/test_auth__api.py
 test/test_auth_api.py
@@ -344,7 +343,6 @@ test/test_device_request.py
 test/test_devices_api.py
 test/test_email_auth_request.py
 test/test_error_detail.py
-test/test_event_source_enum.py
 test/test_experiment.py
 test/test_experiment_device_config.py
 test/test_gcode_file.py
@@ -354,7 +352,6 @@ test/test_licenses_api.py
 test/test_ml_ops_api.py
 test/test_mobile_auth_request.py
 test/test_model_artifact.py
-test/test_null_enum.py
 test/test_octo_generic_event.py
 test/test_octo_job_event.py
 test/test_octo_print_device.py

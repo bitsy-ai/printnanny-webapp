@@ -38,7 +38,7 @@ class RemoteCommandEventRequest(object):
     """
     openapi_types = {
         'ts': 'float',
-        'event_source': 'OneOfEventSourceEnumNullEnum',
+        'event_source': 'AlphaEventSource',
         'event_type': 'RemoteCommandEventEventTypeEnum',
         'octoprint_environment': 'OctoprintEnvironmentRequest',
         'octoprint_printer_data': 'OctoprintPrinterDataRequest',
@@ -132,7 +132,7 @@ class RemoteCommandEventRequest(object):
 
 
         :return: The event_source of this RemoteCommandEventRequest.  # noqa: E501
-        :rtype: OneOfEventSourceEnumNullEnum
+        :rtype: AlphaEventSource
         """
         return self._event_source
 
@@ -142,7 +142,7 @@ class RemoteCommandEventRequest(object):
 
 
         :param event_source: The event_source of this RemoteCommandEventRequest.  # noqa: E501
-        :type event_source: OneOfEventSourceEnumNullEnum
+        :type event_source: AlphaEventSource
         """
 
         self._event_source = event_source

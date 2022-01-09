@@ -1,7 +1,7 @@
-# EventSourceEnum
+# AlphaEventSource
+
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

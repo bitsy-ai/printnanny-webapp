@@ -8,6 +8,7 @@ docs/AlertBulkResponse.md
 docs/AlertEventTypeEnum.md
 docs/AlertRequest.md
 docs/AlertsApi.md
+docs/AlphaEventSource.md
 docs/ArtifactTypesEnum.md
 docs/AuthApi.md
 docs/CallbackTokenAuthRequest.md
@@ -28,7 +29,6 @@ docs/DeviceRequest.md
 docs/DevicesApi.md
 docs/EmailAuthRequest.md
 docs/ErrorDetail.md
-docs/EventSourceEnum.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
@@ -38,7 +38,6 @@ docs/LicensesApi.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
-docs/NullEnum.md
 docs/OctoGenericEvent.md
 docs/OctoJobEvent.md
 docs/OctoPrintDevice.md
@@ -172,6 +171,7 @@ src/models/alert.rs
 src/models/alert_bulk_response.rs
 src/models/alert_event_type_enum.rs
 src/models/alert_request.rs
+src/models/alpha_event_source.rs
 src/models/artifact_types_enum.rs
 src/models/callback_token_auth_request.rs
 src/models/callback_token_verification.rs
@@ -189,7 +189,6 @@ src/models/device_calibration_request.rs
 src/models/device_request.rs
 src/models/email_auth_request.rs
 src/models/error_detail.rs
-src/models/event_source_enum.rs
 src/models/experiment.rs
 src/models/experiment_device_config.rs
 src/models/gcode_file.rs
@@ -198,7 +197,6 @@ src/models/license_request.rs
 src/models/mobile_auth_request.rs
 src/models/mod.rs
 src/models/model_artifact.rs
-src/models/null_enum.rs
 src/models/octo_generic_event.rs
 src/models/octo_job_event.rs
 src/models/octo_print_device.rs

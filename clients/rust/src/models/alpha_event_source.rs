@@ -11,7 +11,7 @@
 
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum EventSourceEnum {
+pub enum AlphaEventSource {
     #[serde(rename = "octoprint")]
     Octoprint,
     #[serde(rename = "plugin_octoprint_nanny")]
@@ -21,7 +21,7 @@ pub enum EventSourceEnum {
 
 }
 
-impl ToString for EventSourceEnum {
+impl ToString for AlphaEventSource {
     fn to_string(&self) -> String {
         match self {
             Self::Octoprint => String::from("octoprint"),
@@ -31,8 +31,8 @@ impl ToString for EventSourceEnum {
     }
 }
 
-impl Default for EventSourceEnum {
-    fn default() -> EventSourceEnum {
+impl Default for AlphaEventSource {
+    fn default() -> AlphaEventSource {
         Self::Octoprint
     }
 }
