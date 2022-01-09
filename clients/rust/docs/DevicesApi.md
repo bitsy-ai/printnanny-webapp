@@ -17,7 +17,7 @@ Method | HTTP request | Description
 [**devices_cloud_iot_devices_retrieve**](DevicesApi.md#devices_cloud_iot_devices_retrieve) | **GET** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
 [**devices_cloud_iot_devices_update**](DevicesApi.md#devices_cloud_iot_devices_update) | **PUT** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
 [**devices_create**](DevicesApi.md#devices_create) | **POST** /api/devices/ | 
-[**devices_generate_license_retrieve**](DevicesApi.md#devices_generate_license_retrieve) | **GET** /api/devices/{id}/generate-license/ | 
+[**devices_generate_license**](DevicesApi.md#devices_generate_license) | **POST** /api/devices/{id}/generate-license/ | 
 [**devices_info_create**](DevicesApi.md#devices_info_create) | **POST** /api/devices/{device_id}/info/ | 
 [**devices_info_list**](DevicesApi.md#devices_info_list) | **GET** /api/devices/{device_id}/info/ | 
 [**devices_info_partial_update**](DevicesApi.md#devices_info_partial_update) | **PATCH** /api/devices/{device_id}/info/{id}/ | 
@@ -425,9 +425,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## devices_generate_license_retrieve
+## devices_generate_license
 
-> crate::models::Device devices_generate_license_retrieve(id)
+> std::path::PathBuf devices_generate_license(id)
 
 
 All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
@@ -441,7 +441,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Device**](Device.md)
+[**std::path::PathBuf**](std::path::PathBuf.md)
 
 ### Authorization
 

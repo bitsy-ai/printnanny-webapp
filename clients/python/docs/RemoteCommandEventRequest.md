@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ts** | **float** |  | [optional] 
-**event_source** | [**EventSourceEnum**](EventSourceEnum.md) |  | [optional] 
+**event_source** | [**OneOfEventSourceEnumNullEnum**](OneOfEventSourceEnumNullEnum.md) |  | [optional] 
 **event_type** | [**RemoteCommandEventEventTypeEnum**](RemoteCommandEventEventTypeEnum.md) |  | [optional] 
 **octoprint_environment** | [**OctoprintEnvironmentRequest**](OctoprintEnvironmentRequest.md) |  | 
 **octoprint_printer_data** | [**OctoprintPrinterDataRequest**](OctoprintPrinterDataRequest.md) |  | 
