@@ -307,11 +307,38 @@ device_create_operation = {
         | generic_get_errors
     ),
     generate_license=extend_schema(
-        request=None,
-        responses={200: OpenApiResponse(response=OpenApiTypes.BINARY)}.update(
-            generic_get_errors
-        ),
-        operation_id="devices_generate_license",
+        operation={
+            "operationId": "devices_generate_license",
+            "description": "Download generated (unsigned) license",
+            "tags": ["devices"],
+            "security": [{"cookieAuth": []}, {"tokenAuth": []}],
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "id",
+                    "schema": {"type": "integer"},
+                    "required": True,
+                },
+            ],
+            "responses": {
+                "200": {
+                    # "x-is-file": True,
+                    "description": "Download generated license.zip",
+                    "content": {
+                        "application/*": {
+                            "schema": {"type": "string", "format": "binary"}
+                        }
+                    },
+                    "headers": {
+                        "Content-Disposition": {
+                            "schema": {
+                                "type": "string",
+                            }
+                        }
+                    },
+                }
+            },
+        },
     ),
 )
 class DeviceViewSet(
@@ -341,7 +368,7 @@ class DeviceViewSet(
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-    @action(detail=True, methods=["POST"], url_path="generate-license")
+    @action(detail=True, methods=["GET"], url_path="generate-license")
     def generate_license(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         device = Device.objects.get(pk=kwargs["id"])
         return generate_zipped_license_response(device, request)
