@@ -1,4 +1,4 @@
-FROM python:3.8-slim-buster
+FROM python:3.9-slim-bullseye
 
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -55,7 +55,7 @@ RUN chmod +x /start-notebook
 RUN mkdir /data
 RUN mkdir -p /tmp/print_nanny_webapp
 RUN chmod 777 /data
-RUN echo "/app" > /usr/local/lib/python3.8/site-packages/print_nanny_webapp.pth
+RUN echo "/app" > /usr/local/lib/python3.9/site-packages/print_nanny_webapp.pth
 WORKDIR /app
 
 ENTRYPOINT ["/entrypoint"]

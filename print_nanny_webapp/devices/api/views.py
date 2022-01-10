@@ -68,21 +68,24 @@ logger = logging.getLogger(__name__)
     list=extend_schema(
         responses={
             200: TaskSerializer(many=True),
-        }.update(generic_list_errors)
+        }
+        | generic_list_errors
     ),
     # POST tasks
     create=extend_schema(
         request=TaskSerializer,
         responses={
             201: TaskSerializer,
-        }.update(generic_create_errors),
+        }
+        | generic_create_errors,
     ),
     # GET one task
     retreive=extend_schema(
         request=TaskSerializer,
         responses={
             200: TaskSerializer,
-        }.update(generic_get_errors),
+        }
+        | generic_get_errors,
     ),
 )
 class TaskViewSet(
@@ -106,7 +109,8 @@ class TaskViewSet(
         ],
         responses={
             200: TaskStatusSerializer(many=True),
-        }.update(generic_list_errors),
+        }
+        | generic_list_errors,
     ),
     create=extend_schema(
         parameters=[
@@ -116,7 +120,8 @@ class TaskViewSet(
         ],
         responses={
             200: TaskStatusSerializer(),
-        }.update(generic_create_errors),
+        }
+        | generic_create_errors,
     ),
     retrieve=extend_schema(
         parameters=[
@@ -125,7 +130,8 @@ class TaskViewSet(
         request=TaskStatusSerializer,
         responses={
             201: TaskSerializer,
-        }.update(generic_get_errors),
+        }
+        | generic_get_errors,
     ),
 )
 class TaskStatusViewSet(
@@ -160,7 +166,8 @@ class TaskStatusViewSet(
     list=extend_schema(
         responses={
             200: LicenseSerializer(many=True),
-        }.update(generic_list_errors)
+        }
+        | generic_list_errors
     ),
     tags=["devices"],
 )
@@ -281,7 +288,8 @@ device_create_operation = {
     list=extend_schema(
         responses={
             200: DeviceSerializer(many=True),
-        }.update(generic_list_errors)
+        }
+        | generic_list_errors
     ),
     update=extend_schema(
         request=DeviceSerializer,
@@ -295,7 +303,8 @@ device_create_operation = {
     active_license=extend_schema(
         responses={
             200: LicenseSerializer,
-        }.update(generic_get_errors)
+        }
+        | generic_get_errors
     ),
     generate_license=extend_schema(
         request=None,
@@ -361,7 +370,8 @@ class DeviceViewSet(
         ],
         responses={
             200: SystemInfoSerializer(many=True),
-        }.update(generic_list_errors),
+        }
+        | generic_list_errors,
     ),
     create=extend_schema(
         parameters=[
@@ -370,7 +380,8 @@ class DeviceViewSet(
         request=SystemInfoSerializer,
         responses={
             201: SystemInfoSerializer,
-        }.update(generic_create_errors),
+        }
+        | generic_create_errors,
     ),
     update=extend_schema(
         parameters=[
@@ -379,7 +390,8 @@ class DeviceViewSet(
         request=SystemInfoSerializer,
         responses={
             202: SystemInfoSerializer,
-        }.update(generic_create_errors),
+        }
+        | generic_create_errors,
     ),
 )
 class SystemInfoViewSet(
@@ -429,7 +441,8 @@ class SystemInfoViewSet(
         operation_id="devices_retrieve_hostname",
         responses={
             200: DeviceSerializer,
-        }.update(generic_get_errors),
+        }
+        | generic_get_errors,
     )
 )
 class DeviceHostnameViewSet(
@@ -456,7 +469,8 @@ class DeviceHostnameViewSet(
         ],
         responses={
             200: CloudiotDeviceSerializer(),
-        }.merge(generic_get_errors),
+        }
+        | generic_get_errors,
     ),
     list=extend_schema(
         parameters=[
@@ -464,7 +478,8 @@ class DeviceHostnameViewSet(
         ],
         responses={
             200: CloudiotDeviceSerializer(many=True),
-        }.merge(generic_list_errors),
+        }
+        | generic_list_errors,
     ),
     create=extend_schema(
         parameters=[
@@ -475,7 +490,8 @@ class DeviceHostnameViewSet(
         request=CloudiotDeviceSerializer,
         responses={
             201: CloudiotDeviceSerializer,
-        }.update(generic_create_errors),
+        }
+        | generic_create_errors,
     ),
     update=extend_schema(
         parameters=[
@@ -514,7 +530,8 @@ class CloudiotDeviceViewSet(
         ],
         responses={
             200: CameraSerializer(many=True),
-        }.update(generic_list_errors),
+        }
+        | generic_list_errors,
     ),
     create=extend_schema(
         parameters=[
@@ -523,7 +540,8 @@ class CloudiotDeviceViewSet(
         request=CameraSerializer,
         responses={
             201: CameraSerializer,
-        }.update(generic_create_errors),
+        }
+        | generic_create_errors,
     ),
     update=extend_schema(
         parameters=[
@@ -562,7 +580,8 @@ class CameraViewSet(
         ],
         responses={
             200: PrinterControllerSerializer(many=True),
-        }.update(generic_list_errors),
+        }
+        | generic_list_errors,
     ),
     create=extend_schema(
         parameters=[
@@ -571,7 +590,8 @@ class CameraViewSet(
         request=DeviceSerializer,
         responses={
             201: PrinterControllerSerializer,
-        }.update(generic_create_errors),
+        }
+        | generic_create_errors,
     ),
     update=extend_schema(
         parameters=[
