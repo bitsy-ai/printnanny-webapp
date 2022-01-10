@@ -18,27 +18,24 @@ User = get_user_model()
 @extend_schema_view(
     update=extend_schema(
         request=UserSerializer,
-        responses=generic_update_errors.merge(
-            {
-                201: UserSerializer,
-            }
-        ),
+        responses={
+            201: UserSerializer,
+        }
+        | generic_update_errors,
     ),
     retreive=extend_schema(
         request=UserSerializer,
-        responses=generic_get_errors.merge(
-            {
-                200: UserSerializer,
-            }
-        ),
+        responses={
+            200: UserSerializer,
+        }
+        | generic_get_errors,
     ),
     me=extend_schema(
         request=UserSerializer,
-        responses=generic_get_errors.merge(
-            {
-                200: UserSerializer,
-            }
-        ),
+        responses={
+            200: UserSerializer,
+        }
+        | generic_get_errors,
     ),
 )
 class UserViewSet(RetrieveModelMixin, UpdateModelMixin, GenericViewSet):

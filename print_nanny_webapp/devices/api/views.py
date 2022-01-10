@@ -469,7 +469,8 @@ class DeviceHostnameViewSet(
         ],
         responses={
             200: CloudiotDeviceSerializer(),
-        }.merge(generic_get_errors),
+        }
+        | generic_get_errors,
     ),
     list=extend_schema(
         parameters=[
@@ -477,7 +478,8 @@ class DeviceHostnameViewSet(
         ],
         responses={
             200: CloudiotDeviceSerializer(many=True),
-        }.merge(generic_list_errors),
+        }
+        | generic_list_errors,
     ),
     create=extend_schema(
         parameters=[
