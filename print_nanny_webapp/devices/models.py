@@ -143,10 +143,6 @@ class License(SafeDeleteModel):
     updated_dt = models.DateTimeField(db_index=True, auto_now=True)
 
     @property
-    def last_check_task(self):
-        return self.device.tasks.filter(task_type=TaskType.SYSTEM_CHECK).first()
-
-    @property
     def user(self):
         return self.device.user
 

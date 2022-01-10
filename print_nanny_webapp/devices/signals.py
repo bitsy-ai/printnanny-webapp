@@ -5,6 +5,7 @@ from django.db.models.signals import post_save
 from channels.layers import get_channel_layer
 from rest_framework.renderers import JSONRenderer
 
+
 from .models import Device, TaskStatus, Task
 from .enum import (
     TaskType,
