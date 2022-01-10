@@ -42,9 +42,6 @@ class License(object):
         'activated': 'bool',
         'user': 'int',
         'cloudiot_device': 'int',
-        'last_check_task': 'Task',
-        'honeycomb_dataset': 'str',
-        'honeycomb_api_key': 'str',
         'janus_admin_secret': 'str',
         'janus_token': 'str',
         'public_key': 'str',
@@ -60,9 +57,6 @@ class License(object):
         'activated': 'activated',
         'user': 'user',
         'cloudiot_device': 'cloudiot_device',
-        'last_check_task': 'last_check_task',
-        'honeycomb_dataset': 'honeycomb_dataset',
-        'honeycomb_api_key': 'honeycomb_api_key',
         'janus_admin_secret': 'janus_admin_secret',
         'janus_token': 'janus_token',
         'public_key': 'public_key',
@@ -72,7 +66,7 @@ class License(object):
         'device': 'device'
     }
 
-    def __init__(self, id=None, printnanny_env=None, activated=False, user=None, cloudiot_device=None, last_check_task=None, honeycomb_dataset=None, honeycomb_api_key=None, janus_admin_secret=None, janus_token=None, public_key=None, fingerprint=None, created_dt=None, updated_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, printnanny_env=None, activated=False, user=None, cloudiot_device=None, janus_admin_secret=None, janus_token=None, public_key=None, fingerprint=None, created_dt=None, updated_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
         """License - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -83,9 +77,6 @@ class License(object):
         self._activated = None
         self._user = None
         self._cloudiot_device = None
-        self._last_check_task = None
-        self._honeycomb_dataset = None
-        self._honeycomb_api_key = None
         self._janus_admin_secret = None
         self._janus_token = None
         self._public_key = None
@@ -101,11 +92,10 @@ class License(object):
             self.activated = activated
         self.user = user
         self.cloudiot_device = cloudiot_device
-        self.last_check_task = last_check_task
-        self.honeycomb_dataset = honeycomb_dataset
-        self.honeycomb_api_key = honeycomb_api_key
-        self.janus_admin_secret = janus_admin_secret
-        self.janus_token = janus_token
+        if janus_admin_secret is not None:
+            self.janus_admin_secret = janus_admin_secret
+        if janus_token is not None:
+            self.janus_token = janus_token
         self.public_key = public_key
         self.fingerprint = fingerprint
         self.created_dt = created_dt
@@ -224,73 +214,6 @@ class License(object):
         self._cloudiot_device = cloudiot_device
 
     @property
-    def last_check_task(self):
-        """Gets the last_check_task of this License.  # noqa: E501
-
-
-        :return: The last_check_task of this License.  # noqa: E501
-        :rtype: Task
-        """
-        return self._last_check_task
-
-    @last_check_task.setter
-    def last_check_task(self, last_check_task):
-        """Sets the last_check_task of this License.
-
-
-        :param last_check_task: The last_check_task of this License.  # noqa: E501
-        :type last_check_task: Task
-        """
-
-        self._last_check_task = last_check_task
-
-    @property
-    def honeycomb_dataset(self):
-        """Gets the honeycomb_dataset of this License.  # noqa: E501
-
-
-        :return: The honeycomb_dataset of this License.  # noqa: E501
-        :rtype: str
-        """
-        return self._honeycomb_dataset
-
-    @honeycomb_dataset.setter
-    def honeycomb_dataset(self, honeycomb_dataset):
-        """Sets the honeycomb_dataset of this License.
-
-
-        :param honeycomb_dataset: The honeycomb_dataset of this License.  # noqa: E501
-        :type honeycomb_dataset: str
-        """
-        if self.local_vars_configuration.client_side_validation and honeycomb_dataset is None:  # noqa: E501
-            raise ValueError("Invalid value for `honeycomb_dataset`, must not be `None`")  # noqa: E501
-
-        self._honeycomb_dataset = honeycomb_dataset
-
-    @property
-    def honeycomb_api_key(self):
-        """Gets the honeycomb_api_key of this License.  # noqa: E501
-
-
-        :return: The honeycomb_api_key of this License.  # noqa: E501
-        :rtype: str
-        """
-        return self._honeycomb_api_key
-
-    @honeycomb_api_key.setter
-    def honeycomb_api_key(self, honeycomb_api_key):
-        """Sets the honeycomb_api_key of this License.
-
-
-        :param honeycomb_api_key: The honeycomb_api_key of this License.  # noqa: E501
-        :type honeycomb_api_key: str
-        """
-        if self.local_vars_configuration.client_side_validation and honeycomb_api_key is None:  # noqa: E501
-            raise ValueError("Invalid value for `honeycomb_api_key`, must not be `None`")  # noqa: E501
-
-        self._honeycomb_api_key = honeycomb_api_key
-
-    @property
     def janus_admin_secret(self):
         """Gets the janus_admin_secret of this License.  # noqa: E501
 
@@ -308,8 +231,9 @@ class License(object):
         :param janus_admin_secret: The janus_admin_secret of this License.  # noqa: E501
         :type janus_admin_secret: str
         """
-        if self.local_vars_configuration.client_side_validation and janus_admin_secret is None:  # noqa: E501
-            raise ValueError("Invalid value for `janus_admin_secret`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                janus_admin_secret is not None and len(janus_admin_secret) > 255):
+            raise ValueError("Invalid value for `janus_admin_secret`, length must be less than or equal to `255`")  # noqa: E501
 
         self._janus_admin_secret = janus_admin_secret
 
@@ -331,8 +255,9 @@ class License(object):
         :param janus_token: The janus_token of this License.  # noqa: E501
         :type janus_token: str
         """
-        if self.local_vars_configuration.client_side_validation and janus_token is None:  # noqa: E501
-            raise ValueError("Invalid value for `janus_token`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                janus_token is not None and len(janus_token) > 255):
+            raise ValueError("Invalid value for `janus_token`, length must be less than or equal to `255`")  # noqa: E501
 
         self._janus_token = janus_token
 

@@ -37,7 +37,9 @@ class TestLicenseRequest(unittest.TestCase):
         # model = printnanny_api_client.models.license_request.LicenseRequest()  # noqa: E501
         if include_optional :
             return LicenseRequest(
-                activated = True
+                activated = True, 
+                janus_admin_secret = '0', 
+                janus_token = '0'
             )
         else :
             return LicenseRequest(

@@ -37,24 +37,34 @@ class LicenseRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'activated': 'bool'
+        'activated': 'bool',
+        'janus_admin_secret': 'str',
+        'janus_token': 'str'
     }
 
     attribute_map = {
-        'activated': 'activated'
+        'activated': 'activated',
+        'janus_admin_secret': 'janus_admin_secret',
+        'janus_token': 'janus_token'
     }
 
-    def __init__(self, activated=False, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, activated=False, janus_admin_secret=None, janus_token=None, local_vars_configuration=None):  # noqa: E501
         """LicenseRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._activated = None
+        self._janus_admin_secret = None
+        self._janus_token = None
         self.discriminator = None
 
         if activated is not None:
             self.activated = activated
+        if janus_admin_secret is not None:
+            self.janus_admin_secret = janus_admin_secret
+        if janus_token is not None:
+            self.janus_token = janus_token
 
     @property
     def activated(self):
@@ -76,6 +86,60 @@ class LicenseRequest(object):
         """
 
         self._activated = activated
+
+    @property
+    def janus_admin_secret(self):
+        """Gets the janus_admin_secret of this LicenseRequest.  # noqa: E501
+
+
+        :return: The janus_admin_secret of this LicenseRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._janus_admin_secret
+
+    @janus_admin_secret.setter
+    def janus_admin_secret(self, janus_admin_secret):
+        """Sets the janus_admin_secret of this LicenseRequest.
+
+
+        :param janus_admin_secret: The janus_admin_secret of this LicenseRequest.  # noqa: E501
+        :type janus_admin_secret: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                janus_admin_secret is not None and len(janus_admin_secret) > 255):
+            raise ValueError("Invalid value for `janus_admin_secret`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                janus_admin_secret is not None and len(janus_admin_secret) < 1):
+            raise ValueError("Invalid value for `janus_admin_secret`, length must be greater than or equal to `1`")  # noqa: E501
+
+        self._janus_admin_secret = janus_admin_secret
+
+    @property
+    def janus_token(self):
+        """Gets the janus_token of this LicenseRequest.  # noqa: E501
+
+
+        :return: The janus_token of this LicenseRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._janus_token
+
+    @janus_token.setter
+    def janus_token(self, janus_token):
+        """Sets the janus_token of this LicenseRequest.
+
+
+        :param janus_token: The janus_token of this LicenseRequest.  # noqa: E501
+        :type janus_token: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                janus_token is not None and len(janus_token) > 255):
+            raise ValueError("Invalid value for `janus_token`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                janus_token is not None and len(janus_token) < 1):
+            raise ValueError("Invalid value for `janus_token`, length must be greater than or equal to `1`")  # noqa: E501
+
+        self._janus_token = janus_token
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
