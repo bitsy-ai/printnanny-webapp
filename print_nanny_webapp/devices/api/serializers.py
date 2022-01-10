@@ -105,6 +105,9 @@ class TaskSerializer(serializers.ModelSerializer):
         exclude = ("deleted",)
 
 
+TaskStatusSerializer.task = TaskSerializer(read_only=True)
+
+
 class DeviceSerializer(serializers.ModelSerializer):
 
     cloudiot_device = CloudiotDeviceSerializer(read_only=True)
