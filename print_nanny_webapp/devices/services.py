@@ -44,7 +44,8 @@ class KeyPair(TypedDict):
 
 def render_janus_env(device: Device) -> str:
     context = dict(
-        janus_admin_secret=device.janus_admin_secret, janus_token=device.janus_token
+        janus_admin_secret=device.active_license.janus_admin_secret,
+        janus_token=device.active_license.janus_token,
     )
     return render_to_string("janus.env.j2", context)
 
