@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **status_display** | **String** |  | [readonly]
 **css_class** | **String** |  | [readonly]
 **created_dt** | **String** |  | [readonly]
-**task** | Option<[**crate::models::Nested**](Nested.md)> |  | [readonly]
+**task** | **i32** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -28,11 +28,11 @@ pub struct TaskStatus {
     #[serde(rename = "created_dt")]
     pub created_dt: String,
     #[serde(rename = "task")]
-    pub task: Option<Box<crate::models::Nested>>,
+    pub task: i32,
 }
 
 impl TaskStatus {
-    pub fn new(id: i32, status: crate::models::TaskStatusType, status_display: String, css_class: String, created_dt: String, task: Option<crate::models::Nested>) -> TaskStatus {
+    pub fn new(id: i32, status: crate::models::TaskStatusType, status_display: String, css_class: String, created_dt: String, task: i32) -> TaskStatus {
         TaskStatus {
             id,
             detail: None,
@@ -41,7 +41,7 @@ impl TaskStatus {
             status_display,
             css_class,
             created_dt,
-            task: task.map(Box::new),
+            task,
         }
     }
 }

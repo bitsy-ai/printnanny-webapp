@@ -44,7 +44,7 @@ class TaskStatus(object):
         'status_display': 'str',
         'css_class': 'str',
         'created_dt': 'datetime',
-        'task': 'Nested'
+        'task': 'int'
     }
 
     attribute_map = {
@@ -246,7 +246,7 @@ class TaskStatus(object):
 
 
         :return: The task of this TaskStatus.  # noqa: E501
-        :rtype: Nested
+        :rtype: int
         """
         return self._task
 
@@ -256,8 +256,10 @@ class TaskStatus(object):
 
 
         :param task: The task of this TaskStatus.  # noqa: E501
-        :type task: Nested
+        :type task: int
         """
+        if self.local_vars_configuration.client_side_validation and task is None:  # noqa: E501
+            raise ValueError("Invalid value for `task`, must not be `None`")  # noqa: E501
 
         self._task = task
 

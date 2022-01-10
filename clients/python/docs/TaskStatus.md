@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **status_display** | **str** |  | [readonly] 
 **css_class** | **str** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
-**task** | [**Nested**](Nested.md) |  | [readonly] 
+**task** | **int** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

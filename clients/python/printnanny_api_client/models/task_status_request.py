@@ -39,16 +39,18 @@ class TaskStatusRequest(object):
     openapi_types = {
         'detail': 'str',
         'wiki_url': 'str',
-        'status': 'TaskStatusType'
+        'status': 'TaskStatusType',
+        'task': 'int'
     }
 
     attribute_map = {
         'detail': 'detail',
         'wiki_url': 'wiki_url',
-        'status': 'status'
+        'status': 'status',
+        'task': 'task'
     }
 
-    def __init__(self, detail=None, wiki_url=None, status=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, detail=None, wiki_url=None, status=None, task=None, local_vars_configuration=None):  # noqa: E501
         """TaskStatusRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -57,11 +59,13 @@ class TaskStatusRequest(object):
         self._detail = None
         self._wiki_url = None
         self._status = None
+        self._task = None
         self.discriminator = None
 
         self.detail = detail
         self.wiki_url = wiki_url
         self.status = status
+        self.task = task
 
     @property
     def detail(self):
@@ -133,6 +137,29 @@ class TaskStatusRequest(object):
             raise ValueError("Invalid value for `status`, must not be `None`")  # noqa: E501
 
         self._status = status
+
+    @property
+    def task(self):
+        """Gets the task of this TaskStatusRequest.  # noqa: E501
+
+
+        :return: The task of this TaskStatusRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._task
+
+    @task.setter
+    def task(self, task):
+        """Sets the task of this TaskStatusRequest.
+
+
+        :param task: The task of this TaskStatusRequest.  # noqa: E501
+        :type task: int
+        """
+        if self.local_vars_configuration.client_side_validation and task is None:  # noqa: E501
+            raise ValueError("Invalid value for `task`, must not be `None`")  # noqa: E501
+
+        self._task = task
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
