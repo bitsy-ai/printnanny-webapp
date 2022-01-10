@@ -17,7 +17,7 @@ Method | HTTP request | Description
 [**devices_cloud_iot_devices_retrieve**](DevicesApi.md#devices_cloud_iot_devices_retrieve) | **GET** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
 [**devices_cloud_iot_devices_update**](DevicesApi.md#devices_cloud_iot_devices_update) | **PUT** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
 [**devices_create**](DevicesApi.md#devices_create) | **POST** /api/devices/ | 
-[**devices_generate_license**](DevicesApi.md#devices_generate_license) | **POST** /api/devices/{id}/generate-license/ | 
+[**devices_generate_license**](DevicesApi.md#devices_generate_license) | **GET** /api/devices/{id}/generate-license/ | 
 [**devices_info_create**](DevicesApi.md#devices_info_create) | **POST** /api/devices/{device_id}/info/ | 
 [**devices_info_list**](DevicesApi.md#devices_info_list) | **GET** /api/devices/{device_id}/info/ | 
 [**devices_info_partial_update**](DevicesApi.md#devices_info_partial_update) | **PATCH** /api/devices/{device_id}/info/{id}/ | 
@@ -1643,11 +1643,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_generate_license**
-> devices_generate_license(id)
+> file devices_generate_license(id)
 
 
 
-A device (Raspberry Pi) running Print Nanny OS
+Download generated (unsigned) license
 
 ### Example
 
@@ -1684,10 +1684,11 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    id = 56 # int | A unique integer value identifying this device.
+    id = 56 # int | 
 
     try:
-        api_instance.devices_generate_license(id)
+        api_response = api_instance.devices_generate_license(id)
+        pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_generate_license: %s\n" % e)
 ```
@@ -1725,10 +1726,11 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    id = 56 # int | A unique integer value identifying this device.
+    id = 56 # int | 
 
     try:
-        api_instance.devices_generate_license(id)
+        api_response = api_instance.devices_generate_license(id)
+        pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_generate_license: %s\n" % e)
 ```
@@ -1737,11 +1739,11 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this device. | 
+ **id** | **int**|  | 
 
 ### Return type
 
-void (empty response body)
+**file**
 
 ### Authorization
 
@@ -1750,12 +1752,12 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | No response body |  -  |
+**200** | Download generated license.zip |  * Content-Disposition -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

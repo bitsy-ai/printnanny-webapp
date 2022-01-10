@@ -1977,14 +1977,14 @@ class DevicesApi(object):
     def devices_generate_license(self, id, **kwargs):  # noqa: E501
         """devices_generate_license  # noqa: E501
 
-        A device (Raspberry Pi) running Print Nanny OS  # noqa: E501
+        Download generated (unsigned) license  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.devices_generate_license(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this device. (required)
+        :param id: (required)
         :type id: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1999,7 +1999,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: file
         """
         kwargs['_return_http_data_only'] = True
         return self.devices_generate_license_with_http_info(id, **kwargs)  # noqa: E501
@@ -2007,14 +2007,14 @@ class DevicesApi(object):
     def devices_generate_license_with_http_info(self, id, **kwargs):  # noqa: E501
         """devices_generate_license  # noqa: E501
 
-        A device (Raspberry Pi) running Print Nanny OS  # noqa: E501
+        Download generated (unsigned) license  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.devices_generate_license_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this device. (required)
+        :param id: (required)
         :type id: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2036,7 +2036,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(file, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -2081,13 +2081,19 @@ class DevicesApi(object):
         local_var_files = {}
 
         body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/*'])  # noqa: E501
+
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
-        response_types_map = {}
+        response_types_map = {
+            200: "file",
+        }
 
         return self.api_client.call_api(
-            '/api/devices/{id}/generate-license/', 'POST',
+            '/api/devices/{id}/generate-license/', 'GET',
             path_params,
             query_params,
             header_params,

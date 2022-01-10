@@ -17,7 +17,7 @@ Method | HTTP request | Description
 [**devices_cloud_iot_devices_retrieve**](DevicesApi.md#devices_cloud_iot_devices_retrieve) | **GET** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
 [**devices_cloud_iot_devices_update**](DevicesApi.md#devices_cloud_iot_devices_update) | **PUT** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
 [**devices_create**](DevicesApi.md#devices_create) | **POST** /api/devices/ | 
-[**devices_generate_license**](DevicesApi.md#devices_generate_license) | **POST** /api/devices/{id}/generate-license/ | 
+[**devices_generate_license**](DevicesApi.md#devices_generate_license) | **GET** /api/devices/{id}/generate-license/ | 
 [**devices_info_create**](DevicesApi.md#devices_info_create) | **POST** /api/devices/{device_id}/info/ | 
 [**devices_info_list**](DevicesApi.md#devices_info_list) | **GET** /api/devices/{device_id}/info/ | 
 [**devices_info_partial_update**](DevicesApi.md#devices_info_partial_update) | **PATCH** /api/devices/{device_id}/info/{id}/ | 
@@ -427,21 +427,21 @@ Name | Type | Description  | Required | Notes
 
 ## devices_generate_license
 
-> devices_generate_license(id)
+> std::path::PathBuf devices_generate_license(id)
 
 
-A device (Raspberry Pi) running Print Nanny OS
+Download generated (unsigned) license
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **i32** | A unique integer value identifying this device. | [required] |
+**id** | **i32** |  | [required] |
 
 ### Return type
 
- (empty response body)
+[**std::path::PathBuf**](std::path::PathBuf.md)
 
 ### Authorization
 
@@ -450,7 +450,7 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/_*
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
