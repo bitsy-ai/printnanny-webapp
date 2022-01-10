@@ -295,6 +295,10 @@ class LicensesApi(object):
 
         response_types_map = {
             200: "PaginatedLicenseList",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(

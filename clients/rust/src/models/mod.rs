@@ -166,8 +166,6 @@ pub mod paginated_task_status_list;
 pub use self::paginated_task_status_list::PaginatedTaskStatusList;
 pub mod paginated_telemetry_event_polymorphic_list;
 pub use self::paginated_telemetry_event_polymorphic_list::PaginatedTelemetryEventPolymorphicList;
-pub mod paginated_user_list;
-pub use self::paginated_user_list::PaginatedUserList;
 pub mod partner3_d_geeks_alert;
 pub use self::partner3_d_geeks_alert::Partner3DGeeksAlert;
 pub mod partner3_d_geeks_metadata;

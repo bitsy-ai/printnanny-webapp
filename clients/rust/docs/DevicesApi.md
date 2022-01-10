@@ -76,7 +76,7 @@ Name | Type | Description  | Required | Notes
 > crate::models::License devices_active_license_retrieve(id)
 
 
-All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+A device (Raspberry Pi) running Print Nanny OS
 
 ### Parameters
 
@@ -220,7 +220,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_cameras_update
 
-> crate::models::Camera devices_cameras_update(device_id, id, camera_request)
+> devices_cameras_update(device_id, id, camera_request)
 
 
 ### Parameters
@@ -234,7 +234,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Camera**](Camera.md)
+ (empty response body)
 
 ### Authorization
 
@@ -243,7 +243,7 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -367,7 +367,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_cloud_iot_devices_update
 
-> crate::models::CloudiotDevice devices_cloud_iot_devices_update(device_id, id, cloudiot_device_request)
+> devices_cloud_iot_devices_update(device_id, id, cloudiot_device_request)
 
 
 ### Parameters
@@ -376,12 +376,12 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
-**id** | **i32** |  | [required] |
+**id** | **String** |  | [required] |
 **cloudiot_device_request** | [**CloudiotDeviceRequest**](CloudiotDeviceRequest.md) |  | [required] |
 
 ### Return type
 
-[**crate::models::CloudiotDevice**](CloudiotDevice.md)
+ (empty response body)
 
 ### Authorization
 
@@ -390,7 +390,7 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -400,14 +400,14 @@ Name | Type | Description  | Required | Notes
 > crate::models::Device devices_create(device_request)
 
 
-All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+A device (Raspberry Pi) running Print Nanny OS
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**device_request** | Option<[**DeviceRequest**](DeviceRequest.md)> |  |  |
+**device_request** | [**DeviceRequest**](DeviceRequest.md) |  | [required] |
 
 ### Return type
 
@@ -427,10 +427,10 @@ Name | Type | Description  | Required | Notes
 
 ## devices_generate_license
 
-> std::path::PathBuf devices_generate_license(id)
+> devices_generate_license(id)
 
 
-All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+A device (Raspberry Pi) running Print Nanny OS
 
 ### Parameters
 
@@ -441,7 +441,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**std::path::PathBuf**](std::path::PathBuf.md)
+ (empty response body)
 
 ### Authorization
 
@@ -450,7 +450,7 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -607,7 +607,7 @@ Name | Type | Description  | Required | Notes
 > crate::models::PaginatedDeviceList devices_list(page)
 
 
-All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+A device (Raspberry Pi) running Print Nanny OS
 
 ### Parameters
 
@@ -637,7 +637,7 @@ Name | Type | Description  | Required | Notes
 > crate::models::Device devices_partial_update(id, patched_device_request)
 
 
-All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+A device (Raspberry Pi) running Print Nanny OS
 
 ### Parameters
 
@@ -782,7 +782,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_printer_controllers_update
 
-> crate::models::PrinterController devices_printer_controllers_update(device_id, id, device_request)
+> devices_printer_controllers_update(device_id, id, device_request)
 
 
 ### Parameters
@@ -796,7 +796,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::PrinterController**](PrinterController.md)
+ (empty response body)
 
 ### Authorization
 
@@ -805,7 +805,7 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -815,7 +815,7 @@ Name | Type | Description  | Required | Notes
 > crate::models::Device devices_retrieve(id)
 
 
-All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+A device (Raspberry Pi) running Print Nanny OS
 
 ### Parameters
 
@@ -957,7 +957,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_tasks_status_create
 
-> crate::models::Task devices_tasks_status_create(device_id, task_id, task_status_request)
+> crate::models::TaskStatus devices_tasks_status_create(device_id, task_id, task_status_request)
 
 
 ### Parameters
@@ -971,7 +971,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Task**](Task.md)
+[**crate::models::TaskStatus**](TaskStatus.md)
 
 ### Authorization
 
@@ -1017,7 +1017,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_tasks_status_retrieve
 
-> crate::models::TaskStatus devices_tasks_status_retrieve(device_id, id, task_id)
+> crate::models::Task devices_tasks_status_retrieve(device_id, id, task_id)
 
 
 ### Parameters
@@ -1031,7 +1031,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::TaskStatus**](TaskStatus.md)
+[**crate::models::Task**](Task.md)
 
 ### Authorization
 
@@ -1047,10 +1047,10 @@ Name | Type | Description  | Required | Notes
 
 ## devices_update
 
-> crate::models::Device devices_update(id, device_request)
+> devices_update(id, device_request)
 
 
-All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+A device (Raspberry Pi) running Print Nanny OS
 
 ### Parameters
 
@@ -1062,7 +1062,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Device**](Device.md)
+ (empty response body)
 
 ### Authorization
 
@@ -1071,7 +1071,7 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

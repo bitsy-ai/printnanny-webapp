@@ -15,12 +15,15 @@
 pub struct ErrorDetail {
     #[serde(rename = "detail")]
     pub detail: String,
+    #[serde(rename = "code")]
+    pub code: String,
 }
 
 impl ErrorDetail {
-    pub fn new(detail: String) -> ErrorDetail {
+    pub fn new(detail: String, code: String) -> ErrorDetail {
         ErrorDetail {
             detail,
+            code,
         }
     }
 }

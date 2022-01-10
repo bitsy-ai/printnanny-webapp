@@ -4,40 +4,11 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**users_list**](UsersApi.md#users_list) | **GET** /api/users/ | 
 [**users_me_retrieve**](UsersApi.md#users_me_retrieve) | **GET** /api/users/me/ | 
 [**users_partial_update**](UsersApi.md#users_partial_update) | **PATCH** /api/users/{id}/ | 
 [**users_retrieve**](UsersApi.md#users_retrieve) | **GET** /api/users/{id}/ | 
 [**users_update**](UsersApi.md#users_update) | **PUT** /api/users/{id}/ | 
 
-
-
-## users_list
-
-> crate::models::PaginatedUserList users_list(page)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**page** | Option<**i32**> | A page number within the paginated result set. |  |
-
-### Return type
-
-[**crate::models::PaginatedUserList**](PaginatedUserList.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## users_me_retrieve

@@ -27,7 +27,10 @@ pub enum LicenseActivateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum LicensesListError {
-    DefaultResponse(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 

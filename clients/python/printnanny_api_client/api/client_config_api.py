@@ -140,6 +140,10 @@ class ClientConfigApi(object):
 
         response_types_map = {
             200: "list[PrintNannyApiConfig]",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(

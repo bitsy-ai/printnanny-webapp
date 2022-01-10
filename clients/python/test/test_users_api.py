@@ -29,12 +29,6 @@ class TestUsersApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_users_list(self):
-        """Test case for users_list
-
-        """
-        pass
-
     def test_users_me_retrieve(self):
         """Test case for users_me_retrieve
 

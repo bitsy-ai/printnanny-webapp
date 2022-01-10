@@ -189,7 +189,7 @@ class DevicesApi(object):
     def devices_active_license_retrieve(self, id, **kwargs):  # noqa: E501
         """devices_active_license_retrieve  # noqa: E501
 
-        All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
+        A device (Raspberry Pi) running Print Nanny OS  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -219,7 +219,7 @@ class DevicesApi(object):
     def devices_active_license_retrieve_with_http_info(self, id, **kwargs):  # noqa: E501
         """devices_active_license_retrieve  # noqa: E501
 
-        All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
+        A device (Raspberry Pi) running Print Nanny OS  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -302,6 +302,11 @@ class DevicesApi(object):
 
         response_types_map = {
             200: "License",
+            404: "ErrorDetail",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(
@@ -450,7 +455,11 @@ class DevicesApi(object):
 
         response_types_map = {
             201: "Camera",
-            202: "Camera",
+            409: "ErrorDetail",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(
@@ -591,6 +600,10 @@ class DevicesApi(object):
 
         response_types_map = {
             200: "PaginatedCameraList",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(
@@ -937,7 +950,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: Camera
+        :rtype: None
         """
         kwargs['_return_http_data_only'] = True
         return self.devices_cameras_update_with_http_info(device_id, id, camera_request, **kwargs)  # noqa: E501
@@ -977,7 +990,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(Camera, status_code(int), headers(HTTPHeaderDict))
+        :rtype: None
         """
 
         local_var_params = locals()
@@ -1036,10 +1049,6 @@ class DevicesApi(object):
         body_params = None
         if 'camera_request' in local_var_params:
             body_params = local_var_params['camera_request']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
         # HTTP header `Content-Type`
         header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
             ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'])  # noqa: E501
@@ -1047,10 +1056,7 @@ class DevicesApi(object):
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
-        response_types_map = {
-            201: "Camera",
-            202: "Camera",
-        }
+        response_types_map = {}
 
         return self.api_client.call_api(
             '/api/devices/{device_id}/cameras/{id}/', 'PUT',
@@ -1198,6 +1204,11 @@ class DevicesApi(object):
 
         response_types_map = {
             201: "CloudiotDevice",
+            409: "ErrorDetail",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(
@@ -1338,6 +1349,10 @@ class DevicesApi(object):
 
         response_types_map = {
             200: "PaginatedCloudiotDeviceList",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(
@@ -1637,6 +1652,11 @@ class DevicesApi(object):
 
         response_types_map = {
             200: "CloudiotDevice",
+            404: "ErrorDetail",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(
@@ -1668,7 +1688,7 @@ class DevicesApi(object):
         :param device_id: (required)
         :type device_id: int
         :param id: (required)
-        :type id: int
+        :type id: str
         :param cloudiot_device_request: (required)
         :type cloudiot_device_request: CloudiotDeviceRequest
         :param async_req: Whether to execute the request asynchronously.
@@ -1684,7 +1704,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: CloudiotDevice
+        :rtype: None
         """
         kwargs['_return_http_data_only'] = True
         return self.devices_cloud_iot_devices_update_with_http_info(device_id, id, cloudiot_device_request, **kwargs)  # noqa: E501
@@ -1701,7 +1721,7 @@ class DevicesApi(object):
         :param device_id: (required)
         :type device_id: int
         :param id: (required)
-        :type id: int
+        :type id: str
         :param cloudiot_device_request: (required)
         :type cloudiot_device_request: CloudiotDeviceRequest
         :param async_req: Whether to execute the request asynchronously.
@@ -1724,7 +1744,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(CloudiotDevice, status_code(int), headers(HTTPHeaderDict))
+        :rtype: None
         """
 
         local_var_params = locals()
@@ -1783,10 +1803,6 @@ class DevicesApi(object):
         body_params = None
         if 'cloudiot_device_request' in local_var_params:
             body_params = local_var_params['cloudiot_device_request']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
         # HTTP header `Content-Type`
         header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
             ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'])  # noqa: E501
@@ -1794,10 +1810,7 @@ class DevicesApi(object):
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
-        response_types_map = {
-            201: "CloudiotDevice",
-            202: "CloudiotDevice",
-        }
+        response_types_map = {}
 
         return self.api_client.call_api(
             '/api/devices/{device_id}/cloud-iot-devices/{id}/', 'PUT',
@@ -1816,17 +1829,17 @@ class DevicesApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def devices_create(self, **kwargs):  # noqa: E501
+    def devices_create(self, device_request, **kwargs):  # noqa: E501
         """devices_create  # noqa: E501
 
-        All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
+        A device (Raspberry Pi) running Print Nanny OS  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_create(async_req=True)
+        >>> thread = api.devices_create(device_request, async_req=True)
         >>> result = thread.get()
 
-        :param device_request:
+        :param device_request: (required)
         :type device_request: DeviceRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1844,19 +1857,19 @@ class DevicesApi(object):
         :rtype: Device
         """
         kwargs['_return_http_data_only'] = True
-        return self.devices_create_with_http_info(**kwargs)  # noqa: E501
+        return self.devices_create_with_http_info(device_request, **kwargs)  # noqa: E501
 
-    def devices_create_with_http_info(self, **kwargs):  # noqa: E501
+    def devices_create_with_http_info(self, device_request, **kwargs):  # noqa: E501
         """devices_create  # noqa: E501
 
-        All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
+        A device (Raspberry Pi) running Print Nanny OS  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_create_with_http_info(async_req=True)
+        >>> thread = api.devices_create_with_http_info(device_request, async_req=True)
         >>> result = thread.get()
 
-        :param device_request:
+        :param device_request: (required)
         :type device_request: DeviceRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1904,6 +1917,10 @@ class DevicesApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
+        # verify the required parameter 'device_request' is set
+        if self.api_client.client_side_validation and ('device_request' not in local_var_params or  # noqa: E501
+                                                        local_var_params['device_request'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `device_request` when calling `devices_create`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1931,8 +1948,13 @@ class DevicesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            404: "ErrorDetail",
+            409: "ErrorDetail",
+            500: "ErrorDetail",
             201: "Device",
-            202: "Device",
         }
 
         return self.api_client.call_api(
@@ -1955,7 +1977,7 @@ class DevicesApi(object):
     def devices_generate_license(self, id, **kwargs):  # noqa: E501
         """devices_generate_license  # noqa: E501
 
-        All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
+        A device (Raspberry Pi) running Print Nanny OS  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1977,7 +1999,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: file
+        :rtype: None
         """
         kwargs['_return_http_data_only'] = True
         return self.devices_generate_license_with_http_info(id, **kwargs)  # noqa: E501
@@ -1985,7 +2007,7 @@ class DevicesApi(object):
     def devices_generate_license_with_http_info(self, id, **kwargs):  # noqa: E501
         """devices_generate_license  # noqa: E501
 
-        All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
+        A device (Raspberry Pi) running Print Nanny OS  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -2014,7 +2036,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(file, status_code(int), headers(HTTPHeaderDict))
+        :rtype: None
         """
 
         local_var_params = locals()
@@ -2059,16 +2081,10 @@ class DevicesApi(object):
         local_var_files = {}
 
         body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
-        response_types_map = {
-            200: "file",
-        }
+        response_types_map = {}
 
         return self.api_client.call_api(
             '/api/devices/{id}/generate-license/', 'POST',
@@ -2216,7 +2232,11 @@ class DevicesApi(object):
 
         response_types_map = {
             201: "SystemInfo",
-            202: "SystemInfo",
+            409: "ErrorDetail",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(
@@ -2357,6 +2377,10 @@ class DevicesApi(object):
 
         response_types_map = {
             200: "PaginatedSystemInfoList",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(
@@ -2814,8 +2838,12 @@ class DevicesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            201: "SystemInfo",
             202: "SystemInfo",
+            409: "ErrorDetail",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(
@@ -2838,7 +2866,7 @@ class DevicesApi(object):
     def devices_list(self, **kwargs):  # noqa: E501
         """devices_list  # noqa: E501
 
-        All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
+        A device (Raspberry Pi) running Print Nanny OS  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -2868,7 +2896,7 @@ class DevicesApi(object):
     def devices_list_with_http_info(self, **kwargs):  # noqa: E501
         """devices_list  # noqa: E501
 
-        All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
+        A device (Raspberry Pi) running Print Nanny OS  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -2947,6 +2975,10 @@ class DevicesApi(object):
 
         response_types_map = {
             200: "PaginatedDeviceList",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(
@@ -2969,7 +3001,7 @@ class DevicesApi(object):
     def devices_partial_update(self, id, **kwargs):  # noqa: E501
         """devices_partial_update  # noqa: E501
 
-        All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
+        A device (Raspberry Pi) running Print Nanny OS  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -3001,7 +3033,7 @@ class DevicesApi(object):
     def devices_partial_update_with_http_info(self, id, **kwargs):  # noqa: E501
         """devices_partial_update  # noqa: E501
 
-        All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
+        A device (Raspberry Pi) running Print Nanny OS  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -3237,7 +3269,11 @@ class DevicesApi(object):
 
         response_types_map = {
             201: "PrinterController",
-            202: "PrinterController",
+            409: "ErrorDetail",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(
@@ -3378,6 +3414,10 @@ class DevicesApi(object):
 
         response_types_map = {
             200: "PaginatedPrinterControllerList",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(
@@ -3724,7 +3764,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: PrinterController
+        :rtype: None
         """
         kwargs['_return_http_data_only'] = True
         return self.devices_printer_controllers_update_with_http_info(device_id, id, **kwargs)  # noqa: E501
@@ -3764,7 +3804,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(PrinterController, status_code(int), headers(HTTPHeaderDict))
+        :rtype: None
         """
 
         local_var_params = locals()
@@ -3819,10 +3859,6 @@ class DevicesApi(object):
         body_params = None
         if 'device_request' in local_var_params:
             body_params = local_var_params['device_request']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
         # HTTP header `Content-Type`
         header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
             ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'])  # noqa: E501
@@ -3830,10 +3866,7 @@ class DevicesApi(object):
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
-        response_types_map = {
-            201: "PrinterController",
-            202: "PrinterController",
-        }
+        response_types_map = {}
 
         return self.api_client.call_api(
             '/api/devices/{device_id}/printer-controllers/{id}/', 'PUT',
@@ -3855,7 +3888,7 @@ class DevicesApi(object):
     def devices_retrieve(self, id, **kwargs):  # noqa: E501
         """devices_retrieve  # noqa: E501
 
-        All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
+        A device (Raspberry Pi) running Print Nanny OS  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -3885,7 +3918,7 @@ class DevicesApi(object):
     def devices_retrieve_with_http_info(self, id, **kwargs):  # noqa: E501
         """devices_retrieve  # noqa: E501
 
-        All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
+        A device (Raspberry Pi) running Print Nanny OS  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -4101,6 +4134,11 @@ class DevicesApi(object):
 
         response_types_map = {
             200: "Device",
+            404: "ErrorDetail",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(
@@ -4248,8 +4286,12 @@ class DevicesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            200: "Task",
             201: "Task",
+            409: "ErrorDetail",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(
@@ -4390,6 +4432,10 @@ class DevicesApi(object):
 
         response_types_map = {
             200: "PaginatedTaskList",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(
@@ -4581,7 +4627,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: Task
+        :rtype: TaskStatus
         """
         kwargs['_return_http_data_only'] = True
         return self.devices_tasks_status_create_with_http_info(device_id, task_id, task_status_request, **kwargs)  # noqa: E501
@@ -4621,7 +4667,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(Task, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(TaskStatus, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -4692,7 +4738,12 @@ class DevicesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            201: "Task",
+            200: "TaskStatus",
+            409: "ErrorDetail",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(
@@ -4844,6 +4895,10 @@ class DevicesApi(object):
 
         response_types_map = {
             200: "PaginatedTaskStatusList",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(
@@ -4891,7 +4946,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: TaskStatus
+        :rtype: Task
         """
         kwargs['_return_http_data_only'] = True
         return self.devices_tasks_status_retrieve_with_http_info(device_id, id, task_id, **kwargs)  # noqa: E501
@@ -4931,7 +4986,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(TaskStatus, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(Task, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -4998,7 +5053,12 @@ class DevicesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            200: "TaskStatus",
+            201: "Task",
+            404: "ErrorDetail",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(
@@ -5021,7 +5081,7 @@ class DevicesApi(object):
     def devices_update(self, id, **kwargs):  # noqa: E501
         """devices_update  # noqa: E501
 
-        All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
+        A device (Raspberry Pi) running Print Nanny OS  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -5045,7 +5105,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: Device
+        :rtype: None
         """
         kwargs['_return_http_data_only'] = True
         return self.devices_update_with_http_info(id, **kwargs)  # noqa: E501
@@ -5053,7 +5113,7 @@ class DevicesApi(object):
     def devices_update_with_http_info(self, id, **kwargs):  # noqa: E501
         """devices_update  # noqa: E501
 
-        All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
+        A device (Raspberry Pi) running Print Nanny OS  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -5084,7 +5144,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(Device, status_code(int), headers(HTTPHeaderDict))
+        :rtype: None
         """
 
         local_var_params = locals()
@@ -5132,10 +5192,6 @@ class DevicesApi(object):
         body_params = None
         if 'device_request' in local_var_params:
             body_params = local_var_params['device_request']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
         # HTTP header `Content-Type`
         header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
             ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'])  # noqa: E501
@@ -5143,10 +5199,7 @@ class DevicesApi(object):
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
-        response_types_map = {
-            201: "Device",
-            202: "Device",
-        }
+        response_types_map = {}
 
         return self.api_client.call_api(
             '/api/devices/{id}/', 'PUT',

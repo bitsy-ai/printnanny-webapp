@@ -37,23 +37,27 @@ class ErrorDetail(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'detail': 'str'
+        'detail': 'str',
+        'code': 'str'
     }
 
     attribute_map = {
-        'detail': 'detail'
+        'detail': 'detail',
+        'code': 'code'
     }
 
-    def __init__(self, detail=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, detail=None, code=None, local_vars_configuration=None):  # noqa: E501
         """ErrorDetail - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._detail = None
+        self._code = None
         self.discriminator = None
 
         self.detail = detail
+        self.code = code
 
     @property
     def detail(self):
@@ -77,6 +81,29 @@ class ErrorDetail(object):
             raise ValueError("Invalid value for `detail`, must not be `None`")  # noqa: E501
 
         self._detail = detail
+
+    @property
+    def code(self):
+        """Gets the code of this ErrorDetail.  # noqa: E501
+
+
+        :return: The code of this ErrorDetail.  # noqa: E501
+        :rtype: str
+        """
+        return self._code
+
+    @code.setter
+    def code(self, code):
+        """Sets the code of this ErrorDetail.
+
+
+        :param code: The code of this ErrorDetail.  # noqa: E501
+        :type code: str
+        """
+        if self.local_vars_configuration.client_side_validation and code is None:  # noqa: E501
+            raise ValueError("Invalid value for `code`, must not be `None`")  # noqa: E501
+
+        self._code = code
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

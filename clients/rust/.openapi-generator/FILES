@@ -93,7 +93,6 @@ docs/PaginatedSystemInfoList.md
 docs/PaginatedTaskList.md
 docs/PaginatedTaskStatusList.md
 docs/PaginatedTelemetryEventPolymorphicList.md
-docs/PaginatedUserList.md
 docs/Partner3DGeeksAlert.md
 docs/Partner3DGeeksMetadata.md
 docs/PartnersGeeks3Api.md
@@ -252,7 +251,6 @@ src/models/paginated_system_info_list.rs
 src/models/paginated_task_list.rs
 src/models/paginated_task_status_list.rs
 src/models/paginated_telemetry_event_polymorphic_list.rs
-src/models/paginated_user_list.rs
 src/models/partner3_d_geeks_alert.rs
 src/models/partner3_d_geeks_metadata.rs
 src/models/patched_alert_bulk_request_request.rs

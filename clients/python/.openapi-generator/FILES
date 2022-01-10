@@ -95,7 +95,6 @@ docs/PaginatedSystemInfoList.md
 docs/PaginatedTaskList.md
 docs/PaginatedTaskStatusList.md
 docs/PaginatedTelemetryEventPolymorphicList.md
-docs/PaginatedUserList.md
 docs/Partner3DGeeksAlert.md
 docs/Partner3DGeeksMetadata.md
 docs/PartnersGeeks3Api.md
@@ -257,7 +256,6 @@ printnanny_api_client/models/paginated_system_info_list.py
 printnanny_api_client/models/paginated_task_list.py
 printnanny_api_client/models/paginated_task_status_list.py
 printnanny_api_client/models/paginated_telemetry_event_polymorphic_list.py
-printnanny_api_client/models/paginated_user_list.py
 printnanny_api_client/models/partner3_d_geeks_alert.py
 printnanny_api_client/models/partner3_d_geeks_metadata.py
 printnanny_api_client/models/patched_alert_bulk_request_request.py
@@ -407,7 +405,6 @@ test/test_paginated_system_info_list.py
 test/test_paginated_task_list.py
 test/test_paginated_task_status_list.py
 test/test_paginated_telemetry_event_polymorphic_list.py
-test/test_paginated_user_list.py
 test/test_partner3_d_geeks_alert.py
 test/test_partner3_d_geeks_metadata.py
 test/test_partners_geeks3_api.py

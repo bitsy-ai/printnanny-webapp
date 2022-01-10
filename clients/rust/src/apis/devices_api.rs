@@ -26,7 +26,11 @@ pub enum DeviceInfoUpdateOrCreateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesActiveLicenseRetrieveError {
-    DefaultResponse(crate::models::ErrorDetail),
+    Status404(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -34,7 +38,11 @@ pub enum DevicesActiveLicenseRetrieveError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesCamerasCreateError {
-    DefaultResponse(crate::models::ErrorDetail),
+    Status409(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -42,7 +50,10 @@ pub enum DevicesCamerasCreateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesCamerasListError {
-    DefaultResponse(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -64,7 +75,6 @@ pub enum DevicesCamerasRetrieveError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesCamerasUpdateError {
-    DefaultResponse(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -72,7 +82,11 @@ pub enum DevicesCamerasUpdateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesCloudIotDevicesCreateError {
-    DefaultResponse(crate::models::ErrorDetail),
+    Status409(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -80,7 +94,10 @@ pub enum DevicesCloudIotDevicesCreateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesCloudIotDevicesListError {
-    DefaultResponse(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -95,7 +112,11 @@ pub enum DevicesCloudIotDevicesPartialUpdateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesCloudIotDevicesRetrieveError {
-    DefaultResponse(crate::models::ErrorDetail),
+    Status404(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -103,7 +124,6 @@ pub enum DevicesCloudIotDevicesRetrieveError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesCloudIotDevicesUpdateError {
-    DefaultResponse(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -111,7 +131,12 @@ pub enum DevicesCloudIotDevicesUpdateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesCreateError {
-    DefaultResponse(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status404(crate::models::ErrorDetail),
+    Status409(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -126,7 +151,11 @@ pub enum DevicesGenerateLicenseError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesInfoCreateError {
-    DefaultResponse(crate::models::ErrorDetail),
+    Status409(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -134,7 +163,10 @@ pub enum DevicesInfoCreateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesInfoListError {
-    DefaultResponse(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -156,7 +188,11 @@ pub enum DevicesInfoRetrieveError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesInfoUpdateError {
-    DefaultResponse(crate::models::ErrorDetail),
+    Status409(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -164,7 +200,10 @@ pub enum DevicesInfoUpdateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesListError {
-    DefaultResponse(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -179,7 +218,11 @@ pub enum DevicesPartialUpdateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesPrinterControllersCreateError {
-    DefaultResponse(crate::models::ErrorDetail),
+    Status409(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -187,7 +230,10 @@ pub enum DevicesPrinterControllersCreateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesPrinterControllersListError {
-    DefaultResponse(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -209,7 +255,6 @@ pub enum DevicesPrinterControllersRetrieveError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesPrinterControllersUpdateError {
-    DefaultResponse(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -224,7 +269,11 @@ pub enum DevicesRetrieveError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesRetrieveHostnameError {
-    DefaultResponse(crate::models::ErrorDetail),
+    Status404(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -232,7 +281,11 @@ pub enum DevicesRetrieveHostnameError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesTasksCreateError {
-    DefaultResponse(crate::models::ErrorDetail),
+    Status409(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -240,7 +293,10 @@ pub enum DevicesTasksCreateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesTasksListError {
-    DefaultResponse(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -255,7 +311,11 @@ pub enum DevicesTasksRetrieveError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesTasksStatusCreateError {
-    DefaultResponse(crate::models::ErrorDetail),
+    Status409(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -263,7 +323,10 @@ pub enum DevicesTasksStatusCreateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesTasksStatusListError {
-    DefaultResponse(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -271,7 +334,11 @@ pub enum DevicesTasksStatusListError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesTasksStatusRetrieveError {
-    DefaultResponse(crate::models::ErrorDetail),
+    Status404(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -279,7 +346,6 @@ pub enum DevicesTasksStatusRetrieveError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesUpdateError {
-    DefaultResponse(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -315,7 +381,7 @@ pub async fn device_info_update_or_create(configuration: &configuration::Configu
     }
 }
 
-/// All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+/// A device (Raspberry Pi) running Print Nanny OS
 pub async fn devices_active_license_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::License, Error<DevicesActiveLicenseRetrieveError>> {
     let local_var_configuration = configuration;
 
@@ -471,7 +537,7 @@ pub async fn devices_cameras_retrieve(configuration: &configuration::Configurati
     }
 }
 
-pub async fn devices_cameras_update(configuration: &configuration::Configuration, device_id: i32, id: i32, camera_request: crate::models::CameraRequest) -> Result<crate::models::Camera, Error<DevicesCamerasUpdateError>> {
+pub async fn devices_cameras_update(configuration: &configuration::Configuration, device_id: i32, id: i32, camera_request: crate::models::CameraRequest) -> Result<(), Error<DevicesCamerasUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -494,7 +560,7 @@ pub async fn devices_cameras_update(configuration: &configuration::Configuration
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        Ok(())
     } else {
         let local_var_entity: Option<DevicesCamerasUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -627,12 +693,12 @@ pub async fn devices_cloud_iot_devices_retrieve(configuration: &configuration::C
     }
 }
 
-pub async fn devices_cloud_iot_devices_update(configuration: &configuration::Configuration, device_id: i32, id: i32, cloudiot_device_request: crate::models::CloudiotDeviceRequest) -> Result<crate::models::CloudiotDevice, Error<DevicesCloudIotDevicesUpdateError>> {
+pub async fn devices_cloud_iot_devices_update(configuration: &configuration::Configuration, device_id: i32, id: &str, cloudiot_device_request: crate::models::CloudiotDeviceRequest) -> Result<(), Error<DevicesCloudIotDevicesUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/cloud-iot-devices/{id}/", local_var_configuration.base_path, device_id=device_id, id=id);
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/cloud-iot-devices/{id}/", local_var_configuration.base_path, device_id=device_id, id=crate::apis::urlencode(id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -650,7 +716,7 @@ pub async fn devices_cloud_iot_devices_update(configuration: &configuration::Con
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        Ok(())
     } else {
         let local_var_entity: Option<DevicesCloudIotDevicesUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -658,8 +724,8 @@ pub async fn devices_cloud_iot_devices_update(configuration: &configuration::Con
     }
 }
 
-/// All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-pub async fn devices_create(configuration: &configuration::Configuration, device_request: Option<crate::models::DeviceRequest>) -> Result<crate::models::Device, Error<DevicesCreateError>> {
+/// A device (Raspberry Pi) running Print Nanny OS
+pub async fn devices_create(configuration: &configuration::Configuration, device_request: crate::models::DeviceRequest) -> Result<crate::models::Device, Error<DevicesCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -690,8 +756,8 @@ pub async fn devices_create(configuration: &configuration::Configuration, device
     }
 }
 
-/// All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-pub async fn devices_generate_license(configuration: &configuration::Configuration, id: i32) -> Result<std::path::PathBuf, Error<DevicesGenerateLicenseError>> {
+/// A device (Raspberry Pi) running Print Nanny OS
+pub async fn devices_generate_license(configuration: &configuration::Configuration, id: i32) -> Result<(), Error<DevicesGenerateLicenseError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -713,7 +779,7 @@ pub async fn devices_generate_license(configuration: &configuration::Configurati
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        Ok(())
     } else {
         let local_var_entity: Option<DevicesGenerateLicenseError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -877,7 +943,7 @@ pub async fn devices_info_update(configuration: &configuration::Configuration, d
     }
 }
 
-/// All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+/// A device (Raspberry Pi) running Print Nanny OS
 pub async fn devices_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedDeviceList, Error<DevicesListError>> {
     let local_var_configuration = configuration;
 
@@ -911,7 +977,7 @@ pub async fn devices_list(configuration: &configuration::Configuration, page: Op
     }
 }
 
-/// All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+/// A device (Raspberry Pi) running Print Nanny OS
 pub async fn devices_partial_update(configuration: &configuration::Configuration, id: i32, patched_device_request: Option<crate::models::PatchedDeviceRequest>) -> Result<crate::models::Device, Error<DevicesPartialUpdateError>> {
     let local_var_configuration = configuration;
 
@@ -1068,7 +1134,7 @@ pub async fn devices_printer_controllers_retrieve(configuration: &configuration:
     }
 }
 
-pub async fn devices_printer_controllers_update(configuration: &configuration::Configuration, device_id: i32, id: i32, device_request: Option<crate::models::DeviceRequest>) -> Result<crate::models::PrinterController, Error<DevicesPrinterControllersUpdateError>> {
+pub async fn devices_printer_controllers_update(configuration: &configuration::Configuration, device_id: i32, id: i32, device_request: Option<crate::models::DeviceRequest>) -> Result<(), Error<DevicesPrinterControllersUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1091,7 +1157,7 @@ pub async fn devices_printer_controllers_update(configuration: &configuration::C
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        Ok(())
     } else {
         let local_var_entity: Option<DevicesPrinterControllersUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -1099,7 +1165,7 @@ pub async fn devices_printer_controllers_update(configuration: &configuration::C
     }
 }
 
-/// All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+/// A device (Raspberry Pi) running Print Nanny OS
 pub async fn devices_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::Device, Error<DevicesRetrieveError>> {
     let local_var_configuration = configuration;
 
@@ -1254,7 +1320,7 @@ pub async fn devices_tasks_retrieve(configuration: &configuration::Configuration
     }
 }
 
-pub async fn devices_tasks_status_create(configuration: &configuration::Configuration, device_id: i32, task_id: i32, task_status_request: crate::models::TaskStatusRequest) -> Result<crate::models::Task, Error<DevicesTasksStatusCreateError>> {
+pub async fn devices_tasks_status_create(configuration: &configuration::Configuration, device_id: i32, task_id: i32, task_status_request: crate::models::TaskStatusRequest) -> Result<crate::models::TaskStatus, Error<DevicesTasksStatusCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1318,7 +1384,7 @@ pub async fn devices_tasks_status_list(configuration: &configuration::Configurat
     }
 }
 
-pub async fn devices_tasks_status_retrieve(configuration: &configuration::Configuration, device_id: i32, id: i32, task_id: i32) -> Result<crate::models::TaskStatus, Error<DevicesTasksStatusRetrieveError>> {
+pub async fn devices_tasks_status_retrieve(configuration: &configuration::Configuration, device_id: i32, id: i32, task_id: i32) -> Result<crate::models::Task, Error<DevicesTasksStatusRetrieveError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1348,8 +1414,8 @@ pub async fn devices_tasks_status_retrieve(configuration: &configuration::Config
     }
 }
 
-/// All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
-pub async fn devices_update(configuration: &configuration::Configuration, id: i32, device_request: Option<crate::models::DeviceRequest>) -> Result<crate::models::Device, Error<DevicesUpdateError>> {
+/// A device (Raspberry Pi) running Print Nanny OS
+pub async fn devices_update(configuration: &configuration::Configuration, id: i32, device_request: Option<crate::models::DeviceRequest>) -> Result<(), Error<DevicesUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1372,7 +1438,7 @@ pub async fn devices_update(configuration: &configuration::Configuration, id: i3
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        Ok(())
     } else {
         let local_var_entity: Option<DevicesUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };

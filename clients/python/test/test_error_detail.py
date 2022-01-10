@@ -37,11 +37,13 @@ class TestErrorDetail(unittest.TestCase):
         # model = printnanny_api_client.models.error_detail.ErrorDetail()  # noqa: E501
         if include_optional :
             return ErrorDetail(
-                detail = ''
+                detail = '', 
+                code = ''
             )
         else :
             return ErrorDetail(
                 detail = '',
+                code = '',
         )
 
     def testErrorDetail(self):

@@ -27,6 +27,8 @@ pub struct Device {
     pub printer_controllers: Vec<crate::models::PrinterController>,
     #[serde(rename = "release_channel", skip_serializing_if = "Option::is_none")]
     pub release_channel: Option<Box<crate::models::ReleaseChannelEnum>>,
+    #[serde(rename = "monitoring_active", skip_serializing_if = "Option::is_none")]
+    pub monitoring_active: Option<bool>,
     #[serde(rename = "user")]
     pub user: Option<Box<crate::models::User>>,
     #[serde(rename = "last_task")]
@@ -35,8 +37,6 @@ pub struct Device {
     pub active_tasks: Vec<crate::models::Task>,
     #[serde(rename = "active_cameras")]
     pub active_cameras: Vec<crate::models::Camera>,
-    #[serde(rename = "monitoring_active", skip_serializing_if = "Option::is_none")]
-    pub monitoring_active: Option<bool>,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
     #[serde(rename = "updated_dt")]
@@ -56,11 +56,11 @@ impl Device {
             dashboard_url,
             printer_controllers,
             release_channel: None,
+            monitoring_active: None,
             user: user.map(Box::new),
             last_task: last_task.map(Box::new),
             active_tasks,
             active_cameras,
-            monitoring_active: None,
             created_dt,
             updated_dt,
             hostname: None,

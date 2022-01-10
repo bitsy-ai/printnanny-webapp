@@ -167,7 +167,7 @@ Name | Type | Description  | Notes
 
 
 
-All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+A device (Raspberry Pi) running Print Nanny OS
 
 ### Example
 
@@ -278,7 +278,11 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
-**0** |  |  -  |
+**404** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -399,8 +403,11 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** |  |  -  |
-**202** |  |  -  |
-**0** |  |  -  |
+**409** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -521,7 +528,10 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
-**0** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -769,7 +779,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_cameras_update**
-> Camera devices_cameras_update(device_id, id, camera_request)
+> devices_cameras_update(device_id, id, camera_request)
 
 
 
@@ -813,8 +823,7 @@ id = 56 # int | A unique integer value identifying this camera.
 camera_request = printnanny_api_client.CameraRequest() # CameraRequest | 
 
     try:
-        api_response = api_instance.devices_cameras_update(device_id, id, camera_request)
-        pprint(api_response)
+        api_instance.devices_cameras_update(device_id, id, camera_request)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_cameras_update: %s\n" % e)
 ```
@@ -857,8 +866,7 @@ id = 56 # int | A unique integer value identifying this camera.
 camera_request = printnanny_api_client.CameraRequest() # CameraRequest | 
 
     try:
-        api_response = api_instance.devices_cameras_update(device_id, id, camera_request)
-        pprint(api_response)
+        api_instance.devices_cameras_update(device_id, id, camera_request)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_cameras_update: %s\n" % e)
 ```
@@ -873,7 +881,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Camera**](Camera.md)
+void (empty response body)
 
 ### Authorization
 
@@ -882,14 +890,12 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
+ - **Accept**: Not defined
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** |  |  -  |
-**202** |  |  -  |
-**0** |  |  -  |
+**200** | No response body |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1010,7 +1016,11 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** |  |  -  |
-**0** |  |  -  |
+**409** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1131,7 +1141,10 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
-**0** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1375,12 +1388,16 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
-**0** |  |  -  |
+**404** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_cloud_iot_devices_update**
-> CloudiotDevice devices_cloud_iot_devices_update(device_id, id, cloudiot_device_request)
+> devices_cloud_iot_devices_update(device_id, id, cloudiot_device_request)
 
 
 
@@ -1420,12 +1437,11 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
-id = 56 # int | 
+id = 'id_example' # str | 
 cloudiot_device_request = printnanny_api_client.CloudiotDeviceRequest() # CloudiotDeviceRequest | 
 
     try:
-        api_response = api_instance.devices_cloud_iot_devices_update(device_id, id, cloudiot_device_request)
-        pprint(api_response)
+        api_instance.devices_cloud_iot_devices_update(device_id, id, cloudiot_device_request)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_cloud_iot_devices_update: %s\n" % e)
 ```
@@ -1464,12 +1480,11 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
-id = 56 # int | 
+id = 'id_example' # str | 
 cloudiot_device_request = printnanny_api_client.CloudiotDeviceRequest() # CloudiotDeviceRequest | 
 
     try:
-        api_response = api_instance.devices_cloud_iot_devices_update(device_id, id, cloudiot_device_request)
-        pprint(api_response)
+        api_instance.devices_cloud_iot_devices_update(device_id, id, cloudiot_device_request)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_cloud_iot_devices_update: %s\n" % e)
 ```
@@ -1479,12 +1494,12 @@ cloudiot_device_request = printnanny_api_client.CloudiotDeviceRequest() # Cloudi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **device_id** | **int**|  | 
- **id** | **int**|  | 
+ **id** | **str**|  | 
  **cloudiot_device_request** | [**CloudiotDeviceRequest**](CloudiotDeviceRequest.md)|  | 
 
 ### Return type
 
-[**CloudiotDevice**](CloudiotDevice.md)
+void (empty response body)
 
 ### Authorization
 
@@ -1493,23 +1508,21 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
+ - **Accept**: Not defined
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** |  |  -  |
-**202** |  |  -  |
-**0** |  |  -  |
+**200** | No response body |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_create**
-> Device devices_create(device_request=device_request)
+> Device devices_create(device_request)
 
 
 
-All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+A device (Raspberry Pi) running Print Nanny OS
 
 ### Example
 
@@ -1546,10 +1559,10 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_request = printnanny_api_client.DeviceRequest() # DeviceRequest |  (optional)
+    device_request = printnanny_api_client.DeviceRequest() # DeviceRequest | 
 
     try:
-        api_response = api_instance.devices_create(device_request=device_request)
+        api_response = api_instance.devices_create(device_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_create: %s\n" % e)
@@ -1588,10 +1601,10 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_request = printnanny_api_client.DeviceRequest() # DeviceRequest |  (optional)
+    device_request = printnanny_api_client.DeviceRequest() # DeviceRequest | 
 
     try:
-        api_response = api_instance.devices_create(device_request=device_request)
+        api_response = api_instance.devices_create(device_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_create: %s\n" % e)
@@ -1601,7 +1614,7 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_request** | [**DeviceRequest**](DeviceRequest.md)|  | [optional] 
+ **device_request** | [**DeviceRequest**](DeviceRequest.md)|  | 
 
 ### Return type
 
@@ -1619,18 +1632,22 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**404** |  |  -  |
+**409** |  |  -  |
+**500** |  |  -  |
 **201** |  |  -  |
-**202** |  |  -  |
-**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_generate_license**
-> file devices_generate_license(id)
+> devices_generate_license(id)
 
 
 
-All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+A device (Raspberry Pi) running Print Nanny OS
 
 ### Example
 
@@ -1670,8 +1687,7 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this device.
 
     try:
-        api_response = api_instance.devices_generate_license(id)
-        pprint(api_response)
+        api_instance.devices_generate_license(id)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_generate_license: %s\n" % e)
 ```
@@ -1712,8 +1728,7 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this device.
 
     try:
-        api_response = api_instance.devices_generate_license(id)
-        pprint(api_response)
+        api_instance.devices_generate_license(id)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_generate_license: %s\n" % e)
 ```
@@ -1726,7 +1741,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+void (empty response body)
 
 ### Authorization
 
@@ -1735,12 +1750,12 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: Not defined
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
+**200** | No response body |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1861,8 +1876,11 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** |  |  -  |
-**202** |  |  -  |
-**0** |  |  -  |
+**409** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1983,7 +2001,10 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
-**0** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2349,9 +2370,12 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** |  |  -  |
 **202** |  |  -  |
-**0** |  |  -  |
+**409** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2360,7 +2384,7 @@ Name | Type | Description  | Notes
 
 
 
-All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+A device (Raspberry Pi) running Print Nanny OS
 
 ### Example
 
@@ -2471,7 +2495,10 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
-**0** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2480,7 +2507,7 @@ Name | Type | Description  | Notes
 
 
 
-All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+A device (Raspberry Pi) running Print Nanny OS
 
 ### Example
 
@@ -2714,8 +2741,11 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** |  |  -  |
-**202** |  |  -  |
-**0** |  |  -  |
+**409** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2836,7 +2866,10 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
-**0** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3084,7 +3117,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_printer_controllers_update**
-> PrinterController devices_printer_controllers_update(device_id, id, device_request=device_request)
+> devices_printer_controllers_update(device_id, id, device_request=device_request)
 
 
 
@@ -3128,8 +3161,7 @@ id = 56 # int | A unique integer value identifying this printer controller.
 device_request = printnanny_api_client.DeviceRequest() # DeviceRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_printer_controllers_update(device_id, id, device_request=device_request)
-        pprint(api_response)
+        api_instance.devices_printer_controllers_update(device_id, id, device_request=device_request)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_printer_controllers_update: %s\n" % e)
 ```
@@ -3172,8 +3204,7 @@ id = 56 # int | A unique integer value identifying this printer controller.
 device_request = printnanny_api_client.DeviceRequest() # DeviceRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_printer_controllers_update(device_id, id, device_request=device_request)
-        pprint(api_response)
+        api_instance.devices_printer_controllers_update(device_id, id, device_request=device_request)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_printer_controllers_update: %s\n" % e)
 ```
@@ -3188,7 +3219,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PrinterController**](PrinterController.md)
+void (empty response body)
 
 ### Authorization
 
@@ -3197,14 +3228,12 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
+ - **Accept**: Not defined
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** |  |  -  |
-**202** |  |  -  |
-**0** |  |  -  |
+**200** | No response body |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3213,7 +3242,7 @@ Name | Type | Description  | Notes
 
 
 
-All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+A device (Raspberry Pi) running Print Nanny OS
 
 ### Example
 
@@ -3441,7 +3470,11 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
-**0** |  |  -  |
+**404** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3561,9 +3594,12 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
 **201** |  |  -  |
-**0** |  |  -  |
+**409** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3684,7 +3720,10 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
-**0** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3809,7 +3848,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_tasks_status_create**
-> Task devices_tasks_status_create(device_id, task_id, task_status_request)
+> TaskStatus devices_tasks_status_create(device_id, task_id, task_status_request)
 
 
 
@@ -3913,7 +3952,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Task**](Task.md)
+[**TaskStatus**](TaskStatus.md)
 
 ### Authorization
 
@@ -3927,8 +3966,12 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** |  |  -  |
-**0** |  |  -  |
+**200** |  |  -  |
+**409** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -4052,12 +4095,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
-**0** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_tasks_status_retrieve**
-> TaskStatus devices_tasks_status_retrieve(device_id, id, task_id)
+> Task devices_tasks_status_retrieve(device_id, id, task_id)
 
 
 
@@ -4161,7 +4207,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TaskStatus**](TaskStatus.md)
+[**Task**](Task.md)
 
 ### Authorization
 
@@ -4175,17 +4221,21 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
-**0** |  |  -  |
+**201** |  |  -  |
+**404** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_update**
-> Device devices_update(id, device_request=device_request)
+> devices_update(id, device_request=device_request)
 
 
 
-All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+A device (Raspberry Pi) running Print Nanny OS
 
 ### Example
 
@@ -4226,8 +4276,7 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 device_request = printnanny_api_client.DeviceRequest() # DeviceRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_update(id, device_request=device_request)
-        pprint(api_response)
+        api_instance.devices_update(id, device_request=device_request)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_update: %s\n" % e)
 ```
@@ -4269,8 +4318,7 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 device_request = printnanny_api_client.DeviceRequest() # DeviceRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_update(id, device_request=device_request)
-        pprint(api_response)
+        api_instance.devices_update(id, device_request=device_request)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_update: %s\n" % e)
 ```
@@ -4284,7 +4332,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Device**](Device.md)
+void (empty response body)
 
 ### Authorization
 
@@ -4293,14 +4341,12 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
+ - **Accept**: Not defined
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** |  |  -  |
-**202** |  |  -  |
-**0** |  |  -  |
+**200** | No response body |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

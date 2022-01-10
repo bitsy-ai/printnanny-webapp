@@ -48,7 +48,7 @@ class DeviceRequest(object):
         'hostname': 'hostname'
     }
 
-    def __init__(self, release_channel=None, monitoring_active=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, release_channel=None, monitoring_active=False, hostname=None, local_vars_configuration=None):  # noqa: E501
         """DeviceRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()

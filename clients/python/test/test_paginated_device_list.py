@@ -68,6 +68,7 @@ class TestPaginatedDeviceList(unittest.TestCase):
                                 device = 56, )
                             ], 
                         release_channel = null, 
+                        monitoring_active = True, 
                         user = null, 
                         last_task = null, 
                         active_tasks = [
@@ -91,7 +92,6 @@ class TestPaginatedDeviceList(unittest.TestCase):
                                 name = 'Raspberry Pi Cam', 
                                 camera_type = null, )
                             ], 
-                        monitoring_active = True, 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         hostname = '', )
