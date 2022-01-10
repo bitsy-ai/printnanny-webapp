@@ -87,6 +87,7 @@ class TaskStatusSerializer(serializers.ModelSerializer):
     css_class = serializers.CharField(read_only=True)
 
     class Meta:
+        depth = 1
         model = TaskStatus
         exclude = ("deleted",)
 
