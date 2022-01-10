@@ -279,20 +279,10 @@ ts-client: clean-ts-client
 		-o /local/clients/typescript \
 		-c /local/clients/typescript.yaml
 
-# sed blocks in rust-client target replace a bug in openapi's generated code
-# Compiling print-nanny-client v0.8.14
-# (/home/leigh/projects/octoprint-nanny-webapp/clients/rust/target/package/print-nanny-client-0.8.14)
-# error[E0308]: mismatched types
-#   --> src/models/octoprint_job_request.rs:29:19
-#    |
-# 29 |             file: Box::new(file),
-#    |                   ^^^^^^^^^^^^^^ expected enum `std::option::Option`, found struct `Box`
-#    |
-#    = note: expected enum `std::option::Option<Box<OctoprintFileRequest>>`
-#             found struct `Box<std::option::Option<OctoprintFileRequest>>`
+# debugging info: https://openapi-generator.tech/docs/debugging#templates
 rust-client: clean-rust-client
 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
-		-i http://localhost:8000/api/schema --recommend
+		-i http://localhost:8000/api/schema --recommend 
 
 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli generate \
 		-i http://localhost:8000/api/schema \
@@ -300,6 +290,7 @@ rust-client: clean-rust-client
 		-o /local/clients/rust \
 		-c /local/clients/rust.yaml \
 		-t /local/client-templates/rust
+
 
 clean-python-client: ## remove build artifacts
 	rm -fr build/

@@ -560,7 +560,7 @@ pub async fn devices_cameras_update(configuration: &configuration::Configuration
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
+        Ok(local_var_resp)
     } else {
         let local_var_entity: Option<DevicesCamerasUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -716,7 +716,7 @@ pub async fn devices_cloud_iot_devices_update(configuration: &configuration::Con
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
+        Ok(local_var_resp)
     } else {
         let local_var_entity: Option<DevicesCloudIotDevicesUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -1157,7 +1157,7 @@ pub async fn devices_printer_controllers_update(configuration: &configuration::C
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
+        Ok(local_var_resp)
     } else {
         let local_var_entity: Option<DevicesPrinterControllersUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -1438,7 +1438,7 @@ pub async fn devices_update(configuration: &configuration::Configuration, id: i3
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
+        Ok(local_var_resp)
     } else {
         let local_var_entity: Option<DevicesUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };

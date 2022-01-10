@@ -80,7 +80,7 @@ pub enum {{{operationIdCamelCase}}}Error {
 /// {{{.}}}
 {{/notes}}
 {{#vendorExtensions.x-group-parameters}}
-pub {{#supportAsync}}async {{/supportAsync}}fn {{{operationId}}}(configuration: &configuration::Configuration{{#allParams}}{{#-first}}, params: {{{operationIdCamelCase}}}Params{{/-first}}{{/allParams}}) -> Result<{{#supportMultipleResponses}}ResponseContent<{{{operationIdCamelCase}}}Success>{{/supportMultipleResponses}}{{^supportMultipleResponses}}{{^returnType}}(){{/returnType}}{{{returnType}}}{{/supportMultipleResponses}}, Error<{{{operationIdCamelCase}}}Error>> {
+pub {{#supportAsync}}async {{/supportAsync}}fn {{{operationId}}}(configuration: &configuration::Configuration{{#allParams}}{{#-first}}, params: {{{operationIdCamelCase}}}Params{{/-first}}{{/allParams}}) -> Result<{{#supportMultipleResponses}}ResponseContent<{{{operationIdCamelCase}}}Success>{{/supportMultipleResponses}}{{^supportMultipleResponses}}{{^returnType}}reqwest::Response{{/returnType}}{{{returnType}}}{{/supportMultipleResponses}}, Error<{{{operationIdCamelCase}}}Error>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -289,7 +289,7 @@ pub {{#supportAsync}}async {{/supportAsync}}fn {{{operationId}}}(configuration: 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         {{^supportMultipleResponses}}
         {{^returnType}}
-        Ok(())
+        Ok(local_var_resp)
         {{/returnType}}
         {{#returnType}}
         serde_json::from_str(&local_var_content).map_err(Error::from)
