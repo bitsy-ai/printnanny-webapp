@@ -25,6 +25,7 @@ from ..enum import (
     PrintNannyEnv,
 )
 from print_nanny_webapp.users.api.serializers import UserSerializer
+from django.utils.module_loading import import_string
 
 User = get_user_model()
 
@@ -87,7 +88,6 @@ class TaskStatusSerializer(serializers.ModelSerializer):
     css_class = serializers.CharField(read_only=True)
 
     class Meta:
-        depth = 1
         model = TaskStatus
         exclude = ("deleted",)
 
@@ -103,9 +103,6 @@ class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         exclude = ("deleted",)
-
-
-TaskStatusSerializer.task = TaskSerializer(read_only=True)
 
 
 class DeviceSerializer(serializers.ModelSerializer):
