@@ -307,14 +307,39 @@ device_create_operation = {
         | generic_get_errors
     ),
     generate_license=extend_schema(
-        responses={
-            "default": {
-                "x-is-file": True,
-                "description": "Download generated license.zip",
-                "content": {"application/octet-stream": {"schema": {"type": "file"}}},
-            }
+        operation={
+            "operationId": "devices_generate_license",
+            "description": "Download generated (unsigned) license",
+            "tags": ["devices"],
+            "security": [{"cookieAuth": []}, {"tokenAuth": []}],
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "id",
+                    "schema": {"type": "integer"},
+                    "required": True,
+                },
+            ],
+            "responses": {
+                "200": {
+                    # "x-is-file": True,
+                    "description": "Download generated license.zip",
+                    "content": {
+                        "application/json": {},
+                        "application/gzip": {"schema": {"type": "file"}},
+                        "headers": {
+                            "Content-Disposition": {
+                                "schema": {
+                                    "type": "string",
+                                    "description": "used with application/gzip responses",
+                                    "example": 'attachment; filename="name.gzip"',
+                                }
+                            }
+                        },
+                    },
+                }
+            },
         },
-        operation_id="devices_generate_license",
     ),
 )
 class DeviceViewSet(
