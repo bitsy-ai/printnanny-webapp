@@ -291,6 +291,8 @@ rust-client: clean-rust-client
 		-c /local/clients/rust.yaml \
 		-t /local/client-templates/rust
 
+rust-build: rust-client
+	cd clients/rust && cargo build
 
 clean-python-client: ## remove build artifacts
 	rm -fr build/
