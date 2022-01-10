@@ -15,9 +15,12 @@ from django.conf import settings
 from rest_framework.renderers import JSONRenderer
 from google.cloud import iot_v1 as cloudiot_v1
 import google.api_core.exceptions
+from django.template.loader import render_to_string
+
 from print_nanny_webapp.devices.api.serializers import LicenseSerializer
 from print_nanny_webapp.utils.api.service import get_api_config
 from print_nanny_webapp.utils.api.serializers import PrintNannyApiConfigSerializer
+from print_nanny_webapp.users.api.serializers import UserSerializer
 
 from .models import Device, CloudiotDevice, License
 from .constants import FileLocator
@@ -37,6 +40,21 @@ class KeyPair(TypedDict):
     public_key_filename: str
     fingerprint: str
     # ca_certs: CACerts
+
+
+def render_janus_env(device: Device) -> str:
+    context = dict(
+        janus_admin_secret=device.janus_admin_secret, janus_token=device.janus_token
+    )
+    return render_to_string("janus.env.j2", context)
+
+
+def render_honeycomb_env() -> str:
+    context = dict(
+        honeycomb_dataset=settings.HONEYCOMB_DATASET,
+        honeycomb_api_key=settings.HONEYCOMB_API_KEY,
+    )
+    return render_to_string("honeycomb.env.j2", context)
 
 
 def check_ca_certs():
@@ -301,6 +319,9 @@ def generate_zipped_license_file(
     )
     zip_filename = f"{tmp}/{FileLocator.LICENSE_ZIP_FILENAME}"
 
+    user_serializer = UserSerializer(device.user, context=dict(request=request))
+    user_json = JSONRenderer().render(user_serializer.data)
+
     device_serializer = DeviceSerializer(device, context=dict(request=request))
     device_json = JSONRenderer().render(device_serializer.data)
 
@@ -312,6 +333,7 @@ def generate_zipped_license_file(
     api_config_json = JSONRenderer().render(api_config_serializer.data)
 
     with ZipFile(zip_filename, "x") as zf:
+        # write keypair to zipfile
         zf.write(
             keypair["public_key_filename"],
             arcname=os.path.basename(keypair["public_key_filename"]),
@@ -320,8 +342,12 @@ def generate_zipped_license_file(
             keypair["private_key_filename"],
             arcname=os.path.basename(keypair["private_key_filename"]),
         )
+        zf.writestr("honeycomb.env", render_honeycomb_env())
+        zf.writestr("janus.env", render_janus_env())
+        zf.writestr("device.json", device_json)
         zf.writestr("license.json", license_json)
         zf.writestr("api_config.json", api_config_json)
+        zf.writestr("user.json", user_json)
 
     return zip_filename
 

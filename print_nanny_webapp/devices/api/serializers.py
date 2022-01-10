@@ -163,30 +163,12 @@ class LicenseSerializer(serializers.ModelSerializer):
     def get_cloudiot_device(self, obj) -> int:
         return obj.cloudiot_device.num_id
 
-    last_check_task = TaskSerializer(read_only=True)
-
-    honeycomb_dataset = serializers.SerializerMethodField(read_only=True)
-
-    def get_honeycomb_dataset(self, obj) -> str:
-        return settings.HONEYCOMB_DATASET
-
-    honeycomb_api_key = serializers.SerializerMethodField(read_only=True)
-
-    def get_honeycomb_api_key(self, obj) -> str:
-        return settings.HONEYCOMB_API_KEY
-
     class Meta:
         model = License
         read_only_fields = (
             "cloudiot_device",
             "device",
-            "device",
             "fingerprint",
-            "honeycomb_api_key",
-            "honeycomb_dataset",
-            "janus_admin_secret",
-            "janus_token",
-            "last_check_task",
             "public_key",
             "printnanny_env",
             "user",
