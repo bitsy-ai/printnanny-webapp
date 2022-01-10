@@ -307,10 +307,13 @@ device_create_operation = {
         | generic_get_errors
     ),
     generate_license=extend_schema(
-        request=None,
-        responses={200: OpenApiResponse(response=OpenApiTypes.BINARY)}.update(
-            generic_get_errors
-        ),
+        responses={
+            "default": {
+                "x-is-file": True,
+                "description": "Download generated license.zip",
+                "content": {"application/octet-stream": {"schema": {"type": "file"}}},
+            }
+        },
         operation_id="devices_generate_license",
     ),
 )
