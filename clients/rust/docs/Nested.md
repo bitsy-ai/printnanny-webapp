@@ -1,17 +1,15 @@
-# TaskStatus
+# Nested
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
-**detail** | Option<**String**> |  | [optional]
-**wiki_url** | Option<**String**> |  | [optional]
-**status** | [**crate::models::TaskStatusType**](TaskStatusType.md) |  | 
-**status_display** | **String** |  | [readonly]
-**css_class** | **String** |  | [readonly]
+**deleted** | **String** |  | [readonly]
+**active** | Option<**bool**> |  | [optional]
+**task_type** | Option<[**crate::models::TaskType**](TaskType.md)> |  | [optional]
 **created_dt** | **String** |  | [readonly]
-**task** | Option<[**crate::models::Nested**](Nested.md)> |  | [readonly]
+**device** | **i32** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

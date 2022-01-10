@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.task_status_request import TaskStatusRequest  # noqa: E501
+from printnanny_api_client.models.nested import Nested  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestTaskStatusRequest(unittest.TestCase):
-    """TaskStatusRequest unit test stubs"""
+class TestNested(unittest.TestCase):
+    """Nested unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,24 +30,30 @@ class TestTaskStatusRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test TaskStatusRequest
+        """Test Nested
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.task_status_request.TaskStatusRequest()  # noqa: E501
+        # model = printnanny_api_client.models.nested.Nested()  # noqa: E501
         if include_optional :
-            return TaskStatusRequest(
-                detail = '0', 
-                wiki_url = '0', 
-                status = 'failed'
+            return Nested(
+                id = 56, 
+                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                active = True, 
+                task_type = 'monitor_start', 
+                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                device = 56
             )
         else :
-            return TaskStatusRequest(
-                status = 'failed',
+            return Nested(
+                id = 56,
+                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                device = 56,
         )
 
-    def testTaskStatusRequest(self):
-        """Test TaskStatusRequest"""
+    def testNested(self):
+        """Test Nested"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 
