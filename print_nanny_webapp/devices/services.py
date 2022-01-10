@@ -343,7 +343,7 @@ def generate_zipped_license_file(
             arcname=os.path.basename(keypair["private_key_filename"]),
         )
         zf.writestr("honeycomb.env", render_honeycomb_env())
-        zf.writestr("janus.env", render_janus_env())
+        zf.writestr("janus.env", render_janus_env(device))
         zf.writestr("device.json", device_json)
         zf.writestr("license.json", license_json)
         zf.writestr("api_config.json", api_config_json)
