@@ -119,7 +119,7 @@ class TaskViewSet(
             ),
         ],
         responses={
-            200: TaskStatusSerializer(),
+            200: TaskStatusSerializer,
         }
         | generic_create_errors,
     ),
