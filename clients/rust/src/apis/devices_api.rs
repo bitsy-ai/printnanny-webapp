@@ -537,7 +537,7 @@ pub async fn devices_cameras_retrieve(configuration: &configuration::Configurati
     }
 }
 
-pub async fn devices_cameras_update(configuration: &configuration::Configuration, device_id: i32, id: i32, camera_request: crate::models::CameraRequest) -> Result<(), Error<DevicesCamerasUpdateError>> {
+pub async fn devices_cameras_update(configuration: &configuration::Configuration, device_id: i32, id: i32, camera_request: crate::models::CameraRequest) -> Result<reqwest::Response, Error<DevicesCamerasUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -693,7 +693,7 @@ pub async fn devices_cloud_iot_devices_retrieve(configuration: &configuration::C
     }
 }
 
-pub async fn devices_cloud_iot_devices_update(configuration: &configuration::Configuration, device_id: i32, id: &str, cloudiot_device_request: crate::models::CloudiotDeviceRequest) -> Result<(), Error<DevicesCloudIotDevicesUpdateError>> {
+pub async fn devices_cloud_iot_devices_update(configuration: &configuration::Configuration, device_id: i32, id: &str, cloudiot_device_request: crate::models::CloudiotDeviceRequest) -> Result<reqwest::Response, Error<DevicesCloudIotDevicesUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1134,7 +1134,7 @@ pub async fn devices_printer_controllers_retrieve(configuration: &configuration:
     }
 }
 
-pub async fn devices_printer_controllers_update(configuration: &configuration::Configuration, device_id: i32, id: i32, device_request: Option<crate::models::DeviceRequest>) -> Result<(), Error<DevicesPrinterControllersUpdateError>> {
+pub async fn devices_printer_controllers_update(configuration: &configuration::Configuration, device_id: i32, id: i32, device_request: Option<crate::models::DeviceRequest>) -> Result<reqwest::Response, Error<DevicesPrinterControllersUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1415,7 +1415,7 @@ pub async fn devices_tasks_status_retrieve(configuration: &configuration::Config
 }
 
 /// A device (Raspberry Pi) running Print Nanny OS
-pub async fn devices_update(configuration: &configuration::Configuration, id: i32, device_request: Option<crate::models::DeviceRequest>) -> Result<(), Error<DevicesUpdateError>> {
+pub async fn devices_update(configuration: &configuration::Configuration, id: i32, device_request: Option<crate::models::DeviceRequest>) -> Result<reqwest::Response, Error<DevicesUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
