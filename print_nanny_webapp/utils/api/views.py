@@ -13,17 +13,18 @@ generic_list_errors = {
     500: ErrorDetailSerializer,
 }
 
-generic_get_errors = {404: ErrorDetailSerializer}.update(generic_list_errors)
+generic_get_errors = {404: ErrorDetailSerializer} | generic_list_errors
 
 
-generic_create_errors = {409: ErrorDetailSerializer}.update(generic_list_errors)
+generic_create_errors = {409: ErrorDetailSerializer} | generic_list_errors
 
 generic_update_errors = generic_create_errors
 
 list_desired_config_schema = extend_schema(
     responses={
         200: PrintNannyApiConfigSerializer,
-    }.update(generic_list_errors),
+    }
+    | generic_list_errors,
 )
 
 
