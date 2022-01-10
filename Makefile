@@ -292,14 +292,16 @@ ts-client: clean-ts-client
 #             found struct `Box<std::option::Option<OctoprintFileRequest>>`
 rust-client: clean-rust-client
 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
-		-i http://localhost:8000/api/schema --recommend
+		-i http://localhost:8000/api/schema --recommend 
 
 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli generate \
 		-i http://localhost:8000/api/schema \
 		-g rust \
 		-o /local/clients/rust \
 		-c /local/clients/rust.yaml \
-		-t /local/client-templates/rust
+		-t /local/client-templates/rust \
+		--global-property debugOperations
+
 
 clean-python-client: ## remove build artifacts
 	rm -fr build/
