@@ -325,17 +325,16 @@ device_create_operation = {
                     # "x-is-file": True,
                     "description": "Download generated license.zip",
                     "content": {
-                        "application/json": {},
-                        "application/gzip": {"schema": {"type": "file"}},
-                        "headers": {
-                            "Content-Disposition": {
-                                "schema": {
-                                    "type": "string",
-                                    "description": "used with application/gzip responses",
-                                    "example": 'attachment; filename="name.gzip"',
-                                }
+                        "application/*": {
+                            "schema": {"type": "string", "format": "binary"}
+                        }
+                    },
+                    "headers": {
+                        "Content-Disposition": {
+                            "schema": {
+                                "type": "string",
                             }
-                        },
+                        }
                     },
                 }
             },
