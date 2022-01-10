@@ -11,6 +11,7 @@
 
 use reqwest;
 
+use bytes::Bytes;
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
 

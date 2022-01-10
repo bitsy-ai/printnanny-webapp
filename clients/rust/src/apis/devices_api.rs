@@ -11,6 +11,7 @@
 
 use reqwest;
 
+use bytes::Bytes;
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
@@ -537,7 +538,7 @@ pub async fn devices_cameras_retrieve(configuration: &configuration::Configurati
     }
 }
 
-pub async fn devices_cameras_update(configuration: &configuration::Configuration, device_id: i32, id: i32, camera_request: crate::models::CameraRequest) -> Result<reqwest::Response, Error<DevicesCamerasUpdateError>> {
+pub async fn devices_cameras_update(configuration: &configuration::Configuration, device_id: i32, id: i32, camera_request: crate::models::CameraRequest) -> Result<(), Error<DevicesCamerasUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -560,7 +561,7 @@ pub async fn devices_cameras_update(configuration: &configuration::Configuration
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(local_var_resp)
+        Ok(())
     } else {
         let local_var_entity: Option<DevicesCamerasUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -693,7 +694,7 @@ pub async fn devices_cloud_iot_devices_retrieve(configuration: &configuration::C
     }
 }
 
-pub async fn devices_cloud_iot_devices_update(configuration: &configuration::Configuration, device_id: i32, id: &str, cloudiot_device_request: crate::models::CloudiotDeviceRequest) -> Result<reqwest::Response, Error<DevicesCloudIotDevicesUpdateError>> {
+pub async fn devices_cloud_iot_devices_update(configuration: &configuration::Configuration, device_id: i32, id: &str, cloudiot_device_request: crate::models::CloudiotDeviceRequest) -> Result<(), Error<DevicesCloudIotDevicesUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -716,7 +717,7 @@ pub async fn devices_cloud_iot_devices_update(configuration: &configuration::Con
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(local_var_resp)
+        Ok(())
     } else {
         let local_var_entity: Option<DevicesCloudIotDevicesUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -757,7 +758,7 @@ pub async fn devices_create(configuration: &configuration::Configuration, device
 }
 
 /// Download generated (unsigned) license
-pub async fn devices_generate_license(configuration: &configuration::Configuration, id: i32) -> Result<std::path::PathBuf, Error<DevicesGenerateLicenseError>> {
+pub async fn devices_generate_license(configuration: &configuration::Configuration, id: i32) -> Result<Bytes, Error<DevicesGenerateLicenseError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -776,11 +777,12 @@ pub async fn devices_generate_license(configuration: &configuration::Configurati
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+    let local_var_content = local_var_resp.bytes().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        Ok(local_var_content)
     } else {
+        let local_var_content = "Failed to decode binary payload".to_string();
         let local_var_entity: Option<DevicesGenerateLicenseError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
@@ -1134,7 +1136,7 @@ pub async fn devices_printer_controllers_retrieve(configuration: &configuration:
     }
 }
 
-pub async fn devices_printer_controllers_update(configuration: &configuration::Configuration, device_id: i32, id: i32, device_request: Option<crate::models::DeviceRequest>) -> Result<reqwest::Response, Error<DevicesPrinterControllersUpdateError>> {
+pub async fn devices_printer_controllers_update(configuration: &configuration::Configuration, device_id: i32, id: i32, device_request: Option<crate::models::DeviceRequest>) -> Result<(), Error<DevicesPrinterControllersUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1157,7 +1159,7 @@ pub async fn devices_printer_controllers_update(configuration: &configuration::C
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(local_var_resp)
+        Ok(())
     } else {
         let local_var_entity: Option<DevicesPrinterControllersUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -1415,7 +1417,7 @@ pub async fn devices_tasks_status_retrieve(configuration: &configuration::Config
 }
 
 /// A device (Raspberry Pi) running Print Nanny OS
-pub async fn devices_update(configuration: &configuration::Configuration, id: i32, device_request: Option<crate::models::DeviceRequest>) -> Result<reqwest::Response, Error<DevicesUpdateError>> {
+pub async fn devices_update(configuration: &configuration::Configuration, id: i32, device_request: Option<crate::models::DeviceRequest>) -> Result<(), Error<DevicesUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1438,7 +1440,7 @@ pub async fn devices_update(configuration: &configuration::Configuration, id: i3
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(local_var_resp)
+        Ok(())
     } else {
         let local_var_entity: Option<DevicesUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
