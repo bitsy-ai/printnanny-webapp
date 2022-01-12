@@ -35,7 +35,7 @@ spec:
           runAsNonRoot: true
         ports:
           - containerPort: 3306
-      - image: ghost:alpine
+      - image: us.gcr.io/print-nanny/ghost:latest
         name: ghost
         env:
         - name: url
