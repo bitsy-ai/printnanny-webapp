@@ -117,7 +117,7 @@ spec:
       - ReadWriteOnce
       resources:
         requests:
-          storage: 10Gi
+          storage: 15Gi
 ---
 apiVersion: cloud.google.com/v1beta1
 kind: BackendConfig
