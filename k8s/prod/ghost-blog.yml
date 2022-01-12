@@ -177,7 +177,7 @@ data:
   nginx.conf: |
     user nginx;
     worker_processes  3;
-    error_log  /var/log/nginx/error.log;
+    error_log /dev/stdout info;
     events {
       worker_connections  10240;
     }
@@ -194,7 +194,7 @@ data:
               'useragent:$http_user_agent\t'
               'forwardedfor:$http_x_forwarded_for\t'
               'request_time:$request_time';
-      access_log	/var/log/nginx/access.log main;
+      access_log /dev/stdout;
       server {
           listen       80;
           server_name  _;
@@ -213,8 +213,7 @@ data:
     server {
       listen 80 default_server;
       root /usr/local/app;
-      access_log /var/log/nginx/app.access_log main;
-      error_log /var/log/nginx/app.error_log;
+      access_log /dev/stdout;
       location / {
         proxy_set_header X-Forwarded-Proto "https";
         proxy_pass http://app/;
