@@ -113,6 +113,7 @@ class TelemetryEventSerializer(serializers.ModelSerializer):
     event_source = serializers.ChoiceField(
         choices=EventSource.choices,
         default=EventSource.PRINT_NANNY_PLUGIN,
+        allow_null=True,
     )
     event_type = serializers.ChoiceField(
         choices=TelemetryEventType.choices, default=TelemetryEventType.CONNECT_TEST_NOOP
