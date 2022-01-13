@@ -56,6 +56,7 @@ class TelemetryEvent(PolymorphicModel):
         max_length=36,
         choices=EventSource.choices,
         default=EventSource.PRINT_NANNY_PLUGIN,
+        allow_null=True,
     )
     event_data = models.JSONField(default=dict, null=True)
     octoprint_environment = models.JSONField(default=dict)
