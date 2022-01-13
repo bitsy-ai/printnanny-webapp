@@ -18,5 +18,5 @@ class OctoPrintBackup(models.Model):
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     hostname = models.CharField(max_length=64)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    octoprint_version = models.CharField(max_length="64")
+    octoprint_version = models.CharField(max_length=64)
     file = models.FileField(upload_to=file_field_upload_to)
