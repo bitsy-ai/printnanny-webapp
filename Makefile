@@ -381,7 +381,10 @@ gcs-fuse-image:
 upgrade-ghost:
 	docker pull ghost:$(GHOST_VERSION)
 	docker tag ghost:$(GHOST_VERSION) us.gcr.io/print-nanny/ghost:$(GHOST_VERSION)
+	docker tag ghost:$(GHOST_VERSION) us.gcr.io/print-nanny/ghost:latest
 	docker push us.gcr.io/print-nanny/ghost:$(GHOST_VERSION)
+	docker push us.gcr.io/print-nanny/ghost:latest
+
 	kubectl set image statefulset/bitsy-ai-blog ghost=us.gcr.io/print-nanny/ghost:$(GHOST_VERSION) --record
 	kubectl set image statefulset/print-nanny-blog ghost=us.gcr.io/print-nanny/ghost:$(GHOST_VERSION) --record
-	kubectl set image statefulset/print-nanny-help ghost=ghost=us.gcr.io/print-nanny/ghost:$(GHOST_VERSION) --record
+	kubectl set image statefulset/print-nanny-help ghost=us.gcr.io/print-nanny/ghost:$(GHOST_VERSION) --record
