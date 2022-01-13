@@ -1,15 +1,13 @@
 import logging
 
 from typing import Any
-from drf_spectacular.types import OpenApiTypes
 
 from drf_spectacular.utils import (
     extend_schema,
     extend_schema_view,
     OpenApiParameter,
-    OpenApiResponse,
 )
-from django.db.utils import Error, IntegrityError
+from django.db.utils import IntegrityError
 from django.http import Http404
 
 from rest_framework import status
@@ -27,7 +25,6 @@ from rest_framework.viewsets import GenericViewSet
 from .serializers import (
     CameraSerializer,
     CloudiotDeviceSerializer,
-    DeviceConfigSerializer,
     SystemInfoSerializer,
     DeviceSerializer,
     LicenseSerializer,
@@ -39,7 +36,6 @@ from ..models import (
     Camera,
     CloudiotDevice,
     Device,
-    DeviceConfig,
     SystemInfo,
     License,
     PrinterController,
