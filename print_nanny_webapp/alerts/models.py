@@ -1,28 +1,19 @@
 from typing import Any, Dict
-import os
 import logging
-import asyncio
 
 from django.contrib.auth import get_user_model
 from django.db import models
-from django.apps import apps
 from django.core.validators import MaxValueValidator, MinValueValidator
-from django.utils import timezone, dateformat
 from django.template import Context, Template
 from polymorphic.models import PolymorphicModel
 
 
 from print_nanny_webapp.utils.fields import ChoiceArrayField
 
+from print_nanny_webapp.utils.fields import file_field_upload_to
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
-
-
-def _upload_to(instance, filename):
-    datesegment = dateformat.format(timezone.now(), "Y/M/d/")
-    path = os.path.join(f"uploads/{instance.__class__.__name__}", datesegment, filename)
-    return path
 
 
 ##
@@ -267,7 +258,7 @@ class VideoStatusAlert(Alert):
     print_session = models.ForeignKey(
         "remote_control.PrintSession", on_delete=models.CASCADE
     )
-    annotated_video = models.FileField(upload_to=_upload_to)
+    annotated_video = models.FileField(upload_to=file_field_upload_to)
     octoprint_device = models.ForeignKey(
         "remote_control.OctoPrintDevice", on_delete=models.CASCADE
     )
@@ -351,7 +342,7 @@ class AlertMessage(models.Model):
     print_session = models.ForeignKey(
         "remote_control.PrintSession", on_delete=models.CASCADE, null=True
     )
-    annotated_video = models.FileField(upload_to=_upload_to, null=True)
+    annotated_video = models.FileField(upload_to=file_field_upload_to, null=True)
 
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_dt = models.DateTimeField(auto_now=True, db_index=True)

@@ -1,8 +1,16 @@
+import os
 from django.contrib.postgres.fields import ArrayField
 from django.core import exceptions
 from django import forms
 from django.core import validators
+from django.utils import timezone, dateformat
 from rest_framework import serializers
+
+
+def file_field_upload_to(instance, filename):
+    datesegment = dateformat.format(timezone.now(), "Y/M/d/")
+    path = os.path.join(f"uploads/{instance.__class__.__name__}", datesegment, filename)
+    return path
 
 
 class TimestampField(serializers.Field):
