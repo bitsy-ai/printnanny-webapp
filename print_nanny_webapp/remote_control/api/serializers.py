@@ -22,6 +22,7 @@ class RemoteControlCommandSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             "url": {"view_name": "api:command-detail", "lookup_field": "id"},
         }
+        read_only_fields = ("event_source",)
 
 
 class PrintSessionSerializer(serializers.ModelSerializer):
@@ -37,7 +38,7 @@ class PrintSessionSerializer(serializers.ModelSerializer):
             "datesegment",
             "created_dt",
         ]
-        read_only_fields = ("user",)
+        read_only_fields = ("user", "event_source")
         extra_kwargs = {
             "url": {"view_name": "api:print-session-detail", "lookup_field": "session"}
         }
@@ -121,6 +122,7 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
         read_only_fields = (
             "user",
             "public_key",
+            "event_source",
             "fingerprint",
             "cloudiot_device_num_id",
             "cloudiot_device",
@@ -175,6 +177,7 @@ class OctoPrintDeviceSerializer(serializers.ModelSerializer):
         read_only_fields = (
             "user",
             "public_key",
+            "event_source",
             "fingerprint",
             "cloudiot_device_num_id",
             "cloudiot_device",
@@ -207,7 +210,7 @@ class GcodeFileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = GcodeFile
-        read_only_fields = ("user",)
+        read_only_fields = ("user", "event_source")
         fields = [field.name for field in GcodeFile._meta.fields] + ["url"]
         extra_kwargs = {
             "url": {"view_name": "api:gcode-file-detail", "lookup_field": "id"}
@@ -228,7 +231,7 @@ class PrinterProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = PrinterProfile
         fields = [field.name for field in PrinterProfile._meta.fields] + ["url"]
-        read_only_fields = ("user",)
+        read_only_fields = ("user", "event_source")
 
         extra_kwargs = {
             "url": {"view_name": "api:printer-profile-detail", "lookup_field": "id"}
