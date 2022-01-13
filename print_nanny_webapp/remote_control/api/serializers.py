@@ -237,7 +237,7 @@ class PrinterProfileSerializer(serializers.ModelSerializer):
     def update_or_create(self, validated_data, user):
         unique_together = (
             "user",
-            "name",
+            "octoprint_key",
         )
         defaults = {k: v for k, v in validated_data.items() if k not in unique_together}
         unique_together_fields = {
