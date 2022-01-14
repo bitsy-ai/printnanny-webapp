@@ -39,7 +39,7 @@ class PrinterEvent(object):
     openapi_types = {
         'id': 'int',
         'ts': 'float',
-        'event_source': 'OneOfAlphaEventSourceNullEnum',
+        'event_source': 'AlphaEventSource',
         'event_type': 'OctoPrinterEvent',
         'octoprint_environment': 'OctoprintEnvironment',
         'octoprint_printer_data': 'OctoprintPrinterData',
@@ -172,7 +172,7 @@ class PrinterEvent(object):
 
 
         :return: The event_source of this PrinterEvent.  # noqa: E501
-        :rtype: OneOfAlphaEventSourceNullEnum
+        :rtype: AlphaEventSource
         """
         return self._event_source
 
@@ -182,7 +182,7 @@ class PrinterEvent(object):
 
 
         :param event_source: The event_source of this PrinterEvent.  # noqa: E501
-        :type event_source: OneOfAlphaEventSourceNullEnum
+        :type event_source: AlphaEventSource
         """
 
         self._event_source = event_source

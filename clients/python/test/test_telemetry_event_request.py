@@ -38,7 +38,6 @@ class TestTelemetryEventRequest(unittest.TestCase):
         if include_optional :
             return TelemetryEventRequest(
                 ts = 1.337, 
-                event_source = None, 
                 event_type = None, 
                 octoprint_environment = printnanny_api_client.models.octoprint_environment_request.OctoprintEnvironmentRequest(
                     os = printnanny_api_client.models.octoprint_platform_request.OctoprintPlatformRequest(

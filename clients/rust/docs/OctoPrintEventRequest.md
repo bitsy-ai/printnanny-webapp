@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ts** | Option<**f32**> |  | [optional]
-**event_source** | Option<[**crate::models::OneOfAlphaEventSourceNullEnum**](oneOf<AlphaEventSource,NullEnum>.md)> |  | [optional]
 **event_type** | Option<[**crate::models::OctoGenericEvent**](OctoGenericEvent.md)> |  | [optional]
 **octoprint_environment** | [**crate::models::OctoprintEnvironmentRequest**](OctoprintEnvironmentRequest.md) |  | 
 **octoprint_printer_data** | [**crate::models::OctoprintPrinterDataRequest**](OctoprintPrinterDataRequest.md) |  | 

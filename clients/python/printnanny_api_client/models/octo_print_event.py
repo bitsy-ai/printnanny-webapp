@@ -39,7 +39,7 @@ class OctoPrintEvent(object):
     openapi_types = {
         'id': 'int',
         'ts': 'float',
-        'event_source': 'OneOfAlphaEventSourceNullEnum',
+        'event_source': 'AlphaEventSource',
         'event_type': 'OctoGenericEvent',
         'octoprint_environment': 'OctoprintEnvironment',
         'octoprint_printer_data': 'OctoprintPrinterData',
@@ -167,7 +167,7 @@ class OctoPrintEvent(object):
 
 
         :return: The event_source of this OctoPrintEvent.  # noqa: E501
-        :rtype: OneOfAlphaEventSourceNullEnum
+        :rtype: AlphaEventSource
         """
         return self._event_source
 
@@ -177,7 +177,7 @@ class OctoPrintEvent(object):
 
 
         :param event_source: The event_source of this OctoPrintEvent.  # noqa: E501
-        :type event_source: OneOfAlphaEventSourceNullEnum
+        :type event_source: AlphaEventSource
         """
 
         self._event_source = event_source

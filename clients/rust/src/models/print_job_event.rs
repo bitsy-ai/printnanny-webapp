@@ -17,8 +17,8 @@ pub struct PrintJobEvent {
     pub id: i32,
     #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
     pub ts: Option<f32>,
-    #[serde(rename = "event_source", skip_serializing_if = "Option::is_none")]
-    pub event_source: Option<Box<crate::models::OneOfAlphaEventSourceNullEnum>>,
+    #[serde(rename = "event_source")]
+    pub event_source: Option<Box<crate::models::AlphaEventSource>>,
     #[serde(rename = "event_type", skip_serializing_if = "Option::is_none")]
     pub event_type: Option<Box<crate::models::OctoJobEvent>>,
     #[serde(rename = "octoprint_environment")]
@@ -48,11 +48,11 @@ pub struct PrintJobEvent {
 }
 
 impl PrintJobEvent {
-    pub fn new(id: i32, octoprint_environment: crate::models::OctoprintEnvironment, octoprint_printer_data: crate::models::OctoprintPrinterData, print_nanny_plugin_version: String, print_nanny_client_version: String, octoprint_version: String, polymorphic_ctype: i32, octoprint_device: i32, user: i32) -> PrintJobEvent {
+    pub fn new(id: i32, event_source: Option<crate::models::AlphaEventSource>, octoprint_environment: crate::models::OctoprintEnvironment, octoprint_printer_data: crate::models::OctoprintPrinterData, print_nanny_plugin_version: String, print_nanny_client_version: String, octoprint_version: String, polymorphic_ctype: i32, octoprint_device: i32, user: i32) -> PrintJobEvent {
         PrintJobEvent {
             id,
             ts: None,
-            event_source: None,
+            event_source: event_source.map(Box::new),
             event_type: None,
             octoprint_environment: Box::new(octoprint_environment),
             octoprint_printer_data: Box::new(octoprint_printer_data),

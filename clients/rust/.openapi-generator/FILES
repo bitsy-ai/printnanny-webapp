@@ -38,7 +38,6 @@ docs/LicensesApi.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
-docs/NullEnum.md
 docs/OctoGenericEvent.md
 docs/OctoJobEvent.md
 docs/OctoPrintBackup.md
@@ -202,7 +201,6 @@ src/models/license_request.rs
 src/models/mobile_auth_request.rs
 src/models/mod.rs
 src/models/model_artifact.rs
-src/models/null_enum.rs
 src/models/octo_generic_event.rs
 src/models/octo_job_event.rs
 src/models/octo_print_backup.rs

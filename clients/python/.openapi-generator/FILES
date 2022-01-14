@@ -40,7 +40,6 @@ docs/LicensesApi.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
-docs/NullEnum.md
 docs/OctoGenericEvent.md
 docs/OctoJobEvent.md
 docs/OctoPrintBackup.md
@@ -207,7 +206,6 @@ printnanny_api_client/models/license.py
 printnanny_api_client/models/license_request.py
 printnanny_api_client/models/mobile_auth_request.py
 printnanny_api_client/models/model_artifact.py
-printnanny_api_client/models/null_enum.py
 printnanny_api_client/models/octo_generic_event.py
 printnanny_api_client/models/octo_job_event.py
 printnanny_api_client/models/octo_print_backup.py
@@ -360,7 +358,6 @@ test/test_licenses_api.py
 test/test_ml_ops_api.py
 test/test_mobile_auth_request.py
 test/test_model_artifact.py
-test/test_null_enum.py
 test/test_octo_generic_event.py
 test/test_octo_job_event.py
 test/test_octo_print_backup.py

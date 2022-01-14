@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ts** | **float** |  | [optional] 
-**event_source** | [**OneOfAlphaEventSourceNullEnum**](OneOfAlphaEventSourceNullEnum.md) |  | [optional] 
 **event_type** | [**OctoPrintNannyEvent**](OctoPrintNannyEvent.md) |  | [optional] 
 **octoprint_environment** | [**OctoprintEnvironmentRequest**](OctoprintEnvironmentRequest.md) |  | 
 **octoprint_printer_data** | [**OctoprintPrinterDataRequest**](OctoprintPrinterDataRequest.md) |  | 

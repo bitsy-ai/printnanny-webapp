@@ -113,6 +113,7 @@ class TestRemoteCommandEvent(unittest.TestCase):
         else :
             return RemoteCommandEvent(
                 id = 56,
+                event_source = None,
                 octoprint_environment = printnanny_api_client.models.octoprint_environment.OctoprintEnvironment(
                     os = printnanny_api_client.models.octoprint_platform.OctoprintPlatform(
                         id = '', 
