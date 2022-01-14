@@ -12,6 +12,8 @@
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum OctoGenericEvent {
+    #[serde(rename = "plugin_backup_backup_created")]
+    PluginBackupBackupCreated,
     #[serde(rename = "ClientAuthed")]
     ClientAuthed,
     #[serde(rename = "ClientClosed")]
@@ -94,6 +96,7 @@ pub enum OctoGenericEvent {
 impl ToString for OctoGenericEvent {
     fn to_string(&self) -> String {
         match self {
+            Self::PluginBackupBackupCreated => String::from("plugin_backup_backup_created"),
             Self::ClientAuthed => String::from("ClientAuthed"),
             Self::ClientClosed => String::from("ClientClosed"),
             Self::ClientDeauthed => String::from("ClientDeauthed"),
@@ -138,7 +141,7 @@ impl ToString for OctoGenericEvent {
 
 impl Default for OctoGenericEvent {
     fn default() -> OctoGenericEvent {
-        Self::ClientAuthed
+        Self::PluginBackupBackupCreated
     }
 }
 

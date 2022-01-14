@@ -136,6 +136,8 @@ pub enum OctoTelemetryEvent {
     Shutdown,
     #[serde(rename = "Startup")]
     Startup,
+    #[serde(rename = "plugin_backup_backup_created")]
+    PluginBackupBackupCreated,
     #[serde(rename = "remote_command_received")]
     RemoteCommandReceived,
     #[serde(rename = "remote_command_failed")]
@@ -226,6 +228,7 @@ impl ToString for OctoTelemetryEvent {
             Self::PluginPiSupportThrottleState => String::from("plugin_pi_support_throttle_state"),
             Self::Shutdown => String::from("Shutdown"),
             Self::Startup => String::from("Startup"),
+            Self::PluginBackupBackupCreated => String::from("plugin_backup_backup_created"),
             Self::RemoteCommandReceived => String::from("remote_command_received"),
             Self::RemoteCommandFailed => String::from("remote_command_failed"),
             Self::RemoteCommandSuccess => String::from("remote_command_success"),
