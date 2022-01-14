@@ -15,14 +15,14 @@ ANSIBLE_EXTRA_VARS = {
 
 
 def create_initial_releases(apps, schema_editor):
-    from ..choices import ReleaseChannel
+    # from ..choices import ReleaseChannel
 
-    Release = apps.get_model("releases", "Release")
+    # Release = apps.get_model("releases", "Release")
 
-    for channel in ReleaseChannel:
-        Release.objects.create(
-            release_channel=channel, ansible_extra_vars=ANSIBLE_EXTRA_VARS
-        )
+    # for channel in ReleaseChannel:
+    #     Release.objects.create(
+    #         release_channel=channel, ansible_extra_vars=ANSIBLE_EXTRA_VARS
+    #     )
 
 
 class Migration(migrations.Migration):
