@@ -7,20 +7,19 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("releases", "0002_auto_20211031_1735"),
         ("devices", "0004_auto_20211113_1935"),
     ]
 
     operations = [
-        migrations.AddField(
-            model_name="device",
-            name="bootstrap_release",
-            field=models.ForeignKey(
-                default=1,
-                on_delete=django.db.models.deletion.SET_DEFAULT,
-                to="releases.release",
-            ),
-        ),
+        # migrations.AddField(
+        #     model_name="device",
+        #     name="bootstrap_release",
+        #     field=models.ForeignKey(
+        #         default=1,
+        #         on_delete=django.db.models.deletion.SET_DEFAULT,
+        #         to="releases.release",
+        #     ),
+        # ),
         migrations.AlterField(
             model_name="device",
             name="hostname",

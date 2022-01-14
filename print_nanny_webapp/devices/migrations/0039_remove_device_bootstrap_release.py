@@ -10,8 +10,8 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name="device",
-            name="bootstrap_release",
-        ),
+        # migrations.RemoveField(
+        #     model_name="device",
+        #     name="bootstrap_release",
+        # ),
     ]
