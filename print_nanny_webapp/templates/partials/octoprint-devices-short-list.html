@@ -52,9 +52,9 @@
                     <td>{%if device.active_session.print_progress %}{{device.active_session.print_progress}}% {% endif %}</td>
 
 
-                    <td><a href="{% url 'dashboard:octoprint-devices:detail' pk=device.id %}"><button class="btn btn-primary">Manage Device</button></a></td>
+                    <td><a href="{% url 'dashboard:octoprint-devices:detail' pk=device.id %}"><button class="btn btn-primary btn-sm">Manage</button></a></td>
                     <td>
-                      <button class="btn btn-primary" data-toggle="modal" data-target="#octoprint-device-metadata-modal-{{device.id}}">View Metadata</button>
+                      <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#octoprint-device-metadata-modal-{{device.id}}">View Metadata</button>
                         <!--  Modal content for the Large example -->
                         <div class="modal fade" id="octoprint-device-metadata-modal-{{device.id}}" tabindex="-1" role="dialog" aria-hidden="true">
                           <div class="modal-dialog modal-lg">
