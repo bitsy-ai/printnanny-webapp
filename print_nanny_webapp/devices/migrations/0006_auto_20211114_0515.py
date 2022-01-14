@@ -8,7 +8,7 @@ import print_nanny_webapp.devices.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("releases", "0002_auto_20211031_1735"),
+        # ("releases", "0002_auto_20211031_1735"),
         ("devices", "0005_auto_20211113_2227"),
     ]
 
