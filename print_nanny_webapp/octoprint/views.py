@@ -1,11 +1,12 @@
 from django.apps import apps
 from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 OctoPrintBackup = apps.get_model("octoprint", "OctoPrintBackup")
 
 
-class OctoPrintBackupsList(TemplateView):
+class OctoPrintBackupsList(LoginRequiredMixin, TemplateView):
     template_name = "backups-list.html"
 
     def get_context_data(self, *args, **kwargs):
