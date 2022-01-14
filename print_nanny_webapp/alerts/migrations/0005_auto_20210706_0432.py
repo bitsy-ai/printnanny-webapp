@@ -4,6 +4,7 @@ from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
 import print_nanny_webapp.alerts.models
+import print_nanny_webapp.utils.fields
 
 
 class Migration(migrations.Migration):
@@ -135,7 +136,7 @@ class Migration(migrations.Migration):
                 (
                     "annotated_video",
                     models.FileField(
-                        upload_to=print_nanny_webapp.alerts.models._upload_to
+                        upload_to=print_nanny_webapp.utils.fields.file_field_upload_to
                     ),
                 ),
                 (

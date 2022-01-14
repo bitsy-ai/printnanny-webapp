@@ -1,7 +1,6 @@
 from django.urls import path
 from rest_framework.routers import DefaultRouter
 from rest_framework_nested.routers import NestedSimpleRouter
-from print_nanny_webapp.devices.api.serializers import PrinterControllerSerializer
 
 from print_nanny_webapp.devices.api.views import (
     CameraViewSet,
@@ -41,6 +40,7 @@ from print_nanny_webapp.alerts.api.views import (
 
 from print_nanny_webapp.partners.api.views import ( GeeksViewSet )
 from print_nanny_webapp.utils.api.views import PrintNannyApiConfigViewset
+from print_nanny_webapp.octoprint.api.views import OctoPrintBackupViewset
 
 router = DefaultRouter()
 
@@ -49,6 +49,9 @@ router.register("client-config", PrintNannyApiConfigViewset, basename="client-co
 router.register("alerts", AlertViewSet)
 router.register("devices", DeviceViewSet)
 router.register("licenses", LicenseViewSet)
+
+# octoprint endpoints (print nanny os data model)
+router.register("octoprint-backups", OctoPrintBackupViewset)
 
 # enables /api/devices/:hostname lookup (no nested routing)
 devices_by_hostname = [

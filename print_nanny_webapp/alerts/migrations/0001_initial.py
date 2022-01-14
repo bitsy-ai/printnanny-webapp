@@ -144,7 +144,8 @@ class Migration(migrations.Migration):
                 (
                     "annotated_video",
                     models.FileField(
-                        null=True, upload_to=print_nanny_webapp.alerts.models._upload_to
+                        null=True,
+                        upload_to=print_nanny_webapp.utils.fields.file_field_upload_to,
                     ),
                 ),
                 ("created_dt", models.DateTimeField(auto_now_add=True, db_index=True)),
