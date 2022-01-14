@@ -22,6 +22,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ("subscriptions", "0002_auto_20210625_0439"),
+        ("users", "0002_user_is_serviceuser"),
     ]
 
     operations = [
