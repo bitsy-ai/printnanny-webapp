@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 
 
-{% block title_extra %}OctoPrint Devices{% endblock %}
+{% block title_extra %}Legacy Plugin Connections{% endblock %}
 
 {% block content %}
 <div class="container-fluid">
@@ -14,15 +14,16 @@
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboards</a></li>
                       
-                        <li class="breadcrumb-item active">OctoPrint Devices</li>
+                        <li class="breadcrumb-item active">Legacy Plugin Connections</li>
                     </ol>
                 </div>
-                <h3 class="page-title d-inline-flex">OctoPrint Devices</h3>
+                <h3 class="page-title d-inline-flex">Legacy Plugin Connections</h3>
                 {% include "partials/messages.html"%}
             </div>
         </div>
     </div>
     {% include "partials/octoprint-devices-short-list.html" %}
+    {% include "partials/octoprint-devices-backup.html" %}
     {% include "partials/printer-profiles-list.html" %}
 
     {% include "partials/print-jobs-list.html" %}
