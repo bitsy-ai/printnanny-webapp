@@ -113,7 +113,7 @@ class TelemetryEventSerializer(serializers.ModelSerializer):
     event_source = serializers.ChoiceField(
         choices=EventSource.choices,
         default=EventSource.PRINT_NANNY_PLUGIN,
-        allow_null=True,
+        read_only=True,
     )
     event_type = serializers.ChoiceField(
         choices=TelemetryEventType.choices, default=TelemetryEventType.CONNECT_TEST_NOOP
@@ -132,7 +132,9 @@ class PrinterEventSerializer(TelemetryEventSerializer):
         choices=PrinterEventType.choices, default=PrinterEventType.DISCONNECTED
     )
     event_source = serializers.ChoiceField(
-        choices=EventSource.choices, default=EventSource.OCTOPRINT, allow_null=True
+        choices=EventSource.choices,
+        default=EventSource.OCTOPRINT,
+        read_only=True,
     )
 
     class Meta:
@@ -146,7 +148,9 @@ class PrintJobEventSerializer(TelemetryEventSerializer):
         choices=PrintJobEventType.choices, default=PrintJobEventType.PRINT_STARTED
     )
     event_source = serializers.ChoiceField(
-        choices=EventSource.choices, default=EventSource.OCTOPRINT, allow_null=True
+        choices=EventSource.choices,
+        default=EventSource.OCTOPRINT,
+        read_only=True,
     )
 
     class Meta:
@@ -161,7 +165,9 @@ class OctoPrintEventSerializer(TelemetryEventSerializer):
         choices=OctoprintEventType.choices, default=OctoprintEventType.STARTUP
     )
     event_source = serializers.ChoiceField(
-        choices=EventSource.choices, default=EventSource.OCTOPRINT, allow_null=True
+        choices=EventSource.choices,
+        default=EventSource.OCTOPRINT,
+        read_only=True,
     )
 
     class Meta:
@@ -176,7 +182,9 @@ class PrintNannyPluginEventSerializer(TelemetryEventSerializer):
         default=PrintNannyPluginEventType.MONITORING_START,
     )
     event_source = serializers.ChoiceField(
-        choices=EventSource.choices, default=EventSource.OCTOPRINT, allow_null=True
+        choices=EventSource.choices,
+        default=EventSource.OCTOPRINT,
+        read_only=True,
     )
 
     class Meta:
@@ -193,7 +201,7 @@ class RemoteCommandEventSerializer(TelemetryEventSerializer):
     event_source = serializers.ChoiceField(
         choices=EventSource.choices,
         default=EventSource.PRINT_NANNY_PLUGIN,
-        allow_null=True,
+        read_only=True,
     )
 
     class Meta:
