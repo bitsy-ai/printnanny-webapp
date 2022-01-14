@@ -19,15 +19,15 @@ class Migration(migrations.Migration):
             field=models.CharField(default="123abc", max_length=255),
             preserve_default=False,
         ),
-        migrations.AlterField(
-            model_name="device",
-            name="bootstrap_release",
-            field=models.ForeignKey(
-                default="",
-                on_delete=django.db.models.deletion.CASCADE,
-                to="releases.release",
-            ),
-        ),
+        # migrations.AlterField(
+        #     model_name="device",
+        #     name="bootstrap_release",
+        #     field=models.ForeignKey(
+        #         default="",
+        #         on_delete=django.db.models.deletion.CASCADE,
+        #         to="releases.release",
+        #     ),
+        # ),
         migrations.AddConstraint(
             model_name="deviceinfo",
             constraint=models.UniqueConstraint(

@@ -11,15 +11,15 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name="device",
-            name="bootstrap_release",
-            field=models.ForeignKey(
-                default=1,
-                on_delete=django.db.models.deletion.SET_DEFAULT,
-                to="releases.release",
-            ),
-        ),
+        # migrations.AddField(
+        #     model_name="device",
+        #     name="bootstrap_release",
+        #     field=models.ForeignKey(
+        #         default=1,
+        #         on_delete=django.db.models.deletion.SET_DEFAULT,
+        #         to="releases.release",
+        #     ),
+        # ),
         migrations.AlterField(
             model_name="device",
             name="hostname",
