@@ -95,7 +95,6 @@ LOCAL_APPS = [
     "print_nanny_webapp.remote_control.apps.RemoteControlConfig",
     "print_nanny_webapp.telemetry.apps.TelemetryConfig",
     "print_nanny_webapp.users.apps.UsersConfig",
-    "print_nanny_webapp.releases.apps.ReleasesConfig",
     "print_nanny_webapp.surveys.apps.SurveysConfig",
     "print_nanny_webapp.octoprint.apps.OctoprintConfig"
     # "print_nanny_webapp.subscriptions.apps.SubscriptionsConfig", # Gated at the bottom
