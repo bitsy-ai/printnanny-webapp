@@ -1,4 +1,5 @@
 import logging
+from rest_framework import parsers
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import (
@@ -41,3 +42,6 @@ class OctoPrintBackupViewset(
     serializer_class = OctoPrintBackupSerializer
     queryset = OctoPrintBackup.objects.all()
     lookup_field = "id"
+    parser_classes = [
+        parsers.MultiPartParser,
+    ]
