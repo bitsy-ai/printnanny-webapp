@@ -231,6 +231,19 @@ class PrintNannyPluginEventType(models.TextChoices):
     ##
     # emitted by Print Nanny Octoprint Plugin
     ##
+    BACKUP_START = (
+        "plugin_octoprint_nanny_backup_start",
+        "Backing up OctoPrint to Print Nanny Cloud",
+    )
+    BACKUP_SUCCESS = (
+        "plugin_octoprint_nanny_backup_success",
+        "Success! Uploaded OctoPrint backup",
+    )
+    BACKUP_FAILURE = (
+        "plugin_octoprint_nanny_backup_failure",
+        "Failed to create OctoPrint backup. Please try again.",
+    )
+
     MONITORING_START = (
         "plugin_octoprint_nanny_monitoring_start",
         "Print Nanny Monitoring started",
