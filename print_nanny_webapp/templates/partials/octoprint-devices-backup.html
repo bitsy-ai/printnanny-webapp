@@ -25,9 +25,9 @@
                 <td><span class="badge badge-light">{{backup.hostname}}</span>
                 </td>
                 <td>{{backup.name}}</td>
-                <td>{{backup.date | naturaltime }}</td>
+                <td>{{backup.created_dt | naturaltime }}</td>
                 <td>{{backup.octoprint_version}}</td>
-                <td>Download</td>
+                <td><a class="btn btn-primary btn-sm" href="{{backup.file}}">Download</a></td>
 
               </tr>
             {% endfor %}
