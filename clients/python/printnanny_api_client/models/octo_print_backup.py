@@ -40,6 +40,7 @@ class OctoPrintBackup(object):
         'id': 'int',
         'created_dt': 'datetime',
         'hostname': 'str',
+        'name': 'str',
         'octoprint_version': 'str',
         'file': 'str',
         'user': 'int'
@@ -49,12 +50,13 @@ class OctoPrintBackup(object):
         'id': 'id',
         'created_dt': 'created_dt',
         'hostname': 'hostname',
+        'name': 'name',
         'octoprint_version': 'octoprint_version',
         'file': 'file',
         'user': 'user'
     }
 
-    def __init__(self, id=None, created_dt=None, hostname=None, octoprint_version=None, file=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, hostname=None, name=None, octoprint_version=None, file=None, user=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintBackup - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -63,6 +65,7 @@ class OctoPrintBackup(object):
         self._id = None
         self._created_dt = None
         self._hostname = None
+        self._name = None
         self._octoprint_version = None
         self._file = None
         self._user = None
@@ -71,6 +74,7 @@ class OctoPrintBackup(object):
         self.id = id
         self.created_dt = created_dt
         self.hostname = hostname
+        self.name = name
         self.octoprint_version = octoprint_version
         self.file = file
         self.user = user
@@ -146,6 +150,32 @@ class OctoPrintBackup(object):
             raise ValueError("Invalid value for `hostname`, length must be less than or equal to `64`")  # noqa: E501
 
         self._hostname = hostname
+
+    @property
+    def name(self):
+        """Gets the name of this OctoPrintBackup.  # noqa: E501
+
+
+        :return: The name of this OctoPrintBackup.  # noqa: E501
+        :rtype: str
+        """
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        """Sets the name of this OctoPrintBackup.
+
+
+        :param name: The name of this OctoPrintBackup.  # noqa: E501
+        :type name: str
+        """
+        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                name is not None and len(name) > 255):
+            raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._name = name
 
     @property
     def octoprint_version(self):

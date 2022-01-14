@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **id** | **int** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
 **hostname** | **str** |  | 
+**name** | **str** |  | 
 **octoprint_version** | **str** |  | 
 **file** | **str** |  | 
 **user** | **int** |  | [readonly] 

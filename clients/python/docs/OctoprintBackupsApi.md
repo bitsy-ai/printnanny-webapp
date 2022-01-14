@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **octoprint_backups_create**
-> OctoPrintBackup octoprint_backups_create(hostname, octoprint_version, file)
+> OctoPrintBackup octoprint_backups_create(hostname, name, octoprint_version, file)
 
 
 
@@ -50,11 +50,12 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.OctoprintBackupsApi(api_client)
     hostname = 'hostname_example' # str | 
+name = 'name_example' # str | 
 octoprint_version = 'octoprint_version_example' # str | 
 file = '/path/to/file' # file | 
 
     try:
-        api_response = api_instance.octoprint_backups_create(hostname, octoprint_version, file)
+        api_response = api_instance.octoprint_backups_create(hostname, name, octoprint_version, file)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling OctoprintBackupsApi->octoprint_backups_create: %s\n" % e)
@@ -94,11 +95,12 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.OctoprintBackupsApi(api_client)
     hostname = 'hostname_example' # str | 
+name = 'name_example' # str | 
 octoprint_version = 'octoprint_version_example' # str | 
 file = '/path/to/file' # file | 
 
     try:
-        api_response = api_instance.octoprint_backups_create(hostname, octoprint_version, file)
+        api_response = api_instance.octoprint_backups_create(hostname, name, octoprint_version, file)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling OctoprintBackupsApi->octoprint_backups_create: %s\n" % e)
@@ -109,6 +111,7 @@ file = '/path/to/file' # file |
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **hostname** | **str**|  | 
+ **name** | **str**|  | 
  **octoprint_version** | **str**|  | 
  **file** | **file**|  | 
 

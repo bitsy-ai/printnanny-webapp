@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **id** | **i32** |  | [readonly]
 **created_dt** | **String** |  | [readonly]
 **hostname** | **String** |  | 
+**name** | **String** |  | 
 **octoprint_version** | **String** |  | 
 **file** | **String** |  | 
 **user** | **i32** |  | [readonly]

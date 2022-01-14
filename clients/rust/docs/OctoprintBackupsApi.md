@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## octoprint_backups_create
 
-> crate::models::OctoPrintBackup octoprint_backups_create(hostname, octoprint_version, file)
+> crate::models::OctoPrintBackup octoprint_backups_create(hostname, name, octoprint_version, file)
 
 
 ### Parameters
@@ -21,6 +21,7 @@ Method | HTTP request | Description
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **hostname** | **String** |  | [required] |
+**name** | **String** |  | [required] |
 **octoprint_version** | **String** |  | [required] |
 **file** | **std::path::PathBuf** |  | [required] |
 
