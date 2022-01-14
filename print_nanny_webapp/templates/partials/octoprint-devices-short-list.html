@@ -3,9 +3,9 @@
     <div class="col-12 d-flex align-items-stretch">
       <div class="card col-12">
         <div class="card-body">
-            <h2 class="header-title">
+            <p class="header-title">
               <i class="mdi mdi-printer-3d"></i> OctoPrint Plugin Connections
-            </h2>
+            </p>
             <div class="row">
               <div class="col-12 col-md-12">
                 {% include 'devices/partials/plugin-deprecation.html' %}
@@ -24,7 +24,7 @@
                       <th>File</th>
                       <th>Progress</th>
 
-                      <th>Remote Control</th>
+                      <th>Manage</th>
                       <th>Metadata</th>
 
                       <th>OctoPrint Version</th>
@@ -39,7 +39,7 @@
   
                 {% for device in octoprint_devices %}
                 <tr>
-                    <td><h3><span class="badge badge-light">{{device.name}}</span></h3></td>
+                    <td><span class="badge badge-light">{{device.name}}</span></td>
                     <!-- <td>
                         <div class="progress progress-sm">
                             <div class="progress-bar progress-lg bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
