@@ -25,7 +25,6 @@ from ..enum import (
     PrintNannyEnv,
 )
 from print_nanny_webapp.users.api.serializers import UserSerializer
-from django.utils.module_loading import import_string
 
 User = get_user_model()
 
