@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
 **ts** | **float** |  | [optional] 
-**event_source** | [**AlphaEventSource**](AlphaEventSource.md) |  | [optional] 
+**event_source** | [**OneOfAlphaEventSourceNullEnum**](OneOfAlphaEventSourceNullEnum.md) |  | [optional] 
 **event_type** | [**OctoPrintNannyEvent**](OctoPrintNannyEvent.md) |  | [optional] 
 **octoprint_environment** | [**OctoprintEnvironment**](OctoprintEnvironment.md) |  | 
 **octoprint_printer_data** | [**OctoprintPrinterData**](OctoprintPrinterData.md) |  | 

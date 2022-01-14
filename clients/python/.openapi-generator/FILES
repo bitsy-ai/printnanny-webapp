@@ -40,8 +40,11 @@ docs/LicensesApi.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
+docs/NullEnum.md
 docs/OctoGenericEvent.md
 docs/OctoJobEvent.md
+docs/OctoPrintBackup.md
+docs/OctoPrintBackupRequest.md
 docs/OctoPrintDevice.md
 docs/OctoPrintDeviceKey.md
 docs/OctoPrintDeviceRequest.md
@@ -50,6 +53,7 @@ docs/OctoPrintEventRequest.md
 docs/OctoPrintNannyEvent.md
 docs/OctoPrinterEvent.md
 docs/OctoTelemetryEvent.md
+docs/OctoprintBackupsApi.md
 docs/OctoprintEnvironment.md
 docs/OctoprintEnvironmentRequest.md
 docs/OctoprintFile.md
@@ -82,6 +86,7 @@ docs/PaginatedExperimentList.md
 docs/PaginatedGcodeFileList.md
 docs/PaginatedLicenseList.md
 docs/PaginatedModelArtifactList.md
+docs/PaginatedOctoPrintBackupList.md
 docs/PaginatedOctoPrintDeviceList.md
 docs/PaginatedOctoPrintEventList.md
 docs/PaginatedPrintJobEventList.md
@@ -162,6 +167,7 @@ printnanny_api_client/api/client_config_api.py
 printnanny_api_client/api/devices_api.py
 printnanny_api_client/api/licenses_api.py
 printnanny_api_client/api/ml_ops_api.py
+printnanny_api_client/api/octoprint_backups_api.py
 printnanny_api_client/api/partners_geeks3_api.py
 printnanny_api_client/api/partners_geeks3d_api.py
 printnanny_api_client/api/remote_control_api.py
@@ -201,8 +207,11 @@ printnanny_api_client/models/license.py
 printnanny_api_client/models/license_request.py
 printnanny_api_client/models/mobile_auth_request.py
 printnanny_api_client/models/model_artifact.py
+printnanny_api_client/models/null_enum.py
 printnanny_api_client/models/octo_generic_event.py
 printnanny_api_client/models/octo_job_event.py
+printnanny_api_client/models/octo_print_backup.py
+printnanny_api_client/models/octo_print_backup_request.py
 printnanny_api_client/models/octo_print_device.py
 printnanny_api_client/models/octo_print_device_key.py
 printnanny_api_client/models/octo_print_device_request.py
@@ -243,6 +252,7 @@ printnanny_api_client/models/paginated_experiment_list.py
 printnanny_api_client/models/paginated_gcode_file_list.py
 printnanny_api_client/models/paginated_license_list.py
 printnanny_api_client/models/paginated_model_artifact_list.py
+printnanny_api_client/models/paginated_octo_print_backup_list.py
 printnanny_api_client/models/paginated_octo_print_device_list.py
 printnanny_api_client/models/paginated_octo_print_event_list.py
 printnanny_api_client/models/paginated_print_job_event_list.py
@@ -350,8 +360,11 @@ test/test_licenses_api.py
 test/test_ml_ops_api.py
 test/test_mobile_auth_request.py
 test/test_model_artifact.py
+test/test_null_enum.py
 test/test_octo_generic_event.py
 test/test_octo_job_event.py
+test/test_octo_print_backup.py
+test/test_octo_print_backup_request.py
 test/test_octo_print_device.py
 test/test_octo_print_device_key.py
 test/test_octo_print_device_request.py
@@ -360,6 +373,7 @@ test/test_octo_print_event_request.py
 test/test_octo_print_nanny_event.py
 test/test_octo_printer_event.py
 test/test_octo_telemetry_event.py
+test/test_octoprint_backups_api.py
 test/test_octoprint_environment.py
 test/test_octoprint_environment_request.py
 test/test_octoprint_file.py
@@ -392,6 +406,7 @@ test/test_paginated_experiment_list.py
 test/test_paginated_gcode_file_list.py
 test/test_paginated_license_list.py
 test/test_paginated_model_artifact_list.py
+test/test_paginated_octo_print_backup_list.py
 test/test_paginated_octo_print_device_list.py
 test/test_paginated_octo_print_event_list.py
 test/test_paginated_print_job_event_list.py

@@ -38,8 +38,11 @@ docs/LicensesApi.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
+docs/NullEnum.md
 docs/OctoGenericEvent.md
 docs/OctoJobEvent.md
+docs/OctoPrintBackup.md
+docs/OctoPrintBackupRequest.md
 docs/OctoPrintDevice.md
 docs/OctoPrintDeviceKey.md
 docs/OctoPrintDeviceRequest.md
@@ -48,6 +51,7 @@ docs/OctoPrintEventRequest.md
 docs/OctoPrintNannyEvent.md
 docs/OctoPrinterEvent.md
 docs/OctoTelemetryEvent.md
+docs/OctoprintBackupsApi.md
 docs/OctoprintEnvironment.md
 docs/OctoprintEnvironmentRequest.md
 docs/OctoprintFile.md
@@ -80,6 +84,7 @@ docs/PaginatedExperimentList.md
 docs/PaginatedGcodeFileList.md
 docs/PaginatedLicenseList.md
 docs/PaginatedModelArtifactList.md
+docs/PaginatedOctoPrintBackupList.md
 docs/PaginatedOctoPrintDeviceList.md
 docs/PaginatedOctoPrintEventList.md
 docs/PaginatedPrintJobEventList.md
@@ -159,6 +164,7 @@ src/apis/devices_api.rs
 src/apis/licenses_api.rs
 src/apis/ml_ops_api.rs
 src/apis/mod.rs
+src/apis/octoprint_backups_api.rs
 src/apis/partners_geeks3_api.rs
 src/apis/partners_geeks3d_api.rs
 src/apis/remote_control_api.rs
@@ -196,8 +202,11 @@ src/models/license_request.rs
 src/models/mobile_auth_request.rs
 src/models/mod.rs
 src/models/model_artifact.rs
+src/models/null_enum.rs
 src/models/octo_generic_event.rs
 src/models/octo_job_event.rs
+src/models/octo_print_backup.rs
+src/models/octo_print_backup_request.rs
 src/models/octo_print_device.rs
 src/models/octo_print_device_key.rs
 src/models/octo_print_device_request.rs
@@ -238,6 +247,7 @@ src/models/paginated_experiment_list.rs
 src/models/paginated_gcode_file_list.rs
 src/models/paginated_license_list.rs
 src/models/paginated_model_artifact_list.rs
+src/models/paginated_octo_print_backup_list.rs
 src/models/paginated_octo_print_device_list.rs
 src/models/paginated_octo_print_event_list.rs
 src/models/paginated_print_job_event_list.rs

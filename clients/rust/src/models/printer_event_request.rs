@@ -16,7 +16,7 @@ pub struct PrinterEventRequest {
     #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
     pub ts: Option<f32>,
     #[serde(rename = "event_source", skip_serializing_if = "Option::is_none")]
-    pub event_source: Option<Box<crate::models::AlphaEventSource>>,
+    pub event_source: Option<Box<crate::models::OneOfAlphaEventSourceNullEnum>>,
     #[serde(rename = "event_type", skip_serializing_if = "Option::is_none")]
     pub event_type: Option<Box<crate::models::OctoPrinterEvent>>,
     #[serde(rename = "octoprint_environment")]
