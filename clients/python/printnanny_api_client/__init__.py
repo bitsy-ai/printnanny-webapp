@@ -15,7 +15,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.39.4"
+__version__ = "0.40.0"
 
 # import apis into sdk package
 from printnanny_api_client.api.alerts_api import AlertsApi
@@ -25,6 +25,7 @@ from printnanny_api_client.api.client_config_api import ClientConfigApi
 from printnanny_api_client.api.devices_api import DevicesApi
 from printnanny_api_client.api.licenses_api import LicensesApi
 from printnanny_api_client.api.ml_ops_api import MlOpsApi
+from printnanny_api_client.api.octoprint_backups_api import OctoprintBackupsApi
 from printnanny_api_client.api.partners_geeks3_api import PartnersGeeks3Api
 from printnanny_api_client.api.partners_geeks3d_api import PartnersGeeks3dApi
 from printnanny_api_client.api.remote_control_api import RemoteControlApi
@@ -71,8 +72,11 @@ from printnanny_api_client.models.license import License
 from printnanny_api_client.models.license_request import LicenseRequest
 from printnanny_api_client.models.mobile_auth_request import MobileAuthRequest
 from printnanny_api_client.models.model_artifact import ModelArtifact
+from printnanny_api_client.models.null_enum import NullEnum
 from printnanny_api_client.models.octo_generic_event import OctoGenericEvent
 from printnanny_api_client.models.octo_job_event import OctoJobEvent
+from printnanny_api_client.models.octo_print_backup import OctoPrintBackup
+from printnanny_api_client.models.octo_print_backup_request import OctoPrintBackupRequest
 from printnanny_api_client.models.octo_print_device import OctoPrintDevice
 from printnanny_api_client.models.octo_print_device_key import OctoPrintDeviceKey
 from printnanny_api_client.models.octo_print_device_request import OctoPrintDeviceRequest
@@ -113,6 +117,7 @@ from printnanny_api_client.models.paginated_experiment_list import PaginatedExpe
 from printnanny_api_client.models.paginated_gcode_file_list import PaginatedGcodeFileList
 from printnanny_api_client.models.paginated_license_list import PaginatedLicenseList
 from printnanny_api_client.models.paginated_model_artifact_list import PaginatedModelArtifactList
+from printnanny_api_client.models.paginated_octo_print_backup_list import PaginatedOctoPrintBackupList
 from printnanny_api_client.models.paginated_octo_print_device_list import PaginatedOctoPrintDeviceList
 from printnanny_api_client.models.paginated_octo_print_event_list import PaginatedOctoPrintEventList
 from printnanny_api_client.models.paginated_print_job_event_list import PaginatedPrintJobEventList
