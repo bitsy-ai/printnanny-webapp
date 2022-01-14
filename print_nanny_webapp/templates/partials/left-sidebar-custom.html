@@ -47,7 +47,7 @@
                         <span class="badge badge-danger">New</span>
                         {% endif %}
                     </span>
-                    <!-- <span class="menu-arrow"></span> -->
+                    <span class="menu-arrow"></span>
                 </a>
                 <ul class="side-nav-second-level  mm-collapse mm-show" aria-expanded="true">
                     <li class="{% if request.resolver_match.url_name == 'releases:list' or '' %}active{% endif %}">
@@ -60,8 +60,19 @@
                     <li class="{% if request.resolver_match.url_name == 'surveys:remote-access' %}active{% endif %}">
                         <a href="{% url 'surveys:remote-access' %}">{% trans "My Network" %}	&nbsp;<span class="badge badge-light">Coming Soon</span></a>
                     </li>
+                </ul>
+            </li>
+
+            <li class="side-nav-item">
+                <a href="javascript: void(0);" class="side-nav-link" aria-expanded="true">
+                    <i class="mdi mdi-file"></i>
+                    <span> {% trans "My Files" %}
+                    </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="side-nav-second-level  mm-collapse mm-show" aria-expanded="true">
                     <li class="{% if request.resolver_match.url_name == 'surveys:remote-access' %}active{% endif %}">
-                        <a href="{% url 'surveys:remote-access' %}">{% trans "My Files" %}	&nbsp;<span class="badge badge-light">Coming Soon</span></a>
+                        <a href="{% url 'octoprint:backups-list' %}">OctoPrint Backups</a>
                     </li>
                 </ul>
             </li>

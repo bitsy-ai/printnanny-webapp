@@ -49,7 +49,8 @@ urlpatterns = [
          include("print_nanny_webapp.devices.urls", namespace="devices"), ),
     
     path("surveys/", include("print_nanny_webapp.surveys.urls", namespace="urls")),
-    path("releases/", include("print_nanny_webapp.releases.urls", namespace="releases"))
+    path("releases/", include("print_nanny_webapp.releases.urls", namespace="releases")),
+    path("octoprint/", include("print_nanny_webapp.octoprint.urls", namespace="octoprint"))
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
