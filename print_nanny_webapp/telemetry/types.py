@@ -190,6 +190,9 @@ class TelemetryEventType(models.TextChoices):
     SHUTDOWN = "Shutdown", "Shutdown"
     STARTUP = "Startup", "Startup"
 
+    # octoprint backup plugin
+    BACKUP_CREATED = "plugin_backup_backup_created", "Backup Created"
+
     ##
     #   source: RemoteCommandEventType
     ##
@@ -231,18 +234,6 @@ class PrintNannyPluginEventType(models.TextChoices):
     ##
     # emitted by Print Nanny Octoprint Plugin
     ##
-    BACKUP_START = (
-        "plugin_octoprint_nanny_backup_start",
-        "Backing up OctoPrint to Print Nanny Cloud",
-    )
-    BACKUP_SUCCESS = (
-        "plugin_octoprint_nanny_backup_success",
-        "Success! Uploaded OctoPrint backup",
-    )
-    BACKUP_FAILURE = (
-        "plugin_octoprint_nanny_backup_failure",
-        "Failed to create OctoPrint backup. Please try again.",
-    )
 
     MONITORING_START = (
         "plugin_octoprint_nanny_monitoring_start",
@@ -325,6 +316,8 @@ class PrintNannyPluginEventType(models.TextChoices):
 
 
 class OctoprintEventType(models.TextChoices):
+    BACKUP_CREATED = "plugin_backup_backup_created", "Backup Created"
+
     # OctoPrint javascript client / browser -> OctoPrint server (not Print Nanny webapp)
     CLIENT_AUTHED = "ClientAuthed", "ClientAuthed"
     CLIENT_CLOSED = "ClientClosed", "ClientClosed"
