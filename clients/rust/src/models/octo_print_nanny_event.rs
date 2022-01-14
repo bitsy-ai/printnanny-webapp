@@ -12,6 +12,12 @@
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum OctoPrintNannyEvent {
+    #[serde(rename = "plugin_octoprint_nanny_backup_start")]
+    BackupStart,
+    #[serde(rename = "plugin_octoprint_nanny_backup_success")]
+    BackupSuccess,
+    #[serde(rename = "plugin_octoprint_nanny_backup_failure")]
+    BackupFailure,
     #[serde(rename = "plugin_octoprint_nanny_monitoring_start")]
     MonitoringStart,
     #[serde(rename = "plugin_octoprint_nanny_monitoring_stop")]
@@ -56,6 +62,9 @@ pub enum OctoPrintNannyEvent {
 impl ToString for OctoPrintNannyEvent {
     fn to_string(&self) -> String {
         match self {
+            Self::BackupStart => String::from("plugin_octoprint_nanny_backup_start"),
+            Self::BackupSuccess => String::from("plugin_octoprint_nanny_backup_success"),
+            Self::BackupFailure => String::from("plugin_octoprint_nanny_backup_failure"),
             Self::MonitoringStart => String::from("plugin_octoprint_nanny_monitoring_start"),
             Self::MonitoringStop => String::from("plugin_octoprint_nanny_monitoring_stop"),
             Self::MonitoringReset => String::from("plugin_octoprint_nanny_monitoring_reset"),
@@ -81,7 +90,7 @@ impl ToString for OctoPrintNannyEvent {
 
 impl Default for OctoPrintNannyEvent {
     fn default() -> OctoPrintNannyEvent {
-        Self::MonitoringStart
+        Self::BackupStart
     }
 }
 
