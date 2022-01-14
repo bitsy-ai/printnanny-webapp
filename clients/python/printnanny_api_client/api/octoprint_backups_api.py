@@ -37,17 +37,21 @@ class OctoprintBackupsApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def octoprint_backups_create(self, octo_print_backup_request, **kwargs):  # noqa: E501
+    def octoprint_backups_create(self, hostname, octoprint_version, file, **kwargs):  # noqa: E501
         """octoprint_backups_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.octoprint_backups_create(octo_print_backup_request, async_req=True)
+        >>> thread = api.octoprint_backups_create(hostname, octoprint_version, file, async_req=True)
         >>> result = thread.get()
 
-        :param octo_print_backup_request: (required)
-        :type octo_print_backup_request: OctoPrintBackupRequest
+        :param hostname: (required)
+        :type hostname: str
+        :param octoprint_version: (required)
+        :type octoprint_version: str
+        :param file: (required)
+        :type file: file
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -64,19 +68,23 @@ class OctoprintBackupsApi(object):
         :rtype: OctoPrintBackup
         """
         kwargs['_return_http_data_only'] = True
-        return self.octoprint_backups_create_with_http_info(octo_print_backup_request, **kwargs)  # noqa: E501
+        return self.octoprint_backups_create_with_http_info(hostname, octoprint_version, file, **kwargs)  # noqa: E501
 
-    def octoprint_backups_create_with_http_info(self, octo_print_backup_request, **kwargs):  # noqa: E501
+    def octoprint_backups_create_with_http_info(self, hostname, octoprint_version, file, **kwargs):  # noqa: E501
         """octoprint_backups_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.octoprint_backups_create_with_http_info(octo_print_backup_request, async_req=True)
+        >>> thread = api.octoprint_backups_create_with_http_info(hostname, octoprint_version, file, async_req=True)
         >>> result = thread.get()
 
-        :param octo_print_backup_request: (required)
-        :type octo_print_backup_request: OctoPrintBackupRequest
+        :param hostname: (required)
+        :type hostname: str
+        :param octoprint_version: (required)
+        :type octoprint_version: str
+        :param file: (required)
+        :type file: file
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -103,7 +111,9 @@ class OctoprintBackupsApi(object):
         local_var_params = locals()
 
         all_params = [
-            'octo_print_backup_request'
+            'hostname',
+            'octoprint_version',
+            'file'
         ]
         all_params.extend(
             [
@@ -123,11 +133,31 @@ class OctoprintBackupsApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'octo_print_backup_request' is set
-        if self.api_client.client_side_validation and ('octo_print_backup_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['octo_print_backup_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `octo_print_backup_request` when calling `octoprint_backups_create`")  # noqa: E501
+        # verify the required parameter 'hostname' is set
+        if self.api_client.client_side_validation and ('hostname' not in local_var_params or  # noqa: E501
+                                                        local_var_params['hostname'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `hostname` when calling `octoprint_backups_create`")  # noqa: E501
+        # verify the required parameter 'octoprint_version' is set
+        if self.api_client.client_side_validation and ('octoprint_version' not in local_var_params or  # noqa: E501
+                                                        local_var_params['octoprint_version'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `octoprint_version` when calling `octoprint_backups_create`")  # noqa: E501
+        # verify the required parameter 'file' is set
+        if self.api_client.client_side_validation and ('file' not in local_var_params or  # noqa: E501
+                                                        local_var_params['file'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `file` when calling `octoprint_backups_create`")  # noqa: E501
 
+        if self.api_client.client_side_validation and ('hostname' in local_var_params and  # noqa: E501
+                                                        len(local_var_params['hostname']) > 64):  # noqa: E501
+            raise ApiValueError("Invalid value for parameter `hostname` when calling `octoprint_backups_create`, length must be less than or equal to `64`")  # noqa: E501
+        if self.api_client.client_side_validation and ('hostname' in local_var_params and  # noqa: E501
+                                                        len(local_var_params['hostname']) < 1):  # noqa: E501
+            raise ApiValueError("Invalid value for parameter `hostname` when calling `octoprint_backups_create`, length must be greater than or equal to `1`")  # noqa: E501
+        if self.api_client.client_side_validation and ('octoprint_version' in local_var_params and  # noqa: E501
+                                                        len(local_var_params['octoprint_version']) > 64):  # noqa: E501
+            raise ApiValueError("Invalid value for parameter `octoprint_version` when calling `octoprint_backups_create`, length must be less than or equal to `64`")  # noqa: E501
+        if self.api_client.client_side_validation and ('octoprint_version' in local_var_params and  # noqa: E501
+                                                        len(local_var_params['octoprint_version']) < 1):  # noqa: E501
+            raise ApiValueError("Invalid value for parameter `octoprint_version` when calling `octoprint_backups_create`, length must be greater than or equal to `1`")  # noqa: E501
         collection_formats = {}
 
         path_params = {}
@@ -138,17 +168,21 @@ class OctoprintBackupsApi(object):
 
         form_params = []
         local_var_files = {}
+        if 'hostname' in local_var_params:
+            form_params.append(('hostname', local_var_params['hostname']))  # noqa: E501
+        if 'octoprint_version' in local_var_params:
+            form_params.append(('octoprint_version', local_var_params['octoprint_version']))  # noqa: E501
+        if 'file' in local_var_params:
+            local_var_files['file'] = local_var_params['file']  # noqa: E501
 
         body_params = None
-        if 'octo_print_backup_request' in local_var_params:
-            body_params = local_var_params['octo_print_backup_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
         header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'])  # noqa: E501
+            ['multipart/form-data'])  # noqa: E501
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501

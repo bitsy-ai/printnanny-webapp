@@ -47,7 +47,6 @@ from printnanny_api_client.models.model_artifact import ModelArtifact
 from printnanny_api_client.models.octo_generic_event import OctoGenericEvent
 from printnanny_api_client.models.octo_job_event import OctoJobEvent
 from printnanny_api_client.models.octo_print_backup import OctoPrintBackup
-from printnanny_api_client.models.octo_print_backup_request import OctoPrintBackupRequest
 from printnanny_api_client.models.octo_print_device import OctoPrintDevice
 from printnanny_api_client.models.octo_print_device_key import OctoPrintDeviceKey
 from printnanny_api_client.models.octo_print_device_request import OctoPrintDeviceRequest

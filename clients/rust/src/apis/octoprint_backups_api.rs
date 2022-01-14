@@ -47,7 +47,7 @@ pub enum OctoprintBackupsRetrieveError {
 }
 
 
-pub async fn octoprint_backups_create(configuration: &configuration::Configuration, octo_print_backup_request: crate::models::OctoPrintBackupRequest) -> Result<crate::models::OctoPrintBackup, Error<OctoprintBackupsCreateError>> {
+pub async fn octoprint_backups_create(configuration: &configuration::Configuration, hostname: &str, octoprint_version: &str, file: std::path::PathBuf) -> Result<crate::models::OctoPrintBackup, Error<OctoprintBackupsCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -61,7 +61,11 @@ pub async fn octoprint_backups_create(configuration: &configuration::Configurati
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&octo_print_backup_request);
+    let mut local_var_form = reqwest::multipart::Form::new();
+    local_var_form = local_var_form.text("hostname", hostname.to_string());
+    local_var_form = local_var_form.text("octoprint_version", octoprint_version.to_string());
+    // TODO: support file upload for 'file' parameter
+    local_var_req_builder = local_var_req_builder.multipart(local_var_form);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;

@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **octoprint_backups_create**
-> OctoPrintBackup octoprint_backups_create(octo_print_backup_request)
+> OctoPrintBackup octoprint_backups_create(hostname, octoprint_version, file)
 
 
 
@@ -49,10 +49,12 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.OctoprintBackupsApi(api_client)
-    octo_print_backup_request = printnanny_api_client.OctoPrintBackupRequest() # OctoPrintBackupRequest | 
+    hostname = 'hostname_example' # str | 
+octoprint_version = 'octoprint_version_example' # str | 
+file = '/path/to/file' # file | 
 
     try:
-        api_response = api_instance.octoprint_backups_create(octo_print_backup_request)
+        api_response = api_instance.octoprint_backups_create(hostname, octoprint_version, file)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling OctoprintBackupsApi->octoprint_backups_create: %s\n" % e)
@@ -91,10 +93,12 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.OctoprintBackupsApi(api_client)
-    octo_print_backup_request = printnanny_api_client.OctoPrintBackupRequest() # OctoPrintBackupRequest | 
+    hostname = 'hostname_example' # str | 
+octoprint_version = 'octoprint_version_example' # str | 
+file = '/path/to/file' # file | 
 
     try:
-        api_response = api_instance.octoprint_backups_create(octo_print_backup_request)
+        api_response = api_instance.octoprint_backups_create(hostname, octoprint_version, file)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling OctoprintBackupsApi->octoprint_backups_create: %s\n" % e)
@@ -104,7 +108,9 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **octo_print_backup_request** | [**OctoPrintBackupRequest**](OctoPrintBackupRequest.md)|  | 
+ **hostname** | **str**|  | 
+ **octoprint_version** | **str**|  | 
+ **file** | **file**|  | 
 
 ### Return type
 
@@ -116,7 +122,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details

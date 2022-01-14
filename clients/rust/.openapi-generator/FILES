@@ -41,7 +41,6 @@ docs/ModelArtifact.md
 docs/OctoGenericEvent.md
 docs/OctoJobEvent.md
 docs/OctoPrintBackup.md
-docs/OctoPrintBackupRequest.md
 docs/OctoPrintDevice.md
 docs/OctoPrintDeviceKey.md
 docs/OctoPrintDeviceRequest.md
@@ -204,7 +203,6 @@ src/models/model_artifact.rs
 src/models/octo_generic_event.rs
 src/models/octo_job_event.rs
 src/models/octo_print_backup.rs
-src/models/octo_print_backup_request.rs
 src/models/octo_print_device.rs
 src/models/octo_print_device_key.rs
 src/models/octo_print_device_request.rs

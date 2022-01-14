@@ -62,8 +62,6 @@ pub mod octo_job_event;
 pub use self::octo_job_event::OctoJobEvent;
 pub mod octo_print_backup;
 pub use self::octo_print_backup::OctoPrintBackup;
-pub mod octo_print_backup_request;
-pub use self::octo_print_backup_request::OctoPrintBackupRequest;
 pub mod octo_print_device;
 pub use self::octo_print_device::OctoPrintDevice;
 pub mod octo_print_device_key;

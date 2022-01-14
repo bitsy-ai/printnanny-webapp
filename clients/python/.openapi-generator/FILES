@@ -43,7 +43,6 @@ docs/ModelArtifact.md
 docs/OctoGenericEvent.md
 docs/OctoJobEvent.md
 docs/OctoPrintBackup.md
-docs/OctoPrintBackupRequest.md
 docs/OctoPrintDevice.md
 docs/OctoPrintDeviceKey.md
 docs/OctoPrintDeviceRequest.md
@@ -209,7 +208,6 @@ printnanny_api_client/models/model_artifact.py
 printnanny_api_client/models/octo_generic_event.py
 printnanny_api_client/models/octo_job_event.py
 printnanny_api_client/models/octo_print_backup.py
-printnanny_api_client/models/octo_print_backup_request.py
 printnanny_api_client/models/octo_print_device.py
 printnanny_api_client/models/octo_print_device_key.py
 printnanny_api_client/models/octo_print_device_request.py
@@ -361,7 +359,6 @@ test/test_model_artifact.py
 test/test_octo_generic_event.py
 test/test_octo_job_event.py
 test/test_octo_print_backup.py
-test/test_octo_print_backup_request.py
 test/test_octo_print_device.py
 test/test_octo_print_device_key.py
 test/test_octo_print_device_request.py

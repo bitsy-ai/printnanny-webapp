@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## octoprint_backups_create
 
-> crate::models::OctoPrintBackup octoprint_backups_create(octo_print_backup_request)
+> crate::models::OctoPrintBackup octoprint_backups_create(hostname, octoprint_version, file)
 
 
 ### Parameters
@@ -20,7 +20,9 @@ Method | HTTP request | Description
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**octo_print_backup_request** | [**OctoPrintBackupRequest**](OctoPrintBackupRequest.md) |  | [required] |
+**hostname** | **String** |  | [required] |
+**octoprint_version** | **String** |  | [required] |
+**file** | **std::path::PathBuf** |  | [required] |
 
 ### Return type
 
@@ -32,7 +34,7 @@ Name | Type | Description  | Required | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Content-Type**: multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
