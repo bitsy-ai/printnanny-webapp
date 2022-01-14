@@ -4,6 +4,7 @@ from django.apps import apps
 from django.urls import reverse
 from django.views.generic.list import MultipleObjectMixin
 from django.views.generic import CreateView, DetailView, DeleteView
+from django.views.generic.base import TemplateView
 from print_nanny_webapp.devices.forms import CameraCreateForm
 from print_nanny_webapp.devices.models import Device
 
@@ -14,6 +15,10 @@ from .services import generate_zipped_license_response
 Device = apps.get_model("devices", "Device")
 Camera = apps.get_model("devices", "Camera")
 logger = logging.getLogger(__name__)
+
+
+class ReleaseListView(TemplateView):
+    template_name = "releases/releases-list.html"
 
 
 class CameraCreateView(CreateView):

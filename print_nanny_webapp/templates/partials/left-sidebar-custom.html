@@ -50,8 +50,8 @@
                     <span class="menu-arrow"></span>
                 </a>
                 <ul class="side-nav-second-level  mm-collapse mm-show" aria-expanded="true">
-                    <li class="{% if request.resolver_match.url_name == 'releases:list' or '' %}active{% endif %}">
-                        <a href="{% url 'releases:list' %}">{% trans "Download Latest" %}</a>
+                    <li class="{% if request.resolver_match.url_name == 'devices:releases-list' or '' %}active{% endif %}">
+                        <a href="{% url 'devices:releases-list' %}">{% trans "Download Latest" %}</a>
                     </li>
                     <li class="{% if request.resolver_match.url_name == 'devices:list' %}active{% endif %}">
                         <a href="{% url 'devices:list' %}">{% trans "My Devices" %}</a>
