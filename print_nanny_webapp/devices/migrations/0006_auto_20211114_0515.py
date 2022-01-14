@@ -2,8 +2,6 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import print_nanny_webapp.devices.models
-
 
 class Migration(migrations.Migration):
 
