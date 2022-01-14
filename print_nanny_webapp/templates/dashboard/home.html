@@ -52,9 +52,6 @@
         <a href="{% url 'alerts:settings' %} ">
           <button class="btn btn-primary">Notification Settings</button> 
         </a>
-
-
-        
       </div>
     </div> 
   </div>
@@ -63,7 +60,7 @@
 {% include "partials/octoprint-devices-short-list.html" %}
 <!-- End Action buttons -->
 {% endif %}
-
+{% include "partials/octoprint-devices-backup.html" %}
 </div>
 
 <!-- plugin js -->
