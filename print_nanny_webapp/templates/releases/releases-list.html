@@ -14,7 +14,7 @@
                     <p class="lead">Connect your menagerie of 3D printers with <strong>one easy installer.</strong></p>
 
                     <p class="lead">
-                        <a class="btn btn-primary btn-lg" href="{% url 'subscriptions:checkout' %}" role="button">Get Early Access</a>
+                        <a class="btn btn-danger display-6 btn-lg" href="{% url 'subscriptions:checkout' %}" role="button">Get Early Access</a>
                     </p>
                     <hr class="my-2">
                     <h4>🎨 Mix and match OctoPrint, Mainsail, and more!</h4>
@@ -64,10 +64,12 @@
                         </p>
                         <p><small>Raspberry Pi is a trademark of Raspberry Pi Trading.</small></p>
                     </div>
+                    <!-- footer download latest
                     <div class="card-footer d-flex justify-content-around">
                         <a class="btn btn-primary btn-sm" href="">Download Latest</a>
                         <a class="btn btn-light btn-sm" href="">View Past Releases</a>
                     </div>
+                    -->
             </div>
             
         </div>
@@ -91,10 +93,12 @@
                         <p><small><a href="https://octoprint.org">OctoPrint is a registered trademark.</a></small> 
                         </p>
                     </div>
+                    <!-- footer download latest
                     <div class="card-footer d-flex justify-content-around">
                         <a class="btn btn-success btn-sm" href="">Download Latest</a>
                         <a class="btn btn-light btn-sm" href="">View Past Releases</a>
                     </div>
+                    -->
             </div>
             
         </div>
@@ -113,18 +117,24 @@
                         Don't see your favorite printer software? Let me know about it!
                     </p>
                 </div>
+                <!-- footer download latest
                 <div class="card-footer d-flex justify-content-around">
                     <button disabled class="btn btn-primary btn-sm" href="">Download Latest</button>
                     <button disabled class="btn btn-light btn-sm" href="">View Past Releases</button>
                 </div>
+                -->
             </div>
             
         </div>
     </div>
     <hr>
+    <div class="row justify-content-around">
+        {% include 'devices/devices-scanner.html' %}
+    </div>
+    <hr>
     <div class="row">
         <div class="col-12 text-center">
-            <h2 class="display-4 text-center">Compare Editions</h2>
+            <h2 class="display-5 text-center">Compare Editions</h2>
             <a class="btn btn-success btn-lg display-3 h2 text-center"target="_blank" href="{{ ROADMAP_URL }}">View the Roadmap</a>
 
             <p></p>
@@ -133,7 +143,7 @@
     </div>
 </div>
 {% endblock content %}
-
-
-
-
+{% load render_bundle from webpack_loader %}
+{% block extra_javascript %}
+{% render_bundle 'networkScanner' %}
+{% endblock extra_javascript %}

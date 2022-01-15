@@ -1,16 +1,18 @@
-<h1 class="text-center">Easy 10 Minute Setup</h1>
-<h3 class="text-center mb-4">If setup takes more than 10 minutes, email <a href="mailto:leigh@print-nanny.com">leigh@print-nanny.com</a> to receive a FREE month of Print Nanny.</h3>
+<div class="col-12 text-center">
+    <h1 class="text-center display-5">Easy Setup</h1>
+    <h3 class="text-center mb-4">If setup takes more than 10 minutes, email <a href="mailto:leigh@print-nanny.com">leigh@print-nanny.com</a> to receive a FREE month of Print Nanny</h3>
 
+</div>
 <div class="row">
   <div class="col-12 col-md-6 d-flex align-items-stretch">
     <div class="card col-12">
-      <div class="card-header"><h2>1) Install Print Nanny OS</h2></div>
-      <div class="card-body">
-        <h4>Follow the <strong>Quick Installation Guide</strong> to install Print Nanny OS for the first time.</h4>
+      <div class="card-header"><h2>1️⃣ Install Print Nanny OS</h2></div>
+      <div class="card-body text-center">
+        <h4>Everything you need to setup Print Nanny</h4>
 
-        <a target="_blank" class="btn btn-primary btn-lg mb-3 mt-3" href="{{ HELP_GETTING_STARTED }}"><i class="mdi mdi-plus"></i> Quick Installation Guide</a>
+        <a target="_blank" class="btn btn-block btn-primary btn-lg mb-3 mt-3" href="{{ HELP_GETTING_STARTED }}"><i class="mdi mdi-plus"></i> Quick Installation Guide</a>
         <h4>Minimum Requirements</h4>
-        <ul>
+        <ul class="text-left">
           <li>Raspberry Pi 4. See <a href="{{ HELP_PRINTNANNY_COMPATIBLE }}" target="_blank">capatible devices</a></a>.</li>
           <li>Raspberry Pi Camera*</li>
           <li>SD Card. See <a href="{{ HELP_PRINTNANNY_COMPATIBLE }}" target="_blank">compatible SD cards</a>.</li>
@@ -22,15 +24,22 @@
   </div>
   <div class="col-12 col-md-6 d-flex align-items-stretch">
     <div class="card col-12">
-      <div class="card-header"><h2>2) Link Raspberry Pi</h2></div>
-      <div class="card-body">
+      <div class="card-header"><h2>2️⃣ Link Raspberry Pi</h2></div>
+      <div class="card-body text-center">
         {% if user.is_authenticated %}
-        <p>Linking requires you to connect to same network as your Raspberry Pi.</p>
-        <p>Enter your Pi's hostname:</p>
+        <h4 class="mb-3">Enter your Raspberry Pi's hostname</h4>
+        <p>You must be connected to the same network for initial link.</p>
         <span class="network-scanner-app">
           <network-scanner />
         </span>
+
         {% else %}
+        <h4>Please login to link your Raspberry Pi.</h4>
+        <a target="_blank" class="btn btn-primary btn-lg btn-block mb-3 mt-3" href="{{ login_url }}}">Login</a>
+
+        <h4>Looking for a Beta invite?</h4>
+        <h4>Become a Founding Member to get early access.</h4>
+        <a target="_blank" class="btn btn-danger btn-lg btn-block mb-3 mt-3" href="{{ login_url }}}">Become a Founding Member</a>
 
         {% endif %}
         <!-- <hr>

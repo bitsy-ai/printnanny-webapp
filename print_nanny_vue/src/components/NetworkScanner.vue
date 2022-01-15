@@ -85,7 +85,7 @@ export default {
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
              Scanning
           </span>
-          <span v-if="loading == false"><i class="mdi mdi-wifi"></i> Scan Now</span>
+          <span v-if="loading == false"><i class="mdi mdi-wifi"></i> Scan</span>
         </button>
         </b-col>
       </b-row>
