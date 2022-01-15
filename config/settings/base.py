@@ -558,9 +558,13 @@ GCP_PUBSUB_OCTOPRINT_ALERTS_SUBSCRIPTION = env('GCP_PUBSUB_OCTOPRINT_ALERTS_SUBS
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
+# honeycomb
+# ------------------------------------------------------------------------------
+# https://docs.honeycomb.io/getting-data-in/beelines/
 HONEYCOMB_DATASET = env('HONEYCOMB_DATASET', default="print_nanny_sandbox")
 HONEYCOMB_SERVICE_NAME = env('HONEYCOMB_SERVICE_NAME', default='django')
-HONEYCOMB_API_KEY = env('HONEYCOMB_API_KEY')
+HONEYCOMB_API_KEY = env('HONEYCOMB_API_KEY', default="noop")
+
 
 # django-health-check
 # ------------------------------------------------------------------------------
