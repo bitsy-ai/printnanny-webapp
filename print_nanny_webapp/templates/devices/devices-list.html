@@ -1,6 +1,7 @@
 {% extends "vertical_base.html" %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% load humanize %}
 
 
 {% block title_extra %}Devices{% endblock %}
@@ -25,11 +26,11 @@
     </div>
 {% include "devices/devices-cards.html" %}
 
-
 </div>
 {% endblock content %}
 {% load render_bundle from webpack_loader %}
 {% block extra_javascript %}
 {% render_bundle 'taskStatus' %}
 {% render_bundle 'webCamStream' %}
+{% render_bundle 'networkScanner' %}
 {% endblock %}
