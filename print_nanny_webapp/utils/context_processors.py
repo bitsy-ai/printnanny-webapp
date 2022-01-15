@@ -14,7 +14,8 @@ def help_context(_request):
         "HELP_WIKI_URL": settings.HELP_WIKI,
         "ERROR_ACTIVATE_LICENSE": settings.ERROR_ACTIVATE_LICENSE,
         "DEVICE_PKI": settings.HELP_DEVICE_PKI,
-        "GETTING_STARTED": settings.HELP_GETTING_STARTED,
+        "HELP_GETTING_STARTED": settings.HELP_GETTING_STARTED,
+        "ROADMAP_URL": settings.ROADMAP_URL,
     }
 
 
