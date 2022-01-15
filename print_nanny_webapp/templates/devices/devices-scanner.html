@@ -1,0 +1,47 @@
+<h1 class="text-center">Easy 10 Minute Setup</h1>
+<h3 class="text-center mb-4">If setup takes more than 10 minutes, email <a href="mailto:leigh@print-nanny.com">leigh@print-nanny.com</a> to receive a FREE month of Print Nanny.</h3>
+
+<div class="row">
+  <div class="col-12 col-md-6 d-flex align-items-stretch">
+    <div class="card col-12">
+      <div class="card-header"><h2>1) Install Print Nanny OS</h2></div>
+      <div class="card-body">
+        <h4>Follow the <strong>Quick Installation Guide</strong> to install Print Nanny OS for the first time.</h4>
+
+        <a target="_blank" class="btn btn-primary btn-lg mb-3 mt-3" href="{{ HELP_GETTING_STARTED }}"><i class="mdi mdi-plus"></i> Quick Installation Guide</a>
+        <h4>Minimum Requirements</h4>
+        <ul>
+          <li>Raspberry Pi 4. See <a href="{{ HELP_PRINTNANNY_COMPATIBLE }}" target="_blank">capatible devices</a></a>.</li>
+          <li>Raspberry Pi Camera*</li>
+          <li>SD Card. See <a href="{{ HELP_PRINTNANNY_COMPATIBLE }}" target="_blank">compatible SD cards</a>.</li>
+        </ul>
+
+        <p>* USB and IP camera support available on request.<br> Please email <a href="mailto:leigh@print-nanny.com">leigh@print-nanny.com</a> with your camera make/model.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-6 d-flex align-items-stretch">
+    <div class="card col-12">
+      <div class="card-header"><h2>2) Link Raspberry Pi</h2></div>
+      <div class="card-body">
+        {% if user.is_authenticated %}
+        <p>Linking requires you to connect to same network as your Raspberry Pi.</p>
+        <p>Enter your Pi's hostname:</p>
+        <span class="network-scanner-app">
+          <network-scanner />
+        </span>
+        {% else %}
+
+        {% endif %}
+        <!-- <hr>
+        <h4>While you wait...</h4>
+        <h4>Check out the roadmap to see what's coming in 2022</h4>
+        <a class="btn btn-light btn-primary" href="{{ROADMAP_URL}}">Open Roadmap</a>
+        <hr>
+        <h4>Join Discord to show off your latest prints</h4>
+        <p>Send a 👋hello to Leigh to claim your <span class="badge badge-primary">Founding Member</span> badge.</p>
+        <a class="btn btn-light btn-primary" href="{{DISCORD_URL}}">Join Discord.</a> -->
+      </div>
+    </div>
+  </div>
+</div>
