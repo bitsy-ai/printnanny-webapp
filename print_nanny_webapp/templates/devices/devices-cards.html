@@ -13,23 +13,38 @@
     {% endfor %}
   
 </div>
+<h1 class="text-center">Easy 10 Minute Setup</h1>
+<h3 class="text-center mb-4">If setup takes more than 10 minutes, email <a href="mailto:leigh@print-nanny.com">leigh@print-nanny.com</a> to receive a FREE month of Print Nanny</h3>
+
 <div class="row">
   <div class="col-12 col-md-6 d-flex align-items-stretch">
     <div class="card col-12">
+      <div class="card-header"><h2>1) Install Print Nanny OS</h2></div>
       <div class="card-body">
-        <p>Click <strong>Add New Device</strong> to get started.</p>
+        <h4>Follow the <strong>Quick Installation Guide</strong> to install Print Nanny OS for the first time.</h4>
 
-        <h2 class="header-title">
-          <!-- <i class="mdi mdi-printer-3d"></i> Register My Pi -->
-            <a href="{% url 'devices:create' %}"><button class="btn btn-primary"><i class="mdi mdi-plus"></i>Add New Device</button></a>
-        </h2>
-        <p>Pi Zero models are <strong>not supported</strong>! 
-        View list of <a href="{{ HELP_PRINTNANNY_COMPATIBLE }}" target="_blank">capatible devices for details</a>.
-        </p>
+        <a target="_blank" class="btn btn-primary btn-lg" href="{{ settings.HELP_GETTING_STARTED }}"><i class="mdi mdi-plus"></i> Quick Installation Guide</a>
+        <h4>Minimum Requirements</h4>
+        <ul>
+          <li>Raspberry Pi 4. See <a href="{{ HELP_PRINTNANNY_COMPATIBLE }}" target="_blank">capatible devices</a></a>.</li>
+          <li>Raspberry Pi Camera*</li>
+          <li>SD Card. See <a href="{{ HELP_PRINTNANNY_COMPATIBLE }}" target="_blank">compatible SD cards</a>.</li>
+        </ul>
+
+        <p>*USB and IP camera support available on request. Please email <a href="mailto:leigh@print-nanny.com">leigh@print-nanny.com</a> with your camera make/model to get started.</p>
       </div>
-      <!-- <div class="card-footer">           -->
-
-      <!-- </div> -->
+    </div>
+  </div>
+  <div class="col-12 col-md-6 d-flex align-items-stretch">
+    <div class="card col-12">
+      <div class="card-header"><h2>2) Link Raspberry Pi</h2></div>
+      <div class="card-body">
+        <h4>Wait for Print Nanny to discover your device.</h4>
+        <a class="btn btn-secondary btn-lg" href=""><i class="mdi mdi-wifi"></i> Scan Now</a>
+        <hr>
+        <h4>While you wait, check out <a href="{{ROADMAP_URL}}">the roadmap</a> to see what's coming in 2022</h4>
+        <hr>
+      </div>
     </div>
   </div>
 </div>
