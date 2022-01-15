@@ -333,7 +333,7 @@ DISCORD_TOKEN = env("DISCORD_TOKEN", default="")
 # Django Admin URL.
 ADMIN_URL = "admin/"
 # https://docs.djangoproject.com/en/dev/ref/settings/#admins
-ADMINS = [("""Leigh Johnson""", "leigh@bitsy.ai")]
+ADMINS = [("""Leigh Johnson""", "leigh@print-nanny.com")]
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
 
@@ -583,7 +583,8 @@ HELP_WIKI = "https://www.notion.so/bitsy-ai/Print-Nanny-Guides-Support-ac1079faf
 HELP_GETTING_STARTED = "https://bitsy-ai.notion.site/Getting-Started-with-Print-Nanny-817bc65297ff44a085120c663dced5f3"
 HELP_DEVICE_PKI = "https://www.notion.so/bitsy-ai/Securing-IoT-Devices-with-PKI-f9e728fb1e734e6d95efb930d9f23620"
 ERROR_ACTIVATE_LICENSE = "https://www.notion.so/bitsy-ai/License-Activation-Failed-99bb98ebc01546979717da214d2198c8"
-
+HELP_BOOK_30M = "https://calendly.com/bitsy-ai-labs/30min"
+HELP_BOOK_60M = "https://calendly.com/bitsy-ai-labs/60min"
 # dj-stripe
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += ["djstripe"]

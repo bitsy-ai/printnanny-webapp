@@ -4,7 +4,7 @@ packageName: printnanny_api_client
 packageVersion: '0.41.0'
 templateDir: /local/clients/templates
 infoName: "Leigh Johnson"
-infoEmail: "leigh@bitsy.ai"
+infoEmail: "leigh@print-nanny.com"
 license: "AGPL"
 files:
   api_client.mustache:
