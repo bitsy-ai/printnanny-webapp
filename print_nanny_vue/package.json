@@ -15,6 +15,9 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.12.5",
+    "@vue/composition-api": "^1.4.3",
+    "@vuelidate/core": "^2.0.0-alpha.33",
+    "@vuelidate/validators": "^2.0.0-alpha.26",
     "add": "^2.0.6",
     "bluebird": "^3.7.2",
     "bootstrap": "^4.5.3",

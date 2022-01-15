@@ -42,26 +42,38 @@
             <li class="side-nav-item mm-active">
                 <a href="javascript: void(0);" class="side-nav-link" aria-expanded="true">
                     <i class="mdi mdi-printer-3d"></i>
-                    <span> {% trans "Print Nanny OS" %} &nbsp;
-                        {% if user.devices.count == 0 %}
-                        <span class="badge badge-danger">New</span>
-                        {% endif %}
+                    <span> {% trans "Print Nanny OS" %}
                     </span>
                     <span class="menu-arrow"></span>
                 </a>
                 <ul class="side-nav-second-level  mm-collapse mm-show" aria-expanded="true">
+                    <li class="{% if request.resolver_match.url_name == 'devices:releases-list' or '' %}active{% endif %}">
+                        <a href="{% url 'devices:releases-list' %}">{% trans "Get Started" %}                          {% if user.devices.count == 0 %}
+                            <span class="badge badge-danger">New</span>
+                            {% endif %}</a>
+                    </li>
                     <li class="{% if request.resolver_match.url_name == 'devices:list' %}active{% endif %}">
                         <a href="{% url 'devices:list' %}">{% trans "My Devices" %}</a>
                     </li>
+                </ul>
+            </li>
 
+            <li class="side-nav-item mm-active">
+                <a href="javascript: void(0);" class="side-nav-link" aria-expanded="true">
+                    <i class="mdi mdi-lan"></i>
+                    <span> {% trans "Print Nanny Network" %}
+                    </span>
+                    <span class="menu-arrow"></span>
+                </a>
+
+                <ul class="side-nav-second-level  mm-collapse mm-show" aria-expanded="true">
                     <li class="{% if request.resolver_match.url_name == 'surveys:remote-access' %}active{% endif %}">
-                        <a href="{% url 'surveys:remote-access' %}">{% trans "My Network" %}	&nbsp;<span class="badge badge-light">Coming Soon</span></a>
-                    </li>
-                    <li class="{% if request.resolver_match.url_name == 'devices:releases-list' or '' %}active{% endif %}">
-                        <a href="{% url 'devices:releases-list' %}">{% trans "Download Latest" %}</a>
+                        <a href="{% url 'surveys:remote-access' %}"> <span> {% trans "My Network" %} </span> &nbsp;<span class="badge badge-light">Alpha</span>
+                        </span>
                     </li>
                 </ul>
             </li>
+
 
             <li class="side-nav-item mm-active">
                 <a href="javascript: void(0);" class="side-nav-link" aria-expanded="true">
@@ -80,16 +92,15 @@
                     </li>
                 </ul>
             </li>
-
             <li class="side-nav-item">
                 <a href="{% url 'dashboard:videos:list' %}" class="side-nav-link">
-                    <i class="uil-video"></i>
+                    <i class="mdi mdi-video"></i>
 
 
                     <span> {% trans "Videos" %} </span>
-
                 </a>
             </li>
+
             <li class="side-nav-item">
                 <a href="{% url 'alerts:settings' %}" class="side-nav-link">
                     <i class="uil-bell"></i>

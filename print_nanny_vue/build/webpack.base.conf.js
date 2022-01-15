@@ -32,6 +32,7 @@ module.exports = {
     alerts: './src/apps/AlertsDropdown.js',
     taskStatus: './src/apps/TaskStatus.js',
     webCamStream: './src/apps/WebCamStream.js',
+    networkScanner: './src/apps/NetworkScanner.js'
   },
   output: {
     path: config.build.assetsRoot,

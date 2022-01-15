@@ -1,6 +1,7 @@
 {% extends "vertical_base.html" %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% load humanize %}
 
 
 {% block title_extra %}Devices{% endblock %}
@@ -24,7 +25,6 @@
         </div>
     </div>
 {% include "devices/devices-cards.html" %}
-
 
 </div>
 {% endblock content %}
