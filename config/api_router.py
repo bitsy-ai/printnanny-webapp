@@ -6,12 +6,15 @@ from print_nanny_webapp.devices.api.views import (
     CameraViewSet,
     CloudiotDeviceViewSet ,
     DeviceHostnameViewSet,
+    JanusAuthViewSet,
+    PublicKeyViewSet,
     SystemInfoViewSet,
     DeviceViewSet,
     PrinterControllerViewSet,
     TaskViewSet,
     TaskStatusViewSet
 )
+from print_nanny_webapp.devices.models import JanusAuth
 from print_nanny_webapp.ml_ops.api.views import (
     ModelArtifactViewSet, ExperimentDeviceConfigViewSet, DeviceCalibrationViewSet, ExperimentViewSet
 )
@@ -57,6 +60,9 @@ devices_by_hostname = [
 ]
 
 devices_router = NestedSimpleRouter(router, r'devices', lookup='device')
+devices_router.register(r'janus', JanusAuthViewSet, basename='janus')
+devices_router.register(r'public-keys', PublicKeyViewSet, basename='public-keys')
+
 devices_router.register(r'info', SystemInfoViewSet, basename='info')
 devices_router.register(r'cameras', CameraViewSet, basename='cameras')
 devices_router.register(r'cloud-iot-devices', CloudiotDeviceViewSet , basename='cloud-iot-devices')
