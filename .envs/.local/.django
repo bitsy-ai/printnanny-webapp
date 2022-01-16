@@ -23,4 +23,3 @@ TIMEOUT_KEEP_ALIVE=300
 LOGLEVEL=debug
 
 MAILGUN_API_URL=https://api.mailgun.net/v3
-HONEYCOMB_DATASET=printnanny_sandbox
