@@ -101,36 +101,6 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
-    def test_devices_info_create(self):
-        """Test case for devices_info_create
-
-        """
-        pass
-
-    def test_devices_info_list(self):
-        """Test case for devices_info_list
-
-        """
-        pass
-
-    def test_devices_info_partial_update(self):
-        """Test case for devices_info_partial_update
-
-        """
-        pass
-
-    def test_devices_info_retrieve(self):
-        """Test case for devices_info_retrieve
-
-        """
-        pass
-
-    def test_devices_info_update(self):
-        """Test case for devices_info_update
-
-        """
-        pass
-
     def test_devices_janus_create(self):
         """Test case for devices_janus_create
 
@@ -241,6 +211,36 @@ class TestDevicesApi(unittest.TestCase):
 
     def test_devices_retrieve_hostname(self):
         """Test case for devices_retrieve_hostname
+
+        """
+        pass
+
+    def test_devices_system_info_create(self):
+        """Test case for devices_system_info_create
+
+        """
+        pass
+
+    def test_devices_system_info_list(self):
+        """Test case for devices_system_info_list
+
+        """
+        pass
+
+    def test_devices_system_info_partial_update(self):
+        """Test case for devices_system_info_partial_update
+
+        """
+        pass
+
+    def test_devices_system_info_retrieve(self):
+        """Test case for devices_system_info_retrieve
+
+        """
+        pass
+
+    def test_devices_system_info_update(self):
+        """Test case for devices_system_info_update
 
         """
         pass

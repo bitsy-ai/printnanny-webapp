@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**device_info_update_or_create**](DevicesApi.md#device_info_update_or_create) | **POST** /api/devices/{device_id}/info/update-or-create/ | 
+[**device_info_update_or_create**](DevicesApi.md#device_info_update_or_create) | **POST** /api/devices/{device_id}/system-info/update-or-create/ | 
 [**devices_cameras_create**](DevicesApi.md#devices_cameras_create) | **POST** /api/devices/{device_id}/cameras/ | 
 [**devices_cameras_list**](DevicesApi.md#devices_cameras_list) | **GET** /api/devices/{device_id}/cameras/ | 
 [**devices_cameras_partial_update**](DevicesApi.md#devices_cameras_partial_update) | **PATCH** /api/devices/{device_id}/cameras/{id}/ | 
@@ -16,11 +16,6 @@ Method | HTTP request | Description
 [**devices_cloud_iot_devices_retrieve**](DevicesApi.md#devices_cloud_iot_devices_retrieve) | **GET** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
 [**devices_cloud_iot_devices_update**](DevicesApi.md#devices_cloud_iot_devices_update) | **PUT** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
 [**devices_create**](DevicesApi.md#devices_create) | **POST** /api/devices/ | 
-[**devices_info_create**](DevicesApi.md#devices_info_create) | **POST** /api/devices/{device_id}/info/ | 
-[**devices_info_list**](DevicesApi.md#devices_info_list) | **GET** /api/devices/{device_id}/info/ | 
-[**devices_info_partial_update**](DevicesApi.md#devices_info_partial_update) | **PATCH** /api/devices/{device_id}/info/{id}/ | 
-[**devices_info_retrieve**](DevicesApi.md#devices_info_retrieve) | **GET** /api/devices/{device_id}/info/{id}/ | 
-[**devices_info_update**](DevicesApi.md#devices_info_update) | **PUT** /api/devices/{device_id}/info/{id}/ | 
 [**devices_janus_create**](DevicesApi.md#devices_janus_create) | **POST** /api/devices/{device_id}/janus/ | 
 [**devices_janus_list**](DevicesApi.md#devices_janus_list) | **GET** /api/devices/{device_id}/janus/ | 
 [**devices_janus_partial_update**](DevicesApi.md#devices_janus_partial_update) | **PATCH** /api/devices/{device_id}/janus/{id}/ | 
@@ -40,6 +35,11 @@ Method | HTTP request | Description
 [**devices_public_keys_update**](DevicesApi.md#devices_public_keys_update) | **PUT** /api/devices/{device_id}/public-keys/{id}/ | 
 [**devices_retrieve**](DevicesApi.md#devices_retrieve) | **GET** /api/devices/{id}/ | 
 [**devices_retrieve_hostname**](DevicesApi.md#devices_retrieve_hostname) | **GET** /api/devices/{hostname} | 
+[**devices_system_info_create**](DevicesApi.md#devices_system_info_create) | **POST** /api/devices/{device_id}/system-info/ | 
+[**devices_system_info_list**](DevicesApi.md#devices_system_info_list) | **GET** /api/devices/{device_id}/system-info/ | 
+[**devices_system_info_partial_update**](DevicesApi.md#devices_system_info_partial_update) | **PATCH** /api/devices/{device_id}/system-info/{id}/ | 
+[**devices_system_info_retrieve**](DevicesApi.md#devices_system_info_retrieve) | **GET** /api/devices/{device_id}/system-info/{id}/ | 
+[**devices_system_info_update**](DevicesApi.md#devices_system_info_update) | **PUT** /api/devices/{device_id}/system-info/{id}/ | 
 [**devices_tasks_create**](DevicesApi.md#devices_tasks_create) | **POST** /api/devices/{device_id}/tasks/ | 
 [**devices_tasks_list**](DevicesApi.md#devices_tasks_list) | **GET** /api/devices/{device_id}/tasks/ | 
 [**devices_tasks_retrieve**](DevicesApi.md#devices_tasks_retrieve) | **GET** /api/devices/{device_id}/tasks/{id}/ | 
@@ -390,153 +390,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::Device**](Device.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## devices_info_create
-
-> crate::models::SystemInfo devices_info_create(device_id, system_info_request)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-**system_info_request** | [**SystemInfoRequest**](SystemInfoRequest.md) |  | [required] |
-
-### Return type
-
-[**crate::models::SystemInfo**](SystemInfo.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## devices_info_list
-
-> crate::models::PaginatedSystemInfoList devices_info_list(device_id, page)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-**page** | Option<**i32**> | A page number within the paginated result set. |  |
-
-### Return type
-
-[**crate::models::PaginatedSystemInfoList**](PaginatedSystemInfoList.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## devices_info_partial_update
-
-> crate::models::SystemInfo devices_info_partial_update(device_id, id, patched_system_info_request)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-**id** | **i32** | A unique integer value identifying this system info. | [required] |
-**patched_system_info_request** | Option<[**PatchedSystemInfoRequest**](PatchedSystemInfoRequest.md)> |  |  |
-
-### Return type
-
-[**crate::models::SystemInfo**](SystemInfo.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## devices_info_retrieve
-
-> crate::models::SystemInfo devices_info_retrieve(device_id, id)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-**id** | **i32** | A unique integer value identifying this system info. | [required] |
-
-### Return type
-
-[**crate::models::SystemInfo**](SystemInfo.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## devices_info_update
-
-> crate::models::SystemInfo devices_info_update(device_id, id, system_info_request)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-**id** | **i32** | A unique integer value identifying this system info. | [required] |
-**system_info_request** | [**SystemInfoRequest**](SystemInfoRequest.md) |  | [required] |
-
-### Return type
-
-[**crate::models::SystemInfo**](SystemInfo.md)
 
 ### Authorization
 
@@ -1105,6 +958,153 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## devices_system_info_create
+
+> crate::models::SystemInfo devices_system_info_create(device_id, system_info_request)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_id** | **i32** |  | [required] |
+**system_info_request** | [**SystemInfoRequest**](SystemInfoRequest.md) |  | [required] |
+
+### Return type
+
+[**crate::models::SystemInfo**](SystemInfo.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## devices_system_info_list
+
+> crate::models::PaginatedSystemInfoList devices_system_info_list(device_id, page)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_id** | **i32** |  | [required] |
+**page** | Option<**i32**> | A page number within the paginated result set. |  |
+
+### Return type
+
+[**crate::models::PaginatedSystemInfoList**](PaginatedSystemInfoList.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## devices_system_info_partial_update
+
+> crate::models::SystemInfo devices_system_info_partial_update(device_id, id, patched_system_info_request)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_id** | **i32** |  | [required] |
+**id** | **i32** | A unique integer value identifying this system info. | [required] |
+**patched_system_info_request** | Option<[**PatchedSystemInfoRequest**](PatchedSystemInfoRequest.md)> |  |  |
+
+### Return type
+
+[**crate::models::SystemInfo**](SystemInfo.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## devices_system_info_retrieve
+
+> crate::models::SystemInfo devices_system_info_retrieve(device_id, id)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_id** | **i32** |  | [required] |
+**id** | **i32** | A unique integer value identifying this system info. | [required] |
+
+### Return type
+
+[**crate::models::SystemInfo**](SystemInfo.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## devices_system_info_update
+
+> crate::models::SystemInfo devices_system_info_update(device_id, id, system_info_request)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_id** | **i32** |  | [required] |
+**id** | **i32** | A unique integer value identifying this system info. | [required] |
+**system_info_request** | [**SystemInfoRequest**](SystemInfoRequest.md) |  | [required] |
+
+### Return type
+
+[**crate::models::SystemInfo**](SystemInfo.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
