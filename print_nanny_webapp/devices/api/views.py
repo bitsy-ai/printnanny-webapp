@@ -23,6 +23,8 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 from .serializers import (
+    JanusAuthSerializer,
+    PublicKeySerializer,
     CameraSerializer,
     CloudiotDeviceSerializer,
     SystemInfoSerializer,
@@ -35,6 +37,8 @@ from ..models import (
     Camera,
     CloudiotDevice,
     Device,
+    JanusAuth,
+    PublicKey,
     SystemInfo,
     PrinterController,
     Task,
@@ -282,11 +286,107 @@ class DeviceViewSet(
         serializer.save(user=self.request.user)
 
 
+##
+# PublicKey views
+##
+@extend_schema_view(
+    list=extend_schema(
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        responses={
+            200: PublicKeySerializer(many=True),
+        }
+        | generic_list_errors,
+    ),
+    create=extend_schema(
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        request=PublicKeySerializer,
+        responses={
+            201: PublicKeySerializer,
+        }
+        | generic_create_errors,
+    ),
+    update=extend_schema(
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        request=PublicKeySerializer,
+        responses={
+            202: PublicKeySerializer,
+        }
+        | generic_create_errors,
+    ),
+)
+class PublicKeyViewSet(
+    GenericViewSet,
+    ListModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+    CreateModelMixin,
+):
+    serializer_class = PublicKeySerializer
+    queryset = PublicKey.objects.all()
+    lookup_field = "id"
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+
+##
+# JanusAuth views
+##
+@extend_schema_view(
+    list=extend_schema(
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        responses={
+            200: JanusAuthSerializer(many=True),
+        }
+        | generic_list_errors,
+    ),
+    create=extend_schema(
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        request=JanusAuthSerializer,
+        responses={
+            201: JanusAuthSerializer,
+        }
+        | generic_create_errors,
+    ),
+    update=extend_schema(
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        request=JanusAuthSerializer,
+        responses={
+            202: JanusAuthSerializer,
+        }
+        | generic_create_errors,
+    ),
+)
+class JanusAuthViewSet(
+    GenericViewSet,
+    ListModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+    CreateModelMixin,
+):
+    serializer_class = JanusAuthSerializer
+    queryset = JanusAuth.objects.all()
+    lookup_field = "id"
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+
 ###
 # SystemInfo views
 ###
-
-
 @extend_schema_view(
     list=extend_schema(
         parameters=[
@@ -315,7 +415,19 @@ class DeviceViewSet(
         responses={
             202: SystemInfoSerializer,
         }
-        | generic_create_errors,
+        | generic_update_errors,
+    ),
+    update_or_create=extend_schema(
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        request=SystemInfoSerializer,
+        responses={
+            201: SystemInfoSerializer,
+            202: SystemInfoSerializer,
+        }
+        | generic_create_errors
+        | generic_update_errors,
     ),
 )
 class SystemInfoViewSet(
@@ -358,8 +470,6 @@ class SystemInfoViewSet(
 ###
 # Devices (by hostname)
 ##
-
-
 @extend_schema_view(
     retrieve=extend_schema(
         operation_id="devices_retrieve_hostname",
@@ -381,8 +491,6 @@ class DeviceHostnameViewSet(
 ##
 # Cloud IoT Device
 ##
-
-
 @extend_schema_view(
     retrieve=extend_schema(
         parameters=[
@@ -495,8 +603,6 @@ class CameraViewSet(
 ##
 # PrinterController
 ##
-
-
 @extend_schema_view(
     list=extend_schema(
         parameters=[

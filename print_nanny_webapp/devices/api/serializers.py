@@ -1,14 +1,12 @@
 from rest_framework import serializers
-from django.conf import settings
-
-from drf_spectacular.utils import extend_schema_field
-from drf_spectacular.types import OpenApiTypes
 from django.contrib.auth import get_user_model
 from print_nanny_webapp.devices.models import (
     Device,
     Camera,
     CloudiotDevice,
     DeviceConfig,
+    JanusAuth,
+    PublicKey,
     SystemInfo,
     Task,
     TaskStatus,
@@ -100,6 +98,18 @@ class TaskSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Task
+        exclude = ("deleted",)
+
+
+class PublicKeySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PublicKey
+        exclude = ("deleted",)
+
+
+class JanusAuthSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JanusAuth
         exclude = ("deleted",)
 
 
