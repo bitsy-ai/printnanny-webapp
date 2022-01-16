@@ -15,7 +15,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.41.0"
+__version__ = "0.42.0"
 
 # import apis into sdk package
 from printnanny_api_client.api.alerts_api import AlertsApi
@@ -23,7 +23,6 @@ from printnanny_api_client.api.auth_api import AuthApi
 from printnanny_api_client.api.auth__api import AuthApi
 from printnanny_api_client.api.client_config_api import ClientConfigApi
 from printnanny_api_client.api.devices_api import DevicesApi
-from printnanny_api_client.api.licenses_api import LicensesApi
 from printnanny_api_client.api.ml_ops_api import MlOpsApi
 from printnanny_api_client.api.octoprint_backups_api import OctoprintBackupsApi
 from printnanny_api_client.api.partners_geeks3_api import PartnersGeeks3Api
@@ -55,6 +54,7 @@ from printnanny_api_client.models.callback_token_verification_request import Cal
 from printnanny_api_client.models.camera import Camera
 from printnanny_api_client.models.camera_request import CameraRequest
 from printnanny_api_client.models.camera_type import CameraType
+from printnanny_api_client.models.cipher_enum import CipherEnum
 from printnanny_api_client.models.cloudiot_device import CloudiotDevice
 from printnanny_api_client.models.cloudiot_device_request import CloudiotDeviceRequest
 from printnanny_api_client.models.command_enum import CommandEnum
@@ -68,8 +68,8 @@ from printnanny_api_client.models.error_detail import ErrorDetail
 from printnanny_api_client.models.experiment import Experiment
 from printnanny_api_client.models.experiment_device_config import ExperimentDeviceConfig
 from printnanny_api_client.models.gcode_file import GcodeFile
-from printnanny_api_client.models.license import License
-from printnanny_api_client.models.license_request import LicenseRequest
+from printnanny_api_client.models.janus_auth import JanusAuth
+from printnanny_api_client.models.janus_auth_request import JanusAuthRequest
 from printnanny_api_client.models.mobile_auth_request import MobileAuthRequest
 from printnanny_api_client.models.model_artifact import ModelArtifact
 from printnanny_api_client.models.octo_generic_event import OctoGenericEvent
@@ -113,7 +113,7 @@ from printnanny_api_client.models.paginated_device_list import PaginatedDeviceLi
 from printnanny_api_client.models.paginated_experiment_device_config_list import PaginatedExperimentDeviceConfigList
 from printnanny_api_client.models.paginated_experiment_list import PaginatedExperimentList
 from printnanny_api_client.models.paginated_gcode_file_list import PaginatedGcodeFileList
-from printnanny_api_client.models.paginated_license_list import PaginatedLicenseList
+from printnanny_api_client.models.paginated_janus_auth_list import PaginatedJanusAuthList
 from printnanny_api_client.models.paginated_model_artifact_list import PaginatedModelArtifactList
 from printnanny_api_client.models.paginated_octo_print_backup_list import PaginatedOctoPrintBackupList
 from printnanny_api_client.models.paginated_octo_print_device_list import PaginatedOctoPrintDeviceList
@@ -123,6 +123,7 @@ from printnanny_api_client.models.paginated_print_nanny_plugin_event_list import
 from printnanny_api_client.models.paginated_print_session_list import PaginatedPrintSessionList
 from printnanny_api_client.models.paginated_printer_controller_list import PaginatedPrinterControllerList
 from printnanny_api_client.models.paginated_printer_profile_list import PaginatedPrinterProfileList
+from printnanny_api_client.models.paginated_public_key_list import PaginatedPublicKeyList
 from printnanny_api_client.models.paginated_remote_command_event_list import PaginatedRemoteCommandEventList
 from printnanny_api_client.models.paginated_remote_control_command_list import PaginatedRemoteControlCommandList
 from printnanny_api_client.models.paginated_system_info_list import PaginatedSystemInfoList
@@ -137,10 +138,12 @@ from printnanny_api_client.models.patched_camera_request import PatchedCameraReq
 from printnanny_api_client.models.patched_cloudiot_device_request import PatchedCloudiotDeviceRequest
 from printnanny_api_client.models.patched_device_calibration_request import PatchedDeviceCalibrationRequest
 from printnanny_api_client.models.patched_device_request import PatchedDeviceRequest
+from printnanny_api_client.models.patched_janus_auth_request import PatchedJanusAuthRequest
 from printnanny_api_client.models.patched_octo_print_device_request import PatchedOctoPrintDeviceRequest
 from printnanny_api_client.models.patched_print_session_request import PatchedPrintSessionRequest
 from printnanny_api_client.models.patched_printer_controller_request import PatchedPrinterControllerRequest
 from printnanny_api_client.models.patched_printer_profile_request import PatchedPrinterProfileRequest
+from printnanny_api_client.models.patched_public_key_request import PatchedPublicKeyRequest
 from printnanny_api_client.models.patched_remote_control_command_request import PatchedRemoteControlCommandRequest
 from printnanny_api_client.models.patched_system_info_request import PatchedSystemInfoRequest
 from printnanny_api_client.models.patched_user_request import PatchedUserRequest
@@ -157,7 +160,8 @@ from printnanny_api_client.models.printer_event import PrinterEvent
 from printnanny_api_client.models.printer_event_request import PrinterEventRequest
 from printnanny_api_client.models.printer_profile import PrinterProfile
 from printnanny_api_client.models.printer_profile_request import PrinterProfileRequest
-from printnanny_api_client.models.printnanny_env_enum import PrintnannyEnvEnum
+from printnanny_api_client.models.public_key import PublicKey
+from printnanny_api_client.models.public_key_request import PublicKeyRequest
 from printnanny_api_client.models.release_channel_enum import ReleaseChannelEnum
 from printnanny_api_client.models.remote_command_event import RemoteCommandEvent
 from printnanny_api_client.models.remote_command_event_event_type_enum import RemoteCommandEventEventTypeEnum

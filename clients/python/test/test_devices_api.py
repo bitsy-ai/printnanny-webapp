@@ -35,12 +35,6 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
-    def test_devices_active_license_retrieve(self):
-        """Test case for devices_active_license_retrieve
-
-        """
-        pass
-
     def test_devices_cameras_create(self):
         """Test case for devices_cameras_create
 
@@ -107,12 +101,6 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
-    def test_devices_generate_license(self):
-        """Test case for devices_generate_license
-
-        """
-        pass
-
     def test_devices_info_create(self):
         """Test case for devices_info_create
 
@@ -139,6 +127,36 @@ class TestDevicesApi(unittest.TestCase):
 
     def test_devices_info_update(self):
         """Test case for devices_info_update
+
+        """
+        pass
+
+    def test_devices_janus_create(self):
+        """Test case for devices_janus_create
+
+        """
+        pass
+
+    def test_devices_janus_list(self):
+        """Test case for devices_janus_list
+
+        """
+        pass
+
+    def test_devices_janus_partial_update(self):
+        """Test case for devices_janus_partial_update
+
+        """
+        pass
+
+    def test_devices_janus_retrieve(self):
+        """Test case for devices_janus_retrieve
+
+        """
+        pass
+
+    def test_devices_janus_update(self):
+        """Test case for devices_janus_update
 
         """
         pass
@@ -181,6 +199,36 @@ class TestDevicesApi(unittest.TestCase):
 
     def test_devices_printer_controllers_update(self):
         """Test case for devices_printer_controllers_update
+
+        """
+        pass
+
+    def test_devices_public_keys_create(self):
+        """Test case for devices_public_keys_create
+
+        """
+        pass
+
+    def test_devices_public_keys_list(self):
+        """Test case for devices_public_keys_list
+
+        """
+        pass
+
+    def test_devices_public_keys_partial_update(self):
+        """Test case for devices_public_keys_partial_update
+
+        """
+        pass
+
+    def test_devices_public_keys_retrieve(self):
+        """Test case for devices_public_keys_retrieve
+
+        """
+        pass
+
+    def test_devices_public_keys_update(self):
+        """Test case for devices_public_keys_update
 
         """
         pass

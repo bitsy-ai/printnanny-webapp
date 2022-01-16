@@ -17,6 +17,7 @@ docs/CallbackTokenVerificationRequest.md
 docs/Camera.md
 docs/CameraRequest.md
 docs/CameraType.md
+docs/CipherEnum.md
 docs/ClientConfigApi.md
 docs/CloudiotDevice.md
 docs/CloudiotDeviceRequest.md
@@ -32,9 +33,8 @@ docs/ErrorDetail.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
-docs/License.md
-docs/LicenseRequest.md
-docs/LicensesApi.md
+docs/JanusAuth.md
+docs/JanusAuthRequest.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
@@ -80,7 +80,7 @@ docs/PaginatedDeviceList.md
 docs/PaginatedExperimentDeviceConfigList.md
 docs/PaginatedExperimentList.md
 docs/PaginatedGcodeFileList.md
-docs/PaginatedLicenseList.md
+docs/PaginatedJanusAuthList.md
 docs/PaginatedModelArtifactList.md
 docs/PaginatedOctoPrintBackupList.md
 docs/PaginatedOctoPrintDeviceList.md
@@ -90,6 +90,7 @@ docs/PaginatedPrintNannyPluginEventList.md
 docs/PaginatedPrintSessionList.md
 docs/PaginatedPrinterControllerList.md
 docs/PaginatedPrinterProfileList.md
+docs/PaginatedPublicKeyList.md
 docs/PaginatedRemoteCommandEventList.md
 docs/PaginatedRemoteControlCommandList.md
 docs/PaginatedSystemInfoList.md
@@ -106,10 +107,12 @@ docs/PatchedCameraRequest.md
 docs/PatchedCloudiotDeviceRequest.md
 docs/PatchedDeviceCalibrationRequest.md
 docs/PatchedDeviceRequest.md
+docs/PatchedJanusAuthRequest.md
 docs/PatchedOctoPrintDeviceRequest.md
 docs/PatchedPrintSessionRequest.md
 docs/PatchedPrinterControllerRequest.md
 docs/PatchedPrinterProfileRequest.md
+docs/PatchedPublicKeyRequest.md
 docs/PatchedRemoteControlCommandRequest.md
 docs/PatchedSystemInfoRequest.md
 docs/PatchedUserRequest.md
@@ -126,7 +129,8 @@ docs/PrinterEvent.md
 docs/PrinterEventRequest.md
 docs/PrinterProfile.md
 docs/PrinterProfileRequest.md
-docs/PrintnannyEnvEnum.md
+docs/PublicKey.md
+docs/PublicKeyRequest.md
 docs/ReleaseChannelEnum.md
 docs/RemoteCommandEvent.md
 docs/RemoteCommandEventEventTypeEnum.md
@@ -159,7 +163,6 @@ src/apis/auth_api.rs
 src/apis/client_config_api.rs
 src/apis/configuration.rs
 src/apis/devices_api.rs
-src/apis/licenses_api.rs
 src/apis/ml_ops_api.rs
 src/apis/mod.rs
 src/apis/octoprint_backups_api.rs
@@ -182,6 +185,7 @@ src/models/callback_token_verification_request.rs
 src/models/camera.rs
 src/models/camera_request.rs
 src/models/camera_type.rs
+src/models/cipher_enum.rs
 src/models/cloudiot_device.rs
 src/models/cloudiot_device_request.rs
 src/models/command_enum.rs
@@ -195,8 +199,8 @@ src/models/error_detail.rs
 src/models/experiment.rs
 src/models/experiment_device_config.rs
 src/models/gcode_file.rs
-src/models/license.rs
-src/models/license_request.rs
+src/models/janus_auth.rs
+src/models/janus_auth_request.rs
 src/models/mobile_auth_request.rs
 src/models/mod.rs
 src/models/model_artifact.rs
@@ -241,7 +245,7 @@ src/models/paginated_device_list.rs
 src/models/paginated_experiment_device_config_list.rs
 src/models/paginated_experiment_list.rs
 src/models/paginated_gcode_file_list.rs
-src/models/paginated_license_list.rs
+src/models/paginated_janus_auth_list.rs
 src/models/paginated_model_artifact_list.rs
 src/models/paginated_octo_print_backup_list.rs
 src/models/paginated_octo_print_device_list.rs
@@ -251,6 +255,7 @@ src/models/paginated_print_nanny_plugin_event_list.rs
 src/models/paginated_print_session_list.rs
 src/models/paginated_printer_controller_list.rs
 src/models/paginated_printer_profile_list.rs
+src/models/paginated_public_key_list.rs
 src/models/paginated_remote_command_event_list.rs
 src/models/paginated_remote_control_command_list.rs
 src/models/paginated_system_info_list.rs
@@ -265,10 +270,12 @@ src/models/patched_camera_request.rs
 src/models/patched_cloudiot_device_request.rs
 src/models/patched_device_calibration_request.rs
 src/models/patched_device_request.rs
+src/models/patched_janus_auth_request.rs
 src/models/patched_octo_print_device_request.rs
 src/models/patched_print_session_request.rs
 src/models/patched_printer_controller_request.rs
 src/models/patched_printer_profile_request.rs
+src/models/patched_public_key_request.rs
 src/models/patched_remote_control_command_request.rs
 src/models/patched_system_info_request.rs
 src/models/patched_user_request.rs
@@ -285,7 +292,8 @@ src/models/printer_event.rs
 src/models/printer_event_request.rs
 src/models/printer_profile.rs
 src/models/printer_profile_request.rs
-src/models/printnanny_env_enum.rs
+src/models/public_key.rs
+src/models/public_key_request.rs
 src/models/release_channel_enum.rs
 src/models/remote_command_event.rs
 src/models/remote_command_event_event_type_enum.rs

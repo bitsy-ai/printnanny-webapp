@@ -8,7 +8,6 @@ from printnanny_api_client.api.auth_api import AuthApi
 from printnanny_api_client.api.auth__api import AuthApi
 from printnanny_api_client.api.client_config_api import ClientConfigApi
 from printnanny_api_client.api.devices_api import DevicesApi
-from printnanny_api_client.api.licenses_api import LicensesApi
 from printnanny_api_client.api.ml_ops_api import MlOpsApi
 from printnanny_api_client.api.octoprint_backups_api import OctoprintBackupsApi
 from printnanny_api_client.api.partners_geeks3_api import PartnersGeeks3Api

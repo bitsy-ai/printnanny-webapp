@@ -1,0 +1,15 @@
+# PatchedPublicKeyRequest
+
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**pem** | **str** |  | [optional] 
+**cipher** | [**CipherEnum**](CipherEnum.md) |  | [optional] 
+**length** | **int** |  | [optional] 
+**fingerprint** | **str** |  | [optional] 
+**device** | **int** |  | [optional] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
