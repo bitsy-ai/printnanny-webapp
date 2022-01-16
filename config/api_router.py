@@ -8,7 +8,6 @@ from print_nanny_webapp.devices.api.views import (
     DeviceHostnameViewSet,
     SystemInfoViewSet,
     DeviceViewSet,
-    LicenseViewSet,
     PrinterControllerViewSet,
     TaskViewSet,
     TaskStatusViewSet
@@ -48,7 +47,6 @@ router.register("client-config", PrintNannyApiConfigViewset, basename="client-co
 
 router.register("alerts", AlertViewSet)
 router.register("devices", DeviceViewSet)
-router.register("licenses", LicenseViewSet)
 
 # octoprint endpoints (print nanny os data model)
 router.register("octoprint-backups", OctoPrintBackupViewset)

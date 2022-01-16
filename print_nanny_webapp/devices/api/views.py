@@ -156,45 +156,6 @@ class TaskStatusViewSet(
 
 
 ##
-# License
-##
-@extend_schema_view(
-    list=extend_schema(
-        responses={
-            200: LicenseSerializer(many=True),
-        }
-        | generic_list_errors
-    ),
-    tags=["devices"],
-)
-class LicenseViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
-    """
-    All-in-one Print Nanny installation
-    via print-nanny-main-<platform>-<cpu>.img
-    """
-
-    serializer_class = LicenseSerializer
-    queryset = License.objects.all()
-    lookup_field = "id"
-
-    @extend_schema(
-        request=LicenseSerializer,
-        responses={
-            "default": ErrorDetailSerializer,
-            202: LicenseSerializer,
-        },
-        operation_id="license_activate",
-    )
-    @action(detail=True, methods=["POST"], url_path="activate")
-    def activate(self, request: Request, *args: Any, **kwargs: Any) -> Response:
-        license = License.objects.get(pk=kwargs["id"])
-        license.activated = True
-        license.save()
-        response_serializer = self.get_serializer(license)
-        return Response(response_serializer.data, status=status.HTTP_202_ACCEPTED)
-
-
-##
 # Device (by id)
 ##
 

@@ -138,38 +138,3 @@ class SystemInfoSerializer(serializers.ModelSerializer):
         return SystemInfo.objects.filter(device=device).update_or_create(
             device=device, defaults=validated_data
         )
-
-
-class LicenseSerializer(serializers.ModelSerializer):
-    """
-    Deserialize data/license info into /opt/printnanny during License Activation
-    """
-
-    printnanny_env = serializers.ChoiceField(
-        read_only=True, choices=PrintNannyEnv.choices
-    )
-
-    activated = serializers.BooleanField(default=False)
-
-    user = serializers.SerializerMethodField(read_only=True)
-
-    def get_user(self, obj) -> int:
-        return obj.user.id
-
-    cloudiot_device = serializers.SerializerMethodField(read_only=True)
-
-    @extend_schema_field(OpenApiTypes.INT64)
-    def get_cloudiot_device(self, obj) -> int:
-        return obj.cloudiot_device.num_id
-
-    class Meta:
-        model = License
-        read_only_fields = (
-            "cloudiot_device",
-            "device",
-            "fingerprint",
-            "public_key",
-            "printnanny_env",
-            "user",
-        )
-        exclude = ("deleted",)

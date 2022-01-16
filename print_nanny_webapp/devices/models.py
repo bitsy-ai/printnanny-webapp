@@ -174,41 +174,6 @@ class PublicKey(SafeDeleteModel):
         return self.device.user
 
 
-class License(SafeDeleteModel):
-    _safedelete_policy = SOFT_DELETE
-
-    class Meta:
-        constraints = [
-            UniqueConstraint(
-                fields=["device"],
-                condition=models.Q(deleted=None, activated=True),
-                name="unique_activated_license_per_device",
-            )
-        ]
-
-    janus_admin_secret = models.CharField(max_length=255, default=token_urlsafe)
-    janus_token = models.CharField(max_length=255, default=token_urlsafe)
-
-    activated = models.BooleanField(default=False)
-    public_key = models.TextField()
-    fingerprint = models.CharField(max_length=255)
-
-    device = models.ForeignKey(
-        Device, on_delete=models.CASCADE, related_name="licenses"
-    )
-
-    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
-    updated_dt = models.DateTimeField(db_index=True, auto_now=True)
-
-    @property
-    def user(self):
-        return self.device.user
-
-    @property
-    def cloudiot_device(self):
-        return self.device.cloudiot_device
-
-
 class SystemInfo(SafeDeleteModel):
     """
     Immutable device info & metadata
