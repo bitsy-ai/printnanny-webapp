@@ -27,7 +27,6 @@ from .serializers import (
     CloudiotDeviceSerializer,
     SystemInfoSerializer,
     DeviceSerializer,
-    LicenseSerializer,
     PrinterControllerSerializer,
     TaskSerializer,
     TaskStatusSerializer,
@@ -37,15 +36,12 @@ from ..models import (
     CloudiotDevice,
     Device,
     SystemInfo,
-    License,
     PrinterController,
     Task,
     TaskStatus,
 )
-from ..services import generate_zipped_license_response
 
 from print_nanny_webapp.utils.api.exceptions import AlreadyExists
-from print_nanny_webapp.utils.api.serializers import ErrorDetailSerializer
 
 from print_nanny_webapp.utils.api.views import (
     generic_create_errors,
@@ -156,45 +152,6 @@ class TaskStatusViewSet(
 
 
 ##
-# License
-##
-@extend_schema_view(
-    list=extend_schema(
-        responses={
-            200: LicenseSerializer(many=True),
-        }
-        | generic_list_errors
-    ),
-    tags=["devices"],
-)
-class LicenseViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
-    """
-    All-in-one Print Nanny installation
-    via print-nanny-main-<platform>-<cpu>.img
-    """
-
-    serializer_class = LicenseSerializer
-    queryset = License.objects.all()
-    lookup_field = "id"
-
-    @extend_schema(
-        request=LicenseSerializer,
-        responses={
-            "default": ErrorDetailSerializer,
-            202: LicenseSerializer,
-        },
-        operation_id="license_activate",
-    )
-    @action(detail=True, methods=["POST"], url_path="activate")
-    def activate(self, request: Request, *args: Any, **kwargs: Any) -> Response:
-        license = License.objects.get(pk=kwargs["id"])
-        license.activated = True
-        license.save()
-        response_serializer = self.get_serializer(license)
-        return Response(response_serializer.data, status=status.HTTP_202_ACCEPTED)
-
-
-##
 # Device (by id)
 ##
 
@@ -296,46 +253,6 @@ device_create_operation = {
     create=extend_schema(
         operation=device_create_operation,
     ),
-    active_license=extend_schema(
-        responses={
-            200: LicenseSerializer,
-        }
-        | generic_get_errors
-    ),
-    generate_license=extend_schema(
-        operation={
-            "operationId": "devices_generate_license",
-            "description": "Download generated (unsigned) license",
-            "tags": ["devices"],
-            "security": [{"cookieAuth": []}, {"tokenAuth": []}],
-            "parameters": [
-                {
-                    "in": "path",
-                    "name": "id",
-                    "schema": {"type": "integer"},
-                    "required": True,
-                },
-            ],
-            "responses": {
-                "200": {
-                    # "x-is-file": True,
-                    "description": "Download generated license.zip",
-                    "content": {
-                        "application/*": {
-                            "schema": {"type": "string", "format": "binary"}
-                        }
-                    },
-                    "headers": {
-                        "Content-Disposition": {
-                            "schema": {
-                                "type": "string",
-                            }
-                        }
-                    },
-                }
-            },
-        },
-    ),
 )
 class DeviceViewSet(
     GenericViewSet,
@@ -363,22 +280,6 @@ class DeviceViewSet(
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-
-    @action(detail=True, methods=["GET"], url_path="generate-license")
-    def generate_license(self, request: Request, *args: Any, **kwargs: Any) -> Response:
-        device = Device.objects.get(pk=kwargs["id"])
-        return generate_zipped_license_response(device, request)
-
-    @action(detail=True, methods=["GET"], url_path="active-license")
-    def active_license(self, request: Request, *args: Any, **kwargs: Any) -> Response:
-        device = Device.objects.get(pk=kwargs["id"])
-
-        if device.active_license:
-            serializer = LicenseSerializer(
-                device.active_license, context=dict(request=request)
-            )
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        raise Http404
 
 
 ###

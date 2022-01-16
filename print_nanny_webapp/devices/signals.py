@@ -5,8 +5,10 @@ from django.db.models.signals import post_save
 from channels.layers import get_channel_layer
 from rest_framework.renderers import JSONRenderer
 
+from print_nanny_webapp.devices.services import update_or_create_cloudiot_device
 
-from .models import Device, TaskStatus, Task
+
+from .models import Device, PublicKey, TaskStatus, Task
 from .enum import (
     TaskType,
     TaskStatusType,
@@ -14,6 +16,13 @@ from .enum import (
 from .api.serializers import TaskSerializer
 
 logger = logging.getLogger(__name__)
+
+# when PublicKey is created, automatically create/update CloudiotDevice with key
+@receiver(post_save, sender=PublicKey, dispatch_uid="public_key_create_cloudiotdevice")
+def create_public_key_cloudiotdevice(sender, instance: PublicKey, created, **kwargs):
+    if created:
+        update_or_create_cloudiot_device(instance)
+
 
 # when device is created, automatically create Task with type ACTIVATE_LICENSE
 @receiver(post_save, sender=Device, dispatch_uid="create_task_check_license")

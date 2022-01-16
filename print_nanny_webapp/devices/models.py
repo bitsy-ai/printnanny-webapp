@@ -13,6 +13,7 @@ from safedelete.signals import pre_softdelete
 
 from .enum import (
     CameraType,
+    Ciphers,
     DeviceReleaseChannel,
     PrinterSoftwareType,
     TaskStatusType,
@@ -66,8 +67,12 @@ class Device(SafeDeleteModel):
     )
 
     @property
-    def active_license(self):
-        return self.licenses.first()
+    def public_key(self):
+        return self.public_keys.first()
+
+    @property
+    def janus_auth(self):
+        return self.janus_auth.first()
 
     @property
     def last_task(self):
@@ -106,7 +111,7 @@ class Device(SafeDeleteModel):
 
     @property
     def janus_local_url(self):
-        return "http://{self.hostname}:8088/janus"
+        return f"http://{self.hostname}:8088/janus"
 
 
 class AnsibleFactsd(models.Model):
@@ -116,39 +121,60 @@ class AnsibleFactsd(models.Model):
     updated_dt = models.DateTimeField(db_index=True, auto_now=True)
 
 
-class License(SafeDeleteModel):
+class JanusAuth(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
 
     class Meta:
+        index_together = ("created_dt", "device")
         constraints = [
             UniqueConstraint(
                 fields=["device"],
-                condition=models.Q(deleted=None, activated=True),
-                name="unique_activated_license_per_device",
+                condition=models.Q(deleted=None),
+                name="unique_janus_auth_per_device",
             )
         ]
 
-    janus_admin_secret = models.CharField(max_length=255, default=token_urlsafe)
-    janus_token = models.CharField(max_length=255, default=token_urlsafe)
-
-    activated = models.BooleanField(default=False)
-    public_key = models.TextField()
-    fingerprint = models.CharField(max_length=255)
-
+    janus_admin_secret = models.CharField(max_length=255)
+    janus_token = models.CharField(max_length=255)
     device = models.ForeignKey(
-        Device, on_delete=models.CASCADE, related_name="licenses"
+        Device, on_delete=models.CASCADE, related_name="janus_auths"
     )
-
-    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
-    updated_dt = models.DateTimeField(db_index=True, auto_now=True)
+    created_dt = models.DateTimeField(auto_now_add=True)
 
     @property
     def user(self):
         return self.device.user
 
     @property
-    def cloudiot_device(self):
-        return self.device.cloudiot_device
+    def janus_local_url(self):
+        return f"http://{self.device.hostname}:8088/janus"
+
+
+class PublicKey(SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE
+
+    class Meta:
+        index_together = ("created_dt", "device")
+        constraints = [
+            UniqueConstraint(
+                fields=["device"],
+                condition=models.Q(deleted=None),
+                name="unique_public_key_per_device",
+            )
+        ]
+
+    pem = models.TextField()
+    cipher = models.CharField(max_length=32, choices=Ciphers.choices)
+    length = models.IntegerField()
+    fingerprint = models.CharField(max_length=255)
+    device = models.ForeignKey(
+        Device, on_delete=models.CASCADE, related_name="public_keys"
+    )
+    created_dt = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def user(self):
+        return self.device.user
 
 
 class SystemInfo(SafeDeleteModel):
