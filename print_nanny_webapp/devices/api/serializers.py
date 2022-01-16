@@ -12,7 +12,6 @@ from print_nanny_webapp.devices.models import (
     SystemInfo,
     Task,
     TaskStatus,
-    License,
     PrinterController,
 )
 from ..enum import (

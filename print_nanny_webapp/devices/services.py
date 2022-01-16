@@ -17,12 +17,11 @@ from google.cloud import iot_v1 as cloudiot_v1
 import google.api_core.exceptions
 from django.template.loader import render_to_string
 
-from print_nanny_webapp.devices.api.serializers import LicenseSerializer
 from print_nanny_webapp.utils.api.service import get_api_config
 from print_nanny_webapp.utils.api.serializers import PrintNannyApiConfigSerializer
 from print_nanny_webapp.users.api.serializers import UserSerializer
 
-from .models import Device, CloudiotDevice, License
+from .models import Device, CloudiotDevice
 from .constants import FileLocator
 
 logger = logging.getLogger(__name__)

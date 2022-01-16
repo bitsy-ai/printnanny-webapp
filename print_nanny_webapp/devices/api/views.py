@@ -27,7 +27,6 @@ from .serializers import (
     CloudiotDeviceSerializer,
     SystemInfoSerializer,
     DeviceSerializer,
-    LicenseSerializer,
     PrinterControllerSerializer,
     TaskSerializer,
     TaskStatusSerializer,
@@ -37,7 +36,6 @@ from ..models import (
     CloudiotDevice,
     Device,
     SystemInfo,
-    License,
     PrinterController,
     Task,
     TaskStatus,
@@ -256,46 +254,6 @@ device_create_operation = {
     ),
     create=extend_schema(
         operation=device_create_operation,
-    ),
-    active_license=extend_schema(
-        responses={
-            200: LicenseSerializer,
-        }
-        | generic_get_errors
-    ),
-    generate_license=extend_schema(
-        operation={
-            "operationId": "devices_generate_license",
-            "description": "Download generated (unsigned) license",
-            "tags": ["devices"],
-            "security": [{"cookieAuth": []}, {"tokenAuth": []}],
-            "parameters": [
-                {
-                    "in": "path",
-                    "name": "id",
-                    "schema": {"type": "integer"},
-                    "required": True,
-                },
-            ],
-            "responses": {
-                "200": {
-                    # "x-is-file": True,
-                    "description": "Download generated license.zip",
-                    "content": {
-                        "application/*": {
-                            "schema": {"type": "string", "format": "binary"}
-                        }
-                    },
-                    "headers": {
-                        "Content-Disposition": {
-                            "schema": {
-                                "type": "string",
-                            }
-                        }
-                    },
-                }
-            },
-        },
     ),
 )
 class DeviceViewSet(
