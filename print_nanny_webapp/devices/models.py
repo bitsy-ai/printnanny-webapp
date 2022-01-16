@@ -66,8 +66,12 @@ class Device(SafeDeleteModel):
     )
 
     @property
-    def active_license(self):
-        return self.licenses.first()
+    def public_key(self):
+        return self.public_keys.first()
+
+    @property
+    def janus_auth(self):
+        return self.janus_auth.first()
 
     @property
     def last_task(self):
@@ -106,7 +110,7 @@ class Device(SafeDeleteModel):
 
     @property
     def janus_local_url(self):
-        return "http://{self.hostname}:8088/janus"
+        return f"http://{self.hostname}:8088/janus"
 
 
 class AnsibleFactsd(models.Model):
@@ -114,6 +118,60 @@ class AnsibleFactsd(models.Model):
     namespace = models.CharField(max_length=64, default="printnanny")
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     updated_dt = models.DateTimeField(db_index=True, auto_now=True)
+
+
+class JanusAuth(SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE
+
+    class Meta:
+        index_together = ("created_dt", "device")
+        constraints = [
+            UniqueConstraint(
+                fields=["device"],
+                condition=models.Q(deleted=None),
+                name="unique_janus_auth_per_device",
+            )
+        ]
+
+    janus_admin_secret = models.CharField(max_length=255)
+    janus_token = models.CharField(max_length=255)
+    device = models.ForeignKey(
+        Device, on_delete=models.CASCADE, related_name="janus_auths"
+    )
+    created_dt = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def user(self):
+        return self.device.user
+
+    @property
+    def janus_local_url(self):
+        return f"http://{self.device.hostname}:8088/janus"
+
+
+class PublicKey(SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE
+
+    class Meta:
+        index_together = ("created_dt", "device")
+        constraints = [
+            UniqueConstraint(
+                fields=["device"],
+                condition=models.Q(deleted=None),
+                name="unique_public_key_per_device",
+            )
+        ]
+
+    pem = models.TextField()
+    fingerprint = models.CharField(max_length=255)
+    device = models.ForeignKey(
+        Device, on_delete=models.CASCADE, related_name="public_keys"
+    )
+    created_dt = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def user(self):
+        return self.device.user
 
 
 class License(SafeDeleteModel):
