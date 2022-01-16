@@ -15,6 +15,7 @@ from django.template.loader import render_to_string
 
 from .models import Device, CloudiotDevice, PublicKey
 from .constants import FileLocator
+from .enum import Ciphers
 
 logger = logging.getLogger(__name__)
 
@@ -173,7 +174,33 @@ def delete_cloudiot_device(device_id_int64: int):
         logger.error(e)
 
 
+def cloudiot_device_request(
+    cloudiot_device: cloudiot_v1.types.Device, public_key: PublicKey
+) -> cloudiot_v1.types.Device:
+    if public_key.length == 256 and public_key.cipher == Ciphers.ECDSA:
+        cloudiot_device.credentials = [
+            {
+                "public_key": {
+                    "format": cloudiot_v1.PublicKeyFormat.ES256_PEM,
+                    "key": public_key.pem,
+                }
+            }
+        ]
+        cloudiot_device.metadata = dict(
+            fingerprint=public_key.fingerprint,
+            device_id=str(public_key.device.id),
+            device_hostname=public_key.device.hostname,
+            user_id=str(public_key.device.user.id),
+            email=public_key.device.user.email,
+        )
+        return cloudiot_device
+    else:
+        error = f"Expected ES256_PEM (length 256 ecdsa), but received length={public_key.length} cipher={public_key.cipher}"
+        raise ValueError(error)
+
+
 def create_cloudiot_device(public_key: PublicKey):
+
     client = cloudiot_v1.DeviceManagerClient()
     parent = client.registry_path(
         settings.GCP_PROJECT_ID,
@@ -182,45 +209,16 @@ def create_cloudiot_device(public_key: PublicKey):
     )
 
     cloudiot_device = cloudiot_v1.types.Device()
-    cloudiot_device.id = device.to_cloudiot_id
-    cloudiot_device.credentials = [
-        {
-            "public_key": {
-                "format": cloudiot_v1.PublicKeyFormat.ES256_PEM,
-                "key": keypair["public_key"],
-            }
-        }
-    ]
-    cloudiot_device.metadata = dict(
-        fingerprint=keypair["fingerprint"],
-        device_id=str(device.id),
-        device_hostname=device.hostname,
-        user_id=str(device.user.id),
-        email=device.user.email,
-    )
+    cloudiot_device.id = public_key.device.to_cloudiot_id
+    cloudiot_device = cloudiot_device_request(cloudiot_device)
 
     return client.create_device(parent=parent, device=cloudiot_device)
 
 
-def update_cloudiot_device(
-    cloudiot_device: cloudiot_v1.types.Device, device: Device, keypair: KeyPair
-):
+def update_cloudiot_device(cloudiot_device: CloudiotDevice, public_key: PublicKey):
     client = cloudiot_v1.DeviceManagerClient()
-    cloudiot_device.credentials = [
-        {
-            "public_key": {
-                "format": cloudiot_v1.PublicKeyFormat.ES256_PEM,
-                "key": keypair["public_key"],
-            }
-        }
-    ]
-    cloudiot_device.metadata = dict(
-        fingerprint=keypair["fingerprint"],
-        device_id=str(device.id),
-        device_hostname=device.hostname,
-        user_id=str(device.user.id),
-        email=device.user.email,
-    )
+
+    cloudiot_device = cloudiot_device_request(cloudiot_device, public_key)
     # google.api_core.exceptions.InvalidArgument: 400 The fields 'device.id' and 'device.num_id' must be empty.
     del cloudiot_device.num_id
     del cloudiot_device.id
@@ -239,105 +237,13 @@ def update_or_create_cloudiot_device(public_key: PublicKey) -> cloudiot_v1.Devic
         settings.GCP_PROJECT_ID,
         settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
         settings.GCP_CLOUD_IOT_STANDALONE_DEVICE_REGISTRY,
-        device.to_cloudiot_id,
+        public_key.device.to_cloudiot_id,
     )
 
     try:
         existing_cloudiot_device: cloudiot_v1.types.Device = client.get_device(
             name=device_path
         )
-        return update_cloudiot_device(existing_cloudiot_device, device, keypair)
+        return update_cloudiot_device(existing_cloudiot_device, public_key)
     except google.api_core.exceptions.NotFound:
-        return create_cloudiot_device(device, keypair)
-
-
-def generate_keypair_and_update_or_create_cloudiot_device(
-    device: Device, tmp: str
-) -> Tuple[KeyPair, License, CloudiotDevice]:
-    keypair = generate_keypair(tmp)
-    # revoke all existing licenses (soft-delete)
-    device.licenses.all().delete()
-
-    cloudiot_device = update_or_create_cloudiot_device(device=device, keypair=keypair)
-    CloudiotDevice = apps.get_model("devices", "CloudiotDevice")
-
-    # update apppliance relationships
-    if device.cloudiot_devices.first():
-        device.cloudiot_devices.update(
-            num_id=cloudiot_device.num_id,
-            name=cloudiot_device.name,
-        )
-    else:
-        # create new print_nanny_webapp.devices.models.CloudiotDevices object
-        CloudiotDevice.objects.create(
-            num_id=cloudiot_device.num_id,
-            name=cloudiot_device.name,
-            device=device,
-        )
-
-    license = License.objects.create(
-        public_key=keypair["public_key"],
-        fingerprint=keypair["fingerprint"],
-        device=device,
-    )
-    return keypair, license, device.cloudiot_devices.first()
-
-
-# def generate_zipped_license_file(
-#     device: Device,
-#     request: HttpRequest,
-#     tmp: str,
-# ) -> str:
-#     from .api.serializers import DeviceSerializer
-
-#     keypair, license, _ = generate_keypair_and_update_or_create_cloudiot_device(
-#         device, tmp
-#     )
-#     zip_filename = f"{tmp}/{FileLocator.LICENSE_ZIP_FILENAME}"
-
-#     user_serializer = UserSerializer(device.user, context=dict(request=request))
-#     user_json = JSONRenderer().render(user_serializer.data)
-
-#     device_serializer = DeviceSerializer(device, context=dict(request=request))
-#     device_json = JSONRenderer().render(device_serializer.data)
-
-#     license_serializer = LicenseSerializer(license, context=dict(request=request))
-#     license_json = JSONRenderer().render(license_serializer.data)
-
-#     api_config = get_api_config(request)
-#     api_config_serializer = PrintNannyApiConfigSerializer(instance=api_config)
-#     api_config_json = JSONRenderer().render(api_config_serializer.data)
-
-#     with ZipFile(zip_filename, "x") as zf:
-#         # write keypair to zipfile
-#         zf.write(
-#             keypair["public_key_filename"],
-#             arcname=os.path.basename(keypair["public_key_filename"]),
-#         )
-#         zf.write(
-#             keypair["private_key_filename"],
-#             arcname=os.path.basename(keypair["private_key_filename"]),
-#         )
-#         zf.writestr("honeycomb.env", render_honeycomb_env())
-#         zf.writestr("janus.env", render_janus_env(device))
-#         zf.writestr("device.json", device_json)
-#         zf.writestr("license.json", license_json)
-#         zf.writestr("api_config.json", api_config_json)
-#         zf.writestr("user.json", user_json)
-
-#     return zip_filename
-
-
-# def generate_zipped_license_response(
-#     device: Device, request: HttpRequest
-# ) -> FileResponse:
-
-#     with tempfile.TemporaryDirectory() as tmp:
-#         filename = generate_zipped_license_file(device, request, tmp)
-#         # some_file = self.model.objects.get(imported_file=filename)
-#         response = FileResponse(open(filename, "rb"), content_type="application/zip")
-#         # https://docs.djangoproject.com/en/1.11/howto/outputting-csv/#streaming-large-csv-files
-#         response[
-#             "Content-Disposition"
-#         ] = f'attachment; filename="{FileLocator.LICENSE_ZIP_FILENAME}"'
-#         return response
+        return create_cloudiot_device(public_key)
