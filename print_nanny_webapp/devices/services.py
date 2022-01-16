@@ -87,7 +87,7 @@ def create_cloudiot_device(public_key: PublicKey):
 
     cloudiot_device = cloudiot_v1.types.Device()
     cloudiot_device.id = public_key.device.to_cloudiot_id
-    cloudiot_device = cloudiot_device_request(cloudiot_device)
+    cloudiot_device = cloudiot_device_request(cloudiot_device, public_key)
 
     return client.create_device(parent=parent, device=cloudiot_device)
 
