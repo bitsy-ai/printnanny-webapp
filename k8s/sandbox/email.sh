@@ -37,7 +37,7 @@ OctoPrint and Postgres deployment use a PersistentVolumeClaim to persist data.
 https://cloud.google.com/kubernetes-engine/docs/how-to/preemptible-vms
 EOF
 
-echo $DJANGO_SUPERUSER_EMAIL
+echo "$DJANGO_SUPERUSER_EMAIL"
 curl -s --user "api:$MAILGUN_API_KEY" \
     "https://api.mailgun.net/v3/$MAILGUN_DOMAIN/messages" \
     -F from='robots@print-nanny.com' \
