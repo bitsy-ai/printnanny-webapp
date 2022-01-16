@@ -10,7 +10,6 @@ from print_nanny_webapp.devices.models import Device
 
 from print_nanny_webapp.dashboard.views import DashboardView
 from .forms import CameraCreateForm
-from .services import generate_zipped_license_response
 
 Device = apps.get_model("devices", "Device")
 Camera = apps.get_model("devices", "Camera")

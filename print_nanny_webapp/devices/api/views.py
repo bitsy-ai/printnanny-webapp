@@ -40,10 +40,8 @@ from ..models import (
     Task,
     TaskStatus,
 )
-from ..services import generate_zipped_license_response
 
 from print_nanny_webapp.utils.api.exceptions import AlreadyExists
-from print_nanny_webapp.utils.api.serializers import ErrorDetailSerializer
 
 from print_nanny_webapp.utils.api.views import (
     generic_create_errors,

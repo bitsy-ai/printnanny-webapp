@@ -13,6 +13,7 @@ from safedelete.signals import pre_softdelete
 
 from .enum import (
     CameraType,
+    Ciphers,
     DeviceReleaseChannel,
     PrinterSoftwareType,
     TaskStatusType,
@@ -163,6 +164,8 @@ class PublicKey(SafeDeleteModel):
         ]
 
     pem = models.TextField()
+    cipher = models.CharField(max_length=32, choices=Ciphers.choices)
+    length = models.IntegerField()
     fingerprint = models.CharField(max_length=255)
     device = models.ForeignKey(
         Device, on_delete=models.CASCADE, related_name="public_keys"

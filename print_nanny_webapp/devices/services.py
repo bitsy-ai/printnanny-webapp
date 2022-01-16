@@ -5,40 +5,18 @@ import logging
 import tempfile
 import requests
 import os
-from typing import Tuple, TypedDict
-from zipfile import ZipFile
+from typing import Tuple
 
 from django.apps import apps
-from django.http import FileResponse
-from django.http.request import HttpRequest
 from django.conf import settings
-from rest_framework.renderers import JSONRenderer
 from google.cloud import iot_v1 as cloudiot_v1
 import google.api_core.exceptions
 from django.template.loader import render_to_string
 
-from print_nanny_webapp.utils.api.service import get_api_config
-from print_nanny_webapp.utils.api.serializers import PrintNannyApiConfigSerializer
-from print_nanny_webapp.users.api.serializers import UserSerializer
-
-from .models import Device, CloudiotDevice
+from .models import Device, CloudiotDevice, PublicKey
 from .constants import FileLocator
 
 logger = logging.getLogger(__name__)
-
-
-class CACerts(TypedDict):
-    ca_certs: str
-    checksum: str
-
-
-class KeyPair(TypedDict):
-    private_key: str
-    private_key_filename: str
-    public_key: str
-    public_key_filename: str
-    fingerprint: str
-    # ca_certs: CACerts
 
 
 def render_janus_env(device: Device) -> str:
@@ -195,7 +173,7 @@ def delete_cloudiot_device(device_id_int64: int):
         logger.error(e)
 
 
-def create_cloudiot_device(device: Device, keypair: KeyPair):
+def create_cloudiot_device(public_key: PublicKey):
     client = cloudiot_v1.DeviceManagerClient()
     parent = client.registry_path(
         settings.GCP_PROJECT_ID,
@@ -253,9 +231,7 @@ def update_cloudiot_device(
     return client.update_device(request=request)
 
 
-def update_or_create_cloudiot_device(
-    device: Device, keypair: KeyPair
-) -> cloudiot_v1.Device:
+def update_or_create_cloudiot_device(public_key: PublicKey) -> cloudiot_v1.Device:
     # request to Cloud IoT API
     client = cloudiot_v1.DeviceManagerClient()
 
@@ -307,61 +283,61 @@ def generate_keypair_and_update_or_create_cloudiot_device(
     return keypair, license, device.cloudiot_devices.first()
 
 
-def generate_zipped_license_file(
-    device: Device,
-    request: HttpRequest,
-    tmp: str,
-) -> str:
-    from .api.serializers import DeviceSerializer
+# def generate_zipped_license_file(
+#     device: Device,
+#     request: HttpRequest,
+#     tmp: str,
+# ) -> str:
+#     from .api.serializers import DeviceSerializer
 
-    keypair, license, _ = generate_keypair_and_update_or_create_cloudiot_device(
-        device, tmp
-    )
-    zip_filename = f"{tmp}/{FileLocator.LICENSE_ZIP_FILENAME}"
+#     keypair, license, _ = generate_keypair_and_update_or_create_cloudiot_device(
+#         device, tmp
+#     )
+#     zip_filename = f"{tmp}/{FileLocator.LICENSE_ZIP_FILENAME}"
 
-    user_serializer = UserSerializer(device.user, context=dict(request=request))
-    user_json = JSONRenderer().render(user_serializer.data)
+#     user_serializer = UserSerializer(device.user, context=dict(request=request))
+#     user_json = JSONRenderer().render(user_serializer.data)
 
-    device_serializer = DeviceSerializer(device, context=dict(request=request))
-    device_json = JSONRenderer().render(device_serializer.data)
+#     device_serializer = DeviceSerializer(device, context=dict(request=request))
+#     device_json = JSONRenderer().render(device_serializer.data)
 
-    license_serializer = LicenseSerializer(license, context=dict(request=request))
-    license_json = JSONRenderer().render(license_serializer.data)
+#     license_serializer = LicenseSerializer(license, context=dict(request=request))
+#     license_json = JSONRenderer().render(license_serializer.data)
 
-    api_config = get_api_config(request)
-    api_config_serializer = PrintNannyApiConfigSerializer(instance=api_config)
-    api_config_json = JSONRenderer().render(api_config_serializer.data)
+#     api_config = get_api_config(request)
+#     api_config_serializer = PrintNannyApiConfigSerializer(instance=api_config)
+#     api_config_json = JSONRenderer().render(api_config_serializer.data)
 
-    with ZipFile(zip_filename, "x") as zf:
-        # write keypair to zipfile
-        zf.write(
-            keypair["public_key_filename"],
-            arcname=os.path.basename(keypair["public_key_filename"]),
-        )
-        zf.write(
-            keypair["private_key_filename"],
-            arcname=os.path.basename(keypair["private_key_filename"]),
-        )
-        zf.writestr("honeycomb.env", render_honeycomb_env())
-        zf.writestr("janus.env", render_janus_env(device))
-        zf.writestr("device.json", device_json)
-        zf.writestr("license.json", license_json)
-        zf.writestr("api_config.json", api_config_json)
-        zf.writestr("user.json", user_json)
+#     with ZipFile(zip_filename, "x") as zf:
+#         # write keypair to zipfile
+#         zf.write(
+#             keypair["public_key_filename"],
+#             arcname=os.path.basename(keypair["public_key_filename"]),
+#         )
+#         zf.write(
+#             keypair["private_key_filename"],
+#             arcname=os.path.basename(keypair["private_key_filename"]),
+#         )
+#         zf.writestr("honeycomb.env", render_honeycomb_env())
+#         zf.writestr("janus.env", render_janus_env(device))
+#         zf.writestr("device.json", device_json)
+#         zf.writestr("license.json", license_json)
+#         zf.writestr("api_config.json", api_config_json)
+#         zf.writestr("user.json", user_json)
 
-    return zip_filename
+#     return zip_filename
 
 
-def generate_zipped_license_response(
-    device: Device, request: HttpRequest
-) -> FileResponse:
+# def generate_zipped_license_response(
+#     device: Device, request: HttpRequest
+# ) -> FileResponse:
 
-    with tempfile.TemporaryDirectory() as tmp:
-        filename = generate_zipped_license_file(device, request, tmp)
-        # some_file = self.model.objects.get(imported_file=filename)
-        response = FileResponse(open(filename, "rb"), content_type="application/zip")
-        # https://docs.djangoproject.com/en/1.11/howto/outputting-csv/#streaming-large-csv-files
-        response[
-            "Content-Disposition"
-        ] = f'attachment; filename="{FileLocator.LICENSE_ZIP_FILENAME}"'
-        return response
+#     with tempfile.TemporaryDirectory() as tmp:
+#         filename = generate_zipped_license_file(device, request, tmp)
+#         # some_file = self.model.objects.get(imported_file=filename)
+#         response = FileResponse(open(filename, "rb"), content_type="application/zip")
+#         # https://docs.djangoproject.com/en/1.11/howto/outputting-csv/#streaming-large-csv-files
+#         response[
+#             "Content-Disposition"
+#         ] = f'attachment; filename="{FileLocator.LICENSE_ZIP_FILENAME}"'
+#         return response
