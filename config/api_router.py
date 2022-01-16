@@ -63,7 +63,7 @@ devices_router = NestedSimpleRouter(router, r'devices', lookup='device')
 devices_router.register(r'janus', JanusAuthViewSet, basename='janus')
 devices_router.register(r'public-keys', PublicKeyViewSet, basename='public-keys')
 
-devices_router.register(r'info', SystemInfoViewSet, basename='info')
+devices_router.register(r'system-info', SystemInfoViewSet, basename='system-info')
 devices_router.register(r'cameras', CameraViewSet, basename='cameras')
 devices_router.register(r'cloud-iot-devices', CloudiotDeviceViewSet , basename='cloud-iot-devices')
 devices_router.register(r'printer-controllers', PrinterControllerViewSet, basename='printer-controllers')
