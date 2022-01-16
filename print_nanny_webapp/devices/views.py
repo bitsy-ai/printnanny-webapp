@@ -97,12 +97,3 @@ class DeviceDetailView(DetailView, MultipleObjectMixin):
         tasks = self.get_object().tasks.all()
         context = super().get_context_data(object_list=tasks, **kwargs)
         return context
-
-
-class DeviceLicenseDownload(DetailView):
-    model = Device
-
-    def get(self, request, *args, **kwargs):
-        device = Device.objects.get(pk=kwargs["pk"])
-
-        return generate_zipped_license_response(device, request)

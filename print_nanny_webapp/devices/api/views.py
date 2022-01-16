@@ -283,22 +283,6 @@ class DeviceViewSet(
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-    @action(detail=True, methods=["GET"], url_path="generate-license")
-    def generate_license(self, request: Request, *args: Any, **kwargs: Any) -> Response:
-        device = Device.objects.get(pk=kwargs["id"])
-        return generate_zipped_license_response(device, request)
-
-    @action(detail=True, methods=["GET"], url_path="active-license")
-    def active_license(self, request: Request, *args: Any, **kwargs: Any) -> Response:
-        device = Device.objects.get(pk=kwargs["id"])
-
-        if device.active_license:
-            serializer = LicenseSerializer(
-                device.active_license, context=dict(request=request)
-            )
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        raise Http404
-
 
 ###
 # SystemInfo views
