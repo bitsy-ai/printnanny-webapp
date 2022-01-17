@@ -32,6 +32,7 @@ from .serializers import (
     PrinterControllerSerializer,
     TaskSerializer,
     TaskStatusSerializer,
+    OnboardingTaskSerializer,
 )
 from ..models import (
     Camera,
@@ -43,6 +44,7 @@ from ..models import (
     PrinterController,
     Task,
     TaskStatus,
+    OnboardingTask,
 )
 
 from print_nanny_webapp.utils.api.exceptions import AlreadyExists
@@ -92,6 +94,42 @@ class TaskViewSet(
 ):
     serializer_class = TaskSerializer
     queryset = Task.objects.all()
+    lookup_field = "id"
+
+
+@extend_schema_view(
+    # GET many tasks
+    list=extend_schema(
+        responses={
+            200: OnboardingTaskSerializer(many=True),
+        }
+        | generic_list_errors
+    ),
+    # POST tasks
+    create=extend_schema(
+        request=OnboardingTaskSerializer,
+        responses={
+            201: OnboardingTaskSerializer,
+        }
+        | generic_create_errors,
+    ),
+    # GET one task
+    retreive=extend_schema(
+        request=OnboardingTaskSerializer,
+        responses={
+            200: OnboardingTaskSerializer,
+        }
+        | generic_get_errors,
+    ),
+)
+class OnboardingTaskViewSet(
+    GenericViewSet,
+    ListModelMixin,
+    RetrieveModelMixin,
+    CreateModelMixin,
+):
+    serializer_class = OnboardingTaskSerializer
+    queryset = OnboardingTask.objects.all()
     lookup_field = "id"
 
 
@@ -331,8 +369,29 @@ class PublicKeyViewSet(
     queryset = PublicKey.objects.all()
     lookup_field = "id"
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+    @extend_schema(
+        operation_id="public_key_update_or_create",
+        responses={
+            # 400: PrinterProfileSerializer,
+            200: PublicKeySerializer,
+            201: PublicKeySerializer,
+        }
+        | generic_create_errors
+        | generic_update_errors,
+    )
+    @action(methods=["post"], detail=False, url_path="update-or-create")
+    def update_or_create(self, request, device_id=None):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            instance, created = serializer.update_or_create(
+                serializer.validated_data, device_id
+            )
+            response_serializer = self.get_serializer(instance)
+            if not created:
+                return Response(response_serializer.data, status=status.HTTP_200_OK)
+            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 ##
@@ -380,8 +439,29 @@ class JanusAuthViewSet(
     queryset = JanusAuth.objects.all()
     lookup_field = "id"
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+    @extend_schema(
+        operation_id="janus_auth_update_or_create",
+        responses={
+            # 400: PrinterProfileSerializer,
+            200: JanusAuthSerializer,
+            201: JanusAuthSerializer,
+        }
+        | generic_create_errors
+        | generic_update_errors,
+    )
+    @action(methods=["post"], detail=False, url_path="update-or-create")
+    def update_or_create(self, request, device_id=None):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            instance, created = serializer.update_or_create(
+                serializer.validated_data, device_id
+            )
+            response_serializer = self.get_serializer(instance)
+            if not created:
+                return Response(response_serializer.data, status=status.HTTP_200_OK)
+            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 ###
@@ -441,11 +521,8 @@ class SystemInfoViewSet(
     queryset = SystemInfo.objects.all()
     lookup_field = "id"
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-
     @extend_schema(
-        operation_id="device_info_update_or_create",
+        operation_id="system_info_update_or_create",
         responses={
             # 400: PrinterProfileSerializer,
             200: SystemInfoSerializer,
@@ -548,9 +625,6 @@ class CloudiotDeviceViewSet(
     queryset = CloudiotDevice.objects.all()
     lookup_field = "id"
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-
 
 ##
 # Camera
@@ -595,9 +669,6 @@ class CameraViewSet(
     serializer_class = CameraSerializer
     queryset = Camera.objects.all()
     lookup_field = "id"
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
 
 
 ##

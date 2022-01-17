@@ -18,6 +18,7 @@ from .enum import (
     PrinterSoftwareType,
     TaskStatusType,
     TaskType,
+    OnboardingTaskType,
 )
 
 UserModel = get_user_model()
@@ -39,6 +40,7 @@ class Device(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
 
     class Meta:
+        index_together = (("hostname", "created_dt", "updated_dt"),)
         constraints = [
             UniqueConstraint(
                 fields=["user", "hostname"],
@@ -49,8 +51,8 @@ class Device(SafeDeleteModel):
 
     monitoring_active = models.BooleanField(default=False)
 
-    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
-    updated_dt = models.DateTimeField(db_index=True, auto_now=True)
+    created_dt = models.DateTimeField(auto_now_add=True)
+    updated_dt = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(
         UserModel, on_delete=models.CASCADE, related_name="devices"
     )
@@ -125,7 +127,7 @@ class JanusAuth(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
 
     class Meta:
-        index_together = ("created_dt", "device")
+        index_together = ("device", "created_dt", "updated_dt")
         constraints = [
             UniqueConstraint(
                 fields=["device"],
@@ -140,6 +142,7 @@ class JanusAuth(SafeDeleteModel):
         Device, on_delete=models.CASCADE, related_name="janus_auths"
     )
     created_dt = models.DateTimeField(auto_now_add=True)
+    updated_dt = models.DateTimeField(auto_now=True)
 
     @property
     def user(self):
@@ -154,7 +157,7 @@ class PublicKey(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
 
     class Meta:
-        index_together = ("created_dt", "device")
+        index_together = ("device", "created_dt", "updated_dt")
         constraints = [
             UniqueConstraint(
                 fields=["device"],
@@ -171,6 +174,7 @@ class PublicKey(SafeDeleteModel):
         Device, on_delete=models.CASCADE, related_name="public_keys"
     )
     created_dt = models.DateTimeField(auto_now_add=True)
+    updated_dt = models.DateTimeField(auto_now=True)
 
     @property
     def user(self):
@@ -185,6 +189,7 @@ class SystemInfo(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
 
     class Meta:
+        index_together = ("device", "created_dt", "updated_dt")
         constraints = [
             UniqueConstraint(
                 fields=["device"],
@@ -192,6 +197,9 @@ class SystemInfo(SafeDeleteModel):
                 name="unique_device_info_per_device",
             )
         ]
+
+    created_dt = models.DateTimeField(auto_now_add=True)
+    updated_dt = models.DateTimeField(auto_now=True)
 
     machine_id = models.CharField(
         max_length=255, help_text="Populated from /etc/machine-id"
@@ -473,3 +481,13 @@ class PrinterController(PolymorphicModel, SafeDeleteModel):
         choices=PrinterSoftwareType.choices,
         default=PrinterSoftwareType.OCTOPRINT,
     )
+
+
+class OnboardingTask(models.Model):
+
+    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
+    device = models.ForeignKey(
+        Device, on_delete=models.CASCADE, related_name="onboarding_tasks"
+    )
+    task = models.CharField(max_length=32, choices=OnboardingTaskType.choices)
+    status = models.CharField(max_length=32, choices=TaskStatusType.choices)

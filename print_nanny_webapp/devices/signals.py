@@ -8,9 +8,10 @@ from rest_framework.renderers import JSONRenderer
 from print_nanny_webapp.devices.services import update_or_create_cloudiot_device
 
 
-from .models import Device, PublicKey, TaskStatus, Task
+from .models import Device, PublicKey, TaskStatus, Task, OnboardingTask
 from .enum import (
     TaskType,
+    OnboardingTaskType,
     TaskStatusType,
 )
 from .api.serializers import TaskSerializer
@@ -24,12 +25,12 @@ def create_public_key_cloudiotdevice(sender, instance: PublicKey, created, **kwa
         update_or_create_cloudiot_device(instance)
 
 
-# when device is created, automatically create Task with type ACTIVATE_LICENSE
-@receiver(post_save, sender=Device, dispatch_uid="create_task_check_license")
-def create_license_activate_task(sender, instance, created, **kwargs):
+# when device is created, automatically create OnboardingTask with type LINK
+@receiver(post_save, sender=Device, dispatch_uid="create_device_link_task")
+def create_device_link_task(sender, instance, created, **kwargs):
     if created:
-        Task.objects.create(
-            task_type=TaskType.SYSTEM_CHECK,
+        OnboardingTask.objects.create(
+            task_type=OnboardingTask.LINK,
             device=instance,
         )
 

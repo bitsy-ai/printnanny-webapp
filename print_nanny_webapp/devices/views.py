@@ -96,3 +96,8 @@ class DeviceDetailView(DetailView, MultipleObjectMixin):
         tasks = self.get_object().tasks.all()
         context = super().get_context_data(object_list=tasks, **kwargs)
         return context
+
+
+class DeviceOnboardingView(DetailView):
+    model = Device
+    template_name = "device-onboarding.html"
