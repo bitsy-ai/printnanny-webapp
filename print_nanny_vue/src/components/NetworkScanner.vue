@@ -3,7 +3,8 @@ import useVuelidate from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 
 export default {
-  props: {},
+  props: {
+  },
   data: function () {
     return {
       form: { hostname: '' },
@@ -11,7 +12,8 @@ export default {
       maxRetry: 5,
       retryDelay: 5000,
       messages: [],
-      retryTimeout: null
+      retryTimeout: null,
+      port: 9001
     }
   },
   setup () {
@@ -46,6 +48,32 @@ export default {
     },
     connect () {
       this.messages.push(`Initializing connection to ${this.form.hostname}...`)
+      const url = `http://${this.form.hostname}:${this.port}`
+      const request = new Request(`http://${this.form.hostname}:${this.port}`, { mode: 'no-cors' })
+      fetch(request)
+        .then(response => response.blob())
+        .then(blob => {
+          this.loading = false
+          const successMsg = `Success connecting to ${url} ✅`
+          const redirectMsg = 'Redirecting in 4 seconds...'
+          this.messages.push(successMsg)
+          setTimeout((scope) => {
+            const redirectMsg = 'Redirecting in 3 seconds...'
+            this.messages.push(redirectMsg)
+          }, 1000)
+          setTimeout((scope) => {
+            const redirectMsg = 'Redirecting in 2 seconds...'
+            this.messages.push(redirectMsg)
+          }, 2000)
+          setTimeout((scope) => {
+            const redirectMsg = 'Redirecting in 1 second...'
+            this.messages.push(redirectMsg)
+          }, 3000)
+          setTimeout((scope) => {
+            window.location.href = url
+          }, 4000)
+          this.messages.push(redirectMsg)
+        })
       this.retryTimeout = setTimeout(function (scope) {
         scope.maxRetry -= 1
         if (scope.maxRetry >= 0) {
@@ -91,7 +119,7 @@ export default {
       </b-row>
     </b-form>
     <b-row>
-<pre>
+<pre class="text-left">
 <br>
 <code v-text="logs">
 
