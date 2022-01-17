@@ -8,55 +8,58 @@ from django.utils.timezone import utc
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devices', '0043_onboardingtask'),
+        ("devices", "0043_onboardingtask"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='janusauth',
-            name='updated_dt',
+            model_name="janusauth",
+            name="updated_dt",
             field=models.DateTimeField(auto_now=True),
         ),
         migrations.AddField(
-            model_name='publickey',
-            name='updated_dt',
+            model_name="publickey",
+            name="updated_dt",
             field=models.DateTimeField(auto_now=True),
         ),
         migrations.AddField(
-            model_name='systeminfo',
-            name='created_dt',
-            field=models.DateTimeField(auto_now_add=True, default=datetime.datetime(2022, 1, 17, 5, 2, 20, 442727, tzinfo=utc)),
+            model_name="systeminfo",
+            name="created_dt",
+            field=models.DateTimeField(
+                auto_now_add=True,
+                default=datetime.datetime(2022, 1, 17, 5, 2, 20, 442727, tzinfo=utc),
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='systeminfo',
-            name='updated_dt',
+            model_name="systeminfo",
+            name="updated_dt",
             field=models.DateTimeField(auto_now=True),
         ),
         migrations.AlterField(
-            model_name='device',
-            name='created_dt',
+            model_name="device",
+            name="created_dt",
             field=models.DateTimeField(auto_now_add=True),
         ),
         migrations.AlterField(
-            model_name='device',
-            name='updated_dt',
+            model_name="device",
+            name="updated_dt",
             field=models.DateTimeField(auto_now=True),
         ),
         migrations.AlterIndexTogether(
-            name='device',
-            index_together={('hostname', 'created_dt', 'updated_dt')},
+            name="device",
+            index_together={("hostname", "created_dt", "updated_dt")},
         ),
         migrations.AlterIndexTogether(
-            name='janusauth',
-            index_together={('device', 'created_dt', 'updated_dt')},
+            name="janusauth",
+            index_together={("device", "created_dt", "updated_dt")},
         ),
         migrations.AlterIndexTogether(
-            name='publickey',
-            index_together={('device', 'created_dt', 'updated_dt')},
+            name="publickey",
+            index_together={("device", "created_dt", "updated_dt")},
         ),
         migrations.AlterIndexTogether(
-            name='systeminfo',
-            index_together={('device', 'created_dt', 'updated_dt')},
+            name="systeminfo",
+            index_together={("device", "created_dt", "updated_dt")},
         ),
     ]

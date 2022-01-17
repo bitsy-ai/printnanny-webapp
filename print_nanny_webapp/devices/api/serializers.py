@@ -113,11 +113,21 @@ class PublicKeySerializer(serializers.ModelSerializer):
         model = PublicKey
         exclude = ("deleted",)
 
+    def update_or_create(self, validated_data, device):
+        return PublicKeySerializer.objects.filter(device=device).update_or_create(
+            device=device, defaults=validated_data
+        )
+
 
 class JanusAuthSerializer(serializers.ModelSerializer):
     class Meta:
         model = JanusAuth
         exclude = ("deleted",)
+
+    def update_or_create(self, validated_data, device):
+        return JanusAuthSerializer.objects.filter(device=device).update_or_create(
+            device=device, defaults=validated_data
+        )
 
 
 class DeviceSerializer(serializers.ModelSerializer):
