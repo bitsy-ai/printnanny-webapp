@@ -100,4 +100,4 @@ class DeviceDetailView(DetailView, MultipleObjectMixin):
 
 class DeviceOnboardingView(DetailView):
     model = Device
-    template_name = "devices/device-onboarding.html"
+    template_name = "device-onboarding.html"
