@@ -12,9 +12,9 @@ from print_nanny_webapp.devices.api.views import (
     DeviceViewSet,
     PrinterControllerViewSet,
     TaskViewSet,
-    TaskStatusViewSet
+    TaskStatusViewSet,
+    OnboardingTaskViewSet
 )
-from print_nanny_webapp.devices.models import JanusAuth
 from print_nanny_webapp.ml_ops.api.views import (
     ModelArtifactViewSet, ExperimentDeviceConfigViewSet, DeviceCalibrationViewSet, ExperimentViewSet
 )
@@ -67,6 +67,7 @@ devices_router.register(r'system-info', SystemInfoViewSet, basename='system-info
 devices_router.register(r'cameras', CameraViewSet, basename='cameras')
 devices_router.register(r'cloud-iot-devices', CloudiotDeviceViewSet , basename='cloud-iot-devices')
 devices_router.register(r'printer-controllers', PrinterControllerViewSet, basename='printer-controllers')
+devices_router.register(r'onboarding-tasks', OnboardingTaskViewSet, basename='onboarding-tasks')
 
 devices_router.register(r'tasks', TaskViewSet, basename='tasks')
 

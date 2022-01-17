@@ -32,6 +32,7 @@ from .serializers import (
     PrinterControllerSerializer,
     TaskSerializer,
     TaskStatusSerializer,
+    OnboardingTaskSerializer,
 )
 from ..models import (
     Camera,
@@ -43,6 +44,7 @@ from ..models import (
     PrinterController,
     Task,
     TaskStatus,
+    OnboardingTask,
 )
 
 from print_nanny_webapp.utils.api.exceptions import AlreadyExists
@@ -92,6 +94,42 @@ class TaskViewSet(
 ):
     serializer_class = TaskSerializer
     queryset = Task.objects.all()
+    lookup_field = "id"
+
+
+@extend_schema_view(
+    # GET many tasks
+    list=extend_schema(
+        responses={
+            200: OnboardingTaskSerializer(many=True),
+        }
+        | generic_list_errors
+    ),
+    # POST tasks
+    create=extend_schema(
+        request=OnboardingTaskSerializer,
+        responses={
+            201: OnboardingTaskSerializer,
+        }
+        | generic_create_errors,
+    ),
+    # GET one task
+    retreive=extend_schema(
+        request=OnboardingTaskSerializer,
+        responses={
+            200: OnboardingTaskSerializer,
+        }
+        | generic_get_errors,
+    ),
+)
+class OnboardingTaskViewSet(
+    GenericViewSet,
+    ListModelMixin,
+    RetrieveModelMixin,
+    CreateModelMixin,
+):
+    serializer_class = OnboardingTaskSerializer
+    queryset = OnboardingTask.objects.all()
     lookup_field = "id"
 
 

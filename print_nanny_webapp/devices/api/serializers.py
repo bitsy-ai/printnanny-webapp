@@ -11,6 +11,7 @@ from print_nanny_webapp.devices.models import (
     Task,
     TaskStatus,
     PrinterController,
+    OnboardingTask,
 )
 from ..enum import (
     CameraType,
@@ -20,10 +21,16 @@ from ..enum import (
     TaskType,
     TaskStatusType,
     PrintNannyEnv,
+    OnboardingTaskType,
 )
 from print_nanny_webapp.users.api.serializers import UserSerializer
 
 User = get_user_model()
+
+
+class OnboardingTaskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OnboardingTask
 
 
 class CameraSerializer(serializers.ModelSerializer):
