@@ -15,6 +15,10 @@
 pub struct SystemInfo {
     #[serde(rename = "id")]
     pub id: i32,
+    #[serde(rename = "created_dt")]
+    pub created_dt: String,
+    #[serde(rename = "updated_dt")]
+    pub updated_dt: String,
     /// Populated from /etc/machine-id
     #[serde(rename = "machine_id")]
     pub machine_id: String,
@@ -42,9 +46,11 @@ pub struct SystemInfo {
 }
 
 impl SystemInfo {
-    pub fn new(id: i32, machine_id: String, hardware: String, revision: String, model: String, serial: String, cores: i32, ram: i64, image_version: String, device: i32) -> SystemInfo {
+    pub fn new(id: i32, created_dt: String, updated_dt: String, machine_id: String, hardware: String, revision: String, model: String, serial: String, cores: i32, ram: i64, image_version: String, device: i32) -> SystemInfo {
         SystemInfo {
             id,
+            created_dt,
+            updated_dt,
             machine_id,
             hardware,
             revision,

@@ -38,6 +38,8 @@ class TestSystemInfo(unittest.TestCase):
         if include_optional :
             return SystemInfo(
                 id = 56, 
+                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 machine_id = '', 
                 hardware = '', 
                 revision = '', 
@@ -51,6 +53,8 @@ class TestSystemInfo(unittest.TestCase):
         else :
             return SystemInfo(
                 id = 56,
+                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 machine_id = '',
                 hardware = '',
                 revision = '',

@@ -72,6 +72,8 @@ docs/OctoprintProgress.md
 docs/OctoprintProgressRequest.md
 docs/OctoprintPython.md
 docs/OctoprintPythonRequest.md
+docs/OnboardingTask.md
+docs/OnboardingTaskRequest.md
 docs/PaginatedAlertList.md
 docs/PaginatedCameraList.md
 docs/PaginatedCloudiotDeviceList.md
@@ -85,6 +87,7 @@ docs/PaginatedModelArtifactList.md
 docs/PaginatedOctoPrintBackupList.md
 docs/PaginatedOctoPrintDeviceList.md
 docs/PaginatedOctoPrintEventList.md
+docs/PaginatedOnboardingTaskList.md
 docs/PaginatedPrintJobEventList.md
 docs/PaginatedPrintNannyPluginEventList.md
 docs/PaginatedPrintSessionList.md
@@ -143,6 +146,7 @@ docs/SoftwareEnum.md
 docs/SystemInfo.md
 docs/SystemInfoRequest.md
 docs/Task.md
+docs/TaskEnum.md
 docs/TaskRequest.md
 docs/TaskStatus.md
 docs/TaskStatusRequest.md
@@ -237,6 +241,8 @@ src/models/octoprint_progress.rs
 src/models/octoprint_progress_request.rs
 src/models/octoprint_python.rs
 src/models/octoprint_python_request.rs
+src/models/onboarding_task.rs
+src/models/onboarding_task_request.rs
 src/models/paginated_alert_list.rs
 src/models/paginated_camera_list.rs
 src/models/paginated_cloudiot_device_list.rs
@@ -250,6 +256,7 @@ src/models/paginated_model_artifact_list.rs
 src/models/paginated_octo_print_backup_list.rs
 src/models/paginated_octo_print_device_list.rs
 src/models/paginated_octo_print_event_list.rs
+src/models/paginated_onboarding_task_list.rs
 src/models/paginated_print_job_event_list.rs
 src/models/paginated_print_nanny_plugin_event_list.rs
 src/models/paginated_print_session_list.rs
@@ -304,6 +311,7 @@ src/models/software_enum.rs
 src/models/system_info.rs
 src/models/system_info_request.rs
 src/models/task.rs
+src/models/task_enum.rs
 src/models/task_request.rs
 src/models/task_status.rs
 src/models/task_status_request.rs

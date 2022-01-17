@@ -43,6 +43,7 @@ class PublicKey(object):
         'length': 'int',
         'fingerprint': 'str',
         'created_dt': 'datetime',
+        'updated_dt': 'datetime',
         'device': 'int'
     }
 
@@ -53,10 +54,11 @@ class PublicKey(object):
         'length': 'length',
         'fingerprint': 'fingerprint',
         'created_dt': 'created_dt',
+        'updated_dt': 'updated_dt',
         'device': 'device'
     }
 
-    def __init__(self, id=None, pem=None, cipher=None, length=None, fingerprint=None, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, pem=None, cipher=None, length=None, fingerprint=None, created_dt=None, updated_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
         """PublicKey - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -68,6 +70,7 @@ class PublicKey(object):
         self._length = None
         self._fingerprint = None
         self._created_dt = None
+        self._updated_dt = None
         self._device = None
         self.discriminator = None
 
@@ -77,6 +80,7 @@ class PublicKey(object):
         self.length = length
         self.fingerprint = fingerprint
         self.created_dt = created_dt
+        self.updated_dt = updated_dt
         self.device = device
 
     @property
@@ -225,6 +229,29 @@ class PublicKey(object):
             raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
 
         self._created_dt = created_dt
+
+    @property
+    def updated_dt(self):
+        """Gets the updated_dt of this PublicKey.  # noqa: E501
+
+
+        :return: The updated_dt of this PublicKey.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._updated_dt
+
+    @updated_dt.setter
+    def updated_dt(self, updated_dt):
+        """Sets the updated_dt of this PublicKey.
+
+
+        :param updated_dt: The updated_dt of this PublicKey.  # noqa: E501
+        :type updated_dt: datetime
+        """
+        if self.local_vars_configuration.client_side_validation and updated_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `updated_dt`, must not be `None`")  # noqa: E501
+
+        self._updated_dt = updated_dt
 
     @property
     def device(self):

@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.paginated_janus_auth_list import PaginatedJanusAuthList  # noqa: E501
+from printnanny_api_client.models.paginated_onboarding_task_list import PaginatedOnboardingTaskList  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestPaginatedJanusAuthList(unittest.TestCase):
-    """PaginatedJanusAuthList unit test stubs"""
+class TestPaginatedOnboardingTaskList(unittest.TestCase):
+    """PaginatedOnboardingTaskList unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,32 +30,31 @@ class TestPaginatedJanusAuthList(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test PaginatedJanusAuthList
+        """Test PaginatedOnboardingTaskList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.paginated_janus_auth_list.PaginatedJanusAuthList()  # noqa: E501
+        # model = printnanny_api_client.models.paginated_onboarding_task_list.PaginatedOnboardingTaskList()  # noqa: E501
         if include_optional :
-            return PaginatedJanusAuthList(
+            return PaginatedOnboardingTaskList(
                 count = 123, 
                 next = 'http://api.example.org/accounts/?page=4', 
                 previous = 'http://api.example.org/accounts/?page=2', 
                 results = [
-                    printnanny_api_client.models.janus_auth.JanusAuth(
+                    printnanny_api_client.models.onboarding_task.OnboardingTask(
                         id = 56, 
-                        janus_admin_secret = '', 
-                        janus_token = '', 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        task = 'link', 
+                        status = 'failed', 
                         device = 56, )
                     ]
             )
         else :
-            return PaginatedJanusAuthList(
+            return PaginatedOnboardingTaskList(
         )
 
-    def testPaginatedJanusAuthList(self):
-        """Test PaginatedJanusAuthList"""
+    def testPaginatedOnboardingTaskList(self):
+        """Test PaginatedOnboardingTaskList"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

@@ -29,12 +29,6 @@ class TestDevicesApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_device_info_update_or_create(self):
-        """Test case for device_info_update_or_create
-
-        """
-        pass
-
     def test_devices_cameras_create(self):
         """Test case for devices_cameras_create
 
@@ -133,6 +127,24 @@ class TestDevicesApi(unittest.TestCase):
 
     def test_devices_list(self):
         """Test case for devices_list
+
+        """
+        pass
+
+    def test_devices_onboarding_tasks_create(self):
+        """Test case for devices_onboarding_tasks_create
+
+        """
+        pass
+
+    def test_devices_onboarding_tasks_list(self):
+        """Test case for devices_onboarding_tasks_list
+
+        """
+        pass
+
+    def test_devices_onboarding_tasks_retrieve(self):
+        """Test case for devices_onboarding_tasks_retrieve
 
         """
         pass
@@ -283,6 +295,24 @@ class TestDevicesApi(unittest.TestCase):
 
     def test_devices_update(self):
         """Test case for devices_update
+
+        """
+        pass
+
+    def test_janus_auth_update_or_create(self):
+        """Test case for janus_auth_update_or_create
+
+        """
+        pass
+
+    def test_public_key_update_or_create(self):
+        """Test case for public_key_update_or_create
+
+        """
+        pass
+
+    def test_system_info_update_or_create(self):
+        """Test case for system_info_update_or_create
 
         """
         pass

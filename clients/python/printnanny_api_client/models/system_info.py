@@ -38,6 +38,8 @@ class SystemInfo(object):
     """
     openapi_types = {
         'id': 'int',
+        'created_dt': 'datetime',
+        'updated_dt': 'datetime',
         'machine_id': 'str',
         'hardware': 'str',
         'revision': 'str',
@@ -51,6 +53,8 @@ class SystemInfo(object):
 
     attribute_map = {
         'id': 'id',
+        'created_dt': 'created_dt',
+        'updated_dt': 'updated_dt',
         'machine_id': 'machine_id',
         'hardware': 'hardware',
         'revision': 'revision',
@@ -62,13 +66,15 @@ class SystemInfo(object):
         'device': 'device'
     }
 
-    def __init__(self, id=None, machine_id=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, image_version=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, updated_dt=None, machine_id=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, image_version=None, device=None, local_vars_configuration=None):  # noqa: E501
         """SystemInfo - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
+        self._created_dt = None
+        self._updated_dt = None
         self._machine_id = None
         self._hardware = None
         self._revision = None
@@ -81,6 +87,8 @@ class SystemInfo(object):
         self.discriminator = None
 
         self.id = id
+        self.created_dt = created_dt
+        self.updated_dt = updated_dt
         self.machine_id = machine_id
         self.hardware = hardware
         self.revision = revision
@@ -113,6 +121,52 @@ class SystemInfo(object):
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
+
+    @property
+    def created_dt(self):
+        """Gets the created_dt of this SystemInfo.  # noqa: E501
+
+
+        :return: The created_dt of this SystemInfo.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._created_dt
+
+    @created_dt.setter
+    def created_dt(self, created_dt):
+        """Sets the created_dt of this SystemInfo.
+
+
+        :param created_dt: The created_dt of this SystemInfo.  # noqa: E501
+        :type created_dt: datetime
+        """
+        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
+
+        self._created_dt = created_dt
+
+    @property
+    def updated_dt(self):
+        """Gets the updated_dt of this SystemInfo.  # noqa: E501
+
+
+        :return: The updated_dt of this SystemInfo.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._updated_dt
+
+    @updated_dt.setter
+    def updated_dt(self, updated_dt):
+        """Sets the updated_dt of this SystemInfo.
+
+
+        :param updated_dt: The updated_dt of this SystemInfo.  # noqa: E501
+        :type updated_dt: datetime
+        """
+        if self.local_vars_configuration.client_side_validation and updated_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `updated_dt`, must not be `None`")  # noqa: E501
+
+        self._updated_dt = updated_dt
 
     @property
     def machine_id(self):

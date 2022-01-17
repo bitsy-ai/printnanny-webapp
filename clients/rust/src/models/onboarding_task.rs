@@ -12,29 +12,26 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct JanusAuth {
+pub struct OnboardingTask {
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "janus_admin_secret")]
-    pub janus_admin_secret: String,
-    #[serde(rename = "janus_token")]
-    pub janus_token: String,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
-    #[serde(rename = "updated_dt")]
-    pub updated_dt: String,
+    #[serde(rename = "task")]
+    pub task: crate::models::TaskEnum,
+    #[serde(rename = "status")]
+    pub status: crate::models::TaskStatusType,
     #[serde(rename = "device")]
     pub device: i32,
 }
 
-impl JanusAuth {
-    pub fn new(id: i32, janus_admin_secret: String, janus_token: String, created_dt: String, updated_dt: String, device: i32) -> JanusAuth {
-        JanusAuth {
+impl OnboardingTask {
+    pub fn new(id: i32, created_dt: String, task: crate::models::TaskEnum, status: crate::models::TaskStatusType, device: i32) -> OnboardingTask {
+        OnboardingTask {
             id,
-            janus_admin_secret,
-            janus_token,
             created_dt,
-            updated_dt,
+            task,
+            status,
             device,
         }
     }
