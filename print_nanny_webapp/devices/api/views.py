@@ -479,9 +479,6 @@ class SystemInfoViewSet(
     queryset = SystemInfo.objects.all()
     lookup_field = "id"
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-
     @extend_schema(
         operation_id="device_info_update_or_create",
         responses={
@@ -586,9 +583,6 @@ class CloudiotDeviceViewSet(
     queryset = CloudiotDevice.objects.all()
     lookup_field = "id"
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-
 
 ##
 # Camera
@@ -633,9 +627,6 @@ class CameraViewSet(
     serializer_class = CameraSerializer
     queryset = Camera.objects.all()
     lookup_field = "id"
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
 
 
 ##
