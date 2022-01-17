@@ -18,6 +18,7 @@ from .enum import (
     PrinterSoftwareType,
     TaskStatusType,
     TaskType,
+    OnboardingTaskType,
 )
 
 UserModel = get_user_model()
@@ -473,3 +474,13 @@ class PrinterController(PolymorphicModel, SafeDeleteModel):
         choices=PrinterSoftwareType.choices,
         default=PrinterSoftwareType.OCTOPRINT,
     )
+
+
+class OnboardingTask(models.Model):
+
+    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
+    device = models.ForeignKey(
+        Device, on_delete=models.CASCADE, related_name="onboarding_tasks"
+    )
+    task = models.CharField(max_length=32, choices=OnboardingTaskType.choices)
+    status = models.CharField(max_length=32, choices=TaskStatusType.choices)
