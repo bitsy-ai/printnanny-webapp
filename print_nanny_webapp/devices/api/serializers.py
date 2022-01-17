@@ -31,6 +31,7 @@ User = get_user_model()
 class OnboardingTaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = OnboardingTask
+        fields = "__all__"
 
 
 class CameraSerializer(serializers.ModelSerializer):
