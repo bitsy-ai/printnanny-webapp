@@ -115,7 +115,7 @@ class PublicKeySerializer(serializers.ModelSerializer):
         exclude = ("deleted",)
 
     def update_or_create(self, validated_data, device):
-        return PublicKeySerializer.objects.filter(device=device).update_or_create(
+        return PublicKey.objects.filter(device=device).update_or_create(
             device=device, defaults=validated_data
         )
 
@@ -126,34 +126,9 @@ class JanusAuthSerializer(serializers.ModelSerializer):
         exclude = ("deleted",)
 
     def update_or_create(self, validated_data, device):
-        return JanusAuthSerializer.objects.filter(device=device).update_or_create(
+        return JanusAuth.objects.filter(device=device).update_or_create(
             device=device, defaults=validated_data
         )
-
-
-class DeviceSerializer(serializers.ModelSerializer):
-
-    cloudiot_device = CloudiotDeviceSerializer(read_only=True)
-    cameras = CameraSerializer(read_only=True, many=True)
-    janus_local_url = serializers.CharField(read_only=True)
-    dashboard_url = serializers.CharField(read_only=True)
-    printer_controllers = PrinterControllerSerializer(read_only=True, many=True)
-    release_channel = serializers.ChoiceField(
-        choices=DeviceReleaseChannel.choices,
-        default=DeviceReleaseChannel.STABLE,
-    )
-
-    monitoring_active = serializers.BooleanField(default=False)
-
-    user = UserSerializer(read_only=True)
-    last_task = TaskSerializer(read_only=True)
-    active_tasks = TaskSerializer(many=True, read_only=True)
-    active_cameras = CameraSerializer(many=True, read_only=True)
-
-    class Meta:
-        model = Device
-        depth = 2
-        exclude = ("deleted",)
 
 
 class SystemInfoSerializer(serializers.ModelSerializer):
@@ -165,3 +140,29 @@ class SystemInfoSerializer(serializers.ModelSerializer):
         return SystemInfo.objects.filter(device=device).update_or_create(
             device=device, defaults=validated_data
         )
+
+
+class DeviceSerializer(serializers.ModelSerializer):
+
+    active_cameras = CameraSerializer(many=True, read_only=True)
+    active_tasks = TaskSerializer(many=True, read_only=True)
+    cameras = CameraSerializer(read_only=True, many=True)
+    cloudiot_device = CloudiotDeviceSerializer(read_only=True)
+    dashboard_url = serializers.CharField(read_only=True)
+    janus_local_url = serializers.CharField(read_only=True)
+    last_task = TaskSerializer(read_only=True)
+    monitoring_active = serializers.BooleanField(default=False)
+    printer_controllers = PrinterControllerSerializer(read_only=True, many=True)
+    user = UserSerializer(read_only=True)
+
+    release_channel = serializers.ChoiceField(
+        choices=DeviceReleaseChannel.choices,
+        default=DeviceReleaseChannel.STABLE,
+    )
+    system_info = SystemInfoSerializer(read_only=True)
+    public_key = PublicKeySerializer(read_only=True)
+
+    class Meta:
+        model = Device
+        depth = 2
+        exclude = ("deleted",)
