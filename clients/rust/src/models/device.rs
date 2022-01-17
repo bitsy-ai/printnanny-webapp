@@ -15,28 +15,32 @@
 pub struct Device {
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "cloudiot_device")]
-    pub cloudiot_device: Option<Box<crate::models::CloudiotDevice>>,
-    #[serde(rename = "cameras")]
-    pub cameras: Vec<crate::models::Camera>,
-    #[serde(rename = "janus_local_url")]
-    pub janus_local_url: String,
-    #[serde(rename = "dashboard_url")]
-    pub dashboard_url: String,
-    #[serde(rename = "printer_controllers")]
-    pub printer_controllers: Vec<crate::models::PrinterController>,
-    #[serde(rename = "release_channel", skip_serializing_if = "Option::is_none")]
-    pub release_channel: Option<Box<crate::models::ReleaseChannelEnum>>,
-    #[serde(rename = "monitoring_active", skip_serializing_if = "Option::is_none")]
-    pub monitoring_active: Option<bool>,
-    #[serde(rename = "user")]
-    pub user: Option<Box<crate::models::User>>,
-    #[serde(rename = "last_task")]
-    pub last_task: Option<Box<crate::models::Task>>,
-    #[serde(rename = "active_tasks")]
-    pub active_tasks: Vec<crate::models::Task>,
     #[serde(rename = "active_cameras")]
     pub active_cameras: Vec<crate::models::Camera>,
+    #[serde(rename = "active_tasks")]
+    pub active_tasks: Vec<crate::models::Task>,
+    #[serde(rename = "cameras")]
+    pub cameras: Vec<crate::models::Camera>,
+    #[serde(rename = "cloudiot_device")]
+    pub cloudiot_device: Option<Box<crate::models::CloudiotDevice>>,
+    #[serde(rename = "dashboard_url")]
+    pub dashboard_url: String,
+    #[serde(rename = "janus_local_url")]
+    pub janus_local_url: String,
+    #[serde(rename = "last_task")]
+    pub last_task: Option<Box<crate::models::Task>>,
+    #[serde(rename = "monitoring_active", skip_serializing_if = "Option::is_none")]
+    pub monitoring_active: Option<bool>,
+    #[serde(rename = "printer_controllers")]
+    pub printer_controllers: Vec<crate::models::PrinterController>,
+    #[serde(rename = "user")]
+    pub user: Option<Box<crate::models::User>>,
+    #[serde(rename = "release_channel", skip_serializing_if = "Option::is_none")]
+    pub release_channel: Option<Box<crate::models::ReleaseChannelEnum>>,
+    #[serde(rename = "system_info")]
+    pub system_info: Option<Box<crate::models::SystemInfo>>,
+    #[serde(rename = "public_key")]
+    pub public_key: Option<Box<crate::models::PublicKey>>,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
     #[serde(rename = "updated_dt")]
@@ -47,20 +51,22 @@ pub struct Device {
 }
 
 impl Device {
-    pub fn new(id: i32, cloudiot_device: Option<crate::models::CloudiotDevice>, cameras: Vec<crate::models::Camera>, janus_local_url: String, dashboard_url: String, printer_controllers: Vec<crate::models::PrinterController>, user: Option<crate::models::User>, last_task: Option<crate::models::Task>, active_tasks: Vec<crate::models::Task>, active_cameras: Vec<crate::models::Camera>, created_dt: String, updated_dt: String) -> Device {
+    pub fn new(id: i32, active_cameras: Vec<crate::models::Camera>, active_tasks: Vec<crate::models::Task>, cameras: Vec<crate::models::Camera>, cloudiot_device: Option<crate::models::CloudiotDevice>, dashboard_url: String, janus_local_url: String, last_task: Option<crate::models::Task>, printer_controllers: Vec<crate::models::PrinterController>, user: Option<crate::models::User>, system_info: Option<crate::models::SystemInfo>, public_key: Option<crate::models::PublicKey>, created_dt: String, updated_dt: String) -> Device {
         Device {
             id,
-            cloudiot_device: cloudiot_device.map(Box::new),
-            cameras,
-            janus_local_url,
-            dashboard_url,
-            printer_controllers,
-            release_channel: None,
-            monitoring_active: None,
-            user: user.map(Box::new),
-            last_task: last_task.map(Box::new),
-            active_tasks,
             active_cameras,
+            active_tasks,
+            cameras,
+            cloudiot_device: cloudiot_device.map(Box::new),
+            dashboard_url,
+            janus_local_url,
+            last_task: last_task.map(Box::new),
+            monitoring_active: None,
+            printer_controllers,
+            user: user.map(Box::new),
+            release_channel: None,
+            system_info: system_info.map(Box::new),
+            public_key: public_key.map(Box::new),
             created_dt,
             updated_dt,
             hostname: None,

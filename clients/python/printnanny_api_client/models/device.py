@@ -38,17 +38,19 @@ class Device(object):
     """
     openapi_types = {
         'id': 'int',
-        'cloudiot_device': 'CloudiotDevice',
-        'cameras': 'list[Camera]',
-        'janus_local_url': 'str',
-        'dashboard_url': 'str',
-        'printer_controllers': 'list[PrinterController]',
-        'release_channel': 'ReleaseChannelEnum',
-        'monitoring_active': 'bool',
-        'user': 'User',
-        'last_task': 'Task',
-        'active_tasks': 'list[Task]',
         'active_cameras': 'list[Camera]',
+        'active_tasks': 'list[Task]',
+        'cameras': 'list[Camera]',
+        'cloudiot_device': 'CloudiotDevice',
+        'dashboard_url': 'str',
+        'janus_local_url': 'str',
+        'last_task': 'Task',
+        'monitoring_active': 'bool',
+        'printer_controllers': 'list[PrinterController]',
+        'user': 'User',
+        'release_channel': 'ReleaseChannelEnum',
+        'system_info': 'SystemInfo',
+        'public_key': 'PublicKey',
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
         'hostname': 'str'
@@ -56,58 +58,64 @@ class Device(object):
 
     attribute_map = {
         'id': 'id',
-        'cloudiot_device': 'cloudiot_device',
-        'cameras': 'cameras',
-        'janus_local_url': 'janus_local_url',
-        'dashboard_url': 'dashboard_url',
-        'printer_controllers': 'printer_controllers',
-        'release_channel': 'release_channel',
-        'monitoring_active': 'monitoring_active',
-        'user': 'user',
-        'last_task': 'last_task',
-        'active_tasks': 'active_tasks',
         'active_cameras': 'active_cameras',
+        'active_tasks': 'active_tasks',
+        'cameras': 'cameras',
+        'cloudiot_device': 'cloudiot_device',
+        'dashboard_url': 'dashboard_url',
+        'janus_local_url': 'janus_local_url',
+        'last_task': 'last_task',
+        'monitoring_active': 'monitoring_active',
+        'printer_controllers': 'printer_controllers',
+        'user': 'user',
+        'release_channel': 'release_channel',
+        'system_info': 'system_info',
+        'public_key': 'public_key',
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
         'hostname': 'hostname'
     }
 
-    def __init__(self, id=None, cloudiot_device=None, cameras=None, janus_local_url=None, dashboard_url=None, printer_controllers=None, release_channel=None, monitoring_active=False, user=None, last_task=None, active_tasks=None, active_cameras=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, active_cameras=None, active_tasks=None, cameras=None, cloudiot_device=None, dashboard_url=None, janus_local_url=None, last_task=None, monitoring_active=False, printer_controllers=None, user=None, release_channel=None, system_info=None, public_key=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
-        self._cloudiot_device = None
-        self._cameras = None
-        self._janus_local_url = None
-        self._dashboard_url = None
-        self._printer_controllers = None
-        self._release_channel = None
-        self._monitoring_active = None
-        self._user = None
-        self._last_task = None
-        self._active_tasks = None
         self._active_cameras = None
+        self._active_tasks = None
+        self._cameras = None
+        self._cloudiot_device = None
+        self._dashboard_url = None
+        self._janus_local_url = None
+        self._last_task = None
+        self._monitoring_active = None
+        self._printer_controllers = None
+        self._user = None
+        self._release_channel = None
+        self._system_info = None
+        self._public_key = None
         self._created_dt = None
         self._updated_dt = None
         self._hostname = None
         self.discriminator = None
 
         self.id = id
-        self.cloudiot_device = cloudiot_device
+        self.active_cameras = active_cameras
+        self.active_tasks = active_tasks
         self.cameras = cameras
-        self.janus_local_url = janus_local_url
+        self.cloudiot_device = cloudiot_device
         self.dashboard_url = dashboard_url
-        self.printer_controllers = printer_controllers
-        self.release_channel = release_channel
+        self.janus_local_url = janus_local_url
+        self.last_task = last_task
         if monitoring_active is not None:
             self.monitoring_active = monitoring_active
+        self.printer_controllers = printer_controllers
         self.user = user
-        self.last_task = last_task
-        self.active_tasks = active_tasks
-        self.active_cameras = active_cameras
+        self.release_channel = release_channel
+        self.system_info = system_info
+        self.public_key = public_key
         self.created_dt = created_dt
         self.updated_dt = updated_dt
         if hostname is not None:
@@ -137,201 +145,27 @@ class Device(object):
         self._id = id
 
     @property
-    def cloudiot_device(self):
-        """Gets the cloudiot_device of this Device.  # noqa: E501
+    def active_cameras(self):
+        """Gets the active_cameras of this Device.  # noqa: E501
 
 
-        :return: The cloudiot_device of this Device.  # noqa: E501
-        :rtype: CloudiotDevice
-        """
-        return self._cloudiot_device
-
-    @cloudiot_device.setter
-    def cloudiot_device(self, cloudiot_device):
-        """Sets the cloudiot_device of this Device.
-
-
-        :param cloudiot_device: The cloudiot_device of this Device.  # noqa: E501
-        :type cloudiot_device: CloudiotDevice
-        """
-
-        self._cloudiot_device = cloudiot_device
-
-    @property
-    def cameras(self):
-        """Gets the cameras of this Device.  # noqa: E501
-
-
-        :return: The cameras of this Device.  # noqa: E501
+        :return: The active_cameras of this Device.  # noqa: E501
         :rtype: list[Camera]
         """
-        return self._cameras
+        return self._active_cameras
 
-    @cameras.setter
-    def cameras(self, cameras):
-        """Sets the cameras of this Device.
+    @active_cameras.setter
+    def active_cameras(self, active_cameras):
+        """Sets the active_cameras of this Device.
 
 
-        :param cameras: The cameras of this Device.  # noqa: E501
-        :type cameras: list[Camera]
+        :param active_cameras: The active_cameras of this Device.  # noqa: E501
+        :type active_cameras: list[Camera]
         """
-        if self.local_vars_configuration.client_side_validation and cameras is None:  # noqa: E501
-            raise ValueError("Invalid value for `cameras`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and active_cameras is None:  # noqa: E501
+            raise ValueError("Invalid value for `active_cameras`, must not be `None`")  # noqa: E501
 
-        self._cameras = cameras
-
-    @property
-    def janus_local_url(self):
-        """Gets the janus_local_url of this Device.  # noqa: E501
-
-
-        :return: The janus_local_url of this Device.  # noqa: E501
-        :rtype: str
-        """
-        return self._janus_local_url
-
-    @janus_local_url.setter
-    def janus_local_url(self, janus_local_url):
-        """Sets the janus_local_url of this Device.
-
-
-        :param janus_local_url: The janus_local_url of this Device.  # noqa: E501
-        :type janus_local_url: str
-        """
-        if self.local_vars_configuration.client_side_validation and janus_local_url is None:  # noqa: E501
-            raise ValueError("Invalid value for `janus_local_url`, must not be `None`")  # noqa: E501
-
-        self._janus_local_url = janus_local_url
-
-    @property
-    def dashboard_url(self):
-        """Gets the dashboard_url of this Device.  # noqa: E501
-
-
-        :return: The dashboard_url of this Device.  # noqa: E501
-        :rtype: str
-        """
-        return self._dashboard_url
-
-    @dashboard_url.setter
-    def dashboard_url(self, dashboard_url):
-        """Sets the dashboard_url of this Device.
-
-
-        :param dashboard_url: The dashboard_url of this Device.  # noqa: E501
-        :type dashboard_url: str
-        """
-        if self.local_vars_configuration.client_side_validation and dashboard_url is None:  # noqa: E501
-            raise ValueError("Invalid value for `dashboard_url`, must not be `None`")  # noqa: E501
-
-        self._dashboard_url = dashboard_url
-
-    @property
-    def printer_controllers(self):
-        """Gets the printer_controllers of this Device.  # noqa: E501
-
-
-        :return: The printer_controllers of this Device.  # noqa: E501
-        :rtype: list[PrinterController]
-        """
-        return self._printer_controllers
-
-    @printer_controllers.setter
-    def printer_controllers(self, printer_controllers):
-        """Sets the printer_controllers of this Device.
-
-
-        :param printer_controllers: The printer_controllers of this Device.  # noqa: E501
-        :type printer_controllers: list[PrinterController]
-        """
-        if self.local_vars_configuration.client_side_validation and printer_controllers is None:  # noqa: E501
-            raise ValueError("Invalid value for `printer_controllers`, must not be `None`")  # noqa: E501
-
-        self._printer_controllers = printer_controllers
-
-    @property
-    def release_channel(self):
-        """Gets the release_channel of this Device.  # noqa: E501
-
-
-        :return: The release_channel of this Device.  # noqa: E501
-        :rtype: ReleaseChannelEnum
-        """
-        return self._release_channel
-
-    @release_channel.setter
-    def release_channel(self, release_channel):
-        """Sets the release_channel of this Device.
-
-
-        :param release_channel: The release_channel of this Device.  # noqa: E501
-        :type release_channel: ReleaseChannelEnum
-        """
-
-        self._release_channel = release_channel
-
-    @property
-    def monitoring_active(self):
-        """Gets the monitoring_active of this Device.  # noqa: E501
-
-
-        :return: The monitoring_active of this Device.  # noqa: E501
-        :rtype: bool
-        """
-        return self._monitoring_active
-
-    @monitoring_active.setter
-    def monitoring_active(self, monitoring_active):
-        """Sets the monitoring_active of this Device.
-
-
-        :param monitoring_active: The monitoring_active of this Device.  # noqa: E501
-        :type monitoring_active: bool
-        """
-
-        self._monitoring_active = monitoring_active
-
-    @property
-    def user(self):
-        """Gets the user of this Device.  # noqa: E501
-
-
-        :return: The user of this Device.  # noqa: E501
-        :rtype: User
-        """
-        return self._user
-
-    @user.setter
-    def user(self, user):
-        """Sets the user of this Device.
-
-
-        :param user: The user of this Device.  # noqa: E501
-        :type user: User
-        """
-
-        self._user = user
-
-    @property
-    def last_task(self):
-        """Gets the last_task of this Device.  # noqa: E501
-
-
-        :return: The last_task of this Device.  # noqa: E501
-        :rtype: Task
-        """
-        return self._last_task
-
-    @last_task.setter
-    def last_task(self, last_task):
-        """Sets the last_task of this Device.
-
-
-        :param last_task: The last_task of this Device.  # noqa: E501
-        :type last_task: Task
-        """
-
-        self._last_task = last_task
+        self._active_cameras = active_cameras
 
     @property
     def active_tasks(self):
@@ -357,27 +191,243 @@ class Device(object):
         self._active_tasks = active_tasks
 
     @property
-    def active_cameras(self):
-        """Gets the active_cameras of this Device.  # noqa: E501
+    def cameras(self):
+        """Gets the cameras of this Device.  # noqa: E501
 
 
-        :return: The active_cameras of this Device.  # noqa: E501
+        :return: The cameras of this Device.  # noqa: E501
         :rtype: list[Camera]
         """
-        return self._active_cameras
+        return self._cameras
 
-    @active_cameras.setter
-    def active_cameras(self, active_cameras):
-        """Sets the active_cameras of this Device.
+    @cameras.setter
+    def cameras(self, cameras):
+        """Sets the cameras of this Device.
 
 
-        :param active_cameras: The active_cameras of this Device.  # noqa: E501
-        :type active_cameras: list[Camera]
+        :param cameras: The cameras of this Device.  # noqa: E501
+        :type cameras: list[Camera]
         """
-        if self.local_vars_configuration.client_side_validation and active_cameras is None:  # noqa: E501
-            raise ValueError("Invalid value for `active_cameras`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and cameras is None:  # noqa: E501
+            raise ValueError("Invalid value for `cameras`, must not be `None`")  # noqa: E501
 
-        self._active_cameras = active_cameras
+        self._cameras = cameras
+
+    @property
+    def cloudiot_device(self):
+        """Gets the cloudiot_device of this Device.  # noqa: E501
+
+
+        :return: The cloudiot_device of this Device.  # noqa: E501
+        :rtype: CloudiotDevice
+        """
+        return self._cloudiot_device
+
+    @cloudiot_device.setter
+    def cloudiot_device(self, cloudiot_device):
+        """Sets the cloudiot_device of this Device.
+
+
+        :param cloudiot_device: The cloudiot_device of this Device.  # noqa: E501
+        :type cloudiot_device: CloudiotDevice
+        """
+
+        self._cloudiot_device = cloudiot_device
+
+    @property
+    def dashboard_url(self):
+        """Gets the dashboard_url of this Device.  # noqa: E501
+
+
+        :return: The dashboard_url of this Device.  # noqa: E501
+        :rtype: str
+        """
+        return self._dashboard_url
+
+    @dashboard_url.setter
+    def dashboard_url(self, dashboard_url):
+        """Sets the dashboard_url of this Device.
+
+
+        :param dashboard_url: The dashboard_url of this Device.  # noqa: E501
+        :type dashboard_url: str
+        """
+        if self.local_vars_configuration.client_side_validation and dashboard_url is None:  # noqa: E501
+            raise ValueError("Invalid value for `dashboard_url`, must not be `None`")  # noqa: E501
+
+        self._dashboard_url = dashboard_url
+
+    @property
+    def janus_local_url(self):
+        """Gets the janus_local_url of this Device.  # noqa: E501
+
+
+        :return: The janus_local_url of this Device.  # noqa: E501
+        :rtype: str
+        """
+        return self._janus_local_url
+
+    @janus_local_url.setter
+    def janus_local_url(self, janus_local_url):
+        """Sets the janus_local_url of this Device.
+
+
+        :param janus_local_url: The janus_local_url of this Device.  # noqa: E501
+        :type janus_local_url: str
+        """
+        if self.local_vars_configuration.client_side_validation and janus_local_url is None:  # noqa: E501
+            raise ValueError("Invalid value for `janus_local_url`, must not be `None`")  # noqa: E501
+
+        self._janus_local_url = janus_local_url
+
+    @property
+    def last_task(self):
+        """Gets the last_task of this Device.  # noqa: E501
+
+
+        :return: The last_task of this Device.  # noqa: E501
+        :rtype: Task
+        """
+        return self._last_task
+
+    @last_task.setter
+    def last_task(self, last_task):
+        """Sets the last_task of this Device.
+
+
+        :param last_task: The last_task of this Device.  # noqa: E501
+        :type last_task: Task
+        """
+
+        self._last_task = last_task
+
+    @property
+    def monitoring_active(self):
+        """Gets the monitoring_active of this Device.  # noqa: E501
+
+
+        :return: The monitoring_active of this Device.  # noqa: E501
+        :rtype: bool
+        """
+        return self._monitoring_active
+
+    @monitoring_active.setter
+    def monitoring_active(self, monitoring_active):
+        """Sets the monitoring_active of this Device.
+
+
+        :param monitoring_active: The monitoring_active of this Device.  # noqa: E501
+        :type monitoring_active: bool
+        """
+
+        self._monitoring_active = monitoring_active
+
+    @property
+    def printer_controllers(self):
+        """Gets the printer_controllers of this Device.  # noqa: E501
+
+
+        :return: The printer_controllers of this Device.  # noqa: E501
+        :rtype: list[PrinterController]
+        """
+        return self._printer_controllers
+
+    @printer_controllers.setter
+    def printer_controllers(self, printer_controllers):
+        """Sets the printer_controllers of this Device.
+
+
+        :param printer_controllers: The printer_controllers of this Device.  # noqa: E501
+        :type printer_controllers: list[PrinterController]
+        """
+        if self.local_vars_configuration.client_side_validation and printer_controllers is None:  # noqa: E501
+            raise ValueError("Invalid value for `printer_controllers`, must not be `None`")  # noqa: E501
+
+        self._printer_controllers = printer_controllers
+
+    @property
+    def user(self):
+        """Gets the user of this Device.  # noqa: E501
+
+
+        :return: The user of this Device.  # noqa: E501
+        :rtype: User
+        """
+        return self._user
+
+    @user.setter
+    def user(self, user):
+        """Sets the user of this Device.
+
+
+        :param user: The user of this Device.  # noqa: E501
+        :type user: User
+        """
+
+        self._user = user
+
+    @property
+    def release_channel(self):
+        """Gets the release_channel of this Device.  # noqa: E501
+
+
+        :return: The release_channel of this Device.  # noqa: E501
+        :rtype: ReleaseChannelEnum
+        """
+        return self._release_channel
+
+    @release_channel.setter
+    def release_channel(self, release_channel):
+        """Sets the release_channel of this Device.
+
+
+        :param release_channel: The release_channel of this Device.  # noqa: E501
+        :type release_channel: ReleaseChannelEnum
+        """
+
+        self._release_channel = release_channel
+
+    @property
+    def system_info(self):
+        """Gets the system_info of this Device.  # noqa: E501
+
+
+        :return: The system_info of this Device.  # noqa: E501
+        :rtype: SystemInfo
+        """
+        return self._system_info
+
+    @system_info.setter
+    def system_info(self, system_info):
+        """Sets the system_info of this Device.
+
+
+        :param system_info: The system_info of this Device.  # noqa: E501
+        :type system_info: SystemInfo
+        """
+
+        self._system_info = system_info
+
+    @property
+    def public_key(self):
+        """Gets the public_key of this Device.  # noqa: E501
+
+
+        :return: The public_key of this Device.  # noqa: E501
+        :rtype: PublicKey
+        """
+        return self._public_key
+
+    @public_key.setter
+    def public_key(self, public_key):
+        """Sets the public_key of this Device.
+
+
+        :param public_key: The public_key of this Device.  # noqa: E501
+        :type public_key: PublicKey
+        """
+
+        self._public_key = public_key
 
     @property
     def created_dt(self):

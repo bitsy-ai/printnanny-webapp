@@ -38,44 +38,6 @@ class TestDevice(unittest.TestCase):
         if include_optional :
             return Device(
                 id = 56, 
-                cloudiot_device = None, 
-                cameras = [
-                    printnanny_api_client.models.camera.Camera(
-                        id = 56, 
-                        deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        active = True, 
-                        device = 56, 
-                        name = 'Raspberry Pi Cam', 
-                        camera_type = null, )
-                    ], 
-                janus_local_url = '', 
-                dashboard_url = '', 
-                printer_controllers = [
-                    printnanny_api_client.models.printer_controller.PrinterController(
-                        id = 56, 
-                        software = null, 
-                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        polymorphic_ctype = 56, 
-                        user = 56, 
-                        device = 56, )
-                    ], 
-                release_channel = None, 
-                monitoring_active = True, 
-                user = None, 
-                last_task = None, 
-                active_tasks = [
-                    printnanny_api_client.models.task.Task(
-                        id = 56, 
-                        last_status = null, 
-                        task_type = 'monitor_start', 
-                        active = True, 
-                        task_type_display = '', 
-                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        device = 56, )
-                    ], 
                 active_cameras = [
                     printnanny_api_client.models.camera.Camera(
                         id = 56, 
@@ -87,6 +49,46 @@ class TestDevice(unittest.TestCase):
                         name = 'Raspberry Pi Cam', 
                         camera_type = null, )
                     ], 
+                active_tasks = [
+                    printnanny_api_client.models.task.Task(
+                        id = 56, 
+                        last_status = null, 
+                        task_type = 'monitor_start', 
+                        active = True, 
+                        task_type_display = '', 
+                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        device = 56, )
+                    ], 
+                cameras = [
+                    printnanny_api_client.models.camera.Camera(
+                        id = 56, 
+                        deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        active = True, 
+                        device = 56, 
+                        name = 'Raspberry Pi Cam', 
+                        camera_type = null, )
+                    ], 
+                cloudiot_device = None, 
+                dashboard_url = '', 
+                janus_local_url = '', 
+                last_task = None, 
+                monitoring_active = True, 
+                printer_controllers = [
+                    printnanny_api_client.models.printer_controller.PrinterController(
+                        id = 56, 
+                        software = null, 
+                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        polymorphic_ctype = 56, 
+                        user = 56, 
+                        device = 56, )
+                    ], 
+                user = None, 
+                release_channel = None, 
+                system_info = None, 
+                public_key = None, 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 hostname = ''
@@ -94,7 +96,27 @@ class TestDevice(unittest.TestCase):
         else :
             return Device(
                 id = 56,
-                cloudiot_device = None,
+                active_cameras = [
+                    printnanny_api_client.models.camera.Camera(
+                        id = 56, 
+                        deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        active = True, 
+                        device = 56, 
+                        name = 'Raspberry Pi Cam', 
+                        camera_type = null, )
+                    ],
+                active_tasks = [
+                    printnanny_api_client.models.task.Task(
+                        id = 56, 
+                        last_status = null, 
+                        task_type = 'monitor_start', 
+                        active = True, 
+                        task_type_display = '', 
+                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        device = 56, )
+                    ],
                 cameras = [
                     printnanny_api_client.models.camera.Camera(
                         id = 56, 
@@ -106,8 +128,10 @@ class TestDevice(unittest.TestCase):
                         name = 'Raspberry Pi Cam', 
                         camera_type = null, )
                     ],
-                janus_local_url = '',
+                cloudiot_device = None,
                 dashboard_url = '',
+                janus_local_url = '',
+                last_task = None,
                 printer_controllers = [
                     printnanny_api_client.models.printer_controller.PrinterController(
                         id = 56, 
@@ -119,28 +143,8 @@ class TestDevice(unittest.TestCase):
                         device = 56, )
                     ],
                 user = None,
-                last_task = None,
-                active_tasks = [
-                    printnanny_api_client.models.task.Task(
-                        id = 56, 
-                        last_status = null, 
-                        task_type = 'monitor_start', 
-                        active = True, 
-                        task_type_display = '', 
-                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        device = 56, )
-                    ],
-                active_cameras = [
-                    printnanny_api_client.models.camera.Camera(
-                        id = 56, 
-                        deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        active = True, 
-                        device = 56, 
-                        name = 'Raspberry Pi Cam', 
-                        camera_type = null, )
-                    ],
+                system_info = None,
+                public_key = None,
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
         )

@@ -37,8 +37,8 @@ class TestDeviceRequest(unittest.TestCase):
         # model = printnanny_api_client.models.device_request.DeviceRequest()  # noqa: E501
         if include_optional :
             return DeviceRequest(
-                release_channel = None, 
                 monitoring_active = True, 
+                release_channel = None, 
                 hostname = '0'
             )
         else :

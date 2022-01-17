@@ -37,54 +37,33 @@ class PatchedDeviceRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'release_channel': 'ReleaseChannelEnum',
         'monitoring_active': 'bool',
+        'release_channel': 'ReleaseChannelEnum',
         'hostname': 'str'
     }
 
     attribute_map = {
-        'release_channel': 'release_channel',
         'monitoring_active': 'monitoring_active',
+        'release_channel': 'release_channel',
         'hostname': 'hostname'
     }
 
-    def __init__(self, release_channel=None, monitoring_active=False, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, monitoring_active=False, release_channel=None, hostname=None, local_vars_configuration=None):  # noqa: E501
         """PatchedDeviceRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
-        self._release_channel = None
         self._monitoring_active = None
+        self._release_channel = None
         self._hostname = None
         self.discriminator = None
 
-        self.release_channel = release_channel
         if monitoring_active is not None:
             self.monitoring_active = monitoring_active
+        self.release_channel = release_channel
         if hostname is not None:
             self.hostname = hostname
-
-    @property
-    def release_channel(self):
-        """Gets the release_channel of this PatchedDeviceRequest.  # noqa: E501
-
-
-        :return: The release_channel of this PatchedDeviceRequest.  # noqa: E501
-        :rtype: ReleaseChannelEnum
-        """
-        return self._release_channel
-
-    @release_channel.setter
-    def release_channel(self, release_channel):
-        """Sets the release_channel of this PatchedDeviceRequest.
-
-
-        :param release_channel: The release_channel of this PatchedDeviceRequest.  # noqa: E501
-        :type release_channel: ReleaseChannelEnum
-        """
-
-        self._release_channel = release_channel
 
     @property
     def monitoring_active(self):
@@ -106,6 +85,27 @@ class PatchedDeviceRequest(object):
         """
 
         self._monitoring_active = monitoring_active
+
+    @property
+    def release_channel(self):
+        """Gets the release_channel of this PatchedDeviceRequest.  # noqa: E501
+
+
+        :return: The release_channel of this PatchedDeviceRequest.  # noqa: E501
+        :rtype: ReleaseChannelEnum
+        """
+        return self._release_channel
+
+    @release_channel.setter
+    def release_channel(self, release_channel):
+        """Sets the release_channel of this PatchedDeviceRequest.
+
+
+        :param release_channel: The release_channel of this PatchedDeviceRequest.  # noqa: E501
+        :type release_channel: ReleaseChannelEnum
+        """
+
+        self._release_channel = release_channel
 
     @property
     def hostname(self):
