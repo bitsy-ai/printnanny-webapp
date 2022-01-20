@@ -3,86 +3,90 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>{% block title_extra %}Print Nanny{% endblock title_extra %}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-        <meta content="{% block meta_description %}Automatic failure detection and quality monitoring for 3D printers. Control your printer from anywhere. Works with OctoPrint.{% endblock meta_description %}" name="description" />
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title_extra %}Print Nanny{% endblock title_extra %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <meta
+        content="{% block meta_description %}Automatic failure detection and quality monitoring for 3D printers. Control your printer from anywhere. Works with OctoPrint.{% endblock meta_description %}"
+        name="description" />
 
 
-        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-        <!--[if lt IE 9]>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
         <![endif]-->
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💜</text></svg>">
-        {% load render_bundle from webpack_loader %}
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💜</text></svg>">
+    {% load render_bundle from webpack_loader %}
 
-        {% render_bundle 'index' %}
+    {% render_bundle 'index' %}
 
-        {% block css %}
+    {% block css %}
 
-        {% endblock %}
+    {% endblock %}
 
-        {% block extra_css %}
-        {% endblock %}
-        {% if user.is_authenticated %}
-            <script>
-                !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-                posthog.init('phc_if1FbWP98XhFJMRt9ISTp1NvOe9MExeTNG9pH05c50P',{
-                    api_host:'https://app.posthog.com',
-                    loaded: function(posthog) { 
-                        posthog.identify('{{ user.id }}', {
-                            'email': '{{ user.email }}',
-                        }); 
-                        posthog.people.set({email: '{{ user.email }}'});
-                        }
-                    })
-            </script>
-        {% else %}
-            <script>
-                !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-                posthog.init('phc_if1FbWP98XhFJMRt9ISTp1NvOe9MExeTNG9pH05c50P',{api_host:'https://app.posthog.com'})
-            </script>
-        {% endif %}
-    </head>
+    {% block extra_css %}
+    {% endblock %}
+    {% if user.is_authenticated %}
+    <script>
+        !function (t, e) { var o, n, p, r; e.__SV || (window.posthog = e, e._i = [], e.init = function (i, s, a) { function g(t, e) { var o = e.split("."); 2 == o.length && (t = t[o[0]], e = o[1]), t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } } (p = t.createElement("script")).type = "text/javascript", p.async = !0, p.src = s.api_host + "/static/array.js", (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(p, r); var u = e; for (void 0 !== a ? u = e[a] = [] : a = "posthog", u.people = u.people || [], u.toString = function (t) { var e = "posthog"; return "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e }, u.people.toString = function () { return u.toString(1) + ".people (stub)" }, o = "capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags".split(" "), n = 0; n < o.length; n++)g(u, o[n]); e._i.push([i, s, a]) }, e.__SV = 1) }(document, window.posthog || []);
+        posthog.init('phc_if1FbWP98XhFJMRt9ISTp1NvOe9MExeTNG9pH05c50P', {
+            api_host: 'https://app.posthog.com',
+            loaded: function (posthog) {
+                posthog.identify('{{ user.id }}', {
+                    email: '{{ user.email }}',
+                });
+            }
+        })
+    </script>
+    {% else %}
+    <script>
+        !function (t, e) { var o, n, p, r; e.__SV || (window.posthog = e, e._i = [], e.init = function (i, s, a) { function g(t, e) { var o = e.split("."); 2 == o.length && (t = t[o[0]], e = o[1]), t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } } (p = t.createElement("script")).type = "text/javascript", p.async = !0, p.src = s.api_host + "/static/array.js", (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(p, r); var u = e; for (void 0 !== a ? u = e[a] = [] : a = "posthog", u.people = u.people || [], u.toString = function (t) { var e = "posthog"; return "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e }, u.people.toString = function () { return u.toString(1) + ".people (stub)" }, o = "capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags".split(" "), n = 0; n < o.length; n++)g(u, o[n]); e._i.push([i, s, a]) }, e.__SV = 1) }(document, window.posthog || []);
+        posthog.init('phc_if1FbWP98XhFJMRt9ISTp1NvOe9MExeTNG9pH05c50P', { api_host: 'https://app.posthog.com' })
+    </script>
+    {% endif %}
+</head>
 
-    <body {% block body_extra %}{% endblock %} >
-        {% block page_content %}{% endblock %}
-    </body>
+<body {% block body_extra %}{% endblock %}>
+    {% block page_content %}{% endblock %}
+</body>
 
 
-    <!-- Le javascript
+<!-- Le javascript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    {% block javascript %}
-        <!-- global -->
-        <!-- bundle -->
-        <script src="{% static 'js/vendor.min.js' %}"></script>
-        <script src="{% static 'js/app.min.js' %}"></script>
+<!-- Placed at the end of the document so the pages load faster -->
+{% block javascript %}
+<!-- global -->
+<!-- bundle -->
+<script src="{% static 'js/vendor.min.js' %}"></script>
+<script src="{% static 'js/app.min.js' %}"></script>
 
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        {% if not DEBUG %}
+<!-- Global site tag (gtag.js) - Google Analytics -->
+{% if not DEBUG %}
 
-        <script async src="https://www.googletagmanager.com/gtag/js?id={{ GOOGLE_ANALYTICS }}"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ GOOGLE_ANALYTICS }}"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-        gtag('config', "{{ GOOGLE_ANALYTICS }}");
-        </script>
-        {% endif %}
+    gtag('config', "{{ GOOGLE_ANALYTICS }}");
+</script>
+{% endif %}
 
-    {% endblock javascript %}
+{% endblock javascript %}
 
-    {% block alert_javascript %}
+{% block alert_javascript %}
 
-    {% endblock %}
-    <!-- extra javascripts -->
+{% endblock %}
+<!-- extra javascripts -->
 
-    {% block extra_javascript %}
+{% block extra_javascript %}
 
-    {% endblock %}
+{% endblock %}
+
 </html>
