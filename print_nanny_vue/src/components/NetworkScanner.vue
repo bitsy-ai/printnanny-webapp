@@ -95,7 +95,11 @@ export default {
 </script>
 
 <template>
-  <b-container fluid>
+<div class="row">
+  <div class="col-6 offset-3">
+    <h2 class="mb-2">Enter Raspberry Pi's Hostname</h2>
+    <p>Print Nanny can discover new devices on your network.</p>
+    <p>Click <strong>Scan</strong> to search. You'll be redirected to a verification screen to link your account.</p>
     <b-form id="network-scanner" @submit.prevent="submit">
       <b-row>
         <b-col sm="8">
@@ -118,14 +122,15 @@ export default {
         </b-col>
       </b-row>
     </b-form>
-    <b-row>
+  </div>
+  <div class="col-6 offset-3">
 <pre class="text-left">
 <br>
 <code v-text="logs">
 
 </code>
 </pre>
-    </b-row>
-  </b-container>
+  </div>
+</div>
 
 </template>

@@ -26,11 +26,9 @@
 </div>
 {% endblock content %}
 
-{% if object.active_license.activated %}
-
 {% block extra_javascript %}
-    {% load render_bundle from webpack_loader %}
-    {% render_bundle 'taskStatus' %}
-    {% render_bundle 'webCamStream' %}
+{% load render_bundle from webpack_loader %}
+{% render_bundle 'taskStatus' %}
+{% render_bundle 'webCamStream' %}
+{% render_bundle 'welcomeWizard' %}
 {% endblock %}
-{% endif %}
