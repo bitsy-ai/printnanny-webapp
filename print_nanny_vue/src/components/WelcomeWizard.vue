@@ -82,14 +82,22 @@ export default {
       <network-scanner/>
       </tab-content>
       <tab-content title="Test Connections"
-                   icon="ti-settings">
+                   icon="">
       Send MQTT ping / pong
       Try live streaming video
       </tab-content>
+
+      <tab-content title="Finish Setup"
+                   icon="">
+      Send MQTT ping / pong
+      Try live streaming video
+      </tab-content>
+      <!--
       <tab-content title="Restore OctoPrint"
-                   icon="ti-check">
+                   icon="">
       Restore OctoPrint from backup
       </tab-content>
+      -->
 
       <div class="loader" v-if="loading"></div>
     </form-wizard>
