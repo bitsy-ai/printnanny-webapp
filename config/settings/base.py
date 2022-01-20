@@ -679,9 +679,14 @@ COTURN_SECRET_KEY = env("COTURN_SECRET_KEY")
 COTURN_REALM = env("COTURN_REALM")
 
 # ghost user management keys
-GHOST_ADMIN_API_KEY=""
-GHOST_CONTENT_API_KEY=""
+GHOST_ADMIN_API_KEY=None
+GHOST_CONTENT_API_KEY=None
 
 # internal PRINTNANNY_ vars
 # ------------------------------------------------------------------------------
 PRINTNANNY_ENV = env("PRINTNANNY_ENV", default="sandbox")
+
+# posthog
+# ------------------------------------------------------------------------------
+POSTHOG_API_KEY = env('POSTHOG_API_KEY', default=None)
+POSTHOG_ENABLED = False
