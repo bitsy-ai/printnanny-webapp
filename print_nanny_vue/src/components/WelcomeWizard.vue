@@ -54,6 +54,7 @@ export default {
                 subtitle="If your install takes longer than 10 minutes, email leigh@print-nanny.com to receive one FREE month">
       <tab-content title="Getting Started"
                    icon="">
+      <hr>
       <div class="row justify-content-around">
         <div class="col-4">
             <h2 class="mb-2">What you'll need</h2>
@@ -63,16 +64,16 @@ export default {
               <li><h4>Micro SD card</h4></li>
             </ul>
 
-            <a target="_blank" class="btn btn-primary btn-lg mb-3 mt-3" href="https://bitsy-ai.notion.site/Getting-Started-with-Print-Nanny-OS-817bc65297ff44a085120c663dced5f3#41eb338cca0f4b468ca5ffedd2a6a2f1"><i class="mdi mdi-plus"></i>Help Me Find Hardware</a>
+            <a target="_blank" class="btn btn-secondary btn-lg mb-3 mt-3" href="https://bitsy-ai.notion.site/Getting-Started-with-Print-Nanny-OS-817bc65297ff44a085120c663dced5f3#41eb338cca0f4b468ca5ffedd2a6a2f1"><i class="mdi mdi-plus"></i>Help Me Find Hardware</a>
         </div>
         <div class="col-6">
           <h2 class="mb-2">Raspberry Pi Imager</h2>
           <ul>
             <li><h4>Visit the <a href="https://print-nanny.com/devices/releases/">Releases</a> page to download latest version.</h4></li>
             <li><h4>Download <a href="https://www.raspberrypi.com/software/">Raspberry Pi Imager</a>.</h4></li>
-            <li><h4>Follow the <strong>Help Me Customize</strong> guide to set WiFi password</h4></li>
+            <li><h4>Follow the <a href="https://bitsy-ai.notion.site/Getting-Started-with-Print-Nanny-OS-817bc65297ff44a085120c663dced5f3">Help Me Customize</a> guide to set WiFi password</h4></li>
           </ul>
-          <a target="_blank" class="btn btn-primary btn-lg mb-3 mt-3" href="https://bitsy-ai.notion.site/Getting-Started-with-Print-Nanny-OS-817bc65297ff44a085120c663dced5f3"><i class="mdi mdi-plus"></i>Help Me Customize</a>
+          <a target="_blank" class="btn btn-secondary btn-lg mb-3 mt-3" href="https://bitsy-ai.notion.site/Getting-Started-with-Print-Nanny-OS-817bc65297ff44a085120c663dced5f3"><i class="mdi mdi-plus"></i>Help Me Customize</a>
         </div>
       </div>
       </tab-content>
