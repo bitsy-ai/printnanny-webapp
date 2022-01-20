@@ -5,7 +5,7 @@ const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 const BundleTracker = require('webpack-bundle-tracker');
 
-function resolve (dir) {
+function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
@@ -32,7 +32,8 @@ module.exports = {
     alerts: './src/apps/AlertsDropdown.js',
     taskStatus: './src/apps/TaskStatus.js',
     webCamStream: './src/apps/WebCamStream.js',
-    networkScanner: './src/apps/NetworkScanner.js'
+    networkScanner: './src/apps/NetworkScanner.js',
+    welcomeWizard: './src/apps/WelcomeWizard.js',
   },
   output: {
     path: config.build.assetsRoot,
@@ -43,10 +44,10 @@ module.exports = {
     splitChunks: {
       cacheGroups: {
         vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: "chunk-vendors",
-            chunks: "all",
-            priority: 1
+          test: /[\\/]node_modules[\\/]/,
+          name: "chunk-vendors",
+          chunks: "all",
+          priority: 1
         },
       },
     }
@@ -60,7 +61,7 @@ module.exports = {
     },
   },
   plugins: [
-    new BundleTracker({filename: './webpack-stats.json'})
+    new BundleTracker({ filename: './webpack-stats.json' })
   ],
   module: {
     rules: [
@@ -75,8 +76,8 @@ module.exports = {
         loader: 'babel-loader',
         include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')],
       },
-      { 
-        test: /\.tsx?$/, 
+      {
+        test: /\.tsx?$/,
         loader: "ts-loader",
         include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')],
       },

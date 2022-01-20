@@ -19,46 +19,16 @@
                 <h3 class="page-title d-inline-flex">
                     Manage Device: {{ object.hostname }}
                 </h3>
-                Click/tap <strong class="text-primary"><i class="mdi mdi-open-in-new"></i> highlighted links</strong> or 
-                    <span class="badge badge-secondary"> <i class="mdi mdi-information"></i> status indicators</span> to see more information.
             </div>
         </div>
     </div>
-
-    {% if not object.active_license %}
-        <div class="row">
-            {% include "devices/license-generate.html" %}
-        </div>
-    {% elif object.active_license.activated == False %}
-    <div class="row">
-        <div class="col-12 col-md-8 align-items-stretch">
-            {% include "devices/license-detail.html" %}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 col-md-8">
-            {% include "partials/system-tasks-table.html" %}
-        </div>
-    </div>
-    {% else %}
-    <div class="row">
-        {% include "devices/partials/camera-stream-card.html" with device=object %}
-        <div class="col-12 col-md-6 d-flex align-items-stretch">
-            {% include "partials/system-tasks-table.html" %}
-        </div>
-        <div class="col-12 d-flex align-items-stretch">
-            {% include "devices/license-detail.html" %}
-        </div>
-    </div>
-    {% endif %}
+    {% include 'device-welcome.html' %}
 </div>
 {% endblock content %}
 
-{% if object.active_license.activated %}
-
 {% block extra_javascript %}
-    {% load render_bundle from webpack_loader %}
-    {% render_bundle 'taskStatus' %}
-    {% render_bundle 'webCamStream' %}
+{% load render_bundle from webpack_loader %}
+{% render_bundle 'taskStatus' %}
+{% render_bundle 'webCamStream' %}
+{% render_bundle 'welcomeWizard' %}
 {% endblock %}
-{% endif %}
