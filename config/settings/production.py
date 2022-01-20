@@ -18,10 +18,9 @@ ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[
 # ------------------------------------------------------------------------------
 # https://posthog.com/docs/libraries/python
 import posthog
-posthog.project_api_key = env('POSTHOG_API_KEY', default=None)
-posthog.debug = True
-
-
+POSTHOG_API_KEY = env('POSTHOG_API_KEY', default=None)
+POSTHOG_ENABLED = True
+posthog.project_api_key = POSTHOG_API_KEY
 # DATABASES
 # ------------------------------------------------------------------------------
 DATABASES["default"] = env.db("DATABASE_URL")  # noqa F405

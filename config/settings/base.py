@@ -685,3 +685,8 @@ GHOST_CONTENT_API_KEY=""
 # internal PRINTNANNY_ vars
 # ------------------------------------------------------------------------------
 PRINTNANNY_ENV = env("PRINTNANNY_ENV", default="sandbox")
+
+# posthog
+# ------------------------------------------------------------------------------
+POSTHOG_API_KEY = env('POSTHOG_API_KEY', default=None)
+POSTHOG_ENABLED = False
