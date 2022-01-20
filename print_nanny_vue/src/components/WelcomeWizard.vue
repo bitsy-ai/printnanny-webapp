@@ -48,7 +48,7 @@ export default {
                 @on-validate="handleValidation"
                 :start-index="startIndex"
                 shape="circle"
-                color="#0acf97"
+                color="#02a8b5"
                 errorColor="#fa5c7c"
                 title="Install in 10 Minutes or Less"
                 subtitle="If your install takes longer than 10 minutes, email leigh@print-nanny.com to receive one FREE month">
