@@ -19,6 +19,8 @@ from .api.serializers import TaskSerializer
 logger = logging.getLogger(__name__)
 
 # when PublicKey is created, automatically create/update CloudiotDevice with key
+
+
 @receiver(post_save, sender=PublicKey, dispatch_uid="public_key_create_cloudiotdevice")
 def create_public_key_cloudiotdevice(sender, instance: PublicKey, created, **kwargs):
     if created:
@@ -30,7 +32,7 @@ def create_public_key_cloudiotdevice(sender, instance: PublicKey, created, **kwa
 def create_device_link_task(sender, instance, created, **kwargs):
     if created:
         OnboardingTask.objects.create(
-            task_type=OnboardingTask.LINK,
+            task_type=OnboardingTaskType.LINK,
             device=instance,
         )
 
