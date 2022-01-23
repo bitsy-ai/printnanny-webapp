@@ -32,7 +32,7 @@ def create_public_key_cloudiotdevice(sender, instance: PublicKey, created, **kwa
 def create_device_link_task(sender, instance, created, **kwargs):
     if created:
         OnboardingTask.objects.create(
-            task_type=OnboardingTaskType.LINK,
+            task=OnboardingTaskType.LINK,
             device=instance,
         )
 
