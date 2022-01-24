@@ -44,26 +44,22 @@ def delete_cloudiot_device(device_id_int64: int):
 def cloudiot_device_request(
     cloudiot_device: cloudiot_v1.types.Device, public_key: PublicKey
 ) -> cloudiot_v1.types.Device:
-    if public_key.length == 256 and public_key.cipher == Ciphers.ECDSA:
-        cloudiot_device.credentials = [
-            {
-                "public_key": {
-                    "format": cloudiot_v1.PublicKeyFormat.ES256_PEM,
-                    "key": public_key.pem,
-                }
+    cloudiot_device.credentials = [
+        {
+            "public_key": {
+                "format": cloudiot_v1.PublicKeyFormat.ES256_PEM,
+                "key": public_key.pem,
             }
-        ]
-        cloudiot_device.metadata = dict(
-            fingerprint=public_key.fingerprint,
-            device_id=str(public_key.device.id),
-            device_hostname=public_key.device.hostname,
-            user_id=str(public_key.device.user.id),
-            email=public_key.device.user.email,
-        )
-        return cloudiot_device
-    else:
-        error = f"Expected ES256_PEM (length 256 ecdsa), but received length={public_key.length} cipher={public_key.cipher}"
-        raise ValueError(error)
+        }
+    ]
+    cloudiot_device.metadata = dict(
+        fingerprint=public_key.fingerprint,
+        device_id=str(public_key.device.id),
+        device_hostname=public_key.device.hostname,
+        user_id=str(public_key.device.user.id),
+        email=public_key.device.user.email,
+    )
+    return cloudiot_device
 
 
 def create_cloudiot_device(public_key: PublicKey):
