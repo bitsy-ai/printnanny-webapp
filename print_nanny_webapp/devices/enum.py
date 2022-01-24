@@ -1,10 +1,6 @@
 from django.db import models
 
 
-class Ciphers(models.TextChoices):
-    ECDSA = "ecdsa", "ecdsa"
-
-
 class PrintNannyEnv(models.TextChoices):
     SANDBOX = "sandbox", "Sandbox Environment"
     PROD = "prod", "Prod Environment"
