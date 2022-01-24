@@ -1,6 +1,7 @@
 """
 Base settings to build other settings files upon.
 """
+from django.contrib.messages import constants as messages
 from pathlib import Path
 import os
 import environ
@@ -71,7 +72,7 @@ DJANGO_APPS = [
     "django.contrib.sites",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django.contrib.humanize", # Handy template tags
+    "django.contrib.humanize",  # Handy template tags
     "django.contrib.admin",
     "django.forms",
 ]
@@ -149,7 +150,6 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
 MIDDLEWARE = [
     "django_prometheus.middleware.PrometheusBeforeMiddleware",
-    "print_nanny_webapp.middleware.honeycomb.HoneyMiddlewareIgnoreHealthCheck",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -194,7 +194,7 @@ INSTALLED_APPS += ['webpack_loader']
 WEBPACK_LOADER = {
     'DEFAULT': {
         'CACHE': not DEBUG,
-        'BUNDLE_DIR_NAME': 'vue/', # must end with slash
+        'BUNDLE_DIR_NAME': 'vue/',  # must end with slash
         'STATS_FILE': os.path.join(VUE_APP_DIR, 'webpack-stats.json'),
         'POLL_INTERVAL': 0.1,
         'TIMEOUT': None,
@@ -255,7 +255,8 @@ GS_DEFAULT_ACL = "projectPrivate"
 # STATIC
 # ------------------------
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-WHITENOISE_SKIP_COMPRESS_EXTENSIONS = ('ico', 'jpg', 'jpeg', 'png', 'gif', 'webp','zip', 'gz', 'tgz', 'bz2', 'tbz', 'xz', 'br', 'swf', 'flv', 'woff', 'woff2')
+WHITENOISE_SKIP_COMPRESS_EXTENSIONS = ('ico', 'jpg', 'jpeg', 'png', 'gif', 'webp',
+                                       'zip', 'gz', 'tgz', 'bz2', 'tbz', 'xz', 'br', 'swf', 'flv', 'woff', 'woff2')
 # MEDIA
 # ------------------------------------------------------------------------------
 DEFAULT_FILE_STORAGE = "print_nanny_webapp.utils.storages.MediaRootGoogleCloudStorage"
@@ -320,7 +321,7 @@ ANYMAIL = {
     "MAILGUN_API_KEY": env("MAILGUN_API_KEY"),
     "MAILGUN_SENDER_DOMAIN": env("MAILGUN_DOMAIN"),
     "MAILGUN_API_URL": env("MAILGUN_API_URL", default="https://api.mailgun.net/v3"),
-    #"WEBHOOK_SECRET": env("MAILGUN_WEBHOOK_SECRET")
+    # "WEBHOOK_SECRET": env("MAILGUN_WEBHOOK_SECRET")
 }
 
 # Discord
@@ -390,8 +391,8 @@ CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 CELERY_RESULT_BACKEND_TRANSPORT_OPTIONS = {
     'result_chord_ordered': True
 }
-CELERY_BROKER_CONNECTION_TIMEOUT=8.0
-CELERY_BROKER_POOL_LIMIT=None
+CELERY_BROKER_CONNECTION_TIMEOUT = 8.0
+CELERY_BROKER_POOL_LIMIT = None
 
 # django-allauth
 # ------------------------------------------------------------------------------
@@ -500,10 +501,10 @@ INSTALLED_APPS += [
 ]
 ACCOUNT_ADAPTER = 'invitations.models.InvitationsAdapter'
 INVITATIONS_ADAPTER = ACCOUNT_ADAPTER
-INVITATIONS_INVITATION_ONLY=False
-INVITATIONS_INVITATION_EXPIRY=30
-INVITATIONS_EMAIL_SUBJECT_PREFIX='[Print Nanny]'
-INVITATIONS_ACCEPT_INVITE_AFTER_SIGNUP=True
+INVITATIONS_INVITATION_ONLY = False
+INVITATIONS_INVITATION_EXPIRY = 30
+INVITATIONS_EMAIL_SUBJECT_PREFIX = '[Print Nanny]'
+INVITATIONS_ACCEPT_INVITE_AFTER_SIGNUP = True
 
 # channels
 # ------------------------------------------------------------------------------
@@ -520,7 +521,7 @@ GCP_MQTT_BRIDGE_PORT = 443
 GCP_LTS_CA_PRIMARY = "https://pki.goog/gtsltsr/gtsltsr.crt"
 GCP_LTS_CA_BACKUP = "https://pki.goog/gsr4/GSR4.crt"
 
-GCP_PUBSUB_UNDELIVERED_HEALTH_THRESHOLD_MINUTES=10
+GCP_PUBSUB_UNDELIVERED_HEALTH_THRESHOLD_MINUTES = 10
 
 GCP_PROJECT_ID = env("GCP_PROJECT_ID", default="print-nanny-sandbox")
 
@@ -541,20 +542,20 @@ GCP_PUBSUB_OCTOPRINT_EVENTS_TOPIC = env('GCP_PUBSUB_OCTOPRINT_EVENTS', default=o
 ))
 
 GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION = env('GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION',
-    default=os.path.join(
-        'projects',
-        GCP_PROJECT_ID,
-        'subscriptions/octoprint-events-pull'
-    )
-)
+                                               default=os.path.join(
+                                                   'projects',
+                                                   GCP_PROJECT_ID,
+                                                   'subscriptions/octoprint-events-pull'
+                                               )
+                                               )
 
 GCP_PUBSUB_OCTOPRINT_ALERTS_SUBSCRIPTION = env('GCP_PUBSUB_OCTOPRINT_ALERTS_SUBSCRIPTION',
-    default=os.path.join(
-        'projects',
-        GCP_PROJECT_ID,
-        'subscriptions/alerts-pull'
-    )
-)
+                                               default=os.path.join(
+                                                   'projects',
+                                                   GCP_PROJECT_ID,
+                                                   'subscriptions/alerts-pull'
+                                               )
+                                               )
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
@@ -605,7 +606,7 @@ STRIPE_LIVE_SECRET_KEY = env('STRIPE_LIVE_SECRET_KEY', default="sk_live_x")
 DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
 
 FREE_BETA_TESTER_IDS = range(0, 102)
-PAID_BETA_LAUNCH_TIMESTAMP =  1628528400 # 10 AM PDT 2021-08-09
+PAID_BETA_LAUNCH_TIMESTAMP = 1628528400  # 10 AM PDT 2021-08-09
 PAID_BETA_SUBSCRIPTION_LIMIT = 29
 
 
@@ -635,7 +636,6 @@ PARTNERS_3DGEEKS_SETTINGS = {
 
 # messages
 # ------------------------------------------------------------------------------
-from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
     messages.INFO: 'alert-info',
@@ -651,11 +651,11 @@ GCP_RENDER_VIDEO_TOPIC = "VideoRenderRequest"
 
 # links
 # ------------------------------------------------------------------------------
-DISCORD_URL="https://discord.gg/sf23bk2hPr"
+DISCORD_URL = "https://discord.gg/sf23bk2hPr"
 REPORT_ISSUE_URL = "https://help.print-nanny.com/faq/how-to-report-issue-with-octoprint-logs"
-HELP_SITE_URL="https://help.print-nanny.com"
-BLOG_SITE_URL="https://blog.print-nanny.com"
-ABOUT_URL="https://blog.print-nanny.com/about"
+HELP_SITE_URL = "https://help.print-nanny.com"
+BLOG_SITE_URL = "https://blog.print-nanny.com"
+ABOUT_URL = "https://blog.print-nanny.com/about"
 GITHUB_ISSUE_URL = 'https://github.com/bitsy-ai/octoprint-nanny-plugin/issues/new'
 
 # drfpasswordless
@@ -663,10 +663,10 @@ GITHUB_ISSUE_URL = 'https://github.com/bitsy-ai/octoprint-nanny-plugin/issues/ne
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += ["drfpasswordless"]
 PASSWORDLESS_AUTH = {
-   'PASSWORDLESS_AUTH_TYPES': ['EMAIL'],
-   'PASSWORDLESS_USER_MARK_EMAIL_VERIFIED': True,
-   'PASSWORDLESS_EMAIL_NOREPLY_ADDRESS': 'noreply@print-nanny.com',
-   'PASSWORDLESS_EMAIL_PLAINTEXT_MESSAGE': "Enter this token to sign in: %s",
+    'PASSWORDLESS_AUTH_TYPES': ['EMAIL'],
+    'PASSWORDLESS_USER_MARK_EMAIL_VERIFIED': True,
+    'PASSWORDLESS_EMAIL_NOREPLY_ADDRESS': 'noreply@print-nanny.com',
+    'PASSWORDLESS_EMAIL_PLAINTEXT_MESSAGE': "Enter this token to sign in: %s",
 }
 
 # django-coturn
@@ -679,8 +679,8 @@ COTURN_SECRET_KEY = env("COTURN_SECRET_KEY")
 COTURN_REALM = env("COTURN_REALM")
 
 # ghost user management keys
-GHOST_ADMIN_API_KEY=""
-GHOST_CONTENT_API_KEY=""
+GHOST_ADMIN_API_KEY = ""
+GHOST_CONTENT_API_KEY = ""
 
 # internal PRINTNANNY_ vars
 # ------------------------------------------------------------------------------
