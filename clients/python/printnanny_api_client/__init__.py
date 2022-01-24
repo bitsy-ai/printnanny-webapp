@@ -15,7 +15,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.42.3"
+__version__ = "0.42.4"
 
 # import apis into sdk package
 from printnanny_api_client.api.alerts_api import AlertsApi
@@ -54,7 +54,6 @@ from printnanny_api_client.models.callback_token_verification_request import Cal
 from printnanny_api_client.models.camera import Camera
 from printnanny_api_client.models.camera_request import CameraRequest
 from printnanny_api_client.models.camera_type import CameraType
-from printnanny_api_client.models.cipher_enum import CipherEnum
 from printnanny_api_client.models.cloudiot_device import CloudiotDevice
 from printnanny_api_client.models.cloudiot_device_request import CloudiotDeviceRequest
 from printnanny_api_client.models.command_enum import CommandEnum

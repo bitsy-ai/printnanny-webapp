@@ -16,7 +16,7 @@ pub struct PublicKeyRequest {
     #[serde(rename = "pem")]
     pub pem: String,
     #[serde(rename = "cipher")]
-    pub cipher: crate::models::CipherEnum,
+    pub cipher: String,
     #[serde(rename = "length")]
     pub length: i32,
     #[serde(rename = "fingerprint")]
@@ -26,7 +26,7 @@ pub struct PublicKeyRequest {
 }
 
 impl PublicKeyRequest {
-    pub fn new(pem: String, cipher: crate::models::CipherEnum, length: i32, fingerprint: String, device: i32) -> PublicKeyRequest {
+    pub fn new(pem: String, cipher: String, length: i32, fingerprint: String, device: i32) -> PublicKeyRequest {
         PublicKeyRequest {
             pem,
             cipher,

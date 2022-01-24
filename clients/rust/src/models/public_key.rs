@@ -18,7 +18,7 @@ pub struct PublicKey {
     #[serde(rename = "pem")]
     pub pem: String,
     #[serde(rename = "cipher")]
-    pub cipher: crate::models::CipherEnum,
+    pub cipher: String,
     #[serde(rename = "length")]
     pub length: i32,
     #[serde(rename = "fingerprint")]
@@ -32,7 +32,7 @@ pub struct PublicKey {
 }
 
 impl PublicKey {
-    pub fn new(id: i32, pem: String, cipher: crate::models::CipherEnum, length: i32, fingerprint: String, created_dt: String, updated_dt: String, device: i32) -> PublicKey {
+    pub fn new(id: i32, pem: String, cipher: String, length: i32, fingerprint: String, created_dt: String, updated_dt: String, device: i32) -> PublicKey {
         PublicKey {
             id,
             pem,

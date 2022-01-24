@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **pem** | **str** |  | [optional] 
-**cipher** | [**CipherEnum**](CipherEnum.md) |  | [optional] 
+**cipher** | **str** |  | [optional] 
 **length** | **int** |  | [optional] 
 **fingerprint** | **str** |  | [optional] 
 **device** | **int** |  | [optional] 

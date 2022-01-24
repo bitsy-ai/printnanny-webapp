@@ -44,7 +44,7 @@ class TestPaginatedPublicKeyList(unittest.TestCase):
                     printnanny_api_client.models.public_key.PublicKey(
                         id = 56, 
                         pem = '', 
-                        cipher = 'ecdsa', 
+                        cipher = '', 
                         length = -2147483648, 
                         fingerprint = '', 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 

@@ -39,7 +39,7 @@ class PublicKey(object):
     openapi_types = {
         'id': 'int',
         'pem': 'str',
-        'cipher': 'CipherEnum',
+        'cipher': 'str',
         'length': 'int',
         'fingerprint': 'str',
         'created_dt': 'datetime',
@@ -135,7 +135,7 @@ class PublicKey(object):
 
 
         :return: The cipher of this PublicKey.  # noqa: E501
-        :rtype: CipherEnum
+        :rtype: str
         """
         return self._cipher
 
@@ -145,10 +145,13 @@ class PublicKey(object):
 
 
         :param cipher: The cipher of this PublicKey.  # noqa: E501
-        :type cipher: CipherEnum
+        :type cipher: str
         """
         if self.local_vars_configuration.client_side_validation and cipher is None:  # noqa: E501
             raise ValueError("Invalid value for `cipher`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                cipher is not None and len(cipher) > 32):
+            raise ValueError("Invalid value for `cipher`, length must be less than or equal to `32`")  # noqa: E501
 
         self._cipher = cipher
 

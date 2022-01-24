@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **pem** | **String** |  | 
-**cipher** | [**crate::models::CipherEnum**](CipherEnum.md) |  | 
+**cipher** | **String** |  | 
 **length** | **i32** |  | 
 **fingerprint** | **String** |  | 
 **device** | **i32** |  | 

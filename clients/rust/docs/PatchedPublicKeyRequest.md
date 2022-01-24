@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **pem** | Option<**String**> |  | [optional]
-**cipher** | Option<[**crate::models::CipherEnum**](CipherEnum.md)> |  | [optional]
+**cipher** | Option<**String**> |  | [optional]
 **length** | Option<**i32**> |  | [optional]
 **fingerprint** | Option<**String**> |  | [optional]
 **device** | Option<**i32**> |  | [optional]

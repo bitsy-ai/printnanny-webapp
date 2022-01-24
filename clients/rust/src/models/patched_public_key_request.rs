@@ -16,7 +16,7 @@ pub struct PatchedPublicKeyRequest {
     #[serde(rename = "pem", skip_serializing_if = "Option::is_none")]
     pub pem: Option<String>,
     #[serde(rename = "cipher", skip_serializing_if = "Option::is_none")]
-    pub cipher: Option<crate::models::CipherEnum>,
+    pub cipher: Option<String>,
     #[serde(rename = "length", skip_serializing_if = "Option::is_none")]
     pub length: Option<i32>,
     #[serde(rename = "fingerprint", skip_serializing_if = "Option::is_none")]

@@ -22,8 +22,6 @@ pub mod camera_request;
 pub use self::camera_request::CameraRequest;
 pub mod camera_type;
 pub use self::camera_type::CameraType;
-pub mod cipher_enum;
-pub use self::cipher_enum::CipherEnum;
 pub mod cloudiot_device;
 pub use self::cloudiot_device::CloudiotDevice;
 pub mod cloudiot_device_request;

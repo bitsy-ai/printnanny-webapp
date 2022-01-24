@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devices', '0044_auto_20220117_0502'),
+        ("devices", "0044_auto_20220117_0502"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='publickey',
-            name='cipher',
+            model_name="publickey",
+            name="cipher",
             field=models.CharField(max_length=32),
         ),
     ]

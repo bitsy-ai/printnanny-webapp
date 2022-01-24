@@ -39,7 +39,7 @@ class TestPublicKey(unittest.TestCase):
             return PublicKey(
                 id = 56, 
                 pem = '', 
-                cipher = 'ecdsa', 
+                cipher = '', 
                 length = -2147483648, 
                 fingerprint = '', 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
@@ -50,7 +50,7 @@ class TestPublicKey(unittest.TestCase):
             return PublicKey(
                 id = 56,
                 pem = '',
-                cipher = 'ecdsa',
+                cipher = '',
                 length = -2147483648,
                 fingerprint = '',
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),

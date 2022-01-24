@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
 **pem** | **str** |  | 
-**cipher** | [**CipherEnum**](CipherEnum.md) |  | 
+**cipher** | **str** |  | 
 **length** | **int** |  | 
 **fingerprint** | **str** |  | 
 **created_dt** | **datetime** |  | [readonly] 

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
 **pem** | **String** |  | 
-**cipher** | [**crate::models::CipherEnum**](CipherEnum.md) |  | 
+**cipher** | **String** |  | 
 **length** | **i32** |  | 
 **fingerprint** | **String** |  | 
 **created_dt** | **String** |  | [readonly]

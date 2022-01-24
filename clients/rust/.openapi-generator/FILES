@@ -17,7 +17,6 @@ docs/CallbackTokenVerificationRequest.md
 docs/Camera.md
 docs/CameraRequest.md
 docs/CameraType.md
-docs/CipherEnum.md
 docs/ClientConfigApi.md
 docs/CloudiotDevice.md
 docs/CloudiotDeviceRequest.md
@@ -189,7 +188,6 @@ src/models/callback_token_verification_request.rs
 src/models/camera.rs
 src/models/camera_request.rs
 src/models/camera_type.rs
-src/models/cipher_enum.rs
 src/models/cloudiot_device.rs
 src/models/cloudiot_device_request.rs
 src/models/command_enum.rs

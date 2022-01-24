@@ -38,7 +38,7 @@ class TestPublicKeyRequest(unittest.TestCase):
         if include_optional :
             return PublicKeyRequest(
                 pem = '0', 
-                cipher = 'ecdsa', 
+                cipher = '0', 
                 length = -2147483648, 
                 fingerprint = '0', 
                 device = 56
@@ -46,7 +46,7 @@ class TestPublicKeyRequest(unittest.TestCase):
         else :
             return PublicKeyRequest(
                 pem = '0',
-                cipher = 'ecdsa',
+                cipher = '0',
                 length = -2147483648,
                 fingerprint = '0',
                 device = 56,
