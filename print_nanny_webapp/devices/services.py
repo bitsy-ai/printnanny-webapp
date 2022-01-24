@@ -1,21 +1,11 @@
 from __future__ import annotations
-import subprocess
-import hashlib
 import logging
-import tempfile
-import requests
-import os
-from typing import Tuple
-
-from django.apps import apps
 from django.conf import settings
 from google.cloud import iot_v1 as cloudiot_v1
 import google.api_core.exceptions
 from django.template.loader import render_to_string
 
 from .models import Device, CloudiotDevice, PublicKey
-from .constants import FileLocator
-from .enum import Ciphers
 
 logger = logging.getLogger(__name__)
 
