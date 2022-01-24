@@ -1,3 +1,4 @@
+import posthog
 import logging
 from .base import *  # noqa
 from .base import env
@@ -10,14 +11,13 @@ SECRET_KEY = env("DJANGO_SECRET_KEY")
 ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[
     "print-nanny.com",
     "www.print-nanny.com",
-    # TODO     
+    # TODO
     # "api.print-nanny.com",
 ])
 
 # posthog
 # ------------------------------------------------------------------------------
 # https://posthog.com/docs/libraries/python
-import posthog
 POSTHOG_API_KEY = env('POSTHOG_API_KEY', default=None)
 POSTHOG_ENABLED = True
 posthog.project_api_key = POSTHOG_API_KEY
@@ -157,9 +157,12 @@ LOGGING = {
 # ------------------------------------------------------------------------------
 
 
-GOOGLE_ANALYTICS =  'G-QKHED5DPGV'
+GOOGLE_ANALYTICS = 'G-QKHED5DPGV'
 
-MIDDLEWARE += [ 'allow_cidr.middleware.AllowCIDRMiddleware']
+MIDDLEWARE += [
+    'allow_cidr.middleware.AllowCIDRMiddleware',
+    'print_nanny_webapp.middleware.honeycomb.HoneyMiddlewareIgnoreHealthCheck',
+]
 
 ALLOWED_CIDR_NETS = [
     '10.12.0.0/14',
@@ -189,7 +192,7 @@ GCP_PROJECT_ID = env("GCP_PROJECT_ID", default="print-nanny")
 
 STATIC_URL = "https://www.print-nanny.com/static/"
 
-DEBUG=False
+DEBUG = False
 
 # dj-stripe
 # ------------------------------------------------------------------------------
@@ -214,6 +217,5 @@ MIDDLEWARE.insert(2, 'corsheaders.middleware.CorsMiddleware')
 # posthog
 # ------------------------------------------------------------------------------
 # https://posthog.com/docs/libraries/python
-import posthog
 posthog.project_api_key = env('POSTHOG_API_KEY')
 posthog.debug = False
