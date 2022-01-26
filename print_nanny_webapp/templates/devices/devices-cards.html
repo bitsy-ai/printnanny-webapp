@@ -2,14 +2,8 @@
 {% load static %}
 
 <div class="row">
-    {% for device in devices %}
-      {% if not device.active_license %}
-        {% include "devices/partials/license-alert-card.html" with device=device %}
-      {% elif device.cameras.count == 0 %}
-        {% include "devices/partials/camera-alert-card.html" with device=device %}
-      {% else %}
-        {% include "devices/partials/camera-stream-card.html" with device=device %}
-      {% endif %}
-    {% endfor %}
-  
+  {% for device in devices %}
+  {% include "devices/partials/camera-stream-card.html" with device=device %}
+  {% endfor %}
+
 </div>
