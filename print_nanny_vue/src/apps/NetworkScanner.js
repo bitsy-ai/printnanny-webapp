@@ -8,18 +8,4 @@ export default Array.prototype.forEach.call(apps, (el, index) => new Vue({
   el,
   components: { NetworkScanner },
   store
-  // methods: {
-  //   ...mapMutations(TASK_MODULE, [
-  //     SET_TASK_DATA
-  //   ])
-  // },
-  // computed: {
-  //   ...mapState(TASK_MODULE, {
-  //     tasks: TASKS
-  //   })
-  // },
-  // created: function () {
-  //   // const htmlId = el.dataset.htmlId
-  //   // const d = JSON.parse(JSON.parse(document.getElementById(htmlId).textContent))
-  // }
 }))

@@ -1,10 +1,10 @@
 <script>
+import { mapMutations, mapState } from 'vuex'
 import useVuelidate from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
+import { SET_DEVICE_SCAN_RESULT, DEVICE_SCAN_RESULT, WIZARD_MODULE } from '@/store/wizard'
 
 export default {
-  props: {
-  },
   data: function () {
     return {
       form: { hostname: '' },
@@ -27,12 +27,15 @@ export default {
   computed: {
     logs: function () {
       return this.messages.join('\n')
-    }
+    },
+    ...mapState(WIZARD_MODULE, {
+      scan_result: DEVICE_SCAN_RESULT
+    })
   },
   methods: {
-    scan () {
-
-    },
+    ...mapMutations(WIZARD_MODULE, {
+      set_scan_result: SET_DEVICE_SCAN_RESULT
+    }),
     retry () {
       const seconds = this.retryDelay / 1000
       if (this.loading === true) {
@@ -47,32 +50,29 @@ export default {
       }
     },
     connect () {
-      this.messages.push(`Initializing connection to ${this.form.hostname}...`)
+      this.messages.push(`Looking for ${this.form.hostname}...`)
       const url = `http://${this.form.hostname}:${this.port}`
       const request = new Request(`http://${this.form.hostname}:${this.port}`, { mode: 'no-cors' })
+      this.set_scan_result({
+        loading: true,
+        hostname: this.form.hostname
+      })
       fetch(request)
         .then(response => response.blob())
         .then(blob => {
           this.loading = false
-          const successMsg = `Success connecting to ${url} ✅`
-          const redirectMsg = 'Redirecting in 4 seconds...'
+          const successMsg = `Found ${this.form.hostname} on your network ✅`
+          const redirectMsg = `Click the "Link" button to connect ${this.form.hostname} to your account`
+          const verificationMsg = `A verification code will be sent to ${this.email} to prove you own ${this.form.hostname} 🔒`
           this.messages.push(successMsg)
-          setTimeout((scope) => {
-            const redirectMsg = 'Redirecting in 3 seconds...'
-            this.messages.push(redirectMsg)
-          }, 1000)
-          setTimeout((scope) => {
-            const redirectMsg = 'Redirecting in 2 seconds...'
-            this.messages.push(redirectMsg)
-          }, 2000)
-          setTimeout((scope) => {
-            const redirectMsg = 'Redirecting in 1 second...'
-            this.messages.push(redirectMsg)
-          }, 3000)
-          setTimeout((scope) => {
-            window.location.href = url
-          }, 4000)
           this.messages.push(redirectMsg)
+          this.message.push(verificationMsg)
+          this.set_scan_result({
+            loading: false,
+            success: true,
+            hostname: this.form.hostname,
+            url: url
+          })
         })
       this.retryTimeout = setTimeout(function (scope) {
         scope.maxRetry -= 1
@@ -82,10 +82,7 @@ export default {
       }, this.retryDelay, this)
     },
     submit () {
-      console.log(this)
-      console.log(this.$v)
       this.v$.$touch()
-      console.log(this.v$.$error)
       if (this.v$.$error) return
       this.loading = true
       this.connect()
@@ -98,8 +95,7 @@ export default {
 <div class="row">
   <div class="col-6 offset-3">
     <h2 class="mb-2">Enter Raspberry Pi's Hostname</h2>
-    <p>Print Nanny can discover new devices on your network.</p>
-    <p>Click <strong>Scan</strong> to search. You'll be redirected to a verification screen to link your account.</p>
+    <p>Print Nanny can discover new devices on your network.Click <strong>Scan</strong> to search.</p>
     <b-form id="network-scanner" @submit.prevent="submit">
       <b-row>
         <b-col sm="8">

@@ -61,6 +61,8 @@ logger = logging.getLogger(__name__)
 ##
 # Task
 ##
+
+
 @extend_schema_view(
     # GET many tasks
     list=extend_schema(

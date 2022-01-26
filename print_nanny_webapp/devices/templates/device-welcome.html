@@ -1,21 +1,60 @@
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
+{% extends "vertical_base.html" %}
+{% load static %}
+{% load crispy_forms_tags feature_flags %}
 
-                <h4 class="header-title mb-3">Setup Print Nanny OS</h4>
-                <!-- <p>🚀 The preflight checks below will show you how to use Print Nanny. Click/tap <strong
-                        class="text-primary"><i class="mdi mdi-open-in-new"></i> highlighted links</strong> or
-                    <span class="badge badge-secondary"> <i class="mdi mdi-information"></i> status indicators</span> to
-                    see more information.
-                </p> -->
+{% block title_extra %}{{object.name}}{% endblock %}
 
-                <!--- vue component here -->
-                <span class="welcome-wizard-app">
-                    <welcome-wizard gettingStartedUrl="{{ HELP_GETTING_STARTED }}" />
-                </span>
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'devices:list' %}">Manage Devices</a></li>
+                        <li class="breadcrumb-item active">{{ object.hostname }}</li>
+                    </ol>
+                </div>
+                <h3 class="page-title d-inline-flex">
+                    Manage Device: {{ object.hostname }}
+                </h3>
+            </div>
+        </div>
+    </div>
 
-            </div> <!-- end card-body -->
-        </div> <!-- end card-->
-    </div> <!-- end col -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <h4 class="header-title mb-3">Setup Print Nanny OS</h4>
+                    <!-- <p>🚀 The preflight checks below will show you how to use Print Nanny. Click/tap <strong
+                            class="text-primary"><i class="mdi mdi-open-in-new"></i> highlighted links</strong> or
+                        <span class="badge badge-secondary"> <i class="mdi mdi-information"></i> status indicators</span> to
+                        see more information.
+                    </p> -->
+
+                    <!--- vue component here -->
+                    {% if obj %}
+                    <span class="welcome-wizard-app">
+                        <welcome-wizard deviceId="{{ obj.id }}" gettingStartedUrl="{{ HELP_GETTING_STARTED }}" />
+                    </span>
+                    {% else %}
+                    <span class="welcome-wizard-app">
+                        <welcome-wizard gettingStartedUrl="{{ HELP_GETTING_STARTED }}" />
+                    </span>
+                    {% endif %}
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+        </div> <!-- end col -->
+    </div>
 </div>
+{% endblock content %}
+
+{% block extra_javascript %}
+{% load render_bundle from webpack_loader %}
+{% render_bundle 'taskStatus' %}
+{% render_bundle 'webCamStream' %}
+{% render_bundle 'welcomeWizard' %}
+{% endblock %}
