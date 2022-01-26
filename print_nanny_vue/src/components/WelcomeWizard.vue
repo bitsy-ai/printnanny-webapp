@@ -51,7 +51,7 @@ export default {
                 color="#02a8b5"
                 errorColor="#fa5c7c"
                 title="Install in 10 Minutes or Less"
-                subtitle="If your install takes longer than 10 minutes, email leigh@print-nanny.com to receive one FREE month">
+                subtitle="If your install takes longer than 10 minutes, email leigh@print-nanny.com to receive one FREE month of Print Nanny">
       <tab-content title="Getting Started"
                    icon="">
       <hr>
