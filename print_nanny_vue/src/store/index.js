@@ -5,6 +5,7 @@ import alerts, { ALERTS_MODULE } from './alerts'
 import devices, { DEVICE_MODULE } from './devices'
 import settings, { SETTINGS_MODULE } from './settings'
 import tasks, { TASK_MODULE } from './tasks'
+import wizard, { WIZARD_MODULE } from './wizard'
 
 import mutations from './mutations'
 
@@ -16,7 +17,8 @@ export default new Vuex.Store({
     [ALERTS_MODULE]: alerts,
     [SETTINGS_MODULE]: settings,
     [TASK_MODULE]: tasks,
-    [DEVICE_MODULE]: devices
+    [DEVICE_MODULE]: devices,
+    [WIZARD_MODULE]: wizard
   },
   state: () => ({
     socket: {

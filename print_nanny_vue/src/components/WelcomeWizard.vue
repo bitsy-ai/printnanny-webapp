@@ -1,12 +1,16 @@
 <script>
+import { mapMutations, mapState } from 'vuex'
+import { SET_DEVICE_SCAN_RESULT, DEVICE_SCAN_RESULT, WIZARD_MODULE } from '@/store/wizard'
 import NetworkScanner from '@/components/NetworkScanner'
-import { FormWizard, TabContent } from 'vue-form-wizard'
+// import MqttPingPong from '@/components/MqttPingPong'
+import { FormWizard, TabContent, WizardButton } from 'vue-form-wizard'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 
 export default {
-  components: { FormWizard, TabContent, NetworkScanner },
+  components: { FormWizard, TabContent, NetworkScanner, WizardButton },
   props: {
-    getttingStartedUrl: String
+    getttingStartedUrl: String,
+    deviceId: Number
   },
   data: function () {
     return {
@@ -17,9 +21,18 @@ export default {
     startIndex: function startIndex () {
       const url = new URL(window.location.href)
       return parseInt(url.searchParams.get('step')) || 0
+    },
+    ...mapState(WIZARD_MODULE, {
+      scan_result: DEVICE_SCAN_RESULT
+    }),
+    scanNextDisabled: function () {
+      return this.scan_result.loading === true || this.scan_result.success !== true
     }
   },
   methods: {
+    ...mapMutations(WIZARD_MODULE, {
+      set_scan_result: SET_DEVICE_SCAN_RESULT
+    }),
     onComplete: function () {
       alert('Yay. Done!')
     },
@@ -77,14 +90,14 @@ export default {
         </div>
       </div>
       </tab-content>
-      <tab-content title="Link Raspberry Pi"
-                   icon="">
-      <network-scanner/>
+      <tab-content
+        title="Link Raspberry Pi"
+        icon="">
+        <network-scanner>
+        </network-scanner>
       </tab-content>
-      <tab-content title="Test Connections"
+      <tab-content title="Test Connection"
                    icon="">
-      Send MQTT ping / pong
-      Try live streaming video
       </tab-content>
 
       <tab-content title="Finish Setup"
@@ -100,6 +113,39 @@ export default {
       -->
 
       <div class="loader" v-if="loading"></div>
+      <template slot="footer" slot-scope="props">
+       <div class="wizard-footer-left">
+           <wizard-button
+            v-if="props.activeTabIndex > 0 && !props.isLastStep"
+            @click.native="props.prevTab()"
+            class="btn btn-lg"
+            :style="props.fillButtonStyle">Previous
+            </wizard-button>
+        </div>
+        <div class="wizard-footer-right">
+          <wizard-button
+            v-if="!props.isLastStep && props.activeTabIndex == 1"
+            @click.native="props.nextTab()"
+            class="btn btn-lg wizard-footer-right"
+            v-bind:disabled="scanNextDisabled"
+            :style="props.fillButtonStyle">
+            <span v-show="scan_result.loading"></span>Link {{scan_result.hostname}}
+          </wizard-button>
+          <wizard-button
+            v-else-if="!props.isLastStep && props.activeTabIndex !== 1"
+            @click.native="props.nextTab()"
+            class="btn btn-lg wizard-footer-right"
+            :style="props.fillButtonStyle">Next
+          </wizard-button>
+
+          <wizard-button
+            v-else
+            @click.native="onComplete"
+            class="btn btn-lg wizard-footer-right finish-button"
+            :style="props.fillButtonStyle">  {{props.isLastStep ? 'Done' : 'Next'}}
+          </wizard-button>
+        </div>
+      </template>
     </form-wizard>
  </div>
 </template>

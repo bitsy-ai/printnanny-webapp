@@ -98,17 +98,11 @@ class DeviceDetailView(DetailView, MultipleObjectMixin):
         return context
 
 
-class DeviceWelcomeView(DetailView, MultipleObjectMixin):
+class DeviceWelcomeView(TemplateView):
+    template_name = "device-welcome.html"
+
+
+class DeviceWelcomeDetailView(DetailView):
     model = Device
-    template_name = "devices/device-detail.html"
+    template_name = "device-welcome.html"
     paginate_by = 10
-
-    def get_context_data(self, **kwargs):
-        tasks = self.get_object().tasks.all()
-        context = super().get_context_data(object_list=tasks, **kwargs)
-        return context
-
-
-# class DeviceWelcomeView(DetailView):
-#     model = Device
-#     template_name = "device-welcome.html"
