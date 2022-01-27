@@ -9,9 +9,16 @@ import NetworkScanner from '@/components/NetworkScanner'
 // import MqttPingPong from '@/components/MqttPingPong'
 import { FormWizard, TabContent, WizardButton } from 'vue-form-wizard'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+import MqttPingPong from './MqttPingPong.vue'
 
 export default {
-  components: { FormWizard, TabContent, NetworkScanner, WizardButton },
+  components: {
+    FormWizard,
+    TabContent,
+    NetworkScanner,
+    WizardButton,
+    MqttPingPong
+  },
   props: {
     getttingStartedUrl: String,
     deviceId: Number
@@ -140,9 +147,11 @@ export default {
       <tab-content title="Link Raspberry Pi" icon="">
         <network-scanner> </network-scanner>
       </tab-content>
-      <tab-content title="Test Connection" icon=""> </tab-content>
+      <tab-content title="Test Connections" icon="">
+        <mqtt-ping-pong :deviceId="deviceId"> </mqtt-ping-pong>
+      </tab-content>
 
-      <tab-content title="Finish Setup" icon="">
+      <tab-content title="Setup Done!" icon="">
         Send MQTT ping / pong Try live streaming video
       </tab-content>
       <!--

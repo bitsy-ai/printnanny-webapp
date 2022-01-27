@@ -1,11 +1,11 @@
 from collections.abc import Mapping
 from rest_framework import serializers
 from rest_polymorphic.serializers import PolymorphicSerializer
-from print_nanny_webapp.events.models import PrintNannyEvent, Event
+from print_nanny_webapp.events.models import TestEvent, Event
 from print_nanny_webapp.events.enum import (
     EventSource,
-    PrintNannyEventType,
-    PrintNannyEventStatus,
+    TestEventType,
+    EventStatus,
 )
 
 
@@ -16,16 +16,16 @@ class EventSerializer(serializers.Serializer):
         read_only_fields = ("user", "polymorphic_ctype")
 
 
-class PrintNannyEventSerializer(EventSerializer):
+class TestEventSerializer(EventSerializer):
     class Meta:
-        model = PrintNannyEvent
+        model = TestEvent
         fields = "__all__"
 
 
 class PolymorphicEventSerializer(PolymorphicSerializer):
     model_serializer_mapping = {
         Event: EventSerializer,
-        PrintNannyEvent: PrintNannyEventSerializer,
+        TestEvent: TestEventSerializer,
     }
 
     def to_representation(self, instance):

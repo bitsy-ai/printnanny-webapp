@@ -13,7 +13,7 @@ class EventSource(models.TextChoices):
     )
 
 
-class PrintNannyEventStatus(models.TextChoices):
+class EventStatus(models.TextChoices):
     SENT = "sent", "Sent"
     ACK = "ack", "Acknowledged"
     SUCCESS = "success", "Success"
@@ -21,6 +21,6 @@ class PrintNannyEventStatus(models.TextChoices):
     TIMEOUT = "timeout", "Timeout"
 
 
-class PrintNannyEventType(models.TextChoices):
+class TestEventType(models.TextChoices):
     MQTT_PING = "mqtt_ping", "MQTT Ping Event"
     MQTT_PONG = "mqtt_pong", "MQTT Pong Event"

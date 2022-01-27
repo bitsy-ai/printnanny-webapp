@@ -3,10 +3,14 @@ import {
 } from './mutations'
 import api from '@/services/devices'
 
+export const CREATE_EVENT = 'create_event'
 export const START_MONITORING = 'start_monitoring'
 export const STOP_MONITORING = 'stop_monitoring'
 
 export default {
+  async [CREATE_EVENT] ({ commit, state, dispatch }, eventType, payload) {
+    const res = await api.createEvent(eventType, payload)
+  },
   async [START_MONITORING] ({ commit, state, dispatch }, device) {
     const res = await api.startMonitoring(device)
     commit(SET_DEVICE_DATA, res)

@@ -3,8 +3,8 @@ import logging
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, CreateModelMixin
-from print_nanny_webapp.events.models import Event, PrintNannyEvent
-from .serializers import PolymorphicEventSerializer, PrintNannyEventSerializer
+from print_nanny_webapp.events.models import Event, TestEvent
+from .serializers import PolymorphicEventSerializer, TestEventSerializer
 
 
 @extend_schema(tags=["events", "devices"])
@@ -34,8 +34,8 @@ class EventViewSet(
         }
     )
 )
-class PrintNannyEventViewSet(
+class TestEventViewSet(
     GenericViewSet, ListModelMixin, RetrieveModelMixin, CreateModelMixin
 ):
-    serializer_class = PrintNannyEventSerializer
-    queryset = PrintNannyEvent.objects.all()
+    serializer_class = TestEventSerializer
+    queryset = TestEvent.objects.all()
