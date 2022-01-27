@@ -1,9 +1,9 @@
 <script>
-import { mapMutations, mapState, mapActions } from 'vuex'
-import { DEVICE_MODULE, CREATE_TEST_EVENT } from '@/store/devices'
+import { mapActions } from 'vuex'
+import { DEVICE_MODULE, MQTT_PING_EVENT } from '@/store/devices'
 export default {
   props: {
-    deviceId: Number
+    deviceId: String
   },
   data: function () {
     return {
@@ -12,7 +12,7 @@ export default {
   },
   methods: {
     ...mapActions(DEVICE_MODULE, {
-      createTestEvent: CREATE_TEST_EVENT
+      mqttPing: MQTT_PING_EVENT
     })
   }
 }
@@ -24,8 +24,7 @@ export default {
     </div>
     <div class="card-body">
       <p>Tests MQTT connection, handles events and alerts.</p>
-      <button @click="createTestEvent"
-      class="btn btn-primary">Ping</button>
+      <button @click="mqttPing(deviceId)" class="btn btn-primary">Ping</button>
     </div>
   </div>
 </template>

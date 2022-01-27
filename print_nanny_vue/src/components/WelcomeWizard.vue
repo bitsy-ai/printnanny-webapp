@@ -20,8 +20,7 @@ export default {
     MqttPingPong
   },
   props: {
-    getttingStartedUrl: String,
-    deviceId: Number
+    deviceId: String
   },
   data: function () {
     return {
@@ -148,7 +147,7 @@ export default {
         <network-scanner> </network-scanner>
       </tab-content>
       <tab-content title="Test Connections" icon="">
-        <mqtt-ping-pong :deviceId="deviceId"> </mqtt-ping-pong>
+        <mqtt-ping-pong :device-id="deviceId"> </mqtt-ping-pong>
       </tab-content>
 
       <tab-content title="Setup Done!" icon="">

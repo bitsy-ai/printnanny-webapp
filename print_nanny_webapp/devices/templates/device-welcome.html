@@ -36,13 +36,13 @@
                     </p> -->
 
                     <!--- vue component here -->
-                    {% if obj %}
+                    {% if object %}
                     <span class="welcome-wizard-app">
-                        <welcome-wizard deviceId="{{ obj.id }}" gettingStartedUrl="{{ HELP_GETTING_STARTED }}" />
+                        <welcome-wizard device-id="{{ object.id }}" />
                     </span>
                     {% else %}
                     <span class="welcome-wizard-app">
-                        <welcome-wizard gettingStartedUrl="{{ HELP_GETTING_STARTED }}" />
+                        <welcome-wizard />
                     </span>
                     {% endif %}
                 </div> <!-- end card-body -->
