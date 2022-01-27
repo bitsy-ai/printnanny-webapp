@@ -51,9 +51,6 @@ Method | HTTP request | Description
 [**devices_tasks_status_create**](DevicesApi.md#devices_tasks_status_create) | **POST** /api/devices/{device_id}/tasks/{task_id}/status/ | 
 [**devices_tasks_status_list**](DevicesApi.md#devices_tasks_status_list) | **GET** /api/devices/{device_id}/tasks/{task_id}/status/ | 
 [**devices_tasks_status_retrieve**](DevicesApi.md#devices_tasks_status_retrieve) | **GET** /api/devices/{device_id}/tasks/{task_id}/status/{id}/ | 
-[**devices_test_events_create**](DevicesApi.md#devices_test_events_create) | **POST** /api/devices/{device_id}/test-events/ | 
-[**devices_test_events_list**](DevicesApi.md#devices_test_events_list) | **GET** /api/devices/{device_id}/test-events/ | 
-[**devices_test_events_retrieve**](DevicesApi.md#devices_test_events_retrieve) | **GET** /api/devices/{device_id}/test-events/{id}/ | 
 [**devices_update**](DevicesApi.md#devices_update) | **PUT** /api/devices/{id}/ | 
 [**janus_auth_update_or_create**](DevicesApi.md#janus_auth_update_or_create) | **POST** /api/devices/{device_id}/janus/update-or-create/ | 
 [**public_key_update_or_create**](DevicesApi.md#public_key_update_or_create) | **POST** /api/devices/{device_id}/public-keys/update-or-create/ | 
@@ -1430,93 +1427,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::Task**](Task.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## devices_test_events_create
-
-> crate::models::TestEvent devices_test_events_create(device_id, test_event_request)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-**test_event_request** | [**TestEventRequest**](TestEventRequest.md) |  | [required] |
-
-### Return type
-
-[**crate::models::TestEvent**](TestEvent.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## devices_test_events_list
-
-> crate::models::PaginatedTestEventList devices_test_events_list(device_id, page)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-**page** | Option<**i32**> | A page number within the paginated result set. |  |
-
-### Return type
-
-[**crate::models::PaginatedTestEventList**](PaginatedTestEventList.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## devices_test_events_retrieve
-
-> crate::models::TestEvent devices_test_events_retrieve(device_id, id)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-**id** | **i32** | A unique integer value identifying this test event. | [required] |
-
-### Return type
-
-[**crate::models::TestEvent**](TestEvent.md)
 
 ### Authorization
 

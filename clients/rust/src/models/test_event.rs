@@ -15,36 +15,21 @@
 pub struct TestEvent {
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "deleted")]
-    pub deleted: String,
-    #[serde(rename = "created_dt")]
-    pub created_dt: String,
-    #[serde(rename = "source")]
-    pub source: crate::models::EventSource,
     #[serde(rename = "type")]
     pub _type: crate::models::TestEventType,
     #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
     pub status: Option<crate::models::EventStatus>,
-    #[serde(rename = "polymorphic_ctype")]
-    pub polymorphic_ctype: i32,
-    #[serde(rename = "user")]
-    pub user: i32,
-    #[serde(rename = "device")]
-    pub device: i32,
+    #[serde(rename = "resourcetype", skip_serializing_if = "Option::is_none")]
+    pub resourcetype: Option<String>,
 }
 
 impl TestEvent {
-    pub fn new(id: i32, deleted: String, created_dt: String, source: crate::models::EventSource, _type: crate::models::TestEventType, polymorphic_ctype: i32, user: i32, device: i32) -> TestEvent {
+    pub fn new(id: i32, _type: crate::models::TestEventType) -> TestEvent {
         TestEvent {
             id,
-            deleted,
-            created_dt,
-            source,
             _type,
             status: None,
-            polymorphic_ctype,
-            user,
-            device,
+            resourcetype: None,
         }
     }
 }

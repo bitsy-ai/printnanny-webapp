@@ -37,62 +37,36 @@ class PolymorphicEventRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'source': 'EventSource',
         'type': 'TestEventType',
         'status': 'EventStatus',
-        'device': 'int'
+        'resourcetype': 'str'
     }
 
     attribute_map = {
-        'source': 'source',
         'type': 'type',
         'status': 'status',
-        'device': 'device'
+        'resourcetype': 'resourcetype'
     }
 
     discriminator_value_class_map = {
     }
 
-    def __init__(self, source=None, type=None, status=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, type=None, status=None, resourcetype='TestEvent', local_vars_configuration=None):  # noqa: E501
         """PolymorphicEventRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
-        self._source = None
         self._type = None
         self._status = None
-        self._device = None
+        self._resourcetype = None
         self.discriminator = 'resourcetype'
 
-        self.source = source
         self.type = type
         if status is not None:
             self.status = status
-        self.device = device
-
-    @property
-    def source(self):
-        """Gets the source of this PolymorphicEventRequest.  # noqa: E501
-
-
-        :return: The source of this PolymorphicEventRequest.  # noqa: E501
-        :rtype: EventSource
-        """
-        return self._source
-
-    @source.setter
-    def source(self, source):
-        """Sets the source of this PolymorphicEventRequest.
-
-
-        :param source: The source of this PolymorphicEventRequest.  # noqa: E501
-        :type source: EventSource
-        """
-        if self.local_vars_configuration.client_side_validation and source is None:  # noqa: E501
-            raise ValueError("Invalid value for `source`, must not be `None`")  # noqa: E501
-
-        self._source = source
+        if resourcetype is not None:
+            self.resourcetype = resourcetype
 
     @property
     def type(self):
@@ -139,27 +113,28 @@ class PolymorphicEventRequest(object):
         self._status = status
 
     @property
-    def device(self):
-        """Gets the device of this PolymorphicEventRequest.  # noqa: E501
+    def resourcetype(self):
+        """Gets the resourcetype of this PolymorphicEventRequest.  # noqa: E501
 
 
-        :return: The device of this PolymorphicEventRequest.  # noqa: E501
-        :rtype: int
+        :return: The resourcetype of this PolymorphicEventRequest.  # noqa: E501
+        :rtype: str
         """
-        return self._device
+        return self._resourcetype
 
-    @device.setter
-    def device(self, device):
-        """Sets the device of this PolymorphicEventRequest.
+    @resourcetype.setter
+    def resourcetype(self, resourcetype):
+        """Sets the resourcetype of this PolymorphicEventRequest.
 
 
-        :param device: The device of this PolymorphicEventRequest.  # noqa: E501
-        :type device: int
+        :param resourcetype: The resourcetype of this PolymorphicEventRequest.  # noqa: E501
+        :type resourcetype: str
         """
-        if self.local_vars_configuration.client_side_validation and device is None:  # noqa: E501
-            raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                resourcetype is not None and len(resourcetype) < 1):
+            raise ValueError("Invalid value for `resourcetype`, length must be greater than or equal to `1`")  # noqa: E501
 
-        self._device = device
+        self._resourcetype = resourcetype
 
     def get_real_child_model(self, data):
         """Returns the real base class specified by the discriminator"""

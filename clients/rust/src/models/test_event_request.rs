@@ -13,23 +13,20 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct TestEventRequest {
-    #[serde(rename = "source")]
-    pub source: crate::models::EventSource,
     #[serde(rename = "type")]
     pub _type: crate::models::TestEventType,
     #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
     pub status: Option<crate::models::EventStatus>,
-    #[serde(rename = "device")]
-    pub device: i32,
+    #[serde(rename = "resourcetype", skip_serializing_if = "Option::is_none")]
+    pub resourcetype: Option<String>,
 }
 
 impl TestEventRequest {
-    pub fn new(source: crate::models::EventSource, _type: crate::models::TestEventType, device: i32) -> TestEventRequest {
+    pub fn new(_type: crate::models::TestEventType) -> TestEventRequest {
         TestEventRequest {
-            source,
             _type,
             status: None,
-            device,
+            resourcetype: None,
         }
     }
 }

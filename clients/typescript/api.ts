@@ -798,74 +798,6 @@ export interface ErrorDetail {
 /**
  * 
  * @export
- * @interface Event
- */
-export interface Event {
-    /**
-     * 
-     * @type {number}
-     * @memberof Event
-     */
-    'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof Event
-     */
-    'deleted': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Event
-     */
-    'created_dt': string;
-    /**
-     * 
-     * @type {EventSource}
-     * @memberof Event
-     */
-    'source': EventSource;
-    /**
-     * 
-     * @type {number}
-     * @memberof Event
-     */
-    'polymorphic_ctype': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof Event
-     */
-    'user': number;
-}
-/**
- * 
- * @export
- * @interface EventRequest
- */
-export interface EventRequest {
-    /**
-     * 
-     * @type {EventSource}
-     * @memberof EventRequest
-     */
-    'source': EventSource;
-}
-/**
- * 
- * @export
- * @enum {string}
- */
-
-export enum EventSource {
-    Octoprint = 'octoprint',
-    Printnanny = 'printnanny',
-    Mainsail = 'mainsail'
-}
-
-/**
- * 
- * @export
  * @enum {string}
  */
 
@@ -4579,13 +4511,13 @@ export interface PatchedUserRequest {
  * @type PolymorphicEvent
  * @export
  */
-export type PolymorphicEvent = Event | TestEvent;
+export type PolymorphicEvent = TestEvent;
 
 /**
  * @type PolymorphicEventRequest
  * @export
  */
-export type PolymorphicEventRequest = EventRequest | TestEventRequest;
+export type PolymorphicEventRequest = TestEventRequest;
 
 /**
  * 
@@ -6724,24 +6656,6 @@ export interface TestEvent {
     'id': number;
     /**
      * 
-     * @type {string}
-     * @memberof TestEvent
-     */
-    'deleted': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TestEvent
-     */
-    'created_dt': string;
-    /**
-     * 
-     * @type {EventSource}
-     * @memberof TestEvent
-     */
-    'source': EventSource;
-    /**
-     * 
      * @type {TestEventType}
      * @memberof TestEvent
      */
@@ -6754,22 +6668,10 @@ export interface TestEvent {
     'status'?: EventStatus;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof TestEvent
      */
-    'polymorphic_ctype': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TestEvent
-     */
-    'user': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TestEvent
-     */
-    'device': number;
+    'resourcetype'?: string;
 }
 /**
  * 
@@ -6779,12 +6681,6 @@ export interface TestEvent {
 export interface TestEventRequest {
     /**
      * 
-     * @type {EventSource}
-     * @memberof TestEventRequest
-     */
-    'source': EventSource;
-    /**
-     * 
      * @type {TestEventType}
      * @memberof TestEventRequest
      */
@@ -6797,10 +6693,10 @@ export interface TestEventRequest {
     'status'?: EventStatus;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof TestEventRequest
      */
-    'device': number;
+    'resourcetype'?: string;
 }
 /**
  * 

@@ -15,7 +15,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.44.0"
+__version__ = "0.45.0"
 
 # import apis into sdk package
 from printnanny_api_client.api.alerts_api import AlertsApi
@@ -65,9 +65,6 @@ from printnanny_api_client.models.device_calibration_request import DeviceCalibr
 from printnanny_api_client.models.device_request import DeviceRequest
 from printnanny_api_client.models.email_auth_request import EmailAuthRequest
 from printnanny_api_client.models.error_detail import ErrorDetail
-from printnanny_api_client.models.event import Event
-from printnanny_api_client.models.event_request import EventRequest
-from printnanny_api_client.models.event_source import EventSource
 from printnanny_api_client.models.event_status import EventStatus
 from printnanny_api_client.models.experiment import Experiment
 from printnanny_api_client.models.experiment_device_config import ExperimentDeviceConfig
@@ -138,7 +135,6 @@ from printnanny_api_client.models.paginated_system_info_list import PaginatedSys
 from printnanny_api_client.models.paginated_task_list import PaginatedTaskList
 from printnanny_api_client.models.paginated_task_status_list import PaginatedTaskStatusList
 from printnanny_api_client.models.paginated_telemetry_event_polymorphic_list import PaginatedTelemetryEventPolymorphicList
-from printnanny_api_client.models.paginated_test_event_list import PaginatedTestEventList
 from printnanny_api_client.models.partner3_d_geeks_alert import Partner3DGeeksAlert
 from printnanny_api_client.models.partner3_d_geeks_metadata import Partner3DGeeksMetadata
 from printnanny_api_client.models.patched_alert_bulk_request_request import PatchedAlertBulkRequestRequest

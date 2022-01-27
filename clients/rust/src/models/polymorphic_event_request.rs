@@ -13,21 +13,12 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(tag = "resourcetype")]
 pub enum PolymorphicEventRequest {
-    #[serde(rename="Event")]
-    EventRequest {
-        #[serde(rename = "source")]
-        source: crate::models::EventSource,
-    },
     #[serde(rename="TestEvent")]
     TestEventRequest {
-        #[serde(rename = "source")]
-        source: crate::models::EventSource,
         #[serde(rename = "type")]
         _type: crate::models::TestEventType,
         #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
         status: Option<crate::models::EventStatus>,
-        #[serde(rename = "device")]
-        device: i32,
     },
 }
 

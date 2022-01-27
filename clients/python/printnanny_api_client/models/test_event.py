@@ -38,55 +38,36 @@ class TestEvent(object):
     """
     openapi_types = {
         'id': 'int',
-        'deleted': 'datetime',
-        'created_dt': 'datetime',
-        'source': 'EventSource',
         'type': 'TestEventType',
         'status': 'EventStatus',
-        'polymorphic_ctype': 'int',
-        'user': 'int',
-        'device': 'int'
+        'resourcetype': 'str'
     }
 
     attribute_map = {
         'id': 'id',
-        'deleted': 'deleted',
-        'created_dt': 'created_dt',
-        'source': 'source',
         'type': 'type',
         'status': 'status',
-        'polymorphic_ctype': 'polymorphic_ctype',
-        'user': 'user',
-        'device': 'device'
+        'resourcetype': 'resourcetype'
     }
 
-    def __init__(self, id=None, deleted=None, created_dt=None, source=None, type=None, status=None, polymorphic_ctype=None, user=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, type=None, status=None, resourcetype='TestEvent', local_vars_configuration=None):  # noqa: E501
         """TestEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
-        self._deleted = None
-        self._created_dt = None
-        self._source = None
         self._type = None
         self._status = None
-        self._polymorphic_ctype = None
-        self._user = None
-        self._device = None
+        self._resourcetype = None
         self.discriminator = None
 
         self.id = id
-        self.deleted = deleted
-        self.created_dt = created_dt
-        self.source = source
         self.type = type
         if status is not None:
             self.status = status
-        self.polymorphic_ctype = polymorphic_ctype
-        self.user = user
-        self.device = device
+        if resourcetype is not None:
+            self.resourcetype = resourcetype
 
     @property
     def id(self):
@@ -110,75 +91,6 @@ class TestEvent(object):
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
-
-    @property
-    def deleted(self):
-        """Gets the deleted of this TestEvent.  # noqa: E501
-
-
-        :return: The deleted of this TestEvent.  # noqa: E501
-        :rtype: datetime
-        """
-        return self._deleted
-
-    @deleted.setter
-    def deleted(self, deleted):
-        """Sets the deleted of this TestEvent.
-
-
-        :param deleted: The deleted of this TestEvent.  # noqa: E501
-        :type deleted: datetime
-        """
-        if self.local_vars_configuration.client_side_validation and deleted is None:  # noqa: E501
-            raise ValueError("Invalid value for `deleted`, must not be `None`")  # noqa: E501
-
-        self._deleted = deleted
-
-    @property
-    def created_dt(self):
-        """Gets the created_dt of this TestEvent.  # noqa: E501
-
-
-        :return: The created_dt of this TestEvent.  # noqa: E501
-        :rtype: datetime
-        """
-        return self._created_dt
-
-    @created_dt.setter
-    def created_dt(self, created_dt):
-        """Sets the created_dt of this TestEvent.
-
-
-        :param created_dt: The created_dt of this TestEvent.  # noqa: E501
-        :type created_dt: datetime
-        """
-        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
-            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
-
-        self._created_dt = created_dt
-
-    @property
-    def source(self):
-        """Gets the source of this TestEvent.  # noqa: E501
-
-
-        :return: The source of this TestEvent.  # noqa: E501
-        :rtype: EventSource
-        """
-        return self._source
-
-    @source.setter
-    def source(self, source):
-        """Sets the source of this TestEvent.
-
-
-        :param source: The source of this TestEvent.  # noqa: E501
-        :type source: EventSource
-        """
-        if self.local_vars_configuration.client_side_validation and source is None:  # noqa: E501
-            raise ValueError("Invalid value for `source`, must not be `None`")  # noqa: E501
-
-        self._source = source
 
     @property
     def type(self):
@@ -225,73 +137,25 @@ class TestEvent(object):
         self._status = status
 
     @property
-    def polymorphic_ctype(self):
-        """Gets the polymorphic_ctype of this TestEvent.  # noqa: E501
+    def resourcetype(self):
+        """Gets the resourcetype of this TestEvent.  # noqa: E501
 
 
-        :return: The polymorphic_ctype of this TestEvent.  # noqa: E501
-        :rtype: int
+        :return: The resourcetype of this TestEvent.  # noqa: E501
+        :rtype: str
         """
-        return self._polymorphic_ctype
+        return self._resourcetype
 
-    @polymorphic_ctype.setter
-    def polymorphic_ctype(self, polymorphic_ctype):
-        """Sets the polymorphic_ctype of this TestEvent.
+    @resourcetype.setter
+    def resourcetype(self, resourcetype):
+        """Sets the resourcetype of this TestEvent.
 
 
-        :param polymorphic_ctype: The polymorphic_ctype of this TestEvent.  # noqa: E501
-        :type polymorphic_ctype: int
+        :param resourcetype: The resourcetype of this TestEvent.  # noqa: E501
+        :type resourcetype: str
         """
-        if self.local_vars_configuration.client_side_validation and polymorphic_ctype is None:  # noqa: E501
-            raise ValueError("Invalid value for `polymorphic_ctype`, must not be `None`")  # noqa: E501
 
-        self._polymorphic_ctype = polymorphic_ctype
-
-    @property
-    def user(self):
-        """Gets the user of this TestEvent.  # noqa: E501
-
-
-        :return: The user of this TestEvent.  # noqa: E501
-        :rtype: int
-        """
-        return self._user
-
-    @user.setter
-    def user(self, user):
-        """Sets the user of this TestEvent.
-
-
-        :param user: The user of this TestEvent.  # noqa: E501
-        :type user: int
-        """
-        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
-            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
-
-        self._user = user
-
-    @property
-    def device(self):
-        """Gets the device of this TestEvent.  # noqa: E501
-
-
-        :return: The device of this TestEvent.  # noqa: E501
-        :rtype: int
-        """
-        return self._device
-
-    @device.setter
-    def device(self, device):
-        """Sets the device of this TestEvent.
-
-
-        :param device: The device of this TestEvent.  # noqa: E501
-        :type device: int
-        """
-        if self.local_vars_configuration.client_side_validation and device is None:  # noqa: E501
-            raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
-
-        self._device = device
+        self._resourcetype = resourcetype
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

@@ -38,25 +38,14 @@ class TestTestEvent(unittest.TestCase):
         if include_optional :
             return TestEvent(
                 id = 56, 
-                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                source = 'octoprint', 
                 type = 'mqtt_ping', 
                 status = 'sent', 
-                polymorphic_ctype = 56, 
-                user = 56, 
-                device = 56
+                resourcetype = 'TestEvent'
             )
         else :
             return TestEvent(
                 id = 56,
-                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                source = 'octoprint',
                 type = 'mqtt_ping',
-                polymorphic_ctype = 56,
-                user = 56,
-                device = 56,
         )
 
     def testTestEvent(self):
