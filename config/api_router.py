@@ -4,7 +4,7 @@ from rest_framework_nested.routers import NestedSimpleRouter
 
 from print_nanny_webapp.devices.api.views import (
     CameraViewSet,
-    CloudiotDeviceViewSet ,
+    CloudiotDeviceViewSet,
     DeviceHostnameViewSet,
     JanusAuthViewSet,
     PublicKeyViewSet,
@@ -37,16 +37,16 @@ from print_nanny_webapp.telemetry.api.views import (
 )
 
 from print_nanny_webapp.alerts.api.views import (
-    AlertViewSet #, PrintSessionAlertViewSet
+    AlertViewSet  # , PrintSessionAlertViewSet
 )
 
-from print_nanny_webapp.partners.api.views import ( GeeksViewSet )
+from print_nanny_webapp.partners.api.views import (GeeksViewSet)
 from print_nanny_webapp.utils.api.views import PrintNannyApiConfigViewset
 from print_nanny_webapp.octoprint.api.views import OctoPrintBackupViewset
-
+from print_nanny_webapp.events.api.views import (PrintNannyEventViewSet, EventViewSet)
 router = DefaultRouter()
 
-router.register("client-config", PrintNannyApiConfigViewset, basename="client-config"), 
+router.register("client-config", PrintNannyApiConfigViewset, basename="client-config"),
 
 router.register("alerts", AlertViewSet)
 router.register("devices", DeviceViewSet)
@@ -65,9 +65,11 @@ devices_router.register(r'public-keys', PublicKeyViewSet, basename='public-keys'
 
 devices_router.register(r'system-info', SystemInfoViewSet, basename='system-info')
 devices_router.register(r'cameras', CameraViewSet, basename='cameras')
-devices_router.register(r'cloud-iot-devices', CloudiotDeviceViewSet , basename='cloud-iot-devices')
+devices_router.register(r'cloud-iot-devices', CloudiotDeviceViewSet, basename='cloud-iot-devices')
 devices_router.register(r'printer-controllers', PrinterControllerViewSet, basename='printer-controllers')
 devices_router.register(r'onboarding-tasks', OnboardingTaskViewSet, basename='onboarding-tasks')
+devices_router.register(r'events', EventViewSet, basename='events')
+devices_router.register(r'printnanny-events', PrintNannyEventViewSet, basename='printnanny-events')
 
 devices_router.register(r'tasks', TaskViewSet, basename='tasks')
 
