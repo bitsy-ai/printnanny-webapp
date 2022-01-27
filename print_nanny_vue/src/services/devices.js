@@ -10,6 +10,9 @@ const configuration = new Configuration({
 })
 
 export default {
+  async sendEvent (eventType, payload) {
+
+  },
   async startMonitoring (device) {
     const thisapi = DevicesApiFactory(configuration, process.env.BASE_API_URL)
     const req = { monitoring_active: true }
@@ -29,7 +32,7 @@ export default {
     return res
   },
 
-  async getActiveLicense  (device) {
+  async getActiveLicense (device) {
     const thisapi = DevicesApiFactory(configuration, process.env.BASE_API_URL)
     const res = await thisapi.devicesActiveLicenseRetrieve(
       device.id
