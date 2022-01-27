@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     ...mapMutations(WIZARD_MODULE, {
-      set_scan_result: SET_DEVICE_SCAN_RESULT
+      setScanResult: SET_DEVICE_SCAN_RESULT
     }),
     retry () {
       const seconds = this.retryDelay / 1000
@@ -63,7 +63,7 @@ export default {
       const request = new Request(`http://${this.form.hostname}:${this.port}`, {
         mode: 'no-cors'
       })
-      this.set_scan_result({
+      this.setScanResult({
         loading: true,
         hostname: this.form.hostname
       })
@@ -75,7 +75,7 @@ export default {
           const redirectMsg = `Click the "Link" button to connect ${this.form.hostname} to your account`
           this.messages.push(successMsg)
           this.messages.push(redirectMsg)
-          this.set_scan_result({
+          this.setScanResult({
             loading: false,
             success: true,
             hostname: this.form.hostname,

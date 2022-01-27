@@ -20,6 +20,7 @@ class TestEventSerializer(EventSerializer):
     class Meta:
         model = TestEvent
         fields = "__all__"
+        read_only_fields = ("user", "polymorphic_ctype")
 
 
 class PolymorphicEventSerializer(PolymorphicSerializer):

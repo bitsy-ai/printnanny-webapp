@@ -821,6 +821,12 @@ export interface Event {
     'created_dt': string;
     /**
      * 
+     * @type {EventSource}
+     * @memberof Event
+     */
+    'source': EventSource;
+    /**
+     * 
      * @type {number}
      * @memberof Event
      */
@@ -832,6 +838,31 @@ export interface Event {
      */
     'user': number;
 }
+/**
+ * 
+ * @export
+ * @interface EventRequest
+ */
+export interface EventRequest {
+    /**
+     * 
+     * @type {EventSource}
+     * @memberof EventRequest
+     */
+    'source': EventSource;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export enum EventSource {
+    Octoprint = 'octoprint',
+    Printnanny = 'printnanny',
+    Mainsail = 'mainsail'
+}
+
 /**
  * 
  * @export
@@ -4571,7 +4602,7 @@ export type PolymorphicEvent = Event | TestEvent;
  * @type PolymorphicEventRequest
  * @export
  */
-export type PolymorphicEventRequest = TestEventRequest;
+export type PolymorphicEventRequest = EventRequest | TestEventRequest;
 
 /**
  * 
@@ -6722,10 +6753,16 @@ export interface TestEvent {
     'created_dt': string;
     /**
      * 
-     * @type {TypeEnum}
+     * @type {EventSource}
      * @memberof TestEvent
      */
-    'type': TypeEnum;
+    'source': EventSource;
+    /**
+     * 
+     * @type {TestEventType}
+     * @memberof TestEvent
+     */
+    'type': TestEventType;
     /**
      * 
      * @type {TestEventStatusEnum}
@@ -6759,22 +6796,22 @@ export interface TestEvent {
 export interface TestEventRequest {
     /**
      * 
-     * @type {TypeEnum}
+     * @type {EventSource}
      * @memberof TestEventRequest
      */
-    'type': TypeEnum;
+    'source': EventSource;
+    /**
+     * 
+     * @type {TestEventType}
+     * @memberof TestEventRequest
+     */
+    'type': TestEventType;
     /**
      * 
      * @type {TestEventStatusEnum}
      * @memberof TestEventRequest
      */
     'status'?: TestEventStatusEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof TestEventRequest
-     */
-    'user': number;
     /**
      * 
      * @type {number}
@@ -6797,6 +6834,17 @@ export enum TestEventStatusEnum {
 }
 
 /**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export enum TestEventType {
+    Ping = 'mqtt_ping',
+    Pong = 'mqtt_pong'
+}
+
+/**
  * Our default response serializer.
  * @export
  * @interface TokenResponse
@@ -6809,17 +6857,6 @@ export interface TokenResponse {
      */
     'token': string;
 }
-/**
- * 
- * @export
- * @enum {string}
- */
-
-export enum TypeEnum {
-    Ping = 'mqtt_ping',
-    Pong = 'mqtt_pong'
-}
-
 /**
  * 
  * @export

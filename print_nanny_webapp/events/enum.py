@@ -4,7 +4,7 @@ from django.db import models
 class EventSource(models.TextChoices):
     OCTOPRINT = ("octoprint", "Events originating from OctoPrint")
     PRINT_NANNY = (
-        "print_nanny",
+        "printnanny",
         "Events originating from Print Nanny",
     )
     MOONRAKER = (

@@ -1,6 +1,6 @@
 <script>
-import { mapMutations, mapState, macActions } from 'vuex'
-import { WIZARD_MODULE} from '@/store/wizard'
+import { mapMutations, mapState, mapActions } from 'vuex'
+import { DEVICE_MODULE, CREATE_TEST_EVENT } from '@/store/devices'
 export default {
   props: {
     deviceId: Number
@@ -11,7 +11,9 @@ export default {
     }
   },
   methods: {
-    mapActions(WIZARD_MODULE)
+    ...mapActions(DEVICE_MODULE, {
+      createTestEvent: CREATE_TEST_EVENT
+    })
   }
 }
 </script>
@@ -22,7 +24,8 @@ export default {
     </div>
     <div class="card-body">
       <p>Tests MQTT connection, handles events and alerts.</p>
-      <button class="btn btn-primary">Ping</button>
+      <button @click="createTestEvent"
+      class="btn btn-primary">Ping</button>
     </div>
   </div>
 </template>
