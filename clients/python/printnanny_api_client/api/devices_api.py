@@ -1809,9 +1809,7 @@ class DevicesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            200: "PolymorphicEvent",
             201: "PolymorphicEvent",
-            400: "PolymorphicEvent",
         }
 
         return self.api_client.call_api(
@@ -4323,413 +4321,6 @@ class DevicesApi(object):
 
         return self.api_client.call_api(
             '/api/devices/{device_id}/printer-controllers/{id}/', 'PUT',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_types_map=response_types_map,
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats,
-            _request_auth=local_var_params.get('_request_auth'))
-
-    def devices_printnanny_events_create(self, device_id, **kwargs):  # noqa: E501
-        """devices_printnanny_events_create  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.devices_printnanny_events_create(device_id, async_req=True)
-        >>> result = thread.get()
-
-        :param device_id: (required)
-        :type device_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: PolymorphicEvent
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.devices_printnanny_events_create_with_http_info(device_id, **kwargs)  # noqa: E501
-
-    def devices_printnanny_events_create_with_http_info(self, device_id, **kwargs):  # noqa: E501
-        """devices_printnanny_events_create  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.devices_printnanny_events_create_with_http_info(device_id, async_req=True)
-        >>> result = thread.get()
-
-        :param device_id: (required)
-        :type device_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(PolymorphicEvent, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        local_var_params = locals()
-
-        all_params = [
-            'device_id'
-        ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth'
-            ]
-        )
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method devices_printnanny_events_create" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'device_id' is set
-        if self.api_client.client_side_validation and ('device_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['device_id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `device_id` when calling `devices_printnanny_events_create`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'device_id' in local_var_params:
-            path_params['device_id'] = local_var_params['device_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-
-        response_types_map = {
-            200: "PolymorphicEvent",
-            201: "PolymorphicEvent",
-            400: "PolymorphicEvent",
-        }
-
-        return self.api_client.call_api(
-            '/api/devices/{device_id}/printnanny-events/', 'POST',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_types_map=response_types_map,
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats,
-            _request_auth=local_var_params.get('_request_auth'))
-
-    def devices_printnanny_events_list(self, device_id, **kwargs):  # noqa: E501
-        """devices_printnanny_events_list  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.devices_printnanny_events_list(device_id, async_req=True)
-        >>> result = thread.get()
-
-        :param device_id: (required)
-        :type device_id: int
-        :param page: A page number within the paginated result set.
-        :type page: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: None
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.devices_printnanny_events_list_with_http_info(device_id, **kwargs)  # noqa: E501
-
-    def devices_printnanny_events_list_with_http_info(self, device_id, **kwargs):  # noqa: E501
-        """devices_printnanny_events_list  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.devices_printnanny_events_list_with_http_info(device_id, async_req=True)
-        >>> result = thread.get()
-
-        :param device_id: (required)
-        :type device_id: int
-        :param page: A page number within the paginated result set.
-        :type page: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: None
-        """
-
-        local_var_params = locals()
-
-        all_params = [
-            'device_id',
-            'page'
-        ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth'
-            ]
-        )
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method devices_printnanny_events_list" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'device_id' is set
-        if self.api_client.client_side_validation and ('device_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['device_id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `device_id` when calling `devices_printnanny_events_list`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'device_id' in local_var_params:
-            path_params['device_id'] = local_var_params['device_id']  # noqa: E501
-
-        query_params = []
-        if 'page' in local_var_params and local_var_params['page'] is not None:  # noqa: E501
-            query_params.append(('page', local_var_params['page']))  # noqa: E501
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # Authentication setting
-        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-
-        response_types_map = {}
-
-        return self.api_client.call_api(
-            '/api/devices/{device_id}/printnanny-events/', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_types_map=response_types_map,
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats,
-            _request_auth=local_var_params.get('_request_auth'))
-
-    def devices_printnanny_events_retrieve(self, device_id, id, **kwargs):  # noqa: E501
-        """devices_printnanny_events_retrieve  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.devices_printnanny_events_retrieve(device_id, id, async_req=True)
-        >>> result = thread.get()
-
-        :param device_id: (required)
-        :type device_id: int
-        :param id: A unique integer value identifying this print nanny event. (required)
-        :type id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: None
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.devices_printnanny_events_retrieve_with_http_info(device_id, id, **kwargs)  # noqa: E501
-
-    def devices_printnanny_events_retrieve_with_http_info(self, device_id, id, **kwargs):  # noqa: E501
-        """devices_printnanny_events_retrieve  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.devices_printnanny_events_retrieve_with_http_info(device_id, id, async_req=True)
-        >>> result = thread.get()
-
-        :param device_id: (required)
-        :type device_id: int
-        :param id: A unique integer value identifying this print nanny event. (required)
-        :type id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: None
-        """
-
-        local_var_params = locals()
-
-        all_params = [
-            'device_id',
-            'id'
-        ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth'
-            ]
-        )
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method devices_printnanny_events_retrieve" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'device_id' is set
-        if self.api_client.client_side_validation and ('device_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['device_id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `device_id` when calling `devices_printnanny_events_retrieve`")  # noqa: E501
-        # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `id` when calling `devices_printnanny_events_retrieve`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'device_id' in local_var_params:
-            path_params['device_id'] = local_var_params['device_id']  # noqa: E501
-        if 'id' in local_var_params:
-            path_params['id'] = local_var_params['id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # Authentication setting
-        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-
-        response_types_map = {}
-
-        return self.api_client.call_api(
-            '/api/devices/{device_id}/printnanny-events/{id}/', 'GET',
             path_params,
             query_params,
             header_params,
@@ -7443,6 +7034,452 @@ class DevicesApi(object):
 
         return self.api_client.call_api(
             '/api/devices/{device_id}/tasks/{task_id}/status/{id}/', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
+    def devices_test_events_create(self, device_id, test_event_request, **kwargs):  # noqa: E501
+        """devices_test_events_create  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.devices_test_events_create(device_id, test_event_request, async_req=True)
+        >>> result = thread.get()
+
+        :param device_id: (required)
+        :type device_id: int
+        :param test_event_request: (required)
+        :type test_event_request: TestEventRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: TestEvent
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.devices_test_events_create_with_http_info(device_id, test_event_request, **kwargs)  # noqa: E501
+
+    def devices_test_events_create_with_http_info(self, device_id, test_event_request, **kwargs):  # noqa: E501
+        """devices_test_events_create  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.devices_test_events_create_with_http_info(device_id, test_event_request, async_req=True)
+        >>> result = thread.get()
+
+        :param device_id: (required)
+        :type device_id: int
+        :param test_event_request: (required)
+        :type test_event_request: TestEventRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(TestEvent, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'device_id',
+            'test_event_request'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method devices_test_events_create" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'device_id' is set
+        if self.api_client.client_side_validation and ('device_id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['device_id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `device_id` when calling `devices_test_events_create`")  # noqa: E501
+        # verify the required parameter 'test_event_request' is set
+        if self.api_client.client_side_validation and ('test_event_request' not in local_var_params or  # noqa: E501
+                                                        local_var_params['test_event_request'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `test_event_request` when calling `devices_test_events_create`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'device_id' in local_var_params:
+            path_params['device_id'] = local_var_params['device_id']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'test_event_request' in local_var_params:
+            body_params = local_var_params['test_event_request']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
+
+        response_types_map = {
+            201: "TestEvent",
+            409: "ErrorDetail",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
+        }
+
+        return self.api_client.call_api(
+            '/api/devices/{device_id}/test-events/', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
+    def devices_test_events_list(self, device_id, **kwargs):  # noqa: E501
+        """devices_test_events_list  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.devices_test_events_list(device_id, async_req=True)
+        >>> result = thread.get()
+
+        :param device_id: (required)
+        :type device_id: int
+        :param page: A page number within the paginated result set.
+        :type page: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: PaginatedTestEventList
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.devices_test_events_list_with_http_info(device_id, **kwargs)  # noqa: E501
+
+    def devices_test_events_list_with_http_info(self, device_id, **kwargs):  # noqa: E501
+        """devices_test_events_list  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.devices_test_events_list_with_http_info(device_id, async_req=True)
+        >>> result = thread.get()
+
+        :param device_id: (required)
+        :type device_id: int
+        :param page: A page number within the paginated result set.
+        :type page: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(PaginatedTestEventList, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'device_id',
+            'page'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method devices_test_events_list" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'device_id' is set
+        if self.api_client.client_side_validation and ('device_id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['device_id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `device_id` when calling `devices_test_events_list`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'device_id' in local_var_params:
+            path_params['device_id'] = local_var_params['device_id']  # noqa: E501
+
+        query_params = []
+        if 'page' in local_var_params and local_var_params['page'] is not None:  # noqa: E501
+            query_params.append(('page', local_var_params['page']))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
+
+        response_types_map = {
+            200: "PaginatedTestEventList",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
+        }
+
+        return self.api_client.call_api(
+            '/api/devices/{device_id}/test-events/', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
+    def devices_test_events_retrieve(self, device_id, id, **kwargs):  # noqa: E501
+        """devices_test_events_retrieve  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.devices_test_events_retrieve(device_id, id, async_req=True)
+        >>> result = thread.get()
+
+        :param device_id: (required)
+        :type device_id: int
+        :param id: A unique integer value identifying this test event. (required)
+        :type id: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: TestEvent
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.devices_test_events_retrieve_with_http_info(device_id, id, **kwargs)  # noqa: E501
+
+    def devices_test_events_retrieve_with_http_info(self, device_id, id, **kwargs):  # noqa: E501
+        """devices_test_events_retrieve  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.devices_test_events_retrieve_with_http_info(device_id, id, async_req=True)
+        >>> result = thread.get()
+
+        :param device_id: (required)
+        :type device_id: int
+        :param id: A unique integer value identifying this test event. (required)
+        :type id: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(TestEvent, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'device_id',
+            'id'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method devices_test_events_retrieve" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'device_id' is set
+        if self.api_client.client_side_validation and ('device_id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['device_id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `device_id` when calling `devices_test_events_retrieve`")  # noqa: E501
+        # verify the required parameter 'id' is set
+        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `id` when calling `devices_test_events_retrieve`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'device_id' in local_var_params:
+            path_params['device_id'] = local_var_params['device_id']  # noqa: E501
+        if 'id' in local_var_params:
+            path_params['id'] = local_var_params['id']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
+
+        response_types_map = {
+            200: "TestEvent",
+            409: "ErrorDetail",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
+        }
+
+        return self.api_client.call_api(
+            '/api/devices/{device_id}/test-events/{id}/', 'GET',
             path_params,
             query_params,
             header_params,

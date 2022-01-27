@@ -47,20 +47,20 @@ class TestEventsApi(unittest.TestCase):
         """
         pass
 
-    def test_devices_printnanny_events_create(self):
-        """Test case for devices_printnanny_events_create
+    def test_devices_test_events_create(self):
+        """Test case for devices_test_events_create
 
         """
         pass
 
-    def test_devices_printnanny_events_list(self):
-        """Test case for devices_printnanny_events_list
+    def test_devices_test_events_list(self):
+        """Test case for devices_test_events_list
 
         """
         pass
 
-    def test_devices_printnanny_events_retrieve(self):
-        """Test case for devices_printnanny_events_retrieve
+    def test_devices_test_events_retrieve(self):
+        """Test case for devices_test_events_retrieve
 
         """
         pass

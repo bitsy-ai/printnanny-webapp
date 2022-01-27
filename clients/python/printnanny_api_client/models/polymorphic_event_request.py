@@ -37,20 +37,129 @@ class PolymorphicEventRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
+        'source': 'EventSource',
+        'type': 'TestEventType',
+        'status': 'EventStatus',
+        'device': 'int'
     }
 
     attribute_map = {
+        'source': 'source',
+        'type': 'type',
+        'status': 'status',
+        'device': 'device'
     }
 
     discriminator_value_class_map = {
     }
 
-    def __init__(self, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, source=None, type=None, status=None, device=None, local_vars_configuration=None):  # noqa: E501
         """PolymorphicEventRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
+
+        self._source = None
+        self._type = None
+        self._status = None
+        self._device = None
         self.discriminator = 'resourcetype'
+
+        self.source = source
+        self.type = type
+        if status is not None:
+            self.status = status
+        self.device = device
+
+    @property
+    def source(self):
+        """Gets the source of this PolymorphicEventRequest.  # noqa: E501
+
+
+        :return: The source of this PolymorphicEventRequest.  # noqa: E501
+        :rtype: EventSource
+        """
+        return self._source
+
+    @source.setter
+    def source(self, source):
+        """Sets the source of this PolymorphicEventRequest.
+
+
+        :param source: The source of this PolymorphicEventRequest.  # noqa: E501
+        :type source: EventSource
+        """
+        if self.local_vars_configuration.client_side_validation and source is None:  # noqa: E501
+            raise ValueError("Invalid value for `source`, must not be `None`")  # noqa: E501
+
+        self._source = source
+
+    @property
+    def type(self):
+        """Gets the type of this PolymorphicEventRequest.  # noqa: E501
+
+
+        :return: The type of this PolymorphicEventRequest.  # noqa: E501
+        :rtype: TestEventType
+        """
+        return self._type
+
+    @type.setter
+    def type(self, type):
+        """Sets the type of this PolymorphicEventRequest.
+
+
+        :param type: The type of this PolymorphicEventRequest.  # noqa: E501
+        :type type: TestEventType
+        """
+        if self.local_vars_configuration.client_side_validation and type is None:  # noqa: E501
+            raise ValueError("Invalid value for `type`, must not be `None`")  # noqa: E501
+
+        self._type = type
+
+    @property
+    def status(self):
+        """Gets the status of this PolymorphicEventRequest.  # noqa: E501
+
+
+        :return: The status of this PolymorphicEventRequest.  # noqa: E501
+        :rtype: EventStatus
+        """
+        return self._status
+
+    @status.setter
+    def status(self, status):
+        """Sets the status of this PolymorphicEventRequest.
+
+
+        :param status: The status of this PolymorphicEventRequest.  # noqa: E501
+        :type status: EventStatus
+        """
+
+        self._status = status
+
+    @property
+    def device(self):
+        """Gets the device of this PolymorphicEventRequest.  # noqa: E501
+
+
+        :return: The device of this PolymorphicEventRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._device
+
+    @device.setter
+    def device(self, device):
+        """Sets the device of this PolymorphicEventRequest.
+
+
+        :param device: The device of this PolymorphicEventRequest.  # noqa: E501
+        :type device: int
+        """
+        if self.local_vars_configuration.client_side_validation and device is None:  # noqa: E501
+            raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
+
+        self._device = device
 
     def get_real_child_model(self, data):
         """Returns the real base class specified by the discriminator"""

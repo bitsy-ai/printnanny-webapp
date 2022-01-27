@@ -126,7 +126,6 @@ pub enum DevicesCreateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesEventsCreateError {
-    Status400(crate::models::PolymorphicEvent),
     UnknownValue(serde_json::Value),
 }
 
@@ -282,28 +281,6 @@ pub enum DevicesPrinterControllersRetrieveError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesPrinterControllersUpdateError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`devices_printnanny_events_create`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum DevicesPrintnannyEventsCreateError {
-    Status400(crate::models::PolymorphicEvent),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`devices_printnanny_events_list`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum DevicesPrintnannyEventsListError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`devices_printnanny_events_retrieve`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum DevicesPrintnannyEventsRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
@@ -482,6 +459,41 @@ pub enum DevicesTasksStatusListError {
 #[serde(untagged)]
 pub enum DevicesTasksStatusRetrieveError {
     Status404(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`devices_test_events_create`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DevicesTestEventsCreateError {
+    Status409(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`devices_test_events_list`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DevicesTestEventsListError {
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`devices_test_events_retrieve`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DevicesTestEventsRetrieveError {
+    Status409(crate::models::ErrorDetail),
     Status400(crate::models::ErrorDetail),
     Status401(crate::models::ErrorDetail),
     Status403(crate::models::ErrorDetail),
@@ -1443,99 +1455,6 @@ pub async fn devices_printer_controllers_update(configuration: &configuration::C
     }
 }
 
-pub async fn devices_printnanny_events_create(configuration: &configuration::Configuration, device_id: i32) -> Result<crate::models::PolymorphicEvent, Error<DevicesPrintnannyEventsCreateError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/printnanny-events/", local_var_configuration.base_path, device_id=device_id);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<DevicesPrintnannyEventsCreateError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn devices_printnanny_events_list(configuration: &configuration::Configuration, device_id: i32, page: Option<i32>) -> Result<(), Error<DevicesPrintnannyEventsListError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/printnanny-events/", local_var_configuration.base_path, device_id=device_id);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_str) = page {
-        local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
-    } else {
-        let local_var_entity: Option<DevicesPrintnannyEventsListError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn devices_printnanny_events_retrieve(configuration: &configuration::Configuration, device_id: i32, id: i32) -> Result<(), Error<DevicesPrintnannyEventsRetrieveError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/printnanny-events/{id}/", local_var_configuration.base_path, device_id=device_id, id=id);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
-    } else {
-        let local_var_entity: Option<DevicesPrintnannyEventsRetrieveError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
 pub async fn devices_public_keys_create(configuration: &configuration::Configuration, device_id: i32, public_key_request: crate::models::PublicKeyRequest) -> Result<crate::models::PublicKey, Error<DevicesPublicKeysCreateError>> {
     let local_var_configuration = configuration;
 
@@ -2092,6 +2011,100 @@ pub async fn devices_tasks_status_retrieve(configuration: &configuration::Config
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<DevicesTasksStatusRetrieveError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn devices_test_events_create(configuration: &configuration::Configuration, device_id: i32, test_event_request: crate::models::TestEventRequest) -> Result<crate::models::TestEvent, Error<DevicesTestEventsCreateError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/test-events/", local_var_configuration.base_path, device_id=device_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&test_event_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<DevicesTestEventsCreateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn devices_test_events_list(configuration: &configuration::Configuration, device_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedTestEventList, Error<DevicesTestEventsListError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/test-events/", local_var_configuration.base_path, device_id=device_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_str) = page {
+        local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<DevicesTestEventsListError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn devices_test_events_retrieve(configuration: &configuration::Configuration, device_id: i32, id: i32) -> Result<crate::models::TestEvent, Error<DevicesTestEventsRetrieveError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/test-events/{id}/", local_var_configuration.base_path, device_id=device_id, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<DevicesTestEventsRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }

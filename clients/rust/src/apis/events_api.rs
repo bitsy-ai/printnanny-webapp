@@ -20,7 +20,6 @@ use super::{Error, configuration};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesEventsCreateError {
-    Status400(crate::models::PolymorphicEvent),
     UnknownValue(serde_json::Value),
 }
 
@@ -38,25 +37,38 @@ pub enum DevicesEventsRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`devices_printnanny_events_create`]
+/// struct for typed errors of method [`devices_test_events_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum DevicesPrintnannyEventsCreateError {
-    Status400(crate::models::PolymorphicEvent),
+pub enum DevicesTestEventsCreateError {
+    Status409(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`devices_printnanny_events_list`]
+/// struct for typed errors of method [`devices_test_events_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum DevicesPrintnannyEventsListError {
+pub enum DevicesTestEventsListError {
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`devices_printnanny_events_retrieve`]
+/// struct for typed errors of method [`devices_test_events_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum DevicesPrintnannyEventsRetrieveError {
+pub enum DevicesTestEventsRetrieveError {
+    Status409(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -155,12 +167,12 @@ pub async fn devices_events_retrieve(configuration: &configuration::Configuratio
     }
 }
 
-pub async fn devices_printnanny_events_create(configuration: &configuration::Configuration, device_id: i32) -> Result<crate::models::PolymorphicEvent, Error<DevicesPrintnannyEventsCreateError>> {
+pub async fn devices_test_events_create(configuration: &configuration::Configuration, device_id: i32, test_event_request: crate::models::TestEventRequest) -> Result<crate::models::TestEvent, Error<DevicesTestEventsCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/printnanny-events/", local_var_configuration.base_path, device_id=device_id);
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/test-events/", local_var_configuration.base_path, device_id=device_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -169,6 +181,7 @@ pub async fn devices_printnanny_events_create(configuration: &configuration::Con
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
+    local_var_req_builder = local_var_req_builder.json(&test_event_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -179,18 +192,18 @@ pub async fn devices_printnanny_events_create(configuration: &configuration::Con
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<DevicesPrintnannyEventsCreateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<DevicesTestEventsCreateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn devices_printnanny_events_list(configuration: &configuration::Configuration, device_id: i32, page: Option<i32>) -> Result<(), Error<DevicesPrintnannyEventsListError>> {
+pub async fn devices_test_events_list(configuration: &configuration::Configuration, device_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedTestEventList, Error<DevicesTestEventsListError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/printnanny-events/", local_var_configuration.base_path, device_id=device_id);
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/test-events/", local_var_configuration.base_path, device_id=device_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
@@ -210,20 +223,20 @@ pub async fn devices_printnanny_events_list(configuration: &configuration::Confi
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<DevicesPrintnannyEventsListError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<DevicesTestEventsListError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn devices_printnanny_events_retrieve(configuration: &configuration::Configuration, device_id: i32, id: i32) -> Result<(), Error<DevicesPrintnannyEventsRetrieveError>> {
+pub async fn devices_test_events_retrieve(configuration: &configuration::Configuration, device_id: i32, id: i32) -> Result<crate::models::TestEvent, Error<DevicesTestEventsRetrieveError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/printnanny-events/{id}/", local_var_configuration.base_path, device_id=device_id, id=id);
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/test-events/{id}/", local_var_configuration.base_path, device_id=device_id, id=id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -240,9 +253,9 @@ pub async fn devices_printnanny_events_retrieve(configuration: &configuration::C
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<DevicesPrintnannyEventsRetrieveError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<DevicesTestEventsRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }

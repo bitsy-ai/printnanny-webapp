@@ -203,24 +203,6 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
-    def test_devices_printnanny_events_create(self):
-        """Test case for devices_printnanny_events_create
-
-        """
-        pass
-
-    def test_devices_printnanny_events_list(self):
-        """Test case for devices_printnanny_events_list
-
-        """
-        pass
-
-    def test_devices_printnanny_events_retrieve(self):
-        """Test case for devices_printnanny_events_retrieve
-
-        """
-        pass
-
     def test_devices_public_keys_create(self):
         """Test case for devices_public_keys_create
 
@@ -325,6 +307,24 @@ class TestDevicesApi(unittest.TestCase):
 
     def test_devices_tasks_status_retrieve(self):
         """Test case for devices_tasks_status_retrieve
+
+        """
+        pass
+
+    def test_devices_test_events_create(self):
+        """Test case for devices_test_events_create
+
+        """
+        pass
+
+    def test_devices_test_events_list(self):
+        """Test case for devices_test_events_list
+
+        """
+        pass
+
+    def test_devices_test_events_retrieve(self):
+        """Test case for devices_test_events_retrieve
 
         """
         pass

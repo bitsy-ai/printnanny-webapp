@@ -31,6 +31,10 @@ docs/DeviceRequest.md
 docs/DevicesApi.md
 docs/EmailAuthRequest.md
 docs/ErrorDetail.md
+docs/Event.md
+docs/EventRequest.md
+docs/EventSource.md
+docs/EventStatus.md
 docs/EventsApi.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
@@ -103,6 +107,7 @@ docs/PaginatedSystemInfoList.md
 docs/PaginatedTaskList.md
 docs/PaginatedTaskStatusList.md
 docs/PaginatedTelemetryEventPolymorphicList.md
+docs/PaginatedTestEventList.md
 docs/Partner3DGeeksAlert.md
 docs/Partner3DGeeksMetadata.md
 docs/PartnersGeeks3Api.md
@@ -162,6 +167,9 @@ docs/TelemetryEvent.md
 docs/TelemetryEventPolymorphic.md
 docs/TelemetryEventPolymorphicRequest.md
 docs/TelemetryEventRequest.md
+docs/TestEvent.md
+docs/TestEventRequest.md
+docs/TestEventType.md
 docs/TokenResponse.md
 docs/User.md
 docs/UserRequest.md
@@ -209,6 +217,10 @@ printnanny_api_client/models/device_calibration_request.py
 printnanny_api_client/models/device_request.py
 printnanny_api_client/models/email_auth_request.py
 printnanny_api_client/models/error_detail.py
+printnanny_api_client/models/event.py
+printnanny_api_client/models/event_request.py
+printnanny_api_client/models/event_source.py
+printnanny_api_client/models/event_status.py
 printnanny_api_client/models/experiment.py
 printnanny_api_client/models/experiment_device_config.py
 printnanny_api_client/models/gcode_file.py
@@ -278,6 +290,7 @@ printnanny_api_client/models/paginated_system_info_list.py
 printnanny_api_client/models/paginated_task_list.py
 printnanny_api_client/models/paginated_task_status_list.py
 printnanny_api_client/models/paginated_telemetry_event_polymorphic_list.py
+printnanny_api_client/models/paginated_test_event_list.py
 printnanny_api_client/models/partner3_d_geeks_alert.py
 printnanny_api_client/models/partner3_d_geeks_metadata.py
 printnanny_api_client/models/patched_alert_bulk_request_request.py
@@ -332,6 +345,9 @@ printnanny_api_client/models/telemetry_event.py
 printnanny_api_client/models/telemetry_event_polymorphic.py
 printnanny_api_client/models/telemetry_event_polymorphic_request.py
 printnanny_api_client/models/telemetry_event_request.py
+printnanny_api_client/models/test_event.py
+printnanny_api_client/models/test_event_request.py
+printnanny_api_client/models/test_event_type.py
 printnanny_api_client/models/token_response.py
 printnanny_api_client/models/user.py
 printnanny_api_client/models/user_request.py
@@ -369,6 +385,10 @@ test/test_device_request.py
 test/test_devices_api.py
 test/test_email_auth_request.py
 test/test_error_detail.py
+test/test_event.py
+test/test_event_request.py
+test/test_event_source.py
+test/test_event_status.py
 test/test_events_api.py
 test/test_experiment.py
 test/test_experiment_device_config.py
@@ -441,6 +461,7 @@ test/test_paginated_system_info_list.py
 test/test_paginated_task_list.py
 test/test_paginated_task_status_list.py
 test/test_paginated_telemetry_event_polymorphic_list.py
+test/test_paginated_test_event_list.py
 test/test_partner3_d_geeks_alert.py
 test/test_partner3_d_geeks_metadata.py
 test/test_partners_geeks3_api.py
@@ -500,6 +521,9 @@ test/test_telemetry_event.py
 test/test_telemetry_event_polymorphic.py
 test/test_telemetry_event_polymorphic_request.py
 test/test_telemetry_event_request.py
+test/test_test_event.py
+test/test_test_event_request.py
+test/test_test_event_type.py
 test/test_token_response.py
 test/test_user.py
 test/test_user_request.py
