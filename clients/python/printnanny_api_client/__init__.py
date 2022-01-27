@@ -15,7 +15,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.43.0"
+__version__ = "0.43.1"
 
 # import apis into sdk package
 from printnanny_api_client.api.alerts_api import AlertsApi
@@ -23,6 +23,7 @@ from printnanny_api_client.api.auth_api import AuthApi
 from printnanny_api_client.api.auth__api import AuthApi
 from printnanny_api_client.api.client_config_api import ClientConfigApi
 from printnanny_api_client.api.devices_api import DevicesApi
+from printnanny_api_client.api.events_api import EventsApi
 from printnanny_api_client.api.ml_ops_api import MlOpsApi
 from printnanny_api_client.api.octoprint_backups_api import OctoprintBackupsApi
 from printnanny_api_client.api.partners_geeks3_api import PartnersGeeks3Api
@@ -120,6 +121,7 @@ from printnanny_api_client.models.paginated_octo_print_backup_list import Pagina
 from printnanny_api_client.models.paginated_octo_print_device_list import PaginatedOctoPrintDeviceList
 from printnanny_api_client.models.paginated_octo_print_event_list import PaginatedOctoPrintEventList
 from printnanny_api_client.models.paginated_onboarding_task_list import PaginatedOnboardingTaskList
+from printnanny_api_client.models.paginated_polymorphic_event_list import PaginatedPolymorphicEventList
 from printnanny_api_client.models.paginated_print_job_event_list import PaginatedPrintJobEventList
 from printnanny_api_client.models.paginated_print_nanny_plugin_event_list import PaginatedPrintNannyPluginEventList
 from printnanny_api_client.models.paginated_print_session_list import PaginatedPrintSessionList
@@ -149,6 +151,8 @@ from printnanny_api_client.models.patched_public_key_request import PatchedPubli
 from printnanny_api_client.models.patched_remote_control_command_request import PatchedRemoteControlCommandRequest
 from printnanny_api_client.models.patched_system_info_request import PatchedSystemInfoRequest
 from printnanny_api_client.models.patched_user_request import PatchedUserRequest
+from printnanny_api_client.models.polymorphic_event import PolymorphicEvent
+from printnanny_api_client.models.polymorphic_event_request import PolymorphicEventRequest
 from printnanny_api_client.models.print_job_event import PrintJobEvent
 from printnanny_api_client.models.print_job_event_request import PrintJobEventRequest
 from printnanny_api_client.models.print_nanny_api_config import PrintNannyApiConfig

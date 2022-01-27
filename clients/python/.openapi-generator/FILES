@@ -31,6 +31,7 @@ docs/DeviceRequest.md
 docs/DevicesApi.md
 docs/EmailAuthRequest.md
 docs/ErrorDetail.md
+docs/EventsApi.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
@@ -89,6 +90,7 @@ docs/PaginatedOctoPrintBackupList.md
 docs/PaginatedOctoPrintDeviceList.md
 docs/PaginatedOctoPrintEventList.md
 docs/PaginatedOnboardingTaskList.md
+docs/PaginatedPolymorphicEventList.md
 docs/PaginatedPrintJobEventList.md
 docs/PaginatedPrintNannyPluginEventList.md
 docs/PaginatedPrintSessionList.md
@@ -120,6 +122,8 @@ docs/PatchedPublicKeyRequest.md
 docs/PatchedRemoteControlCommandRequest.md
 docs/PatchedSystemInfoRequest.md
 docs/PatchedUserRequest.md
+docs/PolymorphicEvent.md
+docs/PolymorphicEventRequest.md
 docs/PrintJobEvent.md
 docs/PrintJobEventRequest.md
 docs/PrintNannyApiConfig.md
@@ -170,6 +174,7 @@ printnanny_api_client/api/auth__api.py
 printnanny_api_client/api/auth_api.py
 printnanny_api_client/api/client_config_api.py
 printnanny_api_client/api/devices_api.py
+printnanny_api_client/api/events_api.py
 printnanny_api_client/api/ml_ops_api.py
 printnanny_api_client/api/octoprint_backups_api.py
 printnanny_api_client/api/partners_geeks3_api.py
@@ -260,6 +265,7 @@ printnanny_api_client/models/paginated_octo_print_backup_list.py
 printnanny_api_client/models/paginated_octo_print_device_list.py
 printnanny_api_client/models/paginated_octo_print_event_list.py
 printnanny_api_client/models/paginated_onboarding_task_list.py
+printnanny_api_client/models/paginated_polymorphic_event_list.py
 printnanny_api_client/models/paginated_print_job_event_list.py
 printnanny_api_client/models/paginated_print_nanny_plugin_event_list.py
 printnanny_api_client/models/paginated_print_session_list.py
@@ -289,6 +295,8 @@ printnanny_api_client/models/patched_public_key_request.py
 printnanny_api_client/models/patched_remote_control_command_request.py
 printnanny_api_client/models/patched_system_info_request.py
 printnanny_api_client/models/patched_user_request.py
+printnanny_api_client/models/polymorphic_event.py
+printnanny_api_client/models/polymorphic_event_request.py
 printnanny_api_client/models/print_job_event.py
 printnanny_api_client/models/print_job_event_request.py
 printnanny_api_client/models/print_nanny_api_config.py
@@ -361,6 +369,7 @@ test/test_device_request.py
 test/test_devices_api.py
 test/test_email_auth_request.py
 test/test_error_detail.py
+test/test_events_api.py
 test/test_experiment.py
 test/test_experiment_device_config.py
 test/test_gcode_file.py
@@ -419,6 +428,7 @@ test/test_paginated_octo_print_backup_list.py
 test/test_paginated_octo_print_device_list.py
 test/test_paginated_octo_print_event_list.py
 test/test_paginated_onboarding_task_list.py
+test/test_paginated_polymorphic_event_list.py
 test/test_paginated_print_job_event_list.py
 test/test_paginated_print_nanny_plugin_event_list.py
 test/test_paginated_print_session_list.py
@@ -450,6 +460,8 @@ test/test_patched_public_key_request.py
 test/test_patched_remote_control_command_request.py
 test/test_patched_system_info_request.py
 test/test_patched_user_request.py
+test/test_polymorphic_event.py
+test/test_polymorphic_event_request.py
 test/test_print_job_event.py
 test/test_print_job_event_request.py
 test/test_print_nanny_api_config.py

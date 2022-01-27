@@ -95,6 +95,24 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
+    def test_devices_events_create(self):
+        """Test case for devices_events_create
+
+        """
+        pass
+
+    def test_devices_events_list(self):
+        """Test case for devices_events_list
+
+        """
+        pass
+
+    def test_devices_events_retrieve(self):
+        """Test case for devices_events_retrieve
+
+        """
+        pass
+
     def test_devices_janus_create(self):
         """Test case for devices_janus_create
 
@@ -181,6 +199,24 @@ class TestDevicesApi(unittest.TestCase):
 
     def test_devices_printer_controllers_update(self):
         """Test case for devices_printer_controllers_update
+
+        """
+        pass
+
+    def test_devices_printnanny_events_create(self):
+        """Test case for devices_printnanny_events_create
+
+        """
+        pass
+
+    def test_devices_printnanny_events_list(self):
+        """Test case for devices_printnanny_events_list
+
+        """
+        pass
+
+    def test_devices_printnanny_events_retrieve(self):
+        """Test case for devices_printnanny_events_retrieve
 
         """
         pass
