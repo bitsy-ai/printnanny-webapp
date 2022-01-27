@@ -460,7 +460,8 @@ SPECTACULAR_SETTINGS = {
         'OctoPrinterEvent': 'print_nanny_webapp.telemetry.types.PrinterEventType',
         'AlphaEventSource': 'print_nanny_webapp.telemetry.types.EventSource',
         'EventSource': 'print_nanny_webapp.events.enum.EventSource',
-        'TestEventType': 'print_nanny_webapp.events.enum.TestEventType'
+        'TestEventType': 'print_nanny_webapp.events.enum.TestEventType',
+        'EventStatus': 'print_nanny_webapp.events.enum.EventStatus'
     },
     'TITLE': 'printnanny-api-client',
     'DESCRIPTION': 'Official API client library for print-nanny.com',

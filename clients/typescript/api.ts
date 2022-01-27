@@ -866,6 +866,20 @@ export enum EventSource {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export enum EventStatus {
+    Sent = 'sent',
+    Ack = 'ack',
+    Success = 'success',
+    Failed = 'failed',
+    Timeout = 'timeout'
+}
+
+/**
+ * 
+ * @export
  * @interface Experiment
  */
 export interface Experiment {
@@ -6765,10 +6779,10 @@ export interface TestEvent {
     'type': TestEventType;
     /**
      * 
-     * @type {TestEventStatusEnum}
+     * @type {EventStatus}
      * @memberof TestEvent
      */
-    'status'?: TestEventStatusEnum;
+    'status'?: EventStatus;
     /**
      * 
      * @type {number}
@@ -6808,10 +6822,10 @@ export interface TestEventRequest {
     'type': TestEventType;
     /**
      * 
-     * @type {TestEventStatusEnum}
+     * @type {EventStatus}
      * @memberof TestEventRequest
      */
-    'status'?: TestEventStatusEnum;
+    'status'?: EventStatus;
     /**
      * 
      * @type {number}
@@ -6819,20 +6833,6 @@ export interface TestEventRequest {
      */
     'device': number;
 }
-/**
- * 
- * @export
- * @enum {string}
- */
-
-export enum TestEventStatusEnum {
-    Sent = 'sent',
-    Ack = 'ack',
-    Success = 'success',
-    Failed = 'failed',
-    Timeout = 'timeout'
-}
-
 /**
  * 
  * @export

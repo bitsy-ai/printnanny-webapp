@@ -14,8 +14,8 @@ export default {
     const thisapi = api.DevicesApiFactory(configuration)
     const req = new api.TestEventRequest({
       device: deviceId,
-      type: api.TypeEnum.Ping,
-      status: api.TestEventStatusEnum.Sent
+      type: api.TestEventType.Ping,
+      status: api.TestEventStatus.Sent
     })
     const res = await thisapi.devicesEventsCreate(
       deviceId,
