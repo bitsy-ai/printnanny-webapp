@@ -9194,132 +9194,6 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {number} deviceId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesPrintnannyEventsCreate: async (deviceId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesPrintnannyEventsCreate', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/printnanny-events/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesPrintnannyEventsList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesPrintnannyEventsList', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/printnanny-events/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this print nanny event.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesPrintnannyEventsRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesPrintnannyEventsRetrieve', 'deviceId', deviceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesPrintnannyEventsRetrieve', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/printnanny-events/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
          * @param {PublicKeyRequest} publicKeyRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -10128,6 +10002,132 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
+         * 
+         * @param {number} deviceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesTestEventsCreate: async (deviceId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesTestEventsCreate', 'deviceId', deviceId)
+            const localVarPath = `/api/devices/{device_id}/test-events/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesTestEventsList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesTestEventsList', 'deviceId', deviceId)
+            const localVarPath = `/api/devices/{device_id}/test-events/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this test event.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesTestEventsRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesTestEventsRetrieve', 'deviceId', deviceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesTestEventsRetrieve', 'id', id)
+            const localVarPath = `/api/devices/{device_id}/test-events/{id}/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * A device (Raspberry Pi) running Print Nanny OS
          * @param {number} id A unique integer value identifying this device.
          * @param {DeviceRequest} [deviceRequest] 
@@ -10643,38 +10643,6 @@ export const DevicesApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} deviceId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesPrintnannyEventsCreate(deviceId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPrintnannyEventsCreate(deviceId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesPrintnannyEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPrintnannyEventsList(deviceId, page, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this print nanny event.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesPrintnannyEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPrintnannyEventsRetrieve(deviceId, id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
          * @param {PublicKeyRequest} publicKeyRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -10873,6 +10841,38 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          */
         async devicesTasksStatusRetrieve(deviceId: number, id: number, taskId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Task>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksStatusRetrieve(deviceId, id, taskId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesTestEventsCreate(deviceId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTestEventsCreate(deviceId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesTestEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTestEventsList(deviceId, page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this test event.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesTestEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTestEventsRetrieve(deviceId, id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -11228,35 +11228,6 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @param {number} deviceId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesPrintnannyEventsCreate(deviceId: number, options?: any): AxiosPromise<PolymorphicEvent> {
-            return localVarFp.devicesPrintnannyEventsCreate(deviceId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesPrintnannyEventsList(deviceId: number, page?: number, options?: any): AxiosPromise<void> {
-            return localVarFp.devicesPrintnannyEventsList(deviceId, page, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this print nanny event.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesPrintnannyEventsRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<void> {
-            return localVarFp.devicesPrintnannyEventsRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
          * @param {PublicKeyRequest} publicKeyRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -11438,6 +11409,35 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          */
         devicesTasksStatusRetrieve(deviceId: number, id: number, taskId: number, options?: any): AxiosPromise<Task> {
             return localVarFp.devicesTasksStatusRetrieve(deviceId, id, taskId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesTestEventsCreate(deviceId: number, options?: any): AxiosPromise<PolymorphicEvent> {
+            return localVarFp.devicesTestEventsCreate(deviceId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesTestEventsList(deviceId: number, page?: number, options?: any): AxiosPromise<void> {
+            return localVarFp.devicesTestEventsList(deviceId, page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this test event.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesTestEventsRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<void> {
+            return localVarFp.devicesTestEventsRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
         },
         /**
          * A device (Raspberry Pi) running Print Nanny OS
@@ -11787,35 +11787,6 @@ export interface DevicesApiInterface {
     /**
      * 
      * @param {number} deviceId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesPrintnannyEventsCreate(deviceId: number, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesPrintnannyEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<void>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this print nanny event.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesPrintnannyEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<void>;
-
-    /**
-     * 
-     * @param {number} deviceId 
      * @param {PublicKeyRequest} publicKeyRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -11997,6 +11968,35 @@ export interface DevicesApiInterface {
      * @memberof DevicesApiInterface
      */
     devicesTasksStatusRetrieve(deviceId: number, id: number, taskId: number, options?: AxiosRequestConfig): AxiosPromise<Task>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesTestEventsCreate(deviceId: number, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesTestEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<void>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this test event.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesTestEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<void>;
 
     /**
      * A device (Raspberry Pi) running Print Nanny OS
@@ -12404,41 +12404,6 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
     /**
      * 
      * @param {number} deviceId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesPrintnannyEventsCreate(deviceId: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesPrintnannyEventsCreate(deviceId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesPrintnannyEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesPrintnannyEventsList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this print nanny event.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesPrintnannyEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesPrintnannyEventsRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
      * @param {PublicKeyRequest} publicKeyRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -12658,6 +12623,41 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
     }
 
     /**
+     * 
+     * @param {number} deviceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesTestEventsCreate(deviceId: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesTestEventsCreate(deviceId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesTestEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesTestEventsList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this test event.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesTestEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesTestEventsRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * A device (Raspberry Pi) running Print Nanny OS
      * @param {number} id A unique integer value identifying this device.
      * @param {DeviceRequest} [deviceRequest] 
@@ -12849,10 +12849,10 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesPrintnannyEventsCreate: async (deviceId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesTestEventsCreate: async (deviceId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesPrintnannyEventsCreate', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/printnanny-events/`
+            assertParamExists('devicesTestEventsCreate', 'deviceId', deviceId)
+            const localVarPath = `/api/devices/{device_id}/test-events/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -12889,10 +12889,10 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesPrintnannyEventsList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesTestEventsList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesPrintnannyEventsList', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/printnanny-events/`
+            assertParamExists('devicesTestEventsList', 'deviceId', deviceId)
+            const localVarPath = `/api/devices/{device_id}/test-events/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -12929,16 +12929,16 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * 
          * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this print nanny event.
+         * @param {number} id A unique integer value identifying this test event.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesPrintnannyEventsRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesTestEventsRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesPrintnannyEventsRetrieve', 'deviceId', deviceId)
+            assertParamExists('devicesTestEventsRetrieve', 'deviceId', deviceId)
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesPrintnannyEventsRetrieve', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/printnanny-events/{id}/`
+            assertParamExists('devicesTestEventsRetrieve', 'id', id)
+            const localVarPath = `/api/devices/{device_id}/test-events/{id}/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -13018,8 +13018,8 @@ export const EventsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesPrintnannyEventsCreate(deviceId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPrintnannyEventsCreate(deviceId, options);
+        async devicesTestEventsCreate(deviceId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTestEventsCreate(deviceId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -13029,19 +13029,19 @@ export const EventsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesPrintnannyEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPrintnannyEventsList(deviceId, page, options);
+        async devicesTestEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTestEventsList(deviceId, page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this print nanny event.
+         * @param {number} id A unique integer value identifying this test event.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesPrintnannyEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPrintnannyEventsRetrieve(deviceId, id, options);
+        async devicesTestEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTestEventsRetrieve(deviceId, id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -13090,8 +13090,8 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesPrintnannyEventsCreate(deviceId: number, options?: any): AxiosPromise<PolymorphicEvent> {
-            return localVarFp.devicesPrintnannyEventsCreate(deviceId, options).then((request) => request(axios, basePath));
+        devicesTestEventsCreate(deviceId: number, options?: any): AxiosPromise<PolymorphicEvent> {
+            return localVarFp.devicesTestEventsCreate(deviceId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -13100,18 +13100,18 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesPrintnannyEventsList(deviceId: number, page?: number, options?: any): AxiosPromise<void> {
-            return localVarFp.devicesPrintnannyEventsList(deviceId, page, options).then((request) => request(axios, basePath));
+        devicesTestEventsList(deviceId: number, page?: number, options?: any): AxiosPromise<void> {
+            return localVarFp.devicesTestEventsList(deviceId, page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this print nanny event.
+         * @param {number} id A unique integer value identifying this test event.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesPrintnannyEventsRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<void> {
-            return localVarFp.devicesPrintnannyEventsRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
+        devicesTestEventsRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<void> {
+            return localVarFp.devicesTestEventsRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -13159,7 +13159,7 @@ export interface EventsApiInterface {
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    devicesPrintnannyEventsCreate(deviceId: number, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
+    devicesTestEventsCreate(deviceId: number, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
 
     /**
      * 
@@ -13169,17 +13169,17 @@ export interface EventsApiInterface {
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    devicesPrintnannyEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<void>;
+    devicesTestEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<void>;
 
     /**
      * 
      * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this print nanny event.
+     * @param {number} id A unique integer value identifying this test event.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    devicesPrintnannyEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<void>;
+    devicesTestEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<void>;
 
 }
 
@@ -13233,8 +13233,8 @@ export class EventsApi extends BaseAPI implements EventsApiInterface {
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public devicesPrintnannyEventsCreate(deviceId: number, options?: AxiosRequestConfig) {
-        return EventsApiFp(this.configuration).devicesPrintnannyEventsCreate(deviceId, options).then((request) => request(this.axios, this.basePath));
+    public devicesTestEventsCreate(deviceId: number, options?: AxiosRequestConfig) {
+        return EventsApiFp(this.configuration).devicesTestEventsCreate(deviceId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -13245,20 +13245,20 @@ export class EventsApi extends BaseAPI implements EventsApiInterface {
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public devicesPrintnannyEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
-        return EventsApiFp(this.configuration).devicesPrintnannyEventsList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
+    public devicesTestEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
+        return EventsApiFp(this.configuration).devicesTestEventsList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this print nanny event.
+     * @param {number} id A unique integer value identifying this test event.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public devicesPrintnannyEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
-        return EventsApiFp(this.configuration).devicesPrintnannyEventsRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
+    public devicesTestEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
+        return EventsApiFp(this.configuration).devicesTestEventsRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

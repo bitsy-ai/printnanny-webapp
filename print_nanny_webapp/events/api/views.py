@@ -28,9 +28,9 @@ class EventViewSet(
 @extend_schema_view(
     create=extend_schema(
         responses={
-            200: PolymorphicEventSerializer,
-            201: PolymorphicEventSerializer,
-            400: PolymorphicEventSerializer,
+            200: TestEventSerializer,
+            201: TestEventSerializer,
+            400: TestEventSerializer,
         }
     )
 )
