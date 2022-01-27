@@ -12,12 +12,20 @@ logger = logging.getLogger(__name__)
 
 
 class Event(PolymorphicModel, SafeDeleteModel):
+    """
+    Polymorphic Base Event
+    """
+
     _safedelete_policy = SOFT_DELETE
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
 
 
 class PrintNannyEvent(Event):
+    """
+    Events emitted by Print Nanny OS
+    """
+
     source = EventSource.PRINT_NANNY
     type = models.CharField(max_length=255, choices=PrintNannyEventType.choices)
     status = models.CharField(
