@@ -97,7 +97,8 @@ LOCAL_APPS = [
     "print_nanny_webapp.telemetry.apps.TelemetryConfig",
     "print_nanny_webapp.users.apps.UsersConfig",
     "print_nanny_webapp.surveys.apps.SurveysConfig",
-    "print_nanny_webapp.subscriptions.apps.EventConfig",  # Gated at the bottom
+    "print_nanny_webapp.octoprint.apps.OctoprintConfig",
+    "print_nanny_webapp.events.apps.EventsConfig",  # Gated at the bottom
     # Your stuff: custom apps go here
 ]
 
