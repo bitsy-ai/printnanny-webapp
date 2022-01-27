@@ -798,6 +798,43 @@ export interface ErrorDetail {
 /**
  * 
  * @export
+ * @interface Event
+ */
+export interface Event {
+    /**
+     * 
+     * @type {number}
+     * @memberof Event
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Event
+     */
+    'deleted': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Event
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Event
+     */
+    'polymorphic_ctype': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Event
+     */
+    'user': number;
+}
+/**
+ * 
+ * @export
  * @interface Experiment
  */
 export interface Experiment {
@@ -3667,6 +3704,37 @@ export interface PaginatedTelemetryEventPolymorphicList {
     'results'?: Array<TelemetryEventPolymorphic>;
 }
 /**
+ * 
+ * @export
+ * @interface PaginatedTestEventList
+ */
+export interface PaginatedTestEventList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedTestEventList
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedTestEventList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedTestEventList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<TestEvent>}
+     * @memberof PaginatedTestEventList
+     */
+    'results'?: Array<TestEvent>;
+}
+/**
  * Do not use underscores in this serializer - linitation of Firebase Cloud Messaging
  * @export
  * @interface Partner3DGeeksAlert
@@ -4494,19 +4562,17 @@ export interface PatchedUserRequest {
     'email'?: string;
 }
 /**
- * 
+ * @type PolymorphicEvent
  * @export
- * @interface PolymorphicEvent
  */
-export interface PolymorphicEvent {
-}
+export type PolymorphicEvent = Event | TestEvent;
+
 /**
- * 
+ * @type PolymorphicEventRequest
  * @export
- * @interface PolymorphicEventRequest
  */
-export interface PolymorphicEventRequest {
-}
+export type PolymorphicEventRequest = TestEventRequest;
+
 /**
  * 
  * @export
@@ -6631,6 +6697,106 @@ export interface TelemetryEventRequest {
     'print_session'?: number | null;
 }
 /**
+ * 
+ * @export
+ * @interface TestEvent
+ */
+export interface TestEvent {
+    /**
+     * 
+     * @type {number}
+     * @memberof TestEvent
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof TestEvent
+     */
+    'deleted': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TestEvent
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {TypeEnum}
+     * @memberof TestEvent
+     */
+    'type': TypeEnum;
+    /**
+     * 
+     * @type {TestEventStatusEnum}
+     * @memberof TestEvent
+     */
+    'status'?: TestEventStatusEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof TestEvent
+     */
+    'polymorphic_ctype': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TestEvent
+     */
+    'user': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TestEvent
+     */
+    'device': number;
+}
+/**
+ * 
+ * @export
+ * @interface TestEventRequest
+ */
+export interface TestEventRequest {
+    /**
+     * 
+     * @type {TypeEnum}
+     * @memberof TestEventRequest
+     */
+    'type': TypeEnum;
+    /**
+     * 
+     * @type {TestEventStatusEnum}
+     * @memberof TestEventRequest
+     */
+    'status'?: TestEventStatusEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof TestEventRequest
+     */
+    'user': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TestEventRequest
+     */
+    'device': number;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export enum TestEventStatusEnum {
+    Sent = 'sent',
+    Ack = 'ack',
+    Success = 'success',
+    Failed = 'failed',
+    Timeout = 'timeout'
+}
+
+/**
  * Our default response serializer.
  * @export
  * @interface TokenResponse
@@ -6643,6 +6809,17 @@ export interface TokenResponse {
      */
     'token': string;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export enum TypeEnum {
+    Ping = 'mqtt_ping',
+    Pong = 'mqtt_pong'
+}
+
 /**
  * 
  * @export
@@ -10004,12 +10181,15 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {number} deviceId 
+         * @param {TestEventRequest} testEventRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesTestEventsCreate: async (deviceId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesTestEventsCreate: async (deviceId: number, testEventRequest: TestEventRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
             assertParamExists('devicesTestEventsCreate', 'deviceId', deviceId)
+            // verify required parameter 'testEventRequest' is not null or undefined
+            assertParamExists('devicesTestEventsCreate', 'testEventRequest', testEventRequest)
             const localVarPath = `/api/devices/{device_id}/test-events/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -10031,9 +10211,12 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
 
 
     
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(testEventRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -10846,11 +11029,12 @@ export const DevicesApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} deviceId 
+         * @param {TestEventRequest} testEventRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesTestEventsCreate(deviceId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTestEventsCreate(deviceId, options);
+        async devicesTestEventsCreate(deviceId: number, testEventRequest: TestEventRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TestEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTestEventsCreate(deviceId, testEventRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -10860,7 +11044,7 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesTestEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async devicesTestEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedTestEventList>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTestEventsList(deviceId, page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -10871,7 +11055,7 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesTestEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async devicesTestEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TestEvent>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTestEventsRetrieve(deviceId, id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -11413,11 +11597,12 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @param {number} deviceId 
+         * @param {TestEventRequest} testEventRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesTestEventsCreate(deviceId: number, options?: any): AxiosPromise<void> {
-            return localVarFp.devicesTestEventsCreate(deviceId, options).then((request) => request(axios, basePath));
+        devicesTestEventsCreate(deviceId: number, testEventRequest: TestEventRequest, options?: any): AxiosPromise<TestEvent> {
+            return localVarFp.devicesTestEventsCreate(deviceId, testEventRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -11426,7 +11611,7 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesTestEventsList(deviceId: number, page?: number, options?: any): AxiosPromise<void> {
+        devicesTestEventsList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedTestEventList> {
             return localVarFp.devicesTestEventsList(deviceId, page, options).then((request) => request(axios, basePath));
         },
         /**
@@ -11436,7 +11621,7 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesTestEventsRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<void> {
+        devicesTestEventsRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<TestEvent> {
             return localVarFp.devicesTestEventsRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -11972,11 +12157,12 @@ export interface DevicesApiInterface {
     /**
      * 
      * @param {number} deviceId 
+     * @param {TestEventRequest} testEventRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesTestEventsCreate(deviceId: number, options?: AxiosRequestConfig): AxiosPromise<void>;
+    devicesTestEventsCreate(deviceId: number, testEventRequest: TestEventRequest, options?: AxiosRequestConfig): AxiosPromise<TestEvent>;
 
     /**
      * 
@@ -11986,7 +12172,7 @@ export interface DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesTestEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<void>;
+    devicesTestEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedTestEventList>;
 
     /**
      * 
@@ -11996,7 +12182,7 @@ export interface DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesTestEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<void>;
+    devicesTestEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<TestEvent>;
 
     /**
      * A device (Raspberry Pi) running Print Nanny OS
@@ -12625,12 +12811,13 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
     /**
      * 
      * @param {number} deviceId 
+     * @param {TestEventRequest} testEventRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesTestEventsCreate(deviceId: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesTestEventsCreate(deviceId, options).then((request) => request(this.axios, this.basePath));
+    public devicesTestEventsCreate(deviceId: number, testEventRequest: TestEventRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesTestEventsCreate(deviceId, testEventRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -12846,12 +13033,15 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * 
          * @param {number} deviceId 
+         * @param {TestEventRequest} testEventRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesTestEventsCreate: async (deviceId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesTestEventsCreate: async (deviceId: number, testEventRequest: TestEventRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
             assertParamExists('devicesTestEventsCreate', 'deviceId', deviceId)
+            // verify required parameter 'testEventRequest' is not null or undefined
+            assertParamExists('devicesTestEventsCreate', 'testEventRequest', testEventRequest)
             const localVarPath = `/api/devices/{device_id}/test-events/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -12873,9 +13063,12 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(testEventRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -13015,11 +13208,12 @@ export const EventsApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} deviceId 
+         * @param {TestEventRequest} testEventRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesTestEventsCreate(deviceId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTestEventsCreate(deviceId, options);
+        async devicesTestEventsCreate(deviceId: number, testEventRequest: TestEventRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TestEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTestEventsCreate(deviceId, testEventRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -13029,7 +13223,7 @@ export const EventsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesTestEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async devicesTestEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedTestEventList>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTestEventsList(deviceId, page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -13040,7 +13234,7 @@ export const EventsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesTestEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async devicesTestEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TestEvent>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTestEventsRetrieve(deviceId, id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -13087,11 +13281,12 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
         /**
          * 
          * @param {number} deviceId 
+         * @param {TestEventRequest} testEventRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesTestEventsCreate(deviceId: number, options?: any): AxiosPromise<void> {
-            return localVarFp.devicesTestEventsCreate(deviceId, options).then((request) => request(axios, basePath));
+        devicesTestEventsCreate(deviceId: number, testEventRequest: TestEventRequest, options?: any): AxiosPromise<TestEvent> {
+            return localVarFp.devicesTestEventsCreate(deviceId, testEventRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -13100,7 +13295,7 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesTestEventsList(deviceId: number, page?: number, options?: any): AxiosPromise<void> {
+        devicesTestEventsList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedTestEventList> {
             return localVarFp.devicesTestEventsList(deviceId, page, options).then((request) => request(axios, basePath));
         },
         /**
@@ -13110,7 +13305,7 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesTestEventsRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<void> {
+        devicesTestEventsRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<TestEvent> {
             return localVarFp.devicesTestEventsRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
         },
     };
@@ -13155,11 +13350,12 @@ export interface EventsApiInterface {
     /**
      * 
      * @param {number} deviceId 
+     * @param {TestEventRequest} testEventRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    devicesTestEventsCreate(deviceId: number, options?: AxiosRequestConfig): AxiosPromise<void>;
+    devicesTestEventsCreate(deviceId: number, testEventRequest: TestEventRequest, options?: AxiosRequestConfig): AxiosPromise<TestEvent>;
 
     /**
      * 
@@ -13169,7 +13365,7 @@ export interface EventsApiInterface {
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    devicesTestEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<void>;
+    devicesTestEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedTestEventList>;
 
     /**
      * 
@@ -13179,7 +13375,7 @@ export interface EventsApiInterface {
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    devicesTestEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<void>;
+    devicesTestEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<TestEvent>;
 
 }
 
@@ -13229,12 +13425,13 @@ export class EventsApi extends BaseAPI implements EventsApiInterface {
     /**
      * 
      * @param {number} deviceId 
+     * @param {TestEventRequest} testEventRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public devicesTestEventsCreate(deviceId: number, options?: AxiosRequestConfig) {
-        return EventsApiFp(this.configuration).devicesTestEventsCreate(deviceId, options).then((request) => request(this.axios, this.basePath));
+    public devicesTestEventsCreate(deviceId: number, testEventRequest: TestEventRequest, options?: AxiosRequestConfig) {
+        return EventsApiFp(this.configuration).devicesTestEventsCreate(deviceId, testEventRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
