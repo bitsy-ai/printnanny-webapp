@@ -349,7 +349,10 @@ python-client-release: dist
 rust-client-release: rust-client
 	cd clients/rust && cargo publish
 
-clients-release: ts-client python-client-release rust-client-release
+js-client-release: ts-client
+	cd clients/typescript && npm install && npm build && npm publish
+
+clients-release: js-client-release python-client-release rust-client-release 
 
 cloudsql:
 	cloud_sql_proxy -dir=$(HOME)/cloudsql -instances=print-nanny:us-central1:print-nanny=tcp:5433
