@@ -10849,7 +10849,7 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesTestEventsCreate(deviceId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
+        async devicesTestEventsCreate(deviceId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTestEventsCreate(deviceId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -11416,7 +11416,7 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesTestEventsCreate(deviceId: number, options?: any): AxiosPromise<PolymorphicEvent> {
+        devicesTestEventsCreate(deviceId: number, options?: any): AxiosPromise<void> {
             return localVarFp.devicesTestEventsCreate(deviceId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -11976,7 +11976,7 @@ export interface DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesTestEventsCreate(deviceId: number, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
+    devicesTestEventsCreate(deviceId: number, options?: AxiosRequestConfig): AxiosPromise<void>;
 
     /**
      * 
@@ -13018,7 +13018,7 @@ export const EventsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesTestEventsCreate(deviceId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
+        async devicesTestEventsCreate(deviceId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTestEventsCreate(deviceId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -13090,7 +13090,7 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesTestEventsCreate(deviceId: number, options?: any): AxiosPromise<PolymorphicEvent> {
+        devicesTestEventsCreate(deviceId: number, options?: any): AxiosPromise<void> {
             return localVarFp.devicesTestEventsCreate(deviceId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -13159,7 +13159,7 @@ export interface EventsApiInterface {
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    devicesTestEventsCreate(deviceId: number, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
+    devicesTestEventsCreate(deviceId: number, options?: AxiosRequestConfig): AxiosPromise<void>;
 
     /**
      * 

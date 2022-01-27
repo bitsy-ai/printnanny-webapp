@@ -9,7 +9,7 @@ from print_nanny_webapp.events.enum import (
 )
 
 
-class EventSerializer(serializers.Serializer):
+class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = "__all__"
