@@ -16,6 +16,7 @@ make rust-client
 git add clients/
 git commit --amend --no-edit
 
+make js-client-release
 make python-client-release
 make rust-client-release
 
