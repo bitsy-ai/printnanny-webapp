@@ -43,7 +43,7 @@ from print_nanny_webapp.alerts.api.views import (
 from print_nanny_webapp.partners.api.views import (GeeksViewSet)
 from print_nanny_webapp.utils.api.views import PrintNannyApiConfigViewset
 from print_nanny_webapp.octoprint.api.views import OctoPrintBackupViewset
-from print_nanny_webapp.events.api.views import (TestEventViewSet, EventViewSet)
+from print_nanny_webapp.events.api.views import (EventViewSet)
 router = DefaultRouter()
 
 router.register("client-config", PrintNannyApiConfigViewset, basename="client-config"),
@@ -69,7 +69,6 @@ devices_router.register(r'cloud-iot-devices', CloudiotDeviceViewSet, basename='c
 devices_router.register(r'printer-controllers', PrinterControllerViewSet, basename='printer-controllers')
 devices_router.register(r'onboarding-tasks', OnboardingTaskViewSet, basename='onboarding-tasks')
 devices_router.register(r'events', EventViewSet, basename='events')
-devices_router.register(r'test-events', TestEventViewSet, basename='test-events')
 
 devices_router.register(r'tasks', TaskViewSet, basename='tasks')
 

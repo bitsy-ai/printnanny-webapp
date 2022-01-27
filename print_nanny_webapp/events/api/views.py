@@ -1,5 +1,10 @@
 import logging
+from django.shortcuts import get_object_or_404
 
+from rest_framework import status
+from rest_framework.response import Response
+from django.apps import apps
+from drf_spectacular.utils import PolymorphicProxySerializer
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, CreateModelMixin
@@ -12,15 +17,21 @@ from print_nanny_webapp.utils.api.views import (
     generic_update_errors,
 )
 
+Device = apps.get_model("devices", "Device")
+
+logger = logging.getLogger(__name__)
+
+# @extend_schema_view(
+#     create=extend_schema(
+#         request=PolymorphicEventSerializer,
+#         responses={
+#             201: PolymorphicEventSerializer,
+#         } | generic_create_errors
+#     )
+# )
+
 
 @extend_schema(tags=["events", "devices"])
-@extend_schema_view(
-    create=extend_schema(
-        responses={
-            201: PolymorphicEventSerializer,
-        }
-    )
-)
 class EventViewSet(
     GenericViewSet, ListModelMixin, RetrieveModelMixin, CreateModelMixin
 ):
@@ -29,35 +40,20 @@ class EventViewSet(
     lookup_field = "id"
 
     def get_queryset(self, *args, **kwargs):
-        return self.queryset.filter(user_id=self.request.user.id)
+        device_id = self.kwargs.get("device_id")
+        self.device = get_object_or_404(Device, pk=device_id)
+        return self.queryset.filter(user_id=self.request.user.id, device=self.device)
 
+    def create(self, request, device_id=None, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.device = get_object_or_404(Device, pk=device_id)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(
+            serializer.data, status=status.HTTP_201_CREATED, headers=headers
+        )
 
-@extend_schema(tags=["events", "devices"])
-@extend_schema_view(
-    create=extend_schema(
-        request=TestEventSerializer,
-        responses={
-            201: TestEventSerializer,
-        }
-        | generic_create_errors,
-    ),
-    list=extend_schema(
-        request=TestEventSerializer,
-        responses={
-            200: TestEventSerializer(many=True),
-        }
-        | generic_list_errors,
-    ),
-    retrieve=extend_schema(
-        request=TestEventSerializer,
-        responses={
-            200: TestEventSerializer,
-        }
-        | generic_create_errors,
-    ),
-)
-class TestEventViewSet(
-    GenericViewSet, ListModelMixin, RetrieveModelMixin, CreateModelMixin
-):
-    serializer_class = TestEventSerializer
-    queryset = TestEvent.objects.all()
+    def perform_create(self, serializer):
+        logger.info(f"EventViewSet.perform_create request={self.request.POST}")
+        serializer.save(user=self.request.user, device=self.device)

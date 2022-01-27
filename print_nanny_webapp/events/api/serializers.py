@@ -1,3 +1,4 @@
+import logging
 from collections.abc import Mapping
 from rest_framework import serializers
 from rest_polymorphic.serializers import PolymorphicSerializer
@@ -8,28 +9,35 @@ from print_nanny_webapp.events.enum import (
     EventStatus,
 )
 
+logger = logging.getLogger(__name__)
+
 
 class EventSerializer(serializers.ModelSerializer):
+    # resourcetype = serializers.ChoiceField(choices=[
+    #     "TestEvent"
+    # ])
+
     class Meta:
         model = Event
-        fields = "__all__"
-        read_only_fields = ("user", "polymorphic_ctype")
+        read_only_fields = ("user", "device", "created_dt")
 
 
 class TestEventSerializer(EventSerializer):
+    resourcetype = serializers.CharField(default="TestEvent")
+
     class Meta:
         model = TestEvent
-        fields = "__all__"
-        read_only_fields = ("user", "polymorphic_ctype")
+        read_only_fields = ("user", "device", "created_dt", "resourcetype")
+        fields = ("id", "type", "status", "resourcetype")
 
 
 class PolymorphicEventSerializer(PolymorphicSerializer):
     model_serializer_mapping = {
-        Event: EventSerializer,
         TestEvent: TestEventSerializer,
     }
 
     def to_representation(self, instance):
+        logger.info("Got instance", instance)
         if isinstance(instance, Mapping):
             resource_type = self._get_resource_type_from_mapping(instance)
             serializer = self._get_serializer_from_resource_type(resource_type)
