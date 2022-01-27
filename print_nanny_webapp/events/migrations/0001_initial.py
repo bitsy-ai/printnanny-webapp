@@ -10,38 +10,98 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('devices', '0045_alter_publickey_cipher'),
+        ("devices", "0045_alter_publickey_cipher"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('contenttypes', '0002_remove_content_type_name'),
+        ("contenttypes", "0002_remove_content_type_name"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Event',
+            name="Event",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('deleted', models.DateTimeField(editable=False, null=True)),
-                ('created_dt', models.DateTimeField(auto_now_add=True, db_index=True)),
-                ('polymorphic_ctype', models.ForeignKey(editable=False, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='polymorphic_events.event_set+', to='contenttypes.contenttype')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("deleted", models.DateTimeField(editable=False, null=True)),
+                ("created_dt", models.DateTimeField(auto_now_add=True, db_index=True)),
+                (
+                    "polymorphic_ctype",
+                    models.ForeignKey(
+                        editable=False,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="polymorphic_events.event_set+",
+                        to="contenttypes.contenttype",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
-                'base_manager_name': 'objects',
+                "abstract": False,
+                "base_manager_name": "objects",
             },
         ),
         migrations.CreateModel(
-            name='PrintNannyEvent',
+            name="PrintNannyEvent",
             fields=[
-                ('event_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='events.event')),
-                ('type', models.CharField(choices=[('mqtt_ping', 'MQTT Ping Event'), ('mqtt_pong', 'MQTT Pong Event')], max_length=255)),
-                ('status', models.CharField(choices=[('sent', 'Sent'), ('ack', 'Acknowledged'), ('success', 'Success'), ('failed', 'Failed'), ('timeout', 'Timeout')], default='sent', max_length=255)),
-                ('device', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='devices.device')),
+                (
+                    "event_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="events.event",
+                    ),
+                ),
+                (
+                    "type",
+                    models.CharField(
+                        choices=[
+                            ("mqtt_ping", "MQTT Ping Event"),
+                            ("mqtt_pong", "MQTT Pong Event"),
+                        ],
+                        max_length=255,
+                    ),
+                ),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            ("sent", "Sent"),
+                            ("ack", "Acknowledged"),
+                            ("success", "Success"),
+                            ("failed", "Failed"),
+                            ("timeout", "Timeout"),
+                        ],
+                        default="sent",
+                        max_length=255,
+                    ),
+                ),
+                (
+                    "device",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="devices.device"
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
-                'base_manager_name': 'objects',
+                "abstract": False,
+                "base_manager_name": "objects",
             },
-            bases=('events.event',),
+            bases=("events.event",),
         ),
     ]
