@@ -97,8 +97,7 @@ LOCAL_APPS = [
     "print_nanny_webapp.telemetry.apps.TelemetryConfig",
     "print_nanny_webapp.users.apps.UsersConfig",
     "print_nanny_webapp.surveys.apps.SurveysConfig",
-    "print_nanny_webapp.octoprint.apps.OctoprintConfig"
-    # "print_nanny_webapp.subscriptions.apps.SubscriptionsConfig", # Gated at the bottom
+    "print_nanny_webapp.subscriptions.apps.EventConfig",  # Gated at the bottom
     # Your stuff: custom apps go here
 ]
 
@@ -211,7 +210,6 @@ MEDIA_ROOT = str(APPS_DIR / "media")
 # https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 
 #TMP_ROOT = str(ROOT_DIR / ".tmp")
-
 # TEMPLATES
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#templates

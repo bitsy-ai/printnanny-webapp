@@ -10,9 +10,6 @@ const configuration = new Configuration({
 })
 
 export default {
-  async sendEvent (eventType, payload) {
-
-  },
   async startMonitoring (device) {
     const thisapi = DevicesApiFactory(configuration, process.env.BASE_API_URL)
     const req = { monitoring_active: true }
