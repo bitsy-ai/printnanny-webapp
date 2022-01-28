@@ -27,7 +27,7 @@ export default {
     },
     startTest: function () {
       this.loading = true
-      this.createMqttPing(this.deviceId)
+      this.createMqttPing(this.deviceId, this.hostname)
     },
     resetTest: function () {
       this.loading = false
@@ -47,7 +47,10 @@ export default {
       mqttPingEventLog: MQTT_PING_EVENT_LOG,
       mqttPongEvent: MQTT_PONG_EVENT,
       mqttPongEventLog: MQTT_PONG_EVENT_LOG
-    })
+    }),
+    mqttPingEventLogText: function () {
+      return this.mqttPingEventLog.join('\n')
+    }
   }
 }
 </script>
@@ -76,9 +79,11 @@ export default {
             <small :class="statusClass(mqttPingEvent)" class="mdi mdi-checkbox-blank-circle align-middle me-1"></small>
 
           {{ capitalize(mqttPingEvent.status) }}</h3>
-          <pre>
-
-          </pre>
+          <hr>
+<pre class="text-center">
+<code v-text="mqttPingEventLogText">
+</code>
+</pre>
         </div>
 
         <div class="col-6">
