@@ -402,7 +402,13 @@ export interface CloudiotDevice {
      * @type {string}
      * @memberof CloudiotDevice
      */
-    'task_topic': string;
+    'command_topic': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CloudiotDevice
+     */
+    'event_topic': string;
     /**
      * 
      * @type {string}
@@ -415,6 +421,12 @@ export interface CloudiotDevice {
      * @memberof CloudiotDevice
      */
     'state_topic': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CloudiotDevice
+     */
+    'gcp_resource': string;
     /**
      * 
      * @type {string}
