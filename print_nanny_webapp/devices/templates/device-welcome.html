@@ -38,7 +38,7 @@
                     <!--- vue component here -->
                     {% if object %}
                     <span class="welcome-wizard-app">
-                        <welcome-wizard device-id="{{ object.id }}" />
+                        <welcome-wizard device-id="{{ object.id }}" hostname="{{ object.hostname }}" />
                     </span>
                     {% else %}
                     <span class="welcome-wizard-app">

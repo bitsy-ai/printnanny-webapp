@@ -21,6 +21,8 @@ pub enum PolymorphicEvent {
         _type: crate::models::TestEventType,
         #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
         status: Option<crate::models::EventStatus>,
+        #[serde(rename = "source")]
+        source: crate::models::EventSource,
     },
 }
 

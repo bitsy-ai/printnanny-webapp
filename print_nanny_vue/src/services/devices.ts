@@ -17,7 +17,7 @@ export default {
       device: deviceId,
       type: api.TestEventType.Ping,
       status: api.EventStatus.Sent,
-      source: api.EventSource.Printnanny
+      source: api.EventSource.Printnanny,
     }
     const res = await thisapi.devicesEventsCreate(
       deviceId.toString(),

@@ -33,7 +33,7 @@ export default {
       return this.messages.join('\n')
     },
     ...mapState(WIZARD_MODULE, {
-      scan_result: DEVICE_SCAN_RESULT
+      scanResult: DEVICE_SCAN_RESULT
     })
   },
   methods: {

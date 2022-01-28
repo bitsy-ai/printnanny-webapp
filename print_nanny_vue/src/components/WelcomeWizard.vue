@@ -32,19 +32,20 @@ export default {
       const url = new URL(window.location.href)
       return parseInt(url.searchParams.get('step')) || 0
     },
-    ...mapState(WIZARD_MODULE, {
-      scan_result: DEVICE_SCAN_RESULT
-    }),
     scanNextDisabled: function () {
-      console.log('scan_result updated', this.scan_result)
+      console.log('scanResult updated', this.scanResult)
       return (
-        this.scan_result.loading === true || this.scan_result.success !== true
+        this.scanResult.loading === true || this.scanResult.success !== true
       )
-    }
+    },
+    ...mapState(WIZARD_MODULE, {
+      scanResult: DEVICE_SCAN_RESULT
+
+    })
   },
   methods: {
     ...mapMutations(WIZARD_MODULE, {
-      set_scan_result: SET_DEVICE_SCAN_RESULT
+      setScanResult: SET_DEVICE_SCAN_RESULT
     }),
     onComplete: function () {
       alert('Yay. Done!')
@@ -64,7 +65,7 @@ export default {
     },
     linkUrl: function () {
       const port = 9001
-      const url = `http://${this.scan_result.hostname}:${port}`
+      const url = `http://${this.scanResult.hostname}:${port}`
       window.location = url
     }
   }
@@ -179,8 +180,8 @@ export default {
             v-bind:disabled="scanNextDisabled"
             :style="props.fillButtonStyle"
           >
-            <span v-show="scan_result.loading"></span>Link
-            {{ scan_result.hostname }}
+            <span v-show="scanResult.loading"></span>Link
+            {{ scanResult.hostname }}
           </wizard-button>
           <wizard-button
             v-else-if="!props.isLastStep && props.activeTabIndex !== 1"

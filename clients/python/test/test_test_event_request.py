@@ -39,11 +39,13 @@ class TestTestEventRequest(unittest.TestCase):
             return TestEventRequest(
                 type = 'mqtt_ping', 
                 status = 'sent', 
+                source = 'octoprint', 
                 resourcetype = 'TestEvent'
             )
         else :
             return TestEventRequest(
                 type = 'mqtt_ping',
+                source = 'octoprint',
         )
 
     def testTestEventRequest(self):

@@ -801,6 +801,18 @@ export interface ErrorDetail {
  * @enum {string}
  */
 
+export enum EventSource {
+    Octoprint = 'octoprint',
+    Printnanny = 'printnanny',
+    Mainsail = 'mainsail'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
 export enum EventStatus {
     Sent = 'sent',
     Ack = 'ack',
@@ -6668,6 +6680,12 @@ export interface TestEvent {
     'status'?: EventStatus;
     /**
      * 
+     * @type {EventSource}
+     * @memberof TestEvent
+     */
+    'source': EventSource;
+    /**
+     * 
      * @type {string}
      * @memberof TestEvent
      */
@@ -6691,6 +6709,12 @@ export interface TestEventRequest {
      * @memberof TestEventRequest
      */
     'status'?: EventStatus;
+    /**
+     * 
+     * @type {EventSource}
+     * @memberof TestEventRequest
+     */
+    'source': EventSource;
     /**
      * 
      * @type {string}

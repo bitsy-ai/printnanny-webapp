@@ -29,6 +29,7 @@ docs/DeviceRequest.md
 docs/DevicesApi.md
 docs/EmailAuthRequest.md
 docs/ErrorDetail.md
+docs/EventSource.md
 docs/EventStatus.md
 docs/EventsApi.md
 docs/Experiment.md
@@ -207,6 +208,7 @@ src/models/device_calibration_request.rs
 src/models/device_request.rs
 src/models/email_auth_request.rs
 src/models/error_detail.rs
+src/models/event_source.rs
 src/models/event_status.rs
 src/models/experiment.rs
 src/models/experiment_device_config.rs
