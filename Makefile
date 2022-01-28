@@ -269,7 +269,7 @@ clean-rust-client:
 # 		-o /local/clients/kotlin \
 # 		-c /local/clients/kotlin.yaml
 
-ts-client: clean-ts-client node-15
+ts-client: clean-ts-client
 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
 		-i http://localhost:8000/api/schema --recommend
 
@@ -351,10 +351,7 @@ python-client-release: dist
 rust-client-release: rust-client
 	cd clients/rust && cargo publish
 
-node-15:
-	nvm use 15
-
-js-client-release: ts-client node-15
+js-client-release: ts-client
 	cd clients/typescript && npm publish
 
 clients-release: js-client-release python-client-release rust-client-release 
