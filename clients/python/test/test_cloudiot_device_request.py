@@ -37,17 +37,11 @@ class TestCloudiotDeviceRequest(unittest.TestCase):
         # model = printnanny_api_client.models.cloudiot_device_request.CloudiotDeviceRequest()  # noqa: E501
         if include_optional :
             return CloudiotDeviceRequest(
-                num_id = -9223372036854775808, 
-                name = '0', 
-                id = '0', 
-                device = 56
+                public_key = 56
             )
         else :
             return CloudiotDeviceRequest(
-                num_id = -9223372036854775808,
-                name = '0',
-                id = '0',
-                device = 56,
+                public_key = 56,
         )
 
     def testCloudiotDeviceRequest(self):

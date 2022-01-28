@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**num_id** | **int** |  | 
+**num_id** | **int** |  | [readonly] 
 **command_topic** | **str** |  | [readonly] 
 **event_topic** | **str** |  | [readonly] 
 **config_topic** | **str** |  | [readonly] 
@@ -16,9 +16,12 @@ Name | Type | Description | Notes
 **mqtt_bridge_hostname** | **str** |  | [readonly] 
 **mqtt_bridge_port** | **int** |  | [readonly] 
 **mqtt_client_id** | **str** |  | [readonly] 
-**name** | **str** |  | 
-**id** | **str** |  | 
-**device** | **int** |  | 
+**created_dt** | **datetime** |  | [readonly] 
+**updated_dt** | **datetime** |  | [readonly] 
+**name** | **str** |  | [readonly] 
+**id** | **str** |  | [readonly] 
+**device** | **int** |  | [readonly] 
+**public_key** | **int** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

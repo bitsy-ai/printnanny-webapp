@@ -4,16 +4,17 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**cloudiot_device_update_or_create**](DevicesApi.md#cloudiot_device_update_or_create) | **POST** /api/devices/{device_id}/cloudiot/update-or-create/ | 
 [**devices_cameras_create**](DevicesApi.md#devices_cameras_create) | **POST** /api/devices/{device_id}/cameras/ | 
 [**devices_cameras_list**](DevicesApi.md#devices_cameras_list) | **GET** /api/devices/{device_id}/cameras/ | 
 [**devices_cameras_partial_update**](DevicesApi.md#devices_cameras_partial_update) | **PATCH** /api/devices/{device_id}/cameras/{id}/ | 
 [**devices_cameras_retrieve**](DevicesApi.md#devices_cameras_retrieve) | **GET** /api/devices/{device_id}/cameras/{id}/ | 
 [**devices_cameras_update**](DevicesApi.md#devices_cameras_update) | **PUT** /api/devices/{device_id}/cameras/{id}/ | 
-[**devices_cloud_iot_devices_create**](DevicesApi.md#devices_cloud_iot_devices_create) | **POST** /api/devices/{device_id}/cloud-iot-devices/ | 
-[**devices_cloud_iot_devices_list**](DevicesApi.md#devices_cloud_iot_devices_list) | **GET** /api/devices/{device_id}/cloud-iot-devices/ | 
-[**devices_cloud_iot_devices_partial_update**](DevicesApi.md#devices_cloud_iot_devices_partial_update) | **PATCH** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
-[**devices_cloud_iot_devices_retrieve**](DevicesApi.md#devices_cloud_iot_devices_retrieve) | **GET** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
-[**devices_cloud_iot_devices_update**](DevicesApi.md#devices_cloud_iot_devices_update) | **PUT** /api/devices/{device_id}/cloud-iot-devices/{id}/ | 
+[**devices_cloudiot_create**](DevicesApi.md#devices_cloudiot_create) | **POST** /api/devices/{device_id}/cloudiot/ | 
+[**devices_cloudiot_list**](DevicesApi.md#devices_cloudiot_list) | **GET** /api/devices/{device_id}/cloudiot/ | 
+[**devices_cloudiot_partial_update**](DevicesApi.md#devices_cloudiot_partial_update) | **PATCH** /api/devices/{device_id}/cloudiot/{id}/ | 
+[**devices_cloudiot_retrieve**](DevicesApi.md#devices_cloudiot_retrieve) | **GET** /api/devices/{device_id}/cloudiot/{id}/ | 
+[**devices_cloudiot_update**](DevicesApi.md#devices_cloudiot_update) | **PUT** /api/devices/{device_id}/cloudiot/{id}/ | 
 [**devices_create**](DevicesApi.md#devices_create) | **POST** /api/devices/ | 
 [**devices_events_create**](DevicesApi.md#devices_events_create) | **POST** /api/devices/{device_id}/events/ | 
 [**devices_events_list**](DevicesApi.md#devices_events_list) | **GET** /api/devices/{device_id}/events/ | 
@@ -56,6 +57,127 @@ Method | HTTP request | Description
 [**public_key_update_or_create**](DevicesApi.md#public_key_update_or_create) | **POST** /api/devices/{device_id}/public-keys/update-or-create/ | 
 [**system_info_update_or_create**](DevicesApi.md#system_info_update_or_create) | **POST** /api/devices/{device_id}/system-info/update-or-create/ | 
 
+
+# **cloudiot_device_update_or_create**
+> CloudiotDevice cloudiot_device_update_or_create(device_id, cloudiot_device_request)
+
+
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.DevicesApi(api_client)
+    device_id = 56 # int | 
+cloudiot_device_request = printnanny_api_client.CloudiotDeviceRequest() # CloudiotDeviceRequest | 
+
+    try:
+        api_response = api_instance.cloudiot_device_update_or_create(device_id, cloudiot_device_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->cloudiot_device_update_or_create: %s\n" % e)
+```
+
+* Bearer Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.DevicesApi(api_client)
+    device_id = 56 # int | 
+cloudiot_device_request = printnanny_api_client.CloudiotDeviceRequest() # CloudiotDeviceRequest | 
+
+    try:
+        api_response = api_instance.cloudiot_device_update_or_create(device_id, cloudiot_device_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->cloudiot_device_update_or_create: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **device_id** | **int**|  | 
+ **cloudiot_device_request** | [**CloudiotDeviceRequest**](CloudiotDeviceRequest.md)|  | 
+
+### Return type
+
+[**CloudiotDevice**](CloudiotDevice.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**201** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_cameras_create**
 > Camera devices_cameras_create(device_id, camera_request)
@@ -670,8 +792,8 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_cloud_iot_devices_create**
-> CloudiotDevice devices_cloud_iot_devices_create(device_id, cloudiot_device_request)
+# **devices_cloudiot_create**
+> CloudiotDevice devices_cloudiot_create(device_id, cloudiot_device_request)
 
 
 
@@ -714,10 +836,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 cloudiot_device_request = printnanny_api_client.CloudiotDeviceRequest() # CloudiotDeviceRequest | 
 
     try:
-        api_response = api_instance.devices_cloud_iot_devices_create(device_id, cloudiot_device_request)
+        api_response = api_instance.devices_cloudiot_create(device_id, cloudiot_device_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_cloud_iot_devices_create: %s\n" % e)
+        print("Exception when calling DevicesApi->devices_cloudiot_create: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -757,10 +879,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 cloudiot_device_request = printnanny_api_client.CloudiotDeviceRequest() # CloudiotDeviceRequest | 
 
     try:
-        api_response = api_instance.devices_cloud_iot_devices_create(device_id, cloudiot_device_request)
+        api_response = api_instance.devices_cloudiot_create(device_id, cloudiot_device_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_cloud_iot_devices_create: %s\n" % e)
+        print("Exception when calling DevicesApi->devices_cloudiot_create: %s\n" % e)
 ```
 
 ### Parameters
@@ -795,8 +917,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_cloud_iot_devices_list**
-> PaginatedCloudiotDeviceList devices_cloud_iot_devices_list(device_id, page=page)
+# **devices_cloudiot_list**
+> PaginatedCloudiotDeviceList devices_cloudiot_list(device_id, page=page)
 
 
 
@@ -839,10 +961,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.devices_cloud_iot_devices_list(device_id, page=page)
+        api_response = api_instance.devices_cloudiot_list(device_id, page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_cloud_iot_devices_list: %s\n" % e)
+        print("Exception when calling DevicesApi->devices_cloudiot_list: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -882,10 +1004,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.devices_cloud_iot_devices_list(device_id, page=page)
+        api_response = api_instance.devices_cloudiot_list(device_id, page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_cloud_iot_devices_list: %s\n" % e)
+        print("Exception when calling DevicesApi->devices_cloudiot_list: %s\n" % e)
 ```
 
 ### Parameters
@@ -919,8 +1041,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_cloud_iot_devices_partial_update**
-> CloudiotDevice devices_cloud_iot_devices_partial_update(device_id, id, patched_cloudiot_device_request=patched_cloudiot_device_request)
+# **devices_cloudiot_partial_update**
+> CloudiotDevice devices_cloudiot_partial_update(device_id, id, patched_cloudiot_device_request=patched_cloudiot_device_request)
 
 
 
@@ -964,10 +1086,10 @@ id = 'id_example' # str |
 patched_cloudiot_device_request = printnanny_api_client.PatchedCloudiotDeviceRequest() # PatchedCloudiotDeviceRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_cloud_iot_devices_partial_update(device_id, id, patched_cloudiot_device_request=patched_cloudiot_device_request)
+        api_response = api_instance.devices_cloudiot_partial_update(device_id, id, patched_cloudiot_device_request=patched_cloudiot_device_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_cloud_iot_devices_partial_update: %s\n" % e)
+        print("Exception when calling DevicesApi->devices_cloudiot_partial_update: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -1008,10 +1130,10 @@ id = 'id_example' # str |
 patched_cloudiot_device_request = printnanny_api_client.PatchedCloudiotDeviceRequest() # PatchedCloudiotDeviceRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_cloud_iot_devices_partial_update(device_id, id, patched_cloudiot_device_request=patched_cloudiot_device_request)
+        api_response = api_instance.devices_cloudiot_partial_update(device_id, id, patched_cloudiot_device_request=patched_cloudiot_device_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_cloud_iot_devices_partial_update: %s\n" % e)
+        print("Exception when calling DevicesApi->devices_cloudiot_partial_update: %s\n" % e)
 ```
 
 ### Parameters
@@ -1042,8 +1164,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_cloud_iot_devices_retrieve**
-> CloudiotDevice devices_cloud_iot_devices_retrieve(device_id, id)
+# **devices_cloudiot_retrieve**
+> CloudiotDevice devices_cloudiot_retrieve(device_id, id)
 
 
 
@@ -1086,10 +1208,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 id = 56 # int | 
 
     try:
-        api_response = api_instance.devices_cloud_iot_devices_retrieve(device_id, id)
+        api_response = api_instance.devices_cloudiot_retrieve(device_id, id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_cloud_iot_devices_retrieve: %s\n" % e)
+        print("Exception when calling DevicesApi->devices_cloudiot_retrieve: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -1129,10 +1251,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 id = 56 # int | 
 
     try:
-        api_response = api_instance.devices_cloud_iot_devices_retrieve(device_id, id)
+        api_response = api_instance.devices_cloudiot_retrieve(device_id, id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_cloud_iot_devices_retrieve: %s\n" % e)
+        print("Exception when calling DevicesApi->devices_cloudiot_retrieve: %s\n" % e)
 ```
 
 ### Parameters
@@ -1167,8 +1289,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_cloud_iot_devices_update**
-> devices_cloud_iot_devices_update(device_id, id, cloudiot_device_request)
+# **devices_cloudiot_update**
+> devices_cloudiot_update(device_id, id, cloudiot_device_request)
 
 
 
@@ -1212,9 +1334,9 @@ id = 'id_example' # str |
 cloudiot_device_request = printnanny_api_client.CloudiotDeviceRequest() # CloudiotDeviceRequest | 
 
     try:
-        api_instance.devices_cloud_iot_devices_update(device_id, id, cloudiot_device_request)
+        api_instance.devices_cloudiot_update(device_id, id, cloudiot_device_request)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_cloud_iot_devices_update: %s\n" % e)
+        print("Exception when calling DevicesApi->devices_cloudiot_update: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -1255,9 +1377,9 @@ id = 'id_example' # str |
 cloudiot_device_request = printnanny_api_client.CloudiotDeviceRequest() # CloudiotDeviceRequest | 
 
     try:
-        api_instance.devices_cloud_iot_devices_update(device_id, id, cloudiot_device_request)
+        api_instance.devices_cloudiot_update(device_id, id, cloudiot_device_request)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_cloud_iot_devices_update: %s\n" % e)
+        print("Exception when calling DevicesApi->devices_cloudiot_update: %s\n" % e)
 ```
 
 ### Parameters

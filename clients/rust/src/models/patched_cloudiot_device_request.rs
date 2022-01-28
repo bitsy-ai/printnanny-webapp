@@ -13,23 +13,14 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct PatchedCloudiotDeviceRequest {
-    #[serde(rename = "num_id", skip_serializing_if = "Option::is_none")]
-    pub num_id: Option<i64>,
-    #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<String>,
-    #[serde(rename = "device", skip_serializing_if = "Option::is_none")]
-    pub device: Option<i32>,
+    #[serde(rename = "public_key", skip_serializing_if = "Option::is_none")]
+    pub public_key: Option<i32>,
 }
 
 impl PatchedCloudiotDeviceRequest {
     pub fn new() -> PatchedCloudiotDeviceRequest {
         PatchedCloudiotDeviceRequest {
-            num_id: None,
-            name: None,
-            id: None,
-            device: None,
+            public_key: None,
         }
     }
 }

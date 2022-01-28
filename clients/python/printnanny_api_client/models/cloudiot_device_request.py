@@ -37,145 +37,46 @@ class CloudiotDeviceRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'num_id': 'int',
-        'name': 'str',
-        'id': 'str',
-        'device': 'int'
+        'public_key': 'int'
     }
 
     attribute_map = {
-        'num_id': 'num_id',
-        'name': 'name',
-        'id': 'id',
-        'device': 'device'
+        'public_key': 'public_key'
     }
 
-    def __init__(self, num_id=None, name=None, id=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, public_key=None, local_vars_configuration=None):  # noqa: E501
         """CloudiotDeviceRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
-        self._num_id = None
-        self._name = None
-        self._id = None
-        self._device = None
+        self._public_key = None
         self.discriminator = None
 
-        self.num_id = num_id
-        self.name = name
-        self.id = id
-        self.device = device
+        self.public_key = public_key
 
     @property
-    def num_id(self):
-        """Gets the num_id of this CloudiotDeviceRequest.  # noqa: E501
+    def public_key(self):
+        """Gets the public_key of this CloudiotDeviceRequest.  # noqa: E501
 
 
-        :return: The num_id of this CloudiotDeviceRequest.  # noqa: E501
+        :return: The public_key of this CloudiotDeviceRequest.  # noqa: E501
         :rtype: int
         """
-        return self._num_id
+        return self._public_key
 
-    @num_id.setter
-    def num_id(self, num_id):
-        """Sets the num_id of this CloudiotDeviceRequest.
+    @public_key.setter
+    def public_key(self, public_key):
+        """Sets the public_key of this CloudiotDeviceRequest.
 
 
-        :param num_id: The num_id of this CloudiotDeviceRequest.  # noqa: E501
-        :type num_id: int
+        :param public_key: The public_key of this CloudiotDeviceRequest.  # noqa: E501
+        :type public_key: int
         """
-        if self.local_vars_configuration.client_side_validation and num_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `num_id`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                num_id is not None and num_id > 9223372036854775807):  # noqa: E501
-            raise ValueError("Invalid value for `num_id`, must be a value less than or equal to `9223372036854775807`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                num_id is not None and num_id < -9223372036854775808):  # noqa: E501
-            raise ValueError("Invalid value for `num_id`, must be a value greater than or equal to `-9223372036854775808`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and public_key is None:  # noqa: E501
+            raise ValueError("Invalid value for `public_key`, must not be `None`")  # noqa: E501
 
-        self._num_id = num_id
-
-    @property
-    def name(self):
-        """Gets the name of this CloudiotDeviceRequest.  # noqa: E501
-
-
-        :return: The name of this CloudiotDeviceRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._name
-
-    @name.setter
-    def name(self, name):
-        """Sets the name of this CloudiotDeviceRequest.
-
-
-        :param name: The name of this CloudiotDeviceRequest.  # noqa: E501
-        :type name: str
-        """
-        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and len(name) > 255):
-            raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and len(name) < 1):
-            raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
-
-        self._name = name
-
-    @property
-    def id(self):
-        """Gets the id of this CloudiotDeviceRequest.  # noqa: E501
-
-
-        :return: The id of this CloudiotDeviceRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._id
-
-    @id.setter
-    def id(self, id):
-        """Sets the id of this CloudiotDeviceRequest.
-
-
-        :param id: The id of this CloudiotDeviceRequest.  # noqa: E501
-        :type id: str
-        """
-        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
-            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                id is not None and len(id) > 255):
-            raise ValueError("Invalid value for `id`, length must be less than or equal to `255`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                id is not None and len(id) < 1):
-            raise ValueError("Invalid value for `id`, length must be greater than or equal to `1`")  # noqa: E501
-
-        self._id = id
-
-    @property
-    def device(self):
-        """Gets the device of this CloudiotDeviceRequest.  # noqa: E501
-
-
-        :return: The device of this CloudiotDeviceRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._device
-
-    @device.setter
-    def device(self, device):
-        """Sets the device of this CloudiotDeviceRequest.
-
-
-        :param device: The device of this CloudiotDeviceRequest.  # noqa: E501
-        :type device: int
-        """
-        if self.local_vars_configuration.client_side_validation and device is None:  # noqa: E501
-            raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
-
-        self._device = device
+        self._public_key = public_key
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

@@ -49,9 +49,12 @@ class CloudiotDevice(object):
         'mqtt_bridge_hostname': 'str',
         'mqtt_bridge_port': 'int',
         'mqtt_client_id': 'str',
+        'created_dt': 'datetime',
+        'updated_dt': 'datetime',
         'name': 'str',
         'id': 'str',
-        'device': 'int'
+        'device': 'int',
+        'public_key': 'int'
     }
 
     attribute_map = {
@@ -67,12 +70,15 @@ class CloudiotDevice(object):
         'mqtt_bridge_hostname': 'mqtt_bridge_hostname',
         'mqtt_bridge_port': 'mqtt_bridge_port',
         'mqtt_client_id': 'mqtt_client_id',
+        'created_dt': 'created_dt',
+        'updated_dt': 'updated_dt',
         'name': 'name',
         'id': 'id',
-        'device': 'device'
+        'device': 'device',
+        'public_key': 'public_key'
     }
 
-    def __init__(self, num_id=None, command_topic=None, event_topic=None, config_topic=None, state_topic=None, gcp_resource=None, gcp_project_id=None, gcp_region=None, gcp_cloudiot_device_registry=None, mqtt_bridge_hostname=None, mqtt_bridge_port=None, mqtt_client_id=None, name=None, id=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, num_id=None, command_topic=None, event_topic=None, config_topic=None, state_topic=None, gcp_resource=None, gcp_project_id=None, gcp_region=None, gcp_cloudiot_device_registry=None, mqtt_bridge_hostname=None, mqtt_bridge_port=None, mqtt_client_id=None, created_dt=None, updated_dt=None, name=None, id=None, device=None, public_key=None, local_vars_configuration=None):  # noqa: E501
         """CloudiotDevice - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -90,9 +96,12 @@ class CloudiotDevice(object):
         self._mqtt_bridge_hostname = None
         self._mqtt_bridge_port = None
         self._mqtt_client_id = None
+        self._created_dt = None
+        self._updated_dt = None
         self._name = None
         self._id = None
         self._device = None
+        self._public_key = None
         self.discriminator = None
 
         self.num_id = num_id
@@ -107,9 +116,12 @@ class CloudiotDevice(object):
         self.mqtt_bridge_hostname = mqtt_bridge_hostname
         self.mqtt_bridge_port = mqtt_bridge_port
         self.mqtt_client_id = mqtt_client_id
+        self.created_dt = created_dt
+        self.updated_dt = updated_dt
         self.name = name
         self.id = id
         self.device = device
+        self.public_key = public_key
 
     @property
     def num_id(self):
@@ -131,12 +143,6 @@ class CloudiotDevice(object):
         """
         if self.local_vars_configuration.client_side_validation and num_id is None:  # noqa: E501
             raise ValueError("Invalid value for `num_id`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                num_id is not None and num_id > 9223372036854775807):  # noqa: E501
-            raise ValueError("Invalid value for `num_id`, must be a value less than or equal to `9223372036854775807`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                num_id is not None and num_id < -9223372036854775808):  # noqa: E501
-            raise ValueError("Invalid value for `num_id`, must be a value greater than or equal to `-9223372036854775808`")  # noqa: E501
 
         self._num_id = num_id
 
@@ -394,6 +400,52 @@ class CloudiotDevice(object):
         self._mqtt_client_id = mqtt_client_id
 
     @property
+    def created_dt(self):
+        """Gets the created_dt of this CloudiotDevice.  # noqa: E501
+
+
+        :return: The created_dt of this CloudiotDevice.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._created_dt
+
+    @created_dt.setter
+    def created_dt(self, created_dt):
+        """Sets the created_dt of this CloudiotDevice.
+
+
+        :param created_dt: The created_dt of this CloudiotDevice.  # noqa: E501
+        :type created_dt: datetime
+        """
+        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
+
+        self._created_dt = created_dt
+
+    @property
+    def updated_dt(self):
+        """Gets the updated_dt of this CloudiotDevice.  # noqa: E501
+
+
+        :return: The updated_dt of this CloudiotDevice.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._updated_dt
+
+    @updated_dt.setter
+    def updated_dt(self, updated_dt):
+        """Sets the updated_dt of this CloudiotDevice.
+
+
+        :param updated_dt: The updated_dt of this CloudiotDevice.  # noqa: E501
+        :type updated_dt: datetime
+        """
+        if self.local_vars_configuration.client_side_validation and updated_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `updated_dt`, must not be `None`")  # noqa: E501
+
+        self._updated_dt = updated_dt
+
+    @property
     def name(self):
         """Gets the name of this CloudiotDevice.  # noqa: E501
 
@@ -413,9 +465,6 @@ class CloudiotDevice(object):
         """
         if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
             raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and len(name) > 255):
-            raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
 
         self._name = name
 
@@ -439,9 +488,6 @@ class CloudiotDevice(object):
         """
         if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                id is not None and len(id) > 255):
-            raise ValueError("Invalid value for `id`, length must be less than or equal to `255`")  # noqa: E501
 
         self._id = id
 
@@ -467,6 +513,29 @@ class CloudiotDevice(object):
             raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
 
         self._device = device
+
+    @property
+    def public_key(self):
+        """Gets the public_key of this CloudiotDevice.  # noqa: E501
+
+
+        :return: The public_key of this CloudiotDevice.  # noqa: E501
+        :rtype: int
+        """
+        return self._public_key
+
+    @public_key.setter
+    def public_key(self, public_key):
+        """Sets the public_key of this CloudiotDevice.
+
+
+        :param public_key: The public_key of this CloudiotDevice.  # noqa: E501
+        :type public_key: int
+        """
+        if self.local_vars_configuration.client_side_validation and public_key is None:  # noqa: E501
+            raise ValueError("Invalid value for `public_key`, must not be `None`")  # noqa: E501
+
+        self._public_key = public_key
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

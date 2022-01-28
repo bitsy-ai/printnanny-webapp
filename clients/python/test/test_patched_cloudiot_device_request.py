@@ -37,10 +37,7 @@ class TestPatchedCloudiotDeviceRequest(unittest.TestCase):
         # model = printnanny_api_client.models.patched_cloudiot_device_request.PatchedCloudiotDeviceRequest()  # noqa: E501
         if include_optional :
             return PatchedCloudiotDeviceRequest(
-                num_id = -9223372036854775808, 
-                name = '0', 
-                id = '0', 
-                device = 56
+                public_key = 56
             )
         else :
             return PatchedCloudiotDeviceRequest(

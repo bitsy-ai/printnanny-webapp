@@ -37,7 +37,7 @@ class TestCloudiotDevice(unittest.TestCase):
         # model = printnanny_api_client.models.cloudiot_device.CloudiotDevice()  # noqa: E501
         if include_optional :
             return CloudiotDevice(
-                num_id = -9223372036854775808, 
+                num_id = 56, 
                 command_topic = '', 
                 event_topic = '', 
                 config_topic = '', 
@@ -49,13 +49,16 @@ class TestCloudiotDevice(unittest.TestCase):
                 mqtt_bridge_hostname = '', 
                 mqtt_bridge_port = 56, 
                 mqtt_client_id = '', 
+                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 name = '', 
                 id = '', 
-                device = 56
+                device = 56, 
+                public_key = 56
             )
         else :
             return CloudiotDevice(
-                num_id = -9223372036854775808,
+                num_id = 56,
                 command_topic = '',
                 event_topic = '',
                 config_topic = '',
@@ -67,9 +70,12 @@ class TestCloudiotDevice(unittest.TestCase):
                 mqtt_bridge_hostname = '',
                 mqtt_bridge_port = 56,
                 mqtt_client_id = '',
+                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 name = '',
                 id = '',
                 device = 56,
+                public_key = 56,
         )
 
     def testCloudiotDevice(self):

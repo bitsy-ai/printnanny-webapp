@@ -468,6 +468,18 @@ export interface CloudiotDevice {
      * @type {string}
      * @memberof CloudiotDevice
      */
+    'created_dt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CloudiotDevice
+     */
+    'updated_dt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CloudiotDevice
+     */
     'name': string;
     /**
      * 
@@ -481,6 +493,12 @@ export interface CloudiotDevice {
      * @memberof CloudiotDevice
      */
     'device': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CloudiotDevice
+     */
+    'public_key': number;
 }
 /**
  * 
@@ -493,25 +511,7 @@ export interface CloudiotDeviceRequest {
      * @type {number}
      * @memberof CloudiotDeviceRequest
      */
-    'num_id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CloudiotDeviceRequest
-     */
-    'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CloudiotDeviceRequest
-     */
-    'id': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CloudiotDeviceRequest
-     */
-    'device': number;
+    'public_key': number;
 }
 /**
  * 
@@ -3910,25 +3910,7 @@ export interface PatchedCloudiotDeviceRequest {
      * @type {number}
      * @memberof PatchedCloudiotDeviceRequest
      */
-    'num_id'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedCloudiotDeviceRequest
-     */
-    'name'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedCloudiotDeviceRequest
-     */
-    'id'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedCloudiotDeviceRequest
-     */
-    'device'?: number;
+    'public_key'?: number;
 }
 /**
  * 
@@ -8043,6 +8025,51 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {number} deviceId 
+         * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cloudiotDeviceUpdateOrCreate: async (deviceId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('cloudiotDeviceUpdateOrCreate', 'deviceId', deviceId)
+            // verify required parameter 'cloudiotDeviceRequest' is not null or undefined
+            assertParamExists('cloudiotDeviceUpdateOrCreate', 'cloudiotDeviceRequest', cloudiotDeviceRequest)
+            const localVarPath = `/api/devices/{device_id}/cloudiot/update-or-create/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(cloudiotDeviceRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
          * @param {CameraRequest} cameraRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -8275,12 +8302,12 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCloudIotDevicesCreate: async (deviceId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesCloudiotCreate: async (deviceId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesCloudIotDevicesCreate', 'deviceId', deviceId)
+            assertParamExists('devicesCloudiotCreate', 'deviceId', deviceId)
             // verify required parameter 'cloudiotDeviceRequest' is not null or undefined
-            assertParamExists('devicesCloudIotDevicesCreate', 'cloudiotDeviceRequest', cloudiotDeviceRequest)
-            const localVarPath = `/api/devices/{device_id}/cloud-iot-devices/`
+            assertParamExists('devicesCloudiotCreate', 'cloudiotDeviceRequest', cloudiotDeviceRequest)
+            const localVarPath = `/api/devices/{device_id}/cloudiot/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -8320,10 +8347,10 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCloudIotDevicesList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesCloudiotList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesCloudIotDevicesList', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/cloud-iot-devices/`
+            assertParamExists('devicesCloudiotList', 'deviceId', deviceId)
+            const localVarPath = `/api/devices/{device_id}/cloudiot/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -8365,12 +8392,12 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCloudIotDevicesPartialUpdate: async (deviceId: number, id: string, patchedCloudiotDeviceRequest?: PatchedCloudiotDeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesCloudiotPartialUpdate: async (deviceId: number, id: string, patchedCloudiotDeviceRequest?: PatchedCloudiotDeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesCloudIotDevicesPartialUpdate', 'deviceId', deviceId)
+            assertParamExists('devicesCloudiotPartialUpdate', 'deviceId', deviceId)
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesCloudIotDevicesPartialUpdate', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/cloud-iot-devices/{id}/`
+            assertParamExists('devicesCloudiotPartialUpdate', 'id', id)
+            const localVarPath = `/api/devices/{device_id}/cloudiot/{id}/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -8411,12 +8438,12 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCloudIotDevicesRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesCloudiotRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesCloudIotDevicesRetrieve', 'deviceId', deviceId)
+            assertParamExists('devicesCloudiotRetrieve', 'deviceId', deviceId)
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesCloudIotDevicesRetrieve', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/cloud-iot-devices/{id}/`
+            assertParamExists('devicesCloudiotRetrieve', 'id', id)
+            const localVarPath = `/api/devices/{device_id}/cloudiot/{id}/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -8455,14 +8482,14 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCloudIotDevicesUpdate: async (deviceId: number, id: string, cloudiotDeviceRequest: CloudiotDeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesCloudiotUpdate: async (deviceId: number, id: string, cloudiotDeviceRequest: CloudiotDeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesCloudIotDevicesUpdate', 'deviceId', deviceId)
+            assertParamExists('devicesCloudiotUpdate', 'deviceId', deviceId)
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesCloudIotDevicesUpdate', 'id', id)
+            assertParamExists('devicesCloudiotUpdate', 'id', id)
             // verify required parameter 'cloudiotDeviceRequest' is not null or undefined
-            assertParamExists('devicesCloudIotDevicesUpdate', 'cloudiotDeviceRequest', cloudiotDeviceRequest)
-            const localVarPath = `/api/devices/{device_id}/cloud-iot-devices/{id}/`
+            assertParamExists('devicesCloudiotUpdate', 'cloudiotDeviceRequest', cloudiotDeviceRequest)
+            const localVarPath = `/api/devices/{device_id}/cloudiot/{id}/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -10335,6 +10362,17 @@ export const DevicesApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} deviceId 
+         * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cloudiotDeviceUpdateOrCreate(deviceId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CloudiotDevice>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cloudiotDeviceUpdateOrCreate(deviceId, cloudiotDeviceRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
          * @param {CameraRequest} cameraRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -10396,8 +10434,8 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesCloudIotDevicesCreate(deviceId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CloudiotDevice>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCloudIotDevicesCreate(deviceId, cloudiotDeviceRequest, options);
+        async devicesCloudiotCreate(deviceId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CloudiotDevice>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCloudiotCreate(deviceId, cloudiotDeviceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -10407,8 +10445,8 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesCloudIotDevicesList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedCloudiotDeviceList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCloudIotDevicesList(deviceId, page, options);
+        async devicesCloudiotList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedCloudiotDeviceList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCloudiotList(deviceId, page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -10419,8 +10457,8 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesCloudIotDevicesPartialUpdate(deviceId: number, id: string, patchedCloudiotDeviceRequest?: PatchedCloudiotDeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CloudiotDevice>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCloudIotDevicesPartialUpdate(deviceId, id, patchedCloudiotDeviceRequest, options);
+        async devicesCloudiotPartialUpdate(deviceId: number, id: string, patchedCloudiotDeviceRequest?: PatchedCloudiotDeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CloudiotDevice>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCloudiotPartialUpdate(deviceId, id, patchedCloudiotDeviceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -10430,8 +10468,8 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesCloudIotDevicesRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CloudiotDevice>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCloudIotDevicesRetrieve(deviceId, id, options);
+        async devicesCloudiotRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CloudiotDevice>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCloudiotRetrieve(deviceId, id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -10442,8 +10480,8 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesCloudIotDevicesUpdate(deviceId: number, id: string, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCloudIotDevicesUpdate(deviceId, id, cloudiotDeviceRequest, options);
+        async devicesCloudiotUpdate(deviceId: number, id: string, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCloudiotUpdate(deviceId, id, cloudiotDeviceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -10917,6 +10955,16 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @param {number} deviceId 
+         * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cloudiotDeviceUpdateOrCreate(deviceId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: any): AxiosPromise<CloudiotDevice> {
+            return localVarFp.cloudiotDeviceUpdateOrCreate(deviceId, cloudiotDeviceRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
          * @param {CameraRequest} cameraRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -10973,8 +11021,8 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCloudIotDevicesCreate(deviceId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: any): AxiosPromise<CloudiotDevice> {
-            return localVarFp.devicesCloudIotDevicesCreate(deviceId, cloudiotDeviceRequest, options).then((request) => request(axios, basePath));
+        devicesCloudiotCreate(deviceId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: any): AxiosPromise<CloudiotDevice> {
+            return localVarFp.devicesCloudiotCreate(deviceId, cloudiotDeviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -10983,8 +11031,8 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCloudIotDevicesList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedCloudiotDeviceList> {
-            return localVarFp.devicesCloudIotDevicesList(deviceId, page, options).then((request) => request(axios, basePath));
+        devicesCloudiotList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedCloudiotDeviceList> {
+            return localVarFp.devicesCloudiotList(deviceId, page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -10994,8 +11042,8 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCloudIotDevicesPartialUpdate(deviceId: number, id: string, patchedCloudiotDeviceRequest?: PatchedCloudiotDeviceRequest, options?: any): AxiosPromise<CloudiotDevice> {
-            return localVarFp.devicesCloudIotDevicesPartialUpdate(deviceId, id, patchedCloudiotDeviceRequest, options).then((request) => request(axios, basePath));
+        devicesCloudiotPartialUpdate(deviceId: number, id: string, patchedCloudiotDeviceRequest?: PatchedCloudiotDeviceRequest, options?: any): AxiosPromise<CloudiotDevice> {
+            return localVarFp.devicesCloudiotPartialUpdate(deviceId, id, patchedCloudiotDeviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -11004,8 +11052,8 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCloudIotDevicesRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<CloudiotDevice> {
-            return localVarFp.devicesCloudIotDevicesRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
+        devicesCloudiotRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<CloudiotDevice> {
+            return localVarFp.devicesCloudiotRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -11015,8 +11063,8 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCloudIotDevicesUpdate(deviceId: number, id: string, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: any): AxiosPromise<void> {
-            return localVarFp.devicesCloudIotDevicesUpdate(deviceId, id, cloudiotDeviceRequest, options).then((request) => request(axios, basePath));
+        devicesCloudiotUpdate(deviceId: number, id: string, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: any): AxiosPromise<void> {
+            return localVarFp.devicesCloudiotUpdate(deviceId, id, cloudiotDeviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * A device (Raspberry Pi) running Print Nanny OS
@@ -11447,6 +11495,16 @@ export interface DevicesApiInterface {
     /**
      * 
      * @param {number} deviceId 
+     * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    cloudiotDeviceUpdateOrCreate(deviceId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): AxiosPromise<CloudiotDevice>;
+
+    /**
+     * 
+     * @param {number} deviceId 
      * @param {CameraRequest} cameraRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -11504,7 +11562,7 @@ export interface DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesCloudIotDevicesCreate(deviceId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): AxiosPromise<CloudiotDevice>;
+    devicesCloudiotCreate(deviceId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): AxiosPromise<CloudiotDevice>;
 
     /**
      * 
@@ -11514,7 +11572,7 @@ export interface DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesCloudIotDevicesList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedCloudiotDeviceList>;
+    devicesCloudiotList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedCloudiotDeviceList>;
 
     /**
      * 
@@ -11525,7 +11583,7 @@ export interface DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesCloudIotDevicesPartialUpdate(deviceId: number, id: string, patchedCloudiotDeviceRequest?: PatchedCloudiotDeviceRequest, options?: AxiosRequestConfig): AxiosPromise<CloudiotDevice>;
+    devicesCloudiotPartialUpdate(deviceId: number, id: string, patchedCloudiotDeviceRequest?: PatchedCloudiotDeviceRequest, options?: AxiosRequestConfig): AxiosPromise<CloudiotDevice>;
 
     /**
      * 
@@ -11535,7 +11593,7 @@ export interface DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesCloudIotDevicesRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<CloudiotDevice>;
+    devicesCloudiotRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<CloudiotDevice>;
 
     /**
      * 
@@ -11546,7 +11604,7 @@ export interface DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesCloudIotDevicesUpdate(deviceId: number, id: string, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): AxiosPromise<void>;
+    devicesCloudiotUpdate(deviceId: number, id: string, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): AxiosPromise<void>;
 
     /**
      * A device (Raspberry Pi) running Print Nanny OS
@@ -11977,6 +12035,18 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
     /**
      * 
      * @param {number} deviceId 
+     * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public cloudiotDeviceUpdateOrCreate(deviceId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).cloudiotDeviceUpdateOrCreate(deviceId, cloudiotDeviceRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
      * @param {CameraRequest} cameraRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -12044,8 +12114,8 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesCloudIotDevicesCreate(deviceId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesCloudIotDevicesCreate(deviceId, cloudiotDeviceRequest, options).then((request) => request(this.axios, this.basePath));
+    public devicesCloudiotCreate(deviceId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesCloudiotCreate(deviceId, cloudiotDeviceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -12056,8 +12126,8 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesCloudIotDevicesList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesCloudIotDevicesList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
+    public devicesCloudiotList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesCloudiotList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -12069,8 +12139,8 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesCloudIotDevicesPartialUpdate(deviceId: number, id: string, patchedCloudiotDeviceRequest?: PatchedCloudiotDeviceRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesCloudIotDevicesPartialUpdate(deviceId, id, patchedCloudiotDeviceRequest, options).then((request) => request(this.axios, this.basePath));
+    public devicesCloudiotPartialUpdate(deviceId: number, id: string, patchedCloudiotDeviceRequest?: PatchedCloudiotDeviceRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesCloudiotPartialUpdate(deviceId, id, patchedCloudiotDeviceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -12081,8 +12151,8 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesCloudIotDevicesRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesCloudIotDevicesRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
+    public devicesCloudiotRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesCloudiotRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -12094,8 +12164,8 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesCloudIotDevicesUpdate(deviceId: number, id: string, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesCloudIotDevicesUpdate(deviceId, id, cloudiotDeviceRequest, options).then((request) => request(this.axios, this.basePath));
+    public devicesCloudiotUpdate(deviceId: number, id: string, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesCloudiotUpdate(deviceId, id, cloudiotDeviceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

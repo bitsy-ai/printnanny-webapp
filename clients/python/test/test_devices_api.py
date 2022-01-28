@@ -29,6 +29,12 @@ class TestDevicesApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_cloudiot_device_update_or_create(self):
+        """Test case for cloudiot_device_update_or_create
+
+        """
+        pass
+
     def test_devices_cameras_create(self):
         """Test case for devices_cameras_create
 
@@ -59,32 +65,32 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
-    def test_devices_cloud_iot_devices_create(self):
-        """Test case for devices_cloud_iot_devices_create
+    def test_devices_cloudiot_create(self):
+        """Test case for devices_cloudiot_create
 
         """
         pass
 
-    def test_devices_cloud_iot_devices_list(self):
-        """Test case for devices_cloud_iot_devices_list
+    def test_devices_cloudiot_list(self):
+        """Test case for devices_cloudiot_list
 
         """
         pass
 
-    def test_devices_cloud_iot_devices_partial_update(self):
-        """Test case for devices_cloud_iot_devices_partial_update
+    def test_devices_cloudiot_partial_update(self):
+        """Test case for devices_cloudiot_partial_update
 
         """
         pass
 
-    def test_devices_cloud_iot_devices_retrieve(self):
-        """Test case for devices_cloud_iot_devices_retrieve
+    def test_devices_cloudiot_retrieve(self):
+        """Test case for devices_cloudiot_retrieve
 
         """
         pass
 
-    def test_devices_cloud_iot_devices_update(self):
-        """Test case for devices_cloud_iot_devices_update
+    def test_devices_cloudiot_update(self):
+        """Test case for devices_cloudiot_update
 
         """
         pass

@@ -13,23 +13,14 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct CloudiotDeviceRequest {
-    #[serde(rename = "num_id")]
-    pub num_id: i64,
-    #[serde(rename = "name")]
-    pub name: String,
-    #[serde(rename = "id")]
-    pub id: String,
-    #[serde(rename = "device")]
-    pub device: i32,
+    #[serde(rename = "public_key")]
+    pub public_key: i32,
 }
 
 impl CloudiotDeviceRequest {
-    pub fn new(num_id: i64, name: String, id: String, device: i32) -> CloudiotDeviceRequest {
+    pub fn new(public_key: i32) -> CloudiotDeviceRequest {
         CloudiotDeviceRequest {
-            num_id,
-            name,
-            id,
-            device,
+            public_key,
         }
     }
 }

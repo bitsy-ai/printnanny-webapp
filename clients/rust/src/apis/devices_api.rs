@@ -16,6 +16,13 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
+/// struct for typed errors of method [`cloudiot_device_update_or_create`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum CloudiotDeviceUpdateOrCreateError {
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`devices_cameras_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -60,10 +67,10 @@ pub enum DevicesCamerasUpdateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`devices_cloud_iot_devices_create`]
+/// struct for typed errors of method [`devices_cloudiot_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum DevicesCloudIotDevicesCreateError {
+pub enum DevicesCloudiotCreateError {
     Status409(crate::models::ErrorDetail),
     Status400(crate::models::ErrorDetail),
     Status401(crate::models::ErrorDetail),
@@ -72,10 +79,10 @@ pub enum DevicesCloudIotDevicesCreateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`devices_cloud_iot_devices_list`]
+/// struct for typed errors of method [`devices_cloudiot_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum DevicesCloudIotDevicesListError {
+pub enum DevicesCloudiotListError {
     Status400(crate::models::ErrorDetail),
     Status401(crate::models::ErrorDetail),
     Status403(crate::models::ErrorDetail),
@@ -83,17 +90,17 @@ pub enum DevicesCloudIotDevicesListError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`devices_cloud_iot_devices_partial_update`]
+/// struct for typed errors of method [`devices_cloudiot_partial_update`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum DevicesCloudIotDevicesPartialUpdateError {
+pub enum DevicesCloudiotPartialUpdateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`devices_cloud_iot_devices_retrieve`]
+/// struct for typed errors of method [`devices_cloudiot_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum DevicesCloudIotDevicesRetrieveError {
+pub enum DevicesCloudiotRetrieveError {
     Status404(crate::models::ErrorDetail),
     Status400(crate::models::ErrorDetail),
     Status401(crate::models::ErrorDetail),
@@ -102,10 +109,10 @@ pub enum DevicesCloudIotDevicesRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`devices_cloud_iot_devices_update`]
+/// struct for typed errors of method [`devices_cloudiot_update`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum DevicesCloudIotDevicesUpdateError {
+pub enum DevicesCloudiotUpdateError {
     UnknownValue(serde_json::Value),
 }
 
@@ -510,6 +517,37 @@ pub enum SystemInfoUpdateOrCreateError {
 }
 
 
+pub async fn cloudiot_device_update_or_create(configuration: &configuration::Configuration, device_id: i32, cloudiot_device_request: crate::models::CloudiotDeviceRequest) -> Result<crate::models::CloudiotDevice, Error<CloudiotDeviceUpdateOrCreateError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/cloudiot/update-or-create/", local_var_configuration.base_path, device_id=device_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&cloudiot_device_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<CloudiotDeviceUpdateOrCreateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
 pub async fn devices_cameras_create(configuration: &configuration::Configuration, device_id: i32, camera_request: crate::models::CameraRequest) -> Result<crate::models::Camera, Error<DevicesCamerasCreateError>> {
     let local_var_configuration = configuration;
 
@@ -666,12 +704,12 @@ pub async fn devices_cameras_update(configuration: &configuration::Configuration
     }
 }
 
-pub async fn devices_cloud_iot_devices_create(configuration: &configuration::Configuration, device_id: i32, cloudiot_device_request: crate::models::CloudiotDeviceRequest) -> Result<crate::models::CloudiotDevice, Error<DevicesCloudIotDevicesCreateError>> {
+pub async fn devices_cloudiot_create(configuration: &configuration::Configuration, device_id: i32, cloudiot_device_request: crate::models::CloudiotDeviceRequest) -> Result<crate::models::CloudiotDevice, Error<DevicesCloudiotCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/cloud-iot-devices/", local_var_configuration.base_path, device_id=device_id);
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/cloudiot/", local_var_configuration.base_path, device_id=device_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -691,18 +729,18 @@ pub async fn devices_cloud_iot_devices_create(configuration: &configuration::Con
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<DevicesCloudIotDevicesCreateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<DevicesCloudiotCreateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn devices_cloud_iot_devices_list(configuration: &configuration::Configuration, device_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedCloudiotDeviceList, Error<DevicesCloudIotDevicesListError>> {
+pub async fn devices_cloudiot_list(configuration: &configuration::Configuration, device_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedCloudiotDeviceList, Error<DevicesCloudiotListError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/cloud-iot-devices/", local_var_configuration.base_path, device_id=device_id);
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/cloudiot/", local_var_configuration.base_path, device_id=device_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
@@ -724,18 +762,18 @@ pub async fn devices_cloud_iot_devices_list(configuration: &configuration::Confi
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<DevicesCloudIotDevicesListError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<DevicesCloudiotListError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn devices_cloud_iot_devices_partial_update(configuration: &configuration::Configuration, device_id: i32, id: &str, patched_cloudiot_device_request: Option<crate::models::PatchedCloudiotDeviceRequest>) -> Result<crate::models::CloudiotDevice, Error<DevicesCloudIotDevicesPartialUpdateError>> {
+pub async fn devices_cloudiot_partial_update(configuration: &configuration::Configuration, device_id: i32, id: &str, patched_cloudiot_device_request: Option<crate::models::PatchedCloudiotDeviceRequest>) -> Result<crate::models::CloudiotDevice, Error<DevicesCloudiotPartialUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/cloud-iot-devices/{id}/", local_var_configuration.base_path, device_id=device_id, id=crate::apis::urlencode(id));
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/cloudiot/{id}/", local_var_configuration.base_path, device_id=device_id, id=crate::apis::urlencode(id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PATCH, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -755,18 +793,18 @@ pub async fn devices_cloud_iot_devices_partial_update(configuration: &configurat
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<DevicesCloudIotDevicesPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<DevicesCloudiotPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn devices_cloud_iot_devices_retrieve(configuration: &configuration::Configuration, device_id: i32, id: i32) -> Result<crate::models::CloudiotDevice, Error<DevicesCloudIotDevicesRetrieveError>> {
+pub async fn devices_cloudiot_retrieve(configuration: &configuration::Configuration, device_id: i32, id: i32) -> Result<crate::models::CloudiotDevice, Error<DevicesCloudiotRetrieveError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/cloud-iot-devices/{id}/", local_var_configuration.base_path, device_id=device_id, id=id);
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/cloudiot/{id}/", local_var_configuration.base_path, device_id=device_id, id=id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -785,18 +823,18 @@ pub async fn devices_cloud_iot_devices_retrieve(configuration: &configuration::C
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<DevicesCloudIotDevicesRetrieveError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<DevicesCloudiotRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn devices_cloud_iot_devices_update(configuration: &configuration::Configuration, device_id: i32, id: &str, cloudiot_device_request: crate::models::CloudiotDeviceRequest) -> Result<(), Error<DevicesCloudIotDevicesUpdateError>> {
+pub async fn devices_cloudiot_update(configuration: &configuration::Configuration, device_id: i32, id: &str, cloudiot_device_request: crate::models::CloudiotDeviceRequest) -> Result<(), Error<DevicesCloudiotUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/cloud-iot-devices/{id}/", local_var_configuration.base_path, device_id=device_id, id=crate::apis::urlencode(id));
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/cloudiot/{id}/", local_var_configuration.base_path, device_id=device_id, id=crate::apis::urlencode(id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -816,7 +854,7 @@ pub async fn devices_cloud_iot_devices_update(configuration: &configuration::Con
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
     } else {
-        let local_var_entity: Option<DevicesCloudIotDevicesUpdateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<DevicesCloudiotUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
