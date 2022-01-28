@@ -627,10 +627,34 @@ class CloudiotDeviceViewSet(
     queryset = CloudiotDevice.objects.all()
     lookup_field = "id"
 
+    @extend_schema(
+        operation_id="cloudiot_device_update_or_create",
+        responses={
+            # 400: PrinterProfileSerializer,
+            200: CloudiotDeviceSerializer,
+            201: CloudiotDeviceSerializer,
+        },
+    )
+    @action(methods=["post"], detail=False, url_path="update-or-create")
+    def update_or_create(self, request, device_id=None):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            instance, created = serializer.update_or_create(
+                serializer.validated_data, device_id
+            )
+            response_serializer = self.get_serializer(instance)
+            if not created:
+                return Response(response_serializer.data, status=status.HTTP_200_OK)
+            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 ##
 # Camera
 ##
+
+
 @extend_schema_view(
     list=extend_schema(
         parameters=[

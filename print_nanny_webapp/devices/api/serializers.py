@@ -16,12 +16,9 @@ from print_nanny_webapp.devices.models import (
 from ..enum import (
     CameraType,
     DeviceReleaseChannel,
-    PrintNannyEnv,
     PrinterSoftwareType,
     TaskType,
     TaskStatusType,
-    PrintNannyEnv,
-    OnboardingTaskType,
 )
 from print_nanny_webapp.users.api.serializers import UserSerializer
 
@@ -78,6 +75,7 @@ class CloudiotDeviceSerializer(serializers.ModelSerializer):
     class Meta:
         model = CloudiotDevice
         exclude = ("deleted",)
+        read_only_fields = ("num_id", "name", "device")
 
 
 class DeviceConfigSerializer(serializers.ModelSerializer):

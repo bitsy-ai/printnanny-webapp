@@ -65,7 +65,7 @@ devices_router.register(r'public-keys', PublicKeyViewSet, basename='public-keys'
 
 devices_router.register(r'system-info', SystemInfoViewSet, basename='system-info')
 devices_router.register(r'cameras', CameraViewSet, basename='cameras')
-devices_router.register(r'cloud-iot-devices', CloudiotDeviceViewSet, basename='cloud-iot-devices')
+devices_router.register(r'cloudiot', CloudiotDeviceViewSet, basename='cloudiot')
 devices_router.register(r'printer-controllers', PrinterControllerViewSet, basename='printer-controllers')
 devices_router.register(r'onboarding-tasks', OnboardingTaskViewSet, basename='onboarding-tasks')
 devices_router.register(r'events', DeviceEventViewSet, basename='events')
