@@ -18,18 +18,8 @@ from .api.serializers import TaskSerializer
 
 logger = logging.getLogger(__name__)
 
-# when PublicKey is created, automatically create/update CloudiotDevice with key
-
-
-@receiver(post_save, sender=PublicKey, dispatch_uid="public_key_create_cloudiotdevice")
-def create_public_key_cloudiotdevice(sender, instance: PublicKey, created, **kwargs):
-    logger.info("Public key updated or created")
-    update_or_create_cloudiot_device(instance)
-
 
 # when device is created, automatically create OnboardingTask with type LINK
-
-
 @receiver(post_save, sender=Device, dispatch_uid="create_device_link_task")
 def create_device_link_task(sender, instance, created, **kwargs):
     if created:

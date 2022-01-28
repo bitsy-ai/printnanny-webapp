@@ -1,5 +1,6 @@
 from __future__ import annotations
 import logging
+from typing import Tuple
 from django.conf import settings
 from google.cloud import iot_v1 as cloudiot_v1
 import google.api_core.exceptions
@@ -92,7 +93,9 @@ def update_cloudiot_device(cloudiot_device: CloudiotDevice, public_key: PublicKe
     return client.update_device(request=request)
 
 
-def update_or_create_cloudiot_device(public_key: PublicKey) -> cloudiot_v1.Device:
+def update_or_create_cloudiot_device(
+    public_key: PublicKey,
+) -> Tuple[cloudiot_v1.Device, bool]:
     client = cloudiot_v1.DeviceManagerClient()
 
     device_path = client.device_path(
@@ -106,7 +109,7 @@ def update_or_create_cloudiot_device(public_key: PublicKey) -> cloudiot_v1.Devic
         existing_cloudiot_device: cloudiot_v1.types.Device = client.get_device(
             name=device_path
         )
-        return update_cloudiot_device(existing_cloudiot_device, public_key)
+        return update_cloudiot_device(existing_cloudiot_device, public_key), False
     except google.api_core.exceptions.NotFound:
         logger.warning(f"Device not found {device_path} - creating")
-        return create_cloudiot_device(public_key)
+        return create_cloudiot_device(public_key), True

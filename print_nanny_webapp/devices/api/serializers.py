@@ -75,7 +75,7 @@ class CloudiotDeviceSerializer(serializers.ModelSerializer):
     class Meta:
         model = CloudiotDevice
         exclude = ("deleted",)
-        read_only_fields = ("num_id", "name", "device")
+        read_only_fields = ("num_id", "name", "device", "id")
 
 
 class DeviceConfigSerializer(serializers.ModelSerializer):
