@@ -279,6 +279,8 @@ ts-client: clean-ts-client
 		-o /local/clients/typescript \
 		-c /local/clients/typescript.yaml
 
+	cd clients/typescript && npm install && npm build
+
 # debugging info: https://openapi-generator.tech/docs/debugging#templates
 rust-client: clean-rust-client
 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
@@ -350,7 +352,7 @@ rust-client-release: rust-client
 	cd clients/rust && cargo publish
 
 js-client-release: ts-client
-	cd clients/typescript && npm install && npm build && npm publish
+	cd clients/typescript && npm publish
 
 clients-release: js-client-release python-client-release rust-client-release 
 
