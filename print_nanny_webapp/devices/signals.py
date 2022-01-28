@@ -23,6 +23,7 @@ logger = logging.getLogger(__name__)
 
 @receiver(post_save, sender=PublicKey, dispatch_uid="public_key_create_cloudiotdevice")
 def create_public_key_cloudiotdevice(sender, instance: PublicKey, created, **kwargs):
+    logger.info("Public key updated or created")
     update_or_create_cloudiot_device(instance)
 
 
