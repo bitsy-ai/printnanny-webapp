@@ -27,8 +27,8 @@ class TestEventSerializer(EventSerializer):
 
     class Meta:
         model = TestEvent
-        read_only_fields = ("user", "device", "created_dt", "resourcetype")
-        fields = ("id", "type", "status", "resourcetype")
+        read_only_fields = ("user", "device", "created_dt")
+        fields = ("id", "type", "status", "source", "resourcetype")
 
 
 class PolymorphicEventSerializer(PolymorphicSerializer):
