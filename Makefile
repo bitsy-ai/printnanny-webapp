@@ -280,6 +280,7 @@ ts-client: clean-ts-client
 		-c /local/clients/typescript.yaml
 
 	cd clients/typescript && npm install && npm build
+	cd print_nanny_vue && npm update printnanny-api-client
 
 # debugging info: https://openapi-generator.tech/docs/debugging#templates
 rust-client: clean-rust-client
