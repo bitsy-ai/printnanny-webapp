@@ -5,9 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **num_id** | **i64** |  | 
-**task_topic** | **String** |  | [readonly]
+**command_topic** | **String** |  | [readonly]
+**event_topic** | **String** |  | [readonly]
 **config_topic** | **String** |  | [readonly]
 **state_topic** | **String** |  | [readonly]
+**gcp_resource** | **String** |  | [readonly]
 **gcp_project_id** | **String** |  | [readonly]
 **gcp_region** | **String** |  | [readonly]
 **gcp_cloudiot_device_registry** | **String** |  | [readonly]

@@ -38,9 +38,11 @@ class CloudiotDevice(object):
     """
     openapi_types = {
         'num_id': 'int',
-        'task_topic': 'str',
+        'command_topic': 'str',
+        'event_topic': 'str',
         'config_topic': 'str',
         'state_topic': 'str',
+        'gcp_resource': 'str',
         'gcp_project_id': 'str',
         'gcp_region': 'str',
         'gcp_cloudiot_device_registry': 'str',
@@ -54,9 +56,11 @@ class CloudiotDevice(object):
 
     attribute_map = {
         'num_id': 'num_id',
-        'task_topic': 'task_topic',
+        'command_topic': 'command_topic',
+        'event_topic': 'event_topic',
         'config_topic': 'config_topic',
         'state_topic': 'state_topic',
+        'gcp_resource': 'gcp_resource',
         'gcp_project_id': 'gcp_project_id',
         'gcp_region': 'gcp_region',
         'gcp_cloudiot_device_registry': 'gcp_cloudiot_device_registry',
@@ -68,16 +72,18 @@ class CloudiotDevice(object):
         'device': 'device'
     }
 
-    def __init__(self, num_id=None, task_topic=None, config_topic=None, state_topic=None, gcp_project_id=None, gcp_region=None, gcp_cloudiot_device_registry=None, mqtt_bridge_hostname=None, mqtt_bridge_port=None, mqtt_client_id=None, name=None, id=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, num_id=None, command_topic=None, event_topic=None, config_topic=None, state_topic=None, gcp_resource=None, gcp_project_id=None, gcp_region=None, gcp_cloudiot_device_registry=None, mqtt_bridge_hostname=None, mqtt_bridge_port=None, mqtt_client_id=None, name=None, id=None, device=None, local_vars_configuration=None):  # noqa: E501
         """CloudiotDevice - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._num_id = None
-        self._task_topic = None
+        self._command_topic = None
+        self._event_topic = None
         self._config_topic = None
         self._state_topic = None
+        self._gcp_resource = None
         self._gcp_project_id = None
         self._gcp_region = None
         self._gcp_cloudiot_device_registry = None
@@ -90,9 +96,11 @@ class CloudiotDevice(object):
         self.discriminator = None
 
         self.num_id = num_id
-        self.task_topic = task_topic
+        self.command_topic = command_topic
+        self.event_topic = event_topic
         self.config_topic = config_topic
         self.state_topic = state_topic
+        self.gcp_resource = gcp_resource
         self.gcp_project_id = gcp_project_id
         self.gcp_region = gcp_region
         self.gcp_cloudiot_device_registry = gcp_cloudiot_device_registry
@@ -133,27 +141,50 @@ class CloudiotDevice(object):
         self._num_id = num_id
 
     @property
-    def task_topic(self):
-        """Gets the task_topic of this CloudiotDevice.  # noqa: E501
+    def command_topic(self):
+        """Gets the command_topic of this CloudiotDevice.  # noqa: E501
 
 
-        :return: The task_topic of this CloudiotDevice.  # noqa: E501
+        :return: The command_topic of this CloudiotDevice.  # noqa: E501
         :rtype: str
         """
-        return self._task_topic
+        return self._command_topic
 
-    @task_topic.setter
-    def task_topic(self, task_topic):
-        """Sets the task_topic of this CloudiotDevice.
+    @command_topic.setter
+    def command_topic(self, command_topic):
+        """Sets the command_topic of this CloudiotDevice.
 
 
-        :param task_topic: The task_topic of this CloudiotDevice.  # noqa: E501
-        :type task_topic: str
+        :param command_topic: The command_topic of this CloudiotDevice.  # noqa: E501
+        :type command_topic: str
         """
-        if self.local_vars_configuration.client_side_validation and task_topic is None:  # noqa: E501
-            raise ValueError("Invalid value for `task_topic`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and command_topic is None:  # noqa: E501
+            raise ValueError("Invalid value for `command_topic`, must not be `None`")  # noqa: E501
 
-        self._task_topic = task_topic
+        self._command_topic = command_topic
+
+    @property
+    def event_topic(self):
+        """Gets the event_topic of this CloudiotDevice.  # noqa: E501
+
+
+        :return: The event_topic of this CloudiotDevice.  # noqa: E501
+        :rtype: str
+        """
+        return self._event_topic
+
+    @event_topic.setter
+    def event_topic(self, event_topic):
+        """Sets the event_topic of this CloudiotDevice.
+
+
+        :param event_topic: The event_topic of this CloudiotDevice.  # noqa: E501
+        :type event_topic: str
+        """
+        if self.local_vars_configuration.client_side_validation and event_topic is None:  # noqa: E501
+            raise ValueError("Invalid value for `event_topic`, must not be `None`")  # noqa: E501
+
+        self._event_topic = event_topic
 
     @property
     def config_topic(self):
@@ -200,6 +231,29 @@ class CloudiotDevice(object):
             raise ValueError("Invalid value for `state_topic`, must not be `None`")  # noqa: E501
 
         self._state_topic = state_topic
+
+    @property
+    def gcp_resource(self):
+        """Gets the gcp_resource of this CloudiotDevice.  # noqa: E501
+
+
+        :return: The gcp_resource of this CloudiotDevice.  # noqa: E501
+        :rtype: str
+        """
+        return self._gcp_resource
+
+    @gcp_resource.setter
+    def gcp_resource(self, gcp_resource):
+        """Sets the gcp_resource of this CloudiotDevice.
+
+
+        :param gcp_resource: The gcp_resource of this CloudiotDevice.  # noqa: E501
+        :type gcp_resource: str
+        """
+        if self.local_vars_configuration.client_side_validation and gcp_resource is None:  # noqa: E501
+            raise ValueError("Invalid value for `gcp_resource`, must not be `None`")  # noqa: E501
+
+        self._gcp_resource = gcp_resource
 
     @property
     def gcp_project_id(self):
