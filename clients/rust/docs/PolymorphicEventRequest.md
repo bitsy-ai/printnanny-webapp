@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**_type** | [**crate::models::TestEventType**](TestEventType.md) |  | 
+**model** | [**crate::models::EventModel**](EventModel.md) |  | 
+**event_type** | [**crate::models::TestEventType**](TestEventType.md) |  | 
 **status** | Option<[**crate::models::EventStatus**](EventStatus.md)> |  | [optional]
 **source** | [**crate::models::EventSource**](EventSource.md) |  | 
 

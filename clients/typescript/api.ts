@@ -801,6 +801,16 @@ export interface ErrorDetail {
  * @enum {string}
  */
 
+export enum EventModel {
+    TestEvent = 'TestEvent'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
 export enum EventSource {
     Octoprint = 'octoprint',
     Printnanny = 'printnanny',
@@ -6668,10 +6678,22 @@ export interface TestEvent {
     'id': number;
     /**
      * 
+     * @type {string}
+     * @memberof TestEvent
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {EventModel}
+     * @memberof TestEvent
+     */
+    'model': EventModel;
+    /**
+     * 
      * @type {TestEventType}
      * @memberof TestEvent
      */
-    'type': TestEventType;
+    'event_type': TestEventType;
     /**
      * 
      * @type {EventStatus}
@@ -6684,6 +6706,18 @@ export interface TestEvent {
      * @memberof TestEvent
      */
     'source': EventSource;
+    /**
+     * 
+     * @type {number}
+     * @memberof TestEvent
+     */
+    'user': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TestEvent
+     */
+    'device': number;
 }
 /**
  * 
@@ -6693,10 +6727,16 @@ export interface TestEvent {
 export interface TestEventRequest {
     /**
      * 
+     * @type {EventModel}
+     * @memberof TestEventRequest
+     */
+    'model': EventModel;
+    /**
+     * 
      * @type {TestEventType}
      * @memberof TestEventRequest
      */
-    'type': TestEventType;
+    'event_type': TestEventType;
     /**
      * 
      * @type {EventStatus}
@@ -8487,12 +8527,12 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {string} deviceId 
+         * @param {number} deviceId 
          * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesEventsCreate: async (deviceId: string, polymorphicEventRequest?: PolymorphicEventRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesEventsCreate: async (deviceId: number, polymorphicEventRequest?: PolymorphicEventRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
             assertParamExists('devicesEventsCreate', 'deviceId', deviceId)
             const localVarPath = `/api/devices/{device_id}/events/`
@@ -8530,12 +8570,12 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {string} deviceId 
+         * @param {number} deviceId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesEventsList: async (deviceId: string, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesEventsList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
             assertParamExists('devicesEventsList', 'deviceId', deviceId)
             const localVarPath = `/api/devices/{device_id}/events/`
@@ -8574,12 +8614,12 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {string} deviceId 
-         * @param {number} id A unique integer value identifying this event.
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device event.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesEventsRetrieve: async (deviceId: string, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesEventsRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
             assertParamExists('devicesEventsRetrieve', 'deviceId', deviceId)
             // verify required parameter 'id' is not null or undefined
@@ -10406,34 +10446,34 @@ export const DevicesApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {string} deviceId 
+         * @param {number} deviceId 
          * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesEventsCreate(deviceId: string, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
+        async devicesEventsCreate(deviceId: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesEventsCreate(deviceId, polymorphicEventRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {string} deviceId 
+         * @param {number} deviceId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesEventsList(deviceId: string, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPolymorphicEventList>> {
+        async devicesEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPolymorphicEventList>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesEventsList(deviceId, page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {string} deviceId 
-         * @param {number} id A unique integer value identifying this event.
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device event.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesEventsRetrieve(deviceId: string, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
+        async devicesEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesEventsRetrieve(deviceId, id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -10977,32 +11017,32 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @param {string} deviceId 
+         * @param {number} deviceId 
          * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesEventsCreate(deviceId: string, polymorphicEventRequest?: PolymorphicEventRequest, options?: any): AxiosPromise<PolymorphicEvent> {
+        devicesEventsCreate(deviceId: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: any): AxiosPromise<PolymorphicEvent> {
             return localVarFp.devicesEventsCreate(deviceId, polymorphicEventRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {string} deviceId 
+         * @param {number} deviceId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesEventsList(deviceId: string, page?: number, options?: any): AxiosPromise<PaginatedPolymorphicEventList> {
+        devicesEventsList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedPolymorphicEventList> {
             return localVarFp.devicesEventsList(deviceId, page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {string} deviceId 
-         * @param {number} id A unique integer value identifying this event.
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device event.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesEventsRetrieve(deviceId: string, id: number, options?: any): AxiosPromise<PolymorphicEvent> {
+        devicesEventsRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<PolymorphicEvent> {
             return localVarFp.devicesEventsRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -11507,33 +11547,33 @@ export interface DevicesApiInterface {
 
     /**
      * 
-     * @param {string} deviceId 
+     * @param {number} deviceId 
      * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesEventsCreate(deviceId: string, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
+    devicesEventsCreate(deviceId: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
 
     /**
      * 
-     * @param {string} deviceId 
+     * @param {number} deviceId 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesEventsList(deviceId: string, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPolymorphicEventList>;
+    devicesEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPolymorphicEventList>;
 
     /**
      * 
-     * @param {string} deviceId 
-     * @param {number} id A unique integer value identifying this event.
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this device event.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesEventsRetrieve(deviceId: string, id: number, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
+    devicesEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
 
     /**
      * 
@@ -12059,37 +12099,37 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
 
     /**
      * 
-     * @param {string} deviceId 
+     * @param {number} deviceId 
      * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesEventsCreate(deviceId: string, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig) {
+    public devicesEventsCreate(deviceId: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesEventsCreate(deviceId, polymorphicEventRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {string} deviceId 
+     * @param {number} deviceId 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesEventsList(deviceId: string, page?: number, options?: AxiosRequestConfig) {
+    public devicesEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesEventsList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {string} deviceId 
-     * @param {number} id A unique integer value identifying this event.
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this device event.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesEventsRetrieve(deviceId: string, id: number, options?: AxiosRequestConfig) {
+    public devicesEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesEventsRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -12555,12 +12595,12 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
     return {
         /**
          * 
-         * @param {string} deviceId 
+         * @param {number} deviceId 
          * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesEventsCreate: async (deviceId: string, polymorphicEventRequest?: PolymorphicEventRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesEventsCreate: async (deviceId: number, polymorphicEventRequest?: PolymorphicEventRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
             assertParamExists('devicesEventsCreate', 'deviceId', deviceId)
             const localVarPath = `/api/devices/{device_id}/events/`
@@ -12598,12 +12638,12 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
-         * @param {string} deviceId 
+         * @param {number} deviceId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesEventsList: async (deviceId: string, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesEventsList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
             assertParamExists('devicesEventsList', 'deviceId', deviceId)
             const localVarPath = `/api/devices/{device_id}/events/`
@@ -12642,12 +12682,12 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
-         * @param {string} deviceId 
-         * @param {number} id A unique integer value identifying this event.
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device event.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesEventsRetrieve: async (deviceId: string, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesEventsRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
             assertParamExists('devicesEventsRetrieve', 'deviceId', deviceId)
             // verify required parameter 'id' is not null or undefined
@@ -12695,34 +12735,34 @@ export const EventsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {string} deviceId 
+         * @param {number} deviceId 
          * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesEventsCreate(deviceId: string, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
+        async devicesEventsCreate(deviceId: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesEventsCreate(deviceId, polymorphicEventRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {string} deviceId 
+         * @param {number} deviceId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesEventsList(deviceId: string, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPolymorphicEventList>> {
+        async devicesEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPolymorphicEventList>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesEventsList(deviceId, page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {string} deviceId 
-         * @param {number} id A unique integer value identifying this event.
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device event.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesEventsRetrieve(deviceId: string, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
+        async devicesEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesEventsRetrieve(deviceId, id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -12738,32 +12778,32 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
     return {
         /**
          * 
-         * @param {string} deviceId 
+         * @param {number} deviceId 
          * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesEventsCreate(deviceId: string, polymorphicEventRequest?: PolymorphicEventRequest, options?: any): AxiosPromise<PolymorphicEvent> {
+        devicesEventsCreate(deviceId: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: any): AxiosPromise<PolymorphicEvent> {
             return localVarFp.devicesEventsCreate(deviceId, polymorphicEventRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {string} deviceId 
+         * @param {number} deviceId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesEventsList(deviceId: string, page?: number, options?: any): AxiosPromise<PaginatedPolymorphicEventList> {
+        devicesEventsList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedPolymorphicEventList> {
             return localVarFp.devicesEventsList(deviceId, page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {string} deviceId 
-         * @param {number} id A unique integer value identifying this event.
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device event.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesEventsRetrieve(deviceId: string, id: number, options?: any): AxiosPromise<PolymorphicEvent> {
+        devicesEventsRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<PolymorphicEvent> {
             return localVarFp.devicesEventsRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
         },
     };
@@ -12777,33 +12817,33 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
 export interface EventsApiInterface {
     /**
      * 
-     * @param {string} deviceId 
+     * @param {number} deviceId 
      * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    devicesEventsCreate(deviceId: string, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
+    devicesEventsCreate(deviceId: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
 
     /**
      * 
-     * @param {string} deviceId 
+     * @param {number} deviceId 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    devicesEventsList(deviceId: string, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPolymorphicEventList>;
+    devicesEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPolymorphicEventList>;
 
     /**
      * 
-     * @param {string} deviceId 
-     * @param {number} id A unique integer value identifying this event.
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this device event.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    devicesEventsRetrieve(deviceId: string, id: number, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
+    devicesEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
 
 }
 
@@ -12816,37 +12856,37 @@ export interface EventsApiInterface {
 export class EventsApi extends BaseAPI implements EventsApiInterface {
     /**
      * 
-     * @param {string} deviceId 
+     * @param {number} deviceId 
      * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public devicesEventsCreate(deviceId: string, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig) {
+    public devicesEventsCreate(deviceId: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig) {
         return EventsApiFp(this.configuration).devicesEventsCreate(deviceId, polymorphicEventRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {string} deviceId 
+     * @param {number} deviceId 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public devicesEventsList(deviceId: string, page?: number, options?: AxiosRequestConfig) {
+    public devicesEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
         return EventsApiFp(this.configuration).devicesEventsList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {string} deviceId 
-     * @param {number} id A unique integer value identifying this event.
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this device event.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public devicesEventsRetrieve(deviceId: string, id: number, options?: AxiosRequestConfig) {
+    public devicesEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
         return EventsApiFp(this.configuration).devicesEventsRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
     }
 }

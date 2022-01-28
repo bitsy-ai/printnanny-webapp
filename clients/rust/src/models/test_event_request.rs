@@ -13,8 +13,10 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct TestEventRequest {
-    #[serde(rename = "type")]
-    pub _type: crate::models::TestEventType,
+    #[serde(rename = "model")]
+    pub model: crate::models::EventModel,
+    #[serde(rename = "event_type")]
+    pub event_type: crate::models::TestEventType,
     #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
     pub status: Option<crate::models::EventStatus>,
     #[serde(rename = "source")]
@@ -22,9 +24,10 @@ pub struct TestEventRequest {
 }
 
 impl TestEventRequest {
-    pub fn new(_type: crate::models::TestEventType, source: crate::models::EventSource) -> TestEventRequest {
+    pub fn new(model: crate::models::EventModel, event_type: crate::models::TestEventType, source: crate::models::EventSource) -> TestEventRequest {
         TestEventRequest {
-            _type,
+            model,
+            event_type,
             status: None,
             source,
         }

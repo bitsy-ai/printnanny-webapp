@@ -11,10 +11,12 @@
 
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-#[serde(tag = "type")]
+#[serde(tag = "model")]
 pub enum PolymorphicEventRequest {
     #[serde(rename="TestEvent")]
     TestEventRequest {
+        #[serde(rename = "event_type")]
+        event_type: crate::models::TestEventType,
         #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
         status: Option<crate::models::EventStatus>,
         #[serde(rename = "source")]

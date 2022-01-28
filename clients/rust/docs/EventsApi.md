@@ -20,7 +20,7 @@ Method | HTTP request | Description
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **String** |  | [required] |
+**device_id** | **i32** |  | [required] |
 **polymorphic_event_request** | Option<[**PolymorphicEventRequest**](PolymorphicEventRequest.md)> |  |  |
 
 ### Return type
@@ -49,7 +49,7 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **String** |  | [required] |
+**device_id** | **i32** |  | [required] |
 **page** | Option<**i32**> | A page number within the paginated result set. |  |
 
 ### Return type
@@ -78,8 +78,8 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **String** |  | [required] |
-**id** | **i32** | A unique integer value identifying this event. | [required] |
+**device_id** | **i32** |  | [required] |
+**id** | **i32** | A unique integer value identifying this device event. | [required] |
 
 ### Return type
 

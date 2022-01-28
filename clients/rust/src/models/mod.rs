@@ -42,6 +42,8 @@ pub mod email_auth_request;
 pub use self::email_auth_request::EmailAuthRequest;
 pub mod error_detail;
 pub use self::error_detail::ErrorDetail;
+pub mod event_model;
+pub use self::event_model::EventModel;
 pub mod event_source;
 pub use self::event_source::EventSource;
 pub mod event_status;

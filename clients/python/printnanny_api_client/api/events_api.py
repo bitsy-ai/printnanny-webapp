@@ -47,7 +47,7 @@ class EventsApi(object):
         >>> result = thread.get()
 
         :param device_id: (required)
-        :type device_id: str
+        :type device_id: int
         :param polymorphic_event_request:
         :type polymorphic_event_request: PolymorphicEventRequest
         :param async_req: Whether to execute the request asynchronously.
@@ -78,7 +78,7 @@ class EventsApi(object):
         >>> result = thread.get()
 
         :param device_id: (required)
-        :type device_id: str
+        :type device_id: int
         :param polymorphic_event_request:
         :type polymorphic_event_request: PolymorphicEventRequest
         :param async_req: Whether to execute the request asynchronously.
@@ -191,7 +191,7 @@ class EventsApi(object):
         >>> result = thread.get()
 
         :param device_id: (required)
-        :type device_id: str
+        :type device_id: int
         :param page: A page number within the paginated result set.
         :type page: int
         :param async_req: Whether to execute the request asynchronously.
@@ -222,7 +222,7 @@ class EventsApi(object):
         >>> result = thread.get()
 
         :param device_id: (required)
-        :type device_id: str
+        :type device_id: int
         :param page: A page number within the paginated result set.
         :type page: int
         :param async_req: Whether to execute the request asynchronously.
@@ -331,8 +331,8 @@ class EventsApi(object):
         >>> result = thread.get()
 
         :param device_id: (required)
-        :type device_id: str
-        :param id: A unique integer value identifying this event. (required)
+        :type device_id: int
+        :param id: A unique integer value identifying this device event. (required)
         :type id: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -362,8 +362,8 @@ class EventsApi(object):
         >>> result = thread.get()
 
         :param device_id: (required)
-        :type device_id: str
-        :param id: A unique integer value identifying this event. (required)
+        :type device_id: int
+        :param id: A unique integer value identifying this device event. (required)
         :type id: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional

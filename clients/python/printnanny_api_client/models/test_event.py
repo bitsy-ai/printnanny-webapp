@@ -38,35 +38,51 @@ class TestEvent(object):
     """
     openapi_types = {
         'id': 'int',
-        'type': 'TestEventType',
+        'created_dt': 'datetime',
+        'model': 'EventModel',
+        'event_type': 'TestEventType',
         'status': 'EventStatus',
-        'source': 'EventSource'
+        'source': 'EventSource',
+        'user': 'int',
+        'device': 'int'
     }
 
     attribute_map = {
         'id': 'id',
-        'type': 'type',
+        'created_dt': 'created_dt',
+        'model': 'model',
+        'event_type': 'event_type',
         'status': 'status',
-        'source': 'source'
+        'source': 'source',
+        'user': 'user',
+        'device': 'device'
     }
 
-    def __init__(self, id=None, type=None, status=None, source=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, model=None, event_type=None, status=None, source=None, user=None, device=None, local_vars_configuration=None):  # noqa: E501
         """TestEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
-        self._type = None
+        self._created_dt = None
+        self._model = None
+        self._event_type = None
         self._status = None
         self._source = None
+        self._user = None
+        self._device = None
         self.discriminator = None
 
         self.id = id
-        self.type = type
+        self.created_dt = created_dt
+        self.model = model
+        self.event_type = event_type
         if status is not None:
             self.status = status
         self.source = source
+        self.user = user
+        self.device = device
 
     @property
     def id(self):
@@ -92,27 +108,73 @@ class TestEvent(object):
         self._id = id
 
     @property
-    def type(self):
-        """Gets the type of this TestEvent.  # noqa: E501
+    def created_dt(self):
+        """Gets the created_dt of this TestEvent.  # noqa: E501
 
 
-        :return: The type of this TestEvent.  # noqa: E501
+        :return: The created_dt of this TestEvent.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._created_dt
+
+    @created_dt.setter
+    def created_dt(self, created_dt):
+        """Sets the created_dt of this TestEvent.
+
+
+        :param created_dt: The created_dt of this TestEvent.  # noqa: E501
+        :type created_dt: datetime
+        """
+        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
+
+        self._created_dt = created_dt
+
+    @property
+    def model(self):
+        """Gets the model of this TestEvent.  # noqa: E501
+
+
+        :return: The model of this TestEvent.  # noqa: E501
+        :rtype: EventModel
+        """
+        return self._model
+
+    @model.setter
+    def model(self, model):
+        """Sets the model of this TestEvent.
+
+
+        :param model: The model of this TestEvent.  # noqa: E501
+        :type model: EventModel
+        """
+        if self.local_vars_configuration.client_side_validation and model is None:  # noqa: E501
+            raise ValueError("Invalid value for `model`, must not be `None`")  # noqa: E501
+
+        self._model = model
+
+    @property
+    def event_type(self):
+        """Gets the event_type of this TestEvent.  # noqa: E501
+
+
+        :return: The event_type of this TestEvent.  # noqa: E501
         :rtype: TestEventType
         """
-        return self._type
+        return self._event_type
 
-    @type.setter
-    def type(self, type):
-        """Sets the type of this TestEvent.
+    @event_type.setter
+    def event_type(self, event_type):
+        """Sets the event_type of this TestEvent.
 
 
-        :param type: The type of this TestEvent.  # noqa: E501
-        :type type: TestEventType
+        :param event_type: The event_type of this TestEvent.  # noqa: E501
+        :type event_type: TestEventType
         """
-        if self.local_vars_configuration.client_side_validation and type is None:  # noqa: E501
-            raise ValueError("Invalid value for `type`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and event_type is None:  # noqa: E501
+            raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
 
-        self._type = type
+        self._event_type = event_type
 
     @property
     def status(self):
@@ -157,6 +219,52 @@ class TestEvent(object):
             raise ValueError("Invalid value for `source`, must not be `None`")  # noqa: E501
 
         self._source = source
+
+    @property
+    def user(self):
+        """Gets the user of this TestEvent.  # noqa: E501
+
+
+        :return: The user of this TestEvent.  # noqa: E501
+        :rtype: int
+        """
+        return self._user
+
+    @user.setter
+    def user(self, user):
+        """Sets the user of this TestEvent.
+
+
+        :param user: The user of this TestEvent.  # noqa: E501
+        :type user: int
+        """
+        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
+            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
+
+        self._user = user
+
+    @property
+    def device(self):
+        """Gets the device of this TestEvent.  # noqa: E501
+
+
+        :return: The device of this TestEvent.  # noqa: E501
+        :rtype: int
+        """
+        return self._device
+
+    @device.setter
+    def device(self, device):
+        """Sets the device of this TestEvent.
+
+
+        :param device: The device of this TestEvent.  # noqa: E501
+        :type device: int
+        """
+        if self.local_vars_configuration.client_side_validation and device is None:  # noqa: E501
+            raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
+
+        self._device = device
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

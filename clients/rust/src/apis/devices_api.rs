@@ -854,12 +854,12 @@ pub async fn devices_create(configuration: &configuration::Configuration, device
     }
 }
 
-pub async fn devices_events_create(configuration: &configuration::Configuration, device_id: &str, polymorphic_event_request: Option<crate::models::PolymorphicEventRequest>) -> Result<crate::models::PolymorphicEvent, Error<DevicesEventsCreateError>> {
+pub async fn devices_events_create(configuration: &configuration::Configuration, device_id: i32, polymorphic_event_request: Option<crate::models::PolymorphicEventRequest>) -> Result<crate::models::PolymorphicEvent, Error<DevicesEventsCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/events/", local_var_configuration.base_path, device_id=crate::apis::urlencode(device_id));
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/events/", local_var_configuration.base_path, device_id=device_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -885,12 +885,12 @@ pub async fn devices_events_create(configuration: &configuration::Configuration,
     }
 }
 
-pub async fn devices_events_list(configuration: &configuration::Configuration, device_id: &str, page: Option<i32>) -> Result<crate::models::PaginatedPolymorphicEventList, Error<DevicesEventsListError>> {
+pub async fn devices_events_list(configuration: &configuration::Configuration, device_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedPolymorphicEventList, Error<DevicesEventsListError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/events/", local_var_configuration.base_path, device_id=crate::apis::urlencode(device_id));
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/events/", local_var_configuration.base_path, device_id=device_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
@@ -918,12 +918,12 @@ pub async fn devices_events_list(configuration: &configuration::Configuration, d
     }
 }
 
-pub async fn devices_events_retrieve(configuration: &configuration::Configuration, device_id: &str, id: i32) -> Result<crate::models::PolymorphicEvent, Error<DevicesEventsRetrieveError>> {
+pub async fn devices_events_retrieve(configuration: &configuration::Configuration, device_id: i32, id: i32) -> Result<crate::models::PolymorphicEvent, Error<DevicesEventsRetrieveError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/events/{id}/", local_var_configuration.base_path, device_id=crate::apis::urlencode(device_id), id=id);
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/events/{id}/", local_var_configuration.base_path, device_id=device_id, id=id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {

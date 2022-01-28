@@ -1453,7 +1453,7 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 'device_id_example' # str | 
+    device_id = 56 # int | 
 polymorphic_event_request = printnanny_api_client.PolymorphicEventRequest() # PolymorphicEventRequest |  (optional)
 
     try:
@@ -1496,7 +1496,7 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 'device_id_example' # str | 
+    device_id = 56 # int | 
 polymorphic_event_request = printnanny_api_client.PolymorphicEventRequest() # PolymorphicEventRequest |  (optional)
 
     try:
@@ -1510,7 +1510,7 @@ polymorphic_event_request = printnanny_api_client.PolymorphicEventRequest() # Po
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **str**|  | 
+ **device_id** | **int**|  | 
  **polymorphic_event_request** | [**PolymorphicEventRequest**](PolymorphicEventRequest.md)|  | [optional] 
 
 ### Return type
@@ -1573,7 +1573,7 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 'device_id_example' # str | 
+    device_id = 56 # int | 
 page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
@@ -1616,7 +1616,7 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 'device_id_example' # str | 
+    device_id = 56 # int | 
 page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
@@ -1630,7 +1630,7 @@ page = 56 # int | A page number within the paginated result set. (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **str**|  | 
+ **device_id** | **int**|  | 
  **page** | **int**| A page number within the paginated result set. | [optional] 
 
 ### Return type
@@ -1693,8 +1693,8 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 'device_id_example' # str | 
-id = 56 # int | A unique integer value identifying this event.
+    device_id = 56 # int | 
+id = 56 # int | A unique integer value identifying this device event.
 
     try:
         api_response = api_instance.devices_events_retrieve(device_id, id)
@@ -1736,8 +1736,8 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 'device_id_example' # str | 
-id = 56 # int | A unique integer value identifying this event.
+    device_id = 56 # int | 
+id = 56 # int | A unique integer value identifying this device event.
 
     try:
         api_response = api_instance.devices_events_retrieve(device_id, id)
@@ -1750,8 +1750,8 @@ id = 56 # int | A unique integer value identifying this event.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **str**|  | 
- **id** | **int**| A unique integer value identifying this event. | 
+ **device_id** | **int**|  | 
+ **id** | **int**| A unique integer value identifying this device event. | 
 
 ### Return type
 

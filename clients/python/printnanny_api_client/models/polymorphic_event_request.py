@@ -37,13 +37,15 @@ class PolymorphicEventRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'type': 'TestEventType',
+        'model': 'EventModel',
+        'event_type': 'TestEventType',
         'status': 'EventStatus',
         'source': 'EventSource'
     }
 
     attribute_map = {
-        'type': 'type',
+        'model': 'model',
+        'event_type': 'event_type',
         'status': 'status',
         'source': 'source'
     }
@@ -51,44 +53,69 @@ class PolymorphicEventRequest(object):
     discriminator_value_class_map = {
     }
 
-    def __init__(self, type=None, status=None, source=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, model=None, event_type=None, status=None, source=None, local_vars_configuration=None):  # noqa: E501
         """PolymorphicEventRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
-        self._type = None
+        self._model = None
+        self._event_type = None
         self._status = None
         self._source = None
-        self.discriminator = 'type'
+        self.discriminator = 'model'
 
-        self.type = type
+        self.model = model
+        self.event_type = event_type
         if status is not None:
             self.status = status
         self.source = source
 
     @property
-    def type(self):
-        """Gets the type of this PolymorphicEventRequest.  # noqa: E501
+    def model(self):
+        """Gets the model of this PolymorphicEventRequest.  # noqa: E501
 
 
-        :return: The type of this PolymorphicEventRequest.  # noqa: E501
+        :return: The model of this PolymorphicEventRequest.  # noqa: E501
+        :rtype: EventModel
+        """
+        return self._model
+
+    @model.setter
+    def model(self, model):
+        """Sets the model of this PolymorphicEventRequest.
+
+
+        :param model: The model of this PolymorphicEventRequest.  # noqa: E501
+        :type model: EventModel
+        """
+        if self.local_vars_configuration.client_side_validation and model is None:  # noqa: E501
+            raise ValueError("Invalid value for `model`, must not be `None`")  # noqa: E501
+
+        self._model = model
+
+    @property
+    def event_type(self):
+        """Gets the event_type of this PolymorphicEventRequest.  # noqa: E501
+
+
+        :return: The event_type of this PolymorphicEventRequest.  # noqa: E501
         :rtype: TestEventType
         """
-        return self._type
+        return self._event_type
 
-    @type.setter
-    def type(self, type):
-        """Sets the type of this PolymorphicEventRequest.
+    @event_type.setter
+    def event_type(self, event_type):
+        """Sets the event_type of this PolymorphicEventRequest.
 
 
-        :param type: The type of this PolymorphicEventRequest.  # noqa: E501
-        :type type: TestEventType
+        :param event_type: The event_type of this PolymorphicEventRequest.  # noqa: E501
+        :type event_type: TestEventType
         """
-        if self.local_vars_configuration.client_side_validation and type is None:  # noqa: E501
-            raise ValueError("Invalid value for `type`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and event_type is None:  # noqa: E501
+            raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
 
-        self._type = type
+        self._event_type = event_type
 
     @property
     def status(self):

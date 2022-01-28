@@ -38,15 +38,23 @@ class TestTestEvent(unittest.TestCase):
         if include_optional :
             return TestEvent(
                 id = 56, 
-                type = 'mqtt_ping', 
+                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                model = 'TestEvent', 
+                event_type = 'mqtt_ping', 
                 status = 'sent', 
-                source = 'octoprint'
+                source = 'octoprint', 
+                user = 56, 
+                device = 56
             )
         else :
             return TestEvent(
                 id = 56,
-                type = 'mqtt_ping',
+                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                model = 'TestEvent',
+                event_type = 'mqtt_ping',
                 source = 'octoprint',
+                user = 56,
+                device = 56,
         )
 
     def testTestEvent(self):

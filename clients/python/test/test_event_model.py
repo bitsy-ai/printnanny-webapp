@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.test_event_request import TestEventRequest  # noqa: E501
+from printnanny_api_client.models.event_model import EventModel  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestTestEventRequest(unittest.TestCase):
-    """TestEventRequest unit test stubs"""
+class TestEventModel(unittest.TestCase):
+    """EventModel unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,27 +30,20 @@ class TestTestEventRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test TestEventRequest
+        """Test EventModel
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.test_event_request.TestEventRequest()  # noqa: E501
+        # model = printnanny_api_client.models.event_model.EventModel()  # noqa: E501
         if include_optional :
-            return TestEventRequest(
-                model = 'TestEvent', 
-                event_type = 'mqtt_ping', 
-                status = 'sent', 
-                source = 'octoprint'
+            return EventModel(
             )
         else :
-            return TestEventRequest(
-                model = 'TestEvent',
-                event_type = 'mqtt_ping',
-                source = 'octoprint',
+            return EventModel(
         )
 
-    def testTestEventRequest(self):
-        """Test TestEventRequest"""
+    def testEventModel(self):
+        """Test EventModel"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

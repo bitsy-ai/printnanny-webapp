@@ -4,7 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | [**TestEventType**](TestEventType.md) |  | 
+**model** | [**EventModel**](EventModel.md) |  | 
+**event_type** | [**TestEventType**](TestEventType.md) |  | 
 **status** | [**EventStatus**](EventStatus.md) |  | [optional] 
 **source** | [**EventSource**](EventSource.md) |  | 
 

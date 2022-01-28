@@ -24,7 +24,7 @@
     "bootstrap-vue": "^2.21.2",
     "janus-gateway-js": "^2.0.2",
     "metismenujs": "^1.2.1",
-    "printnanny-api-client": "0.45.3",
+    "printnanny-api-client": "0.45.4",
     "simplebar-vue": "^1.6.0",
     "vue": "^2.6.12",
     "vue-cookies": "^1.7.4",
