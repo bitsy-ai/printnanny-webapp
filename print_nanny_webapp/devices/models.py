@@ -87,7 +87,7 @@ class Device(SafeDeleteModel):
         return self.cameras.filter(active=True).all()
 
     @property
-    def to_cloudiot_id(self):
+    def cloudiot_name(self):
         return f"device-id-{self.id}"
 
     @property

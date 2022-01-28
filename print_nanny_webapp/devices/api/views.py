@@ -640,8 +640,8 @@ class CloudiotDeviceViewSet(
     def update_or_create(self, request, device_id=None):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
-            public_key_id = serializer.validated_data["public_key"]
-            public_key = PublicKey.objects.get(id=public_key_id)
+            public_key = serializer.validated_data["public_key"]
+            # public_key = PublicKey.objects.get(id=public_key_id)
             instance, created = update_or_create_cloudiot_device(public_key)
             response_serializer = self.get_serializer(instance)
             if not created:

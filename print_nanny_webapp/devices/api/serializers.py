@@ -1,4 +1,6 @@
 from rest_framework import serializers
+from drf_spectacular.utils import extend_schema_field
+from drf_spectacular.types import OpenApiTypes
 from django.contrib.auth import get_user_model
 from print_nanny_webapp.devices.models import (
     Device,
@@ -58,6 +60,14 @@ class PrinterControllerSerializer(serializers.ModelSerializer):
 ##
 # v1 Device Identity Provisioning (distributed via rpi-imager)
 ##
+
+
+@extend_schema_field(OpenApiTypes.INT64)
+class Int64Field(serializers.Field):
+    def to_representation(self, value):
+        return value
+
+
 class CloudiotDeviceSerializer(serializers.ModelSerializer):
     command_topic = serializers.CharField(read_only=True)
     event_topic = serializers.CharField(read_only=True)
@@ -71,11 +81,17 @@ class CloudiotDeviceSerializer(serializers.ModelSerializer):
     mqtt_bridge_hostname = serializers.CharField(read_only=True)
     mqtt_bridge_port = serializers.IntegerField(read_only=True)
     mqtt_client_id = serializers.CharField(read_only=True)
+    num_id = Int64Field(read_only=True)
 
     class Meta:
         model = CloudiotDevice
         exclude = ("deleted",)
-        read_only_fields = ("num_id", "name", "device", "id")
+        read_only_fields = (
+            "num_id",
+            "name",
+            "device",
+            "id",
+        )
 
 
 class DeviceConfigSerializer(serializers.ModelSerializer):
