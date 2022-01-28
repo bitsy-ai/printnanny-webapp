@@ -39,19 +39,21 @@ class PolymorphicEventRequest(object):
     openapi_types = {
         'type': 'TestEventType',
         'status': 'EventStatus',
+        'source': 'EventSource',
         'resourcetype': 'str'
     }
 
     attribute_map = {
         'type': 'type',
         'status': 'status',
+        'source': 'source',
         'resourcetype': 'resourcetype'
     }
 
     discriminator_value_class_map = {
     }
 
-    def __init__(self, type=None, status=None, resourcetype='TestEvent', local_vars_configuration=None):  # noqa: E501
+    def __init__(self, type=None, status=None, source=None, resourcetype='TestEvent', local_vars_configuration=None):  # noqa: E501
         """PolymorphicEventRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -59,12 +61,14 @@ class PolymorphicEventRequest(object):
 
         self._type = None
         self._status = None
+        self._source = None
         self._resourcetype = None
         self.discriminator = 'resourcetype'
 
         self.type = type
         if status is not None:
             self.status = status
+        self.source = source
         if resourcetype is not None:
             self.resourcetype = resourcetype
 
@@ -111,6 +115,29 @@ class PolymorphicEventRequest(object):
         """
 
         self._status = status
+
+    @property
+    def source(self):
+        """Gets the source of this PolymorphicEventRequest.  # noqa: E501
+
+
+        :return: The source of this PolymorphicEventRequest.  # noqa: E501
+        :rtype: EventSource
+        """
+        return self._source
+
+    @source.setter
+    def source(self, source):
+        """Sets the source of this PolymorphicEventRequest.
+
+
+        :param source: The source of this PolymorphicEventRequest.  # noqa: E501
+        :type source: EventSource
+        """
+        if self.local_vars_configuration.client_side_validation and source is None:  # noqa: E501
+            raise ValueError("Invalid value for `source`, must not be `None`")  # noqa: E501
+
+        self._source = source
 
     @property
     def resourcetype(self):

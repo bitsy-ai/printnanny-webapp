@@ -15,7 +15,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.45.0"
+__version__ = "0.45.1"
 
 # import apis into sdk package
 from printnanny_api_client.api.alerts_api import AlertsApi
@@ -65,6 +65,7 @@ from printnanny_api_client.models.device_calibration_request import DeviceCalibr
 from printnanny_api_client.models.device_request import DeviceRequest
 from printnanny_api_client.models.email_auth_request import EmailAuthRequest
 from printnanny_api_client.models.error_detail import ErrorDetail
+from printnanny_api_client.models.event_source import EventSource
 from printnanny_api_client.models.event_status import EventStatus
 from printnanny_api_client.models.experiment import Experiment
 from printnanny_api_client.models.experiment_device_config import ExperimentDeviceConfig

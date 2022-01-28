@@ -40,6 +40,7 @@ class TestEvent(object):
         'id': 'int',
         'type': 'TestEventType',
         'status': 'EventStatus',
+        'source': 'EventSource',
         'resourcetype': 'str'
     }
 
@@ -47,10 +48,11 @@ class TestEvent(object):
         'id': 'id',
         'type': 'type',
         'status': 'status',
+        'source': 'source',
         'resourcetype': 'resourcetype'
     }
 
-    def __init__(self, id=None, type=None, status=None, resourcetype='TestEvent', local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, type=None, status=None, source=None, resourcetype='TestEvent', local_vars_configuration=None):  # noqa: E501
         """TestEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -59,6 +61,7 @@ class TestEvent(object):
         self._id = None
         self._type = None
         self._status = None
+        self._source = None
         self._resourcetype = None
         self.discriminator = None
 
@@ -66,6 +69,7 @@ class TestEvent(object):
         self.type = type
         if status is not None:
             self.status = status
+        self.source = source
         if resourcetype is not None:
             self.resourcetype = resourcetype
 
@@ -135,6 +139,29 @@ class TestEvent(object):
         """
 
         self._status = status
+
+    @property
+    def source(self):
+        """Gets the source of this TestEvent.  # noqa: E501
+
+
+        :return: The source of this TestEvent.  # noqa: E501
+        :rtype: EventSource
+        """
+        return self._source
+
+    @source.setter
+    def source(self, source):
+        """Sets the source of this TestEvent.
+
+
+        :param source: The source of this TestEvent.  # noqa: E501
+        :type source: EventSource
+        """
+        if self.local_vars_configuration.client_side_validation and source is None:  # noqa: E501
+            raise ValueError("Invalid value for `source`, must not be `None`")  # noqa: E501
+
+        self._source = source
 
     @property
     def resourcetype(self):

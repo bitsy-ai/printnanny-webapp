@@ -17,15 +17,18 @@ pub struct TestEventRequest {
     pub _type: crate::models::TestEventType,
     #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
     pub status: Option<crate::models::EventStatus>,
+    #[serde(rename = "source")]
+    pub source: crate::models::EventSource,
     #[serde(rename = "resourcetype", skip_serializing_if = "Option::is_none")]
     pub resourcetype: Option<String>,
 }
 
 impl TestEventRequest {
-    pub fn new(_type: crate::models::TestEventType) -> TestEventRequest {
+    pub fn new(_type: crate::models::TestEventType, source: crate::models::EventSource) -> TestEventRequest {
         TestEventRequest {
             _type,
             status: None,
+            source,
             resourcetype: None,
         }
     }
