@@ -13,28 +13,37 @@ logger = logging.getLogger(__name__)
 
 
 class EventSerializer(serializers.ModelSerializer):
-    # resourcetype = serializers.ChoiceField(choices=[
-    #     "TestEvent"
-    # ])
-
     class Meta:
         model = Event
         read_only_fields = ("user", "device", "created_dt")
 
 
 class TestEventSerializer(EventSerializer):
-    resourcetype = serializers.CharField(default="TestEvent")
-
     class Meta:
         model = TestEvent
         read_only_fields = ("user", "device", "created_dt")
-        fields = ("id", "type", "status", "source", "resourcetype")
+        fields = ("id", "type", "status", "source")
 
 
 class PolymorphicEventSerializer(PolymorphicSerializer):
+    resource_type_field_name = "type"
     model_serializer_mapping = {
         TestEvent: TestEventSerializer,
     }
+
+    resourcetype_map = {v: TestEvent._meta.object_name for v in TestEventType.values}
+
+    def _get_resource_type_from_mapping(self, mapping):
+        logger.info(f"Got mapping={mapping} resourcetype_map={self.resourcetype_map}")
+        try:
+            klass = self.resourcetype_map[mapping[self.resource_type_field_name]]
+            return klass
+        except KeyError:
+            raise serializers.ValidationError(
+                {
+                    self.resource_type_field_name: "This field is required",
+                }
+            )
 
     def to_representation(self, instance):
         logger.info("Got instance", instance)
