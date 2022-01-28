@@ -102,14 +102,20 @@ def update_or_create_cloudiot_device(
         settings.GCP_PROJECT_ID,
         settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
         settings.GCP_CLOUD_IOT_STANDALONE_DEVICE_REGISTRY,
-        public_key.device.to_cloudiot_id,
+        public_key.device.cloudiot_name,
     )
 
     try:
         existing_cloudiot_device: cloudiot_v1.types.Device = client.get_device(
             name=device_path
         )
-        return update_cloudiot_device(existing_cloudiot_device, public_key), False
+        gcp_response = update_cloudiot_device(existing_cloudiot_device, public_key)
     except google.api_core.exceptions.NotFound:
         logger.warning(f"Device not found {device_path} - creating")
-        return create_cloudiot_device(public_key), True
+        gcp_response = create_cloudiot_device(public_key)
+    return CloudiotDevice.objects.update_or_create(
+        public_key=public_key,
+        device=public_key.device,
+        num_id=gcp_response.num_id,
+        name=gcp_response.name,
+    )
