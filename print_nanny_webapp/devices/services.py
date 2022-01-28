@@ -93,7 +93,6 @@ def update_cloudiot_device(cloudiot_device: CloudiotDevice, public_key: PublicKe
 
 
 def update_or_create_cloudiot_device(public_key: PublicKey) -> cloudiot_v1.Device:
-    # request to Cloud IoT API
     client = cloudiot_v1.DeviceManagerClient()
 
     device_path = client.device_path(
@@ -109,4 +108,5 @@ def update_or_create_cloudiot_device(public_key: PublicKey) -> cloudiot_v1.Devic
         )
         return update_cloudiot_device(existing_cloudiot_device, public_key)
     except google.api_core.exceptions.NotFound:
+        logger.warning(f"Device not found {device_path} - creating")
         return create_cloudiot_device(public_key)

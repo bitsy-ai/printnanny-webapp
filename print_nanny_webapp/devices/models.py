@@ -1,5 +1,4 @@
 import logging
-from secrets import token_urlsafe
 from django.conf import settings
 from django.db import models
 from django.contrib.auth import get_user_model
@@ -7,6 +6,7 @@ from django.db.models import UniqueConstraint
 from django.urls import reverse
 from rest_framework.renderers import JSONRenderer
 
+from google.cloud import iot_v1 as cloudiot_v1
 from polymorphic.models import PolymorphicModel
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.signals import pre_softdelete
@@ -99,15 +99,12 @@ class Device(SafeDeleteModel):
         return self.cloudiot_devices.first()
 
     @property
-    def html_id(self) -> str:
-        return f"device-{self.id}"
+    def cloudiot(self):
+        return self.device.cloudiot_device
 
     @property
-    def to_json_str(self):
-        from .api.serializers import DeviceSerializer
-
-        serializer = DeviceSerializer(instance=self)
-        return JSONRenderer().render(serializer.data).decode("utf8")
+    def html_id(self) -> str:
+        return f"device-{self.id}"
 
     @property
     def janus_local_url(self):
@@ -264,6 +261,19 @@ class CloudiotDevice(SafeDeleteModel):
     )
 
     @property
+    def client(self):
+        return cloudiot_v1.DeviceManagerClient()
+
+    @property
+    def gcp_resource(self):
+        return self.client.device_path(
+            settings.GCP_PROJECT_ID,
+            settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
+            settings.GCP_CLOUD_IOT_OCTOPRINT_DEVICE_REGISTRY,
+            self.num_id,
+        )
+
+    @property
     def gcp_project_id(self):
         return settings.GCP_PROJECT_ID
 
@@ -288,11 +298,20 @@ class CloudiotDevice(SafeDeleteModel):
         return self.name
 
     @property
-    def task_topic(self):
+    def command_topic(self):
         """
-        A queue of outstanding Tasks that run on Device
+        Messages sent to device (wildcard topic pattern)
         """
-        return f"/devices/{self.num_id}/task"
+        return f"/devices/{self.num_id}/commands/#"
+
+    @property
+    def event_topic(self):
+        """
+        Topic containing device-published messages
+        Additional subfolders may be specified
+        For example /devices/:id/events/alerts
+        """
+        return f"/devices/{self.num_id}/events"
 
     @property
     def config_topic(self):
