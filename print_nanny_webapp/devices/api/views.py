@@ -46,6 +46,7 @@ from ..models import (
     TaskStatus,
     OnboardingTask,
 )
+from ..services import update_or_create_cloudiot_device
 
 from print_nanny_webapp.utils.api.exceptions import AlreadyExists
 
@@ -626,6 +627,28 @@ class CloudiotDeviceViewSet(
     serializer_class = CloudiotDeviceSerializer
     queryset = CloudiotDevice.objects.all()
     lookup_field = "id"
+
+    @extend_schema(
+        operation_id="cloudiot_device_update_or_create",
+        responses={
+            # 400: PrinterProfileSerializer,
+            200: CloudiotDeviceSerializer,
+            201: CloudiotDeviceSerializer,
+        },
+    )
+    @action(methods=["post"], detail=False, url_path="update-or-create")
+    def update_or_create(self, request, device_id=None):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            public_key_id = serializer.validated_data["public_key"]
+            public_key = PublicKey.objects.get(id=public_key_id)
+            instance, created = update_or_create_cloudiot_device(public_key)
+            response_serializer = self.get_serializer(instance)
+            if not created:
+                return Response(response_serializer.data, status=status.HTTP_200_OK)
+            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 ##

@@ -236,11 +236,12 @@ class CloudiotDevice(SafeDeleteModel):
     class Meta:
         constraints = [
             UniqueConstraint(
-                fields=["device"],
+                fields=["device", "public_key"],
                 condition=models.Q(deleted=None),
                 name="unique_cloud_iot_device_per_device",
             )
         ]
+        index_together = [["device", "public_key", "created_dt", "updated_dt"]]
 
     def pre_softdelete(self):
         from print_nanny_webapp.devices.services import (
@@ -249,6 +250,8 @@ class CloudiotDevice(SafeDeleteModel):
 
         return delete_cloudiot_device(self.num_id)
 
+    created_dt = models.DateTimeField(auto_now_add=True)
+    updated_dt = models.DateTimeField(auto_now=True)
     num_id = models.BigIntegerField(primary_key=True)
     name = models.CharField(max_length=255)
     id = models.CharField(max_length=255)
@@ -257,7 +260,10 @@ class CloudiotDevice(SafeDeleteModel):
         Device,
         on_delete=models.CASCADE,
         related_name="cloudiot_devices",
-        db_index=True,
+    )
+
+    public_key = models.ForeignKey(
+        PublicKey, on_delete=models.CASCADE, related_name="cloudiot_devices"
     )
 
     @property
