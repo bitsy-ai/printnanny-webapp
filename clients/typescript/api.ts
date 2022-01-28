@@ -6684,12 +6684,6 @@ export interface TestEvent {
      * @memberof TestEvent
      */
     'source': EventSource;
-    /**
-     * 
-     * @type {string}
-     * @memberof TestEvent
-     */
-    'resourcetype'?: string;
 }
 /**
  * 
@@ -6715,12 +6709,6 @@ export interface TestEventRequest {
      * @memberof TestEventRequest
      */
     'source': EventSource;
-    /**
-     * 
-     * @type {string}
-     * @memberof TestEventRequest
-     */
-    'resourcetype'?: string;
 }
 /**
  * 

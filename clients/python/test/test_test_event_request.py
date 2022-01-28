@@ -39,8 +39,7 @@ class TestTestEventRequest(unittest.TestCase):
             return TestEventRequest(
                 type = 'mqtt_ping', 
                 status = 'sent', 
-                source = 'octoprint', 
-                resourcetype = 'TestEvent'
+                source = 'octoprint'
             )
         else :
             return TestEventRequest(

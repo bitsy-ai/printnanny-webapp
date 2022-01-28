@@ -40,22 +40,20 @@ class PolymorphicEvent(object):
         'id': 'int',
         'type': 'TestEventType',
         'status': 'EventStatus',
-        'source': 'EventSource',
-        'resourcetype': 'str'
+        'source': 'EventSource'
     }
 
     attribute_map = {
         'id': 'id',
         'type': 'type',
         'status': 'status',
-        'source': 'source',
-        'resourcetype': 'resourcetype'
+        'source': 'source'
     }
 
     discriminator_value_class_map = {
     }
 
-    def __init__(self, id=None, type=None, status=None, source=None, resourcetype='TestEvent', local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, type=None, status=None, source=None, local_vars_configuration=None):  # noqa: E501
         """PolymorphicEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -65,16 +63,13 @@ class PolymorphicEvent(object):
         self._type = None
         self._status = None
         self._source = None
-        self._resourcetype = None
-        self.discriminator = 'resourcetype'
+        self.discriminator = 'type'
 
         self.id = id
         self.type = type
         if status is not None:
             self.status = status
         self.source = source
-        if resourcetype is not None:
-            self.resourcetype = resourcetype
 
     @property
     def id(self):
@@ -165,27 +160,6 @@ class PolymorphicEvent(object):
             raise ValueError("Invalid value for `source`, must not be `None`")  # noqa: E501
 
         self._source = source
-
-    @property
-    def resourcetype(self):
-        """Gets the resourcetype of this PolymorphicEvent.  # noqa: E501
-
-
-        :return: The resourcetype of this PolymorphicEvent.  # noqa: E501
-        :rtype: str
-        """
-        return self._resourcetype
-
-    @resourcetype.setter
-    def resourcetype(self, resourcetype):
-        """Sets the resourcetype of this PolymorphicEvent.
-
-
-        :param resourcetype: The resourcetype of this PolymorphicEvent.  # noqa: E501
-        :type resourcetype: str
-        """
-
-        self._resourcetype = resourcetype
 
     def get_real_child_model(self, data):
         """Returns the real base class specified by the discriminator"""

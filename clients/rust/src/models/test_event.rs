@@ -21,8 +21,6 @@ pub struct TestEvent {
     pub status: Option<crate::models::EventStatus>,
     #[serde(rename = "source")]
     pub source: crate::models::EventSource,
-    #[serde(rename = "resourcetype", skip_serializing_if = "Option::is_none")]
-    pub resourcetype: Option<String>,
 }
 
 impl TestEvent {
@@ -32,7 +30,6 @@ impl TestEvent {
             _type,
             status: None,
             source,
-            resourcetype: None,
         }
     }
 }

@@ -39,18 +39,16 @@ class TestEventRequest(object):
     openapi_types = {
         'type': 'TestEventType',
         'status': 'EventStatus',
-        'source': 'EventSource',
-        'resourcetype': 'str'
+        'source': 'EventSource'
     }
 
     attribute_map = {
         'type': 'type',
         'status': 'status',
-        'source': 'source',
-        'resourcetype': 'resourcetype'
+        'source': 'source'
     }
 
-    def __init__(self, type=None, status=None, source=None, resourcetype='TestEvent', local_vars_configuration=None):  # noqa: E501
+    def __init__(self, type=None, status=None, source=None, local_vars_configuration=None):  # noqa: E501
         """TestEventRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -59,15 +57,12 @@ class TestEventRequest(object):
         self._type = None
         self._status = None
         self._source = None
-        self._resourcetype = None
         self.discriminator = None
 
         self.type = type
         if status is not None:
             self.status = status
         self.source = source
-        if resourcetype is not None:
-            self.resourcetype = resourcetype
 
     @property
     def type(self):
@@ -135,30 +130,6 @@ class TestEventRequest(object):
             raise ValueError("Invalid value for `source`, must not be `None`")  # noqa: E501
 
         self._source = source
-
-    @property
-    def resourcetype(self):
-        """Gets the resourcetype of this TestEventRequest.  # noqa: E501
-
-
-        :return: The resourcetype of this TestEventRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._resourcetype
-
-    @resourcetype.setter
-    def resourcetype(self, resourcetype):
-        """Sets the resourcetype of this TestEventRequest.
-
-
-        :param resourcetype: The resourcetype of this TestEventRequest.  # noqa: E501
-        :type resourcetype: str
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                resourcetype is not None and len(resourcetype) < 1):
-            raise ValueError("Invalid value for `resourcetype`, length must be greater than or equal to `1`")  # noqa: E501
-
-        self._resourcetype = resourcetype
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
