@@ -14,7 +14,7 @@
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct CloudiotDevice {
     #[serde(rename = "num_id")]
-    pub num_id: i32,
+    pub num_id: i64,
     #[serde(rename = "command_topic")]
     pub command_topic: String,
     #[serde(rename = "event_topic")]
@@ -52,7 +52,7 @@ pub struct CloudiotDevice {
 }
 
 impl CloudiotDevice {
-    pub fn new(num_id: i32, command_topic: String, event_topic: String, config_topic: String, state_topic: String, gcp_resource: String, gcp_project_id: String, gcp_region: String, gcp_cloudiot_device_registry: String, mqtt_bridge_hostname: String, mqtt_bridge_port: i32, mqtt_client_id: String, created_dt: String, updated_dt: String, name: String, id: String, device: i32, public_key: i32) -> CloudiotDevice {
+    pub fn new(num_id: i64, command_topic: String, event_topic: String, config_topic: String, state_topic: String, gcp_resource: String, gcp_project_id: String, gcp_region: String, gcp_cloudiot_device_registry: String, mqtt_bridge_hostname: String, mqtt_bridge_port: i32, mqtt_client_id: String, created_dt: String, updated_dt: String, name: String, id: String, device: i32, public_key: i32) -> CloudiotDevice {
         CloudiotDevice {
             num_id,
             command_topic,

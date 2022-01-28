@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**num_id** | **i32** |  | [readonly]
+**num_id** | **i64** |  | [readonly]
 **command_topic** | **String** |  | [readonly]
 **event_topic** | **String** |  | [readonly]
 **config_topic** | **String** |  | [readonly]
