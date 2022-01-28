@@ -27,7 +27,10 @@ export default {
     },
     startTest: function () {
       this.loading = true
-      this.createMqttPing(this.deviceId, this.hostname)
+      this.createMqttPing({
+        hostname: this.hostname,
+        deviceId: this.deviceId
+      })
     },
     resetTest: function () {
       this.loading = false
@@ -57,49 +60,57 @@ export default {
 <template>
   <div class="card col-12">
     <div v-if="!loading" class="card-header">
-        <button @click="startTest" class="btn btn-block btn-primary col-6 offset-3">
+      <button
+        @click="startTest"
+        class="btn btn-block btn-primary col-6 offset-3"
+      >
         Start MQTT Test
       </button>
     </div>
     <div v-if="loading" class="card-header">
-        <button @click="resetTest" class="btn btn-block btn-primary col-6 offset-3">
-        <span class="spinner-border-sm spinner-border" role="status"></span>
-          Reset Test
-        </button>
+      <button
+        @click="resetTest"
+        class="btn btn-block btn-primary col-6 offset-3"
+      >
+        Reset Test
+      </button>
     </div>
     <div class="card-body">
-      <p class="text-center">Print Nanny uses MQTT to send/receive events from your device. </p>
+      <p class="text-center">
+        Print Nanny uses MQTT to send/receive events from your device.
+      </p>
 
       <div class="row chart-content-bg text-center">
         <div class="col-6">
-          <h2>
-            Print Nanny Network
-          </h2>
+          <h2>Print Nanny Network</h2>
           <h3 class="text-muted mb-0 mt-3">
-            <small :class="statusClass(mqttPingEvent)" class="mdi mdi-checkbox-blank-circle align-middle me-1"></small>
+            <small
+              :class="statusClass(mqttPingEvent)"
+              class="mdi mdi-checkbox-blank-circle align-middle me-1"
+            ></small>
 
-          {{ capitalize(mqttPingEvent.status) }}</h3>
-          <hr>
-<pre class="text-center">
+            {{ capitalize(mqttPingEvent.status) }}
+          </h3>
+          <hr />
+          <pre class="text-center">
 <code v-text="mqttPingEventLogText">
 </code>
 </pre>
         </div>
 
         <div class="col-6">
-          <h2>
-            Raspberry Pi
-          </h2>
+          <h2>Raspberry Pi</h2>
           <h3 class="text-muted mb-0 mt-3">
-            <small :class="statusClass(mqttPongEvent)" class="mdi mdi-checkbox-blank-circle align-middle me-1"></small>
+            <small
+              :class="statusClass(mqttPongEvent)"
+              class="mdi mdi-checkbox-blank-circle align-middle me-1"
+            ></small>
 
-          {{ capitalize(mqttPongEvent.status) }}</h3>
-          <pre>
-
-          </pre>
+            {{ capitalize(mqttPongEvent.status) }}
+          </h3>
+          <pre></pre>
         </div>
       </div>
     </div>
-
   </div>
 </template>
