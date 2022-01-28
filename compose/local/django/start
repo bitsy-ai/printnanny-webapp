@@ -14,4 +14,4 @@ then
     echo "User already exists: $DJANGO_SUPERUSER_EMAIL"
 fi
 
-uvicorn config.asgi:application --host 0.0.0.0 --reload --reload-dir print_nanny_webapp --timeout-keep-alive $TIMEOUT_KEEP_ALIVE --log-level $LOGLEVEL
+uvicorn config.asgi:application --host 0.0.0.0 --reload --reload-dir print_nanny_webapp --timeout-keep-alive $TIMEOUT_KEEP_ALIVE

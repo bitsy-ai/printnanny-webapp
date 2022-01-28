@@ -1,6 +1,10 @@
 from django.db import models
 
 
+class EventModel(models.TextChoices):
+    TestEvent = "TestEvent"
+
+
 class EventSource(models.TextChoices):
     OCTOPRINT = ("octoprint", "Events originating from OctoPrint")
     PRINT_NANNY = (

@@ -5,7 +5,7 @@ from django.db import models
 from django.apps import apps
 from polymorphic.models import PolymorphicModel
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
-from .enum import EventSource, TestEventType, EventStatus
+from .enum import EventModel, EventSource, TestEventType, EventStatus
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
@@ -22,15 +22,26 @@ class Event(PolymorphicModel, SafeDeleteModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
 
 
-class TestEvent(Event):
+class DeviceEvent(Event):
+    """
+    Polymorphic Base Event
+    """
+
+    device = models.ForeignKey("devices.Device", on_delete=models.CASCADE)
+
+
+class TestEvent(DeviceEvent):
     """
     Test Events
     """
 
-    type = models.CharField(max_length=255, choices=TestEventType.choices)
+    event_type = models.CharField(max_length=255, choices=TestEventType.choices)
     status = models.CharField(
         max_length=255,
         choices=EventStatus.choices,
         default=EventStatus.SENT,
     )
-    device = models.ForeignKey("devices.Device", on_delete=models.CASCADE)
+
+    @property
+    def model(self):
+        return EventModel.TestEvent
