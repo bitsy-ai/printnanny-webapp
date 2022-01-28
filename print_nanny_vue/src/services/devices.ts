@@ -14,7 +14,6 @@ export default {
   async createTestEvent(deviceId: number, eventType: TestEventType) {
     const thisapi = api.DevicesApiFactory(configuration)
     const req: api.TestEventRequest = {
-      device: deviceId,
       type: api.TestEventType.Ping,
       status: api.EventStatus.Sent,
       source: api.EventSource.Printnanny,

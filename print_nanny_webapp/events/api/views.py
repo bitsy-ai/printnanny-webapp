@@ -8,7 +8,7 @@ from drf_spectacular.utils import PolymorphicProxySerializer
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, CreateModelMixin
-from print_nanny_webapp.events.models import Event, TestEvent
+from print_nanny_webapp.events.models import Event, TestEvent, DeviceEvent
 from .serializers import PolymorphicEventSerializer, TestEventSerializer
 from print_nanny_webapp.utils.api.views import (
     generic_create_errors,
@@ -32,11 +32,11 @@ logger = logging.getLogger(__name__)
 
 
 @extend_schema(tags=["events", "devices"])
-class EventViewSet(
+class DeviceEventViewSet(
     GenericViewSet, ListModelMixin, RetrieveModelMixin, CreateModelMixin
 ):
     serializer_class = PolymorphicEventSerializer
-    queryset = Event.objects.all()
+    queryset = DeviceEvent.objects.all()
     lookup_field = "id"
 
     def get_queryset(self, *args, **kwargs):
@@ -55,5 +55,5 @@ class EventViewSet(
         )
 
     def perform_create(self, serializer):
-        logger.info(f"EventViewSet.perform_create request={self.request.POST}")
+        logger.info(f"DeviceEventViewSet.perform_create request={self.request.POST}")
         serializer.save(user=self.request.user, device=self.device)

@@ -7,26 +7,41 @@ from print_nanny_webapp.events.enum import (
     EventSource,
     TestEventType,
     EventStatus,
+    EventModel,
 )
 
 logger = logging.getLogger(__name__)
 
 
 class EventSerializer(serializers.ModelSerializer):
+    model = serializers.ChoiceField(choices=EventModel.choices)
+
     class Meta:
         model = Event
         read_only_fields = ("user", "device", "created_dt")
 
 
 class TestEventSerializer(EventSerializer):
+    model = serializers.ChoiceField(choices=[EventModel.TestEvent])
+
     class Meta:
         model = TestEvent
+        fields = "__all__"
         read_only_fields = ("user", "device", "created_dt")
-        fields = ("id", "type", "status", "source")
+        fields = (
+            "id",
+            "created_dt",
+            "model",
+            "event_type",
+            "status",
+            "source",
+            "user",
+            "device",
+        )
 
 
 class PolymorphicEventSerializer(PolymorphicSerializer):
-    resource_type_field_name = "type"
+    resource_type_field_name = "model"
     model_serializer_mapping = {
         TestEvent: TestEventSerializer,
     }
@@ -36,8 +51,7 @@ class PolymorphicEventSerializer(PolymorphicSerializer):
     def _get_resource_type_from_mapping(self, mapping):
         logger.info(f"Got mapping={mapping} resourcetype_map={self.resourcetype_map}")
         try:
-            klass = self.resourcetype_map[mapping[self.resource_type_field_name]]
-            return klass
+            return mapping[self.resource_type_field_name]
         except KeyError:
             raise serializers.ValidationError(
                 {
@@ -46,7 +60,6 @@ class PolymorphicEventSerializer(PolymorphicSerializer):
             )
 
     def to_representation(self, instance):
-        logger.info("Got instance", instance)
         if isinstance(instance, Mapping):
             resource_type = self._get_resource_type_from_mapping(instance)
             serializer = self._get_serializer_from_resource_type(resource_type)

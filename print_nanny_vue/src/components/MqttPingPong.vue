@@ -22,6 +22,9 @@ export default {
     ...mapActions(WIZARD_MODULE, {
       createMqttPing: CREATE_MQTT_PING_EVENT
     }),
+    capitalize (str) {
+      return str.charAt(0).toUpperCase() + str.slice(1)
+    },
     startTest: function () {
       this.loading = true
       this.createMqttPing(this.deviceId)
@@ -31,9 +34,9 @@ export default {
     },
     statusClass: function (event) {
       switch (event.status) {
-        case 'Waiting':
+        case 'waiting':
           return 'text-secondary'
-        case 'Sent':
+        case 'sent':
           return 'text-warning spinner-grow spinner-grow-sm'
       }
     }
@@ -72,7 +75,7 @@ export default {
           <h3 class="text-muted mb-0 mt-3">
             <small :class="statusClass(mqttPingEvent)" class="mdi mdi-checkbox-blank-circle align-middle me-1"></small>
 
-          {{ mqttPingEvent.status }}</h3>
+          {{ capitalize(mqttPingEvent.status) }}</h3>
           <pre>
 
           </pre>
@@ -85,7 +88,7 @@ export default {
           <h3 class="text-muted mb-0 mt-3">
             <small :class="statusClass(mqttPongEvent)" class="mdi mdi-checkbox-blank-circle align-middle me-1"></small>
 
-          {{ mqttPongEvent.status }}</h3>
+          {{ capitalize(mqttPongEvent.status) }}</h3>
           <pre>
 
           </pre>
