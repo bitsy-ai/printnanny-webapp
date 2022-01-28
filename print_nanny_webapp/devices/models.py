@@ -264,6 +264,7 @@ class CloudiotDevice(SafeDeleteModel):
     def client(self):
         return cloudiot_v1.DeviceManagerClient()
 
+    @property
     def gcp_resource(self):
         return self.client.device_path(
             settings.GCP_PROJECT_ID,
@@ -297,9 +298,18 @@ class CloudiotDevice(SafeDeleteModel):
         return self.name
 
     @property
+    def command_topic(self):
+        """
+        Messages sent to device (wildcard topic pattern)
+        """
+        return f"/devices/{self.num_id}/commands/#"
+
+    @property
     def event_topic(self):
         """
-        A queue of outstanding Tasks that run on Device
+        Topic containing device-published messages
+        Additional subfolders may be specified
+        For example /devices/:id/events/alerts
         """
         return f"/devices/{self.num_id}/events"
 
