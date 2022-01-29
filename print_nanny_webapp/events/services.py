@@ -14,11 +14,11 @@ logger = logging.getLogger(__name__)
 def publish_cloudiot_command(event: DeviceEvent):
     device: Device = event.device
     serializer = PolymorphicEventSerializer(instance=event)
-    data_b = JSONRenderer().render(serializer.data).decode("utf-8")
+    data = JSONRenderer().render(serializer.data)
     request = cloudiot_v1.types.SendCommandToDeviceRequest(
         {
             "name": device.cloudiot.gcp_resource,
-            "binary_data": data_b,
+            "binary_data": data,
             # NOTE "subfolder" may be added to publish to a subfolder
             # "subfolder": device.cloudiot.event_topic,
         }
