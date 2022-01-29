@@ -29,14 +29,15 @@ class TestEventSerializer(EventSerializer):
         fields = "__all__"
         read_only_fields = ("user", "device", "created_dt")
         fields = (
-            "id",
             "created_dt",
-            "model",
-            "event_type",
-            "status",
-            "source",
-            "user",
             "device",
+            "event_type",
+            "id",
+            "model",
+            "remote",
+            "source",
+            "status",
+            "user",
         )
 
 

@@ -27,6 +27,10 @@ class DeviceEvent(Event):
     Polymorphic Base Event
     """
 
+    command = models.BooleanField(
+        default=False,
+        help_text="Indicates whether event should be sent to Device on command topic",
+    )
     device = models.ForeignKey("devices.Device", on_delete=models.CASCADE)
 
 
