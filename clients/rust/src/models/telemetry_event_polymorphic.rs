@@ -11,10 +11,7 @@
 
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-#[serde(tag = "resourcetype")]
-pub enum TelemetryEventPolymorphic {
-    #[serde(rename="OctoPrintEvent")]
-    OctoPrintEvent {
+pub struct OctoPrintEvent {
         #[serde(rename = "id")]
         id: i32,
         #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
@@ -47,9 +44,9 @@ pub enum TelemetryEventPolymorphic {
         user: i32,
         #[serde(rename = "print_session", skip_serializing_if = "Option::is_none")]
         print_session: Option<i32>,
-    },
-    #[serde(rename="PrintJobEvent")]
-    PrintJobEvent {
+}
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+pub struct PrintJobEvent {
         #[serde(rename = "id")]
         id: i32,
         #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
@@ -82,9 +79,9 @@ pub enum TelemetryEventPolymorphic {
         user: i32,
         #[serde(rename = "print_session", skip_serializing_if = "Option::is_none")]
         print_session: Option<i32>,
-    },
-    #[serde(rename="PrintNannyPluginEvent")]
-    PrintNannyPluginEvent {
+}
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+pub struct PrintNannyPluginEvent {
         #[serde(rename = "id")]
         id: i32,
         #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
@@ -117,9 +114,9 @@ pub enum TelemetryEventPolymorphic {
         user: i32,
         #[serde(rename = "print_session", skip_serializing_if = "Option::is_none")]
         print_session: Option<i32>,
-    },
-    #[serde(rename="PrinterEvent")]
-    PrinterEvent {
+}
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+pub struct PrinterEvent {
         #[serde(rename = "id")]
         id: i32,
         #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
@@ -154,9 +151,9 @@ pub enum TelemetryEventPolymorphic {
         user: i32,
         #[serde(rename = "print_session", skip_serializing_if = "Option::is_none")]
         print_session: Option<i32>,
-    },
-    #[serde(rename="RemoteCommandEvent")]
-    RemoteCommandEvent {
+}
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+pub struct RemoteCommandEvent {
         #[serde(rename = "id")]
         id: i32,
         #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
@@ -189,9 +186,9 @@ pub enum TelemetryEventPolymorphic {
         user: i32,
         #[serde(rename = "print_session", skip_serializing_if = "Option::is_none")]
         print_session: Option<i32>,
-    },
-    #[serde(rename="TelemetryEvent")]
-    TelemetryEvent {
+}
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+pub struct TelemetryEvent {
         #[serde(rename = "id")]
         id: i32,
         #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
@@ -224,7 +221,23 @@ pub enum TelemetryEventPolymorphic {
         user: i32,
         #[serde(rename = "print_session", skip_serializing_if = "Option::is_none")]
         print_session: Option<i32>,
-    },
+}
+
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(tag = "resourcetype")]
+pub enum TelemetryEventPolymorphic {
+    #[serde(rename="OctoPrintEvent")]
+    OctoPrintEvent(OctoPrintEvent),
+    #[serde(rename="PrintJobEvent")]
+    PrintJobEvent(PrintJobEvent),
+    #[serde(rename="PrintNannyPluginEvent")]
+    PrintNannyPluginEvent(PrintNannyPluginEvent),
+    #[serde(rename="PrinterEvent")]
+    PrinterEvent(PrinterEvent),
+    #[serde(rename="RemoteCommandEvent")]
+    RemoteCommandEvent(RemoteCommandEvent),
+    #[serde(rename="TelemetryEvent")]
+    TelemetryEvent(TelemetryEvent),
 }
 
 
