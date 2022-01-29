@@ -18,7 +18,7 @@ export default {
       status: api.EventStatus.Sent,
       source: api.EventSource.Printnanny,
       model: api.EventModel.TestEvent,
-      remote: true
+      command: true
     }
     const res = await thisapi.devicesEventsCreate(
       deviceId,
