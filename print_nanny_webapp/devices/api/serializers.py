@@ -137,8 +137,6 @@ class PublicKeySerializer(serializers.ModelSerializer):
 
 
 class JanusAuthSerializer(serializers.ModelSerializer):
-    device = serializers.PrimaryKeyRelatedField(read_only=True)
-
     class Meta:
         model = JanusAuth
         exclude = ("deleted",)
