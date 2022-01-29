@@ -4109,6 +4109,12 @@ export interface PatchedOctoPrintDeviceRequest {
     'active_session'?: PrintSessionRequest;
 }
 /**
+ * @type PatchedPolymorphicEventRequest
+ * @export
+ */
+export type PatchedPolymorphicEventRequest = PatchedTestEventRequest;
+
+/**
  * 
  * @export
  * @interface PatchedPrintSessionRequest
@@ -4509,6 +4515,43 @@ export interface PatchedSystemInfoRequest {
      * @memberof PatchedSystemInfoRequest
      */
     'device'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface PatchedTestEventRequest
+ */
+export interface PatchedTestEventRequest {
+    /**
+     * Indicates whether event should be sent to Device on command topic
+     * @type {boolean}
+     * @memberof PatchedTestEventRequest
+     */
+    'command'?: boolean;
+    /**
+     * 
+     * @type {TestEventType}
+     * @memberof PatchedTestEventRequest
+     */
+    'event_type'?: TestEventType;
+    /**
+     * 
+     * @type {EventModel}
+     * @memberof PatchedTestEventRequest
+     */
+    'model'?: EventModel;
+    /**
+     * 
+     * @type {EventSource}
+     * @memberof PatchedTestEventRequest
+     */
+    'source'?: EventSource;
+    /**
+     * 
+     * @type {EventStatus}
+     * @memberof PatchedTestEventRequest
+     */
+    'status'?: EventStatus;
 }
 /**
  * 
@@ -8667,6 +8710,53 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
          * 
          * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this device event.
+         * @param {PatchedPolymorphicEventRequest} [patchedPolymorphicEventRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesEventsPartialUpdate: async (deviceId: number, id: number, patchedPolymorphicEventRequest?: PatchedPolymorphicEventRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesEventsPartialUpdate', 'deviceId', deviceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesEventsPartialUpdate', 'id', id)
+            const localVarPath = `/api/devices/{device_id}/events/{id}/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedPolymorphicEventRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device event.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -8700,6 +8790,53 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device event.
+         * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesEventsUpdate: async (deviceId: number, id: number, polymorphicEventRequest?: PolymorphicEventRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesEventsUpdate', 'deviceId', deviceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesEventsUpdate', 'id', id)
+            const localVarPath = `/api/devices/{device_id}/events/{id}/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(polymorphicEventRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -10532,11 +10669,35 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          * 
          * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this device event.
+         * @param {PatchedPolymorphicEventRequest} [patchedPolymorphicEventRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesEventsPartialUpdate(deviceId: number, id: number, patchedPolymorphicEventRequest?: PatchedPolymorphicEventRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesEventsPartialUpdate(deviceId, id, patchedPolymorphicEventRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device event.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         async devicesEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesEventsRetrieve(deviceId, id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device event.
+         * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesEventsUpdate(deviceId: number, id: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesEventsUpdate(deviceId, id, polymorphicEventRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -11111,11 +11272,33 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          * 
          * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this device event.
+         * @param {PatchedPolymorphicEventRequest} [patchedPolymorphicEventRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesEventsPartialUpdate(deviceId: number, id: number, patchedPolymorphicEventRequest?: PatchedPolymorphicEventRequest, options?: any): AxiosPromise<PolymorphicEvent> {
+            return localVarFp.devicesEventsPartialUpdate(deviceId, id, patchedPolymorphicEventRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device event.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         devicesEventsRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<PolymorphicEvent> {
             return localVarFp.devicesEventsRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device event.
+         * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesEventsUpdate(deviceId: number, id: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: any): AxiosPromise<PolymorphicEvent> {
+            return localVarFp.devicesEventsUpdate(deviceId, id, polymorphicEventRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -11651,11 +11834,33 @@ export interface DevicesApiInterface {
      * 
      * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this device event.
+     * @param {PatchedPolymorphicEventRequest} [patchedPolymorphicEventRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesEventsPartialUpdate(deviceId: number, id: number, patchedPolymorphicEventRequest?: PatchedPolymorphicEventRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this device event.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
     devicesEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this device event.
+     * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesEventsUpdate(deviceId: number, id: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
 
     /**
      * 
@@ -12219,12 +12424,38 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      * 
      * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this device event.
+     * @param {PatchedPolymorphicEventRequest} [patchedPolymorphicEventRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesEventsPartialUpdate(deviceId: number, id: number, patchedPolymorphicEventRequest?: PatchedPolymorphicEventRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesEventsPartialUpdate(deviceId, id, patchedPolymorphicEventRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this device event.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
     public devicesEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesEventsRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this device event.
+     * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesEventsUpdate(deviceId: number, id: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesEventsUpdate(deviceId, id, polymorphicEventRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -12778,6 +13009,53 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
          * 
          * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this device event.
+         * @param {PatchedPolymorphicEventRequest} [patchedPolymorphicEventRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesEventsPartialUpdate: async (deviceId: number, id: number, patchedPolymorphicEventRequest?: PatchedPolymorphicEventRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesEventsPartialUpdate', 'deviceId', deviceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesEventsPartialUpdate', 'id', id)
+            const localVarPath = `/api/devices/{device_id}/events/{id}/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedPolymorphicEventRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device event.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -12811,6 +13089,53 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device event.
+         * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesEventsUpdate: async (deviceId: number, id: number, polymorphicEventRequest?: PolymorphicEventRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesEventsUpdate', 'deviceId', deviceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesEventsUpdate', 'id', id)
+            const localVarPath = `/api/devices/{device_id}/events/{id}/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(polymorphicEventRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -12853,11 +13178,35 @@ export const EventsApiFp = function(configuration?: Configuration) {
          * 
          * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this device event.
+         * @param {PatchedPolymorphicEventRequest} [patchedPolymorphicEventRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesEventsPartialUpdate(deviceId: number, id: number, patchedPolymorphicEventRequest?: PatchedPolymorphicEventRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesEventsPartialUpdate(deviceId, id, patchedPolymorphicEventRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device event.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         async devicesEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesEventsRetrieve(deviceId, id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device event.
+         * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesEventsUpdate(deviceId: number, id: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesEventsUpdate(deviceId, id, polymorphicEventRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -12894,11 +13243,33 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
          * 
          * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this device event.
+         * @param {PatchedPolymorphicEventRequest} [patchedPolymorphicEventRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesEventsPartialUpdate(deviceId: number, id: number, patchedPolymorphicEventRequest?: PatchedPolymorphicEventRequest, options?: any): AxiosPromise<PolymorphicEvent> {
+            return localVarFp.devicesEventsPartialUpdate(deviceId, id, patchedPolymorphicEventRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device event.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         devicesEventsRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<PolymorphicEvent> {
             return localVarFp.devicesEventsRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this device event.
+         * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesEventsUpdate(deviceId: number, id: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: any): AxiosPromise<PolymorphicEvent> {
+            return localVarFp.devicesEventsUpdate(deviceId, id, polymorphicEventRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -12933,11 +13304,33 @@ export interface EventsApiInterface {
      * 
      * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this device event.
+     * @param {PatchedPolymorphicEventRequest} [patchedPolymorphicEventRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApiInterface
+     */
+    devicesEventsPartialUpdate(deviceId: number, id: number, patchedPolymorphicEventRequest?: PatchedPolymorphicEventRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this device event.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
     devicesEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this device event.
+     * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApiInterface
+     */
+    devicesEventsUpdate(deviceId: number, id: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
 
 }
 
@@ -12976,12 +13369,38 @@ export class EventsApi extends BaseAPI implements EventsApiInterface {
      * 
      * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this device event.
+     * @param {PatchedPolymorphicEventRequest} [patchedPolymorphicEventRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApi
+     */
+    public devicesEventsPartialUpdate(deviceId: number, id: number, patchedPolymorphicEventRequest?: PatchedPolymorphicEventRequest, options?: AxiosRequestConfig) {
+        return EventsApiFp(this.configuration).devicesEventsPartialUpdate(deviceId, id, patchedPolymorphicEventRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this device event.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
     public devicesEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
         return EventsApiFp(this.configuration).devicesEventsRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this device event.
+     * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApi
+     */
+    public devicesEventsUpdate(deviceId: number, id: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig) {
+        return EventsApiFp(this.configuration).devicesEventsUpdate(deviceId, id, polymorphicEventRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

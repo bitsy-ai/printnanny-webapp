@@ -41,8 +41,20 @@ class TestEventsApi(unittest.TestCase):
         """
         pass
 
+    def test_devices_events_partial_update(self):
+        """Test case for devices_events_partial_update
+
+        """
+        pass
+
     def test_devices_events_retrieve(self):
         """Test case for devices_events_retrieve
+
+        """
+        pass
+
+    def test_devices_events_update(self):
+        """Test case for devices_events_update
 
         """
         pass
