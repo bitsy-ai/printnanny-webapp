@@ -40,13 +40,10 @@ impl Default for {{{classname}}} {
 
 {{!-- for schemas that have a discriminator --}}
 {{#discriminator}}
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-#[serde(tag = "{{{vendorExtensions.x-tag-name}}}")]
-pub enum {{{classname}}} {
 {{#vendorExtensions}}
-    {{#x-mapped-models}}
-    #[serde(rename="{{mappingName}}")]
-    {{{modelName}}} {
+{{#x-mapped-models}}
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+pub struct {{{modelName}}} {
     {{#vars}}
         {{#description}}
         /// {{{.}}}
@@ -54,7 +51,17 @@ pub enum {{{classname}}} {
         #[serde(rename = "{{{baseName}}}"{{^required}}, skip_serializing_if = "Option::is_none"{{/required}})]
         {{{name}}}: {{#required}}{{#isNullable}}Option<{{/isNullable}}{{/required}}{{^required}}Option<{{/required}}{{#isEnum}}{{{enumName}}}{{/isEnum}}{{^isEnum}}{{#isModel}}Box<{{{dataType}}}>{{/isModel}}{{^isModel}}{{{dataType}}}{{/isModel}}{{/isEnum}}{{#required}}{{#isNullable}}>{{/isNullable}}{{/required}}{{^required}}>{{/required}},
     {{/vars}}
-    },
+}
+{{/x-mapped-models}}
+{{/vendorExtensions}}
+
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(tag = "{{{vendorExtensions.x-tag-name}}}")]
+pub enum {{{classname}}} {
+{{#vendorExtensions}}
+    {{#x-mapped-models}}
+    #[serde(rename="{{mappingName}}")]
+    {{{modelName}}}({{{modelName}}}),
     {{/x-mapped-models}}
 {{/vendorExtensions}}
 }

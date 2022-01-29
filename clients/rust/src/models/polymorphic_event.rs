@@ -11,10 +11,7 @@
 
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-#[serde(tag = "model")]
-pub enum PolymorphicEvent {
-    #[serde(rename="TestEvent")]
-    TestEvent {
+pub struct TestEvent {
         /// Indicates whether event should be sent to Device on command topic
         #[serde(rename = "command", skip_serializing_if = "Option::is_none")]
         command: Option<bool>,
@@ -32,7 +29,13 @@ pub enum PolymorphicEvent {
         status: Option<crate::models::EventStatus>,
         #[serde(rename = "user")]
         user: i32,
-    },
+}
+
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(tag = "model")]
+pub enum PolymorphicEvent {
+    #[serde(rename="TestEvent")]
+    TestEvent(TestEvent),
 }
 
 

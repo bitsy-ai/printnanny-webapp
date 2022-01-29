@@ -11,10 +11,7 @@
 
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-#[serde(tag = "resourcetype")]
-pub enum TelemetryEventPolymorphicRequest {
-    #[serde(rename="OctoPrintEvent")]
-    OctoPrintEventRequest {
+pub struct OctoPrintEventRequest {
         #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
         ts: Option<f32>,
         #[serde(rename = "event_type", skip_serializing_if = "Option::is_none")]
@@ -39,9 +36,9 @@ pub enum TelemetryEventPolymorphicRequest {
         octoprint_device: i32,
         #[serde(rename = "print_session", skip_serializing_if = "Option::is_none")]
         print_session: Option<i32>,
-    },
-    #[serde(rename="PrintJobEvent")]
-    PrintJobEventRequest {
+}
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+pub struct PrintJobEventRequest {
         #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
         ts: Option<f32>,
         #[serde(rename = "event_type", skip_serializing_if = "Option::is_none")]
@@ -66,9 +63,9 @@ pub enum TelemetryEventPolymorphicRequest {
         octoprint_device: i32,
         #[serde(rename = "print_session", skip_serializing_if = "Option::is_none")]
         print_session: Option<i32>,
-    },
-    #[serde(rename="PrintNannyPluginEvent")]
-    PrintNannyPluginEventRequest {
+}
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+pub struct PrintNannyPluginEventRequest {
         #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
         ts: Option<f32>,
         #[serde(rename = "event_type", skip_serializing_if = "Option::is_none")]
@@ -93,9 +90,9 @@ pub enum TelemetryEventPolymorphicRequest {
         octoprint_device: i32,
         #[serde(rename = "print_session", skip_serializing_if = "Option::is_none")]
         print_session: Option<i32>,
-    },
-    #[serde(rename="PrinterEvent")]
-    PrinterEventRequest {
+}
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+pub struct PrinterEventRequest {
         #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
         ts: Option<f32>,
         #[serde(rename = "event_type", skip_serializing_if = "Option::is_none")]
@@ -122,9 +119,9 @@ pub enum TelemetryEventPolymorphicRequest {
         octoprint_device: i32,
         #[serde(rename = "print_session", skip_serializing_if = "Option::is_none")]
         print_session: Option<i32>,
-    },
-    #[serde(rename="RemoteCommandEvent")]
-    RemoteCommandEventRequest {
+}
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+pub struct RemoteCommandEventRequest {
         #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
         ts: Option<f32>,
         #[serde(rename = "event_type", skip_serializing_if = "Option::is_none")]
@@ -149,9 +146,9 @@ pub enum TelemetryEventPolymorphicRequest {
         octoprint_device: i32,
         #[serde(rename = "print_session", skip_serializing_if = "Option::is_none")]
         print_session: Option<i32>,
-    },
-    #[serde(rename="TelemetryEvent")]
-    TelemetryEventRequest {
+}
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+pub struct TelemetryEventRequest {
         #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
         ts: Option<f32>,
         #[serde(rename = "event_type", skip_serializing_if = "Option::is_none")]
@@ -176,7 +173,23 @@ pub enum TelemetryEventPolymorphicRequest {
         octoprint_device: i32,
         #[serde(rename = "print_session", skip_serializing_if = "Option::is_none")]
         print_session: Option<i32>,
-    },
+}
+
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(tag = "resourcetype")]
+pub enum TelemetryEventPolymorphicRequest {
+    #[serde(rename="OctoPrintEvent")]
+    OctoPrintEventRequest(OctoPrintEventRequest),
+    #[serde(rename="PrintJobEvent")]
+    PrintJobEventRequest(PrintJobEventRequest),
+    #[serde(rename="PrintNannyPluginEvent")]
+    PrintNannyPluginEventRequest(PrintNannyPluginEventRequest),
+    #[serde(rename="PrinterEvent")]
+    PrinterEventRequest(PrinterEventRequest),
+    #[serde(rename="RemoteCommandEvent")]
+    RemoteCommandEventRequest(RemoteCommandEventRequest),
+    #[serde(rename="TelemetryEvent")]
+    TelemetryEventRequest(TelemetryEventRequest),
 }
 
 
