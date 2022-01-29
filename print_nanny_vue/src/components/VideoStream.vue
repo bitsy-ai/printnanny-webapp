@@ -34,7 +34,6 @@ export default {
   },
   async created () {
     await this.getDevice(this.deviceId)
-    await this.getJanusAuth(this.deviceId)
     if (this.device.monitoring_active) {
       await this.connectStream()
     }

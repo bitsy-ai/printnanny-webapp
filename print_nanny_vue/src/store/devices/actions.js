@@ -10,13 +10,8 @@ export const START_MONITORING = 'start_monitoring'
 export const STOP_MONITORING = 'stop_monitoring'
 
 export default {
-  async [GET_JANUS_AUTH] ({ commit, state, dispatch }, deviceId) {
-    const res = await api.getJanusAuth(deviceId)
-    commit(SET_JANUS_AUTH, res)
-  },
   async [GET_DEVICE] ({ commit, state, dispatch }, deviceId) {
     const res = await api.getDevice(deviceId)
-    debugger
     commit(SET_DEVICE_DATA, res)
   },
   async [START_MONITORING] ({ commit, state, dispatch }, device) {
