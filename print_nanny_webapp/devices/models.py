@@ -72,7 +72,7 @@ class Device(SafeDeleteModel):
 
     @property
     def janus_auth(self):
-        return self.janus_auth.first()
+        return self.janus_auths.first()
 
     @property
     def last_task(self):
