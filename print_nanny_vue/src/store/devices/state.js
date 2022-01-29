@@ -1,4 +1,6 @@
-export const DEVICES = 'devices'
+export const DEVICE = 'device'
+export const JANUS_AUTH = 'janus_auth'
 export default {
-  [DEVICES]: {}
+  [DEVICE]: {},
+  [JANUS_AUTH]: {}
 }

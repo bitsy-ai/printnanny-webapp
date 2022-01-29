@@ -11,6 +11,12 @@ const configuration = new api.Configuration({
 })
 
 export default {
+  async getDevice(deviceId: number) {
+    const thisapi = api.DevicesApiFactory(configuration)
+    const res = await thisapi.devicesRetrieve(deviceId)
+    console.log("Received api response to get device", res)
+    return res.data
+  },
   async createTestEvent(deviceId: number, eventType: TestEventType) {
     const thisapi = api.DevicesApiFactory(configuration)
     const req: api.TestEventRequest = {
