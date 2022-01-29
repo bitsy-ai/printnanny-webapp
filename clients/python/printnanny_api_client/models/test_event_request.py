@@ -37,59 +37,64 @@ class TestEventRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'model': 'EventModel',
+        'command': 'bool',
         'event_type': 'TestEventType',
-        'status': 'EventStatus',
-        'source': 'EventSource'
+        'model': 'EventModel',
+        'source': 'EventSource',
+        'status': 'EventStatus'
     }
 
     attribute_map = {
-        'model': 'model',
+        'command': 'command',
         'event_type': 'event_type',
-        'status': 'status',
-        'source': 'source'
+        'model': 'model',
+        'source': 'source',
+        'status': 'status'
     }
 
-    def __init__(self, model=None, event_type=None, status=None, source=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, command=None, event_type=None, model=None, source=None, status=None, local_vars_configuration=None):  # noqa: E501
         """TestEventRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
-        self._model = None
+        self._command = None
         self._event_type = None
-        self._status = None
+        self._model = None
         self._source = None
+        self._status = None
         self.discriminator = None
 
-        self.model = model
+        if command is not None:
+            self.command = command
         self.event_type = event_type
+        self.model = model
+        self.source = source
         if status is not None:
             self.status = status
-        self.source = source
 
     @property
-    def model(self):
-        """Gets the model of this TestEventRequest.  # noqa: E501
+    def command(self):
+        """Gets the command of this TestEventRequest.  # noqa: E501
 
+        Indicates whether event should be sent to Device on command topic  # noqa: E501
 
-        :return: The model of this TestEventRequest.  # noqa: E501
-        :rtype: EventModel
+        :return: The command of this TestEventRequest.  # noqa: E501
+        :rtype: bool
         """
-        return self._model
+        return self._command
 
-    @model.setter
-    def model(self, model):
-        """Sets the model of this TestEventRequest.
+    @command.setter
+    def command(self, command):
+        """Sets the command of this TestEventRequest.
 
+        Indicates whether event should be sent to Device on command topic  # noqa: E501
 
-        :param model: The model of this TestEventRequest.  # noqa: E501
-        :type model: EventModel
+        :param command: The command of this TestEventRequest.  # noqa: E501
+        :type command: bool
         """
-        if self.local_vars_configuration.client_side_validation and model is None:  # noqa: E501
-            raise ValueError("Invalid value for `model`, must not be `None`")  # noqa: E501
 
-        self._model = model
+        self._command = command
 
     @property
     def event_type(self):
@@ -115,25 +120,27 @@ class TestEventRequest(object):
         self._event_type = event_type
 
     @property
-    def status(self):
-        """Gets the status of this TestEventRequest.  # noqa: E501
+    def model(self):
+        """Gets the model of this TestEventRequest.  # noqa: E501
 
 
-        :return: The status of this TestEventRequest.  # noqa: E501
-        :rtype: EventStatus
+        :return: The model of this TestEventRequest.  # noqa: E501
+        :rtype: EventModel
         """
-        return self._status
+        return self._model
 
-    @status.setter
-    def status(self, status):
-        """Sets the status of this TestEventRequest.
+    @model.setter
+    def model(self, model):
+        """Sets the model of this TestEventRequest.
 
 
-        :param status: The status of this TestEventRequest.  # noqa: E501
-        :type status: EventStatus
+        :param model: The model of this TestEventRequest.  # noqa: E501
+        :type model: EventModel
         """
+        if self.local_vars_configuration.client_side_validation and model is None:  # noqa: E501
+            raise ValueError("Invalid value for `model`, must not be `None`")  # noqa: E501
 
-        self._status = status
+        self._model = model
 
     @property
     def source(self):
@@ -157,6 +164,27 @@ class TestEventRequest(object):
             raise ValueError("Invalid value for `source`, must not be `None`")  # noqa: E501
 
         self._source = source
+
+    @property
+    def status(self):
+        """Gets the status of this TestEventRequest.  # noqa: E501
+
+
+        :return: The status of this TestEventRequest.  # noqa: E501
+        :rtype: EventStatus
+        """
+        return self._status
+
+    @status.setter
+    def status(self, status):
+        """Sets the status of this TestEventRequest.
+
+
+        :param status: The status of this TestEventRequest.  # noqa: E501
+        :type status: EventStatus
+        """
+
+        self._status = status
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

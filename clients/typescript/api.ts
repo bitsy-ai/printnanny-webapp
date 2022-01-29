@@ -6665,11 +6665,11 @@ export interface TelemetryEventRequest {
  */
 export interface TestEvent {
     /**
-     * 
-     * @type {number}
+     * Indicates whether event should be sent to Device on command topic
+     * @type {boolean}
      * @memberof TestEvent
      */
-    'id': number;
+    'command'?: boolean;
     /**
      * 
      * @type {string}
@@ -6678,10 +6678,10 @@ export interface TestEvent {
     'created_dt': string;
     /**
      * 
-     * @type {EventModel}
+     * @type {number}
      * @memberof TestEvent
      */
-    'model': EventModel;
+    'device': number;
     /**
      * 
      * @type {TestEventType}
@@ -6690,10 +6690,16 @@ export interface TestEvent {
     'event_type': TestEventType;
     /**
      * 
-     * @type {EventStatus}
+     * @type {number}
      * @memberof TestEvent
      */
-    'status'?: EventStatus;
+    'id': number;
+    /**
+     * 
+     * @type {EventModel}
+     * @memberof TestEvent
+     */
+    'model': EventModel;
     /**
      * 
      * @type {EventSource}
@@ -6702,16 +6708,16 @@ export interface TestEvent {
     'source': EventSource;
     /**
      * 
-     * @type {number}
+     * @type {EventStatus}
      * @memberof TestEvent
      */
-    'user': number;
+    'status'?: EventStatus;
     /**
      * 
      * @type {number}
      * @memberof TestEvent
      */
-    'device': number;
+    'user': number;
 }
 /**
  * 
@@ -6720,11 +6726,11 @@ export interface TestEvent {
  */
 export interface TestEventRequest {
     /**
-     * 
-     * @type {EventModel}
+     * Indicates whether event should be sent to Device on command topic
+     * @type {boolean}
      * @memberof TestEventRequest
      */
-    'model': EventModel;
+    'command'?: boolean;
     /**
      * 
      * @type {TestEventType}
@@ -6733,16 +6739,22 @@ export interface TestEventRequest {
     'event_type': TestEventType;
     /**
      * 
-     * @type {EventStatus}
+     * @type {EventModel}
      * @memberof TestEventRequest
      */
-    'status'?: EventStatus;
+    'model': EventModel;
     /**
      * 
      * @type {EventSource}
      * @memberof TestEventRequest
      */
     'source': EventSource;
+    /**
+     * 
+     * @type {EventStatus}
+     * @memberof TestEventRequest
+     */
+    'status'?: EventStatus;
 }
 /**
  * 

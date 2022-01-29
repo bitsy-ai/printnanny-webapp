@@ -13,23 +13,27 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct TestEventRequest {
-    #[serde(rename = "model")]
-    pub model: crate::models::EventModel,
+    /// Indicates whether event should be sent to Device on command topic
+    #[serde(rename = "command", skip_serializing_if = "Option::is_none")]
+    pub command: Option<bool>,
     #[serde(rename = "event_type")]
     pub event_type: crate::models::TestEventType,
-    #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
-    pub status: Option<crate::models::EventStatus>,
+    #[serde(rename = "model")]
+    pub model: crate::models::EventModel,
     #[serde(rename = "source")]
     pub source: crate::models::EventSource,
+    #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
+    pub status: Option<crate::models::EventStatus>,
 }
 
 impl TestEventRequest {
-    pub fn new(model: crate::models::EventModel, event_type: crate::models::TestEventType, source: crate::models::EventSource) -> TestEventRequest {
+    pub fn new(event_type: crate::models::TestEventType, model: crate::models::EventModel, source: crate::models::EventSource) -> TestEventRequest {
         TestEventRequest {
-            model,
+            command: None,
             event_type,
-            status: None,
+            model,
             source,
+            status: None,
         }
     }
 }

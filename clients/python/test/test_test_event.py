@@ -37,24 +37,25 @@ class TestTestEvent(unittest.TestCase):
         # model = printnanny_api_client.models.test_event.TestEvent()  # noqa: E501
         if include_optional :
             return TestEvent(
-                id = 56, 
+                command = True, 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                model = 'TestEvent', 
+                device = 56, 
                 event_type = 'mqtt_ping', 
-                status = 'sent', 
+                id = 56, 
+                model = 'TestEvent', 
                 source = 'octoprint', 
-                user = 56, 
-                device = 56
+                status = 'sent', 
+                user = 56
             )
         else :
             return TestEvent(
-                id = 56,
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                model = 'TestEvent',
+                device = 56,
                 event_type = 'mqtt_ping',
+                id = 56,
+                model = 'TestEvent',
                 source = 'octoprint',
                 user = 56,
-                device = 56,
         )
 
     def testTestEvent(self):
