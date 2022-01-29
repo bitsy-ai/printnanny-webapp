@@ -137,6 +137,8 @@ class PublicKeySerializer(serializers.ModelSerializer):
 
 
 class JanusAuthSerializer(serializers.ModelSerializer):
+    device = serializers.PrimaryKeyRelatedField(read_only=True)
+
     class Meta:
         model = JanusAuth
         exclude = ("deleted",)
@@ -165,6 +167,7 @@ class DeviceSerializer(serializers.ModelSerializer):
     cameras = CameraSerializer(read_only=True, many=True)
     cloudiot_device = CloudiotDeviceSerializer(read_only=True)
     dashboard_url = serializers.CharField(read_only=True)
+    janus_auth = JanusAuthSerializer(read_only=True)
     janus_local_url = serializers.CharField(read_only=True)
     last_task = TaskSerializer(read_only=True)
     monitoring_active = serializers.BooleanField(default=False)
