@@ -17,7 +17,8 @@ export default {
       event_type: api.TestEventType.Ping,
       status: api.EventStatus.Sent,
       source: api.EventSource.Printnanny,
-      model: api.EventModel.TestEvent
+      model: api.EventModel.TestEvent,
+      // command: true
     }
     const res = await thisapi.devicesEventsCreate(
       deviceId,

@@ -11,7 +11,7 @@ DeviceEvent = apps.get_model("events", "DeviceEvent")
 logger = logging.getLogger(__name__)
 
 
-def publish_cloudiot_event(event: DeviceEvent):
+def publish_cloudiot_command(event: DeviceEvent):
     device: Device = event.device
     serializer = PolymorphicEventSerializer(instance=event)
     data_b = JSONRenderer().render(serializer.data).decode("utf-8")
@@ -19,7 +19,8 @@ def publish_cloudiot_event(event: DeviceEvent):
         {
             "name": device.cloudiot.gcp_resource,
             "binary_data": data_b,
-            "subfolder": device.cloudiot.event_topic,
+            # NOTE "subfolder" may be added to publish to a subfolder
+            # "subfolder": device.cloudiot.event_topic,
         }
     )
 

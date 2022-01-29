@@ -29,14 +29,15 @@ class TestEventSerializer(EventSerializer):
         fields = "__all__"
         read_only_fields = ("user", "device", "created_dt")
         fields = (
-            "id",
+            "command",
             "created_dt",
-            "model",
-            "event_type",
-            "status",
-            "source",
-            "user",
             "device",
+            "event_type",
+            "id",
+            "model",
+            "source",
+            "status",
+            "user",
         )
 
 
@@ -49,7 +50,9 @@ class PolymorphicEventSerializer(PolymorphicSerializer):
     resourcetype_map = {v: TestEvent._meta.object_name for v in TestEventType.values}
 
     def _get_resource_type_from_mapping(self, mapping):
-        logger.info(f"Got mapping={mapping} resourcetype_map={self.resourcetype_map}")
+        logger.debug(
+            f"Got PolymorphicEventSerializer mapping={mapping} resourcetype_map={self.resourcetype_map}"
+        )
         try:
             return mapping[self.resource_type_field_name]
         except KeyError:

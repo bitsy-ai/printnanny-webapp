@@ -100,7 +100,7 @@ class Device(SafeDeleteModel):
 
     @property
     def cloudiot(self):
-        return self.device.cloudiot_device
+        return self.cloudiot_device
 
     @property
     def html_id(self) -> str:
@@ -275,7 +275,7 @@ class CloudiotDevice(SafeDeleteModel):
         return self.client.device_path(
             settings.GCP_PROJECT_ID,
             settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
-            settings.GCP_CLOUD_IOT_OCTOPRINT_DEVICE_REGISTRY,
+            settings.GCP_CLOUD_IOT_STANDALONE_DEVICE_REGISTRY,
             self.num_id,
         )
 
