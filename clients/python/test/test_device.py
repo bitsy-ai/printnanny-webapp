@@ -72,6 +72,7 @@ class TestDevice(unittest.TestCase):
                     ], 
                 cloudiot_device = None, 
                 dashboard_url = '', 
+                janus_auth = None, 
                 janus_local_url = '', 
                 last_task = None, 
                 monitoring_active = True, 
@@ -130,6 +131,7 @@ class TestDevice(unittest.TestCase):
                     ],
                 cloudiot_device = None,
                 dashboard_url = '',
+                janus_auth = None,
                 janus_local_url = '',
                 last_task = None,
                 printer_controllers = [

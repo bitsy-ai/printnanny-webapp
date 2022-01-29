@@ -587,6 +587,12 @@ export interface Device {
     'dashboard_url': string;
     /**
      * 
+     * @type {JanusAuth}
+     * @memberof Device
+     */
+    'janus_auth': JanusAuth;
+    /**
+     * 
      * @type {string}
      * @memberof Device
      */

@@ -43,6 +43,7 @@ class Device(object):
         'cameras': 'list[Camera]',
         'cloudiot_device': 'CloudiotDevice',
         'dashboard_url': 'str',
+        'janus_auth': 'JanusAuth',
         'janus_local_url': 'str',
         'last_task': 'Task',
         'monitoring_active': 'bool',
@@ -63,6 +64,7 @@ class Device(object):
         'cameras': 'cameras',
         'cloudiot_device': 'cloudiot_device',
         'dashboard_url': 'dashboard_url',
+        'janus_auth': 'janus_auth',
         'janus_local_url': 'janus_local_url',
         'last_task': 'last_task',
         'monitoring_active': 'monitoring_active',
@@ -76,7 +78,7 @@ class Device(object):
         'hostname': 'hostname'
     }
 
-    def __init__(self, id=None, active_cameras=None, active_tasks=None, cameras=None, cloudiot_device=None, dashboard_url=None, janus_local_url=None, last_task=None, monitoring_active=False, printer_controllers=None, user=None, release_channel=None, system_info=None, public_key=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, active_cameras=None, active_tasks=None, cameras=None, cloudiot_device=None, dashboard_url=None, janus_auth=None, janus_local_url=None, last_task=None, monitoring_active=False, printer_controllers=None, user=None, release_channel=None, system_info=None, public_key=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -88,6 +90,7 @@ class Device(object):
         self._cameras = None
         self._cloudiot_device = None
         self._dashboard_url = None
+        self._janus_auth = None
         self._janus_local_url = None
         self._last_task = None
         self._monitoring_active = None
@@ -107,6 +110,7 @@ class Device(object):
         self.cameras = cameras
         self.cloudiot_device = cloudiot_device
         self.dashboard_url = dashboard_url
+        self.janus_auth = janus_auth
         self.janus_local_url = janus_local_url
         self.last_task = last_task
         if monitoring_active is not None:
@@ -256,6 +260,27 @@ class Device(object):
             raise ValueError("Invalid value for `dashboard_url`, must not be `None`")  # noqa: E501
 
         self._dashboard_url = dashboard_url
+
+    @property
+    def janus_auth(self):
+        """Gets the janus_auth of this Device.  # noqa: E501
+
+
+        :return: The janus_auth of this Device.  # noqa: E501
+        :rtype: JanusAuth
+        """
+        return self._janus_auth
+
+    @janus_auth.setter
+    def janus_auth(self, janus_auth):
+        """Sets the janus_auth of this Device.
+
+
+        :param janus_auth: The janus_auth of this Device.  # noqa: E501
+        :type janus_auth: JanusAuth
+        """
+
+        self._janus_auth = janus_auth
 
     @property
     def janus_local_url(self):

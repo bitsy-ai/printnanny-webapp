@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **cameras** | [**list[Camera]**](Camera.md) |  | [readonly] 
 **cloudiot_device** | [**CloudiotDevice**](CloudiotDevice.md) |  | [readonly] 
 **dashboard_url** | **str** |  | [readonly] 
+**janus_auth** | [**JanusAuth**](JanusAuth.md) |  | [readonly] 
 **janus_local_url** | **str** |  | [readonly] 
 **last_task** | [**Task**](Task.md) |  | [readonly] 
 **monitoring_active** | **bool** |  | [optional] [default to False]
