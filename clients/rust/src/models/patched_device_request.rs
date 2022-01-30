@@ -15,6 +15,8 @@
 pub struct PatchedDeviceRequest {
     #[serde(rename = "monitoring_active", skip_serializing_if = "Option::is_none")]
     pub monitoring_active: Option<bool>,
+    #[serde(rename = "setup_complete", skip_serializing_if = "Option::is_none")]
+    pub setup_complete: Option<bool>,
     #[serde(rename = "release_channel", skip_serializing_if = "Option::is_none")]
     pub release_channel: Option<Box<crate::models::ReleaseChannelEnum>>,
     /// Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension)
@@ -26,6 +28,7 @@ impl PatchedDeviceRequest {
     pub fn new() -> PatchedDeviceRequest {
         PatchedDeviceRequest {
             monitoring_active: None,
+            setup_complete: None,
             release_channel: None,
             hostname: None,
         }

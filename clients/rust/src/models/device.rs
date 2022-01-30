@@ -33,6 +33,8 @@ pub struct Device {
     pub last_task: Option<Box<crate::models::Task>>,
     #[serde(rename = "monitoring_active", skip_serializing_if = "Option::is_none")]
     pub monitoring_active: Option<bool>,
+    #[serde(rename = "setup_complete", skip_serializing_if = "Option::is_none")]
+    pub setup_complete: Option<bool>,
     #[serde(rename = "printer_controllers")]
     pub printer_controllers: Vec<crate::models::PrinterController>,
     #[serde(rename = "user")]
@@ -65,6 +67,7 @@ impl Device {
             janus_local_url,
             last_task: last_task.map(Box::new),
             monitoring_active: None,
+            setup_complete: None,
             printer_controllers,
             user: user.map(Box::new),
             release_channel: None,

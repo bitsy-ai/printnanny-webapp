@@ -611,6 +611,12 @@ export interface Device {
     'monitoring_active'?: boolean;
     /**
      * 
+     * @type {boolean}
+     * @memberof Device
+     */
+    'setup_complete'?: boolean;
+    /**
+     * 
      * @type {Array<PrinterController>}
      * @memberof Device
      */
@@ -768,6 +774,12 @@ export interface DeviceRequest {
      * @memberof DeviceRequest
      */
     'monitoring_active'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DeviceRequest
+     */
+    'setup_complete'?: boolean;
     /**
      * 
      * @type {ReleaseChannelEnum}
@@ -3967,6 +3979,12 @@ export interface PatchedDeviceRequest {
      * @memberof PatchedDeviceRequest
      */
     'monitoring_active'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedDeviceRequest
+     */
+    'setup_complete'?: boolean;
     /**
      * 
      * @type {ReleaseChannelEnum}

@@ -47,6 +47,7 @@ class Device(object):
         'janus_local_url': 'str',
         'last_task': 'Task',
         'monitoring_active': 'bool',
+        'setup_complete': 'bool',
         'printer_controllers': 'list[PrinterController]',
         'user': 'User',
         'release_channel': 'ReleaseChannelEnum',
@@ -68,6 +69,7 @@ class Device(object):
         'janus_local_url': 'janus_local_url',
         'last_task': 'last_task',
         'monitoring_active': 'monitoring_active',
+        'setup_complete': 'setup_complete',
         'printer_controllers': 'printer_controllers',
         'user': 'user',
         'release_channel': 'release_channel',
@@ -78,7 +80,7 @@ class Device(object):
         'hostname': 'hostname'
     }
 
-    def __init__(self, id=None, active_cameras=None, active_tasks=None, cameras=None, cloudiot_device=None, dashboard_url=None, janus_auth=None, janus_local_url=None, last_task=None, monitoring_active=False, printer_controllers=None, user=None, release_channel=None, system_info=None, public_key=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, active_cameras=None, active_tasks=None, cameras=None, cloudiot_device=None, dashboard_url=None, janus_auth=None, janus_local_url=None, last_task=None, monitoring_active=False, setup_complete=False, printer_controllers=None, user=None, release_channel=None, system_info=None, public_key=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -94,6 +96,7 @@ class Device(object):
         self._janus_local_url = None
         self._last_task = None
         self._monitoring_active = None
+        self._setup_complete = None
         self._printer_controllers = None
         self._user = None
         self._release_channel = None
@@ -115,6 +118,8 @@ class Device(object):
         self.last_task = last_task
         if monitoring_active is not None:
             self.monitoring_active = monitoring_active
+        if setup_complete is not None:
+            self.setup_complete = setup_complete
         self.printer_controllers = printer_controllers
         self.user = user
         self.release_channel = release_channel
@@ -346,6 +351,27 @@ class Device(object):
         """
 
         self._monitoring_active = monitoring_active
+
+    @property
+    def setup_complete(self):
+        """Gets the setup_complete of this Device.  # noqa: E501
+
+
+        :return: The setup_complete of this Device.  # noqa: E501
+        :rtype: bool
+        """
+        return self._setup_complete
+
+    @setup_complete.setter
+    def setup_complete(self, setup_complete):
+        """Sets the setup_complete of this Device.
+
+
+        :param setup_complete: The setup_complete of this Device.  # noqa: E501
+        :type setup_complete: bool
+        """
+
+        self._setup_complete = setup_complete
 
     @property
     def printer_controllers(self):

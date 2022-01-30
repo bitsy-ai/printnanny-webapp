@@ -38,6 +38,7 @@ class TestDeviceRequest(unittest.TestCase):
         if include_optional :
             return DeviceRequest(
                 monitoring_active = True, 
+                setup_complete = True, 
                 release_channel = None, 
                 hostname = '0'
             )

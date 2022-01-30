@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **janus_local_url** | **String** |  | [readonly]
 **last_task** | Option<[**crate::models::Task**](Task.md)> |  | [readonly]
 **monitoring_active** | Option<**bool**> |  | [optional][default to false]
+**setup_complete** | Option<**bool**> |  | [optional][default to false]
 **printer_controllers** | [**Vec<crate::models::PrinterController>**](PrinterController.md) |  | [readonly]
 **user** | Option<[**crate::models::User**](User.md)> |  | [readonly]
 **release_channel** | Option<[**crate::models::ReleaseChannelEnum**](ReleaseChannelEnum.md)> |  | [optional]

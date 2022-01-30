@@ -38,6 +38,7 @@ class TestPatchedDeviceRequest(unittest.TestCase):
         if include_optional :
             return PatchedDeviceRequest(
                 monitoring_active = True, 
+                setup_complete = True, 
                 release_channel = None, 
                 hostname = '0'
             )

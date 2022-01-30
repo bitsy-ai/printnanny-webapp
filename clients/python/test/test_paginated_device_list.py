@@ -81,6 +81,7 @@ class TestPaginatedDeviceList(unittest.TestCase):
                         janus_local_url = '', 
                         last_task = null, 
                         monitoring_active = True, 
+                        setup_complete = True, 
                         printer_controllers = [
                             printnanny_api_client.models.printer_controller.PrinterController(
                                 id = 56, 

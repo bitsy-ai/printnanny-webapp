@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **janus_local_url** | **str** |  | [readonly] 
 **last_task** | [**Task**](Task.md) |  | [readonly] 
 **monitoring_active** | **bool** |  | [optional] [default to False]
+**setup_complete** | **bool** |  | [optional] [default to False]
 **printer_controllers** | [**list[PrinterController]**](PrinterController.md) |  | [readonly] 
 **user** | [**User**](User.md) |  | [readonly] 
 **release_channel** | [**ReleaseChannelEnum**](ReleaseChannelEnum.md) |  | [optional] 
