@@ -31,6 +31,7 @@ User = get_user_model()
 Alert = apps.get_model("alerts", "AlertMessage")
 GeeksToken = apps.get_model("partners", "GeeksToken")
 
+Devices = apps.get_model("devices", "Device")
 OctoPrintBackups = apps.get_model("octoprint", "OctoPrintBackup")
 UserSettings = apps.get_model("users", "UserSettings")
 OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
@@ -62,8 +63,10 @@ class HomeDashboardView(DashboardView):
         # logger.info(context)
         token, created = Token.objects.get_or_create(user=self.request.user)
         octoprint_backups = OctoPrintBackups.objects.filter(user=self.request.user)[:10]
+        devices = Devices.objects.filter(user=self.request.user)
         context["user"].token = token
         context["octoprint_backups"] = octoprint_backups
+        context["devices"] = devices
 
         return context
 

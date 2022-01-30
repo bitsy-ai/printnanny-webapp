@@ -1,0 +1,57 @@
+{% load humanize %}
+<div class="row">
+    <div class="col-12 d-flex align-items-stretch">
+        <div class="card col-12">
+            <div class="card-body">
+                <h4 class="header-title">
+                    <i class="mdi mdi-printer-3d"></i> Print Nanny OS Connections
+                </h4>
+                {% if devices.count > 0 %}
+                <table class="table table-centered mb-0" id="dashboard-octoprint-devices">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Monitoring Active</th>
+
+                            <th>Manage</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for device in devices %}
+                        <tr>
+                            <td><span class="badge badge-light">{{device.hostname}}</span></td>
+
+                            <td><i class="mdi mdi-circle {{device.monitoring_active_css_class}}"></i>
+                                {{device.monitoring_active}}</td>
+
+
+                            <td><a href="{% url 'devices:detail' pk=device.id %}"><button
+                                        class="btn btn-primary btn-sm">View Details</button></a>
+                                <a href="{% url 'devices:detail' pk=device.id %}"><button
+                                        class="btn btn-success btn-sm ml-1">Open OctoPrint</button></a>
+                                <a href="{% url 'devices:delete' pk=device.id %}"><button
+                                        class="btn btn-danger btn-sm ml-1">Delete</button></a>
+                            </td>
+
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+
+                {% else %}
+                <div class="row">
+                    <div class="alert alert-warning mb-0" role="alert">
+                        <h4 class="alert-heading">No Devices Found</h4>
+                        <p class="mb-0"><a class="btn btn-primary" href="{% url 'devices:welcome' %}">Get Started
+                                with Print Nanny OS</a></p>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+</div>

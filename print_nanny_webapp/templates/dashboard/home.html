@@ -6,61 +6,61 @@
 {% block content %}
 <div class="container-fluid">
 
-{% if user == request.user %}
-<div class="row mt-3">
-  <div class="col-12 col-lg-6 d-flex align-items-stretch">
-    <div class="card col-12">
-      <div class="card-body">
+  <div class="row mt-3">
+    <div class="col-12 col-lg-6 d-flex align-items-stretch">
+      <div class="card col-12">
+        <div class="card-body">
           <h2 class="header-title">
             Recent Alerts
           </h2>
-            <p class="text-muted font-14">
-              Sending email notifications to <strong>{{ user.email }}</strong>.
-            </p>
+          <p class="text-muted font-14">
+            Sending email notifications to <strong>{{ user.email }}</strong>.
+          </p>
 
           {% if recent_alerts.count == 0 %}
-            <p class="font-14">
-              You're all caught up! Unread alerts will appear here.
-            </p>          
+          <p class="font-14">
+            You're all caught up! Unread alerts will appear here.
+          </p>
           {% endif %}
+        </div>
       </div>
     </div>
-  </div>
-  <div class="col-12 col-lg-6 d-flex align-items-stretch">
-    <div class="card col-12">
-      <div class="card-body">
-        <h2 class="header-title">Authentication Info</h2>
+    <div class="col-12 col-lg-6 d-flex align-items-stretch">
+      <div class="card col-12">
+        <div class="card-body">
+          <h2 class="header-title">Authentication Info</h2>
 
-        <form>
-          <label class="my-1 mr-2" for="token">API Token</label>
-          <p class="text-muted font-14">
-            Your API token is used to connect OctoPrint to Print Nanny. Treat this token like a password; do not share or publish it online. 
-          </p>
+          <form>
+            <label class="my-1 mr-2" for="token">API Token</label>
+            <p class="text-muted font-14">
+              Your API token is used to connect OctoPrint to Print Nanny. Treat this token like a password; do not share
+              or publish it online.
+            </p>
             <div class="input-group">
-              <input id="token" type="password" class="form-control"
-                  value="{{ user.token }}" id="copy-input" readonly>
+              <input id="token" type="password" class="form-control" value="{{ user.token }}" id="copy-input" readonly>
               <div id="show-token" class="input-group-append" data-password="false">
-              <div class="input-group-text">
+                <div class="input-group-text">
                   <span class="password-eye"></span>
-              </div>
+                </div>
               </div>
             </div>
-        </form>
+          </form>
 
-        <h2 class="header-title mt-3">Other Settings</h2>
+          <h2 class="header-title mt-3">Other Settings</h2>
 
-        <a href="{% url 'alerts:settings' %} ">
-          <button class="btn btn-primary">Notification Settings</button> 
-        </a>
+          <a href="{% url 'alerts:settings' %} ">
+            <button class="btn btn-primary">Notification Settings</button>
+          </a>
+        </div>
       </div>
-    </div> 
-  </div>
+    </div>
 
-</div>
-{% include "partials/octoprint-devices-short-list.html" %}
-<!-- End Action buttons -->
-{% endif %}
-{% include "partials/octoprint-devices-backup.html" %}
+  </div>
+  {% include "device-table.html" %}
+  <hr>
+  {% include "partials/octoprint-devices-short-list.html" %}
+  <!-- End Action buttons -->
+  {% include "partials/octoprint-devices-backup.html" %}
 </div>
 
 <!-- plugin js -->
