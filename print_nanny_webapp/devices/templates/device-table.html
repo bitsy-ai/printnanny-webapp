@@ -27,12 +27,19 @@
                                 {{device.monitoring_active}}</td>
 
 
-                            <td><a href="{% url 'devices:detail' pk=device.id %}"><button
+                            <td>
+                                {% if device.setup_complete %}
+                                <a href="{% url 'devices:detail' pk=device.id %}"><button
                                         class="btn btn-primary btn-sm">View Details</button></a>
                                 <a href="{% url 'devices:detail' pk=device.id %}"><button
                                         class="btn btn-success btn-sm ml-1">Open OctoPrint</button></a>
+                                {% else %}
+                                <a href="{% url 'devices:welcome-detail' pk=device.id %}"><button
+                                        class="btn btn-primary btn-sm">Finish Setup</button></a>
+                                {% endif %}
                                 <a href="{% url 'devices:delete' pk=device.id %}"><button
                                         class="btn btn-danger btn-sm ml-1">Delete</button></a>
+
                             </td>
 
                         </tr>
