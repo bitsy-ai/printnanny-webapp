@@ -169,6 +169,7 @@ class DeviceSerializer(serializers.ModelSerializer):
     janus_local_url = serializers.CharField(read_only=True)
     last_task = TaskSerializer(read_only=True)
     monitoring_active = serializers.BooleanField(default=False)
+    setup_complete = serializers.BooleanField(default=False)
     printer_controllers = PrinterControllerSerializer(read_only=True, many=True)
     user = UserSerializer(read_only=True)
 
