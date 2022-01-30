@@ -49,6 +49,7 @@ class Device(SafeDeleteModel):
         ]
 
     monitoring_active = models.BooleanField(default=False)
+    setup_complete = models.BooleanField(default=False)
     created_dt = models.DateTimeField(auto_now_add=True)
     updated_dt = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(
