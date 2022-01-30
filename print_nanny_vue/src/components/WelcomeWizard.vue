@@ -6,10 +6,10 @@ import {
   WIZARD_MODULE
 } from '@/store/wizard'
 import NetworkScanner from '@/components/NetworkScanner'
-// import MqttPingPong from '@/components/MqttPingPong'
+import VideoStream from '@/components/VideoStream'
 import { FormWizard, TabContent, WizardButton } from 'vue-form-wizard'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
-import MqttPingPong from './MqttPingPong.vue'
+// import MqttPingPong from "./MqttPingPong.vue";
 
 export default {
   components: {
@@ -17,7 +17,8 @@ export default {
     TabContent,
     NetworkScanner,
     WizardButton,
-    MqttPingPong
+    // MqttPingPong,
+    VideoStream
   },
   props: {
     deviceId: String,
@@ -41,7 +42,6 @@ export default {
     },
     ...mapState(WIZARD_MODULE, {
       scanResult: DEVICE_SCAN_RESULT
-
     })
   },
   methods: {
@@ -148,8 +148,10 @@ export default {
       <tab-content title="Link Raspberry Pi" icon="">
         <network-scanner> </network-scanner>
       </tab-content>
-      <tab-content title="Test Connections" icon="">
-        <mqtt-ping-pong :device-id="deviceId" :hostname="hostname"> </mqtt-ping-pong>
+      <tab-content title="Check Video" icon="">
+        <video-stream :device-id="deviceId" />
+        <!-- <mqtt-ping-pong :device-id="deviceId" :hostname="hostname">
+        </mqtt-ping-pong> -->
       </tab-content>
 
       <tab-content title="Setup Done!" icon="">

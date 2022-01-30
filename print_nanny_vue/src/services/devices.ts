@@ -11,6 +11,12 @@ const configuration = new api.Configuration({
 })
 
 export default {
+  async getDevice(deviceId: number) {
+    const thisapi = api.DevicesApiFactory(configuration)
+    const res = await thisapi.devicesRetrieve(deviceId)
+    console.log("Received api response to get device", res)
+    return res.data
+  },
   async createTestEvent(deviceId: number, eventType: TestEventType) {
     const thisapi = api.DevicesApiFactory(configuration)
     const req: api.TestEventRequest = {
@@ -24,24 +30,24 @@ export default {
       deviceId,
       req
     )
-    return res
+    return res.data
   },
-  async startMonitoring(deviceId: Number) {
+  async startMonitoring(deviceId: number) {
     const thisapi = api.DevicesApiFactory(configuration, process.env.BASE_API_URL)
-    // const req = { monitoring_active: true }
-    // const res = await thisapi.devicesPartialUpdate(
-    //   deviceId
-    //   req
-    // )
-    // return res
+    const req = { monitoring_active: true }
+    const res = await thisapi.devicesPartialUpdate(
+      deviceId,
+      req
+    )
+    return res.data
   },
-  async stopMonitoring(deviceId: Number) {
+  async stopMonitoring(deviceId: number) {
     const thisapi = api.DevicesApiFactory(configuration, process.env.BASE_API_URL)
-    // const req = { monitoring_active: false }
-    // const res = await thisapi.devicesPartialUpdate(
-    //   deviceId
-    //   req
-    // )
-    // return res
+    const req = { monitoring_active: false }
+    const res = await thisapi.devicesPartialUpdate(
+      deviceId,
+      req
+    )
+    return res.data
   },
 }

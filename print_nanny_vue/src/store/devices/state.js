@@ -1,4 +1,4 @@
-export const DEVICES = 'devices'
+export const DEVICE = 'device'
 export default {
-  [DEVICES]: {}
+  [DEVICE]: {}
 }
