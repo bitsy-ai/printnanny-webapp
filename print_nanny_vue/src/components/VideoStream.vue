@@ -126,7 +126,9 @@ export default {
 
         const streamsList = await plugin.list()
         console.log('Retreived stream list: ', streamsList)
-
+        if (streamsList._plainMessage.plugindata.data.list.length == 0) {
+          throw 'Connection to Janus Gateway succeeded, but no streams are playing. Check output of `systemctl status printnanny-gst`'
+        }
         const stream = streamsList._plainMessage.plugindata.data.list[0]
         console.log('Selected stream', stream)
 
