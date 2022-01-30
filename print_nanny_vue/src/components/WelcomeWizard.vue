@@ -1,5 +1,5 @@
 <script>
-import { mapActions, mapMutations, mapState } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 import {
   SET_DEVICE_SCAN_RESULT,
   DEVICE_SCAN_RESULT,

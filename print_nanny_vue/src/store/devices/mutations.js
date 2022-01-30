@@ -1,4 +1,4 @@
-import { DEVICE, JANUS_AUTH } from './state'
+import { DEVICE } from './state'
 
 export const SET_DEVICE_DATA = 'SET_DEVICE_DATA'
 

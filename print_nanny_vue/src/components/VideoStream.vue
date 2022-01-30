@@ -4,13 +4,10 @@ import Janus from 'janus-gateway-js'
 
 import { mapActions, mapState, mapMutations } from 'vuex'
 import TaskStatus from '@/components/TaskStatus'
-import deviceApi from '@/services/devices'
 import {
   DEVICE,
-  JANUS_AUTH,
   DEVICE_MODULE,
   GET_DEVICE,
-  GET_JANUS_AUTH,
   SET_DEVICE_DATA,
   START_MONITORING,
   STOP_MONITORING
@@ -40,8 +37,7 @@ export default {
   },
   methods: {
     ...mapActions(DEVICE_MODULE, {
-      getDevice: GET_DEVICE,
-      getJanusAuth: GET_JANUS_AUTH
+      getDevice: GET_DEVICE
     }),
     ...mapMutations(DEVICE_MODULE, [SET_DEVICE_DATA]),
     ...mapMutations(TASK_MODULE, [SET_TASK_DATA]),
@@ -57,7 +53,7 @@ export default {
       }
     },
     async resetJanus () {
-      if (this.plugin !== null) {
+      if (this.plugin) {
         await this.plugin.detach()
         console.info('Detatched plugin', this.plugin)
         await this.plugin.cleanup()
@@ -72,9 +68,11 @@ export default {
 
     async connectStream () {
       this.loading = true
-      const url = `wss://${this.device.hostname}:8989/janus`
+      const url = `ws://${this.device.hostname}:8188`
+      const janusToken = this.device.janus_auth.janus_token
+      console.log('Authenticating with janus token', janusToken)
       const janus = new Janus.Client(url, {
-        token: this.getJanusAuth.janus_token,
+        token: janusToken,
         keepalive: 'true'
       })
 
@@ -97,7 +95,7 @@ export default {
         this.plugin = plugin
 
         this.timer = setInterval(this.getVideoStats, 200)
-        const webcamStreamEl = this.webcamStreamEl
+        const videoStreamEl = this.videoStreamEl
         const videoReady = this.videoReady
         console.log('Plugin attached', plugin)
         plugin.on('message', (message, jesp) => {
@@ -105,7 +103,7 @@ export default {
         })
         plugin.on('pc:track:remote', function (event) {
           console.log('plugin.on pc:track:remote', event)
-          const video = document.getElementById(webcamStreamEl)
+          const video = document.getElementById(videoStreamEl)
           const mediaStream = event.streams[0]
           console.log(
             'Attaching stream',
@@ -120,6 +118,7 @@ export default {
             video.src = URL.createObjectURL(mediaStream)
           }
           video.onloadedmetadata = function (e) {
+            console.log('onloadedmetadata event called')
             video.play()
             return videoReady()
           }
@@ -158,11 +157,17 @@ export default {
     async startMonitoring () {
       this.loading = true
       this.error = null
-      this.$store.dispatch(`${DEVICE_MODULE}/${START_MONITORING}`, this.device)
+      this.$store.dispatch(
+        `${DEVICE_MODULE}/${START_MONITORING}`,
+        this.device.id
+      )
       await this.connectStream()
     },
     async stopMonitoring () {
-      this.$store.dispatch(`${DEVICE_MODULE}/${STOP_MONITORING}`, this.device)
+      this.$store.dispatch(
+        `${DEVICE_MODULE}/${STOP_MONITORING}`,
+        this.device.id
+      )
       await this.reset()
     },
     videoReady () {
@@ -228,11 +233,10 @@ export default {
   },
   computed: {
     ...mapState(DEVICE_MODULE, {
-      device: DEVICE,
-      janusAuth: JANUS_AUTH
+      device: DEVICE
     }),
-    webcamStreamEl: function () {
-      return `webcam-stream-${this.device.id}`
+    videoStreamEl: function () {
+      return `video-stream-${this.deviceId}`
     },
     showVideo: function () {
       return this.loading === false && this.device.monitoring_active === true
@@ -274,7 +278,7 @@ export default {
         Loading Stream
       </button>
       <button
-        v-if="device.monitoring_active && !loading"
+        v-if="device.monitoring_active"
         @click="stopMonitoring"
         class="btn btn-light btn-sm mr-2 ml-2"
       >
@@ -289,7 +293,7 @@ export default {
         <video
           v-show="showVideo"
           class="rounded centered"
-          :id="webcamStreamEl"
+          :id="videoStreamEl"
           width="100%"
           height="100%"
           playsinline
