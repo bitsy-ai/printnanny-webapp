@@ -16,15 +16,16 @@
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="{% url 'dashboard:home' %}">Home</a></li>
-                      
+
                         <li class="breadcrumb-item active">My Devices</li>
                     </ol>
                 </div>
-                <h3 class="page-title d-inline-flex">Mission Control for your Raspberry Pis and 3D Printers</h3>&nbsp;&nbsp;
+                <h3 class="page-title d-inline-flex">Mission Control for your Raspberry Pis and 3D Printers</h3>
+                &nbsp;&nbsp;
             </div>
         </div>
     </div>
-{% include "devices/devices-cards.html" %}
+    {% include "device-table.html" %}
 
 </div>
 {% endblock content %}
