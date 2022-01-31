@@ -127,7 +127,7 @@ export default {
         const streamsList = await plugin.list()
         console.log('Retreived stream list: ', streamsList)
         if (streamsList._plainMessage.plugindata.data.list.length === 0) {
-          throw Error('Connection to Janus Gateway succeeded, but no streams are playing.\n Check output of `systemctl status printnanny-gst`')
+          throw Error('Connection to Janus Gateway succeeded, but no streams are playing.\n Double-check that your camera is connected and try again. \n Check output of `systemctl status printnanny-gst` and `journalctl -u printnanny-gst` for details about this failure.')
         }
         const stream = streamsList._plainMessage.plugindata.data.list[0]
         console.log('Selected stream', stream)
