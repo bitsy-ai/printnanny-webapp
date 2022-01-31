@@ -50,4 +50,13 @@ export default {
     )
     return res.data
   },
+  async setupComplete(deviceId: number) {
+    const thisapi = api.DevicesApiFactory(configuration, process.env.BASE_API_URL)
+    const req = { setup_complete: true }
+    const res = await thisapi.devicesPartialUpdate(
+      deviceId,
+      req
+    )
+    return res.data
+  },
 }

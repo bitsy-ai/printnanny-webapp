@@ -218,16 +218,18 @@ export default {
     async getVideoStats () {
       const _self = this
       const peer = this.plugin.getPeerConnection()
-      const stats = await peer.getStats()
-      stats.forEach((stat) => {
-        switch (stat.type) {
-          case 'inbound-rtp':
-            _self.parseInboundRtpStat(stat)
-            break
-          default:
-            break
-        }
-      })
+      if (peer) {
+        const stats = await peer.getStats()
+        stats.forEach((stat) => {
+          switch (stat.type) {
+            case 'inbound-rtp':
+              _self.parseInboundRtpStat(stat)
+              break
+            default:
+              break
+          }
+        })
+      }
     }
   },
   props: {

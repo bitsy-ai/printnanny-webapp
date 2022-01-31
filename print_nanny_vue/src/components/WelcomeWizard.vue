@@ -10,6 +10,7 @@ import {
   DEVICE_MODULE,
   GET_DEVICE,
   SET_DEVICE_DATA,
+  SETUP_COMPLETE,
   START_MONITORING,
   STOP_MONITORING
 } from '@/store/devices'
@@ -59,13 +60,14 @@ export default {
   },
   methods: {
     ...mapActions(DEVICE_MODULE, {
-      getDevice: GET_DEVICE
+      getDevice: GET_DEVICE,
+      setupComplete: SETUP_COMPLETE
     }),
     ...mapMutations(WIZARD_MODULE, {
       setScanResult: SET_DEVICE_SCAN_RESULT
     }),
     onComplete: function () {
-      alert('Yay. Done!')
+      window.location.href = '/dashboard'
     },
     setLoading: function (value) {
       this.loading = value
@@ -180,10 +182,6 @@ export default {
 
         <!-- <mqtt-ping-pong :device-id="deviceId" :hostname="hostname">
         </mqtt-ping-pong> -->
-      </tab-content>
-
-      <tab-content title="Setup Done!" icon="">
-        Send MQTT ping / pong Try live streaming video
       </tab-content>
       <!--
       <tab-content title="Restore OctoPrint"
