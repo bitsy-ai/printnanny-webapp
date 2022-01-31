@@ -6,13 +6,9 @@ import {
   WIZARD_MODULE
 } from '@/store/wizard'
 import {
-  DEVICE,
   DEVICE_MODULE,
   GET_DEVICE,
-  SET_DEVICE_DATA,
-  SETUP_COMPLETE,
-  START_MONITORING,
-  STOP_MONITORING
+  SETUP_COMPLETE
 } from '@/store/devices'
 import NetworkScanner from '@/components/NetworkScanner'
 import VideoStream from '@/components/VideoStream'
