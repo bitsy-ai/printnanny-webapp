@@ -2,17 +2,14 @@
 import adapter from 'webrtc-adapter'
 import Janus from 'janus-gateway-js'
 
-import { mapActions, mapState, mapMutations } from 'vuex'
-import TaskStatus from '@/components/TaskStatus'
+import { mapActions, mapState } from 'vuex'
 import {
   DEVICE,
   DEVICE_MODULE,
-  GET_DEVICE,
-  SET_DEVICE_DATA,
-  START_MONITORING,
-  STOP_MONITORING
+  GET_DEVICE
+  // START_MONITORING,
+  // STOP_MONITORING
 } from '@/store/devices'
-import { TASK_MODULE, SET_TASK_DATA } from '@/store/tasks'
 
 function initialData () {
   return {
@@ -101,7 +98,7 @@ export default {
 
     async connectStream () {
       this.loading = true
-      const url = `ws://${this.device.hostname}:8188`
+      const url = `wss://${this.device.hostname}:8989`
       const janusToken = this.device.janus_auth.janus_token
       console.log('Authenticating with janus token', janusToken)
       const janus = new Janus.Client(url, {
