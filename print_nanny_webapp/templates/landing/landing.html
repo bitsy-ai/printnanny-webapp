@@ -94,23 +94,19 @@
                     <h2 class="text-white display-6">
                         Hire a Print Nanny 👶
                     </h2>
-                    <h3 class="text-white display-6 mb-4 mt-4">Failing jobs paused automatically</h3>
 
-                    <a href="{% url 'subscriptions:checkout' %}" class="btn btn-danger btn-lg"><strong class="h1">Get
+                    <p class="lead text-white">✨ Failing jobs paused automatically</p>
+                    <a href="{% url 'subscriptions:checkout' %}" class="btn btn-danger btn-lg m-3"><strong
+                            class="h1 display-6">Get
                             Early Access</strong>
                     </a>
-                    <h3 class="text-white display-6 mt-4 mb-4">
-                        Compatible with OctoPrint
-                    </h3>
-                    <h3 class="text-white display-6 mt-4">
-                        Live Video Feed
-                    </h3>
-                    <h3 class="text-white display-6 mt-4">
-                        Remote Control
-                    </h3>
-                    <h3 class="text-white display-6 mt-4 mb-4">
-                        Sync & Backup Files
-                    </h3>
+                    <p class="lead text-white">💚 Compatible with OctoPrint</p>
+                    <p class="lead text-white">🎥 Live Video Feed</p>
+                    <p class="lead text-white">📁 Sync & Backup Files</p>
+                    <p class="lead text-white">🔐 Secure Remote Control & Tunnels</p>
+                    <p class="lead text-white">❤️ Easy Install for Raspberry Pi</p>
+                    <p class="lead text-white">🛠️ Build Workflows & Automation</p>
+
                 </div>
             </div>
             <div class="col-12 col-md-8">
@@ -145,17 +141,16 @@
             </div>
         </div>
         <div class="row mt-md-2 align-items-center">
-            <div class="col-12 col-md-6 p-md-5">
-                <div class="bg-primary primary-gradient rounded-circle text-center p-4 p-md-5">
-                    <img src="{% static 'images/logo-square-white.svg' %}" alt="" class="img-fluid p-md-4" />
+            <div class="col-12 col-md-6 p-md-3 p-lg-5">
+                <div class="bg-primary primary-gradient rounded-circle text-center p-4 p-md-4 p-lg-5">
+                    <img src="{% static 'images/logo-square-white.svg' %}" alt="" class="img-fluid p-sm-1 p-md-4" />
 
-                    <a href="{% url 'subscriptions:checkout' %}" class="btn btn-success btn-lg btn-rounded mb-1">Get
+                    <a href="{% url 'subscriptions:checkout' %}" class="btn btn-success btn-lg mb-2">Get
                         Access
                         Now</i></a>
                     <br>
-                    <a href="{% url 'request-invite' %}" class="btn btn-success btn-light btn-rounded">Join
+                    <a href="{% url 'request-invite' %}" class="btn btn-light">Join
                         Waitlist</i></a>
-
                 </div>
             </div>
             <div class="col-md-6 pt-4 pb-4">
@@ -201,33 +196,24 @@
         <div class="row pt-2 align-items-center" id="print-nanny-os">
             <div class="jumbotron">
                 <div class="row">
-                    <div class="col-12 col-md-6 pl-4">
-                        <h1 class="display-3">Print Nanny OS</h1>
+                    <div class="col-12 col-md-6 pl-md-4">
+                        <h1 class="display-5">Print Nanny OS</h1>
                         <p class="lead">Connect your menagerie of 3D printers with <strong>one easy installer.</strong>
                         </p>
-                        <p class="lead">
-                            <a class="btn btn-danger btn-lg" href="{% url 'subscriptions:checkout' %}" role="button">Get
+                        <p class="lead">🎨 Mix and match OctoPrint, Mainsail, and more!</p>
+                        <p class="lead">❤️ Easy Install for Raspberry Pi</p>
+                        <p class="lead">🔐 Secure Remote Access</p>
+                        <p class="lead">☁️ Sync Files & Backup Automatically</p>
+                        <p class="lead text-center">
+                            <a class="btn btn-danger btn-lg mb-2" href="{% url 'subscriptions:checkout' %}"
+                                role="button">Get
                                 Early Access</a>
-                            <a class="btn btn-secondary btn-lg" href="{% url 'request-invite' %}" role="button">Join
+                            <br>
+                            <a class="btn btn-light btn-dark" href="{% url 'request-invite' %}" role="button">Join
                                 Waitlist</a>
-
+                            <a target="_blank" class="btn btn-dark" href="https://github.com/bitsy-ai/printnanny-os"
+                                role="button">Github</a>
                         </p>
-                        <hr class="my-2">
-                        <h2>🎨 Mix and match OctoPrint, Mainsail, and more!</h2>
-                        <hr class="my-2">
-
-                        <h2 class="my-2">❤️ Easy Install for Raspberry Pi</h2>
-
-                        <hr class="my-2">
-
-                        <h2>🔐 Secure Remote Access - Worldwide</h2>
-
-                        <hr class="my-2">
-                        <h2>☁️ Sync Files & Backup Automatically</h2>
-                        <hr class="my-2">
-
-                        <h2>💜 Growing Community of Makers, Artists, Entrepreneurs</h2>
-
                     </div>
                     <div class="col-12 col-md-6">
                         <img class="img-fluid pull-left" src="{% static 'images/rpi-imager-printnanny-os.png'%}" />
@@ -313,9 +299,11 @@
 
         <div class="row">
             <div class="col-12 text-center">
-                <a href="{% url 'subscriptions:checkout' %}" class="margin-auto btn btn-success btn-lg"><strong
-                        class="h1">Become a Founding Member</strong></a>
-                <h4></h4>
+                <a href="{% url 'subscriptions:checkout' %}" class="margin-auto btn btn-success btn-lg mb-2"><strong
+                        class="h1 display-6">Become a Founding Member</strong></a>
+                <br>
+                <a href="{% url 'surveys:remote-access' %}" class="margin-auto btn btn-dark">Get
+                    Development Updates</strong></a>
             </div>
 
         </div>
@@ -434,10 +422,12 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
-                <img src="{% static 'images/logo-text-white.svg' %}" alt="" class="logo-dark" height="18" />
-                <p class="text-white-50 mt-4">Print Nanny was created by Leigh Johnson. Read more about her at <a
-                        href="https://www.bitsy.ai/about/">bitsy.ai</a>.</p>
-
+                <!-- <img src="{% static 'images/logo-text-white.svg' %}" alt="" class="logo-dark" height="18" /> -->
+                <h3 class="text-white">About</h3>
+                <p class="text-white mt-4">👋 Hi, my name is Leigh and I created Print Nanny to manage my 3D print
+                    jobs.
+                <p class="text-white mt-4">You can read more about me over at <a
+                        href="https://www.bitsy.ai/about/">bitsy.ai</a>. </p>
                 <ul class="social-list list-inline mt-3">
                     <li class="list-inline-item text-center">
                         <a target="_blank" href="https://twitter.com/grepLeigh"
@@ -466,17 +456,26 @@
                     <!-- <li class="mt-2"><a href="#automation" class="text-white-50">Automation</a></li> -->
                     <li class="mt-2"><a href="#faq" class="text-white-50">Learn More</a></li>
                     <li class="mt-2"><a href="https://blog.print-nanny.com/" class="text-white-50">Newsletter</a></li>
-
-                    <li class="mt-2"><a href="https://help.print-nanny.com/" class="text-white-50">Help</a></li>
                 </ul>
             </div>
+            <div class="col-lg-2 mt-3 mt-lg-0">
+                <h5 class="text-white">Print Nanny OS</h5>
 
+                <ul class="list-unstyled pl-0 mb-0 mt-3">
+                    <li class="mt-2"><a href="https://github.com/bitsy-ai/printnanny-os" class="text-white-50">View on
+                            Github</a></li>
+                    <li class="mt-2"><a href="#print-nanny-os" class="text-white-50">Print Nanny OS</a></li>
+                    <li class="mt-2"><a
+                            href="https://bitsy-ai.notion.site/Getting-Started-with-Print-Nanny-OS-817bc65297ff44a085120c663dced5f3"
+                            class="text-white-50">Getting Started</a></li>
+                </ul>
+            </div>
         </div>
 
         <div class="row">
             <div class="col-lg-12">
                 <div class="mt-5">
-                    <p a href="https://www.bitsy.ai/about/" class="text-white-50 mt-4 text-center mb-0">© 2021 Print
+                    <p a href="https://www.bitsy.ai/about/" class="text-white-50 mt-4 text-center mb-0">© 2022 Print
                         Nanny, Bitsy AI Labs </p>
                 </div>
             </div>
