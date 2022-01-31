@@ -103,24 +103,31 @@ export default {
         })
         plugin.on('pc:track:remote', function (event) {
           console.log('plugin.on pc:track:remote', event)
-          const video = document.getElementById(videoStreamEl)
-          const mediaStream = event.streams[0]
-          console.log(
-            'Attaching stream',
-            mediaStream,
-            'to video element',
-            video
-          )
-          if ('srcObject' in video) {
-            video.srcObject = mediaStream
-          } else {
-            // Avoid using this in new browsers, as it is going away.
-            video.src = URL.createObjectURL(mediaStream)
-          }
-          video.onloadedmetadata = function (e) {
-            console.log('onloadedmetadata event called')
-            video.play()
-            return videoReady()
+          if (event.type === 'track') {
+            const video = document.getElementById(videoStreamEl)
+            video.onloadeddata = function (e) {
+              console.log('loadeddata event called')
+              // video.play()
+              // return videoReady()
+            }
+            video.onloadedmetadata = function (e) {
+              console.log('onloadedmetadata event called')
+              video.play()
+              return videoReady()
+            }
+            const mediaStream = event.streams[0]
+            console.log(
+              'Attaching stream',
+              mediaStream,
+              'to video element',
+              video
+            )
+            if ('srcObject' in video) {
+              video.srcObject = mediaStream
+            } else {
+              // Avoid using this in new browsers, as it is going away.
+              video.src = URL.createObjectURL(mediaStream)
+            }
           }
         })
 
