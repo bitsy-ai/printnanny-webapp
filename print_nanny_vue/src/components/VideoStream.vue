@@ -14,24 +14,26 @@ import {
 } from '@/store/devices'
 import { TASK_MODULE, SET_TASK_DATA } from '@/store/tasks'
 
-const initialData = {
-  error: null,
-  loading: false,
-  janusConnection: null,
-  janusSession: null,
-  janusPlugin: null,
-  janusStream: null,
-  timer: null,
-  videoStats: null
+function initialData () {
+  return {
+    error: null,
+    loading: false,
+    active: false,
+    janusConnection: null,
+    janusSession: null,
+    janusPlugin: null,
+    janusStream: null,
+    timer: null,
+    videoStats: null
+  }
 }
 export default {
-  components: { TaskStatus },
+  components: {},
   data: function () {
-    return initialData
+    return initialData()
   },
   async created () {
-    await this.getDevice(this.deviceId)
-    if (this.device.monitoring_active) {
+    if (this.active) {
       await this.connectStream()
     }
   },
@@ -39,8 +41,6 @@ export default {
     ...mapActions(DEVICE_MODULE, {
       getDevice: GET_DEVICE
     }),
-    ...mapMutations(DEVICE_MODULE, [SET_DEVICE_DATA]),
-    ...mapMutations(TASK_MODULE, [SET_TASK_DATA]),
     async handleError (error) {
       this.error = error
       this.resetTimer()
@@ -63,7 +63,40 @@ export default {
     async reset () {
       await this.resetJanus()
       this.resetTimer()
-      this.data = initialData
+      this.data = initialData()
+    },
+
+    setupRemoteTrack (plugin, el) {
+      const videoReady = this.videoReady
+      plugin.on('pc:track:remote', function (event) {
+        console.log('plugin.on pc:track:remote', event)
+        if (event.type === 'track') {
+          const video = document.getElementById(el)
+          video.onloadeddata = function (e) {
+            console.log('loadeddata event called')
+            // video.play()
+            // return videoReady()
+          }
+          video.onloadedmetadata = function (e) {
+            console.log('onloadedmetadata event called')
+            video.play()
+            return videoReady()
+          }
+          const mediaStream = event.streams[0]
+          console.log(
+            'Attaching stream',
+            mediaStream,
+            'to video element',
+            video
+          )
+          if ('srcObject' in video) {
+            video.srcObject = mediaStream
+          } else {
+            // Avoid using this in new browsers, as it is going away.
+            video.src = URL.createObjectURL(mediaStream)
+          }
+        }
+      })
     },
 
     async connectStream () {
@@ -81,7 +114,7 @@ export default {
         adapter.browserDetails.browser,
         adapter.browserDetails.version
       )
-      const connection = await janus.createConnection('id')
+      const connection = await janus.createConnection(this.videoStreamEl)
       this.connection = connection
       console.log('Created janus connection', connection)
 
@@ -96,81 +129,50 @@ export default {
 
         this.timer = setInterval(this.getVideoStats, 200)
         const videoStreamEl = this.videoStreamEl
-        const videoReady = this.videoReady
         console.log('Plugin attached', plugin)
         plugin.on('message', (message, jesp) => {
           console.log('plugin.on message', message, jesp)
         })
-        plugin.on('pc:track:remote', function (event) {
-          console.log('plugin.on pc:track:remote', event)
-          if (event.type === 'track') {
-            const video = document.getElementById(videoStreamEl)
-            video.onloadeddata = function (e) {
-              console.log('loadeddata event called')
-              // video.play()
-              // return videoReady()
-            }
-            video.onloadedmetadata = function (e) {
-              console.log('onloadedmetadata event called')
-              video.play()
-              return videoReady()
-            }
-            const mediaStream = event.streams[0]
-            console.log(
-              'Attaching stream',
-              mediaStream,
-              'to video element',
-              video
-            )
-            if ('srcObject' in video) {
-              video.srcObject = mediaStream
-            } else {
-              // Avoid using this in new browsers, as it is going away.
-              video.src = URL.createObjectURL(mediaStream)
-            }
-          }
-        })
-
         const streamsList = await plugin.list()
         console.log('Retreived stream list: ', streamsList)
         if (streamsList._plainMessage.plugindata.data.list.length === 0) {
           throw Error('Connection to Janus Gateway succeeded, but no streams are playing.\n Double-check that your camera is connected and try again. \n Check output of `systemctl status printnanny-gst` and `journalctl -u printnanny-gst` for details about this failure.')
         }
-        const stream = streamsList._plainMessage.plugindata.data.list[0]
-        console.log('Selected stream', stream)
 
-        const watch = await plugin.watch(stream.id, {
-          video: true
-        })
-        console.log('Now watching stream', watch)
-        const start = await plugin.start()
+        for (const stream of streamsList._plainMessage.plugindata.data.list) {
+          if (stream.id === this.streamId) {
+            this.setupRemoteTrack(plugin, videoStreamEl)
+            console.log('Selected stream', stream)
 
-        console.log('Started stream', start)
+            const watch = await plugin.watch(stream.id, {
+              video: true
+            })
+            console.log('Now watching stream', watch)
+            const start = await plugin.start()
 
-        const info = await plugin.send({
-          body: { request: 'info', id: stream.id },
-          janus: 'message'
-        })
+            console.log('Started stream', start)
 
-        console.log('Retreived stream info', info)
+            const info = await plugin.send({
+              body: { request: 'info', id: stream.id },
+              janus: 'message'
+            })
+
+            console.log('Retreived stream info', info)
+          } else {
+            console.log(`Skipping stream ${stream.id} (component is subscribed to ${this.streamId})`)
+          }
+        }
       } catch (error) {
         return await this.handleError(error)
       }
     },
     async startMonitoring () {
       this.loading = true
+      this.active = true
       this.error = null
-      this.$store.dispatch(
-        `${DEVICE_MODULE}/${START_MONITORING}`,
-        this.device.id
-      )
       await this.connectStream()
     },
     async stopMonitoring () {
-      this.$store.dispatch(
-        `${DEVICE_MODULE}/${STOP_MONITORING}`,
-        this.device.id
-      )
       await this.reset()
     },
     videoReady () {
@@ -232,6 +234,10 @@ export default {
     deviceId: {
       type: String,
       required: true
+    },
+    streamId: {
+      type: Number,
+      required: true
     }
   },
   computed: {
@@ -239,16 +245,16 @@ export default {
       device: DEVICE
     }),
     videoStreamEl: function () {
-      return `video-stream-${this.deviceId}`
+      return `video-${this.streamId}`
     },
     showVideo: function () {
-      return this.loading === false && this.device.monitoring_active === true
+      return this.loading === false && this.active === true
     },
     showLoading: function () {
       return this.loading
     },
     showInfo: function () {
-      return this.device.monitoring_active === false && this.error === null
+      return this.active === false && this.error === null
     },
     remoteAccessEl: function () {
       return `remote-access-${this.device.id}`
@@ -260,16 +266,15 @@ export default {
 <template>
   <div class="card col-12">
     <div class="card-header text-center">
-      <h2 class="header-title text-center">Test Video Stream</h2>
       <button
-        v-if="!device.monitoring_active"
+        v-if="!active"
         @click="startMonitoring"
         class="btn btn-light btn-sm mr-2 ml-2"
       >
-        <i class="mdi mdi-camera"></i> Start Monitoring
+        <i class="mdi mdi-camera"></i> Start
       </button>
       <button
-        v-if="device.monitoring_active && loading"
+        v-if="active && loading"
         class="btn btn-light mr-2 ml-2"
         disabled
       >
@@ -281,7 +286,7 @@ export default {
         Loading Stream
       </button>
       <button
-        v-if="device.monitoring_active"
+        v-if="active"
         @click="stopMonitoring"
         class="btn btn-light btn-sm mr-2 ml-2"
       >
@@ -293,18 +298,20 @@ export default {
         <div v-show="loading">
           <h3 class="header-title">Video is loading...</h3>
         </div>
-        <video
-          v-show="showVideo"
-          class="rounded centered"
-          :id="videoStreamEl"
-          width="100%"
-          height="100%"
-          playsinline
-          autoplay="autoplay"
-          muted
-          controls
-        />
-        <dl v-if="videoStats !== null && device.monitoring_active" class="row">
+        <div v-show="showVideo">
+          <video
+            v-show="showVideo"
+            class="rounded centered"
+            :id="videoStreamEl"
+            width="100%"
+            height="100%"
+            playsinline
+            autoplay="autoplay"
+            muted
+            controls
+          />
+        </div>
+        <dl v-if="videoStats !== null && active" class="row">
           <dt class="col-sm-3">Bitrate</dt>
           <dd class="col-sm-3">{{ videoStats.bitrate }}</dd>
           <dt class="col-sm-3">Packets Lost</dt>
@@ -363,7 +370,7 @@ Message: {{ error.message }}
             </h4>
             <p>
               Click/tap <i class="mdi mdi-camera"></i
-              ><strong>Start Monitoring</strong> button to start.
+              ><strong>Start</strong> button to start.
             </p>
           </div>
           <div class="col-4">
