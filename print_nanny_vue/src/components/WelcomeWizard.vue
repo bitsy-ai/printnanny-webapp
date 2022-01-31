@@ -1,10 +1,15 @@
 <script>
-import { mapMutations, mapState } from 'vuex'
+import { mapActions, mapMutations, mapState } from 'vuex'
 import {
   SET_DEVICE_SCAN_RESULT,
   DEVICE_SCAN_RESULT,
   WIZARD_MODULE
 } from '@/store/wizard'
+import {
+  DEVICE_MODULE,
+  GET_DEVICE,
+  SETUP_COMPLETE
+} from '@/store/devices'
 import NetworkScanner from '@/components/NetworkScanner'
 import VideoStream from '@/components/VideoStream'
 import { FormWizard, TabContent, WizardButton } from 'vue-form-wizard'
@@ -23,6 +28,11 @@ export default {
   props: {
     deviceId: String,
     hostname: String
+  },
+  async created () {
+    if (this.deviceId) {
+      await this.getDevice(this.deviceId)
+    }
   },
   data: function () {
     return {
@@ -45,11 +55,15 @@ export default {
     })
   },
   methods: {
+    ...mapActions(DEVICE_MODULE, {
+      getDevice: GET_DEVICE,
+      setupComplete: SETUP_COMPLETE
+    }),
     ...mapMutations(WIZARD_MODULE, {
       setScanResult: SET_DEVICE_SCAN_RESULT
     }),
     onComplete: function () {
-      alert('Yay. Done!')
+      window.location.href = '/dashboard'
     },
     setLoading: function (value) {
       this.loading = value
@@ -149,13 +163,21 @@ export default {
         <network-scanner> </network-scanner>
       </tab-content>
       <tab-content title="Check Video" icon="">
-        <video-stream :device-id="deviceId" />
+        <div class="text-center row">
+          <div class="col-12 col-md-6">
+            <h2 class="header-title text-center">Live Camera Feed</h2>
+            <p>You should see your Raspberry Pi's camera.</p>
+            <video-stream :device-id="deviceId" :stream-id="123" id="video-stream-123"/>
+          </div>
+          <div class="col-12 col-md-6">
+            <h2 class="header-title text-center">Print Nanny Vision</h2>
+            <p>This is a demonstration of what Print Nanny "sees"</p>
+            <video-stream :device-id="deviceId" :stream-id="124" id="video-stream-124"/>
+          </div>
+        </div>
+
         <!-- <mqtt-ping-pong :device-id="deviceId" :hostname="hostname">
         </mqtt-ping-pong> -->
-      </tab-content>
-
-      <tab-content title="Setup Done!" icon="">
-        Send MQTT ping / pong Try live streaming video
       </tab-content>
       <!--
       <tab-content title="Restore OctoPrint"
