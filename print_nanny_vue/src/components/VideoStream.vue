@@ -126,8 +126,8 @@ export default {
 
         const streamsList = await plugin.list()
         console.log('Retreived stream list: ', streamsList)
-        if (streamsList._plainMessage.plugindata.data.list.length == 0) {
-          throw 'Connection to Janus Gateway succeeded, but no streams are playing. Check output of `systemctl status printnanny-gst`'
+        if (streamsList._plainMessage.plugindata.data.list.length === 0) {
+          throw Error('Connection to Janus Gateway succeeded, but no streams are playing.\n Check output of `systemctl status printnanny-gst`')
         }
         const stream = streamsList._plainMessage.plugindata.data.list[0]
         console.log('Selected stream', stream)
@@ -136,7 +136,6 @@ export default {
           video: true
         })
         console.log('Now watching stream', watch)
-        // const start = await plugin.start(watch._plainMessage.jsep)
         const start = await plugin.start()
 
         console.log('Started stream', start)
@@ -145,15 +144,10 @@ export default {
           body: { request: 'info', id: stream.id },
           janus: 'message'
         })
-        //   .then(msg => console.log('After msg', msg))
 
-        // const peer = await plugin.getPeerConnection()
         console.log('Retreived stream info', info)
       } catch (error) {
-        if (error.name === 'JanusError') {
-          return await this.handleError(error)
-        }
-        throw error
+        return await this.handleError(error)
       }
     },
     async startMonitoring () {
@@ -340,7 +334,6 @@ export default {
 Name: {{ error.name }}
 Code: {{ error.code }}
 Message: {{ error.message }}
-Transaction: {{ error.janusMessage._plainMessage.transaction }}
               </pre
             >
           </div>
