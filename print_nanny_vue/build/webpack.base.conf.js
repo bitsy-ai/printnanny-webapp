@@ -31,7 +31,6 @@ module.exports = {
     index: './src/index.js',
     alerts: './src/apps/AlertsDropdown.js',
     taskStatus: './src/apps/TaskStatus.js',
-    webCamStream: './src/apps/WebCamStream.js',
     networkScanner: './src/apps/NetworkScanner.js',
     welcomeWizard: './src/apps/WelcomeWizard.js',
   },
