@@ -299,9 +299,11 @@
 
         <div class="row">
             <div class="col-12 text-center">
-                <a href="{% url 'subscriptions:checkout' %}" class="margin-auto btn btn-success btn-lg"><strong
-                        class="h1">Become a Founding Member</strong></a>
-                <h4></h4>
+                <a href="{% url 'subscriptions:checkout' %}" class="margin-auto btn btn-success btn-lg mb-2"><strong
+                        class="h1 display-6">Become a Founding Member</strong></a>
+                <br>
+                <a href="{% url 'surveys:remote-access' %}" class="margin-auto btn btn-dark">Get
+                    Development Updates</strong></a>
             </div>
 
         </div>
@@ -420,10 +422,12 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
-                <img src="{% static 'images/logo-text-white.svg' %}" alt="" class="logo-dark" height="18" />
-                <p class="text-white-50 mt-4">Print Nanny was created by Leigh Johnson. Read more about her at <a
-                        href="https://www.bitsy.ai/about/">bitsy.ai</a>.</p>
-
+                <!-- <img src="{% static 'images/logo-text-white.svg' %}" alt="" class="logo-dark" height="18" /> -->
+                <h3 class="text-white">About</h3>
+                <p class="text-white mt-4">👋 Hi, my name is Leigh and I created Print Nanny to manage my 3D print
+                    jobs.
+                <p class="text-white mt-4">You can read more about me over at <a
+                        href="https://www.bitsy.ai/about/">bitsy.ai</a>. </p>
                 <ul class="social-list list-inline mt-3">
                     <li class="list-inline-item text-center">
                         <a target="_blank" href="https://twitter.com/grepLeigh"
@@ -452,17 +456,26 @@
                     <!-- <li class="mt-2"><a href="#automation" class="text-white-50">Automation</a></li> -->
                     <li class="mt-2"><a href="#faq" class="text-white-50">Learn More</a></li>
                     <li class="mt-2"><a href="https://blog.print-nanny.com/" class="text-white-50">Newsletter</a></li>
-
-                    <li class="mt-2"><a href="https://help.print-nanny.com/" class="text-white-50">Help</a></li>
                 </ul>
             </div>
+            <div class="col-lg-2 mt-3 mt-lg-0">
+                <h5 class="text-white">Print Nanny OS</h5>
 
+                <ul class="list-unstyled pl-0 mb-0 mt-3">
+                    <li class="mt-2"><a href="https://github.com/bitsy-ai/printnanny-os" class="text-white-50">View on
+                            Github</a></li>
+                    <li class="mt-2"><a href="#print-nanny-os" class="text-white-50">Print Nanny OS</a></li>
+                    <li class="mt-2"><a
+                            href="https://bitsy-ai.notion.site/Getting-Started-with-Print-Nanny-OS-817bc65297ff44a085120c663dced5f3"
+                            class="text-white-50">Getting Started</a></li>
+                </ul>
+            </div>
         </div>
 
         <div class="row">
             <div class="col-lg-12">
                 <div class="mt-5">
-                    <p a href="https://www.bitsy.ai/about/" class="text-white-50 mt-4 text-center mb-0">© 2021 Print
+                    <p a href="https://www.bitsy.ai/about/" class="text-white-50 mt-4 text-center mb-0">© 2022 Print
                         Nanny, Bitsy AI Labs </p>
                 </div>
             </div>
