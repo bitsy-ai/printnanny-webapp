@@ -164,6 +164,7 @@ export default {
             <h2 class="header-title text-center">Live Camera Feed</h2>
             <p>You should see your Raspberry Pi's camera.</p>
             <video-stream
+              v-if="deviceId !== undefined"
               :device-id="deviceId"
               :stream-id="123"
               id="video-stream-123"
@@ -173,6 +174,7 @@ export default {
             <h2 class="header-title text-center">Print Nanny Vision</h2>
             <p>This is a demonstration of what Print Nanny "sees"</p>
             <video-stream
+              v-if="deviceId !== undefined"
               :device-id="deviceId"
               :stream-id="124"
               id="video-stream-124"
