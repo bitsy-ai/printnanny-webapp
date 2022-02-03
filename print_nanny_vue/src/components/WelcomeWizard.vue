@@ -5,11 +5,7 @@ import {
   DEVICE_SCAN_RESULT,
   WIZARD_MODULE
 } from '@/store/wizard'
-import {
-  DEVICE_MODULE,
-  GET_DEVICE,
-  SETUP_COMPLETE
-} from '@/store/devices'
+import { DEVICE_MODULE, GET_DEVICE, SETUP_COMPLETE } from '@/store/devices'
 import NetworkScanner from '@/components/NetworkScanner'
 import VideoStream from '@/components/VideoStream'
 import { FormWizard, TabContent, WizardButton } from 'vue-form-wizard'
@@ -80,7 +76,7 @@ export default {
     },
     linkUrl: function () {
       const port = 9001
-      const url = `http://${this.scanResult.hostname}:${port}`
+      const url = `${window.location.protocol}//${this.scanResult.hostname}:${port}`
       window.location = url
     }
   }
@@ -167,12 +163,20 @@ export default {
           <div class="col-12 col-md-6">
             <h2 class="header-title text-center">Live Camera Feed</h2>
             <p>You should see your Raspberry Pi's camera.</p>
-            <video-stream :device-id="deviceId" :stream-id="123" id="video-stream-123"/>
+            <video-stream
+              :device-id="deviceId"
+              :stream-id="123"
+              id="video-stream-123"
+            />
           </div>
           <div class="col-12 col-md-6">
             <h2 class="header-title text-center">Print Nanny Vision</h2>
             <p>This is a demonstration of what Print Nanny "sees"</p>
-            <video-stream :device-id="deviceId" :stream-id="124" id="video-stream-124"/>
+            <video-stream
+              :device-id="deviceId"
+              :stream-id="124"
+              id="video-stream-124"
+            />
           </div>
         </div>
 
