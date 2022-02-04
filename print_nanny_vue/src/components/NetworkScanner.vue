@@ -92,13 +92,13 @@ export default {
         this.retryDelay,
         this
       )
-    },
-    submit () {
-      this.v$.$touch()
-      if (this.v$.$error) return
-      this.loading = true
-      this.connect()
     }
+    // submit () {
+    //   this.v$.$touch()
+    //   if (this.v$.$error) return
+    //   this.loading = true
+    //   this.connect()
+    // }
   }
 }
 </script>
@@ -107,45 +107,48 @@ export default {
   <div class="row">
     <div class="col-6 offset-3">
       <h2 class="mb-2">Enter Raspberry Pi's Hostname</h2>
-      <p>
+      <!-- disable "smart" scanning until CA infra is setup, so user doesn't have to install root cert -->
+      <!-- <p>
         Print Nanny can discover new devices on your network.Click
         <strong>Scan</strong> to search.
-      </p>
-      <b-form id="network-scanner" @submit.prevent="submit">
-        <b-row>
-          <b-col sm="8">
-            <b-form-input
-              v-model="form.hostname"
-              placeholder="printnanny.local"
+      </p> -->
+      <!-- <b-form id="network-scanner" @submit.prevent=""> -->
+      <b-row>
+        <b-col sm="8">
+          <b-form-input v-model="form.hostname" placeholder="printnanny.local">
+          </b-form-input>
+          <div :class="{ error: v$.$errors.length }">
+            <div
+              class="input-errors text-danger"
+              v-for="error of v$.$errors"
+              :key="error.$uid"
             >
-            </b-form-input>
-            <div :class="{ error: v$.$errors.length }">
-              <div
-                class="input-errors text-danger"
-                v-for="error of v$.$errors"
-                :key="error.$uid"
-              >
-                <div class="error-msg">{{ error.$message }}</div>
-              </div>
+              <div class="error-msg">{{ error.$message }}</div>
             </div>
-          </b-col>
-          <b-col sm="4">
-            <button class="btn btn-secondary" type="submit">
-              <span v-if="loading">
-                <span
-                  class="spinner-border spinner-border-sm"
-                  role="status"
-                  aria-hidden="true"
-                ></span>
-                Scanning
-              </span>
-              <span v-if="loading == false"
-                ><i class="mdi mdi-wifi"></i> Scan</span
-              >
+          </div>
+        </b-col>
+        <b-col sm="4">
+          <a
+            target="_blank"
+            :href="`http://${form.hostname}:80/`"
+            :disabled="form.hostname == ''"
+          >
+            <button class="btn btn-secondary" :disabled="form.hostname == ''">
+              <!-- <button class="btn btn-secondary" type="submit"> -->
+              <!-- <span v-if="loading">
+                  <span
+                    class="spinner-border spinner-border-sm"
+                    role="status"
+                    aria-hidden="true"
+                  ></span>
+                  Scanning
+                </span> -->
+              <span v-if="loading == false">Link Device</span>
             </button>
-          </b-col>
-        </b-row>
-      </b-form>
+          </a>
+        </b-col>
+      </b-row>
+      <!-- </b-form> -->
     </div>
     <div class="col-6 offset-3">
       <pre class="text-left">
