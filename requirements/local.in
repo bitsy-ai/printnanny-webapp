@@ -9,6 +9,7 @@ dj-stripe
 django
 django-allauth
 django-anymail[mailgun]
+django-cors-headers
 django-celery-beat
 django-compressor
 django-coturn
