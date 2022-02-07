@@ -205,14 +205,12 @@ GHOST_ADMIN_API_KEY = env('GHOST_ADMIN_API_KEY')
 GHOST_CONTENT_API_KEY = env('GHOST_CONTENT_API_KEY')
 
 # CORS
+# see also: corsheaders.middleware.CorsMiddleware
 # ------------------------------------------------------------------------------
-INSTALLED_APPS += ['corsheaders']
 CORS_ALLOWED_ORIGINS = [
     'https://print-nanny.com',
     'https://www.print-nanny.com',
 ]
-# insert CORS middleware as early in the middleware stack as possible after Prometheus / Honeycomb instrumentation
-MIDDLEWARE.insert(2, 'corsheaders.middleware.CorsMiddleware')
 
 # posthog
 # ------------------------------------------------------------------------------
