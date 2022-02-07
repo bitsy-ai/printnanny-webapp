@@ -5,6 +5,7 @@ from django.contrib.messages import constants as messages
 from pathlib import Path
 import os
 import environ
+import socket
 
 from print_nanny_webapp import __version__ as PRINT_NANNY_WEBAPP_VERSION
 
@@ -149,6 +150,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django_prometheus.middleware.PrometheusBeforeMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
@@ -693,3 +695,14 @@ PRINTNANNY_ENV = env("PRINTNANNY_ENV", default="sandbox")
 # ------------------------------------------------------------------------------
 POSTHOG_API_KEY = env('POSTHOG_API_KEY', default=None)
 POSTHOG_ENABLED = False
+
+# corsheaders
+# see also: corsheaders.middleware.CorsMiddleware
+# ------------------------------------------------------------------------------
+INSTALLED_APPS += ['corsheaders']
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    f"http://{socket.gethostname()}:8000"
+]

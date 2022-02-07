@@ -125,3 +125,8 @@ LOGGING = {
     }
 
 }
+
+# CORS
+# see also: corsheaders.middleware.CorsMiddleware
+# ------------------------------------------------------------------------------
+CORS_ALLOW_ALL_ORIGINS = True

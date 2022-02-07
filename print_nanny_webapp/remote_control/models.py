@@ -1,4 +1,6 @@
 import logging
+from typing import Callable
+
 from print_nanny_webapp.telemetry.models import PrinterEvent, PrintJobEvent
 from typing import Dict, Any, Optional
 from django.contrib.auth import get_user_model
@@ -30,10 +32,13 @@ User = get_user_model()
 logger = logging.getLogger(__name__)
 
 
-def pre_softdelete_cloudiot_device(instance=None, **kwargs):
-    fn = getattr(instance, "pre_softdelete", None)
-    if hasattr(fn, "__call__"):
-        return fn()
+def noop():
+    pass
+
+
+def pre_softdelete_cloudiot_device(instance=None, **kwargs) -> Callable:
+    fn = getattr(instance, "pre_softdelete", noop)
+    return fn()
 
 
 pre_softdelete.connect(pre_softdelete_cloudiot_device)

@@ -8,13 +8,16 @@ aiohttp==3.7.4.post0
     # via
     #   -r requirements/local.in
     #   discord.py
+    #   printnanny-api-client
 aioredis==1.3.1
     # via channels-redis
-amqp==5.0.6
+amqp==5.0.9
     # via kombu
-argon2-cffi==21.1.0
+argon2-cffi==21.3.0
     # via -r requirements/local.in
-asgiref==3.4.1
+argon2-cffi-bindings==21.2.0
+    # via argon2-cffi
+asgiref==3.5.0
     # via
     #   channels
     #   channels-redis
@@ -25,14 +28,14 @@ async-timeout==3.0.1
     # via
     #   aiohttp
     #   aioredis
-attrs==21.2.0
+attrs==21.4.0
     # via
     #   aiohttp
     #   automat
     #   jsonschema
     #   service-identity
     #   twisted
-autobahn==21.11.1
+autobahn==22.1.1
     # via daphne
 automat==20.2.0
     # via twisted
@@ -40,9 +43,9 @@ backoff==1.11.1
     # via posthog
 billiard==3.6.4.0
     # via celery
-cachetools==4.2.4
+cachetools==5.0.0
     # via google-auth
-celery[redis]==5.2.1
+celery[redis]==5.2.3
     # via
     #   -r requirements/local.in
     #   django-celery-beat
@@ -51,7 +54,7 @@ certifi==2021.10.8
     # via requests
 cffi==1.15.0
     # via
-    #   argon2-cffi
+    #   argon2-cffi-bindings
     #   cryptography
 channels==3.0.4
     # via
@@ -61,7 +64,7 @@ channels-redis==3.3.1
     # via -r requirements/local.in
 chardet==4.0.0
     # via aiohttp
-charset-normalizer==2.0.7
+charset-normalizer==2.0.11
     # via requests
 click==8.0.3
     # via
@@ -78,25 +81,25 @@ click-repl==0.2.0
     # via celery
 constantly==15.1.0
     # via twisted
-coverage==6.1.2
+coverage==6.3.1
     # via django-coverage-plugin
-cryptography==36.0.0
+cryptography==36.0.1
     # via
     #   autobahn
     #   pyjwt
     #   pyopenssl
     #   service-identity
-cycler==0.11.0
-    # via matplotlib
 daphne==3.0.2
     # via channels
 defusedxml==0.7.1
     # via python3-openid
+deprecated==1.2.13
+    # via redis
 discord.py==1.7.3
     # via -r requirements/local.in
-dj-stripe==2.5.1
+dj-stripe==2.6.0
     # via -r requirements/local.in
-django==3.2.9
+django==3.2.12
     # via
     #   -r requirements/local.in
     #   channels
@@ -105,6 +108,7 @@ django==3.2.9
     #   django-anymail
     #   django-appconf
     #   django-celery-beat
+    #   django-cors-headers
     #   django-coturn
     #   django-debug-toolbar
     #   django-extensions
@@ -125,23 +129,25 @@ django==3.2.9
     #   drf-spectacular
     #   drfpasswordless
     #   jsonfield
-django-allauth==0.46.0
+django-allauth==0.48.0
     # via -r requirements/local.in
-django-anymail[mailgun]==8.4
+django-anymail[mailgun]==8.5
     # via -r requirements/local.in
 django-appconf==1.0.5
     # via django-compressor
 django-celery-beat==2.2.1
     # via -r requirements/local.in
-django-compressor==2.4.1
+django-compressor==3.1
+    # via -r requirements/local.in
+django-cors-headers==3.11.0
     # via -r requirements/local.in
 django-coturn==0.3.1
     # via -r requirements/local.in
 django-coverage-plugin==2.0.2
     # via -r requirements/local.in
-django-crispy-forms==1.13.0
+django-crispy-forms==1.14.0
     # via -r requirements/local.in
-django-debug-toolbar==3.2.2
+django-debug-toolbar==3.2.4
     # via -r requirements/local.in
 django-environ==0.8.1
     # via -r requirements/local.in
@@ -149,9 +155,9 @@ django-extensions==3.1.5
     # via -r requirements/local.in
 django-filter==21.1
     # via -r requirements/local.in
-django-flags==5.0.5
+django-flags==5.0.8
     # via -r requirements/local.in
-django-health-check==3.16.4
+django-health-check==3.16.5
     # via -r requirements/local.in
 django-invitations==1.9.3
     # via -r requirements/local.in
@@ -161,13 +167,13 @@ django-polymorphic==3.1.0
     # via
     #   -r requirements/local.in
     #   django-rest-polymorphic
-django-prometheus==2.1.0
+django-prometheus==2.2.0
     # via -r requirements/local.in
-django-redis==5.0.0
+django-redis==5.2.0
     # via -r requirements/local.in
 django-rest-polymorphic==0.1.9
     # via -r requirements/local.in
-django-safedelete==1.1.1
+django-safedelete==1.1.2
     # via -r requirements/local.in
 django-storages[google]==1.12.3
     # via -r requirements/local.in
@@ -175,11 +181,11 @@ django-stubs==1.9.0
     # via -r requirements/local.in
 django-stubs-ext==0.3.1
     # via django-stubs
-django-timezone-field==4.2.1
+django-timezone-field==4.2.3
     # via django-celery-beat
 django-webpack-loader==1.4.1
     # via -r requirements/local.in
-djangorestframework==3.12.4
+djangorestframework==3.13.1
     # via
     #   -r requirements/local.in
     #   django-rest-polymorphic
@@ -188,7 +194,7 @@ djangorestframework==3.12.4
     #   drfpasswordless
 drf-nested-routers==0.93.4
     # via -r requirements/local.in
-drf-spectacular==0.21.0
+drf-spectacular==0.21.2
     # via -r requirements/local.in
 drfpasswordless==1.5.7
     # via -r requirements/local.in
@@ -196,21 +202,19 @@ flatbuffers==2.0
     # via -r requirements/local.in
 flower==1.0.0
     # via -r requirements/local.in
-fonttools==4.28.1
-    # via matplotlib
-google-api-core[grpc]==2.2.2
+google-api-core[grpc]==2.5.0
     # via
     #   google-cloud-core
     #   google-cloud-iot
     #   google-cloud-monitoring
     #   google-cloud-pubsub
     #   google-cloud-storage
-google-auth==2.3.3
+google-auth==2.6.0
     # via
     #   google-api-core
     #   google-cloud-core
     #   google-cloud-storage
-google-cloud-core==2.2.1
+google-cloud-core==2.2.2
     # via
     #   -r requirements/local.in
     #   google-cloud-storage
@@ -220,7 +224,7 @@ google-cloud-monitoring==2.8.0
     # via -r requirements/local.in
 google-cloud-pubsub==2.9.0
     # via -r requirements/local.in
-google-cloud-storage==1.43.0
+google-cloud-storage==2.1.0
     # via
     #   -r requirements/local.in
     #   django-storages
@@ -228,7 +232,7 @@ google-crc32c==1.3.0
     # via google-resumable-media
 google-resumable-media==2.1.0
     # via google-cloud-storage
-googleapis-common-protos[grpc]==1.53.0
+googleapis-common-protos[grpc]==1.54.0
     # via
     #   google-api-core
     #   grpc-google-iam-v1
@@ -237,24 +241,24 @@ grpc-google-iam-v1==0.12.3
     # via
     #   google-cloud-iot
     #   google-cloud-pubsub
-grpcio==1.42.0
+grpcio==1.43.0
     # via
     #   google-api-core
     #   google-cloud-pubsub
     #   googleapis-common-protos
     #   grpc-google-iam-v1
     #   grpcio-status
-grpcio-status==1.42.0
+grpcio-status==1.43.0
     # via google-api-core
-h11==0.12.0
+h11==0.13.0
     # via uvicorn
 hiredis==2.0.0
     # via aioredis
-honeycomb-beeline==2.17.2
+honeycomb-beeline==3.1.0
     # via -r requirements/local.in
-httptools==0.2.0
+httptools==0.3.0
     # via uvicorn
-humanize==3.12.0
+humanize==3.14.0
     # via flower
 hyperlink==21.0.0
     # via
@@ -266,7 +270,7 @@ idna==3.3
     #   requests
     #   twisted
     #   yarl
-imageio==2.11.1
+imageio==2.14.1
     # via
     #   -r requirements/local.in
     #   scikit-image
@@ -280,27 +284,23 @@ inflection==0.5.1
     # via drf-spectacular
 jsonfield==3.1.0
     # via dj-stripe
-jsonschema==4.2.1
+jsonschema==4.4.0
     # via drf-spectacular
-kiwisolver==1.3.2
-    # via matplotlib
-kombu==5.2.2
+kombu==5.2.3
     # via celery
-libcst==0.3.21
+libcst==0.4.1
     # via google-cloud-pubsub
-libhoney==1.11.1
+libhoney==2.0.0
     # via honeycomb-beeline
-matplotlib==3.5.0
-    # via scikit-image
 monotonic==1.6
     # via posthog
-msgpack==1.0.2
+msgpack==1.0.3
     # via channels-redis
-multidict==5.2.0
+multidict==6.0.2
     # via
     #   aiohttp
     #   yarl
-mypy==0.910
+mypy==0.931
     # via django-stubs
 mypy-extensions==0.4.3
     # via
@@ -308,58 +308,59 @@ mypy-extensions==0.4.3
     #   typing-inspect
 networkx==2.6.3
     # via scikit-image
-numpy==1.21.4
+numpy==1.22.2
     # via
     #   imageio
-    #   matplotlib
     #   pandas
     #   pyarrow
     #   pywavelets
     #   scikit-image
     #   scipy
     #   tifffile
-oauthlib==3.1.1
+oauthlib==3.2.0
     # via requests-oauthlib
 packaging==21.3
     # via
     #   google-cloud-iot
-    #   matplotlib
-    #   setuptools-scm
-pandas==1.3.4
+    #   redis
+    #   scikit-image
+pandas==1.4.0
     # via -r requirements/local.in
-pillow==8.4.0
+pillow==9.0.1
     # via
     #   imageio
-    #   matplotlib
     #   qrcode
     #   scikit-image
-plotly==5.4.0
+plotly==5.5.0
     # via -r requirements/local.in
-posthog==1.4.3
+posthog==1.4.5
     # via -r requirements/local.in
-prometheus-client==0.12.0
+printnanny-api-client==0.47.2
+    # via -r requirements/local.in
+prometheus-client==0.13.1
     # via
     #   django-prometheus
     #   flower
-prompt-toolkit==3.0.22
+prompt-toolkit==3.0.26
     # via click-repl
-proto-plus==1.19.8
+proto-plus==1.19.9
     # via
     #   google-cloud-iot
     #   google-cloud-monitoring
     #   google-cloud-pubsub
-protobuf==3.19.1
+protobuf==3.19.4
     # via
     #   google-api-core
     #   google-cloud-storage
     #   googleapis-common-protos
     #   grpcio-status
+    #   printnanny-api-client
     #   proto-plus
-psycopg2==2.9.2
+psycopg2==2.9.3
     # via
     #   -r requirements/local.in
     #   django-coturn
-pyarrow==6.0.1
+pyarrow==7.0.0
     # via -r requirements/local.in
 pyasn1==0.4.8
     # via
@@ -372,25 +373,23 @@ pyasn1-modules==0.2.8
     #   service-identity
 pycparser==2.21
     # via cffi
-pyhamcrest==2.0.2
+pyhamcrest==2.0.3
     # via twisted
 pyjwt[crypto]==2.3.0
     # via django-allauth
-pyopenssl==21.0.0
+pyopenssl==22.0.0
     # via twisted
-pyparsing==3.0.6
-    # via
-    #   matplotlib
-    #   packaging
-pyrsistent==0.18.0
+pyparsing==3.0.7
+    # via packaging
+pyrsistent==0.18.1
     # via jsonschema
 python-crontab==2.6.0
     # via django-celery-beat
 python-dateutil==2.8.2
     # via
-    #   matplotlib
     #   pandas
     #   posthog
+    #   printnanny-api-client
     #   python-crontab
 python-dotenv==0.19.2
     # via uvicorn
@@ -401,6 +400,7 @@ pytz==2021.3
     #   celery
     #   django
     #   django-timezone-field
+    #   djangorestframework
     #   flower
     #   pandas
 pywavelets==1.2.0
@@ -412,13 +412,13 @@ pyyaml==6.0
     #   uvicorn
 qrcode[pil]==7.3.1
     # via -r requirements/local.in
-rcssmin==1.0.6
+rcssmin==1.1.0
     # via django-compressor
-redis==3.5.3
+redis==4.1.2
     # via
     #   celery
     #   django-redis
-requests==2.26.0
+requests==2.27.1
     # via
     #   django-allauth
     #   django-anymail
@@ -428,34 +428,30 @@ requests==2.26.0
     #   posthog
     #   requests-oauthlib
     #   stripe
-requests-oauthlib==1.3.0
+requests-oauthlib==1.3.1
     # via django-allauth
-rjsmin==1.1.0
+rjsmin==1.2.0
     # via django-compressor
-rsa==4.7.2
+rsa==4.8
     # via google-auth
-scikit-image==0.18.3
+scikit-image==0.19.1
     # via -r requirements/local.in
-scipy==1.7.2
+scipy==1.8.0
     # via scikit-image
 service-identity==21.1.0
     # via twisted
-setuptools-scm==6.3.2
-    # via matplotlib
 six==1.16.0
     # via
     #   automat
     #   click-repl
-    #   django-compressor
     #   django-coverage-plugin
     #   django-rest-polymorphic
     #   google-auth
-    #   google-cloud-storage
     #   grpcio
     #   libhoney
     #   plotly
     #   posthog
-    #   pyopenssl
+    #   printnanny-api-client
     #   python-dateutil
     #   service-identity
 sqlparse==0.4.2
@@ -466,18 +462,16 @@ statsd==3.3.0
     # via libhoney
 stringcase==1.2.0
     # via -r requirements/local.in
-stripe==2.63.0
+stripe==2.65.0
     # via dj-stripe
 tenacity==8.0.1
     # via plotly
-tifffile==2021.11.2
+tifffile==2022.2.2
     # via scikit-image
 toml==0.10.2
-    # via
-    #   django-stubs
-    #   mypy
-tomli==1.2.2
-    # via setuptools-scm
+    # via django-stubs
+tomli==2.0.0
+    # via mypy
 tornado==6.1
     # via flower
 twisted[tls]==20.3.0
@@ -486,11 +480,11 @@ twisted[tls]==20.3.0
     #   daphne
 txaio==21.2.1
     # via autobahn
-types-pytz==2021.3.0
+types-pytz==2021.3.4
     # via django-stubs
-types-pyyaml==6.0.1
+types-pyyaml==6.0.4
     # via django-stubs
-typing-extensions==4.0.0
+typing-extensions==4.0.1
     # via
     #   aiohttp
     #   django-stubs
@@ -502,9 +496,11 @@ typing-inspect==0.7.1
     # via libcst
 uritemplate==4.1.1
     # via drf-spectacular
-urllib3==1.26.7
-    # via requests
-uvicorn[standard]==0.15.0
+urllib3==1.26.8
+    # via
+    #   printnanny-api-client
+    #   requests
+uvicorn[standard]==0.17.4
     # via -r requirements/local.in
 uvloop==0.16.0
     # via uvicorn
@@ -522,10 +518,12 @@ websockets==10.1
 whitenoise==5.3.0
     # via -r requirements/local.in
 wrapt==1.13.3
-    # via honeycomb-beeline
+    # via
+    #   deprecated
+    #   honeycomb-beeline
 yarl==1.7.2
     # via aiohttp
-zipp==3.6.0
+zipp==3.7.0
     # via importlib-resources
 zope.interface==5.4.0
     # via twisted
