@@ -59,7 +59,7 @@ docker-mypy:
 	docker-compose -f local.yml run --rm django mypy -m print_nanny_webapp.telemetry
 mypy:
 	. .envs/.local/.tests.sh && \
-	mypy print_nanny_webapp/telemetry/
+	mypy print_nanny_webapp/telemetry/**/*
 
 token:
 	@echo $(PRINT_NANNY_TOKEN)
