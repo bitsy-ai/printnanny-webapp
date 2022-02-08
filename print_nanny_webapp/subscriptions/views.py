@@ -3,7 +3,8 @@ from typing import Any, Dict
 from django.apps import apps
 from django.views.generic.base import RedirectView
 from django.contrib.auth.mixins import LoginRequiredMixin
-import json, logging
+import json
+import logging
 import stripe
 from django.urls import reverse
 from django.http import HttpRequest, HttpResponse
@@ -23,8 +24,6 @@ from print_nanny_webapp.utils.views import DashboardView
 
 logger = logging.getLogger(__name__)
 User = get_user_model()
-
-stripe.api_key = djstripe.settings.STRIPE_SECRET_KEY
 
 
 class SubscriptionSoldoutView(TemplateView):
