@@ -103,7 +103,7 @@ class Device(SafeDeleteModel):
 
     @property
     def video_test_url(self):
-        base_url = reverse("devices:welcome", kwargs={"pk": self.id})
+        base_url = reverse("devices:welcome-detail", kwargs={"pk": self.id})
         query = urlencode(dict(step=2))
         return f"{base_url}?{query}"
 
