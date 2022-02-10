@@ -43,6 +43,7 @@ class Device(object):
         'cameras': 'list[Camera]',
         'cloudiot_device': 'CloudiotDevice',
         'dashboard_url': 'str',
+        'video_test_url': 'str',
         'janus_auth': 'JanusAuth',
         'janus_local_url': 'str',
         'last_task': 'Task',
@@ -65,6 +66,7 @@ class Device(object):
         'cameras': 'cameras',
         'cloudiot_device': 'cloudiot_device',
         'dashboard_url': 'dashboard_url',
+        'video_test_url': 'video_test_url',
         'janus_auth': 'janus_auth',
         'janus_local_url': 'janus_local_url',
         'last_task': 'last_task',
@@ -80,7 +82,7 @@ class Device(object):
         'hostname': 'hostname'
     }
 
-    def __init__(self, id=None, active_cameras=None, active_tasks=None, cameras=None, cloudiot_device=None, dashboard_url=None, janus_auth=None, janus_local_url=None, last_task=None, monitoring_active=False, setup_complete=False, printer_controllers=None, user=None, release_channel=None, system_info=None, public_key=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, active_cameras=None, active_tasks=None, cameras=None, cloudiot_device=None, dashboard_url=None, video_test_url=None, janus_auth=None, janus_local_url=None, last_task=None, monitoring_active=False, setup_complete=False, printer_controllers=None, user=None, release_channel=None, system_info=None, public_key=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -92,6 +94,7 @@ class Device(object):
         self._cameras = None
         self._cloudiot_device = None
         self._dashboard_url = None
+        self._video_test_url = None
         self._janus_auth = None
         self._janus_local_url = None
         self._last_task = None
@@ -113,6 +116,7 @@ class Device(object):
         self.cameras = cameras
         self.cloudiot_device = cloudiot_device
         self.dashboard_url = dashboard_url
+        self.video_test_url = video_test_url
         self.janus_auth = janus_auth
         self.janus_local_url = janus_local_url
         self.last_task = last_task
@@ -265,6 +269,29 @@ class Device(object):
             raise ValueError("Invalid value for `dashboard_url`, must not be `None`")  # noqa: E501
 
         self._dashboard_url = dashboard_url
+
+    @property
+    def video_test_url(self):
+        """Gets the video_test_url of this Device.  # noqa: E501
+
+
+        :return: The video_test_url of this Device.  # noqa: E501
+        :rtype: str
+        """
+        return self._video_test_url
+
+    @video_test_url.setter
+    def video_test_url(self, video_test_url):
+        """Sets the video_test_url of this Device.
+
+
+        :param video_test_url: The video_test_url of this Device.  # noqa: E501
+        :type video_test_url: str
+        """
+        if self.local_vars_configuration.client_side_validation and video_test_url is None:  # noqa: E501
+            raise ValueError("Invalid value for `video_test_url`, must not be `None`")  # noqa: E501
+
+        self._video_test_url = video_test_url
 
     @property
     def janus_auth(self):

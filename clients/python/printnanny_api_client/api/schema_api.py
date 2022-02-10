@@ -96,6 +96,7 @@ class SchemaApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -113,7 +114,9 @@ class SchemaApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -134,7 +137,7 @@ class SchemaApi(object):
         if 'lang' in local_var_params and local_var_params['lang'] is not None:  # noqa: E501
             query_params.append(('lang', local_var_params['lang']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}

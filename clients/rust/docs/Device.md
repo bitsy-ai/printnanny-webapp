@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **cameras** | [**Vec<crate::models::Camera>**](Camera.md) |  | [readonly]
 **cloudiot_device** | Option<[**crate::models::CloudiotDevice**](CloudiotDevice.md)> |  | [readonly]
 **dashboard_url** | **String** |  | [readonly]
+**video_test_url** | **String** |  | [readonly]
 **janus_auth** | Option<[**crate::models::JanusAuth**](JanusAuth.md)> |  | [readonly]
 **janus_local_url** | **String** |  | [readonly]
 **last_task** | Option<[**crate::models::Task**](Task.md)> |  | [readonly]

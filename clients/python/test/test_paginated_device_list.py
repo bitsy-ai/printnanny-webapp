@@ -77,6 +77,7 @@ class TestPaginatedDeviceList(unittest.TestCase):
                             ], 
                         cloudiot_device = null, 
                         dashboard_url = '', 
+                        video_test_url = '', 
                         janus_auth = null, 
                         janus_local_url = '', 
                         last_task = null, 

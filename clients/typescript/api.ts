@@ -143,18 +143,21 @@ export interface AlertBulkResponse {
  * @enum {string}
  */
 
-export enum AlertEventTypeEnum {
-    PrintHealth = 'PrintHealth',
-    PrintStatus = 'PrintStatus',
-    PrintNannyWebapp = 'PrintNannyWebapp',
-    PrintProgress = 'PrintProgress',
-    PrintDone = 'PrintDone',
-    PrintFailed = 'PrintFailed',
-    PrintPaused = 'PrintPaused',
-    PrintResumed = 'PrintResumed',
-    PrintStarted = 'PrintStarted',
-    PrintCancelled = 'PrintCancelled'
-}
+export const AlertEventTypeEnum = {
+    PrintHealth: 'PrintHealth',
+    PrintStatus: 'PrintStatus',
+    PrintNannyWebapp: 'PrintNannyWebapp',
+    PrintProgress: 'PrintProgress',
+    PrintDone: 'PrintDone',
+    PrintFailed: 'PrintFailed',
+    PrintPaused: 'PrintPaused',
+    PrintResumed: 'PrintResumed',
+    PrintStarted: 'PrintStarted',
+    PrintCancelled: 'PrintCancelled'
+} as const;
+
+export type AlertEventTypeEnum = typeof AlertEventTypeEnum[keyof typeof AlertEventTypeEnum];
+
 
 /**
  * 
@@ -193,11 +196,14 @@ export interface AlertRequest {
  * @enum {string}
  */
 
-export enum AlphaEventSource {
-    Octoprint = 'octoprint',
-    PluginOctoprintNanny = 'plugin_octoprint_nanny',
-    RemoteCommand = 'remote_command'
-}
+export const AlphaEventSource = {
+    Octoprint: 'octoprint',
+    PluginOctoprintNanny: 'plugin_octoprint_nanny',
+    RemoteCommand: 'remote_command'
+} as const;
+
+export type AlphaEventSource = typeof AlphaEventSource[keyof typeof AlphaEventSource];
+
 
 /**
  * 
@@ -205,12 +211,15 @@ export enum AlphaEventSource {
  * @enum {string}
  */
 
-export enum ArtifactTypesEnum {
-    Tflite = 'TFLITE',
-    Tf1 = 'TF1',
-    Tf2SavedModel = 'TF2_SAVED_MODEL',
-    Tf2Hdf5 = 'TF2_HDF5'
-}
+export const ArtifactTypesEnum = {
+    Tflite: 'TFLITE',
+    Tf1: 'TF1',
+    Tf2SavedModel: 'TF2_SAVED_MODEL',
+    Tf2Hdf5: 'TF2_HDF5'
+} as const;
+
+export type ArtifactTypesEnum = typeof ArtifactTypesEnum[keyof typeof ArtifactTypesEnum];
+
 
 /**
  * Abstract class inspired by DRF\'s own token serializer. Returns a user if valid, None or a message if not.
@@ -379,11 +388,14 @@ export interface CameraRequest {
  * @enum {string}
  */
 
-export enum CameraType {
-    Picam = 'picam',
-    Usb = 'usb',
-    Ip = 'ip'
-}
+export const CameraType = {
+    Picam: 'picam',
+    Usb: 'usb',
+    Ip: 'ip'
+} as const;
+
+export type CameraType = typeof CameraType[keyof typeof CameraType];
+
 
 /**
  * 
@@ -519,16 +531,19 @@ export interface CloudiotDeviceRequest {
  * @enum {string}
  */
 
-export enum CommandEnum {
-    MonitoringStop = 'monitoring_stop',
-    MonitoringStart = 'monitoring_start',
-    PrintStart = 'print_start',
-    PrintStop = 'print_stop',
-    PrintPause = 'print_pause',
-    PrintResume = 'print_resume',
-    MoveNozzle = 'move_nozzle',
-    ConnectTestMqttPong = 'connect_test_mqtt_pong'
-}
+export const CommandEnum = {
+    MonitoringStop: 'monitoring_stop',
+    MonitoringStart: 'monitoring_start',
+    PrintStart: 'print_start',
+    PrintStop: 'print_stop',
+    PrintPause: 'print_pause',
+    PrintResume: 'print_resume',
+    MoveNozzle: 'move_nozzle',
+    ConnectTestMqttPong: 'connect_test_mqtt_pong'
+} as const;
+
+export type CommandEnum = typeof CommandEnum[keyof typeof CommandEnum];
+
 
 /**
  * Generic auth response serializer
@@ -585,6 +600,12 @@ export interface Device {
      * @memberof Device
      */
     'dashboard_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    'video_test_url': string;
     /**
      * 
      * @type {JanusAuth}
@@ -831,9 +852,12 @@ export interface ErrorDetail {
  * @enum {string}
  */
 
-export enum EventModel {
-    TestEvent = 'TestEvent'
-}
+export const EventModel = {
+    TestEvent: 'TestEvent'
+} as const;
+
+export type EventModel = typeof EventModel[keyof typeof EventModel];
+
 
 /**
  * 
@@ -841,11 +865,14 @@ export enum EventModel {
  * @enum {string}
  */
 
-export enum EventSource {
-    Octoprint = 'octoprint',
-    Printnanny = 'printnanny',
-    Mainsail = 'mainsail'
-}
+export const EventSource = {
+    Octoprint: 'octoprint',
+    Printnanny: 'printnanny',
+    Mainsail: 'mainsail'
+} as const;
+
+export type EventSource = typeof EventSource[keyof typeof EventSource];
+
 
 /**
  * 
@@ -853,13 +880,16 @@ export enum EventSource {
  * @enum {string}
  */
 
-export enum EventStatus {
-    Sent = 'sent',
-    Ack = 'ack',
-    Success = 'success',
-    Failed = 'failed',
-    Timeout = 'timeout'
-}
+export const EventStatus = {
+    Sent: 'sent',
+    Ack: 'ack',
+    Success: 'success',
+    Failed: 'failed',
+    Timeout: 'timeout'
+} as const;
+
+export type EventStatus = typeof EventStatus[keyof typeof EventStatus];
+
 
 /**
  * 
@@ -1138,47 +1168,50 @@ export interface ModelArtifact {
  * @enum {string}
  */
 
-export enum OctoGenericEvent {
-    PluginBackupBackupCreated = 'plugin_backup_backup_created',
-    ClientAuthed = 'ClientAuthed',
-    ClientClosed = 'ClientClosed',
-    ClientDeauthed = 'ClientDeauthed',
-    ClientOpened = 'ClientOpened',
-    SettingsUpdated = 'SettingsUpdated',
-    UserLoggedIn = 'UserLoggedIn',
-    UserLoggedOut = 'UserLoggedOut',
-    FileAdded = 'FileAdded',
-    FileRemoved = 'FileRemoved',
-    FolderAdded = 'FolderAdded',
-    FolderRemoved = 'FolderRemoved',
-    TransferDone = 'TransferDone',
-    TransferFailed = 'TransferFailed',
-    TransferStarted = 'TransferStarted',
-    UpdatedFiles = 'UpdatedFiles',
-    Upload = 'Upload',
-    CaptureDone = 'CaptureDone',
-    CaptureFailed = 'CaptureFailed',
-    CaptureStart = 'CaptureStart',
-    MovieDone = 'MovieDone',
-    MovieFailed = 'MovieFailed',
-    MovieRendering = 'MovieRendering',
-    PostRollEnd = 'PostRollEnd',
-    PostRollStart = 'PostRollStart',
-    SlicingCancelled = 'SlicingCancelled',
-    SlicingDone = 'SlicingDone',
-    SlicingFailed = 'SlicingFailed',
-    SlicingProfileAdded = 'SlicingProfileAdded',
-    SlicingProfileDeleted = 'SlicingProfileDeleted',
-    SlicingProfileModified = 'SlicingProfileModified',
-    SlicingStarted = 'SlicingStarted',
-    PrinterProfileAdded = 'PrinterProfileAdded',
-    PrinterProfileDeleted = 'PrinterProfileDeleted',
-    PrinterProfileModified = 'PrinterProfileModified',
-    PrintProgress = 'PrintProgress',
-    PluginPiSupportThrottleState = 'plugin_pi_support_throttle_state',
-    Shutdown = 'Shutdown',
-    Startup = 'Startup'
-}
+export const OctoGenericEvent = {
+    PluginBackupBackupCreated: 'plugin_backup_backup_created',
+    ClientAuthed: 'ClientAuthed',
+    ClientClosed: 'ClientClosed',
+    ClientDeauthed: 'ClientDeauthed',
+    ClientOpened: 'ClientOpened',
+    SettingsUpdated: 'SettingsUpdated',
+    UserLoggedIn: 'UserLoggedIn',
+    UserLoggedOut: 'UserLoggedOut',
+    FileAdded: 'FileAdded',
+    FileRemoved: 'FileRemoved',
+    FolderAdded: 'FolderAdded',
+    FolderRemoved: 'FolderRemoved',
+    TransferDone: 'TransferDone',
+    TransferFailed: 'TransferFailed',
+    TransferStarted: 'TransferStarted',
+    UpdatedFiles: 'UpdatedFiles',
+    Upload: 'Upload',
+    CaptureDone: 'CaptureDone',
+    CaptureFailed: 'CaptureFailed',
+    CaptureStart: 'CaptureStart',
+    MovieDone: 'MovieDone',
+    MovieFailed: 'MovieFailed',
+    MovieRendering: 'MovieRendering',
+    PostRollEnd: 'PostRollEnd',
+    PostRollStart: 'PostRollStart',
+    SlicingCancelled: 'SlicingCancelled',
+    SlicingDone: 'SlicingDone',
+    SlicingFailed: 'SlicingFailed',
+    SlicingProfileAdded: 'SlicingProfileAdded',
+    SlicingProfileDeleted: 'SlicingProfileDeleted',
+    SlicingProfileModified: 'SlicingProfileModified',
+    SlicingStarted: 'SlicingStarted',
+    PrinterProfileAdded: 'PrinterProfileAdded',
+    PrinterProfileDeleted: 'PrinterProfileDeleted',
+    PrinterProfileModified: 'PrinterProfileModified',
+    PrintProgress: 'PrintProgress',
+    PluginPiSupportThrottleState: 'plugin_pi_support_throttle_state',
+    Shutdown: 'Shutdown',
+    Startup: 'Startup'
+} as const;
+
+export type OctoGenericEvent = typeof OctoGenericEvent[keyof typeof OctoGenericEvent];
+
 
 /**
  * 
@@ -1186,15 +1219,18 @@ export enum OctoGenericEvent {
  * @enum {string}
  */
 
-export enum OctoJobEvent {
-    PrintCancelled = 'PrintCancelled',
-    PrintCancelling = 'PrintCancelling',
-    PrintDone = 'PrintDone',
-    PrintFailed = 'PrintFailed',
-    PrintPaused = 'PrintPaused',
-    PrintResumed = 'PrintResumed',
-    PrintStarted = 'PrintStarted'
-}
+export const OctoJobEvent = {
+    PrintCancelled: 'PrintCancelled',
+    PrintCancelling: 'PrintCancelling',
+    PrintDone: 'PrintDone',
+    PrintFailed: 'PrintFailed',
+    PrintPaused: 'PrintPaused',
+    PrintResumed: 'PrintResumed',
+    PrintStarted: 'PrintStarted'
+} as const;
+
+export type OctoJobEvent = typeof OctoJobEvent[keyof typeof OctoJobEvent];
+
 
 /**
  * 
@@ -1922,27 +1958,30 @@ export interface OctoPrintEventRequest {
  * @enum {string}
  */
 
-export enum OctoPrintNannyEvent {
-    MonitoringStart = 'plugin_octoprint_nanny_monitoring_start',
-    MonitoringStop = 'plugin_octoprint_nanny_monitoring_stop',
-    MonitoringReset = 'plugin_octoprint_nanny_monitoring_reset',
-    DeviceRegisterStart = 'plugin_octoprint_nanny_device_register_start',
-    DeviceRegisterDone = 'plugin_octoprint_nanny_device_register_done',
-    DeviceRegisterFailed = 'plugin_octoprint_nanny_device_register_failed',
-    DeviceReset = 'plugin_octoprint_nanny_device_reset',
-    PrinterProfileSyncStart = 'plugin_octoprint_nanny_printer_profile_sync_start',
-    PrinterProfileSyncDone = 'plugin_octoprint_nanny_printer_profile_sync_done',
-    PrinterProfileSyncFailed = 'plugin_octoprint_nanny_printer_profile_sync_failed',
-    ConnectTestRestApi = 'plugin_octoprint_nanny_connect_test_rest_api',
-    ConnectTestRestApiFailed = 'plugin_octoprint_nanny_connect_test_rest_api_failed',
-    ConnectTestRestApiSuccess = 'plugin_octoprint_nanny_connect_test_rest_api_success',
-    ConnectTestMqttPing = 'plugin_octoprint_nanny_connect_test_mqtt_ping',
-    ConnectTestMqttPingFailed = 'plugin_octoprint_nanny_connect_test_mqtt_ping_failed',
-    ConnectTestMqttPingSuccess = 'plugin_octoprint_nanny_connect_test_mqtt_ping_success',
-    ConnectTestMqttPong = 'plugin_octoprint_nanny_connect_test_mqtt_pong',
-    ConnectTestMqttPongFailed = 'plugin_octoprint_nanny_connect_test_mqtt_pong_failed',
-    ConnectTestMqttPongSuccess = 'plugin_octoprint_nanny_connect_test_mqtt_pong_success'
-}
+export const OctoPrintNannyEvent = {
+    MonitoringStart: 'plugin_octoprint_nanny_monitoring_start',
+    MonitoringStop: 'plugin_octoprint_nanny_monitoring_stop',
+    MonitoringReset: 'plugin_octoprint_nanny_monitoring_reset',
+    DeviceRegisterStart: 'plugin_octoprint_nanny_device_register_start',
+    DeviceRegisterDone: 'plugin_octoprint_nanny_device_register_done',
+    DeviceRegisterFailed: 'plugin_octoprint_nanny_device_register_failed',
+    DeviceReset: 'plugin_octoprint_nanny_device_reset',
+    PrinterProfileSyncStart: 'plugin_octoprint_nanny_printer_profile_sync_start',
+    PrinterProfileSyncDone: 'plugin_octoprint_nanny_printer_profile_sync_done',
+    PrinterProfileSyncFailed: 'plugin_octoprint_nanny_printer_profile_sync_failed',
+    ConnectTestRestApi: 'plugin_octoprint_nanny_connect_test_rest_api',
+    ConnectTestRestApiFailed: 'plugin_octoprint_nanny_connect_test_rest_api_failed',
+    ConnectTestRestApiSuccess: 'plugin_octoprint_nanny_connect_test_rest_api_success',
+    ConnectTestMqttPing: 'plugin_octoprint_nanny_connect_test_mqtt_ping',
+    ConnectTestMqttPingFailed: 'plugin_octoprint_nanny_connect_test_mqtt_ping_failed',
+    ConnectTestMqttPingSuccess: 'plugin_octoprint_nanny_connect_test_mqtt_ping_success',
+    ConnectTestMqttPong: 'plugin_octoprint_nanny_connect_test_mqtt_pong',
+    ConnectTestMqttPongFailed: 'plugin_octoprint_nanny_connect_test_mqtt_pong_failed',
+    ConnectTestMqttPongSuccess: 'plugin_octoprint_nanny_connect_test_mqtt_pong_success'
+} as const;
+
+export type OctoPrintNannyEvent = typeof OctoPrintNannyEvent[keyof typeof OctoPrintNannyEvent];
+
 
 /**
  * 
@@ -1950,27 +1989,30 @@ export enum OctoPrintNannyEvent {
  * @enum {string}
  */
 
-export enum OctoPrinterEvent {
-    Operational = 'Operational',
-    Paused = 'Paused',
-    Cancelling = 'Cancelling',
-    Printing = 'Printing',
-    Pausing = 'Pausing',
-    SdReady = 'sdReady',
-    Error = 'Error',
-    ReadyPrinterReady = 'ReadyPrinter Ready',
-    ClosedOrError = 'closedOrError',
-    Offline = 'Offline',
-    OpeningSerialConnection = 'Opening serial connection',
-    Connection = 'Connection',
-    Resuming = 'Resuming',
-    Finishing = 'Finishing',
-    PrinterStateChanged = 'PrinterStateChanged',
-    Connected = 'Connected',
-    Disconnected = 'Disconnected',
-    PrinterReset = 'PrinterReset',
-    FirmwareData = 'FirmwareData'
-}
+export const OctoPrinterEvent = {
+    Operational: 'Operational',
+    Paused: 'Paused',
+    Cancelling: 'Cancelling',
+    Printing: 'Printing',
+    Pausing: 'Pausing',
+    SdReady: 'sdReady',
+    Error: 'Error',
+    ReadyPrinterReady: 'ReadyPrinter Ready',
+    ClosedOrError: 'closedOrError',
+    Offline: 'Offline',
+    OpeningSerialConnection: 'Opening serial connection',
+    Connection: 'Connection',
+    Resuming: 'Resuming',
+    Finishing: 'Finishing',
+    PrinterStateChanged: 'PrinterStateChanged',
+    Connected: 'Connected',
+    Disconnected: 'Disconnected',
+    PrinterReset: 'PrinterReset',
+    FirmwareData: 'FirmwareData'
+} as const;
+
+export type OctoPrinterEvent = typeof OctoPrinterEvent[keyof typeof OctoPrinterEvent];
+
 
 /**
  * 
@@ -1978,82 +2020,85 @@ export enum OctoPrinterEvent {
  * @enum {string}
  */
 
-export enum OctoTelemetryEvent {
-    PluginOctoprintNannyMonitoringStart = 'plugin_octoprint_nanny_monitoring_start',
-    PluginOctoprintNannyMonitoringStop = 'plugin_octoprint_nanny_monitoring_stop',
-    PluginOctoprintNannyMonitoringReset = 'plugin_octoprint_nanny_monitoring_reset',
-    PluginOctoprintNannyDeviceRegisterStart = 'plugin_octoprint_nanny_device_register_start',
-    PluginOctoprintNannyDeviceRegisterDone = 'plugin_octoprint_nanny_device_register_done',
-    PluginOctoprintNannyDeviceRegisterFailed = 'plugin_octoprint_nanny_device_register_failed',
-    PluginOctoprintNannyDeviceReset = 'plugin_octoprint_nanny_device_reset',
-    PluginOctoprintNannyPrinterProfileSyncStart = 'plugin_octoprint_nanny_printer_profile_sync_start',
-    PluginOctoprintNannyPrinterProfileSyncDone = 'plugin_octoprint_nanny_printer_profile_sync_done',
-    PluginOctoprintNannyPrinterProfileSyncFailed = 'plugin_octoprint_nanny_printer_profile_sync_failed',
-    PluginOctoprintNannyConnectTestRestApi = 'plugin_octoprint_nanny_connect_test_rest_api',
-    PluginOctoprintNannyConnectTestRestApiFailed = 'plugin_octoprint_nanny_connect_test_rest_api_failed',
-    PluginOctoprintNannyConnectTestRestApiSuccess = 'plugin_octoprint_nanny_connect_test_rest_api_success',
-    PluginOctoprintNannyConnectTestMqttPing = 'plugin_octoprint_nanny_connect_test_mqtt_ping',
-    PluginOctoprintNannyConnectTestMqttPingFailed = 'plugin_octoprint_nanny_connect_test_mqtt_ping_failed',
-    PluginOctoprintNannyConnectTestMqttPingSuccess = 'plugin_octoprint_nanny_connect_test_mqtt_ping_success',
-    PluginOctoprintNannyConnectTestMqttPong = 'plugin_octoprint_nanny_connect_test_mqtt_pong',
-    PluginOctoprintNannyConnectTestMqttPongFailed = 'plugin_octoprint_nanny_connect_test_mqtt_pong_failed',
-    PluginOctoprintNannyConnectTestMqttPongSuccess = 'plugin_octoprint_nanny_connect_test_mqtt_pong_success',
-    ConnectTestNoop = 'connect_test_noop',
-    ClientAuthed = 'ClientAuthed',
-    ClientClosed = 'ClientClosed',
-    ClientDeauthed = 'ClientDeauthed',
-    ClientOpened = 'ClientOpened',
-    SettingsUpdated = 'SettingsUpdated',
-    UserLoggedIn = 'UserLoggedIn',
-    UserLoggedOut = 'UserLoggedOut',
-    FileAdded = 'FileAdded',
-    FileRemoved = 'FileRemoved',
-    FolderAdded = 'FolderAdded',
-    FolderRemoved = 'FolderRemoved',
-    TransferDone = 'TransferDone',
-    TransferFailed = 'TransferFailed',
-    TransferStarted = 'TransferStarted',
-    UpdatedFiles = 'UpdatedFiles',
-    Upload = 'Upload',
-    CaptureDone = 'CaptureDone',
-    CaptureFailed = 'CaptureFailed',
-    CaptureStart = 'CaptureStart',
-    MovieDone = 'MovieDone',
-    MovieFailed = 'MovieFailed',
-    MovieRendering = 'MovieRendering',
-    PostRollEnd = 'PostRollEnd',
-    PostRollStart = 'PostRollStart',
-    SlicingCancelled = 'SlicingCancelled',
-    SlicingDone = 'SlicingDone',
-    SlicingFailed = 'SlicingFailed',
-    SlicingProfileAdded = 'SlicingProfileAdded',
-    SlicingProfileDeleted = 'SlicingProfileDeleted',
-    SlicingProfileModified = 'SlicingProfileModified',
-    SlicingStarted = 'SlicingStarted',
-    Connected = 'Connected',
-    Disconnected = 'Disconnected',
-    PrinterReset = 'PrinterReset',
-    FirmwareData = 'FirmwareData',
-    PrinterProfileAdded = 'PrinterProfileAdded',
-    PrinterProfileDeleted = 'PrinterProfileDeleted',
-    PrinterProfileModified = 'PrinterProfileModified',
-    PrintProgress = 'PrintProgress',
-    PluginPiSupportThrottleState = 'plugin_pi_support_throttle_state',
-    Shutdown = 'Shutdown',
-    Startup = 'Startup',
-    PluginBackupBackupCreated = 'plugin_backup_backup_created',
-    RemoteCommandReceived = 'remote_command_received',
-    RemoteCommandFailed = 'remote_command_failed',
-    RemoteCommandSuccess = 'remote_command_success',
-    PrintCancelled = 'PrintCancelled',
-    PrintCancelling = 'PrintCancelling',
-    PrintDone = 'PrintDone',
-    PrintFailed = 'PrintFailed',
-    PrintPaused = 'PrintPaused',
-    PrintResumed = 'PrintResumed',
-    PrintStarted = 'PrintStarted',
-    PrinterStateChanged = 'PrinterStateChanged'
-}
+export const OctoTelemetryEvent = {
+    PluginOctoprintNannyMonitoringStart: 'plugin_octoprint_nanny_monitoring_start',
+    PluginOctoprintNannyMonitoringStop: 'plugin_octoprint_nanny_monitoring_stop',
+    PluginOctoprintNannyMonitoringReset: 'plugin_octoprint_nanny_monitoring_reset',
+    PluginOctoprintNannyDeviceRegisterStart: 'plugin_octoprint_nanny_device_register_start',
+    PluginOctoprintNannyDeviceRegisterDone: 'plugin_octoprint_nanny_device_register_done',
+    PluginOctoprintNannyDeviceRegisterFailed: 'plugin_octoprint_nanny_device_register_failed',
+    PluginOctoprintNannyDeviceReset: 'plugin_octoprint_nanny_device_reset',
+    PluginOctoprintNannyPrinterProfileSyncStart: 'plugin_octoprint_nanny_printer_profile_sync_start',
+    PluginOctoprintNannyPrinterProfileSyncDone: 'plugin_octoprint_nanny_printer_profile_sync_done',
+    PluginOctoprintNannyPrinterProfileSyncFailed: 'plugin_octoprint_nanny_printer_profile_sync_failed',
+    PluginOctoprintNannyConnectTestRestApi: 'plugin_octoprint_nanny_connect_test_rest_api',
+    PluginOctoprintNannyConnectTestRestApiFailed: 'plugin_octoprint_nanny_connect_test_rest_api_failed',
+    PluginOctoprintNannyConnectTestRestApiSuccess: 'plugin_octoprint_nanny_connect_test_rest_api_success',
+    PluginOctoprintNannyConnectTestMqttPing: 'plugin_octoprint_nanny_connect_test_mqtt_ping',
+    PluginOctoprintNannyConnectTestMqttPingFailed: 'plugin_octoprint_nanny_connect_test_mqtt_ping_failed',
+    PluginOctoprintNannyConnectTestMqttPingSuccess: 'plugin_octoprint_nanny_connect_test_mqtt_ping_success',
+    PluginOctoprintNannyConnectTestMqttPong: 'plugin_octoprint_nanny_connect_test_mqtt_pong',
+    PluginOctoprintNannyConnectTestMqttPongFailed: 'plugin_octoprint_nanny_connect_test_mqtt_pong_failed',
+    PluginOctoprintNannyConnectTestMqttPongSuccess: 'plugin_octoprint_nanny_connect_test_mqtt_pong_success',
+    ConnectTestNoop: 'connect_test_noop',
+    ClientAuthed: 'ClientAuthed',
+    ClientClosed: 'ClientClosed',
+    ClientDeauthed: 'ClientDeauthed',
+    ClientOpened: 'ClientOpened',
+    SettingsUpdated: 'SettingsUpdated',
+    UserLoggedIn: 'UserLoggedIn',
+    UserLoggedOut: 'UserLoggedOut',
+    FileAdded: 'FileAdded',
+    FileRemoved: 'FileRemoved',
+    FolderAdded: 'FolderAdded',
+    FolderRemoved: 'FolderRemoved',
+    TransferDone: 'TransferDone',
+    TransferFailed: 'TransferFailed',
+    TransferStarted: 'TransferStarted',
+    UpdatedFiles: 'UpdatedFiles',
+    Upload: 'Upload',
+    CaptureDone: 'CaptureDone',
+    CaptureFailed: 'CaptureFailed',
+    CaptureStart: 'CaptureStart',
+    MovieDone: 'MovieDone',
+    MovieFailed: 'MovieFailed',
+    MovieRendering: 'MovieRendering',
+    PostRollEnd: 'PostRollEnd',
+    PostRollStart: 'PostRollStart',
+    SlicingCancelled: 'SlicingCancelled',
+    SlicingDone: 'SlicingDone',
+    SlicingFailed: 'SlicingFailed',
+    SlicingProfileAdded: 'SlicingProfileAdded',
+    SlicingProfileDeleted: 'SlicingProfileDeleted',
+    SlicingProfileModified: 'SlicingProfileModified',
+    SlicingStarted: 'SlicingStarted',
+    Connected: 'Connected',
+    Disconnected: 'Disconnected',
+    PrinterReset: 'PrinterReset',
+    FirmwareData: 'FirmwareData',
+    PrinterProfileAdded: 'PrinterProfileAdded',
+    PrinterProfileDeleted: 'PrinterProfileDeleted',
+    PrinterProfileModified: 'PrinterProfileModified',
+    PrintProgress: 'PrintProgress',
+    PluginPiSupportThrottleState: 'plugin_pi_support_throttle_state',
+    Shutdown: 'Shutdown',
+    Startup: 'Startup',
+    PluginBackupBackupCreated: 'plugin_backup_backup_created',
+    RemoteCommandReceived: 'remote_command_received',
+    RemoteCommandFailed: 'remote_command_failed',
+    RemoteCommandSuccess: 'remote_command_success',
+    PrintCancelled: 'PrintCancelled',
+    PrintCancelling: 'PrintCancelling',
+    PrintDone: 'PrintDone',
+    PrintFailed: 'PrintFailed',
+    PrintPaused: 'PrintPaused',
+    PrintResumed: 'PrintResumed',
+    PrintStarted: 'PrintStarted',
+    PrinterStateChanged: 'PrinterStateChanged'
+} as const;
+
+export type OctoTelemetryEvent = typeof OctoTelemetryEvent[keyof typeof OctoTelemetryEvent];
+
 
 /**
  * 
@@ -5859,10 +5904,13 @@ export interface PublicKeyRequest {
  * @enum {string}
  */
 
-export enum ReleaseChannelEnum {
-    Stable = 'stable',
-    Nightly = 'nightly'
-}
+export const ReleaseChannelEnum = {
+    Stable: 'stable',
+    Nightly: 'nightly'
+} as const;
+
+export type ReleaseChannelEnum = typeof ReleaseChannelEnum[keyof typeof ReleaseChannelEnum];
+
 
 /**
  * 
@@ -5973,11 +6021,14 @@ export interface RemoteCommandEvent {
  * @enum {string}
  */
 
-export enum RemoteCommandEventEventTypeEnum {
-    Received = 'remote_command_received',
-    Failed = 'remote_command_failed',
-    Success = 'remote_command_success'
-}
+export const RemoteCommandEventEventTypeEnum = {
+    Received: 'remote_command_received',
+    Failed: 'remote_command_failed',
+    Success: 'remote_command_success'
+} as const;
+
+export type RemoteCommandEventEventTypeEnum = typeof RemoteCommandEventEventTypeEnum[keyof typeof RemoteCommandEventEventTypeEnum];
+
 
 /**
  * 
@@ -6186,9 +6237,12 @@ export interface RemoteControlCommandRequest {
  * @enum {string}
  */
 
-export enum SoftwareEnum {
-    OctoPrint = 'OctoPrint'
-}
+export const SoftwareEnum = {
+    OctoPrint: 'OctoPrint'
+} as const;
+
+export type SoftwareEnum = typeof SoftwareEnum[keyof typeof SoftwareEnum];
+
 
 /**
  * 
@@ -6385,13 +6439,16 @@ export interface Task {
  * @enum {string}
  */
 
-export enum TaskEnum {
-    Link = 'link',
-    TestVideo = 'test_video',
-    TestMqtt = 'test_mqtt',
-    RestoreOctoprint = 'restore_octoprint',
-    TestOctoprint = 'test_octoprint'
-}
+export const TaskEnum = {
+    Link: 'link',
+    TestVideo: 'test_video',
+    TestMqtt: 'test_mqtt',
+    RestoreOctoprint: 'restore_octoprint',
+    TestOctoprint: 'test_octoprint'
+} as const;
+
+export type TaskEnum = typeof TaskEnum[keyof typeof TaskEnum];
+
 
 /**
  * 
@@ -6510,13 +6567,16 @@ export interface TaskStatusRequest {
  * @enum {string}
  */
 
-export enum TaskStatusType {
-    Failed = 'failed',
-    Pending = 'pending',
-    Started = 'started',
-    Success = 'success',
-    Timeout = 'timeout'
-}
+export const TaskStatusType = {
+    Failed: 'failed',
+    Pending: 'pending',
+    Started: 'started',
+    Success: 'success',
+    Timeout: 'timeout'
+} as const;
+
+export type TaskStatusType = typeof TaskStatusType[keyof typeof TaskStatusType];
+
 
 /**
  * 
@@ -6524,12 +6584,15 @@ export enum TaskStatusType {
  * @enum {string}
  */
 
-export enum TaskType {
-    MonitorStart = 'monitor_start',
-    MonitorStop = 'monitor_stop',
-    SystemCheck = 'system_check',
-    SoftwareUpdate = 'software_update'
-}
+export const TaskType = {
+    MonitorStart: 'monitor_start',
+    MonitorStop: 'monitor_stop',
+    SystemCheck: 'system_check',
+    SoftwareUpdate: 'software_update'
+} as const;
+
+export type TaskType = typeof TaskType[keyof typeof TaskType];
+
 
 /**
  * 
@@ -6829,10 +6892,13 @@ export interface TestEventRequest {
  * @enum {string}
  */
 
-export enum TestEventType {
-    Ping = 'mqtt_ping',
-    Pong = 'mqtt_pong'
-}
+export const TestEventType = {
+    Ping: 'mqtt_ping',
+    Pong: 'mqtt_pong'
+} as const;
+
+export type TestEventType = typeof TestEventType[keyof typeof TestEventType];
+
 
 /**
  * Our default response serializer.
