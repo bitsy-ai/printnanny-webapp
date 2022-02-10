@@ -1,5 +1,7 @@
 import logging
 from typing import Callable
+from urllib.parse import urlencode
+from django.utils.http import urlencode
 from django.conf import settings
 from django.db import models
 from django.contrib.auth import get_user_model
@@ -98,6 +100,12 @@ class Device(SafeDeleteModel):
     @property
     def dashboard_url(self):
         return reverse("devices:detail", kwargs={"pk": self.id})
+
+    @property
+    def video_test_url(self):
+        base_url = reverse("devices:welcome", kwargs={"pk": self.id})
+        query = urlencode(dict(step=2))
+        return f"{base_url}?{query}"
 
     @property
     def cloudiot_device(self):
