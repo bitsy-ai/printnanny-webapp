@@ -23,7 +23,7 @@ import json
 import os
 import logging
 from typing import Dict, Callable
-from google.cloud import pubsub
+from google.cloud import pubsub_v1 as pubsub
 from django.db import IntegrityError
 
 # import sys
