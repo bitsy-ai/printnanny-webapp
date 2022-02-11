@@ -7,7 +7,7 @@
 aiohttp==3.7.4.post0
     # via
     #   -r requirements/local.in
-    #   discord.py
+    #   discord-py
     #   printnanny-api-client
 aioredis==1.3.1
     # via channels-redis
@@ -95,9 +95,9 @@ defusedxml==0.7.1
     # via python3-openid
 deprecated==1.2.13
     # via redis
-discord.py==1.7.3
+discord-py==1.7.3
     # via -r requirements/local.in
-dj-stripe==2.6.0
+dj-stripe==2.6.1
     # via -r requirements/local.in
 django==3.2.12
     # via
@@ -230,7 +230,7 @@ google-cloud-storage==2.1.0
     #   django-storages
 google-crc32c==1.3.0
     # via google-resumable-media
-google-resumable-media==2.1.0
+google-resumable-media==2.2.1
     # via google-cloud-storage
 googleapis-common-protos[grpc]==1.54.0
     # via
@@ -254,7 +254,7 @@ h11==0.13.0
     # via uvicorn
 hiredis==2.0.0
     # via aioredis
-honeycomb-beeline==3.1.0
+honeycomb-beeline==3.2.0
     # via -r requirements/local.in
 httptools==0.3.0
     # via uvicorn
@@ -270,7 +270,7 @@ idna==3.3
     #   requests
     #   twisted
     #   yarl
-imageio==2.14.1
+imageio==2.15.0
     # via
     #   -r requirements/local.in
     #   scikit-image
@@ -331,19 +331,19 @@ pillow==9.0.1
     #   imageio
     #   qrcode
     #   scikit-image
-plotly==5.5.0
+plotly==5.6.0
     # via -r requirements/local.in
 posthog==1.4.5
     # via -r requirements/local.in
-printnanny-api-client==0.47.2
+printnanny-api-client==0.48.0
     # via -r requirements/local.in
 prometheus-client==0.13.1
     # via
     #   django-prometheus
     #   flower
-prompt-toolkit==3.0.26
+prompt-toolkit==3.0.27
     # via click-repl
-proto-plus==1.19.9
+proto-plus==1.20.0
     # via
     #   google-cloud-iot
     #   google-cloud-monitoring
@@ -414,7 +414,7 @@ qrcode[pil]==7.3.1
     # via -r requirements/local.in
 rcssmin==1.1.0
     # via django-compressor
-redis==4.1.2
+redis==4.1.3
     # via
     #   celery
     #   django-redis
@@ -466,11 +466,11 @@ stripe==2.65.0
     # via dj-stripe
 tenacity==8.0.1
     # via plotly
-tifffile==2022.2.2
+tifffile==2022.2.9
     # via scikit-image
 toml==0.10.2
     # via django-stubs
-tomli==2.0.0
+tomli==2.0.1
     # via mypy
 tornado==6.1
     # via flower
@@ -515,7 +515,7 @@ wcwidth==0.2.5
     # via prompt-toolkit
 websockets==10.1
     # via uvicorn
-whitenoise==5.3.0
+whitenoise==6.0.0
     # via -r requirements/local.in
 wrapt==1.13.3
     # via
@@ -525,7 +525,7 @@ yarl==1.7.2
     # via aiohttp
 zipp==3.7.0
     # via importlib-resources
-zope.interface==5.4.0
+zope-interface==5.4.0
     # via twisted
 
 # The following packages are considered to be unsafe in a requirements file:
