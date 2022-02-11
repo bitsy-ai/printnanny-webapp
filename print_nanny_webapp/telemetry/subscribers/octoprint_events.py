@@ -23,7 +23,7 @@ import json
 import os
 import logging
 from typing import Dict, Callable
-from google.cloud import pubsub_v1
+from google.cloud import pubsub
 from django.db import IntegrityError
 
 # import sys
@@ -45,13 +45,13 @@ AlertMessage = apps.get_model("alerts", "AlertMessage")
 PrintProgressAlert = apps.get_model("alerts", "PrintProgressAlert")
 
 logger = logging.getLogger(__name__)
-subscriber = pubsub_v1.SubscriberClient()
+subscriber = pubsub.SubscriberClient()
 
 gcp_project = settings.GCP_PROJECT_ID
 event_subscription_name = settings.GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION
 video_render_topic = settings.GCP_RENDER_VIDEO_TOPIC
 
-publisher = pubsub_v1.PublisherClient()
+publisher = pubsub.PublisherClient()
 video_render_topic_path = publisher.topic_path(gcp_project, video_render_topic)
 
 

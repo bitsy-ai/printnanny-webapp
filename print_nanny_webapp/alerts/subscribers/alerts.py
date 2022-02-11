@@ -2,7 +2,7 @@ import os
 import logging
 from django.db import IntegrityError
 
-from google.cloud import pubsub_v1
+from google.cloud import pubsub
 
 # import sys
 # sys.path.insert(0,'/app')
@@ -29,7 +29,7 @@ VideoStatusAlert = apps.get_model("alerts", "VideoStatusAlert")
 PrintSession = apps.get_model("remote_control", "PrintSession")
 
 logger = logging.getLogger(__name__)
-subscriber = pubsub_v1.SubscriberClient()
+subscriber = pubsub.SubscriberClient()
 subscription_name = settings.GCP_PUBSUB_OCTOPRINT_ALERTS_SUBSCRIPTION
 
 
