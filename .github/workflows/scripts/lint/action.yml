@@ -8,6 +8,8 @@ runs:
       shell: bash
       run: |
         python3 -m venv .venv
+        source .venv/bin/activate
+        pip install --upgrade pip wheel setuptools
     - name: Install dependencies
       shell: bash
       run: |
