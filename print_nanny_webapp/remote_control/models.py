@@ -1,10 +1,9 @@
+import json
 import logging
 from typing import Callable
 
-from print_nanny_webapp.telemetry.models import PrinterEvent, PrintJobEvent
 from typing import Dict, Any, Optional
 from django.contrib.auth import get_user_model
-import json
 from django.utils import dateformat
 from django.urls import reverse
 from django.apps import apps
@@ -27,6 +26,8 @@ from print_nanny_webapp.remote_control.services import (
     generate_keypair,
 )
 
+PrinterEvent = apps.get_model("telemetry", "PrinterEvent")
+PrintJobEvent = apps.get_model("telemetry", "PrintJobEvent")
 User = get_user_model()
 
 logger = logging.getLogger(__name__)
