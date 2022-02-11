@@ -1,3 +1,14 @@
+from django.contrib.auth import get_user_model
+import google.api_core.exceptions
+from django.apps import apps
+from django.core.wsgi import get_wsgi_application
+from django.conf import settings
+import json
+import os
+import logging
+from typing import Dict, Callable
+from google.cloud import pubsub_v1 as pubsub
+from django.db import IntegrityError
 from print_nanny_webapp.remote_control.models import OctoPrintDevice
 from print_nanny_webapp.telemetry.models import (
     OctoPrintEvent,
@@ -14,20 +25,6 @@ from print_nanny_webapp.telemetry.types import (
     RemoteCommandEventType,
     PrintNannyPluginEventType,
 )
-from django.contrib.auth import get_user_model
-import google.api_core.exceptions
-from django.apps import apps
-from django.core.wsgi import get_wsgi_application
-from django.conf import settings
-import json
-import os
-import logging
-from typing import Dict, Callable
-from google.cloud import pubsub_v1 as pubsub
-from django.db import IntegrityError
-
-# import sys
-# sys.path.insert(0,'/app')
 
 # If DJANGO_SETTINGS_MODULE is unset, default to the local settings
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
