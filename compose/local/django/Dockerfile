@@ -26,7 +26,7 @@ RUN apt-get update \
 COPY ./requirements /requirements
 RUN pip install --upgrade pip setuptools wheel
 RUN pip install -r /requirements/local.txt
-RUN pip install -r /requirements/test.txt
+RUN pip install -r /requirements/test-local.txt
 
 COPY ./compose/production/django/entrypoint /entrypoint
 RUN sed -i 's/\r$//g' /entrypoint

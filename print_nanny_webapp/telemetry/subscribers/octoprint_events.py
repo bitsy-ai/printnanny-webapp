@@ -1,13 +1,9 @@
-from django.contrib.auth import get_user_model
-import google.api_core.exceptions
-from django.apps import apps
-from django.core.wsgi import get_wsgi_application
-from django.conf import settings
 import json
 import os
 import logging
+from datetime import datetime
 from typing import Dict, Callable
-from google.cloud import pubsub_v1 as pubsub
+from google.cloud import pubsub_v1
 from django.db import IntegrityError
 from print_nanny_webapp.remote_control.models import OctoPrintDevice
 from print_nanny_webapp.telemetry.models import (
@@ -25,6 +21,15 @@ from print_nanny_webapp.telemetry.types import (
     RemoteCommandEventType,
     PrintNannyPluginEventType,
 )
+from django.contrib.auth import get_user_model
+import google.api_core.exceptions
+from django.apps import apps
+from django.core.wsgi import get_wsgi_application
+from django.conf import settings
+
+
+# import sys
+# sys.path.insert(0,'/app')
 
 # If DJANGO_SETTINGS_MODULE is unset, default to the local settings
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
@@ -42,13 +47,13 @@ AlertMessage = apps.get_model("alerts", "AlertMessage")
 PrintProgressAlert = apps.get_model("alerts", "PrintProgressAlert")
 
 logger = logging.getLogger(__name__)
-subscriber = pubsub.SubscriberClient()
+subscriber = pubsub_v1.SubscriberClient()
 
 gcp_project = settings.GCP_PROJECT_ID
 event_subscription_name = settings.GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION
 video_render_topic = settings.GCP_RENDER_VIDEO_TOPIC
 
-publisher = pubsub.PublisherClient()
+publisher = pubsub_v1.PublisherClient()
 video_render_topic_path = publisher.topic_path(gcp_project, video_render_topic)
 
 
