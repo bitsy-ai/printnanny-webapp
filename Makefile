@@ -57,7 +57,8 @@ install-git-hooks:
 # base.py requires certain env vars to be present ; move these or create an env harness for CI tests
 docker-mypy:
 	docker-compose -f local.yml run --rm django mypy -m print_nanny_webapp.telemetry
-mypy:
+
+mypy: clean-pyc
 	. .envs/.local/.tests.sh && \
 	mypy print_nanny_webapp/telemetry/**/*
 

@@ -1,7 +1,6 @@
 import logging
 from typing import Callable
 from urllib.parse import urlencode
-from django.utils.http import urlencode
 from django.conf import settings
 from django.db import models
 from django.contrib.auth import get_user_model
