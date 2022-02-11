@@ -1,11 +1,33 @@
 import json
 import os
 import logging
-from datetime import datetime
 from typing import Dict, Callable
 from google.cloud import pubsub_v1
 from django.db import IntegrityError
-from print_nanny_webapp.remote_control.models import OctoPrintDevice
+
+# import sys
+# sys.path.insert(0,'/app')
+
+# If DJANGO_SETTINGS_MODULE is unset, default to the local settings
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
+
+from django.conf import settings
+from django.core.wsgi import get_wsgi_application
+
+application = get_wsgi_application()
+from django.apps import apps
+import google.api_core.exceptions
+
+from django.contrib.auth import get_user_model
+from print_nanny_webapp.telemetry.types import (
+    OctoprintEventType,
+    PrintJobEventType,
+    PrinterEventType,
+    RemoteCommandEventType,
+    PrintNannyPluginEventType,
+)
+
+User = get_user_model()
 from print_nanny_webapp.telemetry.models import (
     OctoPrintEvent,
     PrintNannyPluginEvent,
@@ -14,31 +36,7 @@ from print_nanny_webapp.telemetry.models import (
     RemoteCommandEvent,
     TelemetryEvent,
 )
-from print_nanny_webapp.telemetry.types import (
-    OctoprintEventType,
-    PrintJobEventType,
-    PrinterEventType,
-    RemoteCommandEventType,
-    PrintNannyPluginEventType,
-)
-from django.contrib.auth import get_user_model
-import google.api_core.exceptions
-from django.apps import apps
-from django.core.wsgi import get_wsgi_application
-from django.conf import settings
-
-
-# import sys
-# sys.path.insert(0,'/app')
-
-# If DJANGO_SETTINGS_MODULE is unset, default to the local settings
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
-
-
-application = get_wsgi_application()
-
-
-User = get_user_model()
+from print_nanny_webapp.remote_control.models import OctoPrintDevice
 
 AlertSettings = apps.get_model("alerts", "AlertSettings")
 PrintSession = apps.get_model("remote_control", "PrintSession")
