@@ -60,7 +60,7 @@ docker-mypy:
 
 mypy: clean-pyc
 	. .envs/.local/.tests.sh && \
-	mypy print_nanny_webapp/telemetry/**/*
+	mypy print_nanny_webapp/telemetry/
 
 token:
 	@echo $(PRINT_NANNY_TOKEN)
