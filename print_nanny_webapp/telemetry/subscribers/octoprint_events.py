@@ -1,23 +1,14 @@
+import json
+import os
+import logging
+from typing import Dict, Callable
 from django.contrib.auth import get_user_model
 import google.api_core.exceptions
 from django.apps import apps
 from django.core.wsgi import get_wsgi_application
 from django.conf import settings
-import json
-import os
-import logging
-from typing import Dict, Callable
 from google.cloud import pubsub_v1 as pubsub
 from django.db import IntegrityError
-from print_nanny_webapp.remote_control.models import OctoPrintDevice
-from print_nanny_webapp.telemetry.models import (
-    OctoPrintEvent,
-    PrintNannyPluginEvent,
-    PrintJobEvent,
-    PrinterEvent,
-    RemoteCommandEvent,
-    TelemetryEvent,
-)
 from print_nanny_webapp.telemetry.types import (
     OctoprintEventType,
     PrintJobEventType,
@@ -34,6 +25,14 @@ application = get_wsgi_application()
 
 
 User = get_user_model()
+
+OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
+OctoPrintEvent = apps.get_model("telemetry", "OctoPrintEvent")
+PrintNannyPluginEvent = apps.get_model("telemetry", "PrintNannyPluginEvent")
+PrintJobEvent = apps.get_model("telemetry", "PrintJobEvent")
+PrinterEvent = apps.get_model("telemetry", "PrinterEvent")
+RemoteCommandEvent = apps.get_model("telemetry", "RemoteCommandEvent")
+TelemetryEvent = apps.get_model("telemetry", TelemetryEvent)
 
 AlertSettings = apps.get_model("alerts", "AlertSettings")
 PrintSession = apps.get_model("remote_control", "PrintSession")
