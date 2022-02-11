@@ -32,7 +32,7 @@ PrintNannyPluginEvent = apps.get_model("telemetry", "PrintNannyPluginEvent")
 PrintJobEvent = apps.get_model("telemetry", "PrintJobEvent")
 PrinterEvent = apps.get_model("telemetry", "PrinterEvent")
 RemoteCommandEvent = apps.get_model("telemetry", "RemoteCommandEvent")
-TelemetryEvent = apps.get_model("telemetry", TelemetryEvent)
+TelemetryEvent = apps.get_model("telemetry", "TelemetryEvent")
 
 AlertSettings = apps.get_model("alerts", "AlertSettings")
 PrintSession = apps.get_model("remote_control", "PrintSession")
