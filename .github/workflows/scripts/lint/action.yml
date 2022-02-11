@@ -14,6 +14,7 @@ runs:
       shell: bash
       run: |
         source .venv/bin/activate
+        pip install -r requirements/local.txt
         pip install -r requirements/test-local.txt
     # Runs a set of commands using the runners shell
     - name: Linter
