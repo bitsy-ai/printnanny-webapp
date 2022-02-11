@@ -47,8 +47,11 @@ requirements/production.txt:
 requirements/local.txt:
 	pip-compile requirements/local.in --output-file requirements/local.txt
 
-requirements/test.txt:
-	pip-compile requirements/test.in --output-file requirements/test.txt
+requirements/test-local.txt:
+	pip-compile requirements/test-local.in --output-file requirements/test-local.txt
+
+requirements/test-production.txt:
+	pip-compile requirements/test-production.in --output-file requirements/test-production.txt
 
 install-git-hooks:
 	cp -a hooks/. .git/hooks/
@@ -60,7 +63,7 @@ docker-mypy:
 
 mypy: clean-pyc
 	. .envs/.local/.tests.sh && \
-	mypy print_nanny_webapp/telemetry/
+	mypy print_nanny_webapp/telemetry/**/*
 
 token:
 	@echo $(PRINT_NANNY_TOKEN)
