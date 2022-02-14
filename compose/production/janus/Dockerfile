@@ -18,8 +18,8 @@ ARG JANUS_VERSION=0.11.8
 ARG LIB_PREFIX=/usr/local
 ARG JANUS_INSTALL=/opt/janus
 
-RUN DEBIAN_FRONTEND=non-interactive apt-get update \
-    apt-get install -y \
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y \
     automake \
     build-essential \
     cmake \
