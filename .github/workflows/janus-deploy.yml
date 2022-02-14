@@ -13,6 +13,7 @@ jobs:
       ZONE: us-central1-c
       JANUS_HOSTNAME: janus.sandbox.print-nanny.com
       JANUS_VERSION: 0.11.8
+      JANUS_ADMIN_SECRET: ${{ secrets.JANUS_ADMIN_SECRET }}
       
     runs-on: ubuntu-latest
     steps:
