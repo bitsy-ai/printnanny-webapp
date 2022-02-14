@@ -1,30 +1,33 @@
 
 
-.PHONY: mypy build prod-up dev-up python-client clean-python-client-build ui vue prod-up deploy cypress-open cypress-run local-creds
+.PHONY: mypy build prod-up dev-up python-client clean-python-client-build ui vue prod-up deploy cypress-open cypress-run local-creds janus-image
 
 # silence targets where credentials are passed
 .SILENT: cypress-open cypress-run cypress-ci local-up local-creds
 
-GCP_PROJECT ?= "print-nanny-sandbox"
-CLUSTER ?= "www-sandbox"
-ZONE ?= "us-central1-c"
+GCP_PROJECT ?= print-nanny-sandbox
+CLUSTER ?= www-sandbox
+ZONE ?= us-central1-c
 
-PRINT_NANNY_URL ?= "http://localhost:8000/"
-PRINT_NANNY_API_URL ?= "${PRINT_NANNY_URL}api/"
-OCTOPRINT_URL ?= "http://localhost:5005/"
-PRINT_NANNY_USER ?= "${USER}""
-DJANGO_SUPERUSER_EMAIL ?= "${USER}@print-nanny.com"
+PRINT_NANNY_URL ?= http://localhost:8000/
+PRINT_NANNY_API_URL ?= ${PRINT_NANNY_URL}api/
+OCTOPRINT_URL ?= http://localhost:5005/
+PRINT_NANNY_USER ?= ${USER}
+DJANGO_SUPERUSER_EMAIL ?= ${USER}@print-nanny.com
 DJANGO_SUPERUSER_PASSWORD ?= $(shell test -f .password && cat .password || (makepasswd --chars=42 > .password && cat .password) )
 DJANGO_ADMIN_CMD ?= docker-compose -f local.yml run --rm django python manage.py
 NEBULA_VERSION ?= v1.4.0
 PRINT_NANNY_TOKEN ?= $(shell test -f .token && cat .token || (${DJANGO_ADMIN_CMD} drf_create_token $(DJANGO_SUPERUSER_EMAIL) | tail -n 1 | awk '{print $$3}'> .token && cat .token))
-PRINT_NANNY_RELEASE_CHANNEL ?= "devel"
+PRINT_NANNY_RELEASE_CHANNEL ?= devel
 PRINT_NANNY_PLUGIN_ARCHIVE ?= "https://github.com/bitsy-ai/octoprint-nanny-plugin/archive/$(PRINT_NANNY_RELEASE_CHANNEL).zip"
 PRINT_NANNY_PLUGIN_SHA ?= $(shell curl https://api.github.com/repos/bitsy-ai/octoprint-nanny-plugin/branches/$(PRINT_NANNY_RELEASE_CHANNEL) | jq .commit.sha)
 PRINT_NANNY_DATAFLOW_SHA ?= $(shell curl https://api.github.com/repos/bitsy-ai/octoprint-nanny-dataflow/branches/$(PRINT_NANNY_RELEASE_CHANNEL) | jq .commit.sha)
 
+JANUS_VERSION ?= 0.11.8
+
 GIT_SHA ?= $(shell git rev-parse HEAD)
 GIT_BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD)
+GHA_ENVIRONMENT ?= sandbox
 
 DOCKER_COMPOSE_PROJECT_NAME="print_nanny_webapp"
 GHOST_VERSION ?=4.32-alpine
@@ -397,3 +400,23 @@ upgrade-ghost:
 	kubectl set image statefulset/bitsy-ai-blog ghost=us.gcr.io/print-nanny/ghost:$(GHOST_VERSION) --record
 	kubectl set image statefulset/print-nanny-blog ghost=us.gcr.io/print-nanny/ghost:$(GHOST_VERSION) --record
 	kubectl set image statefulset/print-nanny-help ghost=us.gcr.io/print-nanny/ghost:$(GHOST_VERSION) --record
+
+##
+# Janus
+##
+JANUS_NAMESPACE ?= default
+dist/k8s:
+	mkdir -p dist/k8s
+
+dist/k8s/janus.yml: dist/k8s
+	j2 k8s/templates -o dist/k8s/janus.yml
+
+janus-deploy: dist/k8s/janus.yml cluster-config
+	kubectl -n $(JANUS_NAMESPACE) apply -f dist/k8s/janus.yml
+
+janus-image:
+	docker build --tag us.gcr.io/$(GCP_PROJECT)/janus:$(JANUS_VERSION) \
+		-f compose/production/janus/Dockerfile compose/production/janus
+	docker tag us.gcr.io/$(GCP_PROJECT)/janus:$(JANUS_VERSION) bitsyai/janus:$(JANUS_VERSION)
+	docker push us.gcr.io/$(GCP_PROJECT)/janus:$(JANUS_VERSION)
+	docker push bitsyai/janus:$(JANUS_VERSION)

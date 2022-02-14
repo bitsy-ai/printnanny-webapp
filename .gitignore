@@ -1,6 +1,7 @@
 ### Python template
 # Byte-compiled / optimized / DLL files
 
+dist/
 print_nanny_vue/webpack-stats.json
 __pycache__/
 *.py[cod]
