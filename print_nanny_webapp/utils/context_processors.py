@@ -1,10 +1,10 @@
 import logging
-from config.settings.base import PAID_BETA_SUBSCRIPTION_LIMIT
 import djstripe.models
 import djstripe.enums
 from django.conf import settings
-from djstripe.settings import DjstripeSettings
+from djstripe.settings import djstripe_settings
 from django.utils import timezone
+from config.settings.base import PAID_BETA_SUBSCRIPTION_LIMIT
 
 logger = logging.getLogger(__name__)
 
@@ -56,7 +56,7 @@ def settings_context(request):
         "POSTHOG_API_KEY": settings.POSTHOG_API_KEY,
         "REPORT_ISSUE_URL": settings.REPORT_ISSUE_URL,
         "ROADMAP_URL": settings.ROADMAP_URL,
-        "STRIPE_PUBLIC_KEY": DjstripeSettings.STRIPE_PUBLIC_KEY,
+        "STRIPE_PUBLIC_KEY": djstripe_settings.STRIPE_PUBLIC_KEY,
         "WS_BASE_URL": settings.WS_BASE_URL,
     }
     return obj
