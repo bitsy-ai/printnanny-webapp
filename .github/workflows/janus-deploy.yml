@@ -48,6 +48,7 @@ jobs:
     needs: ['sandbox']
     environment: stable
     env:
+      GCP_PROJECT: print-nanny
       GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.PROD_GCP_SERVICE_ACCOUNT_KEY }} # TODO replace repo-level secrets with stable env-level secrets
       GCP_SERVICE_ACCOUNT: ${{ secrets.PROD_GCP_SERVICE_ACCOUNT }}  # TODO replace repo-level secrets with stable env-level secrets
       CLUSTER: www-beta
@@ -84,4 +85,4 @@ jobs:
     #         Janus Version: ${{ env.JANUS_VERSION }}
     #         Cluster: www-sandbox
     #         ```
-    #         Cluster status: https://console.cloud.google.com/kubernetes/workload/overview?project=print-nanny-sandbox
+    #         Cluster status: https://console.cloud.google.com/kubernetes/workload/overview?project=print-nanny
