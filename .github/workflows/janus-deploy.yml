@@ -7,8 +7,8 @@ jobs:
   sandbox:
     environment: sandbox
     env:
-      GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.SANDBOX_GCP_SERVICE_ACCOUNT_KEY }}
-      GCP_SERVICE_ACCOUNT: ${{ secrets.SANDBOX_GCP_SERVICE_ACCOUNT }}
+      GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.SANDBOX_GCP_SERVICE_ACCOUNT_KEY }}  # TODO replace repo-level secrets with sandbox env-level secrets
+      GCP_SERVICE_ACCOUNT: ${{ secrets.SANDBOX_GCP_SERVICE_ACCOUNT }}  # TODO replace repo-level secrets with sandbox env-level secrets
       CLUSTER: www-sandbox
       ZONE: us-central1-c
       JANUS_HOSTNAME: janus.sandbox.print-nanny.com
@@ -29,6 +29,47 @@ jobs:
     - name: Configure docker registry credentials
       run: gcloud auth configure-docker
     - name: Deploy to sandbox cluster
+      id: deploy
+      run: |
+        make janus-deploy
+    # - name: Send Discord notification
+    #   env:
+    #     DISCORD_WEBHOOK: ${{ secrets.PRINT_NANNY_DISCORD_DEPLOY_WEBHOOK }}
+    #   uses: Ilshidur/action-discord@master
+    #   with:
+    #     args: |
+    #         🚀 Deployed {{ env.JANUS_HOSTNAME }} 🚀
+    #         ```
+    #         Janus Version: ${{ env.JANUS_VERSION }}
+    #         Cluster: www-sandbox
+    #         ```
+    #         Cluster status: https://console.cloud.google.com/kubernetes/workload/overview?project=print-nanny-sandbox
+  stable:
+    needs: ['sandbox']
+    environment: stable
+    env:
+      GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.PROD_GCP_SERVICE_ACCOUNT_KEY }} # TODO replace repo-level secrets with stable env-level secrets
+      GCP_SERVICE_ACCOUNT: ${{ secrets.PROD_GCP_SERVICE_ACCOUNT }}  # TODO replace repo-level secrets with stable env-level secrets
+      CLUSTER: www-beta
+      ZONE: us-central1-c
+      JANUS_HOSTNAME: janus.print-nanny.com
+      JANUS_VERSION: 0.11.8
+      JANUS_ADMIN_SECRET: ${{ secrets.JANUS_ADMIN_SECRET }}
+      
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout branch
+      uses: actions/checkout@v2
+    - name: Install system dependencies
+      run: |
+        pip3 install j2cli[yaml]
+    - name: Write deploy key
+      run: echo $GCP_SERVICE_ACCOUNT_KEY > key.json
+    - name: Active Service Account
+      run: gcloud auth activate-service-account $GCP_SERVICE_ACCOUNT --key-file=key.json
+    - name: Configure docker registry credentials
+      run: gcloud auth configure-docker
+    - name: Deploy to www-beta cluster
       id: deploy
       run: |
         make janus-deploy
