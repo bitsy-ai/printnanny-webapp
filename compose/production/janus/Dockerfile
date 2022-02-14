@@ -60,7 +60,7 @@ RUN git clone --single-branch --branch ${LIBNICE_VERSION} ${LIBNICE_REPO} /build
 RUN git clone --single-branch --branch ${USRSCTP_VERSION} ${USRSCTP_REPO} /build/usrsctp
 RUN git clone --single-branch --branch v${JANUS_VERSION} ${JANUS_REPO} /build/janus
 # download + extract source tarball
-RUN wget -qO- ${LIBSRTP_TARBALL} | tar -xvz -C /build/libnice
+RUN wget -qO- ${LIBSRTP_TARBALL} | tar -xvz -C /build/
 
 # build + install libnice
 RUN pip3 install --upgrade pip wheel setuptools
@@ -71,7 +71,7 @@ RUN ninja -C build
 RUN ninja -C build install
 
 # build + install libsrtp
-WORKDIR /build/libsrtp
+WORKDIR /build/libsrtp-${LIBSRTP_VERSION}
 RUN ./configure --prefix=${LIB_PREFIX} --enable-openssl
 RUN make shared_library
 RUN make install
