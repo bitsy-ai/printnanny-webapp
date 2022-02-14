@@ -414,6 +414,131 @@ data:
     #broadcast = true
     #disable = "libjanus_sampleevh.so"
     #stats_period = 5
+  janus.transport.http.jcfg: |
+    # Web server stuff: whether any should be enabled, which ports they
+    # should use, whether security should be handled directly or demanded to
+    # an external application (e.g., web frontend) and what should be the
+    # base path for the Janus API protocol. Notice that by default
+    # all the web servers will try and bind on both IPv4 and IPv6: if you
+    # want to only bind to IPv4 addresses (e.g., because your system does not
+    # support IPv6), you should set the web server 'ip' property to '0.0.0.0'.
+    # To see debug logs from the HTTP server library, set 'mhd_debug'.
+    general: {
+      events = true
+      # Whether to notify event handlers about transport events (default=true)
+      json = "indented"
+      # Whether the JSON messages should be indented (default),
+      # plain (no indentation) or compact (no indentation and no spaces)
+      base_path = "/janus"			# Base path to bind to in the web server (plain HTTP only)
+      http = true # Whether to enable the plain HTTP interface
+      port = 8088	# Web server HTTP port
+      #interface = "eth0"				# Whether we should bind this server to a specific interface only
+      #ip = "192.168.0.1"				# Whether we should bind this server to a specific IP address (v4 or v6) only
+      # https = false					# Whether to enable HTTPS (default=false)
+      # secure_port = 8089 # Web server HTTPS port, if enabled
+      #secure_interface = "eth0"		# Whether we should bind this server to a specific interface only
+      #secure_ip = "192.168.0.1"		# Whether we should bind this server to a specific IP address (v4 or v6) only
+      #acl = "127.,192.168.0."		# Only allow requests coming from this comma separated list of addresses
+      #mhd_connection_limit = 1020		# Open connections limit in libmicrohttpd (default=1020)
+      #mhd_debug = false					# Ask libmicrohttpd to write warning and error messages to stderr (default=false)
+    }
+
+      # Janus can also expose an admin/monitor endpoint, to allow you to check
+      # which sessions are up, which handles they're managing, their current
+      # status and so on. This provides a useful aid when debugging potential
+      # issues in Janus. The configuration is pretty much the same as the one
+      # already presented above for the webserver stuff, as the API is very
+      # similar: choose the base bath for the admin/monitor endpoint (/admin
+      # by default), ports, etc. Besides, you can specify
+      # a secret that must be provided in all requests as a crude form of
+      # authorization mechanism, and partial or full source IPs if you want to
+      # limit access basing on IP addresses. For security reasons, this
+      # endpoint is disabled by default, enable it by setting admin_http=true.
+    admin: {
+      admin_base_path = "/admin" # Base path to bind to in the admin/monitor web server (plain HTTP only)
+      admin_http = true	# Whether to enable the plain HTTP interface
+      admin_port = 7088 # Admin/monitor web server HTTP port
+      #admin_interface = "eth0"			# Whether we should bind this server to a specific interface only
+      #admin_ip = "192.168.0.1"			# Whether we should bind this server to a specific IP address (v4 or v6) only
+      #admin_https = false					# Whether to enable HTTPS (default=false)
+      #admin_secure_port = 7089 # Admin/monitor web server HTTPS port, if enabled
+      #admin_secure_interface = "eth0"	# Whether we should bind this server to a specific interface only
+      #admin_secure_ip = "192.168.0.1		# Whether we should bind this server to a specific IP address (v4 or v6) only
+      admin_acl = "127.,192.168.0."		# Only allow requests coming from this comma separated list of addresses
+    }
+
+    # The HTTP servers created in Janus support CORS out of the box, but by
+    # default they return a wildcard (*) in the 'Access-Control-Allow-Origin'
+    # header. This works fine in most situations, except when we have to
+    # respond to a credential request (withCredentials=true in the XHR). If
+    # you need that, uncomment and set the 'allow_origin' below to specify
+    # what must be returned in 'Access-Control-Allow-Origin'. More details:
+    # https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
+    # In case you want to enforce the Origin validation, rather than leave
+    # it to browsers, you can set 'enforce_cors' to 'true' to have Janus
+    # return a '403 Forbidden' for all requests that don't comply.
+    cors: {
+      allow_origin = "https://{{ JANUS_HOSTNAME }}"
+      enforce_cors = true
+    }
+  janus.transport.websockets.jcfg: |
+    # WebSockets stuff: whether they should be enabled, which ports they
+    # should use, and so on.
+    general: {
+      events = true # Whether to notify event handlers about transport events (default=true)
+      json = "indented"
+      # Whether the JSON messages should be indented (default),
+      # plain (no indentation) or compact (no indentation and no spaces)
+      #pingpong_trigger = 30			# After how many seconds of idle, a PING should be sent
+      #pingpong_timeout = 10			# After how many seconds of not getting a PONG, a timeout should be detected
+      ws = true						# Whether to enable the WebSockets API
+      ws_port = 8188					# WebSockets server port
+      #ws_interface = "eth0"			# Whether we should bind this server to a specific interface only
+      #ws_ip = "192.168.0.1"			# Whether we should bind this server to a specific IP address only
+      #ws_unix = "/run/ws.sock"		# Use WebSocket server over UNIX socket instead of TCP
+      # wss = false						# Whether to enable secure WebSockets
+      # wss_port = 8989					# WebSockets server secure port, if enabled
+      #wss_interface = "eth0"			# Whether we should bind this server to a specific interface only
+      #wss_ip = "192.168.0.1"			# Whether we should bind this server to a specific IP address only
+      #wss_unix = "/run/wss.sock"		# Use WebSocket server over UNIX socket instead of TCP
+      ws_logging = 	"err,warn"		# libwebsockets debugging level as a comma separated list of things
+                      # to debug, supported values: err, warn, notice, info, debug, parser,
+                      # header, ext, client, latency, user, count (plus 'none' and 'all')
+      #ws_acl = "127.,192.168.0."		# Only allow requests coming from this comma separated list of addresses
+    }
+
+    # If you want to expose the Admin API via WebSockets as well, you need to
+    # specify a different server instance, as you cannot mix Janus API and
+    # Admin API messaging. Notice that by default the Admin API support via
+    # WebSockets is disabled.
+    admin: {
+      admin_ws = false					# Whether to enable the Admin API WebSockets API
+      admin_ws_port = 7188				# Admin API WebSockets server port, if enabled
+      #admin_ws_interface = "eth0"		# Whether we should bind this server to a specific interface only
+      #admin_ws_ip = "192.168.0.1"		# Whether we should bind this server to a specific IP address only
+      #admin_ws_unix = "/run/aws.sock"	# Use WebSocket server over UNIX socket instead of TCP
+      admin_wss = false					# Whether to enable the Admin API secure WebSockets
+      #admin_wss_port = 7989				# Admin API WebSockets server secure port, if enabled
+      #admin_wss_interface = "eth0"		# Whether we should bind this server to a specific interface only
+      #admin_wss_ip = "192.168.0.1"		# Whether we should bind this server to a specific IP address only
+      #admin_wss_unix = "/run/awss.sock"	# Use WebSocket server over UNIX socket instead of TCP
+      #admin_ws_acl = "127.,192.168.0."	# Only allow requests coming from this comma separated list of addresses
+    }
+
+    # The HTTP servers created in Janus support CORS out of the box, but by
+    # default they return a wildcard (*) in the 'Access-Control-Allow-Origin'
+    # header. This works fine in most situations, except when we have to
+    # respond to a credential request (withCredentials=true in the XHR). If
+    # you need that, uncomment and set the 'allow_origin' below to specify
+    # what must be returned in 'Access-Control-Allow-Origin'. More details:
+    # https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
+    # In case you want to enforce the Origin validation, rather than leave
+    # it to browsers, you can set 'enforce_cors' to 'true' to have Janus
+    # return a '403 Forbidden' for all requests that don't comply.
+    cors: {
+      allow_origin = "{{ JANUS_HOSTNAME }}"
+      enforce_cors = true
+    }
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -429,15 +554,14 @@ spec:
       labels:
         app: janus
     spec:
-      serviceAccountName: webapp
       containers:
         - name: janus
           imagePullPolicy: Always
-          image: us.gcr.io/print-nanny/janus:0.11.8
+          image: us.gcr.io/print-nanny/janus:{{ JANUS_VERSION }}
           livenessProbe:
             httpGet:
               path: /admin/info/ # root path serves 302 (login) which is not followed by health check
-              port: 8000
+              port: 7088
             initialDelaySeconds: 30
             periodSeconds: 15
             timeoutSeconds: 5
@@ -445,29 +569,13 @@ spec:
             failureThreshold: 4
           readinessProbe:
             httpGet:
-              path: /healthcheck/ # root path serves 302 (login) which is not followed by health check
-              port: 8000
+              path: /admin/info/ # root path serves 302 (login) which is not followed by health check
+              port: 7088
             initialDelaySeconds: 30
             periodSeconds: 15
             timeoutSeconds: 5
             successThreshold: 1
             failureThreshold: 4
-          envFrom:
-            - configMapRef:
-                name: "janus-config"
-        - name: cloud-sql-proxy
-          image: gcr.io/cloudsql-docker/gce-proxy:1.17
-          command:
-            - "/cloud_sql_proxy"
-            - "-quiet"
-            - "-verbose=false"
-            - "-instances=print-nanny:us-central1:print-nanny=tcp:5432"
-          securityContext:
-            # The default Cloud SQL proxy image runs as the
-            # "nonroot" user and group (uid: 65532) by default.
-            runAsNonRoot: true
-          ports:
-            - containerPort: 5432
 ---
 apiVersion: cloud.google.com/v1
 kind: BackendConfig
@@ -476,9 +584,9 @@ metadata:
 spec:
   healthCheck:
     checkIntervalSec: 15
-    port: 8000
+    port: 7088
     type: HTTP
-    requestPath: /healthcheck/
+    requestPath: /admin/info/
 ---
 apiVersion: v1
 kind: Service
@@ -492,16 +600,16 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 8000
+      targetPort: 8088
   type: NodePort
 ---
 apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
 metadata:
-  name: "janus-print-nanny-com-tls"
+  name: "janus-tls"
 spec:
   domains:
-    - "janus.print-nanny.com"
+    - "{{ JANUS_HOSTNAME }}"
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -510,7 +618,7 @@ metadata:
   annotations:
     networking.gke.io/v1beta1.FrontendConfig: "http-to-https"
     kubernetes.io/ingress.global-static-ip-name: "janus-static-ip"
-    networking.gke.io/managed-certificates: "janus-print-nanny-com-tls"
+    networking.gke.io/managed-certificates: "janus-tls"
 spec:
   defaultBackend:
     service:
