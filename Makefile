@@ -409,7 +409,7 @@ dist/k8s:
 	mkdir -p dist/k8s
 
 dist/k8s/janus.yml: dist/k8s
-	j2 k8s/templates -o dist/k8s/janus.yml
+	j2 k8s/templates/janus.j2 -o dist/k8s/janus.yml
 
 janus-deploy: dist/k8s/janus.yml cluster-config
 	kubectl -n $(JANUS_NAMESPACE) apply -f dist/k8s/janus.yml
