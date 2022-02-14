@@ -27,6 +27,7 @@ JANUS_VERSION ?= 0.11.8
 
 GIT_SHA ?= $(shell git rev-parse HEAD)
 GIT_BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD)
+GHA_ENVIRONMENT ?= sandbox
 
 DOCKER_COMPOSE_PROJECT_NAME="print_nanny_webapp"
 GHOST_VERSION ?=4.32-alpine
@@ -371,13 +372,6 @@ test:
 stripe-local-webhooks:
 	stripe listen --forward-to localhost:8000/stripe/webhook/
 
-janus-image:
-	docker build --tag us.gcr.io/$(GCP_PROJECT)/janus:$(JANUS_VERSION) \
-		-f compose/production/janus/Dockerfile compose/production/janus
-	docker tag us.gcr.io/$(GCP_PROJECT)/janus:$(JANUS_VERSION) bitsyai/janus:$(JANUS_VERSION)
-	docker push us.gcr.io/$(GCP_PROJECT)/janus:$(JANUS_VERSION)
-	docker push bitsyai/janus:$(JANUS_VERSION)
-
 ara-image:
 	docker build \
 		--tag us.gcr.io/print-nanny/ara:${GIT_SHA} \
@@ -406,3 +400,23 @@ upgrade-ghost:
 	kubectl set image statefulset/bitsy-ai-blog ghost=us.gcr.io/print-nanny/ghost:$(GHOST_VERSION) --record
 	kubectl set image statefulset/print-nanny-blog ghost=us.gcr.io/print-nanny/ghost:$(GHOST_VERSION) --record
 	kubectl set image statefulset/print-nanny-help ghost=us.gcr.io/print-nanny/ghost:$(GHOST_VERSION) --record
+
+##
+# Janus
+##
+JANUS_NAMESPACE ?= default
+dist/k8s:
+	mkdir -p dist/k8s
+
+dist/k8s/janus.yml: dist/k8s
+	j2 k8s/templates -o dist/k8s/janus.yml
+
+janus-deploy: dist/k8s/janus.yml cluster-config
+	kubectl -n $(JANUS_NAMESPACE) apply -f dist/k8s/janus.yml
+
+janus-image:
+	docker build --tag us.gcr.io/$(GCP_PROJECT)/janus:$(JANUS_VERSION) \
+		-f compose/production/janus/Dockerfile compose/production/janus
+	docker tag us.gcr.io/$(GCP_PROJECT)/janus:$(JANUS_VERSION) bitsyai/janus:$(JANUS_VERSION)
+	docker push us.gcr.io/$(GCP_PROJECT)/janus:$(JANUS_VERSION)
+	docker push bitsyai/janus:$(JANUS_VERSION)
