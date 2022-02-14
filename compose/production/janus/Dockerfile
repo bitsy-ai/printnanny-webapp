@@ -56,11 +56,11 @@ RUN mkdir -p /opt/janus
 
 # clone source repos
 RUN git clone --single-branch --branch ${LIBWEBSOCKETS_VERSION} ${LIBWEBSOCKETS_REPO} /build/libwebsockets
-RUN git clone --single-branch --branch ${LIBNICE_VERSION} ${LIBNICE_VERSION} /build/libnice
+RUN git clone --single-branch --branch ${LIBNICE_VERSION} ${LIBNICE_REPO} /build/libnice
 RUN git clone --single-branch --branch ${USRSCTP_VERSION} ${USRSCTP_REPO} /build/usrsctp
-RUN git clone --single-branch --branch ${JANUS_VERSION} ${JANUS_REPO} /build/janus
+RUN git clone --single-branch --branch v${JANUS_VERSION} ${JANUS_REPO} /build/janus
 # download + extract source tarball
-RUN wget -qO- ${LIBSRTP_TARBALL} | tar -xvz - -C /build/libnice
+RUN wget -qO- ${LIBSRTP_TARBALL} | tar -xvz -C /build/libnice
 
 # build + install libnice
 RUN pip3 install --upgrade pip wheel setuptools
