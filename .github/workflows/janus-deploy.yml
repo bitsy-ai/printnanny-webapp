@@ -9,6 +9,11 @@ jobs:
     env:
       GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.SANDBOX_GCP_SERVICE_ACCOUNT_KEY }}
       GCP_SERVICE_ACCOUNT: ${{ secrets.SANDBOX_GCP_SERVICE_ACCOUNT }}
+      CLUSTER: www-sandbox
+      ZONE: us-central1-c
+      JANUS_HOSTNAME: janus.sandbox.print-nanny.com
+      JANUS_VERSION: 0.11.8
+      
     runs-on: ubuntu-latest
     steps:
     - name: Checkout branch
@@ -25,23 +30,16 @@ jobs:
     - name: Deploy to sandbox cluster
       id: deploy
       run: |
-        make prod-deploy \
-        CLUSTER="www-beta" \
-        GCP_PROJECT="print-nanny" \
-        PRINT_NANNY_USER="${{ secrets.PROD_DJANGO_SUPERUSER_USERNAME }}" \
-        PRINT_NANNY_URL="$PRINT_NANNY_BASE_URL" \
-        DJANGO_SUPERUSER_EMAIL="$DJANGO_SUPERUSER_EMAIL"
-        echo ::set-output name=printnanny_client_version::"$(cat version.txt)"
-
-    - name: Send Discord notification
-      env:
-        DISCORD_WEBHOOK: ${{ secrets.PRINT_NANNY_DISCORD_DEPLOY_WEBHOOK }}
-      uses: Ilshidur/action-discord@master
-      with:
-        args: |
-            🚀 Deployed {{ EVENT_PAYLOAD.repository.full_name }}@{{ GITHUB_SHA }} 🚀
-            ```
-            API Client version: ${{ steps.deploy.outputs.printnanny_client_version }}
-            Cluster: www-beta
-            ```
-            Cluster status: https://console.cloud.google.com/kubernetes/workload/overview?project=print-nanny
+        make janus-deploy
+    # - name: Send Discord notification
+    #   env:
+    #     DISCORD_WEBHOOK: ${{ secrets.PRINT_NANNY_DISCORD_DEPLOY_WEBHOOK }}
+    #   uses: Ilshidur/action-discord@master
+    #   with:
+    #     args: |
+    #         🚀 Deployed {{ env.JANUS_HOSTNAME }} 🚀
+    #         ```
+    #         Janus Version: ${{ env.JANUS_VERSION }}
+    #         Cluster: www-sandbox
+    #         ```
+    #         Cluster status: https://console.cloud.google.com/kubernetes/workload/overview?project=print-nanny-sandbox
