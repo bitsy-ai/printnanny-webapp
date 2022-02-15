@@ -479,7 +479,7 @@ data:
     # return a '403 Forbidden' for all requests that don't comply.
     cors: {
       allow_origin = "https://{{ JANUS_HOSTNAME }}"
-      enforce_cors = true
+      enforce_cors = false
     }
   janus.transport.websockets.jcfg: |
     # WebSockets stuff: whether they should be enabled, which ports they
@@ -537,7 +537,7 @@ data:
     # return a '403 Forbidden' for all requests that don't comply.
     cors: {
       allow_origin = "{{ JANUS_HOSTNAME }}"
-      enforce_cors = true
+      enforce_cors = false
     }
 ---
 apiVersion: apps/v1
@@ -562,7 +562,7 @@ spec:
             httpGet:
               path: /admin/info # root path serves 302 (login) which is not followed by health check
               port: 7088
-            initialDelaySeconds: 30
+            initialDelaySeconds: 300
             periodSeconds: 15
             timeoutSeconds: 5
             successThreshold: 1
@@ -571,7 +571,7 @@ spec:
             httpGet:
               path: /admin/info # root path serves 302 (login) which is not followed by health check
               port: 7088
-            initialDelaySeconds: 30
+            initialDelaySeconds: 300
             periodSeconds: 15
             timeoutSeconds: 5
             successThreshold: 1
