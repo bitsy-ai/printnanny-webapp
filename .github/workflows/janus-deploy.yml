@@ -38,9 +38,9 @@ jobs:
       uses: Ilshidur/action-discord@master
       with:
         args: |
-            🚀 Deployed {{ env.JANUS_HOSTNAME }} 🚀
+            🚀 Deployed {{ jobs.sandbox.env.JANUS_HOSTNAME }} 🚀
             ```
-            Janus Version: ${{ env.JANUS_VERSION }}
+            Janus Version: ${{ jobs.sandbox.env.JANUS_VERSION }}
             Cluster: www-sandbox
             ```
             Cluster status: https://console.cloud.google.com/kubernetes/workload/overview?project=print-nanny-sandbox
@@ -80,9 +80,9 @@ jobs:
       uses: Ilshidur/action-discord@master
       with:
         args: |
-            🚀 Deployed {{ env.JANUS_HOSTNAME }} 🚀
+            🚀 Deployed {{ jobs.stable.env.JANUS_HOSTNAME }} 🚀
             ```
-            Janus Version: ${{ env.JANUS_VERSION }}
+            Janus Version: ${{ jobs.stable.env.JANUS_VERSION }}
             Cluster: www-sandbox
             ```
             Cluster status: https://console.cloud.google.com/kubernetes/workload/overview?project=print-nanny
