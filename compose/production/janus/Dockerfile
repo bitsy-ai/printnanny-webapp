@@ -100,9 +100,29 @@ COPY --from=builder /usr/local/lib /usr/local/lib
 COPY --from=builder /opt/janus /opt/janus
 # /etc/janus mounted from external volume, sample configs provided for demonstration purposes only
 COPY --from=builder /opt/janus/etc/janus/janus.jcfg.sample /etc/janus/janus.jcfg
-COPY --from=builder /opt/janus/etc/janus/janus.transport.http.jcfg.sample /etc/janus/janus.transport.http.jcfg
-COPY --from=builder /opt/janus/etc/janus/janus.transport.websockets.jcfg.sample /etc/janus/janus.transport.websockets.jcfg
+COPY --from=builder /opt/janus/etc/janus/janus.plugin.audiobridge.jcfg.sample /etc/janus/janus.plugin.audiobridge.jcfg
+COPY --from=builder /opt/janus/etc/janus/janus.plugin.echotest.jcfg.sample /etc/janus/janus.plugin.echotest.jcfg
+COPY --from=builder /opt/janus/etc/janus/janus.plugin.nosip.jcfg.sample /etc/janus/janus.plugin.nosip.jcfg
 COPY --from=builder /opt/janus/etc/janus/janus.plugin.streaming.jcfg.sample /etc/janus/janus.plugin.streaming.jcfg
+COPY --from=builder /opt/janus/etc/janus/janus.plugin.videocall.jcfg.sample /etc/janus/janus.plugin.videocall.jcfg
+COPY --from=builder /opt/janus/etc/janus/janus.plugin.videoroom.jcfg.sample /etc/janus/janus.plugin.videoroom.jcfg
+COPY --from=builder /opt/janus/etc/janus/janus.plugin.voicemail.jcfg.sample /etc/janus/janus.plugin.voicemail.jcfg
+COPY --from=builder /opt/janus/etc/janus/janus.transport.http.jcfg.sample /etc/janus/janus.transport.http.jcfg
+COPY --from=builder /opt/janus/etc/janus/janus.transport.pfunix.jcfg.sample /etc/janus/janus.transport.pfunix.jcfg
+COPY --from=builder /opt/janus/etc/janus/janus.transport.websockets.jcfg.sample /etc/janus/janus.transport.websockets.jcfg
 
-ENTRYPOINT /opt/janus/bin/janus
-CMD ["--configs-folder", "/etc/janus"]
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    libconfig-dev \
+    libjansson-dev \
+    libmicrohttpd-dev \
+    libcurl4-openssl-dev \
+    libogg0 \
+    libopus-dev \
+    pkg-config \
+    # clean up cache + unused packages
+    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN ls -ahl /etc/janus
+ENTRYPOINT ["/opt/janus/bin/janus", "--configs-folder", "/etc/janus"]
