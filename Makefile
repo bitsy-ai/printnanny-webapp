@@ -405,13 +405,15 @@ upgrade-ghost:
 # Janus
 ##
 JANUS_NAMESPACE ?= default
+clean-dist:
+	rm -rf dist
 dist/k8s:
 	mkdir -p dist/k8s
 
 dist/k8s/janus.yml: dist/k8s
 	j2 k8s/templates/janus.j2 -o dist/k8s/janus.yml
 
-janus-deploy: dist/k8s/janus.yml cluster-config
+janus-deploy: clean-dist dist/k8s/janus.yml cluster-config
 	kubectl -n $(JANUS_NAMESPACE) apply -f dist/k8s/janus.yml
 
 janus-image:
