@@ -560,7 +560,7 @@ spec:
           image: us.gcr.io/print-nanny/janus:{{ JANUS_VERSION }}
           livenessProbe:
             httpGet:
-              path: /admin/info/ # root path serves 302 (login) which is not followed by health check
+              path: /admin/info # root path serves 302 (login) which is not followed by health check
               port: 7088
             initialDelaySeconds: 30
             periodSeconds: 15
@@ -569,7 +569,7 @@ spec:
             failureThreshold: 4
           readinessProbe:
             httpGet:
-              path: /admin/info/ # root path serves 302 (login) which is not followed by health check
+              path: /admin/info # root path serves 302 (login) which is not followed by health check
               port: 7088
             initialDelaySeconds: 30
             periodSeconds: 15
