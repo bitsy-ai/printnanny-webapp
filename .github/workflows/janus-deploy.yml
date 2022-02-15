@@ -32,18 +32,18 @@ jobs:
       id: deploy
       run: |
         make janus-deploy
-    # - name: Send Discord notification
-    #   env:
-    #     DISCORD_WEBHOOK: ${{ secrets.PRINT_NANNY_DISCORD_DEPLOY_WEBHOOK }}
-    #   uses: Ilshidur/action-discord@master
-    #   with:
-    #     args: |
-    #         🚀 Deployed {{ env.JANUS_HOSTNAME }} 🚀
-    #         ```
-    #         Janus Version: ${{ env.JANUS_VERSION }}
-    #         Cluster: www-sandbox
-    #         ```
-    #         Cluster status: https://console.cloud.google.com/kubernetes/workload/overview?project=print-nanny-sandbox
+    - name: Send Discord notification
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.PRINT_NANNY_DISCORD_DEPLOY_WEBHOOK }}
+      uses: Ilshidur/action-discord@master
+      with:
+        args: |
+            🚀 Deployed {{ env.JANUS_HOSTNAME }} 🚀
+            ```
+            Janus Version: ${{ env.JANUS_VERSION }}
+            Cluster: www-sandbox
+            ```
+            Cluster status: https://console.cloud.google.com/kubernetes/workload/overview?project=print-nanny-sandbox
   stable:
     needs: ['sandbox']
     environment: stable
@@ -74,15 +74,15 @@ jobs:
       id: deploy
       run: |
         make janus-deploy
-    # - name: Send Discord notification
-    #   env:
-    #     DISCORD_WEBHOOK: ${{ secrets.PRINT_NANNY_DISCORD_DEPLOY_WEBHOOK }}
-    #   uses: Ilshidur/action-discord@master
-    #   with:
-    #     args: |
-    #         🚀 Deployed {{ env.JANUS_HOSTNAME }} 🚀
-    #         ```
-    #         Janus Version: ${{ env.JANUS_VERSION }}
-    #         Cluster: www-sandbox
-    #         ```
-    #         Cluster status: https://console.cloud.google.com/kubernetes/workload/overview?project=print-nanny
+    - name: Send Discord notification
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.PRINT_NANNY_DISCORD_DEPLOY_WEBHOOK }}
+      uses: Ilshidur/action-discord@master
+      with:
+        args: |
+            🚀 Deployed {{ env.JANUS_HOSTNAME }} 🚀
+            ```
+            Janus Version: ${{ env.JANUS_VERSION }}
+            Cluster: www-sandbox
+            ```
+            Cluster status: https://console.cloud.google.com/kubernetes/workload/overview?project=print-nanny
