@@ -15,7 +15,8 @@ jobs:
       JANUS_HOSTNAME: janus.sandbox.print-nanny.com
       JANUS_VERSION: 0.11.8
       JANUS_ADMIN_SECRET: ${{ secrets.JANUS_ADMIN_SECRET }}
-      
+      JANUS_IMAGE_REPO: us.gcr.io/print-nanny-sandbox/janus
+
     runs-on: ubuntu-latest
     steps:
     - name: Checkout branch
@@ -57,6 +58,7 @@ jobs:
       JANUS_HOSTNAME: janus.print-nanny.com
       JANUS_VERSION: 0.11.8
       JANUS_ADMIN_SECRET: ${{ secrets.JANUS_ADMIN_SECRET }}
+      JANUS_IMAGE_REPO: us.gcr.io/print-nanny/janus
       
     runs-on: ubuntu-latest
     steps:
