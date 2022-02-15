@@ -557,7 +557,7 @@ spec:
       containers:
         - name: janus
           imagePullPolicy: Always
-          image: us.gcr.io/print-nanny/janus:{{ JANUS_VERSION }}
+          image: {{ JANUS_IMAGE_REPO }}:{{ JANUS_VERSION }}
           livenessProbe:
             httpGet:
               path: /admin/info # root path serves 302 (login) which is not followed by health check

@@ -7,6 +7,7 @@ jobs:
   sandbox:
     environment: sandbox
     env:
+      GCP_PROJECT: print-nanny-sandbox
       GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.SANDBOX_GCP_SERVICE_ACCOUNT_KEY }}  # TODO replace repo-level secrets with sandbox env-level secrets
       GCP_SERVICE_ACCOUNT: ${{ secrets.SANDBOX_GCP_SERVICE_ACCOUNT }}  # TODO replace repo-level secrets with sandbox env-level secrets
       CLUSTER: www-sandbox
@@ -14,7 +15,8 @@ jobs:
       JANUS_HOSTNAME: janus.sandbox.print-nanny.com
       JANUS_VERSION: 0.11.8
       JANUS_ADMIN_SECRET: ${{ secrets.JANUS_ADMIN_SECRET }}
-      
+      JANUS_IMAGE_REPO: us.gcr.io/print-nanny-sandbox/janus
+
     runs-on: ubuntu-latest
     steps:
     - name: Checkout branch
@@ -38,12 +40,12 @@ jobs:
       uses: Ilshidur/action-discord@master
       with:
         args: |
-            🚀 Deployed {{ jobs.sandbox.env.JANUS_HOSTNAME }} 🚀
+            🚀 Deployed ${JANUS_HOSTNAME} 🚀
             ```
-            Janus Version: ${{ jobs.sandbox.env.JANUS_VERSION }}
-            Cluster: www-sandbox
+            Janus Version: ${JANUS_VERSION}
+            Cluster: ${CLUSTER}
             ```
-            Cluster status: https://console.cloud.google.com/kubernetes/workload/overview?project=print-nanny-sandbox
+            Cluster status: https://console.cloud.google.com/kubernetes/workload/overview?project=${GCP_PROJECT}
   stable:
     needs: ['sandbox']
     environment: stable
@@ -56,6 +58,7 @@ jobs:
       JANUS_HOSTNAME: janus.print-nanny.com
       JANUS_VERSION: 0.11.8
       JANUS_ADMIN_SECRET: ${{ secrets.JANUS_ADMIN_SECRET }}
+      JANUS_IMAGE_REPO: us.gcr.io/print-nanny/janus
       
     runs-on: ubuntu-latest
     steps:
@@ -80,9 +83,9 @@ jobs:
       uses: Ilshidur/action-discord@master
       with:
         args: |
-            🚀 Deployed {{ jobs.stable.env.JANUS_HOSTNAME }} 🚀
+            🚀 Deployed ${JANUS_HOSTNAME} 🚀
             ```
-            Janus Version: ${{ jobs.stable.env.JANUS_VERSION }}
-            Cluster: www-sandbox
+            Janus Version: ${JANUS_VERSION}
+            Cluster: ${CLUSTER}
             ```
-            Cluster status: https://console.cloud.google.com/kubernetes/workload/overview?project=print-nanny
+            Cluster status: https://console.cloud.google.com/kubernetes/workload/overview?project=${GCP_PROJECT}
