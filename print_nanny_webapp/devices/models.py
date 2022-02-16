@@ -464,7 +464,7 @@ class JanusMediaStream(SafeDeleteModel):
 
     @property
     def janus_api_token(self):
-        return self.device.user.janus_auth
+        return self.device.user.janus_cloud_auth
 
     created_dt = models.DateTimeField(auto_now_add=True)
     updated_dt = models.DateTimeField(auto_now=True)
