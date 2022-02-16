@@ -7,6 +7,7 @@ from print_nanny_webapp.devices.api.views import (
     CloudiotDeviceViewSet,
     DeviceHostnameViewSet,
     JanusCloudAuthViewSet,
+    JanusEdgeAuthViewSet,
     PublicKeyViewSet,
     SystemInfoViewSet,
     DeviceViewSet,
@@ -46,7 +47,7 @@ from print_nanny_webapp.octoprint.api.views import OctoPrintBackupViewset
 from print_nanny_webapp.events.api.views import (DeviceEventViewSet)
 router = DefaultRouter()
 
-router.register("client-config", PrintNannyApiConfigViewset, basename="client-config"),
+router.register("client-config", PrintNannyApiConfigViewset, basename="client-config")
 
 router.register("alerts", AlertViewSet)
 router.register("devices", DeviceViewSet)
@@ -61,6 +62,7 @@ devices_by_hostname = [
 
 devices_router = NestedSimpleRouter(router, r'devices', lookup='device')
 devices_router.register(r'janus-cloud-auth', JanusCloudAuthViewSet, basename='janus-cloud-auth')
+devices_router.register(r'janus-edge-auth', JanusEdgeAuthViewSet, basename='janus-edge-auth')
 devices_router.register(r'public-keys', PublicKeyViewSet, basename='public-keys')
 
 devices_router.register(r'system-info', SystemInfoViewSet, basename='system-info')
