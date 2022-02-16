@@ -9,6 +9,8 @@ from print_nanny_webapp.devices.models import (
     DeviceConfig,
     JanusCloudAuth,
     JanusEdgeAuth,
+    MonitoringStartTask,
+    MonitoringStopTask,
     PublicKey,
     SystemInfo,
     Task,
@@ -26,6 +28,18 @@ from ..enum import (
 from print_nanny_webapp.users.api.serializers import UserSerializer
 
 User = get_user_model()
+
+
+class MonitoringStopTaskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MonitoringStopTask
+        fields = "__all__"
+
+
+class MonitoringStartTaskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MonitoringStartTask
+        fields = "__all__"
 
 
 class OnboardingTaskSerializer(serializers.ModelSerializer):

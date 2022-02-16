@@ -56,11 +56,3 @@ class TaskType(models.TextChoices):
         "software_update",
         "Software Updating",
     )
-
-
-class OnboardingTaskType(models.TextChoices):
-    LINK = "link", "Link device to your account"
-    TEST_VIDEO = "test_video", "Test live video stream"
-    TEST_MQTT = "test_mqtt", "Send a ping/pong over MQTT"
-    RESTORE_OCTOPRINT = "restore_octoprint", "Restore OctoPrint from backup"
-    TEST_OCTOPRINT = "test_octoprint", "Log into OctoPrint"
