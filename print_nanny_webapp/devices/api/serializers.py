@@ -8,6 +8,7 @@ from print_nanny_webapp.devices.models import (
     CloudiotDevice,
     DeviceConfig,
     JanusCloudAuth,
+    JanusEdgeAuth,
     PublicKey,
     SystemInfo,
     Task,
@@ -145,6 +146,12 @@ class JanusCloudAuthSerializer(serializers.ModelSerializer):
         return JanusCloudAuth.objects.filter(device=device).update_or_create(
             device=device, defaults=validated_data
         )
+
+
+class JanusEdgeAuthSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JanusEdgeAuth
+        exclude = ("deleted",)
 
 
 class SystemInfoSerializer(serializers.ModelSerializer):

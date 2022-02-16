@@ -8,7 +8,6 @@ from drf_spectacular.utils import (
     OpenApiParameter,
 )
 from django.db.utils import IntegrityError
-from django.http import Http404
 
 from rest_framework import status
 from rest_framework.decorators import action
@@ -30,6 +29,7 @@ from print_nanny_webapp.utils.api.views import (
 )
 from .serializers import (
     JanusCloudAuthSerializer,
+    JanusEdgeAuthSerializer,
     PublicKeySerializer,
     CameraSerializer,
     CloudiotDeviceSerializer,
@@ -45,6 +45,7 @@ from ..models import (
     CloudiotDevice,
     Device,
     JanusCloudAuth,
+    JanusEdgeAuth,
     PublicKey,
     SystemInfo,
     PrinterController,
@@ -441,30 +442,65 @@ class PublicKeyViewSet(
         }
         | generic_create_errors,
     ),
-    update=extend_schema(
-        parameters=[
-            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
-        ],
-        request=JanusCloudAuthSerializer,
-        responses={
-            202: JanusCloudAuthSerializer,
-        }
-        | generic_create_errors,
-    ),
 )
 class JanusCloudAuthViewSet(
     GenericViewSet,
     ListModelMixin,
     RetrieveModelMixin,
-    UpdateModelMixin,
     CreateModelMixin,
 ):
     serializer_class = JanusCloudAuthSerializer
     queryset = JanusCloudAuth.objects.all()
     lookup_field = "id"
 
+
+##
+# JanusEdgeAuth views
+##
+@extend_schema_view(
+    list=extend_schema(
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        responses={
+            200: JanusEdgeAuthSerializer(many=True),
+        }
+        | generic_list_errors,
+    ),
+    create=extend_schema(
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        request=JanusEdgeAuthSerializer,
+        responses={
+            201: JanusEdgeAuthSerializer,
+        }
+        | generic_create_errors,
+    ),
+    update=extend_schema(
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        request=JanusEdgeAuthSerializer,
+        responses={
+            202: JanusEdgeAuthSerializer,
+        }
+        | generic_create_errors,
+    ),
+)
+class JanusEdgeAuthViewSet(
+    GenericViewSet,
+    ListModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+    CreateModelMixin,
+):
+    serializer_class = JanusEdgeAuthSerializer
+    queryset = JanusEdgeAuth.objects.all()
+    lookup_field = "id"
+
     @extend_schema(
-        operation_id="janus_auth_update_or_create",
+        operation_id="devices_janus_edge_auth_update_or_create",
         responses={
             # 400: PrinterProfileSerializer,
             200: JanusCloudAuthSerializer,
@@ -491,6 +527,8 @@ class JanusCloudAuthViewSet(
 ###
 # SystemInfo views
 ###
+
+
 @extend_schema_view(
     list=extend_schema(
         parameters=[
