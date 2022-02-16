@@ -130,7 +130,3 @@ LOGGING = {
 # see also: corsheaders.middleware.CorsMiddleware
 # ------------------------------------------------------------------------------
 CORS_ALLOW_ALL_ORIGINS = True
-
-# Janus cloud
-# ------------------------------------------------------------------------------
-JANUS_CLOUD_DOMAIN = "janus.sandbox.print-nanny.com"
