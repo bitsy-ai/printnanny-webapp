@@ -9,36 +9,19 @@ from print_nanny_webapp.devices.models import (
     DeviceConfig,
     JanusCloudAuth,
     JanusEdgeAuth,
-    MonitoringStartTask,
-    MonitoringStopTask,
     PublicKey,
     SystemInfo,
-    Task,
-    TaskStatus,
     PrinterController,
 )
 from ..enum import (
     CameraType,
     DeviceReleaseChannel,
     PrinterSoftwareType,
-    TaskType,
-    TaskStatusType,
 )
+from print_nanny_webapp.tasks.api.serializers import TaskSerializer
 from print_nanny_webapp.users.api.serializers import UserSerializer
 
 User = get_user_model()
-
-
-class MonitoringStopTaskSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MonitoringStopTask
-        fields = "__all__"
-
-
-class MonitoringStartTaskSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MonitoringStartTask
-        fields = "__all__"
 
 
 class CameraSerializer(serializers.ModelSerializer):
@@ -105,31 +88,6 @@ class CloudiotDeviceSerializer(serializers.ModelSerializer):
 class DeviceConfigSerializer(serializers.ModelSerializer):
     class Meta:
         model = DeviceConfig
-        exclude = ("deleted",)
-
-
-class TaskStatusSerializer(serializers.ModelSerializer):
-    detail = serializers.CharField(required=False, allow_null=True)
-    wiki_url = serializers.CharField(required=False, allow_null=True)
-    status = serializers.ChoiceField(choices=TaskStatusType.choices)
-    status_display = serializers.CharField(source="get_status_display", read_only=True)
-    css_class = serializers.CharField(read_only=True)
-
-    class Meta:
-        model = TaskStatus
-        exclude = ("deleted",)
-
-
-class TaskSerializer(serializers.ModelSerializer):
-    last_status = TaskStatusSerializer(read_only=True)
-    task_type = serializers.ChoiceField(choices=TaskType.choices)
-    active = serializers.BooleanField(default=True)
-    task_type_display = serializers.CharField(
-        source="get_task_type_display", read_only=True
-    )
-
-    class Meta:
-        model = Task
         exclude = ("deleted",)
 
 
