@@ -1,36 +1,34 @@
 import logging
 from django.shortcuts import get_object_or_404
-
-from rest_framework import status
-from rest_framework.response import Response
 from django.apps import apps
 from drf_spectacular.utils import extend_schema
+from rest_framework import status
+from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import (
     ListModelMixin,
     RetrieveModelMixin,
     CreateModelMixin,
-    UpdateModelMixin,
 )
-from print_nanny_webapp.events.models import DeviceEvent
-from .serializers import PolymorphicEventSerializer
+from print_nanny_webapp.tasks.models import Task
+from .serializers import PolymorphicTaskSerializer
 
 Device = apps.get_model("devices", "Device")
 
 logger = logging.getLogger(__name__)
 
 
-@extend_schema(tags=["events", "devices"])
-class DeviceEventViewSet(
+@extend_schema(tags=["tasks"])
+class TaskViewSet(
     GenericViewSet,
     ListModelMixin,
     RetrieveModelMixin,
     CreateModelMixin,
-    UpdateModelMixin,
 ):
-    serializer_class = PolymorphicEventSerializer
-    queryset = DeviceEvent.objects.all()
+    serializer_class = PolymorphicTaskSerializer
+    queryset = Task.objects.all()
     lookup_field = "id"
+    device = None
 
     def get_queryset(self, *args, **kwargs):
         device_id = self.kwargs.get("device_id")

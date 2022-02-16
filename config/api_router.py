@@ -12,8 +12,6 @@ from print_nanny_webapp.devices.api.views import (
     SystemInfoViewSet,
     DeviceViewSet,
     PrinterControllerViewSet,
-    TaskViewSet,
-    TaskStatusViewSet,
 )
 from print_nanny_webapp.ml_ops.api.views import (
     ModelArtifactViewSet, ExperimentDeviceConfigViewSet, DeviceCalibrationViewSet, ExperimentViewSet
@@ -70,10 +68,9 @@ devices_router.register(r'cloudiot', CloudiotDeviceViewSet, basename='cloudiot')
 devices_router.register(r'printer-controllers', PrinterControllerViewSet, basename='printer-controllers')
 devices_router.register(r'events', DeviceEventViewSet, basename='events')
 
-devices_router.register(r'tasks', TaskViewSet, basename='tasks')
-
-task_router = NestedSimpleRouter(devices_router, r'tasks', lookup='task')
-task_router.register(r'status', TaskStatusViewSet, basename='status')
+# devices_router.register(r'tasks', TaskViewSet, basename='tasks')
+# task_router = NestedSimpleRouter(devices_router, r'tasks', lookup='task')
+# task_router.register(r'status', TaskStatusViewSet, basename='status')
 
 router.register("telemetry-events", TelemetryEventViewSet, basename="telemetry-events")
 router.register("remote-command-events", RemoteCommandEventViewSet, basename="remote-command-events")
@@ -100,6 +97,6 @@ app_name = "api"
 urlpatterns = (
     router.urls +
     devices_router.urls +
-    task_router.urls +
+    # task_router.urls +
     devices_by_hostname
 )

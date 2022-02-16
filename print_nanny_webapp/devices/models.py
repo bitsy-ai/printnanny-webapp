@@ -16,8 +16,6 @@ from .enum import (
     CameraType,
     DeviceReleaseChannel,
     PrinterSoftwareType,
-    TaskStatusType,
-    TaskType,
 )
 
 UserModel = get_user_model()

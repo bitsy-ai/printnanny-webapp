@@ -1,12 +1,12 @@
 from django.apps import AppConfig
 
 
-class EventsConfig(AppConfig):
-    name = "print_nanny_webapp.events"
+class TasksConfig(AppConfig):
+    name = "print_nanny_webapp.tasks"
     default_auto_field = "django.db.models.BigAutoField"
 
     def ready(self) -> None:
         try:
-            import print_nanny_webapp.events.signals  # noqa F401
+            import print_nanny_webapp.tasks.signals  # noqa F401
         except ImportError:
             pass

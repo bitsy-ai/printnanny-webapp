@@ -36,8 +36,6 @@ from .serializers import (
     SystemInfoSerializer,
     DeviceSerializer,
     PrinterControllerSerializer,
-    TaskSerializer,
-    TaskStatusSerializer,
 )
 from ..models import (
     Camera,
@@ -48,141 +46,10 @@ from ..models import (
     PublicKey,
     SystemInfo,
     PrinterController,
-    Task,
-    TaskStatus,
 )
 from ..services import update_or_create_cloudiot_device
 
 logger = logging.getLogger(__name__)
-
-##
-# Task
-##
-
-
-@extend_schema_view(
-    # GET many tasks
-    list=extend_schema(
-        responses={
-            200: TaskSerializer(many=True),
-        }
-        | generic_list_errors
-    ),
-    # POST tasks
-    create=extend_schema(
-        request=TaskSerializer,
-        responses={
-            201: TaskSerializer,
-        }
-        | generic_create_errors,
-    ),
-    # GET one task
-    retreive=extend_schema(
-        request=TaskSerializer,
-        responses={
-            200: TaskSerializer,
-        }
-        | generic_get_errors,
-    ),
-)
-class TaskViewSet(
-    GenericViewSet,
-    ListModelMixin,
-    RetrieveModelMixin,
-    CreateModelMixin,
-):
-    serializer_class = TaskSerializer
-    queryset = Task.objects.all()
-    lookup_field = "id"
-
-    @extend_schema(
-        operation_id="tasks_monitor_start",
-        responses={
-            201: TaskSerializer,
-        }
-        | generic_create_errors,
-    )
-    @action(methods=["post"], detail=False, url_path="monitor-start")
-    def monitor_start(self, request, device_id=None):
-        pass
-
-    @extend_schema(
-        operation_id="tasks_monitor_stop",
-        responses={
-            201: TaskSerializer,
-        }
-        | generic_create_errors,
-    )
-    @action(methods=["post"], detail=False, url_path="monitor-stop")
-    def monitor_stop(self, request, device_id=None):
-        pass
-
-
-##
-# TaskStatus
-##
-
-
-@extend_schema_view(
-    list=extend_schema(
-        parameters=[
-            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
-        ],
-        responses={
-            200: TaskStatusSerializer(many=True),
-        }
-        | generic_list_errors,
-    ),
-    create=extend_schema(
-        parameters=[
-            OpenApiParameter(
-                name="device_id", type=int, location=OpenApiParameter.PATH
-            ),
-        ],
-        responses={
-            200: TaskStatusSerializer,
-        }
-        | generic_create_errors,
-    ),
-    retrieve=extend_schema(
-        parameters=[
-            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
-        ],
-        request=TaskStatusSerializer,
-        responses={
-            201: TaskSerializer,
-        }
-        | generic_get_errors,
-    ),
-)
-class TaskStatusViewSet(
-    GenericViewSet,
-    ListModelMixin,
-    RetrieveModelMixin,
-    CreateModelMixin,
-):
-    serializer_class = TaskStatusSerializer
-    queryset = TaskStatus.objects.all()
-    lookup_field = "id"
-
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        if serializer.is_valid():
-            self.perform_create(serializer)
-            logger.debug(f"Created TaskStatus={serializer.instance}")
-            task_serializer = TaskSerializer(instance=serializer.instance.task)
-            headers = self.get_success_headers(task_serializer.data)
-            logger.debug(f"Returning response Task={serializer.instance}")
-            return Response(
-                task_serializer.data, status=status.HTTP_201_CREATED, headers=headers
-            )
-        logger.error(serializer.errors)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-##
-# Device (by id)
-##
 
 # override device_create_operation to set required = true on requestBody
 # for some reason (yet unknown) DRF AutoSchema is omitting required on the POST method for this endpoint

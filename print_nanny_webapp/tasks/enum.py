@@ -22,11 +22,10 @@ class TaskStatusType(models.TextChoices):
 
 
 class TaskType(models.TextChoices):
-    MONITOR_START = "monitor_start", "Start Monitor"
-    MONITOR_STOP = "monitor_stop", "Stop Monitor"
-
-    SYSTEM_CHECK = "system_check", "System Check"
-    SOFTWARE_UPDATE = (
-        "software_update",
-        "Software Updating",
+    CLOUD_MONITOR_START = "cloud_monitor_start", "Start PrintNanny Monitoring"
+    CLOUD_MONITOR_STOP = "cloud_monitor_stop", "Stop PrintNanny Monitoring"
+    SYSTEM_CHECK = "system_check", "System Health Check"
+    SYSTEM_UPDATE = (
+        "system_update",
+        "PrintNanny OS Update",
     )

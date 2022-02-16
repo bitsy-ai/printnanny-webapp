@@ -2,65 +2,53 @@ import logging
 from collections.abc import Mapping
 from rest_framework import serializers
 from rest_polymorphic.serializers import PolymorphicSerializer
-from print_nanny_webapp.events.models import TestEvent, Event
-from print_nanny_webapp.events.enum import (
-    EventSource,
-    TestEventType,
-    EventStatus,
-    EventModel,
+
+from print_nanny_webapp.tasks.models import (
+    Task,
+    MonitorStartTask,
+    MonitorStopTask,
+    TaskStatus,
 )
+from print_nanny_webapp.tasks.enum import TaskStatusType, TaskType
 
 logger = logging.getLogger(__name__)
 
 
-class EventSerializer(serializers.ModelSerializer):
-    model = serializers.ChoiceField(choices=EventModel.choices)
+class TaskSerializer(serializers.ModelSerializer):
+    tasktype = serializers.ChoiceField(choices=TaskType.choices)
 
     class Meta:
-        model = Event
+        model = Task
         read_only_fields = ("user", "device", "created_dt")
-
-
-class TestEventSerializer(EventSerializer):
-    model = serializers.ChoiceField(choices=[EventModel.TestEvent])
-
-    class Meta:
-        model = TestEvent
         fields = "__all__"
-        read_only_fields = ("user", "device", "created_dt")
-        fields = (
-            "command",
-            "created_dt",
-            "device",
-            "event_type",
-            "id",
-            "model",
-            "source",
-            "status",
-            "user",
-        )
 
 
-class PolymorphicEventSerializer(PolymorphicSerializer):
+class MonitorStartTaskSerializer(TaskSerializer):
+    class Meta:
+        model = MonitorStartTask
+        fields = "__all__"
+        read_only_fields = ("device", "created_dt")
+
+    def to_resource_type(self, _model_or_instance):
+        return TaskType.CLOUD_MONITOR_START
+
+
+class MonitorStopTaskSerializer(TaskSerializer):
+    class Meta:
+        model = MonitorStopTask
+        fields = "__all__"
+        read_only_fields = ("device", "created_dt")
+
+    def to_resource_type(self, _model_or_instance):
+        return TaskType.CLOUD_MONITOR_STOP
+
+
+class PolymorphicTaskSerializer(PolymorphicSerializer):
     resource_type_field_name = "model"
     model_serializer_mapping = {
-        TestEvent: TestEventSerializer,
+        MonitorStartTask: MonitorStartTaskSerializer,
+        MonitorStopTask: MonitorStopTaskSerializer,
     }
-
-    resourcetype_map = {v: TestEvent._meta.object_name for v in TestEventType.values}
-
-    def _get_resource_type_from_mapping(self, mapping):
-        logger.debug(
-            f"Got PolymorphicEventSerializer mapping={mapping} resourcetype_map={self.resourcetype_map}"
-        )
-        try:
-            return mapping[self.resource_type_field_name]
-        except KeyError:
-            raise serializers.ValidationError(
-                {
-                    self.resource_type_field_name: "This field is required",
-                }
-            )
 
     def to_representation(self, instance):
         if isinstance(instance, Mapping):
@@ -72,3 +60,13 @@ class PolymorphicEventSerializer(PolymorphicSerializer):
 
         ret = serializer.to_representation(instance)
         return ret
+
+
+class TaskStatusSerializer(serializers.ModelSerializer):
+    status = serializers.ChoiceField(choices=TaskStatusType.choices)
+    task = PolymorphicTaskSerializer()
+
+    class Meta:
+        model = TaskStatus
+        read_only_fields = ("task", "created_dt")
+        fields = "__all__"
