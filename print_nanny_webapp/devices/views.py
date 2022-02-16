@@ -28,6 +28,11 @@ class DeviceDeleteView(DeleteView, DetailView):
     model = Device
 
 
+class DeviceVideoView(DetailView, LoginRequiredMixin):
+    template_name = "device-video.html"
+    model = Device
+
+
 class DeviceDetailView(DetailView, MultipleObjectMixin, LoginRequiredMixin):
     model = Device
     template_name = "devices/device-detail.html"

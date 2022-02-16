@@ -21,7 +21,13 @@ from rest_framework.mixins import (
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
-
+from print_nanny_webapp.utils.api.exceptions import AlreadyExists
+from print_nanny_webapp.utils.api.views import (
+    generic_create_errors,
+    generic_list_errors,
+    generic_get_errors,
+    generic_update_errors,
+)
 from .serializers import (
     JanusAuthSerializer,
     PublicKeySerializer,
@@ -47,15 +53,6 @@ from ..models import (
     OnboardingTask,
 )
 from ..services import update_or_create_cloudiot_device
-
-from print_nanny_webapp.utils.api.exceptions import AlreadyExists
-
-from print_nanny_webapp.utils.api.views import (
-    generic_create_errors,
-    generic_list_errors,
-    generic_get_errors,
-    generic_update_errors,
-)
 
 logger = logging.getLogger(__name__)
 
@@ -98,6 +95,28 @@ class TaskViewSet(
     serializer_class = TaskSerializer
     queryset = Task.objects.all()
     lookup_field = "id"
+
+    @extend_schema(
+        operation_id="tasks_monitor_start",
+        responses={
+            201: TaskSerializer,
+        }
+        | generic_create_errors,
+    )
+    @action(methods=["post"], detail=False, url_path="monitor-start")
+    def monitor_start(self, request, device_id=None):
+        pass
+
+    @extend_schema(
+        operation_id="tasks_monitor_stop",
+        responses={
+            201: TaskSerializer,
+        }
+        | generic_create_errors,
+    )
+    @action(methods=["post"], detail=False, url_path="monitor-stop")
+    def monitor_stop(self, request, device_id=None):
+        pass
 
 
 @extend_schema_view(
@@ -318,10 +337,10 @@ class DeviceViewSet(
         hostname = request.data.get("hostname")
         try:
             return super().create(request, *args, **kwargs)
-        except IntegrityError:
+        except IntegrityError as e:
             raise AlreadyExists(
-                detail=f"Device with hostname={hostname} already exists for user={self.request.user.id}.",
-            )
+                detail=f"Device with hostname={hostname} already exists for user={self.request.user.id}."
+            ) from e
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -330,6 +349,8 @@ class DeviceViewSet(
 ##
 # PublicKey views
 ##
+
+
 @extend_schema_view(
     list=extend_schema(
         parameters=[

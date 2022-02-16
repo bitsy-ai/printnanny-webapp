@@ -158,7 +158,7 @@ export default {
       <tab-content title="Link Raspberry Pi" icon="">
         <network-scanner> </network-scanner>
       </tab-content>
-      <tab-content title="Check Video" icon="">
+      <tab-content title="Test Connection" icon="">
         <div class="text-center row">
           <div class="col-12 col-md-6">
             <h2 class="header-title text-center">Live Camera Feed</h2>

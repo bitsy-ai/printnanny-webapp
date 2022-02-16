@@ -34,18 +34,6 @@ jobs:
       id: deploy
       run: |
         make janus-deploy
-    - name: Send Discord notification
-      env:
-        DISCORD_WEBHOOK: ${{ secrets.PRINT_NANNY_DISCORD_DEPLOY_WEBHOOK }}
-      uses: Ilshidur/action-discord@master
-      with:
-        args: |
-            🚀 Deployed ${JANUS_HOSTNAME} 🚀
-            ```
-            Janus Version: ${JANUS_VERSION}
-            Cluster: ${CLUSTER}
-            ```
-            Cluster status: https://console.cloud.google.com/kubernetes/workload/overview?project=${GCP_PROJECT}
   stable:
     needs: ['sandbox']
     environment: stable
@@ -77,15 +65,3 @@ jobs:
       id: deploy
       run: |
         make janus-deploy
-    - name: Send Discord notification
-      env:
-        DISCORD_WEBHOOK: ${{ secrets.PRINT_NANNY_DISCORD_DEPLOY_WEBHOOK }}
-      uses: Ilshidur/action-discord@master
-      with:
-        args: |
-            🚀 Deployed ${JANUS_HOSTNAME} 🚀
-            ```
-            Janus Version: ${JANUS_VERSION}
-            Cluster: ${CLUSTER}
-            ```
-            Cluster status: https://console.cloud.google.com/kubernetes/workload/overview?project=${GCP_PROJECT}
