@@ -7,7 +7,7 @@ from print_nanny_webapp.devices.models import (
     Camera,
     CloudiotDevice,
     DeviceConfig,
-    JanusAuth,
+    JanusCloudAuth,
     PublicKey,
     SystemInfo,
     Task,
@@ -136,13 +136,13 @@ class PublicKeySerializer(serializers.ModelSerializer):
         )
 
 
-class JanusAuthSerializer(serializers.ModelSerializer):
+class JanusCloudAuthSerializer(serializers.ModelSerializer):
     class Meta:
-        model = JanusAuth
+        model = JanusCloudAuth
         exclude = ("deleted",)
 
     def update_or_create(self, validated_data, device):
-        return JanusAuth.objects.filter(device=device).update_or_create(
+        return JanusCloudAuth.objects.filter(device=device).update_or_create(
             device=device, defaults=validated_data
         )
 
@@ -166,7 +166,7 @@ class DeviceSerializer(serializers.ModelSerializer):
     cloudiot_device = CloudiotDeviceSerializer(read_only=True)
     dashboard_url = serializers.CharField(read_only=True)
     video_test_url = serializers.CharField(read_only=True)
-    janus_auth = JanusAuthSerializer(read_only=True)
+    janus_auth = JanusCloudAuthSerializer(read_only=True)
     janus_local_url = serializers.CharField(read_only=True)
     last_task = TaskSerializer(read_only=True)
     monitoring_active = serializers.BooleanField(default=False)

@@ -84,13 +84,13 @@ class Device(SafeDeleteModel):
     def last_task(self):
         return self.tasks.first()
 
-    @property
-    def active_tasks(self):
-        return self.tasks.filter(active=True).all()
+    # @property
+    # def active_tasks(self):
+    #     return self.tasks.filter(active=True).all()
 
-    @property
-    def active_cameras(self):
-        return self.cameras.filter(active=True).all()
+    # @property
+    # def active_cameras(self):
+    #     return self.cameras.filter(active=True).all()
 
     @property
     def cloudiot_name(self):
@@ -128,36 +128,6 @@ class AnsibleFactsd(models.Model):
     namespace = models.CharField(max_length=64, default="printnanny")
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     updated_dt = models.DateTimeField(db_index=True, auto_now=True)
-
-
-class JanusAuth(SafeDeleteModel):
-    _safedelete_policy = SOFT_DELETE
-
-    class Meta:
-        index_together = ("device", "created_dt", "updated_dt")
-        constraints = [
-            UniqueConstraint(
-                fields=["device"],
-                condition=models.Q(deleted=None),
-                name="unique_janus_auth_per_device",
-            )
-        ]
-
-    janus_admin_secret = models.CharField(max_length=255)
-    janus_token = models.CharField(max_length=255)
-    device = models.ForeignKey(
-        Device, on_delete=models.CASCADE, related_name="janus_auths"
-    )
-    created_dt = models.DateTimeField(auto_now_add=True)
-    updated_dt = models.DateTimeField(auto_now=True)
-
-    @property
-    def user(self):
-        return self.device.user
-
-    @property
-    def janus_local_url(self):
-        return f"http://{self.device.hostname}:8088/janus"
 
 
 class PublicKey(SafeDeleteModel):
@@ -402,15 +372,7 @@ class DeviceConfig(SafeDeleteModel):
         return self.device.cloudiot_device
 
 
-class HelpLink(models.Model):
-    detail = models.CharField(max_length=1024, null=True)
-    wiki_url = models.CharField(max_length=1024, null=True)
-
-    class Meta:
-        abstract = True
-
-
-class Task(SafeDeleteModel):
+class Task(PolymorphicModel, SafeDeleteModel):
     """
     Append-only log published to /devices/:id/state FROM device
     Indicates current state of device
@@ -423,15 +385,7 @@ class Task(SafeDeleteModel):
 
     class Meta:
         ordering = ["-created_dt"]
-        index_together = [["device", "task_type", "active"]]
-
-    active = models.BooleanField(default=True)
-
-    task_type = models.CharField(
-        max_length=255,
-        choices=TaskType.choices,
-        default=TaskType.SOFTWARE_UPDATE,
-    )
+        index_together = [["device", "created_dt"]]
 
     device = models.ForeignKey(
         Device, on_delete=models.CASCADE, db_index=True, related_name="tasks"
@@ -442,19 +396,90 @@ class Task(SafeDeleteModel):
     def last_status(self):
         return self.status_set.first()
 
+
+class JanusEdgeAuth(SafeDeleteModel):
+    class Meta:
+        index_together = ("device", "created_dt", "updated_dt")
+        constraints = [
+            UniqueConstraint(
+                fields=["device"],
+                condition=models.Q(deleted=None),
+                name="unique_janus_edge_auth_per_device",
+            )
+        ]
+
+    api_token = models.CharField(max_length=255)
+    admin_secret = models.CharField(max_length=255)
+    device = models.ForeignKey(
+        Device, on_delete=models.CASCADE, related_name="janus_edge_auth"
+    )
+    created_dt = models.DateTimeField(auto_now_add=True)
+    updated_dt = models.DateTimeField(auto_now=True)
+
     @property
-    def to_json_str(self):
-        from .api.serializers import TaskSerializer
-
-        serializer = TaskSerializer(instance=self)
-        return JSONRenderer().render(serializer.data).decode("utf8")
+    def user(self):
+        return self.device.user
 
     @property
-    def html_id(self) -> str:
-        return f"task-{self.id}"
+    def gateway_url(self):
+        return f"http://{self.device.hostname}/janus"
+
+    @property
+    def gateway_admin_url(self):
+        return f"http://{self.device.hostname}/admin"
+
+    @property
+    def websocket_url(self):
+        return f"ws://{self.device.hostname}"
 
 
-class TaskStatus(HelpLink, SafeDeleteModel):
+class JanusCloudAuth(SafeDeleteModel):
+    api_token = models.CharField(max_length=255)
+    user = models.OneToOneField(
+        "users.User", on_delete=models.CASCADE, related_name="janus_cloud_auth"
+    )
+    created_dt = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def gateway_url(self):
+        return f"https://{settings.JANUS_CLOUD_DOMAIN}/janus"
+
+    @property
+    def gateway_admin_url(self):
+        return f"https://{settings.JANUS_CLOUD_DOMAIN}/admin"
+
+    @property
+    def websocket_url(self):
+        return f"wss://{settings.JANUS_CLOUD_DOMAIN}"
+
+
+class JanusMediaStream(SafeDeleteModel):
+    device = models.ForeignKey(
+        Device, on_delete=models.CASCADE, related_name="janus_media_streams"
+    )
+    secret = models.CharField(max_length=255)
+    pin = models.CharField(max_length=255)
+    # streaming.info response documented in https://janus.conf.meetecho.com/docs/streaming"
+    info = models.JSONField(default=dict)
+
+    @property
+    def janus_api_token(self):
+        return self.device.user.janus_cloud_auth
+
+    created_dt = models.DateTimeField(auto_now_add=True)
+    updated_dt = models.DateTimeField(auto_now=True)
+
+
+class MonitoringStartTask(Task):
+    janus_auth = models.ForeignKey(JanusCloudAuth, on_delete=models.CASCADE)
+    janus_media_stream = models.ForeignKey(JanusMediaStream, on_delete=models.CASCADE)
+
+
+class MonitoringStopTask(Task):
+    janus_media_stream = models.ForeignKey(JanusMediaStream, on_delete=models.CASCADE)
+
+
+class TaskStatus(SafeDeleteModel):
     class Meta:
         ordering = ["-created_dt"]
         index_together = [["task", "status"]]
