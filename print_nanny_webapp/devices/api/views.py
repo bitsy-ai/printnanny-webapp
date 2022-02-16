@@ -29,7 +29,7 @@ from print_nanny_webapp.utils.api.views import (
     generic_update_errors,
 )
 from .serializers import (
-    JanusAuthSerializer,
+    JanusCloudAuthSerializer,
     PublicKeySerializer,
     CameraSerializer,
     CloudiotDeviceSerializer,
@@ -44,7 +44,7 @@ from ..models import (
     Camera,
     CloudiotDevice,
     Device,
-    JanusAuth,
+    JanusCloudAuth,
     PublicKey,
     SystemInfo,
     PrinterController,
@@ -419,7 +419,7 @@ class PublicKeyViewSet(
 
 
 ##
-# JanusAuth views
+# JanusCloudAuth views
 ##
 @extend_schema_view(
     list=extend_schema(
@@ -427,7 +427,7 @@ class PublicKeyViewSet(
             OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
         ],
         responses={
-            200: JanusAuthSerializer(many=True),
+            200: JanusCloudAuthSerializer(many=True),
         }
         | generic_list_errors,
     ),
@@ -435,9 +435,9 @@ class PublicKeyViewSet(
         parameters=[
             OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
         ],
-        request=JanusAuthSerializer,
+        request=JanusCloudAuthSerializer,
         responses={
-            201: JanusAuthSerializer,
+            201: JanusCloudAuthSerializer,
         }
         | generic_create_errors,
     ),
@@ -445,30 +445,30 @@ class PublicKeyViewSet(
         parameters=[
             OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
         ],
-        request=JanusAuthSerializer,
+        request=JanusCloudAuthSerializer,
         responses={
-            202: JanusAuthSerializer,
+            202: JanusCloudAuthSerializer,
         }
         | generic_create_errors,
     ),
 )
-class JanusAuthViewSet(
+class JanusCloudAuthViewSet(
     GenericViewSet,
     ListModelMixin,
     RetrieveModelMixin,
     UpdateModelMixin,
     CreateModelMixin,
 ):
-    serializer_class = JanusAuthSerializer
-    queryset = JanusAuth.objects.all()
+    serializer_class = JanusCloudAuthSerializer
+    queryset = JanusCloudAuth.objects.all()
     lookup_field = "id"
 
     @extend_schema(
         operation_id="janus_auth_update_or_create",
         responses={
             # 400: PrinterProfileSerializer,
-            200: JanusAuthSerializer,
-            201: JanusAuthSerializer,
+            200: JanusCloudAuthSerializer,
+            201: JanusCloudAuthSerializer,
         }
         | generic_create_errors
         | generic_update_errors,

@@ -11,4 +11,4 @@ class TaskStatusAdmin(admin.ModelAdmin):
 
 @admin.register(Task)
 class TaskStatusAdmin(admin.ModelAdmin):
-    list_display = ("active", "task_type", "created_dt", "device", "last_status")
+    list_display = ("created_dt", "device", "last_status")
