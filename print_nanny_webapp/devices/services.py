@@ -1,33 +1,90 @@
 from __future__ import annotations
 import logging
-from typing import Tuple
+from uuid import uuid4
+from typing import Any, Tuple, Dict
 from google.cloud import iot_v1 as cloudiot_v1
+import requests
 import google.api_core.exceptions
 from django.conf import settings
 from django.template.loader import render_to_string
+from rest_framework.renderers import JSONRenderer
 
-from .models import Device, CloudiotDevice, JanusCloudAuth, PublicKey
+from print_nanny_webapp.devices.enum import TaskStatusType
+
+from .models import (
+    Device,
+    CloudiotDevice,
+    JanusCloudAuth,
+    JanusCloudMediaStream,
+    MonitoringStartTask,
+    MonitoringStopTask,
+    TaskStatus,
+    PublicKey,
+)
+from .api.serializers import MonitoringStartTaskSerializer, MonitoringStopTaskSerializer
 
 logger = logging.getLogger(__name__)
 
 
-def janus_add_token(token: str, admin_secret: str):
-    pass
+def janus_cloud_add_token(token: str) -> Dict[str, Any]:
+    url = f"{settings.JANUS_CLOUD_ADMIN_URL}"
+    req = dict(
+        janus="add_token",
+        token=token,
+        admin_secret=settings.JANUS_CLOUD_ADMIN_SECRET,
+        plugins=["janus.plugin.streaming"],
+    )
+    res = requests.post(url, data=req)
+    logger.info("Got response to POST %s: %s", url, res)
+    res.raise_for_status()
+    return res.json()
 
 
-def janus_create_stream(device: Device):
-    pass
+def janus_cloud_get_or_create_stream(device: Device, auth: JanusCloudAuth):
+    url = f"{settings.JANUS_CLOUD_API_URL}"
+    stream = JanusCloudMediaStream.objects.get_or_create(device=device)
+    media = [
+        # video stream
+        dict(type="video", mid=uuid4().hex, port=5105)
+        # overlay
+    ]
+    req = dict(
+        request="create",
+        token=auth.api_token,
+        admin_key=settings.JANUS_CLOUD_ADMIN_SECRET,
+        is_private=True,
+        secret=stream.secret,
+        pin=stream.pin,
+        media=media,
+    )
+    res = requests.post(url, data=req)
+    logger.info("Got response to POST %s: %s", url, req)
+    res.raise_for_status()
+    return res.json()
 
 
 def monitor_start(device: Device):
     # 2) get or create Janus credentials
-    janus_cloud_auth = JanusCloudAuth.objects.get_or_create(user=device.user)
+    janus_cloud_auth, created = JanusCloudAuth.objects.get_or_create(user=device.user)
+    logger.debug(
+        "Retreived JanusCloudAuth id=%s user=%s created=%s",
+        janus_cloud_auth.id,
+        device.user.id,
+        created,
+    )
     # 3) ensure token added to Janus gateway
-    janus_add_token(janus_cloud_auth.api_token, settings.JANUS_CLOUD_ADMIN_SECRET)
+    janus_cloud_add_token(janus_cloud_auth.api_token)
 
     # 4) create streaming mountpoint
-    janus_create_stream(device)
+    stream = janus_cloud_get_or_create_stream(device, janus_cloud_auth)
     # 5) send mqtt message with streaming mountpoint
+    task = MonitoringStartTask.objects.create(device=device, janus_media_stream=stream)
+    task_status = TaskStatus.objects.create(task=task, status=TaskStatusType.PENDING)
+    logger.info("Created task=%s with task_status=%s", task, task_status)
+    # serialize to json
+    serializer = MonitoringStartTaskSerializer(instance=task)
+    msg = JSONRenderer().render(serializer.data)
+    logger.info("Serialized msg % with payload %", task.name, msg)
 
 
 def monitor_stop(device: Device):

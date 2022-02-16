@@ -18,7 +18,6 @@ from .enum import (
     PrinterSoftwareType,
     TaskStatusType,
     TaskType,
-    OnboardingTaskType,
 )
 
 UserModel = get_user_model()
@@ -456,10 +455,21 @@ class JanusCloudAuth(SafeDeleteModel):
         return f"wss://{settings.JANUS_CLOUD_DOMAIN}"
 
 
-class JanusMediaStream(SafeDeleteModel):
+class JanusCloudMediaStream(SafeDeleteModel):
+    class Meta:
+        index_together = ("device", "active", "created_dt", "updated_dt")
+        constraints = [
+            UniqueConstraint(
+                fields=["device"],
+                condition=models.Q(deleted=None),
+                name="unique_janus_cloud_stream_per_device",
+            )
+        ]
+
     device = models.ForeignKey(
         Device, on_delete=models.CASCADE, related_name="janus_media_streams"
     )
+    active = models.BooleanField(default=False)
     secret = models.CharField(max_length=255, default=get_random_string_32)
     pin = models.CharField(max_length=255, default=get_random_string_32)
     # streaming.info response documented in https://janus.conf.meetecho.com/docs/streaming"
@@ -475,11 +485,23 @@ class JanusMediaStream(SafeDeleteModel):
 
 class MonitoringStartTask(Task):
     janus_auth = models.ForeignKey(JanusCloudAuth, on_delete=models.CASCADE)
-    janus_media_stream = models.ForeignKey(JanusMediaStream, on_delete=models.CASCADE)
+    janus_media_stream = models.ForeignKey(
+        JanusCloudMediaStream, on_delete=models.CASCADE
+    )
+
+    @property
+    def name(self):
+        return TaskType.MONITOR_START
 
 
 class MonitoringStopTask(Task):
-    janus_media_stream = models.ForeignKey(JanusMediaStream, on_delete=models.CASCADE)
+    janus_media_stream = models.ForeignKey(
+        JanusCloudMediaStream, on_delete=models.CASCADE
+    )
+
+    @property
+    def name(self):
+        return TaskType.MONITOR_STOP
 
 
 class TaskStatus(SafeDeleteModel):
@@ -544,13 +566,3 @@ class PrinterController(PolymorphicModel, SafeDeleteModel):
         choices=PrinterSoftwareType.choices,
         default=PrinterSoftwareType.OCTOPRINT,
     )
-
-
-class OnboardingTask(models.Model):
-
-    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
-    device = models.ForeignKey(
-        Device, on_delete=models.CASCADE, related_name="onboarding_tasks"
-    )
-    task = models.CharField(max_length=32, choices=OnboardingTaskType.choices)
-    status = models.CharField(max_length=32, choices=TaskStatusType.choices)
