@@ -21,11 +21,15 @@ Method | HTTP request | Description
 [**devices_events_partial_update**](DevicesApi.md#devices_events_partial_update) | **PATCH** /api/devices/{device_id}/events/{id}/ | 
 [**devices_events_retrieve**](DevicesApi.md#devices_events_retrieve) | **GET** /api/devices/{device_id}/events/{id}/ | 
 [**devices_events_update**](DevicesApi.md#devices_events_update) | **PUT** /api/devices/{device_id}/events/{id}/ | 
-[**devices_janus_create**](DevicesApi.md#devices_janus_create) | **POST** /api/devices/{device_id}/janus/ | 
-[**devices_janus_list**](DevicesApi.md#devices_janus_list) | **GET** /api/devices/{device_id}/janus/ | 
-[**devices_janus_partial_update**](DevicesApi.md#devices_janus_partial_update) | **PATCH** /api/devices/{device_id}/janus/{id}/ | 
-[**devices_janus_retrieve**](DevicesApi.md#devices_janus_retrieve) | **GET** /api/devices/{device_id}/janus/{id}/ | 
-[**devices_janus_update**](DevicesApi.md#devices_janus_update) | **PUT** /api/devices/{device_id}/janus/{id}/ | 
+[**devices_janus_cloud_auth_create**](DevicesApi.md#devices_janus_cloud_auth_create) | **POST** /api/devices/{device_id}/janus-cloud-auth/ | 
+[**devices_janus_cloud_auth_list**](DevicesApi.md#devices_janus_cloud_auth_list) | **GET** /api/devices/{device_id}/janus-cloud-auth/ | 
+[**devices_janus_cloud_auth_retrieve**](DevicesApi.md#devices_janus_cloud_auth_retrieve) | **GET** /api/devices/{device_id}/janus-cloud-auth/{id}/ | 
+[**devices_janus_edge_auth_create**](DevicesApi.md#devices_janus_edge_auth_create) | **POST** /api/devices/{device_id}/janus-edge-auth/ | 
+[**devices_janus_edge_auth_list**](DevicesApi.md#devices_janus_edge_auth_list) | **GET** /api/devices/{device_id}/janus-edge-auth/ | 
+[**devices_janus_edge_auth_partial_update**](DevicesApi.md#devices_janus_edge_auth_partial_update) | **PATCH** /api/devices/{device_id}/janus-edge-auth/{id}/ | 
+[**devices_janus_edge_auth_retrieve**](DevicesApi.md#devices_janus_edge_auth_retrieve) | **GET** /api/devices/{device_id}/janus-edge-auth/{id}/ | 
+[**devices_janus_edge_auth_update**](DevicesApi.md#devices_janus_edge_auth_update) | **PUT** /api/devices/{device_id}/janus-edge-auth/{id}/ | 
+[**devices_janus_edge_auth_update_or_create**](DevicesApi.md#devices_janus_edge_auth_update_or_create) | **POST** /api/devices/{device_id}/janus-edge-auth/update-or-create/ | 
 [**devices_list**](DevicesApi.md#devices_list) | **GET** /api/devices/ | 
 [**devices_onboarding_tasks_create**](DevicesApi.md#devices_onboarding_tasks_create) | **POST** /api/devices/{device_id}/onboarding-tasks/ | 
 [**devices_onboarding_tasks_list**](DevicesApi.md#devices_onboarding_tasks_list) | **GET** /api/devices/{device_id}/onboarding-tasks/ | 
@@ -55,9 +59,10 @@ Method | HTTP request | Description
 [**devices_tasks_status_list**](DevicesApi.md#devices_tasks_status_list) | **GET** /api/devices/{device_id}/tasks/{task_id}/status/ | 
 [**devices_tasks_status_retrieve**](DevicesApi.md#devices_tasks_status_retrieve) | **GET** /api/devices/{device_id}/tasks/{task_id}/status/{id}/ | 
 [**devices_update**](DevicesApi.md#devices_update) | **PUT** /api/devices/{id}/ | 
-[**janus_auth_update_or_create**](DevicesApi.md#janus_auth_update_or_create) | **POST** /api/devices/{device_id}/janus/update-or-create/ | 
 [**public_key_update_or_create**](DevicesApi.md#public_key_update_or_create) | **POST** /api/devices/{device_id}/public-keys/update-or-create/ | 
 [**system_info_update_or_create**](DevicesApi.md#system_info_update_or_create) | **POST** /api/devices/{device_id}/system-info/update-or-create/ | 
+[**tasks_monitor_start**](DevicesApi.md#tasks_monitor_start) | **POST** /api/devices/{device_id}/tasks/monitor-start/ | 
+[**tasks_monitor_stop**](DevicesApi.md#tasks_monitor_stop) | **POST** /api/devices/{device_id}/tasks/monitor-stop/ | 
 
 
 
@@ -561,9 +566,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## devices_janus_create
+## devices_janus_cloud_auth_create
 
-> crate::models::JanusAuth devices_janus_create(device_id, janus_auth_request)
+> crate::models::JanusCloudAuth devices_janus_cloud_auth_create(device_id, janus_cloud_auth_request)
 
 
 ### Parameters
@@ -572,11 +577,11 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
-**janus_auth_request** | [**JanusAuthRequest**](JanusAuthRequest.md) |  | [required] |
+**janus_cloud_auth_request** | [**JanusCloudAuthRequest**](JanusCloudAuthRequest.md) |  | [required] |
 
 ### Return type
 
-[**crate::models::JanusAuth**](JanusAuth.md)
+[**crate::models::JanusCloudAuth**](JanusCloudAuth.md)
 
 ### Authorization
 
@@ -590,9 +595,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## devices_janus_list
+## devices_janus_cloud_auth_list
 
-> crate::models::PaginatedJanusAuthList devices_janus_list(device_id, page)
+> crate::models::PaginatedJanusCloudAuthList devices_janus_cloud_auth_list(device_id, page)
 
 
 ### Parameters
@@ -605,7 +610,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::PaginatedJanusAuthList**](PaginatedJanusAuthList.md)
+[**crate::models::PaginatedJanusCloudAuthList**](PaginatedJanusCloudAuthList.md)
 
 ### Authorization
 
@@ -619,9 +624,38 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## devices_janus_partial_update
+## devices_janus_cloud_auth_retrieve
 
-> crate::models::JanusAuth devices_janus_partial_update(device_id, id, patched_janus_auth_request)
+> crate::models::JanusCloudAuth devices_janus_cloud_auth_retrieve(device_id, id)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_id** | **String** |  | [required] |
+**id** | **i32** | A unique integer value identifying this janus cloud auth. | [required] |
+
+### Return type
+
+[**crate::models::JanusCloudAuth**](JanusCloudAuth.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## devices_janus_edge_auth_create
+
+> crate::models::JanusEdgeAuth devices_janus_edge_auth_create(device_id, janus_edge_auth_request)
 
 
 ### Parameters
@@ -630,12 +664,11 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
-**id** | **i32** | A unique integer value identifying this janus auth. | [required] |
-**patched_janus_auth_request** | Option<[**PatchedJanusAuthRequest**](PatchedJanusAuthRequest.md)> |  |  |
+**janus_edge_auth_request** | [**JanusEdgeAuthRequest**](JanusEdgeAuthRequest.md) |  | [required] |
 
 ### Return type
 
-[**crate::models::JanusAuth**](JanusAuth.md)
+[**crate::models::JanusEdgeAuth**](JanusEdgeAuth.md)
 
 ### Authorization
 
@@ -649,9 +682,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## devices_janus_retrieve
+## devices_janus_edge_auth_list
 
-> crate::models::JanusAuth devices_janus_retrieve(device_id, id)
+> crate::models::PaginatedJanusEdgeAuthList devices_janus_edge_auth_list(device_id, page)
 
 
 ### Parameters
@@ -660,11 +693,11 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
-**id** | **i32** | A unique integer value identifying this janus auth. | [required] |
+**page** | Option<**i32**> | A page number within the paginated result set. |  |
 
 ### Return type
 
-[**crate::models::JanusAuth**](JanusAuth.md)
+[**crate::models::PaginatedJanusEdgeAuthList**](PaginatedJanusEdgeAuthList.md)
 
 ### Authorization
 
@@ -678,9 +711,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## devices_janus_update
+## devices_janus_edge_auth_partial_update
 
-> crate::models::JanusAuth devices_janus_update(device_id, id, janus_auth_request)
+> crate::models::JanusEdgeAuth devices_janus_edge_auth_partial_update(device_id, id, patched_janus_edge_auth_request)
 
 
 ### Parameters
@@ -689,12 +722,100 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
-**id** | **i32** | A unique integer value identifying this janus auth. | [required] |
-**janus_auth_request** | [**JanusAuthRequest**](JanusAuthRequest.md) |  | [required] |
+**id** | **i32** | A unique integer value identifying this janus edge auth. | [required] |
+**patched_janus_edge_auth_request** | Option<[**PatchedJanusEdgeAuthRequest**](PatchedJanusEdgeAuthRequest.md)> |  |  |
 
 ### Return type
 
-[**crate::models::JanusAuth**](JanusAuth.md)
+[**crate::models::JanusEdgeAuth**](JanusEdgeAuth.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## devices_janus_edge_auth_retrieve
+
+> crate::models::JanusEdgeAuth devices_janus_edge_auth_retrieve(device_id, id)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_id** | **i32** |  | [required] |
+**id** | **i32** | A unique integer value identifying this janus edge auth. | [required] |
+
+### Return type
+
+[**crate::models::JanusEdgeAuth**](JanusEdgeAuth.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## devices_janus_edge_auth_update
+
+> crate::models::JanusEdgeAuth devices_janus_edge_auth_update(device_id, id, janus_edge_auth_request)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_id** | **i32** |  | [required] |
+**id** | **i32** | A unique integer value identifying this janus edge auth. | [required] |
+**janus_edge_auth_request** | [**JanusEdgeAuthRequest**](JanusEdgeAuthRequest.md) |  | [required] |
+
+### Return type
+
+[**crate::models::JanusEdgeAuth**](JanusEdgeAuth.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## devices_janus_edge_auth_update_or_create
+
+> crate::models::JanusCloudAuth devices_janus_edge_auth_update_or_create(device_id, janus_edge_auth_request)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_id** | **i32** |  | [required] |
+**janus_edge_auth_request** | [**JanusEdgeAuthRequest**](JanusEdgeAuthRequest.md) |  | [required] |
+
+### Return type
+
+[**crate::models::JanusCloudAuth**](JanusCloudAuth.md)
 
 ### Authorization
 
@@ -1563,35 +1684,6 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## janus_auth_update_or_create
-
-> crate::models::JanusAuth janus_auth_update_or_create(device_id, janus_auth_request)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-**janus_auth_request** | [**JanusAuthRequest**](JanusAuthRequest.md) |  | [required] |
-
-### Return type
-
-[**crate::models::JanusAuth**](JanusAuth.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
 ## public_key_update_or_create
 
 > crate::models::PublicKey public_key_update_or_create(device_id, public_key_request)
@@ -1637,6 +1729,64 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::SystemInfo**](SystemInfo.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## tasks_monitor_start
+
+> crate::models::Task tasks_monitor_start(device_id, task_request)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_id** | **i32** |  | [required] |
+**task_request** | [**TaskRequest**](TaskRequest.md) |  | [required] |
+
+### Return type
+
+[**crate::models::Task**](Task.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## tasks_monitor_stop
+
+> crate::models::Task tasks_monitor_stop(device_id, task_request)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_id** | **i32** |  | [required] |
+**task_request** | [**TaskRequest**](TaskRequest.md) |  | [required] |
+
+### Return type
+
+[**crate::models::Task**](Task.md)
 
 ### Authorization
 

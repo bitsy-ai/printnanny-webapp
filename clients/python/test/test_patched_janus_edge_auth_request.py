@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.task import Task  # noqa: E501
+from printnanny_api_client.models.patched_janus_edge_auth_request import PatchedJanusEdgeAuthRequest  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestTask(unittest.TestCase):
-    """Task unit test stubs"""
+class TestPatchedJanusEdgeAuthRequest(unittest.TestCase):
+    """PatchedJanusEdgeAuthRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,35 +30,23 @@ class TestTask(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test Task
+        """Test PatchedJanusEdgeAuthRequest
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.task.Task()  # noqa: E501
+        # model = printnanny_api_client.models.patched_janus_edge_auth_request.PatchedJanusEdgeAuthRequest()  # noqa: E501
         if include_optional :
-            return Task(
-                id = 56, 
-                last_status = None, 
-                task_type = 'monitor_start', 
-                active = True, 
-                task_type_display = '', 
-                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                polymorphic_ctype = 56, 
+            return PatchedJanusEdgeAuthRequest(
+                api_token = '0', 
+                admin_secret = '0', 
                 device = 56
             )
         else :
-            return Task(
-                id = 56,
-                last_status = None,
-                task_type = 'monitor_start',
-                task_type_display = '',
-                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                polymorphic_ctype = 56,
-                device = 56,
+            return PatchedJanusEdgeAuthRequest(
         )
 
-    def testTask(self):
-        """Test Task"""
+    def testPatchedJanusEdgeAuthRequest(self):
+        """Test PatchedJanusEdgeAuthRequest"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.janus_auth import JanusAuth  # noqa: E501
+from printnanny_api_client.models.janus_edge_auth import JanusEdgeAuth  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestJanusAuth(unittest.TestCase):
-    """JanusAuth unit test stubs"""
+class TestJanusEdgeAuth(unittest.TestCase):
+    """JanusEdgeAuth unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,32 +30,32 @@ class TestJanusAuth(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test JanusAuth
+        """Test JanusEdgeAuth
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.janus_auth.JanusAuth()  # noqa: E501
+        # model = printnanny_api_client.models.janus_edge_auth.JanusEdgeAuth()  # noqa: E501
         if include_optional :
-            return JanusAuth(
+            return JanusEdgeAuth(
                 id = 56, 
-                janus_admin_secret = '', 
-                janus_token = '', 
+                api_token = '', 
+                admin_secret = '', 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 device = 56
             )
         else :
-            return JanusAuth(
+            return JanusEdgeAuth(
                 id = 56,
-                janus_admin_secret = '',
-                janus_token = '',
+                api_token = '',
+                admin_secret = '',
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 device = 56,
         )
 
-    def testJanusAuth(self):
-        """Test JanusAuth"""
+    def testJanusEdgeAuth(self):
+        """Test JanusEdgeAuth"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

@@ -25,12 +25,14 @@ pub struct Task {
     pub task_type_display: String,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
+    #[serde(rename = "polymorphic_ctype")]
+    pub polymorphic_ctype: i32,
     #[serde(rename = "device")]
     pub device: i32,
 }
 
 impl Task {
-    pub fn new(id: i32, last_status: Option<crate::models::TaskStatus>, task_type: crate::models::TaskType, task_type_display: String, created_dt: String, device: i32) -> Task {
+    pub fn new(id: i32, last_status: Option<crate::models::TaskStatus>, task_type: crate::models::TaskType, task_type_display: String, created_dt: String, polymorphic_ctype: i32, device: i32) -> Task {
         Task {
             id,
             last_status: last_status.map(Box::new),
@@ -38,6 +40,7 @@ impl Task {
             active: None,
             task_type_display,
             created_dt,
+            polymorphic_ctype,
             device,
         }
     }

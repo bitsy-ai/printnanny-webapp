@@ -12,20 +12,20 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct JanusAuthRequest {
-    #[serde(rename = "janus_admin_secret")]
-    pub janus_admin_secret: String,
-    #[serde(rename = "janus_token")]
-    pub janus_token: String,
+pub struct JanusEdgeAuthRequest {
+    #[serde(rename = "api_token")]
+    pub api_token: String,
+    #[serde(rename = "admin_secret")]
+    pub admin_secret: String,
     #[serde(rename = "device")]
     pub device: i32,
 }
 
-impl JanusAuthRequest {
-    pub fn new(janus_admin_secret: String, janus_token: String, device: i32) -> JanusAuthRequest {
-        JanusAuthRequest {
-            janus_admin_secret,
-            janus_token,
+impl JanusEdgeAuthRequest {
+    pub fn new(api_token: String, admin_secret: String, device: i32) -> JanusEdgeAuthRequest {
+        JanusEdgeAuthRequest {
+            api_token,
+            admin_secret,
             device,
         }
     }

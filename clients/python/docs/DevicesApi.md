@@ -21,11 +21,15 @@ Method | HTTP request | Description
 [**devices_events_partial_update**](DevicesApi.md#devices_events_partial_update) | **PATCH** /api/devices/{device_id}/events/{id}/ | 
 [**devices_events_retrieve**](DevicesApi.md#devices_events_retrieve) | **GET** /api/devices/{device_id}/events/{id}/ | 
 [**devices_events_update**](DevicesApi.md#devices_events_update) | **PUT** /api/devices/{device_id}/events/{id}/ | 
-[**devices_janus_create**](DevicesApi.md#devices_janus_create) | **POST** /api/devices/{device_id}/janus/ | 
-[**devices_janus_list**](DevicesApi.md#devices_janus_list) | **GET** /api/devices/{device_id}/janus/ | 
-[**devices_janus_partial_update**](DevicesApi.md#devices_janus_partial_update) | **PATCH** /api/devices/{device_id}/janus/{id}/ | 
-[**devices_janus_retrieve**](DevicesApi.md#devices_janus_retrieve) | **GET** /api/devices/{device_id}/janus/{id}/ | 
-[**devices_janus_update**](DevicesApi.md#devices_janus_update) | **PUT** /api/devices/{device_id}/janus/{id}/ | 
+[**devices_janus_cloud_auth_create**](DevicesApi.md#devices_janus_cloud_auth_create) | **POST** /api/devices/{device_id}/janus-cloud-auth/ | 
+[**devices_janus_cloud_auth_list**](DevicesApi.md#devices_janus_cloud_auth_list) | **GET** /api/devices/{device_id}/janus-cloud-auth/ | 
+[**devices_janus_cloud_auth_retrieve**](DevicesApi.md#devices_janus_cloud_auth_retrieve) | **GET** /api/devices/{device_id}/janus-cloud-auth/{id}/ | 
+[**devices_janus_edge_auth_create**](DevicesApi.md#devices_janus_edge_auth_create) | **POST** /api/devices/{device_id}/janus-edge-auth/ | 
+[**devices_janus_edge_auth_list**](DevicesApi.md#devices_janus_edge_auth_list) | **GET** /api/devices/{device_id}/janus-edge-auth/ | 
+[**devices_janus_edge_auth_partial_update**](DevicesApi.md#devices_janus_edge_auth_partial_update) | **PATCH** /api/devices/{device_id}/janus-edge-auth/{id}/ | 
+[**devices_janus_edge_auth_retrieve**](DevicesApi.md#devices_janus_edge_auth_retrieve) | **GET** /api/devices/{device_id}/janus-edge-auth/{id}/ | 
+[**devices_janus_edge_auth_update**](DevicesApi.md#devices_janus_edge_auth_update) | **PUT** /api/devices/{device_id}/janus-edge-auth/{id}/ | 
+[**devices_janus_edge_auth_update_or_create**](DevicesApi.md#devices_janus_edge_auth_update_or_create) | **POST** /api/devices/{device_id}/janus-edge-auth/update-or-create/ | 
 [**devices_list**](DevicesApi.md#devices_list) | **GET** /api/devices/ | 
 [**devices_onboarding_tasks_create**](DevicesApi.md#devices_onboarding_tasks_create) | **POST** /api/devices/{device_id}/onboarding-tasks/ | 
 [**devices_onboarding_tasks_list**](DevicesApi.md#devices_onboarding_tasks_list) | **GET** /api/devices/{device_id}/onboarding-tasks/ | 
@@ -55,9 +59,10 @@ Method | HTTP request | Description
 [**devices_tasks_status_list**](DevicesApi.md#devices_tasks_status_list) | **GET** /api/devices/{device_id}/tasks/{task_id}/status/ | 
 [**devices_tasks_status_retrieve**](DevicesApi.md#devices_tasks_status_retrieve) | **GET** /api/devices/{device_id}/tasks/{task_id}/status/{id}/ | 
 [**devices_update**](DevicesApi.md#devices_update) | **PUT** /api/devices/{id}/ | 
-[**janus_auth_update_or_create**](DevicesApi.md#janus_auth_update_or_create) | **POST** /api/devices/{device_id}/janus/update-or-create/ | 
 [**public_key_update_or_create**](DevicesApi.md#public_key_update_or_create) | **POST** /api/devices/{device_id}/public-keys/update-or-create/ | 
 [**system_info_update_or_create**](DevicesApi.md#system_info_update_or_create) | **POST** /api/devices/{device_id}/system-info/update-or-create/ | 
+[**tasks_monitor_start**](DevicesApi.md#tasks_monitor_start) | **POST** /api/devices/{device_id}/tasks/monitor-start/ | 
+[**tasks_monitor_stop**](DevicesApi.md#tasks_monitor_stop) | **POST** /api/devices/{device_id}/tasks/monitor-stop/ | 
 
 
 # **cloudiot_device_update_or_create**
@@ -2143,8 +2148,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_janus_create**
-> JanusAuth devices_janus_create(device_id, janus_auth_request)
+# **devices_janus_cloud_auth_create**
+> JanusCloudAuth devices_janus_cloud_auth_create(device_id, janus_cloud_auth_request)
 
 
 
@@ -2184,13 +2189,13 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
-janus_auth_request = printnanny_api_client.JanusAuthRequest() # JanusAuthRequest | 
+janus_cloud_auth_request = printnanny_api_client.JanusCloudAuthRequest() # JanusCloudAuthRequest | 
 
     try:
-        api_response = api_instance.devices_janus_create(device_id, janus_auth_request)
+        api_response = api_instance.devices_janus_cloud_auth_create(device_id, janus_cloud_auth_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_janus_create: %s\n" % e)
+        print("Exception when calling DevicesApi->devices_janus_cloud_auth_create: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -2227,13 +2232,13 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
-janus_auth_request = printnanny_api_client.JanusAuthRequest() # JanusAuthRequest | 
+janus_cloud_auth_request = printnanny_api_client.JanusCloudAuthRequest() # JanusCloudAuthRequest | 
 
     try:
-        api_response = api_instance.devices_janus_create(device_id, janus_auth_request)
+        api_response = api_instance.devices_janus_cloud_auth_create(device_id, janus_cloud_auth_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_janus_create: %s\n" % e)
+        print("Exception when calling DevicesApi->devices_janus_cloud_auth_create: %s\n" % e)
 ```
 
 ### Parameters
@@ -2241,11 +2246,11 @@ janus_auth_request = printnanny_api_client.JanusAuthRequest() # JanusAuthRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **device_id** | **int**|  | 
- **janus_auth_request** | [**JanusAuthRequest**](JanusAuthRequest.md)|  | 
+ **janus_cloud_auth_request** | [**JanusCloudAuthRequest**](JanusCloudAuthRequest.md)|  | 
 
 ### Return type
 
-[**JanusAuth**](JanusAuth.md)
+[**JanusCloudAuth**](JanusCloudAuth.md)
 
 ### Authorization
 
@@ -2268,8 +2273,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_janus_list**
-> PaginatedJanusAuthList devices_janus_list(device_id, page=page)
+# **devices_janus_cloud_auth_list**
+> PaginatedJanusCloudAuthList devices_janus_cloud_auth_list(device_id, page=page)
 
 
 
@@ -2312,10 +2317,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.devices_janus_list(device_id, page=page)
+        api_response = api_instance.devices_janus_cloud_auth_list(device_id, page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_janus_list: %s\n" % e)
+        print("Exception when calling DevicesApi->devices_janus_cloud_auth_list: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -2355,10 +2360,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.devices_janus_list(device_id, page=page)
+        api_response = api_instance.devices_janus_cloud_auth_list(device_id, page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_janus_list: %s\n" % e)
+        print("Exception when calling DevicesApi->devices_janus_cloud_auth_list: %s\n" % e)
 ```
 
 ### Parameters
@@ -2370,7 +2375,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedJanusAuthList**](PaginatedJanusAuthList.md)
+[**PaginatedJanusCloudAuthList**](PaginatedJanusCloudAuthList.md)
 
 ### Authorization
 
@@ -2392,8 +2397,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_janus_partial_update**
-> JanusAuth devices_janus_partial_update(device_id, id, patched_janus_auth_request=patched_janus_auth_request)
+# **devices_janus_cloud_auth_retrieve**
+> JanusCloudAuth devices_janus_cloud_auth_retrieve(device_id, id)
 
 
 
@@ -2432,15 +2437,14 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this janus auth.
-patched_janus_auth_request = printnanny_api_client.PatchedJanusAuthRequest() # PatchedJanusAuthRequest |  (optional)
+    device_id = 'device_id_example' # str | 
+id = 56 # int | A unique integer value identifying this janus cloud auth.
 
     try:
-        api_response = api_instance.devices_janus_partial_update(device_id, id, patched_janus_auth_request=patched_janus_auth_request)
+        api_response = api_instance.devices_janus_cloud_auth_retrieve(device_id, id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_janus_partial_update: %s\n" % e)
+        print("Exception when calling DevicesApi->devices_janus_cloud_auth_retrieve: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -2476,148 +2480,26 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this janus auth.
-patched_janus_auth_request = printnanny_api_client.PatchedJanusAuthRequest() # PatchedJanusAuthRequest |  (optional)
+    device_id = 'device_id_example' # str | 
+id = 56 # int | A unique integer value identifying this janus cloud auth.
 
     try:
-        api_response = api_instance.devices_janus_partial_update(device_id, id, patched_janus_auth_request=patched_janus_auth_request)
+        api_response = api_instance.devices_janus_cloud_auth_retrieve(device_id, id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_janus_partial_update: %s\n" % e)
+        print("Exception when calling DevicesApi->devices_janus_cloud_auth_retrieve: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
- **id** | **int**| A unique integer value identifying this janus auth. | 
- **patched_janus_auth_request** | [**PatchedJanusAuthRequest**](PatchedJanusAuthRequest.md)|  | [optional] 
+ **device_id** | **str**|  | 
+ **id** | **int**| A unique integer value identifying this janus cloud auth. | 
 
 ### Return type
 
-[**JanusAuth**](JanusAuth.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **devices_janus_retrieve**
-> JanusAuth devices_janus_retrieve(device_id, id)
-
-
-
-### Example
-
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this janus auth.
-
-    try:
-        api_response = api_instance.devices_janus_retrieve(device_id, id)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->devices_janus_retrieve: %s\n" % e)
-```
-
-* Bearer Authentication (tokenAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this janus auth.
-
-    try:
-        api_response = api_instance.devices_janus_retrieve(device_id, id)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->devices_janus_retrieve: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
- **id** | **int**| A unique integer value identifying this janus auth. | 
-
-### Return type
-
-[**JanusAuth**](JanusAuth.md)
+[**JanusCloudAuth**](JanusCloudAuth.md)
 
 ### Authorization
 
@@ -2635,8 +2517,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_janus_update**
-> JanusAuth devices_janus_update(device_id, id, janus_auth_request)
+# **devices_janus_edge_auth_create**
+> JanusEdgeAuth devices_janus_edge_auth_create(device_id, janus_edge_auth_request)
 
 
 
@@ -2676,14 +2558,13 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this janus auth.
-janus_auth_request = printnanny_api_client.JanusAuthRequest() # JanusAuthRequest | 
+janus_edge_auth_request = printnanny_api_client.JanusEdgeAuthRequest() # JanusEdgeAuthRequest | 
 
     try:
-        api_response = api_instance.devices_janus_update(device_id, id, janus_auth_request)
+        api_response = api_instance.devices_janus_edge_auth_create(device_id, janus_edge_auth_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_janus_update: %s\n" % e)
+        print("Exception when calling DevicesApi->devices_janus_edge_auth_create: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -2720,14 +2601,13 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this janus auth.
-janus_auth_request = printnanny_api_client.JanusAuthRequest() # JanusAuthRequest | 
+janus_edge_auth_request = printnanny_api_client.JanusEdgeAuthRequest() # JanusEdgeAuthRequest | 
 
     try:
-        api_response = api_instance.devices_janus_update(device_id, id, janus_auth_request)
+        api_response = api_instance.devices_janus_edge_auth_create(device_id, janus_edge_auth_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_janus_update: %s\n" % e)
+        print("Exception when calling DevicesApi->devices_janus_edge_auth_create: %s\n" % e)
 ```
 
 ### Parameters
@@ -2735,12 +2615,506 @@ janus_auth_request = printnanny_api_client.JanusAuthRequest() # JanusAuthRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **device_id** | **int**|  | 
- **id** | **int**| A unique integer value identifying this janus auth. | 
- **janus_auth_request** | [**JanusAuthRequest**](JanusAuthRequest.md)|  | 
+ **janus_edge_auth_request** | [**JanusEdgeAuthRequest**](JanusEdgeAuthRequest.md)|  | 
 
 ### Return type
 
-[**JanusAuth**](JanusAuth.md)
+[**JanusEdgeAuth**](JanusEdgeAuth.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** |  |  -  |
+**409** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **devices_janus_edge_auth_list**
+> PaginatedJanusEdgeAuthList devices_janus_edge_auth_list(device_id, page=page)
+
+
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.DevicesApi(api_client)
+    device_id = 56 # int | 
+page = 56 # int | A page number within the paginated result set. (optional)
+
+    try:
+        api_response = api_instance.devices_janus_edge_auth_list(device_id, page=page)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->devices_janus_edge_auth_list: %s\n" % e)
+```
+
+* Bearer Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.DevicesApi(api_client)
+    device_id = 56 # int | 
+page = 56 # int | A page number within the paginated result set. (optional)
+
+    try:
+        api_response = api_instance.devices_janus_edge_auth_list(device_id, page=page)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->devices_janus_edge_auth_list: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **device_id** | **int**|  | 
+ **page** | **int**| A page number within the paginated result set. | [optional] 
+
+### Return type
+
+[**PaginatedJanusEdgeAuthList**](PaginatedJanusEdgeAuthList.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **devices_janus_edge_auth_partial_update**
+> JanusEdgeAuth devices_janus_edge_auth_partial_update(device_id, id, patched_janus_edge_auth_request=patched_janus_edge_auth_request)
+
+
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.DevicesApi(api_client)
+    device_id = 56 # int | 
+id = 56 # int | A unique integer value identifying this janus edge auth.
+patched_janus_edge_auth_request = printnanny_api_client.PatchedJanusEdgeAuthRequest() # PatchedJanusEdgeAuthRequest |  (optional)
+
+    try:
+        api_response = api_instance.devices_janus_edge_auth_partial_update(device_id, id, patched_janus_edge_auth_request=patched_janus_edge_auth_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->devices_janus_edge_auth_partial_update: %s\n" % e)
+```
+
+* Bearer Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.DevicesApi(api_client)
+    device_id = 56 # int | 
+id = 56 # int | A unique integer value identifying this janus edge auth.
+patched_janus_edge_auth_request = printnanny_api_client.PatchedJanusEdgeAuthRequest() # PatchedJanusEdgeAuthRequest |  (optional)
+
+    try:
+        api_response = api_instance.devices_janus_edge_auth_partial_update(device_id, id, patched_janus_edge_auth_request=patched_janus_edge_auth_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->devices_janus_edge_auth_partial_update: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **device_id** | **int**|  | 
+ **id** | **int**| A unique integer value identifying this janus edge auth. | 
+ **patched_janus_edge_auth_request** | [**PatchedJanusEdgeAuthRequest**](PatchedJanusEdgeAuthRequest.md)|  | [optional] 
+
+### Return type
+
+[**JanusEdgeAuth**](JanusEdgeAuth.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **devices_janus_edge_auth_retrieve**
+> JanusEdgeAuth devices_janus_edge_auth_retrieve(device_id, id)
+
+
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.DevicesApi(api_client)
+    device_id = 56 # int | 
+id = 56 # int | A unique integer value identifying this janus edge auth.
+
+    try:
+        api_response = api_instance.devices_janus_edge_auth_retrieve(device_id, id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->devices_janus_edge_auth_retrieve: %s\n" % e)
+```
+
+* Bearer Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.DevicesApi(api_client)
+    device_id = 56 # int | 
+id = 56 # int | A unique integer value identifying this janus edge auth.
+
+    try:
+        api_response = api_instance.devices_janus_edge_auth_retrieve(device_id, id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->devices_janus_edge_auth_retrieve: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **device_id** | **int**|  | 
+ **id** | **int**| A unique integer value identifying this janus edge auth. | 
+
+### Return type
+
+[**JanusEdgeAuth**](JanusEdgeAuth.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **devices_janus_edge_auth_update**
+> JanusEdgeAuth devices_janus_edge_auth_update(device_id, id, janus_edge_auth_request)
+
+
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.DevicesApi(api_client)
+    device_id = 56 # int | 
+id = 56 # int | A unique integer value identifying this janus edge auth.
+janus_edge_auth_request = printnanny_api_client.JanusEdgeAuthRequest() # JanusEdgeAuthRequest | 
+
+    try:
+        api_response = api_instance.devices_janus_edge_auth_update(device_id, id, janus_edge_auth_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->devices_janus_edge_auth_update: %s\n" % e)
+```
+
+* Bearer Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.DevicesApi(api_client)
+    device_id = 56 # int | 
+id = 56 # int | A unique integer value identifying this janus edge auth.
+janus_edge_auth_request = printnanny_api_client.JanusEdgeAuthRequest() # JanusEdgeAuthRequest | 
+
+    try:
+        api_response = api_instance.devices_janus_edge_auth_update(device_id, id, janus_edge_auth_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->devices_janus_edge_auth_update: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **device_id** | **int**|  | 
+ **id** | **int**| A unique integer value identifying this janus edge auth. | 
+ **janus_edge_auth_request** | [**JanusEdgeAuthRequest**](JanusEdgeAuthRequest.md)|  | 
+
+### Return type
+
+[**JanusEdgeAuth**](JanusEdgeAuth.md)
 
 ### Authorization
 
@@ -2755,6 +3129,132 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** |  |  -  |
+**409** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **devices_janus_edge_auth_update_or_create**
+> JanusCloudAuth devices_janus_edge_auth_update_or_create(device_id, janus_edge_auth_request)
+
+
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.DevicesApi(api_client)
+    device_id = 56 # int | 
+janus_edge_auth_request = printnanny_api_client.JanusEdgeAuthRequest() # JanusEdgeAuthRequest | 
+
+    try:
+        api_response = api_instance.devices_janus_edge_auth_update_or_create(device_id, janus_edge_auth_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->devices_janus_edge_auth_update_or_create: %s\n" % e)
+```
+
+* Bearer Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.DevicesApi(api_client)
+    device_id = 56 # int | 
+janus_edge_auth_request = printnanny_api_client.JanusEdgeAuthRequest() # JanusEdgeAuthRequest | 
+
+    try:
+        api_response = api_instance.devices_janus_edge_auth_update_or_create(device_id, janus_edge_auth_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->devices_janus_edge_auth_update_or_create: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **device_id** | **int**|  | 
+ **janus_edge_auth_request** | [**JanusEdgeAuthRequest**](JanusEdgeAuthRequest.md)|  | 
+
+### Return type
+
+[**JanusCloudAuth**](JanusCloudAuth.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**201** |  |  -  |
 **409** |  |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
@@ -6343,132 +6843,6 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **janus_auth_update_or_create**
-> JanusAuth janus_auth_update_or_create(device_id, janus_auth_request)
-
-
-
-### Example
-
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-janus_auth_request = printnanny_api_client.JanusAuthRequest() # JanusAuthRequest | 
-
-    try:
-        api_response = api_instance.janus_auth_update_or_create(device_id, janus_auth_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->janus_auth_update_or_create: %s\n" % e)
-```
-
-* Bearer Authentication (tokenAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-janus_auth_request = printnanny_api_client.JanusAuthRequest() # JanusAuthRequest | 
-
-    try:
-        api_response = api_instance.janus_auth_update_or_create(device_id, janus_auth_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->janus_auth_update_or_create: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
- **janus_auth_request** | [**JanusAuthRequest**](JanusAuthRequest.md)|  | 
-
-### Return type
-
-[**JanusAuth**](JanusAuth.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
-**201** |  |  -  |
-**409** |  |  -  |
-**400** |  |  -  |
-**401** |  |  -  |
-**403** |  |  -  |
-**500** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **public_key_update_or_create**
 > PublicKey public_key_update_or_create(device_id, public_key_request)
 
@@ -6713,6 +7087,256 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **201** |  |  -  |
 **202** |  |  -  |
+**409** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **tasks_monitor_start**
+> Task tasks_monitor_start(device_id, task_request)
+
+
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.DevicesApi(api_client)
+    device_id = 56 # int | 
+task_request = printnanny_api_client.TaskRequest() # TaskRequest | 
+
+    try:
+        api_response = api_instance.tasks_monitor_start(device_id, task_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->tasks_monitor_start: %s\n" % e)
+```
+
+* Bearer Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.DevicesApi(api_client)
+    device_id = 56 # int | 
+task_request = printnanny_api_client.TaskRequest() # TaskRequest | 
+
+    try:
+        api_response = api_instance.tasks_monitor_start(device_id, task_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->tasks_monitor_start: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **device_id** | **int**|  | 
+ **task_request** | [**TaskRequest**](TaskRequest.md)|  | 
+
+### Return type
+
+[**Task**](Task.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** |  |  -  |
+**409** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **tasks_monitor_stop**
+> Task tasks_monitor_stop(device_id, task_request)
+
+
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.DevicesApi(api_client)
+    device_id = 56 # int | 
+task_request = printnanny_api_client.TaskRequest() # TaskRequest | 
+
+    try:
+        api_response = api_instance.tasks_monitor_stop(device_id, task_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->tasks_monitor_stop: %s\n" % e)
+```
+
+* Bearer Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.DevicesApi(api_client)
+    device_id = 56 # int | 
+task_request = printnanny_api_client.TaskRequest() # TaskRequest | 
+
+    try:
+        api_response = api_instance.tasks_monitor_stop(device_id, task_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->tasks_monitor_stop: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **device_id** | **int**|  | 
+ **task_request** | [**TaskRequest**](TaskRequest.md)|  | 
+
+### Return type
+
+[**Task**](Task.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** |  |  -  |
 **409** |  |  -  |
 **400** |  |  -  |
 **401** |  |  -  |

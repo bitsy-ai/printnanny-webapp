@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.patched_janus_auth_request import PatchedJanusAuthRequest  # noqa: E501
+from printnanny_api_client.models.janus_cloud_auth_request import JanusCloudAuthRequest  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestPatchedJanusAuthRequest(unittest.TestCase):
-    """PatchedJanusAuthRequest unit test stubs"""
+class TestJanusCloudAuthRequest(unittest.TestCase):
+    """JanusCloudAuthRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,23 +30,24 @@ class TestPatchedJanusAuthRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test PatchedJanusAuthRequest
+        """Test JanusCloudAuthRequest
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.patched_janus_auth_request.PatchedJanusAuthRequest()  # noqa: E501
+        # model = printnanny_api_client.models.janus_cloud_auth_request.JanusCloudAuthRequest()  # noqa: E501
         if include_optional :
-            return PatchedJanusAuthRequest(
-                janus_admin_secret = '0', 
-                janus_token = '0', 
-                device = 56
+            return JanusCloudAuthRequest(
+                api_token = '0', 
+                user = 56
             )
         else :
-            return PatchedJanusAuthRequest(
+            return JanusCloudAuthRequest(
+                api_token = '0',
+                user = 56,
         )
 
-    def testPatchedJanusAuthRequest(self):
-        """Test PatchedJanusAuthRequest"""
+    def testJanusCloudAuthRequest(self):
+        """Test JanusCloudAuthRequest"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

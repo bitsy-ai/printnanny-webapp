@@ -36,8 +36,10 @@ docs/EventsApi.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
-docs/JanusAuth.md
-docs/JanusAuthRequest.md
+docs/JanusCloudAuth.md
+docs/JanusCloudAuthRequest.md
+docs/JanusEdgeAuth.md
+docs/JanusEdgeAuthRequest.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
@@ -85,7 +87,8 @@ docs/PaginatedDeviceList.md
 docs/PaginatedExperimentDeviceConfigList.md
 docs/PaginatedExperimentList.md
 docs/PaginatedGcodeFileList.md
-docs/PaginatedJanusAuthList.md
+docs/PaginatedJanusCloudAuthList.md
+docs/PaginatedJanusEdgeAuthList.md
 docs/PaginatedModelArtifactList.md
 docs/PaginatedOctoPrintBackupList.md
 docs/PaginatedOctoPrintDeviceList.md
@@ -114,7 +117,7 @@ docs/PatchedCameraRequest.md
 docs/PatchedCloudiotDeviceRequest.md
 docs/PatchedDeviceCalibrationRequest.md
 docs/PatchedDeviceRequest.md
-docs/PatchedJanusAuthRequest.md
+docs/PatchedJanusEdgeAuthRequest.md
 docs/PatchedOctoPrintDeviceRequest.md
 docs/PatchedPolymorphicEventRequest.md
 docs/PatchedPrintSessionRequest.md
@@ -217,8 +220,10 @@ src/models/event_status.rs
 src/models/experiment.rs
 src/models/experiment_device_config.rs
 src/models/gcode_file.rs
-src/models/janus_auth.rs
-src/models/janus_auth_request.rs
+src/models/janus_cloud_auth.rs
+src/models/janus_cloud_auth_request.rs
+src/models/janus_edge_auth.rs
+src/models/janus_edge_auth_request.rs
 src/models/mobile_auth_request.rs
 src/models/mod.rs
 src/models/model_artifact.rs
@@ -265,7 +270,8 @@ src/models/paginated_device_list.rs
 src/models/paginated_experiment_device_config_list.rs
 src/models/paginated_experiment_list.rs
 src/models/paginated_gcode_file_list.rs
-src/models/paginated_janus_auth_list.rs
+src/models/paginated_janus_cloud_auth_list.rs
+src/models/paginated_janus_edge_auth_list.rs
 src/models/paginated_model_artifact_list.rs
 src/models/paginated_octo_print_backup_list.rs
 src/models/paginated_octo_print_device_list.rs
@@ -292,7 +298,7 @@ src/models/patched_camera_request.rs
 src/models/patched_cloudiot_device_request.rs
 src/models/patched_device_calibration_request.rs
 src/models/patched_device_request.rs
-src/models/patched_janus_auth_request.rs
+src/models/patched_janus_edge_auth_request.rs
 src/models/patched_octo_print_device_request.rs
 src/models/patched_polymorphic_event_request.rs
 src/models/patched_print_session_request.rs
