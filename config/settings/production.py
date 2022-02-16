@@ -217,3 +217,8 @@ CORS_ALLOWED_ORIGINS = [
 # https://posthog.com/docs/libraries/python
 posthog.project_api_key = env('POSTHOG_API_KEY')
 posthog.debug = False
+
+
+# Janus cloud
+# ------------------------------------------------------------------------------
+JANUS_CLOUD_DOMAIN = "janus.print-nanny.com"
