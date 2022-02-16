@@ -6,20 +6,28 @@ import google.api_core.exceptions
 from django.conf import settings
 from django.template.loader import render_to_string
 
-from .models import Device, CloudiotDevice, PublicKey
+from .models import Device, CloudiotDevice, JanusCloudAuth, PublicKey
 
 logger = logging.getLogger(__name__)
 
 
+def janus_add_token(token: str, admin_secret: str):
+    pass
+
+
+def janus_create_stream(device: Device):
+    pass
+
+
 def monitor_start(device: Device):
     # 2) get or create Janus credentials
-
+    janus_cloud_auth = JanusCloudAuth.objects.get_or_create(user=device.user)
     # 3) ensure token added to Janus gateway
+    janus_add_token(janus_cloud_auth.api_token, settings.JANUS_CLOUD_ADMIN_SECRET)
 
     # 4) create streaming mountpoint
-
+    janus_create_stream(device)
     # 5) send mqtt message with streaming mountpoint
-    pass
 
 
 def monitor_stop(device: Device):

@@ -710,3 +710,6 @@ CORS_ALLOWED_ORIGINS = [
 # Janus cloud
 # ------------------------------------------------------------------------------
 JANUS_CLOUD_DOMAIN = env("JANUS_CLOUD_DOMAIN", default="janus.sandbox.print-nanny.com")
+JANUS_CLOUD_ADMIN_SECRET = env("JANUS_CLOUD_ADMIN_SECRET", default="janus")
+JANUS_CLOUD_HTTP_PORT = env("JANUS_CLOUD_HTTP_PORT", default=80)
+JANUS_CLOUD_ADMIN_HTTP_PORT = env("JANUS_CLOUD_ADMIN_HTTP_PORT", default=80)
