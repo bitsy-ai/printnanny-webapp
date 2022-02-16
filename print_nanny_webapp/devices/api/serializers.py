@@ -16,7 +16,6 @@ from print_nanny_webapp.devices.models import (
     Task,
     TaskStatus,
     PrinterController,
-    OnboardingTask,
 )
 from ..enum import (
     CameraType,
@@ -39,12 +38,6 @@ class MonitoringStopTaskSerializer(serializers.ModelSerializer):
 class MonitoringStartTaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = MonitoringStartTask
-        fields = "__all__"
-
-
-class OnboardingTaskSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = OnboardingTask
         fields = "__all__"
 
 
