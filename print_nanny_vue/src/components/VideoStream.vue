@@ -1,7 +1,7 @@
 <script>
 // CloudVideoStream component drives video streaming flow using "remote" Janus Gateway
 import { mapState, mapActions } from 'vuex'
-import { DEVICE_MODULE, GET_DEVICE, DEVICE } from '@/store/devices'
+import { DEVICE_MODULE, GET_DEVICE, DEVICE, START_MONITORING, STOP_MONITORING } from '@/store/devices'
 
 export default {
   props: {
@@ -21,8 +21,18 @@ export default {
   },
   methods: {
     ...mapActions(DEVICE_MODULE, {
-      getDevice: GET_DEVICE
+      getDevice: GET_DEVICE,
+      _startMonitoring: START_MONITORING,
+      _stopMonitoring: STOP_MONITORING
     }),
+    async startMonitoring () {
+      this.loading = true
+      await _startMonitoring()
+    },
+    async stopMonitoring () {
+      this.loading = false
+      await _stopMonitoring()
+    },
     monitoringActive () {
       return this.device.monitoring_active === true
     }
@@ -57,13 +67,13 @@ export default {
     </div>
     <div class="card-body">
       <img :v-show="!monitoringActive" class="img-responsive w-25 d-block mx-auto" :src="offlineImage" />
-      <div v-show="loading">
+      <div v-show="loading" class="text-center mt-3">
         <span
           class="spinner-border spinner-border-sm"
           role="status"
           aria-hidden="true"
         ></span>
-        Loading Stream
+        Waiting for {{ device.hostname }} camera
       </div>
     </div>
     <div class="card-footer text-center">
