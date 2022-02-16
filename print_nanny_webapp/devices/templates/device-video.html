@@ -2,8 +2,35 @@
 {% load static %}
 {% load crispy_forms_tags feature_flags %}
 
-{% block title_extra %}{{object.name}}{% endblock %}
-
+{% block title_extra %}Video - {{object.hostname}}{% endblock %}
 {% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'dashboard:home' %}">My Devices</a></li>
+                        <li class="breadcrumb-item active">{{ object.hostname }}</li>
+                    </ol>
+                </div>
+                <h3 class="page-title d-inline-flex">
+                    Viewing {{ object.hostname }} Video Stream
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-9">
+            <span class="video-stream-app">
+                <video-stream device-id="{{ object.id }}" offline-image="{% static 'images/sleep.svg' %}" />
+            </span>
+        </div>
+    </div>
+</div>
 {% endblock content %}
+{% block extra_javascript %}
 {% load render_bundle from webpack_loader %}
+{% render_bundle 'videoStream' %}
+{% endblock %}
