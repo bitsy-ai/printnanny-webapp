@@ -1,14 +1,31 @@
 from __future__ import annotations
 import logging
 from typing import Tuple
-from django.conf import settings
 from google.cloud import iot_v1 as cloudiot_v1
 import google.api_core.exceptions
+from django.conf import settings
 from django.template.loader import render_to_string
 
 from .models import Device, CloudiotDevice, PublicKey
 
 logger = logging.getLogger(__name__)
+
+
+def monitor_start(device: Device):
+    # 2) get or create Janus credentials
+
+    # 3) ensure token added to Janus gateway
+
+    # 4) create streaming mountpoint
+
+    # 5) send mqtt message with streaming mountpoint
+    pass
+
+
+def monitor_stop(device: Device):
+    # send mqtt message
+    # destroy mountpoint
+    pass
 
 
 def render_janus_env(device: Device) -> str:
