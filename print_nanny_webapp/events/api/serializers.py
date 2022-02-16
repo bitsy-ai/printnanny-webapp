@@ -4,9 +4,7 @@ from rest_framework import serializers
 from rest_polymorphic.serializers import PolymorphicSerializer
 from print_nanny_webapp.events.models import TestEvent, Event
 from print_nanny_webapp.events.enum import (
-    EventSource,
     TestEventType,
-    EventStatus,
     EventModel,
 )
 

@@ -23,7 +23,7 @@ class TaskSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class MonitorStartTaskSerializer(TaskSerializer):
+class MonitorStartTaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = MonitorStartTask
         fields = "__all__"
@@ -33,7 +33,7 @@ class MonitorStartTaskSerializer(TaskSerializer):
         return TaskType.CLOUD_MONITOR_START
 
 
-class MonitorStopTaskSerializer(TaskSerializer):
+class MonitorStopTaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = MonitorStopTask
         fields = "__all__"
