@@ -6,7 +6,7 @@ import { DEVICE_MODULE, GET_DEVICE, DEVICE, START_MONITORING, STOP_MONITORING } 
 export default {
   props: {
     deviceId: {
-      type: Number,
+      type: String,
       required: true
     },
     offlineImage: {
@@ -16,7 +16,8 @@ export default {
   },
   data: function () {
     return {
-      loading: false
+      loading: false,
+      active: false
     }
   },
   methods: {
@@ -27,11 +28,13 @@ export default {
     }),
     async startMonitoring () {
       this.loading = true
-      await _startMonitoring()
+      this.active = true
+      await this._startMonitoring()
     },
     async stopMonitoring () {
       this.loading = false
-      await _stopMonitoring()
+      this.active = false
+      await this._stopMonitoring()
     },
     monitoringActive () {
       return this.device.monitoring_active === true
