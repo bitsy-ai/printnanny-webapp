@@ -42,6 +42,7 @@ from print_nanny_webapp.partners.api.views import (GeeksViewSet)
 from print_nanny_webapp.utils.api.views import PrintNannyApiConfigViewset
 from print_nanny_webapp.octoprint.api.views import OctoPrintBackupViewset
 from print_nanny_webapp.events.api.views import (DeviceEventViewSet)
+from print_nanny_webapp.tasks.api.views import (TaskViewSet, TaskStatusViewSet)
 router = DefaultRouter()
 
 router.register("client-config", PrintNannyApiConfigViewset, basename="client-config")
@@ -68,9 +69,9 @@ devices_router.register(r'cloudiot', CloudiotDeviceViewSet, basename='cloudiot')
 devices_router.register(r'printer-controllers', PrinterControllerViewSet, basename='printer-controllers')
 devices_router.register(r'events', DeviceEventViewSet, basename='events')
 
-# devices_router.register(r'tasks', TaskViewSet, basename='tasks')
-# task_router = NestedSimpleRouter(devices_router, r'tasks', lookup='task')
-# task_router.register(r'status', TaskStatusViewSet, basename='status')
+devices_router.register(r'tasks', TaskViewSet, basename='tasks')
+task_router = NestedSimpleRouter(devices_router, r'tasks', lookup='task')
+task_router.register(r'status', TaskStatusViewSet, basename='status')
 
 router.register("telemetry-events", TelemetryEventViewSet, basename="telemetry-events")
 router.register("remote-command-events", RemoteCommandEventViewSet, basename="remote-command-events")
@@ -80,8 +81,8 @@ router.register("print-job-events", PrintJobEventViewSet, basename="print-job-ev
 
 router.register("users", UserViewSet)
 
-router.register(f"device-calibrations", DeviceCalibrationViewSet, basename="device-calibration")
-router.register(f"octoprint-devices", OctoPrintDeviceViewSet, basename='octoprint-device')
+router.register("device-calibrations", DeviceCalibrationViewSet, basename="device-calibration")
+router.register("octoprint-devices", OctoPrintDeviceViewSet, basename='octoprint-device')
 
 router.register(r"printer-profiles", AlphaPrinterProfileViewSet, basename='printer-profile')
 router.register(r"print-sessions", PrintSessionViewSet, basename='print-session')
@@ -97,6 +98,6 @@ app_name = "api"
 urlpatterns = (
     router.urls +
     devices_router.urls +
-    # task_router.urls +
+    task_router.urls +
     devices_by_hostname
 )

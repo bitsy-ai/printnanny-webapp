@@ -10,15 +10,15 @@ from rest_framework.mixins import (
     RetrieveModelMixin,
     CreateModelMixin,
 )
-from print_nanny_webapp.tasks.models import Task
-from .serializers import PolymorphicTaskSerializer
+from print_nanny_webapp.tasks.models import Task, TaskStatus
+from .serializers import PolymorphicTaskSerializer, TaskStatusSerializer
 
 Device = apps.get_model("devices", "Device")
 
 logger = logging.getLogger(__name__)
 
 
-@extend_schema(tags=["tasks"])
+@extend_schema(tags=["tasks", "devices"])
 class TaskViewSet(
     GenericViewSet,
     ListModelMixin,
@@ -35,7 +35,10 @@ class TaskViewSet(
         self.device = get_object_or_404(Device, pk=device_id)
         return self.queryset.filter(user_id=self.request.user.id, device=self.device)
 
-    def create(self, request, device_id=None, *args, **kwargs):
+    def create(self, request, *args, **kwargs):
+        device_id = kwargs.get("device_id")
+        if device_id is None:
+            raise ValueError("Failed to parse :device_id from url path")
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.device = get_object_or_404(Device, pk=device_id)
@@ -46,5 +49,17 @@ class TaskViewSet(
         )
 
     def perform_create(self, serializer):
-        logger.info(f"DeviceEventViewSet.perform_create request={self.request.POST}")
+        logger.info("TaskViewSet.perform_create request=%s", self.request.POST)
         serializer.save(user=self.request.user, device=self.device)
+
+
+@extend_schema(tags=["tasks", "devices"])
+class TaskStatusViewSet(
+    GenericViewSet,
+    ListModelMixin,
+    RetrieveModelMixin,
+    CreateModelMixin,
+):
+    serializer_class = TaskStatusSerializer
+    queryset = TaskStatus.objects.all()
+    lookup_field = "id"
