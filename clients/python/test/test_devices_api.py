@@ -131,32 +131,56 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
-    def test_devices_janus_create(self):
-        """Test case for devices_janus_create
+    def test_devices_janus_cloud_auth_create(self):
+        """Test case for devices_janus_cloud_auth_create
 
         """
         pass
 
-    def test_devices_janus_list(self):
-        """Test case for devices_janus_list
+    def test_devices_janus_cloud_auth_list(self):
+        """Test case for devices_janus_cloud_auth_list
 
         """
         pass
 
-    def test_devices_janus_partial_update(self):
-        """Test case for devices_janus_partial_update
+    def test_devices_janus_cloud_auth_retrieve(self):
+        """Test case for devices_janus_cloud_auth_retrieve
 
         """
         pass
 
-    def test_devices_janus_retrieve(self):
-        """Test case for devices_janus_retrieve
+    def test_devices_janus_edge_auth_create(self):
+        """Test case for devices_janus_edge_auth_create
 
         """
         pass
 
-    def test_devices_janus_update(self):
-        """Test case for devices_janus_update
+    def test_devices_janus_edge_auth_list(self):
+        """Test case for devices_janus_edge_auth_list
+
+        """
+        pass
+
+    def test_devices_janus_edge_auth_partial_update(self):
+        """Test case for devices_janus_edge_auth_partial_update
+
+        """
+        pass
+
+    def test_devices_janus_edge_auth_retrieve(self):
+        """Test case for devices_janus_edge_auth_retrieve
+
+        """
+        pass
+
+    def test_devices_janus_edge_auth_update(self):
+        """Test case for devices_janus_edge_auth_update
+
+        """
+        pass
+
+    def test_devices_janus_edge_auth_update_or_create(self):
+        """Test case for devices_janus_edge_auth_update_or_create
 
         """
         pass
@@ -335,12 +359,6 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
-    def test_janus_auth_update_or_create(self):
-        """Test case for janus_auth_update_or_create
-
-        """
-        pass
-
     def test_public_key_update_or_create(self):
         """Test case for public_key_update_or_create
 
@@ -349,6 +367,18 @@ class TestDevicesApi(unittest.TestCase):
 
     def test_system_info_update_or_create(self):
         """Test case for system_info_update_or_create
+
+        """
+        pass
+
+    def test_tasks_monitor_start(self):
+        """Test case for tasks_monitor_start
+
+        """
+        pass
+
+    def test_tasks_monitor_stop(self):
+        """Test case for tasks_monitor_stop
 
         """
         pass

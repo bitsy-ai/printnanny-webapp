@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.paginated_task_list import PaginatedTaskList  # noqa: E501
+from printnanny_api_client.models.paginated_janus_cloud_auth_list import PaginatedJanusCloudAuthList  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestPaginatedTaskList(unittest.TestCase):
-    """PaginatedTaskList unit test stubs"""
+class TestPaginatedJanusCloudAuthList(unittest.TestCase):
+    """PaginatedJanusCloudAuthList unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,34 +30,30 @@ class TestPaginatedTaskList(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test PaginatedTaskList
+        """Test PaginatedJanusCloudAuthList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.paginated_task_list.PaginatedTaskList()  # noqa: E501
+        # model = printnanny_api_client.models.paginated_janus_cloud_auth_list.PaginatedJanusCloudAuthList()  # noqa: E501
         if include_optional :
-            return PaginatedTaskList(
+            return PaginatedJanusCloudAuthList(
                 count = 123, 
                 next = 'http://api.example.org/accounts/?page=4', 
                 previous = 'http://api.example.org/accounts/?page=2', 
                 results = [
-                    printnanny_api_client.models.task.Task(
+                    printnanny_api_client.models.janus_cloud_auth.JanusCloudAuth(
                         id = 56, 
-                        last_status = null, 
-                        task_type = 'monitor_start', 
-                        active = True, 
-                        task_type_display = '', 
+                        api_token = '', 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        polymorphic_ctype = 56, 
-                        device = 56, )
+                        user = 56, )
                     ]
             )
         else :
-            return PaginatedTaskList(
+            return PaginatedJanusCloudAuthList(
         )
 
-    def testPaginatedTaskList(self):
-        """Test PaginatedTaskList"""
+    def testPaginatedJanusCloudAuthList(self):
+        """Test PaginatedJanusCloudAuthList"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

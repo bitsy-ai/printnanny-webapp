@@ -38,8 +38,10 @@ docs/EventsApi.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
-docs/JanusAuth.md
-docs/JanusAuthRequest.md
+docs/JanusCloudAuth.md
+docs/JanusCloudAuthRequest.md
+docs/JanusEdgeAuth.md
+docs/JanusEdgeAuthRequest.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
@@ -87,7 +89,8 @@ docs/PaginatedDeviceList.md
 docs/PaginatedExperimentDeviceConfigList.md
 docs/PaginatedExperimentList.md
 docs/PaginatedGcodeFileList.md
-docs/PaginatedJanusAuthList.md
+docs/PaginatedJanusCloudAuthList.md
+docs/PaginatedJanusEdgeAuthList.md
 docs/PaginatedModelArtifactList.md
 docs/PaginatedOctoPrintBackupList.md
 docs/PaginatedOctoPrintDeviceList.md
@@ -116,7 +119,7 @@ docs/PatchedCameraRequest.md
 docs/PatchedCloudiotDeviceRequest.md
 docs/PatchedDeviceCalibrationRequest.md
 docs/PatchedDeviceRequest.md
-docs/PatchedJanusAuthRequest.md
+docs/PatchedJanusEdgeAuthRequest.md
 docs/PatchedOctoPrintDeviceRequest.md
 docs/PatchedPolymorphicEventRequest.md
 docs/PatchedPrintSessionRequest.md
@@ -223,8 +226,10 @@ printnanny_api_client/models/event_status.py
 printnanny_api_client/models/experiment.py
 printnanny_api_client/models/experiment_device_config.py
 printnanny_api_client/models/gcode_file.py
-printnanny_api_client/models/janus_auth.py
-printnanny_api_client/models/janus_auth_request.py
+printnanny_api_client/models/janus_cloud_auth.py
+printnanny_api_client/models/janus_cloud_auth_request.py
+printnanny_api_client/models/janus_edge_auth.py
+printnanny_api_client/models/janus_edge_auth_request.py
 printnanny_api_client/models/mobile_auth_request.py
 printnanny_api_client/models/model_artifact.py
 printnanny_api_client/models/octo_generic_event.py
@@ -270,7 +275,8 @@ printnanny_api_client/models/paginated_device_list.py
 printnanny_api_client/models/paginated_experiment_device_config_list.py
 printnanny_api_client/models/paginated_experiment_list.py
 printnanny_api_client/models/paginated_gcode_file_list.py
-printnanny_api_client/models/paginated_janus_auth_list.py
+printnanny_api_client/models/paginated_janus_cloud_auth_list.py
+printnanny_api_client/models/paginated_janus_edge_auth_list.py
 printnanny_api_client/models/paginated_model_artifact_list.py
 printnanny_api_client/models/paginated_octo_print_backup_list.py
 printnanny_api_client/models/paginated_octo_print_device_list.py
@@ -297,7 +303,7 @@ printnanny_api_client/models/patched_camera_request.py
 printnanny_api_client/models/patched_cloudiot_device_request.py
 printnanny_api_client/models/patched_device_calibration_request.py
 printnanny_api_client/models/patched_device_request.py
-printnanny_api_client/models/patched_janus_auth_request.py
+printnanny_api_client/models/patched_janus_edge_auth_request.py
 printnanny_api_client/models/patched_octo_print_device_request.py
 printnanny_api_client/models/patched_polymorphic_event_request.py
 printnanny_api_client/models/patched_print_session_request.py
@@ -392,8 +398,10 @@ test/test_events_api.py
 test/test_experiment.py
 test/test_experiment_device_config.py
 test/test_gcode_file.py
-test/test_janus_auth.py
-test/test_janus_auth_request.py
+test/test_janus_cloud_auth.py
+test/test_janus_cloud_auth_request.py
+test/test_janus_edge_auth.py
+test/test_janus_edge_auth_request.py
 test/test_ml_ops_api.py
 test/test_mobile_auth_request.py
 test/test_model_artifact.py
@@ -441,7 +449,8 @@ test/test_paginated_device_list.py
 test/test_paginated_experiment_device_config_list.py
 test/test_paginated_experiment_list.py
 test/test_paginated_gcode_file_list.py
-test/test_paginated_janus_auth_list.py
+test/test_paginated_janus_cloud_auth_list.py
+test/test_paginated_janus_edge_auth_list.py
 test/test_paginated_model_artifact_list.py
 test/test_paginated_octo_print_backup_list.py
 test/test_paginated_octo_print_device_list.py
@@ -470,7 +479,7 @@ test/test_patched_camera_request.py
 test/test_patched_cloudiot_device_request.py
 test/test_patched_device_calibration_request.py
 test/test_patched_device_request.py
-test/test_patched_janus_auth_request.py
+test/test_patched_janus_edge_auth_request.py
 test/test_patched_octo_print_device_request.py
 test/test_patched_polymorphic_event_request.py
 test/test_patched_print_session_request.py

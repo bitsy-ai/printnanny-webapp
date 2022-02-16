@@ -43,6 +43,7 @@ class Task(object):
         'active': 'bool',
         'task_type_display': 'str',
         'created_dt': 'datetime',
+        'polymorphic_ctype': 'int',
         'device': 'int'
     }
 
@@ -53,10 +54,11 @@ class Task(object):
         'active': 'active',
         'task_type_display': 'task_type_display',
         'created_dt': 'created_dt',
+        'polymorphic_ctype': 'polymorphic_ctype',
         'device': 'device'
     }
 
-    def __init__(self, id=None, last_status=None, task_type=None, active=True, task_type_display=None, created_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, last_status=None, task_type=None, active=True, task_type_display=None, created_dt=None, polymorphic_ctype=None, device=None, local_vars_configuration=None):  # noqa: E501
         """Task - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -68,6 +70,7 @@ class Task(object):
         self._active = None
         self._task_type_display = None
         self._created_dt = None
+        self._polymorphic_ctype = None
         self._device = None
         self.discriminator = None
 
@@ -78,6 +81,7 @@ class Task(object):
             self.active = active
         self.task_type_display = task_type_display
         self.created_dt = created_dt
+        self.polymorphic_ctype = polymorphic_ctype
         self.device = device
 
     @property
@@ -213,6 +217,29 @@ class Task(object):
             raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
 
         self._created_dt = created_dt
+
+    @property
+    def polymorphic_ctype(self):
+        """Gets the polymorphic_ctype of this Task.  # noqa: E501
+
+
+        :return: The polymorphic_ctype of this Task.  # noqa: E501
+        :rtype: int
+        """
+        return self._polymorphic_ctype
+
+    @polymorphic_ctype.setter
+    def polymorphic_ctype(self, polymorphic_ctype):
+        """Sets the polymorphic_ctype of this Task.
+
+
+        :param polymorphic_ctype: The polymorphic_ctype of this Task.  # noqa: E501
+        :type polymorphic_ctype: int
+        """
+        if self.local_vars_configuration.client_side_validation and polymorphic_ctype is None:  # noqa: E501
+            raise ValueError("Invalid value for `polymorphic_ctype`, must not be `None`")  # noqa: E501
+
+        self._polymorphic_ctype = polymorphic_ctype
 
     @property
     def device(self):

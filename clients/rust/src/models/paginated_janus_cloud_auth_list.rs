@@ -12,7 +12,7 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct PaginatedJanusAuthList {
+pub struct PaginatedJanusCloudAuthList {
     #[serde(rename = "count", skip_serializing_if = "Option::is_none")]
     pub count: Option<i32>,
     #[serde(rename = "next", skip_serializing_if = "Option::is_none")]
@@ -20,12 +20,12 @@ pub struct PaginatedJanusAuthList {
     #[serde(rename = "previous", skip_serializing_if = "Option::is_none")]
     pub previous: Option<String>,
     #[serde(rename = "results", skip_serializing_if = "Option::is_none")]
-    pub results: Option<Vec<crate::models::JanusAuth>>,
+    pub results: Option<Vec<crate::models::JanusCloudAuth>>,
 }
 
-impl PaginatedJanusAuthList {
-    pub fn new() -> PaginatedJanusAuthList {
-        PaginatedJanusAuthList {
+impl PaginatedJanusCloudAuthList {
+    pub fn new() -> PaginatedJanusCloudAuthList {
+        PaginatedJanusCloudAuthList {
             count: None,
             next: None,
             previous: None,

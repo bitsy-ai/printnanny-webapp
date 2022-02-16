@@ -1,12 +1,13 @@
-# PatchedJanusAuthRequest
-
+# JanusCloudAuth
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**janus_admin_secret** | **str** |  | [optional] 
-**janus_token** | **str** |  | [optional] 
-**device** | **int** |  | [optional] 
+**id** | **i32** |  | [readonly]
+**api_token** | **String** |  | 
+**created_dt** | **String** |  | [readonly]
+**user** | **i32** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **cloudiot_device** | [**CloudiotDevice**](CloudiotDevice.md) |  | [readonly] 
 **dashboard_url** | **str** |  | [readonly] 
 **video_test_url** | **str** |  | [readonly] 
-**janus_auth** | [**JanusAuth**](JanusAuth.md) |  | [readonly] 
+**janus_auth** | [**JanusCloudAuth**](JanusCloudAuth.md) |  | [readonly] 
 **janus_local_url** | **str** |  | [readonly] 
 **last_task** | [**Task**](Task.md) |  | [readonly] 
 **monitoring_active** | **bool** |  | [optional] [default to False]

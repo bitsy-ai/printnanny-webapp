@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **active** | Option<**bool**> |  | [optional][default to true]
 **task_type_display** | **String** |  | [readonly]
 **created_dt** | **String** |  | [readonly]
+**polymorphic_ctype** | **i32** |  | [readonly]
 **device** | **i32** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

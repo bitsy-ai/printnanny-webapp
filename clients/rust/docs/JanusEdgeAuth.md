@@ -1,13 +1,15 @@
-# PaginatedJanusAuthList
+# JanusEdgeAuth
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**count** | Option<**i32**> |  | [optional]
-**next** | Option<**String**> |  | [optional]
-**previous** | Option<**String**> |  | [optional]
-**results** | Option<[**Vec<crate::models::JanusAuth>**](JanusAuth.md)> |  | [optional]
+**id** | **i32** |  | [readonly]
+**api_token** | **String** |  | 
+**admin_secret** | **String** |  | 
+**created_dt** | **String** |  | [readonly]
+**updated_dt** | **String** |  | [readonly]
+**device** | **i32** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
