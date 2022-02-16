@@ -1,30 +1,32 @@
 from django.db import models
 
 
-class EventModel(models.TextChoices):
-    TestEvent = "TestEvent"
+class TaskStatusType(models.TextChoices):
+    FAILED = "failed", "Task failed."  # TODO prompt to send crash report
+    PENDING = "pending", "Waiting for device to acknowledge task."
+    STARTED = "started", "Task is running."
+    SUCCESS = "success", "Task succeeded."
+    TIMEOUT = "timeout", "Task timed out. Please try again."
 
-
-class EventSource(models.TextChoices):
-    OCTOPRINT = ("octoprint", "Events originating from OctoPrint")
-    PRINT_NANNY = (
-        "printnanny",
-        "Events originating from Print Nanny",
+    __css__ = dict(
+        FAILED="danger",
+        PENDING="secondary",
+        STARTED="primary",
+        SUCCESS="success",
+        TIMEOUT="danger",
     )
-    MOONRAKER = (
-        "mainsail",
-        "Events originating from moonraker",
+
+    @classmethod
+    def get_css_class(cls, value):
+        return cls.__css__.get(cls(value).name, "unknown")
+
+
+class TaskType(models.TextChoices):
+    MONITOR_START = "monitor_start", "Start Monitor"
+    MONITOR_STOP = "monitor_stop", "Stop Monitor"
+
+    SYSTEM_CHECK = "system_check", "System Check"
+    SOFTWARE_UPDATE = (
+        "software_update",
+        "Software Updating",
     )
-
-
-class EventStatus(models.TextChoices):
-    SENT = "sent", "Sent"
-    ACK = "ack", "Acknowledged"
-    SUCCESS = "success", "Success"
-    FAILED = "failed", "Failed"
-    TIMEOUT = "timeout", "Timeout"
-
-
-class TestEventType(models.TextChoices):
-    MQTT_PING = "mqtt_ping", "MQTT Ping Event"
-    MQTT_PONG = "mqtt_pong", "MQTT Pong Event"
