@@ -372,14 +372,6 @@ class DeviceConfig(SafeDeleteModel):
         return self.device.cloudiot_device
 
 
-class HelpLink(models.Model):
-    detail = models.CharField(max_length=1024, null=True)
-    wiki_url = models.CharField(max_length=1024, null=True)
-
-    class Meta:
-        abstract = True
-
-
 class Task(PolymorphicModel, SafeDeleteModel):
     """
     Append-only log published to /devices/:id/state FROM device
@@ -405,11 +397,60 @@ class Task(PolymorphicModel, SafeDeleteModel):
         return self.status_set.first()
 
 
+class JanusEdgeAuth(SafeDeleteModel):
+    class Meta:
+        index_together = ("device", "created_dt", "updated_dt")
+        constraints = [
+            UniqueConstraint(
+                fields=["device"],
+                condition=models.Q(deleted=None),
+                name="unique_janus_edge_auth_per_device",
+            )
+        ]
+
+    api_token = models.CharField(max_length=255)
+    admin_secret = models.CharField(max_length=255)
+    device = models.ForeignKey(
+        Device, on_delete=models.CASCADE, related_name="janus_edge_auth"
+    )
+    created_dt = models.DateTimeField(auto_now_add=True)
+    updated_dt = models.DateTimeField(auto_now=True)
+
+    @property
+    def user(self):
+        return self.device.user
+
+    @property
+    def gateway_url(self):
+        return f"http://{self.device.hostname}/janus"
+
+    @property
+    def gateway_admin_url(self):
+        return f"http://{self.device.hostname}/admin"
+
+    @property
+    def websocket_url(self):
+        return f"ws://{self.device.hostname}"
+
+
 class JanusCloudAuth(SafeDeleteModel):
     api_token = models.CharField(max_length=255)
     user = models.OneToOneField(
         "users.User", on_delete=models.CASCADE, related_name="janus_cloud_auth"
     )
+    created_dt = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def gateway_url(self):
+        return f"https://{settings.JANUS_CLOUD_DOMAIN}/janus"
+
+    @property
+    def gateway_admin_url(self):
+        return f"https://{settings.JANUS_CLOUD_DOMAIN}/admin"
+
+    @property
+    def websocket_url(self):
+        return f"wss://{settings.JANUS_CLOUD_DOMAIN}"
 
 
 class JanusMediaStream(SafeDeleteModel):
@@ -424,6 +465,9 @@ class JanusMediaStream(SafeDeleteModel):
     @property
     def janus_api_token(self):
         return self.device.user.janus_auth
+
+    created_dt = models.DateTimeField(auto_now_add=True)
+    updated_dt = models.DateTimeField(auto_now=True)
 
 
 class MonitoringStartTask(Task):
