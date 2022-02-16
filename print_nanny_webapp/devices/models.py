@@ -6,8 +6,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.db.models import UniqueConstraint
 from django.urls import reverse
-from rest_framework.renderers import JSONRenderer
-
+from django.utils.crypto import get_random_string
 from google.cloud import iot_v1 as cloudiot_v1
 from polymorphic.models import PolymorphicModel
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
@@ -24,6 +23,10 @@ from .enum import (
 
 UserModel = get_user_model()
 logger = logging.getLogger(__name__)
+
+
+def get_random_string_32():
+    return get_random_string(32)
 
 
 def noop():
@@ -408,7 +411,7 @@ class JanusEdgeAuth(SafeDeleteModel):
             )
         ]
 
-    api_token = models.CharField(max_length=255)
+    api_token = models.CharField(max_length=255, default=get_random_string_32)
     admin_secret = models.CharField(max_length=255)
     device = models.ForeignKey(
         Device, on_delete=models.CASCADE, related_name="janus_edge_auth"
@@ -434,7 +437,7 @@ class JanusEdgeAuth(SafeDeleteModel):
 
 
 class JanusCloudAuth(SafeDeleteModel):
-    api_token = models.CharField(max_length=255)
+    api_token = models.CharField(max_length=255, default=get_random_string_32)
     user = models.OneToOneField(
         "users.User", on_delete=models.CASCADE, related_name="janus_cloud_auth"
     )
@@ -457,8 +460,8 @@ class JanusMediaStream(SafeDeleteModel):
     device = models.ForeignKey(
         Device, on_delete=models.CASCADE, related_name="janus_media_streams"
     )
-    secret = models.CharField(max_length=255)
-    pin = models.CharField(max_length=255)
+    secret = models.CharField(max_length=255, default=get_random_string_32)
+    pin = models.CharField(max_length=255, default=get_random_string_32)
     # streaming.info response documented in https://janus.conf.meetecho.com/docs/streaming"
     info = models.JSONField(default=dict)
 

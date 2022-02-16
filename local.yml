@@ -7,6 +7,18 @@ volumes:
   local_file_data: {}
   local_octoprint_data: {}
 services:
+  janus:
+    hostname: janus
+    image: bitsyai/janus:0.11.8
+    container_name: printnanny_janus
+    ports:
+      - "8188:8188"
+      - "7188:7188"
+      - "7088:7088"
+      - "8088:8088"
+    env_file:
+      - ./.envs/.local/.janus
+
   octoprint:
     hostname: octoprint
     image: octoprint/octoprint
