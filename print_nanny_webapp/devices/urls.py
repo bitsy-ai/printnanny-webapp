@@ -3,8 +3,9 @@ from django.urls import path
 from .views import (
     DeviceDeleteView,
     DeviceDetailView,
-    DeviceWelcomeView,
+    DeviceVideoView,
     DeviceWelcomeDetailView,
+    DeviceWelcomeView,
     ReleaseListView,
 )
 
@@ -18,4 +19,5 @@ urlpatterns = [
     ),
     path("<slug:pk>/", DeviceDetailView.as_view(), name="detail"),
     path("<slug:pk>/delete", DeviceDeleteView.as_view(), name="delete"),
+    path("<slug:pk>/video", DeviceVideoView.as_view(), name="video"),
 ]

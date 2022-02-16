@@ -107,6 +107,7 @@ export default {
   <div class="row">
     <div class="col-6 offset-3">
       <h2 class="mb-2">Enter Raspberry Pi's Hostname</h2>
+      <p>You'll be redirected to another page to verify your account</p>
       <!-- disable "smart" scanning until CA infra is setup, so user doesn't have to install root cert -->
       <!-- <p>
         Print Nanny can discover new devices on your network.Click
