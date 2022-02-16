@@ -117,6 +117,7 @@ class TaskViewSet(
     def monitor_stop(self, request, device_id=None):
         pass
 
+
 ##
 # TaskStatus
 ##

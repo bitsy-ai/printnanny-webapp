@@ -8,50 +8,87 @@ import print_nanny_webapp.devices.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devices', '0005_auto_20220216_1814'),
+        ("devices", "0005_auto_20220216_1814"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='JanusCloudMediaStream',
+            name="JanusCloudMediaStream",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('deleted', models.DateTimeField(editable=False, null=True)),
-                ('active', models.BooleanField(default=False)),
-                ('secret', models.CharField(default=print_nanny_webapp.devices.models.get_random_string_32, max_length=255)),
-                ('pin', models.CharField(default=print_nanny_webapp.devices.models.get_random_string_32, max_length=255)),
-                ('info', models.JSONField(default=dict)),
-                ('created_dt', models.DateTimeField(auto_now_add=True)),
-                ('updated_dt', models.DateTimeField(auto_now=True)),
-                ('device', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='janus_media_streams', to='devices.device')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("deleted", models.DateTimeField(editable=False, null=True)),
+                ("active", models.BooleanField(default=False)),
+                (
+                    "secret",
+                    models.CharField(
+                        default=print_nanny_webapp.devices.models.get_random_string_32,
+                        max_length=255,
+                    ),
+                ),
+                (
+                    "pin",
+                    models.CharField(
+                        default=print_nanny_webapp.devices.models.get_random_string_32,
+                        max_length=255,
+                    ),
+                ),
+                ("info", models.JSONField(default=dict)),
+                ("created_dt", models.DateTimeField(auto_now_add=True)),
+                ("updated_dt", models.DateTimeField(auto_now=True)),
+                (
+                    "device",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="janus_media_streams",
+                        to="devices.device",
+                    ),
+                ),
             ],
         ),
         migrations.RemoveField(
-            model_name='janusmediastream',
-            name='device',
+            model_name="janusmediastream",
+            name="device",
         ),
         migrations.DeleteModel(
-            name='OnboardingTask',
+            name="OnboardingTask",
         ),
         migrations.AlterField(
-            model_name='monitoringstarttask',
-            name='janus_media_stream',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='devices.januscloudmediastream'),
+            model_name="monitoringstarttask",
+            name="janus_media_stream",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to="devices.januscloudmediastream",
+            ),
         ),
         migrations.AlterField(
-            model_name='monitoringstoptask',
-            name='janus_media_stream',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='devices.januscloudmediastream'),
+            model_name="monitoringstoptask",
+            name="janus_media_stream",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to="devices.januscloudmediastream",
+            ),
         ),
         migrations.DeleteModel(
-            name='JanusMediaStream',
+            name="JanusMediaStream",
         ),
         migrations.AddConstraint(
-            model_name='januscloudmediastream',
-            constraint=models.UniqueConstraint(condition=models.Q(('deleted', None)), fields=('device',), name='unique_janus_cloud_stream_per_device'),
+            model_name="januscloudmediastream",
+            constraint=models.UniqueConstraint(
+                condition=models.Q(("deleted", None)),
+                fields=("device",),
+                name="unique_janus_cloud_stream_per_device",
+            ),
         ),
         migrations.AlterIndexTogether(
-            name='januscloudmediastream',
-            index_together={('device', 'active', 'created_dt', 'updated_dt')},
+            name="januscloudmediastream",
+            index_together={("device", "active", "created_dt", "updated_dt")},
         ),
     ]
