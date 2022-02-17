@@ -385,6 +385,19 @@ class JanusAuthViewSet(
         | generic_update_errors
         | generic_create_errors,
     ),
+    retrieve_or_create=extend_schema(
+        tags=["janus", "devices"],
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        request=JanusStreamSerializer,
+        responses={
+            200: JanusStreamSerializer,
+            201: JanusStreamSerializer,
+        }
+        | generic_get_errors
+        | generic_create_errors,
+    ),
 )
 class JanusStreamViewSet(
     GenericViewSet,
@@ -398,7 +411,12 @@ class JanusStreamViewSet(
     lookup_field = "id"
 
     @extend_schema(
-        operation_id="janus_stream_key_update_or_create",
+        tags=["janus", "devices"],
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        request=JanusStreamSerializer,
+        operation_id="devices_janus_stream_update_or_create",
         responses={201: JanusStreamSerializer, 202: JanusStreamSerializer}
         | generic_create_errors
         | generic_update_errors,
@@ -408,6 +426,31 @@ class JanusStreamViewSet(
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             instance, created = serializer.update_or_create(
+                serializer.validated_data, device_id
+            )
+            response_serializer = self.get_serializer(instance)
+            if not created:
+                return Response(response_serializer.data, status=status.HTTP_200_OK)
+            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @extend_schema(
+        tags=["janus", "devices"],
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        request=JanusStreamSerializer,
+        operation_id="devices_janus_stream_get_or_create",
+        responses={201: JanusStreamSerializer, 200: JanusStreamSerializer}
+        | generic_create_errors
+        | generic_get_errors,
+    )
+    @action(methods=["post"], detail=False, url_path="get-or-create")
+    def get_or_create(self, request, device_id=None):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            instance, created = serializer.get_or_create(
                 serializer.validated_data, device_id
             )
             response_serializer = self.get_serializer(instance)
