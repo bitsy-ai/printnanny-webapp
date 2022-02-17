@@ -1142,6 +1142,12 @@ export interface JanusStream {
     'id': number;
     /**
      * 
+     * @type {JanusAuth}
+     * @memberof JanusStream
+     */
+    'auth': JanusAuth;
+    /**
+     * 
      * @type {string}
      * @memberof JanusStream
      */

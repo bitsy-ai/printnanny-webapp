@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
+**auth** | Option<[**crate::models::JanusAuth**](JanusAuth.md)> |  | [readonly]
 **created_dt** | **String** |  | [readonly]
 **updated_dt** | **String** |  | [readonly]
 **config_type** | Option<[**crate::models::JanusConfigType**](JanusConfigType.md)> |  | [optional]

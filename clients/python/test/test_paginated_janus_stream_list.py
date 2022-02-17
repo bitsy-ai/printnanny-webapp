@@ -43,6 +43,7 @@ class TestPaginatedJanusStreamList(unittest.TestCase):
                 results = [
                     printnanny_api_client.models.janus_stream.JanusStream(
                         id = 56, 
+                        auth = null, 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         config_type = 'cloud', 

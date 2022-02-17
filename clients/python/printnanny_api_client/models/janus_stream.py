@@ -38,6 +38,7 @@ class JanusStream(object):
     """
     openapi_types = {
         'id': 'int',
+        'auth': 'JanusAuth',
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
         'config_type': 'JanusConfigType',
@@ -50,6 +51,7 @@ class JanusStream(object):
 
     attribute_map = {
         'id': 'id',
+        'auth': 'auth',
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
         'config_type': 'config_type',
@@ -60,13 +62,14 @@ class JanusStream(object):
         'device': 'device'
     }
 
-    def __init__(self, id=None, created_dt=None, updated_dt=None, config_type=None, active=None, secret=None, pin=None, info=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, auth=None, created_dt=None, updated_dt=None, config_type=None, active=None, secret=None, pin=None, info=None, device=None, local_vars_configuration=None):  # noqa: E501
         """JanusStream - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
+        self._auth = None
         self._created_dt = None
         self._updated_dt = None
         self._config_type = None
@@ -78,6 +81,7 @@ class JanusStream(object):
         self.discriminator = None
 
         self.id = id
+        self.auth = auth
         self.created_dt = created_dt
         self.updated_dt = updated_dt
         if config_type is not None:
@@ -114,6 +118,27 @@ class JanusStream(object):
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
+
+    @property
+    def auth(self):
+        """Gets the auth of this JanusStream.  # noqa: E501
+
+
+        :return: The auth of this JanusStream.  # noqa: E501
+        :rtype: JanusAuth
+        """
+        return self._auth
+
+    @auth.setter
+    def auth(self, auth):
+        """Sets the auth of this JanusStream.
+
+
+        :param auth: The auth of this JanusStream.  # noqa: E501
+        :type auth: JanusAuth
+        """
+
+        self._auth = auth
 
     @property
     def created_dt(self):

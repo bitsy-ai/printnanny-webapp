@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
+**auth** | [**JanusAuth**](JanusAuth.md) |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
 **updated_dt** | **datetime** |  | [readonly] 
 **config_type** | [**JanusConfigType**](JanusConfigType.md) |  | [optional] 

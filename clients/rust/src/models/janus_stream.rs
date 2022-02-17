@@ -15,6 +15,8 @@
 pub struct JanusStream {
     #[serde(rename = "id")]
     pub id: i32,
+    #[serde(rename = "auth")]
+    pub auth: Option<Box<crate::models::JanusAuth>>,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
     #[serde(rename = "updated_dt")]
@@ -34,9 +36,10 @@ pub struct JanusStream {
 }
 
 impl JanusStream {
-    pub fn new(id: i32, created_dt: String, updated_dt: String, device: i32) -> JanusStream {
+    pub fn new(id: i32, auth: Option<crate::models::JanusAuth>, created_dt: String, updated_dt: String, device: i32) -> JanusStream {
         JanusStream {
             id,
+            auth: auth.map(Box::new),
             created_dt,
             updated_dt,
             config_type: None,
