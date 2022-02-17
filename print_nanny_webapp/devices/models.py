@@ -15,6 +15,7 @@ from safedelete.signals import pre_softdelete
 from .enum import (
     CameraType,
     DeviceReleaseChannel,
+    JanusConfigType,
     PrinterSoftwareType,
 )
 
@@ -428,7 +429,7 @@ class JanusCloudAuth(SafeDeleteModel):
         return f"wss://{settings.JANUS_CLOUD_DOMAIN}"
 
 
-class JanusCloudMediaStream(SafeDeleteModel):
+class JanusStreamConfig(SafeDeleteModel):
     class Meta:
         index_together = ("device", "active", "created_dt", "updated_dt")
         constraints = [
@@ -439,6 +440,9 @@ class JanusCloudMediaStream(SafeDeleteModel):
             )
         ]
 
+    config_type = models.CharField(
+        max_length=32, choices=JanusConfigType.choices, default=JanusConfigType.CLOUD
+    )
     device = models.ForeignKey(
         Device, on_delete=models.CASCADE, related_name="janus_media_streams"
     )

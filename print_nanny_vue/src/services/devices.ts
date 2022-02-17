@@ -18,24 +18,18 @@ export default {
     return res.data
   },
 
-  async startMonitoringTask(deviceId: Number) {
+  async startMonitoringTask(deviceId: number) {
     const thisapi = api.DevicesApiFactory(configuration)
     const req: api.JanusTaskRequest = { "task_type": api.TaskTypeEnum.Start }
-    // const res = await.thisapi.devicesTasksCreate(req)
+    const res = await thisapi.devicesTasksCreate(deviceId, req)
+    console.debug("startMonitoringTask response={}", res)
+    return res.data
   },
-  async createTestEvent(deviceId: number, eventType: TestEventType) {
+  async stopMonitoringTask(deviceId: number) {
     const thisapi = api.DevicesApiFactory(configuration)
-    const req: api.TestEventRequest = {
-      event_type: api.TestEventType.Ping,
-      status: api.EventStatus.Sent,
-      source: api.EventSource.Printnanny,
-      model: api.EventModel.TestEvent,
-      // command: true
-    }
-    const res = await thisapi.devicesEventsCreate(
-      deviceId,
-      req
-    )
+    const req: api.JanusTaskRequest = { "task_type": api.TaskTypeEnum.Stop }
+    const res = await thisapi.devicesTasksCreate(deviceId, req)
+    console.debug("startMonitoringTask response={}", res)
     return res.data
   },
   async startMonitoring(deviceId: number) {
