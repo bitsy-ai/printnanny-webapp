@@ -29,6 +29,30 @@ class TestUsersApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_users_janus_auth_create(self):
+        """Test case for users_janus_auth_create
+
+        """
+        pass
+
+    def test_users_janus_auth_list(self):
+        """Test case for users_janus_auth_list
+
+        """
+        pass
+
+    def test_users_janus_auth_retrieve(self):
+        """Test case for users_janus_auth_retrieve
+
+        """
+        pass
+
+    def test_users_janus_auth_update_or_create(self):
+        """Test case for users_janus_auth_update_or_create
+
+        """
+        pass
+
     def test_users_me_retrieve(self):
         """Test case for users_me_retrieve
 

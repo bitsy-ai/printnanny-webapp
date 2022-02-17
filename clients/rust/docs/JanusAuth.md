@@ -1,11 +1,13 @@
-# JanusCloudAuth
+# JanusAuth
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
+**admin_secret** | Option<**String**> |  | [optional]
 **api_token** | Option<**String**> |  | [optional]
+**config_type** | Option<[**crate::models::ConfigTypeEnum**](ConfigTypeEnum.md)> |  | [optional]
 **created_dt** | **String** |  | [readonly]
 **user** | **i32** |  | 
 

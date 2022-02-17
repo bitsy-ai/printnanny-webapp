@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.janus_edge_auth_request import JanusEdgeAuthRequest  # noqa: E501
+from printnanny_api_client.models.config_type_enum import ConfigTypeEnum  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestJanusEdgeAuthRequest(unittest.TestCase):
-    """JanusEdgeAuthRequest unit test stubs"""
+class TestConfigTypeEnum(unittest.TestCase):
+    """ConfigTypeEnum unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,25 +30,20 @@ class TestJanusEdgeAuthRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test JanusEdgeAuthRequest
+        """Test ConfigTypeEnum
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.janus_edge_auth_request.JanusEdgeAuthRequest()  # noqa: E501
+        # model = printnanny_api_client.models.config_type_enum.ConfigTypeEnum()  # noqa: E501
         if include_optional :
-            return JanusEdgeAuthRequest(
-                api_token = '0', 
-                admin_secret = '0', 
-                device = 56
+            return ConfigTypeEnum(
             )
         else :
-            return JanusEdgeAuthRequest(
-                admin_secret = '0',
-                device = 56,
+            return ConfigTypeEnum(
         )
 
-    def testJanusEdgeAuthRequest(self):
-        """Test JanusEdgeAuthRequest"""
+    def testConfigTypeEnum(self):
+        """Test ConfigTypeEnum"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

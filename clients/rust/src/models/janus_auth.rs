@@ -12,30 +12,30 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct JanusEdgeAuth {
+pub struct JanusAuth {
     #[serde(rename = "id")]
     pub id: i32,
+    #[serde(rename = "admin_secret", skip_serializing_if = "Option::is_none")]
+    pub admin_secret: Option<String>,
     #[serde(rename = "api_token", skip_serializing_if = "Option::is_none")]
     pub api_token: Option<String>,
-    #[serde(rename = "admin_secret")]
-    pub admin_secret: String,
+    #[serde(rename = "config_type", skip_serializing_if = "Option::is_none")]
+    pub config_type: Option<crate::models::ConfigTypeEnum>,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
-    #[serde(rename = "updated_dt")]
-    pub updated_dt: String,
-    #[serde(rename = "device")]
-    pub device: i32,
+    #[serde(rename = "user")]
+    pub user: i32,
 }
 
-impl JanusEdgeAuth {
-    pub fn new(id: i32, admin_secret: String, created_dt: String, updated_dt: String, device: i32) -> JanusEdgeAuth {
-        JanusEdgeAuth {
+impl JanusAuth {
+    pub fn new(id: i32, created_dt: String, user: i32) -> JanusAuth {
+        JanusAuth {
             id,
+            admin_secret: None,
             api_token: None,
-            admin_secret,
+            config_type: None,
             created_dt,
-            updated_dt,
-            device,
+            user,
         }
     }
 }

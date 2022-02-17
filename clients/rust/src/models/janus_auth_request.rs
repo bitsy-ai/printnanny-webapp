@@ -12,17 +12,23 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct JanusCloudAuthRequest {
+pub struct JanusAuthRequest {
+    #[serde(rename = "admin_secret", skip_serializing_if = "Option::is_none")]
+    pub admin_secret: Option<String>,
     #[serde(rename = "api_token", skip_serializing_if = "Option::is_none")]
     pub api_token: Option<String>,
+    #[serde(rename = "config_type", skip_serializing_if = "Option::is_none")]
+    pub config_type: Option<crate::models::ConfigTypeEnum>,
     #[serde(rename = "user")]
     pub user: i32,
 }
 
-impl JanusCloudAuthRequest {
-    pub fn new(user: i32) -> JanusCloudAuthRequest {
-        JanusCloudAuthRequest {
+impl JanusAuthRequest {
+    pub fn new(user: i32) -> JanusAuthRequest {
+        JanusAuthRequest {
+            admin_secret: None,
             api_token: None,
+            config_type: None,
             user,
         }
     }

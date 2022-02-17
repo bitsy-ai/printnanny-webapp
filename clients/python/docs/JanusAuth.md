@@ -1,11 +1,13 @@
-# JanusCloudAuth
+# JanusAuth
 
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
+**admin_secret** | **str** |  | [optional] 
 **api_token** | **str** |  | [optional] 
+**config_type** | [**ConfigTypeEnum**](ConfigTypeEnum.md) |  | [optional] 
 **created_dt** | **datetime** |  | [readonly] 
 **user** | **int** |  | 
 

@@ -1,12 +1,13 @@
-# PatchedJanusEdgeAuthRequest
+# PaginatedJanusAuthList
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**api_token** | Option<**String**> |  | [optional]
-**admin_secret** | Option<**String**> |  | [optional]
-**device** | Option<**i32**> |  | [optional]
+**count** | Option<**i32**> |  | [optional]
+**next** | Option<**String**> |  | [optional]
+**previous** | Option<**String**> |  | [optional]
+**results** | Option<[**Vec<crate::models::JanusAuth>**](JanusAuth.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
