@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from polymorphic.models import PolymorphicModel
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
-from .enum import TaskStatusType
+from .enum import TaskStatusType, JanusTaskType
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
@@ -35,14 +35,9 @@ class Task(PolymorphicModel, SafeDeleteModel):
         return self.status_set.first()
 
 
-class MonitorStartTask(Task):
-    janus_media_stream = models.ForeignKey(
-        "devices.JanusCloudMediaStream", on_delete=models.CASCADE
-    )
-
-
-class MonitorStopTask(Task):
-    janus_media_stream = models.ForeignKey(
+class JanusTask(Task):
+    task_type = models.CharField(max_length=32, choices=JanusTaskType.choices)
+    cloud_media_stream = models.ForeignKey(
         "devices.JanusCloudMediaStream", on_delete=models.CASCADE
     )
 

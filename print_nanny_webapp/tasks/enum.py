@@ -21,11 +21,11 @@ class TaskStatusType(models.TextChoices):
         return cls.__css__.get(cls(value).name, "unknown")
 
 
-class TaskType(models.TextChoices):
+class JanusTaskType(models.TextChoices):
     CLOUD_MONITOR_START = "cloud_monitor_start", "Start PrintNanny Monitoring"
     CLOUD_MONITOR_STOP = "cloud_monitor_stop", "Stop PrintNanny Monitoring"
-    SYSTEM_CHECK = "system_check", "System Health Check"
-    SYSTEM_UPDATE = (
-        "system_update",
-        "PrintNanny OS Update",
-    )
+    # SYSTEM_CHECK = "system_check", "System Health Check"
+    # SYSTEM_UPDATE = (
+    #     "system_update",
+    #     "PrintNanny OS Update",
+    # )
