@@ -262,7 +262,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_tasks_retrieve**
-> PolymorphicTask devices_tasks_retrieve(device_id, id, task_id)
+> PolymorphicTask devices_tasks_retrieve(device_id, id)
 
 
 
@@ -303,10 +303,9 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     api_instance = printnanny_api_client.TasksApi(api_client)
     device_id = 56 # int | 
 id = 56 # int | A unique integer value identifying this task.
-task_id = 56 # int | 
 
     try:
-        api_response = api_instance.devices_tasks_retrieve(device_id, id, task_id)
+        api_response = api_instance.devices_tasks_retrieve(device_id, id)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling TasksApi->devices_tasks_retrieve: %s\n" % e)
@@ -347,10 +346,9 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     api_instance = printnanny_api_client.TasksApi(api_client)
     device_id = 56 # int | 
 id = 56 # int | A unique integer value identifying this task.
-task_id = 56 # int | 
 
     try:
-        api_response = api_instance.devices_tasks_retrieve(device_id, id, task_id)
+        api_response = api_instance.devices_tasks_retrieve(device_id, id)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling TasksApi->devices_tasks_retrieve: %s\n" % e)
@@ -362,7 +360,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **device_id** | **int**|  | 
  **id** | **int**| A unique integer value identifying this task. | 
- **task_id** | **int**|  | 
 
 ### Return type
 

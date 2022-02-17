@@ -10163,21 +10163,17 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
          * 
          * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this task.
-         * @param {number} taskId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesTasksRetrieve: async (deviceId: number, id: number, taskId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesTasksRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
             assertParamExists('devicesTasksRetrieve', 'deviceId', deviceId)
             // verify required parameter 'id' is not null or undefined
             assertParamExists('devicesTasksRetrieve', 'id', id)
-            // verify required parameter 'taskId' is not null or undefined
-            assertParamExists('devicesTasksRetrieve', 'taskId', taskId)
             const localVarPath = `/api/devices/{device_id}/tasks/{id}/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"task_id"}}`, encodeURIComponent(String(taskId)));
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -10980,12 +10976,11 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          * 
          * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this task.
-         * @param {number} taskId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesTasksRetrieve(deviceId: number, id: number, taskId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicTask>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksRetrieve(deviceId, id, taskId, options);
+        async devicesTasksRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicTask>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksRetrieve(deviceId, id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -11511,12 +11506,11 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          * 
          * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this task.
-         * @param {number} taskId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesTasksRetrieve(deviceId: number, id: number, taskId: number, options?: any): AxiosPromise<PolymorphicTask> {
-            return localVarFp.devicesTasksRetrieve(deviceId, id, taskId, options).then((request) => request(axios, basePath));
+        devicesTasksRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<PolymorphicTask> {
+            return localVarFp.devicesTasksRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -12034,12 +12028,11 @@ export interface DevicesApiInterface {
      * 
      * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this task.
-     * @param {number} taskId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesTasksRetrieve(deviceId: number, id: number, taskId: number, options?: AxiosRequestConfig): AxiosPromise<PolymorphicTask>;
+    devicesTasksRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<PolymorphicTask>;
 
     /**
      * 
@@ -12643,13 +12636,12 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      * 
      * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this task.
-     * @param {number} taskId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesTasksRetrieve(deviceId: number, id: number, taskId: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesTasksRetrieve(deviceId, id, taskId, options).then((request) => request(this.axios, this.basePath));
+    public devicesTasksRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesTasksRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -18114,21 +18106,17 @@ export const TasksApiAxiosParamCreator = function (configuration?: Configuration
          * 
          * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this task.
-         * @param {number} taskId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesTasksRetrieve: async (deviceId: number, id: number, taskId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesTasksRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
             assertParamExists('devicesTasksRetrieve', 'deviceId', deviceId)
             // verify required parameter 'id' is not null or undefined
             assertParamExists('devicesTasksRetrieve', 'id', id)
-            // verify required parameter 'taskId' is not null or undefined
-            assertParamExists('devicesTasksRetrieve', 'taskId', taskId)
             const localVarPath = `/api/devices/{device_id}/tasks/{id}/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"task_id"}}`, encodeURIComponent(String(taskId)));
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -18337,12 +18325,11 @@ export const TasksApiFp = function(configuration?: Configuration) {
          * 
          * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this task.
-         * @param {number} taskId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesTasksRetrieve(deviceId: number, id: number, taskId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicTask>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksRetrieve(deviceId, id, taskId, options);
+        async devicesTasksRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicTask>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksRetrieve(deviceId, id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -18415,12 +18402,11 @@ export const TasksApiFactory = function (configuration?: Configuration, basePath
          * 
          * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this task.
-         * @param {number} taskId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesTasksRetrieve(deviceId: number, id: number, taskId: number, options?: any): AxiosPromise<PolymorphicTask> {
-            return localVarFp.devicesTasksRetrieve(deviceId, id, taskId, options).then((request) => request(axios, basePath));
+        devicesTasksRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<PolymorphicTask> {
+            return localVarFp.devicesTasksRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -18488,12 +18474,11 @@ export interface TasksApiInterface {
      * 
      * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this task.
-     * @param {number} taskId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TasksApiInterface
      */
-    devicesTasksRetrieve(deviceId: number, id: number, taskId: number, options?: AxiosRequestConfig): AxiosPromise<PolymorphicTask>;
+    devicesTasksRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<PolymorphicTask>;
 
     /**
      * 
@@ -18565,13 +18550,12 @@ export class TasksApi extends BaseAPI implements TasksApiInterface {
      * 
      * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this task.
-     * @param {number} taskId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TasksApi
      */
-    public devicesTasksRetrieve(deviceId: number, id: number, taskId: number, options?: AxiosRequestConfig) {
-        return TasksApiFp(this.configuration).devicesTasksRetrieve(deviceId, id, taskId, options).then((request) => request(this.axios, this.basePath));
+    public devicesTasksRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
+        return TasksApiFp(this.configuration).devicesTasksRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

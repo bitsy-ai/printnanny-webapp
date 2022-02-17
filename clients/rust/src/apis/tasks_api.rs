@@ -151,12 +151,12 @@ pub async fn devices_tasks_list(configuration: &configuration::Configuration, de
     }
 }
 
-pub async fn devices_tasks_retrieve(configuration: &configuration::Configuration, device_id: i32, id: i32, task_id: i32) -> Result<crate::models::PolymorphicTask, Error<DevicesTasksRetrieveError>> {
+pub async fn devices_tasks_retrieve(configuration: &configuration::Configuration, device_id: i32, id: i32) -> Result<crate::models::PolymorphicTask, Error<DevicesTasksRetrieveError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/tasks/{id}/", local_var_configuration.base_path, device_id=device_id, id=id, task_id=task_id);
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/tasks/{id}/", local_var_configuration.base_path, device_id=device_id, id=id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
