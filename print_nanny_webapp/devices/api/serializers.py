@@ -125,6 +125,9 @@ class JanusStreamSerializer(serializers.ModelSerializer):
             device=device, defaults=validated_data
         )
 
+    def get_or_create(self, validated_data, device):
+        return JanusStream.objects.get_or_create(device=device, defaults=validated_data)
+
 
 class SystemInfoSerializer(serializers.ModelSerializer):
     class Meta:
