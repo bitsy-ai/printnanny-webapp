@@ -8,6 +8,7 @@ from print_nanny_webapp.devices.models import (
     CloudiotDevice,
     DeviceConfig,
     JanusAuth,
+    JanusStream,
     PublicKey,
     SystemInfo,
     PrinterController,
@@ -110,6 +111,12 @@ class JanusAuthSerializer(serializers.ModelSerializer):
         return JanusAuth.objects.filter(device=device).update_or_create(
             device=device, defaults=validated_data
         )
+
+
+class JanusStreamSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JanusStream
+        exclude = ("deleted",)
 
 
 class SystemInfoSerializer(serializers.ModelSerializer):

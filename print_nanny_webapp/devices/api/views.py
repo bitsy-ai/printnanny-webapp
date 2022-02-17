@@ -29,6 +29,7 @@ from print_nanny_webapp.utils.api.views import (
 )
 from .serializers import (
     JanusAuthSerializer,
+    JanusStreamSerializer,
     PublicKeySerializer,
     CameraSerializer,
     CloudiotDeviceSerializer,
@@ -41,6 +42,7 @@ from ..models import (
     CloudiotDevice,
     Device,
     JanusAuth,
+    JanusStream,
     PublicKey,
     SystemInfo,
     PrinterController,
@@ -252,8 +254,8 @@ class PublicKeyViewSet(
 # JanusAuth views
 ##
 @extend_schema_view(
-    tags=["users"],
     list=extend_schema(
+        tags=["users", "janus"],
         parameters=[
             OpenApiParameter(name="user_id", type=int, location=OpenApiParameter.PATH)
         ],
@@ -263,6 +265,7 @@ class PublicKeyViewSet(
         | generic_list_errors,
     ),
     create=extend_schema(
+        tags=["users", "janus"],
         parameters=[
             OpenApiParameter(name="user_id", type=int, location=OpenApiParameter.PATH)
         ],
@@ -271,6 +274,17 @@ class PublicKeyViewSet(
             201: JanusAuthSerializer,
         }
         | generic_create_errors,
+    ),
+    retreive=extend_schema(
+        tags=["users", "janus"],
+        parameters=[
+            OpenApiParameter(name="user_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        request=JanusAuthSerializer,
+        responses={
+            200: JanusAuthSerializer,
+        }
+        | generic_get_errors,
     ),
 )
 class JanusAuthViewSet(
@@ -284,6 +298,7 @@ class JanusAuthViewSet(
     lookup_field = "id"
 
     @extend_schema(
+        tags=["users", "janus"],
         operation_id="users_janus_auth_update_or_create",
         responses={
             # 400: PrinterProfileSerializer,
@@ -306,6 +321,68 @@ class JanusAuthViewSet(
             return Response(response_serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+###
+# SystemInfo views
+###
+
+
+@extend_schema_view(
+    list=extend_schema(
+        tags=["janus", "devices"],
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        responses={
+            200: JanusStreamSerializer(many=True),
+        }
+        | generic_list_errors,
+    ),
+    create=extend_schema(
+        tags=["janus", "devices"],
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        request=JanusStreamSerializer,
+        responses={
+            201: JanusStreamSerializer,
+        }
+        | generic_create_errors,
+    ),
+    retreive=extend_schema(
+        tags=["janus", "devices"],
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        request=JanusStreamSerializer,
+        responses={
+            200: JanusStreamSerializer,
+        }
+        | generic_get_errors,
+    ),
+    update=extend_schema(
+        tags=["janus", "devices"],
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        request=JanusStreamSerializer,
+        responses={
+            202: JanusStreamSerializer,
+        }
+        | generic_update_errors,
+    ),
+)
+class JanusStreamViewSet(
+    GenericViewSet,
+    ListModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+    CreateModelMixin,
+):
+    serializer_class = JanusStreamSerializer
+    queryset = JanusStream.objects.all()
+    lookup_field = "id"
 
 
 ###

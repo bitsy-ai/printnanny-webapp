@@ -16,7 +16,6 @@ class Task(PolymorphicModel, SafeDeleteModel):
     Indicates current state of device
 
     See: desired state design pattern for details
-    https://cloud.google.com/iot/docs/concepts/devices#changing_device_behavior_or_state_using_configuration_data
     """
 
     _safedelete_policy = SOFT_DELETE
@@ -37,9 +36,7 @@ class Task(PolymorphicModel, SafeDeleteModel):
 
 class JanusTask(Task):
     task_type = models.CharField(max_length=32, choices=JanusTaskType.choices)
-    stream_config = models.ForeignKey(
-        "devices.JanusStreamConfig", on_delete=models.CASCADE
-    )
+    stream = models.ForeignKey("devices.JanusStream", on_delete=models.CASCADE)
 
 
 class TaskStatus(SafeDeleteModel):
