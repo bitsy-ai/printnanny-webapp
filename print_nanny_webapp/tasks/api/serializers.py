@@ -4,51 +4,53 @@ from rest_framework import serializers
 from rest_polymorphic.serializers import PolymorphicSerializer
 
 from print_nanny_webapp.tasks.models import (
+    JanusTask,
     Task,
-    MonitorStartTask,
-    MonitorStopTask,
     TaskStatus,
 )
-from print_nanny_webapp.tasks.enum import TaskStatusType, TaskType
+from print_nanny_webapp.tasks.enum import TaskStatusType, JanusTaskType
 
 logger = logging.getLogger(__name__)
 
 
 class TaskSerializer(serializers.ModelSerializer):
-    tasktype = serializers.ChoiceField(choices=TaskType.choices)
-
     class Meta:
         model = Task
         read_only_fields = ("user", "device", "created_dt")
         fields = "__all__"
 
 
-class MonitorStartTaskSerializer(serializers.ModelSerializer):
+class JanusTaskSerializer(serializers.ModelSerializer):
     class Meta:
-        model = MonitorStartTask
+        model = JanusTask
         fields = "__all__"
-        read_only_fields = ("device", "created_dt", "janus_media_stream")
-
-    def to_resource_type(self, _model_or_instance):
-        return TaskType.CLOUD_MONITOR_START
-
-
-class MonitorStopTaskSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MonitorStopTask
-        fields = "__all__"
-        read_only_fields = ("device", "created_dt", "janus_media_stream")
-
-    def to_resource_type(self, _model_or_instance):
-        return TaskType.CLOUD_MONITOR_STOP
+        read_only_fields = ("device", "created_dt", "cloud_media_stream")
 
 
 class PolymorphicTaskSerializer(PolymorphicSerializer):
-    resource_type_field_name = "model"
-    model_serializer_mapping = {
-        MonitorStartTask: MonitorStartTaskSerializer,
-        MonitorStopTask: MonitorStopTaskSerializer,
+    resource_type_field_name = "task_type"
+    model_serializer_mapping = {JanusTask: JanusTaskSerializer}
+
+    resourcetype_map = {
+        JanusTaskType.CLOUD_MONITOR_START: JanusTask,
+        JanusTaskType.CLOUD_MONITOR_STOP: JanusTask,
     }
+
+    def _get_resource_type_from_mapping(self, mapping):
+        logger.debug(
+            "Got PolymorphicEventSerializer mapping=%s resourcetype_map=%s",
+            mapping,
+            self.resourcetype_map,
+        )
+        try:
+            model = self.resourcetype_map[self.resource_type_field_name]
+            return mapping[model]
+        except KeyError:
+            raise serializers.ValidationError(
+                {
+                    self.resource_type_field_name: "This field is required",
+                }
+            )
 
     def to_representation(self, instance):
         if isinstance(instance, Mapping):

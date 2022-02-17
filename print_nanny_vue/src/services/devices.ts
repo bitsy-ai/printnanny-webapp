@@ -17,6 +17,11 @@ export default {
     console.log("Received api response to get device", res)
     return res.data
   },
+
+  async startMonitoringTask(deviceId: Number) {
+    const thisapi = api.DevicesApiFactory(configuration)
+
+  }
   async createTestEvent(deviceId: number, eventType: TestEventType) {
     const thisapi = api.DevicesApiFactory(configuration)
     const req: api.TestEventRequest = {
