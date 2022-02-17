@@ -13,23 +13,14 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct TaskStatusRequest {
-    #[serde(rename = "detail", skip_serializing_if = "Option::is_none")]
-    pub detail: Option<String>,
-    #[serde(rename = "wiki_url", skip_serializing_if = "Option::is_none")]
-    pub wiki_url: Option<String>,
     #[serde(rename = "status")]
-    pub status: crate::models::TaskStatusType,
-    #[serde(rename = "task")]
-    pub task: i32,
+    pub status: crate::models::TaskStatusStatusEnum,
 }
 
 impl TaskStatusRequest {
-    pub fn new(status: crate::models::TaskStatusType, task: i32) -> TaskStatusRequest {
+    pub fn new(status: crate::models::TaskStatusStatusEnum) -> TaskStatusRequest {
         TaskStatusRequest {
-            detail: None,
-            wiki_url: None,
             status,
-            task,
         }
     }
 }

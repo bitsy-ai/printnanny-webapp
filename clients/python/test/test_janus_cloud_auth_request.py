@@ -42,7 +42,6 @@ class TestJanusCloudAuthRequest(unittest.TestCase):
             )
         else :
             return JanusCloudAuthRequest(
-                api_token = '0',
                 user = 56,
         )
 

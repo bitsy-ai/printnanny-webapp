@@ -15,7 +15,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.49.0"
+__version__ = "0.51.0"
 
 # import apis into sdk package
 from printnanny_api_client.api.alerts_api import AlertsApi
@@ -30,6 +30,7 @@ from printnanny_api_client.api.partners_geeks3_api import PartnersGeeks3Api
 from printnanny_api_client.api.partners_geeks3d_api import PartnersGeeks3dApi
 from printnanny_api_client.api.remote_control_api import RemoteControlApi
 from printnanny_api_client.api.schema_api import SchemaApi
+from printnanny_api_client.api.tasks_api import TasksApi
 from printnanny_api_client.api.telemetry_api import TelemetryApi
 from printnanny_api_client.api.users_api import UsersApi
 
@@ -77,6 +78,10 @@ from printnanny_api_client.models.janus_edge_auth import JanusEdgeAuth
 from printnanny_api_client.models.janus_edge_auth_request import JanusEdgeAuthRequest
 from printnanny_api_client.models.mobile_auth_request import MobileAuthRequest
 from printnanny_api_client.models.model_artifact import ModelArtifact
+from printnanny_api_client.models.monitor_start_task import MonitorStartTask
+from printnanny_api_client.models.monitor_start_task_request import MonitorStartTaskRequest
+from printnanny_api_client.models.monitor_stop_task import MonitorStopTask
+from printnanny_api_client.models.monitor_stop_task_request import MonitorStopTaskRequest
 from printnanny_api_client.models.octo_generic_event import OctoGenericEvent
 from printnanny_api_client.models.octo_job_event import OctoJobEvent
 from printnanny_api_client.models.octo_print_backup import OctoPrintBackup
@@ -110,8 +115,6 @@ from printnanny_api_client.models.octoprint_progress import OctoprintProgress
 from printnanny_api_client.models.octoprint_progress_request import OctoprintProgressRequest
 from printnanny_api_client.models.octoprint_python import OctoprintPython
 from printnanny_api_client.models.octoprint_python_request import OctoprintPythonRequest
-from printnanny_api_client.models.onboarding_task import OnboardingTask
-from printnanny_api_client.models.onboarding_task_request import OnboardingTaskRequest
 from printnanny_api_client.models.paginated_alert_list import PaginatedAlertList
 from printnanny_api_client.models.paginated_camera_list import PaginatedCameraList
 from printnanny_api_client.models.paginated_cloudiot_device_list import PaginatedCloudiotDeviceList
@@ -126,8 +129,8 @@ from printnanny_api_client.models.paginated_model_artifact_list import Paginated
 from printnanny_api_client.models.paginated_octo_print_backup_list import PaginatedOctoPrintBackupList
 from printnanny_api_client.models.paginated_octo_print_device_list import PaginatedOctoPrintDeviceList
 from printnanny_api_client.models.paginated_octo_print_event_list import PaginatedOctoPrintEventList
-from printnanny_api_client.models.paginated_onboarding_task_list import PaginatedOnboardingTaskList
 from printnanny_api_client.models.paginated_polymorphic_event_list import PaginatedPolymorphicEventList
+from printnanny_api_client.models.paginated_polymorphic_task_list import PaginatedPolymorphicTaskList
 from printnanny_api_client.models.paginated_print_job_event_list import PaginatedPrintJobEventList
 from printnanny_api_client.models.paginated_print_nanny_plugin_event_list import PaginatedPrintNannyPluginEventList
 from printnanny_api_client.models.paginated_print_session_list import PaginatedPrintSessionList
@@ -137,7 +140,6 @@ from printnanny_api_client.models.paginated_public_key_list import PaginatedPubl
 from printnanny_api_client.models.paginated_remote_command_event_list import PaginatedRemoteCommandEventList
 from printnanny_api_client.models.paginated_remote_control_command_list import PaginatedRemoteControlCommandList
 from printnanny_api_client.models.paginated_system_info_list import PaginatedSystemInfoList
-from printnanny_api_client.models.paginated_task_list import PaginatedTaskList
 from printnanny_api_client.models.paginated_task_status_list import PaginatedTaskStatusList
 from printnanny_api_client.models.paginated_telemetry_event_polymorphic_list import PaginatedTelemetryEventPolymorphicList
 from printnanny_api_client.models.partner3_d_geeks_alert import Partner3DGeeksAlert
@@ -161,6 +163,8 @@ from printnanny_api_client.models.patched_test_event_request import PatchedTestE
 from printnanny_api_client.models.patched_user_request import PatchedUserRequest
 from printnanny_api_client.models.polymorphic_event import PolymorphicEvent
 from printnanny_api_client.models.polymorphic_event_request import PolymorphicEventRequest
+from printnanny_api_client.models.polymorphic_task import PolymorphicTask
+from printnanny_api_client.models.polymorphic_task_request import PolymorphicTaskRequest
 from printnanny_api_client.models.print_job_event import PrintJobEvent
 from printnanny_api_client.models.print_job_event_request import PrintJobEventRequest
 from printnanny_api_client.models.print_nanny_api_config import PrintNannyApiConfig
@@ -186,12 +190,11 @@ from printnanny_api_client.models.software_enum import SoftwareEnum
 from printnanny_api_client.models.system_info import SystemInfo
 from printnanny_api_client.models.system_info_request import SystemInfoRequest
 from printnanny_api_client.models.task import Task
-from printnanny_api_client.models.task_enum import TaskEnum
 from printnanny_api_client.models.task_request import TaskRequest
 from printnanny_api_client.models.task_status import TaskStatus
 from printnanny_api_client.models.task_status_request import TaskStatusRequest
-from printnanny_api_client.models.task_status_type import TaskStatusType
-from printnanny_api_client.models.task_type import TaskType
+from printnanny_api_client.models.task_status_status_enum import TaskStatusStatusEnum
+from printnanny_api_client.models.tasktype_enum import TasktypeEnum
 from printnanny_api_client.models.telemetry_event import TelemetryEvent
 from printnanny_api_client.models.telemetry_event_polymorphic import TelemetryEventPolymorphic
 from printnanny_api_client.models.telemetry_event_polymorphic_request import TelemetryEventPolymorphicRequest

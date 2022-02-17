@@ -37,14 +37,11 @@ class TestTaskRequest(unittest.TestCase):
         # model = printnanny_api_client.models.task_request.TaskRequest()  # noqa: E501
         if include_optional :
             return TaskRequest(
-                task_type = 'monitor_start', 
-                active = True, 
-                device = 56
+                tasktype = 'cloud_monitor_start'
             )
         else :
             return TaskRequest(
-                task_type = 'monitor_start',
-                device = 56,
+                tasktype = 'cloud_monitor_start',
         )
 
     def testTaskRequest(self):

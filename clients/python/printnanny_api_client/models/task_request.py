@@ -37,99 +37,46 @@ class TaskRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'task_type': 'TaskType',
-        'active': 'bool',
-        'device': 'int'
+        'tasktype': 'TasktypeEnum'
     }
 
     attribute_map = {
-        'task_type': 'task_type',
-        'active': 'active',
-        'device': 'device'
+        'tasktype': 'tasktype'
     }
 
-    def __init__(self, task_type=None, active=True, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, tasktype=None, local_vars_configuration=None):  # noqa: E501
         """TaskRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
-        self._task_type = None
-        self._active = None
-        self._device = None
+        self._tasktype = None
         self.discriminator = None
 
-        self.task_type = task_type
-        if active is not None:
-            self.active = active
-        self.device = device
+        self.tasktype = tasktype
 
     @property
-    def task_type(self):
-        """Gets the task_type of this TaskRequest.  # noqa: E501
+    def tasktype(self):
+        """Gets the tasktype of this TaskRequest.  # noqa: E501
 
 
-        :return: The task_type of this TaskRequest.  # noqa: E501
-        :rtype: TaskType
+        :return: The tasktype of this TaskRequest.  # noqa: E501
+        :rtype: TasktypeEnum
         """
-        return self._task_type
+        return self._tasktype
 
-    @task_type.setter
-    def task_type(self, task_type):
-        """Sets the task_type of this TaskRequest.
+    @tasktype.setter
+    def tasktype(self, tasktype):
+        """Sets the tasktype of this TaskRequest.
 
 
-        :param task_type: The task_type of this TaskRequest.  # noqa: E501
-        :type task_type: TaskType
+        :param tasktype: The tasktype of this TaskRequest.  # noqa: E501
+        :type tasktype: TasktypeEnum
         """
-        if self.local_vars_configuration.client_side_validation and task_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `task_type`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and tasktype is None:  # noqa: E501
+            raise ValueError("Invalid value for `tasktype`, must not be `None`")  # noqa: E501
 
-        self._task_type = task_type
-
-    @property
-    def active(self):
-        """Gets the active of this TaskRequest.  # noqa: E501
-
-
-        :return: The active of this TaskRequest.  # noqa: E501
-        :rtype: bool
-        """
-        return self._active
-
-    @active.setter
-    def active(self, active):
-        """Sets the active of this TaskRequest.
-
-
-        :param active: The active of this TaskRequest.  # noqa: E501
-        :type active: bool
-        """
-
-        self._active = active
-
-    @property
-    def device(self):
-        """Gets the device of this TaskRequest.  # noqa: E501
-
-
-        :return: The device of this TaskRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._device
-
-    @device.setter
-    def device(self, device):
-        """Sets the device of this TaskRequest.
-
-
-        :param device: The device of this TaskRequest.  # noqa: E501
-        :type device: int
-        """
-        if self.local_vars_configuration.client_side_validation and device is None:  # noqa: E501
-            raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
-
-        self._device = device
+        self._tasktype = tasktype
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

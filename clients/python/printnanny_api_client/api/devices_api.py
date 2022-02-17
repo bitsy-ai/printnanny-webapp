@@ -4175,458 +4175,6 @@ class DevicesApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def devices_onboarding_tasks_create(self, device_id, onboarding_task_request, **kwargs):  # noqa: E501
-        """devices_onboarding_tasks_create  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.devices_onboarding_tasks_create(device_id, onboarding_task_request, async_req=True)
-        >>> result = thread.get()
-
-        :param device_id: (required)
-        :type device_id: int
-        :param onboarding_task_request: (required)
-        :type onboarding_task_request: OnboardingTaskRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: OnboardingTask
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.devices_onboarding_tasks_create_with_http_info(device_id, onboarding_task_request, **kwargs)  # noqa: E501
-
-    def devices_onboarding_tasks_create_with_http_info(self, device_id, onboarding_task_request, **kwargs):  # noqa: E501
-        """devices_onboarding_tasks_create  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.devices_onboarding_tasks_create_with_http_info(device_id, onboarding_task_request, async_req=True)
-        >>> result = thread.get()
-
-        :param device_id: (required)
-        :type device_id: int
-        :param onboarding_task_request: (required)
-        :type onboarding_task_request: OnboardingTaskRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(OnboardingTask, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        local_var_params = locals()
-
-        all_params = [
-            'device_id',
-            'onboarding_task_request'
-        ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method devices_onboarding_tasks_create" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'device_id' is set
-        if self.api_client.client_side_validation and ('device_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['device_id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `device_id` when calling `devices_onboarding_tasks_create`")  # noqa: E501
-        # verify the required parameter 'onboarding_task_request' is set
-        if self.api_client.client_side_validation and ('onboarding_task_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['onboarding_task_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `onboarding_task_request` when calling `devices_onboarding_tasks_create`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'device_id' in local_var_params:
-            path_params['device_id'] = local_var_params['device_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = dict(local_var_params.get('_headers', {}))
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'onboarding_task_request' in local_var_params:
-            body_params = local_var_params['onboarding_task_request']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
-                'POST', body_params))  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-
-        response_types_map = {
-            201: "OnboardingTask",
-            409: "ErrorDetail",
-            400: "ErrorDetail",
-            401: "ErrorDetail",
-            403: "ErrorDetail",
-            500: "ErrorDetail",
-        }
-
-        return self.api_client.call_api(
-            '/api/devices/{device_id}/onboarding-tasks/', 'POST',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_types_map=response_types_map,
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats,
-            _request_auth=local_var_params.get('_request_auth'))
-
-    def devices_onboarding_tasks_list(self, device_id, **kwargs):  # noqa: E501
-        """devices_onboarding_tasks_list  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.devices_onboarding_tasks_list(device_id, async_req=True)
-        >>> result = thread.get()
-
-        :param device_id: (required)
-        :type device_id: int
-        :param page: A page number within the paginated result set.
-        :type page: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: PaginatedOnboardingTaskList
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.devices_onboarding_tasks_list_with_http_info(device_id, **kwargs)  # noqa: E501
-
-    def devices_onboarding_tasks_list_with_http_info(self, device_id, **kwargs):  # noqa: E501
-        """devices_onboarding_tasks_list  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.devices_onboarding_tasks_list_with_http_info(device_id, async_req=True)
-        >>> result = thread.get()
-
-        :param device_id: (required)
-        :type device_id: int
-        :param page: A page number within the paginated result set.
-        :type page: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(PaginatedOnboardingTaskList, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        local_var_params = locals()
-
-        all_params = [
-            'device_id',
-            'page'
-        ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method devices_onboarding_tasks_list" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'device_id' is set
-        if self.api_client.client_side_validation and ('device_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['device_id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `device_id` when calling `devices_onboarding_tasks_list`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'device_id' in local_var_params:
-            path_params['device_id'] = local_var_params['device_id']  # noqa: E501
-
-        query_params = []
-        if 'page' in local_var_params and local_var_params['page'] is not None:  # noqa: E501
-            query_params.append(('page', local_var_params['page']))  # noqa: E501
-
-        header_params = dict(local_var_params.get('_headers', {}))
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-
-        response_types_map = {
-            200: "PaginatedOnboardingTaskList",
-            400: "ErrorDetail",
-            401: "ErrorDetail",
-            403: "ErrorDetail",
-            500: "ErrorDetail",
-        }
-
-        return self.api_client.call_api(
-            '/api/devices/{device_id}/onboarding-tasks/', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_types_map=response_types_map,
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats,
-            _request_auth=local_var_params.get('_request_auth'))
-
-    def devices_onboarding_tasks_retrieve(self, device_id, id, **kwargs):  # noqa: E501
-        """devices_onboarding_tasks_retrieve  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.devices_onboarding_tasks_retrieve(device_id, id, async_req=True)
-        >>> result = thread.get()
-
-        :param device_id: (required)
-        :type device_id: int
-        :param id: A unique integer value identifying this onboarding task. (required)
-        :type id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: OnboardingTask
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.devices_onboarding_tasks_retrieve_with_http_info(device_id, id, **kwargs)  # noqa: E501
-
-    def devices_onboarding_tasks_retrieve_with_http_info(self, device_id, id, **kwargs):  # noqa: E501
-        """devices_onboarding_tasks_retrieve  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.devices_onboarding_tasks_retrieve_with_http_info(device_id, id, async_req=True)
-        >>> result = thread.get()
-
-        :param device_id: (required)
-        :type device_id: int
-        :param id: A unique integer value identifying this onboarding task. (required)
-        :type id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(OnboardingTask, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        local_var_params = locals()
-
-        all_params = [
-            'device_id',
-            'id'
-        ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method devices_onboarding_tasks_retrieve" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'device_id' is set
-        if self.api_client.client_side_validation and ('device_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['device_id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `device_id` when calling `devices_onboarding_tasks_retrieve`")  # noqa: E501
-        # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `id` when calling `devices_onboarding_tasks_retrieve`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'device_id' in local_var_params:
-            path_params['device_id'] = local_var_params['device_id']  # noqa: E501
-        if 'id' in local_var_params:
-            path_params['id'] = local_var_params['id']  # noqa: E501
-
-        query_params = []
-
-        header_params = dict(local_var_params.get('_headers', {}))
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-
-        response_types_map = {
-            200: "OnboardingTask",
-        }
-
-        return self.api_client.call_api(
-            '/api/devices/{device_id}/onboarding-tasks/{id}/', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_types_map=response_types_map,
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats,
-            _request_auth=local_var_params.get('_request_auth'))
-
     def devices_partial_update(self, id, **kwargs):  # noqa: E501
         """devices_partial_update  # noqa: E501
 
@@ -7381,19 +6929,19 @@ class DevicesApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def devices_tasks_create(self, device_id, task_request, **kwargs):  # noqa: E501
+    def devices_tasks_create(self, device_id, **kwargs):  # noqa: E501
         """devices_tasks_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_tasks_create(device_id, task_request, async_req=True)
+        >>> thread = api.devices_tasks_create(device_id, async_req=True)
         >>> result = thread.get()
 
         :param device_id: (required)
         :type device_id: int
-        :param task_request: (required)
-        :type task_request: TaskRequest
+        :param polymorphic_task_request:
+        :type polymorphic_task_request: PolymorphicTaskRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -7407,24 +6955,24 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: Task
+        :rtype: PolymorphicTask
         """
         kwargs['_return_http_data_only'] = True
-        return self.devices_tasks_create_with_http_info(device_id, task_request, **kwargs)  # noqa: E501
+        return self.devices_tasks_create_with_http_info(device_id, **kwargs)  # noqa: E501
 
-    def devices_tasks_create_with_http_info(self, device_id, task_request, **kwargs):  # noqa: E501
+    def devices_tasks_create_with_http_info(self, device_id, **kwargs):  # noqa: E501
         """devices_tasks_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_tasks_create_with_http_info(device_id, task_request, async_req=True)
+        >>> thread = api.devices_tasks_create_with_http_info(device_id, async_req=True)
         >>> result = thread.get()
 
         :param device_id: (required)
         :type device_id: int
-        :param task_request: (required)
-        :type task_request: TaskRequest
+        :param polymorphic_task_request:
+        :type polymorphic_task_request: PolymorphicTaskRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -7446,14 +6994,14 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(Task, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(PolymorphicTask, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
 
         all_params = [
             'device_id',
-            'task_request'
+            'polymorphic_task_request'
         ]
         all_params.extend(
             [
@@ -7479,10 +7027,6 @@ class DevicesApi(object):
         if self.api_client.client_side_validation and ('device_id' not in local_var_params or  # noqa: E501
                                                         local_var_params['device_id'] is None):  # noqa: E501
             raise ApiValueError("Missing the required parameter `device_id` when calling `devices_tasks_create`")  # noqa: E501
-        # verify the required parameter 'task_request' is set
-        if self.api_client.client_side_validation and ('task_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['task_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `task_request` when calling `devices_tasks_create`")  # noqa: E501
 
         collection_formats = {}
 
@@ -7498,8 +7042,8 @@ class DevicesApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'task_request' in local_var_params:
-            body_params = local_var_params['task_request']
+        if 'polymorphic_task_request' in local_var_params:
+            body_params = local_var_params['polymorphic_task_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -7514,12 +7058,7 @@ class DevicesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            201: "Task",
-            409: "ErrorDetail",
-            400: "ErrorDetail",
-            401: "ErrorDetail",
-            403: "ErrorDetail",
-            500: "ErrorDetail",
+            201: "PolymorphicTask",
         }
 
         return self.api_client.call_api(
@@ -7565,7 +7104,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: PaginatedTaskList
+        :rtype: PaginatedPolymorphicTaskList
         """
         kwargs['_return_http_data_only'] = True
         return self.devices_tasks_list_with_http_info(device_id, **kwargs)  # noqa: E501
@@ -7604,7 +7143,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(PaginatedTaskList, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(PaginatedPolymorphicTaskList, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -7662,11 +7201,7 @@ class DevicesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            200: "PaginatedTaskList",
-            400: "ErrorDetail",
-            401: "ErrorDetail",
-            403: "ErrorDetail",
-            500: "ErrorDetail",
+            200: "PaginatedPolymorphicTaskList",
         }
 
         return self.api_client.call_api(
@@ -7712,7 +7247,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: Task
+        :rtype: PolymorphicTask
         """
         kwargs['_return_http_data_only'] = True
         return self.devices_tasks_retrieve_with_http_info(device_id, id, **kwargs)  # noqa: E501
@@ -7751,7 +7286,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(Task, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(PolymorphicTask, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -7813,7 +7348,7 @@ class DevicesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            200: "Task",
+            200: "PolymorphicTask",
         }
 
         return self.api_client.call_api(
@@ -7843,7 +7378,7 @@ class DevicesApi(object):
         >>> result = thread.get()
 
         :param device_id: (required)
-        :type device_id: int
+        :type device_id: str
         :param task_id: (required)
         :type task_id: int
         :param task_status_request: (required)
@@ -7876,7 +7411,7 @@ class DevicesApi(object):
         >>> result = thread.get()
 
         :param device_id: (required)
-        :type device_id: int
+        :type device_id: str
         :param task_id: (required)
         :type task_id: int
         :param task_status_request: (required)
@@ -7977,12 +7512,7 @@ class DevicesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            200: "TaskStatus",
-            409: "ErrorDetail",
-            400: "ErrorDetail",
-            401: "ErrorDetail",
-            403: "ErrorDetail",
-            500: "ErrorDetail",
+            201: "TaskStatus",
         }
 
         return self.api_client.call_api(
@@ -8012,7 +7542,7 @@ class DevicesApi(object):
         >>> result = thread.get()
 
         :param device_id: (required)
-        :type device_id: int
+        :type device_id: str
         :param task_id: (required)
         :type task_id: int
         :param page: A page number within the paginated result set.
@@ -8045,7 +7575,7 @@ class DevicesApi(object):
         >>> result = thread.get()
 
         :param device_id: (required)
-        :type device_id: int
+        :type device_id: str
         :param task_id: (required)
         :type task_id: int
         :param page: A page number within the paginated result set.
@@ -8137,10 +7667,6 @@ class DevicesApi(object):
 
         response_types_map = {
             200: "PaginatedTaskStatusList",
-            400: "ErrorDetail",
-            401: "ErrorDetail",
-            403: "ErrorDetail",
-            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(
@@ -8170,7 +7696,7 @@ class DevicesApi(object):
         >>> result = thread.get()
 
         :param device_id: (required)
-        :type device_id: int
+        :type device_id: str
         :param id: A unique integer value identifying this task status. (required)
         :type id: int
         :param task_id: (required)
@@ -8188,7 +7714,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: Task
+        :rtype: TaskStatus
         """
         kwargs['_return_http_data_only'] = True
         return self.devices_tasks_status_retrieve_with_http_info(device_id, id, task_id, **kwargs)  # noqa: E501
@@ -8203,7 +7729,7 @@ class DevicesApi(object):
         >>> result = thread.get()
 
         :param device_id: (required)
-        :type device_id: int
+        :type device_id: str
         :param id: A unique integer value identifying this task status. (required)
         :type id: int
         :param task_id: (required)
@@ -8229,7 +7755,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(Task, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(TaskStatus, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -8298,12 +7824,7 @@ class DevicesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            201: "Task",
-            404: "ErrorDetail",
-            400: "ErrorDetail",
-            401: "ErrorDetail",
-            403: "ErrorDetail",
-            500: "ErrorDetail",
+            200: "TaskStatus",
         }
 
         return self.api_client.call_api(
@@ -8771,322 +8292,6 @@ class DevicesApi(object):
 
         return self.api_client.call_api(
             '/api/devices/{device_id}/system-info/update-or-create/', 'POST',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_types_map=response_types_map,
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats,
-            _request_auth=local_var_params.get('_request_auth'))
-
-    def tasks_monitor_start(self, device_id, task_request, **kwargs):  # noqa: E501
-        """tasks_monitor_start  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.tasks_monitor_start(device_id, task_request, async_req=True)
-        >>> result = thread.get()
-
-        :param device_id: (required)
-        :type device_id: int
-        :param task_request: (required)
-        :type task_request: TaskRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: Task
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.tasks_monitor_start_with_http_info(device_id, task_request, **kwargs)  # noqa: E501
-
-    def tasks_monitor_start_with_http_info(self, device_id, task_request, **kwargs):  # noqa: E501
-        """tasks_monitor_start  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.tasks_monitor_start_with_http_info(device_id, task_request, async_req=True)
-        >>> result = thread.get()
-
-        :param device_id: (required)
-        :type device_id: int
-        :param task_request: (required)
-        :type task_request: TaskRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(Task, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        local_var_params = locals()
-
-        all_params = [
-            'device_id',
-            'task_request'
-        ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method tasks_monitor_start" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'device_id' is set
-        if self.api_client.client_side_validation and ('device_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['device_id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `device_id` when calling `tasks_monitor_start`")  # noqa: E501
-        # verify the required parameter 'task_request' is set
-        if self.api_client.client_side_validation and ('task_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['task_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `task_request` when calling `tasks_monitor_start`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'device_id' in local_var_params:
-            path_params['device_id'] = local_var_params['device_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = dict(local_var_params.get('_headers', {}))
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'task_request' in local_var_params:
-            body_params = local_var_params['task_request']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
-                'POST', body_params))  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-
-        response_types_map = {
-            201: "Task",
-            409: "ErrorDetail",
-            400: "ErrorDetail",
-            401: "ErrorDetail",
-            403: "ErrorDetail",
-            500: "ErrorDetail",
-        }
-
-        return self.api_client.call_api(
-            '/api/devices/{device_id}/tasks/monitor-start/', 'POST',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_types_map=response_types_map,
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats,
-            _request_auth=local_var_params.get('_request_auth'))
-
-    def tasks_monitor_stop(self, device_id, task_request, **kwargs):  # noqa: E501
-        """tasks_monitor_stop  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.tasks_monitor_stop(device_id, task_request, async_req=True)
-        >>> result = thread.get()
-
-        :param device_id: (required)
-        :type device_id: int
-        :param task_request: (required)
-        :type task_request: TaskRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: Task
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.tasks_monitor_stop_with_http_info(device_id, task_request, **kwargs)  # noqa: E501
-
-    def tasks_monitor_stop_with_http_info(self, device_id, task_request, **kwargs):  # noqa: E501
-        """tasks_monitor_stop  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.tasks_monitor_stop_with_http_info(device_id, task_request, async_req=True)
-        >>> result = thread.get()
-
-        :param device_id: (required)
-        :type device_id: int
-        :param task_request: (required)
-        :type task_request: TaskRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(Task, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        local_var_params = locals()
-
-        all_params = [
-            'device_id',
-            'task_request'
-        ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method tasks_monitor_stop" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'device_id' is set
-        if self.api_client.client_side_validation and ('device_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['device_id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `device_id` when calling `tasks_monitor_stop`")  # noqa: E501
-        # verify the required parameter 'task_request' is set
-        if self.api_client.client_side_validation and ('task_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['task_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `task_request` when calling `tasks_monitor_stop`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'device_id' in local_var_params:
-            path_params['device_id'] = local_var_params['device_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = dict(local_var_params.get('_headers', {}))
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'task_request' in local_var_params:
-            body_params = local_var_params['task_request']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
-                'POST', body_params))  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-
-        response_types_map = {
-            201: "Task",
-            409: "ErrorDetail",
-            400: "ErrorDetail",
-            401: "ErrorDetail",
-            403: "ErrorDetail",
-            500: "ErrorDetail",
-        }
-
-        return self.api_client.call_api(
-            '/api/devices/{device_id}/tasks/monitor-stop/', 'POST',
             path_params,
             query_params,
             header_params,

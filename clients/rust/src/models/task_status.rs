@@ -15,16 +15,10 @@
 pub struct TaskStatus {
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "detail", skip_serializing_if = "Option::is_none")]
-    pub detail: Option<String>,
-    #[serde(rename = "wiki_url", skip_serializing_if = "Option::is_none")]
-    pub wiki_url: Option<String>,
     #[serde(rename = "status")]
-    pub status: crate::models::TaskStatusType,
-    #[serde(rename = "status_display")]
-    pub status_display: String,
-    #[serde(rename = "css_class")]
-    pub css_class: String,
+    pub status: crate::models::TaskStatusStatusEnum,
+    #[serde(rename = "deleted")]
+    pub deleted: String,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
     #[serde(rename = "task")]
@@ -32,14 +26,11 @@ pub struct TaskStatus {
 }
 
 impl TaskStatus {
-    pub fn new(id: i32, status: crate::models::TaskStatusType, status_display: String, css_class: String, created_dt: String, task: i32) -> TaskStatus {
+    pub fn new(id: i32, status: crate::models::TaskStatusStatusEnum, deleted: String, created_dt: String, task: i32) -> TaskStatus {
         TaskStatus {
             id,
-            detail: None,
-            wiki_url: None,
             status,
-            status_display,
-            css_class,
+            deleted,
             created_dt,
             task,
         }

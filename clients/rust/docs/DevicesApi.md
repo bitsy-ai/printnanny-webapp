@@ -31,9 +31,6 @@ Method | HTTP request | Description
 [**devices_janus_edge_auth_update**](DevicesApi.md#devices_janus_edge_auth_update) | **PUT** /api/devices/{device_id}/janus-edge-auth/{id}/ | 
 [**devices_janus_edge_auth_update_or_create**](DevicesApi.md#devices_janus_edge_auth_update_or_create) | **POST** /api/devices/{device_id}/janus-edge-auth/update-or-create/ | 
 [**devices_list**](DevicesApi.md#devices_list) | **GET** /api/devices/ | 
-[**devices_onboarding_tasks_create**](DevicesApi.md#devices_onboarding_tasks_create) | **POST** /api/devices/{device_id}/onboarding-tasks/ | 
-[**devices_onboarding_tasks_list**](DevicesApi.md#devices_onboarding_tasks_list) | **GET** /api/devices/{device_id}/onboarding-tasks/ | 
-[**devices_onboarding_tasks_retrieve**](DevicesApi.md#devices_onboarding_tasks_retrieve) | **GET** /api/devices/{device_id}/onboarding-tasks/{id}/ | 
 [**devices_partial_update**](DevicesApi.md#devices_partial_update) | **PATCH** /api/devices/{id}/ | 
 [**devices_printer_controllers_create**](DevicesApi.md#devices_printer_controllers_create) | **POST** /api/devices/{device_id}/printer-controllers/ | 
 [**devices_printer_controllers_list**](DevicesApi.md#devices_printer_controllers_list) | **GET** /api/devices/{device_id}/printer-controllers/ | 
@@ -61,8 +58,6 @@ Method | HTTP request | Description
 [**devices_update**](DevicesApi.md#devices_update) | **PUT** /api/devices/{id}/ | 
 [**public_key_update_or_create**](DevicesApi.md#public_key_update_or_create) | **POST** /api/devices/{device_id}/public-keys/update-or-create/ | 
 [**system_info_update_or_create**](DevicesApi.md#system_info_update_or_create) | **POST** /api/devices/{device_id}/system-info/update-or-create/ | 
-[**tasks_monitor_start**](DevicesApi.md#tasks_monitor_start) | **POST** /api/devices/{device_id}/tasks/monitor-start/ | 
-[**tasks_monitor_stop**](DevicesApi.md#tasks_monitor_stop) | **POST** /api/devices/{device_id}/tasks/monitor-stop/ | 
 
 
 
@@ -859,93 +854,6 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## devices_onboarding_tasks_create
-
-> crate::models::OnboardingTask devices_onboarding_tasks_create(device_id, onboarding_task_request)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-**onboarding_task_request** | [**OnboardingTaskRequest**](OnboardingTaskRequest.md) |  | [required] |
-
-### Return type
-
-[**crate::models::OnboardingTask**](OnboardingTask.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## devices_onboarding_tasks_list
-
-> crate::models::PaginatedOnboardingTaskList devices_onboarding_tasks_list(device_id, page)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-**page** | Option<**i32**> | A page number within the paginated result set. |  |
-
-### Return type
-
-[**crate::models::PaginatedOnboardingTaskList**](PaginatedOnboardingTaskList.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## devices_onboarding_tasks_retrieve
-
-> crate::models::OnboardingTask devices_onboarding_tasks_retrieve(device_id, id)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-**id** | **i32** | A unique integer value identifying this onboarding task. | [required] |
-
-### Return type
-
-[**crate::models::OnboardingTask**](OnboardingTask.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
 ## devices_partial_update
 
 > crate::models::Device devices_partial_update(id, patched_device_request)
@@ -1478,7 +1386,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_tasks_create
 
-> crate::models::Task devices_tasks_create(device_id, task_request)
+> crate::models::PolymorphicTask devices_tasks_create(device_id, polymorphic_task_request)
 
 
 ### Parameters
@@ -1487,11 +1395,11 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
-**task_request** | [**TaskRequest**](TaskRequest.md) |  | [required] |
+**polymorphic_task_request** | Option<[**PolymorphicTaskRequest**](PolymorphicTaskRequest.md)> |  |  |
 
 ### Return type
 
-[**crate::models::Task**](Task.md)
+[**crate::models::PolymorphicTask**](PolymorphicTask.md)
 
 ### Authorization
 
@@ -1507,7 +1415,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_tasks_list
 
-> crate::models::PaginatedTaskList devices_tasks_list(device_id, page)
+> crate::models::PaginatedPolymorphicTaskList devices_tasks_list(device_id, page)
 
 
 ### Parameters
@@ -1520,7 +1428,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::PaginatedTaskList**](PaginatedTaskList.md)
+[**crate::models::PaginatedPolymorphicTaskList**](PaginatedPolymorphicTaskList.md)
 
 ### Authorization
 
@@ -1536,7 +1444,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_tasks_retrieve
 
-> crate::models::Task devices_tasks_retrieve(device_id, id)
+> crate::models::PolymorphicTask devices_tasks_retrieve(device_id, id)
 
 
 ### Parameters
@@ -1549,7 +1457,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Task**](Task.md)
+[**crate::models::PolymorphicTask**](PolymorphicTask.md)
 
 ### Authorization
 
@@ -1573,7 +1481,7 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
+**device_id** | **String** |  | [required] |
 **task_id** | **i32** |  | [required] |
 **task_status_request** | [**TaskStatusRequest**](TaskStatusRequest.md) |  | [required] |
 
@@ -1603,7 +1511,7 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
+**device_id** | **String** |  | [required] |
 **task_id** | **i32** |  | [required] |
 **page** | Option<**i32**> | A page number within the paginated result set. |  |
 
@@ -1625,7 +1533,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_tasks_status_retrieve
 
-> crate::models::Task devices_tasks_status_retrieve(device_id, id, task_id)
+> crate::models::TaskStatus devices_tasks_status_retrieve(device_id, id, task_id)
 
 
 ### Parameters
@@ -1633,13 +1541,13 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
+**device_id** | **String** |  | [required] |
 **id** | **i32** | A unique integer value identifying this task status. | [required] |
 **task_id** | **i32** |  | [required] |
 
 ### Return type
 
-[**crate::models::Task**](Task.md)
+[**crate::models::TaskStatus**](TaskStatus.md)
 
 ### Authorization
 
@@ -1729,64 +1637,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::SystemInfo**](SystemInfo.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## tasks_monitor_start
-
-> crate::models::Task tasks_monitor_start(device_id, task_request)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-**task_request** | [**TaskRequest**](TaskRequest.md) |  | [required] |
-
-### Return type
-
-[**crate::models::Task**](Task.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## tasks_monitor_stop
-
-> crate::models::Task tasks_monitor_stop(device_id, task_request)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-**task_request** | [**TaskRequest**](TaskRequest.md) |  | [required] |
-
-### Return type
-
-[**crate::models::Task**](Task.md)
 
 ### Authorization
 

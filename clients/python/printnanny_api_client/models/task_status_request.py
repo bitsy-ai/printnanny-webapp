@@ -37,83 +37,23 @@ class TaskStatusRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'detail': 'str',
-        'wiki_url': 'str',
-        'status': 'TaskStatusType',
-        'task': 'int'
+        'status': 'TaskStatusStatusEnum'
     }
 
     attribute_map = {
-        'detail': 'detail',
-        'wiki_url': 'wiki_url',
-        'status': 'status',
-        'task': 'task'
+        'status': 'status'
     }
 
-    def __init__(self, detail=None, wiki_url=None, status=None, task=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, status=None, local_vars_configuration=None):  # noqa: E501
         """TaskStatusRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
-        self._detail = None
-        self._wiki_url = None
         self._status = None
-        self._task = None
         self.discriminator = None
 
-        self.detail = detail
-        self.wiki_url = wiki_url
         self.status = status
-        self.task = task
-
-    @property
-    def detail(self):
-        """Gets the detail of this TaskStatusRequest.  # noqa: E501
-
-
-        :return: The detail of this TaskStatusRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._detail
-
-    @detail.setter
-    def detail(self, detail):
-        """Sets the detail of this TaskStatusRequest.
-
-
-        :param detail: The detail of this TaskStatusRequest.  # noqa: E501
-        :type detail: str
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                detail is not None and len(detail) < 1):
-            raise ValueError("Invalid value for `detail`, length must be greater than or equal to `1`")  # noqa: E501
-
-        self._detail = detail
-
-    @property
-    def wiki_url(self):
-        """Gets the wiki_url of this TaskStatusRequest.  # noqa: E501
-
-
-        :return: The wiki_url of this TaskStatusRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._wiki_url
-
-    @wiki_url.setter
-    def wiki_url(self, wiki_url):
-        """Sets the wiki_url of this TaskStatusRequest.
-
-
-        :param wiki_url: The wiki_url of this TaskStatusRequest.  # noqa: E501
-        :type wiki_url: str
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                wiki_url is not None and len(wiki_url) < 1):
-            raise ValueError("Invalid value for `wiki_url`, length must be greater than or equal to `1`")  # noqa: E501
-
-        self._wiki_url = wiki_url
 
     @property
     def status(self):
@@ -121,7 +61,7 @@ class TaskStatusRequest(object):
 
 
         :return: The status of this TaskStatusRequest.  # noqa: E501
-        :rtype: TaskStatusType
+        :rtype: TaskStatusStatusEnum
         """
         return self._status
 
@@ -131,35 +71,12 @@ class TaskStatusRequest(object):
 
 
         :param status: The status of this TaskStatusRequest.  # noqa: E501
-        :type status: TaskStatusType
+        :type status: TaskStatusStatusEnum
         """
         if self.local_vars_configuration.client_side_validation and status is None:  # noqa: E501
             raise ValueError("Invalid value for `status`, must not be `None`")  # noqa: E501
 
         self._status = status
-
-    @property
-    def task(self):
-        """Gets the task of this TaskStatusRequest.  # noqa: E501
-
-
-        :return: The task of this TaskStatusRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._task
-
-    @task.setter
-    def task(self, task):
-        """Sets the task of this TaskStatusRequest.
-
-
-        :param task: The task of this TaskStatusRequest.  # noqa: E501
-        :type task: int
-        """
-        if self.local_vars_configuration.client_side_validation and task is None:  # noqa: E501
-            raise ValueError("Invalid value for `task`, must not be `None`")  # noqa: E501
-
-        self._task = task
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

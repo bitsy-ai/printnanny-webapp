@@ -72,6 +72,7 @@ pub mod partners_geeks3_api;
 pub mod partners_geeks3d_api;
 pub mod remote_control_api;
 pub mod schema_api;
+pub mod tasks_api;
 pub mod telemetry_api;
 pub mod users_api;
 

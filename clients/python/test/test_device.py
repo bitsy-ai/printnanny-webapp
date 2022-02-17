@@ -52,10 +52,8 @@ class TestDevice(unittest.TestCase):
                 active_tasks = [
                     printnanny_api_client.models.task.Task(
                         id = 56, 
-                        last_status = null, 
-                        task_type = 'monitor_start', 
-                        active = True, 
-                        task_type_display = '', 
+                        tasktype = 'cloud_monitor_start', 
+                        deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         polymorphic_ctype = 56, 
                         device = 56, )
@@ -114,10 +112,8 @@ class TestDevice(unittest.TestCase):
                 active_tasks = [
                     printnanny_api_client.models.task.Task(
                         id = 56, 
-                        last_status = null, 
-                        task_type = 'monitor_start', 
-                        active = True, 
-                        task_type_display = '', 
+                        tasktype = 'cloud_monitor_start', 
+                        deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         polymorphic_ctype = 56, 
                         device = 56, )

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**api_token** | **String** |  | 
+**api_token** | Option<**String**> |  | [optional]
 **admin_secret** | **String** |  | 
 **device** | **i32** |  | 
 

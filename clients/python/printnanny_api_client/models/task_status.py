@@ -38,48 +38,36 @@ class TaskStatus(object):
     """
     openapi_types = {
         'id': 'int',
-        'detail': 'str',
-        'wiki_url': 'str',
-        'status': 'TaskStatusType',
-        'status_display': 'str',
-        'css_class': 'str',
+        'status': 'TaskStatusStatusEnum',
+        'deleted': 'datetime',
         'created_dt': 'datetime',
         'task': 'int'
     }
 
     attribute_map = {
         'id': 'id',
-        'detail': 'detail',
-        'wiki_url': 'wiki_url',
         'status': 'status',
-        'status_display': 'status_display',
-        'css_class': 'css_class',
+        'deleted': 'deleted',
         'created_dt': 'created_dt',
         'task': 'task'
     }
 
-    def __init__(self, id=None, detail=None, wiki_url=None, status=None, status_display=None, css_class=None, created_dt=None, task=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, status=None, deleted=None, created_dt=None, task=None, local_vars_configuration=None):  # noqa: E501
         """TaskStatus - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
-        self._detail = None
-        self._wiki_url = None
         self._status = None
-        self._status_display = None
-        self._css_class = None
+        self._deleted = None
         self._created_dt = None
         self._task = None
         self.discriminator = None
 
         self.id = id
-        self.detail = detail
-        self.wiki_url = wiki_url
         self.status = status
-        self.status_display = status_display
-        self.css_class = css_class
+        self.deleted = deleted
         self.created_dt = created_dt
         self.task = task
 
@@ -107,54 +95,12 @@ class TaskStatus(object):
         self._id = id
 
     @property
-    def detail(self):
-        """Gets the detail of this TaskStatus.  # noqa: E501
-
-
-        :return: The detail of this TaskStatus.  # noqa: E501
-        :rtype: str
-        """
-        return self._detail
-
-    @detail.setter
-    def detail(self, detail):
-        """Sets the detail of this TaskStatus.
-
-
-        :param detail: The detail of this TaskStatus.  # noqa: E501
-        :type detail: str
-        """
-
-        self._detail = detail
-
-    @property
-    def wiki_url(self):
-        """Gets the wiki_url of this TaskStatus.  # noqa: E501
-
-
-        :return: The wiki_url of this TaskStatus.  # noqa: E501
-        :rtype: str
-        """
-        return self._wiki_url
-
-    @wiki_url.setter
-    def wiki_url(self, wiki_url):
-        """Sets the wiki_url of this TaskStatus.
-
-
-        :param wiki_url: The wiki_url of this TaskStatus.  # noqa: E501
-        :type wiki_url: str
-        """
-
-        self._wiki_url = wiki_url
-
-    @property
     def status(self):
         """Gets the status of this TaskStatus.  # noqa: E501
 
 
         :return: The status of this TaskStatus.  # noqa: E501
-        :rtype: TaskStatusType
+        :rtype: TaskStatusStatusEnum
         """
         return self._status
 
@@ -164,7 +110,7 @@ class TaskStatus(object):
 
 
         :param status: The status of this TaskStatus.  # noqa: E501
-        :type status: TaskStatusType
+        :type status: TaskStatusStatusEnum
         """
         if self.local_vars_configuration.client_side_validation and status is None:  # noqa: E501
             raise ValueError("Invalid value for `status`, must not be `None`")  # noqa: E501
@@ -172,50 +118,27 @@ class TaskStatus(object):
         self._status = status
 
     @property
-    def status_display(self):
-        """Gets the status_display of this TaskStatus.  # noqa: E501
+    def deleted(self):
+        """Gets the deleted of this TaskStatus.  # noqa: E501
 
 
-        :return: The status_display of this TaskStatus.  # noqa: E501
-        :rtype: str
+        :return: The deleted of this TaskStatus.  # noqa: E501
+        :rtype: datetime
         """
-        return self._status_display
+        return self._deleted
 
-    @status_display.setter
-    def status_display(self, status_display):
-        """Sets the status_display of this TaskStatus.
+    @deleted.setter
+    def deleted(self, deleted):
+        """Sets the deleted of this TaskStatus.
 
 
-        :param status_display: The status_display of this TaskStatus.  # noqa: E501
-        :type status_display: str
+        :param deleted: The deleted of this TaskStatus.  # noqa: E501
+        :type deleted: datetime
         """
-        if self.local_vars_configuration.client_side_validation and status_display is None:  # noqa: E501
-            raise ValueError("Invalid value for `status_display`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and deleted is None:  # noqa: E501
+            raise ValueError("Invalid value for `deleted`, must not be `None`")  # noqa: E501
 
-        self._status_display = status_display
-
-    @property
-    def css_class(self):
-        """Gets the css_class of this TaskStatus.  # noqa: E501
-
-
-        :return: The css_class of this TaskStatus.  # noqa: E501
-        :rtype: str
-        """
-        return self._css_class
-
-    @css_class.setter
-    def css_class(self, css_class):
-        """Sets the css_class of this TaskStatus.
-
-
-        :param css_class: The css_class of this TaskStatus.  # noqa: E501
-        :type css_class: str
-        """
-        if self.local_vars_configuration.client_side_validation and css_class is None:  # noqa: E501
-            raise ValueError("Invalid value for `css_class`, must not be `None`")  # noqa: E501
-
-        self._css_class = css_class
+        self._deleted = deleted
 
     @property
     def created_dt(self):

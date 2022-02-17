@@ -38,10 +38,8 @@ class Task(object):
     """
     openapi_types = {
         'id': 'int',
-        'last_status': 'TaskStatus',
-        'task_type': 'TaskType',
-        'active': 'bool',
-        'task_type_display': 'str',
+        'tasktype': 'TasktypeEnum',
+        'deleted': 'datetime',
         'created_dt': 'datetime',
         'polymorphic_ctype': 'int',
         'device': 'int'
@@ -49,37 +47,30 @@ class Task(object):
 
     attribute_map = {
         'id': 'id',
-        'last_status': 'last_status',
-        'task_type': 'task_type',
-        'active': 'active',
-        'task_type_display': 'task_type_display',
+        'tasktype': 'tasktype',
+        'deleted': 'deleted',
         'created_dt': 'created_dt',
         'polymorphic_ctype': 'polymorphic_ctype',
         'device': 'device'
     }
 
-    def __init__(self, id=None, last_status=None, task_type=None, active=True, task_type_display=None, created_dt=None, polymorphic_ctype=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, tasktype=None, deleted=None, created_dt=None, polymorphic_ctype=None, device=None, local_vars_configuration=None):  # noqa: E501
         """Task - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
-        self._last_status = None
-        self._task_type = None
-        self._active = None
-        self._task_type_display = None
+        self._tasktype = None
+        self._deleted = None
         self._created_dt = None
         self._polymorphic_ctype = None
         self._device = None
         self.discriminator = None
 
         self.id = id
-        self.last_status = last_status
-        self.task_type = task_type
-        if active is not None:
-            self.active = active
-        self.task_type_display = task_type_display
+        self.tasktype = tasktype
+        self.deleted = deleted
         self.created_dt = created_dt
         self.polymorphic_ctype = polymorphic_ctype
         self.device = device
@@ -108,92 +99,50 @@ class Task(object):
         self._id = id
 
     @property
-    def last_status(self):
-        """Gets the last_status of this Task.  # noqa: E501
+    def tasktype(self):
+        """Gets the tasktype of this Task.  # noqa: E501
 
 
-        :return: The last_status of this Task.  # noqa: E501
-        :rtype: TaskStatus
+        :return: The tasktype of this Task.  # noqa: E501
+        :rtype: TasktypeEnum
         """
-        return self._last_status
+        return self._tasktype
 
-    @last_status.setter
-    def last_status(self, last_status):
-        """Sets the last_status of this Task.
+    @tasktype.setter
+    def tasktype(self, tasktype):
+        """Sets the tasktype of this Task.
 
 
-        :param last_status: The last_status of this Task.  # noqa: E501
-        :type last_status: TaskStatus
+        :param tasktype: The tasktype of this Task.  # noqa: E501
+        :type tasktype: TasktypeEnum
         """
+        if self.local_vars_configuration.client_side_validation and tasktype is None:  # noqa: E501
+            raise ValueError("Invalid value for `tasktype`, must not be `None`")  # noqa: E501
 
-        self._last_status = last_status
+        self._tasktype = tasktype
 
     @property
-    def task_type(self):
-        """Gets the task_type of this Task.  # noqa: E501
+    def deleted(self):
+        """Gets the deleted of this Task.  # noqa: E501
 
 
-        :return: The task_type of this Task.  # noqa: E501
-        :rtype: TaskType
+        :return: The deleted of this Task.  # noqa: E501
+        :rtype: datetime
         """
-        return self._task_type
+        return self._deleted
 
-    @task_type.setter
-    def task_type(self, task_type):
-        """Sets the task_type of this Task.
+    @deleted.setter
+    def deleted(self, deleted):
+        """Sets the deleted of this Task.
 
 
-        :param task_type: The task_type of this Task.  # noqa: E501
-        :type task_type: TaskType
+        :param deleted: The deleted of this Task.  # noqa: E501
+        :type deleted: datetime
         """
-        if self.local_vars_configuration.client_side_validation and task_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `task_type`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and deleted is None:  # noqa: E501
+            raise ValueError("Invalid value for `deleted`, must not be `None`")  # noqa: E501
 
-        self._task_type = task_type
-
-    @property
-    def active(self):
-        """Gets the active of this Task.  # noqa: E501
-
-
-        :return: The active of this Task.  # noqa: E501
-        :rtype: bool
-        """
-        return self._active
-
-    @active.setter
-    def active(self, active):
-        """Sets the active of this Task.
-
-
-        :param active: The active of this Task.  # noqa: E501
-        :type active: bool
-        """
-
-        self._active = active
-
-    @property
-    def task_type_display(self):
-        """Gets the task_type_display of this Task.  # noqa: E501
-
-
-        :return: The task_type_display of this Task.  # noqa: E501
-        :rtype: str
-        """
-        return self._task_type_display
-
-    @task_type_display.setter
-    def task_type_display(self, task_type_display):
-        """Sets the task_type_display of this Task.
-
-
-        :param task_type_display: The task_type_display of this Task.  # noqa: E501
-        :type task_type_display: str
-        """
-        if self.local_vars_configuration.client_side_validation and task_type_display is None:  # noqa: E501
-            raise ValueError("Invalid value for `task_type_display`, must not be `None`")  # noqa: E501
-
-        self._task_type_display = task_type_display
+        self._deleted = deleted
 
     @property
     def created_dt(self):

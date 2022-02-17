@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**api_token** | **str** |  | 
+**api_token** | **str** |  | [optional] 
 **admin_secret** | **str** |  | 
 **device** | **int** |  | 
 

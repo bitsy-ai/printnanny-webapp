@@ -15,8 +15,8 @@
 pub struct JanusCloudAuth {
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "api_token")]
-    pub api_token: String,
+    #[serde(rename = "api_token", skip_serializing_if = "Option::is_none")]
+    pub api_token: Option<String>,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
     #[serde(rename = "user")]
@@ -24,10 +24,10 @@ pub struct JanusCloudAuth {
 }
 
 impl JanusCloudAuth {
-    pub fn new(id: i32, api_token: String, created_dt: String, user: i32) -> JanusCloudAuth {
+    pub fn new(id: i32, created_dt: String, user: i32) -> JanusCloudAuth {
         JanusCloudAuth {
             id,
-            api_token,
+            api_token: None,
             created_dt,
             user,
         }

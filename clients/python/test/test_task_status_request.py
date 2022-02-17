@@ -37,15 +37,11 @@ class TestTaskStatusRequest(unittest.TestCase):
         # model = printnanny_api_client.models.task_status_request.TaskStatusRequest()  # noqa: E501
         if include_optional :
             return TaskStatusRequest(
-                detail = '0', 
-                wiki_url = '0', 
-                status = 'failed', 
-                task = 56
+                status = 'failed'
             )
         else :
             return TaskStatusRequest(
                 status = 'failed',
-                task = 56,
         )
 
     def testTaskStatusRequest(self):

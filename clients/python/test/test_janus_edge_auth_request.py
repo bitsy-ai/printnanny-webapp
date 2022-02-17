@@ -43,7 +43,6 @@ class TestJanusEdgeAuthRequest(unittest.TestCase):
             )
         else :
             return JanusEdgeAuthRequest(
-                api_token = '0',
                 admin_secret = '0',
                 device = 56,
         )
