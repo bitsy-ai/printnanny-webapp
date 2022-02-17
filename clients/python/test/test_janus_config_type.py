@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.task_type_enum import TaskTypeEnum  # noqa: E501
+from printnanny_api_client.models.janus_config_type import JanusConfigType  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestTaskTypeEnum(unittest.TestCase):
-    """TaskTypeEnum unit test stubs"""
+class TestJanusConfigType(unittest.TestCase):
+    """JanusConfigType unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,20 +30,20 @@ class TestTaskTypeEnum(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test TaskTypeEnum
+        """Test JanusConfigType
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.task_type_enum.TaskTypeEnum()  # noqa: E501
+        # model = printnanny_api_client.models.janus_config_type.JanusConfigType()  # noqa: E501
         if include_optional :
-            return TaskTypeEnum(
+            return JanusConfigType(
             )
         else :
-            return TaskTypeEnum(
+            return JanusConfigType(
         )
 
-    def testTaskTypeEnum(self):
-        """Test TaskTypeEnum"""
+    def testJanusConfigType(self):
+        """Test JanusConfigType"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

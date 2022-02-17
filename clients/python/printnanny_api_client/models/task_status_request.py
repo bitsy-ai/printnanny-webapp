@@ -37,7 +37,7 @@ class TaskStatusRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'status': 'TaskStatusStatusEnum'
+        'status': 'TaskStatusType'
     }
 
     attribute_map = {
@@ -61,7 +61,7 @@ class TaskStatusRequest(object):
 
 
         :return: The status of this TaskStatusRequest.  # noqa: E501
-        :rtype: TaskStatusStatusEnum
+        :rtype: TaskStatusType
         """
         return self._status
 
@@ -71,7 +71,7 @@ class TaskStatusRequest(object):
 
 
         :param status: The status of this TaskStatusRequest.  # noqa: E501
-        :type status: TaskStatusStatusEnum
+        :type status: TaskStatusType
         """
         if self.local_vars_configuration.client_side_validation and status is None:  # noqa: E501
             raise ValueError("Invalid value for `status`, must not be `None`")  # noqa: E501

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
-**status** | [**TaskStatusStatusEnum**](TaskStatusStatusEnum.md) |  | 
+**status** | [**TaskStatusType**](TaskStatusType.md) |  | 
 **deleted** | **datetime** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
 **task** | **int** |  | [readonly] 

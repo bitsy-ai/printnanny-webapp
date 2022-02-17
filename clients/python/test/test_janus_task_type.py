@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.release_channel_enum import ReleaseChannelEnum  # noqa: E501
+from printnanny_api_client.models.janus_task_type import JanusTaskType  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestReleaseChannelEnum(unittest.TestCase):
-    """ReleaseChannelEnum unit test stubs"""
+class TestJanusTaskType(unittest.TestCase):
+    """JanusTaskType unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,20 +30,20 @@ class TestReleaseChannelEnum(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test ReleaseChannelEnum
+        """Test JanusTaskType
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.release_channel_enum.ReleaseChannelEnum()  # noqa: E501
+        # model = printnanny_api_client.models.janus_task_type.JanusTaskType()  # noqa: E501
         if include_optional :
-            return ReleaseChannelEnum(
+            return JanusTaskType(
             )
         else :
-            return ReleaseChannelEnum(
+            return JanusTaskType(
         )
 
-    def testReleaseChannelEnum(self):
-        """Test ReleaseChannelEnum"""
+    def testJanusTaskType(self):
+        """Test JanusTaskType"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

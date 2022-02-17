@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **id** | **i32** |  | [readonly]
 **deleted** | **String** |  | [readonly]
 **created_dt** | **String** |  | [readonly]
-**task_type** | [**crate::models::TaskTypeEnum**](TaskTypeEnum.md) |  | 
+**task_type** | [**crate::models::JanusTaskType**](JanusTaskType.md) |  | 
 **polymorphic_ctype** | **i32** |  | [readonly]
 **device** | **i32** |  | [readonly]
 **stream** | **i32** |  | 

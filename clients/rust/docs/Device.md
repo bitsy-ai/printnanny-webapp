@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **setup_complete** | Option<**bool**> |  | [optional][default to false]
 **printer_controllers** | [**Vec<crate::models::PrinterController>**](PrinterController.md) |  | [readonly]
 **user** | Option<[**crate::models::User**](User.md)> |  | [readonly]
-**release_channel** | Option<[**crate::models::ReleaseChannelEnum**](ReleaseChannelEnum.md)> |  | [optional]
+**release_channel** | Option<[**crate::models::DeviceReleaseChannel**](DeviceReleaseChannel.md)> |  | [optional]
 **system_info** | Option<[**crate::models::SystemInfo**](SystemInfo.md)> |  | [readonly]
 **public_key** | Option<[**crate::models::PublicKey**](PublicKey.md)> |  | [readonly]
 **created_dt** | **String** |  | [readonly]

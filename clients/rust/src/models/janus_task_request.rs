@@ -14,13 +14,13 @@
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct JanusTaskRequest {
     #[serde(rename = "task_type")]
-    pub task_type: crate::models::TaskTypeEnum,
+    pub task_type: crate::models::JanusTaskType,
     #[serde(rename = "stream")]
     pub stream: i32,
 }
 
 impl JanusTaskRequest {
-    pub fn new(task_type: crate::models::TaskTypeEnum, stream: i32) -> JanusTaskRequest {
+    pub fn new(task_type: crate::models::JanusTaskType, stream: i32) -> JanusTaskRequest {
         JanusTaskRequest {
             task_type,
             stream,

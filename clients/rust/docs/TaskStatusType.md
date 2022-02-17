@@ -1,4 +1,4 @@
-# ReleaseChannelEnum
+# TaskStatusType
 
 ## Properties
 

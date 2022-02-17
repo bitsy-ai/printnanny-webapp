@@ -42,7 +42,7 @@ pub struct Device {
     #[serde(rename = "user")]
     pub user: Option<Box<crate::models::User>>,
     #[serde(rename = "release_channel", skip_serializing_if = "Option::is_none")]
-    pub release_channel: Option<Box<crate::models::ReleaseChannelEnum>>,
+    pub release_channel: Option<Box<crate::models::DeviceReleaseChannel>>,
     #[serde(rename = "system_info")]
     pub system_info: Option<Box<crate::models::SystemInfo>>,
     #[serde(rename = "public_key")]

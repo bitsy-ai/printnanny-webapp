@@ -39,7 +39,7 @@ class DeviceRequest(object):
     openapi_types = {
         'monitoring_active': 'bool',
         'setup_complete': 'bool',
-        'release_channel': 'ReleaseChannelEnum',
+        'release_channel': 'DeviceReleaseChannel',
         'hostname': 'str'
     }
 
@@ -118,7 +118,7 @@ class DeviceRequest(object):
 
 
         :return: The release_channel of this DeviceRequest.  # noqa: E501
-        :rtype: ReleaseChannelEnum
+        :rtype: DeviceReleaseChannel
         """
         return self._release_channel
 
@@ -128,7 +128,7 @@ class DeviceRequest(object):
 
 
         :param release_channel: The release_channel of this DeviceRequest.  # noqa: E501
-        :type release_channel: ReleaseChannelEnum
+        :type release_channel: DeviceReleaseChannel
         """
 
         self._release_channel = release_channel

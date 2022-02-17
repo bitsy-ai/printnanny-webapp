@@ -39,7 +39,7 @@ class JanusAuthRequest(object):
     openapi_types = {
         'admin_secret': 'str',
         'api_token': 'str',
-        'config_type': 'ConfigTypeEnum',
+        'config_type': 'JanusConfigType',
         'user': 'int'
     }
 
@@ -129,7 +129,7 @@ class JanusAuthRequest(object):
 
 
         :return: The config_type of this JanusAuthRequest.  # noqa: E501
-        :rtype: ConfigTypeEnum
+        :rtype: JanusConfigType
         """
         return self._config_type
 
@@ -139,7 +139,7 @@ class JanusAuthRequest(object):
 
 
         :param config_type: The config_type of this JanusAuthRequest.  # noqa: E501
-        :type config_type: ConfigTypeEnum
+        :type config_type: JanusConfigType
         """
 
         self._config_type = config_type

@@ -37,7 +37,7 @@ class PolymorphicTaskRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'task_type': 'TaskTypeEnum',
+        'task_type': 'JanusTaskType',
         'stream': 'int'
     }
 
@@ -68,7 +68,7 @@ class PolymorphicTaskRequest(object):
 
 
         :return: The task_type of this PolymorphicTaskRequest.  # noqa: E501
-        :rtype: TaskTypeEnum
+        :rtype: JanusTaskType
         """
         return self._task_type
 
@@ -78,7 +78,7 @@ class PolymorphicTaskRequest(object):
 
 
         :param task_type: The task_type of this PolymorphicTaskRequest.  # noqa: E501
-        :type task_type: TaskTypeEnum
+        :type task_type: JanusTaskType
         """
         if self.local_vars_configuration.client_side_validation and task_type is None:  # noqa: E501
             raise ValueError("Invalid value for `task_type`, must not be `None`")  # noqa: E501

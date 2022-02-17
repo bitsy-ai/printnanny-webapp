@@ -40,7 +40,7 @@ class JanusTask(object):
         'id': 'int',
         'deleted': 'datetime',
         'created_dt': 'datetime',
-        'task_type': 'TaskTypeEnum',
+        'task_type': 'JanusTaskType',
         'polymorphic_ctype': 'int',
         'device': 'int',
         'stream': 'int'
@@ -154,7 +154,7 @@ class JanusTask(object):
 
 
         :return: The task_type of this JanusTask.  # noqa: E501
-        :rtype: TaskTypeEnum
+        :rtype: JanusTaskType
         """
         return self._task_type
 
@@ -164,7 +164,7 @@ class JanusTask(object):
 
 
         :param task_type: The task_type of this JanusTask.  # noqa: E501
-        :type task_type: TaskTypeEnum
+        :type task_type: JanusTaskType
         """
         if self.local_vars_configuration.client_side_validation and task_type is None:  # noqa: E501
             raise ValueError("Invalid value for `task_type`, must not be `None`")  # noqa: E501

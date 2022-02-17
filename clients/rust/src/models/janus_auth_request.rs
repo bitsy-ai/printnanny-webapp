@@ -18,7 +18,7 @@ pub struct JanusAuthRequest {
     #[serde(rename = "api_token", skip_serializing_if = "Option::is_none")]
     pub api_token: Option<String>,
     #[serde(rename = "config_type", skip_serializing_if = "Option::is_none")]
-    pub config_type: Option<crate::models::ConfigTypeEnum>,
+    pub config_type: Option<crate::models::JanusConfigType>,
     #[serde(rename = "user")]
     pub user: i32,
 }

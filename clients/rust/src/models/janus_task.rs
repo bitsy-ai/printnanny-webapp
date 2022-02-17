@@ -20,7 +20,7 @@ pub struct JanusTask {
     #[serde(rename = "created_dt")]
     pub created_dt: String,
     #[serde(rename = "task_type")]
-    pub task_type: crate::models::TaskTypeEnum,
+    pub task_type: crate::models::JanusTaskType,
     #[serde(rename = "polymorphic_ctype")]
     pub polymorphic_ctype: i32,
     #[serde(rename = "device")]
@@ -30,7 +30,7 @@ pub struct JanusTask {
 }
 
 impl JanusTask {
-    pub fn new(id: i32, deleted: String, created_dt: String, task_type: crate::models::TaskTypeEnum, polymorphic_ctype: i32, device: i32, stream: i32) -> JanusTask {
+    pub fn new(id: i32, deleted: String, created_dt: String, task_type: crate::models::JanusTaskType, polymorphic_ctype: i32, device: i32, stream: i32) -> JanusTask {
         JanusTask {
             id,
             deleted,

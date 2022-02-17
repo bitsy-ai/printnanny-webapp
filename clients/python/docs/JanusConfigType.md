@@ -1,7 +1,7 @@
-# TaskStatusStatusEnum
+# JanusConfigType
+
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

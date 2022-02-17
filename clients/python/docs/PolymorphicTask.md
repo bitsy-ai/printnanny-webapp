@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **id** | **int** |  | [readonly] 
 **deleted** | **datetime** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
-**task_type** | [**TaskTypeEnum**](TaskTypeEnum.md) |  | 
+**task_type** | [**JanusTaskType**](JanusTaskType.md) |  | 
 **polymorphic_ctype** | **int** |  | [readonly] 
 **device** | **int** |  | [readonly] 
 **stream** | **int** |  | 

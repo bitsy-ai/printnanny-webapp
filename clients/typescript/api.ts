@@ -546,20 +546,6 @@ export type CommandEnum = typeof CommandEnum[keyof typeof CommandEnum];
 
 
 /**
- * 
- * @export
- * @enum {string}
- */
-
-export const ConfigTypeEnum = {
-    Cloud: 'cloud',
-    Edge: 'edge'
-} as const;
-
-export type ConfigTypeEnum = typeof ConfigTypeEnum[keyof typeof ConfigTypeEnum];
-
-
-/**
  * Generic auth response serializer
  * @export
  * @interface DetailResponse
@@ -664,10 +650,10 @@ export interface Device {
     'user': User;
     /**
      * 
-     * @type {ReleaseChannelEnum}
+     * @type {DeviceReleaseChannel}
      * @memberof Device
      */
-    'release_channel'?: ReleaseChannelEnum;
+    'release_channel'?: DeviceReleaseChannel;
     /**
      * 
      * @type {SystemInfo}
@@ -800,6 +786,20 @@ export interface DeviceCalibrationRequest {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export const DeviceReleaseChannel = {
+    Stable: 'stable',
+    Nightly: 'nightly'
+} as const;
+
+export type DeviceReleaseChannel = typeof DeviceReleaseChannel[keyof typeof DeviceReleaseChannel];
+
+
+/**
+ * 
+ * @export
  * @interface DeviceRequest
  */
 export interface DeviceRequest {
@@ -817,10 +817,10 @@ export interface DeviceRequest {
     'setup_complete'?: boolean;
     /**
      * 
-     * @type {ReleaseChannelEnum}
+     * @type {DeviceReleaseChannel}
      * @memberof DeviceRequest
      */
-    'release_channel'?: ReleaseChannelEnum;
+    'release_channel'?: DeviceReleaseChannel;
     /**
      * Please enter the hostname you set in the Raspberry Pi Imager\'s Advanced Options menu (without .local extension)
      * @type {string}
@@ -1066,10 +1066,10 @@ export interface JanusAuth {
     'api_token'?: string;
     /**
      * 
-     * @type {ConfigTypeEnum}
+     * @type {JanusConfigType}
      * @memberof JanusAuth
      */
-    'config_type'?: ConfigTypeEnum;
+    'config_type'?: JanusConfigType;
     /**
      * 
      * @type {string}
@@ -1103,10 +1103,10 @@ export interface JanusAuthRequest {
     'api_token'?: string;
     /**
      * 
-     * @type {ConfigTypeEnum}
+     * @type {JanusConfigType}
      * @memberof JanusAuthRequest
      */
-    'config_type'?: ConfigTypeEnum;
+    'config_type'?: JanusConfigType;
     /**
      * 
      * @type {number}
@@ -1114,6 +1114,20 @@ export interface JanusAuthRequest {
      */
     'user': number;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const JanusConfigType = {
+    Cloud: 'cloud',
+    Edge: 'edge'
+} as const;
+
+export type JanusConfigType = typeof JanusConfigType[keyof typeof JanusConfigType];
+
+
 /**
  * 
  * @export
@@ -1128,10 +1142,10 @@ export interface JanusStream {
     'id': number;
     /**
      * 
-     * @type {ConfigTypeEnum}
+     * @type {JanusConfigType}
      * @memberof JanusStream
      */
-    'config_type'?: ConfigTypeEnum;
+    'config_type'?: JanusConfigType;
     /**
      * 
      * @type {boolean}
@@ -1183,10 +1197,10 @@ export interface JanusStream {
 export interface JanusStreamRequest {
     /**
      * 
-     * @type {ConfigTypeEnum}
+     * @type {JanusConfigType}
      * @memberof JanusStreamRequest
      */
-    'config_type'?: ConfigTypeEnum;
+    'config_type'?: JanusConfigType;
     /**
      * 
      * @type {boolean}
@@ -1244,10 +1258,10 @@ export interface JanusTask {
     'created_dt': string;
     /**
      * 
-     * @type {TaskTypeEnum}
+     * @type {JanusTaskType}
      * @memberof JanusTask
      */
-    'task_type': TaskTypeEnum;
+    'task_type': JanusTaskType;
     /**
      * 
      * @type {number}
@@ -1275,10 +1289,10 @@ export interface JanusTask {
 export interface JanusTaskRequest {
     /**
      * 
-     * @type {TaskTypeEnum}
+     * @type {JanusTaskType}
      * @memberof JanusTaskRequest
      */
-    'task_type': TaskTypeEnum;
+    'task_type': JanusTaskType;
     /**
      * 
      * @type {number}
@@ -1286,6 +1300,22 @@ export interface JanusTaskRequest {
      */
     'stream': number;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const JanusTaskType = {
+    CloudMonitorStart: 'cloud_monitor_start',
+    CloudMonitorStop: 'cloud_monitor_stop',
+    EdgeMonitorStart: 'edge_monitor_start',
+    EdgeMonitorStop: 'edge_monitor_stop'
+} as const;
+
+export type JanusTaskType = typeof JanusTaskType[keyof typeof JanusTaskType];
+
+
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
  * @export
@@ -4162,10 +4192,10 @@ export interface PatchedDeviceRequest {
     'setup_complete'?: boolean;
     /**
      * 
-     * @type {ReleaseChannelEnum}
+     * @type {DeviceReleaseChannel}
      * @memberof PatchedDeviceRequest
      */
-    'release_channel'?: ReleaseChannelEnum;
+    'release_channel'?: DeviceReleaseChannel;
     /**
      * Please enter the hostname you set in the Raspberry Pi Imager\'s Advanced Options menu (without .local extension)
      * @type {string}
@@ -4181,10 +4211,10 @@ export interface PatchedDeviceRequest {
 export interface PatchedJanusStreamRequest {
     /**
      * 
-     * @type {ConfigTypeEnum}
+     * @type {JanusConfigType}
      * @memberof PatchedJanusStreamRequest
      */
-    'config_type'?: ConfigTypeEnum;
+    'config_type'?: JanusConfigType;
     /**
      * 
      * @type {boolean}
@@ -6061,20 +6091,6 @@ export interface PublicKeyRequest {
 /**
  * 
  * @export
- * @enum {string}
- */
-
-export const ReleaseChannelEnum = {
-    Stable: 'stable',
-    Nightly: 'nightly'
-} as const;
-
-export type ReleaseChannelEnum = typeof ReleaseChannelEnum[keyof typeof ReleaseChannelEnum];
-
-
-/**
- * 
- * @export
  * @interface RemoteCommandEvent
  */
 export interface RemoteCommandEvent {
@@ -6595,10 +6611,10 @@ export interface TaskStatus {
     'id': number;
     /**
      * 
-     * @type {TaskStatusStatusEnum}
+     * @type {TaskStatusType}
      * @memberof TaskStatus
      */
-    'status': TaskStatusStatusEnum;
+    'status': TaskStatusType;
     /**
      * 
      * @type {string}
@@ -6626,10 +6642,10 @@ export interface TaskStatus {
 export interface TaskStatusRequest {
     /**
      * 
-     * @type {TaskStatusStatusEnum}
+     * @type {TaskStatusType}
      * @memberof TaskStatusRequest
      */
-    'status': TaskStatusStatusEnum;
+    'status': TaskStatusType;
 }
 /**
  * 
@@ -6637,7 +6653,7 @@ export interface TaskStatusRequest {
  * @enum {string}
  */
 
-export const TaskStatusStatusEnum = {
+export const TaskStatusType = {
     Failed: 'failed',
     Pending: 'pending',
     Started: 'started',
@@ -6645,21 +6661,7 @@ export const TaskStatusStatusEnum = {
     Timeout: 'timeout'
 } as const;
 
-export type TaskStatusStatusEnum = typeof TaskStatusStatusEnum[keyof typeof TaskStatusStatusEnum];
-
-
-/**
- * 
- * @export
- * @enum {string}
- */
-
-export const TaskTypeEnum = {
-    Start: 'cloud_monitor_start',
-    Stop: 'cloud_monitor_stop'
-} as const;
-
-export type TaskTypeEnum = typeof TaskTypeEnum[keyof typeof TaskTypeEnum];
+export type TaskStatusType = typeof TaskStatusType[keyof typeof TaskStatusType];
 
 
 /**

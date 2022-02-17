@@ -16,7 +16,7 @@ pub struct TaskStatus {
     #[serde(rename = "id")]
     pub id: i32,
     #[serde(rename = "status")]
-    pub status: crate::models::TaskStatusStatusEnum,
+    pub status: crate::models::TaskStatusType,
     #[serde(rename = "deleted")]
     pub deleted: String,
     #[serde(rename = "created_dt")]
@@ -26,7 +26,7 @@ pub struct TaskStatus {
 }
 
 impl TaskStatus {
-    pub fn new(id: i32, status: crate::models::TaskStatusStatusEnum, deleted: String, created_dt: String, task: i32) -> TaskStatus {
+    pub fn new(id: i32, status: crate::models::TaskStatusType, deleted: String, created_dt: String, task: i32) -> TaskStatus {
         TaskStatus {
             id,
             status,

@@ -21,11 +21,11 @@ docs/ClientConfigApi.md
 docs/CloudiotDevice.md
 docs/CloudiotDeviceRequest.md
 docs/CommandEnum.md
-docs/ConfigTypeEnum.md
 docs/DetailResponse.md
 docs/Device.md
 docs/DeviceCalibration.md
 docs/DeviceCalibrationRequest.md
+docs/DeviceReleaseChannel.md
 docs/DeviceRequest.md
 docs/DevicesApi.md
 docs/EmailAuthRequest.md
@@ -40,10 +40,12 @@ docs/GcodeFile.md
 docs/JanusApi.md
 docs/JanusAuth.md
 docs/JanusAuthRequest.md
+docs/JanusConfigType.md
 docs/JanusStream.md
 docs/JanusStreamRequest.md
 docs/JanusTask.md
 docs/JanusTaskRequest.md
+docs/JanusTaskType.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
@@ -148,7 +150,6 @@ docs/PrinterProfile.md
 docs/PrinterProfileRequest.md
 docs/PublicKey.md
 docs/PublicKeyRequest.md
-docs/ReleaseChannelEnum.md
 docs/RemoteCommandEvent.md
 docs/RemoteCommandEventEventTypeEnum.md
 docs/RemoteCommandEventRequest.md
@@ -162,8 +163,7 @@ docs/SystemInfoRequest.md
 docs/Task.md
 docs/TaskStatus.md
 docs/TaskStatusRequest.md
-docs/TaskStatusStatusEnum.md
-docs/TaskTypeEnum.md
+docs/TaskStatusType.md
 docs/TasksApi.md
 docs/TelemetryApi.md
 docs/TelemetryEvent.md
@@ -211,11 +211,11 @@ src/models/camera_type.rs
 src/models/cloudiot_device.rs
 src/models/cloudiot_device_request.rs
 src/models/command_enum.rs
-src/models/config_type_enum.rs
 src/models/detail_response.rs
 src/models/device.rs
 src/models/device_calibration.rs
 src/models/device_calibration_request.rs
+src/models/device_release_channel.rs
 src/models/device_request.rs
 src/models/email_auth_request.rs
 src/models/error_detail.rs
@@ -227,10 +227,12 @@ src/models/experiment_device_config.rs
 src/models/gcode_file.rs
 src/models/janus_auth.rs
 src/models/janus_auth_request.rs
+src/models/janus_config_type.rs
 src/models/janus_stream.rs
 src/models/janus_stream_request.rs
 src/models/janus_task.rs
 src/models/janus_task_request.rs
+src/models/janus_task_type.rs
 src/models/mobile_auth_request.rs
 src/models/mod.rs
 src/models/model_artifact.rs
@@ -332,7 +334,6 @@ src/models/printer_profile.rs
 src/models/printer_profile_request.rs
 src/models/public_key.rs
 src/models/public_key_request.rs
-src/models/release_channel_enum.rs
 src/models/remote_command_event.rs
 src/models/remote_command_event_event_type_enum.rs
 src/models/remote_command_event_request.rs
@@ -344,8 +345,7 @@ src/models/system_info_request.rs
 src/models/task.rs
 src/models/task_status.rs
 src/models/task_status_request.rs
-src/models/task_status_status_enum.rs
-src/models/task_type_enum.rs
+src/models/task_status_type.rs
 src/models/telemetry_event.rs
 src/models/telemetry_event_polymorphic.rs
 src/models/telemetry_event_polymorphic_request.rs

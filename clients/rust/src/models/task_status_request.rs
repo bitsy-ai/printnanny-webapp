@@ -14,11 +14,11 @@
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct TaskStatusRequest {
     #[serde(rename = "status")]
-    pub status: crate::models::TaskStatusStatusEnum,
+    pub status: crate::models::TaskStatusType,
 }
 
 impl TaskStatusRequest {
-    pub fn new(status: crate::models::TaskStatusStatusEnum) -> TaskStatusRequest {
+    pub fn new(status: crate::models::TaskStatusType) -> TaskStatusRequest {
         TaskStatusRequest {
             status,
         }
