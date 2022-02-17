@@ -20,14 +20,14 @@ export default {
 
   async startMonitoringTask(deviceId: number) {
     const thisapi = api.DevicesApiFactory(configuration)
-    const req: api.JanusTaskRequest = { "task_type": api.TaskTypeEnum.Start }
+    const req: api.JanusTaskRequest = { "task_type": api.JanusTaskType.CloudMonitorStart }
     const res = await thisapi.devicesTasksCreate(deviceId, req)
     console.debug("startMonitoringTask response={}", res)
     return res.data
   },
   async stopMonitoringTask(deviceId: number) {
     const thisapi = api.DevicesApiFactory(configuration)
-    const req: api.JanusTaskRequest = { "task_type": api.TaskTypeEnum.Stop }
+    const req: api.JanusTaskRequest = { "task_type": api.JanusTaskType.CloudMonitorStop }
     const res = await thisapi.devicesTasksCreate(deviceId, req)
     console.debug("startMonitoringTask response={}", res)
     return res.data

@@ -40,7 +40,9 @@ pre_softdelete.connect(pre_softdelete_cloudiot_device)
 
 
 class Device(SafeDeleteModel):
-    """ """
+    """
+    Raspberry Pi running PrintNanny OS
+    """
 
     _safedelete_policy = SOFT_DELETE
 
@@ -374,13 +376,23 @@ class DeviceConfig(SafeDeleteModel):
 
 
 class JanusAuth(SafeDeleteModel):
+    class Meta:
+        index_together = ("user", "config_type", "created_dt")
+        constraints = [
+            UniqueConstraint(
+                fields=["user", "config_type"],
+                condition=models.Q(deleted=None),
+                name="unique_janus_auth_per_config_type_per_user",
+            )
+        ]
+
     admin_secret = models.CharField(max_length=255, null=True)
     api_token = models.CharField(max_length=255, default=get_random_string_32)
     config_type = models.CharField(
         max_length=32, choices=JanusConfigType.choices, default=JanusConfigType.CLOUD
     )
-    user = models.OneToOneField(
-        "users.User", on_delete=models.CASCADE, related_name="janus_cloud_auth"
+    user = models.ForeignKey(
+        "users.User", on_delete=models.CASCADE, related_name="janus_auth"
     )
     created_dt = models.DateTimeField(auto_now_add=True)
 
@@ -411,7 +423,11 @@ class JanusAuth(SafeDeleteModel):
 
 class JanusStream(SafeDeleteModel):
     class Meta:
-        index_together = ("device", "active", "created_dt", "updated_dt")
+        index_together = (
+            ("device", "created_dt", "updated_dt"),
+            ("device", "active", "config_type"),
+        )
+
         constraints = [
             UniqueConstraint(
                 fields=["device", "config_type"],
@@ -420,6 +436,8 @@ class JanusStream(SafeDeleteModel):
             )
         ]
 
+    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
+    updated_dt = models.DateTimeField(db_index=True, auto_now=True)
     config_type = models.CharField(
         max_length=32, choices=JanusConfigType.choices, default=JanusConfigType.CLOUD
     )
@@ -433,11 +451,15 @@ class JanusStream(SafeDeleteModel):
     info = models.JSONField(default=dict)
 
     @property
-    def janus_api_token(self):
-        return self.device.user.janus_cloud_auth
-
-    created_dt = models.DateTimeField(auto_now_add=True)
-    updated_dt = models.DateTimeField(auto_now=True)
+    def janus_auth(self) -> JanusAuth:
+        if self.config_type == JanusConfigType.CLOUD:
+            janus_auth, _created = JanusAuth.objects.get_or_create(
+                config_type=self.config_type, user=self.device.user
+            )
+            return janus_auth
+        raise NotImplementedError(
+            f"JanusStream.janus_auth is not implemented for config_type {self.config_type}"
+        )
 
 
 class Camera(SafeDeleteModel):
