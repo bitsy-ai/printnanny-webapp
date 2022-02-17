@@ -37,8 +37,11 @@ docs/EventsApi.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
+docs/JanusApi.md
 docs/JanusAuth.md
 docs/JanusAuthRequest.md
+docs/JanusStream.md
+docs/JanusStreamRequest.md
 docs/JanusTask.md
 docs/JanusTaskRequest.md
 docs/MlOpsApi.md
@@ -87,6 +90,7 @@ docs/PaginatedExperimentDeviceConfigList.md
 docs/PaginatedExperimentList.md
 docs/PaginatedGcodeFileList.md
 docs/PaginatedJanusAuthList.md
+docs/PaginatedJanusStreamList.md
 docs/PaginatedModelArtifactList.md
 docs/PaginatedOctoPrintBackupList.md
 docs/PaginatedOctoPrintDeviceList.md
@@ -114,6 +118,7 @@ docs/PatchedCameraRequest.md
 docs/PatchedCloudiotDeviceRequest.md
 docs/PatchedDeviceCalibrationRequest.md
 docs/PatchedDeviceRequest.md
+docs/PatchedJanusStreamRequest.md
 docs/PatchedOctoPrintDeviceRequest.md
 docs/PatchedPolymorphicEventRequest.md
 docs/PatchedPrintSessionRequest.md
@@ -179,6 +184,7 @@ src/apis/client_config_api.rs
 src/apis/configuration.rs
 src/apis/devices_api.rs
 src/apis/events_api.rs
+src/apis/janus_api.rs
 src/apis/ml_ops_api.rs
 src/apis/mod.rs
 src/apis/octoprint_backups_api.rs
@@ -221,6 +227,8 @@ src/models/experiment_device_config.rs
 src/models/gcode_file.rs
 src/models/janus_auth.rs
 src/models/janus_auth_request.rs
+src/models/janus_stream.rs
+src/models/janus_stream_request.rs
 src/models/janus_task.rs
 src/models/janus_task_request.rs
 src/models/mobile_auth_request.rs
@@ -268,6 +276,7 @@ src/models/paginated_experiment_device_config_list.rs
 src/models/paginated_experiment_list.rs
 src/models/paginated_gcode_file_list.rs
 src/models/paginated_janus_auth_list.rs
+src/models/paginated_janus_stream_list.rs
 src/models/paginated_model_artifact_list.rs
 src/models/paginated_octo_print_backup_list.rs
 src/models/paginated_octo_print_device_list.rs
@@ -293,6 +302,7 @@ src/models/patched_camera_request.rs
 src/models/patched_cloudiot_device_request.rs
 src/models/patched_device_calibration_request.rs
 src/models/patched_device_request.rs
+src/models/patched_janus_stream_request.rs
 src/models/patched_octo_print_device_request.rs
 src/models/patched_polymorphic_event_request.rs
 src/models/patched_print_session_request.rs

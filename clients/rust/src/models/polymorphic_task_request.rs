@@ -12,6 +12,8 @@
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct JanusTaskRequest {
+        #[serde(rename = "stream")]
+        stream: i32,
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]

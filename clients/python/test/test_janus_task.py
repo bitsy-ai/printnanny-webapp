@@ -43,7 +43,7 @@ class TestJanusTask(unittest.TestCase):
                 task_type = 'cloud_monitor_start', 
                 polymorphic_ctype = 56, 
                 device = 56, 
-                stream_config = 56
+                stream = 56
             )
         else :
             return JanusTask(
@@ -53,7 +53,7 @@ class TestJanusTask(unittest.TestCase):
                 task_type = 'cloud_monitor_start',
                 polymorphic_ctype = 56,
                 device = 56,
-                stream_config = 56,
+                stream = 56,
         )
 
     def testJanusTask(self):

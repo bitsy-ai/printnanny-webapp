@@ -37,23 +37,27 @@ class JanusTaskRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'task_type': 'TaskTypeEnum'
+        'task_type': 'TaskTypeEnum',
+        'stream': 'int'
     }
 
     attribute_map = {
-        'task_type': 'task_type'
+        'task_type': 'task_type',
+        'stream': 'stream'
     }
 
-    def __init__(self, task_type=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, task_type=None, stream=None, local_vars_configuration=None):  # noqa: E501
         """JanusTaskRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._task_type = None
+        self._stream = None
         self.discriminator = None
 
         self.task_type = task_type
+        self.stream = stream
 
     @property
     def task_type(self):
@@ -77,6 +81,29 @@ class JanusTaskRequest(object):
             raise ValueError("Invalid value for `task_type`, must not be `None`")  # noqa: E501
 
         self._task_type = task_type
+
+    @property
+    def stream(self):
+        """Gets the stream of this JanusTaskRequest.  # noqa: E501
+
+
+        :return: The stream of this JanusTaskRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._stream
+
+    @stream.setter
+    def stream(self, stream):
+        """Sets the stream of this JanusTaskRequest.
+
+
+        :param stream: The stream of this JanusTaskRequest.  # noqa: E501
+        :type stream: int
+        """
+        if self.local_vars_configuration.client_side_validation and stream is None:  # noqa: E501
+            raise ValueError("Invalid value for `stream`, must not be `None`")  # noqa: E501
+
+        self._stream = stream
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

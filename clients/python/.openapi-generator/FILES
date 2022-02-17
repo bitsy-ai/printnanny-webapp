@@ -39,8 +39,11 @@ docs/EventsApi.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
+docs/JanusApi.md
 docs/JanusAuth.md
 docs/JanusAuthRequest.md
+docs/JanusStream.md
+docs/JanusStreamRequest.md
 docs/JanusTask.md
 docs/JanusTaskRequest.md
 docs/MlOpsApi.md
@@ -89,6 +92,7 @@ docs/PaginatedExperimentDeviceConfigList.md
 docs/PaginatedExperimentList.md
 docs/PaginatedGcodeFileList.md
 docs/PaginatedJanusAuthList.md
+docs/PaginatedJanusStreamList.md
 docs/PaginatedModelArtifactList.md
 docs/PaginatedOctoPrintBackupList.md
 docs/PaginatedOctoPrintDeviceList.md
@@ -116,6 +120,7 @@ docs/PatchedCameraRequest.md
 docs/PatchedCloudiotDeviceRequest.md
 docs/PatchedDeviceCalibrationRequest.md
 docs/PatchedDeviceRequest.md
+docs/PatchedJanusStreamRequest.md
 docs/PatchedOctoPrintDeviceRequest.md
 docs/PatchedPolymorphicEventRequest.md
 docs/PatchedPrintSessionRequest.md
@@ -183,6 +188,7 @@ printnanny_api_client/api/auth_api.py
 printnanny_api_client/api/client_config_api.py
 printnanny_api_client/api/devices_api.py
 printnanny_api_client/api/events_api.py
+printnanny_api_client/api/janus_api.py
 printnanny_api_client/api/ml_ops_api.py
 printnanny_api_client/api/octoprint_backups_api.py
 printnanny_api_client/api/partners_geeks3_api.py
@@ -227,6 +233,8 @@ printnanny_api_client/models/experiment_device_config.py
 printnanny_api_client/models/gcode_file.py
 printnanny_api_client/models/janus_auth.py
 printnanny_api_client/models/janus_auth_request.py
+printnanny_api_client/models/janus_stream.py
+printnanny_api_client/models/janus_stream_request.py
 printnanny_api_client/models/janus_task.py
 printnanny_api_client/models/janus_task_request.py
 printnanny_api_client/models/mobile_auth_request.py
@@ -273,6 +281,7 @@ printnanny_api_client/models/paginated_experiment_device_config_list.py
 printnanny_api_client/models/paginated_experiment_list.py
 printnanny_api_client/models/paginated_gcode_file_list.py
 printnanny_api_client/models/paginated_janus_auth_list.py
+printnanny_api_client/models/paginated_janus_stream_list.py
 printnanny_api_client/models/paginated_model_artifact_list.py
 printnanny_api_client/models/paginated_octo_print_backup_list.py
 printnanny_api_client/models/paginated_octo_print_device_list.py
@@ -298,6 +307,7 @@ printnanny_api_client/models/patched_camera_request.py
 printnanny_api_client/models/patched_cloudiot_device_request.py
 printnanny_api_client/models/patched_device_calibration_request.py
 printnanny_api_client/models/patched_device_request.py
+printnanny_api_client/models/patched_janus_stream_request.py
 printnanny_api_client/models/patched_octo_print_device_request.py
 printnanny_api_client/models/patched_polymorphic_event_request.py
 printnanny_api_client/models/patched_print_session_request.py
@@ -393,8 +403,11 @@ test/test_events_api.py
 test/test_experiment.py
 test/test_experiment_device_config.py
 test/test_gcode_file.py
+test/test_janus_api.py
 test/test_janus_auth.py
 test/test_janus_auth_request.py
+test/test_janus_stream.py
+test/test_janus_stream_request.py
 test/test_janus_task.py
 test/test_janus_task_request.py
 test/test_ml_ops_api.py
@@ -443,6 +456,7 @@ test/test_paginated_experiment_device_config_list.py
 test/test_paginated_experiment_list.py
 test/test_paginated_gcode_file_list.py
 test/test_paginated_janus_auth_list.py
+test/test_paginated_janus_stream_list.py
 test/test_paginated_model_artifact_list.py
 test/test_paginated_octo_print_backup_list.py
 test/test_paginated_octo_print_device_list.py
@@ -470,6 +484,7 @@ test/test_patched_camera_request.py
 test/test_patched_cloudiot_device_request.py
 test/test_patched_device_calibration_request.py
 test/test_patched_device_request.py
+test/test_patched_janus_stream_request.py
 test/test_patched_octo_print_device_request.py
 test/test_patched_polymorphic_event_request.py
 test/test_patched_print_session_request.py
