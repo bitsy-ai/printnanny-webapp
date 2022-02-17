@@ -397,19 +397,19 @@ class JanusAuth(SafeDeleteModel):
     created_dt = models.DateTimeField(auto_now_add=True)
 
     @property
-    def gateway_url(self):
+    def api_url(self):
         if self.config_type == JanusConfigType.CLOUD:
             return f"https://{settings.JANUS_CLOUD_DOMAIN}/janus"
         raise NotImplementedError(
-            f"JanusAuth.gateway_url not implemented for JanusConfigType={self.config_type}"
+            f"JanusAuth.apiurl not implemented for JanusConfigType={self.config_type}"
         )
 
     @property
-    def gateway_admin_url(self):
+    def admin_url(self):
         if self.config_type == JanusConfigType.CLOUD:
             return f"https://{settings.JANUS_CLOUD_DOMAIN}/admin"
         raise NotImplementedError(
-            f"JanusAuth.gateway_admin_url not implemented for JanusConfigType={self.config_type}"
+            f"JanusAuth.admin_url not implemented for JanusConfigType={self.config_type}"
         )
 
     @property

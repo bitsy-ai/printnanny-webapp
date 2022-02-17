@@ -103,6 +103,10 @@ class PublicKeySerializer(serializers.ModelSerializer):
 
 
 class JanusAuthSerializer(serializers.ModelSerializer):
+    api_url = serializers.CharField(read_only=True)
+    admin_url = serializers.CharField(read_only=True)
+    websocket_url = serializers.CharField(read_only=True)
+
     class Meta:
         model = JanusAuth
         exclude = ("deleted",)
