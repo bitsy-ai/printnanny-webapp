@@ -374,7 +374,7 @@ class DeviceConfig(SafeDeleteModel):
 
 
 class JanusAuth(SafeDeleteModel):
-    admin_secret = models.CharField(null=True)
+    admin_secret = models.CharField(max_length=255, null=True)
     api_token = models.CharField(max_length=255, default=get_random_string_32)
     config_type = models.CharField(
         max_length=32, choices=JanusConfigType.choices, default=JanusConfigType.CLOUD
@@ -388,19 +388,25 @@ class JanusAuth(SafeDeleteModel):
     def gateway_url(self):
         if self.config_type == JanusConfigType.CLOUD:
             return f"https://{settings.JANUS_CLOUD_DOMAIN}/janus"
-        raise NotImplementedError(f"JanusAuth.gateway_url not implemented for JanusConfigType={self.config_type}")
+        raise NotImplementedError(
+            f"JanusAuth.gateway_url not implemented for JanusConfigType={self.config_type}"
+        )
 
     @property
     def gateway_admin_url(self):
         if self.config_type == JanusConfigType.CLOUD:
             return f"https://{settings.JANUS_CLOUD_DOMAIN}/admin"
-        raise NotImplementedError(f"JanusAuth.gateway_admin_url not implemented for JanusConfigType={self.config_type}")
+        raise NotImplementedError(
+            f"JanusAuth.gateway_admin_url not implemented for JanusConfigType={self.config_type}"
+        )
 
     @property
     def websocket_url(self):
         if self.config_type == JanusConfigType.CLOUD:
             return f"wss://{settings.JANUS_CLOUD_DOMAIN}"
-        raise NotImplementedError(f"JanusAuth.websocket_url not implemented for JanusConfigType={self.config_type}")
+        raise NotImplementedError(
+            f"JanusAuth.websocket_url not implemented for JanusConfigType={self.config_type}"
+        )
 
 
 class JanusStreamConfig(SafeDeleteModel):
