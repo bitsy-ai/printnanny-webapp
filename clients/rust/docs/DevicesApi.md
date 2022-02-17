@@ -1361,7 +1361,7 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **String** |  | [required] |
+**device_id** | **i32** |  | [required] |
 **task_id** | **i32** |  | [required] |
 **task_status_request** | [**TaskStatusRequest**](TaskStatusRequest.md) |  | [required] |
 
@@ -1391,7 +1391,7 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **String** |  | [required] |
+**device_id** | **i32** |  | [required] |
 **task_id** | **i32** |  | [required] |
 **page** | Option<**i32**> | A page number within the paginated result set. |  |
 

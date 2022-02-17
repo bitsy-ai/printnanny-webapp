@@ -1,7 +1,11 @@
 import logging
 from django.shortcuts import get_object_or_404
 from django.apps import apps
-from drf_spectacular.utils import extend_schema
+from drf_spectacular.utils import (
+    extend_schema,
+    extend_schema_view,
+    OpenApiParameter,
+)
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
@@ -9,6 +13,12 @@ from rest_framework.mixins import (
     ListModelMixin,
     RetrieveModelMixin,
     CreateModelMixin,
+)
+from print_nanny_webapp.utils.api.views import (
+    generic_create_errors,
+    generic_list_errors,
+    generic_get_errors,
+    generic_update_errors,
 )
 from print_nanny_webapp.tasks.models import Task, TaskStatus
 from .serializers import PolymorphicTaskSerializer, TaskStatusSerializer
@@ -18,7 +28,57 @@ Device = apps.get_model("devices", "Device")
 logger = logging.getLogger(__name__)
 
 
-@extend_schema(tags=["tasks", "devices"])
+@extend_schema_view(
+    list=extend_schema(
+        tags=["tasks", "devices"],
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        responses={
+            200: PolymorphicTaskSerializer(many=True),
+        }
+        | generic_list_errors,
+    ),
+    create=extend_schema(
+        tags=["tasks", "devices"],
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        request=PolymorphicTaskSerializer,
+        responses={
+            201: PolymorphicTaskSerializer,
+        }
+        | generic_create_errors,
+    ),
+    retrieve=extend_schema(
+        tags=["tasks", "devices"],
+        parameters=[
+            OpenApiParameter(
+                name="device_id", type=int, location=OpenApiParameter.PATH
+            ),
+            OpenApiParameter(name="task_id", type=int, location=OpenApiParameter.PATH),
+        ],
+        request=PolymorphicTaskSerializer,
+        responses={
+            200: PolymorphicTaskSerializer,
+        }
+        | generic_get_errors,
+    ),
+    update=extend_schema(
+        tags=["tasks", "devices"],
+        parameters=[
+            OpenApiParameter(
+                name="device_id", type=int, location=OpenApiParameter.PATH
+            ),
+            OpenApiParameter(name="task_id", type=int, location=OpenApiParameter.PATH),
+        ],
+        request=PolymorphicTaskSerializer,
+        responses={
+            202: PolymorphicTaskSerializer,
+        }
+        | generic_update_errors,
+    ),
+)
 class TaskViewSet(
     GenericViewSet,
     ListModelMixin,
@@ -53,7 +113,49 @@ class TaskViewSet(
         serializer.save(user=self.request.user, device=self.device)
 
 
-@extend_schema(tags=["tasks", "devices"])
+@extend_schema_view(
+    list=extend_schema(
+        tags=["tasks", "devices"],
+        parameters=[
+            OpenApiParameter(
+                name="device_id", type=int, location=OpenApiParameter.PATH
+            ),
+            OpenApiParameter(name="task_id", type=int, location=OpenApiParameter.PATH),
+        ],
+        responses={
+            200: TaskStatusSerializer(many=True),
+        }
+        | generic_list_errors,
+    ),
+    create=extend_schema(
+        tags=["tasks", "devices"],
+        parameters=[
+            OpenApiParameter(
+                name="device_id", type=int, location=OpenApiParameter.PATH
+            ),
+            OpenApiParameter(name="task_id", type=int, location=OpenApiParameter.PATH),
+        ],
+        request=TaskStatusSerializer,
+        responses={
+            201: TaskStatusSerializer,
+        }
+        | generic_create_errors,
+    ),
+    retrieve=extend_schema(
+        tags=["tasks", "devices"],
+        parameters=[
+            OpenApiParameter(
+                name="device_id", type=int, location=OpenApiParameter.PATH
+            ),
+            OpenApiParameter(name="task_id", type=int, location=OpenApiParameter.PATH),
+        ],
+        request=TaskStatusSerializer,
+        responses={
+            200: TaskStatusSerializer,
+        }
+        | generic_get_errors,
+    ),
+)
 class TaskStatusViewSet(
     GenericViewSet,
     ListModelMixin,

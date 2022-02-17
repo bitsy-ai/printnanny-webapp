@@ -10204,13 +10204,13 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {string} deviceId 
+         * @param {number} deviceId 
          * @param {number} taskId 
          * @param {TaskStatusRequest} taskStatusRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesTasksStatusCreate: async (deviceId: string, taskId: number, taskStatusRequest: TaskStatusRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesTasksStatusCreate: async (deviceId: number, taskId: number, taskStatusRequest: TaskStatusRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
             assertParamExists('devicesTasksStatusCreate', 'deviceId', deviceId)
             // verify required parameter 'taskId' is not null or undefined
@@ -10253,13 +10253,13 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {string} deviceId 
+         * @param {number} deviceId 
          * @param {number} taskId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesTasksStatusList: async (deviceId: string, taskId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesTasksStatusList: async (deviceId: number, taskId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
             assertParamExists('devicesTasksStatusList', 'deviceId', deviceId)
             // verify required parameter 'taskId' is not null or undefined
@@ -10985,25 +10985,25 @@ export const DevicesApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {string} deviceId 
+         * @param {number} deviceId 
          * @param {number} taskId 
          * @param {TaskStatusRequest} taskStatusRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesTasksStatusCreate(deviceId: string, taskId: number, taskStatusRequest: TaskStatusRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TaskStatus>> {
+        async devicesTasksStatusCreate(deviceId: number, taskId: number, taskStatusRequest: TaskStatusRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TaskStatus>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksStatusCreate(deviceId, taskId, taskStatusRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {string} deviceId 
+         * @param {number} deviceId 
          * @param {number} taskId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesTasksStatusList(deviceId: string, taskId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedTaskStatusList>> {
+        async devicesTasksStatusList(deviceId: number, taskId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedTaskStatusList>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksStatusList(deviceId, taskId, page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -11514,24 +11514,24 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @param {string} deviceId 
+         * @param {number} deviceId 
          * @param {number} taskId 
          * @param {TaskStatusRequest} taskStatusRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesTasksStatusCreate(deviceId: string, taskId: number, taskStatusRequest: TaskStatusRequest, options?: any): AxiosPromise<TaskStatus> {
+        devicesTasksStatusCreate(deviceId: number, taskId: number, taskStatusRequest: TaskStatusRequest, options?: any): AxiosPromise<TaskStatus> {
             return localVarFp.devicesTasksStatusCreate(deviceId, taskId, taskStatusRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {string} deviceId 
+         * @param {number} deviceId 
          * @param {number} taskId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesTasksStatusList(deviceId: string, taskId: number, page?: number, options?: any): AxiosPromise<PaginatedTaskStatusList> {
+        devicesTasksStatusList(deviceId: number, taskId: number, page?: number, options?: any): AxiosPromise<PaginatedTaskStatusList> {
             return localVarFp.devicesTasksStatusList(deviceId, taskId, page, options).then((request) => request(axios, basePath));
         },
         /**
@@ -12036,25 +12036,25 @@ export interface DevicesApiInterface {
 
     /**
      * 
-     * @param {string} deviceId 
+     * @param {number} deviceId 
      * @param {number} taskId 
      * @param {TaskStatusRequest} taskStatusRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesTasksStatusCreate(deviceId: string, taskId: number, taskStatusRequest: TaskStatusRequest, options?: AxiosRequestConfig): AxiosPromise<TaskStatus>;
+    devicesTasksStatusCreate(deviceId: number, taskId: number, taskStatusRequest: TaskStatusRequest, options?: AxiosRequestConfig): AxiosPromise<TaskStatus>;
 
     /**
      * 
-     * @param {string} deviceId 
+     * @param {number} deviceId 
      * @param {number} taskId 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesTasksStatusList(deviceId: string, taskId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedTaskStatusList>;
+    devicesTasksStatusList(deviceId: number, taskId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedTaskStatusList>;
 
     /**
      * 
@@ -12646,27 +12646,27 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
 
     /**
      * 
-     * @param {string} deviceId 
+     * @param {number} deviceId 
      * @param {number} taskId 
      * @param {TaskStatusRequest} taskStatusRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesTasksStatusCreate(deviceId: string, taskId: number, taskStatusRequest: TaskStatusRequest, options?: AxiosRequestConfig) {
+    public devicesTasksStatusCreate(deviceId: number, taskId: number, taskStatusRequest: TaskStatusRequest, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesTasksStatusCreate(deviceId, taskId, taskStatusRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {string} deviceId 
+     * @param {number} deviceId 
      * @param {number} taskId 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesTasksStatusList(deviceId: string, taskId: number, page?: number, options?: AxiosRequestConfig) {
+    public devicesTasksStatusList(deviceId: number, taskId: number, page?: number, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesTasksStatusList(deviceId, taskId, page, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -17933,55 +17933,12 @@ export const TasksApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * 
          * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this task.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesTasksRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesTasksRetrieve', 'deviceId', deviceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesTasksRetrieve', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/tasks/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} deviceId 
          * @param {number} taskId 
          * @param {TaskStatusRequest} taskStatusRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesTasksStatusCreate: async (deviceId: string, taskId: number, taskStatusRequest: TaskStatusRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesTasksStatusCreate: async (deviceId: number, taskId: number, taskStatusRequest: TaskStatusRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
             assertParamExists('devicesTasksStatusCreate', 'deviceId', deviceId)
             // verify required parameter 'taskId' is not null or undefined
@@ -18024,13 +17981,13 @@ export const TasksApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * 
-         * @param {string} deviceId 
+         * @param {number} deviceId 
          * @param {number} taskId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesTasksStatusList: async (deviceId: string, taskId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesTasksStatusList: async (deviceId: number, taskId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
             assertParamExists('devicesTasksStatusList', 'deviceId', deviceId)
             // verify required parameter 'taskId' is not null or undefined
@@ -18058,53 +18015,6 @@ export const TasksApiAxiosParamCreator = function (configuration?: Configuration
             if (page !== undefined) {
                 localVarQueryParameter['page'] = page;
             }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} deviceId 
-         * @param {number} id A unique integer value identifying this task status.
-         * @param {number} taskId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesTasksStatusRetrieve: async (deviceId: string, id: number, taskId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesTasksStatusRetrieve', 'deviceId', deviceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesTasksStatusRetrieve', 'id', id)
-            // verify required parameter 'taskId' is not null or undefined
-            assertParamExists('devicesTasksStatusRetrieve', 'taskId', taskId)
-            const localVarPath = `/api/devices/{device_id}/tasks/{task_id}/status/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"task_id"}}`, encodeURIComponent(String(taskId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
@@ -18152,48 +18062,25 @@ export const TasksApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this task.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesTasksRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicTask>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksRetrieve(deviceId, id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} deviceId 
          * @param {number} taskId 
          * @param {TaskStatusRequest} taskStatusRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesTasksStatusCreate(deviceId: string, taskId: number, taskStatusRequest: TaskStatusRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TaskStatus>> {
+        async devicesTasksStatusCreate(deviceId: number, taskId: number, taskStatusRequest: TaskStatusRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TaskStatus>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksStatusCreate(deviceId, taskId, taskStatusRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {string} deviceId 
+         * @param {number} deviceId 
          * @param {number} taskId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesTasksStatusList(deviceId: string, taskId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedTaskStatusList>> {
+        async devicesTasksStatusList(deviceId: number, taskId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedTaskStatusList>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksStatusList(deviceId, taskId, page, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} deviceId 
-         * @param {number} id A unique integer value identifying this task status.
-         * @param {number} taskId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesTasksStatusRetrieve(deviceId: string, id: number, taskId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TaskStatus>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksStatusRetrieve(deviceId, id, taskId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -18229,45 +18116,24 @@ export const TasksApiFactory = function (configuration?: Configuration, basePath
         /**
          * 
          * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this task.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesTasksRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<PolymorphicTask> {
-            return localVarFp.devicesTasksRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} deviceId 
          * @param {number} taskId 
          * @param {TaskStatusRequest} taskStatusRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesTasksStatusCreate(deviceId: string, taskId: number, taskStatusRequest: TaskStatusRequest, options?: any): AxiosPromise<TaskStatus> {
+        devicesTasksStatusCreate(deviceId: number, taskId: number, taskStatusRequest: TaskStatusRequest, options?: any): AxiosPromise<TaskStatus> {
             return localVarFp.devicesTasksStatusCreate(deviceId, taskId, taskStatusRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {string} deviceId 
+         * @param {number} deviceId 
          * @param {number} taskId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesTasksStatusList(deviceId: string, taskId: number, page?: number, options?: any): AxiosPromise<PaginatedTaskStatusList> {
+        devicesTasksStatusList(deviceId: number, taskId: number, page?: number, options?: any): AxiosPromise<PaginatedTaskStatusList> {
             return localVarFp.devicesTasksStatusList(deviceId, taskId, page, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} deviceId 
-         * @param {number} id A unique integer value identifying this task status.
-         * @param {number} taskId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesTasksStatusRetrieve(deviceId: string, id: number, taskId: number, options?: any): AxiosPromise<TaskStatus> {
-            return localVarFp.devicesTasksStatusRetrieve(deviceId, id, taskId, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -18301,45 +18167,24 @@ export interface TasksApiInterface {
     /**
      * 
      * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this task.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TasksApiInterface
-     */
-    devicesTasksRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<PolymorphicTask>;
-
-    /**
-     * 
-     * @param {string} deviceId 
      * @param {number} taskId 
      * @param {TaskStatusRequest} taskStatusRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TasksApiInterface
      */
-    devicesTasksStatusCreate(deviceId: string, taskId: number, taskStatusRequest: TaskStatusRequest, options?: AxiosRequestConfig): AxiosPromise<TaskStatus>;
+    devicesTasksStatusCreate(deviceId: number, taskId: number, taskStatusRequest: TaskStatusRequest, options?: AxiosRequestConfig): AxiosPromise<TaskStatus>;
 
     /**
      * 
-     * @param {string} deviceId 
+     * @param {number} deviceId 
      * @param {number} taskId 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TasksApiInterface
      */
-    devicesTasksStatusList(deviceId: string, taskId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedTaskStatusList>;
-
-    /**
-     * 
-     * @param {string} deviceId 
-     * @param {number} id A unique integer value identifying this task status.
-     * @param {number} taskId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TasksApiInterface
-     */
-    devicesTasksStatusRetrieve(deviceId: string, id: number, taskId: number, options?: AxiosRequestConfig): AxiosPromise<TaskStatus>;
+    devicesTasksStatusList(deviceId: number, taskId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedTaskStatusList>;
 
 }
 
@@ -18377,52 +18222,27 @@ export class TasksApi extends BaseAPI implements TasksApiInterface {
     /**
      * 
      * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this task.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TasksApi
-     */
-    public devicesTasksRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
-        return TasksApiFp(this.configuration).devicesTasksRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} deviceId 
      * @param {number} taskId 
      * @param {TaskStatusRequest} taskStatusRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TasksApi
      */
-    public devicesTasksStatusCreate(deviceId: string, taskId: number, taskStatusRequest: TaskStatusRequest, options?: AxiosRequestConfig) {
+    public devicesTasksStatusCreate(deviceId: number, taskId: number, taskStatusRequest: TaskStatusRequest, options?: AxiosRequestConfig) {
         return TasksApiFp(this.configuration).devicesTasksStatusCreate(deviceId, taskId, taskStatusRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {string} deviceId 
+     * @param {number} deviceId 
      * @param {number} taskId 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TasksApi
      */
-    public devicesTasksStatusList(deviceId: string, taskId: number, page?: number, options?: AxiosRequestConfig) {
+    public devicesTasksStatusList(deviceId: number, taskId: number, page?: number, options?: AxiosRequestConfig) {
         return TasksApiFp(this.configuration).devicesTasksStatusList(deviceId, taskId, page, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} deviceId 
-     * @param {number} id A unique integer value identifying this task status.
-     * @param {number} taskId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TasksApi
-     */
-    public devicesTasksStatusRetrieve(deviceId: string, id: number, taskId: number, options?: AxiosRequestConfig) {
-        return TasksApiFp(this.configuration).devicesTasksStatusRetrieve(deviceId, id, taskId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

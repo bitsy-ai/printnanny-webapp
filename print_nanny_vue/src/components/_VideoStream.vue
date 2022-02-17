@@ -131,7 +131,7 @@ export default {
           console.log('plugin.on message', message, jesp)
         })
         const streamsList = await plugin.list()
-        console.log('Retreived stream list: ', streamsList)
+        console.log('retrieved stream list: ', streamsList)
         if (streamsList._plainMessage.plugindata.data.list.length === 0) {
           throw Error('Connection to Janus Gateway succeeded, but no streams are playing.\n Double-check that your camera is connected and try again. \n Check output of `systemctl status printnanny-gst` and `journalctl -u printnanny-gst` for details about this failure.')
         }
@@ -154,7 +154,7 @@ export default {
               janus: 'message'
             })
 
-            console.log('Retreived stream info', info)
+            console.log('retrieved stream info', info)
           } else {
             console.log(`Skipping stream ${stream.id} (component is subscribed to ${this.streamId})`)
           }

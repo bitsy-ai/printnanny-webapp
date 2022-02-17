@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
         request=OctoPrintBackupSerializer,
         responses={201: OctoPrintBackupSerializer} | generic_create_errors,
     ),
-    retreive=extend_schema(
+    retrieve=extend_schema(
         request=OctoPrintBackupSerializer,
         responses={200: OctoPrintBackupSerializer} | generic_get_errors,
     ),
