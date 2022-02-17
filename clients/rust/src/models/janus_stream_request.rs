@@ -23,19 +23,16 @@ pub struct JanusStreamRequest {
     pub pin: Option<String>,
     #[serde(rename = "info", skip_serializing_if = "Option::is_none")]
     pub info: Option<::std::collections::HashMap<String, serde_json::Value>>,
-    #[serde(rename = "device")]
-    pub device: i32,
 }
 
 impl JanusStreamRequest {
-    pub fn new(device: i32) -> JanusStreamRequest {
+    pub fn new() -> JanusStreamRequest {
         JanusStreamRequest {
             config_type: None,
             active: None,
             secret: None,
             pin: None,
             info: None,
-            device,
         }
     }
 }

@@ -52,6 +52,7 @@ Method | HTTP request | Description
 [**devices_tasks_status_list**](DevicesApi.md#devices_tasks_status_list) | **GET** /api/devices/{device_id}/tasks/{task_id}/status/ | 
 [**devices_tasks_status_retrieve**](DevicesApi.md#devices_tasks_status_retrieve) | **GET** /api/devices/{device_id}/tasks/{task_id}/status/{id}/ | 
 [**devices_update**](DevicesApi.md#devices_update) | **PUT** /api/devices/{id}/ | 
+[**janus_stream_key_update_or_create**](DevicesApi.md#janus_stream_key_update_or_create) | **POST** /api/devices/{device_id}/janus-streams/update-or-create/ | 
 [**public_key_update_or_create**](DevicesApi.md#public_key_update_or_create) | **POST** /api/devices/{device_id}/public-keys/update-or-create/ | 
 [**system_info_update_or_create**](DevicesApi.md#system_info_update_or_create) | **POST** /api/devices/{device_id}/system-info/update-or-create/ | 
 
@@ -568,7 +569,7 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
-**janus_stream_request** | [**JanusStreamRequest**](JanusStreamRequest.md) |  | [required] |
+**janus_stream_request** | Option<[**JanusStreamRequest**](JanusStreamRequest.md)> |  |  |
 
 ### Return type
 
@@ -686,7 +687,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
 **id** | **i32** | A unique integer value identifying this janus stream. | [required] |
-**janus_stream_request** | [**JanusStreamRequest**](JanusStreamRequest.md) |  | [required] |
+**janus_stream_request** | Option<[**JanusStreamRequest**](JanusStreamRequest.md)> |  |  |
 
 ### Return type
 
@@ -1468,6 +1469,35 @@ Name | Type | Description  | Required | Notes
 
 - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## janus_stream_key_update_or_create
+
+> crate::models::JanusStream janus_stream_key_update_or_create(device_id, janus_stream_request)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_id** | **i32** |  | [required] |
+**janus_stream_request** | Option<[**JanusStreamRequest**](JanusStreamRequest.md)> |  |  |
+
+### Return type
+
+[**crate::models::JanusStream**](JanusStream.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

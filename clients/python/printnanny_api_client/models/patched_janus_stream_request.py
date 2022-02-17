@@ -41,8 +41,7 @@ class PatchedJanusStreamRequest(object):
         'active': 'bool',
         'secret': 'str',
         'pin': 'str',
-        'info': 'dict(str, object)',
-        'device': 'int'
+        'info': 'dict(str, object)'
     }
 
     attribute_map = {
@@ -50,11 +49,10 @@ class PatchedJanusStreamRequest(object):
         'active': 'active',
         'secret': 'secret',
         'pin': 'pin',
-        'info': 'info',
-        'device': 'device'
+        'info': 'info'
     }
 
-    def __init__(self, config_type=None, active=None, secret=None, pin=None, info=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, config_type=None, active=None, secret=None, pin=None, info=None, local_vars_configuration=None):  # noqa: E501
         """PatchedJanusStreamRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -65,7 +63,6 @@ class PatchedJanusStreamRequest(object):
         self._secret = None
         self._pin = None
         self._info = None
-        self._device = None
         self.discriminator = None
 
         if config_type is not None:
@@ -78,8 +75,6 @@ class PatchedJanusStreamRequest(object):
             self.pin = pin
         if info is not None:
             self.info = info
-        if device is not None:
-            self.device = device
 
     @property
     def config_type(self):
@@ -197,27 +192,6 @@ class PatchedJanusStreamRequest(object):
         """
 
         self._info = info
-
-    @property
-    def device(self):
-        """Gets the device of this PatchedJanusStreamRequest.  # noqa: E501
-
-
-        :return: The device of this PatchedJanusStreamRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._device
-
-    @device.setter
-    def device(self, device):
-        """Sets the device of this PatchedJanusStreamRequest.
-
-
-        :param device: The device of this PatchedJanusStreamRequest.  # noqa: E501
-        :type device: int
-        """
-
-        self._device = device
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
