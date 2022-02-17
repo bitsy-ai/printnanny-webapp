@@ -22,5 +22,10 @@ class TaskStatusType(models.TextChoices):
 
 
 class JanusTaskType(models.TextChoices):
-    CLOUD_MONITOR_START = "cloud_monitor_start", "Start PrintNanny Monitoring"
-    CLOUD_MONITOR_STOP = "cloud_monitor_stop", "Stop PrintNanny Monitoring"
+    CLOUD_MONITOR_START = "cloud_monitor_start", "Start PrintNanny Monitoring (Cloud)"
+    CLOUD_MONITOR_STOP = "cloud_monitor_stop", "Stop PrintNanny Monitoring (Cloud)"
+    EDGE_MONITOR_START = (
+        "edge_monitor_start",
+        "Start PrintNanny Monitoring (Private/Edge)",
+    )
+    EDGE_MONITOR_STOP = "edge_monitor_stop", "Stop PrintNanny Monitoring (Private/Edge)"
