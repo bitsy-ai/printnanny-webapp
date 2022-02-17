@@ -27,7 +27,7 @@ class MonitorStartTaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = MonitorStartTask
         fields = "__all__"
-        read_only_fields = ("device", "created_dt")
+        read_only_fields = ("device", "created_dt", "janus_media_stream")
 
     def to_resource_type(self, _model_or_instance):
         return TaskType.CLOUD_MONITOR_START
@@ -37,7 +37,7 @@ class MonitorStopTaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = MonitorStopTask
         fields = "__all__"
-        read_only_fields = ("device", "created_dt")
+        read_only_fields = ("device", "created_dt", "janus_media_stream")
 
     def to_resource_type(self, _model_or_instance):
         return TaskType.CLOUD_MONITOR_STOP
