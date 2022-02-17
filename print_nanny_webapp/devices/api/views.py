@@ -275,7 +275,7 @@ class PublicKeyViewSet(
         }
         | generic_create_errors,
     ),
-    retreive=extend_schema(
+    retrieve=extend_schema(
         tags=["users", "janus"],
         parameters=[
             OpenApiParameter(name="user_id", type=int, location=OpenApiParameter.PATH)
@@ -350,7 +350,7 @@ class JanusAuthViewSet(
         }
         | generic_create_errors,
     ),
-    retreive=extend_schema(
+    retrieve=extend_schema(
         tags=["janus", "devices"],
         parameters=[
             OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)

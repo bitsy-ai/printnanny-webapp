@@ -15,7 +15,7 @@ class PrintNannyApiConfig(TypedDict):
 
 def get_api_config(request) -> PrintNannyApiConfig:
     if type(request.user) == AnonymousUser:
-        raise Exception("APIConfig requires authenticated user to retreive")
+        raise Exception("APIConfig requires authenticated user to retrieve")
 
     token, _ = Token.objects.get_or_create(user=request.user)
     base_path = request.build_absolute_uri("/")[

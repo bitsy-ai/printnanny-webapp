@@ -50,7 +50,7 @@ logger = logging.getLogger(__name__)
         }
         | generic_create_errors,
     ),
-    retreive=extend_schema(
+    retrieve=extend_schema(
         tags=["tasks", "devices"],
         parameters=[
             OpenApiParameter(
@@ -141,7 +141,7 @@ class TaskViewSet(
         }
         | generic_create_errors,
     ),
-    retreive=extend_schema(
+    retrieve=extend_schema(
         tags=["tasks", "devices"],
         parameters=[
             OpenApiParameter(

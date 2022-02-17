@@ -61,7 +61,7 @@ def monitor_start(device: Device):
     # 2) get or create Janus credentials
     janus_cloud_auth, created = JanusAuth.objects.get_or_create(user=device.user)
     logger.debug(
-        "Retreived JanusAuth id=%s user=%s created=%s",
+        "retrieved JanusAuth id=%s user=%s created=%s",
         janus_cloud_auth.id,
         device.user.id,
         created,

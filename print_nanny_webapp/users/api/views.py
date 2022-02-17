@@ -23,7 +23,7 @@ User = get_user_model()
         }
         | generic_update_errors,
     ),
-    retreive=extend_schema(
+    retrieve=extend_schema(
         request=UserSerializer,
         responses={
             200: UserSerializer,

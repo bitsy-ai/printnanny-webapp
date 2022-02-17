@@ -50,7 +50,7 @@ def create_ghost_member(ghost_member):
     except Exception as e:
         logger.warning(
             {
-                "msg": "Attempting to retreive user after POST /ghost/api/v3/admin/members/",
+                "msg": "Attempting to retrieve user after POST /ghost/api/v3/admin/members/",
                 "error": e,
             }
         )
