@@ -6,48 +6,48 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devices', '0006_auto_20220216_2107'),
+        ("devices", "0006_auto_20220216_2107"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='monitoringstoptask',
-            name='janus_media_stream',
+            model_name="monitoringstoptask",
+            name="janus_media_stream",
         ),
         migrations.RemoveField(
-            model_name='monitoringstoptask',
-            name='task_ptr',
+            model_name="monitoringstoptask",
+            name="task_ptr",
         ),
         migrations.AlterIndexTogether(
-            name='task',
+            name="task",
             index_together=None,
         ),
         migrations.RemoveField(
-            model_name='task',
-            name='device',
+            model_name="task",
+            name="device",
         ),
         migrations.RemoveField(
-            model_name='task',
-            name='polymorphic_ctype',
+            model_name="task",
+            name="polymorphic_ctype",
         ),
         migrations.AlterIndexTogether(
-            name='taskstatus',
+            name="taskstatus",
             index_together=None,
         ),
         migrations.RemoveField(
-            model_name='taskstatus',
-            name='task',
+            model_name="taskstatus",
+            name="task",
         ),
         migrations.DeleteModel(
-            name='MonitoringStartTask',
+            name="MonitoringStartTask",
         ),
         migrations.DeleteModel(
-            name='MonitoringStopTask',
+            name="MonitoringStopTask",
         ),
         migrations.DeleteModel(
-            name='Task',
+            name="Task",
         ),
         migrations.DeleteModel(
-            name='TaskStatus',
+            name="TaskStatus",
         ),
     ]
