@@ -41,6 +41,12 @@ class TestTasksApi(unittest.TestCase):
         """
         pass
 
+    def test_devices_tasks_retrieve(self):
+        """Test case for devices_tasks_retrieve
+
+        """
+        pass
+
     def test_devices_tasks_status_create(self):
         """Test case for devices_tasks_status_create
 
@@ -49,6 +55,12 @@ class TestTasksApi(unittest.TestCase):
 
     def test_devices_tasks_status_list(self):
         """Test case for devices_tasks_status_list
+
+        """
+        pass
+
+    def test_devices_tasks_status_retrieve(self):
+        """Test case for devices_tasks_status_retrieve
 
         """
         pass

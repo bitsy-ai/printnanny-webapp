@@ -1324,7 +1324,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_tasks_retrieve
 
-> crate::models::PolymorphicTask devices_tasks_retrieve(device_id, id)
+> crate::models::PolymorphicTask devices_tasks_retrieve(device_id, id, task_id)
 
 
 ### Parameters
@@ -1334,6 +1334,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
 **id** | **i32** | A unique integer value identifying this task. | [required] |
+**task_id** | **i32** |  | [required] |
 
 ### Return type
 
@@ -1421,7 +1422,7 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **String** |  | [required] |
+**device_id** | **i32** |  | [required] |
 **id** | **i32** | A unique integer value identifying this task status. | [required] |
 **task_id** | **i32** |  | [required] |
 

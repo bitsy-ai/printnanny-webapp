@@ -3238,6 +3238,11 @@ class DevicesApi(object):
 
         response_types_map = {
             200: "JanusStream",
+            404: "ErrorDetail",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(
@@ -6619,19 +6624,21 @@ class DevicesApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def devices_tasks_retrieve(self, device_id, id, **kwargs):  # noqa: E501
+    def devices_tasks_retrieve(self, device_id, id, task_id, **kwargs):  # noqa: E501
         """devices_tasks_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_tasks_retrieve(device_id, id, async_req=True)
+        >>> thread = api.devices_tasks_retrieve(device_id, id, task_id, async_req=True)
         >>> result = thread.get()
 
         :param device_id: (required)
         :type device_id: int
         :param id: A unique integer value identifying this task. (required)
         :type id: int
+        :param task_id: (required)
+        :type task_id: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -6648,21 +6655,23 @@ class DevicesApi(object):
         :rtype: PolymorphicTask
         """
         kwargs['_return_http_data_only'] = True
-        return self.devices_tasks_retrieve_with_http_info(device_id, id, **kwargs)  # noqa: E501
+        return self.devices_tasks_retrieve_with_http_info(device_id, id, task_id, **kwargs)  # noqa: E501
 
-    def devices_tasks_retrieve_with_http_info(self, device_id, id, **kwargs):  # noqa: E501
+    def devices_tasks_retrieve_with_http_info(self, device_id, id, task_id, **kwargs):  # noqa: E501
         """devices_tasks_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_tasks_retrieve_with_http_info(device_id, id, async_req=True)
+        >>> thread = api.devices_tasks_retrieve_with_http_info(device_id, id, task_id, async_req=True)
         >>> result = thread.get()
 
         :param device_id: (required)
         :type device_id: int
         :param id: A unique integer value identifying this task. (required)
         :type id: int
+        :param task_id: (required)
+        :type task_id: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -6691,7 +6700,8 @@ class DevicesApi(object):
 
         all_params = [
             'device_id',
-            'id'
+            'id',
+            'task_id'
         ]
         all_params.extend(
             [
@@ -6721,6 +6731,10 @@ class DevicesApi(object):
         if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
                                                         local_var_params['id'] is None):  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `devices_tasks_retrieve`")  # noqa: E501
+        # verify the required parameter 'task_id' is set
+        if self.api_client.client_side_validation and ('task_id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['task_id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `task_id` when calling `devices_tasks_retrieve`")  # noqa: E501
 
         collection_formats = {}
 
@@ -6729,6 +6743,8 @@ class DevicesApi(object):
             path_params['device_id'] = local_var_params['device_id']  # noqa: E501
         if 'id' in local_var_params:
             path_params['id'] = local_var_params['id']  # noqa: E501
+        if 'task_id' in local_var_params:
+            path_params['task_id'] = local_var_params['task_id']  # noqa: E501
 
         query_params = []
 
@@ -6747,6 +6763,11 @@ class DevicesApi(object):
 
         response_types_map = {
             200: "PolymorphicTask",
+            404: "ErrorDetail",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(
@@ -7103,7 +7124,7 @@ class DevicesApi(object):
         >>> result = thread.get()
 
         :param device_id: (required)
-        :type device_id: str
+        :type device_id: int
         :param id: A unique integer value identifying this task status. (required)
         :type id: int
         :param task_id: (required)
@@ -7136,7 +7157,7 @@ class DevicesApi(object):
         >>> result = thread.get()
 
         :param device_id: (required)
-        :type device_id: str
+        :type device_id: int
         :param id: A unique integer value identifying this task status. (required)
         :type id: int
         :param task_id: (required)
@@ -7232,6 +7253,11 @@ class DevicesApi(object):
 
         response_types_map = {
             200: "TaskStatus",
+            404: "ErrorDetail",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(

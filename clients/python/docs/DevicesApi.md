@@ -2628,6 +2628,11 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
+**404** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -5348,7 +5353,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_tasks_retrieve**
-> PolymorphicTask devices_tasks_retrieve(device_id, id)
+> PolymorphicTask devices_tasks_retrieve(device_id, id, task_id)
 
 
 
@@ -5389,9 +5394,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
 id = 56 # int | A unique integer value identifying this task.
+task_id = 56 # int | 
 
     try:
-        api_response = api_instance.devices_tasks_retrieve(device_id, id)
+        api_response = api_instance.devices_tasks_retrieve(device_id, id, task_id)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_tasks_retrieve: %s\n" % e)
@@ -5432,9 +5438,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
 id = 56 # int | A unique integer value identifying this task.
+task_id = 56 # int | 
 
     try:
-        api_response = api_instance.devices_tasks_retrieve(device_id, id)
+        api_response = api_instance.devices_tasks_retrieve(device_id, id, task_id)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_tasks_retrieve: %s\n" % e)
@@ -5446,6 +5453,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **device_id** | **int**|  | 
  **id** | **int**| A unique integer value identifying this task. | 
+ **task_id** | **int**|  | 
 
 ### Return type
 
@@ -5464,6 +5472,11 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
+**404** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -5762,7 +5775,7 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 'device_id_example' # str | 
+    device_id = 56 # int | 
 id = 56 # int | A unique integer value identifying this task status.
 task_id = 56 # int | 
 
@@ -5806,7 +5819,7 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 'device_id_example' # str | 
+    device_id = 56 # int | 
 id = 56 # int | A unique integer value identifying this task status.
 task_id = 56 # int | 
 
@@ -5821,7 +5834,7 @@ task_id = 56 # int |
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **str**|  | 
+ **device_id** | **int**|  | 
  **id** | **int**| A unique integer value identifying this task status. | 
  **task_id** | **int**|  | 
 
@@ -5842,6 +5855,11 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
+**404** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
