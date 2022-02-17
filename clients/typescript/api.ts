@@ -1057,6 +1057,24 @@ export interface JanusAuth {
      * @type {string}
      * @memberof JanusAuth
      */
+    'api_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusAuth
+     */
+    'admin_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusAuth
+     */
+    'websocket_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusAuth
+     */
     'admin_secret'?: string | null;
     /**
      * 

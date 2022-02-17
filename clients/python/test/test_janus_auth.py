@@ -38,6 +38,9 @@ class TestJanusAuth(unittest.TestCase):
         if include_optional :
             return JanusAuth(
                 id = 56, 
+                api_url = '', 
+                admin_url = '', 
+                websocket_url = '', 
                 admin_secret = '', 
                 api_token = '', 
                 config_type = 'cloud', 
@@ -47,6 +50,9 @@ class TestJanusAuth(unittest.TestCase):
         else :
             return JanusAuth(
                 id = 56,
+                api_url = '',
+                admin_url = '',
+                websocket_url = '',
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 user = 56,
         )
