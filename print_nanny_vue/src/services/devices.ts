@@ -20,8 +20,9 @@ export default {
 
   async startMonitoringTask(deviceId: Number) {
     const thisapi = api.DevicesApiFactory(configuration)
-
-  }
+    const req: api.JanusTaskRequest = { "task_type": api.TaskTypeEnum.Start }
+    // const res = await.thisapi.devicesTasksCreate(req)
+  },
   async createTestEvent(deviceId: number, eventType: TestEventType) {
     const thisapi = api.DevicesApiFactory(configuration)
     const req: api.TestEventRequest = {
