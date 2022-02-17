@@ -409,14 +409,14 @@ class JanusAuth(SafeDeleteModel):
         )
 
 
-class JanusStreamConfig(SafeDeleteModel):
+class JanusStream(SafeDeleteModel):
     class Meta:
         index_together = ("device", "active", "created_dt", "updated_dt")
         constraints = [
             UniqueConstraint(
-                fields=["device"],
+                fields=["device", "config_type"],
                 condition=models.Q(deleted=None),
-                name="unique_janus_cloud_stream_per_device",
+                name="unique_janus_stream_per_device",
             )
         ]
 
@@ -424,7 +424,7 @@ class JanusStreamConfig(SafeDeleteModel):
         max_length=32, choices=JanusConfigType.choices, default=JanusConfigType.CLOUD
     )
     device = models.ForeignKey(
-        Device, on_delete=models.CASCADE, related_name="janus_media_streams"
+        Device, on_delete=models.CASCADE, related_name="janus_streams"
     )
     active = models.BooleanField(default=False)
     secret = models.CharField(max_length=255, default=get_random_string_32)

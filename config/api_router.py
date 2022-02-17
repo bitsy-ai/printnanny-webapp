@@ -7,6 +7,7 @@ from print_nanny_webapp.devices.api.views import (
     CloudiotDeviceViewSet,
     DeviceHostnameViewSet,
     JanusAuthViewSet,
+    JanusStreamViewSet,
     PublicKeyViewSet,
     SystemInfoViewSet,
     DeviceViewSet,
@@ -59,6 +60,7 @@ devices_by_hostname = [
 
 devices_router = NestedSimpleRouter(router, r'devices', lookup='device')
 devices_router.register(r'public-keys', PublicKeyViewSet, basename='public-keys')
+devices_router.register(r'janus-streams', JanusStreamViewSet, basename='janus-streams')
 
 devices_router.register(r'system-info', SystemInfoViewSet, basename='system-info')
 devices_router.register(r'cameras', CameraViewSet, basename='cameras')
