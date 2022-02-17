@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.monitor_start_task import MonitorStartTask  # noqa: E501
+from printnanny_api_client.models.janus_task import JanusTask  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestMonitorStartTask(unittest.TestCase):
-    """MonitorStartTask unit test stubs"""
+class TestJanusTask(unittest.TestCase):
+    """JanusTask unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,32 +30,34 @@ class TestMonitorStartTask(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test MonitorStartTask
+        """Test JanusTask
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.monitor_start_task.MonitorStartTask()  # noqa: E501
+        # model = printnanny_api_client.models.janus_task.JanusTask()  # noqa: E501
         if include_optional :
-            return MonitorStartTask(
+            return JanusTask(
                 id = 56, 
                 deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                task_type = 'cloud_monitor_start', 
                 polymorphic_ctype = 56, 
                 device = 56, 
-                janus_media_stream = 56
+                cloud_media_stream = 56
             )
         else :
-            return MonitorStartTask(
+            return JanusTask(
                 id = 56,
                 deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                task_type = 'cloud_monitor_start',
                 polymorphic_ctype = 56,
                 device = 56,
-                janus_media_stream = 56,
+                cloud_media_stream = 56,
         )
 
-    def testMonitorStartTask(self):
-        """Test MonitorStartTask"""
+    def testJanusTask(self):
+        """Test JanusTask"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

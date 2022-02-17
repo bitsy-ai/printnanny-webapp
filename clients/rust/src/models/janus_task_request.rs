@@ -12,15 +12,15 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct TaskRequest {
-    #[serde(rename = "tasktype")]
-    pub tasktype: crate::models::TasktypeEnum,
+pub struct JanusTaskRequest {
+    #[serde(rename = "task_type")]
+    pub task_type: crate::models::TaskTypeEnum,
 }
 
-impl TaskRequest {
-    pub fn new(tasktype: crate::models::TasktypeEnum) -> TaskRequest {
-        TaskRequest {
-            tasktype,
+impl JanusTaskRequest {
+    pub fn new(task_type: crate::models::TaskTypeEnum) -> JanusTaskRequest {
+        JanusTaskRequest {
+            task_type,
         }
     }
 }

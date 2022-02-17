@@ -38,7 +38,6 @@ class Task(object):
     """
     openapi_types = {
         'id': 'int',
-        'tasktype': 'TasktypeEnum',
         'deleted': 'datetime',
         'created_dt': 'datetime',
         'polymorphic_ctype': 'int',
@@ -47,21 +46,19 @@ class Task(object):
 
     attribute_map = {
         'id': 'id',
-        'tasktype': 'tasktype',
         'deleted': 'deleted',
         'created_dt': 'created_dt',
         'polymorphic_ctype': 'polymorphic_ctype',
         'device': 'device'
     }
 
-    def __init__(self, id=None, tasktype=None, deleted=None, created_dt=None, polymorphic_ctype=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, deleted=None, created_dt=None, polymorphic_ctype=None, device=None, local_vars_configuration=None):  # noqa: E501
         """Task - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
-        self._tasktype = None
         self._deleted = None
         self._created_dt = None
         self._polymorphic_ctype = None
@@ -69,7 +66,6 @@ class Task(object):
         self.discriminator = None
 
         self.id = id
-        self.tasktype = tasktype
         self.deleted = deleted
         self.created_dt = created_dt
         self.polymorphic_ctype = polymorphic_ctype
@@ -97,29 +93,6 @@ class Task(object):
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
-
-    @property
-    def tasktype(self):
-        """Gets the tasktype of this Task.  # noqa: E501
-
-
-        :return: The tasktype of this Task.  # noqa: E501
-        :rtype: TasktypeEnum
-        """
-        return self._tasktype
-
-    @tasktype.setter
-    def tasktype(self, tasktype):
-        """Sets the tasktype of this Task.
-
-
-        :param tasktype: The tasktype of this Task.  # noqa: E501
-        :type tasktype: TasktypeEnum
-        """
-        if self.local_vars_configuration.client_side_validation and tasktype is None:  # noqa: E501
-            raise ValueError("Invalid value for `tasktype`, must not be `None`")  # noqa: E501
-
-        self._tasktype = tasktype
 
     @property
     def deleted(self):

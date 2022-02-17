@@ -47,10 +47,10 @@ from printnanny_api_client.models.janus_cloud_auth import JanusCloudAuth
 from printnanny_api_client.models.janus_cloud_auth_request import JanusCloudAuthRequest
 from printnanny_api_client.models.janus_edge_auth import JanusEdgeAuth
 from printnanny_api_client.models.janus_edge_auth_request import JanusEdgeAuthRequest
+from printnanny_api_client.models.janus_task import JanusTask
+from printnanny_api_client.models.janus_task_request import JanusTaskRequest
 from printnanny_api_client.models.mobile_auth_request import MobileAuthRequest
 from printnanny_api_client.models.model_artifact import ModelArtifact
-from printnanny_api_client.models.monitor_start_task import MonitorStartTask
-from printnanny_api_client.models.monitor_stop_task import MonitorStopTask
 from printnanny_api_client.models.octo_generic_event import OctoGenericEvent
 from printnanny_api_client.models.octo_job_event import OctoJobEvent
 from printnanny_api_client.models.octo_print_backup import OctoPrintBackup
@@ -159,11 +159,10 @@ from printnanny_api_client.models.software_enum import SoftwareEnum
 from printnanny_api_client.models.system_info import SystemInfo
 from printnanny_api_client.models.system_info_request import SystemInfoRequest
 from printnanny_api_client.models.task import Task
-from printnanny_api_client.models.task_request import TaskRequest
 from printnanny_api_client.models.task_status import TaskStatus
 from printnanny_api_client.models.task_status_request import TaskStatusRequest
 from printnanny_api_client.models.task_status_status_enum import TaskStatusStatusEnum
-from printnanny_api_client.models.tasktype_enum import TasktypeEnum
+from printnanny_api_client.models.task_type_enum import TaskTypeEnum
 from printnanny_api_client.models.telemetry_event import TelemetryEvent
 from printnanny_api_client.models.telemetry_event_polymorphic import TelemetryEventPolymorphic
 from printnanny_api_client.models.telemetry_event_polymorphic_request import TelemetryEventPolymorphicRequest

@@ -40,24 +40,26 @@ class PolymorphicTask(object):
         'id': 'int',
         'deleted': 'datetime',
         'created_dt': 'datetime',
+        'task_type': 'TaskTypeEnum',
         'polymorphic_ctype': 'int',
         'device': 'int',
-        'janus_media_stream': 'int'
+        'cloud_media_stream': 'int'
     }
 
     attribute_map = {
         'id': 'id',
         'deleted': 'deleted',
         'created_dt': 'created_dt',
+        'task_type': 'task_type',
         'polymorphic_ctype': 'polymorphic_ctype',
         'device': 'device',
-        'janus_media_stream': 'janus_media_stream'
+        'cloud_media_stream': 'cloud_media_stream'
     }
 
     discriminator_value_class_map = {
     }
 
-    def __init__(self, id=None, deleted=None, created_dt=None, polymorphic_ctype=None, device=None, janus_media_stream=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, deleted=None, created_dt=None, task_type=None, polymorphic_ctype=None, device=None, cloud_media_stream=None, local_vars_configuration=None):  # noqa: E501
         """PolymorphicTask - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -66,17 +68,19 @@ class PolymorphicTask(object):
         self._id = None
         self._deleted = None
         self._created_dt = None
+        self._task_type = None
         self._polymorphic_ctype = None
         self._device = None
-        self._janus_media_stream = None
-        self.discriminator = 'model'
+        self._cloud_media_stream = None
+        self.discriminator = 'task_type'
 
         self.id = id
         self.deleted = deleted
         self.created_dt = created_dt
+        self.task_type = task_type
         self.polymorphic_ctype = polymorphic_ctype
         self.device = device
-        self.janus_media_stream = janus_media_stream
+        self.cloud_media_stream = cloud_media_stream
 
     @property
     def id(self):
@@ -148,6 +152,29 @@ class PolymorphicTask(object):
         self._created_dt = created_dt
 
     @property
+    def task_type(self):
+        """Gets the task_type of this PolymorphicTask.  # noqa: E501
+
+
+        :return: The task_type of this PolymorphicTask.  # noqa: E501
+        :rtype: TaskTypeEnum
+        """
+        return self._task_type
+
+    @task_type.setter
+    def task_type(self, task_type):
+        """Sets the task_type of this PolymorphicTask.
+
+
+        :param task_type: The task_type of this PolymorphicTask.  # noqa: E501
+        :type task_type: TaskTypeEnum
+        """
+        if self.local_vars_configuration.client_side_validation and task_type is None:  # noqa: E501
+            raise ValueError("Invalid value for `task_type`, must not be `None`")  # noqa: E501
+
+        self._task_type = task_type
+
+    @property
     def polymorphic_ctype(self):
         """Gets the polymorphic_ctype of this PolymorphicTask.  # noqa: E501
 
@@ -194,27 +221,27 @@ class PolymorphicTask(object):
         self._device = device
 
     @property
-    def janus_media_stream(self):
-        """Gets the janus_media_stream of this PolymorphicTask.  # noqa: E501
+    def cloud_media_stream(self):
+        """Gets the cloud_media_stream of this PolymorphicTask.  # noqa: E501
 
 
-        :return: The janus_media_stream of this PolymorphicTask.  # noqa: E501
+        :return: The cloud_media_stream of this PolymorphicTask.  # noqa: E501
         :rtype: int
         """
-        return self._janus_media_stream
+        return self._cloud_media_stream
 
-    @janus_media_stream.setter
-    def janus_media_stream(self, janus_media_stream):
-        """Sets the janus_media_stream of this PolymorphicTask.
+    @cloud_media_stream.setter
+    def cloud_media_stream(self, cloud_media_stream):
+        """Sets the cloud_media_stream of this PolymorphicTask.
 
 
-        :param janus_media_stream: The janus_media_stream of this PolymorphicTask.  # noqa: E501
-        :type janus_media_stream: int
+        :param cloud_media_stream: The cloud_media_stream of this PolymorphicTask.  # noqa: E501
+        :type cloud_media_stream: int
         """
-        if self.local_vars_configuration.client_side_validation and janus_media_stream is None:  # noqa: E501
-            raise ValueError("Invalid value for `janus_media_stream`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and cloud_media_stream is None:  # noqa: E501
+            raise ValueError("Invalid value for `cloud_media_stream`, must not be `None`")  # noqa: E501
 
-        self._janus_media_stream = janus_media_stream
+        self._cloud_media_stream = cloud_media_stream
 
     def get_real_child_model(self, data):
         """Returns the real base class specified by the discriminator"""

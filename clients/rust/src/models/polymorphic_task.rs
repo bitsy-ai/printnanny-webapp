@@ -11,7 +11,7 @@
 
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-pub struct MonitorStartTask {
+pub struct JanusTask {
         #[serde(rename = "id")]
         id: i32,
         #[serde(rename = "deleted")]
@@ -22,32 +22,15 @@ pub struct MonitorStartTask {
         polymorphic_ctype: i32,
         #[serde(rename = "device")]
         device: i32,
-        #[serde(rename = "janus_media_stream")]
-        janus_media_stream: i32,
-}
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-pub struct MonitorStopTask {
-        #[serde(rename = "id")]
-        id: i32,
-        #[serde(rename = "deleted")]
-        deleted: String,
-        #[serde(rename = "created_dt")]
-        created_dt: String,
-        #[serde(rename = "polymorphic_ctype")]
-        polymorphic_ctype: i32,
-        #[serde(rename = "device")]
-        device: i32,
-        #[serde(rename = "janus_media_stream")]
-        janus_media_stream: i32,
+        #[serde(rename = "cloud_media_stream")]
+        cloud_media_stream: i32,
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-#[serde(tag = "model")]
+#[serde(tag = "tasktype")]
 pub enum PolymorphicTask {
-    #[serde(rename="MonitorStartTask")]
-    MonitorStartTask(MonitorStartTask),
-    #[serde(rename="MonitorStopTask")]
-    MonitorStopTask(MonitorStopTask),
+    #[serde(rename="JanusTask")]
+    JanusTask(JanusTask),
 }
 
 
