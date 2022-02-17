@@ -6448,6 +6448,11 @@ class DevicesApi(object):
 
         response_types_map = {
             201: "PolymorphicTask",
+            409: "ErrorDetail",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(
@@ -6591,6 +6596,10 @@ class DevicesApi(object):
 
         response_types_map = {
             200: "PaginatedPolymorphicTaskList",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(
@@ -6767,7 +6776,7 @@ class DevicesApi(object):
         >>> result = thread.get()
 
         :param device_id: (required)
-        :type device_id: str
+        :type device_id: int
         :param task_id: (required)
         :type task_id: int
         :param task_status_request: (required)
@@ -6800,7 +6809,7 @@ class DevicesApi(object):
         >>> result = thread.get()
 
         :param device_id: (required)
-        :type device_id: str
+        :type device_id: int
         :param task_id: (required)
         :type task_id: int
         :param task_status_request: (required)
@@ -6902,6 +6911,11 @@ class DevicesApi(object):
 
         response_types_map = {
             201: "TaskStatus",
+            409: "ErrorDetail",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(
@@ -6931,7 +6945,7 @@ class DevicesApi(object):
         >>> result = thread.get()
 
         :param device_id: (required)
-        :type device_id: str
+        :type device_id: int
         :param task_id: (required)
         :type task_id: int
         :param page: A page number within the paginated result set.
@@ -6964,7 +6978,7 @@ class DevicesApi(object):
         >>> result = thread.get()
 
         :param device_id: (required)
-        :type device_id: str
+        :type device_id: int
         :param task_id: (required)
         :type task_id: int
         :param page: A page number within the paginated result set.
@@ -7056,6 +7070,10 @@ class DevicesApi(object):
 
         response_types_map = {
             200: "PaginatedTaskStatusList",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(

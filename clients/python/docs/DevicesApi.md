@@ -5215,6 +5215,11 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** |  |  -  |
+**409** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -5335,6 +5340,10 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -5498,7 +5507,7 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 'device_id_example' # str | 
+    device_id = 56 # int | 
 task_id = 56 # int | 
 task_status_request = printnanny_api_client.TaskStatusRequest() # TaskStatusRequest | 
 
@@ -5542,7 +5551,7 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 'device_id_example' # str | 
+    device_id = 56 # int | 
 task_id = 56 # int | 
 task_status_request = printnanny_api_client.TaskStatusRequest() # TaskStatusRequest | 
 
@@ -5557,7 +5566,7 @@ task_status_request = printnanny_api_client.TaskStatusRequest() # TaskStatusRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **str**|  | 
+ **device_id** | **int**|  | 
  **task_id** | **int**|  | 
  **task_status_request** | [**TaskStatusRequest**](TaskStatusRequest.md)|  | 
 
@@ -5578,6 +5587,11 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** |  |  -  |
+**409** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -5621,7 +5635,7 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 'device_id_example' # str | 
+    device_id = 56 # int | 
 task_id = 56 # int | 
 page = 56 # int | A page number within the paginated result set. (optional)
 
@@ -5665,7 +5679,7 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 'device_id_example' # str | 
+    device_id = 56 # int | 
 task_id = 56 # int | 
 page = 56 # int | A page number within the paginated result set. (optional)
 
@@ -5680,7 +5694,7 @@ page = 56 # int | A page number within the paginated result set. (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **str**|  | 
+ **device_id** | **int**|  | 
  **task_id** | **int**|  | 
  **page** | **int**| A page number within the paginated result set. | [optional] 
 
@@ -5701,6 +5715,10 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
