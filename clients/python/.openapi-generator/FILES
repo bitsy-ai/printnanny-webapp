@@ -46,9 +46,7 @@ docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
 docs/MonitorStartTask.md
-docs/MonitorStartTaskRequest.md
 docs/MonitorStopTask.md
-docs/MonitorStopTaskRequest.md
 docs/OctoGenericEvent.md
 docs/OctoJobEvent.md
 docs/OctoPrintBackup.md
@@ -237,9 +235,7 @@ printnanny_api_client/models/janus_edge_auth_request.py
 printnanny_api_client/models/mobile_auth_request.py
 printnanny_api_client/models/model_artifact.py
 printnanny_api_client/models/monitor_start_task.py
-printnanny_api_client/models/monitor_start_task_request.py
 printnanny_api_client/models/monitor_stop_task.py
-printnanny_api_client/models/monitor_stop_task_request.py
 printnanny_api_client/models/octo_generic_event.py
 printnanny_api_client/models/octo_job_event.py
 printnanny_api_client/models/octo_print_backup.py
@@ -412,9 +408,7 @@ test/test_ml_ops_api.py
 test/test_mobile_auth_request.py
 test/test_model_artifact.py
 test/test_monitor_start_task.py
-test/test_monitor_start_task_request.py
 test/test_monitor_stop_task.py
-test/test_monitor_stop_task_request.py
 test/test_octo_generic_event.py
 test/test_octo_job_event.py
 test/test_octo_print_backup.py

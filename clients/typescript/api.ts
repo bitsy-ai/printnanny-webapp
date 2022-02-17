@@ -1258,19 +1258,6 @@ export interface MonitorStartTask {
 /**
  * 
  * @export
- * @interface MonitorStartTaskRequest
- */
-export interface MonitorStartTaskRequest {
-    /**
-     * 
-     * @type {number}
-     * @memberof MonitorStartTaskRequest
-     */
-    'janus_media_stream': number;
-}
-/**
- * 
- * @export
  * @interface MonitorStopTask
  */
 export interface MonitorStopTask {
@@ -1308,19 +1295,6 @@ export interface MonitorStopTask {
      * 
      * @type {number}
      * @memberof MonitorStopTask
-     */
-    'janus_media_stream': number;
-}
-/**
- * 
- * @export
- * @interface MonitorStopTaskRequest
- */
-export interface MonitorStopTaskRequest {
-    /**
-     * 
-     * @type {number}
-     * @memberof MonitorStopTaskRequest
      */
     'janus_media_stream': number;
 }
@@ -4754,11 +4728,12 @@ export type PolymorphicEventRequest = TestEventRequest;
 export type PolymorphicTask = MonitorStartTask | MonitorStopTask;
 
 /**
- * @type PolymorphicTaskRequest
+ * 
  * @export
+ * @interface PolymorphicTaskRequest
  */
-export type PolymorphicTaskRequest = MonitorStartTaskRequest | MonitorStopTaskRequest;
-
+export interface PolymorphicTaskRequest {
+}
 /**
  * 
  * @export

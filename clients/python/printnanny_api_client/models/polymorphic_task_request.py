@@ -37,49 +37,20 @@ class PolymorphicTaskRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'janus_media_stream': 'int'
     }
 
     attribute_map = {
-        'janus_media_stream': 'janus_media_stream'
     }
 
     discriminator_value_class_map = {
     }
 
-    def __init__(self, janus_media_stream=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, local_vars_configuration=None):  # noqa: E501
         """PolymorphicTaskRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
-
-        self._janus_media_stream = None
         self.discriminator = 'model'
-
-        self.janus_media_stream = janus_media_stream
-
-    @property
-    def janus_media_stream(self):
-        """Gets the janus_media_stream of this PolymorphicTaskRequest.  # noqa: E501
-
-
-        :return: The janus_media_stream of this PolymorphicTaskRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._janus_media_stream
-
-    @janus_media_stream.setter
-    def janus_media_stream(self, janus_media_stream):
-        """Sets the janus_media_stream of this PolymorphicTaskRequest.
-
-
-        :param janus_media_stream: The janus_media_stream of this PolymorphicTaskRequest.  # noqa: E501
-        :type janus_media_stream: int
-        """
-        if self.local_vars_configuration.client_side_validation and janus_media_stream is None:  # noqa: E501
-            raise ValueError("Invalid value for `janus_media_stream`, must not be `None`")  # noqa: E501
-
-        self._janus_media_stream = janus_media_stream
 
     def get_real_child_model(self, data):
         """Returns the real base class specified by the discriminator"""
