@@ -115,6 +115,8 @@ class JanusAuthSerializer(serializers.ModelSerializer):
 
 
 class JanusStreamSerializer(serializers.ModelSerializer):
+    auth = JanusAuthSerializer(read_only=True)
+
     class Meta:
         model = JanusStream
         exclude = ("deleted",)

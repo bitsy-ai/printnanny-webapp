@@ -451,7 +451,7 @@ class JanusStream(SafeDeleteModel):
     info = models.JSONField(default=dict)
 
     @property
-    def janus_auth(self) -> JanusAuth:
+    def auth(self) -> JanusAuth:
         if self.config_type == JanusConfigType.CLOUD:
             janus_auth, _created = JanusAuth.objects.get_or_create(
                 config_type=self.config_type, user=self.device.user
