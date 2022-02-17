@@ -56,7 +56,6 @@ logger = logging.getLogger(__name__)
             OpenApiParameter(
                 name="device_id", type=int, location=OpenApiParameter.PATH
             ),
-            OpenApiParameter(name="task_id", type=int, location=OpenApiParameter.PATH),
         ],
         request=PolymorphicTaskSerializer,
         responses={
@@ -70,7 +69,6 @@ logger = logging.getLogger(__name__)
             OpenApiParameter(
                 name="device_id", type=int, location=OpenApiParameter.PATH
             ),
-            OpenApiParameter(name="task_id", type=int, location=OpenApiParameter.PATH),
         ],
         request=PolymorphicTaskSerializer,
         responses={
