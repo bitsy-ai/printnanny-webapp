@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
-**tasktype** | [**TasktypeEnum**](TasktypeEnum.md) |  | 
 **deleted** | **datetime** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
 **polymorphic_ctype** | **int** |  | [readonly] 

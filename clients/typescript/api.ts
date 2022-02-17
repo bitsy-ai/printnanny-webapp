@@ -1145,6 +1145,68 @@ export interface JanusEdgeAuthRequest {
     'device': number;
 }
 /**
+ * 
+ * @export
+ * @interface JanusTask
+ */
+export interface JanusTask {
+    /**
+     * 
+     * @type {number}
+     * @memberof JanusTask
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusTask
+     */
+    'deleted': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusTask
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {TaskTypeEnum}
+     * @memberof JanusTask
+     */
+    'task_type': TaskTypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof JanusTask
+     */
+    'polymorphic_ctype': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof JanusTask
+     */
+    'device': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof JanusTask
+     */
+    'cloud_media_stream': number;
+}
+/**
+ * 
+ * @export
+ * @interface JanusTaskRequest
+ */
+export interface JanusTaskRequest {
+    /**
+     * 
+     * @type {TaskTypeEnum}
+     * @memberof JanusTaskRequest
+     */
+    'task_type': TaskTypeEnum;
+}
+/**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
  * @export
  * @interface MobileAuthRequest
@@ -1211,92 +1273,6 @@ export interface ModelArtifact {
      * @memberof ModelArtifact
      */
     'url': string;
-}
-/**
- * 
- * @export
- * @interface MonitorStartTask
- */
-export interface MonitorStartTask {
-    /**
-     * 
-     * @type {number}
-     * @memberof MonitorStartTask
-     */
-    'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof MonitorStartTask
-     */
-    'deleted': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MonitorStartTask
-     */
-    'created_dt': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof MonitorStartTask
-     */
-    'polymorphic_ctype': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MonitorStartTask
-     */
-    'device': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MonitorStartTask
-     */
-    'janus_media_stream': number;
-}
-/**
- * 
- * @export
- * @interface MonitorStopTask
- */
-export interface MonitorStopTask {
-    /**
-     * 
-     * @type {number}
-     * @memberof MonitorStopTask
-     */
-    'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof MonitorStopTask
-     */
-    'deleted': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MonitorStopTask
-     */
-    'created_dt': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof MonitorStopTask
-     */
-    'polymorphic_ctype': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MonitorStopTask
-     */
-    'device': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MonitorStopTask
-     */
-    'janus_media_stream': number;
 }
 /**
  * 
@@ -4725,15 +4701,14 @@ export type PolymorphicEventRequest = TestEventRequest;
  * @type PolymorphicTask
  * @export
  */
-export type PolymorphicTask = MonitorStartTask | MonitorStopTask;
+export type PolymorphicTask = JanusTask;
 
 /**
- * 
+ * @type PolymorphicTaskRequest
  * @export
- * @interface PolymorphicTaskRequest
  */
-export interface PolymorphicTaskRequest {
-}
+export type PolymorphicTaskRequest = JanusTaskRequest;
+
 /**
  * 
  * @export
@@ -6485,12 +6460,6 @@ export interface Task {
     'id': number;
     /**
      * 
-     * @type {TasktypeEnum}
-     * @memberof Task
-     */
-    'tasktype': TasktypeEnum;
-    /**
-     * 
      * @type {string}
      * @memberof Task
      */
@@ -6513,19 +6482,6 @@ export interface Task {
      * @memberof Task
      */
     'device': number;
-}
-/**
- * 
- * @export
- * @interface TaskRequest
- */
-export interface TaskRequest {
-    /**
-     * 
-     * @type {TasktypeEnum}
-     * @memberof TaskRequest
-     */
-    'tasktype': TasktypeEnum;
 }
 /**
  * 
@@ -6600,14 +6556,12 @@ export type TaskStatusStatusEnum = typeof TaskStatusStatusEnum[keyof typeof Task
  * @enum {string}
  */
 
-export const TasktypeEnum = {
-    CloudMonitorStart: 'cloud_monitor_start',
-    CloudMonitorStop: 'cloud_monitor_stop',
-    SystemCheck: 'system_check',
-    SystemUpdate: 'system_update'
+export const TaskTypeEnum = {
+    Start: 'cloud_monitor_start',
+    Stop: 'cloud_monitor_stop'
 } as const;
 
-export type TasktypeEnum = typeof TasktypeEnum[keyof typeof TasktypeEnum];
+export type TaskTypeEnum = typeof TaskTypeEnum[keyof typeof TaskTypeEnum];
 
 
 /**

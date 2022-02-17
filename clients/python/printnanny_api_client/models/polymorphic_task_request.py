@@ -37,20 +37,49 @@ class PolymorphicTaskRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
+        'task_type': 'TaskTypeEnum'
     }
 
     attribute_map = {
+        'task_type': 'task_type'
     }
 
     discriminator_value_class_map = {
     }
 
-    def __init__(self, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, task_type=None, local_vars_configuration=None):  # noqa: E501
         """PolymorphicTaskRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
-        self.discriminator = 'model'
+
+        self._task_type = None
+        self.discriminator = 'task_type'
+
+        self.task_type = task_type
+
+    @property
+    def task_type(self):
+        """Gets the task_type of this PolymorphicTaskRequest.  # noqa: E501
+
+
+        :return: The task_type of this PolymorphicTaskRequest.  # noqa: E501
+        :rtype: TaskTypeEnum
+        """
+        return self._task_type
+
+    @task_type.setter
+    def task_type(self, task_type):
+        """Sets the task_type of this PolymorphicTaskRequest.
+
+
+        :param task_type: The task_type of this PolymorphicTaskRequest.  # noqa: E501
+        :type task_type: TaskTypeEnum
+        """
+        if self.local_vars_configuration.client_side_validation and task_type is None:  # noqa: E501
+            raise ValueError("Invalid value for `task_type`, must not be `None`")  # noqa: E501
+
+        self._task_type = task_type
 
     def get_real_child_model(self, data):
         """Returns the real base class specified by the discriminator"""

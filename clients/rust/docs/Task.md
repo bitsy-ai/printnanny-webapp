@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
-**tasktype** | [**crate::models::TasktypeEnum**](TasktypeEnum.md) |  | 
 **deleted** | **String** |  | [readonly]
 **created_dt** | **String** |  | [readonly]
 **polymorphic_ctype** | **i32** |  | [readonly]

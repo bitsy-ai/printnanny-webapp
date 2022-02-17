@@ -15,8 +15,6 @@
 pub struct Task {
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "tasktype")]
-    pub tasktype: crate::models::TasktypeEnum,
     #[serde(rename = "deleted")]
     pub deleted: String,
     #[serde(rename = "created_dt")]
@@ -28,10 +26,9 @@ pub struct Task {
 }
 
 impl Task {
-    pub fn new(id: i32, tasktype: crate::models::TasktypeEnum, deleted: String, created_dt: String, polymorphic_ctype: i32, device: i32) -> Task {
+    pub fn new(id: i32, deleted: String, created_dt: String, polymorphic_ctype: i32, device: i32) -> Task {
         Task {
             id,
-            tasktype,
             deleted,
             created_dt,
             polymorphic_ctype,

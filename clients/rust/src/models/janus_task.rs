@@ -12,30 +12,33 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct MonitorStopTask {
+pub struct JanusTask {
     #[serde(rename = "id")]
     pub id: i32,
     #[serde(rename = "deleted")]
     pub deleted: String,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
+    #[serde(rename = "task_type")]
+    pub task_type: crate::models::TaskTypeEnum,
     #[serde(rename = "polymorphic_ctype")]
     pub polymorphic_ctype: i32,
     #[serde(rename = "device")]
     pub device: i32,
-    #[serde(rename = "janus_media_stream")]
-    pub janus_media_stream: i32,
+    #[serde(rename = "cloud_media_stream")]
+    pub cloud_media_stream: i32,
 }
 
-impl MonitorStopTask {
-    pub fn new(id: i32, deleted: String, created_dt: String, polymorphic_ctype: i32, device: i32, janus_media_stream: i32) -> MonitorStopTask {
-        MonitorStopTask {
+impl JanusTask {
+    pub fn new(id: i32, deleted: String, created_dt: String, task_type: crate::models::TaskTypeEnum, polymorphic_ctype: i32, device: i32, cloud_media_stream: i32) -> JanusTask {
+        JanusTask {
             id,
             deleted,
             created_dt,
+            task_type,
             polymorphic_ctype,
             device,
-            janus_media_stream,
+            cloud_media_stream,
         }
     }
 }

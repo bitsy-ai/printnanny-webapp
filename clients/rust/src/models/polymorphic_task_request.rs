@@ -10,10 +10,15 @@
 
 
 
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+pub struct JanusTaskRequest {
+}
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-#[serde(tag = "model")]
+#[serde(tag = "tasktype")]
 pub enum PolymorphicTaskRequest {
+    #[serde(rename="JanusTask")]
+    JanusTaskRequest(JanusTaskRequest),
 }
 
 
