@@ -448,13 +448,18 @@ SPECTACULAR_SETTINGS = {
     'SCHEMA_COERCE_PATH_PK_SUFFIX': True,
     'ENUM_NAME_OVERRIDES': {
         # TODO refactor event apps+namespaces for clarity before adding mainsail
-        # begin printnanny os types
+        # begin device app enums
         'CameraType': 'print_nanny_webapp.devices.enum.CameraType',
+        'JanusConfigType': 'print_nanny_webapp.devices.enum.JanusConfigType',
+        'DeviceReleaseChannel': 'print_nanny_webapp.devices.enum.DeviceReleaseChannel',
+
+        # begin alerts app enums
         'PrintProgressAlertEventType': 'print_nanny_webapp.alerts.models.PrintProgressAlert.PrintProgressAlertEventType.choices',
         'AlertMessageType': 'print_nanny_webapp.alerts.models.AlertMessage.AlertMessageType.choices',
         'AlertSettingsEventType': 'print_nanny_webapp.alerts.models.AlertSettings.AlertSettingsEventType.choices',
-        'TaskType': 'print_nanny_webapp.devices.enum.TaskType.choices',
-        'TaskStatusType': 'print_nanny_webapp.devices.enum.TaskStatusType.choices',
+        # begin tasks app enums
+        'JanusTaskType': 'print_nanny_webapp.tasks.enum.JanusTaskType.choices',
+        'TaskStatusType': 'print_nanny_webapp.tasks.enum.TaskStatusType.choices',
         # begin octoprint event types
         'OctoTelemetryEvent': 'print_nanny_webapp.telemetry.types.TelemetryEventType',
         'OctoPrintNannyEvent': 'print_nanny_webapp.telemetry.types.PrintNannyPluginEventType',
@@ -465,7 +470,7 @@ SPECTACULAR_SETTINGS = {
         'EventSource': 'print_nanny_webapp.events.enum.EventSource',
         'TestEventType': 'print_nanny_webapp.events.enum.TestEventType',
         'EventStatus': 'print_nanny_webapp.events.enum.EventStatus',
-        'EventModel': 'print_nanny_webapp.events.enum.EventModel'
+        'EventModel': 'print_nanny_webapp.events.enum.EventModel',
     },
     'TITLE': 'printnanny-api-client',
     'DESCRIPTION': 'Official API client library for print-nanny.com',

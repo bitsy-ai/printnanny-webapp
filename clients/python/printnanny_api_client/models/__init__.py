@@ -30,11 +30,11 @@ from printnanny_api_client.models.camera_type import CameraType
 from printnanny_api_client.models.cloudiot_device import CloudiotDevice
 from printnanny_api_client.models.cloudiot_device_request import CloudiotDeviceRequest
 from printnanny_api_client.models.command_enum import CommandEnum
-from printnanny_api_client.models.config_type_enum import ConfigTypeEnum
 from printnanny_api_client.models.detail_response import DetailResponse
 from printnanny_api_client.models.device import Device
 from printnanny_api_client.models.device_calibration import DeviceCalibration
 from printnanny_api_client.models.device_calibration_request import DeviceCalibrationRequest
+from printnanny_api_client.models.device_release_channel import DeviceReleaseChannel
 from printnanny_api_client.models.device_request import DeviceRequest
 from printnanny_api_client.models.email_auth_request import EmailAuthRequest
 from printnanny_api_client.models.error_detail import ErrorDetail
@@ -46,10 +46,12 @@ from printnanny_api_client.models.experiment_device_config import ExperimentDevi
 from printnanny_api_client.models.gcode_file import GcodeFile
 from printnanny_api_client.models.janus_auth import JanusAuth
 from printnanny_api_client.models.janus_auth_request import JanusAuthRequest
+from printnanny_api_client.models.janus_config_type import JanusConfigType
 from printnanny_api_client.models.janus_stream import JanusStream
 from printnanny_api_client.models.janus_stream_request import JanusStreamRequest
 from printnanny_api_client.models.janus_task import JanusTask
 from printnanny_api_client.models.janus_task_request import JanusTaskRequest
+from printnanny_api_client.models.janus_task_type import JanusTaskType
 from printnanny_api_client.models.mobile_auth_request import MobileAuthRequest
 from printnanny_api_client.models.model_artifact import ModelArtifact
 from printnanny_api_client.models.octo_generic_event import OctoGenericEvent
@@ -150,7 +152,6 @@ from printnanny_api_client.models.printer_profile import PrinterProfile
 from printnanny_api_client.models.printer_profile_request import PrinterProfileRequest
 from printnanny_api_client.models.public_key import PublicKey
 from printnanny_api_client.models.public_key_request import PublicKeyRequest
-from printnanny_api_client.models.release_channel_enum import ReleaseChannelEnum
 from printnanny_api_client.models.remote_command_event import RemoteCommandEvent
 from printnanny_api_client.models.remote_command_event_event_type_enum import RemoteCommandEventEventTypeEnum
 from printnanny_api_client.models.remote_command_event_request import RemoteCommandEventRequest
@@ -162,8 +163,7 @@ from printnanny_api_client.models.system_info_request import SystemInfoRequest
 from printnanny_api_client.models.task import Task
 from printnanny_api_client.models.task_status import TaskStatus
 from printnanny_api_client.models.task_status_request import TaskStatusRequest
-from printnanny_api_client.models.task_status_status_enum import TaskStatusStatusEnum
-from printnanny_api_client.models.task_type_enum import TaskTypeEnum
+from printnanny_api_client.models.task_status_type import TaskStatusType
 from printnanny_api_client.models.telemetry_event import TelemetryEvent
 from printnanny_api_client.models.telemetry_event_polymorphic import TelemetryEventPolymorphic
 from printnanny_api_client.models.telemetry_event_polymorphic_request import TelemetryEventPolymorphicRequest

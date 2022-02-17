@@ -11,7 +11,7 @@
 
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum TaskStatusStatusEnum {
+pub enum TaskStatusType {
     #[serde(rename = "failed")]
     Failed,
     #[serde(rename = "pending")]
@@ -25,7 +25,7 @@ pub enum TaskStatusStatusEnum {
 
 }
 
-impl ToString for TaskStatusStatusEnum {
+impl ToString for TaskStatusType {
     fn to_string(&self) -> String {
         match self {
             Self::Failed => String::from("failed"),
@@ -37,8 +37,8 @@ impl ToString for TaskStatusStatusEnum {
     }
 }
 
-impl Default for TaskStatusStatusEnum {
-    fn default() -> TaskStatusStatusEnum {
+impl Default for TaskStatusType {
+    fn default() -> TaskStatusType {
         Self::Failed
     }
 }

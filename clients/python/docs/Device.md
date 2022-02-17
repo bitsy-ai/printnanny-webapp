@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **setup_complete** | **bool** |  | [optional] [default to False]
 **printer_controllers** | [**list[PrinterController]**](PrinterController.md) |  | [readonly] 
 **user** | [**User**](User.md) |  | [readonly] 
-**release_channel** | [**ReleaseChannelEnum**](ReleaseChannelEnum.md) |  | [optional] 
+**release_channel** | [**DeviceReleaseChannel**](DeviceReleaseChannel.md) |  | [optional] 
 **system_info** | [**SystemInfo**](SystemInfo.md) |  | [readonly] 
 **public_key** | [**PublicKey**](PublicKey.md) |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 

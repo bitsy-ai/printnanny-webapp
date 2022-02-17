@@ -1,4 +1,4 @@
-# ConfigTypeEnum
+# JanusTaskType
 
 
 ## Properties

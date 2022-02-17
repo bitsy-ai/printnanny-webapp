@@ -40,7 +40,7 @@ class JanusAuth(object):
         'id': 'int',
         'admin_secret': 'str',
         'api_token': 'str',
-        'config_type': 'ConfigTypeEnum',
+        'config_type': 'JanusConfigType',
         'created_dt': 'datetime',
         'user': 'int'
     }
@@ -154,7 +154,7 @@ class JanusAuth(object):
 
 
         :return: The config_type of this JanusAuth.  # noqa: E501
-        :rtype: ConfigTypeEnum
+        :rtype: JanusConfigType
         """
         return self._config_type
 
@@ -164,7 +164,7 @@ class JanusAuth(object):
 
 
         :param config_type: The config_type of this JanusAuth.  # noqa: E501
-        :type config_type: ConfigTypeEnum
+        :type config_type: JanusConfigType
         """
 
         self._config_type = config_type

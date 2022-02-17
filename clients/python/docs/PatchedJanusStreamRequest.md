@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**config_type** | [**ConfigTypeEnum**](ConfigTypeEnum.md) |  | [optional] 
+**config_type** | [**JanusConfigType**](JanusConfigType.md) |  | [optional] 
 **active** | **bool** |  | [optional] 
 **secret** | **str** |  | [optional] 
 **pin** | **str** |  | [optional] 

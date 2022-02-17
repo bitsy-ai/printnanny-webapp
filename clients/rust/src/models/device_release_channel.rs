@@ -11,7 +11,7 @@
 
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum ReleaseChannelEnum {
+pub enum DeviceReleaseChannel {
     #[serde(rename = "stable")]
     Stable,
     #[serde(rename = "nightly")]
@@ -19,7 +19,7 @@ pub enum ReleaseChannelEnum {
 
 }
 
-impl ToString for ReleaseChannelEnum {
+impl ToString for DeviceReleaseChannel {
     fn to_string(&self) -> String {
         match self {
             Self::Stable => String::from("stable"),
@@ -28,8 +28,8 @@ impl ToString for ReleaseChannelEnum {
     }
 }
 
-impl Default for ReleaseChannelEnum {
-    fn default() -> ReleaseChannelEnum {
+impl Default for DeviceReleaseChannel {
+    fn default() -> DeviceReleaseChannel {
         Self::Stable
     }
 }

@@ -11,7 +11,7 @@
 
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum ConfigTypeEnum {
+pub enum JanusConfigType {
     #[serde(rename = "cloud")]
     Cloud,
     #[serde(rename = "edge")]
@@ -19,7 +19,7 @@ pub enum ConfigTypeEnum {
 
 }
 
-impl ToString for ConfigTypeEnum {
+impl ToString for JanusConfigType {
     fn to_string(&self) -> String {
         match self {
             Self::Cloud => String::from("cloud"),
@@ -28,8 +28,8 @@ impl ToString for ConfigTypeEnum {
     }
 }
 
-impl Default for ConfigTypeEnum {
-    fn default() -> ConfigTypeEnum {
+impl Default for JanusConfigType {
+    fn default() -> JanusConfigType {
         Self::Cloud
     }
 }

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
-**status** | [**crate::models::TaskStatusStatusEnum**](TaskStatusStatusEnum.md) |  | 
+**status** | [**crate::models::TaskStatusType**](TaskStatusType.md) |  | 
 **deleted** | **String** |  | [readonly]
 **created_dt** | **String** |  | [readonly]
 **task** | **i32** |  | [readonly]

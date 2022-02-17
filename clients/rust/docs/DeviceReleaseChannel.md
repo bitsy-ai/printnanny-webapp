@@ -1,7 +1,7 @@
-# TaskStatusStatusEnum
-
+# DeviceReleaseChannel
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

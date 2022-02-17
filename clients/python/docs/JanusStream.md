@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
-**config_type** | [**ConfigTypeEnum**](ConfigTypeEnum.md) |  | [optional] 
+**config_type** | [**JanusConfigType**](JanusConfigType.md) |  | [optional] 
 **active** | **bool** |  | [optional] 
 **secret** | **str** |  | [optional] 
 **pin** | **str** |  | [optional] 

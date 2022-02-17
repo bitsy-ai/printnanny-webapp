@@ -38,7 +38,7 @@ class JanusStream(object):
     """
     openapi_types = {
         'id': 'int',
-        'config_type': 'ConfigTypeEnum',
+        'config_type': 'JanusConfigType',
         'active': 'bool',
         'secret': 'str',
         'pin': 'str',
@@ -121,7 +121,7 @@ class JanusStream(object):
 
 
         :return: The config_type of this JanusStream.  # noqa: E501
-        :rtype: ConfigTypeEnum
+        :rtype: JanusConfigType
         """
         return self._config_type
 
@@ -131,7 +131,7 @@ class JanusStream(object):
 
 
         :param config_type: The config_type of this JanusStream.  # noqa: E501
-        :type config_type: ConfigTypeEnum
+        :type config_type: JanusConfigType
         """
 
         self._config_type = config_type

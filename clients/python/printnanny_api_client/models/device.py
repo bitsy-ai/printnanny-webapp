@@ -51,7 +51,7 @@ class Device(object):
         'setup_complete': 'bool',
         'printer_controllers': 'list[PrinterController]',
         'user': 'User',
-        'release_channel': 'ReleaseChannelEnum',
+        'release_channel': 'DeviceReleaseChannel',
         'system_info': 'SystemInfo',
         'public_key': 'PublicKey',
         'created_dt': 'datetime',
@@ -450,7 +450,7 @@ class Device(object):
 
 
         :return: The release_channel of this Device.  # noqa: E501
-        :rtype: ReleaseChannelEnum
+        :rtype: DeviceReleaseChannel
         """
         return self._release_channel
 
@@ -460,7 +460,7 @@ class Device(object):
 
 
         :param release_channel: The release_channel of this Device.  # noqa: E501
-        :type release_channel: ReleaseChannelEnum
+        :type release_channel: DeviceReleaseChannel
         """
 
         self._release_channel = release_channel

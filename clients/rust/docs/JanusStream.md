@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
-**config_type** | Option<[**crate::models::ConfigTypeEnum**](ConfigTypeEnum.md)> |  | [optional]
+**config_type** | Option<[**crate::models::JanusConfigType**](JanusConfigType.md)> |  | [optional]
 **active** | Option<**bool**> |  | [optional]
 **secret** | Option<**String**> |  | [optional]
 **pin** | Option<**String**> |  | [optional]
