@@ -43,7 +43,7 @@ class PolymorphicTask(object):
         'task_type': 'TaskTypeEnum',
         'polymorphic_ctype': 'int',
         'device': 'int',
-        'stream_config': 'int'
+        'stream': 'int'
     }
 
     attribute_map = {
@@ -53,13 +53,13 @@ class PolymorphicTask(object):
         'task_type': 'task_type',
         'polymorphic_ctype': 'polymorphic_ctype',
         'device': 'device',
-        'stream_config': 'stream_config'
+        'stream': 'stream'
     }
 
     discriminator_value_class_map = {
     }
 
-    def __init__(self, id=None, deleted=None, created_dt=None, task_type=None, polymorphic_ctype=None, device=None, stream_config=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, deleted=None, created_dt=None, task_type=None, polymorphic_ctype=None, device=None, stream=None, local_vars_configuration=None):  # noqa: E501
         """PolymorphicTask - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -71,7 +71,7 @@ class PolymorphicTask(object):
         self._task_type = None
         self._polymorphic_ctype = None
         self._device = None
-        self._stream_config = None
+        self._stream = None
         self.discriminator = 'task_type'
 
         self.id = id
@@ -80,7 +80,7 @@ class PolymorphicTask(object):
         self.task_type = task_type
         self.polymorphic_ctype = polymorphic_ctype
         self.device = device
-        self.stream_config = stream_config
+        self.stream = stream
 
     @property
     def id(self):
@@ -221,27 +221,27 @@ class PolymorphicTask(object):
         self._device = device
 
     @property
-    def stream_config(self):
-        """Gets the stream_config of this PolymorphicTask.  # noqa: E501
+    def stream(self):
+        """Gets the stream of this PolymorphicTask.  # noqa: E501
 
 
-        :return: The stream_config of this PolymorphicTask.  # noqa: E501
+        :return: The stream of this PolymorphicTask.  # noqa: E501
         :rtype: int
         """
-        return self._stream_config
+        return self._stream
 
-    @stream_config.setter
-    def stream_config(self, stream_config):
-        """Sets the stream_config of this PolymorphicTask.
+    @stream.setter
+    def stream(self, stream):
+        """Sets the stream of this PolymorphicTask.
 
 
-        :param stream_config: The stream_config of this PolymorphicTask.  # noqa: E501
-        :type stream_config: int
+        :param stream: The stream of this PolymorphicTask.  # noqa: E501
+        :type stream: int
         """
-        if self.local_vars_configuration.client_side_validation and stream_config is None:  # noqa: E501
-            raise ValueError("Invalid value for `stream_config`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and stream is None:  # noqa: E501
+            raise ValueError("Invalid value for `stream`, must not be `None`")  # noqa: E501
 
-        self._stream_config = stream_config
+        self._stream = stream
 
     def get_real_child_model(self, data):
         """Returns the real base class specified by the discriminator"""

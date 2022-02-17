@@ -37,11 +37,13 @@ class TestJanusTaskRequest(unittest.TestCase):
         # model = printnanny_api_client.models.janus_task_request.JanusTaskRequest()  # noqa: E501
         if include_optional :
             return JanusTaskRequest(
-                task_type = 'cloud_monitor_start'
+                task_type = 'cloud_monitor_start', 
+                stream = 56
             )
         else :
             return JanusTaskRequest(
                 task_type = 'cloud_monitor_start',
+                stream = 56,
         )
 
     def testJanusTaskRequest(self):

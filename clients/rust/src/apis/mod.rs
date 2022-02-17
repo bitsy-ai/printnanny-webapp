@@ -66,6 +66,7 @@ pub mod auth_api;
 pub mod client_config_api;
 pub mod devices_api;
 pub mod events_api;
+pub mod janus_api;
 pub mod ml_ops_api;
 pub mod octoprint_backups_api;
 pub mod partners_geeks3_api;

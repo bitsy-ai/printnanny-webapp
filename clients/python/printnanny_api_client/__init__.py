@@ -15,7 +15,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.52.0"
+__version__ = "0.53.0"
 
 # import apis into sdk package
 from printnanny_api_client.api.alerts_api import AlertsApi
@@ -24,6 +24,7 @@ from printnanny_api_client.api.auth__api import AuthApi
 from printnanny_api_client.api.client_config_api import ClientConfigApi
 from printnanny_api_client.api.devices_api import DevicesApi
 from printnanny_api_client.api.events_api import EventsApi
+from printnanny_api_client.api.janus_api import JanusApi
 from printnanny_api_client.api.ml_ops_api import MlOpsApi
 from printnanny_api_client.api.octoprint_backups_api import OctoprintBackupsApi
 from printnanny_api_client.api.partners_geeks3_api import PartnersGeeks3Api
@@ -75,6 +76,8 @@ from printnanny_api_client.models.experiment_device_config import ExperimentDevi
 from printnanny_api_client.models.gcode_file import GcodeFile
 from printnanny_api_client.models.janus_auth import JanusAuth
 from printnanny_api_client.models.janus_auth_request import JanusAuthRequest
+from printnanny_api_client.models.janus_stream import JanusStream
+from printnanny_api_client.models.janus_stream_request import JanusStreamRequest
 from printnanny_api_client.models.janus_task import JanusTask
 from printnanny_api_client.models.janus_task_request import JanusTaskRequest
 from printnanny_api_client.models.mobile_auth_request import MobileAuthRequest
@@ -121,6 +124,7 @@ from printnanny_api_client.models.paginated_experiment_device_config_list import
 from printnanny_api_client.models.paginated_experiment_list import PaginatedExperimentList
 from printnanny_api_client.models.paginated_gcode_file_list import PaginatedGcodeFileList
 from printnanny_api_client.models.paginated_janus_auth_list import PaginatedJanusAuthList
+from printnanny_api_client.models.paginated_janus_stream_list import PaginatedJanusStreamList
 from printnanny_api_client.models.paginated_model_artifact_list import PaginatedModelArtifactList
 from printnanny_api_client.models.paginated_octo_print_backup_list import PaginatedOctoPrintBackupList
 from printnanny_api_client.models.paginated_octo_print_device_list import PaginatedOctoPrintDeviceList
@@ -146,6 +150,7 @@ from printnanny_api_client.models.patched_camera_request import PatchedCameraReq
 from printnanny_api_client.models.patched_cloudiot_device_request import PatchedCloudiotDeviceRequest
 from printnanny_api_client.models.patched_device_calibration_request import PatchedDeviceCalibrationRequest
 from printnanny_api_client.models.patched_device_request import PatchedDeviceRequest
+from printnanny_api_client.models.patched_janus_stream_request import PatchedJanusStreamRequest
 from printnanny_api_client.models.patched_octo_print_device_request import PatchedOctoPrintDeviceRequest
 from printnanny_api_client.models.patched_polymorphic_event_request import PatchedPolymorphicEventRequest
 from printnanny_api_client.models.patched_print_session_request import PatchedPrintSessionRequest
