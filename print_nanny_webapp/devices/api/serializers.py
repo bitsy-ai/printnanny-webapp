@@ -106,6 +106,7 @@ class JanusAuthSerializer(serializers.ModelSerializer):
     class Meta:
         model = JanusAuth
         exclude = ("deleted",)
+        read_only_fields = ("device",)
 
     def update_or_create(self, validated_data, device):
         return JanusAuth.objects.filter(device=device).update_or_create(
@@ -117,6 +118,12 @@ class JanusStreamSerializer(serializers.ModelSerializer):
     class Meta:
         model = JanusStream
         exclude = ("deleted",)
+        read_only_fields = ("device",)
+
+    def update_or_create(self, validated_data, device):
+        return JanusStream.objects.filter(device=device).update_or_create(
+            device=device, defaults=validated_data
+        )
 
 
 class SystemInfoSerializer(serializers.ModelSerializer):
