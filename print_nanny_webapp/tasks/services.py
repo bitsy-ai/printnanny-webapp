@@ -7,7 +7,7 @@ from rest_framework.renderers import JSONRenderer
 
 from print_nanny_webapp.devices.models import (
     Device,
-    JanusCloudAuth,
+    JanusAuth,
     JanusCloudMediaStream,
 )
 from print_nanny_webapp.tasks.models import (
@@ -34,7 +34,7 @@ def janus_cloud_add_token(token: str) -> Dict[str, Any]:
     return res.json()
 
 
-def janus_cloud_get_or_create_stream(device: Device, auth: JanusCloudAuth):
+def janus_cloud_get_or_create_stream(device: Device, auth: JanusAuth):
     url = f"{settings.JANUS_CLOUD_API_URL}"
     stream = JanusCloudMediaStream.objects.get_or_create(device=device)
     media = [
@@ -59,9 +59,9 @@ def janus_cloud_get_or_create_stream(device: Device, auth: JanusCloudAuth):
 
 def monitor_start(device: Device):
     # 2) get or create Janus credentials
-    janus_cloud_auth, created = JanusCloudAuth.objects.get_or_create(user=device.user)
+    janus_cloud_auth, created = JanusAuth.objects.get_or_create(user=device.user)
     logger.debug(
-        "Retreived JanusCloudAuth id=%s user=%s created=%s",
+        "Retreived JanusAuth id=%s user=%s created=%s",
         janus_cloud_auth.id,
         device.user.id,
         created,

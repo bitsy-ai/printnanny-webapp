@@ -1,6 +1,11 @@
 from django.db import models
 
 
+class JanusConfigType(models.TextChoices):
+    CLOUD = "cloud", "Cloud WebRTC Gateway"
+    EDGE = "edge", "Edge WebRTC Gateway"
+
+
 class PrintNannyEnv(models.TextChoices):
     SANDBOX = "sandbox", "Sandbox Environment"
     PROD = "prod", "Prod Environment"

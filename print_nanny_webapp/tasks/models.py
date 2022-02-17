@@ -37,8 +37,8 @@ class Task(PolymorphicModel, SafeDeleteModel):
 
 class JanusTask(Task):
     task_type = models.CharField(max_length=32, choices=JanusTaskType.choices)
-    cloud_media_stream = models.ForeignKey(
-        "devices.JanusCloudMediaStream", on_delete=models.CASCADE
+    stream_config = models.ForeignKey(
+        "devices.JanusStreamConfig", on_delete=models.CASCADE
     )
 
 
