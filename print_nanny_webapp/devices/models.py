@@ -373,44 +373,12 @@ class DeviceConfig(SafeDeleteModel):
         return self.device.cloudiot_device
 
 
-class JanusEdgeAuth(SafeDeleteModel):
-    class Meta:
-        index_together = ("device", "created_dt", "updated_dt")
-        constraints = [
-            UniqueConstraint(
-                fields=["device"],
-                condition=models.Q(deleted=None),
-                name="unique_janus_edge_auth_per_device",
-            )
-        ]
-
+class JanusAuth(SafeDeleteModel):
+    admin_secret = models.CharField(null=True)
     api_token = models.CharField(max_length=255, default=get_random_string_32)
-    admin_secret = models.CharField(max_length=255)
-    device = models.ForeignKey(
-        Device, on_delete=models.CASCADE, related_name="janus_edge_auth"
+    config_type = models.CharField(
+        max_length=32, choices=JanusConfigType.choices, default=JanusConfigType.CLOUD
     )
-    created_dt = models.DateTimeField(auto_now_add=True)
-    updated_dt = models.DateTimeField(auto_now=True)
-
-    @property
-    def user(self):
-        return self.device.user
-
-    @property
-    def gateway_url(self):
-        return f"http://{self.device.hostname}/janus"
-
-    @property
-    def gateway_admin_url(self):
-        return f"http://{self.device.hostname}/admin"
-
-    @property
-    def websocket_url(self):
-        return f"ws://{self.device.hostname}"
-
-
-class JanusCloudAuth(SafeDeleteModel):
-    api_token = models.CharField(max_length=255, default=get_random_string_32)
     user = models.OneToOneField(
         "users.User", on_delete=models.CASCADE, related_name="janus_cloud_auth"
     )
@@ -418,15 +386,21 @@ class JanusCloudAuth(SafeDeleteModel):
 
     @property
     def gateway_url(self):
-        return f"https://{settings.JANUS_CLOUD_DOMAIN}/janus"
+        if self.config_type == JanusConfigType.CLOUD:
+            return f"https://{settings.JANUS_CLOUD_DOMAIN}/janus"
+        raise NotImplementedError(f"JanusAuth.gateway_url not implemented for JanusConfigType={self.config_type}")
 
     @property
     def gateway_admin_url(self):
-        return f"https://{settings.JANUS_CLOUD_DOMAIN}/admin"
+        if self.config_type == JanusConfigType.CLOUD:
+            return f"https://{settings.JANUS_CLOUD_DOMAIN}/admin"
+        raise NotImplementedError(f"JanusAuth.gateway_admin_url not implemented for JanusConfigType={self.config_type}")
 
     @property
     def websocket_url(self):
-        return f"wss://{settings.JANUS_CLOUD_DOMAIN}"
+        if self.config_type == JanusConfigType.CLOUD:
+            return f"wss://{settings.JANUS_CLOUD_DOMAIN}"
+        raise NotImplementedError(f"JanusAuth.websocket_url not implemented for JanusConfigType={self.config_type}")
 
 
 class JanusStreamConfig(SafeDeleteModel):
