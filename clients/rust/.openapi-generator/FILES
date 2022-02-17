@@ -44,9 +44,7 @@ docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
 docs/MonitorStartTask.md
-docs/MonitorStartTaskRequest.md
 docs/MonitorStopTask.md
-docs/MonitorStopTaskRequest.md
 docs/OctoGenericEvent.md
 docs/OctoJobEvent.md
 docs/OctoPrintBackup.md
@@ -232,9 +230,7 @@ src/models/mobile_auth_request.rs
 src/models/mod.rs
 src/models/model_artifact.rs
 src/models/monitor_start_task.rs
-src/models/monitor_start_task_request.rs
 src/models/monitor_stop_task.rs
-src/models/monitor_stop_task_request.rs
 src/models/octo_generic_event.rs
 src/models/octo_job_event.rs
 src/models/octo_print_backup.rs

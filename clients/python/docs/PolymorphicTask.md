@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **created_dt** | **datetime** |  | [readonly] 
 **polymorphic_ctype** | **int** |  | [readonly] 
 **device** | **int** |  | [readonly] 
-**janus_media_stream** | **int** |  | 
+**janus_media_stream** | **int** |  | [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
