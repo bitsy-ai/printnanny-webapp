@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
-**api_token** | **String** |  | 
+**api_token** | Option<**String**> |  | [optional]
 **admin_secret** | **String** |  | 
 **created_dt** | **String** |  | [readonly]
 **updated_dt** | **String** |  | [readonly]

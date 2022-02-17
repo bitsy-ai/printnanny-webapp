@@ -31,9 +31,6 @@ Method | HTTP request | Description
 [**devices_janus_edge_auth_update**](DevicesApi.md#devices_janus_edge_auth_update) | **PUT** /api/devices/{device_id}/janus-edge-auth/{id}/ | 
 [**devices_janus_edge_auth_update_or_create**](DevicesApi.md#devices_janus_edge_auth_update_or_create) | **POST** /api/devices/{device_id}/janus-edge-auth/update-or-create/ | 
 [**devices_list**](DevicesApi.md#devices_list) | **GET** /api/devices/ | 
-[**devices_onboarding_tasks_create**](DevicesApi.md#devices_onboarding_tasks_create) | **POST** /api/devices/{device_id}/onboarding-tasks/ | 
-[**devices_onboarding_tasks_list**](DevicesApi.md#devices_onboarding_tasks_list) | **GET** /api/devices/{device_id}/onboarding-tasks/ | 
-[**devices_onboarding_tasks_retrieve**](DevicesApi.md#devices_onboarding_tasks_retrieve) | **GET** /api/devices/{device_id}/onboarding-tasks/{id}/ | 
 [**devices_partial_update**](DevicesApi.md#devices_partial_update) | **PATCH** /api/devices/{id}/ | 
 [**devices_printer_controllers_create**](DevicesApi.md#devices_printer_controllers_create) | **POST** /api/devices/{device_id}/printer-controllers/ | 
 [**devices_printer_controllers_list**](DevicesApi.md#devices_printer_controllers_list) | **GET** /api/devices/{device_id}/printer-controllers/ | 
@@ -61,8 +58,6 @@ Method | HTTP request | Description
 [**devices_update**](DevicesApi.md#devices_update) | **PUT** /api/devices/{id}/ | 
 [**public_key_update_or_create**](DevicesApi.md#public_key_update_or_create) | **POST** /api/devices/{device_id}/public-keys/update-or-create/ | 
 [**system_info_update_or_create**](DevicesApi.md#system_info_update_or_create) | **POST** /api/devices/{device_id}/system-info/update-or-create/ | 
-[**tasks_monitor_start**](DevicesApi.md#tasks_monitor_start) | **POST** /api/devices/{device_id}/tasks/monitor-start/ | 
-[**tasks_monitor_stop**](DevicesApi.md#tasks_monitor_stop) | **POST** /api/devices/{device_id}/tasks/monitor-stop/ | 
 
 
 # **cloudiot_device_update_or_create**
@@ -3386,375 +3381,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_onboarding_tasks_create**
-> OnboardingTask devices_onboarding_tasks_create(device_id, onboarding_task_request)
-
-
-
-### Example
-
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-onboarding_task_request = printnanny_api_client.OnboardingTaskRequest() # OnboardingTaskRequest | 
-
-    try:
-        api_response = api_instance.devices_onboarding_tasks_create(device_id, onboarding_task_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->devices_onboarding_tasks_create: %s\n" % e)
-```
-
-* Bearer Authentication (tokenAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-onboarding_task_request = printnanny_api_client.OnboardingTaskRequest() # OnboardingTaskRequest | 
-
-    try:
-        api_response = api_instance.devices_onboarding_tasks_create(device_id, onboarding_task_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->devices_onboarding_tasks_create: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
- **onboarding_task_request** | [**OnboardingTaskRequest**](OnboardingTaskRequest.md)|  | 
-
-### Return type
-
-[**OnboardingTask**](OnboardingTask.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** |  |  -  |
-**409** |  |  -  |
-**400** |  |  -  |
-**401** |  |  -  |
-**403** |  |  -  |
-**500** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **devices_onboarding_tasks_list**
-> PaginatedOnboardingTaskList devices_onboarding_tasks_list(device_id, page=page)
-
-
-
-### Example
-
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-page = 56 # int | A page number within the paginated result set. (optional)
-
-    try:
-        api_response = api_instance.devices_onboarding_tasks_list(device_id, page=page)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->devices_onboarding_tasks_list: %s\n" % e)
-```
-
-* Bearer Authentication (tokenAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-page = 56 # int | A page number within the paginated result set. (optional)
-
-    try:
-        api_response = api_instance.devices_onboarding_tasks_list(device_id, page=page)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->devices_onboarding_tasks_list: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
- **page** | **int**| A page number within the paginated result set. | [optional] 
-
-### Return type
-
-[**PaginatedOnboardingTaskList**](PaginatedOnboardingTaskList.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
-**400** |  |  -  |
-**401** |  |  -  |
-**403** |  |  -  |
-**500** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **devices_onboarding_tasks_retrieve**
-> OnboardingTask devices_onboarding_tasks_retrieve(device_id, id)
-
-
-
-### Example
-
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this onboarding task.
-
-    try:
-        api_response = api_instance.devices_onboarding_tasks_retrieve(device_id, id)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->devices_onboarding_tasks_retrieve: %s\n" % e)
-```
-
-* Bearer Authentication (tokenAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this onboarding task.
-
-    try:
-        api_response = api_instance.devices_onboarding_tasks_retrieve(device_id, id)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->devices_onboarding_tasks_retrieve: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
- **id** | **int**| A unique integer value identifying this onboarding task. | 
-
-### Return type
-
-[**OnboardingTask**](OnboardingTask.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **devices_partial_update**
 > Device devices_partial_update(id, patched_device_request=patched_device_request)
 
@@ -5972,7 +5598,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_tasks_create**
-> Task devices_tasks_create(device_id, task_request)
+> PolymorphicTask devices_tasks_create(device_id, polymorphic_task_request=polymorphic_task_request)
 
 
 
@@ -6012,10 +5638,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
-task_request = printnanny_api_client.TaskRequest() # TaskRequest | 
+polymorphic_task_request = printnanny_api_client.PolymorphicTaskRequest() # PolymorphicTaskRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_tasks_create(device_id, task_request)
+        api_response = api_instance.devices_tasks_create(device_id, polymorphic_task_request=polymorphic_task_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_tasks_create: %s\n" % e)
@@ -6055,10 +5681,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
-task_request = printnanny_api_client.TaskRequest() # TaskRequest | 
+polymorphic_task_request = printnanny_api_client.PolymorphicTaskRequest() # PolymorphicTaskRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_tasks_create(device_id, task_request)
+        api_response = api_instance.devices_tasks_create(device_id, polymorphic_task_request=polymorphic_task_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_tasks_create: %s\n" % e)
@@ -6069,11 +5695,11 @@ task_request = printnanny_api_client.TaskRequest() # TaskRequest |
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **device_id** | **int**|  | 
- **task_request** | [**TaskRequest**](TaskRequest.md)|  | 
+ **polymorphic_task_request** | [**PolymorphicTaskRequest**](PolymorphicTaskRequest.md)|  | [optional] 
 
 ### Return type
 
-[**Task**](Task.md)
+[**PolymorphicTask**](PolymorphicTask.md)
 
 ### Authorization
 
@@ -6088,16 +5714,11 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** |  |  -  |
-**409** |  |  -  |
-**400** |  |  -  |
-**401** |  |  -  |
-**403** |  |  -  |
-**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_tasks_list**
-> PaginatedTaskList devices_tasks_list(device_id, page=page)
+> PaginatedPolymorphicTaskList devices_tasks_list(device_id, page=page)
 
 
 
@@ -6198,7 +5819,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedTaskList**](PaginatedTaskList.md)
+[**PaginatedPolymorphicTaskList**](PaginatedPolymorphicTaskList.md)
 
 ### Authorization
 
@@ -6213,15 +5834,11 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
-**400** |  |  -  |
-**401** |  |  -  |
-**403** |  |  -  |
-**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_tasks_retrieve**
-> Task devices_tasks_retrieve(device_id, id)
+> PolymorphicTask devices_tasks_retrieve(device_id, id)
 
 
 
@@ -6322,7 +5939,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Task**](Task.md)
+[**PolymorphicTask**](PolymorphicTask.md)
 
 ### Authorization
 
@@ -6380,7 +5997,7 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    device_id = 'device_id_example' # str | 
 task_id = 56 # int | 
 task_status_request = printnanny_api_client.TaskStatusRequest() # TaskStatusRequest | 
 
@@ -6424,7 +6041,7 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    device_id = 'device_id_example' # str | 
 task_id = 56 # int | 
 task_status_request = printnanny_api_client.TaskStatusRequest() # TaskStatusRequest | 
 
@@ -6439,7 +6056,7 @@ task_status_request = printnanny_api_client.TaskStatusRequest() # TaskStatusRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
+ **device_id** | **str**|  | 
  **task_id** | **int**|  | 
  **task_status_request** | [**TaskStatusRequest**](TaskStatusRequest.md)|  | 
 
@@ -6459,12 +6076,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
-**409** |  |  -  |
-**400** |  |  -  |
-**401** |  |  -  |
-**403** |  |  -  |
-**500** |  |  -  |
+**201** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -6508,7 +6120,7 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    device_id = 'device_id_example' # str | 
 task_id = 56 # int | 
 page = 56 # int | A page number within the paginated result set. (optional)
 
@@ -6552,7 +6164,7 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    device_id = 'device_id_example' # str | 
 task_id = 56 # int | 
 page = 56 # int | A page number within the paginated result set. (optional)
 
@@ -6567,7 +6179,7 @@ page = 56 # int | A page number within the paginated result set. (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
+ **device_id** | **str**|  | 
  **task_id** | **int**|  | 
  **page** | **int**| A page number within the paginated result set. | [optional] 
 
@@ -6588,15 +6200,11 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
-**400** |  |  -  |
-**401** |  |  -  |
-**403** |  |  -  |
-**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_tasks_status_retrieve**
-> Task devices_tasks_status_retrieve(device_id, id, task_id)
+> TaskStatus devices_tasks_status_retrieve(device_id, id, task_id)
 
 
 
@@ -6635,7 +6243,7 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    device_id = 'device_id_example' # str | 
 id = 56 # int | A unique integer value identifying this task status.
 task_id = 56 # int | 
 
@@ -6679,7 +6287,7 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    device_id = 'device_id_example' # str | 
 id = 56 # int | A unique integer value identifying this task status.
 task_id = 56 # int | 
 
@@ -6694,13 +6302,13 @@ task_id = 56 # int |
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
+ **device_id** | **str**|  | 
  **id** | **int**| A unique integer value identifying this task status. | 
  **task_id** | **int**|  | 
 
 ### Return type
 
-[**Task**](Task.md)
+[**TaskStatus**](TaskStatus.md)
 
 ### Authorization
 
@@ -6714,12 +6322,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** |  |  -  |
-**404** |  |  -  |
-**400** |  |  -  |
-**401** |  |  -  |
-**403** |  |  -  |
-**500** |  |  -  |
+**200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -7087,256 +6690,6 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **201** |  |  -  |
 **202** |  |  -  |
-**409** |  |  -  |
-**400** |  |  -  |
-**401** |  |  -  |
-**403** |  |  -  |
-**500** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **tasks_monitor_start**
-> Task tasks_monitor_start(device_id, task_request)
-
-
-
-### Example
-
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-task_request = printnanny_api_client.TaskRequest() # TaskRequest | 
-
-    try:
-        api_response = api_instance.tasks_monitor_start(device_id, task_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->tasks_monitor_start: %s\n" % e)
-```
-
-* Bearer Authentication (tokenAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-task_request = printnanny_api_client.TaskRequest() # TaskRequest | 
-
-    try:
-        api_response = api_instance.tasks_monitor_start(device_id, task_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->tasks_monitor_start: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
- **task_request** | [**TaskRequest**](TaskRequest.md)|  | 
-
-### Return type
-
-[**Task**](Task.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** |  |  -  |
-**409** |  |  -  |
-**400** |  |  -  |
-**401** |  |  -  |
-**403** |  |  -  |
-**500** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **tasks_monitor_stop**
-> Task tasks_monitor_stop(device_id, task_request)
-
-
-
-### Example
-
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-task_request = printnanny_api_client.TaskRequest() # TaskRequest | 
-
-    try:
-        api_response = api_instance.tasks_monitor_stop(device_id, task_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->tasks_monitor_stop: %s\n" % e)
-```
-
-* Bearer Authentication (tokenAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-task_request = printnanny_api_client.TaskRequest() # TaskRequest | 
-
-    try:
-        api_response = api_instance.tasks_monitor_stop(device_id, task_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->tasks_monitor_stop: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
- **task_request** | [**TaskRequest**](TaskRequest.md)|  | 
-
-### Return type
-
-[**Task**](Task.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** |  |  -  |
 **409** |  |  -  |
 **400** |  |  -  |
 **401** |  |  -  |

@@ -15,8 +15,8 @@
 pub struct JanusEdgeAuth {
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "api_token")]
-    pub api_token: String,
+    #[serde(rename = "api_token", skip_serializing_if = "Option::is_none")]
+    pub api_token: Option<String>,
     #[serde(rename = "admin_secret")]
     pub admin_secret: String,
     #[serde(rename = "created_dt")]
@@ -28,10 +28,10 @@ pub struct JanusEdgeAuth {
 }
 
 impl JanusEdgeAuth {
-    pub fn new(id: i32, api_token: String, admin_secret: String, created_dt: String, updated_dt: String, device: i32) -> JanusEdgeAuth {
+    pub fn new(id: i32, admin_secret: String, created_dt: String, updated_dt: String, device: i32) -> JanusEdgeAuth {
         JanusEdgeAuth {
             id,
-            api_token,
+            api_token: None,
             admin_secret,
             created_dt,
             updated_dt,

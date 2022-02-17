@@ -38,10 +38,8 @@ class TestTask(unittest.TestCase):
         if include_optional :
             return Task(
                 id = 56, 
-                last_status = None, 
-                task_type = 'monitor_start', 
-                active = True, 
-                task_type_display = '', 
+                tasktype = 'cloud_monitor_start', 
+                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 polymorphic_ctype = 56, 
                 device = 56
@@ -49,9 +47,8 @@ class TestTask(unittest.TestCase):
         else :
             return Task(
                 id = 56,
-                last_status = None,
-                task_type = 'monitor_start',
-                task_type_display = '',
+                tasktype = 'cloud_monitor_start',
+                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 polymorphic_ctype = 56,
                 device = 56,

@@ -38,11 +38,8 @@ class TestTaskStatus(unittest.TestCase):
         if include_optional :
             return TaskStatus(
                 id = 56, 
-                detail = '', 
-                wiki_url = '', 
                 status = 'failed', 
-                status_display = '', 
-                css_class = '', 
+                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 task = 56
             )
@@ -50,8 +47,7 @@ class TestTaskStatus(unittest.TestCase):
             return TaskStatus(
                 id = 56,
                 status = 'failed',
-                status_display = '',
-                css_class = '',
+                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 task = 56,
         )

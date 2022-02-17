@@ -13,20 +13,14 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct TaskRequest {
-    #[serde(rename = "task_type")]
-    pub task_type: crate::models::TaskType,
-    #[serde(rename = "active", skip_serializing_if = "Option::is_none")]
-    pub active: Option<bool>,
-    #[serde(rename = "device")]
-    pub device: i32,
+    #[serde(rename = "tasktype")]
+    pub tasktype: crate::models::TasktypeEnum,
 }
 
 impl TaskRequest {
-    pub fn new(task_type: crate::models::TaskType, device: i32) -> TaskRequest {
+    pub fn new(tasktype: crate::models::TasktypeEnum) -> TaskRequest {
         TaskRequest {
-            task_type,
-            active: None,
-            device,
+            tasktype,
         }
     }
 }

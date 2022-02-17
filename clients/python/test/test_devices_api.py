@@ -191,24 +191,6 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
-    def test_devices_onboarding_tasks_create(self):
-        """Test case for devices_onboarding_tasks_create
-
-        """
-        pass
-
-    def test_devices_onboarding_tasks_list(self):
-        """Test case for devices_onboarding_tasks_list
-
-        """
-        pass
-
-    def test_devices_onboarding_tasks_retrieve(self):
-        """Test case for devices_onboarding_tasks_retrieve
-
-        """
-        pass
-
     def test_devices_partial_update(self):
         """Test case for devices_partial_update
 
@@ -367,18 +349,6 @@ class TestDevicesApi(unittest.TestCase):
 
     def test_system_info_update_or_create(self):
         """Test case for system_info_update_or_create
-
-        """
-        pass
-
-    def test_tasks_monitor_start(self):
-        """Test case for tasks_monitor_start
-
-        """
-        pass
-
-    def test_tasks_monitor_stop(self):
-        """Test case for tasks_monitor_stop
 
         """
         pass

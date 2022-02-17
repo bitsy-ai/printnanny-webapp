@@ -13,16 +13,16 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct JanusCloudAuthRequest {
-    #[serde(rename = "api_token")]
-    pub api_token: String,
+    #[serde(rename = "api_token", skip_serializing_if = "Option::is_none")]
+    pub api_token: Option<String>,
     #[serde(rename = "user")]
     pub user: i32,
 }
 
 impl JanusCloudAuthRequest {
-    pub fn new(api_token: String, user: i32) -> JanusCloudAuthRequest {
+    pub fn new(user: i32) -> JanusCloudAuthRequest {
         JanusCloudAuthRequest {
-            api_token,
+            api_token: None,
             user,
         }
     }

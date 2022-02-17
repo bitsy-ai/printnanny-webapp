@@ -43,6 +43,10 @@ docs/JanusEdgeAuthRequest.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
+docs/MonitorStartTask.md
+docs/MonitorStartTaskRequest.md
+docs/MonitorStopTask.md
+docs/MonitorStopTaskRequest.md
 docs/OctoGenericEvent.md
 docs/OctoJobEvent.md
 docs/OctoPrintBackup.md
@@ -77,8 +81,6 @@ docs/OctoprintProgress.md
 docs/OctoprintProgressRequest.md
 docs/OctoprintPython.md
 docs/OctoprintPythonRequest.md
-docs/OnboardingTask.md
-docs/OnboardingTaskRequest.md
 docs/PaginatedAlertList.md
 docs/PaginatedCameraList.md
 docs/PaginatedCloudiotDeviceList.md
@@ -93,8 +95,8 @@ docs/PaginatedModelArtifactList.md
 docs/PaginatedOctoPrintBackupList.md
 docs/PaginatedOctoPrintDeviceList.md
 docs/PaginatedOctoPrintEventList.md
-docs/PaginatedOnboardingTaskList.md
 docs/PaginatedPolymorphicEventList.md
+docs/PaginatedPolymorphicTaskList.md
 docs/PaginatedPrintJobEventList.md
 docs/PaginatedPrintNannyPluginEventList.md
 docs/PaginatedPrintSessionList.md
@@ -104,7 +106,6 @@ docs/PaginatedPublicKeyList.md
 docs/PaginatedRemoteCommandEventList.md
 docs/PaginatedRemoteControlCommandList.md
 docs/PaginatedSystemInfoList.md
-docs/PaginatedTaskList.md
 docs/PaginatedTaskStatusList.md
 docs/PaginatedTelemetryEventPolymorphicList.md
 docs/Partner3DGeeksAlert.md
@@ -130,6 +131,8 @@ docs/PatchedTestEventRequest.md
 docs/PatchedUserRequest.md
 docs/PolymorphicEvent.md
 docs/PolymorphicEventRequest.md
+docs/PolymorphicTask.md
+docs/PolymorphicTaskRequest.md
 docs/PrintJobEvent.md
 docs/PrintJobEventRequest.md
 docs/PrintNannyApiConfig.md
@@ -157,12 +160,12 @@ docs/SoftwareEnum.md
 docs/SystemInfo.md
 docs/SystemInfoRequest.md
 docs/Task.md
-docs/TaskEnum.md
 docs/TaskRequest.md
 docs/TaskStatus.md
 docs/TaskStatusRequest.md
-docs/TaskStatusType.md
-docs/TaskType.md
+docs/TaskStatusStatusEnum.md
+docs/TasksApi.md
+docs/TasktypeEnum.md
 docs/TelemetryApi.md
 docs/TelemetryEvent.md
 docs/TelemetryEventPolymorphic.md
@@ -189,6 +192,7 @@ src/apis/partners_geeks3_api.rs
 src/apis/partners_geeks3d_api.rs
 src/apis/remote_control_api.rs
 src/apis/schema_api.rs
+src/apis/tasks_api.rs
 src/apis/telemetry_api.rs
 src/apis/users_api.rs
 src/lib.rs
@@ -227,6 +231,10 @@ src/models/janus_edge_auth_request.rs
 src/models/mobile_auth_request.rs
 src/models/mod.rs
 src/models/model_artifact.rs
+src/models/monitor_start_task.rs
+src/models/monitor_start_task_request.rs
+src/models/monitor_stop_task.rs
+src/models/monitor_stop_task_request.rs
 src/models/octo_generic_event.rs
 src/models/octo_job_event.rs
 src/models/octo_print_backup.rs
@@ -260,8 +268,6 @@ src/models/octoprint_progress.rs
 src/models/octoprint_progress_request.rs
 src/models/octoprint_python.rs
 src/models/octoprint_python_request.rs
-src/models/onboarding_task.rs
-src/models/onboarding_task_request.rs
 src/models/paginated_alert_list.rs
 src/models/paginated_camera_list.rs
 src/models/paginated_cloudiot_device_list.rs
@@ -276,8 +282,8 @@ src/models/paginated_model_artifact_list.rs
 src/models/paginated_octo_print_backup_list.rs
 src/models/paginated_octo_print_device_list.rs
 src/models/paginated_octo_print_event_list.rs
-src/models/paginated_onboarding_task_list.rs
 src/models/paginated_polymorphic_event_list.rs
+src/models/paginated_polymorphic_task_list.rs
 src/models/paginated_print_job_event_list.rs
 src/models/paginated_print_nanny_plugin_event_list.rs
 src/models/paginated_print_session_list.rs
@@ -287,7 +293,6 @@ src/models/paginated_public_key_list.rs
 src/models/paginated_remote_command_event_list.rs
 src/models/paginated_remote_control_command_list.rs
 src/models/paginated_system_info_list.rs
-src/models/paginated_task_list.rs
 src/models/paginated_task_status_list.rs
 src/models/paginated_telemetry_event_polymorphic_list.rs
 src/models/partner3_d_geeks_alert.rs
@@ -311,6 +316,8 @@ src/models/patched_test_event_request.rs
 src/models/patched_user_request.rs
 src/models/polymorphic_event.rs
 src/models/polymorphic_event_request.rs
+src/models/polymorphic_task.rs
+src/models/polymorphic_task_request.rs
 src/models/print_job_event.rs
 src/models/print_job_event_request.rs
 src/models/print_nanny_api_config.rs
@@ -336,12 +343,11 @@ src/models/software_enum.rs
 src/models/system_info.rs
 src/models/system_info_request.rs
 src/models/task.rs
-src/models/task_enum.rs
 src/models/task_request.rs
 src/models/task_status.rs
 src/models/task_status_request.rs
-src/models/task_status_type.rs
-src/models/task_type.rs
+src/models/task_status_status_enum.rs
+src/models/tasktype_enum.rs
 src/models/telemetry_event.rs
 src/models/telemetry_event_polymorphic.rs
 src/models/telemetry_event_polymorphic_request.rs

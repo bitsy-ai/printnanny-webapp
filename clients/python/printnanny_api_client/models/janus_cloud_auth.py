@@ -63,7 +63,8 @@ class JanusCloudAuth(object):
         self.discriminator = None
 
         self.id = id
-        self.api_token = api_token
+        if api_token is not None:
+            self.api_token = api_token
         self.created_dt = created_dt
         self.user = user
 
@@ -108,8 +109,6 @@ class JanusCloudAuth(object):
         :param api_token: The api_token of this JanusCloudAuth.  # noqa: E501
         :type api_token: str
         """
-        if self.local_vars_configuration.client_side_validation and api_token is None:  # noqa: E501
-            raise ValueError("Invalid value for `api_token`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 api_token is not None and len(api_token) > 255):
             raise ValueError("Invalid value for `api_token`, length must be less than or equal to `255`")  # noqa: E501

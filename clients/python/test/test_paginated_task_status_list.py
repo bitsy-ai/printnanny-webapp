@@ -43,11 +43,8 @@ class TestPaginatedTaskStatusList(unittest.TestCase):
                 results = [
                     printnanny_api_client.models.task_status.TaskStatus(
                         id = 56, 
-                        detail = '', 
-                        wiki_url = '', 
                         status = 'failed', 
-                        status_display = '', 
-                        css_class = '', 
+                        deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         task = 56, )
                     ]

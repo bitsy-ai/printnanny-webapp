@@ -5,13 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
-**detail** | Option<**String**> |  | [optional]
-**wiki_url** | Option<**String**> |  | [optional]
-**status** | [**crate::models::TaskStatusType**](TaskStatusType.md) |  | 
-**status_display** | **String** |  | [readonly]
-**css_class** | **String** |  | [readonly]
+**status** | [**crate::models::TaskStatusStatusEnum**](TaskStatusStatusEnum.md) |  | 
+**deleted** | **String** |  | [readonly]
 **created_dt** | **String** |  | [readonly]
-**task** | **i32** |  | 
+**task** | **i32** |  | [readonly]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

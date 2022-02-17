@@ -45,7 +45,6 @@ class TestJanusCloudAuth(unittest.TestCase):
         else :
             return JanusCloudAuth(
                 id = 56,
-                api_token = '',
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 user = 56,
         )
