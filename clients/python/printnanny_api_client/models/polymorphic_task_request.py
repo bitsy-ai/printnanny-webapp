@@ -37,30 +37,26 @@ class PolymorphicTaskRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'task_type': 'JanusTaskType',
-        'stream': 'int'
+        'task_type': 'JanusTaskType'
     }
 
     attribute_map = {
-        'task_type': 'task_type',
-        'stream': 'stream'
+        'task_type': 'task_type'
     }
 
     discriminator_value_class_map = {
     }
 
-    def __init__(self, task_type=None, stream=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, task_type=None, local_vars_configuration=None):  # noqa: E501
         """PolymorphicTaskRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._task_type = None
-        self._stream = None
         self.discriminator = 'task_type'
 
         self.task_type = task_type
-        self.stream = stream
 
     @property
     def task_type(self):
@@ -84,29 +80,6 @@ class PolymorphicTaskRequest(object):
             raise ValueError("Invalid value for `task_type`, must not be `None`")  # noqa: E501
 
         self._task_type = task_type
-
-    @property
-    def stream(self):
-        """Gets the stream of this PolymorphicTaskRequest.  # noqa: E501
-
-
-        :return: The stream of this PolymorphicTaskRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._stream
-
-    @stream.setter
-    def stream(self, stream):
-        """Sets the stream of this PolymorphicTaskRequest.
-
-
-        :param stream: The stream of this PolymorphicTaskRequest.  # noqa: E501
-        :type stream: int
-        """
-        if self.local_vars_configuration.client_side_validation and stream is None:  # noqa: E501
-            raise ValueError("Invalid value for `stream`, must not be `None`")  # noqa: E501
-
-        self._stream = stream
 
     def get_real_child_model(self, data):
         """Returns the real base class specified by the discriminator"""

@@ -15,15 +15,12 @@
 pub struct JanusTaskRequest {
     #[serde(rename = "task_type")]
     pub task_type: crate::models::JanusTaskType,
-    #[serde(rename = "stream")]
-    pub stream: i32,
 }
 
 impl JanusTaskRequest {
-    pub fn new(task_type: crate::models::JanusTaskType, stream: i32) -> JanusTaskRequest {
+    pub fn new(task_type: crate::models::JanusTaskType) -> JanusTaskRequest {
         JanusTaskRequest {
             task_type,
-            stream,
         }
     }
 }
