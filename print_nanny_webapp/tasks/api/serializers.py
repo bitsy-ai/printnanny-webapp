@@ -64,7 +64,6 @@ class PolymorphicTaskSerializer(PolymorphicSerializer):
 
 class TaskStatusSerializer(serializers.ModelSerializer):
     status = serializers.ChoiceField(choices=TaskStatusType.choices)
-    task = PolymorphicTaskSerializer()
 
     class Meta:
         model = TaskStatus
