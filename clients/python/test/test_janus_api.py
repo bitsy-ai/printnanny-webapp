@@ -53,6 +53,12 @@ class TestJanusApi(unittest.TestCase):
         """
         pass
 
+    def test_janus_stream_key_update_or_create(self):
+        """Test case for janus_stream_key_update_or_create
+
+        """
+        pass
+
     def test_users_janus_auth_create(self):
         """Test case for users_janus_auth_create
 

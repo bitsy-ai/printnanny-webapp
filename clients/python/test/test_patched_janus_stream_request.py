@@ -43,8 +43,7 @@ class TestPatchedJanusStreamRequest(unittest.TestCase):
                 pin = '0', 
                 info = {
                     'key' : null
-                    }, 
-                device = 56
+                    }
             )
         else :
             return PatchedJanusStreamRequest(

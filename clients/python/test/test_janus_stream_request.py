@@ -43,12 +43,10 @@ class TestJanusStreamRequest(unittest.TestCase):
                 pin = '0', 
                 info = {
                     'key' : null
-                    }, 
-                device = 56
+                    }
             )
         else :
             return JanusStreamRequest(
-                device = 56,
         )
 
     def testJanusStreamRequest(self):

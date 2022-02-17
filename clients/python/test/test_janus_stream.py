@@ -38,6 +38,8 @@ class TestJanusStream(unittest.TestCase):
         if include_optional :
             return JanusStream(
                 id = 56, 
+                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 config_type = 'cloud', 
                 active = True, 
                 secret = '', 
@@ -45,8 +47,6 @@ class TestJanusStream(unittest.TestCase):
                 info = {
                     'key' : null
                     }, 
-                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 device = 56
             )
         else :

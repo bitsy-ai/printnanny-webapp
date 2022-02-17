@@ -317,6 +317,12 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
+    def test_janus_stream_key_update_or_create(self):
+        """Test case for janus_stream_key_update_or_create
+
+        """
+        pass
+
     def test_public_key_update_or_create(self):
         """Test case for public_key_update_or_create
 

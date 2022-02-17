@@ -38,46 +38,48 @@ class JanusStream(object):
     """
     openapi_types = {
         'id': 'int',
+        'created_dt': 'datetime',
+        'updated_dt': 'datetime',
         'config_type': 'JanusConfigType',
         'active': 'bool',
         'secret': 'str',
         'pin': 'str',
         'info': 'dict(str, object)',
-        'created_dt': 'datetime',
-        'updated_dt': 'datetime',
         'device': 'int'
     }
 
     attribute_map = {
         'id': 'id',
+        'created_dt': 'created_dt',
+        'updated_dt': 'updated_dt',
         'config_type': 'config_type',
         'active': 'active',
         'secret': 'secret',
         'pin': 'pin',
         'info': 'info',
-        'created_dt': 'created_dt',
-        'updated_dt': 'updated_dt',
         'device': 'device'
     }
 
-    def __init__(self, id=None, config_type=None, active=None, secret=None, pin=None, info=None, created_dt=None, updated_dt=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, updated_dt=None, config_type=None, active=None, secret=None, pin=None, info=None, device=None, local_vars_configuration=None):  # noqa: E501
         """JanusStream - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
+        self._created_dt = None
+        self._updated_dt = None
         self._config_type = None
         self._active = None
         self._secret = None
         self._pin = None
         self._info = None
-        self._created_dt = None
-        self._updated_dt = None
         self._device = None
         self.discriminator = None
 
         self.id = id
+        self.created_dt = created_dt
+        self.updated_dt = updated_dt
         if config_type is not None:
             self.config_type = config_type
         if active is not None:
@@ -88,8 +90,6 @@ class JanusStream(object):
             self.pin = pin
         if info is not None:
             self.info = info
-        self.created_dt = created_dt
-        self.updated_dt = updated_dt
         self.device = device
 
     @property
@@ -114,6 +114,52 @@ class JanusStream(object):
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
+
+    @property
+    def created_dt(self):
+        """Gets the created_dt of this JanusStream.  # noqa: E501
+
+
+        :return: The created_dt of this JanusStream.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._created_dt
+
+    @created_dt.setter
+    def created_dt(self, created_dt):
+        """Sets the created_dt of this JanusStream.
+
+
+        :param created_dt: The created_dt of this JanusStream.  # noqa: E501
+        :type created_dt: datetime
+        """
+        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
+
+        self._created_dt = created_dt
+
+    @property
+    def updated_dt(self):
+        """Gets the updated_dt of this JanusStream.  # noqa: E501
+
+
+        :return: The updated_dt of this JanusStream.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._updated_dt
+
+    @updated_dt.setter
+    def updated_dt(self, updated_dt):
+        """Sets the updated_dt of this JanusStream.
+
+
+        :param updated_dt: The updated_dt of this JanusStream.  # noqa: E501
+        :type updated_dt: datetime
+        """
+        if self.local_vars_configuration.client_side_validation and updated_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `updated_dt`, must not be `None`")  # noqa: E501
+
+        self._updated_dt = updated_dt
 
     @property
     def config_type(self):
@@ -225,52 +271,6 @@ class JanusStream(object):
         """
 
         self._info = info
-
-    @property
-    def created_dt(self):
-        """Gets the created_dt of this JanusStream.  # noqa: E501
-
-
-        :return: The created_dt of this JanusStream.  # noqa: E501
-        :rtype: datetime
-        """
-        return self._created_dt
-
-    @created_dt.setter
-    def created_dt(self, created_dt):
-        """Sets the created_dt of this JanusStream.
-
-
-        :param created_dt: The created_dt of this JanusStream.  # noqa: E501
-        :type created_dt: datetime
-        """
-        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
-            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
-
-        self._created_dt = created_dt
-
-    @property
-    def updated_dt(self):
-        """Gets the updated_dt of this JanusStream.  # noqa: E501
-
-
-        :return: The updated_dt of this JanusStream.  # noqa: E501
-        :rtype: datetime
-        """
-        return self._updated_dt
-
-    @updated_dt.setter
-    def updated_dt(self, updated_dt):
-        """Sets the updated_dt of this JanusStream.
-
-
-        :param updated_dt: The updated_dt of this JanusStream.  # noqa: E501
-        :type updated_dt: datetime
-        """
-        if self.local_vars_configuration.client_side_validation and updated_dt is None:  # noqa: E501
-            raise ValueError("Invalid value for `updated_dt`, must not be `None`")  # noqa: E501
-
-        self._updated_dt = updated_dt
 
     @property
     def device(self):

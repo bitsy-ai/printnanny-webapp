@@ -15,6 +15,10 @@
 pub struct JanusStream {
     #[serde(rename = "id")]
     pub id: i32,
+    #[serde(rename = "created_dt")]
+    pub created_dt: String,
+    #[serde(rename = "updated_dt")]
+    pub updated_dt: String,
     #[serde(rename = "config_type", skip_serializing_if = "Option::is_none")]
     pub config_type: Option<crate::models::JanusConfigType>,
     #[serde(rename = "active", skip_serializing_if = "Option::is_none")]
@@ -25,10 +29,6 @@ pub struct JanusStream {
     pub pin: Option<String>,
     #[serde(rename = "info", skip_serializing_if = "Option::is_none")]
     pub info: Option<::std::collections::HashMap<String, serde_json::Value>>,
-    #[serde(rename = "created_dt")]
-    pub created_dt: String,
-    #[serde(rename = "updated_dt")]
-    pub updated_dt: String,
     #[serde(rename = "device")]
     pub device: i32,
 }
@@ -37,13 +37,13 @@ impl JanusStream {
     pub fn new(id: i32, created_dt: String, updated_dt: String, device: i32) -> JanusStream {
         JanusStream {
             id,
+            created_dt,
+            updated_dt,
             config_type: None,
             active: None,
             secret: None,
             pin: None,
             info: None,
-            created_dt,
-            updated_dt,
             device,
         }
     }

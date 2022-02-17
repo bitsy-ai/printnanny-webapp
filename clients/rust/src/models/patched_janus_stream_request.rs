@@ -23,8 +23,6 @@ pub struct PatchedJanusStreamRequest {
     pub pin: Option<String>,
     #[serde(rename = "info", skip_serializing_if = "Option::is_none")]
     pub info: Option<::std::collections::HashMap<String, serde_json::Value>>,
-    #[serde(rename = "device", skip_serializing_if = "Option::is_none")]
-    pub device: Option<i32>,
 }
 
 impl PatchedJanusStreamRequest {
@@ -35,7 +33,6 @@ impl PatchedJanusStreamRequest {
             secret: None,
             pin: None,
             info: None,
-            device: None,
         }
     }
 }
