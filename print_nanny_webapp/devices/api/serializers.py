@@ -103,6 +103,10 @@ class PublicKeySerializer(serializers.ModelSerializer):
 
 
 class JanusAuthSerializer(serializers.ModelSerializer):
+    api_url = serializers.CharField(read_only=True)
+    admin_url = serializers.CharField(read_only=True)
+    websocket_url = serializers.CharField(read_only=True)
+
     class Meta:
         model = JanusAuth
         exclude = ("deleted",)
@@ -121,6 +125,7 @@ class JanusStreamSerializer(serializers.ModelSerializer):
         model = JanusStream
         exclude = ("deleted",)
         read_only_fields = ("device",)
+        depth = 1
 
     def update_or_create(self, validated_data, device):
         return JanusStream.objects.filter(device=device).update_or_create(
