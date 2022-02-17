@@ -198,6 +198,11 @@ pub enum DevicesJanusStreamsPartialUpdateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesJanusStreamsRetrieveError {
+    Status404(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -419,6 +424,11 @@ pub enum DevicesTasksListError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesTasksRetrieveError {
+    Status404(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -449,6 +459,11 @@ pub enum DevicesTasksStatusListError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesTasksStatusRetrieveError {
+    Status404(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -1924,12 +1939,12 @@ pub async fn devices_tasks_status_list(configuration: &configuration::Configurat
     }
 }
 
-pub async fn devices_tasks_status_retrieve(configuration: &configuration::Configuration, device_id: &str, id: i32, task_id: i32) -> Result<crate::models::TaskStatus, Error<DevicesTasksStatusRetrieveError>> {
+pub async fn devices_tasks_status_retrieve(configuration: &configuration::Configuration, device_id: i32, id: i32, task_id: i32) -> Result<crate::models::TaskStatus, Error<DevicesTasksStatusRetrieveError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/tasks/{task_id}/status/{id}/", local_var_configuration.base_path, device_id=crate::apis::urlencode(device_id), id=id, task_id=task_id);
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/tasks/{task_id}/status/{id}/", local_var_configuration.base_path, device_id=device_id, id=id, task_id=task_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {

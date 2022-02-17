@@ -3238,6 +3238,11 @@ class DevicesApi(object):
 
         response_types_map = {
             200: "JanusStream",
+            404: "ErrorDetail",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(
@@ -6747,6 +6752,11 @@ class DevicesApi(object):
 
         response_types_map = {
             200: "PolymorphicTask",
+            404: "ErrorDetail",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(
@@ -7103,7 +7113,7 @@ class DevicesApi(object):
         >>> result = thread.get()
 
         :param device_id: (required)
-        :type device_id: str
+        :type device_id: int
         :param id: A unique integer value identifying this task status. (required)
         :type id: int
         :param task_id: (required)
@@ -7136,7 +7146,7 @@ class DevicesApi(object):
         >>> result = thread.get()
 
         :param device_id: (required)
-        :type device_id: str
+        :type device_id: int
         :param id: A unique integer value identifying this task status. (required)
         :type id: int
         :param task_id: (required)
@@ -7232,6 +7242,11 @@ class DevicesApi(object):
 
         response_types_map = {
             200: "TaskStatus",
+            404: "ErrorDetail",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(

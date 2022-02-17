@@ -470,6 +470,11 @@ class UsersApi(object):
 
         response_types_map = {
             200: "JanusAuth",
+            404: "ErrorDetail",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(
@@ -1044,6 +1049,11 @@ class UsersApi(object):
 
         response_types_map = {
             200: "User",
+            404: "ErrorDetail",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(

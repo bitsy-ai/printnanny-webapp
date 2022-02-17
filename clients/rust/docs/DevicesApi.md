@@ -1421,7 +1421,7 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **String** |  | [required] |
+**device_id** | **i32** |  | [required] |
 **id** | **i32** | A unique integer value identifying this task status. | [required] |
 **task_id** | **i32** |  | [required] |
 

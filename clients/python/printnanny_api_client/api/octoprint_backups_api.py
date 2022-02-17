@@ -488,6 +488,11 @@ class OctoprintBackupsApi(object):
 
         response_types_map = {
             200: "OctoPrintBackup",
+            404: "ErrorDetail",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
         }
 
         return self.api_client.call_api(
