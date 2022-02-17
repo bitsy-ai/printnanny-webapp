@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **task_type** | [**crate::models::TaskTypeEnum**](TaskTypeEnum.md) |  | 
 **polymorphic_ctype** | **i32** |  | [readonly]
 **device** | **i32** |  | [readonly]
-**cloud_media_stream** | **i32** |  | [readonly]
+**stream_config** | **i32** |  | [readonly]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

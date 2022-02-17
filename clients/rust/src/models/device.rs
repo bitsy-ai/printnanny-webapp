@@ -28,7 +28,7 @@ pub struct Device {
     #[serde(rename = "video_test_url")]
     pub video_test_url: String,
     #[serde(rename = "janus_auth")]
-    pub janus_auth: Option<Box<crate::models::JanusCloudAuth>>,
+    pub janus_auth: Option<Box<crate::models::JanusAuth>>,
     #[serde(rename = "janus_local_url")]
     pub janus_local_url: String,
     #[serde(rename = "last_task")]
@@ -57,7 +57,7 @@ pub struct Device {
 }
 
 impl Device {
-    pub fn new(id: i32, active_cameras: Vec<crate::models::Camera>, active_tasks: Vec<crate::models::Task>, cameras: Vec<crate::models::Camera>, cloudiot_device: Option<crate::models::CloudiotDevice>, dashboard_url: String, video_test_url: String, janus_auth: Option<crate::models::JanusCloudAuth>, janus_local_url: String, last_task: Option<crate::models::Task>, printer_controllers: Vec<crate::models::PrinterController>, user: Option<crate::models::User>, system_info: Option<crate::models::SystemInfo>, public_key: Option<crate::models::PublicKey>, created_dt: String, updated_dt: String) -> Device {
+    pub fn new(id: i32, active_cameras: Vec<crate::models::Camera>, active_tasks: Vec<crate::models::Task>, cameras: Vec<crate::models::Camera>, cloudiot_device: Option<crate::models::CloudiotDevice>, dashboard_url: String, video_test_url: String, janus_auth: Option<crate::models::JanusAuth>, janus_local_url: String, last_task: Option<crate::models::Task>, printer_controllers: Vec<crate::models::PrinterController>, user: Option<crate::models::User>, system_info: Option<crate::models::SystemInfo>, public_key: Option<crate::models::PublicKey>, created_dt: String, updated_dt: String) -> Device {
         Device {
             id,
             active_cameras,

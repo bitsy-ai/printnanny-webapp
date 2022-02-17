@@ -22,8 +22,8 @@ pub struct JanusTask {
         polymorphic_ctype: i32,
         #[serde(rename = "device")]
         device: i32,
-        #[serde(rename = "cloud_media_stream")]
-        cloud_media_stream: i32,
+        #[serde(rename = "stream_config")]
+        stream_config: i32,
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]

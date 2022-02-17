@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.janus_cloud_auth import JanusCloudAuth  # noqa: E501
+from printnanny_api_client.models.janus_auth_request import JanusAuthRequest  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestJanusCloudAuth(unittest.TestCase):
-    """JanusCloudAuth unit test stubs"""
+class TestJanusAuthRequest(unittest.TestCase):
+    """JanusAuthRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,27 +30,25 @@ class TestJanusCloudAuth(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test JanusCloudAuth
+        """Test JanusAuthRequest
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.janus_cloud_auth.JanusCloudAuth()  # noqa: E501
+        # model = printnanny_api_client.models.janus_auth_request.JanusAuthRequest()  # noqa: E501
         if include_optional :
-            return JanusCloudAuth(
-                id = 56, 
-                api_token = '', 
-                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+            return JanusAuthRequest(
+                admin_secret = '0', 
+                api_token = '0', 
+                config_type = 'cloud', 
                 user = 56
             )
         else :
-            return JanusCloudAuth(
-                id = 56,
-                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+            return JanusAuthRequest(
                 user = 56,
         )
 
-    def testJanusCloudAuth(self):
-        """Test JanusCloudAuth"""
+    def testJanusAuthRequest(self):
+        """Test JanusAuthRequest"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

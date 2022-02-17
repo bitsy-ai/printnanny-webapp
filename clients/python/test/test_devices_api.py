@@ -131,60 +131,6 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
-    def test_devices_janus_cloud_auth_create(self):
-        """Test case for devices_janus_cloud_auth_create
-
-        """
-        pass
-
-    def test_devices_janus_cloud_auth_list(self):
-        """Test case for devices_janus_cloud_auth_list
-
-        """
-        pass
-
-    def test_devices_janus_cloud_auth_retrieve(self):
-        """Test case for devices_janus_cloud_auth_retrieve
-
-        """
-        pass
-
-    def test_devices_janus_edge_auth_create(self):
-        """Test case for devices_janus_edge_auth_create
-
-        """
-        pass
-
-    def test_devices_janus_edge_auth_list(self):
-        """Test case for devices_janus_edge_auth_list
-
-        """
-        pass
-
-    def test_devices_janus_edge_auth_partial_update(self):
-        """Test case for devices_janus_edge_auth_partial_update
-
-        """
-        pass
-
-    def test_devices_janus_edge_auth_retrieve(self):
-        """Test case for devices_janus_edge_auth_retrieve
-
-        """
-        pass
-
-    def test_devices_janus_edge_auth_update(self):
-        """Test case for devices_janus_edge_auth_update
-
-        """
-        pass
-
-    def test_devices_janus_edge_auth_update_or_create(self):
-        """Test case for devices_janus_edge_auth_update_or_create
-
-        """
-        pass
-
     def test_devices_list(self):
         """Test case for devices_list
 

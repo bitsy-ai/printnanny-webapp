@@ -1,13 +1,13 @@
-# PaginatedJanusCloudAuthList
+# JanusAuthRequest
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**count** | Option<**i32**> |  | [optional]
-**next** | Option<**String**> |  | [optional]
-**previous** | Option<**String**> |  | [optional]
-**results** | Option<[**Vec<crate::models::JanusCloudAuth>**](JanusCloudAuth.md)> |  | [optional]
+**admin_secret** | Option<**String**> |  | [optional]
+**api_token** | Option<**String**> |  | [optional]
+**config_type** | Option<[**crate::models::ConfigTypeEnum**](ConfigTypeEnum.md)> |  | [optional]
+**user** | **i32** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

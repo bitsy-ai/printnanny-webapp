@@ -1,12 +1,13 @@
-# JanusEdgeAuthRequest
+# PaginatedJanusAuthList
 
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**api_token** | **str** |  | [optional] 
-**admin_secret** | **str** |  | 
-**device** | **int** |  | 
+**count** | **int** |  | [optional] 
+**next** | **str** |  | [optional] 
+**previous** | **str** |  | [optional] 
+**results** | [**list[JanusAuth]**](JanusAuth.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.paginated_janus_edge_auth_list import PaginatedJanusEdgeAuthList  # noqa: E501
+from printnanny_api_client.models.paginated_janus_auth_list import PaginatedJanusAuthList  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestPaginatedJanusEdgeAuthList(unittest.TestCase):
-    """PaginatedJanusEdgeAuthList unit test stubs"""
+class TestPaginatedJanusAuthList(unittest.TestCase):
+    """PaginatedJanusAuthList unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,32 +30,32 @@ class TestPaginatedJanusEdgeAuthList(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test PaginatedJanusEdgeAuthList
+        """Test PaginatedJanusAuthList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.paginated_janus_edge_auth_list.PaginatedJanusEdgeAuthList()  # noqa: E501
+        # model = printnanny_api_client.models.paginated_janus_auth_list.PaginatedJanusAuthList()  # noqa: E501
         if include_optional :
-            return PaginatedJanusEdgeAuthList(
+            return PaginatedJanusAuthList(
                 count = 123, 
                 next = 'http://api.example.org/accounts/?page=4', 
                 previous = 'http://api.example.org/accounts/?page=2', 
                 results = [
-                    printnanny_api_client.models.janus_edge_auth.JanusEdgeAuth(
+                    printnanny_api_client.models.janus_auth.JanusAuth(
                         id = 56, 
-                        api_token = '', 
                         admin_secret = '', 
+                        api_token = '', 
+                        config_type = 'cloud', 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        device = 56, )
+                        user = 56, )
                     ]
             )
         else :
-            return PaginatedJanusEdgeAuthList(
+            return PaginatedJanusAuthList(
         )
 
-    def testPaginatedJanusEdgeAuthList(self):
-        """Test PaginatedJanusEdgeAuthList"""
+    def testPaginatedJanusAuthList(self):
+        """Test PaginatedJanusAuthList"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

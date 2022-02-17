@@ -25,12 +25,12 @@ pub struct JanusTask {
     pub polymorphic_ctype: i32,
     #[serde(rename = "device")]
     pub device: i32,
-    #[serde(rename = "cloud_media_stream")]
-    pub cloud_media_stream: i32,
+    #[serde(rename = "stream_config")]
+    pub stream_config: i32,
 }
 
 impl JanusTask {
-    pub fn new(id: i32, deleted: String, created_dt: String, task_type: crate::models::TaskTypeEnum, polymorphic_ctype: i32, device: i32, cloud_media_stream: i32) -> JanusTask {
+    pub fn new(id: i32, deleted: String, created_dt: String, task_type: crate::models::TaskTypeEnum, polymorphic_ctype: i32, device: i32, stream_config: i32) -> JanusTask {
         JanusTask {
             id,
             deleted,
@@ -38,7 +38,7 @@ impl JanusTask {
             task_type,
             polymorphic_ctype,
             device,
-            cloud_media_stream,
+            stream_config,
         }
     }
 }

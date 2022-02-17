@@ -44,7 +44,7 @@ class Device(object):
         'cloudiot_device': 'CloudiotDevice',
         'dashboard_url': 'str',
         'video_test_url': 'str',
-        'janus_auth': 'JanusCloudAuth',
+        'janus_auth': 'JanusAuth',
         'janus_local_url': 'str',
         'last_task': 'Task',
         'monitoring_active': 'bool',
@@ -299,7 +299,7 @@ class Device(object):
 
 
         :return: The janus_auth of this Device.  # noqa: E501
-        :rtype: JanusCloudAuth
+        :rtype: JanusAuth
         """
         return self._janus_auth
 
@@ -309,7 +309,7 @@ class Device(object):
 
 
         :param janus_auth: The janus_auth of this Device.  # noqa: E501
-        :type janus_auth: JanusCloudAuth
+        :type janus_auth: JanusAuth
         """
 
         self._janus_auth = janus_auth
