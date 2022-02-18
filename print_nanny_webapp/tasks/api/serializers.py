@@ -25,7 +25,7 @@ class JanusTaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = JanusTask
         fields = "__all__"
-        read_only_fields = ("device", "created_dt", "stream")
+        read_only_fields = ("device", "created_dt")
 
 
 class PolymorphicTaskSerializer(PolymorphicSerializer):

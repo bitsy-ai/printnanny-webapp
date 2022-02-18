@@ -9,7 +9,7 @@ from print_nanny_webapp.devices.enum import JanusConfigType
 from print_nanny_webapp.devices.models import (
     Device,
     JanusAuth,
-    JanusCloudMediaStream,
+    JanusMediaStream,
 )
 from print_nanny_webapp.tasks.models import (
     Task,
