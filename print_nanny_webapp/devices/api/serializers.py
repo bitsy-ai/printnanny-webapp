@@ -1,3 +1,4 @@
+import logging
 from rest_framework import serializers
 from drf_spectacular.utils import extend_schema_field
 from drf_spectacular.types import OpenApiTypes
@@ -22,6 +23,8 @@ from print_nanny_webapp.tasks.api.serializers import TaskSerializer
 from print_nanny_webapp.users.api.serializers import UserSerializer
 
 User = get_user_model()
+
+logger = logging.getLogger(__name__)
 
 
 class CameraSerializer(serializers.ModelSerializer):
@@ -126,12 +129,18 @@ class JanusStreamSerializer(serializers.ModelSerializer):
         exclude = ("deleted",)
         read_only_fields = ("device",)
 
-    def update_or_create(self, validated_data, device):
-        return JanusStream.objects.filter(device=device).update_or_create(
-            device=device, defaults=validated_data
+    def update_or_create(self, validated_data, device_id):
+        return JanusStream.objects.filter(device=device_id).update_or_create(
+            device=device_id, defaults=validated_data
         )
 
-    def get_or_create(self, validated_data, device):
+    def get_or_create(self, validated_data, device_id):
+        logger.info(
+            "Attempting JanusStream.objects.get_or_create with validated_data=%s",
+            validated_data,
+        )
+        # get_or_create method requires fkey relationship be 1) instance or 2) use __id field syntax
+        device = Device.objects.get(id=device_id)
         return JanusStream.objects.get_or_create(device=device, defaults=validated_data)
 
 
