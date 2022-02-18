@@ -465,7 +465,6 @@ SPECTACULAR_SETTINGS = {
         'OctoPrinterEvent': 'print_nanny_webapp.telemetry.types.PrinterEventType',
         'AlphaEventSource': 'print_nanny_webapp.telemetry.types.EventSource',
         'EventSource': 'print_nanny_webapp.events.enum.EventSource',
-        'TestEventType': 'print_nanny_webapp.events.enum.TestEventType',
         'EventStatus': 'print_nanny_webapp.events.enum.EventStatus',
         'EventModel': 'print_nanny_webapp.events.enum.EventModel',
 
