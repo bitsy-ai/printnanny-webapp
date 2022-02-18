@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 import alerts, { ALERTS_MODULE } from './alerts'
 import devices, { DEVICE_MODULE } from './devices'
 import settings, { SETTINGS_MODULE } from './settings'
-import tasks, { TASK_MODULE } from './tasks'
+import tasks, { EVENTS_MODULE } from './events'
 import wizard, { WIZARD_MODULE } from './wizard'
 
 import mutations from './mutations'
@@ -16,7 +16,7 @@ export default new Vuex.Store({
   modules: {
     [ALERTS_MODULE]: alerts,
     [SETTINGS_MODULE]: settings,
-    [TASK_MODULE]: tasks,
+    [EVENTS_MODULE]: tasks,
     [DEVICE_MODULE]: devices,
     [WIZARD_MODULE]: wizard
   },

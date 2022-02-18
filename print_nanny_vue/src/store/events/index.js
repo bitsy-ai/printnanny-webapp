@@ -2,7 +2,7 @@ import state from './state'
 import actions from './actions'
 import mutations from './mutations'
 
-export const TASK_MODULE = 'TASKS'
+export const EVENTS_MODULE = 'EVENTS'
 
 export default {
   namespaced: true,

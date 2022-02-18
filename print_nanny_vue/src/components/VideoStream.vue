@@ -9,11 +9,7 @@ import {
   JANUS_STREAM
 } from '@/store/devices'
 
-import {
-  TASK_MODULE,
-  MONITOR_START_TASK,
-  MONITOR_STOP_TASK
-} from '@/store/tasks'
+import { EVENTS_MODULE, STREAM_START, STREAM_STOP } from '@/store/events'
 
 export default {
   props: {
@@ -37,17 +33,17 @@ export default {
       getDevice: GET_DEVICE,
       getOrCreateJanusStream: GET_OR_CREATE_JANUS_STREAM
     }),
-    ...mapActions(TASK_MODULE, {
-      startMonitor: MONITOR_START_TASK,
-      stopMonitor: MONITOR_STOP_TASK
+    ...mapActions(EVENTS_MODULE, {
+      streamStart: STREAM_START,
+      streamStop: STREAM_STOP
     }),
     async startMonitoring () {
       this.loading = true
-      await this.startMonitor(this.deviceId)
+      await this.streamStart(this.deviceId)
     },
     async stopMonitoring () {
       this.loading = false
-      await this.stopMonitor(this.deviceId)
+      await this.streamStop(this.deviceId)
     },
     monitoringActive () {
       return this.device.monitoring_active === true

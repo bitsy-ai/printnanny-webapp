@@ -24,11 +24,11 @@ export default {
     console.log("Response to devicesJanusStreamGetOrCreate", res)
     return res.data
   },
-  async createJanusTask(deviceId: number, streamId: number, taskType: api.JanusTaskType) {
-    const thisapi = api.TasksApiFactory(configuration)
-    const req: api.JanusTaskRequest = { task_type: taskType, stream: streamId }
-    const res = await thisapi.devicesTasksCreate(deviceId, req)
-    console.log("Response to devicesJanusStreamGetOrCreate", res)
+  async cloudMonitorStart(deviceId: number) {
+    const thisapi = api.EventsApiFactory(configuration)
+    const req: api.WebRTCEventRequest = { event_type: api.WebRTCEventEventType.CloudMonitorStart, device: deviceId, }
+    const res = await thisapi.eventsCreate(deviceId, req)
+    console.log("Response to eventsCreate", res)
     return res.data
   },
   async setupComplete(deviceId: number) {

@@ -6577,6 +6577,12 @@ export interface WebRTCEvent {
     'id': number;
     /**
      * 
+     * @type {WebRTCEventEventTypeEnum}
+     * @memberof WebRTCEvent
+     */
+    'event_type': WebRTCEventEventTypeEnum;
+    /**
+     * 
      * @type {string}
      * @memberof WebRTCEvent
      */
@@ -6593,12 +6599,6 @@ export interface WebRTCEvent {
      * @memberof WebRTCEvent
      */
     'source': EventSource;
-    /**
-     * 
-     * @type {WebRTCEventEventTypeEnum}
-     * @memberof WebRTCEvent
-     */
-    'event_type': WebRTCEventEventTypeEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -6656,16 +6656,16 @@ export type WebRTCEventEventTypeEnum = typeof WebRTCEventEventTypeEnum[keyof typ
 export interface WebRTCEventRequest {
     /**
      * 
-     * @type {EventSource}
-     * @memberof WebRTCEventRequest
-     */
-    'source': EventSource;
-    /**
-     * 
      * @type {WebRTCEventEventTypeEnum}
      * @memberof WebRTCEventRequest
      */
     'event_type': WebRTCEventEventTypeEnum;
+    /**
+     * 
+     * @type {EventSource}
+     * @memberof WebRTCEventRequest
+     */
+    'source': EventSource;
     /**
      * 
      * @type {{ [key: string]: any; }}

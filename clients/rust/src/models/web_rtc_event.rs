@@ -15,14 +15,14 @@
 pub struct WebRtcEvent {
     #[serde(rename = "id")]
     pub id: i32,
+    #[serde(rename = "event_type")]
+    pub event_type: crate::models::WebRtcEventEventTypeEnum,
     #[serde(rename = "deleted")]
     pub deleted: String,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
     #[serde(rename = "source")]
     pub source: crate::models::EventSource,
-    #[serde(rename = "event_type")]
-    pub event_type: crate::models::WebRtcEventEventTypeEnum,
     #[serde(rename = "data", skip_serializing_if = "Option::is_none")]
     pub data: Option<::std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "polymorphic_ctype")]
@@ -36,13 +36,13 @@ pub struct WebRtcEvent {
 }
 
 impl WebRtcEvent {
-    pub fn new(id: i32, deleted: String, created_dt: String, source: crate::models::EventSource, event_type: crate::models::WebRtcEventEventTypeEnum, polymorphic_ctype: i32, user: i32, device: i32) -> WebRtcEvent {
+    pub fn new(id: i32, event_type: crate::models::WebRtcEventEventTypeEnum, deleted: String, created_dt: String, source: crate::models::EventSource, polymorphic_ctype: i32, user: i32, device: i32) -> WebRtcEvent {
         WebRtcEvent {
             id,
+            event_type,
             deleted,
             created_dt,
             source,
-            event_type,
             data: None,
             polymorphic_ctype,
             user,
