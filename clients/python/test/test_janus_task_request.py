@@ -38,11 +38,13 @@ class TestJanusTaskRequest(unittest.TestCase):
         if include_optional :
             return JanusTaskRequest(
                 active = True, 
-                task_type = 'cloud_monitor_start'
+                task_type = 'cloud_monitor_start', 
+                stream = 56
             )
         else :
             return JanusTaskRequest(
                 task_type = 'cloud_monitor_start',
+                stream = 56,
         )
 
     def testJanusTaskRequest(self):

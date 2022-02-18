@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **task_type** | [**crate::models::JanusTaskType**](JanusTaskType.md) |  | 
 **polymorphic_ctype** | **i32** |  | [readonly]
 **device** | **i32** |  | [readonly]
-**stream** | **i32** |  | [readonly]
+**stream** | **i32** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

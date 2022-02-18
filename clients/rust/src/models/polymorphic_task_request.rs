@@ -14,6 +14,8 @@
 pub struct JanusTaskRequest {
         #[serde(rename = "active", skip_serializing_if = "Option::is_none")]
         active: Option<bool>,
+        #[serde(rename = "stream")]
+        stream: i32,
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]

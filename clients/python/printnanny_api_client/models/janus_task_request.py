@@ -38,15 +38,17 @@ class JanusTaskRequest(object):
     """
     openapi_types = {
         'active': 'bool',
-        'task_type': 'JanusTaskType'
+        'task_type': 'JanusTaskType',
+        'stream': 'int'
     }
 
     attribute_map = {
         'active': 'active',
-        'task_type': 'task_type'
+        'task_type': 'task_type',
+        'stream': 'stream'
     }
 
-    def __init__(self, active=None, task_type=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, active=None, task_type=None, stream=None, local_vars_configuration=None):  # noqa: E501
         """JanusTaskRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -54,11 +56,13 @@ class JanusTaskRequest(object):
 
         self._active = None
         self._task_type = None
+        self._stream = None
         self.discriminator = None
 
         if active is not None:
             self.active = active
         self.task_type = task_type
+        self.stream = stream
 
     @property
     def active(self):
@@ -103,6 +107,29 @@ class JanusTaskRequest(object):
             raise ValueError("Invalid value for `task_type`, must not be `None`")  # noqa: E501
 
         self._task_type = task_type
+
+    @property
+    def stream(self):
+        """Gets the stream of this JanusTaskRequest.  # noqa: E501
+
+
+        :return: The stream of this JanusTaskRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._stream
+
+    @stream.setter
+    def stream(self, stream):
+        """Sets the stream of this JanusTaskRequest.
+
+
+        :param stream: The stream of this JanusTaskRequest.  # noqa: E501
+        :type stream: int
+        """
+        if self.local_vars_configuration.client_side_validation and stream is None:  # noqa: E501
+            raise ValueError("Invalid value for `stream`, must not be `None`")  # noqa: E501
+
+        self._stream = stream
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

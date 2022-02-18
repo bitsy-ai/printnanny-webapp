@@ -1317,6 +1317,12 @@ export interface JanusTaskRequest {
      * @memberof JanusTaskRequest
      */
     'task_type': JanusTaskType;
+    /**
+     * 
+     * @type {number}
+     * @memberof JanusTaskRequest
+     */
+    'stream': number;
 }
 /**
  * 
