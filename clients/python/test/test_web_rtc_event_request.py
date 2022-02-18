@@ -42,7 +42,6 @@ class TestWebRTCEventRequest(unittest.TestCase):
                 data = {
                     'key' : null
                     }, 
-                user = 56, 
                 device = 56, 
                 stream = 56
             )
@@ -50,7 +49,6 @@ class TestWebRTCEventRequest(unittest.TestCase):
             return WebRTCEventRequest(
                 event_type = 'stream_start',
                 source = 'octoprint',
-                user = 56,
                 device = 56,
         )
 
