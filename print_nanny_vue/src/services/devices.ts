@@ -32,24 +32,6 @@ export default {
     console.debug("startMonitoringTask response={}", res)
     return res.data
   },
-  async startMonitoring(deviceId: number) {
-    const thisapi = api.DevicesApiFactory(configuration, process.env.BASE_API_URL)
-    const req = { monitoring_active: true }
-    const res = await thisapi.devicesPartialUpdate(
-      deviceId,
-      req
-    )
-    return res.data
-  },
-  async stopMonitoring(deviceId: number) {
-    const thisapi = api.DevicesApiFactory(configuration, process.env.BASE_API_URL)
-    const req = { monitoring_active: false }
-    const res = await thisapi.devicesPartialUpdate(
-      deviceId,
-      req
-    )
-    return res.data
-  },
   async setupComplete(deviceId: number) {
     const thisapi = api.DevicesApiFactory(configuration, process.env.BASE_API_URL)
     const req = { setup_complete: true }

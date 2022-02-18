@@ -14,6 +14,7 @@ from rest_framework.mixins import (
     RetrieveModelMixin,
     CreateModelMixin,
 )
+from print_nanny_webapp.devices.models import JanusStream
 from print_nanny_webapp.utils.api.views import (
     generic_create_errors,
     generic_list_errors,
@@ -22,6 +23,7 @@ from print_nanny_webapp.utils.api.views import (
 )
 from print_nanny_webapp.tasks.models import Task, TaskStatus
 from .serializers import PolymorphicTaskSerializer, TaskStatusSerializer
+from ..services import janus_stream_get_or_create
 
 Device = apps.get_model("devices", "Device")
 
@@ -87,6 +89,7 @@ class TaskViewSet(
     queryset = Task.objects.all()
     lookup_field = "id"
     device = None
+    stream = None
 
     def get_queryset(self, *args, **kwargs):
         device_id = self.kwargs.get("device_id")
@@ -99,7 +102,10 @@ class TaskViewSet(
             raise ValueError("Failed to parse :device_id from url path")
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
+        logger.info("TaskViewSet.create serializer.is_valid=%s", serializer.data)
+
         self.device = get_object_or_404(Device, pk=device_id)
+        self.stream = janus_stream_get_or_create(self.device)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(
@@ -108,7 +114,7 @@ class TaskViewSet(
 
     def perform_create(self, serializer):
         logger.info("TaskViewSet.perform_create request=%s", self.request.POST)
-        serializer.save(user=self.request.user, device=self.device)
+        serializer.save(device=self.device, stream=self.stream)
 
 
 @extend_schema_view(

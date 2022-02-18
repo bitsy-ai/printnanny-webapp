@@ -3,7 +3,6 @@ import logging
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.apps import apps
-from django.urls import reverse
 from django.views.generic.list import MultipleObjectMixin
 from django.views.generic import CreateView, DetailView, DeleteView
 from django.views.generic.base import TemplateView

@@ -31,13 +31,17 @@ class DeviceEventViewSet(
     serializer_class = PolymorphicEventSerializer
     queryset = DeviceEvent.objects.all()
     lookup_field = "id"
+    device = None
 
     def get_queryset(self, *args, **kwargs):
         device_id = self.kwargs.get("device_id")
         self.device = get_object_or_404(Device, pk=device_id)
         return self.queryset.filter(user_id=self.request.user.id, device=self.device)
 
-    def create(self, request, device_id=None, *args, **kwargs):
+    def create(self, request, *args, **kwargs):
+        device_id = kwargs.get("device_id")
+        if device_id is None:
+            raise ValueError("Failed to parse :device_id from url path")
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.device = get_object_or_404(Device, pk=device_id)

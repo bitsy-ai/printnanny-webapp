@@ -23,18 +23,18 @@ export default {
   methods: {
     ...mapActions(DEVICE_MODULE, {
       getDevice: GET_DEVICE,
-      _startMonitoring: START_MONITORING,
-      _stopMonitoring: STOP_MONITORING
+      startMonitoringTask: START_MONITORING,
+      stopMonitoringTask: STOP_MONITORING
     }),
     async startMonitoring () {
       this.loading = true
       this.active = true
-      await this._startMonitoring()
+      await this.startMonitoringTask(this.deviceId)
     },
     async stopMonitoring () {
       this.loading = false
       this.active = false
-      await this._stopMonitoring()
+      await this.stopMonitoringTask(this.deviceId)
     },
     monitoringActive () {
       return this.device.monitoring_active === true

@@ -18,11 +18,11 @@ export default {
     commit(SET_DEVICE_DATA, res)
   },
   async [START_MONITORING] ({ commit, state, dispatch }, device) {
-    const res = await api.startMonitoring(device)
+    const res = await api.startMonitoringTask(device)
     commit(SET_DEVICE_DATA, res)
   },
   async [STOP_MONITORING] ({ commit, state, dispatch }, device) {
-    const res = await api.stopMonitoring(device)
+    const res = await api.stopMonitoringTask(device)
     commit(SET_DEVICE_DATA, res)
   }
 }
