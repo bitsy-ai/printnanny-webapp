@@ -1,9 +1,7 @@
 import logging
-from django.shortcuts import get_object_or_404
 from drf_spectacular.utils import (
     extend_schema,
     extend_schema_view,
-    OpenApiParameter,
 )
 from django.apps import apps
 
@@ -23,7 +21,7 @@ from print_nanny_webapp.utils.api.views import (
 )
 from print_nanny_webapp.utils.permissions import IsObjectOwner
 from print_nanny_webapp.events.models import Event
-from .serializers import PolymorphicEventSerializer, PolymorphicDeviceEventSerializer
+from .serializers import PolymorphicEventSerializer
 
 Device = apps.get_model("devices", "Device")
 
