@@ -2,10 +2,9 @@ import logging
 
 from django.contrib.auth import get_user_model
 from django.db import models
-from django.apps import apps
 from polymorphic.models import PolymorphicModel
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
-from .enum import EventModel, EventSource, TestEventType, EventStatus
+from .enum import EventSource, WebRTCEventType
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
@@ -16,36 +15,27 @@ class Event(PolymorphicModel, SafeDeleteModel):
     Polymorphic Base Event
     """
 
+    class Meta:
+        ordering = ["-created_dt"]
+        index_together = [["user", "source", "created_dt"]]
+
     _safedelete_policy = SOFT_DELETE
-    created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
+    created_dt = models.DateTimeField(auto_now_add=True)
     source = models.CharField(max_length=32, choices=EventSource.choices)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
-class DeviceEvent(Event):
+class WebRTCEvent(Event):
     """
-    Polymorphic Base Event
+    Events related to WebRTC and PrintNanny video monitoring system
     """
 
-    command = models.BooleanField(
-        default=False,
-        help_text="Indicates whether event should be sent to Device on command topic",
-    )
+    class Meta:
+        index_together = [["device", "stream", "event_type"]]
+
+    event_type = models.CharField(max_length=32, choices=WebRTCEventType.choices)
     device = models.ForeignKey("devices.Device", on_delete=models.CASCADE)
-
-
-class TestEvent(DeviceEvent):
-    """
-    Test Events
-    """
-
-    event_type = models.CharField(max_length=255, choices=TestEventType.choices)
-    status = models.CharField(
-        max_length=255,
-        choices=EventStatus.choices,
-        default=EventStatus.SENT,
+    stream = models.ForeignKey(
+        "devices.JanusStream", on_delete=models.CASCADE, null=True
     )
-
-    @property
-    def model(self):
-        return EventModel.TestEvent
+    data = models.JSONField(default=dict)

@@ -84,14 +84,6 @@ class Device(SafeDeleteModel):
         return self.janus_auths.first()
 
     @property
-    def last_task(self):
-        return self.tasks.first()
-
-    @property
-    def active_tasks(self):
-        return self.tasks.filter(active=True).all()
-
-    @property
     def cloudiot_name(self):
         return f"device-id-{self.id}"
 

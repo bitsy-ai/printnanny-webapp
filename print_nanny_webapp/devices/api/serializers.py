@@ -19,7 +19,6 @@ from ..enum import (
     DeviceReleaseChannel,
     PrinterSoftwareType,
 )
-from print_nanny_webapp.tasks.api.serializers import TaskSerializer
 from print_nanny_webapp.users.api.serializers import UserSerializer
 
 User = get_user_model()
@@ -157,14 +156,12 @@ class SystemInfoSerializer(serializers.ModelSerializer):
 
 class DeviceSerializer(serializers.ModelSerializer):
 
-    active_tasks = TaskSerializer(many=True, read_only=True)
     cameras = CameraSerializer(read_only=True, many=True)
     cloudiot_device = CloudiotDeviceSerializer(read_only=True)
     dashboard_url = serializers.CharField(read_only=True)
     video_test_url = serializers.CharField(read_only=True)
     janus_auth = JanusAuthSerializer(read_only=True)
     janus_local_url = serializers.CharField(read_only=True)
-    last_task = TaskSerializer(read_only=True)
     monitoring_active = serializers.BooleanField(default=False)
     setup_complete = serializers.BooleanField(default=False)
     printer_controllers = PrinterControllerSerializer(read_only=True, many=True)

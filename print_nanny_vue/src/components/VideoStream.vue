@@ -1,7 +1,19 @@
 <script>
 // CloudVideoStream component drives video streaming flow using "remote" Janus Gateway
 import { mapState, mapActions } from 'vuex'
-import { DEVICE_MODULE, GET_DEVICE, DEVICE, START_MONITORING, STOP_MONITORING } from '@/store/devices'
+import {
+  DEVICE_MODULE,
+  DEVICE,
+  GET_DEVICE,
+  GET_OR_CREATE_JANUS_STREAM,
+  JANUS_STREAM
+} from '@/store/devices'
+
+import {
+  TASK_MODULE,
+  MONITOR_START_TASK,
+  MONITOR_STOP_TASK
+} from '@/store/tasks'
 
 export default {
   props: {
@@ -23,18 +35,19 @@ export default {
   methods: {
     ...mapActions(DEVICE_MODULE, {
       getDevice: GET_DEVICE,
-      startMonitoringTask: START_MONITORING,
-      stopMonitoringTask: STOP_MONITORING
+      getOrCreateJanusStream: GET_OR_CREATE_JANUS_STREAM
+    }),
+    ...mapActions(TASK_MODULE, {
+      startMonitor: MONITOR_START_TASK,
+      stopMonitor: MONITOR_STOP_TASK
     }),
     async startMonitoring () {
       this.loading = true
-      this.active = true
-      await this.startMonitoringTask(this.deviceId)
+      await this.startMonitor(this.deviceId)
     },
     async stopMonitoring () {
       this.loading = false
-      this.active = false
-      await this.stopMonitoringTask(this.deviceId)
+      await this.stopMonitor(this.deviceId)
     },
     monitoringActive () {
       return this.device.monitoring_active === true
@@ -42,7 +55,8 @@ export default {
   },
   computed: {
     ...mapState(DEVICE_MODULE, {
-      device: DEVICE
+      device: DEVICE,
+      janusStream: JANUS_STREAM
     }),
     status () {
       if (this.device.monitoring_active === true) {
@@ -57,6 +71,9 @@ export default {
   async created () {
     if (this.deviceId) {
       await this.getDevice(this.deviceId)
+      console.debug('Fetched device: ', this.device)
+      await this.getOrCreateJanusStream(this.deviceId)
+      console.debug('Fetched JanusStream: ', this.janusStream)
     }
   }
 }
@@ -69,7 +86,11 @@ export default {
       </h3>
     </div>
     <div class="card-body">
-      <img :v-show="!monitoringActive" class="img-responsive w-25 d-block mx-auto" :src="offlineImage" />
+      <img
+        :v-show="!monitoringActive"
+        class="img-responsive w-25 d-block mx-auto"
+        :src="offlineImage"
+      />
       <div v-show="loading" class="text-center mt-3">
         <span
           class="spinner-border spinner-border-sm"

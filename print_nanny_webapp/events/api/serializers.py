@@ -1,72 +1,111 @@
 import logging
-from collections.abc import Mapping
 from rest_framework import serializers
 from rest_polymorphic.serializers import PolymorphicSerializer
-from print_nanny_webapp.events.models import TestEvent, Event
-from print_nanny_webapp.events.enum import (
-    TestEventType,
-    EventModel,
-)
+from print_nanny_webapp.events.models import Event, WebRTCEvent
+from print_nanny_webapp.events.enum import EventSource, WebRTCEventType
 
 logger = logging.getLogger(__name__)
 
 
 class EventSerializer(serializers.ModelSerializer):
-    model = serializers.ChoiceField(choices=EventModel.choices)
-
     class Meta:
         model = Event
-        read_only_fields = ("user", "device", "created_dt")
-
-
-class TestEventSerializer(EventSerializer):
-    model = serializers.ChoiceField(choices=[EventModel.TestEvent])
-
-    class Meta:
-        model = TestEvent
+        read_only_fields = ("user", "created_dt")
         fields = "__all__"
-        read_only_fields = ("user", "device", "created_dt")
-        fields = (
-            "command",
-            "created_dt",
-            "device",
-            "event_type",
-            "id",
-            "model",
-            "source",
-            "status",
-            "user",
-        )
+
+
+class WebRTCEventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WebRTCEvent
 
 
 class PolymorphicEventSerializer(PolymorphicSerializer):
-    resource_type_field_name = "model"
-    model_serializer_mapping = {
-        TestEvent: TestEventSerializer,
+    """
+    Generic polymorphic serializer for all Events
+    """
+
+    resource_type_field_name = "event_type"
+    # Model -> Serializer mapping
+    model_serializer_mapping = {WebRTCEvent: WebRTCEventSerializer}
+
+    resourcetype_map = {
+        # event_type value -> Model mapping
+        e: WebRTCEvent.__name__
+        for e in WebRTCEventType.values
     }
 
-    resourcetype_map = {v: TestEvent._meta.object_name for v in TestEventType.values}
+    def create(self, validated_data):
+        """
+        Override PolymorphicSerializer.create to skip validated_data.pop(self.resource_type_field_name)
+        """
+        resource_type = validated_data[self.resource_type_field_name]
+        serializer = self._get_serializer_from_resource_type(resource_type)
+        return serializer.create(validated_data)
+
+    def update(self, instance, validated_data):
+        resource_type = validated_data[self.resource_type_field_name]
+        serializer = self._get_serializer_from_resource_type(resource_type)
+        return serializer.update(instance, validated_data)
 
     def _get_resource_type_from_mapping(self, mapping):
-        logger.debug(
-            f"Got PolymorphicEventSerializer mapping={mapping} resourcetype_map={self.resourcetype_map}"
+        logger.info(
+            "PolymorphicEventSerializer mapping=%s resourcetype_map=%s",
+            mapping,
+            self.resourcetype_map,
         )
         try:
-            return mapping[self.resource_type_field_name]
+            task_type = mapping[self.resource_type_field_name]
+            logger.info("PolymorphicEventSerializer task_type=%s", task_type)
+            return self.resourcetype_map[task_type]
         except KeyError:
             raise serializers.ValidationError(
                 {
-                    self.resource_type_field_name: "This field is required",
+                    self.resource_type_field_name: "Failed to extract resource from field",
                 }
             )
 
-    def to_representation(self, instance):
-        if isinstance(instance, Mapping):
-            resource_type = self._get_resource_type_from_mapping(instance)
-            serializer = self._get_serializer_from_resource_type(resource_type)
-        else:
-            resource_type = self.to_resource_type(instance)
-            serializer = self._get_serializer_from_model_or_instance(instance)
 
-        ret = serializer.to_representation(instance)
-        return ret
+class PolymorphicDeviceEventSerializer(PolymorphicSerializer):
+    """
+    Generic Polymorphic Serializer for all Events with a Device association
+    """
+
+    resource_type_field_name = "event_type"
+    # Model -> Serializer mapping
+    model_serializer_mapping = {WebRTCEvent: WebRTCEventSerializer}
+
+    resourcetype_map = {
+        # event_type value -> Model mapping
+        e: WebRTCEvent.__name__
+        for e in WebRTCEventType.values
+    }
+
+    def create(self, validated_data):
+        """
+        Override PolymorphicSerializer.create to skip validated_data.pop(self.resource_type_field_name)
+        """
+        resource_type = validated_data[self.resource_type_field_name]
+        serializer = self._get_serializer_from_resource_type(resource_type)
+        return serializer.create(validated_data)
+
+    def update(self, instance, validated_data):
+        resource_type = validated_data[self.resource_type_field_name]
+        serializer = self._get_serializer_from_resource_type(resource_type)
+        return serializer.update(instance, validated_data)
+
+    def _get_resource_type_from_mapping(self, mapping):
+        logger.info(
+            "PolymorphicEventSerializer mapping=%s resourcetype_map=%s",
+            mapping,
+            self.resourcetype_map,
+        )
+        try:
+            task_type = mapping[self.resource_type_field_name]
+            logger.info("PolymorphicEventSerializer task_type=%s", task_type)
+            return self.resourcetype_map[task_type]
+        except KeyError:
+            raise serializers.ValidationError(
+                {
+                    self.resource_type_field_name: "Failed to extract resource from field",
+                }
+            )
