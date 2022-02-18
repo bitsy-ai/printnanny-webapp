@@ -87,13 +87,9 @@ class Device(SafeDeleteModel):
     def last_task(self):
         return self.tasks.first()
 
-    # @property
-    # def active_tasks(self):
-    #     return self.tasks.filter(active=True).all()
-
-    # @property
-    # def active_cameras(self):
-    #     return self.cameras.filter(active=True).all()
+    @property
+    def active_tasks(self):
+        return self.tasks.filter(active=True).all()
 
     @property
     def cloudiot_name(self):

@@ -148,7 +148,6 @@ class SystemInfoSerializer(serializers.ModelSerializer):
 
 class DeviceSerializer(serializers.ModelSerializer):
 
-    active_cameras = CameraSerializer(many=True, read_only=True)
     active_tasks = TaskSerializer(many=True, read_only=True)
     cameras = CameraSerializer(read_only=True, many=True)
     cloudiot_device = CloudiotDeviceSerializer(read_only=True)
