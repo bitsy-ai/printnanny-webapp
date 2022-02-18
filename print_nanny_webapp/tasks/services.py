@@ -9,14 +9,8 @@ from print_nanny_webapp.devices.enum import JanusConfigType
 from print_nanny_webapp.devices.models import (
     Device,
     JanusAuth,
-    JanusMediaStream,
+    JanusStream,
 )
-from print_nanny_webapp.tasks.models import (
-    Task,
-    MonitoringStartTask,
-    MonitoringStopTask,
-)
-from .api.serializers import MonitoringStartTaskSerializer
 
 logger = logging.getLogger(__name__)
 
@@ -35,11 +29,9 @@ def janus_cloud_add_token(token: str) -> Dict[str, Any]:
     return res.json()
 
 
-def janus_cloud_get_or_create_media(
-    device: Device, auth: JanusAuth
-) -> JanusCloudMediaStream:
+def janus_cloud_get_or_create_media(device: Device, auth: JanusAuth) -> JanusStream:
     url = f"{settings.JANUS_CLOUD_API_URL}"
-    stream = JanusCloudMediaStream.objects.get_or_create(device=device)
+    stream = JanusStream.objects.get_or_create(device=device)
     media = [
         # video stream
         dict(type="video", mid=uuid4().hex, port=5105)
@@ -72,7 +64,7 @@ def janus_cloud_get_or_create_media(
     return stream
 
 
-def janus_stream_get_or_create(device: Device) -> JanusCloudMediaStream:
+def janus_stream_get_or_create(device: Device) -> JanusStream:
     # 2) get or create Janus credentials
     janus_cloud_auth, created = JanusAuth.objects.get_or_create(user=device.user)
     logger.debug(
