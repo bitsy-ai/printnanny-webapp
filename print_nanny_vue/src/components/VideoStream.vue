@@ -5,7 +5,6 @@ import {
   DEVICE_MODULE,
   DEVICE,
   GET_DEVICE,
-  GET_OR_CREATE_JANUS_STREAM,
   JANUS_STREAM
 } from '@/store/devices'
 
@@ -30,8 +29,7 @@ export default {
   },
   methods: {
     ...mapActions(DEVICE_MODULE, {
-      getDevice: GET_DEVICE,
-      getOrCreateJanusStream: GET_OR_CREATE_JANUS_STREAM
+      getDevice: GET_DEVICE
     }),
     ...mapActions(EVENTS_MODULE, {
       streamStart: STREAM_START,
@@ -67,9 +65,6 @@ export default {
   async created () {
     if (this.deviceId) {
       await this.getDevice(this.deviceId)
-      console.debug('Fetched device: ', this.device)
-      await this.getOrCreateJanusStream(this.deviceId)
-      console.debug('Fetched JanusStream: ', this.janusStream)
     }
   }
 }

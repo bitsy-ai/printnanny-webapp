@@ -6,7 +6,6 @@ from django.apps import apps
 from rest_framework.renderers import JSONRenderer
 from google.cloud import iot_v1 as cloudiot_v1
 from print_nanny_webapp.devices.models import JanusStream
-from print_nanny_webapp.events.api.serializers import PolymorphicEventSerializer
 from rest_framework.renderers import JSONRenderer
 from print_nanny_webapp.devices.enum import JanusConfigType
 from django.conf import settings
@@ -115,19 +114,19 @@ def webrtc_stream_start(event: WebRTCEvent) -> WebRTCEvent:
         return error_event
 
 
-def publish_cloudiot_command(event: DeviceEvent):
-    device: Device = event.device
-    serializer = PolymorphicEventSerializer(instance=event)
-    data = JSONRenderer().render(serializer.data)
-    request = cloudiot_v1.types.SendCommandToDeviceRequest(
-        {
-            "name": device.cloudiot.gcp_resource,
-            "binary_data": data,
-            # NOTE "subfolder" may be added to publish to a subfolder
-            # "subfolder": device.cloudiot.event_topic,
-        }
-    )
+# def publish_cloudiot_command(event: DeviceEvent):
+#     device: Device = event.device
+#     serializer = PolymorphicEventSerializer(instance=event)
+#     data = JSONRenderer().render(serializer.data)
+#     request = cloudiot_v1.types.SendCommandToDeviceRequest(
+#         {
+#             "name": device.cloudiot.gcp_resource,
+#             "binary_data": data,
+#             # NOTE "subfolder" may be added to publish to a subfolder
+#             # "subfolder": device.cloudiot.event_topic,
+#         }
+#     )
 
-    response = device.cloudiot.client.send_command_to_device(request=request)
-    logger.info(f"cloudiot.client.send_command_to_device response {response}")
-    return response
+#     response = device.cloudiot.client.send_command_to_device(request=request)
+#     logger.info(f"cloudiot.client.send_command_to_device response {response}")
+#     return response
