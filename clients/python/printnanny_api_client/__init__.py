@@ -15,7 +15,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.55.3"
+__version__ = "0.55.4"
 
 # import apis into sdk package
 from printnanny_api_client.api.alerts_api import AlertsApi
@@ -191,6 +191,7 @@ from printnanny_api_client.models.software_enum import SoftwareEnum
 from printnanny_api_client.models.system_info import SystemInfo
 from printnanny_api_client.models.system_info_request import SystemInfoRequest
 from printnanny_api_client.models.task import Task
+from printnanny_api_client.models.task_request import TaskRequest
 from printnanny_api_client.models.task_status import TaskStatus
 from printnanny_api_client.models.task_status_request import TaskStatusRequest
 from printnanny_api_client.models.task_status_type import TaskStatusType

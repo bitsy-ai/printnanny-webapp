@@ -39,6 +39,7 @@ class TestJanusTask(unittest.TestCase):
             return JanusTask(
                 id = 56, 
                 deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                active = True, 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 task_type = 'cloud_monitor_start', 
                 polymorphic_ctype = 56, 

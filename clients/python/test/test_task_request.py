@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.janus_task_request import JanusTaskRequest  # noqa: E501
+from printnanny_api_client.models.task_request import TaskRequest  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestJanusTaskRequest(unittest.TestCase):
-    """JanusTaskRequest unit test stubs"""
+class TestTaskRequest(unittest.TestCase):
+    """TaskRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,23 +30,21 @@ class TestJanusTaskRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test JanusTaskRequest
+        """Test TaskRequest
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.janus_task_request.JanusTaskRequest()  # noqa: E501
+        # model = printnanny_api_client.models.task_request.TaskRequest()  # noqa: E501
         if include_optional :
-            return JanusTaskRequest(
-                active = True, 
-                task_type = 'cloud_monitor_start'
+            return TaskRequest(
+                active = True
             )
         else :
-            return JanusTaskRequest(
-                task_type = 'cloud_monitor_start',
+            return TaskRequest(
         )
 
-    def testJanusTaskRequest(self):
-        """Test JanusTaskRequest"""
+    def testTaskRequest(self):
+        """Test TaskRequest"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

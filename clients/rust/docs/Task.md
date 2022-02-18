@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
 **deleted** | **String** |  | [readonly]
+**active** | Option<**bool**> |  | [optional]
 **created_dt** | **String** |  | [readonly]
 **polymorphic_ctype** | **i32** |  | [readonly]
 **device** | **i32** |  | [readonly]

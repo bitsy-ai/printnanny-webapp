@@ -1264,6 +1264,12 @@ export interface JanusTask {
     'deleted': string;
     /**
      * 
+     * @type {boolean}
+     * @memberof JanusTask
+     */
+    'active'?: boolean;
+    /**
+     * 
      * @type {string}
      * @memberof JanusTask
      */
@@ -1299,6 +1305,12 @@ export interface JanusTask {
  * @interface JanusTaskRequest
  */
 export interface JanusTaskRequest {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof JanusTaskRequest
+     */
+    'active'?: boolean;
     /**
      * 
      * @type {JanusTaskType}
@@ -6580,6 +6592,12 @@ export interface Task {
     'deleted': string;
     /**
      * 
+     * @type {boolean}
+     * @memberof Task
+     */
+    'active'?: boolean;
+    /**
+     * 
      * @type {string}
      * @memberof Task
      */
@@ -6596,6 +6614,19 @@ export interface Task {
      * @memberof Task
      */
     'device': number;
+}
+/**
+ * 
+ * @export
+ * @interface TaskRequest
+ */
+export interface TaskRequest {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof TaskRequest
+     */
+    'active'?: boolean;
 }
 /**
  * 

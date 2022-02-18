@@ -16,6 +16,8 @@ pub struct JanusTask {
         id: i32,
         #[serde(rename = "deleted")]
         deleted: String,
+        #[serde(rename = "active", skip_serializing_if = "Option::is_none")]
+        active: Option<bool>,
         #[serde(rename = "created_dt")]
         created_dt: String,
         #[serde(rename = "polymorphic_ctype")]

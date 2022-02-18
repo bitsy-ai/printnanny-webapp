@@ -39,6 +39,7 @@ class PolymorphicTask(object):
     openapi_types = {
         'id': 'int',
         'deleted': 'datetime',
+        'active': 'bool',
         'created_dt': 'datetime',
         'task_type': 'JanusTaskType',
         'polymorphic_ctype': 'int',
@@ -49,6 +50,7 @@ class PolymorphicTask(object):
     attribute_map = {
         'id': 'id',
         'deleted': 'deleted',
+        'active': 'active',
         'created_dt': 'created_dt',
         'task_type': 'task_type',
         'polymorphic_ctype': 'polymorphic_ctype',
@@ -59,7 +61,7 @@ class PolymorphicTask(object):
     discriminator_value_class_map = {
     }
 
-    def __init__(self, id=None, deleted=None, created_dt=None, task_type=None, polymorphic_ctype=None, device=None, stream=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, deleted=None, active=None, created_dt=None, task_type=None, polymorphic_ctype=None, device=None, stream=None, local_vars_configuration=None):  # noqa: E501
         """PolymorphicTask - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -67,6 +69,7 @@ class PolymorphicTask(object):
 
         self._id = None
         self._deleted = None
+        self._active = None
         self._created_dt = None
         self._task_type = None
         self._polymorphic_ctype = None
@@ -76,6 +79,8 @@ class PolymorphicTask(object):
 
         self.id = id
         self.deleted = deleted
+        if active is not None:
+            self.active = active
         self.created_dt = created_dt
         self.task_type = task_type
         self.polymorphic_ctype = polymorphic_ctype
@@ -127,6 +132,27 @@ class PolymorphicTask(object):
             raise ValueError("Invalid value for `deleted`, must not be `None`")  # noqa: E501
 
         self._deleted = deleted
+
+    @property
+    def active(self):
+        """Gets the active of this PolymorphicTask.  # noqa: E501
+
+
+        :return: The active of this PolymorphicTask.  # noqa: E501
+        :rtype: bool
+        """
+        return self._active
+
+    @active.setter
+    def active(self, active):
+        """Sets the active of this PolymorphicTask.
+
+
+        :param active: The active of this PolymorphicTask.  # noqa: E501
+        :type active: bool
+        """
+
+        self._active = active
 
     @property
     def created_dt(self):

@@ -12,6 +12,8 @@
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct JanusTaskRequest {
+        #[serde(rename = "active", skip_serializing_if = "Option::is_none")]
+        active: Option<bool>,
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]

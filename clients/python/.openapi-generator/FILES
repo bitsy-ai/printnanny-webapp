@@ -163,6 +163,7 @@ docs/SoftwareEnum.md
 docs/SystemInfo.md
 docs/SystemInfoRequest.md
 docs/Task.md
+docs/TaskRequest.md
 docs/TaskStatus.md
 docs/TaskStatusRequest.md
 docs/TaskStatusType.md
@@ -348,6 +349,7 @@ printnanny_api_client/models/software_enum.py
 printnanny_api_client/models/system_info.py
 printnanny_api_client/models/system_info_request.py
 printnanny_api_client/models/task.py
+printnanny_api_client/models/task_request.py
 printnanny_api_client/models/task_status.py
 printnanny_api_client/models/task_status_request.py
 printnanny_api_client/models/task_status_type.py
@@ -527,6 +529,7 @@ test/test_software_enum.py
 test/test_system_info.py
 test/test_system_info_request.py
 test/test_task.py
+test/test_task_request.py
 test/test_task_status.py
 test/test_task_status_request.py
 test/test_task_status_type.py

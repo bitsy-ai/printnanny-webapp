@@ -161,6 +161,7 @@ docs/SoftwareEnum.md
 docs/SystemInfo.md
 docs/SystemInfoRequest.md
 docs/Task.md
+docs/TaskRequest.md
 docs/TaskStatus.md
 docs/TaskStatusRequest.md
 docs/TaskStatusType.md
@@ -343,6 +344,7 @@ src/models/software_enum.rs
 src/models/system_info.rs
 src/models/system_info_request.rs
 src/models/task.rs
+src/models/task_request.rs
 src/models/task_status.rs
 src/models/task_status_request.rs
 src/models/task_status_type.rs

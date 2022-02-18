@@ -47,6 +47,7 @@ class TestPaginatedDeviceList(unittest.TestCase):
                             printnanny_api_client.models.task.Task(
                                 id = 56, 
                                 deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                active = True, 
                                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                                 polymorphic_ctype = 56, 
                                 device = 56, )

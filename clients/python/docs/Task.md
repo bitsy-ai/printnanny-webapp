@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
 **deleted** | **datetime** |  | [readonly] 
+**active** | **bool** |  | [optional] 
 **created_dt** | **datetime** |  | [readonly] 
 **polymorphic_ctype** | **int** |  | [readonly] 
 **device** | **int** |  | [readonly] 

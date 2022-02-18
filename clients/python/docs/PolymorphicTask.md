@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
 **deleted** | **datetime** |  | [readonly] 
+**active** | **bool** |  | [optional] 
 **created_dt** | **datetime** |  | [readonly] 
 **task_type** | [**JanusTaskType**](JanusTaskType.md) |  | 
 **polymorphic_ctype** | **int** |  | [readonly] 

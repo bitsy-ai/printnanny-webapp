@@ -161,6 +161,7 @@ from printnanny_api_client.models.software_enum import SoftwareEnum
 from printnanny_api_client.models.system_info import SystemInfo
 from printnanny_api_client.models.system_info_request import SystemInfoRequest
 from printnanny_api_client.models.task import Task
+from printnanny_api_client.models.task_request import TaskRequest
 from printnanny_api_client.models.task_status import TaskStatus
 from printnanny_api_client.models.task_status_request import TaskStatusRequest
 from printnanny_api_client.models.task_status_type import TaskStatusType

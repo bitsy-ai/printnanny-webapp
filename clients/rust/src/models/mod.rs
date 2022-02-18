@@ -290,6 +290,8 @@ pub mod system_info_request;
 pub use self::system_info_request::SystemInfoRequest;
 pub mod task;
 pub use self::task::Task;
+pub mod task_request;
+pub use self::task_request::TaskRequest;
 pub mod task_status;
 pub use self::task_status::TaskStatus;
 pub mod task_status_request;

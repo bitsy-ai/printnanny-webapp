@@ -17,6 +17,8 @@ pub struct Task {
     pub id: i32,
     #[serde(rename = "deleted")]
     pub deleted: String,
+    #[serde(rename = "active", skip_serializing_if = "Option::is_none")]
+    pub active: Option<bool>,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
     #[serde(rename = "polymorphic_ctype")]
@@ -30,6 +32,7 @@ impl Task {
         Task {
             id,
             deleted,
+            active: None,
             created_dt,
             polymorphic_ctype,
             device,

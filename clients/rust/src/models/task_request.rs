@@ -12,18 +12,15 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct JanusTaskRequest {
+pub struct TaskRequest {
     #[serde(rename = "active", skip_serializing_if = "Option::is_none")]
     pub active: Option<bool>,
-    #[serde(rename = "task_type")]
-    pub task_type: crate::models::JanusTaskType,
 }
 
-impl JanusTaskRequest {
-    pub fn new(task_type: crate::models::JanusTaskType) -> JanusTaskRequest {
-        JanusTaskRequest {
+impl TaskRequest {
+    pub fn new() -> TaskRequest {
+        TaskRequest {
             active: None,
-            task_type,
         }
     }
 }
