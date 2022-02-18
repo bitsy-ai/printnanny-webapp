@@ -17,6 +17,7 @@ class EventSerializer(serializers.ModelSerializer):
 class WebRTCEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = WebRTCEvent
+        fields = "__all__"
 
 
 class PolymorphicEventSerializer(PolymorphicSerializer):
