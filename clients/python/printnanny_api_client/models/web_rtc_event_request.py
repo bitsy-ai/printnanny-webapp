@@ -37,8 +37,8 @@ class WebRTCEventRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'source': 'EventSource',
         'event_type': 'WebRTCEventEventTypeEnum',
+        'source': 'EventSource',
         'data': 'dict(str, object)',
         'user': 'int',
         'device': 'int',
@@ -46,58 +46,35 @@ class WebRTCEventRequest(object):
     }
 
     attribute_map = {
-        'source': 'source',
         'event_type': 'event_type',
+        'source': 'source',
         'data': 'data',
         'user': 'user',
         'device': 'device',
         'stream': 'stream'
     }
 
-    def __init__(self, source=None, event_type=None, data=None, user=None, device=None, stream=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, event_type=None, source=None, data=None, user=None, device=None, stream=None, local_vars_configuration=None):  # noqa: E501
         """WebRTCEventRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
-        self._source = None
         self._event_type = None
+        self._source = None
         self._data = None
         self._user = None
         self._device = None
         self._stream = None
         self.discriminator = None
 
-        self.source = source
         self.event_type = event_type
+        self.source = source
         if data is not None:
             self.data = data
         self.user = user
         self.device = device
         self.stream = stream
-
-    @property
-    def source(self):
-        """Gets the source of this WebRTCEventRequest.  # noqa: E501
-
-
-        :return: The source of this WebRTCEventRequest.  # noqa: E501
-        :rtype: EventSource
-        """
-        return self._source
-
-    @source.setter
-    def source(self, source):
-        """Sets the source of this WebRTCEventRequest.
-
-
-        :param source: The source of this WebRTCEventRequest.  # noqa: E501
-        :type source: EventSource
-        """
-        if self.local_vars_configuration.client_side_validation and source is None:  # noqa: E501
-            raise ValueError("Invalid value for `source`, must not be `None`")  # noqa: E501
-
-        self._source = source
 
     @property
     def event_type(self):
@@ -121,6 +98,29 @@ class WebRTCEventRequest(object):
             raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
 
         self._event_type = event_type
+
+    @property
+    def source(self):
+        """Gets the source of this WebRTCEventRequest.  # noqa: E501
+
+
+        :return: The source of this WebRTCEventRequest.  # noqa: E501
+        :rtype: EventSource
+        """
+        return self._source
+
+    @source.setter
+    def source(self, source):
+        """Sets the source of this WebRTCEventRequest.
+
+
+        :param source: The source of this WebRTCEventRequest.  # noqa: E501
+        :type source: EventSource
+        """
+        if self.local_vars_configuration.client_side_validation and source is None:  # noqa: E501
+            raise ValueError("Invalid value for `source`, must not be `None`")  # noqa: E501
+
+        self._source = source
 
     @property
     def data(self):

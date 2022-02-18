@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**source** | [**crate::models::EventSource**](EventSource.md) |  | 
 **event_type** | [**crate::models::WebRtcEventEventTypeEnum**](WebRTCEventEventTypeEnum.md) |  | 
+**source** | [**crate::models::EventSource**](EventSource.md) |  | 
 **data** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **user** | **i32** |  | 
 **device** | **i32** |  | 
