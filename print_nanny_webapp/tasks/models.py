@@ -19,6 +19,7 @@ class Task(PolymorphicModel, SafeDeleteModel):
     """
 
     _safedelete_policy = SOFT_DELETE
+    active = models.BooleanField(default=True)
 
     class Meta:
         ordering = ["-created_dt"]
