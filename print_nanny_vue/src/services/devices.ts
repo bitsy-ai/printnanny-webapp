@@ -14,22 +14,21 @@ export default {
   async getDevice(deviceId: number) {
     const thisapi = api.DevicesApiFactory(configuration)
     const res = await thisapi.devicesRetrieve(deviceId)
-    console.log("Received api response to get device", res)
+    console.log("Response to devicesRetrieve", res)
     return res.data
   },
-
-  async startMonitoringTask(deviceId: number) {
+  async getOrCreateJanusStream(deviceId: number) {
     const thisapi = api.DevicesApiFactory(configuration)
-    const req: api.JanusTaskRequest = { "task_type": api.JanusTaskType.CloudMonitorStart }
-    const res = await thisapi.devicesTasksCreate(deviceId, req)
-    console.debug("startMonitoringTask response={}", res)
+    const req: api.JanusStreamRequest = { config_type: api.JanusConfigType.Cloud }
+    const res = await thisapi.devicesJanusStreamGetOrCreate(deviceId)
+    console.log("Response to devicesJanusStreamGetOrCreate", res)
     return res.data
   },
-  async stopMonitoringTask(deviceId: number) {
-    const thisapi = api.DevicesApiFactory(configuration)
-    const req: api.JanusTaskRequest = { "task_type": api.JanusTaskType.CloudMonitorStop }
+  async createJanusTask(deviceId: number, streamId: number, taskType: api.JanusTaskType) {
+    const thisapi = api.TasksApiFactory(configuration)
+    const req: api.JanusTaskRequest = { task_type: taskType, stream: streamId }
     const res = await thisapi.devicesTasksCreate(deviceId, req)
-    console.debug("startMonitoringTask response={}", res)
+    console.log("Response to devicesJanusStreamGetOrCreate", res)
     return res.data
   },
   async setupComplete(deviceId: number) {

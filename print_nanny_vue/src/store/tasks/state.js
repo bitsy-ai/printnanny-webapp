@@ -1,5 +1,6 @@
-export const TASKS = 'tasks'
-
+export const ACTIVE_TASKS = 'active_tasks'
+export const ACTIVE_MONITORING_TASK = 'active_monitoring_task'
 export default {
-  [TASKS]: {}
+  [ACTIVE_TASKS]: [],
+  [ACTIVE_MONITORING_TASK]: {}
 }

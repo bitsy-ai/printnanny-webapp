@@ -12,5 +12,5 @@ export default {
 }
 
 export * from './state'
-// export * from './actions'
+export * from './actions'
 export * from './mutations'
