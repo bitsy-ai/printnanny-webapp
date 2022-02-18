@@ -572,12 +572,6 @@ export interface Device {
     'id': number;
     /**
      * 
-     * @type {Array<Camera>}
-     * @memberof Device
-     */
-    'active_cameras': Array<Camera>;
-    /**
-     * 
      * @type {Array<Task>}
      * @memberof Device
      */

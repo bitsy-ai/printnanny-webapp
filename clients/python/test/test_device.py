@@ -38,17 +38,6 @@ class TestDevice(unittest.TestCase):
         if include_optional :
             return Device(
                 id = 56, 
-                active_cameras = [
-                    printnanny_api_client.models.camera.Camera(
-                        id = 56, 
-                        deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        active = True, 
-                        device = 56, 
-                        name = 'Raspberry Pi Cam', 
-                        camera_type = null, )
-                    ], 
                 active_tasks = [
                     printnanny_api_client.models.task.Task(
                         id = 56, 
@@ -97,17 +86,6 @@ class TestDevice(unittest.TestCase):
         else :
             return Device(
                 id = 56,
-                active_cameras = [
-                    printnanny_api_client.models.camera.Camera(
-                        id = 56, 
-                        deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        active = True, 
-                        device = 56, 
-                        name = 'Raspberry Pi Cam', 
-                        camera_type = null, )
-                    ],
                 active_tasks = [
                     printnanny_api_client.models.task.Task(
                         id = 56, 

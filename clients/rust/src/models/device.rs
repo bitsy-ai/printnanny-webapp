@@ -15,8 +15,6 @@
 pub struct Device {
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "active_cameras")]
-    pub active_cameras: Vec<crate::models::Camera>,
     #[serde(rename = "active_tasks")]
     pub active_tasks: Vec<crate::models::Task>,
     #[serde(rename = "cameras")]
@@ -57,10 +55,9 @@ pub struct Device {
 }
 
 impl Device {
-    pub fn new(id: i32, active_cameras: Vec<crate::models::Camera>, active_tasks: Vec<crate::models::Task>, cameras: Vec<crate::models::Camera>, cloudiot_device: Option<crate::models::CloudiotDevice>, dashboard_url: String, video_test_url: String, janus_auth: Option<crate::models::JanusAuth>, janus_local_url: String, last_task: Option<crate::models::Task>, printer_controllers: Vec<crate::models::PrinterController>, user: Option<crate::models::User>, system_info: Option<crate::models::SystemInfo>, public_key: Option<crate::models::PublicKey>, created_dt: String, updated_dt: String) -> Device {
+    pub fn new(id: i32, active_tasks: Vec<crate::models::Task>, cameras: Vec<crate::models::Camera>, cloudiot_device: Option<crate::models::CloudiotDevice>, dashboard_url: String, video_test_url: String, janus_auth: Option<crate::models::JanusAuth>, janus_local_url: String, last_task: Option<crate::models::Task>, printer_controllers: Vec<crate::models::PrinterController>, user: Option<crate::models::User>, system_info: Option<crate::models::SystemInfo>, public_key: Option<crate::models::PublicKey>, created_dt: String, updated_dt: String) -> Device {
         Device {
             id,
-            active_cameras,
             active_tasks,
             cameras,
             cloudiot_device: cloudiot_device.map(Box::new),

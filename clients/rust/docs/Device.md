@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
-**active_cameras** | [**Vec<crate::models::Camera>**](Camera.md) |  | [readonly]
 **active_tasks** | [**Vec<crate::models::Task>**](Task.md) |  | [readonly]
 **cameras** | [**Vec<crate::models::Camera>**](Camera.md) |  | [readonly]
 **cloudiot_device** | Option<[**crate::models::CloudiotDevice**](CloudiotDevice.md)> |  | [readonly]

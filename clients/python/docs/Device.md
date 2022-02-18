@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
-**active_cameras** | [**list[Camera]**](Camera.md) |  | [readonly] 
 **active_tasks** | [**list[Task]**](Task.md) |  | [readonly] 
 **cameras** | [**list[Camera]**](Camera.md) |  | [readonly] 
 **cloudiot_device** | [**CloudiotDevice**](CloudiotDevice.md) |  | [readonly] 

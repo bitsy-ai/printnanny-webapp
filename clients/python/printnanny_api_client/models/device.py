@@ -38,7 +38,6 @@ class Device(object):
     """
     openapi_types = {
         'id': 'int',
-        'active_cameras': 'list[Camera]',
         'active_tasks': 'list[Task]',
         'cameras': 'list[Camera]',
         'cloudiot_device': 'CloudiotDevice',
@@ -61,7 +60,6 @@ class Device(object):
 
     attribute_map = {
         'id': 'id',
-        'active_cameras': 'active_cameras',
         'active_tasks': 'active_tasks',
         'cameras': 'cameras',
         'cloudiot_device': 'cloudiot_device',
@@ -82,14 +80,13 @@ class Device(object):
         'hostname': 'hostname'
     }
 
-    def __init__(self, id=None, active_cameras=None, active_tasks=None, cameras=None, cloudiot_device=None, dashboard_url=None, video_test_url=None, janus_auth=None, janus_local_url=None, last_task=None, monitoring_active=False, setup_complete=False, printer_controllers=None, user=None, release_channel=None, system_info=None, public_key=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, active_tasks=None, cameras=None, cloudiot_device=None, dashboard_url=None, video_test_url=None, janus_auth=None, janus_local_url=None, last_task=None, monitoring_active=False, setup_complete=False, printer_controllers=None, user=None, release_channel=None, system_info=None, public_key=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
-        self._active_cameras = None
         self._active_tasks = None
         self._cameras = None
         self._cloudiot_device = None
@@ -111,7 +108,6 @@ class Device(object):
         self.discriminator = None
 
         self.id = id
-        self.active_cameras = active_cameras
         self.active_tasks = active_tasks
         self.cameras = cameras
         self.cloudiot_device = cloudiot_device
@@ -156,29 +152,6 @@ class Device(object):
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
-
-    @property
-    def active_cameras(self):
-        """Gets the active_cameras of this Device.  # noqa: E501
-
-
-        :return: The active_cameras of this Device.  # noqa: E501
-        :rtype: list[Camera]
-        """
-        return self._active_cameras
-
-    @active_cameras.setter
-    def active_cameras(self, active_cameras):
-        """Sets the active_cameras of this Device.
-
-
-        :param active_cameras: The active_cameras of this Device.  # noqa: E501
-        :type active_cameras: list[Camera]
-        """
-        if self.local_vars_configuration.client_side_validation and active_cameras is None:  # noqa: E501
-            raise ValueError("Invalid value for `active_cameras`, must not be `None`")  # noqa: E501
-
-        self._active_cameras = active_cameras
 
     @property
     def active_tasks(self):
