@@ -13,6 +13,7 @@ from print_nanny_webapp.devices.api.views import (
     DeviceViewSet,
     PrinterControllerViewSet,
 )
+from print_nanny_webapp.events.api.views import EventViewSet
 from print_nanny_webapp.ml_ops.api.views import (
     ModelArtifactViewSet, ExperimentDeviceConfigViewSet, DeviceCalibrationViewSet, ExperimentViewSet
 )
@@ -41,8 +42,6 @@ from print_nanny_webapp.alerts.api.views import (
 from print_nanny_webapp.partners.api.views import (GeeksViewSet)
 from print_nanny_webapp.utils.api.views import PrintNannyApiConfigViewset
 from print_nanny_webapp.octoprint.api.views import OctoPrintBackupViewset
-from print_nanny_webapp.events.api.views import (DeviceEventViewSet)
-from print_nanny_webapp.tasks.api.views import (TaskViewSet, TaskStatusViewSet)
 router = DefaultRouter()
 
 router.register("client-config", PrintNannyApiConfigViewset, basename="client-config")
@@ -66,11 +65,9 @@ devices_router.register(r'system-info', SystemInfoViewSet, basename='system-info
 devices_router.register(r'cameras', CameraViewSet, basename='cameras')
 devices_router.register(r'cloudiot', CloudiotDeviceViewSet, basename='cloudiot')
 devices_router.register(r'printer-controllers', PrinterControllerViewSet, basename='printer-controllers')
-devices_router.register(r'events', DeviceEventViewSet, basename='events')
 
-devices_router.register(r'tasks', TaskViewSet, basename='tasks')
-task_router = NestedSimpleRouter(devices_router, r'tasks', lookup='task')
-task_router.register(r'status', TaskStatusViewSet, basename='status')
+router.register("events", EventViewSet, basename="events")
+
 
 router.register("telemetry-events", TelemetryEventViewSet, basename="telemetry-events")
 router.register("remote-command-events", RemoteCommandEventViewSet, basename="remote-command-events")
@@ -100,7 +97,6 @@ app_name = "api"
 urlpatterns = (
     router.urls +
     devices_router.urls +
-    task_router.urls +
     user_router.urls +
     devices_by_hostname
 )
