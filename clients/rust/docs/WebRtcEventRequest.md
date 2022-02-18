@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **event_type** | [**crate::models::WebRtcEventEventTypeEnum**](WebRTCEventEventTypeEnum.md) |  | 
 **source** | [**crate::models::EventSource**](EventSource.md) |  | 
 **data** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
-**user** | **i32** |  | 
 **device** | **i32** |  | 
 **stream** | Option<**i32**> |  | [optional]
 

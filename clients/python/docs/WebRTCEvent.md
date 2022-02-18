@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **source** | [**EventSource**](EventSource.md) |  | 
 **data** | **dict(str, object)** |  | [optional] 
 **polymorphic_ctype** | **int** |  | [readonly] 
-**user** | **int** |  | 
+**user** | **int** |  | [readonly] 
 **device** | **int** |  | 
 **stream** | **int** |  | [optional] 
 

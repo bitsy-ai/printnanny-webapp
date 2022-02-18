@@ -40,7 +40,6 @@ class WebRTCEventRequest(object):
         'event_type': 'WebRTCEventEventTypeEnum',
         'source': 'EventSource',
         'data': 'dict(str, object)',
-        'user': 'int',
         'device': 'int',
         'stream': 'int'
     }
@@ -49,12 +48,11 @@ class WebRTCEventRequest(object):
         'event_type': 'event_type',
         'source': 'source',
         'data': 'data',
-        'user': 'user',
         'device': 'device',
         'stream': 'stream'
     }
 
-    def __init__(self, event_type=None, source=None, data=None, user=None, device=None, stream=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, event_type=None, source=None, data=None, device=None, stream=None, local_vars_configuration=None):  # noqa: E501
         """WebRTCEventRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -63,7 +61,6 @@ class WebRTCEventRequest(object):
         self._event_type = None
         self._source = None
         self._data = None
-        self._user = None
         self._device = None
         self._stream = None
         self.discriminator = None
@@ -72,7 +69,6 @@ class WebRTCEventRequest(object):
         self.source = source
         if data is not None:
             self.data = data
-        self.user = user
         self.device = device
         self.stream = stream
 
@@ -142,29 +138,6 @@ class WebRTCEventRequest(object):
         """
 
         self._data = data
-
-    @property
-    def user(self):
-        """Gets the user of this WebRTCEventRequest.  # noqa: E501
-
-
-        :return: The user of this WebRTCEventRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._user
-
-    @user.setter
-    def user(self, user):
-        """Sets the user of this WebRTCEventRequest.
-
-
-        :param user: The user of this WebRTCEventRequest.  # noqa: E501
-        :type user: int
-        """
-        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
-            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
-
-        self._user = user
 
     @property
     def device(self):

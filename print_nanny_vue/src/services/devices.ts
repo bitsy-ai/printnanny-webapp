@@ -1,5 +1,4 @@
 import * as api from 'printnanny-api-client'
-import { TestEventType } from 'printnanny-api-client'
 
 const configuration = new api.Configuration({
   basePath: process.env.BASE_API_URL,

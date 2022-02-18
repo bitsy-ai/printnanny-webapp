@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **event_type** | [**WebRTCEventEventTypeEnum**](WebRTCEventEventTypeEnum.md) |  | 
 **source** | [**EventSource**](EventSource.md) |  | 
 **data** | **dict(str, object)** |  | [optional] 
-**user** | **int** |  | 
 **device** | **int** |  | 
 **stream** | **int** |  | [optional] 
 

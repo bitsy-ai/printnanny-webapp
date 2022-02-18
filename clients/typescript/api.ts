@@ -6677,12 +6677,6 @@ export interface WebRTCEventRequest {
      * @type {number}
      * @memberof WebRTCEventRequest
      */
-    'user': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof WebRTCEventRequest
-     */
     'device': number;
     /**
      * 

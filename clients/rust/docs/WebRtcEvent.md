@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **source** | [**crate::models::EventSource**](EventSource.md) |  | 
 **data** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **polymorphic_ctype** | **i32** |  | [readonly]
-**user** | **i32** |  | 
+**user** | **i32** |  | [readonly]
 **device** | **i32** |  | 
 **stream** | Option<**i32**> |  | [optional]
 
