@@ -5,14 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
-**active_tasks** | [**Vec<crate::models::Task>**](Task.md) |  | [readonly]
 **cameras** | [**Vec<crate::models::Camera>**](Camera.md) |  | [readonly]
 **cloudiot_device** | Option<[**crate::models::CloudiotDevice**](CloudiotDevice.md)> |  | [readonly]
 **dashboard_url** | **String** |  | [readonly]
 **video_test_url** | **String** |  | [readonly]
 **janus_auth** | Option<[**crate::models::JanusAuth**](JanusAuth.md)> |  | [readonly]
 **janus_local_url** | **String** |  | [readonly]
-**last_task** | Option<[**crate::models::Task**](Task.md)> |  | [readonly]
 **monitoring_active** | Option<**bool**> |  | [optional][default to false]
 **setup_complete** | Option<**bool**> |  | [optional][default to false]
 **printer_controllers** | [**Vec<crate::models::PrinterController>**](PrinterController.md) |  | [readonly]

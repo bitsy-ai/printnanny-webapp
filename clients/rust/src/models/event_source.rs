@@ -14,8 +14,10 @@
 pub enum EventSource {
     #[serde(rename = "octoprint")]
     Octoprint,
-    #[serde(rename = "printnanny")]
-    Printnanny,
+    #[serde(rename = "printnanny_os")]
+    PrintnannyOs,
+    #[serde(rename = "printnanny_webapp")]
+    PrintnannyWebapp,
     #[serde(rename = "mainsail")]
     Mainsail,
 
@@ -25,7 +27,8 @@ impl ToString for EventSource {
     fn to_string(&self) -> String {
         match self {
             Self::Octoprint => String::from("octoprint"),
-            Self::Printnanny => String::from("printnanny"),
+            Self::PrintnannyOs => String::from("printnanny_os"),
+            Self::PrintnannyWebapp => String::from("printnanny_webapp"),
             Self::Mainsail => String::from("mainsail"),
         }
     }

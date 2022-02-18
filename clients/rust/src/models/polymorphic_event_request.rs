@@ -11,23 +11,24 @@
 
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-pub struct TestEventRequest {
-        /// Indicates whether event should be sent to Device on command topic
-        #[serde(rename = "command", skip_serializing_if = "Option::is_none")]
-        command: Option<bool>,
-        #[serde(rename = "event_type")]
-        event_type: crate::models::TestEventType,
+pub struct WebRtcEventRequest {
         #[serde(rename = "source")]
         source: crate::models::EventSource,
-        #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
-        status: Option<crate::models::EventStatus>,
+        #[serde(rename = "data", skip_serializing_if = "Option::is_none")]
+        data: Option<::std::collections::HashMap<String, serde_json::Value>>,
+        #[serde(rename = "user")]
+        user: i32,
+        #[serde(rename = "device")]
+        device: i32,
+        #[serde(rename = "stream", skip_serializing_if = "Option::is_none")]
+        stream: Option<i32>,
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-#[serde(tag = "model")]
+#[serde(tag = "eventtype")]
 pub enum PolymorphicEventRequest {
-    #[serde(rename="TestEvent")]
-    TestEventRequest(TestEventRequest),
+    #[serde(rename="WebRTCEvent")]
+    WebRtcEventRequest(WebRtcEventRequest),
 }
 
 
