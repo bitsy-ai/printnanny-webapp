@@ -5,7 +5,7 @@ from django.db import models
 from django.apps import apps
 from polymorphic.models import PolymorphicModel
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
-from .enum import EventModel, EventSource, TestEventType, EventStatus
+from .enum import EventSource, WebRTCType
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
@@ -22,30 +22,10 @@ class Event(PolymorphicModel, SafeDeleteModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
 
 
-class DeviceEvent(Event):
+class WebRTCEvent(Event):
     """
-    Polymorphic Base Event
+    Events related to WebRTC and PrintNanny video monitoring system
     """
 
-    command = models.BooleanField(
-        default=False,
-        help_text="Indicates whether event should be sent to Device on command topic",
-    )
+    event_type = models.CharField(max_length=32, choices=WebRTCType.choices)
     device = models.ForeignKey("devices.Device", on_delete=models.CASCADE)
-
-
-class TestEvent(DeviceEvent):
-    """
-    Test Events
-    """
-
-    event_type = models.CharField(max_length=255, choices=TestEventType.choices)
-    status = models.CharField(
-        max_length=255,
-        choices=EventStatus.choices,
-        default=EventStatus.SENT,
-    )
-
-    @property
-    def model(self):
-        return EventModel.TestEvent
