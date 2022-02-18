@@ -8,6 +8,8 @@ logger = logging.getLogger(__name__)
 
 
 class EventSerializer(serializers.ModelSerializer):
+    source = serializers.ChoiceField(choices=EventSource.choices)
+
     class Meta:
         model = Event
         read_only_fields = ("user", "created_dt")
@@ -15,6 +17,8 @@ class EventSerializer(serializers.ModelSerializer):
 
 
 class WebRTCEventSerializer(serializers.ModelSerializer):
+    event_type = serializers.ChoiceField(choices=WebRTCEventType.choices)
+
     class Meta:
         model = WebRTCEvent
         fields = "__all__"

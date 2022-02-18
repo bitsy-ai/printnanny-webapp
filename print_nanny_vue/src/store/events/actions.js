@@ -7,7 +7,7 @@ export const STREAM_STOP = 'STREAM_STOP'
 
 export default {
   async [STREAM_START] ({ commit, state, dispatch }, device, stream) {
-    const res = await service.createJanusTask(device, stream, api.JanusTaskType.CloudMonitorStart)
+    const res = await service.cloudMonitorStart(device, stream, api.WebRRTCEventType.CloudMonitorStart)
     commit(SET_SENT_EVENT, res)
   },
   async [STREAM_STOP] ({ commit, state, dispatch }, device) {
