@@ -99,7 +99,6 @@ LOCAL_APPS = [
     "print_nanny_webapp.users.apps.UsersConfig",
     "print_nanny_webapp.surveys.apps.SurveysConfig",
     "print_nanny_webapp.octoprint.apps.OctoprintConfig",
-    "print_nanny_webapp.tasks.apps.TasksConfig",
     "print_nanny_webapp.events.apps.EventsConfig",  # Gated at the bottom
     # Your stuff: custom apps go here
 ]
@@ -457,9 +456,7 @@ SPECTACULAR_SETTINGS = {
         'PrintProgressAlertEventType': 'print_nanny_webapp.alerts.models.PrintProgressAlert.PrintProgressAlertEventType.choices',
         'AlertMessageType': 'print_nanny_webapp.alerts.models.AlertMessage.AlertMessageType.choices',
         'AlertSettingsEventType': 'print_nanny_webapp.alerts.models.AlertSettings.AlertSettingsEventType.choices',
-        # begin tasks app enums
-        'JanusTaskType': 'print_nanny_webapp.tasks.enum.JanusTaskType.choices',
-        'TaskStatusType': 'print_nanny_webapp.tasks.enum.TaskStatusType.choices',
+
         # begin octoprint event types
         'OctoTelemetryEvent': 'print_nanny_webapp.telemetry.types.TelemetryEventType',
         'OctoPrintNannyEvent': 'print_nanny_webapp.telemetry.types.PrintNannyPluginEventType',
@@ -471,6 +468,9 @@ SPECTACULAR_SETTINGS = {
         'TestEventType': 'print_nanny_webapp.events.enum.TestEventType',
         'EventStatus': 'print_nanny_webapp.events.enum.EventStatus',
         'EventModel': 'print_nanny_webapp.events.enum.EventModel',
+
+        # begin webrtc event types
+        'WebRTCEventTypes': 'print_nanny_webapp.tasks.enum.WebRTCEventType.choices',
     },
     'TITLE': 'printnanny-api-client',
     'DESCRIPTION': 'Official API client library for print-nanny.com',

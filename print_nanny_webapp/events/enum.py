@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class WebRTCType(models.TextChoices):
+class WebRTCEventType(models.TextChoices):
     STREAM_START = (
         "stream_start",
         "Initialize WebRTC mountpoint via Janus Gateway streaming plugin",

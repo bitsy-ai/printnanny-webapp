@@ -2,10 +2,9 @@ import logging
 
 from django.contrib.auth import get_user_model
 from django.db import models
-from django.apps import apps
 from polymorphic.models import PolymorphicModel
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
-from .enum import EventSource, WebRTCType
+from .enum import EventSource, WebRTCEventType
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
@@ -16,10 +15,14 @@ class Event(PolymorphicModel, SafeDeleteModel):
     Polymorphic Base Event
     """
 
+    class Meta:
+        ordering = ["-created_dt"]
+        index_together = [["user", "source", "created_dt"]]
+
     _safedelete_policy = SOFT_DELETE
-    created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
+    created_dt = models.DateTimeField(auto_now_add=True)
     source = models.CharField(max_length=32, choices=EventSource.choices)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class WebRTCEvent(Event):
@@ -27,5 +30,12 @@ class WebRTCEvent(Event):
     Events related to WebRTC and PrintNanny video monitoring system
     """
 
-    event_type = models.CharField(max_length=32, choices=WebRTCType.choices)
+    class Meta:
+        index_together = [["device", "stream", "event_type"]]
+
+    event_type = models.CharField(max_length=32, choices=WebRTCEventType.choices)
     device = models.ForeignKey("devices.Device", on_delete=models.CASCADE)
+    stream = models.ForeignKey(
+        "devices.JanusStream", on_delete=models.CASCADE, null=True
+    )
+    data = models.JSONField(default=dict)
