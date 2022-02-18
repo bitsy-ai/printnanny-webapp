@@ -572,12 +572,6 @@ export interface Device {
     'id': number;
     /**
      * 
-     * @type {Array<Task>}
-     * @memberof Device
-     */
-    'active_tasks': Array<Task>;
-    /**
-     * 
      * @type {Array<Camera>}
      * @memberof Device
      */
@@ -612,12 +606,6 @@ export interface Device {
      * @memberof Device
      */
     'janus_local_url': string;
-    /**
-     * 
-     * @type {Task}
-     * @memberof Device
-     */
-    'last_task': Task;
     /**
      * 
      * @type {boolean}
@@ -860,43 +848,14 @@ export interface ErrorDetail {
  * @enum {string}
  */
 
-export const EventModel = {
-    TestEvent: 'TestEvent'
-} as const;
-
-export type EventModel = typeof EventModel[keyof typeof EventModel];
-
-
-/**
- * 
- * @export
- * @enum {string}
- */
-
 export const EventSource = {
     Octoprint: 'octoprint',
-    Printnanny: 'printnanny',
+    PrintnannyOs: 'printnanny_os',
+    PrintnannyWebapp: 'printnanny_webapp',
     Mainsail: 'mainsail'
 } as const;
 
 export type EventSource = typeof EventSource[keyof typeof EventSource];
-
-
-/**
- * 
- * @export
- * @enum {string}
- */
-
-export const EventStatus = {
-    Sent: 'sent',
-    Ack: 'ack',
-    Success: 'success',
-    Failed: 'failed',
-    Timeout: 'timeout'
-} as const;
-
-export type EventStatus = typeof EventStatus[keyof typeof EventStatus];
 
 
 /**
@@ -1244,102 +1203,6 @@ export interface JanusStreamRequest {
      */
     'info'?: { [key: string]: any; };
 }
-/**
- * 
- * @export
- * @interface JanusTask
- */
-export interface JanusTask {
-    /**
-     * 
-     * @type {number}
-     * @memberof JanusTask
-     */
-    'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof JanusTask
-     */
-    'deleted': string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof JanusTask
-     */
-    'active'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof JanusTask
-     */
-    'created_dt': string;
-    /**
-     * 
-     * @type {JanusTaskType}
-     * @memberof JanusTask
-     */
-    'task_type': JanusTaskType;
-    /**
-     * 
-     * @type {number}
-     * @memberof JanusTask
-     */
-    'polymorphic_ctype': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof JanusTask
-     */
-    'device': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof JanusTask
-     */
-    'stream': number;
-}
-/**
- * 
- * @export
- * @interface JanusTaskRequest
- */
-export interface JanusTaskRequest {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof JanusTaskRequest
-     */
-    'active'?: boolean;
-    /**
-     * 
-     * @type {JanusTaskType}
-     * @memberof JanusTaskRequest
-     */
-    'task_type': JanusTaskType;
-    /**
-     * 
-     * @type {number}
-     * @memberof JanusTaskRequest
-     */
-    'stream': number;
-}
-/**
- * 
- * @export
- * @enum {string}
- */
-
-export const JanusTaskType = {
-    CloudMonitorStart: 'cloud_monitor_start',
-    CloudMonitorStop: 'cloud_monitor_stop',
-    EdgeMonitorStart: 'edge_monitor_start',
-    EdgeMonitorStop: 'edge_monitor_stop'
-} as const;
-
-export type JanusTaskType = typeof JanusTaskType[keyof typeof JanusTaskType];
-
-
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
  * @export
@@ -3592,37 +3455,6 @@ export interface PaginatedPolymorphicEventList {
 /**
  * 
  * @export
- * @interface PaginatedPolymorphicTaskList
- */
-export interface PaginatedPolymorphicTaskList {
-    /**
-     * 
-     * @type {number}
-     * @memberof PaginatedPolymorphicTaskList
-     */
-    'count'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedPolymorphicTaskList
-     */
-    'next'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedPolymorphicTaskList
-     */
-    'previous'?: string | null;
-    /**
-     * 
-     * @type {Array<PolymorphicTask>}
-     * @memberof PaginatedPolymorphicTaskList
-     */
-    'results'?: Array<PolymorphicTask>;
-}
-/**
- * 
- * @export
  * @interface PaginatedPrintJobEventList
  */
 export interface PaginatedPrintJobEventList {
@@ -3898,37 +3730,6 @@ export interface PaginatedSystemInfoList {
      * @memberof PaginatedSystemInfoList
      */
     'results'?: Array<SystemInfo>;
-}
-/**
- * 
- * @export
- * @interface PaginatedTaskStatusList
- */
-export interface PaginatedTaskStatusList {
-    /**
-     * 
-     * @type {number}
-     * @memberof PaginatedTaskStatusList
-     */
-    'count'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedTaskStatusList
-     */
-    'next'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedTaskStatusList
-     */
-    'previous'?: string | null;
-    /**
-     * 
-     * @type {Array<TaskStatus>}
-     * @memberof PaginatedTaskStatusList
-     */
-    'results'?: Array<TaskStatus>;
 }
 /**
  * 
@@ -4374,12 +4175,6 @@ export interface PatchedOctoPrintDeviceRequest {
     'active_session'?: PrintSessionRequest;
 }
 /**
- * @type PatchedPolymorphicEventRequest
- * @export
- */
-export type PatchedPolymorphicEventRequest = PatchedTestEventRequest;
-
-/**
  * 
  * @export
  * @interface PatchedPrintSessionRequest
@@ -4784,43 +4579,6 @@ export interface PatchedSystemInfoRequest {
 /**
  * 
  * @export
- * @interface PatchedTestEventRequest
- */
-export interface PatchedTestEventRequest {
-    /**
-     * Indicates whether event should be sent to Device on command topic
-     * @type {boolean}
-     * @memberof PatchedTestEventRequest
-     */
-    'command'?: boolean;
-    /**
-     * 
-     * @type {TestEventType}
-     * @memberof PatchedTestEventRequest
-     */
-    'event_type'?: TestEventType;
-    /**
-     * 
-     * @type {EventModel}
-     * @memberof PatchedTestEventRequest
-     */
-    'model'?: EventModel;
-    /**
-     * 
-     * @type {EventSource}
-     * @memberof PatchedTestEventRequest
-     */
-    'source'?: EventSource;
-    /**
-     * 
-     * @type {EventStatus}
-     * @memberof PatchedTestEventRequest
-     */
-    'status'?: EventStatus;
-}
-/**
- * 
- * @export
  * @interface PatchedUserRequest
  */
 export interface PatchedUserRequest {
@@ -4835,25 +4593,13 @@ export interface PatchedUserRequest {
  * @type PolymorphicEvent
  * @export
  */
-export type PolymorphicEvent = TestEvent;
+export type PolymorphicEvent = WebRTCEvent;
 
 /**
  * @type PolymorphicEventRequest
  * @export
  */
-export type PolymorphicEventRequest = TestEventRequest;
-
-/**
- * @type PolymorphicTask
- * @export
- */
-export type PolymorphicTask = JanusTask;
-
-/**
- * @type PolymorphicTaskRequest
- * @export
- */
-export type PolymorphicTaskRequest = JanusTaskRequest;
+export type PolymorphicEventRequest = WebRTCEventRequest;
 
 /**
  * 
@@ -6581,129 +6327,6 @@ export interface SystemInfoRequest {
 /**
  * 
  * @export
- * @interface Task
- */
-export interface Task {
-    /**
-     * 
-     * @type {number}
-     * @memberof Task
-     */
-    'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof Task
-     */
-    'deleted': string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Task
-     */
-    'active'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof Task
-     */
-    'created_dt': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof Task
-     */
-    'polymorphic_ctype': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof Task
-     */
-    'device': number;
-}
-/**
- * 
- * @export
- * @interface TaskRequest
- */
-export interface TaskRequest {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof TaskRequest
-     */
-    'active'?: boolean;
-}
-/**
- * 
- * @export
- * @interface TaskStatus
- */
-export interface TaskStatus {
-    /**
-     * 
-     * @type {number}
-     * @memberof TaskStatus
-     */
-    'id': number;
-    /**
-     * 
-     * @type {TaskStatusType}
-     * @memberof TaskStatus
-     */
-    'status': TaskStatusType;
-    /**
-     * 
-     * @type {string}
-     * @memberof TaskStatus
-     */
-    'deleted': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TaskStatus
-     */
-    'created_dt': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof TaskStatus
-     */
-    'task': number;
-}
-/**
- * 
- * @export
- * @interface TaskStatusRequest
- */
-export interface TaskStatusRequest {
-    /**
-     * 
-     * @type {TaskStatusType}
-     * @memberof TaskStatusRequest
-     */
-    'status': TaskStatusType;
-}
-/**
- * 
- * @export
- * @enum {string}
- */
-
-export const TaskStatusType = {
-    Failed: 'failed',
-    Pending: 'pending',
-    Started: 'started',
-    Success: 'success',
-    Timeout: 'timeout'
-} as const;
-
-export type TaskStatusType = typeof TaskStatusType[keyof typeof TaskStatusType];
-
-
-/**
- * 
- * @export
  * @interface TelemetryEvent
  */
 export interface TelemetryEvent {
@@ -6896,118 +6519,6 @@ export interface TelemetryEventRequest {
     'print_session'?: number | null;
 }
 /**
- * 
- * @export
- * @interface TestEvent
- */
-export interface TestEvent {
-    /**
-     * Indicates whether event should be sent to Device on command topic
-     * @type {boolean}
-     * @memberof TestEvent
-     */
-    'command'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof TestEvent
-     */
-    'created_dt': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof TestEvent
-     */
-    'device': number;
-    /**
-     * 
-     * @type {TestEventType}
-     * @memberof TestEvent
-     */
-    'event_type': TestEventType;
-    /**
-     * 
-     * @type {number}
-     * @memberof TestEvent
-     */
-    'id': number;
-    /**
-     * 
-     * @type {EventModel}
-     * @memberof TestEvent
-     */
-    'model': EventModel;
-    /**
-     * 
-     * @type {EventSource}
-     * @memberof TestEvent
-     */
-    'source': EventSource;
-    /**
-     * 
-     * @type {EventStatus}
-     * @memberof TestEvent
-     */
-    'status'?: EventStatus;
-    /**
-     * 
-     * @type {number}
-     * @memberof TestEvent
-     */
-    'user': number;
-}
-/**
- * 
- * @export
- * @interface TestEventRequest
- */
-export interface TestEventRequest {
-    /**
-     * Indicates whether event should be sent to Device on command topic
-     * @type {boolean}
-     * @memberof TestEventRequest
-     */
-    'command'?: boolean;
-    /**
-     * 
-     * @type {TestEventType}
-     * @memberof TestEventRequest
-     */
-    'event_type': TestEventType;
-    /**
-     * 
-     * @type {EventModel}
-     * @memberof TestEventRequest
-     */
-    'model': EventModel;
-    /**
-     * 
-     * @type {EventSource}
-     * @memberof TestEventRequest
-     */
-    'source': EventSource;
-    /**
-     * 
-     * @type {EventStatus}
-     * @memberof TestEventRequest
-     */
-    'status'?: EventStatus;
-}
-/**
- * 
- * @export
- * @enum {string}
- */
-
-export const TestEventType = {
-    Ping: 'mqtt_ping',
-    Pong: 'mqtt_pong'
-} as const;
-
-export type TestEventType = typeof TestEventType[keyof typeof TestEventType];
-
-
-/**
  * Our default response serializer.
  * @export
  * @interface TokenResponse
@@ -7051,6 +6562,134 @@ export interface UserRequest {
      * @memberof UserRequest
      */
     'email': string;
+}
+/**
+ * 
+ * @export
+ * @interface WebRTCEvent
+ */
+export interface WebRTCEvent {
+    /**
+     * 
+     * @type {number}
+     * @memberof WebRTCEvent
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebRTCEvent
+     */
+    'deleted': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebRTCEvent
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {EventSource}
+     * @memberof WebRTCEvent
+     */
+    'source': EventSource;
+    /**
+     * 
+     * @type {WebRTCEventEventTypeEnum}
+     * @memberof WebRTCEvent
+     */
+    'event_type': WebRTCEventEventTypeEnum;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof WebRTCEvent
+     */
+    'data'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {number}
+     * @memberof WebRTCEvent
+     */
+    'polymorphic_ctype': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebRTCEvent
+     */
+    'user': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebRTCEvent
+     */
+    'device': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebRTCEvent
+     */
+    'stream'?: number | null;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const WebRTCEventEventTypeEnum = {
+    Start: 'stream_start',
+    StartSuccess: 'stream_start_success',
+    StartError: 'stream_start_error',
+    Stop: 'stream_stop',
+    StopSuccess: 'stream_stop_success',
+    StopError: 'stream_stop_error'
+} as const;
+
+export type WebRTCEventEventTypeEnum = typeof WebRTCEventEventTypeEnum[keyof typeof WebRTCEventEventTypeEnum];
+
+
+/**
+ * 
+ * @export
+ * @interface WebRTCEventRequest
+ */
+export interface WebRTCEventRequest {
+    /**
+     * 
+     * @type {EventSource}
+     * @memberof WebRTCEventRequest
+     */
+    'source': EventSource;
+    /**
+     * 
+     * @type {WebRTCEventEventTypeEnum}
+     * @memberof WebRTCEventRequest
+     */
+    'event_type': WebRTCEventEventTypeEnum;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof WebRTCEventRequest
+     */
+    'data'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {number}
+     * @memberof WebRTCEventRequest
+     */
+    'user': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebRTCEventRequest
+     */
+    'device': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebRTCEventRequest
+     */
+    'stream'?: number | null;
 }
 
 /**
@@ -8819,230 +8458,6 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {number} deviceId 
-         * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesEventsCreate: async (deviceId: number, polymorphicEventRequest?: PolymorphicEventRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesEventsCreate', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/events/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(polymorphicEventRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesEventsList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesEventsList', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/events/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device event.
-         * @param {PatchedPolymorphicEventRequest} [patchedPolymorphicEventRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesEventsPartialUpdate: async (deviceId: number, id: number, patchedPolymorphicEventRequest?: PatchedPolymorphicEventRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesEventsPartialUpdate', 'deviceId', deviceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesEventsPartialUpdate', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/events/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(patchedPolymorphicEventRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device event.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesEventsRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesEventsRetrieve', 'deviceId', deviceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesEventsRetrieve', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/events/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device event.
-         * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesEventsUpdate: async (deviceId: number, id: number, polymorphicEventRequest?: PolymorphicEventRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesEventsUpdate', 'deviceId', deviceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesEventsUpdate', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/events/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(polymorphicEventRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
          * @param {JanusStreamRequest} [janusStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -10192,280 +9607,6 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * 
-         * @param {number} deviceId 
-         * @param {PolymorphicTaskRequest} [polymorphicTaskRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesTasksCreate: async (deviceId: number, polymorphicTaskRequest?: PolymorphicTaskRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesTasksCreate', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/tasks/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(polymorphicTaskRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesTasksList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesTasksList', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/tasks/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this task.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesTasksRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesTasksRetrieve', 'deviceId', deviceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesTasksRetrieve', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/tasks/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} taskId 
-         * @param {TaskStatusRequest} taskStatusRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesTasksStatusCreate: async (deviceId: number, taskId: number, taskStatusRequest: TaskStatusRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesTasksStatusCreate', 'deviceId', deviceId)
-            // verify required parameter 'taskId' is not null or undefined
-            assertParamExists('devicesTasksStatusCreate', 'taskId', taskId)
-            // verify required parameter 'taskStatusRequest' is not null or undefined
-            assertParamExists('devicesTasksStatusCreate', 'taskStatusRequest', taskStatusRequest)
-            const localVarPath = `/api/devices/{device_id}/tasks/{task_id}/status/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"task_id"}}`, encodeURIComponent(String(taskId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(taskStatusRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} taskId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesTasksStatusList: async (deviceId: number, taskId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesTasksStatusList', 'deviceId', deviceId)
-            // verify required parameter 'taskId' is not null or undefined
-            assertParamExists('devicesTasksStatusList', 'taskId', taskId)
-            const localVarPath = `/api/devices/{device_id}/tasks/{task_id}/status/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"task_id"}}`, encodeURIComponent(String(taskId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this task status.
-         * @param {number} taskId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesTasksStatusRetrieve: async (deviceId: number, id: number, taskId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesTasksStatusRetrieve', 'deviceId', deviceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesTasksStatusRetrieve', 'id', id)
-            // verify required parameter 'taskId' is not null or undefined
-            assertParamExists('devicesTasksStatusRetrieve', 'taskId', taskId)
-            const localVarPath = `/api/devices/{device_id}/tasks/{task_id}/status/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"task_id"}}`, encodeURIComponent(String(taskId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * A device (Raspberry Pi) running Print Nanny OS
          * @param {number} id A unique integer value identifying this device.
          * @param {DeviceRequest} [deviceRequest] 
@@ -10741,63 +9882,6 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          */
         async devicesCreate(deviceRequest: DeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCreate(deviceRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesEventsCreate(deviceId: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesEventsCreate(deviceId, polymorphicEventRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPolymorphicEventList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesEventsList(deviceId, page, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device event.
-         * @param {PatchedPolymorphicEventRequest} [patchedPolymorphicEventRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesEventsPartialUpdate(deviceId: number, id: number, patchedPolymorphicEventRequest?: PatchedPolymorphicEventRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesEventsPartialUpdate(deviceId, id, patchedPolymorphicEventRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device event.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesEventsRetrieve(deviceId, id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device event.
-         * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesEventsUpdate(deviceId: number, id: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesEventsUpdate(deviceId, id, polymorphicEventRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -11092,75 +10176,6 @@ export const DevicesApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * 
-         * @param {number} deviceId 
-         * @param {PolymorphicTaskRequest} [polymorphicTaskRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesTasksCreate(deviceId: number, polymorphicTaskRequest?: PolymorphicTaskRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicTask>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksCreate(deviceId, polymorphicTaskRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesTasksList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPolymorphicTaskList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksList(deviceId, page, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this task.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesTasksRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicTask>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksRetrieve(deviceId, id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} taskId 
-         * @param {TaskStatusRequest} taskStatusRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesTasksStatusCreate(deviceId: number, taskId: number, taskStatusRequest: TaskStatusRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TaskStatus>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksStatusCreate(deviceId, taskId, taskStatusRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} taskId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesTasksStatusList(deviceId: number, taskId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedTaskStatusList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksStatusList(deviceId, taskId, page, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this task status.
-         * @param {number} taskId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesTasksStatusRetrieve(deviceId: number, id: number, taskId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TaskStatus>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksStatusRetrieve(deviceId, id, taskId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
          * A device (Raspberry Pi) running Print Nanny OS
          * @param {number} id A unique integer value identifying this device.
          * @param {DeviceRequest} [deviceRequest] 
@@ -11325,58 +10340,6 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          */
         devicesCreate(deviceRequest: DeviceRequest, options?: any): AxiosPromise<Device> {
             return localVarFp.devicesCreate(deviceRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesEventsCreate(deviceId: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: any): AxiosPromise<PolymorphicEvent> {
-            return localVarFp.devicesEventsCreate(deviceId, polymorphicEventRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesEventsList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedPolymorphicEventList> {
-            return localVarFp.devicesEventsList(deviceId, page, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device event.
-         * @param {PatchedPolymorphicEventRequest} [patchedPolymorphicEventRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesEventsPartialUpdate(deviceId: number, id: number, patchedPolymorphicEventRequest?: PatchedPolymorphicEventRequest, options?: any): AxiosPromise<PolymorphicEvent> {
-            return localVarFp.devicesEventsPartialUpdate(deviceId, id, patchedPolymorphicEventRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device event.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesEventsRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<PolymorphicEvent> {
-            return localVarFp.devicesEventsRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device event.
-         * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesEventsUpdate(deviceId: number, id: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: any): AxiosPromise<PolymorphicEvent> {
-            return localVarFp.devicesEventsUpdate(deviceId, id, polymorphicEventRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -11644,69 +10607,6 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.devicesSystemInfoUpdate(deviceId, id, systemInfoRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
-         * @param {number} deviceId 
-         * @param {PolymorphicTaskRequest} [polymorphicTaskRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesTasksCreate(deviceId: number, polymorphicTaskRequest?: PolymorphicTaskRequest, options?: any): AxiosPromise<PolymorphicTask> {
-            return localVarFp.devicesTasksCreate(deviceId, polymorphicTaskRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesTasksList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedPolymorphicTaskList> {
-            return localVarFp.devicesTasksList(deviceId, page, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this task.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesTasksRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<PolymorphicTask> {
-            return localVarFp.devicesTasksRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} taskId 
-         * @param {TaskStatusRequest} taskStatusRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesTasksStatusCreate(deviceId: number, taskId: number, taskStatusRequest: TaskStatusRequest, options?: any): AxiosPromise<TaskStatus> {
-            return localVarFp.devicesTasksStatusCreate(deviceId, taskId, taskStatusRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} taskId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesTasksStatusList(deviceId: number, taskId: number, page?: number, options?: any): AxiosPromise<PaginatedTaskStatusList> {
-            return localVarFp.devicesTasksStatusList(deviceId, taskId, page, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this task status.
-         * @param {number} taskId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesTasksStatusRetrieve(deviceId: number, id: number, taskId: number, options?: any): AxiosPromise<TaskStatus> {
-            return localVarFp.devicesTasksStatusRetrieve(deviceId, id, taskId, options).then((request) => request(axios, basePath));
-        },
-        /**
          * A device (Raspberry Pi) running Print Nanny OS
          * @param {number} id A unique integer value identifying this device.
          * @param {DeviceRequest} [deviceRequest] 
@@ -11867,58 +10767,6 @@ export interface DevicesApiInterface {
      * @memberof DevicesApiInterface
      */
     devicesCreate(deviceRequest: DeviceRequest, options?: AxiosRequestConfig): AxiosPromise<Device>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesEventsCreate(deviceId: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPolymorphicEventList>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device event.
-     * @param {PatchedPolymorphicEventRequest} [patchedPolymorphicEventRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesEventsPartialUpdate(deviceId: number, id: number, patchedPolymorphicEventRequest?: PatchedPolymorphicEventRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device event.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device event.
-     * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesEventsUpdate(deviceId: number, id: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
 
     /**
      * 
@@ -12186,69 +11034,6 @@ export interface DevicesApiInterface {
     devicesSystemInfoUpdate(deviceId: number, id: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig): AxiosPromise<SystemInfo>;
 
     /**
-     * 
-     * @param {number} deviceId 
-     * @param {PolymorphicTaskRequest} [polymorphicTaskRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesTasksCreate(deviceId: number, polymorphicTaskRequest?: PolymorphicTaskRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicTask>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesTasksList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPolymorphicTaskList>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this task.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesTasksRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<PolymorphicTask>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} taskId 
-     * @param {TaskStatusRequest} taskStatusRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesTasksStatusCreate(deviceId: number, taskId: number, taskStatusRequest: TaskStatusRequest, options?: AxiosRequestConfig): AxiosPromise<TaskStatus>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} taskId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesTasksStatusList(deviceId: number, taskId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedTaskStatusList>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this task status.
-     * @param {number} taskId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesTasksStatusRetrieve(deviceId: number, id: number, taskId: number, options?: AxiosRequestConfig): AxiosPromise<TaskStatus>;
-
-    /**
      * A device (Raspberry Pi) running Print Nanny OS
      * @param {number} id A unique integer value identifying this device.
      * @param {DeviceRequest} [deviceRequest] 
@@ -12432,68 +11217,6 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      */
     public devicesCreate(deviceRequest: DeviceRequest, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesCreate(deviceRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesEventsCreate(deviceId: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesEventsCreate(deviceId, polymorphicEventRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesEventsList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device event.
-     * @param {PatchedPolymorphicEventRequest} [patchedPolymorphicEventRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesEventsPartialUpdate(deviceId: number, id: number, patchedPolymorphicEventRequest?: PatchedPolymorphicEventRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesEventsPartialUpdate(deviceId, id, patchedPolymorphicEventRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device event.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesEventsRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device event.
-     * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesEventsUpdate(deviceId: number, id: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesEventsUpdate(deviceId, id, polymorphicEventRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -12814,81 +11537,6 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
     }
 
     /**
-     * 
-     * @param {number} deviceId 
-     * @param {PolymorphicTaskRequest} [polymorphicTaskRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesTasksCreate(deviceId: number, polymorphicTaskRequest?: PolymorphicTaskRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesTasksCreate(deviceId, polymorphicTaskRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesTasksList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesTasksList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this task.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesTasksRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesTasksRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} taskId 
-     * @param {TaskStatusRequest} taskStatusRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesTasksStatusCreate(deviceId: number, taskId: number, taskStatusRequest: TaskStatusRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesTasksStatusCreate(deviceId, taskId, taskStatusRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} taskId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesTasksStatusList(deviceId: number, taskId: number, page?: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesTasksStatusList(deviceId, taskId, page, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this task status.
-     * @param {number} taskId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesTasksStatusRetrieve(deviceId: number, id: number, taskId: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesTasksStatusRetrieve(deviceId, id, taskId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
      * A device (Raspberry Pi) running Print Nanny OS
      * @param {number} id A unique integer value identifying this device.
      * @param {DeviceRequest} [deviceRequest] 
@@ -12933,17 +11581,13 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
 export const EventsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * 
-         * @param {number} deviceId 
+         * Generic events viewset
          * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesEventsCreate: async (deviceId: number, polymorphicEventRequest?: PolymorphicEventRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesEventsCreate', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/events/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+        eventsCreate: async (polymorphicEventRequest?: PolymorphicEventRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/events/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -12976,17 +11620,13 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
-         * 
-         * @param {number} deviceId 
+         * Generic events viewset
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesEventsList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesEventsList', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/events/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+        eventsList: async (page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/events/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -13020,66 +11660,15 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device event.
-         * @param {PatchedPolymorphicEventRequest} [patchedPolymorphicEventRequest] 
+         * Generic events viewset
+         * @param {number} id A unique integer value identifying this event.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesEventsPartialUpdate: async (deviceId: number, id: number, patchedPolymorphicEventRequest?: PatchedPolymorphicEventRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesEventsPartialUpdate', 'deviceId', deviceId)
+        eventsRetrieve: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesEventsPartialUpdate', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/events/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(patchedPolymorphicEventRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device event.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesEventsRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesEventsRetrieve', 'deviceId', deviceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesEventsRetrieve', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/events/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+            assertParamExists('eventsRetrieve', 'id', id)
+            const localVarPath = `/api/events/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -13109,53 +11698,6 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
                 options: localVarRequestOptions,
             };
         },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device event.
-         * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesEventsUpdate: async (deviceId: number, id: number, polymorphicEventRequest?: PolymorphicEventRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesEventsUpdate', 'deviceId', deviceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesEventsUpdate', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/events/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(polymorphicEventRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
     }
 };
 
@@ -13167,60 +11709,33 @@ export const EventsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = EventsApiAxiosParamCreator(configuration)
     return {
         /**
-         * 
-         * @param {number} deviceId 
+         * Generic events viewset
          * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesEventsCreate(deviceId: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesEventsCreate(deviceId, polymorphicEventRequest, options);
+        async eventsCreate(polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.eventsCreate(polymorphicEventRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * 
-         * @param {number} deviceId 
+         * Generic events viewset
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPolymorphicEventList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesEventsList(deviceId, page, options);
+        async eventsList(page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPolymorphicEventList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.eventsList(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device event.
-         * @param {PatchedPolymorphicEventRequest} [patchedPolymorphicEventRequest] 
+         * Generic events viewset
+         * @param {number} id A unique integer value identifying this event.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesEventsPartialUpdate(deviceId: number, id: number, patchedPolymorphicEventRequest?: PatchedPolymorphicEventRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesEventsPartialUpdate(deviceId, id, patchedPolymorphicEventRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device event.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesEventsRetrieve(deviceId, id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device event.
-         * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesEventsUpdate(deviceId: number, id: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesEventsUpdate(deviceId, id, polymorphicEventRequest, options);
+        async eventsRetrieve(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.eventsRetrieve(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -13234,56 +11749,31 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
     const localVarFp = EventsApiFp(configuration)
     return {
         /**
-         * 
-         * @param {number} deviceId 
+         * Generic events viewset
          * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesEventsCreate(deviceId: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: any): AxiosPromise<PolymorphicEvent> {
-            return localVarFp.devicesEventsCreate(deviceId, polymorphicEventRequest, options).then((request) => request(axios, basePath));
+        eventsCreate(polymorphicEventRequest?: PolymorphicEventRequest, options?: any): AxiosPromise<PolymorphicEvent> {
+            return localVarFp.eventsCreate(polymorphicEventRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
-         * @param {number} deviceId 
+         * Generic events viewset
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesEventsList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedPolymorphicEventList> {
-            return localVarFp.devicesEventsList(deviceId, page, options).then((request) => request(axios, basePath));
+        eventsList(page?: number, options?: any): AxiosPromise<PaginatedPolymorphicEventList> {
+            return localVarFp.eventsList(page, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device event.
-         * @param {PatchedPolymorphicEventRequest} [patchedPolymorphicEventRequest] 
+         * Generic events viewset
+         * @param {number} id A unique integer value identifying this event.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesEventsPartialUpdate(deviceId: number, id: number, patchedPolymorphicEventRequest?: PatchedPolymorphicEventRequest, options?: any): AxiosPromise<PolymorphicEvent> {
-            return localVarFp.devicesEventsPartialUpdate(deviceId, id, patchedPolymorphicEventRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device event.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesEventsRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<PolymorphicEvent> {
-            return localVarFp.devicesEventsRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device event.
-         * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesEventsUpdate(deviceId: number, id: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: any): AxiosPromise<PolymorphicEvent> {
-            return localVarFp.devicesEventsUpdate(deviceId, id, polymorphicEventRequest, options).then((request) => request(axios, basePath));
+        eventsRetrieve(id: number, options?: any): AxiosPromise<PolymorphicEvent> {
+            return localVarFp.eventsRetrieve(id, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -13295,56 +11785,31 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
  */
 export interface EventsApiInterface {
     /**
-     * 
-     * @param {number} deviceId 
+     * Generic events viewset
      * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    devicesEventsCreate(deviceId: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
+    eventsCreate(polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
 
     /**
-     * 
-     * @param {number} deviceId 
+     * Generic events viewset
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    devicesEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPolymorphicEventList>;
+    eventsList(page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPolymorphicEventList>;
 
     /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device event.
-     * @param {PatchedPolymorphicEventRequest} [patchedPolymorphicEventRequest] 
+     * Generic events viewset
+     * @param {number} id A unique integer value identifying this event.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    devicesEventsPartialUpdate(deviceId: number, id: number, patchedPolymorphicEventRequest?: PatchedPolymorphicEventRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device event.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EventsApiInterface
-     */
-    devicesEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device event.
-     * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EventsApiInterface
-     */
-    devicesEventsUpdate(deviceId: number, id: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
+    eventsRetrieve(id: number, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
 
 }
 
@@ -13356,65 +11821,36 @@ export interface EventsApiInterface {
  */
 export class EventsApi extends BaseAPI implements EventsApiInterface {
     /**
-     * 
-     * @param {number} deviceId 
+     * Generic events viewset
      * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public devicesEventsCreate(deviceId: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig) {
-        return EventsApiFp(this.configuration).devicesEventsCreate(deviceId, polymorphicEventRequest, options).then((request) => request(this.axios, this.basePath));
+    public eventsCreate(polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig) {
+        return EventsApiFp(this.configuration).eventsCreate(polymorphicEventRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * 
-     * @param {number} deviceId 
+     * Generic events viewset
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public devicesEventsList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
-        return EventsApiFp(this.configuration).devicesEventsList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
+    public eventsList(page?: number, options?: AxiosRequestConfig) {
+        return EventsApiFp(this.configuration).eventsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device event.
-     * @param {PatchedPolymorphicEventRequest} [patchedPolymorphicEventRequest] 
+     * Generic events viewset
+     * @param {number} id A unique integer value identifying this event.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public devicesEventsPartialUpdate(deviceId: number, id: number, patchedPolymorphicEventRequest?: PatchedPolymorphicEventRequest, options?: AxiosRequestConfig) {
-        return EventsApiFp(this.configuration).devicesEventsPartialUpdate(deviceId, id, patchedPolymorphicEventRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device event.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EventsApi
-     */
-    public devicesEventsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
-        return EventsApiFp(this.configuration).devicesEventsRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device event.
-     * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EventsApi
-     */
-    public devicesEventsUpdate(deviceId: number, id: number, polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig) {
-        return EventsApiFp(this.configuration).devicesEventsUpdate(deviceId, id, polymorphicEventRequest, options).then((request) => request(this.axios, this.basePath));
+    public eventsRetrieve(id: number, options?: AxiosRequestConfig) {
+        return EventsApiFp(this.configuration).eventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -18378,596 +16814,6 @@ export class SchemaApi extends BaseAPI implements SchemaApiInterface {
      */
     public schemaRetrieve(lang?: 'af' | 'ar' | 'ar-dz' | 'ast' | 'az' | 'be' | 'bg' | 'bn' | 'br' | 'bs' | 'ca' | 'cs' | 'cy' | 'da' | 'de' | 'dsb' | 'el' | 'en' | 'en-au' | 'en-gb' | 'eo' | 'es' | 'es-ar' | 'es-co' | 'es-mx' | 'es-ni' | 'es-ve' | 'et' | 'eu' | 'fa' | 'fi' | 'fr' | 'fy' | 'ga' | 'gd' | 'gl' | 'he' | 'hi' | 'hr' | 'hsb' | 'hu' | 'hy' | 'ia' | 'id' | 'ig' | 'io' | 'is' | 'it' | 'ja' | 'ka' | 'kab' | 'kk' | 'km' | 'kn' | 'ko' | 'ky' | 'lb' | 'lt' | 'lv' | 'mk' | 'ml' | 'mn' | 'mr' | 'my' | 'nb' | 'ne' | 'nl' | 'nn' | 'os' | 'pa' | 'pl' | 'pt' | 'pt-br' | 'ro' | 'ru' | 'sk' | 'sl' | 'sq' | 'sr' | 'sr-latn' | 'sv' | 'sw' | 'ta' | 'te' | 'tg' | 'th' | 'tk' | 'tr' | 'tt' | 'udm' | 'uk' | 'ur' | 'uz' | 'vi' | 'zh-hans' | 'zh-hant', options?: AxiosRequestConfig) {
         return SchemaApiFp(this.configuration).schemaRetrieve(lang, options).then((request) => request(this.axios, this.basePath));
-    }
-}
-
-
-/**
- * TasksApi - axios parameter creator
- * @export
- */
-export const TasksApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {PolymorphicTaskRequest} [polymorphicTaskRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesTasksCreate: async (deviceId: number, polymorphicTaskRequest?: PolymorphicTaskRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesTasksCreate', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/tasks/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(polymorphicTaskRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesTasksList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesTasksList', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/tasks/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this task.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesTasksRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesTasksRetrieve', 'deviceId', deviceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesTasksRetrieve', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/tasks/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} taskId 
-         * @param {TaskStatusRequest} taskStatusRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesTasksStatusCreate: async (deviceId: number, taskId: number, taskStatusRequest: TaskStatusRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesTasksStatusCreate', 'deviceId', deviceId)
-            // verify required parameter 'taskId' is not null or undefined
-            assertParamExists('devicesTasksStatusCreate', 'taskId', taskId)
-            // verify required parameter 'taskStatusRequest' is not null or undefined
-            assertParamExists('devicesTasksStatusCreate', 'taskStatusRequest', taskStatusRequest)
-            const localVarPath = `/api/devices/{device_id}/tasks/{task_id}/status/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"task_id"}}`, encodeURIComponent(String(taskId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(taskStatusRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} taskId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesTasksStatusList: async (deviceId: number, taskId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesTasksStatusList', 'deviceId', deviceId)
-            // verify required parameter 'taskId' is not null or undefined
-            assertParamExists('devicesTasksStatusList', 'taskId', taskId)
-            const localVarPath = `/api/devices/{device_id}/tasks/{task_id}/status/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"task_id"}}`, encodeURIComponent(String(taskId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this task status.
-         * @param {number} taskId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesTasksStatusRetrieve: async (deviceId: number, id: number, taskId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesTasksStatusRetrieve', 'deviceId', deviceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesTasksStatusRetrieve', 'id', id)
-            // verify required parameter 'taskId' is not null or undefined
-            assertParamExists('devicesTasksStatusRetrieve', 'taskId', taskId)
-            const localVarPath = `/api/devices/{device_id}/tasks/{task_id}/status/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"task_id"}}`, encodeURIComponent(String(taskId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * TasksApi - functional programming interface
- * @export
- */
-export const TasksApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = TasksApiAxiosParamCreator(configuration)
-    return {
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {PolymorphicTaskRequest} [polymorphicTaskRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesTasksCreate(deviceId: number, polymorphicTaskRequest?: PolymorphicTaskRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicTask>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksCreate(deviceId, polymorphicTaskRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesTasksList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPolymorphicTaskList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksList(deviceId, page, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this task.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesTasksRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicTask>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksRetrieve(deviceId, id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} taskId 
-         * @param {TaskStatusRequest} taskStatusRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesTasksStatusCreate(deviceId: number, taskId: number, taskStatusRequest: TaskStatusRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TaskStatus>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksStatusCreate(deviceId, taskId, taskStatusRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} taskId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesTasksStatusList(deviceId: number, taskId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedTaskStatusList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksStatusList(deviceId, taskId, page, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this task status.
-         * @param {number} taskId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesTasksStatusRetrieve(deviceId: number, id: number, taskId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TaskStatus>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesTasksStatusRetrieve(deviceId, id, taskId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-    }
-};
-
-/**
- * TasksApi - factory interface
- * @export
- */
-export const TasksApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = TasksApiFp(configuration)
-    return {
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {PolymorphicTaskRequest} [polymorphicTaskRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesTasksCreate(deviceId: number, polymorphicTaskRequest?: PolymorphicTaskRequest, options?: any): AxiosPromise<PolymorphicTask> {
-            return localVarFp.devicesTasksCreate(deviceId, polymorphicTaskRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesTasksList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedPolymorphicTaskList> {
-            return localVarFp.devicesTasksList(deviceId, page, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this task.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesTasksRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<PolymorphicTask> {
-            return localVarFp.devicesTasksRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} taskId 
-         * @param {TaskStatusRequest} taskStatusRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesTasksStatusCreate(deviceId: number, taskId: number, taskStatusRequest: TaskStatusRequest, options?: any): AxiosPromise<TaskStatus> {
-            return localVarFp.devicesTasksStatusCreate(deviceId, taskId, taskStatusRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} taskId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesTasksStatusList(deviceId: number, taskId: number, page?: number, options?: any): AxiosPromise<PaginatedTaskStatusList> {
-            return localVarFp.devicesTasksStatusList(deviceId, taskId, page, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this task status.
-         * @param {number} taskId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesTasksStatusRetrieve(deviceId: number, id: number, taskId: number, options?: any): AxiosPromise<TaskStatus> {
-            return localVarFp.devicesTasksStatusRetrieve(deviceId, id, taskId, options).then((request) => request(axios, basePath));
-        },
-    };
-};
-
-/**
- * TasksApi - interface
- * @export
- * @interface TasksApi
- */
-export interface TasksApiInterface {
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {PolymorphicTaskRequest} [polymorphicTaskRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TasksApiInterface
-     */
-    devicesTasksCreate(deviceId: number, polymorphicTaskRequest?: PolymorphicTaskRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicTask>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TasksApiInterface
-     */
-    devicesTasksList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPolymorphicTaskList>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this task.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TasksApiInterface
-     */
-    devicesTasksRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<PolymorphicTask>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} taskId 
-     * @param {TaskStatusRequest} taskStatusRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TasksApiInterface
-     */
-    devicesTasksStatusCreate(deviceId: number, taskId: number, taskStatusRequest: TaskStatusRequest, options?: AxiosRequestConfig): AxiosPromise<TaskStatus>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} taskId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TasksApiInterface
-     */
-    devicesTasksStatusList(deviceId: number, taskId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedTaskStatusList>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this task status.
-     * @param {number} taskId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TasksApiInterface
-     */
-    devicesTasksStatusRetrieve(deviceId: number, id: number, taskId: number, options?: AxiosRequestConfig): AxiosPromise<TaskStatus>;
-
-}
-
-/**
- * TasksApi - object-oriented interface
- * @export
- * @class TasksApi
- * @extends {BaseAPI}
- */
-export class TasksApi extends BaseAPI implements TasksApiInterface {
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {PolymorphicTaskRequest} [polymorphicTaskRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TasksApi
-     */
-    public devicesTasksCreate(deviceId: number, polymorphicTaskRequest?: PolymorphicTaskRequest, options?: AxiosRequestConfig) {
-        return TasksApiFp(this.configuration).devicesTasksCreate(deviceId, polymorphicTaskRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TasksApi
-     */
-    public devicesTasksList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
-        return TasksApiFp(this.configuration).devicesTasksList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this task.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TasksApi
-     */
-    public devicesTasksRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
-        return TasksApiFp(this.configuration).devicesTasksRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} taskId 
-     * @param {TaskStatusRequest} taskStatusRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TasksApi
-     */
-    public devicesTasksStatusCreate(deviceId: number, taskId: number, taskStatusRequest: TaskStatusRequest, options?: AxiosRequestConfig) {
-        return TasksApiFp(this.configuration).devicesTasksStatusCreate(deviceId, taskId, taskStatusRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} taskId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TasksApi
-     */
-    public devicesTasksStatusList(deviceId: number, taskId: number, page?: number, options?: AxiosRequestConfig) {
-        return TasksApiFp(this.configuration).devicesTasksStatusList(deviceId, taskId, page, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this task status.
-     * @param {number} taskId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TasksApi
-     */
-    public devicesTasksStatusRetrieve(deviceId: number, id: number, taskId: number, options?: AxiosRequestConfig) {
-        return TasksApiFp(this.configuration).devicesTasksStatusRetrieve(deviceId, id, taskId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

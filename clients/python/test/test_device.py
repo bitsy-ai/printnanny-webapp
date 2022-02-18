@@ -38,15 +38,6 @@ class TestDevice(unittest.TestCase):
         if include_optional :
             return Device(
                 id = 56, 
-                active_tasks = [
-                    printnanny_api_client.models.task.Task(
-                        id = 56, 
-                        deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        active = True, 
-                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        polymorphic_ctype = 56, 
-                        device = 56, )
-                    ], 
                 cameras = [
                     printnanny_api_client.models.camera.Camera(
                         id = 56, 
@@ -63,7 +54,6 @@ class TestDevice(unittest.TestCase):
                 video_test_url = '', 
                 janus_auth = None, 
                 janus_local_url = '', 
-                last_task = None, 
                 monitoring_active = True, 
                 setup_complete = True, 
                 printer_controllers = [
@@ -87,15 +77,6 @@ class TestDevice(unittest.TestCase):
         else :
             return Device(
                 id = 56,
-                active_tasks = [
-                    printnanny_api_client.models.task.Task(
-                        id = 56, 
-                        deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        active = True, 
-                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        polymorphic_ctype = 56, 
-                        device = 56, )
-                    ],
                 cameras = [
                     printnanny_api_client.models.camera.Camera(
                         id = 56, 
@@ -112,7 +93,6 @@ class TestDevice(unittest.TestCase):
                 video_test_url = '',
                 janus_auth = None,
                 janus_local_url = '',
-                last_task = None,
                 printer_controllers = [
                     printnanny_api_client.models.printer_controller.PrinterController(
                         id = 56, 

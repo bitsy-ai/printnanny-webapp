@@ -43,15 +43,6 @@ class TestPaginatedDeviceList(unittest.TestCase):
                 results = [
                     printnanny_api_client.models.device.Device(
                         id = 56, 
-                        active_tasks = [
-                            printnanny_api_client.models.task.Task(
-                                id = 56, 
-                                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                active = True, 
-                                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                polymorphic_ctype = 56, 
-                                device = 56, )
-                            ], 
                         cameras = [
                             printnanny_api_client.models.camera.Camera(
                                 id = 56, 
@@ -68,7 +59,6 @@ class TestPaginatedDeviceList(unittest.TestCase):
                         video_test_url = '', 
                         janus_auth = null, 
                         janus_local_url = '', 
-                        last_task = null, 
                         monitoring_active = True, 
                         setup_complete = True, 
                         printer_controllers = [

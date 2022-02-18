@@ -4,15 +4,16 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**command** | **bool** | Indicates whether event should be sent to Device on command topic | [optional] 
-**created_dt** | **datetime** |  | [readonly] 
-**device** | **int** |  | [readonly] 
-**event_type** | [**TestEventType**](TestEventType.md) |  | 
 **id** | **int** |  | [readonly] 
-**model** | [**EventModel**](EventModel.md) |  | 
+**deleted** | **datetime** |  | [readonly] 
+**created_dt** | **datetime** |  | [readonly] 
 **source** | [**EventSource**](EventSource.md) |  | 
-**status** | [**EventStatus**](EventStatus.md) |  | [optional] 
-**user** | **int** |  | [readonly] 
+**event_type** | [**WebRTCEventEventTypeEnum**](WebRTCEventEventTypeEnum.md) |  | 
+**data** | **dict(str, object)** |  | [optional] 
+**polymorphic_ctype** | **int** |  | [readonly] 
+**user** | **int** |  | 
+**device** | **int** |  | 
+**stream** | **int** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

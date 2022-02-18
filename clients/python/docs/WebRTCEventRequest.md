@@ -1,4 +1,4 @@
-# PolymorphicEventRequest
+# WebRTCEventRequest
 
 
 ## Properties

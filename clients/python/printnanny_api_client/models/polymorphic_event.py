@@ -37,152 +37,63 @@ class PolymorphicEvent(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'command': 'bool',
-        'created_dt': 'datetime',
-        'device': 'int',
-        'event_type': 'TestEventType',
         'id': 'int',
-        'model': 'EventModel',
+        'deleted': 'datetime',
+        'created_dt': 'datetime',
         'source': 'EventSource',
-        'status': 'EventStatus',
-        'user': 'int'
+        'event_type': 'WebRTCEventEventTypeEnum',
+        'data': 'dict(str, object)',
+        'polymorphic_ctype': 'int',
+        'user': 'int',
+        'device': 'int',
+        'stream': 'int'
     }
 
     attribute_map = {
-        'command': 'command',
-        'created_dt': 'created_dt',
-        'device': 'device',
-        'event_type': 'event_type',
         'id': 'id',
-        'model': 'model',
+        'deleted': 'deleted',
+        'created_dt': 'created_dt',
         'source': 'source',
-        'status': 'status',
-        'user': 'user'
+        'event_type': 'event_type',
+        'data': 'data',
+        'polymorphic_ctype': 'polymorphic_ctype',
+        'user': 'user',
+        'device': 'device',
+        'stream': 'stream'
     }
 
     discriminator_value_class_map = {
     }
 
-    def __init__(self, command=None, created_dt=None, device=None, event_type=None, id=None, model=None, source=None, status=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, deleted=None, created_dt=None, source=None, event_type=None, data=None, polymorphic_ctype=None, user=None, device=None, stream=None, local_vars_configuration=None):  # noqa: E501
         """PolymorphicEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
-        self._command = None
-        self._created_dt = None
-        self._device = None
-        self._event_type = None
         self._id = None
-        self._model = None
+        self._deleted = None
+        self._created_dt = None
         self._source = None
-        self._status = None
+        self._event_type = None
+        self._data = None
+        self._polymorphic_ctype = None
         self._user = None
-        self.discriminator = 'model'
+        self._device = None
+        self._stream = None
+        self.discriminator = 'event_type'
 
-        if command is not None:
-            self.command = command
-        self.created_dt = created_dt
-        self.device = device
-        self.event_type = event_type
         self.id = id
-        self.model = model
+        self.deleted = deleted
+        self.created_dt = created_dt
         self.source = source
-        if status is not None:
-            self.status = status
+        self.event_type = event_type
+        if data is not None:
+            self.data = data
+        self.polymorphic_ctype = polymorphic_ctype
         self.user = user
-
-    @property
-    def command(self):
-        """Gets the command of this PolymorphicEvent.  # noqa: E501
-
-        Indicates whether event should be sent to Device on command topic  # noqa: E501
-
-        :return: The command of this PolymorphicEvent.  # noqa: E501
-        :rtype: bool
-        """
-        return self._command
-
-    @command.setter
-    def command(self, command):
-        """Sets the command of this PolymorphicEvent.
-
-        Indicates whether event should be sent to Device on command topic  # noqa: E501
-
-        :param command: The command of this PolymorphicEvent.  # noqa: E501
-        :type command: bool
-        """
-
-        self._command = command
-
-    @property
-    def created_dt(self):
-        """Gets the created_dt of this PolymorphicEvent.  # noqa: E501
-
-
-        :return: The created_dt of this PolymorphicEvent.  # noqa: E501
-        :rtype: datetime
-        """
-        return self._created_dt
-
-    @created_dt.setter
-    def created_dt(self, created_dt):
-        """Sets the created_dt of this PolymorphicEvent.
-
-
-        :param created_dt: The created_dt of this PolymorphicEvent.  # noqa: E501
-        :type created_dt: datetime
-        """
-        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
-            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
-
-        self._created_dt = created_dt
-
-    @property
-    def device(self):
-        """Gets the device of this PolymorphicEvent.  # noqa: E501
-
-
-        :return: The device of this PolymorphicEvent.  # noqa: E501
-        :rtype: int
-        """
-        return self._device
-
-    @device.setter
-    def device(self, device):
-        """Sets the device of this PolymorphicEvent.
-
-
-        :param device: The device of this PolymorphicEvent.  # noqa: E501
-        :type device: int
-        """
-        if self.local_vars_configuration.client_side_validation and device is None:  # noqa: E501
-            raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
-
-        self._device = device
-
-    @property
-    def event_type(self):
-        """Gets the event_type of this PolymorphicEvent.  # noqa: E501
-
-
-        :return: The event_type of this PolymorphicEvent.  # noqa: E501
-        :rtype: TestEventType
-        """
-        return self._event_type
-
-    @event_type.setter
-    def event_type(self, event_type):
-        """Sets the event_type of this PolymorphicEvent.
-
-
-        :param event_type: The event_type of this PolymorphicEvent.  # noqa: E501
-        :type event_type: TestEventType
-        """
-        if self.local_vars_configuration.client_side_validation and event_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
-
-        self._event_type = event_type
+        self.device = device
+        self.stream = stream
 
     @property
     def id(self):
@@ -208,27 +119,50 @@ class PolymorphicEvent(object):
         self._id = id
 
     @property
-    def model(self):
-        """Gets the model of this PolymorphicEvent.  # noqa: E501
+    def deleted(self):
+        """Gets the deleted of this PolymorphicEvent.  # noqa: E501
 
 
-        :return: The model of this PolymorphicEvent.  # noqa: E501
-        :rtype: EventModel
+        :return: The deleted of this PolymorphicEvent.  # noqa: E501
+        :rtype: datetime
         """
-        return self._model
+        return self._deleted
 
-    @model.setter
-    def model(self, model):
-        """Sets the model of this PolymorphicEvent.
+    @deleted.setter
+    def deleted(self, deleted):
+        """Sets the deleted of this PolymorphicEvent.
 
 
-        :param model: The model of this PolymorphicEvent.  # noqa: E501
-        :type model: EventModel
+        :param deleted: The deleted of this PolymorphicEvent.  # noqa: E501
+        :type deleted: datetime
         """
-        if self.local_vars_configuration.client_side_validation and model is None:  # noqa: E501
-            raise ValueError("Invalid value for `model`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and deleted is None:  # noqa: E501
+            raise ValueError("Invalid value for `deleted`, must not be `None`")  # noqa: E501
 
-        self._model = model
+        self._deleted = deleted
+
+    @property
+    def created_dt(self):
+        """Gets the created_dt of this PolymorphicEvent.  # noqa: E501
+
+
+        :return: The created_dt of this PolymorphicEvent.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._created_dt
+
+    @created_dt.setter
+    def created_dt(self, created_dt):
+        """Sets the created_dt of this PolymorphicEvent.
+
+
+        :param created_dt: The created_dt of this PolymorphicEvent.  # noqa: E501
+        :type created_dt: datetime
+        """
+        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
+
+        self._created_dt = created_dt
 
     @property
     def source(self):
@@ -254,25 +188,71 @@ class PolymorphicEvent(object):
         self._source = source
 
     @property
-    def status(self):
-        """Gets the status of this PolymorphicEvent.  # noqa: E501
+    def event_type(self):
+        """Gets the event_type of this PolymorphicEvent.  # noqa: E501
 
 
-        :return: The status of this PolymorphicEvent.  # noqa: E501
-        :rtype: EventStatus
+        :return: The event_type of this PolymorphicEvent.  # noqa: E501
+        :rtype: WebRTCEventEventTypeEnum
         """
-        return self._status
+        return self._event_type
 
-    @status.setter
-    def status(self, status):
-        """Sets the status of this PolymorphicEvent.
+    @event_type.setter
+    def event_type(self, event_type):
+        """Sets the event_type of this PolymorphicEvent.
 
 
-        :param status: The status of this PolymorphicEvent.  # noqa: E501
-        :type status: EventStatus
+        :param event_type: The event_type of this PolymorphicEvent.  # noqa: E501
+        :type event_type: WebRTCEventEventTypeEnum
+        """
+        if self.local_vars_configuration.client_side_validation and event_type is None:  # noqa: E501
+            raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
+
+        self._event_type = event_type
+
+    @property
+    def data(self):
+        """Gets the data of this PolymorphicEvent.  # noqa: E501
+
+
+        :return: The data of this PolymorphicEvent.  # noqa: E501
+        :rtype: dict(str, object)
+        """
+        return self._data
+
+    @data.setter
+    def data(self, data):
+        """Sets the data of this PolymorphicEvent.
+
+
+        :param data: The data of this PolymorphicEvent.  # noqa: E501
+        :type data: dict(str, object)
         """
 
-        self._status = status
+        self._data = data
+
+    @property
+    def polymorphic_ctype(self):
+        """Gets the polymorphic_ctype of this PolymorphicEvent.  # noqa: E501
+
+
+        :return: The polymorphic_ctype of this PolymorphicEvent.  # noqa: E501
+        :rtype: int
+        """
+        return self._polymorphic_ctype
+
+    @polymorphic_ctype.setter
+    def polymorphic_ctype(self, polymorphic_ctype):
+        """Sets the polymorphic_ctype of this PolymorphicEvent.
+
+
+        :param polymorphic_ctype: The polymorphic_ctype of this PolymorphicEvent.  # noqa: E501
+        :type polymorphic_ctype: int
+        """
+        if self.local_vars_configuration.client_side_validation and polymorphic_ctype is None:  # noqa: E501
+            raise ValueError("Invalid value for `polymorphic_ctype`, must not be `None`")  # noqa: E501
+
+        self._polymorphic_ctype = polymorphic_ctype
 
     @property
     def user(self):
@@ -296,6 +276,50 @@ class PolymorphicEvent(object):
             raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
 
         self._user = user
+
+    @property
+    def device(self):
+        """Gets the device of this PolymorphicEvent.  # noqa: E501
+
+
+        :return: The device of this PolymorphicEvent.  # noqa: E501
+        :rtype: int
+        """
+        return self._device
+
+    @device.setter
+    def device(self, device):
+        """Sets the device of this PolymorphicEvent.
+
+
+        :param device: The device of this PolymorphicEvent.  # noqa: E501
+        :type device: int
+        """
+        if self.local_vars_configuration.client_side_validation and device is None:  # noqa: E501
+            raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
+
+        self._device = device
+
+    @property
+    def stream(self):
+        """Gets the stream of this PolymorphicEvent.  # noqa: E501
+
+
+        :return: The stream of this PolymorphicEvent.  # noqa: E501
+        :rtype: int
+        """
+        return self._stream
+
+    @stream.setter
+    def stream(self, stream):
+        """Sets the stream of this PolymorphicEvent.
+
+
+        :param stream: The stream of this PolymorphicEvent.  # noqa: E501
+        :type stream: int
+        """
+
+        self._stream = stream
 
     def get_real_child_model(self, data):
         """Returns the real base class specified by the discriminator"""

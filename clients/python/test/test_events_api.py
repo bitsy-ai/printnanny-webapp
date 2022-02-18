@@ -29,32 +29,20 @@ class TestEventsApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_devices_events_create(self):
-        """Test case for devices_events_create
+    def test_events_create(self):
+        """Test case for events_create
 
         """
         pass
 
-    def test_devices_events_list(self):
-        """Test case for devices_events_list
+    def test_events_list(self):
+        """Test case for events_list
 
         """
         pass
 
-    def test_devices_events_partial_update(self):
-        """Test case for devices_events_partial_update
-
-        """
-        pass
-
-    def test_devices_events_retrieve(self):
-        """Test case for devices_events_retrieve
-
-        """
-        pass
-
-    def test_devices_events_update(self):
-        """Test case for devices_events_update
+    def test_events_retrieve(self):
+        """Test case for events_retrieve
 
         """
         pass

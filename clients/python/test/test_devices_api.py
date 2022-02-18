@@ -101,36 +101,6 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
-    def test_devices_events_create(self):
-        """Test case for devices_events_create
-
-        """
-        pass
-
-    def test_devices_events_list(self):
-        """Test case for devices_events_list
-
-        """
-        pass
-
-    def test_devices_events_partial_update(self):
-        """Test case for devices_events_partial_update
-
-        """
-        pass
-
-    def test_devices_events_retrieve(self):
-        """Test case for devices_events_retrieve
-
-        """
-        pass
-
-    def test_devices_events_update(self):
-        """Test case for devices_events_update
-
-        """
-        pass
-
     def test_devices_janus_stream_get_or_create(self):
         """Test case for devices_janus_stream_get_or_create
 
@@ -283,42 +253,6 @@ class TestDevicesApi(unittest.TestCase):
 
     def test_devices_system_info_update(self):
         """Test case for devices_system_info_update
-
-        """
-        pass
-
-    def test_devices_tasks_create(self):
-        """Test case for devices_tasks_create
-
-        """
-        pass
-
-    def test_devices_tasks_list(self):
-        """Test case for devices_tasks_list
-
-        """
-        pass
-
-    def test_devices_tasks_retrieve(self):
-        """Test case for devices_tasks_retrieve
-
-        """
-        pass
-
-    def test_devices_tasks_status_create(self):
-        """Test case for devices_tasks_status_create
-
-        """
-        pass
-
-    def test_devices_tasks_status_list(self):
-        """Test case for devices_tasks_status_list
-
-        """
-        pass
-
-    def test_devices_tasks_status_retrieve(self):
-        """Test case for devices_tasks_status_retrieve
 
         """
         pass
