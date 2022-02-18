@@ -22,10 +22,6 @@ from .serializers import (
     AlertBulkRequestSerializer,
     AlertBulkResponseSerializer,
 )
-from print_nanny_webapp.utils.permissions import (
-    IsAdminOrIsSelf,
-    IsAdminOrIsPrintSessionOwner,
-)
 from ..models import (
     AlertMessage as Alert,
 )
