@@ -13,214 +13,214 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct OctoPrintEvent {
         #[serde(rename = "id")]
-        id: i32,
+        pub id: i32,
         #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
-        ts: Option<f32>,
+        pub ts: Option<f32>,
         #[serde(rename = "event_source")]
-        event_source: Option<Box<crate::models::AlphaEventSource>>,
+        pub event_source: Option<Box<crate::models::AlphaEventSource>>,
         #[serde(rename = "event_type", skip_serializing_if = "Option::is_none")]
-        event_type: Option<Box<crate::models::OctoGenericEvent>>,
+        pub event_type: Option<Box<crate::models::OctoGenericEvent>>,
         #[serde(rename = "octoprint_environment")]
-        octoprint_environment: Box<crate::models::OctoprintEnvironment>,
+        pub octoprint_environment: Box<crate::models::OctoprintEnvironment>,
         #[serde(rename = "octoprint_printer_data")]
-        octoprint_printer_data: Box<crate::models::OctoprintPrinterData>,
+        pub octoprint_printer_data: Box<crate::models::OctoprintPrinterData>,
         #[serde(rename = "event_data", skip_serializing_if = "Option::is_none")]
-        event_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
+        pub event_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
         #[serde(rename = "temperature", skip_serializing_if = "Option::is_none")]
-        temperature: Option<::std::collections::HashMap<String, serde_json::Value>>,
+        pub temperature: Option<::std::collections::HashMap<String, serde_json::Value>>,
         #[serde(rename = "print_nanny_plugin_version")]
-        print_nanny_plugin_version: String,
+        pub print_nanny_plugin_version: String,
         #[serde(rename = "print_nanny_client_version")]
-        print_nanny_client_version: String,
+        pub print_nanny_client_version: String,
         #[serde(rename = "print_nanny_beta_client_version", skip_serializing_if = "Option::is_none")]
-        print_nanny_beta_client_version: Option<String>,
+        pub print_nanny_beta_client_version: Option<String>,
         #[serde(rename = "octoprint_version")]
-        octoprint_version: String,
+        pub octoprint_version: String,
         #[serde(rename = "polymorphic_ctype")]
-        polymorphic_ctype: i32,
+        pub polymorphic_ctype: i32,
         #[serde(rename = "octoprint_device")]
-        octoprint_device: i32,
+        pub octoprint_device: i32,
         #[serde(rename = "user")]
-        user: i32,
+        pub user: i32,
         #[serde(rename = "print_session", skip_serializing_if = "Option::is_none")]
-        print_session: Option<i32>,
+        pub print_session: Option<i32>,
 }
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PrintJobEvent {
         #[serde(rename = "id")]
-        id: i32,
+        pub id: i32,
         #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
-        ts: Option<f32>,
+        pub ts: Option<f32>,
         #[serde(rename = "event_source")]
-        event_source: Option<Box<crate::models::AlphaEventSource>>,
+        pub event_source: Option<Box<crate::models::AlphaEventSource>>,
         #[serde(rename = "event_type", skip_serializing_if = "Option::is_none")]
-        event_type: Option<Box<crate::models::OctoJobEvent>>,
+        pub event_type: Option<Box<crate::models::OctoJobEvent>>,
         #[serde(rename = "octoprint_environment")]
-        octoprint_environment: Box<crate::models::OctoprintEnvironment>,
+        pub octoprint_environment: Box<crate::models::OctoprintEnvironment>,
         #[serde(rename = "octoprint_printer_data")]
-        octoprint_printer_data: Box<crate::models::OctoprintPrinterData>,
+        pub octoprint_printer_data: Box<crate::models::OctoprintPrinterData>,
         #[serde(rename = "event_data", skip_serializing_if = "Option::is_none")]
-        event_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
+        pub event_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
         #[serde(rename = "temperature", skip_serializing_if = "Option::is_none")]
-        temperature: Option<::std::collections::HashMap<String, serde_json::Value>>,
+        pub temperature: Option<::std::collections::HashMap<String, serde_json::Value>>,
         #[serde(rename = "print_nanny_plugin_version")]
-        print_nanny_plugin_version: String,
+        pub print_nanny_plugin_version: String,
         #[serde(rename = "print_nanny_client_version")]
-        print_nanny_client_version: String,
+        pub print_nanny_client_version: String,
         #[serde(rename = "print_nanny_beta_client_version", skip_serializing_if = "Option::is_none")]
-        print_nanny_beta_client_version: Option<String>,
+        pub print_nanny_beta_client_version: Option<String>,
         #[serde(rename = "octoprint_version")]
-        octoprint_version: String,
+        pub octoprint_version: String,
         #[serde(rename = "polymorphic_ctype")]
-        polymorphic_ctype: i32,
+        pub polymorphic_ctype: i32,
         #[serde(rename = "octoprint_device")]
-        octoprint_device: i32,
+        pub octoprint_device: i32,
         #[serde(rename = "user")]
-        user: i32,
+        pub user: i32,
         #[serde(rename = "print_session", skip_serializing_if = "Option::is_none")]
-        print_session: Option<i32>,
+        pub print_session: Option<i32>,
 }
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PrintNannyPluginEvent {
         #[serde(rename = "id")]
-        id: i32,
+        pub id: i32,
         #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
-        ts: Option<f32>,
+        pub ts: Option<f32>,
         #[serde(rename = "event_source")]
-        event_source: Option<Box<crate::models::AlphaEventSource>>,
+        pub event_source: Option<Box<crate::models::AlphaEventSource>>,
         #[serde(rename = "event_type", skip_serializing_if = "Option::is_none")]
-        event_type: Option<Box<crate::models::OctoPrintNannyEvent>>,
+        pub event_type: Option<Box<crate::models::OctoPrintNannyEvent>>,
         #[serde(rename = "octoprint_environment")]
-        octoprint_environment: Box<crate::models::OctoprintEnvironment>,
+        pub octoprint_environment: Box<crate::models::OctoprintEnvironment>,
         #[serde(rename = "octoprint_printer_data")]
-        octoprint_printer_data: Box<crate::models::OctoprintPrinterData>,
+        pub octoprint_printer_data: Box<crate::models::OctoprintPrinterData>,
         #[serde(rename = "event_data", skip_serializing_if = "Option::is_none")]
-        event_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
+        pub event_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
         #[serde(rename = "temperature", skip_serializing_if = "Option::is_none")]
-        temperature: Option<::std::collections::HashMap<String, serde_json::Value>>,
+        pub temperature: Option<::std::collections::HashMap<String, serde_json::Value>>,
         #[serde(rename = "print_nanny_plugin_version")]
-        print_nanny_plugin_version: String,
+        pub print_nanny_plugin_version: String,
         #[serde(rename = "print_nanny_client_version")]
-        print_nanny_client_version: String,
+        pub print_nanny_client_version: String,
         #[serde(rename = "print_nanny_beta_client_version", skip_serializing_if = "Option::is_none")]
-        print_nanny_beta_client_version: Option<String>,
+        pub print_nanny_beta_client_version: Option<String>,
         #[serde(rename = "octoprint_version")]
-        octoprint_version: String,
+        pub octoprint_version: String,
         #[serde(rename = "polymorphic_ctype")]
-        polymorphic_ctype: i32,
+        pub polymorphic_ctype: i32,
         #[serde(rename = "octoprint_device")]
-        octoprint_device: i32,
+        pub octoprint_device: i32,
         #[serde(rename = "user")]
-        user: i32,
+        pub user: i32,
         #[serde(rename = "print_session", skip_serializing_if = "Option::is_none")]
-        print_session: Option<i32>,
+        pub print_session: Option<i32>,
 }
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PrinterEvent {
         #[serde(rename = "id")]
-        id: i32,
+        pub id: i32,
         #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
-        ts: Option<f32>,
+        pub ts: Option<f32>,
         #[serde(rename = "event_source")]
-        event_source: Option<Box<crate::models::AlphaEventSource>>,
+        pub event_source: Option<Box<crate::models::AlphaEventSource>>,
         #[serde(rename = "event_type", skip_serializing_if = "Option::is_none")]
-        event_type: Option<Box<crate::models::OctoPrinterEvent>>,
+        pub event_type: Option<Box<crate::models::OctoPrinterEvent>>,
         #[serde(rename = "octoprint_environment")]
-        octoprint_environment: Box<crate::models::OctoprintEnvironment>,
+        pub octoprint_environment: Box<crate::models::OctoprintEnvironment>,
         #[serde(rename = "octoprint_printer_data")]
-        octoprint_printer_data: Box<crate::models::OctoprintPrinterData>,
+        pub octoprint_printer_data: Box<crate::models::OctoprintPrinterData>,
         #[serde(rename = "event_data", skip_serializing_if = "Option::is_none")]
-        event_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
+        pub event_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
         #[serde(rename = "temperature", skip_serializing_if = "Option::is_none")]
-        temperature: Option<::std::collections::HashMap<String, serde_json::Value>>,
+        pub temperature: Option<::std::collections::HashMap<String, serde_json::Value>>,
         #[serde(rename = "print_nanny_plugin_version")]
-        print_nanny_plugin_version: String,
+        pub print_nanny_plugin_version: String,
         #[serde(rename = "print_nanny_client_version")]
-        print_nanny_client_version: String,
+        pub print_nanny_client_version: String,
         #[serde(rename = "print_nanny_beta_client_version", skip_serializing_if = "Option::is_none")]
-        print_nanny_beta_client_version: Option<String>,
+        pub print_nanny_beta_client_version: Option<String>,
         #[serde(rename = "octoprint_version")]
-        octoprint_version: String,
+        pub octoprint_version: String,
         #[serde(rename = "printer_state", skip_serializing_if = "Option::is_none")]
-        printer_state: Option<crate::models::OctoPrinterEvent>,
+        pub printer_state: Option<crate::models::OctoPrinterEvent>,
         #[serde(rename = "polymorphic_ctype")]
-        polymorphic_ctype: i32,
+        pub polymorphic_ctype: i32,
         #[serde(rename = "octoprint_device")]
-        octoprint_device: i32,
+        pub octoprint_device: i32,
         #[serde(rename = "user")]
-        user: i32,
+        pub user: i32,
         #[serde(rename = "print_session", skip_serializing_if = "Option::is_none")]
-        print_session: Option<i32>,
+        pub print_session: Option<i32>,
 }
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct RemoteCommandEvent {
         #[serde(rename = "id")]
-        id: i32,
+        pub id: i32,
         #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
-        ts: Option<f32>,
+        pub ts: Option<f32>,
         #[serde(rename = "event_source")]
-        event_source: Option<Box<crate::models::AlphaEventSource>>,
+        pub event_source: Option<Box<crate::models::AlphaEventSource>>,
         #[serde(rename = "event_type", skip_serializing_if = "Option::is_none")]
-        event_type: Option<Box<crate::models::RemoteCommandEventEventTypeEnum>>,
+        pub event_type: Option<Box<crate::models::RemoteCommandEventEventTypeEnum>>,
         #[serde(rename = "octoprint_environment")]
-        octoprint_environment: Box<crate::models::OctoprintEnvironment>,
+        pub octoprint_environment: Box<crate::models::OctoprintEnvironment>,
         #[serde(rename = "octoprint_printer_data")]
-        octoprint_printer_data: Box<crate::models::OctoprintPrinterData>,
+        pub octoprint_printer_data: Box<crate::models::OctoprintPrinterData>,
         #[serde(rename = "event_data", skip_serializing_if = "Option::is_none")]
-        event_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
+        pub event_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
         #[serde(rename = "temperature", skip_serializing_if = "Option::is_none")]
-        temperature: Option<::std::collections::HashMap<String, serde_json::Value>>,
+        pub temperature: Option<::std::collections::HashMap<String, serde_json::Value>>,
         #[serde(rename = "print_nanny_plugin_version")]
-        print_nanny_plugin_version: String,
+        pub print_nanny_plugin_version: String,
         #[serde(rename = "print_nanny_client_version")]
-        print_nanny_client_version: String,
+        pub print_nanny_client_version: String,
         #[serde(rename = "print_nanny_beta_client_version", skip_serializing_if = "Option::is_none")]
-        print_nanny_beta_client_version: Option<String>,
+        pub print_nanny_beta_client_version: Option<String>,
         #[serde(rename = "octoprint_version")]
-        octoprint_version: String,
+        pub octoprint_version: String,
         #[serde(rename = "polymorphic_ctype")]
-        polymorphic_ctype: i32,
+        pub polymorphic_ctype: i32,
         #[serde(rename = "octoprint_device")]
-        octoprint_device: i32,
+        pub octoprint_device: i32,
         #[serde(rename = "user")]
-        user: i32,
+        pub user: i32,
         #[serde(rename = "print_session", skip_serializing_if = "Option::is_none")]
-        print_session: Option<i32>,
+        pub print_session: Option<i32>,
 }
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct TelemetryEvent {
         #[serde(rename = "id")]
-        id: i32,
+        pub id: i32,
         #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
-        ts: Option<f32>,
+        pub ts: Option<f32>,
         #[serde(rename = "event_source")]
-        event_source: Option<Box<crate::models::AlphaEventSource>>,
+        pub event_source: Option<Box<crate::models::AlphaEventSource>>,
         #[serde(rename = "event_type", skip_serializing_if = "Option::is_none")]
-        event_type: Option<Box<crate::models::OctoTelemetryEvent>>,
+        pub event_type: Option<Box<crate::models::OctoTelemetryEvent>>,
         #[serde(rename = "octoprint_environment")]
-        octoprint_environment: Box<crate::models::OctoprintEnvironment>,
+        pub octoprint_environment: Box<crate::models::OctoprintEnvironment>,
         #[serde(rename = "octoprint_printer_data")]
-        octoprint_printer_data: Box<crate::models::OctoprintPrinterData>,
+        pub octoprint_printer_data: Box<crate::models::OctoprintPrinterData>,
         #[serde(rename = "event_data", skip_serializing_if = "Option::is_none")]
-        event_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
+        pub event_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
         #[serde(rename = "temperature", skip_serializing_if = "Option::is_none")]
-        temperature: Option<::std::collections::HashMap<String, serde_json::Value>>,
+        pub temperature: Option<::std::collections::HashMap<String, serde_json::Value>>,
         #[serde(rename = "print_nanny_plugin_version")]
-        print_nanny_plugin_version: String,
+        pub print_nanny_plugin_version: String,
         #[serde(rename = "print_nanny_client_version")]
-        print_nanny_client_version: String,
+        pub print_nanny_client_version: String,
         #[serde(rename = "print_nanny_beta_client_version", skip_serializing_if = "Option::is_none")]
-        print_nanny_beta_client_version: Option<String>,
+        pub print_nanny_beta_client_version: Option<String>,
         #[serde(rename = "octoprint_version")]
-        octoprint_version: String,
+        pub octoprint_version: String,
         #[serde(rename = "polymorphic_ctype")]
-        polymorphic_ctype: i32,
+        pub polymorphic_ctype: i32,
         #[serde(rename = "octoprint_device")]
-        octoprint_device: i32,
+        pub octoprint_device: i32,
         #[serde(rename = "user")]
-        user: i32,
+        pub user: i32,
         #[serde(rename = "print_session", skip_serializing_if = "Option::is_none")]
-        print_session: Option<i32>,
+        pub print_session: Option<i32>,
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
