@@ -1,4 +1,4 @@
-# WebRTCEventEventTypeEnum
+# WebRTCEventType
 
 
 ## Properties

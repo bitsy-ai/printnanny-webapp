@@ -38,10 +38,10 @@ class WebRTCEvent(object):
     """
     openapi_types = {
         'id': 'int',
-        'event_type': 'WebRTCEventEventTypeEnum',
         'deleted': 'datetime',
         'created_dt': 'datetime',
         'source': 'EventSource',
+        'event_type': 'WebRTCEventType',
         'data': 'dict(str, object)',
         'polymorphic_ctype': 'int',
         'user': 'int',
@@ -51,10 +51,10 @@ class WebRTCEvent(object):
 
     attribute_map = {
         'id': 'id',
-        'event_type': 'event_type',
         'deleted': 'deleted',
         'created_dt': 'created_dt',
         'source': 'source',
+        'event_type': 'event_type',
         'data': 'data',
         'polymorphic_ctype': 'polymorphic_ctype',
         'user': 'user',
@@ -62,17 +62,17 @@ class WebRTCEvent(object):
         'stream': 'stream'
     }
 
-    def __init__(self, id=None, event_type=None, deleted=None, created_dt=None, source=None, data=None, polymorphic_ctype=None, user=None, device=None, stream=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, deleted=None, created_dt=None, source=None, event_type=None, data=None, polymorphic_ctype=None, user=None, device=None, stream=None, local_vars_configuration=None):  # noqa: E501
         """WebRTCEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
-        self._event_type = None
         self._deleted = None
         self._created_dt = None
         self._source = None
+        self._event_type = None
         self._data = None
         self._polymorphic_ctype = None
         self._user = None
@@ -81,10 +81,10 @@ class WebRTCEvent(object):
         self.discriminator = None
 
         self.id = id
-        self.event_type = event_type
         self.deleted = deleted
         self.created_dt = created_dt
         self.source = source
+        self.event_type = event_type
         if data is not None:
             self.data = data
         self.polymorphic_ctype = polymorphic_ctype
@@ -114,29 +114,6 @@ class WebRTCEvent(object):
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
-
-    @property
-    def event_type(self):
-        """Gets the event_type of this WebRTCEvent.  # noqa: E501
-
-
-        :return: The event_type of this WebRTCEvent.  # noqa: E501
-        :rtype: WebRTCEventEventTypeEnum
-        """
-        return self._event_type
-
-    @event_type.setter
-    def event_type(self, event_type):
-        """Sets the event_type of this WebRTCEvent.
-
-
-        :param event_type: The event_type of this WebRTCEvent.  # noqa: E501
-        :type event_type: WebRTCEventEventTypeEnum
-        """
-        if self.local_vars_configuration.client_side_validation and event_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
-
-        self._event_type = event_type
 
     @property
     def deleted(self):
@@ -206,6 +183,29 @@ class WebRTCEvent(object):
             raise ValueError("Invalid value for `source`, must not be `None`")  # noqa: E501
 
         self._source = source
+
+    @property
+    def event_type(self):
+        """Gets the event_type of this WebRTCEvent.  # noqa: E501
+
+
+        :return: The event_type of this WebRTCEvent.  # noqa: E501
+        :rtype: WebRTCEventType
+        """
+        return self._event_type
+
+    @event_type.setter
+    def event_type(self, event_type):
+        """Sets the event_type of this WebRTCEvent.
+
+
+        :param event_type: The event_type of this WebRTCEvent.  # noqa: E501
+        :type event_type: WebRTCEventType
+        """
+        if self.local_vars_configuration.client_side_validation and event_type is None:  # noqa: E501
+            raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
+
+        self._event_type = event_type
 
     @property
     def data(self):

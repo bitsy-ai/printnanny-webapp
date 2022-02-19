@@ -37,8 +37,8 @@ class TestWebRTCEventRequest(unittest.TestCase):
         # model = printnanny_api_client.models.web_rtc_event_request.WebRTCEventRequest()  # noqa: E501
         if include_optional :
             return WebRTCEventRequest(
-                event_type = 'stream_start', 
                 source = 'octoprint', 
+                event_type = 'stream_start', 
                 data = {
                     'key' : null
                     }, 
@@ -47,8 +47,8 @@ class TestWebRTCEventRequest(unittest.TestCase):
             )
         else :
             return WebRTCEventRequest(
-                event_type = 'stream_start',
                 source = 'octoprint',
+                event_type = 'stream_start',
                 device = 56,
         )
 

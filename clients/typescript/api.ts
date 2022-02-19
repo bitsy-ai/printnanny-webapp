@@ -6577,12 +6577,6 @@ export interface WebRTCEvent {
     'id': number;
     /**
      * 
-     * @type {WebRTCEventEventTypeEnum}
-     * @memberof WebRTCEvent
-     */
-    'event_type': WebRTCEventEventTypeEnum;
-    /**
-     * 
      * @type {string}
      * @memberof WebRTCEvent
      */
@@ -6599,6 +6593,12 @@ export interface WebRTCEvent {
      * @memberof WebRTCEvent
      */
     'source': EventSource;
+    /**
+     * 
+     * @type {WebRTCEventType}
+     * @memberof WebRTCEvent
+     */
+    'event_type': WebRTCEventType;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -6633,39 +6633,21 @@ export interface WebRTCEvent {
 /**
  * 
  * @export
- * @enum {string}
- */
-
-export const WebRTCEventEventTypeEnum = {
-    Start: 'stream_start',
-    StartSuccess: 'stream_start_success',
-    StartError: 'stream_start_error',
-    Stop: 'stream_stop',
-    StopSuccess: 'stream_stop_success',
-    StopError: 'stream_stop_error'
-} as const;
-
-export type WebRTCEventEventTypeEnum = typeof WebRTCEventEventTypeEnum[keyof typeof WebRTCEventEventTypeEnum];
-
-
-/**
- * 
- * @export
  * @interface WebRTCEventRequest
  */
 export interface WebRTCEventRequest {
-    /**
-     * 
-     * @type {WebRTCEventEventTypeEnum}
-     * @memberof WebRTCEventRequest
-     */
-    'event_type': WebRTCEventEventTypeEnum;
     /**
      * 
      * @type {EventSource}
      * @memberof WebRTCEventRequest
      */
     'source': EventSource;
+    /**
+     * 
+     * @type {WebRTCEventType}
+     * @memberof WebRTCEventRequest
+     */
+    'event_type': WebRTCEventType;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -6685,6 +6667,24 @@ export interface WebRTCEventRequest {
      */
     'stream'?: number | null;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const WebRTCEventType = {
+    Start: 'stream_start',
+    StartSuccess: 'stream_start_success',
+    StartError: 'stream_start_error',
+    Stop: 'stream_stop',
+    StopSuccess: 'stream_stop_success',
+    StopError: 'stream_stop_error'
+} as const;
+
+export type WebRTCEventType = typeof WebRTCEventType[keyof typeof WebRTCEventType];
+
+
 
 /**
  * AlertsApi - axios parameter creator

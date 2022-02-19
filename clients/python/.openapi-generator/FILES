@@ -161,8 +161,8 @@ docs/User.md
 docs/UserRequest.md
 docs/UsersApi.md
 docs/WebRTCEvent.md
-docs/WebRTCEventEventTypeEnum.md
 docs/WebRTCEventRequest.md
+docs/WebRTCEventType.md
 git_push.sh
 printnanny_api_client/__init__.py
 printnanny_api_client/api/__init__.py
@@ -327,8 +327,8 @@ printnanny_api_client/models/token_response.py
 printnanny_api_client/models/user.py
 printnanny_api_client/models/user_request.py
 printnanny_api_client/models/web_rtc_event.py
-printnanny_api_client/models/web_rtc_event_event_type_enum.py
 printnanny_api_client/models/web_rtc_event_request.py
+printnanny_api_client/models/web_rtc_event_type.py
 printnanny_api_client/py.typed
 printnanny_api_client/rest.py
 requirements.txt
@@ -493,6 +493,6 @@ test/test_user.py
 test/test_user_request.py
 test/test_users_api.py
 test/test_web_rtc_event.py
-test/test_web_rtc_event_event_type_enum.py
 test/test_web_rtc_event_request.py
+test/test_web_rtc_event_type.py
 tox.ini

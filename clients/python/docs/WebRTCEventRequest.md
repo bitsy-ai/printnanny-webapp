@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**event_type** | [**WebRTCEventEventTypeEnum**](WebRTCEventEventTypeEnum.md) |  | 
 **source** | [**EventSource**](EventSource.md) |  | 
+**event_type** | [**WebRTCEventType**](WebRTCEventType.md) |  | 
 **data** | **dict(str, object)** |  | [optional] 
 **device** | **int** |  | 
 **stream** | **int** |  | [optional] 
