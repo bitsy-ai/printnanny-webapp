@@ -6,7 +6,7 @@ from django.db.models.signals import post_save
 from print_nanny_webapp.events.models import Event
 from .services import (
     webrtc_stream_start,
-    webrtc_stream_start_success,
+    # webrtc_stream_start_success,
 )
 from .enum import WebRTCEventType
 
@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 created_handlers: Dict[Tuple, Callable] = {
     WebRTCEventType.STREAM_START: webrtc_stream_start,
-    WebRTCEventType.STREAM_START_SUCCESS: webrtc_stream_start_success,
+    # WebRTCEventType.STREAM_START_SUCCESS: webrtc_stream_start_success,
 }
 
 

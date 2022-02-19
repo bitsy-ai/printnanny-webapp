@@ -13,7 +13,7 @@ from rest_framework.renderers import JSONRenderer
 from print_nanny_webapp.devices.enum import JanusConfigType
 from print_nanny_webapp.events.api.serializers import PolymorphicEventSerializer
 
-from .models import WebRTCEvent
+from .models import WebRTCEvent, Event
 from .enum import WebRTCEventType
 
 CloudiotDevice = apps.get_model("devices", "CloudiotDevice")
@@ -77,7 +77,7 @@ def janus_cloud_get_or_create_stream(device: Device, auth: JanusAuth) -> JanusSt
     return stream
 
 
-def publish_mqtt_msg(cloudiot: CloudiotDevice, data: str, subfolder=None):
+def publish_mqtt_command(cloudiot: CloudiotDevice, data: str, subfolder=None):
     """
     Publish data to MQTT events topic (optional subfolder)
     """
@@ -116,11 +116,29 @@ def publish_channel_msg(events_channel: str, data: str):
     )
 
 
-def webrtc_stream_start_success(event: WebRTCEvent):
+# def webrtc_stream_start_success(event: WebRTCEvent):
+#     serializer = PolymorphicEventSerializer(instance=event)
+#     data = JSONRenderer().render(serializer.data)
+#     publish_mqtt_msg(event.device.cloudiot, data)
+#     publish_channel_msg(event.device.user.events_channel, data)
+
+
+def broadcast_event(event: Event):
+    """
+    Publishes event to all receiving channels
+
+    /ws/events Websocket - receives all Events
+    /devices/:id/commands/# MQTT command topic - receives all Events with Event.device set
+    """
     serializer = PolymorphicEventSerializer(instance=event)
     data = JSONRenderer().render(serializer.data)
-    publish_mqtt_msg(event.device.cloudiot, data)
+
     publish_channel_msg(event.device.user.events_channel, data)
+    logger.info("Published event %s to Django channel", event)
+
+    if hasattr(event, "device") and event.device is not None:
+        publish_mqtt_command(event.device.cloudiot, data)
+        logger.info("Published event %s to MQTT commands topic", event)
 
 
 def webrtc_stream_start(event: WebRTCEvent) -> WebRTCEvent:
@@ -143,14 +161,17 @@ def webrtc_stream_start(event: WebRTCEvent) -> WebRTCEvent:
 
         # 3) Create steaming mountpoint
         stream = janus_cloud_get_or_create_stream(event.device, janus_auth)
-        logger.info("webrtc_stream_start created stream %s", stream)
-        success_event = WebRTCEvent.objects.create(
-            event_type=WebRTCEventType.STREAM_START_SUCCESS,
-            stream=stream,
-            device=event.device,
-            user=event.user,
+        event.stream = stream
+        event.save()
+        logger.info(
+            "Added stream %s to event %s, sending to device %s via command topic %s",
+            stream,
+            event,
+            event.device,
+            event.device.cloudiot.command_topic,
         )
-        return success_event
+        broadcast_event(event)
+        return event
     except Exception as e:
         logger.error("Error handling event=%s error=%s", event.__dict__, e)
         error_event = WebRTCEvent.objects.create(
