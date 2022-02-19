@@ -18,15 +18,15 @@ package com.printnanny.api.rust;
  */
 
 import org.openapitools.codegen.CodegenConstants;
-import org.openapitools.codegen.languages.RustClientCodegen;
+import com.printnanny.api.rust.RustClientGenerator;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class RustClientCodegenTest {
+public class RustClientGeneratorTest {
 
   @Test
   public void testInitialConfigValues() throws Exception {
-    final RustClientCodegen codegen = new RustClientCodegen();
+    final RustClientGenerator codegen = new RustClientGenerator();
     codegen.processOpts();
 
     Assert.assertEquals(codegen.additionalProperties().get(CodegenConstants.HIDE_GENERATION_TIMESTAMP), Boolean.TRUE);
@@ -35,7 +35,7 @@ public class RustClientCodegenTest {
 
   @Test
   public void testSettersForConfigValues() throws Exception {
-    final RustClientCodegen codegen = new RustClientCodegen();
+    final RustClientGenerator codegen = new RustClientGenerator();
     codegen.setHideGenerationTimestamp(false);
     codegen.processOpts();
 
@@ -45,7 +45,7 @@ public class RustClientCodegenTest {
 
   @Test
   public void testAdditionalPropertiesPutForConfigValues() throws Exception {
-    final RustClientCodegen codegen = new RustClientCodegen();
+    final RustClientGenerator codegen = new RustClientGenerator();
     codegen.additionalProperties().put(CodegenConstants.HIDE_GENERATION_TIMESTAMP, false);
     codegen.processOpts();
 

@@ -16,8 +16,6 @@ package com.printnanny.api.rust;
  * limitations under the License.
  */
 
-package org.openapitools.codegen.languages;
-
 import com.google.common.base.Strings;
 import io.swagger.v3.oas.models.media.ArraySchema;
 import io.swagger.v3.oas.models.media.Schema;
@@ -36,8 +34,8 @@ import java.util.*;
 import static org.openapitools.codegen.utils.StringUtils.camelize;
 import static org.openapitools.codegen.utils.StringUtils.underscore;
 
-public class RustClientCodegen extends DefaultCodegen implements CodegenConfig {
-  private final Logger LOGGER = LoggerFactory.getLogger(RustClientCodegen.class);
+public class RustClientGenerator extends DefaultCodegen implements CodegenConfig {
+  private final Logger LOGGER = LoggerFactory.getLogger(RustClientGenerator.class);
   private boolean useSingleRequestParameter = false;
   private boolean supportAsync = true;
   private boolean supportMultipleResponses = false;
@@ -69,7 +67,7 @@ public class RustClientCodegen extends DefaultCodegen implements CodegenConfig {
     return "Generates a Rust client library (beta).";
   }
 
-  public RustClientCodegen() {
+  public RustClientGenerator() {
     super();
 
     modifyFeatureSet(features -> features
