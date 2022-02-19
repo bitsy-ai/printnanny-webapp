@@ -14,6 +14,8 @@
 pub struct WebRtcEventRequest {
         #[serde(rename = "source")]
         source: crate::models::EventSource,
+        #[serde(rename = "event_type")]
+        event_type: crate::models::WebRtcEventType,
         #[serde(rename = "data", skip_serializing_if = "Option::is_none")]
         data: Option<::std::collections::HashMap<String, serde_json::Value>>,
         #[serde(rename = "device")]
@@ -23,7 +25,7 @@ pub struct WebRtcEventRequest {
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-#[serde(tag = "eventtype")]
+#[serde(tag = "event_type")]
 pub enum PolymorphicEventRequest {
     #[serde(rename="WebRTCEvent")]
     WebRtcEventRequest(WebRtcEventRequest),

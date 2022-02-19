@@ -227,17 +227,13 @@ public class RustClientGenerator extends DefaultCodegen implements CodegenConfig
             mas.put("modelName", camelize(mappedModel.getModelName()));
             mas.put("mappingName", mappedModel.getMappingName());
 
-            // TODO: deleting the variable from the array was
-            // problematic; I don't know what this is supposed to do
-            // so I'm just cloning it for the moment
             List<CodegenProperty> vars = new ArrayList<>(model.getVars());
-            vars.removeIf(p -> p.name.equals(cm.discriminator.getPropertyName()));
             mas.put("vars", vars);
             discriminatorVars.add(mas);
           }
           // TODO: figure out how to properly have the original property type that didn't
           // go through toVarName
-          String vendorExtensionTagName = cm.discriminator.getPropertyName().replace("_", "");
+          String vendorExtensionTagName = cm.discriminator.getPropertyName();
           cm.vendorExtensions.put("x-tag-name", vendorExtensionTagName);
           cm.vendorExtensions.put("x-mapped-models", discriminatorVars);
         }
