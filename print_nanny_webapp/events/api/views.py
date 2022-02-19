@@ -1,12 +1,11 @@
 import logging
-from django.shortcuts import get_object_or_404
 from drf_spectacular.utils import (
     extend_schema,
     extend_schema_view,
-    OpenApiParameter,
 )
 from django.apps import apps
 
+from rest_framework.exceptions import PermissionDenied
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
@@ -23,7 +22,7 @@ from print_nanny_webapp.utils.api.views import (
 )
 from print_nanny_webapp.utils.permissions import IsObjectOwner
 from print_nanny_webapp.events.models import Event
-from .serializers import PolymorphicEventSerializer, PolymorphicDeviceEventSerializer
+from .serializers import PolymorphicEventSerializer
 
 Device = apps.get_model("devices", "Device")
 
@@ -76,17 +75,28 @@ class EventViewSet(
         return self.queryset.filter(user_id=self.request.user.id)
 
     def create(self, request, *args, **kwargs):
-
+        logger.info("EventViewSet.create handling request.data %s", request.data)
         serializer = self.get_serializer(data=request.data)
+        logger.info("EventViewSet.create got serializer %s", serializer)
         serializer.is_valid(raise_exception=True)
-        logger.info("EventViewSet.create serializer.is_valid=%s", serializer.data)
-
+        logger.info("EventViewSet.create serializer is_valid=True")
+        # assert user owns device
+        if serializer.validated_data.get("device"):
+            device = serializer.validated_data.get("device")
+            if device.user != request.user:
+                raise PermissionDenied(
+                    {
+                        "message": "You don't have permission to access",
+                        "object_id": device.id,
+                        "user_id": request.user.id,
+                        "serializer_data": serializer.validated_data,
+                    }
+                )
         self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
+        headers = self.get_success_headers(serializer.validated_data)
         return Response(
             serializer.data, status=status.HTTP_201_CREATED, headers=headers
         )
 
     def perform_create(self, serializer):
-        logger.info("EventViewSet.perform_create request=%s", self.request.POST)
-        serializer.save(user=self.request.user)
+        return serializer.save(user=self.request.user)
