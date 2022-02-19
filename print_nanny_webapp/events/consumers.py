@@ -5,12 +5,10 @@ logger = logging.getLogger(__name__)
 
 
 class EventConsumer(AsyncJsonWebsocketConsumer):
-    # set in print_nanny_vue/src/store/tasks/index.js
     EVENTS_NAMESPACE = "EVENTS"
     ALERT_NAMESPACE = "ALERTS"
 
-    EVENTS_MUTATION = "SET_EVENT"
-    EVENTS_ACTION = "handleEvent"
+    EVENTS_MUTATION = "SET_RECEIVED_EVENT"
 
     user = None
     group_name = None
@@ -40,7 +38,6 @@ class EventConsumer(AsyncJsonWebsocketConsumer):
         """
         event["namespace"] = self.EVENTS_NAMESPACE
         event["mutation"] = self.EVENTS_MUTATION
-        event["action"] = self.EVENTS_ACTION
         logger.info(
             "Sending event scope=%s group_name=%s event=%s",
             self.scope,

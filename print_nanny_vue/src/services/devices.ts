@@ -1,4 +1,5 @@
 import * as api from 'printnanny-api-client'
+import { PolymorphicEventRequest } from 'printnanny-api-client'
 
 const configuration = new api.Configuration({
   basePath: process.env.BASE_API_URL,
@@ -16,12 +17,11 @@ export default {
     console.log("Response to devicesRetrieve", res)
     return res.data
   },
-  async cloudMonitorStart(deviceId: number) {
+  async eventsCreate(req: api.PolymorphicEventRequest) {
     const thisapi = api.EventsApiFactory(configuration)
-    // const req: api.WebRTCEventRequest = { event_type: api.WebRTCEventEventType.CloudMonitorStart, device: deviceId, }
-    // const res = await thisapi.eventsCreate(deviceId, req)
-    // console.log("Response to eventsCreate", res)
-    // return res.data
+    const res = await thisapi.eventsCreate(req)
+    console.log("eventsCreate response", res)
+    return res.data
   },
   async setupComplete(deviceId: number) {
     const thisapi = api.DevicesApiFactory(configuration, process.env.BASE_API_URL)

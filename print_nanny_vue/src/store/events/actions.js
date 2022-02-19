@@ -6,12 +6,22 @@ export const STREAM_START = 'STREAM_START'
 export const STREAM_STOP = 'STREAM_STOP'
 
 export default {
-  async [STREAM_START] ({ commit, state, dispatch }, device, stream) {
-    const res = await service.cloudMonitorStart(device, stream, api.WebRRTCEventType.CloudMonitorStart)
+  async [STREAM_START] ({ commit, state, dispatch }, device) {
+    const req = {
+      event_type: api.WebRTCEventEventTypeEnum.Start,
+      device: device,
+      source: api.EventSource.PrintnannyWebapp
+    }
+    const res = await service.createEvent(req)
     commit(SET_SENT_EVENT, res)
   },
   async [STREAM_STOP] ({ commit, state, dispatch }, device) {
-    const res = await service.createJanusTask(device, stream, api.JanusTaskType.CloudMonitorStop)
+    const req = {
+      event_type: api.WebRTCEventEventTypeEnum.Stop,
+      device: device,
+      source: api.EventSource.PrintnannyWebapp
+    }
+    const res = await service.createEvent(req)
     commit(SET_SENT_EVENT, res)
   }
 }
