@@ -44,7 +44,7 @@ def janus_admin_add_token(janus_auth: JanusAuth) -> Dict[str, Any]:
 
 def janus_cloud_get_or_create_stream(device: Device, auth: JanusAuth) -> JanusStream:
     url = f"{settings.JANUS_CLOUD_API_URL}"
-    stream = JanusStream.objects.get_or_create(device=device)
+    stream, _created = JanusStream.objects.get_or_create(device=device)
     media = [
         # video stream
         dict(type="video", mid=uuid4().hex, port=5105)
@@ -93,8 +93,8 @@ def publish_mqtt_msg(cloudiot: CloudiotDevice, data: str, subfolder=None):
         request.subfolder = subfolder
 
     response = cloudiot.client.send_command_to_device(request=request)
-    logger.debug(
-        "webrtc_stream_start_success  cloudiot.client.send_command_to_device response %s",
+    logger.info(
+        "cloudiot.client.send_command_to_device response %s",
         response,
     )
     return response
@@ -119,7 +119,7 @@ def publish_channel_msg(events_channel: str, data: str):
 def webrtc_stream_start_success(event: WebRTCEvent):
     serializer = PolymorphicEventSerializer(instance=event)
     data = JSONRenderer().render(serializer.data)
-    publish_mqtt_msg(event.device, data)
+    publish_mqtt_msg(event.device.cloudiot, data)
     publish_channel_msg(event.device.user.events_channel, data)
 
 
@@ -143,6 +143,7 @@ def webrtc_stream_start(event: WebRTCEvent) -> WebRTCEvent:
 
         # 3) Create steaming mountpoint
         stream = janus_cloud_get_or_create_stream(event.device, janus_auth)
+        logger.info("webrtc_stream_start created stream %s", stream)
         success_event = WebRTCEvent.objects.create(
             event_type=WebRTCEventType.STREAM_START_SUCCESS,
             stream=stream,
@@ -151,7 +152,7 @@ def webrtc_stream_start(event: WebRTCEvent) -> WebRTCEvent:
         )
         return success_event
     except Exception as e:
-        logger.error("Error handling event=%s error=%s", event, e)
+        logger.error("Error handling event=%s error=%s", event.__dict__, e)
         error_event = WebRTCEvent.objects.create(
             event_type=WebRTCEventType.STREAM_START_ERROR,
             device=event.device,
