@@ -6,10 +6,8 @@ from django.apps import apps
 from django.views.generic.list import MultipleObjectMixin
 from django.views.generic import CreateView, DetailView, DeleteView
 from django.views.generic.base import TemplateView
-from print_nanny_webapp.devices.forms import CameraCreateForm
 from print_nanny_webapp.devices.models import Device
 
-from print_nanny_webapp.dashboard.views import DashboardView
 from .forms import CameraCreateForm
 
 Device = apps.get_model("devices", "Device")
@@ -38,7 +36,7 @@ class DeviceDetailView(DetailView, MultipleObjectMixin, LoginRequiredMixin):
     paginate_by = 10
 
     def get_context_data(self, **kwargs):
-        tasks = self.get_object().tasks.all()
+        tasks = self.get_object().events.all()
         context = super().get_context_data(object_list=tasks, **kwargs)
         return context
 
