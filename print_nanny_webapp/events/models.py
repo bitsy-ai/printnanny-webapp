@@ -34,7 +34,9 @@ class WebRTCEvent(Event):
         index_together = [["device", "stream", "event_type"]]
 
     event_type = models.CharField(max_length=32, choices=WebRTCEventType.choices)
-    device = models.ForeignKey("devices.Device", on_delete=models.CASCADE, related_name="events")
+    device = models.ForeignKey(
+        "devices.Device", on_delete=models.CASCADE, related_name="events"
+    )
     stream = models.ForeignKey(
         "devices.JanusStream", on_delete=models.CASCADE, null=True
     )
