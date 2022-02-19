@@ -99,7 +99,7 @@ public class RustClientGenerator extends DefaultCodegen implements CodegenConfig
     // default HIDE_GENERATION_TIMESTAMP to true
     hideGenerationTimestamp = Boolean.TRUE;
 
-    embeddedTemplateDir = templateDir = "rust";
+    embeddedTemplateDir = "rust-client";
 
     setReservedWordsLowerCase(
         Arrays.asList(

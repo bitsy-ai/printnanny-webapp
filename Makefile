@@ -292,7 +292,8 @@ rust-client: clean-rust-client
 		-i http://localhost:8000/api/schema \
 		-g custom-rust-client \
 		-o $(PWD)/clients/rust \
-		-c $(PWD)/clients/rust.yaml \
+		-c $(PWD)/clients/rust.yaml
+
 
 rust-build: rust-client
 	cd clients/rust && cargo build
