@@ -387,7 +387,7 @@ class JanusAuth(SafeDeleteModel):
     @property
     def api_url(self):
         if self.config_type == JanusConfigType.CLOUD:
-            return f"https://{settings.JANUS_CLOUD_DOMAIN}/janus"
+            return settings.JANUS_CLOUD_API_URL
         raise NotImplementedError(
             f"JanusAuth.apiurl not implemented for JanusConfigType={self.config_type}"
         )
@@ -395,7 +395,7 @@ class JanusAuth(SafeDeleteModel):
     @property
     def admin_url(self):
         if self.config_type == JanusConfigType.CLOUD:
-            return f"https://{settings.JANUS_CLOUD_DOMAIN}/admin"
+            return settings.JANUS_CLOUD_ADMIN_URL
         raise NotImplementedError(
             f"JanusAuth.admin_url not implemented for JanusConfigType={self.config_type}"
         )
@@ -403,7 +403,7 @@ class JanusAuth(SafeDeleteModel):
     @property
     def websocket_url(self):
         if self.config_type == JanusConfigType.CLOUD:
-            return f"wss://{settings.JANUS_CLOUD_DOMAIN}"
+            return settings.JANUS_CLOUD_WS_URL
         raise NotImplementedError(
             f"JanusAuth.websocket_url not implemented for JanusConfigType={self.config_type}"
         )
