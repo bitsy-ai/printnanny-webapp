@@ -32,6 +32,14 @@ GHA_ENVIRONMENT ?= sandbox
 DOCKER_COMPOSE_PROJECT_NAME="print_nanny_webapp"
 GHOST_VERSION ?=4.32-alpine
 
+WORKDIR ?=$(PWD)
+OPENAPI_GENERATOR_WORKDIR ?= $(HOME)/projects/openapi-generator
+OPENAPI_GENERATOR_CLI_JAR ?= $(OPENAPI_GENERATOR_WORKDIR)/modules/openapi-generator-cli/target/openapi-generator-cli.jar
+OPENAPI_CUSTOM_RUST_GENERATOR_JAR ?= $(HOME)/.m2/repository/org/openapitools/rust-client-openapi-generator/1.0.0/rust-client-openapi-generator-1.0.0.jar
+
+
+openapi-custom-codegen:
+	cd $(OPENAPI_WORKDIR) && ./mvnw clean install -f ~/projects/octoprint-nanny-webapp/client-templates/rust-client-codegen
 clean-local-requirements:
 	rm -f requirements/local.txt
 
@@ -266,39 +274,31 @@ clean-ts-client:
 clean-rust-client:
 	sudo rm -rf clients/rust
 
-# kotlin-client: clean-kotlin-client
-# 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
-# 		-i http://localhost:8000/api/schema --recommend
-
-# 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli generate \
-# 		-i http://localhost:8000/api/schema \
-# 		-g kotlin \
-# 		-o /local/clients/kotlin \
-# 		-c /local/clients/kotlin.yaml
-
 ts-client: clean-ts-client
-	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
+	java -jar $(OPENAPI_GENERATOR_CLI_JAR) validate \
 		-i http://localhost:8000/api/schema --recommend
 
-	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli generate \
+	java -jar $(HOME)/projects/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar  generate \
 		-i http://localhost:8000/api/schema \
 		-g typescript-axios \
-		-o /local/clients/typescript \
-		-c /local/clients/typescript.yaml
+		-o $(PWD)/clients/typescript \
+		-c $(PWD)/clients/typescript.yaml
 
 	cd clients/typescript && npm install && npm build
 
 # debugging info: https://openapi-generator.tech/docs/debugging#templates
 rust-client: clean-rust-client
-	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
+	java -cp "$(OPENAPI_CUSTOM_RUST_GENERATOR_JAR):$(OPENAPI_GENERATOR_CLI_JAR)" \
+		org.openapitools.codegen.OpenAPIGenerator validate \
 		-i http://localhost:8000/api/schema --recommend 
 
-	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli generate \
+	java -cp "$(OPENAPI_CUSTOM_RUST_GENERATOR_JAR):$(OPENAPI_GENERATOR_CLI_JAR)" \
+		org.openapitools.codegen.OpenAPIGenerator generate \
 		-i http://localhost:8000/api/schema \
-		-g rust \
-		-o /local/clients/rust \
-		-c /local/clients/rust.yaml \
-		-t /local/client-templates/rust
+		-g custom-rust-client \
+		-o $(PWD)/clients/rust \
+		-c $(PWD)/clients/rust.yaml
+
 
 rust-build: rust-client
 	cd clients/rust && cargo build
@@ -327,14 +327,14 @@ python-protobuf:
 
 
 python-client: clean-python-client # python-flatbuffer python-protobuf
-	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
+	java -jar $(HOME)/projects/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar  validate \
 		-i http://localhost:8000/api/schema --recommend
 
-	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli generate \
+	java -jar $(HOME)/projects/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar  generate \
 		-i http://localhost:8000/api/schema \
 		-g python-legacy \
-		-o /local/clients/python \
-		-c /local/clients/python.yaml \
+		-o $(PWD)/clients/python \
+		-c $(PWD)/clients/python.yaml \
 
 
 clean-pyc: ## remove Python file artifacts
