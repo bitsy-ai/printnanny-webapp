@@ -469,7 +469,7 @@ SPECTACULAR_SETTINGS = {
         'EventModel': 'print_nanny_webapp.events.enum.EventModel',
 
         # begin webrtc event types
-        'WebRTCEventType': 'print_nanny_webapp.tasks.enum.WebRTCEventType',
+        'WebRTCEventType': 'print_nanny_webapp.events.enum.WebRTCEventType',
     },
     'TITLE': 'printnanny-api-client',
     'DESCRIPTION': 'Official API client library for print-nanny.com',
