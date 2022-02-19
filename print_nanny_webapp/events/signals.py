@@ -5,7 +5,6 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from print_nanny_webapp.events.models import Event, WebRTCEvent
 from .services import (
-    publish_cloudiot_command,
     webrtc_stream_start,
     webrtc_stream_start_success,
 )
@@ -31,6 +30,13 @@ handlers: Dict[Tuple, Callable] = {
 def handle_event(sender, instance, created, **kwargs):
     if isinstance(instance, WebRTCEvent):
         handler = handlers.get(instance.event_type)
+        logger.info(
+            "events.signals.handle_event calling handler %s with instance %s event_type %s",
+            handler,
+            instance,
+            instance.event_type,
+        )
+
         if handler is None:
             logger.debug("No handler configured for event_type=%s in events.signals")
             return

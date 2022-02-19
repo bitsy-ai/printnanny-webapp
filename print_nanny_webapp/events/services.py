@@ -102,14 +102,15 @@ def webrtc_stream_start(event: WebRTCEvent) -> WebRTCEvent:
             event_type=WebRTCEventType.STREAM_START_SUCCESS,
             stream=stream,
             device=event.device,
+            user=event.user,
         )
         return success_event
     except Exception as e:
         logger.error("Error handling event=%s error=%s", event, e)
         error_event = WebRTCEvent.objects.create(
             event_type=WebRTCEventType.STREAM_START_ERROR,
-            stream=stream,
             device=event.device,
+            user=event.user,
         )
         return error_event
 
