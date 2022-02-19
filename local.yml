@@ -18,6 +18,8 @@ services:
       - "8088:8088"
     env_file:
       - ./.envs/.local/.janus
+    volumes:
+      - ./compose/local/janus/etc:/etc/janus:z
 
   octoprint:
     hostname: octoprint
