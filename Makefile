@@ -38,8 +38,8 @@ OPENAPI_GENERATOR_CLI_JAR ?= $(OPENAPI_GENERATOR_WORKDIR)/modules/openapi-genera
 OPENAPI_CUSTOM_RUST_GENERATOR_JAR ?= $(HOME)/.m2/repository/org/openapitools/rust-client-openapi-generator/1.0.0/rust-client-openapi-generator-1.0.0.jar
 
 
-openapi-custom-codegen:
-	cd $(OPENAPI_WORKDIR) && ./mvnw clean install -f ~/projects/octoprint-nanny-webapp/client-templates/rust-client-codegen
+openapi-custom-rust-codegen:
+	cd $(OPENAPI_GENERATOR_WORKDIR) && ./mvnw clean install -f ~/projects/octoprint-nanny-webapp/client-templates/rust-client-codegen
 clean-local-requirements:
 	rm -f requirements/local.txt
 
@@ -287,7 +287,7 @@ ts-client: clean-ts-client
 	cd clients/typescript && npm install && npm build
 
 # debugging info: https://openapi-generator.tech/docs/debugging#templates
-rust-client: clean-rust-client
+rust-client: clean-rust-client openapi-custom-rust-codegen
 	java -cp "$(OPENAPI_CUSTOM_RUST_GENERATOR_JAR):$(OPENAPI_GENERATOR_CLI_JAR)" \
 		org.openapitools.codegen.OpenAPIGenerator validate \
 		-i http://localhost:8000/api/schema --recommend 
