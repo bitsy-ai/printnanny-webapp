@@ -32,6 +32,9 @@ GHA_ENVIRONMENT ?= sandbox
 DOCKER_COMPOSE_PROJECT_NAME="print_nanny_webapp"
 GHOST_VERSION ?=4.32-alpine
 
+OPENAPI_GENERATOR_CLI_JAR=$(HOME)/projects/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar
+OPENAPI_CUSTOM_RUST_GENERATOR_JAR=$(HOME)/.m2/repository/org/openapitools/rust-client-openapi-generator/1.0.0/rust-client-openapi-generator-1.0.0.jar
+
 clean-local-requirements:
 	rm -f requirements/local.txt
 
@@ -266,18 +269,8 @@ clean-ts-client:
 clean-rust-client:
 	sudo rm -rf clients/rust
 
-# kotlin-client: clean-kotlin-client
-# 	java -jar $(HOME)/projects/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar  validate \
-# 		-i http://localhost:8000/api/schema --recommend
-
-# 	java -jar $(HOME)/projects/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar  generate \
-# 		-i http://localhost:8000/api/schema \
-# 		-g kotlin \
-# 		-o /local/clients/kotlin \
-# 		-c /local/clients/kotlin.yaml
-
 ts-client: clean-ts-client
-	java -jar $(HOME)/projects/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar  validate \
+	java -jar $(OPENAPI_GENERATOR_CLI_JAR) validate \
 		-i http://localhost:8000/api/schema --recommend
 
 	java -jar $(HOME)/projects/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar  generate \
@@ -290,12 +283,15 @@ ts-client: clean-ts-client
 
 # debugging info: https://openapi-generator.tech/docs/debugging#templates
 rust-client: clean-rust-client
-	java -jar $(HOME)/projects/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar  validate \
+	java -cp "$(OPENAPI_CUSTOM_RUST_GENERATOR_JAR):$(OPENAPI_GENERATOR_CLI_JAR)" \
+		org.openapitools.codegen.OpenAPIGenerator validate \
+		-g rust-client \
 		-i http://localhost:8000/api/schema --recommend 
 
-	java -jar $(HOME)/projects/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar  generate \
+	java -cp "$(OPENAPI_CUSTOM_RUST_GENERATOR_JAR):$(OPENAPI_GENERATOR_CLI_JAR)" \
+		org.openapitools.codegen.OpenAPIGenerator generate \
 		-i http://localhost:8000/api/schema \
-		-g rust \
+		-g rust-client \
 		-o $(PWD)/clients/rust \
 		-c $(PWD)/clients/rust.yaml \
 		-t $(PWD)/client-templates/rust
