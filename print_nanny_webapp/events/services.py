@@ -2,18 +2,21 @@ import logging
 from typing import Dict, Any
 from uuid import uuid4
 import requests
+from asgiref.sync import async_to_sync
+from channels.layers import get_channel_layer
+from django.conf import settings
 from django.apps import apps
 from rest_framework.renderers import JSONRenderer
 from google.cloud import iot_v1 as cloudiot_v1
-from print_nanny_webapp.devices.models import JanusStream
+from print_nanny_webapp.devices.models import CloudiotDevice, JanusStream
 from rest_framework.renderers import JSONRenderer
 from print_nanny_webapp.devices.enum import JanusConfigType
-from django.conf import settings
+from print_nanny_webapp.events.api.serializers import PolymorphicEventSerializer
 
 from .models import WebRTCEvent
 from .enum import WebRTCEventType
 
-
+CloudiotDevice = apps.get_model("devices", "CloudiotDevice")
 Device = apps.get_model("devices", "Device")
 JanusAuth = apps.get_model("devices", "JanusAuth")
 JanusStream = apps.get_model("devices", "JanusStream")
@@ -74,8 +77,50 @@ def janus_cloud_get_or_create_stream(device: Device, auth: JanusAuth) -> JanusSt
     return stream
 
 
+def publish_mqtt_msg(cloudiot: CloudiotDevice, data: str, subfolder=None):
+    """
+    Publish data to MQTT events topic (optional subfolder)
+    """
+    request = cloudiot_v1.types.SendCommandToDeviceRequest(
+        {
+            "name": cloudiot.gcp_resource,
+            "binary_data": data,
+            # NOTE "subfolder" may be added to publish to a subfolder
+            # "subfolder": device.cloudiot.event_topic,
+        }
+    )
+    if subfolder is not None:
+        request.subfolder = subfolder
+
+    response = cloudiot.client.send_command_to_device(request=request)
+    logger.debug(
+        "webrtc_stream_start_success  cloudiot.client.send_command_to_device response %s",
+        response,
+    )
+    return response
+
+
+def publish_channel_msg(events_channel: str, data: str):
+    """
+    Publish data to Django channel (propagated to connected websockets)
+    """
+    channel_layer = get_channel_layer()
+
+    async_to_sync(channel_layer.group_send)(
+        events_channel,
+        {
+            "type": "event.send",
+            # https://github.com/nathantsoi/vue-native-websocket#with-format-json-enabled
+            "data": JSONRenderer().render(data),
+        },
+    )
+
+
 def webrtc_stream_start_success(event: WebRTCEvent):
-    pass
+    serializer = PolymorphicEventSerializer(instance=event)
+    data = JSONRenderer().render(serializer.data)
+    publish_mqtt_msg(event.device, data)
+    publish_channel_msg(event.device.user.events_channel, data)
 
 
 def webrtc_stream_start(event: WebRTCEvent) -> WebRTCEvent:
@@ -113,21 +158,3 @@ def webrtc_stream_start(event: WebRTCEvent) -> WebRTCEvent:
             user=event.user,
         )
         return error_event
-
-
-# def publish_cloudiot_command(event: DeviceEvent):
-#     device: Device = event.device
-#     serializer = PolymorphicEventSerializer(instance=event)
-#     data = JSONRenderer().render(serializer.data)
-#     request = cloudiot_v1.types.SendCommandToDeviceRequest(
-#         {
-#             "name": device.cloudiot.gcp_resource,
-#             "binary_data": data,
-#             # NOTE "subfolder" may be added to publish to a subfolder
-#             # "subfolder": device.cloudiot.event_topic,
-#         }
-#     )
-
-#     response = device.cloudiot.client.send_command_to_device(request=request)
-#     logger.info(f"cloudiot.client.send_command_to_device response {response}")
-#     return response
