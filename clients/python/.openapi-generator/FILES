@@ -167,7 +167,7 @@ git_push.sh
 printnanny_api_client/__init__.py
 printnanny_api_client/api/__init__.py
 printnanny_api_client/api/alerts_api.py
-printnanny_api_client/api/auth__api.py
+printnanny_api_client/api/auth_api.py
 printnanny_api_client/api/auth_api.py
 printnanny_api_client/api/client_config_api.py
 printnanny_api_client/api/devices_api.py
@@ -343,7 +343,6 @@ test/test_alert_request.py
 test/test_alerts_api.py
 test/test_alpha_event_source.py
 test/test_artifact_types_enum.py
-test/test_auth__api.py
 test/test_auth_api.py
 test/test_callback_token_auth_request.py
 test/test_callback_token_verification.py
