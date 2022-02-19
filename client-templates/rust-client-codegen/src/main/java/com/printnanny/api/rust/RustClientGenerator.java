@@ -60,7 +60,7 @@ public class RustClientGenerator extends DefaultCodegen implements CodegenConfig
   }
 
   public String getName() {
-    return "rust";
+    return "custom-rust-client";
   }
 
   public String getHelp() {

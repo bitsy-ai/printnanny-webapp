@@ -285,16 +285,14 @@ ts-client: clean-ts-client
 rust-client: clean-rust-client
 	java -cp "$(OPENAPI_CUSTOM_RUST_GENERATOR_JAR):$(OPENAPI_GENERATOR_CLI_JAR)" \
 		org.openapitools.codegen.OpenAPIGenerator validate \
-		-g rust-client \
 		-i http://localhost:8000/api/schema --recommend 
 
 	java -cp "$(OPENAPI_CUSTOM_RUST_GENERATOR_JAR):$(OPENAPI_GENERATOR_CLI_JAR)" \
 		org.openapitools.codegen.OpenAPIGenerator generate \
 		-i http://localhost:8000/api/schema \
-		-g rust-client \
+		-g custom-rust-client \
 		-o $(PWD)/clients/rust \
 		-c $(PWD)/clients/rust.yaml \
-		-t $(PWD)/client-templates/rust
 
 rust-build: rust-client
 	cd clients/rust && cargo build
