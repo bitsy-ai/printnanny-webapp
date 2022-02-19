@@ -5,7 +5,7 @@ import {
   DEVICE_SCAN_RESULT,
   WIZARD_MODULE
 } from '@/store/wizard'
-import { DEVICE_MODULE, GET_DEVICE, SETUP_COMPLETE } from '@/store/devices'
+import { DEVICE_MODULE, GET_DEVICE } from '@/store/devices'
 import NetworkScanner from '@/components/NetworkScanner'
 import VideoStream from '@/components/VideoStream'
 import { FormWizard, TabContent, WizardButton } from 'vue-form-wizard'
@@ -52,8 +52,7 @@ export default {
   },
   methods: {
     ...mapActions(DEVICE_MODULE, {
-      getDevice: GET_DEVICE,
-      setupComplete: SETUP_COMPLETE
+      getDevice: GET_DEVICE
     }),
     ...mapMutations(WIZARD_MODULE, {
       setScanResult: SET_DEVICE_SCAN_RESULT

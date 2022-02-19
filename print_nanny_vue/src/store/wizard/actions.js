@@ -3,7 +3,6 @@ import {
   APPEND_MQTT_PING_EVENT_LOG
 
 } from './mutations'
-import api from '@/services/devices'
 
 export const CREATE_MQTT_PING_EVENT = 'create_mqtt_ping_event'
 export default {

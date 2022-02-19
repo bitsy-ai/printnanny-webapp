@@ -1,24 +1,23 @@
 import {
-  SET_DEVICE_DATA,
-  SET_JANUS_STREAM_DATA
+  SET_DEVICE_DATA
 } from './mutations'
-import api from '@/services/devices'
+import * as api from 'printnanny-api-client'
 
 export const GET_DEVICE = 'get_device'
-export const SETUP_COMPLETE = 'setup_complete'
-export const GET_OR_CREATE_JANUS_STREAM = 'get_or_create_janus_stream'
 
+const configuration = new api.Configuration({
+  basePath: process.env.BASE_API_URL,
+  baseOptions: {
+    xsrfCookieName: 'csrftoken',
+    xsrfHeaderName: 'X-CSRFTOKEN',
+    withCredentials: true
+  }
+})
 export default {
-  async [SETUP_COMPLETE] ({ commit, state, dispatch }, device) {
-    const res = await api.setupComplete(device)
-    commit(SET_DEVICE_DATA, res)
-  },
   async [GET_DEVICE] ({ commit, state, dispatch }, deviceId) {
-    const res = await api.getDevice(deviceId)
-    commit(SET_DEVICE_DATA, res)
-  },
-  async [GET_OR_CREATE_JANUS_STREAM] ({ commit, state, dispatch }, deviceId) {
-    const res = await api.getOrCreateJanusStream(deviceId)
-    commit(SET_JANUS_STREAM_DATA)
+    const thisapi = api.DevicesApiFactory(configuration)
+    const res = await thisapi.devicesRetrieve(deviceId)
+    console.log('Response to devicesRetrieve', res)
+    commit(SET_DEVICE_DATA, res.data)
   }
 }
