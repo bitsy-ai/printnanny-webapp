@@ -43,7 +43,7 @@ class PolymorphicEventSerializer(PolymorphicSerializer):
 
     resource_type_field_name = "event_type"
     # Model -> Serializer mapping
-    # model_serializer_mapping = {WebRTCEvent: WebRTCEventSerializer}
+    model_serializer_mapping = {WebRTCEvent: WebRTCEventSerializer}
     # resource_type_model_mapping = {e.value: WebRTCEvent for e in WebRTCEventName}
     # resourcetype_map = {
     #     # event_type value -> Model mapping
