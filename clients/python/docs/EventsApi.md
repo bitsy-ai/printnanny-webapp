@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **events_create**
-> PolymorphicEvent events_create(polymorphic_event_request=polymorphic_event_request)
+> PolymorphicEvent events_create(event_request=event_request)
 
 
 
@@ -51,10 +51,10 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.EventsApi(api_client)
-    polymorphic_event_request = printnanny_api_client.PolymorphicEventRequest() # PolymorphicEventRequest |  (optional)
+    event_request = printnanny_api_client.EventRequest() # EventRequest |  (optional)
 
     try:
-        api_response = api_instance.events_create(polymorphic_event_request=polymorphic_event_request)
+        api_response = api_instance.events_create(event_request=event_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling EventsApi->events_create: %s\n" % e)
@@ -93,10 +93,10 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.EventsApi(api_client)
-    polymorphic_event_request = printnanny_api_client.PolymorphicEventRequest() # PolymorphicEventRequest |  (optional)
+    event_request = printnanny_api_client.EventRequest() # EventRequest |  (optional)
 
     try:
-        api_response = api_instance.events_create(polymorphic_event_request=polymorphic_event_request)
+        api_response = api_instance.events_create(event_request=event_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling EventsApi->events_create: %s\n" % e)
@@ -106,7 +106,7 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **polymorphic_event_request** | [**PolymorphicEventRequest**](PolymorphicEventRequest.md)|  | [optional] 
+ **event_request** | [**EventRequest**](EventRequest.md)|  | [optional] 
 
 ### Return type
 

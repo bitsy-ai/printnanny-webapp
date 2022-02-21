@@ -30,6 +30,7 @@ docs/DeviceRequest.md
 docs/DevicesApi.md
 docs/EmailAuthRequest.md
 docs/ErrorDetail.md
+docs/EventRequest.md
 docs/EventSource.md
 docs/EventType.md
 docs/EventsApi.md
@@ -124,7 +125,6 @@ docs/PatchedRemoteControlCommandRequest.md
 docs/PatchedSystemInfoRequest.md
 docs/PatchedUserRequest.md
 docs/PolymorphicEvent.md
-docs/PolymorphicEventRequest.md
 docs/PrintJobEvent.md
 docs/PrintJobEventRequest.md
 docs/PrintNannyApiConfig.md
@@ -203,6 +203,7 @@ src/models/device_release_channel.rs
 src/models/device_request.rs
 src/models/email_auth_request.rs
 src/models/error_detail.rs
+src/models/event_request.rs
 src/models/event_source.rs
 src/models/event_type.rs
 src/models/experiment.rs
@@ -292,7 +293,6 @@ src/models/patched_remote_control_command_request.rs
 src/models/patched_system_info_request.rs
 src/models/patched_user_request.rs
 src/models/polymorphic_event.rs
-src/models/polymorphic_event_request.rs
 src/models/print_job_event.rs
 src/models/print_job_event_request.rs
 src/models/print_nanny_api_config.rs

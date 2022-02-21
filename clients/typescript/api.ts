@@ -843,6 +843,12 @@ export interface ErrorDetail {
     'code': string;
 }
 /**
+ * @type EventRequest
+ * @export
+ */
+export type EventRequest = WebRTCEventRequest;
+
+/**
  * 
  * @export
  * @enum {string}
@@ -4607,12 +4613,6 @@ export interface PatchedUserRequest {
  * @export
  */
 export type PolymorphicEvent = WebRTCEvent;
-
-/**
- * @type PolymorphicEventRequest
- * @export
- */
-export type PolymorphicEventRequest = WebRTCEventRequest;
 
 /**
  * 
@@ -11595,11 +11595,11 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
     return {
         /**
          * Generic events viewset
-         * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
+         * @param {EventRequest} [eventRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        eventsCreate: async (polymorphicEventRequest?: PolymorphicEventRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        eventsCreate: async (eventRequest?: EventRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/events/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -11625,7 +11625,7 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(polymorphicEventRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(eventRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -11723,12 +11723,12 @@ export const EventsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Generic events viewset
-         * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
+         * @param {EventRequest} [eventRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async eventsCreate(polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.eventsCreate(polymorphicEventRequest, options);
+        async eventsCreate(eventRequest?: EventRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.eventsCreate(eventRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -11763,12 +11763,12 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
     return {
         /**
          * Generic events viewset
-         * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
+         * @param {EventRequest} [eventRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        eventsCreate(polymorphicEventRequest?: PolymorphicEventRequest, options?: any): AxiosPromise<PolymorphicEvent> {
-            return localVarFp.eventsCreate(polymorphicEventRequest, options).then((request) => request(axios, basePath));
+        eventsCreate(eventRequest?: EventRequest, options?: any): AxiosPromise<PolymorphicEvent> {
+            return localVarFp.eventsCreate(eventRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Generic events viewset
@@ -11799,12 +11799,12 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
 export interface EventsApiInterface {
     /**
      * Generic events viewset
-     * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
+     * @param {EventRequest} [eventRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    eventsCreate(polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
+    eventsCreate(eventRequest?: EventRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
 
     /**
      * Generic events viewset
@@ -11835,13 +11835,13 @@ export interface EventsApiInterface {
 export class EventsApi extends BaseAPI implements EventsApiInterface {
     /**
      * Generic events viewset
-     * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
+     * @param {EventRequest} [eventRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public eventsCreate(polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig) {
-        return EventsApiFp(this.configuration).eventsCreate(polymorphicEventRequest, options).then((request) => request(this.axios, this.basePath));
+    public eventsCreate(eventRequest?: EventRequest, options?: AxiosRequestConfig) {
+        return EventsApiFp(this.configuration).eventsCreate(eventRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
