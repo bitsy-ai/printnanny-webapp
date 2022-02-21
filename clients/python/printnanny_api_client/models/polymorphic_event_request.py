@@ -38,7 +38,7 @@ class PolymorphicEventRequest(object):
     """
     openapi_types = {
         'source': 'EventSource',
-        'event_type': 'WebRTCEventType',
+        'event_name': 'WebRTCEventName',
         'data': 'dict(str, object)',
         'device': 'int',
         'stream': 'int'
@@ -46,7 +46,7 @@ class PolymorphicEventRequest(object):
 
     attribute_map = {
         'source': 'source',
-        'event_type': 'event_type',
+        'event_name': 'event_name',
         'data': 'data',
         'device': 'device',
         'stream': 'stream'
@@ -55,21 +55,21 @@ class PolymorphicEventRequest(object):
     discriminator_value_class_map = {
     }
 
-    def __init__(self, source=None, event_type=None, data=None, device=None, stream=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, source=None, event_name=None, data=None, device=None, stream=None, local_vars_configuration=None):  # noqa: E501
         """PolymorphicEventRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._source = None
-        self._event_type = None
+        self._event_name = None
         self._data = None
         self._device = None
         self._stream = None
         self.discriminator = 'event_type'
 
         self.source = source
-        self.event_type = event_type
+        self.event_name = event_name
         if data is not None:
             self.data = data
         self.device = device
@@ -99,27 +99,27 @@ class PolymorphicEventRequest(object):
         self._source = source
 
     @property
-    def event_type(self):
-        """Gets the event_type of this PolymorphicEventRequest.  # noqa: E501
+    def event_name(self):
+        """Gets the event_name of this PolymorphicEventRequest.  # noqa: E501
 
 
-        :return: The event_type of this PolymorphicEventRequest.  # noqa: E501
-        :rtype: WebRTCEventType
+        :return: The event_name of this PolymorphicEventRequest.  # noqa: E501
+        :rtype: WebRTCEventName
         """
-        return self._event_type
+        return self._event_name
 
-    @event_type.setter
-    def event_type(self, event_type):
-        """Sets the event_type of this PolymorphicEventRequest.
+    @event_name.setter
+    def event_name(self, event_name):
+        """Sets the event_name of this PolymorphicEventRequest.
 
 
-        :param event_type: The event_type of this PolymorphicEventRequest.  # noqa: E501
-        :type event_type: WebRTCEventType
+        :param event_name: The event_name of this PolymorphicEventRequest.  # noqa: E501
+        :type event_name: WebRTCEventName
         """
-        if self.local_vars_configuration.client_side_validation and event_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and event_name is None:  # noqa: E501
+            raise ValueError("Invalid value for `event_name`, must not be `None`")  # noqa: E501
 
-        self._event_type = event_type
+        self._event_name = event_name
 
     @property
     def data(self):

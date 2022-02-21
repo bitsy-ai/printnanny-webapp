@@ -1,4 +1,4 @@
-# WebRTCEventType
+# WebRTCEventName
 
 
 ## Properties

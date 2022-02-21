@@ -8,13 +8,13 @@ from .services import (
     webrtc_stream_start,
     # webrtc_stream_start_success,
 )
-from .enum import WebRTCEventType
+from .enum import WebRTCEventName
 
 logger = logging.getLogger(__name__)
 
 created_handlers: Dict[Tuple, Callable] = {
-    WebRTCEventType.STREAM_START: webrtc_stream_start,
-    # WebRTCEventType.STREAM_START_SUCCESS: webrtc_stream_start_success,
+    WebRTCEventName.STREAM_START: webrtc_stream_start,
+    # WebRTCEventName.STREAM_START_SUCCESS: webrtc_stream_start_success,
 }
 
 

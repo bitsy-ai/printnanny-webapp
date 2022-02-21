@@ -38,7 +38,7 @@ class TestWebRTCEventRequest(unittest.TestCase):
         if include_optional :
             return WebRTCEventRequest(
                 source = 'octoprint', 
-                event_type = 'stream_start', 
+                event_name = 'stream_start', 
                 data = {
                     'key' : null
                     }, 
@@ -48,7 +48,7 @@ class TestWebRTCEventRequest(unittest.TestCase):
         else :
             return WebRTCEventRequest(
                 source = 'octoprint',
-                event_type = 'stream_start',
+                event_name = 'stream_start',
                 device = 56,
         )
 

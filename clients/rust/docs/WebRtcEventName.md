@@ -1,4 +1,4 @@
-# WebRtcEventType
+# WebRtcEventName
 
 ## Properties
 

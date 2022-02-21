@@ -1,5 +1,6 @@
 import logging
 from channels.generic.websocket import AsyncJsonWebsocketConsumer
+from rest_framework.renderers import JSONRenderer
 
 logger = logging.getLogger(__name__)
 
@@ -36,12 +37,4 @@ class EventConsumer(AsyncJsonWebsocketConsumer):
         .mutation - automatically call SOCKET_[mutation value]
         .action - automatically call action
         """
-        event["namespace"] = self.EVENTS_NAMESPACE
-        event["mutation"] = self.EVENTS_MUTATION
-        logger.info(
-            "Sending event scope=%s group_name=%s event=%s",
-            self.scope,
-            self.group_name,
-            event,
-        )
-        await self.send_json(event)
+        await self.send(bytes_data=event)

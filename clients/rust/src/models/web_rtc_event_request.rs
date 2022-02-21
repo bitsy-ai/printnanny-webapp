@@ -15,8 +15,8 @@
 pub struct WebRtcEventRequest {
     #[serde(rename = "source")]
     pub source: crate::models::EventSource,
-    #[serde(rename = "event_type")]
-    pub event_type: crate::models::WebRtcEventType,
+    #[serde(rename = "event_name")]
+    pub event_name: crate::models::WebRtcEventName,
     #[serde(rename = "data", skip_serializing_if = "Option::is_none")]
     pub data: Option<::std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "device")]
@@ -26,10 +26,10 @@ pub struct WebRtcEventRequest {
 }
 
 impl WebRtcEventRequest {
-    pub fn new(source: crate::models::EventSource, event_type: crate::models::WebRtcEventType, device: i32) -> WebRtcEventRequest {
+    pub fn new(source: crate::models::EventSource, event_name: crate::models::WebRtcEventName, device: i32) -> WebRtcEventRequest {
         WebRtcEventRequest {
             source,
-            event_type,
+            event_name,
             data: None,
             device,
             stream: None,
