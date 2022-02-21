@@ -464,12 +464,11 @@ SPECTACULAR_SETTINGS = {
         'OctoJobEvent': 'print_nanny_webapp.telemetry.types.PrintJobEventType',
         'OctoPrinterEvent': 'print_nanny_webapp.telemetry.types.PrinterEventType',
         'AlphaEventSource': 'print_nanny_webapp.telemetry.types.EventSource',
-        'EventSource': 'print_nanny_webapp.events.enum.EventSource',
-        'EventStatus': 'print_nanny_webapp.events.enum.EventStatus',
-        'EventModel': 'print_nanny_webapp.events.enum.EventModel',
 
         # begin webrtc event types
         'WebRTCEventType': 'print_nanny_webapp.events.enum.WebRTCEventType',
+        'EventModel': 'print_nanny_webapp.events.enum.EventModel',
+        'EventSource': 'print_nanny_webapp.events.enum.EventSource',
     },
     'TITLE': 'printnanny-api-client',
     'DESCRIPTION': 'Official API client library for print-nanny.com',

@@ -1,6 +1,10 @@
 from django.db import models
 
 
+class EventModel(models.TextChoices):
+    WebRTCEvent = "WebRTCEvent"
+
+
 class WebRTCEventType(models.TextChoices):
     STREAM_START = (
         "stream_start",
