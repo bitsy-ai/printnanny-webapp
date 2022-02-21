@@ -14,6 +14,7 @@ User = get_user_model()
 
 class EventSerializer(serializers.ModelSerializer):
     event_type = serializers.ChoiceField(choices=EventType.choices)
+
     source = serializers.ChoiceField(choices=EventSource.choices)
 
     class Meta:
@@ -23,13 +24,12 @@ class EventSerializer(serializers.ModelSerializer):
 
 
 class WebRTCEventSerializer(serializers.ModelSerializer):
-    # event_type = serializers.ChoiceField(choices=WebRTCEventName.choices)
-    # device = serializers.PrimaryKeyRelatedField(queryset=Device.objects.all())
+    event_type = serializers.ChoiceField(choices=[EventType.WebRTCEvent])
 
     class Meta:
         model = WebRTCEvent
         fields = "__all__"
-        read_only_fields = ("user", "created_dt")
+        read_only_fields = ("user", "created_dt", "stream")
 
 
 class PolymorphicEventSerializer(PolymorphicSerializer):
