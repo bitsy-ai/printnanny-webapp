@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.web_rtc_event_request import WebRTCEventRequest  # noqa: E501
+from printnanny_api_client.models.event_type import EventType  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestWebRTCEventRequest(unittest.TestCase):
-    """WebRTCEventRequest unit test stubs"""
+class TestEventType(unittest.TestCase):
+    """EventType unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,31 +30,20 @@ class TestWebRTCEventRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test WebRTCEventRequest
+        """Test EventType
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.web_rtc_event_request.WebRTCEventRequest()  # noqa: E501
+        # model = printnanny_api_client.models.event_type.EventType()  # noqa: E501
         if include_optional :
-            return WebRTCEventRequest(
-                event_type = 'WebRTCEvent', 
-                source = 'octoprint', 
-                event_name = 'stream_start', 
-                data = {
-                    'key' : null
-                    }, 
-                device = 56
+            return EventType(
             )
         else :
-            return WebRTCEventRequest(
-                event_type = 'WebRTCEvent',
-                source = 'octoprint',
-                event_name = 'stream_start',
-                device = 56,
+            return EventType(
         )
 
-    def testWebRTCEventRequest(self):
-        """Test WebRTCEventRequest"""
+    def testEventType(self):
+        """Test EventType"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

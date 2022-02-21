@@ -12,6 +12,8 @@
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct WebRtcEventRequest {
+        #[serde(rename = "event_type")]
+        pub event_type: crate::models::EventType,
         #[serde(rename = "source")]
         pub source: crate::models::EventSource,
         #[serde(rename = "event_name")]
@@ -20,8 +22,6 @@ pub struct WebRtcEventRequest {
         pub data: Option<::std::collections::HashMap<String, serde_json::Value>>,
         #[serde(rename = "device")]
         pub device: i32,
-        #[serde(rename = "stream", skip_serializing_if = "Option::is_none")]
-        pub stream: Option<i32>,
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]

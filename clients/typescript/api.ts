@@ -861,6 +861,19 @@ export type EventSource = typeof EventSource[keyof typeof EventSource];
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export const EventType = {
+    WebRtcEvent: 'WebRTCEvent'
+} as const;
+
+export type EventType = typeof EventType[keyof typeof EventType];
+
+
+/**
+ * 
+ * @export
  * @interface Experiment
  */
 export interface Experiment {
@@ -6577,6 +6590,12 @@ export interface WebRTCEvent {
     'id': number;
     /**
      * 
+     * @type {EventType}
+     * @memberof WebRTCEvent
+     */
+    'event_type': EventType;
+    /**
+     * 
      * @type {string}
      * @memberof WebRTCEvent
      */
@@ -6628,7 +6647,7 @@ export interface WebRTCEvent {
      * @type {number}
      * @memberof WebRTCEvent
      */
-    'stream'?: number | null;
+    'stream': number | null;
 }
 /**
  * 
@@ -6656,6 +6675,12 @@ export type WebRTCEventName = typeof WebRTCEventName[keyof typeof WebRTCEventNam
 export interface WebRTCEventRequest {
     /**
      * 
+     * @type {EventType}
+     * @memberof WebRTCEventRequest
+     */
+    'event_type': EventType;
+    /**
+     * 
      * @type {EventSource}
      * @memberof WebRTCEventRequest
      */
@@ -6678,12 +6703,6 @@ export interface WebRTCEventRequest {
      * @memberof WebRTCEventRequest
      */
     'device': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof WebRTCEventRequest
-     */
-    'stream'?: number | null;
 }
 
 /**
