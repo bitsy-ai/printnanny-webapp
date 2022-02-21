@@ -31,6 +31,7 @@ docs/DevicesApi.md
 docs/EmailAuthRequest.md
 docs/ErrorDetail.md
 docs/EventSource.md
+docs/EventType.md
 docs/EventsApi.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
@@ -203,6 +204,7 @@ src/models/device_request.rs
 src/models/email_auth_request.rs
 src/models/error_detail.rs
 src/models/event_source.rs
+src/models/event_type.rs
 src/models/experiment.rs
 src/models/experiment_device_config.rs
 src/models/gcode_file.rs

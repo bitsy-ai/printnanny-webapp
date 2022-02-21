@@ -14,6 +14,8 @@
 pub struct WebRtcEvent {
         #[serde(rename = "id")]
         pub id: i32,
+        #[serde(rename = "event_type")]
+        pub event_type: crate::models::EventType,
         #[serde(rename = "deleted")]
         pub deleted: String,
         #[serde(rename = "created_dt")]
@@ -30,7 +32,7 @@ pub struct WebRtcEvent {
         pub user: i32,
         #[serde(rename = "device")]
         pub device: i32,
-        #[serde(rename = "stream", skip_serializing_if = "Option::is_none")]
+        #[serde(rename = "stream")]
         pub stream: Option<i32>,
 }
 

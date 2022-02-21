@@ -33,6 +33,7 @@ docs/DevicesApi.md
 docs/EmailAuthRequest.md
 docs/ErrorDetail.md
 docs/EventSource.md
+docs/EventType.md
 docs/EventsApi.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
@@ -209,6 +210,7 @@ printnanny_api_client/models/device_request.py
 printnanny_api_client/models/email_auth_request.py
 printnanny_api_client/models/error_detail.py
 printnanny_api_client/models/event_source.py
+printnanny_api_client/models/event_type.py
 printnanny_api_client/models/experiment.py
 printnanny_api_client/models/experiment_device_config.py
 printnanny_api_client/models/gcode_file.py
@@ -364,6 +366,7 @@ test/test_devices_api.py
 test/test_email_auth_request.py
 test/test_error_detail.py
 test/test_event_source.py
+test/test_event_type.py
 test/test_events_api.py
 test/test_experiment.py
 test/test_experiment_device_config.py

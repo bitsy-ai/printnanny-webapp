@@ -37,40 +37,63 @@ class WebRTCEventRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
+        'event_type': 'EventType',
         'source': 'EventSource',
         'event_name': 'WebRTCEventName',
         'data': 'dict(str, object)',
-        'device': 'int',
-        'stream': 'int'
+        'device': 'int'
     }
 
     attribute_map = {
+        'event_type': 'event_type',
         'source': 'source',
         'event_name': 'event_name',
         'data': 'data',
-        'device': 'device',
-        'stream': 'stream'
+        'device': 'device'
     }
 
-    def __init__(self, source=None, event_name=None, data=None, device=None, stream=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, event_type=None, source=None, event_name=None, data=None, device=None, local_vars_configuration=None):  # noqa: E501
         """WebRTCEventRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
+        self._event_type = None
         self._source = None
         self._event_name = None
         self._data = None
         self._device = None
-        self._stream = None
         self.discriminator = None
 
+        self.event_type = event_type
         self.source = source
         self.event_name = event_name
         if data is not None:
             self.data = data
         self.device = device
-        self.stream = stream
+
+    @property
+    def event_type(self):
+        """Gets the event_type of this WebRTCEventRequest.  # noqa: E501
+
+
+        :return: The event_type of this WebRTCEventRequest.  # noqa: E501
+        :rtype: EventType
+        """
+        return self._event_type
+
+    @event_type.setter
+    def event_type(self, event_type):
+        """Sets the event_type of this WebRTCEventRequest.
+
+
+        :param event_type: The event_type of this WebRTCEventRequest.  # noqa: E501
+        :type event_type: EventType
+        """
+        if self.local_vars_configuration.client_side_validation and event_type is None:  # noqa: E501
+            raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
+
+        self._event_type = event_type
 
     @property
     def source(self):
@@ -161,27 +184,6 @@ class WebRTCEventRequest(object):
             raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
 
         self._device = device
-
-    @property
-    def stream(self):
-        """Gets the stream of this WebRTCEventRequest.  # noqa: E501
-
-
-        :return: The stream of this WebRTCEventRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._stream
-
-    @stream.setter
-    def stream(self, stream):
-        """Sets the stream of this WebRTCEventRequest.
-
-
-        :param stream: The stream of this WebRTCEventRequest.  # noqa: E501
-        :type stream: int
-        """
-
-        self._stream = stream
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

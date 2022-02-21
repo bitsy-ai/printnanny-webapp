@@ -46,6 +46,8 @@ pub mod error_detail;
 pub use self::error_detail::ErrorDetail;
 pub mod event_source;
 pub use self::event_source::EventSource;
+pub mod event_type;
+pub use self::event_type::EventType;
 pub mod experiment;
 pub use self::experiment::Experiment;
 pub mod experiment_device_config;
