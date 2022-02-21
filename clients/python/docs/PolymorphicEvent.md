@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **deleted** | **datetime** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
 **source** | [**EventSource**](EventSource.md) |  | 
-**event_type** | [**WebRTCEventType**](WebRTCEventType.md) |  | 
+**event_name** | [**WebRTCEventName**](WebRTCEventName.md) |  | 
 **data** | **dict(str, object)** |  | [optional] 
 **polymorphic_ctype** | **int** |  | [readonly] 
 **user** | **int** |  | [readonly] 

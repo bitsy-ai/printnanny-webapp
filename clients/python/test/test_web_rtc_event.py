@@ -41,7 +41,7 @@ class TestWebRTCEvent(unittest.TestCase):
                 deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 source = 'octoprint', 
-                event_type = 'stream_start', 
+                event_name = 'stream_start', 
                 data = {
                     'key' : null
                     }, 
@@ -56,7 +56,7 @@ class TestWebRTCEvent(unittest.TestCase):
                 deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 source = 'octoprint',
-                event_type = 'stream_start',
+                event_name = 'stream_start',
                 polymorphic_ctype = 56,
                 user = 56,
                 device = 56,

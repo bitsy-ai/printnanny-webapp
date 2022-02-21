@@ -157,5 +157,5 @@ from printnanny_api_client.models.token_response import TokenResponse
 from printnanny_api_client.models.user import User
 from printnanny_api_client.models.user_request import UserRequest
 from printnanny_api_client.models.web_rtc_event import WebRTCEvent
+from printnanny_api_client.models.web_rtc_event_name import WebRTCEventName
 from printnanny_api_client.models.web_rtc_event_request import WebRTCEventRequest
-from printnanny_api_client.models.web_rtc_event_type import WebRTCEventType

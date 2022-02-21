@@ -6595,10 +6595,10 @@ export interface WebRTCEvent {
     'source': EventSource;
     /**
      * 
-     * @type {WebRTCEventType}
+     * @type {WebRTCEventName}
      * @memberof WebRTCEvent
      */
-    'event_type': WebRTCEventType;
+    'event_name': WebRTCEventName;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -6633,6 +6633,24 @@ export interface WebRTCEvent {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export const WebRTCEventName = {
+    Start: 'stream_start',
+    StartSuccess: 'stream_start_success',
+    StartError: 'stream_start_error',
+    Stop: 'stream_stop',
+    StopSuccess: 'stream_stop_success',
+    StopError: 'stream_stop_error'
+} as const;
+
+export type WebRTCEventName = typeof WebRTCEventName[keyof typeof WebRTCEventName];
+
+
+/**
+ * 
+ * @export
  * @interface WebRTCEventRequest
  */
 export interface WebRTCEventRequest {
@@ -6644,10 +6662,10 @@ export interface WebRTCEventRequest {
     'source': EventSource;
     /**
      * 
-     * @type {WebRTCEventType}
+     * @type {WebRTCEventName}
      * @memberof WebRTCEventRequest
      */
-    'event_type': WebRTCEventType;
+    'event_name': WebRTCEventName;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -6667,24 +6685,6 @@ export interface WebRTCEventRequest {
      */
     'stream'?: number | null;
 }
-/**
- * 
- * @export
- * @enum {string}
- */
-
-export const WebRTCEventType = {
-    Start: 'stream_start',
-    StartSuccess: 'stream_start_success',
-    StartError: 'stream_start_error',
-    Stop: 'stream_stop',
-    StopSuccess: 'stream_stop_success',
-    StopError: 'stream_stop_error'
-} as const;
-
-export type WebRTCEventType = typeof WebRTCEventType[keyof typeof WebRTCEventType];
-
-
 
 /**
  * AlertsApi - axios parameter creator
