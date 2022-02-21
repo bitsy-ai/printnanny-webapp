@@ -14,7 +14,6 @@ User = get_user_model()
 
 
 class EventSerializer(serializers.ModelSerializer):
-    event_type = serializers.ChoiceField(choices=EventType.choices)
     source = serializers.ChoiceField(choices=EventSource.choices)
 
     class Meta:
@@ -44,13 +43,13 @@ class PolymorphicEventSerializer(PolymorphicSerializer):
     # Model -> Serializer mapping
     model_serializer_mapping = {WebRTCEvent: WebRTCEventSerializer}
 
-    def to_representation(self, instance):
-        if isinstance(instance, Mapping):
-            resource_type = self._get_resource_type_from_mapping(instance)
-            serializer = self._get_serializer_from_resource_type(resource_type)
-        else:
-            resource_type = self.to_resource_type(instance)
-            serializer = self._get_serializer_from_model_or_instance(instance)
+    # def to_representation(self, instance):
+    #     if isinstance(instance, Mapping):
+    #         resource_type = self._get_resource_type_from_mapping(instance)
+    #         serializer = self._get_serializer_from_resource_type(resource_type)
+    #     else:
+    #         resource_type = self.to_resource_type(instance)
+    #         serializer = self._get_serializer_from_model_or_instance(instance)
 
-        ret = serializer.to_representation(instance)
-        return ret
+    #     ret = serializer.to_representation(instance)
+    #     return ret
