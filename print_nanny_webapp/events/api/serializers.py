@@ -14,7 +14,6 @@ User = get_user_model()
 
 class EventSerializer(serializers.ModelSerializer):
     event_type = serializers.ChoiceField(choices=EventType.choices)
-
     source = serializers.ChoiceField(choices=EventSource.choices)
 
     class Meta:
