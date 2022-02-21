@@ -12,8 +12,6 @@
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct WebRtcEventRequest {
-        #[serde(rename = "event_type")]
-        pub event_type: crate::models::EventType,
         #[serde(rename = "source")]
         pub source: crate::models::EventSource,
         #[serde(rename = "event_name")]
