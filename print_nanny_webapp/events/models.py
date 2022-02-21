@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from polymorphic.models import PolymorphicModel
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
-from .enum import EventSource, WebRTCEventName
+from .enum import EventSource, WebRTCEventName, EventType
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
@@ -29,6 +29,8 @@ class WebRTCEvent(Event):
     """
     Events related to WebRTC and PrintNanny video monitoring system
     """
+
+    event_type = EventType.WebRTCEvent
 
     class Meta:
         index_together = [["device", "stream", "event_name"]]

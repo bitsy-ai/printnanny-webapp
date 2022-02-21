@@ -41,7 +41,7 @@ class PolymorphicEventSerializer(PolymorphicSerializer):
     The default PolymorphicSerializer behavior discards the resourcetype field (event_type in this case) and does not save with the model
     """
 
-    resource_type_field_name = "model"
+    resource_type_field_name = "event_type"
     # Model -> Serializer mapping
     # model_serializer_mapping = {WebRTCEvent: WebRTCEventSerializer}
     # resource_type_model_mapping = {e.value: WebRTCEvent for e in WebRTCEventName}
