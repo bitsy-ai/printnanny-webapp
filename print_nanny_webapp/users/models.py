@@ -155,7 +155,7 @@ class User(AbstractUser):
         return self.email
 
     @property
-    def event_channel(self) -> str:
+    def events_channel(self) -> str:
         return f"events_{self.id}"
 
     # @property

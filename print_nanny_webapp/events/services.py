@@ -6,7 +6,7 @@ from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 from django.conf import settings
 from django.apps import apps
-from rest_framework.renderers import JSONRenderer
+from rest_framework.renderers import JSONOpenAPIRenderer
 from google.cloud import iot_v1 as cloudiot_v1
 from print_nanny_webapp.devices.models import CloudiotDevice, JanusStream
 from rest_framework.renderers import JSONRenderer
@@ -110,17 +110,9 @@ def publish_channel_msg(events_channel: str, data: str):
         events_channel,
         {
             "type": "event.send",
-            # https://github.com/nathantsoi/vue-native-websocket#with-format-json-enabled
-            "data": JSONRenderer().render(data),
+            "data": JSONOpenAPIRenderer().render(data),
         },
     )
-
-
-# def webrtc_stream_start_success(event: WebRTCEvent):
-#     serializer = PolymorphicEventSerializer(instance=event)
-#     data = JSONRenderer().render(serializer.data)
-#     publish_mqtt_msg(event.device.cloudiot, data)
-#     publish_channel_msg(event.device.user.events_channel, data)
 
 
 def broadcast_event(event: Event):
