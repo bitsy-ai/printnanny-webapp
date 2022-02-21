@@ -4,7 +4,7 @@ from drf_spectacular.utils import (
     extend_schema_view,
 )
 from django.apps import apps
-
+from drf_spectacular.utils import PolymorphicProxySerializer
 from rest_framework.exceptions import PermissionDenied
 from rest_framework import status
 from rest_framework.response import Response
@@ -22,7 +22,7 @@ from print_nanny_webapp.utils.api.views import (
 )
 from print_nanny_webapp.utils.permissions import IsObjectOwner
 from print_nanny_webapp.events.models import Event
-from .serializers import PolymorphicEventSerializer
+from .serializers import PolymorphicEventSerializer, WebRTCEventSerializer
 
 Device = apps.get_model("devices", "Device")
 
@@ -39,7 +39,11 @@ logger = logging.getLogger(__name__)
     ),
     create=extend_schema(
         tags=["events"],
-        request=PolymorphicEventSerializer,
+        request=PolymorphicProxySerializer(
+            component_name="Event",
+            serializers=[WebRTCEventSerializer],
+            resource_type_field_name="event_type",
+        ),
         responses={
             201: PolymorphicEventSerializer,
         }
@@ -47,7 +51,11 @@ logger = logging.getLogger(__name__)
     ),
     retrieve=extend_schema(
         tags=["events"],
-        request=PolymorphicEventSerializer,
+        request=PolymorphicProxySerializer(
+            component_name="Event",
+            serializers=[WebRTCEventSerializer],
+            resource_type_field_name="event_type",
+        ),
         responses={
             200: PolymorphicEventSerializer,
         }
