@@ -12,7 +12,7 @@ from print_nanny_webapp.devices.models import CloudiotDevice, JanusStream
 from print_nanny_webapp.devices.enum import JanusConfigType
 from print_nanny_webapp.events.api.serializers import PolymorphicEventSerializer
 from .models import WebRTCEvent, Event
-from .enum import WebRTCEventType
+from .enum import WebRTCEventName
 
 CloudiotDevice = apps.get_model("devices", "CloudiotDevice")
 Device = apps.get_model("devices", "Device")
@@ -170,7 +170,7 @@ def webrtc_stream_start(event: WebRTCEvent) -> WebRTCEvent:
     except Exception as e:
         logger.error("Error handling event=%s error=%s", event.__dict__, e)
         error_event = WebRTCEvent.objects.create(
-            event_type=WebRTCEventType.STREAM_START_ERROR,
+            event_type=WebRTCEventName.STREAM_START_ERROR,
             device=event.device,
             user=event.user,
         )

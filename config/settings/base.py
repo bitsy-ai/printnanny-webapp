@@ -466,8 +466,8 @@ SPECTACULAR_SETTINGS = {
         'AlphaEventSource': 'print_nanny_webapp.telemetry.types.EventSource',
 
         # begin webrtc event types
-        'WebRTCEventType': 'print_nanny_webapp.events.enum.WebRTCEventType',
-        'EventModel': 'print_nanny_webapp.events.enum.EventModel',
+        'WebRTCEventName': 'print_nanny_webapp.events.enum.WebRTCEventName',
+        'EventType': 'print_nanny_webapp.events.enum.EventType',
         'EventSource': 'print_nanny_webapp.events.enum.EventSource',
     },
     'TITLE': 'printnanny-api-client',

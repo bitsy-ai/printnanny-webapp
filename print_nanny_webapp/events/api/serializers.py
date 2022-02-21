@@ -5,7 +5,7 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from rest_polymorphic.serializers import PolymorphicSerializer
 from print_nanny_webapp.events.models import Event, WebRTCEvent
-from print_nanny_webapp.events.enum import EventSource, WebRTCEventType
+from print_nanny_webapp.events.enum import EventSource, WebRTCEventName
 from rest_framework.fields import empty
 
 logger = logging.getLogger(__name__)
@@ -24,7 +24,7 @@ class EventSerializer(serializers.ModelSerializer):
 
 
 class WebRTCEventSerializer(serializers.ModelSerializer):
-    # event_type = serializers.ChoiceField(choices=WebRTCEventType.choices)
+    # event_type = serializers.ChoiceField(choices=WebRTCEventName.choices)
     # device = serializers.PrimaryKeyRelatedField(queryset=Device.objects.all())
 
     class Meta:
@@ -44,11 +44,11 @@ class PolymorphicEventSerializer(PolymorphicSerializer):
     resource_type_field_name = "model"
     # Model -> Serializer mapping
     # model_serializer_mapping = {WebRTCEvent: WebRTCEventSerializer}
-    # resource_type_model_mapping = {e.value: WebRTCEvent for e in WebRTCEventType}
+    # resource_type_model_mapping = {e.value: WebRTCEvent for e in WebRTCEventName}
     # resourcetype_map = {
     #     # event_type value -> Model mapping
     #     e.value: WebRTCEvent.__name__
-    #     for e in WebRTCEventType
+    #     for e in WebRTCEventName
     # }
 
     # def __init__(self, *args, **kwargs):

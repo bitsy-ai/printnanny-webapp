@@ -16,7 +16,7 @@ export default {
   async [STREAM_START](context: any, device: number) {
     const thisapi = api.EventsApiFactory(configuration)
     const req: api.WebRTCEventRequest = {
-      event_type: api.WebRTCEventType.Start,
+      event_type: api.WebRTCEventName.Start,
       device: device,
       source: api.EventSource.PrintnannyWebapp
     }
@@ -27,7 +27,7 @@ export default {
   async [STREAM_STOP](context: any, device: number) {
     const thisapi = api.EventsApiFactory(configuration)
     const req = {
-      event_type: api.WebRTCEventType.Stop,
+      event_type: api.WebRTCEventName.Stop,
       device: device,
       source: api.EventSource.PrintnannyWebapp
     }

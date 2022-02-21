@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from polymorphic.models import PolymorphicModel
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
-from .enum import EventSource, WebRTCEventType
+from .enum import EventSource, WebRTCEventName
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
@@ -31,9 +31,9 @@ class WebRTCEvent(Event):
     """
 
     class Meta:
-        index_together = [["device", "stream", "event_type"]]
+        index_together = [["device", "stream", "event_name"]]
 
-    event_type = models.CharField(max_length=32, choices=WebRTCEventType.choices)
+    event_name = models.CharField(max_length=32, choices=WebRTCEventName.choices)
     device = models.ForeignKey(
         "devices.Device", on_delete=models.CASCADE, related_name="events"
     )
