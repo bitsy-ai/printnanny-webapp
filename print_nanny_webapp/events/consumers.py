@@ -44,4 +44,4 @@ class EventConsumer(AsyncJsonWebsocketConsumer):
             self.group_name,
             event,
         )
-        await self.send(text_data=event)
+        await self.send_json(event)

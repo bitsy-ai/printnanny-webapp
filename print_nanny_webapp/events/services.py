@@ -6,13 +6,11 @@ from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 from django.conf import settings
 from django.apps import apps
-from rest_framework.renderers import JSONOpenAPIRenderer
 from google.cloud import iot_v1 as cloudiot_v1
 from print_nanny_webapp.devices.models import CloudiotDevice, JanusStream
-from rest_framework.renderers import JSONRenderer
 from print_nanny_webapp.devices.enum import JanusConfigType
 from print_nanny_webapp.events.api.serializers import PolymorphicEventSerializer
-
+from print_nanny_webapp.utils.api.serializers import JSONWebSocketRenderer
 from .models import WebRTCEvent, Event
 from .enum import WebRTCEventType
 
@@ -110,7 +108,7 @@ def publish_channel_msg(events_channel: str, data: str):
         events_channel,
         {
             "type": "event.send",
-            "data": JSONOpenAPIRenderer().render(data),
+            "data": data,
         },
     )
 
@@ -123,7 +121,7 @@ def broadcast_event(event: Event):
     /devices/:id/commands/# MQTT command topic - receives all Events with Event.device set
     """
     serializer = PolymorphicEventSerializer(instance=event)
-    data = JSONRenderer().render(serializer.data)
+    data = JSONWebSocketRenderer().render(serializer.data)
 
     publish_channel_msg(event.device.user.events_channel, data)
     logger.info("Published event %s to Django channel", event)
