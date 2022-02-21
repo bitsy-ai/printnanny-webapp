@@ -26,8 +26,8 @@ pub struct WebRtcEventRequest {
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(tag = "event_type")]
-pub enum EventRequest {
-    #[serde(rename="null")]
+pub enum PolymorphicEventRequest {
+    #[serde(rename="WebRTCEvent")]
     WebRtcEventRequest(WebRtcEventRequest),
 }
 

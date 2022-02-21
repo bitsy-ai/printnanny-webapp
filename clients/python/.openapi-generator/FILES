@@ -32,7 +32,6 @@ docs/DeviceRequest.md
 docs/DevicesApi.md
 docs/EmailAuthRequest.md
 docs/ErrorDetail.md
-docs/EventRequest.md
 docs/EventSource.md
 docs/EventType.md
 docs/EventsApi.md
@@ -127,6 +126,7 @@ docs/PatchedRemoteControlCommandRequest.md
 docs/PatchedSystemInfoRequest.md
 docs/PatchedUserRequest.md
 docs/PolymorphicEvent.md
+docs/PolymorphicEventRequest.md
 docs/PrintJobEvent.md
 docs/PrintJobEventRequest.md
 docs/PrintNannyApiConfig.md
@@ -209,7 +209,6 @@ printnanny_api_client/models/device_release_channel.py
 printnanny_api_client/models/device_request.py
 printnanny_api_client/models/email_auth_request.py
 printnanny_api_client/models/error_detail.py
-printnanny_api_client/models/event_request.py
 printnanny_api_client/models/event_source.py
 printnanny_api_client/models/event_type.py
 printnanny_api_client/models/experiment.py
@@ -298,6 +297,7 @@ printnanny_api_client/models/patched_remote_control_command_request.py
 printnanny_api_client/models/patched_system_info_request.py
 printnanny_api_client/models/patched_user_request.py
 printnanny_api_client/models/polymorphic_event.py
+printnanny_api_client/models/polymorphic_event_request.py
 printnanny_api_client/models/print_job_event.py
 printnanny_api_client/models/print_job_event_request.py
 printnanny_api_client/models/print_nanny_api_config.py
@@ -365,7 +365,6 @@ test/test_device_request.py
 test/test_devices_api.py
 test/test_email_auth_request.py
 test/test_error_detail.py
-test/test_event_request.py
 test/test_event_source.py
 test/test_event_type.py
 test/test_events_api.py
@@ -460,6 +459,7 @@ test/test_patched_remote_control_command_request.py
 test/test_patched_system_info_request.py
 test/test_patched_user_request.py
 test/test_polymorphic_event.py
+test/test_polymorphic_event_request.py
 test/test_print_job_event.py
 test/test_print_job_event_request.py
 test/test_print_nanny_api_config.py

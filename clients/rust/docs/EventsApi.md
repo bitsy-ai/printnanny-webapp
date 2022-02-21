@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## events_create
 
-> crate::models::PolymorphicEvent events_create(event_request)
+> crate::models::PolymorphicEvent events_create(polymorphic_event_request)
 
 
 Generic events viewset
@@ -22,7 +22,7 @@ Generic events viewset
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**event_request** | Option<[**EventRequest**](EventRequest.md)> |  |  |
+**polymorphic_event_request** | Option<[**PolymorphicEventRequest**](PolymorphicEventRequest.md)> |  |  |
 
 ### Return type
 
