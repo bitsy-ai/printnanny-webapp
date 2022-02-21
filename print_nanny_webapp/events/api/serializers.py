@@ -19,8 +19,8 @@ class EventSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Event
+        exclude = ("deleted",)
         read_only_fields = ("user", "created_dt")
-        fields = "__all__"
 
 
 class WebRTCEventSerializer(serializers.ModelSerializer):
@@ -28,7 +28,7 @@ class WebRTCEventSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = WebRTCEvent
-        fields = "__all__"
+        exclude = ("deleted",)
         read_only_fields = ("user", "created_dt", "stream")
 
 
