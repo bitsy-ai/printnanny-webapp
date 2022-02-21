@@ -16,8 +16,6 @@ pub struct WebRtcEvent {
         pub id: i32,
         #[serde(rename = "event_type")]
         pub event_type: crate::models::EventType,
-        #[serde(rename = "deleted")]
-        pub deleted: String,
         #[serde(rename = "created_dt")]
         pub created_dt: String,
         #[serde(rename = "source")]

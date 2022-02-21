@@ -6599,12 +6599,6 @@ export interface WebRTCEvent {
      * @type {string}
      * @memberof WebRTCEvent
      */
-    'deleted': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebRTCEvent
-     */
     'created_dt': string;
     /**
      * 
