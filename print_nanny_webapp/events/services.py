@@ -6,11 +6,11 @@ from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 from django.conf import settings
 from django.apps import apps
+from rest_framework.renderers import JSONRenderer
 from google.cloud import iot_v1 as cloudiot_v1
 from print_nanny_webapp.devices.models import CloudiotDevice, JanusStream
 from print_nanny_webapp.devices.enum import JanusConfigType
 from print_nanny_webapp.events.api.serializers import PolymorphicEventSerializer
-from print_nanny_webapp.utils.api.serializers import JSONWebSocketRenderer
 from .models import WebRTCEvent, Event
 from .enum import WebRTCEventType
 
@@ -75,10 +75,14 @@ def janus_cloud_get_or_create_stream(device: Device, auth: JanusAuth) -> JanusSt
     return stream
 
 
-def publish_mqtt_command(cloudiot: CloudiotDevice, data: str, subfolder=None):
+def publish_mqtt_command(
+    cloudiot: CloudiotDevice, serializer: PolymorphicEventSerializer, subfolder=None
+):
     """
     Publish data to MQTT events topic (optional subfolder)
     """
+    data = JSONRenderer().render(serializer.data)
+
     request = cloudiot_v1.types.SendCommandToDeviceRequest(
         {
             "name": cloudiot.gcp_resource,
@@ -98,17 +102,19 @@ def publish_mqtt_command(cloudiot: CloudiotDevice, data: str, subfolder=None):
     return response
 
 
-def publish_channel_msg(events_channel: str, data: str):
+def publish_channel_msg(events_channel: str, serializer: PolymorphicEventSerializer):
     """
     Publish data to Django channel (propagated to connected websockets)
     """
     channel_layer = get_channel_layer()
+    data = dict(namespace="EVENTS", mutation="SET_RECEIVED_EVENT", data=serializer.data)
+    bytes_data = JSONRenderer().render(data)
 
     async_to_sync(channel_layer.group_send)(
         events_channel,
         {
             "type": "event.send",
-            "data": data,
+            "data": bytes_data,
         },
     )
 
@@ -121,13 +127,12 @@ def broadcast_event(event: Event):
     /devices/:id/commands/# MQTT command topic - receives all Events with Event.device set
     """
     serializer = PolymorphicEventSerializer(instance=event)
-    data = JSONWebSocketRenderer().render(serializer.data)
 
-    publish_channel_msg(event.device.user.events_channel, data)
+    publish_channel_msg(event.device.user.events_channel, serializer)
     logger.info("Published event %s to Django channel", event)
 
     if hasattr(event, "device") and event.device is not None:
-        publish_mqtt_command(event.device.cloudiot, data)
+        publish_mqtt_command(event.device.cloudiot, serializer)
         logger.info("Published event %s to MQTT commands topic", event)
 
 
