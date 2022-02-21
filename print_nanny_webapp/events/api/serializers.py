@@ -1,12 +1,10 @@
 import logging
-from typing import Mapping
 from django.apps import apps
-from rest_framework import serializers
 from django.contrib.auth import get_user_model
+from rest_framework import serializers
 from rest_polymorphic.serializers import PolymorphicSerializer
 from print_nanny_webapp.events.models import Event, WebRTCEvent
-from print_nanny_webapp.events.enum import EventSource, WebRTCEventName
-from rest_framework.fields import empty
+from print_nanny_webapp.events.enum import EventSource, EventType
 
 logger = logging.getLogger(__name__)
 
@@ -15,6 +13,7 @@ User = get_user_model()
 
 
 class EventSerializer(serializers.ModelSerializer):
+    event_type = serializers.ChoiceField(choices=EventType.choices)
     source = serializers.ChoiceField(choices=EventSource.choices)
 
     class Meta:
