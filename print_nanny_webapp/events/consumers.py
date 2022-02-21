@@ -16,7 +16,7 @@ class EventConsumer(AsyncJsonWebsocketConsumer):
     async def connect(self):
         await self.accept()
         self.user = self.scope["user"]
-        self.group_name = f"events_{self.user.id}"
+        self.group_name = self.user.events_channel
         logger.info("Websocket connection accepted scope=%s", self.scope)
         await self.channel_layer.group_add(self.group_name, self.channel_name)
 
