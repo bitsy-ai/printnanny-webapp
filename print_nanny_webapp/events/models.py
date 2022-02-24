@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from polymorphic.models import PolymorphicModel
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
-from .enum import EventSource, WebRTCEventName, EventType
+from .enum import EventSource, TestEventName, WebRTCEventName, EventType
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
@@ -25,6 +25,16 @@ class Event(PolymorphicModel, SafeDeleteModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
+class TestEvent(Event):
+    class Meta:
+        index_together = [["device", "event_name"]]
+
+    event_name = models.CharField(max_length=32, choices=TestEventName.choices)
+    device = models.ForeignKey(
+        "devices.Device", on_delete=models.CASCADE, related_name="test_events"
+    )
+
+
 class WebRTCEvent(Event):
     """
     Events related to WebRTC and PrintNanny video monitoring system
@@ -37,7 +47,7 @@ class WebRTCEvent(Event):
 
     event_name = models.CharField(max_length=32, choices=WebRTCEventName.choices)
     device = models.ForeignKey(
-        "devices.Device", on_delete=models.CASCADE, related_name="events"
+        "devices.Device", on_delete=models.CASCADE, related_name="webrtc_events"
     )
     stream = models.ForeignKey(
         "devices.JanusStream", on_delete=models.CASCADE, null=True

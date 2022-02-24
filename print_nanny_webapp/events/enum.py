@@ -5,6 +5,11 @@ class EventType(models.TextChoices):
     WebRTCEvent = "WebRTCEvent"
 
 
+class TestEventName(models.TextChoices):
+    MQTT_PING = "mqtt_ping", "Ping"
+    MQTT_PONG = "mqtt_pong", "Pong"
+
+
 class WebRTCEventName(models.TextChoices):
     STREAM_START = (
         "stream_start",
