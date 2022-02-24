@@ -3,6 +3,7 @@ from django.db import models
 
 class EventType(models.TextChoices):
     WebRTCEvent = "WebRTCEvent"
+    TestEvent = "TestEvent"
 
 
 class TestEventName(models.TextChoices):

@@ -26,6 +26,8 @@ class Event(PolymorphicModel, SafeDeleteModel):
 
 
 class TestEvent(Event):
+    event_type = EventType.TestEvent
+
     class Meta:
         index_together = [["device", "event_name"]]
 
