@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
-**event_type** | [**crate::models::EventType**](EventType.md) |  | 
+**event_type** | [**crate::models::WebRtcEventEventTypeEnum**](WebRTCEventEventTypeEnum.md) |  | 
 **created_dt** | **String** |  | [readonly]
 **source** | [**crate::models::EventSource**](EventSource.md) |  | 
 **event_name** | [**crate::models::WebRtcEventName**](WebRTCEventName.md) |  | 

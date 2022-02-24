@@ -37,9 +37,9 @@ class PolymorphicEventRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'event_type': 'EventType',
+        'event_type': 'TestEventEventTypeEnum',
         'source': 'EventSource',
-        'event_name': 'WebRTCEventName',
+        'event_name': 'TestEventName',
         'data': 'dict(str, object)',
         'device': 'int'
     }
@@ -81,7 +81,7 @@ class PolymorphicEventRequest(object):
 
 
         :return: The event_type of this PolymorphicEventRequest.  # noqa: E501
-        :rtype: EventType
+        :rtype: TestEventEventTypeEnum
         """
         return self._event_type
 
@@ -91,7 +91,7 @@ class PolymorphicEventRequest(object):
 
 
         :param event_type: The event_type of this PolymorphicEventRequest.  # noqa: E501
-        :type event_type: EventType
+        :type event_type: TestEventEventTypeEnum
         """
         if self.local_vars_configuration.client_side_validation and event_type is None:  # noqa: E501
             raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
@@ -127,7 +127,7 @@ class PolymorphicEventRequest(object):
 
 
         :return: The event_name of this PolymorphicEventRequest.  # noqa: E501
-        :rtype: WebRTCEventName
+        :rtype: TestEventName
         """
         return self._event_name
 
@@ -137,7 +137,7 @@ class PolymorphicEventRequest(object):
 
 
         :param event_name: The event_name of this PolymorphicEventRequest.  # noqa: E501
-        :type event_name: WebRTCEventName
+        :type event_name: TestEventName
         """
         if self.local_vars_configuration.client_side_validation and event_name is None:  # noqa: E501
             raise ValueError("Invalid value for `event_name`, must not be `None`")  # noqa: E501

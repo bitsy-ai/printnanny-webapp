@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
-**event_type** | [**EventType**](EventType.md) |  | 
+**event_type** | [**TestEventEventTypeEnum**](TestEventEventTypeEnum.md) |  | 
 **created_dt** | **datetime** |  | [readonly] 
 **source** | [**EventSource**](EventSource.md) |  | 
-**event_name** | [**WebRTCEventName**](WebRTCEventName.md) |  | 
+**event_name** | [**TestEventName**](TestEventName.md) |  | 
 **data** | **dict(str, object)** |  | [optional] 
 **polymorphic_ctype** | **int** |  | [readonly] 
 **user** | **int** |  | [readonly] 

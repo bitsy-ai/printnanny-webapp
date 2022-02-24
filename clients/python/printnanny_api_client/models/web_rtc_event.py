@@ -38,7 +38,7 @@ class WebRTCEvent(object):
     """
     openapi_types = {
         'id': 'int',
-        'event_type': 'EventType',
+        'event_type': 'WebRTCEventEventTypeEnum',
         'created_dt': 'datetime',
         'source': 'EventSource',
         'event_name': 'WebRTCEventName',
@@ -121,7 +121,7 @@ class WebRTCEvent(object):
 
 
         :return: The event_type of this WebRTCEvent.  # noqa: E501
-        :rtype: EventType
+        :rtype: WebRTCEventEventTypeEnum
         """
         return self._event_type
 
@@ -131,7 +131,7 @@ class WebRTCEvent(object):
 
 
         :param event_type: The event_type of this WebRTCEvent.  # noqa: E501
-        :type event_type: EventType
+        :type event_type: WebRTCEventEventTypeEnum
         """
         if self.local_vars_configuration.client_side_validation and event_type is None:  # noqa: E501
             raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501

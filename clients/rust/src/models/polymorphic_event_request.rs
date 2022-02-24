@@ -11,6 +11,15 @@
 
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+pub struct TestEventRequest {
+        #[serde(rename = "source")]
+        pub source: crate::models::EventSource,
+        #[serde(rename = "event_name")]
+        pub event_name: crate::models::TestEventName,
+        #[serde(rename = "device")]
+        pub device: i32,
+}
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct WebRtcEventRequest {
         #[serde(rename = "source")]
         pub source: crate::models::EventSource,
@@ -25,6 +34,8 @@ pub struct WebRtcEventRequest {
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(tag = "event_type")]
 pub enum PolymorphicEventRequest {
+    #[serde(rename="TestEvent")]
+    TestEventRequest(TestEventRequest),
     #[serde(rename="WebRTCEvent")]
     WebRtcEventRequest(WebRtcEventRequest),
 }

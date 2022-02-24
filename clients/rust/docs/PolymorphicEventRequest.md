@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**event_type** | [**crate::models::EventType**](EventType.md) |  | 
+**event_type** | [**crate::models::TestEventEventTypeEnum**](TestEventEventTypeEnum.md) |  | 
 **source** | [**crate::models::EventSource**](EventSource.md) |  | 
-**event_name** | [**crate::models::WebRtcEventName**](WebRTCEventName.md) |  | 
+**event_name** | [**crate::models::TestEventName**](TestEventName.md) |  | 
 **data** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **device** | **i32** |  | 
 

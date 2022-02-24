@@ -12,26 +12,23 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct WebRtcEventRequest {
+pub struct TestEventRequest {
     #[serde(rename = "event_type")]
-    pub event_type: crate::models::WebRtcEventEventTypeEnum,
+    pub event_type: crate::models::TestEventEventTypeEnum,
     #[serde(rename = "source")]
     pub source: crate::models::EventSource,
     #[serde(rename = "event_name")]
-    pub event_name: crate::models::WebRtcEventName,
-    #[serde(rename = "data", skip_serializing_if = "Option::is_none")]
-    pub data: Option<::std::collections::HashMap<String, serde_json::Value>>,
+    pub event_name: crate::models::TestEventName,
     #[serde(rename = "device")]
     pub device: i32,
 }
 
-impl WebRtcEventRequest {
-    pub fn new(event_type: crate::models::WebRtcEventEventTypeEnum, source: crate::models::EventSource, event_name: crate::models::WebRtcEventName, device: i32) -> WebRtcEventRequest {
-        WebRtcEventRequest {
+impl TestEventRequest {
+    pub fn new(event_type: crate::models::TestEventEventTypeEnum, source: crate::models::EventSource, event_name: crate::models::TestEventName, device: i32) -> TestEventRequest {
+        TestEventRequest {
             event_type,
             source,
             event_name,
-            data: None,
             device,
         }
     }

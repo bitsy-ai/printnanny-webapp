@@ -861,19 +861,6 @@ export type EventSource = typeof EventSource[keyof typeof EventSource];
 /**
  * 
  * @export
- * @enum {string}
- */
-
-export const EventType = {
-    WebRtcEvent: 'WebRTCEvent'
-} as const;
-
-export type EventType = typeof EventType[keyof typeof EventType];
-
-
-/**
- * 
- * @export
  * @interface Experiment
  */
 export interface Experiment {
@@ -4606,13 +4593,13 @@ export interface PatchedUserRequest {
  * @type PolymorphicEvent
  * @export
  */
-export type PolymorphicEvent = WebRTCEvent;
+export type PolymorphicEvent = TestEvent | WebRTCEvent;
 
 /**
  * @type PolymorphicEventRequest
  * @export
  */
-export type PolymorphicEventRequest = WebRTCEventRequest;
+export type PolymorphicEventRequest = TestEventRequest | WebRTCEventRequest;
 
 /**
  * 
@@ -6532,6 +6519,119 @@ export interface TelemetryEventRequest {
     'print_session'?: number | null;
 }
 /**
+ * 
+ * @export
+ * @interface TestEvent
+ */
+export interface TestEvent {
+    /**
+     * 
+     * @type {number}
+     * @memberof TestEvent
+     */
+    'id': number;
+    /**
+     * 
+     * @type {TestEventEventTypeEnum}
+     * @memberof TestEvent
+     */
+    'event_type': TestEventEventTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof TestEvent
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {EventSource}
+     * @memberof TestEvent
+     */
+    'source': EventSource;
+    /**
+     * 
+     * @type {TestEventName}
+     * @memberof TestEvent
+     */
+    'event_name': TestEventName;
+    /**
+     * 
+     * @type {number}
+     * @memberof TestEvent
+     */
+    'polymorphic_ctype': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TestEvent
+     */
+    'user': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TestEvent
+     */
+    'device': number;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const TestEventEventTypeEnum = {
+    TestEvent: 'TestEvent'
+} as const;
+
+export type TestEventEventTypeEnum = typeof TestEventEventTypeEnum[keyof typeof TestEventEventTypeEnum];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const TestEventName = {
+    Ping: 'mqtt_ping',
+    Pong: 'mqtt_pong'
+} as const;
+
+export type TestEventName = typeof TestEventName[keyof typeof TestEventName];
+
+
+/**
+ * 
+ * @export
+ * @interface TestEventRequest
+ */
+export interface TestEventRequest {
+    /**
+     * 
+     * @type {TestEventEventTypeEnum}
+     * @memberof TestEventRequest
+     */
+    'event_type': TestEventEventTypeEnum;
+    /**
+     * 
+     * @type {EventSource}
+     * @memberof TestEventRequest
+     */
+    'source': EventSource;
+    /**
+     * 
+     * @type {TestEventName}
+     * @memberof TestEventRequest
+     */
+    'event_name': TestEventName;
+    /**
+     * 
+     * @type {number}
+     * @memberof TestEventRequest
+     */
+    'device': number;
+}
+/**
  * Our default response serializer.
  * @export
  * @interface TokenResponse
@@ -6590,10 +6690,10 @@ export interface WebRTCEvent {
     'id': number;
     /**
      * 
-     * @type {EventType}
+     * @type {WebRTCEventEventTypeEnum}
      * @memberof WebRTCEvent
      */
-    'event_type': EventType;
+    'event_type': WebRTCEventEventTypeEnum;
     /**
      * 
      * @type {string}
@@ -6649,6 +6749,19 @@ export interface WebRTCEvent {
  * @enum {string}
  */
 
+export const WebRTCEventEventTypeEnum = {
+    WebRtcEvent: 'WebRTCEvent'
+} as const;
+
+export type WebRTCEventEventTypeEnum = typeof WebRTCEventEventTypeEnum[keyof typeof WebRTCEventEventTypeEnum];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
 export const WebRTCEventName = {
     Start: 'stream_start',
     StartSuccess: 'stream_start_success',
@@ -6669,10 +6782,10 @@ export type WebRTCEventName = typeof WebRTCEventName[keyof typeof WebRTCEventNam
 export interface WebRTCEventRequest {
     /**
      * 
-     * @type {EventType}
+     * @type {WebRTCEventEventTypeEnum}
      * @memberof WebRTCEventRequest
      */
-    'event_type': EventType;
+    'event_type': WebRTCEventEventTypeEnum;
     /**
      * 
      * @type {EventSource}

@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**event_type** | [**EventType**](EventType.md) |  | 
+**event_type** | [**WebRTCEventEventTypeEnum**](WebRTCEventEventTypeEnum.md) |  | 
 **source** | [**EventSource**](EventSource.md) |  | 
 **event_name** | [**WebRTCEventName**](WebRTCEventName.md) |  | 
 **data** | **dict(str, object)** |  | [optional] 

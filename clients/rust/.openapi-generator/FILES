@@ -31,7 +31,6 @@ docs/DevicesApi.md
 docs/EmailAuthRequest.md
 docs/ErrorDetail.md
 docs/EventSource.md
-docs/EventType.md
 docs/EventsApi.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
@@ -155,11 +154,16 @@ docs/TelemetryEvent.md
 docs/TelemetryEventPolymorphic.md
 docs/TelemetryEventPolymorphicRequest.md
 docs/TelemetryEventRequest.md
+docs/TestEvent.md
+docs/TestEventEventTypeEnum.md
+docs/TestEventName.md
+docs/TestEventRequest.md
 docs/TokenResponse.md
 docs/User.md
 docs/UserRequest.md
 docs/UsersApi.md
 docs/WebRtcEvent.md
+docs/WebRtcEventEventTypeEnum.md
 docs/WebRtcEventName.md
 docs/WebRtcEventRequest.md
 git_push.sh
@@ -204,7 +208,6 @@ src/models/device_request.rs
 src/models/email_auth_request.rs
 src/models/error_detail.rs
 src/models/event_source.rs
-src/models/event_type.rs
 src/models/experiment.rs
 src/models/experiment_device_config.rs
 src/models/gcode_file.rs
@@ -320,9 +323,14 @@ src/models/telemetry_event.rs
 src/models/telemetry_event_polymorphic.rs
 src/models/telemetry_event_polymorphic_request.rs
 src/models/telemetry_event_request.rs
+src/models/test_event.rs
+src/models/test_event_event_type_enum.rs
+src/models/test_event_name.rs
+src/models/test_event_request.rs
 src/models/token_response.rs
 src/models/user.rs
 src/models/user_request.rs
 src/models/web_rtc_event.rs
+src/models/web_rtc_event_event_type_enum.rs
 src/models/web_rtc_event_name.rs
 src/models/web_rtc_event_request.rs
