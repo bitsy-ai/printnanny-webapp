@@ -24,24 +24,24 @@
     </div>
     <div class="row">
         <div class="col-12 col-md-8 d-flex align-items-stretch">
-          <div class="card">
-            <div class="card-body">
-                <h2 class="header-title">
-                    <i class="mdi mdi-printer-3d"></i>Are you sure you want to delete {{ object.hostname }}?
-                </h2>
-                <p><span class="badge badge-danger">WARNING</span> this can't be undone!</p>
-                <p>Re-registering your device later will start from a blank slate.</p>
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="header-title">
+                        <i class="mdi mdi-printer-3d"></i>Are you sure you want to delete {{ object.hostname }}?
+                    </h2>
+                    <p><span class="badge badge-danger">WARNING</span> this can't be undone!</p>
+                    <p>Re-registering your device later will start from a blank slate.</p>
 
-                <form method="post">
-                    {% csrf_token %}
-                    {{form|crispy }}
-                    <input type="submit" value="Yes, Delete {{ object.hostname }}" class="btn btn-danger">
-                    <a href="{% url 'devices:list' %}"><input value="Back to My Devices" class="btn btn-secondary">
-                    </a>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{form|crispy }}
+                        <input type="submit" value="Yes, Delete {{ object.hostname }}" class="btn btn-danger">
+                        <a href="{% url 'dashboard:home' %}"><input value="My Dashboard" class="btn btn-secondary">
+                        </a>
 
-                </form>
+                    </form>
+                </div>
             </div>
+        </div>
     </div>
-  </div>
-</div>
-{% endblock content %}
+    {% endblock content %}
