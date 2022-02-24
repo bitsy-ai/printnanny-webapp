@@ -21,7 +21,7 @@ class ReleaseListView(TemplateView):
 
 class DeviceDeleteView(DeleteView, DetailView):
     template_name = "devices/delete-form.html"
-    success_url = "/devices"
+    success_url = "/dashboard"
     model = Device
 
 
