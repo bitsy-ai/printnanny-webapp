@@ -3,6 +3,12 @@ from django.db import models
 
 class EventType(models.TextChoices):
     WebRTCEvent = "WebRTCEvent"
+    TestEvent = "TestEvent"
+
+
+class TestEventName(models.TextChoices):
+    MQTT_PING = "mqtt_ping", "Ping"
+    MQTT_PONG = "mqtt_pong", "Pong"
 
 
 class WebRTCEventName(models.TextChoices):
