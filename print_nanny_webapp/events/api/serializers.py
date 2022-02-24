@@ -1,11 +1,9 @@
 import logging
-from collections.abc import Mapping
 from django.apps import apps
 from django.contrib.auth import get_user_model
-from printnanny_api_client import TestEvent
 from rest_framework import serializers
 from rest_polymorphic.serializers import PolymorphicSerializer
-from print_nanny_webapp.events.models import Event, WebRTCEvent
+from print_nanny_webapp.events.models import Event, WebRTCEvent, TestEvent
 from print_nanny_webapp.events.enum import EventSource, EventType
 
 logger = logging.getLogger(__name__)
