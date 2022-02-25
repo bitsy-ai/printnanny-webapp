@@ -6,13 +6,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devices', '0007_janusstream_unique_port'),
+        ("devices", "0007_janusstream_unique_port"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='janusstream',
-            old_name='port',
-            new_name='rtp_port',
+            model_name="janusstream",
+            old_name="port",
+            new_name="rtp_port",
         ),
     ]
