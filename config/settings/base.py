@@ -1,11 +1,11 @@
 """
 Base settings to build other settings files upon.
 """
-from django.contrib.messages import constants as messages
 from pathlib import Path
 import os
-import environ
 import socket
+import environ
+from django.contrib.messages import constants as messages
 
 from print_nanny_webapp import __version__ as PRINT_NANNY_WEBAPP_VERSION
 
@@ -714,8 +714,10 @@ CORS_ALLOWED_ORIGINS = [
 
 # Janus cloud
 # ------------------------------------------------------------------------------
-JANUS_CLOUD_DOMAIN = env("JANUS_CLOUD_DOMAIN", default="janus")
+JANUS_CLOUD_API_DOMAIN = env("JANUS_CLOUD_API_DOMAIN", default="janus")
 JANUS_CLOUD_ADMIN_SECRET = env("JANUS_CLOUD_ADMIN_SECRET", default="debug")
 JANUS_CLOUD_ADMIN_URL = env("JANUS_CLOUD_ADMIN_URL", default="http://janus:7088/admin")
 JANUS_CLOUD_API_URL = env("JANUS_CLOUD_ADMIN_HTTP_PORT", default="http://janus:8088/janus")
 JANUS_CLOUD_WS_URL = env("JANUS_CLOUD_WS_URL", default="ws://janus:8188")
+JANUS_CLOUD_RTP_DOMAIN = env("JANUS_CLOUD_RTP_DOMAIN", default="janus")
+JANUS_CLOUD_RTP_PORT_RANGE = env.tuple("JANUS_CLOUD_RTP_PORT_RANGE", default=(5000, 5050))
