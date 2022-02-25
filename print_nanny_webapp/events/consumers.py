@@ -1,7 +1,6 @@
 import logging
-from django.contrib.auth import AnonymousUser
+from django.contrib.auth.models import AnonymousUser
 from channels.generic.websocket import AsyncJsonWebsocketConsumer
-from rest_framework.renderers import JSONRenderer
 
 logger = logging.getLogger(__name__)
 
