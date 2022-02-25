@@ -119,10 +119,13 @@ class JanusAuthSerializer(serializers.ModelSerializer):
 class JanusStreamSerializer(serializers.ModelSerializer):
     auth = JanusAuthSerializer(read_only=True)
     api_domain = serializers.CharField(read_only=True)
+    api_port = serializers.IntegerField(read_only=True)
     api_url = serializers.CharField(read_only=True)
     admin_url = serializers.CharField(read_only=True)
+    admin_port = serializers.IntegerField(read_only=True)
     rtp_domain = serializers.CharField(read_only=True)
     websocket_url = serializers.CharField(read_only=True)
+    websocket_port = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = JanusStream
