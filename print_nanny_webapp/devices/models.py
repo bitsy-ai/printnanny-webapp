@@ -419,7 +419,7 @@ class JanusStream(SafeDeleteModel):
     pin = models.CharField(max_length=255, default=get_random_string_32)
     # streaming.info response documented in https://janus.conf.meetecho.com/docs/streaming"
     info = models.JSONField(default=dict)
-    port = models.PositiveSmallIntegerField(default=get_available_port)
+    rtp_port = models.PositiveSmallIntegerField(default=get_available_port)
 
     @property
     def auth(self) -> JanusAuth:
