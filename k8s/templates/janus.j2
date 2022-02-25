@@ -620,7 +620,7 @@ spec:
   selector:
     app: janus
   ports:
-  {% for p in range(50) %}
+  {% for p in range(5000, 5050) %}
     - protocol: UDP
       port: {{ p }}
       targetPort: {{ p }}
