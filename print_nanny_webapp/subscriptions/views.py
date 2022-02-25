@@ -10,8 +10,8 @@ from django.urls import reverse
 from django.http import HttpRequest, HttpResponse
 from django.contrib.auth import get_user_model
 from django.shortcuts import redirect
-from djstripe import webhooks
 from django.views.generic import TemplateView
+from djstripe.settings import djstripe_settings
 
 from django.conf import settings
 from allauth.account.views import SignupView
@@ -127,7 +127,7 @@ class FoundingMemberCheckoutView(LoginRequiredMixin, TemplateView):
                     "quantity": 1,
                 }
             ],
-            api_key=djstripe.settings.STRIPE_SECRET_KEY,
+            api_key=djstripe_settings.STRIPE_SECRET_KEY,
             metadata=dict(user=request.user),
             client_reference_id=request.user.id,
             billing_address_collection="required",

@@ -2,8 +2,8 @@ import logging
 import djstripe.models
 import djstripe.enums
 from django.conf import settings
-from djstripe.settings import djstripe_settings
 from django.utils import timezone
+from djstripe.settings import djstripe_settings
 from config.settings.base import PAID_BETA_SUBSCRIPTION_LIMIT
 
 logger = logging.getLogger(__name__)
