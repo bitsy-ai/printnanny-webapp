@@ -119,15 +119,18 @@ class JanusAuthSerializer(serializers.ModelSerializer):
 class JanusStreamSerializer(serializers.ModelSerializer):
     auth = JanusAuthSerializer(read_only=True)
     api_domain = serializers.CharField(read_only=True)
+    api_port = serializers.IntegerField(read_only=True)
     api_url = serializers.CharField(read_only=True)
     admin_url = serializers.CharField(read_only=True)
+    admin_port = serializers.IntegerField(read_only=True)
     rtp_domain = serializers.CharField(read_only=True)
     websocket_url = serializers.CharField(read_only=True)
+    websocket_port = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = JanusStream
         exclude = ("deleted",)
-        read_only_fields = ("device", "port")
+        read_only_fields = ("device", "rtp_port")
 
     def update_or_create(self, validated_data, device_id):
         return JanusStream.objects.filter(device=device_id).update_or_create(

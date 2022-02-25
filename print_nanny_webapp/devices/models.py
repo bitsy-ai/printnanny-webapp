@@ -419,7 +419,7 @@ class JanusStream(SafeDeleteModel):
     pin = models.CharField(max_length=255, default=get_random_string_32)
     # streaming.info response documented in https://janus.conf.meetecho.com/docs/streaming"
     info = models.JSONField(default=dict)
-    port = models.PositiveSmallIntegerField(default=get_available_port)
+    rtp_port = models.PositiveSmallIntegerField(default=get_available_port)
 
     @property
     def auth(self) -> JanusAuth:
@@ -438,6 +438,14 @@ class JanusStream(SafeDeleteModel):
             return settings.JANUS_CLOUD_API_DOMAIN
         raise NotImplementedError(
             f"JanusAuth.api_domain is not implemented for JanusConfigType={self.config_type}"
+        )
+
+    @property
+    def api_port(self):
+        if self.config_type == JanusConfigType.CLOUD:
+            return settings.JANUS_CLOUD_API_PORT
+        raise NotImplementedError(
+            f"JanusAuth.api_port is not implemented for JanusConfigType={self.config_type}"
         )
 
     @property
@@ -465,11 +473,27 @@ class JanusStream(SafeDeleteModel):
         )
 
     @property
+    def admin_port(self):
+        if self.config_type == JanusConfigType.CLOUD:
+            return settings.JANUS_CLOUD_ADMIN_PORT
+        raise NotImplementedError(
+            f"JanusAuth.admin_port not implemented for JanusConfigType={self.config_type}"
+        )
+
+    @property
     def websocket_url(self):
         if self.config_type == JanusConfigType.CLOUD:
             return settings.JANUS_CLOUD_WS_URL
         raise NotImplementedError(
             f"JanusAuth.websocket_url not implemented for JanusConfigType={self.config_type}"
+        )
+
+    @property
+    def websocket_port(self):
+        if self.config_type == JanusConfigType.CLOUD:
+            return settings.JANUS_CLOUD_WS_PORT
+        raise NotImplementedError(
+            f"JanusAuth.websocket_port not implemented for JanusConfigType={self.config_type}"
         )
 
 
