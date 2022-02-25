@@ -361,7 +361,7 @@ class JanusStream(SafeDeleteModel):
                 name="unique_janus_stream_per_device",
             ),
             UniqueConstraint(
-                fields=["port"],
+                fields=["rtp_port"],
                 condition=models.Q(deleted=None),
                 name="unique_port",
             ),
