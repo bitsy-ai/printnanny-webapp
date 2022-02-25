@@ -1,6 +1,6 @@
 import logging
+from django.contrib.auth.models import AnonymousUser
 from channels.generic.websocket import AsyncJsonWebsocketConsumer
-from rest_framework.renderers import JSONRenderer
 
 logger = logging.getLogger(__name__)
 
@@ -17,6 +17,8 @@ class EventConsumer(AsyncJsonWebsocketConsumer):
     async def connect(self):
         await self.accept()
         self.user = self.scope["user"]
+        if isinstance(self.user, AnonymousUser):
+            return
         self.group_name = self.user.events_channel
         logger.info("Websocket connection accepted scope=%s", self.scope)
         await self.channel_layer.group_add(self.group_name, self.channel_name)

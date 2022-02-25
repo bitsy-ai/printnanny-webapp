@@ -44,7 +44,7 @@ jobs:
       GCP_SERVICE_ACCOUNT: ${{ secrets.PROD_GCP_SERVICE_ACCOUNT }}  # TODO replace repo-level secrets with stable env-level secrets
       CLUSTER: www-beta
       ZONE: us-central1-c
-      JANUS_HOSTNAME: janus.print-nanny.com
+      JANUS_HOSTNAME: janus.beta.print-nanny.com
       JANUS_VERSION: 0.11.8
       JANUS_ADMIN_SECRET: ${{ secrets.JANUS_ADMIN_SECRET }}
       JANUS_IMAGE_REPO: us.gcr.io/print-nanny/janus

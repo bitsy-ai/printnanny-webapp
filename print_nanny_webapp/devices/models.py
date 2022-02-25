@@ -12,6 +12,7 @@ from polymorphic.models import PolymorphicModel
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.signals import pre_softdelete
 
+from .utils import get_available_port
 from .enum import (
     CameraType,
     DeviceReleaseChannel,
@@ -385,11 +386,27 @@ class JanusAuth(SafeDeleteModel):
     created_dt = models.DateTimeField(auto_now_add=True)
 
     @property
+    def api_domain(self):
+        if self.config_type == JanusConfigType.CLOUD:
+            return settings.JANUS_CLOUD_API_DOMAIN
+        raise NotImplementedError(
+            f"JanusAuth.api_domain is not implemented for JanusConfigType={self.config_type}"
+        )
+
+    @property
+    def rtp_domain(self):
+        if self.config_type == JanusConfigType.CLOUD:
+            return settings.JANUS_CLOUD_RTP_DOMAIN
+        raise NotImplementedError(
+            f"JanusAuth.api_domain is not implemented for JanusConfigType={self.config_type}"
+        )
+
+    @property
     def api_url(self):
         if self.config_type == JanusConfigType.CLOUD:
             return settings.JANUS_CLOUD_API_URL
         raise NotImplementedError(
-            f"JanusAuth.apiurl not implemented for JanusConfigType={self.config_type}"
+            f"JanusAuth.api_url not implemented for JanusConfigType={self.config_type}"
         )
 
     @property
@@ -421,7 +438,12 @@ class JanusStream(SafeDeleteModel):
                 fields=["device", "config_type"],
                 condition=models.Q(deleted=None),
                 name="unique_janus_stream_per_device",
-            )
+            ),
+            UniqueConstraint(
+                fields=["port"],
+                condition=models.Q(deleted=None),
+                name="unique_port",
+            ),
         ]
 
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
@@ -437,6 +459,7 @@ class JanusStream(SafeDeleteModel):
     pin = models.CharField(max_length=255, default=get_random_string_32)
     # streaming.info response documented in https://janus.conf.meetecho.com/docs/streaming"
     info = models.JSONField(default=dict)
+    port = models.PositiveSmallIntegerField(default=get_available_port)
 
     @property
     def auth(self) -> JanusAuth:

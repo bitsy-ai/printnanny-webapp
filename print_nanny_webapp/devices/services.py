@@ -7,8 +7,8 @@ from django.conf import settings
 from django.template.loader import render_to_string
 
 from .models import (
-    Device,
     CloudiotDevice,
+    Device,
     PublicKey,
 )
 
