@@ -1107,6 +1107,12 @@ export interface JanusStream {
     'api_domain': string;
     /**
      * 
+     * @type {number}
+     * @memberof JanusStream
+     */
+    'api_port': number;
+    /**
+     * 
      * @type {string}
      * @memberof JanusStream
      */
@@ -1119,6 +1125,12 @@ export interface JanusStream {
     'admin_url': string;
     /**
      * 
+     * @type {number}
+     * @memberof JanusStream
+     */
+    'admin_port': number;
+    /**
+     * 
      * @type {string}
      * @memberof JanusStream
      */
@@ -1129,6 +1141,12 @@ export interface JanusStream {
      * @memberof JanusStream
      */
     'websocket_url': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof JanusStream
+     */
+    'websocket_port': number;
     /**
      * 
      * @type {string}
@@ -1176,7 +1194,7 @@ export interface JanusStream {
      * @type {number}
      * @memberof JanusStream
      */
-    'port': number;
+    'rtp_port': number;
     /**
      * 
      * @type {number}

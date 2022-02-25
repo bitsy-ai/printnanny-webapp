@@ -15,7 +15,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.60.0"
+__version__ = "0.61.0"
 
 # import apis into sdk package
 from printnanny_api_client.api.alerts_api import AlertsApi

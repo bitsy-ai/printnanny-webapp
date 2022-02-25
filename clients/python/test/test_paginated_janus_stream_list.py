@@ -45,10 +45,13 @@ class TestPaginatedJanusStreamList(unittest.TestCase):
                         id = 56, 
                         auth = null, 
                         api_domain = '', 
+                        api_port = 56, 
                         api_url = '', 
                         admin_url = '', 
+                        admin_port = 56, 
                         rtp_domain = '', 
                         websocket_url = '', 
+                        websocket_port = 56, 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         config_type = 'cloud', 
@@ -58,7 +61,7 @@ class TestPaginatedJanusStreamList(unittest.TestCase):
                         info = {
                             'key' : null
                             }, 
-                        port = 56, 
+                        rtp_port = 56, 
                         device = 56, )
                     ]
             )
