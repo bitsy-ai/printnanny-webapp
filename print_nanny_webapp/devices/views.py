@@ -1,17 +1,13 @@
-from distutils.log import Log
 import logging
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.apps import apps
 from django.views.generic.list import MultipleObjectMixin
-from django.views.generic import CreateView, DetailView, DeleteView
+from django.views.generic import DetailView, DeleteView
 from django.views.generic.base import TemplateView
 from print_nanny_webapp.devices.models import Device
 
-from .forms import CameraCreateForm
-
 Device = apps.get_model("devices", "Device")
-Camera = apps.get_model("devices", "Camera")
 logger = logging.getLogger(__name__)
 
 

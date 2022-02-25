@@ -31,21 +31,17 @@ from .serializers import (
     JanusAuthSerializer,
     JanusStreamSerializer,
     PublicKeySerializer,
-    CameraSerializer,
     CloudiotDeviceSerializer,
     SystemInfoSerializer,
     DeviceSerializer,
-    PrinterControllerSerializer,
 )
 from ..models import (
-    Camera,
     CloudiotDevice,
     Device,
     JanusAuth,
     JanusStream,
     PublicKey,
     SystemInfo,
-    PrinterController,
 )
 from ..services import update_or_create_cloudiot_device
 
@@ -645,96 +641,3 @@ class CloudiotDeviceViewSet(
             return Response(response_serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-##
-# Camera
-##
-@extend_schema_view(
-    list=extend_schema(
-        parameters=[
-            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
-        ],
-        responses={
-            200: CameraSerializer(many=True),
-        }
-        | generic_list_errors,
-    ),
-    create=extend_schema(
-        parameters=[
-            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
-        ],
-        request=CameraSerializer,
-        responses={
-            201: CameraSerializer,
-        }
-        | generic_create_errors,
-    ),
-    update=extend_schema(
-        parameters=[
-            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
-        ],
-        request=CameraSerializer,
-        responses={
-            202: CameraSerializer,
-        }.update(generic_update_errors),
-    ),
-)
-class CameraViewSet(
-    GenericViewSet,
-    CreateModelMixin,
-    ListModelMixin,
-    RetrieveModelMixin,
-    UpdateModelMixin,
-):
-    serializer_class = CameraSerializer
-    queryset = Camera.objects.all()
-    lookup_field = "id"
-
-
-##
-# PrinterController
-##
-@extend_schema_view(
-    list=extend_schema(
-        parameters=[
-            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
-        ],
-        responses={
-            200: PrinterControllerSerializer(many=True),
-        }
-        | generic_list_errors,
-    ),
-    create=extend_schema(
-        parameters=[
-            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
-        ],
-        request=DeviceSerializer,
-        responses={
-            201: PrinterControllerSerializer,
-        }
-        | generic_create_errors,
-    ),
-    update=extend_schema(
-        parameters=[
-            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
-        ],
-        request=DeviceSerializer,
-        responses={
-            202: PrinterControllerSerializer,
-        }.update(generic_update_errors),
-    ),
-)
-class PrinterControllerViewSet(
-    GenericViewSet,
-    CreateModelMixin,
-    ListModelMixin,
-    RetrieveModelMixin,
-    UpdateModelMixin,
-):
-    serializer_class = PrinterControllerSerializer
-    queryset = PrinterController.objects.all()
-    lookup_field = "id"
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)

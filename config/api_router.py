@@ -3,7 +3,6 @@ from rest_framework.routers import DefaultRouter
 from rest_framework_nested.routers import NestedSimpleRouter
 
 from print_nanny_webapp.devices.api.views import (
-    CameraViewSet,
     CloudiotDeviceViewSet,
     DeviceHostnameViewSet,
     JanusAuthViewSet,
@@ -11,7 +10,6 @@ from print_nanny_webapp.devices.api.views import (
     PublicKeyViewSet,
     SystemInfoViewSet,
     DeviceViewSet,
-    PrinterControllerViewSet,
 )
 from print_nanny_webapp.events.api.views import EventViewSet
 from print_nanny_webapp.ml_ops.api.views import (
@@ -62,9 +60,7 @@ devices_router.register(r'public-keys', PublicKeyViewSet, basename='public-keys'
 devices_router.register(r'janus-streams', JanusStreamViewSet, basename='janus-streams')
 
 devices_router.register(r'system-info', SystemInfoViewSet, basename='system-info')
-devices_router.register(r'cameras', CameraViewSet, basename='cameras')
 devices_router.register(r'cloudiot', CloudiotDeviceViewSet, basename='cloudiot')
-devices_router.register(r'printer-controllers', PrinterControllerViewSet, basename='printer-controllers')
 
 router.register("events", EventViewSet, basename="events")
 
