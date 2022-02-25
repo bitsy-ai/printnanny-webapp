@@ -1,6 +1,6 @@
 
 
-.PHONY: mypy build prod-up dev-up python-client clean-python-client-build ui vue prod-up deploy cypress-open cypress-run local-creds janus-image
+.PHONY: mypy build prod-up dev-up python-client clean-python-client-build ui vue prod-up deploy cypress-open cypress-run local-creds janus-image djstripe-sync-local
 
 # silence targets where credentials are passed
 .SILENT: cypress-open cypress-run cypress-ci local-up local-creds
@@ -371,6 +371,9 @@ test:
 
 stripe-local-webhooks:
 	stripe listen --forward-to localhost:8000/stripe/webhook/
+
+djstripe-sync-local:
+	docker-compose -f local.yml run --rm django python manage.py djstripe_sync_models
 
 ara-image:
 	docker build \
