@@ -627,11 +627,11 @@ spec:
   selector:
     app: janus
   ports:
-  {% for port in 0..50 %}
+  {% for p in 0..50 %}
     - protocol: UDP
-      port: {{ port }}
-      targetPort: {{ port }}
-      name: {{ port }}-udp
+      port: {{ p }}
+      targetPort: {{ p }}
+      name: {{ p }}-udp
   {% endfor %}
 ---
 apiVersion: networking.gke.io/v1
