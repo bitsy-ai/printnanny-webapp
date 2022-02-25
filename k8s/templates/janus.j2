@@ -605,7 +605,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: janus
+  name: janus-tcp
   annotations:
     cloud.google.com/backend-config: '{"default": "janus-backendconfig"}'
 spec:
@@ -615,6 +615,24 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 8088
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: janus-udp
+spec:
+  type: LoadBalancer
+  loadBalancerIP: {{ JANUS_CLOUD_RTP_STATIC_IP }}
+  sessionAffinity: ClientIP
+  selector:
+    app: janus
+  ports:
+  {% for port in 0..50 %}
+    - protocol: UDP
+      port: {{ port }}
+      targetPort: {{ port }}
+      name: {{ port }}-udp
+  {% endfor %}
 ---
 apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
@@ -635,6 +653,6 @@ metadata:
 spec:
   defaultBackend:
     service:
-      name: janus
+      name: janus-tcp
       port:
         number: 80
