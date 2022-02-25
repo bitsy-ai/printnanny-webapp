@@ -38,9 +38,6 @@ class JanusAuth(object):
     """
     openapi_types = {
         'id': 'int',
-        'api_url': 'str',
-        'admin_url': 'str',
-        'websocket_url': 'str',
         'admin_secret': 'str',
         'api_token': 'str',
         'config_type': 'JanusConfigType',
@@ -50,9 +47,6 @@ class JanusAuth(object):
 
     attribute_map = {
         'id': 'id',
-        'api_url': 'api_url',
-        'admin_url': 'admin_url',
-        'websocket_url': 'websocket_url',
         'admin_secret': 'admin_secret',
         'api_token': 'api_token',
         'config_type': 'config_type',
@@ -60,16 +54,13 @@ class JanusAuth(object):
         'user': 'user'
     }
 
-    def __init__(self, id=None, api_url=None, admin_url=None, websocket_url=None, admin_secret=None, api_token=None, config_type=None, created_dt=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, admin_secret=None, api_token=None, config_type=None, created_dt=None, user=None, local_vars_configuration=None):  # noqa: E501
         """JanusAuth - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
-        self._api_url = None
-        self._admin_url = None
-        self._websocket_url = None
         self._admin_secret = None
         self._api_token = None
         self._config_type = None
@@ -78,9 +69,6 @@ class JanusAuth(object):
         self.discriminator = None
 
         self.id = id
-        self.api_url = api_url
-        self.admin_url = admin_url
-        self.websocket_url = websocket_url
         self.admin_secret = admin_secret
         if api_token is not None:
             self.api_token = api_token
@@ -111,75 +99,6 @@ class JanusAuth(object):
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
-
-    @property
-    def api_url(self):
-        """Gets the api_url of this JanusAuth.  # noqa: E501
-
-
-        :return: The api_url of this JanusAuth.  # noqa: E501
-        :rtype: str
-        """
-        return self._api_url
-
-    @api_url.setter
-    def api_url(self, api_url):
-        """Sets the api_url of this JanusAuth.
-
-
-        :param api_url: The api_url of this JanusAuth.  # noqa: E501
-        :type api_url: str
-        """
-        if self.local_vars_configuration.client_side_validation and api_url is None:  # noqa: E501
-            raise ValueError("Invalid value for `api_url`, must not be `None`")  # noqa: E501
-
-        self._api_url = api_url
-
-    @property
-    def admin_url(self):
-        """Gets the admin_url of this JanusAuth.  # noqa: E501
-
-
-        :return: The admin_url of this JanusAuth.  # noqa: E501
-        :rtype: str
-        """
-        return self._admin_url
-
-    @admin_url.setter
-    def admin_url(self, admin_url):
-        """Sets the admin_url of this JanusAuth.
-
-
-        :param admin_url: The admin_url of this JanusAuth.  # noqa: E501
-        :type admin_url: str
-        """
-        if self.local_vars_configuration.client_side_validation and admin_url is None:  # noqa: E501
-            raise ValueError("Invalid value for `admin_url`, must not be `None`")  # noqa: E501
-
-        self._admin_url = admin_url
-
-    @property
-    def websocket_url(self):
-        """Gets the websocket_url of this JanusAuth.  # noqa: E501
-
-
-        :return: The websocket_url of this JanusAuth.  # noqa: E501
-        :rtype: str
-        """
-        return self._websocket_url
-
-    @websocket_url.setter
-    def websocket_url(self, websocket_url):
-        """Sets the websocket_url of this JanusAuth.
-
-
-        :param websocket_url: The websocket_url of this JanusAuth.  # noqa: E501
-        :type websocket_url: str
-        """
-        if self.local_vars_configuration.client_side_validation and websocket_url is None:  # noqa: E501
-            raise ValueError("Invalid value for `websocket_url`, must not be `None`")  # noqa: E501
-
-        self._websocket_url = websocket_url
 
     @property
     def admin_secret(self):

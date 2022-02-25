@@ -1010,24 +1010,6 @@ export interface JanusAuth {
      * @type {string}
      * @memberof JanusAuth
      */
-    'api_url': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof JanusAuth
-     */
-    'admin_url': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof JanusAuth
-     */
-    'websocket_url': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof JanusAuth
-     */
     'admin_secret'?: string | null;
     /**
      * 
@@ -1122,6 +1104,36 @@ export interface JanusStream {
      * @type {string}
      * @memberof JanusStream
      */
+    'api_domain': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusStream
+     */
+    'api_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusStream
+     */
+    'admin_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusStream
+     */
+    'rtp_domain': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusStream
+     */
+    'websocket_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusStream
+     */
     'created_dt': string;
     /**
      * 
@@ -1159,6 +1171,12 @@ export interface JanusStream {
      * @memberof JanusStream
      */
     'info'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {number}
+     * @memberof JanusStream
+     */
+    'port': number;
     /**
      * 
      * @type {number}

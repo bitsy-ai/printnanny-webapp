@@ -39,6 +39,11 @@ class JanusStream(object):
     openapi_types = {
         'id': 'int',
         'auth': 'JanusAuth',
+        'api_domain': 'str',
+        'api_url': 'str',
+        'admin_url': 'str',
+        'rtp_domain': 'str',
+        'websocket_url': 'str',
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
         'config_type': 'JanusConfigType',
@@ -46,12 +51,18 @@ class JanusStream(object):
         'secret': 'str',
         'pin': 'str',
         'info': 'dict(str, object)',
+        'port': 'int',
         'device': 'int'
     }
 
     attribute_map = {
         'id': 'id',
         'auth': 'auth',
+        'api_domain': 'api_domain',
+        'api_url': 'api_url',
+        'admin_url': 'admin_url',
+        'rtp_domain': 'rtp_domain',
+        'websocket_url': 'websocket_url',
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
         'config_type': 'config_type',
@@ -59,10 +70,11 @@ class JanusStream(object):
         'secret': 'secret',
         'pin': 'pin',
         'info': 'info',
+        'port': 'port',
         'device': 'device'
     }
 
-    def __init__(self, id=None, auth=None, created_dt=None, updated_dt=None, config_type=None, active=None, secret=None, pin=None, info=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, auth=None, api_domain=None, api_url=None, admin_url=None, rtp_domain=None, websocket_url=None, created_dt=None, updated_dt=None, config_type=None, active=None, secret=None, pin=None, info=None, port=None, device=None, local_vars_configuration=None):  # noqa: E501
         """JanusStream - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -70,6 +82,11 @@ class JanusStream(object):
 
         self._id = None
         self._auth = None
+        self._api_domain = None
+        self._api_url = None
+        self._admin_url = None
+        self._rtp_domain = None
+        self._websocket_url = None
         self._created_dt = None
         self._updated_dt = None
         self._config_type = None
@@ -77,11 +94,17 @@ class JanusStream(object):
         self._secret = None
         self._pin = None
         self._info = None
+        self._port = None
         self._device = None
         self.discriminator = None
 
         self.id = id
         self.auth = auth
+        self.api_domain = api_domain
+        self.api_url = api_url
+        self.admin_url = admin_url
+        self.rtp_domain = rtp_domain
+        self.websocket_url = websocket_url
         self.created_dt = created_dt
         self.updated_dt = updated_dt
         if config_type is not None:
@@ -94,6 +117,7 @@ class JanusStream(object):
             self.pin = pin
         if info is not None:
             self.info = info
+        self.port = port
         self.device = device
 
     @property
@@ -139,6 +163,121 @@ class JanusStream(object):
         """
 
         self._auth = auth
+
+    @property
+    def api_domain(self):
+        """Gets the api_domain of this JanusStream.  # noqa: E501
+
+
+        :return: The api_domain of this JanusStream.  # noqa: E501
+        :rtype: str
+        """
+        return self._api_domain
+
+    @api_domain.setter
+    def api_domain(self, api_domain):
+        """Sets the api_domain of this JanusStream.
+
+
+        :param api_domain: The api_domain of this JanusStream.  # noqa: E501
+        :type api_domain: str
+        """
+        if self.local_vars_configuration.client_side_validation and api_domain is None:  # noqa: E501
+            raise ValueError("Invalid value for `api_domain`, must not be `None`")  # noqa: E501
+
+        self._api_domain = api_domain
+
+    @property
+    def api_url(self):
+        """Gets the api_url of this JanusStream.  # noqa: E501
+
+
+        :return: The api_url of this JanusStream.  # noqa: E501
+        :rtype: str
+        """
+        return self._api_url
+
+    @api_url.setter
+    def api_url(self, api_url):
+        """Sets the api_url of this JanusStream.
+
+
+        :param api_url: The api_url of this JanusStream.  # noqa: E501
+        :type api_url: str
+        """
+        if self.local_vars_configuration.client_side_validation and api_url is None:  # noqa: E501
+            raise ValueError("Invalid value for `api_url`, must not be `None`")  # noqa: E501
+
+        self._api_url = api_url
+
+    @property
+    def admin_url(self):
+        """Gets the admin_url of this JanusStream.  # noqa: E501
+
+
+        :return: The admin_url of this JanusStream.  # noqa: E501
+        :rtype: str
+        """
+        return self._admin_url
+
+    @admin_url.setter
+    def admin_url(self, admin_url):
+        """Sets the admin_url of this JanusStream.
+
+
+        :param admin_url: The admin_url of this JanusStream.  # noqa: E501
+        :type admin_url: str
+        """
+        if self.local_vars_configuration.client_side_validation and admin_url is None:  # noqa: E501
+            raise ValueError("Invalid value for `admin_url`, must not be `None`")  # noqa: E501
+
+        self._admin_url = admin_url
+
+    @property
+    def rtp_domain(self):
+        """Gets the rtp_domain of this JanusStream.  # noqa: E501
+
+
+        :return: The rtp_domain of this JanusStream.  # noqa: E501
+        :rtype: str
+        """
+        return self._rtp_domain
+
+    @rtp_domain.setter
+    def rtp_domain(self, rtp_domain):
+        """Sets the rtp_domain of this JanusStream.
+
+
+        :param rtp_domain: The rtp_domain of this JanusStream.  # noqa: E501
+        :type rtp_domain: str
+        """
+        if self.local_vars_configuration.client_side_validation and rtp_domain is None:  # noqa: E501
+            raise ValueError("Invalid value for `rtp_domain`, must not be `None`")  # noqa: E501
+
+        self._rtp_domain = rtp_domain
+
+    @property
+    def websocket_url(self):
+        """Gets the websocket_url of this JanusStream.  # noqa: E501
+
+
+        :return: The websocket_url of this JanusStream.  # noqa: E501
+        :rtype: str
+        """
+        return self._websocket_url
+
+    @websocket_url.setter
+    def websocket_url(self, websocket_url):
+        """Sets the websocket_url of this JanusStream.
+
+
+        :param websocket_url: The websocket_url of this JanusStream.  # noqa: E501
+        :type websocket_url: str
+        """
+        if self.local_vars_configuration.client_side_validation and websocket_url is None:  # noqa: E501
+            raise ValueError("Invalid value for `websocket_url`, must not be `None`")  # noqa: E501
+
+        self._websocket_url = websocket_url
 
     @property
     def created_dt(self):
@@ -296,6 +435,29 @@ class JanusStream(object):
         """
 
         self._info = info
+
+    @property
+    def port(self):
+        """Gets the port of this JanusStream.  # noqa: E501
+
+
+        :return: The port of this JanusStream.  # noqa: E501
+        :rtype: int
+        """
+        return self._port
+
+    @port.setter
+    def port(self, port):
+        """Sets the port of this JanusStream.
+
+
+        :param port: The port of this JanusStream.  # noqa: E501
+        :type port: int
+        """
+        if self.local_vars_configuration.client_side_validation and port is None:  # noqa: E501
+            raise ValueError("Invalid value for `port`, must not be `None`")  # noqa: E501
+
+        self._port = port
 
     @property
     def device(self):

@@ -15,12 +15,6 @@
 pub struct JanusAuth {
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "api_url")]
-    pub api_url: String,
-    #[serde(rename = "admin_url")]
-    pub admin_url: String,
-    #[serde(rename = "websocket_url")]
-    pub websocket_url: String,
     #[serde(rename = "admin_secret", skip_serializing_if = "Option::is_none")]
     pub admin_secret: Option<String>,
     #[serde(rename = "api_token", skip_serializing_if = "Option::is_none")]
@@ -34,12 +28,9 @@ pub struct JanusAuth {
 }
 
 impl JanusAuth {
-    pub fn new(id: i32, api_url: String, admin_url: String, websocket_url: String, created_dt: String, user: i32) -> JanusAuth {
+    pub fn new(id: i32, created_dt: String, user: i32) -> JanusAuth {
         JanusAuth {
             id,
-            api_url,
-            admin_url,
-            websocket_url,
             admin_secret: None,
             api_token: None,
             config_type: None,
