@@ -3,14 +3,14 @@ import logging
 from typing import Tuple
 from google.cloud import iot_v1 as cloudiot_v1
 import google.api_core.exceptions
+from django.apps import apps
 from django.conf import settings
 from django.template.loader import render_to_string
 
-from .models import (
-    Device,
-    CloudiotDevice,
-    PublicKey,
-)
+Device = apps.get_model("devices", "Device")
+CloudiotDevice = apps.get_model("devices", "CloudiotDevice")
+PublicKey = apps.get_model("devices", "PublicKey")
+JanusStream = apps.get_model("devices", "JanusStream")
 
 logger = logging.getLogger(__name__)
 
