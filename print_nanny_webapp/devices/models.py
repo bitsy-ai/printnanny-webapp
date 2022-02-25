@@ -325,45 +325,6 @@ class CloudiotDevice(SafeDeleteModel):
         return f"/devices/{self.num_id}/state"
 
 
-class DeviceConfig(SafeDeleteModel):
-    """
-    Append-only log of msgs published to /devices/:id/config FROM webapp controller
-    Indicates desired configuration of device
-
-    Fields rendered to extra vars file used with Ansible Playbook
-    ansible-playbook playbook.yml --extra-vars "@some_file.json"
-
-    Device will attempt to apply the received config
-    Then publish state to /devices/:id/state FROM device
-    https://cloud.google.com/iot/docs/concepts/devices#changing_device_behavior_or_state_using_configuration_data
-    """
-
-    _safedelete_policy = SOFT_DELETE
-
-    class Meta:
-        ordering = ["-created_dt"]
-
-    device = models.ForeignKey(Device, on_delete=models.CASCADE, db_index=True)
-    release_channel = models.CharField(
-        max_length=8,
-        choices=DeviceReleaseChannel.choices,
-        default=DeviceReleaseChannel.STABLE,
-    )
-    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
-
-    @property
-    def mqtt_topic(self):
-        return f"/devices/{self.num_id}/config"
-
-    @property
-    def user(self):
-        return self.device.user
-
-    @property
-    def cloudiot_device(self):
-        return self.device.cloudiot_device
-
-
 class JanusAuth(SafeDeleteModel):
     class Meta:
         index_together = ("user", "config_type", "created_dt")
@@ -495,47 +456,3 @@ class JanusStream(SafeDeleteModel):
         raise NotImplementedError(
             f"JanusAuth.websocket_port not implemented for JanusConfigType={self.config_type}"
         )
-
-
-class Camera(SafeDeleteModel):
-    _safedelete_policy = SOFT_DELETE
-
-    class Meta:
-        unique_together = ("device", "name")
-
-    _safedelete_policy = SOFT_DELETE
-
-    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
-    updated_dt = models.DateTimeField(db_index=True, auto_now=True)
-    active = models.BooleanField(default=False)
-    device = models.ForeignKey(Device, on_delete=models.CASCADE, related_name="cameras")
-    name = models.CharField(
-        max_length=255,
-        default="Raspberry Pi Cam",
-        help_text="Descriptive name to identify this camera",
-    )
-    camera_type = models.CharField(
-        max_length=255,
-        choices=CameraType.choices,
-        default=CameraType.choices,
-        help_text="Specify camera connection type",
-    )
-
-
-class PrinterController(PolymorphicModel, SafeDeleteModel):
-
-    _safedelete_policy = SOFT_DELETE
-
-    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
-    updated_dt = models.DateTimeField(db_index=True, auto_now=True)
-    user = models.ForeignKey(
-        UserModel, on_delete=models.CASCADE, related_name="printer_controllers"
-    )
-    device = models.ForeignKey(
-        Device, on_delete=models.CASCADE, related_name="printer_controllers"
-    )
-    software = models.CharField(
-        max_length=12,
-        choices=PrinterSoftwareType.choices,
-        default=PrinterSoftwareType.OCTOPRINT,
-    )

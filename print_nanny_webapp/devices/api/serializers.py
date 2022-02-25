@@ -5,50 +5,20 @@ from drf_spectacular.types import OpenApiTypes
 from django.contrib.auth import get_user_model
 from print_nanny_webapp.devices.models import (
     Device,
-    Camera,
     CloudiotDevice,
-    DeviceConfig,
     JanusAuth,
     JanusStream,
     PublicKey,
     SystemInfo,
-    PrinterController,
 )
 from ..enum import (
-    CameraType,
     DeviceReleaseChannel,
-    PrinterSoftwareType,
 )
 from print_nanny_webapp.users.api.serializers import UserSerializer
 
 User = get_user_model()
 
 logger = logging.getLogger(__name__)
-
-
-class CameraSerializer(serializers.ModelSerializer):
-    camera_type = serializers.ChoiceField(
-        choices=CameraType.choices,
-        default=CameraType.PICAM,
-    )
-
-    class Meta:
-        model = Camera
-        fields = [field.name for field in Camera._meta.fields] + [
-            "camera_type",
-        ]
-
-
-class PrinterControllerSerializer(serializers.ModelSerializer):
-    software = serializers.ChoiceField(
-        choices=PrinterSoftwareType.choices,
-        default=PrinterSoftwareType.OCTOPRINT,
-    )
-
-    class Meta:
-        model = PrinterController
-        exclude = ("deleted",)
-
 
 ##
 # v1 Device Identity Provisioning (distributed via rpi-imager)
@@ -85,12 +55,6 @@ class CloudiotDeviceSerializer(serializers.ModelSerializer):
             "device",
             "id",
         )
-
-
-class DeviceConfigSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = DeviceConfig
-        exclude = ("deleted",)
 
 
 class PublicKeySerializer(serializers.ModelSerializer):
@@ -160,7 +124,6 @@ class SystemInfoSerializer(serializers.ModelSerializer):
 
 class DeviceSerializer(serializers.ModelSerializer):
 
-    cameras = CameraSerializer(read_only=True, many=True)
     cloudiot_device = CloudiotDeviceSerializer(read_only=True)
     dashboard_url = serializers.CharField(read_only=True)
     video_test_url = serializers.CharField(read_only=True)
@@ -168,7 +131,6 @@ class DeviceSerializer(serializers.ModelSerializer):
     janus_local_url = serializers.CharField(read_only=True)
     monitoring_active = serializers.BooleanField(default=False)
     setup_complete = serializers.BooleanField(default=False)
-    printer_controllers = PrinterControllerSerializer(read_only=True, many=True)
     user = UserSerializer(read_only=True)
 
     release_channel = serializers.ChoiceField(
