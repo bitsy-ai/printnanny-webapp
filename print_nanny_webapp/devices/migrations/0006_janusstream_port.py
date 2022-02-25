@@ -7,13 +7,15 @@ import print_nanny_webapp.devices.utils
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devices', '0005_auto_20220217_2202'),
+        ("devices", "0005_auto_20220217_2202"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='janusstream',
-            name='port',
-            field=models.PositiveSmallIntegerField(default=print_nanny_webapp.devices.utils.get_available_port),
+            model_name="janusstream",
+            name="port",
+            field=models.PositiveSmallIntegerField(
+                default=print_nanny_webapp.devices.utils.get_available_port
+            ),
         ),
     ]

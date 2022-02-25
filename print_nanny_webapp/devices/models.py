@@ -439,11 +439,11 @@ class JanusStream(SafeDeleteModel):
                 condition=models.Q(deleted=None),
                 name="unique_janus_stream_per_device",
             ),
-            # UniqueConstraint(
-            #     fields=["port"],
-            #     condition=models.Q(deleted=None),
-            #     name="unique_port",
-            # ),
+            UniqueConstraint(
+                fields=["port"],
+                condition=models.Q(deleted=None),
+                name="unique_port",
+            ),
         ]
 
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
