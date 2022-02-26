@@ -76,6 +76,16 @@ class Device(SafeDeleteModel):
         help_text="WARNING: you should only use the nightly developer channel when guided by Print Nanny staff! This unstable channel is intended for QA and verifying bug fixes.",
     )
 
+    image_version = models.CharField(
+        max_length=255,
+        help_text="PrintNanny OS image version string from /boot/image_version.txt",
+    )
+
+    ansible_collection_version = models.CharField(
+        max_length=255,
+        help_text="PrintNanny OS ansible collection version string. Releaes: https://github.com/bitsy-ai/ansible-collection-printnanny",
+    )
+
     @property
     def public_key(self):
         return self.public_keys.first()
@@ -193,10 +203,6 @@ class SystemInfo(SafeDeleteModel):
     cores = models.IntegerField()
     ram = models.BigIntegerField()
     device = models.ForeignKey(Device, on_delete=models.CASCADE)
-    image_version = models.CharField(
-        max_length=255,
-        help_text="Print Nanny OS version string from /boot/image_version.txt",
-    )
 
 
 class CloudiotDevice(SafeDeleteModel):
