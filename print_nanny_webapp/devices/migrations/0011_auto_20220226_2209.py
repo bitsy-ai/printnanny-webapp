@@ -6,24 +6,32 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devices', '0010_auto_20220225_2150'),
+        ("devices", "0010_auto_20220225_2150"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='systeminfo',
-            name='image_version',
+            model_name="systeminfo",
+            name="image_version",
         ),
         migrations.AddField(
-            model_name='device',
-            name='ansible_collection_version',
-            field=models.CharField(default='1.4.1', help_text='PrintNanny OS ansible collection version string. Releaes: https://github.com/bitsy-ai/ansible-collection-printnanny', max_length=255),
+            model_name="device",
+            name="ansible_collection_version",
+            field=models.CharField(
+                default="1.4.1",
+                help_text="PrintNanny OS ansible collection version string. Releaes: https://github.com/bitsy-ai/ansible-collection-printnanny",
+                max_length=255,
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='device',
-            name='image_version',
-            field=models.CharField(default='imageversion', help_text='PrintNanny OS image version string from /boot/image_version.txt', max_length=255),
+            model_name="device",
+            name="image_version",
+            field=models.CharField(
+                default="imageversion",
+                help_text="PrintNanny OS image version string from /boot/image_version.txt",
+                max_length=255,
+            ),
             preserve_default=False,
         ),
     ]

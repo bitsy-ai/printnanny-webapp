@@ -83,7 +83,7 @@ class Device(SafeDeleteModel):
 
     ansible_collection_version = models.CharField(
         max_length=255,
-        help_text="PrintNanny OS ansible collection version string. Releaes: https://github.com/bitsy-ai/ansible-collection-printnanny"
+        help_text="PrintNanny OS ansible collection version string. Releaes: https://github.com/bitsy-ai/ansible-collection-printnanny",
     )
 
     @property
