@@ -38,7 +38,6 @@ class Device(object):
     """
     openapi_types = {
         'id': 'int',
-        'cameras': 'list[Camera]',
         'cloudiot_device': 'CloudiotDevice',
         'dashboard_url': 'str',
         'video_test_url': 'str',
@@ -46,7 +45,6 @@ class Device(object):
         'janus_local_url': 'str',
         'monitoring_active': 'bool',
         'setup_complete': 'bool',
-        'printer_controllers': 'list[PrinterController]',
         'user': 'User',
         'release_channel': 'DeviceReleaseChannel',
         'system_info': 'SystemInfo',
@@ -58,7 +56,6 @@ class Device(object):
 
     attribute_map = {
         'id': 'id',
-        'cameras': 'cameras',
         'cloudiot_device': 'cloudiot_device',
         'dashboard_url': 'dashboard_url',
         'video_test_url': 'video_test_url',
@@ -66,7 +63,6 @@ class Device(object):
         'janus_local_url': 'janus_local_url',
         'monitoring_active': 'monitoring_active',
         'setup_complete': 'setup_complete',
-        'printer_controllers': 'printer_controllers',
         'user': 'user',
         'release_channel': 'release_channel',
         'system_info': 'system_info',
@@ -76,14 +72,13 @@ class Device(object):
         'hostname': 'hostname'
     }
 
-    def __init__(self, id=None, cameras=None, cloudiot_device=None, dashboard_url=None, video_test_url=None, janus_auth=None, janus_local_url=None, monitoring_active=False, setup_complete=False, printer_controllers=None, user=None, release_channel=None, system_info=None, public_key=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, cloudiot_device=None, dashboard_url=None, video_test_url=None, janus_auth=None, janus_local_url=None, monitoring_active=False, setup_complete=False, user=None, release_channel=None, system_info=None, public_key=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
-        self._cameras = None
         self._cloudiot_device = None
         self._dashboard_url = None
         self._video_test_url = None
@@ -91,7 +86,6 @@ class Device(object):
         self._janus_local_url = None
         self._monitoring_active = None
         self._setup_complete = None
-        self._printer_controllers = None
         self._user = None
         self._release_channel = None
         self._system_info = None
@@ -102,7 +96,6 @@ class Device(object):
         self.discriminator = None
 
         self.id = id
-        self.cameras = cameras
         self.cloudiot_device = cloudiot_device
         self.dashboard_url = dashboard_url
         self.video_test_url = video_test_url
@@ -112,7 +105,6 @@ class Device(object):
             self.monitoring_active = monitoring_active
         if setup_complete is not None:
             self.setup_complete = setup_complete
-        self.printer_controllers = printer_controllers
         self.user = user
         self.release_channel = release_channel
         self.system_info = system_info
@@ -144,29 +136,6 @@ class Device(object):
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
-
-    @property
-    def cameras(self):
-        """Gets the cameras of this Device.  # noqa: E501
-
-
-        :return: The cameras of this Device.  # noqa: E501
-        :rtype: list[Camera]
-        """
-        return self._cameras
-
-    @cameras.setter
-    def cameras(self, cameras):
-        """Sets the cameras of this Device.
-
-
-        :param cameras: The cameras of this Device.  # noqa: E501
-        :type cameras: list[Camera]
-        """
-        if self.local_vars_configuration.client_side_validation and cameras is None:  # noqa: E501
-            raise ValueError("Invalid value for `cameras`, must not be `None`")  # noqa: E501
-
-        self._cameras = cameras
 
     @property
     def cloudiot_device(self):
@@ -320,29 +289,6 @@ class Device(object):
         """
 
         self._setup_complete = setup_complete
-
-    @property
-    def printer_controllers(self):
-        """Gets the printer_controllers of this Device.  # noqa: E501
-
-
-        :return: The printer_controllers of this Device.  # noqa: E501
-        :rtype: list[PrinterController]
-        """
-        return self._printer_controllers
-
-    @printer_controllers.setter
-    def printer_controllers(self, printer_controllers):
-        """Sets the printer_controllers of this Device.
-
-
-        :param printer_controllers: The printer_controllers of this Device.  # noqa: E501
-        :type printer_controllers: list[PrinterController]
-        """
-        if self.local_vars_configuration.client_side_validation and printer_controllers is None:  # noqa: E501
-            raise ValueError("Invalid value for `printer_controllers`, must not be `None`")  # noqa: E501
-
-        self._printer_controllers = printer_controllers
 
     @property
     def user(self):

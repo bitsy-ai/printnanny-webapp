@@ -43,17 +43,6 @@ class TestPaginatedDeviceList(unittest.TestCase):
                 results = [
                     printnanny_api_client.models.device.Device(
                         id = 56, 
-                        cameras = [
-                            printnanny_api_client.models.camera.Camera(
-                                id = 56, 
-                                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                active = True, 
-                                device = 56, 
-                                name = 'Raspberry Pi Cam', 
-                                camera_type = null, )
-                            ], 
                         cloudiot_device = null, 
                         dashboard_url = '', 
                         video_test_url = '', 
@@ -61,16 +50,6 @@ class TestPaginatedDeviceList(unittest.TestCase):
                         janus_local_url = '', 
                         monitoring_active = True, 
                         setup_complete = True, 
-                        printer_controllers = [
-                            printnanny_api_client.models.printer_controller.PrinterController(
-                                id = 56, 
-                                software = null, 
-                                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                polymorphic_ctype = 56, 
-                                user = 56, 
-                                device = 56, )
-                            ], 
                         user = null, 
                         release_channel = null, 
                         system_info = null, 

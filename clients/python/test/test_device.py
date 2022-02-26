@@ -38,17 +38,6 @@ class TestDevice(unittest.TestCase):
         if include_optional :
             return Device(
                 id = 56, 
-                cameras = [
-                    printnanny_api_client.models.camera.Camera(
-                        id = 56, 
-                        deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        active = True, 
-                        device = 56, 
-                        name = 'Raspberry Pi Cam', 
-                        camera_type = null, )
-                    ], 
                 cloudiot_device = None, 
                 dashboard_url = '', 
                 video_test_url = '', 
@@ -56,16 +45,6 @@ class TestDevice(unittest.TestCase):
                 janus_local_url = '', 
                 monitoring_active = True, 
                 setup_complete = True, 
-                printer_controllers = [
-                    printnanny_api_client.models.printer_controller.PrinterController(
-                        id = 56, 
-                        software = null, 
-                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        polymorphic_ctype = 56, 
-                        user = 56, 
-                        device = 56, )
-                    ], 
                 user = None, 
                 release_channel = None, 
                 system_info = None, 
@@ -77,32 +56,11 @@ class TestDevice(unittest.TestCase):
         else :
             return Device(
                 id = 56,
-                cameras = [
-                    printnanny_api_client.models.camera.Camera(
-                        id = 56, 
-                        deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        active = True, 
-                        device = 56, 
-                        name = 'Raspberry Pi Cam', 
-                        camera_type = null, )
-                    ],
                 cloudiot_device = None,
                 dashboard_url = '',
                 video_test_url = '',
                 janus_auth = None,
                 janus_local_url = '',
-                printer_controllers = [
-                    printnanny_api_client.models.printer_controller.PrinterController(
-                        id = 56, 
-                        software = null, 
-                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        polymorphic_ctype = 56, 
-                        user = 56, 
-                        device = 56, )
-                    ],
                 user = None,
                 system_info = None,
                 public_key = None,

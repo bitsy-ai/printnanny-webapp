@@ -35,36 +35,6 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
-    def test_devices_cameras_create(self):
-        """Test case for devices_cameras_create
-
-        """
-        pass
-
-    def test_devices_cameras_list(self):
-        """Test case for devices_cameras_list
-
-        """
-        pass
-
-    def test_devices_cameras_partial_update(self):
-        """Test case for devices_cameras_partial_update
-
-        """
-        pass
-
-    def test_devices_cameras_retrieve(self):
-        """Test case for devices_cameras_retrieve
-
-        """
-        pass
-
-    def test_devices_cameras_update(self):
-        """Test case for devices_cameras_update
-
-        """
-        pass
-
     def test_devices_cloudiot_create(self):
         """Test case for devices_cloudiot_create
 
@@ -151,36 +121,6 @@ class TestDevicesApi(unittest.TestCase):
 
     def test_devices_partial_update(self):
         """Test case for devices_partial_update
-
-        """
-        pass
-
-    def test_devices_printer_controllers_create(self):
-        """Test case for devices_printer_controllers_create
-
-        """
-        pass
-
-    def test_devices_printer_controllers_list(self):
-        """Test case for devices_printer_controllers_list
-
-        """
-        pass
-
-    def test_devices_printer_controllers_partial_update(self):
-        """Test case for devices_printer_controllers_partial_update
-
-        """
-        pass
-
-    def test_devices_printer_controllers_retrieve(self):
-        """Test case for devices_printer_controllers_retrieve
-
-        """
-        pass
-
-    def test_devices_printer_controllers_update(self):
-        """Test case for devices_printer_controllers_update
 
         """
         pass

@@ -299,107 +299,6 @@ export interface CallbackTokenVerificationRequest {
 /**
  * 
  * @export
- * @interface Camera
- */
-export interface Camera {
-    /**
-     * 
-     * @type {number}
-     * @memberof Camera
-     */
-    'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof Camera
-     */
-    'deleted': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Camera
-     */
-    'created_dt': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Camera
-     */
-    'updated_dt': string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Camera
-     */
-    'active'?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof Camera
-     */
-    'device': number;
-    /**
-     * Descriptive name to identify this camera
-     * @type {string}
-     * @memberof Camera
-     */
-    'name'?: string;
-    /**
-     * 
-     * @type {CameraType}
-     * @memberof Camera
-     */
-    'camera_type'?: CameraType;
-}
-/**
- * 
- * @export
- * @interface CameraRequest
- */
-export interface CameraRequest {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CameraRequest
-     */
-    'active'?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof CameraRequest
-     */
-    'device': number;
-    /**
-     * Descriptive name to identify this camera
-     * @type {string}
-     * @memberof CameraRequest
-     */
-    'name'?: string;
-    /**
-     * 
-     * @type {CameraType}
-     * @memberof CameraRequest
-     */
-    'camera_type'?: CameraType;
-}
-/**
- * 
- * @export
- * @enum {string}
- */
-
-export const CameraType = {
-    Picam: 'picam',
-    Usb: 'usb',
-    Ip: 'ip'
-} as const;
-
-export type CameraType = typeof CameraType[keyof typeof CameraType];
-
-
-/**
- * 
- * @export
  * @interface CloudiotDevice
  */
 export interface CloudiotDevice {
@@ -572,12 +471,6 @@ export interface Device {
     'id': number;
     /**
      * 
-     * @type {Array<Camera>}
-     * @memberof Device
-     */
-    'cameras': Array<Camera>;
-    /**
-     * 
      * @type {CloudiotDevice}
      * @memberof Device
      */
@@ -618,12 +511,6 @@ export interface Device {
      * @memberof Device
      */
     'setup_complete'?: boolean;
-    /**
-     * 
-     * @type {Array<PrinterController>}
-     * @memberof Device
-     */
-    'printer_controllers': Array<PrinterController>;
     /**
      * 
      * @type {User}
@@ -3057,37 +2944,6 @@ export interface PaginatedAlertList {
 /**
  * 
  * @export
- * @interface PaginatedCameraList
- */
-export interface PaginatedCameraList {
-    /**
-     * 
-     * @type {number}
-     * @memberof PaginatedCameraList
-     */
-    'count'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedCameraList
-     */
-    'next'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedCameraList
-     */
-    'previous'?: string | null;
-    /**
-     * 
-     * @type {Array<Camera>}
-     * @memberof PaginatedCameraList
-     */
-    'results'?: Array<Camera>;
-}
-/**
- * 
- * @export
  * @interface PaginatedCloudiotDeviceList
  */
 export interface PaginatedCloudiotDeviceList {
@@ -3584,37 +3440,6 @@ export interface PaginatedPrintSessionList {
 /**
  * 
  * @export
- * @interface PaginatedPrinterControllerList
- */
-export interface PaginatedPrinterControllerList {
-    /**
-     * 
-     * @type {number}
-     * @memberof PaginatedPrinterControllerList
-     */
-    'count'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedPrinterControllerList
-     */
-    'next'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedPrinterControllerList
-     */
-    'previous'?: string | null;
-    /**
-     * 
-     * @type {Array<PrinterController>}
-     * @memberof PaginatedPrinterControllerList
-     */
-    'results'?: Array<PrinterController>;
-}
-/**
- * 
- * @export
  * @interface PaginatedPrinterProfileList
  */
 export interface PaginatedPrinterProfileList {
@@ -3955,37 +3780,6 @@ export interface PatchedAlertRequest {
 /**
  * 
  * @export
- * @interface PatchedCameraRequest
- */
-export interface PatchedCameraRequest {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedCameraRequest
-     */
-    'active'?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedCameraRequest
-     */
-    'device'?: number;
-    /**
-     * Descriptive name to identify this camera
-     * @type {string}
-     * @memberof PatchedCameraRequest
-     */
-    'name'?: string;
-    /**
-     * 
-     * @type {CameraType}
-     * @memberof PatchedCameraRequest
-     */
-    'camera_type'?: CameraType;
-}
-/**
- * 
- * @export
  * @interface PatchedCloudiotDeviceRequest
  */
 export interface PatchedCloudiotDeviceRequest {
@@ -4298,31 +4092,6 @@ export interface PatchedPrintSessionRequest {
 /**
  * 
  * @export
- * @interface PatchedPrinterControllerRequest
- */
-export interface PatchedPrinterControllerRequest {
-    /**
-     * 
-     * @type {SoftwareEnum}
-     * @memberof PatchedPrinterControllerRequest
-     */
-    'software'?: SoftwareEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedPrinterControllerRequest
-     */
-    'user'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedPrinterControllerRequest
-     */
-    'device'?: number;
-}
-/**
- * 
- * @export
  * @interface PatchedPrinterProfileRequest
  */
 export interface PatchedPrinterProfileRequest {
@@ -4600,11 +4369,17 @@ export interface PatchedSystemInfoRequest {
      */
     'ram'?: number;
     /**
-     * Print Nanny OS version string from /boot/image_version.txt
+     * PrintNanny OS image version string from /boot/image_version.txt
      * @type {string}
      * @memberof PatchedSystemInfoRequest
      */
     'image_version'?: string;
+    /**
+     * PrintNanny OS ansible collection version string. Releaes: https://github.com/bitsy-ai/ansible-collection-printnanny
+     * @type {string}
+     * @memberof PatchedSystemInfoRequest
+     */
+    'ansible_collection_version'?: string;
     /**
      * 
      * @type {number}
@@ -5219,80 +4994,6 @@ export interface PrintSessionRequest {
      * @memberof PrintSessionRequest
      */
     'print_job_status'?: OctoJobEvent;
-}
-/**
- * 
- * @export
- * @interface PrinterController
- */
-export interface PrinterController {
-    /**
-     * 
-     * @type {number}
-     * @memberof PrinterController
-     */
-    'id': number;
-    /**
-     * 
-     * @type {SoftwareEnum}
-     * @memberof PrinterController
-     */
-    'software'?: SoftwareEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrinterController
-     */
-    'created_dt': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrinterController
-     */
-    'updated_dt': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrinterController
-     */
-    'polymorphic_ctype': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrinterController
-     */
-    'user': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrinterController
-     */
-    'device': number;
-}
-/**
- * 
- * @export
- * @interface PrinterControllerRequest
- */
-export interface PrinterControllerRequest {
-    /**
-     * 
-     * @type {SoftwareEnum}
-     * @memberof PrinterControllerRequest
-     */
-    'software'?: SoftwareEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrinterControllerRequest
-     */
-    'user': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrinterControllerRequest
-     */
-    'device': number;
 }
 /**
  * 
@@ -6210,19 +5911,6 @@ export interface RemoteControlCommandRequest {
 /**
  * 
  * @export
- * @enum {string}
- */
-
-export const SoftwareEnum = {
-    OctoPrint: 'OctoPrint'
-} as const;
-
-export type SoftwareEnum = typeof SoftwareEnum[keyof typeof SoftwareEnum];
-
-
-/**
- * 
- * @export
  * @interface SystemInfo
  */
 export interface SystemInfo {
@@ -6287,11 +5975,17 @@ export interface SystemInfo {
      */
     'ram': number;
     /**
-     * Print Nanny OS version string from /boot/image_version.txt
+     * PrintNanny OS image version string from /boot/image_version.txt
      * @type {string}
      * @memberof SystemInfo
      */
     'image_version': string;
+    /**
+     * PrintNanny OS ansible collection version string. Releaes: https://github.com/bitsy-ai/ansible-collection-printnanny
+     * @type {string}
+     * @memberof SystemInfo
+     */
+    'ansible_collection_version': string;
     /**
      * 
      * @type {number}
@@ -6348,11 +6042,17 @@ export interface SystemInfoRequest {
      */
     'ram': number;
     /**
-     * Print Nanny OS version string from /boot/image_version.txt
+     * PrintNanny OS image version string from /boot/image_version.txt
      * @type {string}
      * @memberof SystemInfoRequest
      */
     'image_version': string;
+    /**
+     * PrintNanny OS ansible collection version string. Releaes: https://github.com/bitsy-ai/ansible-collection-printnanny
+     * @type {string}
+     * @memberof SystemInfoRequest
+     */
+    'ansible_collection_version': string;
     /**
      * 
      * @type {number}
@@ -8117,234 +7817,6 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {number} deviceId 
-         * @param {CameraRequest} cameraRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesCamerasCreate: async (deviceId: number, cameraRequest: CameraRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesCamerasCreate', 'deviceId', deviceId)
-            // verify required parameter 'cameraRequest' is not null or undefined
-            assertParamExists('devicesCamerasCreate', 'cameraRequest', cameraRequest)
-            const localVarPath = `/api/devices/{device_id}/cameras/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(cameraRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesCamerasList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesCamerasList', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/cameras/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this camera.
-         * @param {PatchedCameraRequest} [patchedCameraRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesCamerasPartialUpdate: async (deviceId: number, id: number, patchedCameraRequest?: PatchedCameraRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesCamerasPartialUpdate', 'deviceId', deviceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesCamerasPartialUpdate', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/cameras/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(patchedCameraRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this camera.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesCamerasRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesCamerasRetrieve', 'deviceId', deviceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesCamerasRetrieve', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/cameras/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this camera.
-         * @param {CameraRequest} cameraRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesCamerasUpdate: async (deviceId: number, id: number, cameraRequest: CameraRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesCamerasUpdate', 'deviceId', deviceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesCamerasUpdate', 'id', id)
-            // verify required parameter 'cameraRequest' is not null or undefined
-            assertParamExists('devicesCamerasUpdate', 'cameraRequest', cameraRequest)
-            const localVarPath = `/api/devices/{device_id}/cameras/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(cameraRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
          * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -8998,230 +8470,6 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(patchedDeviceRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {DeviceRequest} [deviceRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesPrinterControllersCreate: async (deviceId: number, deviceRequest?: DeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesPrinterControllersCreate', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/printer-controllers/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(deviceRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesPrinterControllersList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesPrinterControllersList', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/printer-controllers/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this printer controller.
-         * @param {PatchedPrinterControllerRequest} [patchedPrinterControllerRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesPrinterControllersPartialUpdate: async (deviceId: number, id: number, patchedPrinterControllerRequest?: PatchedPrinterControllerRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesPrinterControllersPartialUpdate', 'deviceId', deviceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesPrinterControllersPartialUpdate', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/printer-controllers/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(patchedPrinterControllerRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this printer controller.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesPrinterControllersRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesPrinterControllersRetrieve', 'deviceId', deviceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesPrinterControllersRetrieve', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/printer-controllers/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this printer controller.
-         * @param {DeviceRequest} [deviceRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesPrinterControllersUpdate: async (deviceId: number, id: number, deviceRequest?: DeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesPrinterControllersUpdate', 'deviceId', deviceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesPrinterControllersUpdate', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/printer-controllers/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(deviceRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -9919,63 +9167,6 @@ export const DevicesApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} deviceId 
-         * @param {CameraRequest} cameraRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesCamerasCreate(deviceId: number, cameraRequest: CameraRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Camera>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCamerasCreate(deviceId, cameraRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesCamerasList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedCameraList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCamerasList(deviceId, page, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this camera.
-         * @param {PatchedCameraRequest} [patchedCameraRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesCamerasPartialUpdate(deviceId: number, id: number, patchedCameraRequest?: PatchedCameraRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Camera>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCamerasPartialUpdate(deviceId, id, patchedCameraRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this camera.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesCamerasRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Camera>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCamerasRetrieve(deviceId, id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this camera.
-         * @param {CameraRequest} cameraRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesCamerasUpdate(deviceId: number, id: number, cameraRequest: CameraRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCamerasUpdate(deviceId, id, cameraRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
          * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -10138,63 +9329,6 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          */
         async devicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPartialUpdate(id, patchedDeviceRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {DeviceRequest} [deviceRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesPrinterControllersCreate(deviceId: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterController>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPrinterControllersCreate(deviceId, deviceRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesPrinterControllersList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrinterControllerList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPrinterControllersList(deviceId, page, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this printer controller.
-         * @param {PatchedPrinterControllerRequest} [patchedPrinterControllerRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesPrinterControllersPartialUpdate(deviceId: number, id: number, patchedPrinterControllerRequest?: PatchedPrinterControllerRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterController>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPrinterControllersPartialUpdate(deviceId, id, patchedPrinterControllerRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this printer controller.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesPrinterControllersRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterController>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPrinterControllersRetrieve(deviceId, id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this printer controller.
-         * @param {DeviceRequest} [deviceRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesPrinterControllersUpdate(deviceId: number, id: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPrinterControllersUpdate(deviceId, id, deviceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -10387,58 +9521,6 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @param {number} deviceId 
-         * @param {CameraRequest} cameraRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesCamerasCreate(deviceId: number, cameraRequest: CameraRequest, options?: any): AxiosPromise<Camera> {
-            return localVarFp.devicesCamerasCreate(deviceId, cameraRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesCamerasList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedCameraList> {
-            return localVarFp.devicesCamerasList(deviceId, page, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this camera.
-         * @param {PatchedCameraRequest} [patchedCameraRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesCamerasPartialUpdate(deviceId: number, id: number, patchedCameraRequest?: PatchedCameraRequest, options?: any): AxiosPromise<Camera> {
-            return localVarFp.devicesCamerasPartialUpdate(deviceId, id, patchedCameraRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this camera.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesCamerasRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<Camera> {
-            return localVarFp.devicesCamerasRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this camera.
-         * @param {CameraRequest} cameraRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesCamerasUpdate(deviceId: number, id: number, cameraRequest: CameraRequest, options?: any): AxiosPromise<void> {
-            return localVarFp.devicesCamerasUpdate(deviceId, id, cameraRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
          * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -10587,58 +9669,6 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          */
         devicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: any): AxiosPromise<Device> {
             return localVarFp.devicesPartialUpdate(id, patchedDeviceRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {DeviceRequest} [deviceRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesPrinterControllersCreate(deviceId: number, deviceRequest?: DeviceRequest, options?: any): AxiosPromise<PrinterController> {
-            return localVarFp.devicesPrinterControllersCreate(deviceId, deviceRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesPrinterControllersList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedPrinterControllerList> {
-            return localVarFp.devicesPrinterControllersList(deviceId, page, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this printer controller.
-         * @param {PatchedPrinterControllerRequest} [patchedPrinterControllerRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesPrinterControllersPartialUpdate(deviceId: number, id: number, patchedPrinterControllerRequest?: PatchedPrinterControllerRequest, options?: any): AxiosPromise<PrinterController> {
-            return localVarFp.devicesPrinterControllersPartialUpdate(deviceId, id, patchedPrinterControllerRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this printer controller.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesPrinterControllersRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<PrinterController> {
-            return localVarFp.devicesPrinterControllersRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this printer controller.
-         * @param {DeviceRequest} [deviceRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesPrinterControllersUpdate(deviceId: number, id: number, deviceRequest?: DeviceRequest, options?: any): AxiosPromise<void> {
-            return localVarFp.devicesPrinterControllersUpdate(deviceId, id, deviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -10814,58 +9844,6 @@ export interface DevicesApiInterface {
     /**
      * 
      * @param {number} deviceId 
-     * @param {CameraRequest} cameraRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesCamerasCreate(deviceId: number, cameraRequest: CameraRequest, options?: AxiosRequestConfig): AxiosPromise<Camera>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesCamerasList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedCameraList>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this camera.
-     * @param {PatchedCameraRequest} [patchedCameraRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesCamerasPartialUpdate(deviceId: number, id: number, patchedCameraRequest?: PatchedCameraRequest, options?: AxiosRequestConfig): AxiosPromise<Camera>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this camera.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesCamerasRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<Camera>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this camera.
-     * @param {CameraRequest} cameraRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesCamerasUpdate(deviceId: number, id: number, cameraRequest: CameraRequest, options?: AxiosRequestConfig): AxiosPromise<void>;
-
-    /**
-     * 
-     * @param {number} deviceId 
      * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -11014,58 +9992,6 @@ export interface DevicesApiInterface {
      * @memberof DevicesApiInterface
      */
     devicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: AxiosRequestConfig): AxiosPromise<Device>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {DeviceRequest} [deviceRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesPrinterControllersCreate(deviceId: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig): AxiosPromise<PrinterController>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesPrinterControllersList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPrinterControllerList>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this printer controller.
-     * @param {PatchedPrinterControllerRequest} [patchedPrinterControllerRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesPrinterControllersPartialUpdate(deviceId: number, id: number, patchedPrinterControllerRequest?: PatchedPrinterControllerRequest, options?: AxiosRequestConfig): AxiosPromise<PrinterController>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this printer controller.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesPrinterControllersRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<PrinterController>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this printer controller.
-     * @param {DeviceRequest} [deviceRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesPrinterControllersUpdate(deviceId: number, id: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig): AxiosPromise<void>;
 
     /**
      * 
@@ -11238,68 +10164,6 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      */
     public cloudiotDeviceUpdateOrCreate(deviceId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).cloudiotDeviceUpdateOrCreate(deviceId, cloudiotDeviceRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {CameraRequest} cameraRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesCamerasCreate(deviceId: number, cameraRequest: CameraRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesCamerasCreate(deviceId, cameraRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesCamerasList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesCamerasList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this camera.
-     * @param {PatchedCameraRequest} [patchedCameraRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesCamerasPartialUpdate(deviceId: number, id: number, patchedCameraRequest?: PatchedCameraRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesCamerasPartialUpdate(deviceId, id, patchedCameraRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this camera.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesCamerasRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesCamerasRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this camera.
-     * @param {CameraRequest} cameraRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesCamerasUpdate(deviceId: number, id: number, cameraRequest: CameraRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesCamerasUpdate(deviceId, id, cameraRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -11482,68 +10346,6 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      */
     public devicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesPartialUpdate(id, patchedDeviceRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {DeviceRequest} [deviceRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesPrinterControllersCreate(deviceId: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesPrinterControllersCreate(deviceId, deviceRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesPrinterControllersList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesPrinterControllersList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this printer controller.
-     * @param {PatchedPrinterControllerRequest} [patchedPrinterControllerRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesPrinterControllersPartialUpdate(deviceId: number, id: number, patchedPrinterControllerRequest?: PatchedPrinterControllerRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesPrinterControllersPartialUpdate(deviceId, id, patchedPrinterControllerRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this printer controller.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesPrinterControllersRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesPrinterControllersRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this printer controller.
-     * @param {DeviceRequest} [deviceRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesPrinterControllersUpdate(deviceId: number, id: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesPrinterControllersUpdate(deviceId, id, deviceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

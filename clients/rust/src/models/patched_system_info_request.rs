@@ -32,9 +32,12 @@ pub struct PatchedSystemInfoRequest {
     pub cores: Option<i32>,
     #[serde(rename = "ram", skip_serializing_if = "Option::is_none")]
     pub ram: Option<i64>,
-    /// Print Nanny OS version string from /boot/image_version.txt
+    /// PrintNanny OS image version string from /boot/image_version.txt
     #[serde(rename = "image_version", skip_serializing_if = "Option::is_none")]
     pub image_version: Option<String>,
+    /// PrintNanny OS ansible collection version string. Releaes: https://github.com/bitsy-ai/ansible-collection-printnanny
+    #[serde(rename = "ansible_collection_version", skip_serializing_if = "Option::is_none")]
+    pub ansible_collection_version: Option<String>,
     #[serde(rename = "device", skip_serializing_if = "Option::is_none")]
     pub device: Option<i32>,
 }
@@ -50,6 +53,7 @@ impl PatchedSystemInfoRequest {
             cores: None,
             ram: None,
             image_version: None,
+            ansible_collection_version: None,
             device: None,
         }
     }

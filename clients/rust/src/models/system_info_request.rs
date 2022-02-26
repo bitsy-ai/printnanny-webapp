@@ -32,15 +32,18 @@ pub struct SystemInfoRequest {
     pub cores: i32,
     #[serde(rename = "ram")]
     pub ram: i64,
-    /// Print Nanny OS version string from /boot/image_version.txt
+    /// PrintNanny OS image version string from /boot/image_version.txt
     #[serde(rename = "image_version")]
     pub image_version: String,
+    /// PrintNanny OS ansible collection version string. Releaes: https://github.com/bitsy-ai/ansible-collection-printnanny
+    #[serde(rename = "ansible_collection_version")]
+    pub ansible_collection_version: String,
     #[serde(rename = "device")]
     pub device: i32,
 }
 
 impl SystemInfoRequest {
-    pub fn new(machine_id: String, hardware: String, revision: String, model: String, serial: String, cores: i32, ram: i64, image_version: String, device: i32) -> SystemInfoRequest {
+    pub fn new(machine_id: String, hardware: String, revision: String, model: String, serial: String, cores: i32, ram: i64, image_version: String, ansible_collection_version: String, device: i32) -> SystemInfoRequest {
         SystemInfoRequest {
             machine_id,
             hardware,
@@ -50,6 +53,7 @@ impl SystemInfoRequest {
             cores,
             ram,
             image_version,
+            ansible_collection_version,
             device,
         }
     }

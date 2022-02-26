@@ -15,8 +15,6 @@
 pub struct Device {
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "cameras")]
-    pub cameras: Vec<crate::models::Camera>,
     #[serde(rename = "cloudiot_device")]
     pub cloudiot_device: Option<Box<crate::models::CloudiotDevice>>,
     #[serde(rename = "dashboard_url")]
@@ -31,8 +29,6 @@ pub struct Device {
     pub monitoring_active: Option<bool>,
     #[serde(rename = "setup_complete", skip_serializing_if = "Option::is_none")]
     pub setup_complete: Option<bool>,
-    #[serde(rename = "printer_controllers")]
-    pub printer_controllers: Vec<crate::models::PrinterController>,
     #[serde(rename = "user")]
     pub user: Option<Box<crate::models::User>>,
     #[serde(rename = "release_channel", skip_serializing_if = "Option::is_none")]
@@ -51,10 +47,9 @@ pub struct Device {
 }
 
 impl Device {
-    pub fn new(id: i32, cameras: Vec<crate::models::Camera>, cloudiot_device: Option<crate::models::CloudiotDevice>, dashboard_url: String, video_test_url: String, janus_auth: Option<crate::models::JanusAuth>, janus_local_url: String, printer_controllers: Vec<crate::models::PrinterController>, user: Option<crate::models::User>, system_info: Option<crate::models::SystemInfo>, public_key: Option<crate::models::PublicKey>, created_dt: String, updated_dt: String) -> Device {
+    pub fn new(id: i32, cloudiot_device: Option<crate::models::CloudiotDevice>, dashboard_url: String, video_test_url: String, janus_auth: Option<crate::models::JanusAuth>, janus_local_url: String, user: Option<crate::models::User>, system_info: Option<crate::models::SystemInfo>, public_key: Option<crate::models::PublicKey>, created_dt: String, updated_dt: String) -> Device {
         Device {
             id,
-            cameras,
             cloudiot_device: cloudiot_device.map(Box::new),
             dashboard_url,
             video_test_url,
@@ -62,7 +57,6 @@ impl Device {
             janus_local_url,
             monitoring_active: None,
             setup_complete: None,
-            printer_controllers,
             user: user.map(Box::new),
             release_channel: None,
             system_info: system_info.map(Box::new),

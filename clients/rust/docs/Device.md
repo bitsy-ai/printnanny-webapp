@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
-**cameras** | [**Vec<crate::models::Camera>**](Camera.md) |  | [readonly]
 **cloudiot_device** | Option<[**crate::models::CloudiotDevice**](CloudiotDevice.md)> |  | [readonly]
 **dashboard_url** | **String** |  | [readonly]
 **video_test_url** | **String** |  | [readonly]
@@ -13,7 +12,6 @@ Name | Type | Description | Notes
 **janus_local_url** | **String** |  | [readonly]
 **monitoring_active** | Option<**bool**> |  | [optional][default to false]
 **setup_complete** | Option<**bool**> |  | [optional][default to false]
-**printer_controllers** | [**Vec<crate::models::PrinterController>**](PrinterController.md) |  | [readonly]
 **user** | Option<[**crate::models::User**](User.md)> |  | [readonly]
 **release_channel** | Option<[**crate::models::DeviceReleaseChannel**](DeviceReleaseChannel.md)> |  | [optional]
 **system_info** | Option<[**crate::models::SystemInfo**](SystemInfo.md)> |  | [readonly]

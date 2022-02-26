@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
-**cameras** | [**list[Camera]**](Camera.md) |  | [readonly] 
 **cloudiot_device** | [**CloudiotDevice**](CloudiotDevice.md) |  | [readonly] 
 **dashboard_url** | **str** |  | [readonly] 
 **video_test_url** | **str** |  | [readonly] 
@@ -13,7 +12,6 @@ Name | Type | Description | Notes
 **janus_local_url** | **str** |  | [readonly] 
 **monitoring_active** | **bool** |  | [optional] [default to False]
 **setup_complete** | **bool** |  | [optional] [default to False]
-**printer_controllers** | [**list[PrinterController]**](PrinterController.md) |  | [readonly] 
 **user** | [**User**](User.md) |  | [readonly] 
 **release_channel** | [**DeviceReleaseChannel**](DeviceReleaseChannel.md) |  | [optional] 
 **system_info** | [**SystemInfo**](SystemInfo.md) |  | [readonly] 

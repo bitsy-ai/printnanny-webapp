@@ -11,7 +11,8 @@ Name | Type | Description | Notes
 **serial** | **String** | Populated from /proc/cpuinfo SERIAL | 
 **cores** | **i32** |  | 
 **ram** | **i64** |  | 
-**image_version** | **String** | Print Nanny OS version string from /boot/image_version.txt | 
+**image_version** | **String** | PrintNanny OS image version string from /boot/image_version.txt | 
+**ansible_collection_version** | **String** | PrintNanny OS ansible collection version string. Releaes: https://github.com/bitsy-ai/ansible-collection-printnanny | 
 **device** | **i32** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

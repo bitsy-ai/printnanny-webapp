@@ -53,6 +53,7 @@ class TestPaginatedSystemInfoList(unittest.TestCase):
                         cores = -2147483648, 
                         ram = -9223372036854775808, 
                         image_version = '', 
+                        ansible_collection_version = '', 
                         device = 56, )
                     ]
             )

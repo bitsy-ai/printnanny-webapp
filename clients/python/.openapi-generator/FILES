@@ -16,9 +16,6 @@ docs/AuthApi.md
 docs/CallbackTokenAuthRequest.md
 docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
-docs/Camera.md
-docs/CameraRequest.md
-docs/CameraType.md
 docs/ClientConfigApi.md
 docs/CloudiotDevice.md
 docs/CloudiotDeviceRequest.md
@@ -81,7 +78,6 @@ docs/OctoprintProgressRequest.md
 docs/OctoprintPython.md
 docs/OctoprintPythonRequest.md
 docs/PaginatedAlertList.md
-docs/PaginatedCameraList.md
 docs/PaginatedCloudiotDeviceList.md
 docs/PaginatedDeviceCalibrationList.md
 docs/PaginatedDeviceList.md
@@ -98,7 +94,6 @@ docs/PaginatedPolymorphicEventList.md
 docs/PaginatedPrintJobEventList.md
 docs/PaginatedPrintNannyPluginEventList.md
 docs/PaginatedPrintSessionList.md
-docs/PaginatedPrinterControllerList.md
 docs/PaginatedPrinterProfileList.md
 docs/PaginatedPublicKeyList.md
 docs/PaginatedRemoteCommandEventList.md
@@ -111,14 +106,12 @@ docs/PartnersGeeks3Api.md
 docs/PartnersGeeks3dApi.md
 docs/PatchedAlertBulkRequestRequest.md
 docs/PatchedAlertRequest.md
-docs/PatchedCameraRequest.md
 docs/PatchedCloudiotDeviceRequest.md
 docs/PatchedDeviceCalibrationRequest.md
 docs/PatchedDeviceRequest.md
 docs/PatchedJanusStreamRequest.md
 docs/PatchedOctoPrintDeviceRequest.md
 docs/PatchedPrintSessionRequest.md
-docs/PatchedPrinterControllerRequest.md
 docs/PatchedPrinterProfileRequest.md
 docs/PatchedPublicKeyRequest.md
 docs/PatchedRemoteControlCommandRequest.md
@@ -133,8 +126,6 @@ docs/PrintNannyPluginEvent.md
 docs/PrintNannyPluginEventRequest.md
 docs/PrintSession.md
 docs/PrintSessionRequest.md
-docs/PrinterController.md
-docs/PrinterControllerRequest.md
 docs/PrinterEvent.md
 docs/PrinterEventRequest.md
 docs/PrinterProfile.md
@@ -148,7 +139,6 @@ docs/RemoteControlApi.md
 docs/RemoteControlCommand.md
 docs/RemoteControlCommandRequest.md
 docs/SchemaApi.md
-docs/SoftwareEnum.md
 docs/SystemInfo.md
 docs/SystemInfoRequest.md
 docs/TelemetryApi.md
@@ -199,9 +189,6 @@ printnanny_api_client/models/artifact_types_enum.py
 printnanny_api_client/models/callback_token_auth_request.py
 printnanny_api_client/models/callback_token_verification.py
 printnanny_api_client/models/callback_token_verification_request.py
-printnanny_api_client/models/camera.py
-printnanny_api_client/models/camera_request.py
-printnanny_api_client/models/camera_type.py
 printnanny_api_client/models/cloudiot_device.py
 printnanny_api_client/models/cloudiot_device_request.py
 printnanny_api_client/models/command_enum.py
@@ -258,7 +245,6 @@ printnanny_api_client/models/octoprint_progress_request.py
 printnanny_api_client/models/octoprint_python.py
 printnanny_api_client/models/octoprint_python_request.py
 printnanny_api_client/models/paginated_alert_list.py
-printnanny_api_client/models/paginated_camera_list.py
 printnanny_api_client/models/paginated_cloudiot_device_list.py
 printnanny_api_client/models/paginated_device_calibration_list.py
 printnanny_api_client/models/paginated_device_list.py
@@ -275,7 +261,6 @@ printnanny_api_client/models/paginated_polymorphic_event_list.py
 printnanny_api_client/models/paginated_print_job_event_list.py
 printnanny_api_client/models/paginated_print_nanny_plugin_event_list.py
 printnanny_api_client/models/paginated_print_session_list.py
-printnanny_api_client/models/paginated_printer_controller_list.py
 printnanny_api_client/models/paginated_printer_profile_list.py
 printnanny_api_client/models/paginated_public_key_list.py
 printnanny_api_client/models/paginated_remote_command_event_list.py
@@ -286,14 +271,12 @@ printnanny_api_client/models/partner3_d_geeks_alert.py
 printnanny_api_client/models/partner3_d_geeks_metadata.py
 printnanny_api_client/models/patched_alert_bulk_request_request.py
 printnanny_api_client/models/patched_alert_request.py
-printnanny_api_client/models/patched_camera_request.py
 printnanny_api_client/models/patched_cloudiot_device_request.py
 printnanny_api_client/models/patched_device_calibration_request.py
 printnanny_api_client/models/patched_device_request.py
 printnanny_api_client/models/patched_janus_stream_request.py
 printnanny_api_client/models/patched_octo_print_device_request.py
 printnanny_api_client/models/patched_print_session_request.py
-printnanny_api_client/models/patched_printer_controller_request.py
 printnanny_api_client/models/patched_printer_profile_request.py
 printnanny_api_client/models/patched_public_key_request.py
 printnanny_api_client/models/patched_remote_control_command_request.py
@@ -308,8 +291,6 @@ printnanny_api_client/models/print_nanny_plugin_event.py
 printnanny_api_client/models/print_nanny_plugin_event_request.py
 printnanny_api_client/models/print_session.py
 printnanny_api_client/models/print_session_request.py
-printnanny_api_client/models/printer_controller.py
-printnanny_api_client/models/printer_controller_request.py
 printnanny_api_client/models/printer_event.py
 printnanny_api_client/models/printer_event_request.py
 printnanny_api_client/models/printer_profile.py
@@ -321,7 +302,6 @@ printnanny_api_client/models/remote_command_event_event_type_enum.py
 printnanny_api_client/models/remote_command_event_request.py
 printnanny_api_client/models/remote_control_command.py
 printnanny_api_client/models/remote_control_command_request.py
-printnanny_api_client/models/software_enum.py
 printnanny_api_client/models/system_info.py
 printnanny_api_client/models/system_info_request.py
 printnanny_api_client/models/telemetry_event.py
@@ -357,9 +337,6 @@ test/test_auth_api.py
 test/test_callback_token_auth_request.py
 test/test_callback_token_verification.py
 test/test_callback_token_verification_request.py
-test/test_camera.py
-test/test_camera_request.py
-test/test_camera_type.py
 test/test_client_config_api.py
 test/test_cloudiot_device.py
 test/test_cloudiot_device_request.py
@@ -422,7 +399,6 @@ test/test_octoprint_progress_request.py
 test/test_octoprint_python.py
 test/test_octoprint_python_request.py
 test/test_paginated_alert_list.py
-test/test_paginated_camera_list.py
 test/test_paginated_cloudiot_device_list.py
 test/test_paginated_device_calibration_list.py
 test/test_paginated_device_list.py
@@ -439,7 +415,6 @@ test/test_paginated_polymorphic_event_list.py
 test/test_paginated_print_job_event_list.py
 test/test_paginated_print_nanny_plugin_event_list.py
 test/test_paginated_print_session_list.py
-test/test_paginated_printer_controller_list.py
 test/test_paginated_printer_profile_list.py
 test/test_paginated_public_key_list.py
 test/test_paginated_remote_command_event_list.py
@@ -452,14 +427,12 @@ test/test_partners_geeks3_api.py
 test/test_partners_geeks3d_api.py
 test/test_patched_alert_bulk_request_request.py
 test/test_patched_alert_request.py
-test/test_patched_camera_request.py
 test/test_patched_cloudiot_device_request.py
 test/test_patched_device_calibration_request.py
 test/test_patched_device_request.py
 test/test_patched_janus_stream_request.py
 test/test_patched_octo_print_device_request.py
 test/test_patched_print_session_request.py
-test/test_patched_printer_controller_request.py
 test/test_patched_printer_profile_request.py
 test/test_patched_public_key_request.py
 test/test_patched_remote_control_command_request.py
@@ -474,8 +447,6 @@ test/test_print_nanny_plugin_event.py
 test/test_print_nanny_plugin_event_request.py
 test/test_print_session.py
 test/test_print_session_request.py
-test/test_printer_controller.py
-test/test_printer_controller_request.py
 test/test_printer_event.py
 test/test_printer_event_request.py
 test/test_printer_profile.py
@@ -489,7 +460,6 @@ test/test_remote_control_api.py
 test/test_remote_control_command.py
 test/test_remote_control_command_request.py
 test/test_schema_api.py
-test/test_software_enum.py
 test/test_system_info.py
 test/test_system_info_request.py
 test/test_telemetry_api.py

@@ -45,6 +45,7 @@ class TestPatchedSystemInfoRequest(unittest.TestCase):
                 cores = -2147483648, 
                 ram = -9223372036854775808, 
                 image_version = '0', 
+                ansible_collection_version = '0', 
                 device = 56
             )
         else :
