@@ -147,41 +147,35 @@
 
 
         </ul>
-        {% if not user.is_authenticated or not user.is_paid_beta %}
-        {% if SOLD_OUT %}
+
+        <div class="help-box text-white text-center">
+            <h4>Achievements 🏆</h4>
+            {% for badge in user.member_badges.all %}
+            <span class="badge badge-secondary">{{badge.type}}</span>
+            {% endfor %}
+            {% if user.is_anonymous %}
+            <a class="btn btn-light btn-sm" href="{{ login_url }}">Login to view</a>
+            {% endif %}
+        </div>
+
+        {% if user.is_authenticated %}
+        <div class="help-box text-white text-center">
+            <h4>Founding Member</h4>
+            <p>Thank you for supporting PrintNanny 💜</p>
+        </div>
+        {% else %}
         <div class="help-box text-white text-center">
             <h4>Founding Membership</h4>
-            <p>Sold out.
-        </div>p>
-
-        </p>Watch your email inbox or join Discord for updates.</p>
-        <a class="btn btn-light btn-sm" href="{% url 'surveys:remote-access' %}">Notify Me</a>
-    </div>
-    {% else %}
-    <div class="help-box text-white text-center">
-        <h4>Founding Membership</h4>
-        <p>A limited number of Beta spots are available</p>
-        <a class="btn btn-light btn-sm" href="{% url 'subscriptions:checkout' %}">Get Early Access</a>
-    </div>
-    {% endif %}
-    {% endif %}
-
-    <div class="help-box text-white text-center">
-        <h4>Achievements 🏆</h4>
-        {% for badge in user.member_badges.all %}
-        <span class="badge badge-secondary">{{badge.type}}</span>
-        {% endfor %}
-        {% if user.is_anonymous %}
-        <a class="btn btn-light btn-sm" href="{{ login_url }}">Login to view</a>
+            <p>A limited number of Beta spots are available</p>
+            <a class="btn btn-light btn-sm" href="{% url 'subscriptions:checkout' %}">Get Early Access</a>
+        </div>
         {% endif %}
+        <!-- End Sidebar -->
+
+        <div class="clearfix"></div>
+
     </div>
-
-    <!-- End Sidebar -->
-
-    <div class="clearfix"></div>
-
-</div>
-<!-- Sidebar -left -->
+    <!-- Sidebar -left -->
 
 </div>
 <!-- Left Sidebar End -->
