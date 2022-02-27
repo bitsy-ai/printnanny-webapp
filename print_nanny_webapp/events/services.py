@@ -128,17 +128,17 @@ def broadcast_event(event: Event):
     """
     serializer = PolymorphicEventSerializer(instance=event)
 
-    if event.ws is True:
+    if event.send_ws is True:
         publish_channel_msg(event.device.user.events_channel, serializer)
         logger.info("Published event %s to Django channel", event)
     else:
-        logger.warning("Event.ws broadcast is False, skipping. %s", event)
+        logger.warning("Event.send_ws is False, skipping. %s", event)
     if hasattr(event, "device") and event.device is not None:
-        if event.mqtt is True:
+        if event.send_mqtt is True:
             publish_mqtt_command(event.device.cloudiot, serializer)
             logger.info("Published event %s to MQTT commands topic", event)
         else:
-            logger.warning("Event.mqtt broadcast is False, skipping. %s", event)
+            logger.warning("Event.send_mqtt broadcast is False, skipping. %s", event)
 
 
 def janus_cloud_setup(device: Device) -> JanusStream:

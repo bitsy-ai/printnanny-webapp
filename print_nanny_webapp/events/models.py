@@ -62,7 +62,7 @@ class WebRTCEvent(Event):
         "devices.JanusStream", on_delete=models.CASCADE, null=True
     )
     data = models.JSONField(default=dict)
-    mqtt = models.BooleanField(
+    send_mqtt = models.BooleanField(
         default=True,
         help_text="Broadcast to mqtt topic: /devices/{device-id}/commands/",
     )
