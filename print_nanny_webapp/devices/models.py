@@ -90,13 +90,15 @@ class Device(SafeDeleteModel):
 
     @property
     def dashboard_url(self):
+        return reverse("dashboard:home")
+
+    @property
+    def manage_url(self):
         return reverse("devices:detail", kwargs={"pk": self.id})
 
     @property
     def video_test_url(self):
-        base_url = reverse("devices:welcome-detail", kwargs={"pk": self.id})
-        query = urlencode(dict(step=2))
-        return f"{base_url}?{query}"
+        return reverse("devices:video", kwargs={"pk": self.id})
 
     @property
     def cloudiot_device(self):
