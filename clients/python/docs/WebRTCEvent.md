@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **send_ws** | **bool** | Broadcast to events websocket: /ws/events | [optional] 
 **event_name** | [**WebRTCEventName**](WebRTCEventName.md) |  | 
 **data** | **dict(str, object)** |  | [optional] 
-**mqtt** | **bool** | Broadcast to mqtt topic: /devices/{device-id}/commands/ | [optional] 
+**send_mqtt** | **bool** | Broadcast to mqtt topic: /devices/{device-id}/commands/ | [optional] 
 **polymorphic_ctype** | **int** |  | [readonly] 
 **user** | **int** |  | [readonly] 
 **device** | **int** |  | 

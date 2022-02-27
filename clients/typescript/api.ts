@@ -6489,7 +6489,7 @@ export interface WebRTCEvent {
      * @type {boolean}
      * @memberof WebRTCEvent
      */
-    'mqtt'?: boolean;
+    'send_mqtt'?: boolean;
     /**
      * 
      * @type {number}
@@ -6587,7 +6587,7 @@ export interface WebRTCEventRequest {
      * @type {boolean}
      * @memberof WebRTCEventRequest
      */
-    'mqtt'?: boolean;
+    'send_mqtt'?: boolean;
     /**
      * 
      * @type {number}

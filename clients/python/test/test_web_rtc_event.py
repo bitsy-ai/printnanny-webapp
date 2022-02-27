@@ -46,7 +46,7 @@ class TestWebRTCEvent(unittest.TestCase):
                 data = {
                     'key' : null
                     }, 
-                mqtt = True, 
+                send_mqtt = True, 
                 polymorphic_ctype = 56, 
                 user = 56, 
                 device = 56, 
