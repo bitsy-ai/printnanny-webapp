@@ -41,8 +41,10 @@ class WebRTCEvent(object):
         'event_type': 'WebRTCEventEventTypeEnum',
         'created_dt': 'datetime',
         'source': 'EventSource',
+        'send_ws': 'bool',
         'event_name': 'WebRTCEventName',
         'data': 'dict(str, object)',
+        'mqtt': 'bool',
         'polymorphic_ctype': 'int',
         'user': 'int',
         'device': 'int',
@@ -54,15 +56,17 @@ class WebRTCEvent(object):
         'event_type': 'event_type',
         'created_dt': 'created_dt',
         'source': 'source',
+        'send_ws': 'send_ws',
         'event_name': 'event_name',
         'data': 'data',
+        'mqtt': 'mqtt',
         'polymorphic_ctype': 'polymorphic_ctype',
         'user': 'user',
         'device': 'device',
         'stream': 'stream'
     }
 
-    def __init__(self, id=None, event_type=None, created_dt=None, source=None, event_name=None, data=None, polymorphic_ctype=None, user=None, device=None, stream=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, event_type=None, created_dt=None, source=None, send_ws=None, event_name=None, data=None, mqtt=None, polymorphic_ctype=None, user=None, device=None, stream=None, local_vars_configuration=None):  # noqa: E501
         """WebRTCEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -72,8 +76,10 @@ class WebRTCEvent(object):
         self._event_type = None
         self._created_dt = None
         self._source = None
+        self._send_ws = None
         self._event_name = None
         self._data = None
+        self._mqtt = None
         self._polymorphic_ctype = None
         self._user = None
         self._device = None
@@ -84,9 +90,13 @@ class WebRTCEvent(object):
         self.event_type = event_type
         self.created_dt = created_dt
         self.source = source
+        if send_ws is not None:
+            self.send_ws = send_ws
         self.event_name = event_name
         if data is not None:
             self.data = data
+        if mqtt is not None:
+            self.mqtt = mqtt
         self.polymorphic_ctype = polymorphic_ctype
         self.user = user
         self.device = device
@@ -185,6 +195,29 @@ class WebRTCEvent(object):
         self._source = source
 
     @property
+    def send_ws(self):
+        """Gets the send_ws of this WebRTCEvent.  # noqa: E501
+
+        Broadcast to events websocket: /ws/events  # noqa: E501
+
+        :return: The send_ws of this WebRTCEvent.  # noqa: E501
+        :rtype: bool
+        """
+        return self._send_ws
+
+    @send_ws.setter
+    def send_ws(self, send_ws):
+        """Sets the send_ws of this WebRTCEvent.
+
+        Broadcast to events websocket: /ws/events  # noqa: E501
+
+        :param send_ws: The send_ws of this WebRTCEvent.  # noqa: E501
+        :type send_ws: bool
+        """
+
+        self._send_ws = send_ws
+
+    @property
     def event_name(self):
         """Gets the event_name of this WebRTCEvent.  # noqa: E501
 
@@ -227,6 +260,29 @@ class WebRTCEvent(object):
         """
 
         self._data = data
+
+    @property
+    def mqtt(self):
+        """Gets the mqtt of this WebRTCEvent.  # noqa: E501
+
+        Broadcast to mqtt topic: /devices/{device-id}/commands/  # noqa: E501
+
+        :return: The mqtt of this WebRTCEvent.  # noqa: E501
+        :rtype: bool
+        """
+        return self._mqtt
+
+    @mqtt.setter
+    def mqtt(self, mqtt):
+        """Sets the mqtt of this WebRTCEvent.
+
+        Broadcast to mqtt topic: /devices/{device-id}/commands/  # noqa: E501
+
+        :param mqtt: The mqtt of this WebRTCEvent.  # noqa: E501
+        :type mqtt: bool
+        """
+
+        self._mqtt = mqtt
 
     @property
     def polymorphic_ctype(self):

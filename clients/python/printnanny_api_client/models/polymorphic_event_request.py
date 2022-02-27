@@ -39,23 +39,29 @@ class PolymorphicEventRequest(object):
     openapi_types = {
         'event_type': 'TestEventEventTypeEnum',
         'source': 'EventSource',
+        'send_ws': 'bool',
         'event_name': 'TestEventName',
         'data': 'dict(str, object)',
-        'device': 'int'
+        'mqtt': 'bool',
+        'device': 'int',
+        'send_mqtt': 'bool'
     }
 
     attribute_map = {
         'event_type': 'event_type',
         'source': 'source',
+        'send_ws': 'send_ws',
         'event_name': 'event_name',
         'data': 'data',
-        'device': 'device'
+        'mqtt': 'mqtt',
+        'device': 'device',
+        'send_mqtt': 'send_mqtt'
     }
 
     discriminator_value_class_map = {
     }
 
-    def __init__(self, event_type=None, source=None, event_name=None, data=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, event_type=None, source=None, send_ws=None, event_name=None, data=None, mqtt=None, device=None, send_mqtt=None, local_vars_configuration=None):  # noqa: E501
         """PolymorphicEventRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -63,17 +69,26 @@ class PolymorphicEventRequest(object):
 
         self._event_type = None
         self._source = None
+        self._send_ws = None
         self._event_name = None
         self._data = None
+        self._mqtt = None
         self._device = None
+        self._send_mqtt = None
         self.discriminator = 'event_type'
 
         self.event_type = event_type
         self.source = source
+        if send_ws is not None:
+            self.send_ws = send_ws
         self.event_name = event_name
         if data is not None:
             self.data = data
+        if mqtt is not None:
+            self.mqtt = mqtt
         self.device = device
+        if send_mqtt is not None:
+            self.send_mqtt = send_mqtt
 
     @property
     def event_type(self):
@@ -122,6 +137,29 @@ class PolymorphicEventRequest(object):
         self._source = source
 
     @property
+    def send_ws(self):
+        """Gets the send_ws of this PolymorphicEventRequest.  # noqa: E501
+
+        Broadcast to events websocket: /ws/events  # noqa: E501
+
+        :return: The send_ws of this PolymorphicEventRequest.  # noqa: E501
+        :rtype: bool
+        """
+        return self._send_ws
+
+    @send_ws.setter
+    def send_ws(self, send_ws):
+        """Sets the send_ws of this PolymorphicEventRequest.
+
+        Broadcast to events websocket: /ws/events  # noqa: E501
+
+        :param send_ws: The send_ws of this PolymorphicEventRequest.  # noqa: E501
+        :type send_ws: bool
+        """
+
+        self._send_ws = send_ws
+
+    @property
     def event_name(self):
         """Gets the event_name of this PolymorphicEventRequest.  # noqa: E501
 
@@ -166,6 +204,29 @@ class PolymorphicEventRequest(object):
         self._data = data
 
     @property
+    def mqtt(self):
+        """Gets the mqtt of this PolymorphicEventRequest.  # noqa: E501
+
+        Broadcast to mqtt topic: /devices/{device-id}/commands/  # noqa: E501
+
+        :return: The mqtt of this PolymorphicEventRequest.  # noqa: E501
+        :rtype: bool
+        """
+        return self._mqtt
+
+    @mqtt.setter
+    def mqtt(self, mqtt):
+        """Sets the mqtt of this PolymorphicEventRequest.
+
+        Broadcast to mqtt topic: /devices/{device-id}/commands/  # noqa: E501
+
+        :param mqtt: The mqtt of this PolymorphicEventRequest.  # noqa: E501
+        :type mqtt: bool
+        """
+
+        self._mqtt = mqtt
+
+    @property
     def device(self):
         """Gets the device of this PolymorphicEventRequest.  # noqa: E501
 
@@ -187,6 +248,29 @@ class PolymorphicEventRequest(object):
             raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
 
         self._device = device
+
+    @property
+    def send_mqtt(self):
+        """Gets the send_mqtt of this PolymorphicEventRequest.  # noqa: E501
+
+        Broadcast to mqtt topic: /devices/{device-id}/commands/  # noqa: E501
+
+        :return: The send_mqtt of this PolymorphicEventRequest.  # noqa: E501
+        :rtype: bool
+        """
+        return self._send_mqtt
+
+    @send_mqtt.setter
+    def send_mqtt(self, send_mqtt):
+        """Sets the send_mqtt of this PolymorphicEventRequest.
+
+        Broadcast to mqtt topic: /devices/{device-id}/commands/  # noqa: E501
+
+        :param send_mqtt: The send_mqtt of this PolymorphicEventRequest.  # noqa: E501
+        :type send_mqtt: bool
+        """
+
+        self._send_mqtt = send_mqtt
 
     def get_real_child_model(self, data):
         """Returns the real base class specified by the discriminator"""

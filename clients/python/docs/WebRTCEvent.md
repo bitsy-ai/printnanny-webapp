@@ -8,8 +8,10 @@ Name | Type | Description | Notes
 **event_type** | [**WebRTCEventEventTypeEnum**](WebRTCEventEventTypeEnum.md) |  | 
 **created_dt** | **datetime** |  | [readonly] 
 **source** | [**EventSource**](EventSource.md) |  | 
+**send_ws** | **bool** | Broadcast to events websocket: /ws/events | [optional] 
 **event_name** | [**WebRTCEventName**](WebRTCEventName.md) |  | 
 **data** | **dict(str, object)** |  | [optional] 
+**mqtt** | **bool** | Broadcast to mqtt topic: /devices/{device-id}/commands/ | [optional] 
 **polymorphic_ctype** | **int** |  | [readonly] 
 **user** | **int** |  | [readonly] 
 **device** | **int** |  | 

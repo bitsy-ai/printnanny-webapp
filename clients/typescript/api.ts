@@ -6285,11 +6285,23 @@ export interface TestEvent {
      */
     'source': EventSource;
     /**
+     * Broadcast to events websocket: /ws/events
+     * @type {boolean}
+     * @memberof TestEvent
+     */
+    'send_ws'?: boolean;
+    /**
      * 
      * @type {TestEventName}
      * @memberof TestEvent
      */
     'event_name': TestEventName;
+    /**
+     * Broadcast to mqtt topic: /devices/{device-id}/commands/
+     * @type {boolean}
+     * @memberof TestEvent
+     */
+    'send_mqtt'?: boolean;
     /**
      * 
      * @type {number}
@@ -6355,11 +6367,23 @@ export interface TestEventRequest {
      */
     'source': EventSource;
     /**
+     * Broadcast to events websocket: /ws/events
+     * @type {boolean}
+     * @memberof TestEventRequest
+     */
+    'send_ws'?: boolean;
+    /**
      * 
      * @type {TestEventName}
      * @memberof TestEventRequest
      */
     'event_name': TestEventName;
+    /**
+     * Broadcast to mqtt topic: /devices/{device-id}/commands/
+     * @type {boolean}
+     * @memberof TestEventRequest
+     */
+    'send_mqtt'?: boolean;
     /**
      * 
      * @type {number}
@@ -6443,6 +6467,12 @@ export interface WebRTCEvent {
      */
     'source': EventSource;
     /**
+     * Broadcast to events websocket: /ws/events
+     * @type {boolean}
+     * @memberof WebRTCEvent
+     */
+    'send_ws'?: boolean;
+    /**
      * 
      * @type {WebRTCEventName}
      * @memberof WebRTCEvent
@@ -6454,6 +6484,12 @@ export interface WebRTCEvent {
      * @memberof WebRTCEvent
      */
     'data'?: { [key: string]: any; };
+    /**
+     * Broadcast to mqtt topic: /devices/{device-id}/commands/
+     * @type {boolean}
+     * @memberof WebRTCEvent
+     */
+    'mqtt'?: boolean;
     /**
      * 
      * @type {number}
@@ -6529,6 +6565,12 @@ export interface WebRTCEventRequest {
      */
     'source': EventSource;
     /**
+     * Broadcast to events websocket: /ws/events
+     * @type {boolean}
+     * @memberof WebRTCEventRequest
+     */
+    'send_ws'?: boolean;
+    /**
      * 
      * @type {WebRTCEventName}
      * @memberof WebRTCEventRequest
@@ -6540,6 +6582,12 @@ export interface WebRTCEventRequest {
      * @memberof WebRTCEventRequest
      */
     'data'?: { [key: string]: any; };
+    /**
+     * Broadcast to mqtt topic: /devices/{device-id}/commands/
+     * @type {boolean}
+     * @memberof WebRTCEventRequest
+     */
+    'mqtt'?: boolean;
     /**
      * 
      * @type {number}

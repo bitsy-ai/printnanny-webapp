@@ -39,7 +39,9 @@ class TestTestEventRequest(unittest.TestCase):
             return TestEventRequest(
                 event_type = 'TestEvent', 
                 source = 'octoprint', 
+                send_ws = True, 
                 event_name = 'mqtt_ping', 
+                send_mqtt = True, 
                 device = 56
             )
         else :

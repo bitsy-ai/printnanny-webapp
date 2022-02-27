@@ -39,10 +39,12 @@ class TestWebRTCEventRequest(unittest.TestCase):
             return WebRTCEventRequest(
                 event_type = 'WebRTCEvent', 
                 source = 'octoprint', 
+                send_ws = True, 
                 event_name = 'stream_start', 
                 data = {
                     'key' : null
                     }, 
+                mqtt = True, 
                 device = 56
             )
         else :
