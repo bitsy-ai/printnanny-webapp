@@ -26,15 +26,16 @@ class DeviceVideoView(DetailView, LoginRequiredMixin):
     model = Device
 
 
-class DeviceDetailView(DetailView, MultipleObjectMixin, LoginRequiredMixin):
+class DeviceDetailView(DetailView, LoginRequiredMixin):
     model = Device
     template_name = "devices/device-detail.html"
     paginate_by = 10
 
-    def get_context_data(self, **kwargs):
-        tasks = self.get_object().events.all()
-        context = super().get_context_data(object_list=tasks, **kwargs)
-        return context
+    # TODO implement reverse for events using MultipleObjectMixin
+    # def get_context_data(self, **kwargs):
+    #     tasks = self.get_object().events.all()
+    #     context = super().get_context_data(object_list=tasks, **kwargs)
+    #     return context
 
 
 class DeviceWelcomeView(TemplateView, LoginRequiredMixin):
