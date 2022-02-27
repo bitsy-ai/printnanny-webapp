@@ -24,7 +24,7 @@ created_handlers: Dict[str, Callable[..., Any]] = {
 @receiver(post_save, dispatch_uid="event_handler")
 def handle_event(sender, instance, created, **kwargs):
     if created is True and isinstance(instance, Event):
-        handler = created_handlers.get(instance.event_name.value)
+        handler = created_handlers.get(instance.event_name)
         logger.info(
             "events.signals.handle_event calling handler %s with instance %s event_type %s",
             handler,
