@@ -1,6 +1,5 @@
 import logging
 from typing import Callable
-from urllib.parse import urlencode
 from django.conf import settings
 from django.db import models
 from django.contrib.auth import get_user_model
@@ -8,16 +7,13 @@ from django.db.models import UniqueConstraint
 from django.urls import reverse
 from django.utils.crypto import get_random_string
 from google.cloud import iot_v1 as cloudiot_v1
-from polymorphic.models import PolymorphicModel
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.signals import pre_softdelete
 
 from .utils import get_available_port
 from .enum import (
-    CameraType,
     DeviceReleaseChannel,
     JanusConfigType,
-    PrinterSoftwareType,
 )
 
 UserModel = get_user_model()
