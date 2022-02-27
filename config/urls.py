@@ -51,7 +51,7 @@ urlpatterns = [
     path("surveys/", include("print_nanny_webapp.surveys.urls", namespace="urls")),
     path("octoprint/", include("print_nanny_webapp.octoprint.urls", namespace="octoprint")),
     path('', include('qr_code.urls', namespace='qr_code')),
-    path("referrals/", include("print_nanny_webapp.referrals.urls", namespace="referrals"))
+    path('', include("print_nanny_webapp.referrals.urls", namespace="referrals"))
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

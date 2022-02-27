@@ -98,10 +98,18 @@
                     <p class="lead text-white">✨ Failing jobs paused automatically</p>
                     <p class="lead text-white">💚 Compatible with OctoPrint</p>
                     <p class="lead text-white">🎥 Live Video Feed</p>
-                    <a href="{% url 'subscriptions:checkout' %}" class="btn btn-danger btn-lg m-3"><strong
+
+                    {% if request.resolver_match.url_name == 'trial' %}\
+                    <a href="{% url 'subscriptions:trial' %}" class="btn btn-danger btn-lg m-3"><strong
+                            class="h1 display-6">Start Free Trial</strong>
+                    </a>
+                    </p>
+                    {% else %}
+                    <a href="{% url 'subscriptions:trial' %}" class="btn btn-danger btn-lg m-3"><strong
                             class="h1 display-6">Get
                             Early Access</strong>
                     </a>
+                    {% endif %}
                     <p class="lead text-white">📁 Sync & Backup Files</p>
                     <p class="lead text-white">🔐 Secure Remote Control & Tunnels</p>
                     <p class="lead text-white">❤️ Easy Install for Raspberry Pi</p>
@@ -132,10 +140,6 @@
                     <h1 class="mt-2"><i class="mdi mdi-heart-multiple-outline"></i></h1>
                     <h3>Become a <a href="{% url 'subscriptions:checkout' %}">Founding Member</a> to skip the waitlist
                     </h3>
-                    <h4><a href="{% url 'request-invite' %}">Get Notified</a> when more membership options are available
-                    </h4>
-                    <h4 class="text-dark-50 text-center mt-0 font-weight-bold">({{ AVAILABLE_SUBSCRIPTIONS_COUNT }}
-                        available spots)</h4>
 
                 </div>
             </div>
@@ -145,12 +149,19 @@
                 <div class="bg-primary primary-gradient rounded-circle text-center p-4 p-md-4 p-lg-5">
                     <img src="{% static 'images/logo-square-white.svg' %}" alt="" class="img-fluid p-sm-1 p-md-4" />
 
+                    {% if request.resolver_match.url_name == 'referrals:trial' %}
+                    <a href="{% url 'subscriptions:checkout' %}" class="btn btn-success btn-lg mb-2">Free Trial</i></a>
+                    <br>
+                    <a href="{% url 'request-invite' %}" class="btn btn-light">Join
+                        Waitlist</i></a>
+                    {% else %}
                     <a href="{% url 'subscriptions:checkout' %}" class="btn btn-success btn-lg mb-2">Get
                         Access
                         Now</i></a>
                     <br>
                     <a href="{% url 'request-invite' %}" class="btn btn-light">Join
                         Waitlist</i></a>
+                    {% endif %}
                 </div>
             </div>
             <div class="col-md-6 pt-4 pb-4">
