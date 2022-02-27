@@ -70,7 +70,8 @@ def handle_print_progress(event: OctoPrintEvent):
         )
     else:
         logger.warning(
-            f"handle_print_progress() called without event.print_session relation event={event}"
+            "handle_print_progress() called without event.print_session relation event=%s",
+            event,
         )
         return
 
