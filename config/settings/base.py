@@ -99,6 +99,7 @@ LOCAL_APPS = [
     "print_nanny_webapp.users.apps.UsersConfig",
     "print_nanny_webapp.surveys.apps.SurveysConfig",
     "print_nanny_webapp.octoprint.apps.OctoprintConfig",
+    "print_nanny_webapp.referrals.apps.ReferralsConfig",
     "print_nanny_webapp.events.apps.EventsConfig",  # Gated at the bottom
     # Your stuff: custom apps go here
 ]
@@ -724,3 +725,8 @@ JANUS_CLOUD_WS_URL = env("JANUS_CLOUD_WS_URL", default="ws://janus:8188")
 JANUS_CLOUD_WS_PORT = env("JANUS_CLOUD_WS_PORT", default=8188)
 JANUS_CLOUD_RTP_DOMAIN = env("JANUS_CLOUD_RTP_DOMAIN", default="janus")
 JANUS_CLOUD_RTP_PORT_RANGE = env.tuple("JANUS_CLOUD_RTP_PORT_RANGE", default=(5000, 5050))
+
+# django-qr-code
+# https://django-qr-code.readthedocs.io/en/latest/pages/README.html
+# ------------------------------------------------------------------------------
+INSTALLED_APPS += ['qr_code']
