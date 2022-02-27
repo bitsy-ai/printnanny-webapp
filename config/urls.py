@@ -1,3 +1,4 @@
+import print_nanny_webapp.drfpasswordless.schema
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -46,9 +47,11 @@ urlpatterns = [
 
     path("devices/",
          include("print_nanny_webapp.devices.urls", namespace="devices"), ),
-    
+
     path("surveys/", include("print_nanny_webapp.surveys.urls", namespace="urls")),
-    path("octoprint/", include("print_nanny_webapp.octoprint.urls", namespace="octoprint"))
+    path("octoprint/", include("print_nanny_webapp.octoprint.urls", namespace="octoprint")),
+    path('', include('qr_code.urls', namespace='qr_code')),
+    path("referrals/", include("print_nanny_webapp.referrals.urls", namespace="referrals"))
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
@@ -64,7 +67,6 @@ if settings.DEBUG:
 
 # https://drf-spectacular.readthedocs.io/en/latest/blueprints.html
 # do not remove the following line!
-import print_nanny_webapp.drfpasswordless.schema
 urlpatterns += [
     # API base urls
     path("api/", include("config.api_router")),
@@ -79,8 +81,6 @@ urlpatterns += [
     path('', include('drfpasswordless.urls')),
 
 ]
-
-
 
 
 if settings.DEBUG:
