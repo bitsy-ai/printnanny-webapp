@@ -25,6 +25,7 @@ django-invitations
 django-model-utils
 django-polymorphic
 django-prometheus
+django-qr-code
 django-rest-polymorphic
 django-safedelete
 django-storages[google]
