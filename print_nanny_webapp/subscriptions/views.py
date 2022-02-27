@@ -9,7 +9,6 @@ import stripe
 from django.urls import reverse
 from django.http import HttpRequest, HttpResponse
 from django.contrib.auth import get_user_model
-from django.shortcuts import redirect
 from django.views.generic import TemplateView
 from djstripe.settings import djstripe_settings
 
@@ -33,17 +32,6 @@ class SubscriptionSoldoutView(TemplateView):
 class FoundingMemberSignupView(SignupView):
     template_name = "subscriptions/founding-member-signup.html"
     success_url = "checkout"
-
-    def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
-        sold_out = (
-            djstripe.models.Subscription.objects.filter(
-                status=djstripe.enums.SubscriptionStatus.active
-            ).count()
-            >= settings.PAID_BETA_SUBSCRIPTION_LIMIT
-        )
-        if sold_out:
-            return redirect(reverse("subscriptions:sold_out"))
-        return super().dispatch(request, *args, **kwargs)
 
     def get_initial(self) -> Dict[str, Any]:
 
@@ -72,7 +60,7 @@ class CheckoutSuccessView(RedirectView):
         badge, created = MemberBadge.objects.get_or_create(
             type=MemberBadge.MemberBadgeType.PAID_BETA, user_id=user.id
         )
-        logger.info(f"Created MemberBadge={badge}")
+        logger.info("Created MemberBadge=%s", badge)
 
         return reverse("dashboard:home")
 
@@ -87,17 +75,6 @@ class FoundingMemberCheckoutView(LoginRequiredMixin, TemplateView):
         for p in ctx["PRODUCTS"]:
             p.prices_list = p.prices.filter(active=True)
         return ctx
-
-    def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
-        sold_out = (
-            djstripe.models.Subscription.objects.filter(
-                status=djstripe.enums.SubscriptionStatus.active
-            ).count()
-            >= settings.PAID_BETA_SUBSCRIPTION_LIMIT
-        )
-        if sold_out:
-            return redirect(reverse("subscriptions:sold_out"))
-        return super().dispatch(request, *args, **kwargs)
 
     def post(self, request: HttpRequest, *args: Any, **kwargs: Dict) -> HttpResponse:
         data = json.loads(request.body)
@@ -129,8 +106,10 @@ class FoundingMemberCheckoutView(LoginRequiredMixin, TemplateView):
             ],
             api_key=djstripe_settings.STRIPE_SECRET_KEY,
             metadata=dict(user=request.user),
+            subscription_data=dict(trial_period_days=settings.TRIAL_PERIOD_DAYS),
             client_reference_id=request.user.id,
             billing_address_collection="required",
+            allow_promotion_codes=True,
         )
 
         return JsonResponse({"session_id": session.id}, status=200)

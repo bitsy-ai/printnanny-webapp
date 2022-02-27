@@ -132,10 +132,6 @@
                     <h1 class="mt-2"><i class="mdi mdi-heart-multiple-outline"></i></h1>
                     <h3>Become a <a href="{% url 'subscriptions:checkout' %}">Founding Member</a> to skip the waitlist
                     </h3>
-                    <h4><a href="{% url 'request-invite' %}">Get Notified</a> when more membership options are available
-                    </h4>
-                    <h4 class="text-dark-50 text-center mt-0 font-weight-bold">({{ AVAILABLE_SUBSCRIPTIONS_COUNT }}
-                        available spots)</h4>
 
                 </div>
             </div>
@@ -145,12 +141,19 @@
                 <div class="bg-primary primary-gradient rounded-circle text-center p-4 p-md-4 p-lg-5">
                     <img src="{% static 'images/logo-square-white.svg' %}" alt="" class="img-fluid p-sm-1 p-md-4" />
 
+                    {% if request.resolver_match.url_name == 'referrals:trial' %}
+                    <a href="{% url 'subscriptions:checkout' %}" class="btn btn-success btn-lg mb-2">Free Trial</i></a>
+                    <br>
+                    <a href="{% url 'request-invite' %}" class="btn btn-light">Join
+                        Waitlist</i></a>
+                    {% else %}
                     <a href="{% url 'subscriptions:checkout' %}" class="btn btn-success btn-lg mb-2">Get
                         Access
                         Now</i></a>
                     <br>
                     <a href="{% url 'request-invite' %}" class="btn btn-light">Join
                         Waitlist</i></a>
+                    {% endif %}
                 </div>
             </div>
             <div class="col-md-6 pt-4 pb-4">
@@ -317,9 +320,6 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-
-            </div>
-            <div class="col-12">
                 <div class="text-center">
 
                     <h1 id="faq" class="mt-0"><i class="mdi mdi-frequently-asked-questions"></i></h1>
@@ -354,6 +354,8 @@
                             Send a tweet</button>
 
                     </a>
+                    <img class="card-img rounded-circle img-thumbnail mx-auto d-block col-3 mt-3"
+                        src="{% static 'images/swag/print-nanny-coaster.jpg' %}" alt="Print Nanny Swag">
 
                 </div>
             </div>

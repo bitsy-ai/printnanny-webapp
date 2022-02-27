@@ -17,6 +17,11 @@ urlpatterns = [
         name="signup",
     ),
     path(
+        "trial",
+        FoundingMemberCheckoutView.as_view(),
+        name="trial",
+    ),
+    path(
         "checkout",
         FoundingMemberCheckoutView.as_view(),
         name="checkout",

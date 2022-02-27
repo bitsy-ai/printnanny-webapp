@@ -1,4 +1,3 @@
-import print_nanny_webapp.drfpasswordless.schema
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -11,7 +10,7 @@ from django.views.generic.base import RedirectView
 from print_nanny_webapp.surveys.views import RemoteAccessSurvey1Create
 #from drf_yasg.views import get_schema_view
 #from drf_yasg import openapi
-from print_nanny_webapp.users.views import InviteRequestView, ThanksView
+from print_nanny_webapp.users.views import ThanksView
 from drf_spectacular.views import SpectacularJSONAPIView, SpectacularRedocView, SpectacularSwaggerView
 
 # Webapp urls
@@ -51,7 +50,7 @@ urlpatterns = [
     path("surveys/", include("print_nanny_webapp.surveys.urls", namespace="urls")),
     path("octoprint/", include("print_nanny_webapp.octoprint.urls", namespace="octoprint")),
     path('', include('qr_code.urls', namespace='qr_code')),
-    path("referrals/", include("print_nanny_webapp.referrals.urls", namespace="referrals"))
+    path('', include("print_nanny_webapp.referrals.urls", namespace="referrals"))
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
