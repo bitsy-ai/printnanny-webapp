@@ -620,6 +620,8 @@ FREE_BETA_TESTER_IDS = range(0, 102)
 PAID_BETA_LAUNCH_TIMESTAMP = 1628528400  # 10 AM PDT 2021-08-09
 PAID_BETA_SUBSCRIPTION_LIMIT = 29
 
+TRIAL_PERIOD_DAYS = 30
+REFERRAL_COUPON_DAYS = 30
 
 # django-safedelete
 # ------------------------------------------------------------------------------

@@ -23,11 +23,14 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
                     <h1 class="display-4"><img
                             src="{% static 'images/logo-square/square-color-no-text-180-by-180.png' %}"
                             alt="Print Nanny logo" height="80">
-                        Stop Babysitting your 3D Printers</h1>
+                        <strong>Special Launch Deal</strong>
+                    </h1>
                 </div>
                 <div class="card-body text-center">
-                    <h2>Get Access Now</h2>
-                    <h4>Become a Founding Member and and connect unlimited printers for a full year</h4>
+                    <h2>Stop BabySitting your 3D Printers</h2>
+                    <h4>Become a Founding Member and and connect <span class="text-primary">unlimited
+                            printers</span>
+                        for a full year</h4>
 
                     <div class="text-center w-75 m-auto">
 
@@ -35,7 +38,8 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
                         {% for price in product.prices_list %}
                         <a href="javascript: redirectToStripeCheckout('{{ price.id }}');"
                             class="btn btn-primary btn-lg mb-3 mt-3">
-                            <h4>Get Early Access for {{ price.human_readable_price }}</h4>
+                            <h4>{{ price.human_readable_price }}
+                            </h4>
                         </a>
                         {% endfor %}
                         {% endfor %}
@@ -46,8 +50,9 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
 
                         {% include 'partials/demo-carousel.html' with active=2 %}
 
-                        <h4 class="text-muted text-center mt-2">Use next and previous arrows to see more videos. </h4>
-                        <h3 class="mb-2 mt-2">Real-time Monitoring ● Automated Failure Detection ● Status Alerts </h3>
+                        <h4 class="text-muted text-center mt-2">Use next and previous arrows to see more videos.
+                        </h4>
+                        <h3 class="mb-2 mt-2">Real-time Monitoring ● Failure Detection ● Alerts </h3>
 
                     </div>
                 </div>
@@ -101,40 +106,51 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
                 {% elif user.is_authenticated %}
                 <div class="card-body p-4 text-center">
 
-                    <h3 class="text-dark-50 text-center mt-0 font-weight-bold">{{ AVAILABLE_SUBSCRIPTIONS_COUNT }}
-                        Memberships Remaining </h3>
-                    <h4>Requires a Raspberry Pi 4</h4>
-                    <p><a href="http://aurora:8000/request-invite/">Join the waitlist</a> to get
-                        updates about Raspberry Pi 3 support
-                        <br>(and other cool Print Nanny features)
-                    </p>
+                    <h3 class="text-dark-50 text-center mt-0 font-weight-bold">Free for 30 Days </h3>
+                    <h4>Requires a Raspberry Pi 4*</h4>
 
                     {% for product in PRODUCTS %}
 
                     {% for price in product.prices_list %}
-                    <a href="javascript: redirectToStripeCheckout('{{ price.id }}');" class="btn btn-primary btn-lg">
-                        <h4>Get Early Access for {{ price.human_readable_price }}</h4>
+                    <a href="javascript: redirectToStripeCheckout('{{ price.id }}');"
+                        class="btn btn-primary btn-lg btn-lg mb-2 mt-2">
+                        <h4>{{ price.human_readable_price }}
+                            {% if 'year' in price.human_readable_price %}
+                            (save 30%)
+                            {% endif %}
+                        </h4>
                     </a>
                     {% endfor %}
                     {% endfor %}
                     <!-- </div> -->
                     <p class="text">{% trans "Click to checkout securely with Stripe" %} </p>
 
-                    <img class="card-img rounded-circle img-thumbnail col-sm-10 col-md-8"
-                        src="{% static 'images/swag/print-nanny-coaster.jpg' %}" alt="Print Nanny Swag">
 
                     <!-- Used to display form errors. -->
                     <div id="card-errors" class="alert alert-danger" style="display: none;" role="alert"></div>
+                </div>
+                <div class="card-footer">
+                    <p>A Raspberry Pi is <strong>not included</strong> with your subscription! </p>
+                    <p class="text-left">
+                        <a class="btn btn-light" target="_blank"
+                            href="https://www.notion.so/bitsy-ai/Getting-Started-with-Print-Nanny-OS-817bc65297ff44a085120c663dced5f3#41eb338cca0f4b468ca5ffedd2a6a2f1">
+                            <i class="mdi mdi-check"></i>
+                            Hardware Checklist
+                        </a>
+                        <a target="_blank" class="btn btn-light" href="http://aurora:8000/request-invite/">
+                            <i class="mdi mdi-email"></i>
+                            Join Waitlist </a>
+                    <p>Join waitlist for development updates, like Raspberry Pi 3 and Mainsail support.
+                    </p>
                 </div>
                 {% else %}
                 <div class="card-body p-4 text-center">
 
                     <div class="text-center">
-                        <h3 class="text-dark-50 text-center mt-0 font-weight-bold">{{ AVAILABLE_SUBSCRIPTIONS_COUNT }}
-                            Memberships Remaining </h3>
-                        <p class="text-dark-50 text-center mt-0 mb-0 font-weight-bold">{% trans "<strong>Founding
-                                Members</strong> enjoy unlimited access." %}</p>
-                        <p class="text-muted mt-0">{% trans "Enter your email and password to begin" %} </p>
+                        <h3 class="text-dark-50 text-center mt-0 font-weight-bold">{% trans "Free for 30 Days" %}</h3>
+                        <h4 class="text-dark-50 text-center mt-0 font-weight-bold">{% trans "Requires Raspberry Pi 4" %}
+                        </h4>
+                        <p class="text-muted mt-0">{% trans "Create your account" %} </p>
 
                     </div>
 

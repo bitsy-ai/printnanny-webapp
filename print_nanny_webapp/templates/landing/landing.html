@@ -98,18 +98,10 @@
                     <p class="lead text-white">✨ Failing jobs paused automatically</p>
                     <p class="lead text-white">💚 Compatible with OctoPrint</p>
                     <p class="lead text-white">🎥 Live Video Feed</p>
-
-                    {% if request.resolver_match.url_name == 'trial' %}\
-                    <a href="{% url 'subscriptions:trial' %}" class="btn btn-danger btn-lg m-3"><strong
-                            class="h1 display-6">Start Free Trial</strong>
-                    </a>
-                    </p>
-                    {% else %}
-                    <a href="{% url 'subscriptions:trial' %}" class="btn btn-danger btn-lg m-3"><strong
+                    <a href="{% url 'subscriptions:checkout' %}" class="btn btn-danger btn-lg m-3"><strong
                             class="h1 display-6">Get
                             Early Access</strong>
                     </a>
-                    {% endif %}
                     <p class="lead text-white">📁 Sync & Backup Files</p>
                     <p class="lead text-white">🔐 Secure Remote Control & Tunnels</p>
                     <p class="lead text-white">❤️ Easy Install for Raspberry Pi</p>
@@ -328,9 +320,6 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-
-            </div>
-            <div class="col-12">
                 <div class="text-center">
 
                     <h1 id="faq" class="mt-0"><i class="mdi mdi-frequently-asked-questions"></i></h1>
@@ -365,6 +354,8 @@
                             Send a tweet</button>
 
                     </a>
+                    <img class="card-img rounded-circle img-thumbnail mx-auto d-block col-3 mt-3"
+                        src="{% static 'images/swag/print-nanny-coaster.jpg' %}" alt="Print Nanny Swag">
 
                 </div>
             </div>
