@@ -102,21 +102,25 @@
                 </ul>
             </li>
 
-            <li class="side-nav-item">
-                <a href="{% url 'alerts:settings' %}" class="side-nav-link">
-                    <i class="uil-bell"></i>
-
-
-                    <span> {% trans "Alert Settings" %} </span>
-
+            <li class="side-nav-item mm-active">
+                <a href="javascript: void(0);" class="side-nav-link" aria-expanded="true">
+                    <i class="mdi mdi-settings"></i>
+                    <span> {% trans "Settings" %}
+                    </span>
+                    <span class="menu-arrow"></span>
                 </a>
-            </li>
-            <li class="side-nav-item">
-                <a href="{% url 'subscriptions:list' %}" class="side-nav-link">
-                    <i class="dripicons dripicons-basket"></i>
-                    <span> {% trans "Subscriptions" %} </span>
-
-                </a>
+                <ul class="side-nav-second-level  mm-collapse mm-show" aria-expanded="true">
+                    <li class="{% if request.resolver_match.url_name == 'alerts:settings' or '' %}active{% endif %}">
+                        <a href="{% url 'alerts:settings' %}">
+                            {% trans "Alert Settings" %}
+                        </a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'subscriptions:list' or '' %}active{% endif %}">
+                        <a href="{% url 'subscriptions:list' %}">
+                            {% trans "Subscription" %}
+                        </a>
+                    </li>
+                </ul>
             </li>
 
             <li class="side-nav-item">
@@ -138,7 +142,8 @@
             </li>
             <li class="side-nav-item">
 
-                <a href="{{ REPORT_ISSUE_URL }}" target="_blank" class="side-nav-link">
+                <a href="https://github.com/bitsy-ai/printnanny-os/issues/new/choose" target="_blank"
+                    class="side-nav-link">
                     <i class="mdi mdi-email-edit-outline"></i>
                     <span> {% trans "Report an Issue" %} </span>
 
