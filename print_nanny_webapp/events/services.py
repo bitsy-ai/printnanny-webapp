@@ -5,19 +5,18 @@ import requests
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 from django.conf import settings
-from django.apps import apps
 from rest_framework.renderers import JSONRenderer
 from google.cloud import iot_v1 as cloudiot_v1
-from print_nanny_webapp.devices.models import CloudiotDevice, JanusStream
+from print_nanny_webapp.devices.models import (
+    CloudiotDevice,
+    JanusStream,
+    Device,
+    JanusAuth,
+)
 from print_nanny_webapp.devices.enum import JanusConfigType
 from print_nanny_webapp.events.api.serializers import PolymorphicEventSerializer
 from .models import WebRTCEvent, Event
 from .enum import WebRTCEventName
-
-CloudiotDevice = apps.get_model("devices", "CloudiotDevice")
-Device = apps.get_model("devices", "Device")
-JanusAuth = apps.get_model("devices", "JanusAuth")
-JanusStream = apps.get_model("devices", "JanusStream")
 
 logger = logging.getLogger(__name__)
 
@@ -36,7 +35,7 @@ def janus_admin_add_token(janus_auth: JanusAuth) -> Dict[str, Any]:
         return res.json()
     else:
         raise NotImplementedError(
-            f"janus_admin_add_token not implemented in events.services for JanusConfigType={JanusConfigType.Edge}"
+            f"janus_admin_add_token not implemented in events.services for JanusConfigType={JanusConfigType.EDGE}"
         )
 
 

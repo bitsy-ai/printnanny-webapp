@@ -459,12 +459,12 @@ SPECTACULAR_SETTINGS = {
         'AlertSettingsEventType': 'print_nanny_webapp.alerts.models.AlertSettings.AlertSettingsEventType.choices',
 
         # begin octoprint event types
-        'OctoTelemetryEvent': 'print_nanny_webapp.telemetry.types.TelemetryEventType',
-        'OctoPrintNannyEvent': 'print_nanny_webapp.telemetry.types.PrintNannyPluginEventType',
-        'OctoGenericEvent': 'print_nanny_webapp.telemetry.types.OctoprintEventType',
-        'OctoJobEvent': 'print_nanny_webapp.telemetry.types.PrintJobEventType',
-        'OctoPrinterEvent': 'print_nanny_webapp.telemetry.types.PrinterEventType',
-        'AlphaEventSource': 'print_nanny_webapp.telemetry.types.EventSource',
+        'OctoTelemetryEvent': 'print_nanny_webapp.telemetry.enum.TelemetryEventType',
+        'OctoPrintNannyEvent': 'print_nanny_webapp.telemetry.enum.PrintNannyPluginEventType',
+        'OctoGenericEvent': 'print_nanny_webapp.telemetry.enum.OctoprintEventType',
+        'OctoJobEvent': 'print_nanny_webapp.telemetry.enum.PrintJobEventType',
+        'OctoPrinterEvent': 'print_nanny_webapp.telemetry.enum.PrinterEventType',
+        'AlphaEventSource': 'print_nanny_webapp.telemetry.enum.EventSource',
 
         # begin webrtc event types
         'TestEventName': 'print_nanny_webapp.events.enum.TestEventName',

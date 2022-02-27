@@ -20,7 +20,7 @@ from safedelete.signals import pre_softdelete
 
 from print_nanny_webapp.utils.time import pretty_time_delta
 from print_nanny_webapp.utils.storages import PublicGoogleCloudStorage
-from print_nanny_webapp.telemetry.types import PrintJobEventType, PrinterEventType
+from print_nanny_webapp.telemetry.enum import PrintJobEventType, PrinterEventType
 from print_nanny_webapp.remote_control.services import (
     delete_cloudiot_device,
     update_or_create_cloudiot_device,

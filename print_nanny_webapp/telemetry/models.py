@@ -7,7 +7,7 @@ from django.apps import apps
 from polymorphic.models import PolymorphicModel
 
 from django.apps import apps
-from print_nanny_webapp.telemetry.types import (
+from print_nanny_webapp.telemetry.enum import (
     PrintNannyPluginEventType,
     OctoprintEventType,
     RemoteCommandEventType,

@@ -2,32 +2,16 @@ import json
 import os
 import logging
 from typing import Dict, Callable
-from google.cloud import pubsub_v1
-from django.db import IntegrityError
-
-# import sys
-# sys.path.insert(0,'/app')
-
-# If DJANGO_SETTINGS_MODULE is unset, default to the local settings
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
-
-from django.conf import settings
-from django.core.wsgi import get_wsgi_application
-
-application = get_wsgi_application()
-from django.apps import apps
-import google.api_core.exceptions
-
 from django.contrib.auth import get_user_model
-from print_nanny_webapp.telemetry.types import (
-    OctoprintEventType,
-    PrintJobEventType,
-    PrinterEventType,
-    RemoteCommandEventType,
-    PrintNannyPluginEventType,
+from django.conf import settings
+from django.db import IntegrityError
+from google.cloud import pubsub  # type: ignore[attr-defined]
+import google.api_core.exceptions
+from print_nanny_webapp.remote_control.models import OctoPrintDevice
+from print_nanny_webapp.alerts.models import (
+    AlertSettings,
+    PrintProgressAlert,
 )
-
-User = get_user_model()
 from print_nanny_webapp.telemetry.models import (
     OctoPrintEvent,
     PrintNannyPluginEvent,
@@ -36,22 +20,30 @@ from print_nanny_webapp.telemetry.models import (
     RemoteCommandEvent,
     TelemetryEvent,
 )
-from print_nanny_webapp.remote_control.models import OctoPrintDevice
+from print_nanny_webapp.telemetry.enum import (
+    OctoprintEventType,
+    PrintJobEventType,
+    PrinterEventType,
+    RemoteCommandEventType,
+    PrintNannyPluginEventType,
+)
+from print_nanny_webapp.remote_control.models import PrintSession, RemoteControlCommand
 
-AlertSettings = apps.get_model("alerts", "AlertSettings")
-PrintSession = apps.get_model("remote_control", "PrintSession")
-RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
-AlertMessage = apps.get_model("alerts", "AlertMessage")
-PrintProgressAlert = apps.get_model("alerts", "PrintProgressAlert")
+# import sys
+# sys.path.insert(0,'/app')
+
+# If DJANGO_SETTINGS_MODULE is unset, default to the local settings
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
+User = get_user_model()
 
 logger = logging.getLogger(__name__)
-subscriber = pubsub_v1.SubscriberClient()
+subscriber = pubsub.SubscriberClient()
 
 gcp_project = settings.GCP_PROJECT_ID
 event_subscription_name = settings.GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION
 video_render_topic = settings.GCP_RENDER_VIDEO_TOPIC
 
-publisher = pubsub_v1.PublisherClient()
+publisher = pubsub.PublisherClient()
 video_render_topic_path = publisher.topic_path(gcp_project, video_render_topic)
 
 
@@ -75,7 +67,8 @@ def handle_print_progress(event: OctoPrintEvent):
         )
     else:
         logger.warning(
-            f"handle_print_progress() called without event.print_session relation event={event}"
+            "handle_print_progress() called without event.print_session relation event=%s",
+            event,
         )
         return
 

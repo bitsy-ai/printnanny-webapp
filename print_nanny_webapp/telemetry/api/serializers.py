@@ -1,7 +1,5 @@
 from collections.abc import Mapping
-from print_nanny_webapp.dashboard.views import OctoPrintDevice
 from rest_framework import serializers
-from django.apps import apps
 from print_nanny_webapp.telemetry.models import (
     OctoPrintEvent,
     PrintJobEvent,
@@ -10,7 +8,7 @@ from print_nanny_webapp.telemetry.models import (
     RemoteCommandEvent,
     TelemetryEvent,
 )
-from print_nanny_webapp.telemetry.types import (
+from print_nanny_webapp.telemetry.enum import (
     EventSource,
     PrintJobEventType,
     TelemetryEventType,

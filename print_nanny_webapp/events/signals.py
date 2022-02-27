@@ -1,5 +1,5 @@
 import logging
-from typing import Callable, Dict, Tuple
+from typing import Callable, Dict, Tuple, Any
 
 from django.dispatch import receiver
 from django.db.models.signals import post_save
@@ -14,17 +14,17 @@ from .enum import WebRTCEventName
 
 logger = logging.getLogger(__name__)
 
-created_handlers: Dict[Tuple, Callable] = {
-    WebRTCEventName.STREAM_START: webrtc_stream_start,
-    WebRTCEventName.STREAM_START_ERROR: broadcast_event,
-    WebRTCEventName.STREAM_START_SUCCESS: broadcast_event,
+created_handlers: Dict[str, Callable[..., Any]] = {
+    WebRTCEventName.STREAM_START.value: webrtc_stream_start,
+    WebRTCEventName.STREAM_START_ERROR.value: broadcast_event,
+    WebRTCEventName.STREAM_START_SUCCESS.value: broadcast_event,
 }
 
 
 @receiver(post_save, dispatch_uid="event_handler")
 def handle_event(sender, instance, created, **kwargs):
     if created is True and isinstance(instance, Event):
-        handler = created_handlers.get(instance.event_name)
+        handler = created_handlers.get(instance.event_name.value)
         logger.info(
             "events.signals.handle_event calling handler %s with instance %s event_type %s",
             handler,

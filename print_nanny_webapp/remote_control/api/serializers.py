@@ -1,8 +1,6 @@
-from django.contrib.auth import get_user_model
-from django.urls import reverse
 from rest_framework import serializers
 
-from print_nanny_webapp.telemetry.types import PrintJobEventType
+from print_nanny_webapp.telemetry.enum import PrintJobEventType
 from print_nanny_webapp.remote_control.models import (
     GcodeFile,
     PrintSession,
