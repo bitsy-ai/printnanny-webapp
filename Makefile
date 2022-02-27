@@ -74,7 +74,7 @@ docker-mypy:
 
 mypy:
 	. .envs/.local/.tests.sh && \
-	mypy
+	mypy --show-error-codes
 
 token:
 	@echo $(PRINT_NANNY_TOKEN)

@@ -13,8 +13,6 @@ User = get_user_model()
 
 
 class EventSerializer(serializers.ModelSerializer):
-    source = serializers.ChoiceField(choices=EventSource.choices)
-
     class Meta:
         model = Event
         exclude = ("deleted",)

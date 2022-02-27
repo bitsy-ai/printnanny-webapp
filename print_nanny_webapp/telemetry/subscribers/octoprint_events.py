@@ -3,16 +3,13 @@ import os
 import logging
 from typing import Dict, Callable
 from django.contrib.auth import get_user_model
-from django.apps import apps
-from django.core.wsgi import get_wsgi_application
 from django.conf import settings
 from django.db import IntegrityError
-from google.cloud import pubsub
+from google.cloud import pubsub  # type: ignore[attr-defined]
 import google.api_core.exceptions
 from print_nanny_webapp.remote_control.models import OctoPrintDevice
 from print_nanny_webapp.alerts.models import (
     AlertSettings,
-    AlertMessage,
     PrintProgressAlert,
 )
 from print_nanny_webapp.telemetry.models import (
