@@ -29,8 +29,8 @@ pub struct WebRtcEvent {
     #[serde(rename = "data", skip_serializing_if = "Option::is_none")]
     pub data: Option<::std::collections::HashMap<String, serde_json::Value>>,
     /// Broadcast to mqtt topic: /devices/{device-id}/commands/
-    #[serde(rename = "mqtt", skip_serializing_if = "Option::is_none")]
-    pub mqtt: Option<bool>,
+    #[serde(rename = "send_mqtt", skip_serializing_if = "Option::is_none")]
+    pub send_mqtt: Option<bool>,
     #[serde(rename = "polymorphic_ctype")]
     pub polymorphic_ctype: i32,
     #[serde(rename = "user")]
@@ -51,7 +51,7 @@ impl WebRtcEvent {
             send_ws: None,
             event_name,
             data: None,
-            mqtt: None,
+            send_mqtt: None,
             polymorphic_ctype,
             user,
             device,

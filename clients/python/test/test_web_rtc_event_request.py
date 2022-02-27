@@ -44,7 +44,7 @@ class TestWebRTCEventRequest(unittest.TestCase):
                 data = {
                     'key' : null
                     }, 
-                mqtt = True, 
+                send_mqtt = True, 
                 device = 56
             )
         else :
