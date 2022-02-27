@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models import UniqueConstraint
+from django.urls import reverse
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from .enum import ReferralCodeType
 
@@ -41,6 +42,9 @@ class ReferralCode(SafeDeleteModel):
         default=ReferralCodeType.FOUNDING_MEMBER_TRIAL,
         choices=ReferralCodeType.choices,
     )
+
+    def referral_url(self):
+        reverse("referrals:trial", kwargs={"code": self.code})
 
 
 class ReferralInvite(SafeDeleteModel):

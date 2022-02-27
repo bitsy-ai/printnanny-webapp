@@ -730,3 +730,4 @@ JANUS_CLOUD_RTP_PORT_RANGE = env.tuple("JANUS_CLOUD_RTP_PORT_RANGE", default=(50
 # https://django-qr-code.readthedocs.io/en/latest/pages/README.html
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += ['qr_code']
+SERVE_QR_CODE_IMAGE_PATH = 'qr/'
