@@ -23,7 +23,7 @@ class Event(PolymorphicModel, SafeDeleteModel):
     created_dt = models.DateTimeField(auto_now_add=True)
     source = models.CharField(max_length=32, choices=EventSource.choices)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    ws = models.BooleanField(
+    send_ws = models.BooleanField(
         default=True, help_text="Broadcast to events websocket: /ws/events"
     )
 
@@ -38,7 +38,7 @@ class TestEvent(Event):
     device = models.ForeignKey(
         "devices.Device", on_delete=models.CASCADE, related_name="test_events"
     )
-    mqtt = models.BooleanField(
+    send_mqtt = models.BooleanField(
         default=True,
         help_text="Broadcast to mqtt topic: /devices/{device-id}/commands/",
     )
