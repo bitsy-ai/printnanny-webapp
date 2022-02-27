@@ -128,12 +128,17 @@ def broadcast_event(event: Event):
     """
     serializer = PolymorphicEventSerializer(instance=event)
 
-    publish_channel_msg(event.device.user.events_channel, serializer)
-    logger.info("Published event %s to Django channel", event)
-
+    if event.ws is True:
+        publish_channel_msg(event.device.user.events_channel, serializer)
+        logger.info("Published event %s to Django channel", event)
+    else:
+        logger.warning("Event.ws broadcast is False, skipping. %s", event)
     if hasattr(event, "device") and event.device is not None:
-        publish_mqtt_command(event.device.cloudiot, serializer)
-        logger.info("Published event %s to MQTT commands topic", event)
+        if event.mqtt is True:
+            publish_mqtt_command(event.device.cloudiot, serializer)
+            logger.info("Published event %s to MQTT commands topic", event)
+        else:
+            logger.warning("Event.mqtt broadcast is False, skipping. %s", event)
 
 
 def janus_cloud_setup(device: Device) -> JanusStream:
@@ -174,8 +179,9 @@ def webrtc_stream_start(event: WebRTCEvent) -> WebRTCEvent:
     except Exception as e:
         logger.error("Error handling event=%s error=%s", event.__dict__, e)
         error_event = WebRTCEvent.objects.create(
-            event_type=WebRTCEventName.STREAM_START_ERROR,
+            event_name=WebRTCEventName.STREAM_START_ERROR,
             device=event.device,
             user=event.user,
+            mqtt=False,
         )
         return error_event
