@@ -72,9 +72,9 @@ install-git-hooks:
 docker-mypy:
 	docker-compose -f local.yml run --rm django mypy
 
-mypy: clean-pyc
+mypy:
 	. .envs/.local/.tests.sh && \
-	mypy print_nanny_webapp/telemetry/**/*
+	mypy
 
 token:
 	@echo $(PRINT_NANNY_TOKEN)
@@ -341,7 +341,6 @@ clean-pyc: ## remove Python file artifacts
 	find . -name '*.pyc' -exec rm -f {} \;
 	find . -name '*.pyo' -exec rm -f {} \;
 	find . -name '*~' -exec rm -f {} \;
-	find . -name '__pycache__' -exec rm -fr {} \;
 
 
 sdist: python-client ## builds source package
