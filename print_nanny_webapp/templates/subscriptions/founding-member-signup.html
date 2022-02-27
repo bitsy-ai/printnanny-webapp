@@ -27,10 +27,9 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
                     </h1>
                 </div>
                 <div class="card-body text-center">
-                    <h2>Stop BabySitting your 3D Printers</h2>
+                    <h2>Stop Babysitting Print Jobs</h2>
                     <h4>Become a Founding Member and and connect <span class="text-primary">unlimited
-                            printers</span>
-                        for a full year</h4>
+                            3D printers</span></h4>
 
                     <div class="text-center w-75 m-auto">
 
@@ -115,9 +114,6 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
                     <a href="javascript: redirectToStripeCheckout('{{ price.id }}');"
                         class="btn btn-primary btn-lg btn-lg mb-2 mt-2">
                         <h4>{{ price.human_readable_price }}
-                            {% if 'year' in price.human_readable_price %}
-                            (save 30%)
-                            {% endif %}
                         </h4>
                     </a>
                     {% endfor %}
@@ -125,7 +121,9 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
                     <!-- </div> -->
                     <p class="text">{% trans "Click to checkout securely with Stripe" %} </p>
 
+                    <div>
 
+                    </div>
                     <!-- Used to display form errors. -->
                     <div id="card-errors" class="alert alert-danger" style="display: none;" role="alert"></div>
                 </div>
