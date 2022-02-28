@@ -93,14 +93,14 @@ export default {
     </div>
     <div class="card-footer text-center">
       <button
-        v-if="!active"
+        v-if="!active && !loading"
         @click="startMonitoring"
         class="btn btn-dark btn-sm mr-2 ml-2"
       >
         <i class="mdi mdi-camera"></i> Start Monitoring
       </button>
       <button
-        v-if="active"
+        v-if="active || loading"
         @click="stopMonitoring"
         class="btn btn-dark btn-sm mr-2 ml-2"
       >
