@@ -45,19 +45,21 @@ def janus_cloud_get_or_create_stream(device: Device, auth: JanusAuth) -> JanusSt
     stream, _created = JanusStream.objects.get_or_create(device=device)
     media = [
         # video stream
-        dict(type="video", mid=uuid4().hex, port=5105)
+        dict(type="video", mid=uuid4().hex, port=stream.rtp_port)
         # overlay
     ]
     req = dict(
+        id=stream.id,
         janus="create",
         token=auth.api_token,
         admin_key=settings.JANUS_CLOUD_ADMIN_SECRET,
-        is_private=True,
+        is_private=not settings.DEBUG,
         secret=stream.secret,
         pin=stream.pin,
         media=media,
         transaction=uuid4().hex,
         plugins=["janus.plugin.streaming"],
+        permanent=True,
     )
     res = requests.post(url, json=req)
     logger.info("Got response to POST %s: %s", url, req)
