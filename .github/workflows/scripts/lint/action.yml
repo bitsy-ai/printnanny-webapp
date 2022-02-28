@@ -8,13 +8,14 @@ runs:
       shell: bash
       run: |
         python3 -m venv .venv
-        source .venv/bin/activate
+        . .venv/bin/activate
         pip install --upgrade pip wheel setuptools
         python3 --version
     - name: Install dependencies
       shell: bash
       run: |
-        source .venv/bin/activate
+        . .venv/bin/activate
+        . .envs/.local/.tests.sh
         pip install -r requirements/local.txt
         pip install -r requirements/test-local.txt
         mypy --install-types
