@@ -60,7 +60,7 @@ pub enum AuthVerifyMobileCreateError {
 
 
 /// This returns a 6-digit callback token we can trade for a user's Auth Token.
-pub async fn auth_email_create(configuration: &configuration::Configuration, email_auth_request: crate::models::EmailAuthRequest) -> Result<crate::models::DetailResponse, Error<AuthEmailCreateError>> {
+pub async fn auth_email_create(configuration: &configuration::Configuration, email_auth_request: crate::models::EmailAuthRequest) -> Result<crate::models::EmailAuth, Error<AuthEmailCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -92,7 +92,7 @@ pub async fn auth_email_create(configuration: &configuration::Configuration, ema
 }
 
 /// This returns a 6-digit callback token we can trade for a user's Auth Token.
-pub async fn auth_mobile_create(configuration: &configuration::Configuration, mobile_auth_request: crate::models::MobileAuthRequest) -> Result<crate::models::DetailResponse, Error<AuthMobileCreateError>> {
+pub async fn auth_mobile_create(configuration: &configuration::Configuration, mobile_auth_request: crate::models::MobileAuthRequest) -> Result<crate::models::MobileAuth, Error<AuthMobileCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -124,7 +124,7 @@ pub async fn auth_mobile_create(configuration: &configuration::Configuration, mo
 }
 
 /// This is a duplicate of rest_framework's own ObtainAuthToken method. Instead, this returns an Auth Token based on our callback token and source.
-pub async fn auth_token_create(configuration: &configuration::Configuration, callback_token_auth_request: crate::models::CallbackTokenAuthRequest) -> Result<crate::models::TokenResponse, Error<AuthTokenCreateError>> {
+pub async fn auth_token_create(configuration: &configuration::Configuration, callback_token_auth_request: crate::models::CallbackTokenAuthRequest) -> Result<crate::models::CallbackTokenAuth, Error<AuthTokenCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -188,7 +188,7 @@ pub async fn auth_verify_create(configuration: &configuration::Configuration, ca
 }
 
 /// This returns a 6-digit callback token we can trade for a user's Auth Token.
-pub async fn auth_verify_email_create(configuration: &configuration::Configuration, ) -> Result<crate::models::DetailResponse, Error<AuthVerifyEmailCreateError>> {
+pub async fn auth_verify_email_create(configuration: &configuration::Configuration, ) -> Result<(), Error<AuthVerifyEmailCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -210,7 +210,7 @@ pub async fn auth_verify_email_create(configuration: &configuration::Configurati
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        Ok(())
     } else {
         let local_var_entity: Option<AuthVerifyEmailCreateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -219,7 +219,7 @@ pub async fn auth_verify_email_create(configuration: &configuration::Configurati
 }
 
 /// This returns a 6-digit callback token we can trade for a user's Auth Token.
-pub async fn auth_verify_mobile_create(configuration: &configuration::Configuration, ) -> Result<crate::models::DetailResponse, Error<AuthVerifyMobileCreateError>> {
+pub async fn auth_verify_mobile_create(configuration: &configuration::Configuration, ) -> Result<(), Error<AuthVerifyMobileCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -241,7 +241,7 @@ pub async fn auth_verify_mobile_create(configuration: &configuration::Configurat
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        Ok(())
     } else {
         let local_var_entity: Option<AuthVerifyMobileCreateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };

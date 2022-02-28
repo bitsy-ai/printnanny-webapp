@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
 **event_type** | [**crate::models::TestEventEventTypeEnum**](TestEventEventTypeEnum.md) |  | 
+**stream** | Option<[**crate::models::JanusStream**](JanusStream.md)> |  | [readonly]
 **created_dt** | **String** |  | [readonly]
 **source** | [**crate::models::EventSource**](EventSource.md) |  | 
 **send_ws** | Option<**bool**> | Broadcast to events websocket: /ws/events | [optional]
@@ -15,7 +16,6 @@ Name | Type | Description | Notes
 **polymorphic_ctype** | **i32** |  | [readonly]
 **user** | **i32** |  | [readonly]
 **device** | **i32** |  | 
-**stream** | Option<**i32**> |  | [readonly]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

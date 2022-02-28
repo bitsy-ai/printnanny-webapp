@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## auth_email_create
 
-> crate::models::DetailResponse auth_email_create(email_auth_request)
+> crate::models::EmailAuth auth_email_create(email_auth_request)
 
 
 This returns a 6-digit callback token we can trade for a user's Auth Token.
@@ -29,7 +29,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::DetailResponse**](DetailResponse.md)
+[**crate::models::EmailAuth**](EmailAuth.md)
 
 ### Authorization
 
@@ -45,7 +45,7 @@ Name | Type | Description  | Required | Notes
 
 ## auth_mobile_create
 
-> crate::models::DetailResponse auth_mobile_create(mobile_auth_request)
+> crate::models::MobileAuth auth_mobile_create(mobile_auth_request)
 
 
 This returns a 6-digit callback token we can trade for a user's Auth Token.
@@ -59,7 +59,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::DetailResponse**](DetailResponse.md)
+[**crate::models::MobileAuth**](MobileAuth.md)
 
 ### Authorization
 
@@ -75,7 +75,7 @@ Name | Type | Description  | Required | Notes
 
 ## auth_token_create
 
-> crate::models::TokenResponse auth_token_create(callback_token_auth_request)
+> crate::models::CallbackTokenAuth auth_token_create(callback_token_auth_request)
 
 
 This is a duplicate of rest_framework's own ObtainAuthToken method. Instead, this returns an Auth Token based on our callback token and source.
@@ -89,7 +89,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::TokenResponse**](TokenResponse.md)
+[**crate::models::CallbackTokenAuth**](CallbackTokenAuth.md)
 
 ### Authorization
 
@@ -135,7 +135,7 @@ Name | Type | Description  | Required | Notes
 
 ## auth_verify_email_create
 
-> crate::models::DetailResponse auth_verify_email_create()
+> auth_verify_email_create()
 
 
 This returns a 6-digit callback token we can trade for a user's Auth Token.
@@ -146,7 +146,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::DetailResponse**](DetailResponse.md)
+ (empty response body)
 
 ### Authorization
 
@@ -155,14 +155,14 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## auth_verify_mobile_create
 
-> crate::models::DetailResponse auth_verify_mobile_create()
+> auth_verify_mobile_create()
 
 
 This returns a 6-digit callback token we can trade for a user's Auth Token.
@@ -173,7 +173,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::DetailResponse**](DetailResponse.md)
+ (empty response body)
 
 ### Authorization
 
@@ -182,7 +182,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

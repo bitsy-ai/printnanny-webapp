@@ -39,6 +39,7 @@ class PolymorphicEvent(object):
     openapi_types = {
         'id': 'int',
         'event_type': 'TestEventEventTypeEnum',
+        'stream': 'JanusStream',
         'created_dt': 'datetime',
         'source': 'EventSource',
         'send_ws': 'bool',
@@ -47,13 +48,13 @@ class PolymorphicEvent(object):
         'send_mqtt': 'bool',
         'polymorphic_ctype': 'int',
         'user': 'int',
-        'device': 'int',
-        'stream': 'int'
+        'device': 'int'
     }
 
     attribute_map = {
         'id': 'id',
         'event_type': 'event_type',
+        'stream': 'stream',
         'created_dt': 'created_dt',
         'source': 'source',
         'send_ws': 'send_ws',
@@ -62,14 +63,13 @@ class PolymorphicEvent(object):
         'send_mqtt': 'send_mqtt',
         'polymorphic_ctype': 'polymorphic_ctype',
         'user': 'user',
-        'device': 'device',
-        'stream': 'stream'
+        'device': 'device'
     }
 
     discriminator_value_class_map = {
     }
 
-    def __init__(self, id=None, event_type=None, created_dt=None, source=None, send_ws=None, event_name=None, data=None, send_mqtt=None, polymorphic_ctype=None, user=None, device=None, stream=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, event_type=None, stream=None, created_dt=None, source=None, send_ws=None, event_name=None, data=None, send_mqtt=None, polymorphic_ctype=None, user=None, device=None, local_vars_configuration=None):  # noqa: E501
         """PolymorphicEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -77,6 +77,7 @@ class PolymorphicEvent(object):
 
         self._id = None
         self._event_type = None
+        self._stream = None
         self._created_dt = None
         self._source = None
         self._send_ws = None
@@ -86,11 +87,11 @@ class PolymorphicEvent(object):
         self._polymorphic_ctype = None
         self._user = None
         self._device = None
-        self._stream = None
         self.discriminator = 'event_type'
 
         self.id = id
         self.event_type = event_type
+        self.stream = stream
         self.created_dt = created_dt
         self.source = source
         if send_ws is not None:
@@ -103,7 +104,6 @@ class PolymorphicEvent(object):
         self.polymorphic_ctype = polymorphic_ctype
         self.user = user
         self.device = device
-        self.stream = stream
 
     @property
     def id(self):
@@ -150,6 +150,27 @@ class PolymorphicEvent(object):
             raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
 
         self._event_type = event_type
+
+    @property
+    def stream(self):
+        """Gets the stream of this PolymorphicEvent.  # noqa: E501
+
+
+        :return: The stream of this PolymorphicEvent.  # noqa: E501
+        :rtype: JanusStream
+        """
+        return self._stream
+
+    @stream.setter
+    def stream(self, stream):
+        """Sets the stream of this PolymorphicEvent.
+
+
+        :param stream: The stream of this PolymorphicEvent.  # noqa: E501
+        :type stream: JanusStream
+        """
+
+        self._stream = stream
 
     @property
     def created_dt(self):
@@ -355,27 +376,6 @@ class PolymorphicEvent(object):
             raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
 
         self._device = device
-
-    @property
-    def stream(self):
-        """Gets the stream of this PolymorphicEvent.  # noqa: E501
-
-
-        :return: The stream of this PolymorphicEvent.  # noqa: E501
-        :rtype: int
-        """
-        return self._stream
-
-    @stream.setter
-    def stream(self, stream):
-        """Sets the stream of this PolymorphicEvent.
-
-
-        :param stream: The stream of this PolymorphicEvent.  # noqa: E501
-        :type stream: int
-        """
-
-        self._stream = stream
 
     def get_real_child_model(self, data):
         """Returns the real base class specified by the discriminator"""

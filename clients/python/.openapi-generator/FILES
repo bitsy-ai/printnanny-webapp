@@ -12,7 +12,7 @@ docs/AlertsApi.md
 docs/AlphaEventSource.md
 docs/ArtifactTypesEnum.md
 docs/AuthApi.md
-docs/AuthApi.md
+docs/CallbackTokenAuth.md
 docs/CallbackTokenAuthRequest.md
 docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
@@ -20,13 +20,13 @@ docs/ClientConfigApi.md
 docs/CloudiotDevice.md
 docs/CloudiotDeviceRequest.md
 docs/CommandEnum.md
-docs/DetailResponse.md
 docs/Device.md
 docs/DeviceCalibration.md
 docs/DeviceCalibrationRequest.md
 docs/DeviceReleaseChannel.md
 docs/DeviceRequest.md
 docs/DevicesApi.md
+docs/EmailAuth.md
 docs/EmailAuthRequest.md
 docs/ErrorDetail.md
 docs/EventSource.md
@@ -41,6 +41,7 @@ docs/JanusConfigType.md
 docs/JanusStream.md
 docs/JanusStreamRequest.md
 docs/MlOpsApi.md
+docs/MobileAuth.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
 docs/OctoGenericEvent.md
@@ -150,7 +151,6 @@ docs/TestEvent.md
 docs/TestEventEventTypeEnum.md
 docs/TestEventName.md
 docs/TestEventRequest.md
-docs/TokenResponse.md
 docs/User.md
 docs/UserRequest.md
 docs/UsersApi.md
@@ -162,7 +162,6 @@ git_push.sh
 printnanny_api_client/__init__.py
 printnanny_api_client/api/__init__.py
 printnanny_api_client/api/alerts_api.py
-printnanny_api_client/api/auth_api.py
 printnanny_api_client/api/auth_api.py
 printnanny_api_client/api/client_config_api.py
 printnanny_api_client/api/devices_api.py
@@ -186,18 +185,19 @@ printnanny_api_client/models/alert_event_type_enum.py
 printnanny_api_client/models/alert_request.py
 printnanny_api_client/models/alpha_event_source.py
 printnanny_api_client/models/artifact_types_enum.py
+printnanny_api_client/models/callback_token_auth.py
 printnanny_api_client/models/callback_token_auth_request.py
 printnanny_api_client/models/callback_token_verification.py
 printnanny_api_client/models/callback_token_verification_request.py
 printnanny_api_client/models/cloudiot_device.py
 printnanny_api_client/models/cloudiot_device_request.py
 printnanny_api_client/models/command_enum.py
-printnanny_api_client/models/detail_response.py
 printnanny_api_client/models/device.py
 printnanny_api_client/models/device_calibration.py
 printnanny_api_client/models/device_calibration_request.py
 printnanny_api_client/models/device_release_channel.py
 printnanny_api_client/models/device_request.py
+printnanny_api_client/models/email_auth.py
 printnanny_api_client/models/email_auth_request.py
 printnanny_api_client/models/error_detail.py
 printnanny_api_client/models/event_source.py
@@ -209,6 +209,7 @@ printnanny_api_client/models/janus_auth_request.py
 printnanny_api_client/models/janus_config_type.py
 printnanny_api_client/models/janus_stream.py
 printnanny_api_client/models/janus_stream_request.py
+printnanny_api_client/models/mobile_auth.py
 printnanny_api_client/models/mobile_auth_request.py
 printnanny_api_client/models/model_artifact.py
 printnanny_api_client/models/octo_generic_event.py
@@ -312,7 +313,6 @@ printnanny_api_client/models/test_event.py
 printnanny_api_client/models/test_event_event_type_enum.py
 printnanny_api_client/models/test_event_name.py
 printnanny_api_client/models/test_event_request.py
-printnanny_api_client/models/token_response.py
 printnanny_api_client/models/user.py
 printnanny_api_client/models/user_request.py
 printnanny_api_client/models/web_rtc_event.py
@@ -334,6 +334,7 @@ test/test_alerts_api.py
 test/test_alpha_event_source.py
 test/test_artifact_types_enum.py
 test/test_auth_api.py
+test/test_callback_token_auth.py
 test/test_callback_token_auth_request.py
 test/test_callback_token_verification.py
 test/test_callback_token_verification_request.py
@@ -341,13 +342,13 @@ test/test_client_config_api.py
 test/test_cloudiot_device.py
 test/test_cloudiot_device_request.py
 test/test_command_enum.py
-test/test_detail_response.py
 test/test_device.py
 test/test_device_calibration.py
 test/test_device_calibration_request.py
 test/test_device_release_channel.py
 test/test_device_request.py
 test/test_devices_api.py
+test/test_email_auth.py
 test/test_email_auth_request.py
 test/test_error_detail.py
 test/test_event_source.py
@@ -362,6 +363,7 @@ test/test_janus_config_type.py
 test/test_janus_stream.py
 test/test_janus_stream_request.py
 test/test_ml_ops_api.py
+test/test_mobile_auth.py
 test/test_mobile_auth_request.py
 test/test_model_artifact.py
 test/test_octo_generic_event.py
@@ -471,7 +473,6 @@ test/test_test_event.py
 test/test_test_event_event_type_enum.py
 test/test_test_event_name.py
 test/test_test_event_request.py
-test/test_token_response.py
 test/test_user.py
 test/test_user_request.py
 test/test_users_api.py
