@@ -4,7 +4,7 @@ from django.contrib.auth import forms as admin_forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from django import forms
-from print_nanny_webapp.referrals.models import ReferralCode, ReferralSignup
+from print_nanny_webapp.subscriptions.models import ReferralCode, ReferralSignup
 from print_nanny_webapp.users.models import User, InviteRequest, UserSettings
 
 logger = logging.getLogger(__name__)
@@ -55,11 +55,11 @@ class UserChangeForm(admin_forms.UserChangeForm):
 
 class UserCreationForm(SignupForm):
 
-    error_messages = (
-        admin_forms.UserCreationForm.error_messages
-        | {"duplicate_email": _("An account with this email already exists")}
-        | {"referral_code_invalid": _("Referral code was not found")}
-    )
+    error_messages = {
+        "password_mismatch": _("The two password fields didn’t match."),
+        "duplicate_email": _("An account with this email already exists"),
+        "referral_code_invalid": _("Referral code was not found"),
+    }
 
     field_order = ("email", "password1", "password2", "referral_code")
 
