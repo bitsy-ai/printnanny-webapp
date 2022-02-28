@@ -50,7 +50,6 @@ urlpatterns = [
         include("print_nanny_webapp.octoprint.urls", namespace="octoprint"),
     ),
     path("", include("qr_code.urls", namespace="qr_code")),
-    path("", include("print_nanny_webapp.referrals.urls", namespace="referrals")),
     path("trial", FoundingMemberCheckoutView.as_view(), name="trial"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

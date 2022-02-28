@@ -4,7 +4,7 @@ from django.contrib.auth import forms as admin_forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from django import forms
-from print_nanny_webapp.referrals.models import ReferralCode, ReferralSignup
+from print_nanny_webapp.subscriptions.models import ReferralCode, ReferralSignup
 from print_nanny_webapp.users.models import User, InviteRequest, UserSettings
 
 logger = logging.getLogger(__name__)
