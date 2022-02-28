@@ -55,11 +55,11 @@ class UserChangeForm(admin_forms.UserChangeForm):
 
 class UserCreationForm(SignupForm):
 
-    error_messages = (
-        admin_forms.UserCreationForm.error_messages
-        | {"duplicate_email": _("An account with this email already exists")}
-        | {"referral_code_invalid": _("Referral code was not found")}
-    )
+    error_messages = {
+        "password_mismatch": _("The two password fields didn’t match."),
+        "duplicate_email": _("An account with this email already exists"),
+        "referral_code_invalid": _("Referral code was not found"),
+    }
 
     field_order = ("email", "password1", "password2", "referral_code")
 
