@@ -63,6 +63,8 @@ class FixObtainMobileCallbackToken(OpenApiViewExtension):
 
 TokenResponseSerializer = import_string(api_settings.PASSWORDLESS_AUTH_TOKEN_SERIALIZER)
 # /auth/token/
+
+
 class FixObtainAuthTokenFromCallbackToken(OpenApiViewExtension):
     target_class = "drfpasswordless.views.ObtainAuthTokenFromCallbackToken"
 
