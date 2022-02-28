@@ -34,7 +34,7 @@ class FixObtainEmailCallbackToken(OpenApiViewExtension):
             @extend_schema(
                 request=EmailAuthSerializer,
                 responses=DetailResponseSerializer,
-                tags=[api_settings.PASSWORDLESS_AUTH_PREFIX],
+                tags=[api_settings.PASSWORDLESS_AUTH_PREFIX.replace("/", "")],
             )
             def post(self, request, *args, **kwargs):
                 pass
@@ -53,7 +53,7 @@ class FixObtainMobileCallbackToken(OpenApiViewExtension):
             @extend_schema(
                 request=MobileAuthSerializer,
                 responses=DetailResponseSerializer,
-                tags=[api_settings.PASSWORDLESS_AUTH_PREFIX],
+                tags=[api_settings.PASSWORDLESS_AUTH_PREFIX.replace("/", "")],
             )
             def post(self, request, *args, **kwargs):
                 pass
@@ -75,7 +75,7 @@ class FixObtainAuthTokenFromCallbackToken(OpenApiViewExtension):
             @extend_schema(
                 request=CallbackTokenAuthSerializer,
                 responses=TokenResponseSerializer,
-                tags=[api_settings.PASSWORDLESS_AUTH_PREFIX],
+                tags=[api_settings.PASSWORDLESS_AUTH_PREFIX.replace("/", "")],
             )
             def post(self, request, *args, **kwargs):
                 pass
@@ -96,7 +96,7 @@ class FixObtainEmailVerificationCallbackToken(OpenApiViewExtension):
             @extend_schema(
                 request=EmailVerificationSerializer,
                 responses=DetailResponseSerializer,
-                tags=[api_settings.PASSWORDLESS_AUTH_PREFIX],
+                tags=[api_settings.PASSWORDLESS_AUTH_PREFIX.replace("/", "")],
             )
             def post(self, request, *args, **kwargs):
                 pass
@@ -117,7 +117,7 @@ class FixObtainMobileVerificationCallbackToken(OpenApiViewExtension):
             @extend_schema(
                 request=MobileVerificationSerializer,
                 responses=DetailResponseSerializer,
-                tags=[api_settings.PASSWORDLESS_AUTH_PREFIX],
+                tags=[api_settings.PASSWORDLESS_AUTH_PREFIX.replace("/", "")],
             )
             def post(self, request, *args, **kwargs):
                 pass
@@ -127,7 +127,7 @@ class FixObtainMobileVerificationCallbackToken(OpenApiViewExtension):
 
 # /auth/verify/
 # double-check that the endpoint belongs to the request.user and mark the alias as verified
-class FixObtainMobileVerificationCallbackToken(OpenApiViewExtension):
+class FixCallbackTokenVerificationToken(OpenApiViewExtension):
     target_class = "drfpasswordless.views.ObtainMobileVerificationCallbackToken"
 
     def view_replacement(self):
@@ -137,7 +137,7 @@ class FixObtainMobileVerificationCallbackToken(OpenApiViewExtension):
             @extend_schema(
                 request=CallbackTokenVerificationSerializer,
                 responses=DetailResponseSerializer,
-                tags=[api_settings.PASSWORDLESS_AUTH_PREFIX],
+                tags=[api_settings.PASSWORDLESS_AUTH_PREFIX.replace("/", "")],
             )
             def post(self, request, *args, **kwargs):
                 pass
