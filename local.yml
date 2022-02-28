@@ -19,7 +19,7 @@ services:
     env_file:
       - ./.envs/.local/.janus
     volumes:
-      - ./compose/local/janus/etc:/etc/janus:z
+      - ./compose/local/janus/etc:/etc/janus
 
   octoprint:
     hostname: octoprint

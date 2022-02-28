@@ -1,14 +1,24 @@
 <script>
-// CloudVideoStream component drives video streaming flow using "remote" Janus Gateway
+import adapter from 'webrtc-adapter'
+import Janus from 'janus-gateway-js'
 import { mapState, mapActions } from 'vuex'
 import {
   DEVICE_MODULE,
   DEVICE,
   GET_DEVICE,
-  JANUS_STREAM
+  JANUS_STREAM,
+  SET_JANUS_STREAM_DATA
 } from '@/store/devices'
 
 import { EVENTS_MODULE, STREAM_START, STREAM_STOP } from '@/store/events'
+
+function initialData () {
+  return {
+    loading: false,
+    active: false,
+    error: null
+  }
+}
 
 export default {
   props: {
@@ -22,10 +32,7 @@ export default {
     }
   },
   data: function () {
-    return {
-      loading: false,
-      active: false
-    }
+    return initialData()
   },
   methods: {
     ...mapActions(DEVICE_MODULE, {
@@ -37,20 +44,91 @@ export default {
     }),
     async startMonitoring () {
       this.loading = true
+      this.error = null
       await this.streamStart(this.deviceId)
     },
     async stopMonitoring () {
       this.loading = false
       await this.streamStop(this.deviceId)
+      await this.reset()
     },
     monitoringActive () {
       return this.device.monitoring_active === true
+    },
+    async reset () {
+      await this.resetJanus()
+      this.resetTimer()
+      this.data = initialData()
+    },
+    async connectStream (stream) {
+      console.log(stream)
+      const janus = new Janus.Client(stream.websocket_url, {
+        token: stream.auth.api_token,
+        keepalive: 'true'
+      })
+
+      console.log(
+        'Browser details detected',
+        adapter.browserDetails.browser,
+        adapter.browserDetails.version
+      )
+      const connection = await janus.createConnection(this.videoStreamEl)
+      this.connection = connection
+      console.log('Created janus connection', connection)
+
+      try {
+        const session = await connection.createSession()
+        this.session = session
+
+        console.log('Created janus session', session)
+
+        const plugin = await session.attachPlugin(Janus.StreamingPlugin.NAME)
+        this.plugin = plugin
+
+        this.timer = setInterval(this.getVideoStats, 200)
+        const videoStreamEl = this.videoStreamEl
+        console.log('Plugin attached', plugin)
+        plugin.on('message', (message, jesp) => {
+          console.log('plugin.on message', message, jesp)
+        })
+        const streamsList = await plugin.list()
+        console.log('retrieved stream list: ', streamsList)
+        if (streamsList._plainMessage.plugindata.data.list.length === 0) {
+          throw Error('Connection to Janus Gateway succeeded, but no streams are playing.\n Double-check that your camera is connected and try again. \n Check output of `systemctl status printnanny-gst` and `journalctl -u printnanny-gst` for details about this failure.')
+        }
+
+        for (const stream of streamsList._plainMessage.plugindata.data.list) {
+          if (stream.id === this.streamId) {
+            this.setupRemoteTrack(plugin, videoStreamEl)
+            console.log('Selected stream', stream)
+
+            const watch = await plugin.watch(stream.id, {
+              video: true
+            })
+            console.log('Now watching stream', watch)
+            const start = await plugin.start()
+
+            console.log('Started stream', start)
+
+            const info = await plugin.send({
+              body: { request: 'info', id: stream.id },
+              janus: 'message'
+            })
+
+            console.log('retrieved stream info', info)
+          } else {
+            console.log(`Skipping stream ${stream.id} (component is subscribed to ${this.streamId})`)
+          }
+        }
+      } catch (error) {
+        return await this.handleError(error)
+      }
     }
   },
   computed: {
     ...mapState(DEVICE_MODULE, {
       device: DEVICE,
-      janusStream: JANUS_STREAM
+      stream: JANUS_STREAM
     }),
     status () {
       if (this.device.monitoring_active === true) {
@@ -63,9 +141,18 @@ export default {
     }
   },
   async created () {
+    // fetch device data
     if (this.deviceId) {
       await this.getDevice(this.deviceId)
     }
+    // subscribe to mutations in store
+    this.$store.subscribe(async mutation => {
+      switch (mutation.type) {
+        case `${DEVICE_MODULE}/${SET_JANUS_STREAM_DATA}`:
+          console.log(mutation)
+          await this.connectStream(mutation.payload)
+      }
+    })
   }
 }
 </script>
