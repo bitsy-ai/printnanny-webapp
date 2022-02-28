@@ -6,17 +6,18 @@ from django.urls import include, path, re_path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
 from django.views.generic.base import RedirectView
+from drf_spectacular.views import (
+    SpectacularJSONAPIView,
+    SpectacularRedocView,
+    SpectacularSwaggerView,
+)
 
 from print_nanny_webapp.surveys.views import RemoteAccessSurvey1Create
-#from drf_yasg.views import get_schema_view
-#from drf_yasg import openapi
 from print_nanny_webapp.users.views import ThanksView
-from drf_spectacular.views import SpectacularJSONAPIView, SpectacularRedocView, SpectacularSwaggerView
 
 # Webapp urls
 urlpatterns = [
-    re_path(r'^health/', include('health_check.urls'), name='health'),
-
+    re_path(r"^health/", include("health_check.urls"), name="health"),
     path("", TemplateView.as_view(template_name="landing/landing.html"), name="home"),
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
@@ -24,38 +25,40 @@ urlpatterns = [
     path("request-invite/", RemoteAccessSurvey1Create.as_view(), name="request-invite"),
     path("invite/", RemoteAccessSurvey1Create.as_view(), name="invite"),
     path("waitlist/", RemoteAccessSurvey1Create.as_view(), name="waitlist"),
-
     path("thanks/", ThanksView.as_view(), name="thanks"),
-
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
     path("users/", include("print_nanny_webapp.users.urls", namespace="users")),
     # path("remote-control/", include("print_nanny_webapp.remote_control.urls", namespace="remote-control")),
-
-
     path("accounts/", include("allauth.urls")),
-
     path("signin/", RedirectView.as_view(url="/accounts/login/", permanent=True)),
-
-    path("dashboard/",
-         include("print_nanny_webapp.dashboard.urls", namespace="dashboard"), ),
-
+    path(
+        "dashboard/",
+        include("print_nanny_webapp.dashboard.urls", namespace="dashboard"),
+    ),
     path("alerts/", include("print_nanny_webapp.alerts.urls", "alerts")),
-    re_path(r'^invitations/', include('invitations.urls', namespace='invitations')),
-
-    path("devices/",
-         include("print_nanny_webapp.devices.urls", namespace="devices"), ),
-
+    re_path(r"^invitations/", include("invitations.urls", namespace="invitations")),
+    path(
+        "devices/",
+        include("print_nanny_webapp.devices.urls", namespace="devices"),
+    ),
     path("surveys/", include("print_nanny_webapp.surveys.urls", namespace="urls")),
-    path("octoprint/", include("print_nanny_webapp.octoprint.urls", namespace="octoprint")),
-    path('', include('qr_code.urls', namespace='qr_code')),
-    path('', include("print_nanny_webapp.referrals.urls", namespace="referrals"))
-
+    path(
+        "octoprint/",
+        include("print_nanny_webapp.octoprint.urls", namespace="octoprint"),
+    ),
+    path("", include("qr_code.urls", namespace="qr_code")),
+    path("", include("print_nanny_webapp.referrals.urls", namespace="referrals")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-urlpatterns += path("subscriptions/", include("print_nanny_webapp.subscriptions.urls", "subscriptions")),
-urlpatterns += path("stripe/", include("djstripe.urls", namespace="djstripe")),
+urlpatterns += (
+    path(
+        "subscriptions/",
+        include("print_nanny_webapp.subscriptions.urls", "subscriptions"),
+    ),
+)
+urlpatterns += (path("stripe/", include("djstripe.urls", namespace="djstripe")),)
 
 
 if settings.DEBUG:
@@ -66,19 +69,28 @@ if settings.DEBUG:
 
 # https://drf-spectacular.readthedocs.io/en/latest/blueprints.html
 # do not remove the following line!
+import print_nanny_webapp.drfpasswordless.schema
+
 urlpatterns += [
     # API base urls
     path("api/", include("config.api_router")),
     # OpenAPI Schema
-    path('api/schema/', SpectacularJSONAPIView.as_view(), name='schema'),
+    path("api/schema/", SpectacularJSONAPIView.as_view(), name="schema"),
     # OpenAPI UIs
-    path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
-    path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
-    path('', include('django_prometheus.urls')),
-    path('anymail/', include('anymail.urls')),
+    path(
+        "api/schema/swagger-ui/",
+        SpectacularSwaggerView.as_view(url_name="schema"),
+        name="swagger-ui",
+    ),
+    path(
+        "api/schema/redoc/",
+        SpectacularRedocView.as_view(url_name="schema"),
+        name="redoc",
+    ),
+    path("", include("django_prometheus.urls")),
+    path("anymail/", include("anymail.urls")),
     # https://github.com/aaronn/django-rest-framework-passwordless
-    path('', include('drfpasswordless.urls')),
-
+    path("", include("drfpasswordless.urls")),
 ]
 
 
