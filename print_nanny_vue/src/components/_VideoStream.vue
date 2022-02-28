@@ -97,7 +97,6 @@ export default {
     },
 
     async connectStream () {
-      this.loading = true
       const url = `wss://${this.device.hostname}:8989`
       const janusToken = this.device.janus_auth.janus_token
       console.log('Authenticating with janus token', janusToken)

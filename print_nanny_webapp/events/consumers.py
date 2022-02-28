@@ -39,4 +39,4 @@ class EventConsumer(AsyncJsonWebsocketConsumer):
         .mutation - automatically call SOCKET_[mutation value]
         .action - automatically call action
         """
-        await self.send(bytes_data=event)
+        await self.send(bytes_data=event.data)

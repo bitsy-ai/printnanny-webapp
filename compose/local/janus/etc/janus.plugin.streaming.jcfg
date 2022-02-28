@@ -112,25 +112,3 @@
 # an x264enc+rtph264pay pipeline in gstreamer, an ffmpeg script or other.
 # https://github.com/meetecho/janus-gateway/blob/master/conf/janus.plugin.streaming.jcfg.sample.in
 
-h264-video: {
-   	type = "rtp"
-   	id = 123
-	video = true
-	audio = false
-	data = false
-	videortpmap = "H264/90000"
-	videopt = 100
-	videoport = {{ cam_rtp_port }}
-   	description = "h264 encoded video stream"
-}
-h264-nn: {
-   	type = "rtp"
-   	id = 124
-	video = true
-	audio = false
-	data = false
-	videopt = 100
-	videortpmap = "H264/90000"
-	videoport = {{ nn_rtp_port }}
-	description = "nnstreamer output"
-}
