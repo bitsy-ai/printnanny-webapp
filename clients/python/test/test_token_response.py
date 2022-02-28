@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.mobile_auth import MobileAuth  # noqa: E501
+from printnanny_api_client.models.token_response import TokenResponse  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestMobileAuth(unittest.TestCase):
-    """MobileAuth unit test stubs"""
+class TestTokenResponse(unittest.TestCase):
+    """TokenResponse unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,22 +30,22 @@ class TestMobileAuth(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test MobileAuth
+        """Test TokenResponse
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.mobile_auth.MobileAuth()  # noqa: E501
+        # model = printnanny_api_client.models.token_response.TokenResponse()  # noqa: E501
         if include_optional :
-            return MobileAuth(
-                mobile = '+680728880015'
+            return TokenResponse(
+                token = ''
             )
         else :
-            return MobileAuth(
-                mobile = '+680728880015',
+            return TokenResponse(
+                token = '',
         )
 
-    def testMobileAuth(self):
-        """Test MobileAuth"""
+    def testTokenResponse(self):
+        """Test TokenResponse"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

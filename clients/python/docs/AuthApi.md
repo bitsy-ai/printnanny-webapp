@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 
 # **auth_email_create**
-> EmailAuth auth_email_create(email_auth_request)
+> DetailResponse auth_email_create(email_auth_request)
 
 
 
@@ -113,7 +113,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EmailAuth**](EmailAuth.md)
+[**DetailResponse**](DetailResponse.md)
 
 ### Authorization
 
@@ -132,7 +132,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **auth_mobile_create**
-> MobileAuth auth_mobile_create(mobile_auth_request)
+> DetailResponse auth_mobile_create(mobile_auth_request)
 
 
 
@@ -232,7 +232,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**MobileAuth**](MobileAuth.md)
+[**DetailResponse**](DetailResponse.md)
 
 ### Authorization
 
@@ -251,7 +251,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **auth_token_create**
-> CallbackTokenAuth auth_token_create(callback_token_auth_request)
+> TokenResponse auth_token_create(callback_token_auth_request)
 
 
 
@@ -351,7 +351,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CallbackTokenAuth**](CallbackTokenAuth.md)
+[**TokenResponse**](TokenResponse.md)
 
 ### Authorization
 
@@ -489,7 +489,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **auth_verify_email_create**
-> auth_verify_email_create()
+> DetailResponse auth_verify_email_create()
 
 
 
@@ -532,7 +532,8 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     api_instance = printnanny_api_client.AuthApi(api_client)
     
     try:
-        api_instance.auth_verify_email_create()
+        api_response = api_instance.auth_verify_email_create()
+        pprint(api_response)
     except ApiException as e:
         print("Exception when calling AuthApi->auth_verify_email_create: %s\n" % e)
 ```
@@ -572,7 +573,8 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     api_instance = printnanny_api_client.AuthApi(api_client)
     
     try:
-        api_instance.auth_verify_email_create()
+        api_response = api_instance.auth_verify_email_create()
+        pprint(api_response)
     except ApiException as e:
         print("Exception when calling AuthApi->auth_verify_email_create: %s\n" % e)
 ```
@@ -582,7 +584,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+[**DetailResponse**](DetailResponse.md)
 
 ### Authorization
 
@@ -591,17 +593,17 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | No response body |  -  |
+**200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **auth_verify_mobile_create**
-> auth_verify_mobile_create()
+> DetailResponse auth_verify_mobile_create()
 
 
 
@@ -644,7 +646,8 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     api_instance = printnanny_api_client.AuthApi(api_client)
     
     try:
-        api_instance.auth_verify_mobile_create()
+        api_response = api_instance.auth_verify_mobile_create()
+        pprint(api_response)
     except ApiException as e:
         print("Exception when calling AuthApi->auth_verify_mobile_create: %s\n" % e)
 ```
@@ -684,7 +687,8 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     api_instance = printnanny_api_client.AuthApi(api_client)
     
     try:
-        api_instance.auth_verify_mobile_create()
+        api_response = api_instance.auth_verify_mobile_create()
+        pprint(api_response)
     except ApiException as e:
         print("Exception when calling AuthApi->auth_verify_mobile_create: %s\n" % e)
 ```
@@ -694,7 +698,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+[**DetailResponse**](DetailResponse.md)
 
 ### Authorization
 
@@ -703,12 +707,12 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | No response body |  -  |
+**200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

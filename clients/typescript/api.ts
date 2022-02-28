@@ -224,31 +224,6 @@ export type ArtifactTypesEnum = typeof ArtifactTypesEnum[keyof typeof ArtifactTy
 /**
  * Abstract class inspired by DRF\'s own token serializer. Returns a user if valid, None or a message if not.
  * @export
- * @interface CallbackTokenAuth
- */
-export interface CallbackTokenAuth {
-    /**
-     * 
-     * @type {string}
-     * @memberof CallbackTokenAuth
-     */
-    'email'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CallbackTokenAuth
-     */
-    'mobile'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CallbackTokenAuth
-     */
-    'token': string;
-}
-/**
- * Abstract class inspired by DRF\'s own token serializer. Returns a user if valid, None or a message if not.
- * @export
  * @interface CallbackTokenAuthRequest
  */
 export interface CallbackTokenAuthRequest {
@@ -469,6 +444,19 @@ export const CommandEnum = {
 export type CommandEnum = typeof CommandEnum[keyof typeof CommandEnum];
 
 
+/**
+ * Generic auth response serializer
+ * @export
+ * @interface DetailResponse
+ */
+export interface DetailResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof DetailResponse
+     */
+    'detail': string;
+}
 /**
  * 
  * @export
@@ -708,19 +696,6 @@ export interface DeviceRequest {
      * @memberof DeviceRequest
      */
     'hostname'?: string;
-}
-/**
- * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
- * @export
- * @interface EmailAuth
- */
-export interface EmailAuth {
-    /**
-     * 
-     * @type {string}
-     * @memberof EmailAuth
-     */
-    'email': string;
 }
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
@@ -1150,19 +1125,6 @@ export interface JanusStreamRequest {
      * @memberof JanusStreamRequest
      */
     'info'?: { [key: string]: any; };
-}
-/**
- * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
- * @export
- * @interface MobileAuth
- */
-export interface MobileAuth {
-    /**
-     * 
-     * @type {string}
-     * @memberof MobileAuth
-     */
-    'mobile': string;
 }
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
@@ -6430,6 +6392,19 @@ export interface TestEventRequest {
     'device': number;
 }
 /**
+ * Our default response serializer.
+ * @export
+ * @interface TokenResponse
+ */
+export interface TokenResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof TokenResponse
+     */
+    'token': string;
+}
+/**
  * 
  * @export
  * @interface User
@@ -7470,7 +7445,7 @@ export const AuthApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async authEmailCreate(emailAuthRequest: EmailAuthRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EmailAuth>> {
+        async authEmailCreate(emailAuthRequest: EmailAuthRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DetailResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.authEmailCreate(emailAuthRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -7480,7 +7455,7 @@ export const AuthApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async authMobileCreate(mobileAuthRequest: MobileAuthRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MobileAuth>> {
+        async authMobileCreate(mobileAuthRequest: MobileAuthRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DetailResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.authMobileCreate(mobileAuthRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -7490,7 +7465,7 @@ export const AuthApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async authTokenCreate(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CallbackTokenAuth>> {
+        async authTokenCreate(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.authTokenCreate(callbackTokenAuthRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -7509,7 +7484,7 @@ export const AuthApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async authVerifyEmailCreate(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async authVerifyEmailCreate(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DetailResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.authVerifyEmailCreate(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -7518,7 +7493,7 @@ export const AuthApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async authVerifyMobileCreate(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async authVerifyMobileCreate(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DetailResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.authVerifyMobileCreate(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -7538,7 +7513,7 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authEmailCreate(emailAuthRequest: EmailAuthRequest, options?: any): AxiosPromise<EmailAuth> {
+        authEmailCreate(emailAuthRequest: EmailAuthRequest, options?: any): AxiosPromise<DetailResponse> {
             return localVarFp.authEmailCreate(emailAuthRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -7547,7 +7522,7 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authMobileCreate(mobileAuthRequest: MobileAuthRequest, options?: any): AxiosPromise<MobileAuth> {
+        authMobileCreate(mobileAuthRequest: MobileAuthRequest, options?: any): AxiosPromise<DetailResponse> {
             return localVarFp.authMobileCreate(mobileAuthRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -7556,7 +7531,7 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authTokenCreate(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: any): AxiosPromise<CallbackTokenAuth> {
+        authTokenCreate(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: any): AxiosPromise<TokenResponse> {
             return localVarFp.authTokenCreate(callbackTokenAuthRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -7573,7 +7548,7 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authVerifyEmailCreate(options?: any): AxiosPromise<void> {
+        authVerifyEmailCreate(options?: any): AxiosPromise<DetailResponse> {
             return localVarFp.authVerifyEmailCreate(options).then((request) => request(axios, basePath));
         },
         /**
@@ -7581,7 +7556,7 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authVerifyMobileCreate(options?: any): AxiosPromise<void> {
+        authVerifyMobileCreate(options?: any): AxiosPromise<DetailResponse> {
             return localVarFp.authVerifyMobileCreate(options).then((request) => request(axios, basePath));
         },
     };
@@ -7600,7 +7575,7 @@ export interface AuthApiInterface {
      * @throws {RequiredError}
      * @memberof AuthApiInterface
      */
-    authEmailCreate(emailAuthRequest: EmailAuthRequest, options?: AxiosRequestConfig): AxiosPromise<EmailAuth>;
+    authEmailCreate(emailAuthRequest: EmailAuthRequest, options?: AxiosRequestConfig): AxiosPromise<DetailResponse>;
 
     /**
      * This returns a 6-digit callback token we can trade for a user\'s Auth Token.
@@ -7609,7 +7584,7 @@ export interface AuthApiInterface {
      * @throws {RequiredError}
      * @memberof AuthApiInterface
      */
-    authMobileCreate(mobileAuthRequest: MobileAuthRequest, options?: AxiosRequestConfig): AxiosPromise<MobileAuth>;
+    authMobileCreate(mobileAuthRequest: MobileAuthRequest, options?: AxiosRequestConfig): AxiosPromise<DetailResponse>;
 
     /**
      * This is a duplicate of rest_framework\'s own ObtainAuthToken method. Instead, this returns an Auth Token based on our callback token and source.
@@ -7618,7 +7593,7 @@ export interface AuthApiInterface {
      * @throws {RequiredError}
      * @memberof AuthApiInterface
      */
-    authTokenCreate(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: AxiosRequestConfig): AxiosPromise<CallbackTokenAuth>;
+    authTokenCreate(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: AxiosRequestConfig): AxiosPromise<TokenResponse>;
 
     /**
      * This verifies an alias on correct callback token entry using the same logic as auth. Should be refactored at some point.
@@ -7635,7 +7610,7 @@ export interface AuthApiInterface {
      * @throws {RequiredError}
      * @memberof AuthApiInterface
      */
-    authVerifyEmailCreate(options?: AxiosRequestConfig): AxiosPromise<void>;
+    authVerifyEmailCreate(options?: AxiosRequestConfig): AxiosPromise<DetailResponse>;
 
     /**
      * This returns a 6-digit callback token we can trade for a user\'s Auth Token.
@@ -7643,7 +7618,7 @@ export interface AuthApiInterface {
      * @throws {RequiredError}
      * @memberof AuthApiInterface
      */
-    authVerifyMobileCreate(options?: AxiosRequestConfig): AxiosPromise<void>;
+    authVerifyMobileCreate(options?: AxiosRequestConfig): AxiosPromise<DetailResponse>;
 
 }
 
