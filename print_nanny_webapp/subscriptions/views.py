@@ -25,10 +25,6 @@ logger = logging.getLogger(__name__)
 User = get_user_model()
 
 
-class SubscriptionSoldoutView(TemplateView):
-    template_name = "subscriptions/sold-out.html"
-
-
 class FoundingMemberSignupView(SignupView):
     template_name = "subscriptions/founding-member-signup.html"
     success_url = "checkout"
@@ -45,14 +41,14 @@ class CheckoutSuccessView(RedirectView):
 
     permanent = False
 
-    def get_redirect_url(self, session_id=None, *args, **kwargs):
+    def get_redirect_url(self, *args, session_id=None, **kwargs):
         if not session_id:
             return reverse("subscriptions:checkout")
 
         MemberBadge = apps.get_model("subscriptions", "MemberBadge")
 
         session = stripe.checkout.Session.retrieve(session_id)
-        logger.info(f"Checkout session succeeded {session}")
+        logger.info("Checkout session succeeded %s", session)
         customer = stripe.Customer.retrieve(session.customer)
         user = User.objects.get(email=customer.email)
         logger.info(f"Customer info stripee customer={customer} user={user}")

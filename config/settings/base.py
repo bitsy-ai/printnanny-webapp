@@ -27,7 +27,7 @@ DEBUG = env.bool("DJANGO_DEBUG", False)
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # though not all of them may be available with every OS.
 # In Windows, this must be set to your system time zone.
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 # https://docs.djangoproject.com/en/dev/ref/settings/#language-code
 LANGUAGE_CODE = "en-us"
 # https://docs.djangoproject.com/en/dev/ref/settings/#site-id
@@ -47,9 +47,9 @@ CDN_BASE_URL = "https://cdn.print-nanny.com"
 # DATABASES
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
-DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 db_config = env.db("DATABASE_URL")
-db_config["ENGINE"] = 'django_prometheus.db.backends.postgresql'
+db_config["ENGINE"] = "django_prometheus.db.backends.postgresql"
 DATABASES = {
     "default": db_config,
 }
@@ -163,7 +163,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.common.BrokenLinkEmailsMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-
 ]
 
 # STATIC
@@ -175,14 +174,14 @@ STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 
 
-VUE_APP_DIR = os.path.join(ROOT_DIR, 'print_nanny_vue')
+VUE_APP_DIR = os.path.join(ROOT_DIR, "print_nanny_vue")
 # @TODO rm these staticfiles dirs
 STATICFILES_DIRS = [
-    ('css', str(APPS_DIR / "static/css")),
-    ('fonts', str(APPS_DIR / "static/fonts")),
-    ('images', str(APPS_DIR / "static/images")),
-    ('js', str(APPS_DIR / "static/js")),
-    ('vue', str(APPS_DIR / "static/vue")),
+    ("css", str(APPS_DIR / "static/css")),
+    ("fonts", str(APPS_DIR / "static/fonts")),
+    ("images", str(APPS_DIR / "static/images")),
+    ("js", str(APPS_DIR / "static/js")),
+    ("vue", str(APPS_DIR / "static/vue")),
 ]
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [
@@ -192,17 +191,17 @@ STATICFILES_FINDERS = [
 
 # Webpack loader
 # ------------------------------------------------------------------------------
-INSTALLED_APPS += ['webpack_loader']
+INSTALLED_APPS += ["webpack_loader"]
 
 WEBPACK_LOADER = {
-    'DEFAULT': {
-        'CACHE': not DEBUG,
-        'BUNDLE_DIR_NAME': 'vue/',  # must end with slash
-        'STATS_FILE': os.path.join(VUE_APP_DIR, 'webpack-stats.json'),
-        'POLL_INTERVAL': 0.1,
-        'TIMEOUT': None,
-        'IGNORE': [r'.+\.hot-update.js', r'.+\.map'],
-        'LOADER_CLASS': 'webpack_loader.loader.WebpackLoader',
+    "DEFAULT": {
+        "CACHE": not DEBUG,
+        "BUNDLE_DIR_NAME": "vue/",  # must end with slash
+        "STATS_FILE": os.path.join(VUE_APP_DIR, "webpack-stats.json"),
+        "POLL_INTERVAL": 0.1,
+        "TIMEOUT": None,
+        "IGNORE": [r".+\.hot-update.js", r".+\.map"],
+        "LOADER_CLASS": "webpack_loader.loader.WebpackLoader",
     }
 }
 
@@ -213,7 +212,7 @@ WEBPACK_LOADER = {
 MEDIA_ROOT = str(APPS_DIR / "media")
 # https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 
-#TMP_ROOT = str(ROOT_DIR / ".tmp")
+# TMP_ROOT = str(ROOT_DIR / ".tmp")
 # TEMPLATES
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#templates
@@ -256,9 +255,26 @@ GS_FILE_OVERWRITE = True
 GS_DEFAULT_ACL = "projectPrivate"
 # STATIC
 # ------------------------
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-WHITENOISE_SKIP_COMPRESS_EXTENSIONS = ('ico', 'jpg', 'jpeg', 'png', 'gif', 'webp',
-                                       'zip', 'gz', 'tgz', 'bz2', 'tbz', 'xz', 'br', 'swf', 'flv', 'woff', 'woff2')
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+WHITENOISE_SKIP_COMPRESS_EXTENSIONS = (
+    "ico",
+    "jpg",
+    "jpeg",
+    "png",
+    "gif",
+    "webp",
+    "zip",
+    "gz",
+    "tgz",
+    "bz2",
+    "tbz",
+    "xz",
+    "br",
+    "swf",
+    "flv",
+    "woff",
+    "woff2",
+)
 # MEDIA
 # ------------------------------------------------------------------------------
 DEFAULT_FILE_STORAGE = "print_nanny_webapp.utils.storages.MediaRootGoogleCloudStorage"
@@ -270,10 +286,7 @@ FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
 
 # http://django-crispy-forms.readthedocs.io/en/latest/install.html#template-packs
 CRISPY_TEMPLATE_PACK = "bootstrap4"
-CRISPY_CLASS_CONVERTERS = {
-    'select': "custom-select",
-    'form-group': 'input-group'
-}
+CRISPY_CLASS_CONVERTERS = {"select": "custom-select", "form-group": "input-group"}
 
 
 # FIXTURES
@@ -307,9 +320,7 @@ DEFAULT_FROM_EMAIL = env(
 # https://docs.djangoproject.com/en/dev/ref/settings/#server-email
 SERVER_EMAIL = env("DJANGO_SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-subject-prefix
-EMAIL_SUBJECT_PREFIX = env(
-    "DJANGO_EMAIL_SUBJECT_PREFIX", default="[Print Nanny]"
-)
+EMAIL_SUBJECT_PREFIX = env("DJANGO_EMAIL_SUBJECT_PREFIX", default="[Print Nanny]")
 
 # Anymail
 # ------------------------------------------------------------------------------
@@ -390,9 +401,7 @@ CELERY_TASK_TIME_LIMIT = 10 * 60
 CELERY_TASK_SOFT_TIME_LIMIT = 10 * 60
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#beat-scheduler
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
-CELERY_RESULT_BACKEND_TRANSPORT_OPTIONS = {
-    'result_chord_ordered': True
-}
+CELERY_RESULT_BACKEND_TRANSPORT_OPTIONS = {"result_chord_ordered": True}
 CELERY_BROKER_CONNECTION_TIMEOUT = 8.0
 CELERY_BROKER_POOL_LIMIT = None
 
@@ -403,6 +412,8 @@ ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION", True)
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_FORMS = {"signup": "print_nanny_webapp.users.forms.UserCreationForm"}
+
 
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_EMAIL_REQUIRED = True
@@ -421,18 +432,18 @@ SOCIALACCOUNT_ADAPTER = "print_nanny_webapp.users.adapters.SocialAccountAdapter"
 # -------------------------------------------------------------------------------
 # django-rest-framework - https://www.django-rest-framework.org/api-guide/settings/
 # drf-spectacular
-INSTALLED_APPS += ['drf_spectacular']
+INSTALLED_APPS += ["drf_spectacular"]
 PAGE_SIZE = 20
 REST_FRAMEWORK = {
-    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.SessionAuthentication",
         "print_nanny_webapp.users.authentication.BearerTokenAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
-    'DEFAULT_PAGINATION_CLASS': 'print_nanny_webapp.utils.pagination.PageNumberPagination',
-    'PAGE_SIZE': PAGE_SIZE,
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
+    "DEFAULT_PAGINATION_CLASS": "print_nanny_webapp.utils.pagination.PageNumberPagination",
+    "PAGE_SIZE": PAGE_SIZE,
     # 'ALLOWED_VERSIONS': ('v0','v1', ''),
     # 'DEFAULT_VERSION': 'v0'
 }
@@ -441,59 +452,54 @@ REST_FRAMEWORK = {
 # ------------------------------------------------------------------------------
 
 SPECTACULAR_SETTINGS = {
-    'SCHEMA_PATH_PREFIX': '/api',
+    "SCHEMA_PATH_PREFIX": "/api",
     # 'COMPONENT_NO_READ_ONLY_REQUIRED': True,
-    'COMPONENT_SPLIT_REQUEST': True,
-    'ENUM_ADD_EXPLICIT_BLANK_NULL_CHOICE': True,
-    'SCHEMA_COERCE_PATH_PK_SUFFIX': True,
-    'ENUM_NAME_OVERRIDES': {
+    "COMPONENT_SPLIT_REQUEST": True,
+    "ENUM_ADD_EXPLICIT_BLANK_NULL_CHOICE": True,
+    "SCHEMA_COERCE_PATH_PK_SUFFIX": True,
+    "ENUM_NAME_OVERRIDES": {
         # TODO refactor event apps+namespaces for clarity before adding mainsail
         # begin device app enums
-        'CameraType': 'print_nanny_webapp.devices.enum.CameraType',
-        'JanusConfigType': 'print_nanny_webapp.devices.enum.JanusConfigType',
-        'DeviceReleaseChannel': 'print_nanny_webapp.devices.enum.DeviceReleaseChannel',
-
+        "CameraType": "print_nanny_webapp.devices.enum.CameraType",
+        "JanusConfigType": "print_nanny_webapp.devices.enum.JanusConfigType",
+        "DeviceReleaseChannel": "print_nanny_webapp.devices.enum.DeviceReleaseChannel",
         # begin alerts app enums
-        'PrintProgressAlertEventType': 'print_nanny_webapp.alerts.models.PrintProgressAlert.PrintProgressAlertEventType.choices',
-        'AlertMessageType': 'print_nanny_webapp.alerts.models.AlertMessage.AlertMessageType.choices',
-        'AlertSettingsEventType': 'print_nanny_webapp.alerts.models.AlertSettings.AlertSettingsEventType.choices',
-
+        "PrintProgressAlertEventType": "print_nanny_webapp.alerts.models.PrintProgressAlert.PrintProgressAlertEventType.choices",
+        "AlertMessageType": "print_nanny_webapp.alerts.models.AlertMessage.AlertMessageType.choices",
+        "AlertSettingsEventType": "print_nanny_webapp.alerts.models.AlertSettings.AlertSettingsEventType.choices",
         # begin octoprint event types
-        'OctoTelemetryEvent': 'print_nanny_webapp.telemetry.enum.TelemetryEventType',
-        'OctoPrintNannyEvent': 'print_nanny_webapp.telemetry.enum.PrintNannyPluginEventType',
-        'OctoGenericEvent': 'print_nanny_webapp.telemetry.enum.OctoprintEventType',
-        'OctoJobEvent': 'print_nanny_webapp.telemetry.enum.PrintJobEventType',
-        'OctoPrinterEvent': 'print_nanny_webapp.telemetry.enum.PrinterEventType',
-        'AlphaEventSource': 'print_nanny_webapp.telemetry.enum.EventSource',
-
+        "OctoTelemetryEvent": "print_nanny_webapp.telemetry.enum.TelemetryEventType",
+        "OctoPrintNannyEvent": "print_nanny_webapp.telemetry.enum.PrintNannyPluginEventType",
+        "OctoGenericEvent": "print_nanny_webapp.telemetry.enum.OctoprintEventType",
+        "OctoJobEvent": "print_nanny_webapp.telemetry.enum.PrintJobEventType",
+        "OctoPrinterEvent": "print_nanny_webapp.telemetry.enum.PrinterEventType",
+        "AlphaEventSource": "print_nanny_webapp.telemetry.enum.EventSource",
         # begin webrtc event types
-        'TestEventName': 'print_nanny_webapp.events.enum.TestEventName',
-        'WebRTCEventName': 'print_nanny_webapp.events.enum.WebRTCEventName',
-        'EventType': 'print_nanny_webapp.events.enum.EventType',
-        'EventSource': 'print_nanny_webapp.events.enum.EventSource',
+        "TestEventName": "print_nanny_webapp.events.enum.TestEventName",
+        "WebRTCEventName": "print_nanny_webapp.events.enum.WebRTCEventName",
+        "EventType": "print_nanny_webapp.events.enum.EventType",
+        "EventSource": "print_nanny_webapp.events.enum.EventSource",
     },
-    'TITLE': 'printnanny-api-client',
-    'DESCRIPTION': 'Official API client library for print-nanny.com',
-    'LICENSE': {
-        'name': 'AGPLv3'
+    "TITLE": "printnanny-api-client",
+    "DESCRIPTION": "Official API client library for print-nanny.com",
+    "LICENSE": {"name": "AGPLv3"},
+    "CONTACT": {
+        "name": "Leigh Johnson",
+        "email": "leigh@print-nanny.com",
+        "url": "https://print-nanny.com",
     },
-    'CONTACT': {
-        'name': 'Leigh Johnson',
-        'email': 'leigh@print-nanny.com',
-        'url': 'https://print-nanny.com'
-    }
 }
 
 # django-filters
 # ------------------------------------------------------------------------------
-INSTALLED_APPS += ['django_filters']
+INSTALLED_APPS += ["django_filters"]
 
 # django-prometheus
 # ------------------------------------------------------------------------------
-INSTALLED_APPS += ['django_prometheus']
+INSTALLED_APPS += ["django_prometheus"]
 
 PROMETHEUS_METRICS_EXPORT_PORT_RANGE = range(8001, 8050)
-PROMETHEUS_METRICS_EXPORT_ADDRESS = ''  # all addresses
+PROMETHEUS_METRICS_EXPORT_ADDRESS = ""  # all addresses
 # https://github.com/korfuri/django-prometheus/issues/252
 PROMETHEUS_EXPORT_MIGRATIONS = False
 
@@ -502,25 +508,25 @@ PROMETHEUS_EXPORT_MIGRATIONS = False
 # django-polymorphic
 
 INSTALLED_APPS += [
-    'polymorphic',
+    "polymorphic",
 ]
 
 # django-invitations
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += [
-    'invitations',
+    "invitations",
 ]
-ACCOUNT_ADAPTER = 'invitations.models.InvitationsAdapter'
+ACCOUNT_ADAPTER = "invitations.models.InvitationsAdapter"
 INVITATIONS_ADAPTER = ACCOUNT_ADAPTER
 INVITATIONS_INVITATION_ONLY = False
 INVITATIONS_INVITATION_EXPIRY = 30
-INVITATIONS_EMAIL_SUBJECT_PREFIX = '[Print Nanny]'
+INVITATIONS_EMAIL_SUBJECT_PREFIX = "[Print Nanny]"
 INVITATIONS_ACCEPT_INVITE_AFTER_SIGNUP = True
 
 # channels
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += [
-    'channels',
+    "channels",
 ]
 
 APPEND_SLASH = True
@@ -536,64 +542,64 @@ GCP_PUBSUB_UNDELIVERED_HEALTH_THRESHOLD_MINUTES = 10
 
 GCP_PROJECT_ID = env("GCP_PROJECT_ID", default="print-nanny-sandbox")
 
-GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION = 'us-central1'
-GCP_CLOUD_IOT_STANDALONE_DEVICE_REGISTRY = env('GCP_CLOUD_IOT_DEVICE_REGISTRY', default='printnanny-devices')
-GCP_CLOUD_IOT_OCTOPRINT_DEVICE_REGISTRY = env('GCP_CLOUD_IOT_DEVICE_REGISTRY', default='octoprint-devices')
+GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION = "us-central1"
+GCP_CLOUD_IOT_STANDALONE_DEVICE_REGISTRY = env(
+    "GCP_CLOUD_IOT_DEVICE_REGISTRY", default="printnanny-devices"
+)
+GCP_CLOUD_IOT_OCTOPRINT_DEVICE_REGISTRY = env(
+    "GCP_CLOUD_IOT_DEVICE_REGISTRY", default="octoprint-devices"
+)
 
-GCP_PUBSUB_TELEMETRY_DEFAULT_TOPIC = env('GCP_PUBSUB_TELEMETRY_DEFAULT', default=os.path.join(
-    'projects',
-    GCP_PROJECT_ID,
-    'topics/default-telemetry'
-))
+GCP_PUBSUB_TELEMETRY_DEFAULT_TOPIC = env(
+    "GCP_PUBSUB_TELEMETRY_DEFAULT",
+    default=os.path.join("projects", GCP_PROJECT_ID, "topics/default-telemetry"),
+)
 
-GCP_PUBSUB_OCTOPRINT_EVENTS_TOPIC = env('GCP_PUBSUB_OCTOPRINT_EVENTS', default=os.path.join(
-    'projects',
-    GCP_PROJECT_ID,
-    'topics/octoprint-events'
-))
+GCP_PUBSUB_OCTOPRINT_EVENTS_TOPIC = env(
+    "GCP_PUBSUB_OCTOPRINT_EVENTS",
+    default=os.path.join("projects", GCP_PROJECT_ID, "topics/octoprint-events"),
+)
 
-GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION = env('GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION',
-                                               default=os.path.join(
-                                                   'projects',
-                                                   GCP_PROJECT_ID,
-                                                   'subscriptions/octoprint-events-pull'
-                                               )
-                                               )
+GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION = env(
+    "GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION",
+    default=os.path.join(
+        "projects", GCP_PROJECT_ID, "subscriptions/octoprint-events-pull"
+    ),
+)
 
-GCP_PUBSUB_OCTOPRINT_ALERTS_SUBSCRIPTION = env('GCP_PUBSUB_OCTOPRINT_ALERTS_SUBSCRIPTION',
-                                               default=os.path.join(
-                                                   'projects',
-                                                   GCP_PROJECT_ID,
-                                                   'subscriptions/alerts-pull'
-                                               )
-                                               )
+GCP_PUBSUB_OCTOPRINT_ALERTS_SUBSCRIPTION = env(
+    "GCP_PUBSUB_OCTOPRINT_ALERTS_SUBSCRIPTION",
+    default=os.path.join("projects", GCP_PROJECT_ID, "subscriptions/alerts-pull"),
+)
 
-MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
+MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
 # honeycomb
 # ------------------------------------------------------------------------------
 # https://docs.honeycomb.io/getting-data-in/beelines/
-HONEYCOMB_DATASET = env('HONEYCOMB_DATASET', default="print_nanny_sandbox")
-HONEYCOMB_SERVICE_NAME = env('HONEYCOMB_SERVICE_NAME', default='django')
-HONEYCOMB_API_KEY = env('HONEYCOMB_API_KEY', default="noop")
+HONEYCOMB_DATASET = env("HONEYCOMB_DATASET", default="print_nanny_sandbox")
+HONEYCOMB_SERVICE_NAME = env("HONEYCOMB_SERVICE_NAME", default="django")
+HONEYCOMB_API_KEY = env("HONEYCOMB_API_KEY", default="noop")
 
 
 # django-health-check
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += [
-    'health_check',                             # required
-    'health_check.db',                          # stock Django health checkers
-    'health_check.cache',
-    'health_check.contrib.migrations',
-    'health_check.contrib.celery',              # requires celery
-    'health_check.contrib.celery_ping',         # requires celery
-    'health_check.contrib.redis',               # requires Redis broker
+    "health_check",  # required
+    "health_check.db",  # stock Django health checkers
+    "health_check.cache",
+    "health_check.contrib.migrations",
+    "health_check.contrib.celery",  # requires celery
+    "health_check.contrib.celery_ping",  # requires celery
+    "health_check.contrib.redis",  # requires Redis broker
 ]
 
 # ------------------------------------------------------------------------------
 # help guides + other notion wiki links
 
-ROADMAP_URL = "https://bitsy-ai.notion.site/Print-Nanny-Roadmap-7b48a2c8d83248eea2de14edfeaf52ee"
+ROADMAP_URL = (
+    "https://bitsy-ai.notion.site/Print-Nanny-Roadmap-7b48a2c8d83248eea2de14edfeaf52ee"
+)
 HELP_OCTOPRINT_PLUGIN_SETUP = "https://help.print-nanny.com/octoprint-plugin-setup/"
 HELP_WIKI = "https://www.notion.so/bitsy-ai/Print-Nanny-Guides-Support-ac1079fafc944d769aa21cf8bffe4692"
 HELP_GETTING_STARTED = "https://bitsy-ai.notion.site/Getting-Started-with-Print-Nanny-817bc65297ff44a085120c663dced5f3"
@@ -607,13 +613,13 @@ INSTALLED_APPS += ["djstripe"]
 INSTALLED_APPS += ["print_nanny_webapp.subscriptions.apps.SubscriptionsConfig"]
 
 DJSTRIPE_USE_NATIVE_JSONFIELD = True
-STRIPE_LIVE_MODE = env('STRIPE_LIVE_MODE', default=False)
+STRIPE_LIVE_MODE = env("STRIPE_LIVE_MODE", default=False)
 # https://github.com/dj-stripe/dj-stripe/issues/1360
 DJSTRIPE_WEBHOOK_SECRET = env("DJSTRIPE_WEBHOOK_SECRET", default="whsec_x")
 STRIPE_TEST_PUBLIC_KEY = env("STRIPE_TEST_PUBLIC_KEY", default="pk_test_x")
 STRIPE_TEST_SECRET_KEY = env("STRIPE_TEST_SECRET_KEY", default="sk_test_x")
-STRIPE_LIVE_PUBLIC_KEY = env('STRIPE_LIVE_PUBLIC_KEY', default="pk_live_x")
-STRIPE_LIVE_SECRET_KEY = env('STRIPE_LIVE_SECRET_KEY', default="sk_live_x")
+STRIPE_LIVE_PUBLIC_KEY = env("STRIPE_LIVE_PUBLIC_KEY", default="pk_live_x")
+STRIPE_LIVE_SECRET_KEY = env("STRIPE_LIVE_SECRET_KEY", default="sk_live_x")
 DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
 
 FREE_BETA_TESTER_IDS = range(0, 102)
@@ -625,36 +631,30 @@ REFERRAL_COUPON_DAYS = 30
 
 # django-safedelete
 # ------------------------------------------------------------------------------
-INSTALLED_APPS += [
-    'safedelete'
-]
+INSTALLED_APPS += ["safedelete"]
 
 # django-flags
 # ------------------------------------------------------------------------------
-INSTALLED_APPS += [
-    'flags'
-]
+INSTALLED_APPS += ["flags"]
 
 FLAGS = {
-    'PARTNER_3DGEEKS_ENABLED': [
-        {'condition': 'parameter', 'value': '3dgeeks_enabled='}
-    ]
+    "PARTNER_3DGEEKS_ENABLED": [{"condition": "parameter", "value": "3dgeeks_enabled="}]
 }
 
 # 3D Geeks Integration settings
 # ------------------------------------------------------------------------------
 PARTNERS_3DGEEKS_SETTINGS = {
-    'alerts_push': 'https://qx8eve27wk.execute-api.eu-west-2.amazonaws.com/prod/printnanny_push'
+    "alerts_push": "https://qx8eve27wk.execute-api.eu-west-2.amazonaws.com/prod/printnanny_push"
 }
 
 # messages
 # ------------------------------------------------------------------------------
 MESSAGE_TAGS = {
-    messages.DEBUG: 'alert-info',
-    messages.INFO: 'alert-info',
-    messages.SUCCESS: 'alert-success',
-    messages.WARNING: 'alert-warning',
-    messages.ERROR: 'alert-danger',
+    messages.DEBUG: "alert-info",
+    messages.INFO: "alert-info",
+    messages.SUCCESS: "alert-success",
+    messages.WARNING: "alert-warning",
+    messages.ERROR: "alert-danger",
 }
 
 # messages
@@ -665,28 +665,30 @@ GCP_RENDER_VIDEO_TOPIC = "VideoRenderRequest"
 # links
 # ------------------------------------------------------------------------------
 DISCORD_URL = "https://discord.gg/sf23bk2hPr"
-REPORT_ISSUE_URL = "https://help.print-nanny.com/faq/how-to-report-issue-with-octoprint-logs"
+REPORT_ISSUE_URL = (
+    "https://help.print-nanny.com/faq/how-to-report-issue-with-octoprint-logs"
+)
 HELP_SITE_URL = "https://help.print-nanny.com"
 BLOG_SITE_URL = "https://blog.print-nanny.com"
 ABOUT_URL = "https://blog.print-nanny.com/about"
-GITHUB_ISSUE_URL = 'https://github.com/bitsy-ai/octoprint-nanny-plugin/issues/new'
+GITHUB_ISSUE_URL = "https://github.com/bitsy-ai/octoprint-nanny-plugin/issues/new"
 
 # drfpasswordless
 # https://github.com/aaronn/django-rest-framework-passwordless
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += ["drfpasswordless"]
 PASSWORDLESS_AUTH = {
-    'PASSWORDLESS_AUTH_TYPES': ['EMAIL'],
-    'PASSWORDLESS_USER_MARK_EMAIL_VERIFIED': True,
-    'PASSWORDLESS_EMAIL_NOREPLY_ADDRESS': 'noreply@print-nanny.com',
-    'PASSWORDLESS_EMAIL_PLAINTEXT_MESSAGE': "Enter this token to sign in: %s",
+    "PASSWORDLESS_AUTH_TYPES": ["EMAIL"],
+    "PASSWORDLESS_USER_MARK_EMAIL_VERIFIED": True,
+    "PASSWORDLESS_EMAIL_NOREPLY_ADDRESS": "noreply@print-nanny.com",
+    "PASSWORDLESS_EMAIL_PLAINTEXT_MESSAGE": "Enter this token to sign in: %s",
 }
 
 # django-coturn
 # https://github.com/bitsy-ai/django-coturn
 # ------------------------------------------------------------------------------
 coturn_db = env.db("COTURN_DATABASE_URL")
-coturn_db["ENGINE"] = 'django_prometheus.db.backends.postgresql'
+coturn_db["ENGINE"] = "django_prometheus.db.backends.postgresql"
 DATABASES["coturn"] = coturn_db
 COTURN_SECRET_KEY = env("COTURN_SECRET_KEY")
 COTURN_REALM = env("COTURN_REALM")
@@ -701,18 +703,18 @@ PRINTNANNY_ENV = env("PRINTNANNY_ENV", default="sandbox")
 
 # posthog
 # ------------------------------------------------------------------------------
-POSTHOG_API_KEY = env('POSTHOG_API_KEY', default=None)
+POSTHOG_API_KEY = env("POSTHOG_API_KEY", default=None)
 POSTHOG_ENABLED = False
 
 # corsheaders
 # see also: corsheaders.middleware.CorsMiddleware
 # ------------------------------------------------------------------------------
-INSTALLED_APPS += ['corsheaders']
+INSTALLED_APPS += ["corsheaders"]
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
     "http://127.0.0.1:8000",
-    f"http://{socket.gethostname()}:8000"
+    f"http://{socket.gethostname()}:8000",
 ]
 
 # Janus cloud
@@ -721,15 +723,19 @@ JANUS_CLOUD_API_DOMAIN = env("JANUS_CLOUD_API_DOMAIN", default="janus")
 JANUS_CLOUD_ADMIN_SECRET = env("JANUS_CLOUD_ADMIN_SECRET", default="debug")
 JANUS_CLOUD_ADMIN_URL = env("JANUS_CLOUD_ADMIN_URL", default="http://janus:7088/admin")
 JANUS_CLOUD_ADMIN_PORT = env("JANUS_CLOUD_ADMIN_PORT", default=7088)
-JANUS_CLOUD_API_URL = env("JANUS_CLOUD_ADMIN_HTTP_PORT", default="http://janus:8088/janus")
+JANUS_CLOUD_API_URL = env(
+    "JANUS_CLOUD_ADMIN_HTTP_PORT", default="http://janus:8088/janus"
+)
 JANUS_CLOUD_API_PORT = env("JANUS_CLOUD_API_PORT", default=8088)
 JANUS_CLOUD_WS_URL = env("JANUS_CLOUD_WS_URL", default="ws://aurora:8188")
 JANUS_CLOUD_WS_PORT = env("JANUS_CLOUD_WS_PORT", default=8188)
 JANUS_CLOUD_RTP_DOMAIN = env("JANUS_CLOUD_RTP_DOMAIN", default="aurora")
-JANUS_CLOUD_RTP_PORT_RANGE = env.tuple("JANUS_CLOUD_RTP_PORT_RANGE", default=(5000, 5050))
+JANUS_CLOUD_RTP_PORT_RANGE = env.tuple(
+    "JANUS_CLOUD_RTP_PORT_RANGE", default=(5000, 5050)
+)
 
 # django-qr-code
 # https://django-qr-code.readthedocs.io/en/latest/pages/README.html
 # ------------------------------------------------------------------------------
-INSTALLED_APPS += ['qr_code']
-SERVE_QR_CODE_IMAGE_PATH = 'qr/'
+INSTALLED_APPS += ["qr_code"]
+SERVE_QR_CODE_IMAGE_PATH = "qr/"

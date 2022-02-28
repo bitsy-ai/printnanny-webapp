@@ -78,3 +78,21 @@ class ReferralInvite(SafeDeleteModel):
         null=True,
         related_name="referral_invitations_recipient",
     )
+
+
+class ReferralSignup(SafeDeleteModel):
+    code = models.ForeignKey(
+        ReferralCode,
+        related_name="referral_signups",
+        on_delete=models.CASCADE,
+    )
+    referrer = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="referral_signups_referrer"
+    )
+    recipient = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        null=True,
+        related_name="referral_signups_recipient",
+    )
+    created_dt = models.DateTimeField(auto_now_add=True)
