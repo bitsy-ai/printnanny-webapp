@@ -18,12 +18,12 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
     <div class="container-fluid">
         <div class="row justify-content-center">
 
-            <div class="card col-lg-8">
+            <div class="card col-12">
                 <div class="card-header pt-4 pb-4 mt-2 text-center bg-primary text-white">
                     <h1 class="display-4"><img
                             src="{% static 'images/logo-square/square-color-no-text-180-by-180.png' %}"
                             alt="Print Nanny logo" height="80">
-                        <strong>Special Launch Deal</strong>
+                        <strong>Special Early Access Price</strong>
                     </h1>
                 </div>
                 <div class="card-body text-center">
@@ -58,7 +58,7 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
             </div> <!-- end col -->
         </div> <!-- end row -->
         <div class="row justify-content-center">
-            <div class="card col-lg-4">
+            <div class="card col-12 col-md-4">
                 <!-- Logo-->
                 <div class="card-header pt-4 pb-4 text-center bg-primary text-white">
                     <h1><img src="{% static 'images/logo-square/square-color-no-text-180-by-180.png' %}"
@@ -105,8 +105,8 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
                 {% elif user.is_authenticated %}
                 <div class="card-body p-4 text-center">
 
-                    <h3 class="text-dark-50 text-center mt-0 font-weight-bold">Free for 30 Days </h3>
-                    <h4>Requires a Raspberry Pi 4*</h4>
+                    <h3 class="text-dark-50 text-center mt-0 font-weight-bold">Save 30% on Annual Plans</h3>
+                    <h4>Requires a Raspberry Pi 4</h4>
 
                     {% for product in PRODUCTS %}
 
@@ -120,15 +120,10 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
                     {% endfor %}
                     <!-- </div> -->
                     <p class="text">{% trans "Click to checkout securely with Stripe" %} </p>
-
-                    <div>
-
-                    </div>
                     <!-- Used to display form errors. -->
                     <div id="card-errors" class="alert alert-danger" style="display: none;" role="alert"></div>
                 </div>
                 <div class="card-footer">
-                    <p>A Raspberry Pi is <strong>not included</strong> with your subscription! </p>
                     <p class="text-left">
                         <a class="btn btn-light" target="_blank"
                             href="https://www.notion.so/bitsy-ai/Getting-Started-with-Print-Nanny-OS-817bc65297ff44a085120c663dced5f3#41eb338cca0f4b468ca5ffedd2a6a2f1">
@@ -174,7 +169,7 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
 
                 {% endif %}
             </div>
-            <div class="col-lg-4">
+            <div class="col-12 col-md-6">
                 {% include 'subscriptions/founding-member-cards.html' %}
 
             </div> <!-- end col -->
