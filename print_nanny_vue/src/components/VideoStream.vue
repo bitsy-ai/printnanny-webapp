@@ -57,8 +57,16 @@ export default {
     },
     async reset () {
       await this.resetJanus()
-      this.resetTimer()
+      // this.resetTimer()
       this.data = initialData()
+    },
+    async resetJanus () {
+      if (this.plugin) {
+        await this.plugin.detach()
+        console.info('Detatched plugin', this.plugin)
+        await this.plugin.cleanup()
+        console.info('Cleaned up all streaming resources')
+      }
     },
     async connectStream (stream) {
       console.log(stream)
@@ -94,7 +102,7 @@ export default {
         const streamsList = await plugin.list()
         console.log('retrieved stream list: ', streamsList)
         if (streamsList._plainMessage.plugindata.data.list.length === 0) {
-          throw Error('Connection to Janus Gateway succeeded, but no streams are playing.\n Double-check that your camera is connected and try again. \n Check output of `systemctl status printnanny-gst` and `journalctl -u printnanny-gst` for details about this failure.')
+          throw Error('Connection to Janus Gateway succeeded, but no streams are playing.\n Double-check that your camera is connected and try again. \n Check output of `systemctl status printnanny-monitor` and `journalctl -u printnanny-monitor` for details about this failure.')
         }
 
         for (const stream of streamsList._plainMessage.plugindata.data.list) {
@@ -123,6 +131,13 @@ export default {
       } catch (error) {
         return await this.handleError(error)
       }
+    },
+    async handleError (error) {
+      console.error(error)
+      this.error = error
+      // this.resetTimer()
+      await this.stopMonitoring(this.device)
+      this.loading = false
     }
   },
   computed: {
