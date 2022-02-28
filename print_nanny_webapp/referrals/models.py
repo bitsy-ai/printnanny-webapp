@@ -26,9 +26,9 @@ class ReferralCode(SafeDeleteModel):
         )
         constraints = [
             UniqueConstraint(
-                fields=["user", "code"],
+                fields=["code"],
                 condition=models.Q(deleted=None),
-                name="unique_referral_code_per_user",
+                name="unique_referral_code",
             )
         ]
 
