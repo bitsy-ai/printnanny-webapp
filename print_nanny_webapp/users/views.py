@@ -30,7 +30,6 @@ class InviteRequestView(CreateView):
     template_name = "users/inviterequest_form.html"
     success_url = "/thanks/"
     form_class = InviteRequestForm
-    object: Optional[UserType] = None
 
     def form_valid(self, form):
         res = super().form_valid(form)

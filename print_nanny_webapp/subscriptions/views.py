@@ -115,7 +115,7 @@ class FoundingMemberCheckoutView(LoginRequiredMixin, TemplateView):
         return JsonResponse({"session_id": session.id}, status=200)
 
 
-def link_customer_by_email(user: UserType) -> djstripe.models.Customer:
+def link_customer_by_email(user) -> djstripe.models.Customer:
     customer = djstripe.models.Customer.objects.get(email=user.email)
     if customer.subscriber is None:
         customer.subscriber = user
