@@ -17,6 +17,7 @@ ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[".sandbox.print-nanny.
 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html#internal-ips
 INTERNAL_IPS = ["127.0.0.1", "10.0.2.2"]
 import socket
+
 hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
 INTERNAL_IPS += [".".join(ip.split(".")[:-1] + ["1"]) for ip in ips]
 
@@ -25,7 +26,6 @@ INTERNAL_IPS += [".".join(ip.split(".")[:-1] + ["1"]) for ip in ips]
 DATABASES["default"] = env.db("DATABASE_URL")  # noqa F405
 DATABASES["default"]["ATOMIC_REQUESTS"] = True  # noqa F405
 DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=60)  # noqa F405
-
 
 
 # TEMPLATES
@@ -66,7 +66,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
     "DJANGO_SECURE_CONTENT_TYPE_NOSNIFF", default=True
 )
 
-GOOGLE_ANALYTICS=""
+GOOGLE_ANALYTICS = ""
 
 # LOGGING
 # ------------------------------------------------------------------------------
@@ -102,27 +102,24 @@ LOGGING = {
             "handlers": ["console"],
             "propagate": False,
         },
-        'health-check': {
-            'handlers': ['console'],
-            'level': 'WARNING',
-            'propagate': True,
-        }
+        "health-check": {
+            "handlers": ["console"],
+            "level": "WARNING",
+            "propagate": True,
+        },
     },
 }
 
 
-MIDDLEWARE += [ 'allow_cidr.middleware.AllowCIDRMiddleware']
+MIDDLEWARE += ["allow_cidr.middleware.AllowCIDRMiddleware"]
 
-ALLOWED_CIDR_NETS = [
-    '10.12.0.0/14',
-    '10.16.0.0/20'
-]
+ALLOWED_CIDR_NETS = ["10.12.0.0/14", "10.16.0.0/20"]
 
 
 # django-prometheus middleware must be last in middleware stack
 PROMETHEUS_METRICS_EXPORT_PORT_RANGE = range(8001, 8050)
 
-MIDDLEWARE += ['django_prometheus.middleware.PrometheusAfterMiddleware']
+MIDDLEWARE += ["django_prometheus.middleware.PrometheusAfterMiddleware"]
 
 CHANNEL_LAYERS = {
     "default": {
@@ -138,4 +135,3 @@ BETA_NOTIFY_EMAIL = ["beta@print-nanny.com"]
 WS_BASE_URL = env("PRINT_NANNY_WS_URL")
 BASE_URL = env("PRINT_NANNY_BASE_URL")
 STATIC_URL = env("PRINT_NANNY_STATIC_URL")
-

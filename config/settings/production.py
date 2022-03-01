@@ -8,17 +8,20 @@ from .base import env
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[
-    "print-nanny.com",
-    "www.print-nanny.com",
-    # TODO
-    # "api.print-nanny.com",
-])
+ALLOWED_HOSTS = env.list(
+    "DJANGO_ALLOWED_HOSTS",
+    default=[
+        "print-nanny.com",
+        "www.print-nanny.com",
+        # TODO
+        # "api.print-nanny.com",
+    ],
+)
 
 # posthog
 # ------------------------------------------------------------------------------
 # https://posthog.com/docs/libraries/python
-POSTHOG_API_KEY = env('POSTHOG_API_KEY', default=None)
+POSTHOG_API_KEY = env("POSTHOG_API_KEY", default=None)
 POSTHOG_ENABLED = True
 posthog.project_api_key = POSTHOG_API_KEY
 # DATABASES
@@ -124,9 +127,9 @@ LOGGING = {
             "formatter": "verbose",
         }
     },
-    'filters': {
-        'exclude_health_endpoint': {
-            '()': 'print_nanny_webapp.utils.logging.ExcludeHealthEndpoint',
+    "filters": {
+        "exclude_health_endpoint": {
+            "()": "print_nanny_webapp.utils.logging.ExcludeHealthEndpoint",
         },
     },
     "root": {"level": "INFO", "handlers": ["console"]},
@@ -142,14 +145,14 @@ LOGGING = {
             "handlers": ["console"],
             "propagate": False,
         },
-        'health-check': {
-            'handlers': ['console'],
-            'level': 'WARNING',
-            'propagate': True,
+        "health-check": {
+            "handlers": ["console"],
+            "level": "WARNING",
+            "propagate": True,
         },
-        'daphne': {
+        "daphne": {
             "filters": ["exclude_health_endpoint"],
-        }
+        },
     },
 }
 
@@ -157,26 +160,23 @@ LOGGING = {
 # ------------------------------------------------------------------------------
 
 
-GOOGLE_ANALYTICS = 'G-QKHED5DPGV'
+GOOGLE_ANALYTICS = "G-QKHED5DPGV"
 
 MIDDLEWARE += [
-    'allow_cidr.middleware.AllowCIDRMiddleware',
-    'print_nanny_webapp.middleware.honeycomb.HoneyMiddlewareIgnoreHealthCheck',
+    "allow_cidr.middleware.AllowCIDRMiddleware",
+    "print_nanny_webapp.middleware.honeycomb.HoneyMiddlewareIgnoreHealthCheck",
 ]
 
-ALLOWED_CIDR_NETS = [
-    '10.12.0.0/14',
-    '10.16.0.0/20'
-]
+ALLOWED_CIDR_NETS = ["10.12.0.0/14", "10.16.0.0/20"]
 
 
 # django-prometheus middleware must be last in middleware stack
-MIDDLEWARE += ['django_prometheus.middleware.PrometheusAfterMiddleware']
+MIDDLEWARE += ["django_prometheus.middleware.PrometheusAfterMiddleware"]
 
 
 # Django channels
-BASE_URL = env('PRINT_NANNY_BASE_URL', default='https://www.print-nanny.com')
-WS_BASE_URL = env('PRINT_NANNY_WS_URL', default='wss://www.print-nanny.com/ws')
+BASE_URL = env("PRINT_NANNY_BASE_URL", default="https://www.print-nanny.com")
+WS_BASE_URL = env("PRINT_NANNY_WS_URL", default="wss://www.print-nanny.com/ws")
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
@@ -201,19 +201,19 @@ STRIPE_LIVE_MODE = True
 # ghost member sync
 # Celery task: print_nanny_webapp/users/tasks.py
 # ------------------------------------------------------------------------------
-GHOST_ADMIN_API_KEY = env('GHOST_ADMIN_API_KEY')
-GHOST_CONTENT_API_KEY = env('GHOST_CONTENT_API_KEY')
+GHOST_ADMIN_API_KEY = env("GHOST_ADMIN_API_KEY")
+GHOST_CONTENT_API_KEY = env("GHOST_CONTENT_API_KEY")
 
 # CORS
 # see also: corsheaders.middleware.CorsMiddleware
 # ------------------------------------------------------------------------------
 CORS_ALLOWED_ORIGINS = [
-    'https://print-nanny.com',
-    'https://www.print-nanny.com',
+    "https://print-nanny.com",
+    "https://www.print-nanny.com",
 ]
 
 # posthog
 # ------------------------------------------------------------------------------
 # https://posthog.com/docs/libraries/python
-posthog.project_api_key = env('POSTHOG_API_KEY')
+posthog.project_api_key = env("POSTHOG_API_KEY")
 posthog.debug = False
