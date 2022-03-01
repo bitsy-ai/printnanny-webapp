@@ -1,5 +1,3 @@
--c local.txt
-
 # dev / testing
 black
 twine

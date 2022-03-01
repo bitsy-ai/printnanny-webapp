@@ -27,7 +27,8 @@ jobs:
       - name: Mypy
         shell: bash
         run: |
-          pip3 install -r requirements/test-local.txt
+          pip3 install -r requirements/local.txt
+          pip3 install -r requirements/test.txt
           mypy
   lint:
     # The type of runner that the job will run on
@@ -43,7 +44,7 @@ jobs:
       - name: Run black linter
         shell: bash
         run: |
-          pip3 install -r requirements/test-local.txt
+          pip3 install -r requirements/test.txt
           make lint
   shellcheck:
     name: Shellcheck

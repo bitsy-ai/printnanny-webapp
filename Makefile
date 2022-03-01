@@ -55,11 +55,11 @@ clean-requirements: clean-local-requirements clean-test-requirements clean-prod-
 requirements/production.txt:
 	pip-compile requirements/production.in --output-file requirements/production.txt
 
-requirements/test-local.txt:
-	pip-compile requirements/test-local.in --output-file requirements/test-local.txt
+requirements/test.txt:
+	pip-compile requirements/test.in --output-file requirements/test.txt
 
 requirements/test.txt:
-	pip-compile requirements/test-local.in --output-file requirements/test-local.txt
+	pip-compile requirements/test.in --output-file requirements/test.txt
 
 requirements/test-production.txt:
 	pip-compile requirements/test-production.in --output-file requirements/test-production.txt
