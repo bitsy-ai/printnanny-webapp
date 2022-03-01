@@ -58,7 +58,8 @@
       {% endblock %}
 
       {% block after_field_sets %}
-      <img src="{% qr_url_from_text object.referral_url size=8 version=10 image_format='png' %}" alt="{{ object.referral_url }}">
+      {{ obj }}
+      <img src="{% qr_url_from_text original.referral_url size=4 image_format='png' %}" alt="{{ object.referral_url }}">
       {% endblock %}
 
       {% block inline_field_sets %}
