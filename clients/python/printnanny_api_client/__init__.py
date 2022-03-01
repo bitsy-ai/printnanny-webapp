@@ -15,7 +15,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.63.0"
+__version__ = "0.64.0"
 
 # import apis into sdk package
 from printnanny_api_client.api.alerts_api import AlertsApi
@@ -49,19 +49,18 @@ from printnanny_api_client.models.alert_event_type_enum import AlertEventTypeEnu
 from printnanny_api_client.models.alert_request import AlertRequest
 from printnanny_api_client.models.alpha_event_source import AlphaEventSource
 from printnanny_api_client.models.artifact_types_enum import ArtifactTypesEnum
-from printnanny_api_client.models.callback_token_auth import CallbackTokenAuth
 from printnanny_api_client.models.callback_token_auth_request import CallbackTokenAuthRequest
 from printnanny_api_client.models.callback_token_verification import CallbackTokenVerification
 from printnanny_api_client.models.callback_token_verification_request import CallbackTokenVerificationRequest
 from printnanny_api_client.models.cloudiot_device import CloudiotDevice
 from printnanny_api_client.models.cloudiot_device_request import CloudiotDeviceRequest
 from printnanny_api_client.models.command_enum import CommandEnum
+from printnanny_api_client.models.detail_response import DetailResponse
 from printnanny_api_client.models.device import Device
 from printnanny_api_client.models.device_calibration import DeviceCalibration
 from printnanny_api_client.models.device_calibration_request import DeviceCalibrationRequest
 from printnanny_api_client.models.device_release_channel import DeviceReleaseChannel
 from printnanny_api_client.models.device_request import DeviceRequest
-from printnanny_api_client.models.email_auth import EmailAuth
 from printnanny_api_client.models.email_auth_request import EmailAuthRequest
 from printnanny_api_client.models.error_detail import ErrorDetail
 from printnanny_api_client.models.event_source import EventSource
@@ -73,7 +72,6 @@ from printnanny_api_client.models.janus_auth_request import JanusAuthRequest
 from printnanny_api_client.models.janus_config_type import JanusConfigType
 from printnanny_api_client.models.janus_stream import JanusStream
 from printnanny_api_client.models.janus_stream_request import JanusStreamRequest
-from printnanny_api_client.models.mobile_auth import MobileAuth
 from printnanny_api_client.models.mobile_auth_request import MobileAuthRequest
 from printnanny_api_client.models.model_artifact import ModelArtifact
 from printnanny_api_client.models.octo_generic_event import OctoGenericEvent
@@ -177,6 +175,7 @@ from printnanny_api_client.models.test_event import TestEvent
 from printnanny_api_client.models.test_event_event_type_enum import TestEventEventTypeEnum
 from printnanny_api_client.models.test_event_name import TestEventName
 from printnanny_api_client.models.test_event_request import TestEventRequest
+from printnanny_api_client.models.token_response import TokenResponse
 from printnanny_api_client.models.user import User
 from printnanny_api_client.models.user_request import UserRequest
 from printnanny_api_client.models.web_rtc_event import WebRTCEvent
