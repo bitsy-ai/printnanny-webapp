@@ -9,9 +9,9 @@ spec:
     - www.print-nanny.com
     - api.print-nanny.com
     - ara.print-nanny.com
-  # - downloads.print-nanny.com
-  # - download.print-nanny.com
-  # - dl.print-nanny.com
+    - downloads.print-nanny.com
+    - download.print-nanny.com
+    - dl.print-nanny.com
   # - blog.print-nanny.com
   # - help.print-nanny.com
   # - metabase.print-nanny.com
@@ -75,6 +75,36 @@ spec:
             backend:
               service:
                 name: ara
+                port:
+                  number: 80
+    - host: downloads.print-nanny.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: gcsfuse-nginx
+                port:
+                  number: 80
+    - host: download.print-nanny.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: gcsfuse-nginx
+                port:
+                  number: 80
+    - host: dl.print-nanny.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: gcsfuse-nginx
                 port:
                   number: 80
   # ara
