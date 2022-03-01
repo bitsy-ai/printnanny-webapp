@@ -140,7 +140,7 @@ class SubscriptionsListView(DashboardView):
             query = Q(subscriber=self.request.user) | Q(email=user.email)  # type: ignore
             customer = djstripe.models.Customer.objects.get(query)
             if not customer.subscriber:
-                link_customer_by_email(user)  # type: ignore
+                link_customer_by_email(user)
             # attempt to link customer by email
         except djstripe.models.Customer.DoesNotExist:
             logger.warning("No stripe customer associated with user=%s", user)
