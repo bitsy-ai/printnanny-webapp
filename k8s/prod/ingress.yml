@@ -84,7 +84,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: gcsfuse-nginx
+                name: nginx-gcsfuse
                 port:
                   number: 80
     - host: download.print-nanny.com
@@ -94,7 +94,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: gcsfuse-nginx
+                name: nginx-gcsfuse
                 port:
                   number: 80
     - host: dl.print-nanny.com
@@ -104,7 +104,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: gcsfuse-nginx
+                name: nginx-gcsfuse
                 port:
                   number: 80
     - host: help.print-nanny.com
