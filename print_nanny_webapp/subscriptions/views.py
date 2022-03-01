@@ -115,7 +115,7 @@ class FoundingMemberCheckoutView(LoginRequiredMixin, TemplateView):
         return JsonResponse({"session_id": session.id}, status=200)
 
 
-def link_customer_by_email(user: UserType) -> djstripe.models.Customer:
+def link_customer_by_email(user) -> djstripe.models.Customer:
     customer = djstripe.models.Customer.objects.get(email=user.email)
     if customer.subscriber is None:
         customer.subscriber = user
@@ -140,7 +140,7 @@ class SubscriptionsListView(DashboardView):
             query = Q(subscriber=self.request.user) | Q(email=user.email)  # type: ignore
             customer = djstripe.models.Customer.objects.get(query)
             if not customer.subscriber:
-                link_customer_by_email(user)  # type: ignore
+                link_customer_by_email(user)
             # attempt to link customer by email
         except djstripe.models.Customer.DoesNotExist:
             logger.warning("No stripe customer associated with user=%s", user)
