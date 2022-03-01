@@ -14,7 +14,7 @@ spec:
     - dl.print-nanny.com
     # - blog.print-nanny.com
     - help.print-nanny.com
-  # - metabase.print-nanny.com
+    - metabase.print-nanny.com
 ---
 apiVersion: networking.gke.io/v1beta1
 kind: FrontendConfig
@@ -115,6 +115,16 @@ spec:
             backend:
               service:
                 name: print-nanny-help
+                port:
+                  number: 80
+    - host: metabase.print-nanny.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: metabase
                 port:
                   number: 80
   # ara
