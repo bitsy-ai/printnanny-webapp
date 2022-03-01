@@ -1,0 +1,57 @@
+version: '3'
+
+volumes:
+  test_postgres_data: {}
+  test_postgres_data_backups: {}
+  test_prometheus_data: {}
+  test_file_data: {}
+  test_octoprint_data: {}
+services:
+  django: &django
+    # enables use of pdb
+    hostname: django
+    stdin_open: true
+    tty: true
+    build:
+      context: .
+      dockerfile: ./compose/local/django/Dockerfile
+    image: print_nanny_webapp_test_django
+    container_name: print_nanny_webapp_test
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app:z
+      - test_file_data:/tmp:z
+      # prevent host machine .venv and node_modules from being included in container
+      # idea from: https://stackoverflow.com/questions/29181032/add-a-volume-to-docker-but-exclude-a-sub-folder
+      - /app/node_modules
+      - /app/.venv
+    environment:
+      DJANGO_SUPERUSER_PASSWORD: ${DJANGO_SUPERUSER_PASSWORD}
+      DJANGO_SUPERUSER_EMAIL: ${DJANGO_SUPERUSER_EMAIL}
+    env_file:
+      - ./.envs/.test/.tests
+      - ./.envs/.test/.postgres
+      - ./.envs/.test/.django
+    ports:
+      - "8000:8000"
+      - "8001:8001"
+    command: /start
+
+  postgres:
+    hostname: postgres
+    build:
+      context: .
+      dockerfile: ./compose/production/postgres/Dockerfile
+    image: print_nanny_webapp_production_postgres
+    container_name: print_nanny_webapp_postgres
+    volumes:
+      - test_postgres_data:/var/lib/postgresql/data:z
+      - test_postgres_data_backups:/backups:z
+    env_file:
+      - ./.envs/.test/.tests
+      - ./.envs/.test/.postgres
+    ports:
+      - "5432:5432"
+
+

@@ -1,0 +1,25 @@
+# General
+# ------------------------------------------------------------------------------
+USE_DOCKER=yes
+IPYTHONDIR=/app/.ipython
+# Redis
+# ------------------------------------------------------------------------------
+REDIS_URL="redis://localhost:6379/0"
+
+# Celery
+# ------------------------------------------------------------------------------
+CELERY_BROKER_URL="redis://localhost:6379/0"
+CELERY_EXPORTER_BROKER_URL="redis://localhost:6379/0"
+C_FORCE_ROOT=1
+
+# Flower
+CELERY_FLOWER_USER=debug
+CELERY_FLOWER_PASSWORD=debug
+
+GOOGLE_APPLICATION_CREDENTIALS=/tmp/keys/keyfile.json
+GOOGLE_CLOUD_PROJECT=print-nanny-sandbox
+DJANGO_GCP_STORAGE_BUCKET_NAME=print-nanny-sandbox
+TIMEOUT_KEEP_ALIVE=300
+LOGLEVEL=debug
+
+MAILGUN_API_URL=https://api.mailgun.net/v3
