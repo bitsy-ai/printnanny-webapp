@@ -38,7 +38,7 @@ class FoundingMemberSignupView(SignupView):
         referral_code = self.request.GET.get("code")
         if not email and not referral_code:
             return super().get_initial()
-        initial = dict()
+        initial: Dict[str, str] = dict()
         if email:
             initial.update(email=self.request.GET["email"])
         if referral_code:
