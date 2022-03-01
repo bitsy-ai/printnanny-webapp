@@ -13,15 +13,6 @@ from rest_framework import serializers
 from drf_spectacular.extensions import OpenApiViewExtension
 from drf_spectacular.utils import extend_schema
 from drfpasswordless.settings import api_settings
-from drfpasswordless.views import (
-    ObtainEmailCallbackToken,
-    ObtainMobileCallbackToken,
-    ObtainMobileCallbackToken,
-    ObtainAuthTokenFromCallbackToken,
-    ObtainEmailVerificationCallbackToken,
-    ObtainMobileVerificationCallbackToken,
-    ObtainMobileVerificationCallbackToken,
-)
 
 
 class DetailResponseSerializer(serializers.Serializer):
@@ -31,14 +22,13 @@ class DetailResponseSerializer(serializers.Serializer):
 
     detail = serializers.CharField()
 
-    def create(self):
-        pass
-
 
 # /auth/email/
 class FixObtainEmailCallbackToken(OpenApiViewExtension):
+    target_class = "drfpasswordless.views.ObtainEmailCallbackToken"
+
     def view_replacement(self):
-        class Fixed(ObtainEmailCallbackToken):
+        class Fixed(self.target_class):
             serializer_class = EmailAuthSerializer
 
             @extend_schema(
@@ -54,8 +44,10 @@ class FixObtainEmailCallbackToken(OpenApiViewExtension):
 
 # /auth/mobile/
 class FixObtainMobileCallbackToken(OpenApiViewExtension):
+    target_class = "drfpasswordless.views.ObtainMobileCallbackToken"
+
     def view_replacement(self):
-        class Fixed(ObtainMobileCallbackToken):
+        class Fixed(self.target_class):
             serializer_class = MobileAuthSerializer
 
             @extend_schema(
@@ -71,11 +63,11 @@ class FixObtainMobileCallbackToken(OpenApiViewExtension):
 
 TokenResponseSerializer = import_string(api_settings.PASSWORDLESS_AUTH_TOKEN_SERIALIZER)
 # /auth/token/
-
-
 class FixObtainAuthTokenFromCallbackToken(OpenApiViewExtension):
+    target_class = "drfpasswordless.views.ObtainAuthTokenFromCallbackToken"
+
     def view_replacement(self):
-        class Fixed(ObtainAuthTokenFromCallbackToken):
+        class Fixed(self.target_class):
             serializer_class = CallbackTokenAuthSerializer
 
             @extend_schema(
@@ -93,8 +85,10 @@ class FixObtainAuthTokenFromCallbackToken(OpenApiViewExtension):
 # automatically sends a token attached to request.user email or mobile if available
 # (unused but wrapped for posterity)
 class FixObtainEmailVerificationCallbackToken(OpenApiViewExtension):
+    target_class = "drfpasswordless.views.ObtainEmailVerificationCallbackToken"
+
     def view_replacement(self):
-        class Fixed(ObtainEmailVerificationCallbackToken):
+        class Fixed(self.target_class):
             serializer_class = EmailVerificationSerializer
 
             @extend_schema(
@@ -112,8 +106,10 @@ class FixObtainEmailVerificationCallbackToken(OpenApiViewExtension):
 # automatically sends a token attached to request.user email or mobile if available
 # (unused but wrapped for posterity)
 class FixObtainMobileVerificationCallbackToken(OpenApiViewExtension):
+    target_class = "drfpasswordless.views.ObtainMobileVerificationCallbackToken"
+
     def view_replacement(self):
-        class Fixed(ObtainMobileVerificationCallbackToken):
+        class Fixed(self.target_class):
             serializer_class = MobileVerificationSerializer
 
             @extend_schema(
@@ -129,9 +125,11 @@ class FixObtainMobileVerificationCallbackToken(OpenApiViewExtension):
 
 # /auth/verify/
 # double-check that the endpoint belongs to the request.user and mark the alias as verified
-class FixCallbackTokenVerificationToken(OpenApiViewExtension):
+class FixObtainMobileVerificationCallbackToken(OpenApiViewExtension):
+    target_class = "drfpasswordless.views.ObtainMobileVerificationCallbackToken"
+
     def view_replacement(self):
-        class Fixed(ObtainMobileVerificationCallbackToken):
+        class Fixed(self.target_class):
             serializer_class = CallbackTokenVerificationSerializer
 
             @extend_schema(
