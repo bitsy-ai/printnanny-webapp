@@ -1,0 +1,102 @@
+---
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: print-nanny-dot-com
+spec:
+  domains:
+    - print-nanny.com
+    - www.print-nanny.com
+    - api.print-nanny.com
+    # - ara.print-nanny.com
+    # - downloads.print-nanny.com
+    # - download.print-nanny.com
+    # - dl.print-nanny.com
+    # - blog.print-nanny.com
+    # - help.print-nanny.com
+    # - metabase.print-nanny.com
+---
+apiVersion: networking.gke.io/v1beta1
+kind: FrontendConfig
+metadata:
+  name: http-to-https
+spec:
+  redirectToHttps:
+    enabled: true
+    responseCodeName: MOVED_PERMANENTLY_DEFAULT
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: django
+  annotations:
+    networking.gke.io/v1beta1.FrontendConfig: "http-to-https"
+    kubernetes.io/ingress.global-static-ip-name: "django-static-ip"
+    networking.gke.io/managed-certificates: print-nanny-dot-com
+spec:
+  rules:
+    # www and api
+    - host: print-nanny.com
+      http:
+        paths:
+        - backend:
+            serviceName: django
+            servicePort: 80
+    - host: www.print-nanny.com
+      http:
+        paths:
+        - backend:
+            serviceName: django
+            servicePort: 80
+    - host: api.print-nanny.com
+      http:
+        paths:
+        - backend:
+            serviceName: django
+            servicePort: 80
+    # ara
+    # - host: ara.print-nanny.com
+    #   http:
+    #     paths:
+    #     - backend:
+    #         serviceName: ara
+    #         servicePort: 80
+    # # gcsfuse-nginx downloads
+    # - host: downloads.print-nanny.com
+    #   http:
+    #     paths:
+    #     - backend:
+    #         serviceName: nginx-gcsfuse
+    #         servicePort: 80
+    # - host: download.print-nanny.com
+    #   http:
+    #     paths:
+    #     - backend:
+    #         serviceName: nginx-gcsfuse
+    #         servicePort: 80
+    # - host: dl.print-nanny.com
+    #   http:
+    #     paths:
+    #     - backend:
+    #         serviceName: nginx-gcsfuse
+    #         servicePort: 80
+    # # ghost blogs
+    # - host: blog.print-nanny.com
+    #   http:
+    #     paths:
+    #     - backend:
+    #         serviceName: print-nanny-blog
+    #         servicePort: 80
+    # - host: help.print-nanny.com
+    #   http:
+    #     paths:
+    #     - backend:
+    #         serviceName: print-nanny-help
+    #         servicePort: 80
+    # # metabase
+    # - host: metabase.print-nanny.com
+    #   http:
+    #     paths:
+    #     - backend:
+    #         serviceName: metabase 
+    #         servicePort: 80
