@@ -70,7 +70,7 @@ install-git-hooks:
 # https://django-environ.readthedocs.io/en/latest/
 # base.py requires certain env vars to be present ; move these or create an env harness for CI tests
 mypy:
-	docker-compose -f test.yml run --rm django mypy
+	docker-compose -f local.yml run --rm django mypy
 
 token:
 	@echo $(PRINT_NANNY_TOKEN)
