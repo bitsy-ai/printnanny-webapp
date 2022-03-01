@@ -5,7 +5,8 @@ from django.conf import settings
 
 class PageNumberPagination(pagination.PageNumberPagination):
     def get_paginated_response(self, data):
-
+        if self.request is None or self.page is None:
+            raise ValueError("request and page must be defined")
         response = {
             "links": {
                 "next": self.get_next_link(),

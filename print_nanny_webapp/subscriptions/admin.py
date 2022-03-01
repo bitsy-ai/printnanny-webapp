@@ -4,7 +4,7 @@ from .forms import (
     ReferralInviteCreateForm,
     ReferralCodeCreateForm,
 )
-from .models import ReferralCode, ReferralInvite, MemberBadge
+from .models import ReferralCode, ReferralInvite
 
 # Register your models here.
 MemberBadge = apps.get_model("subscriptions", "MemberBadge")

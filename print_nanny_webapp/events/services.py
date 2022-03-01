@@ -10,6 +10,7 @@ from print_nanny_webapp.devices.models import (
     CloudiotDevice,
     JanusStream,
     JanusAuth,
+    Device,
 )
 from print_nanny_webapp.devices.enum import JanusConfigType
 from print_nanny_webapp.events.api.serializers import PolymorphicEventSerializer
@@ -17,8 +18,6 @@ from .models import WebRTCEvent, Event
 from .enum import WebRTCEventName
 
 logger = logging.getLogger(__name__)
-
-Device = apps.get_model("devices", "Device")
 
 
 def janus_cloud_get_or_create_stream(device: Device, auth: JanusAuth) -> JanusStream:

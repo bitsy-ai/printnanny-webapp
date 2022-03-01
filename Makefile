@@ -69,12 +69,8 @@ install-git-hooks:
 # TODO:
 # https://django-environ.readthedocs.io/en/latest/
 # base.py requires certain env vars to be present ; move these or create an env harness for CI tests
-docker-mypy:
-	docker-compose -f local.yml run --rm django mypy
-
 mypy:
-	. .envs/.local/.tests.sh && \
-	mypy --show-error-codes
+	docker-compose -f local.yml run --rm django mypy
 
 token:
 	@echo $(PRINT_NANNY_TOKEN)
@@ -167,6 +163,9 @@ local-image-build:
 	DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f local.yml build
 
 local-build: local-image-build local-vue-build
+
+down:
+	docker-compose -f local.yml down
 
 local-up: local-image-build local-creds
 	. .envs/.sandbox/.env && PROJECT=$(GCP_PROJECT) \
