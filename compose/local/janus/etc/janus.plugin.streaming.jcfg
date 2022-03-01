@@ -1,5 +1,18 @@
 # {{ ansible_managed }}
 
+general: {
+	#admin_key = "debugstreaming"		# If set, mountpoints can be created via API
+									# only if this key is provided in the request
+	#rtp_port_range = "20000-40000"	# Range of ports to use for RTP/RTCP when '0' is
+									# passed as port for a mountpoint (default=10000-60000)
+	#events = false					# Whether events should be sent to event
+									# handlers (default=true)
+
+	# By default, integers are used as a unique ID for both mountpoints. In case
+	# you want to use strings instead (e.g., a UUID), set string_ids to true.
+	# string_ids = true
+}
+
 # stream-name: {
 # type = rtp|live|ondemand|rtsp
 #        rtp = stream originated by an external tool (e.g., gstreamer or
