@@ -1,12 +1,12 @@
 import logging
 import json
+from typing import TYPE_CHECKING
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, UpdateModelMixin
-from drf_spectacular.utils import extend_schema
 from rest_framework.decorators import action
-from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiParameter
 from rest_framework.response import Response
 from rest_framework import status
+from drf_spectacular.utils import extend_schema
 from django.core.files.base import ContentFile
 
 
@@ -25,6 +25,10 @@ from .serializers import (
 
 logger = logging.getLogger(__name__)
 
+# https://github.com/typeddjango/django-stubs/issues/599
+if TYPE_CHECKING:
+    from print_nanny_webapp.users.models import User as UserType
+
 
 @extend_schema(
     tags=["ml-ops"],
@@ -42,7 +46,7 @@ class DeviceCalibrationViewSet(
     lookup_field = "id"
 
     def get_queryset(self):
-        user = self.request.user
+        user: UserType = self.request.user  # type: ignore
         return DeviceCalibration.objects.filter(octoprint_device__user=user).all()
 
     @extend_schema(operation_id="device_calibration_update_or_create")
@@ -64,9 +68,9 @@ class DeviceCalibrationViewSet(
                     coordinates=serializer.validated_data["coordinates"],
                 )
             ).encode("utf-8")
-            config_file_content = ContentFile(config_file_content)
-            instance, created = serializer.update_or_create(serializer.validated_data)
-            instance.config_file.save("calibration.json", config_file_content)
+            # config_file_content = ContentFile(config_file_content)
+            instance, created = serializer.update_or_create(serializer.validated_data)  # type: ignore[attr-defined]
+            # instance.config_file.save("calibration.json", config_file_content)
             response_serializer = self.get_serializer(instance)
             if not created:
                 return Response(

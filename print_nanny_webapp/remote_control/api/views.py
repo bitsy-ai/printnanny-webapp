@@ -194,7 +194,7 @@ class GcodeFileViewSet(
     lookup_field = "id"
 
     def get_queryset(self, *args, **kwargs):
-        return self.queryset.filter(user_id=self.request.user.id)
+        return self.queryset.filter(user_id=self.request.user.id).all()  # type: ignore
 
     @extend_schema(
         tags=["remote-control"],
@@ -222,7 +222,7 @@ class GcodeFileViewSet(
                 id=int(serializer.validated_data["octoprint_device"])
             )
             serializer.validated_data["octoprint_device"] = octoprint_device
-            instance, created = serializer.update_or_create(
+            instance, created = serializer.update_or_create(  # type: ignore[attr-defined]
                 serializer.validated_data, request.user
             )
             response_serializer = self.get_serializer(instance)
@@ -265,7 +265,7 @@ class OctoPrintDeviceViewSet(
         if serializer.is_valid():
             validated_data = serializer.validated_data.copy()
             del validated_data["serial"]
-            instance, created = serializer.update_or_create(
+            instance, created = serializer.update_or_create(  # type: ignore[attr-defined]
                 request.user, serializer.validated_data.get("serial"), validated_data
             )
 

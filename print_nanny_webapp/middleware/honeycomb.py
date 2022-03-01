@@ -21,7 +21,7 @@ class HoneyMiddlewareIgnoreHealthCheck(HoneyMiddlewareBase):
             # db instrumentation is only present in Django > 2.0
             with contextlib.ExitStack() as stack:
                 for connection in connections.all():
-                    stack.enter_context(connection.execute_wrapper(db_wrapper))
+                    stack.enter_context(connection.execute_wrapper(db_wrapper))  # type: ignore
                 response = self.create_http_event(request)
         except AttributeError:
             response = self.create_http_event(request)

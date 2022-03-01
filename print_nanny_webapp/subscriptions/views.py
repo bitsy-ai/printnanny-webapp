@@ -1,27 +1,30 @@
-from django.http.response import JsonResponse
-from typing import Any, Dict
-from django.apps import apps
-from django.views.generic.base import RedirectView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from typing import Any, Dict, TYPE_CHECKING
 import json
 import logging
 import stripe
+from allauth.account.views import SignupView
+from django.http.response import JsonResponse
+from django.apps import apps
+from django.views.generic.base import RedirectView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.http import HttpRequest, HttpResponse
 from django.contrib.auth import get_user_model
 from django.views.generic import TemplateView
-from djstripe.settings import djstripe_settings
-
 from django.conf import settings
-from allauth.account.views import SignupView
+from django.db.models import Q
 import djstripe.models
 import djstripe.enums
 import djstripe.settings
-from django.db.models import Q
+from djstripe.settings import djstripe_settings
 
 from print_nanny_webapp.utils.views import DashboardView
 
 logger = logging.getLogger(__name__)
+
+# https://github.com/typeddjango/django-stubs/issues/599
+if TYPE_CHECKING:
+    from print_nanny_webapp.users.models import User as UserType
 User = get_user_model()
 
 
@@ -51,7 +54,7 @@ class CheckoutSuccessView(RedirectView):
         session = stripe.checkout.Session.retrieve(session_id)
         logger.info("Checkout session succeeded %s", session)
         customer = stripe.Customer.retrieve(session.customer)
-        user = User.objects.get(email=customer.email)
+        user: UserType = User.objects.get(email=customer.email)  # type: ignore
         logger.info("Customer info stripee customer=%s user=%s", customer, user)
 
         badge, created = MemberBadge.objects.get_or_create(
@@ -89,7 +92,7 @@ class FoundingMemberCheckoutView(LoginRequiredMixin, TemplateView):
         success_url = success_url_base + success_url_query
 
         session = stripe.checkout.Session.create(
-            customer_email=request.user.email,
+            customer_email=request.user.email,  # type: ignore
             payment_method_types=["card"],
             mode="subscription",
             success_url=success_url,
@@ -112,14 +115,17 @@ class FoundingMemberCheckoutView(LoginRequiredMixin, TemplateView):
         return JsonResponse({"session_id": session.id}, status=200)
 
 
-def link_customer_by_email(user: User) -> djstripe.models.Customer:
+def link_customer_by_email(user: UserType) -> djstripe.models.Customer:
     customer = djstripe.models.Customer.objects.get(email=user.email)
     if customer.subscriber is None:
         customer.subscriber = user
         customer.save()
     elif customer.subscriber_id != user.id:
         logger.warning(
-            f"Tried to associate djstripe.models.Customer with email={customer.email} with user={user}, but customer already linked to user={customer.subscriber}"
+            "Tried to associate djstripe.models.Customer with email=%s with user=%s, but customer already linked to user=%s",
+            customer.email,
+            user,
+            customer.subscriber,
         )
     return customer
 
@@ -129,17 +135,15 @@ class SubscriptionsListView(DashboardView):
 
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(*args, **kwargs)
-
+        user: UserType = self.request.user  # type: ignore
         try:
-            query = Q(subscriber=self.request.user) | Q(email=self.request.user.email)
+            query = Q(subscriber=self.request.user) | Q(email=user.email)
             customer = djstripe.models.Customer.objects.get(query)
             if not customer.subscriber:
-                link_customer_by_email(self.request.user)
+                link_customer_by_email(user)
             # attempt to link customer by email
         except djstripe.models.Customer.DoesNotExist:
-            logger.warning(
-                f"No stripe customer associated with user={self.request.user}"
-            )
+            logger.warning("No stripe customer associated with user=%s", user)
             customer = None
         if customer:
             ctx["SUBSCRIPTIONS"] = customer.subscriptions.all().order_by("-created")

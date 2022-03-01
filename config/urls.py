@@ -51,7 +51,9 @@ urlpatterns = [
     ),
     path("", include("qr_code.urls", namespace="qr_code")),
     path("trial", FoundingMemberCheckoutView.as_view(), name="trial"),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(
+    settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+)  # type: ignore
 
 urlpatterns += (
     path(

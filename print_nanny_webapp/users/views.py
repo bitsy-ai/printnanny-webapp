@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -17,6 +17,8 @@ from django.views.generic import (
 from print_nanny_webapp.users.forms import InviteRequestForm
 from .tasks import create_ghost_member
 
+if TYPE_CHECKING:
+    from print_nanny_webapp.users.models import User as UserType
 User = get_user_model()
 
 
@@ -28,11 +30,11 @@ class InviteRequestView(CreateView):
     template_name = "users/inviterequest_form.html"
     success_url = "/thanks/"
     form_class = InviteRequestForm
-    object: Optional[User] = None
+    object: Optional[UserType] = None
 
     def form_valid(self, form):
         res = super().form_valid(form)
-        task = create_ghost_member.delay(self.object.to_ghost_member())
+        task = create_ghost_member.delay(self.object.to_ghost_member())  # type: ignore
         return res
 
 
@@ -53,7 +55,6 @@ user_detail_view = UserDetailView.as_view()
 class UserUpdateView(LoginRequiredMixin, UpdateView):
 
     model = User
-    fields = []
 
     def get_success_url(self):
         if self.request.user.is_authenticated:
@@ -61,8 +62,7 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
         else:
             return reverse("account_login")
 
-    def get_object(self):
-
+    def get_object(self, *args, **kwargs):
         return get_object_or_404(User, id=self.request.user.id)
 
     def form_valid(self, form):
@@ -79,7 +79,7 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
 
     permanent = False
 
-    def get_redirect_url(self):
+    def get_redirect_url(self, *args, **kwargs):
         return reverse("dashboard:home")
 
 
