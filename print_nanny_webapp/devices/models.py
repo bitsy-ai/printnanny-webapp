@@ -1,4 +1,6 @@
 import logging
+from uuid import uuid4
+import requests
 from typing import Callable
 from django.conf import settings
 from django.db import models
@@ -351,6 +353,18 @@ class JanusAuth(SafeDeleteModel):
     created_dt = models.DateTimeField(auto_now_add=True)
 
     @property
+    def active(self):
+        from .services import janus_admin_add_token
+
+        try:
+            res = janus_admin_add_token(self)
+            logger.info("JanusAuth.active %s", res)
+            return True
+        except Exception as e:
+            logger.error(e)
+            return False
+
+    @property
     def api_domain(self):
         if self.config_type == JanusConfigType.CLOUD:
             return settings.JANUS_CLOUD_API_DOMAIN
@@ -449,6 +463,23 @@ class JanusStream(SafeDeleteModel):
     # streaming.info response documented in https://janus.conf.meetecho.com/docs/streaming"
     info = models.JSONField(default=dict)
     rtp_port = models.PositiveSmallIntegerField(default=get_available_port)
+
+    @property
+    def get_info(self):
+        try:
+            req = dict(
+                request="info",
+                secret=self.secret,
+                transaction=uuid4().hex,
+                plugins=["janus.plugin.streaming"],
+            )
+            url = f"{settings.JANUS_CLOUD_API_URL}"
+            res = requests.post(url, json=req)
+            logger.info("Got response to POST %s: %s", url, req)
+            return res.json()
+        except Exception as e:
+            logger.error(e)
+            return None
 
     @property
     def auth(self) -> JanusAuth:

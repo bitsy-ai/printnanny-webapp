@@ -69,10 +69,12 @@ class PublicKeySerializer(serializers.ModelSerializer):
 
 
 class JanusAuthSerializer(serializers.ModelSerializer):
+    active = serializers.BooleanField(read_only=True)
+
     class Meta:
         model = JanusAuth
         exclude = ("deleted",)
-        read_only_fields = ("device",)
+        read_only_fields = ("device", "active")
 
     def update_or_create(self, validated_data, device):
         return JanusAuth.objects.filter(device=device).update_or_create(

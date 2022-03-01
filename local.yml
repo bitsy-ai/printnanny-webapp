@@ -11,14 +11,16 @@ services:
     hostname: janus
     image: bitsyai/janus:0.11.8
     container_name: printnanny_janus
+    network_mode: "host"
     ports:
       - "8188:8188"
       - "7188:7188"
       - "7088:7088"
       - "8088:8088"
-      - "5000:5000"
-      - "5001:5001"
-      - "5002:5002"
+      - "5000:5000/udp"
+      - "5001:5001/udp"
+      - "5002:5002/udp"
+      - "10000-10200:10000-10200/udp"
     env_file:
       - ./.envs/.local/.janus
     volumes:
@@ -28,6 +30,7 @@ services:
     hostname: octoprint
     image: octoprint/octoprint
     container_name: print_nanny_webapp_octoprint
+    network_mode: "host"
     ports:
       - "5005:5000"
     environment:
@@ -46,6 +49,7 @@ services:
     hostname: django
     stdin_open: true
     tty: true
+    network_mode: "host"
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
@@ -76,6 +80,7 @@ services:
 
   postgres:
     hostname: postgres
+    network_mode: "host"
     build:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
@@ -90,6 +95,7 @@ services:
       - "5432:5432"
 
   redis:
+    network_mode: "host"
     hostname: redis
     build:
       context: .
@@ -149,6 +155,7 @@ services:
     image: prom/prometheus
     ports:
       - 9000:9090
+    network_mode: "host"
 
     volumes:
       - ./prometheus:/etc/prometheus
@@ -156,6 +163,7 @@ services:
     command: --web.enable-lifecycle  --config.file=/etc/prometheus/prometheus.yml
 
   events:
+
     container_name: print_nanny_webapp_octoprint_events
     <<: *django
     ports: []

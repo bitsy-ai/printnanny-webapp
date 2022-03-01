@@ -1,18 +1,36 @@
 from __future__ import annotations
 import logging
-from typing import Tuple
+import requests
+from uuid import uuid4
+from typing import Tuple, Dict, Any
 from google.cloud import iot_v1 as cloudiot_v1
 import google.api_core.exceptions
 from django.conf import settings
 from django.template.loader import render_to_string
+from print_nanny_webapp.devices.enum import JanusConfigType
 
-from .models import (
-    CloudiotDevice,
-    Device,
-    PublicKey,
-)
+from .models import CloudiotDevice, Device, PublicKey, JanusAuth
 
 logger = logging.getLogger(__name__)
+
+
+def janus_admin_add_token(janus_auth: JanusAuth) -> Dict[str, Any]:
+    if janus_auth.config_type == JanusConfigType.CLOUD:
+        req = dict(
+            janus="add_token",
+            token=janus_auth.api_token,
+            admin_secret=settings.JANUS_CLOUD_ADMIN_SECRET,
+            plugins=["janus.plugin.streaming"],
+            transaction=uuid4().hex,
+        )
+        res = requests.post(janus_auth.admin_url, json=req)
+        logger.info("Got response to POST %s: %s", janus_auth.admin_url, res)
+        res.raise_for_status()
+        return res.json()
+    else:
+        raise NotImplementedError(
+            f"janus_admin_add_token not implemented in events.services for JanusConfigType={JanusConfigType.EDGE}"
+        )
 
 
 def render_janus_env(device: Device) -> str:

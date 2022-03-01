@@ -18,10 +18,11 @@ class EventConsumer(AsyncJsonWebsocketConsumer):
         await self.accept()
         self.user = self.scope["user"]
         if isinstance(self.user, AnonymousUser):
-            return await self.disconnect()
-        self.group_name = self.user.events_channel
-        logger.info("Websocket connection accepted scope=%s", self.scope)
-        await self.channel_layer.group_add(self.group_name, self.channel_name)
+            return
+        else:
+            self.group_name = self.user.events_channel
+            logger.info("Websocket connection accepted scope=%s", self.scope)
+            await self.channel_layer.group_add(self.group_name, self.channel_name)
 
     async def disconnect(self, code):
         await super().disconnect(code)

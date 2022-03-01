@@ -1,4 +1,4 @@
-import { DEVICE } from './state'
+import { DEVICE, JANUS_STREAM } from './state'
 
 export const SET_DEVICE_DATA = 'SET_DEVICE_DATA'
 export const SET_JANUS_STREAM_DATA = 'SET_JANUS_STREAM_DATA'
@@ -9,6 +9,6 @@ export default {
   },
   [SET_JANUS_STREAM_DATA] (state, data) {
     console.debug('setting JanusStream data', data, 'previous state', state)
-    state[SET_JANUS_STREAM_DATA] = data
+    state[JANUS_STREAM] = data
   }
 }
