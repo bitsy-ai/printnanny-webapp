@@ -257,7 +257,8 @@ blog-deploy:
 	k8s/push-blog.sh
 
 lint:
-	black print_nanny_webapp
+	docker-compose -f local.yml run --rm django black print_nanny_webapp
+	docker-compose -f local.yml run --rm django black config
 
 vue-dev:
 	cd print_nanny_vue && npm run dev
