@@ -3,6 +3,7 @@ black
 twine
 pip-tools
 wheel
+django>3,<4
 pytest-django
 pytest-dotenv
 pytest-mock
