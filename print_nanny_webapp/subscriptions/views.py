@@ -135,12 +135,12 @@ class SubscriptionsListView(DashboardView):
 
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(*args, **kwargs)
-        user = self.request.user  # type: ignore
+        user = self.request.user
         try:
-            query = Q(subscriber=self.request.user) | Q(email=user.email)
+            query = Q(subscriber=self.request.user) | Q(email=user.email)  # type: ignore
             customer = djstripe.models.Customer.objects.get(query)
             if not customer.subscriber:
-                link_customer_by_email(user)
+                link_customer_by_email(user)  # type: ignore
             # attempt to link customer by email
         except djstripe.models.Customer.DoesNotExist:
             logger.warning("No stripe customer associated with user=%s", user)
