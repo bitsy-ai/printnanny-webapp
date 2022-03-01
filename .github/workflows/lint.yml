@@ -29,6 +29,7 @@ jobs:
         run: |
           pip3 install -r requirements/local.txt
           pip3 install -r requirements/test.txt
+          . .envs/.test/.env.sh
           mypy
   lint:
     # The type of runner that the job will run on
