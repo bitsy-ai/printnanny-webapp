@@ -12,7 +12,7 @@ spec:
     - downloads.print-nanny.com
     - download.print-nanny.com
     - dl.print-nanny.com
-    # - blog.print-nanny.com
+    - blog.print-nanny.com
     - help.print-nanny.com
     - metabase.print-nanny.com
 ---
@@ -28,7 +28,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: django
+  name: printnanny-global
   annotations:
     networking.gke.io/v1beta1.FrontendConfig: "http-to-https"
     kubernetes.io/ingress.global-static-ip-name: "django-static-ip"
@@ -117,6 +117,16 @@ spec:
                 name: print-nanny-help
                 port:
                   number: 80
+    - host: blog.print-nanny.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: print-nanny-blog
+                port:
+                  number: 80
     - host: metabase.print-nanny.com
       http:
         paths:
@@ -127,49 +137,3 @@ spec:
                 name: metabase
                 port:
                   number: 80
-  # ara
-  # - host: ara.print-nanny.com
-  #   http:
-  #     paths:
-  #     - backend:
-  #         serviceName: ara
-  #         servicePort: 80
-  # # gcsfuse-nginx downloads
-  # - host: downloads.print-nanny.com
-  #   http:
-  #     paths:
-  #     - backend:
-  #         serviceName: nginx-gcsfuse
-  #         servicePort: 80
-  # - host: download.print-nanny.com
-  #   http:
-  #     paths:
-  #     - backend:
-  #         serviceName: nginx-gcsfuse
-  #         servicePort: 80
-  # - host: dl.print-nanny.com
-  #   http:
-  #     paths:
-  #     - backend:
-  #         serviceName: nginx-gcsfuse
-  #         servicePort: 80
-  # # ghost blogs
-  # - host: blog.print-nanny.com
-  #   http:
-  #     paths:
-  #     - backend:
-  #         serviceName: print-nanny-blog
-  #         servicePort: 80
-  # - host: help.print-nanny.com
-  #   http:
-  #     paths:
-  #     - backend:
-  #         serviceName: print-nanny-help
-  #         servicePort: 80
-  # # metabase
-  # - host: metabase.print-nanny.com
-  #   http:
-  #     paths:
-  #     - backend:
-  #         serviceName: metabase
-  #         servicePort: 80
