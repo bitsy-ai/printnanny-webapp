@@ -8,7 +8,7 @@ spec:
     - print-nanny.com
     - www.print-nanny.com
     - api.print-nanny.com
-  # - ara.print-nanny.com
+    - ara.print-nanny.com
   # - downloads.print-nanny.com
   # - download.print-nanny.com
   # - dl.print-nanny.com
@@ -64,6 +64,16 @@ spec:
             backend:
               service:
                 name: django
+                port:
+                  number: 80
+    - host: ara.print-nanny.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ara
                 port:
                   number: 80
   # ara
