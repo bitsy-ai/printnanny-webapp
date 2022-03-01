@@ -39,13 +39,49 @@ env:
   ARA_POSTGRES_HOST: "127.0.0.1"
   ARA_SECRET_KEY: ${{ secrets.PROD_ARA_SECRET_KEY }}
 jobs:
+  mypy:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - name: Mypy
+        shell: bash
+        run: |
+          pip3 install -r requirements/local.txt
+          pip3 install -r requirements/test.txt
+          . .envs/.test/.env.sh
+          mypy
   lint:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - name: Run black linter
+        shell: bash
+        run: |
+          pip3 install -r requirements/test.txt
+          make lint
+  shellcheck:
+    name: Shellcheck
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout branch
-        uses: actions/checkout@v2
-      - name: Lint
-        uses: ./.github/workflows/scripts/lint
+    - uses: actions/checkout@v2
+    - name: Run ShellCheck
+      uses: ludeeus/action-shellcheck@master
+      with:
+       scandir: './k8s'
   deploy:
     environment: stable
     env:
@@ -55,7 +91,7 @@ jobs:
       JANUS_CLOUD_API_URL: https://janus.beta.print-nanny.com:8088/janus
       JANUS_CLOUD_WS_URL: wss://janus.beta.print-nanny.com:8088
       JANUS_CLOUD_RTP_DOMAIN: rtp.beta.print-nanny.com
-    needs: [ lint ]
+    needs: [ lint, shellcheck, mypy ]
     runs-on: ubuntu-latest
     steps:
     - name: Input Settings
