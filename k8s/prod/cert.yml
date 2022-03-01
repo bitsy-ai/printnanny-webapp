@@ -16,15 +16,11 @@ spec:
     - blog.print-nanny.com
     - help.print-nanny.com
     - metabase.print-nanny.com
-    - janus.print-nanny.com
-    - rtp.print-nanny.com
-    - vpn.print-nanny.com
-    - net.print-nanny.com
-    # if more domains need to be added to this list, the entire MCR must be re-generated
-    # in other words, GCP MCR certs cannot be updated in place to issue a subdomain cert
-    # cool cool cool
-    # instead, use a hot spare while going through cert rotate dance
-    - n.print-nanny.com # hot spare
-    - r.print-nanny.com # hot spare
-    - s.print-nanny.com # hot spare
-    - u.print-nanny.com # hot spare
+    # - janus.print-nanny.com
+    # - rtp.print-nanny.com
+    # - vpn.print-nanny.com
+    # - net.print-nanny.com
+    # - n.print-nanny.com # hot spare
+    # - r.print-nanny.com # hot spare
+    # - s.print-nanny.com # hot spare
+    # - u.print-nanny.com # hot spare
