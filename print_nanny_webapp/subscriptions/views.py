@@ -30,7 +30,7 @@ User = get_user_model()
 
 class FoundingMemberSignupView(SignupView):
     template_name = "subscriptions/founding-member-signup.html"
-    success_url = "checkout"
+    success_url = "/subscriptions/checkout"
 
     def get_initial(self) -> Dict[str, Any]:
 
