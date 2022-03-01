@@ -1,9 +1,9 @@
+from typing import Optional
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
-from django import forms
 
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import (
@@ -13,7 +13,6 @@ from django.views.generic import (
     CreateView,
     TemplateView,
 )
-from rest_framework.authtoken.models import Token
 
 from print_nanny_webapp.users.forms import InviteRequestForm
 from .tasks import create_ghost_member
@@ -29,6 +28,7 @@ class InviteRequestView(CreateView):
     template_name = "users/inviterequest_form.html"
     success_url = "/thanks/"
     form_class = InviteRequestForm
+    object: Optional[User] = None
 
     def form_valid(self, form):
         res = super().form_valid(form)
@@ -56,7 +56,10 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
     fields = []
 
     def get_success_url(self):
-        return reverse("users:detail", kwargs={"email": self.request.user.email})
+        if self.request.user.is_authenticated:
+            return reverse("users:detail", kwargs={"email": self.request.user.email})
+        else:
+            return reverse("account_login")
 
     def get_object(self):
 

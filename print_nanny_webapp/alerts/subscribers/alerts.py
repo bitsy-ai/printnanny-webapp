@@ -2,7 +2,7 @@ import os
 import logging
 from django.db import IntegrityError
 
-from google.cloud import pubsub
+from google.cloud import pubsub  # type: ignore[attr-defined]
 
 # import sys
 # sys.path.insert(0,'/app')

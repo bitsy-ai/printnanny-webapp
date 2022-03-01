@@ -2,7 +2,6 @@ import pytest
 
 from print_nanny_webapp.users.models import User
 from print_nanny_webapp.users.tests.factories import UserFactory
-from django.test import RequestFactory
 from webpack_loader.loader import WebpackLoader
 
 # pytest_plugins = ("celery.contrib.pytest",)
@@ -11,11 +10,6 @@ from webpack_loader.loader import WebpackLoader
 @pytest.fixture(autouse=True)
 def media_storage(settings, tmpdir):
     settings.MEDIA_ROOT = tmpdir.strpath
-
-
-@pytest.fixture
-def user() -> User:
-    return UserFactory()
 
 
 @pytest.fixture

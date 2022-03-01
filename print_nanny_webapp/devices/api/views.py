@@ -235,7 +235,7 @@ class PublicKeyViewSet(
     def update_or_create(self, request, device_id=None):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
-            instance, created = serializer.update_or_create(
+            instance, created = serializer.update_or_create(  # type: ignore[attr-defined]
                 serializer.validated_data, device_id
             )
             response_serializer = self.get_serializer(instance)
@@ -308,7 +308,7 @@ class JanusAuthViewSet(
     def update_or_create(self, request, device_id=None):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
-            instance, created = serializer.update_or_create(
+            instance, created = serializer.update_or_create(  # type: ignore[attr-defined]
                 serializer.validated_data, device_id
             )
             response_serializer = self.get_serializer(instance)
@@ -421,7 +421,7 @@ class JanusStreamViewSet(
     def update_or_create(self, request, device_id=None):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
-            instance, created = serializer.update_or_create(
+            instance, created = serializer.update_or_create(  # type: ignore[attr-defined]
                 serializer.validated_data, device_id
             )
             response_serializer = self.get_serializer(instance)
@@ -446,7 +446,7 @@ class JanusStreamViewSet(
     def get_or_create(self, request, device_id=None):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
-            instance, created = serializer.get_or_create(
+            instance, created = serializer.get_or_create(  # type: ignore[attr-defined]
                 serializer.validated_data, device_id
             )
             response_serializer = self.get_serializer(instance)
@@ -528,7 +528,7 @@ class SystemInfoViewSet(
     def update_or_create(self, request, device_id=None):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
-            instance, created = serializer.update_or_create(
+            instance, created = serializer.update_or_create(  # type: ignore[attr-defined]
                 serializer.validated_data, device_id
             )
             response_serializer = self.get_serializer(instance)

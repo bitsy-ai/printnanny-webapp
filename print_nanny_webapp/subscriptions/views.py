@@ -41,7 +41,8 @@ class CheckoutSuccessView(RedirectView):
 
     permanent = False
 
-    def get_redirect_url(self, *args, session_id=None, **kwargs):
+    def get_redirect_url(self, *args, **kwargs):
+        session_id = kwargs.get("session_id")
         if not session_id:
             return reverse("subscriptions:checkout")
 
@@ -51,7 +52,7 @@ class CheckoutSuccessView(RedirectView):
         logger.info("Checkout session succeeded %s", session)
         customer = stripe.Customer.retrieve(session.customer)
         user = User.objects.get(email=customer.email)
-        logger.info(f"Customer info stripee customer={customer} user={user}")
+        logger.info("Customer info stripee customer=%s user=%s", customer, user)
 
         badge, created = MemberBadge.objects.get_or_create(
             type=MemberBadge.MemberBadgeType.PAID_BETA, user_id=user.id

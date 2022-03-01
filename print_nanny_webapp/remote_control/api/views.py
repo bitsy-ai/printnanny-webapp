@@ -167,7 +167,7 @@ class PrinterProfileViewSet(
     def update_or_create(self, request):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
-            instance, created = serializer.update_or_create(
+            instance, created = serializer.update_or_create(  # type: ignore[attr-defined]
                 serializer.validated_data, request.user
             )
             response_serializer = self.get_serializer(instance)

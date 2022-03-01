@@ -19,3 +19,4 @@ djangorestframework-stubs
 mypy-protobuf
 types-requests
 types-protobuf
+types-six

@@ -21,12 +21,12 @@ class DeviceDeleteView(DeleteView, DetailView):
     model = Device
 
 
-class DeviceVideoView(DetailView, LoginRequiredMixin):
+class DeviceVideoView(LoginRequiredMixin, DetailView):
     template_name = "device-video.html"
     model = Device
 
 
-class DeviceDetailView(DetailView, LoginRequiredMixin):
+class DeviceDetailView(LoginRequiredMixin, DetailView):
     model = Device
     template_name = "devices/device-detail.html"
     paginate_by = 10
