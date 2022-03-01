@@ -1,9 +1,12 @@
 import logging
 from django.db import models
 from django.db.models import UniqueConstraint
+from django.utils.http import urlencode
 from django.urls import reverse
+from django.contrib.sites.models import Site
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from .enum import ReferralCodeType
+
 
 logger = logging.getLogger(__name__)
 
@@ -64,7 +67,11 @@ class ReferralCode(SafeDeleteModel):
     )
 
     def referral_url(self):
-        reverse("referrals:trial", kwargs={"code": self.code})
+        domain = Site.objects.get_current().domain
+
+        url_path = reverse("subscriptions:checkout")
+        q = urlencode({"code": self.code})
+        return f"https://{domain}{url_path}?{q}"
 
 
 class ReferralInvite(SafeDeleteModel):
