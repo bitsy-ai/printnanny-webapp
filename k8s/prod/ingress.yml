@@ -1,21 +1,4 @@
 ---
-apiVersion: networking.gke.io/v1
-kind: ManagedCertificate
-metadata:
-  name: print-nanny-dot-com
-spec:
-  domains:
-    - print-nanny.com
-    - www.print-nanny.com
-    - api.print-nanny.com
-    - ara.print-nanny.com
-    - downloads.print-nanny.com
-    - download.print-nanny.com
-    - dl.print-nanny.com
-    - blog.print-nanny.com
-    - help.print-nanny.com
-    - metabase.print-nanny.com
----
 apiVersion: networking.gke.io/v1beta1
 kind: FrontendConfig
 metadata:
