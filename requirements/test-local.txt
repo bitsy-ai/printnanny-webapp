@@ -71,13 +71,13 @@ docutils==0.18.1
     # via readme-renderer
 factory-boy==3.2.1
     # via -r requirements/test-local.in
-faker==13.2.0
+faker==13.3.0
     # via factory-boy
 idna==3.3
     # via
     #   -c requirements/local.txt
     #   requests
-importlib-metadata==4.11.1
+importlib-metadata==4.11.2
     # via
     #   keyring
     #   twine
@@ -206,7 +206,7 @@ tomli==2.0.1
     #   mypy
     #   pep517
     #   pytest
-tqdm==4.62.3
+tqdm==4.63.0
     # via twine
 twine==3.8.0
     # via -r requirements/test-local.in
@@ -224,7 +224,9 @@ types-pyyaml==6.0.4
     #   django-stubs
 types-requests==2.27.11
     # via -r requirements/test-local.in
-types-urllib3==1.26.9
+types-six==1.16.10
+    # via -r requirements/test-local.in
+types-urllib3==1.26.10
     # via types-requests
 typing-extensions==4.1.1
     # via

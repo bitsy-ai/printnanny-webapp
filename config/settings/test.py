@@ -1,7 +1,9 @@
 """
 With these settings, tests run faster.
 """
+import django_stubs_ext
 
+django_stubs_ext.monkeypatch()
 from .base import *  # noqa
 from .base import env
 
@@ -52,9 +54,9 @@ EMAIL_BACKEND = "django.core.mail.backends.locmem.EmailBackend"
 # ------------------------------------------------------------------------------
 BETA_NOTIFY_EMAIL = "test@print-nanny.com"
 GHOST_ADMIN_API_KEY = ""
-WS_BASE_URL = env('PRINT_NANNY_WS_URL', default='ws://localhost:8000/ws')
-BASE_URL = env('PRINT_NANNY_BASE_URL', default='http://localhost:8000/')
+WS_BASE_URL = env("PRINT_NANNY_WS_URL", default="ws://localhost:8000/ws")
+BASE_URL = env("PRINT_NANNY_BASE_URL", default="http://localhost:8000/")
 
 
 WHITENOISE_MANIFEST_STRICT = False
-GOOGLE_ANALYTICS=""
+GOOGLE_ANALYTICS = ""

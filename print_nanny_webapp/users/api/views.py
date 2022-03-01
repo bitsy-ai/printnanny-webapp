@@ -1,3 +1,4 @@
+from typing import TYPE_CHECKING
 from django.contrib.auth import get_user_model
 from rest_framework.decorators import action
 from rest_framework.mixins import RetrieveModelMixin, UpdateModelMixin
@@ -11,7 +12,9 @@ from print_nanny_webapp.utils.api.views import (
 )
 from .serializers import UserSerializer
 
-
+# https://github.com/typeddjango/django-stubs/issues/599
+if TYPE_CHECKING:
+    from print_nanny_webapp.users.models import User as UserType
 User = get_user_model()
 
 
@@ -41,7 +44,7 @@ User = get_user_model()
 class UserViewSet(RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
 
     serializer_class = UserSerializer
-    queryset = User.objects.all()
+    queryset = User.objects.all()  # type: ignore
     lookup_field = "id"
 
     def get_queryset(self, *args, **kwargs):

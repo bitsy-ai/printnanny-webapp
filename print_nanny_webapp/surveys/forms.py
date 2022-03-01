@@ -1,3 +1,4 @@
+from typing import TYPE_CHECKING, Optional
 from django.contrib.auth import get_user_model
 from django.forms import (
     ModelForm,
@@ -5,13 +6,14 @@ from django.forms import (
     MultipleChoiceField,
     CheckboxSelectMultiple,
     BooleanField,
-    CharField,
     Textarea,
 )
 from .choices import PrimaryOS, MobileOS, VPNExperience, UserScale, PrinterSoftware
 
 from .models import RemoteAccessSurvey1
 
+if TYPE_CHECKING:
+    from print_nanny_webapp.users.models import User as UserType
 User = get_user_model()
 
 
@@ -76,7 +78,7 @@ class RemoteAccessSurvey1Form(ModelForm):
         # check to see if provided email matches user
         if request.user.is_anonymous:
             email = self.cleaned_data["email"]
-            user = User.objects.filter(email=email).first()
+            user: Optional[UserType] = User.objects.filter(email=email).first()  # type: ignore
         else:
             user = request.user
 

@@ -1,4 +1,4 @@
-from typing import Any, Dict
+from typing import Any, Dict, TYPE_CHECKING
 import logging
 
 from django.contrib.auth import get_user_model
@@ -12,6 +12,9 @@ from print_nanny_webapp.utils.fields import ChoiceArrayField
 
 from print_nanny_webapp.utils.fields import file_field_upload_to
 
+# https://github.com/typeddjango/django-stubs/issues/599
+if TYPE_CHECKING:
+    from print_nanny_webapp.users.models import User as UserType
 User = get_user_model()
 logger = logging.getLogger(__name__)
 
