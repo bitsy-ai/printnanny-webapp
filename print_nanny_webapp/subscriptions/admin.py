@@ -21,6 +21,7 @@ class MemberBadgeAdmin(admin.ModelAdmin):
 
 @admin.register(ReferralCode)
 class ReferralCodeAdmin(admin.ModelAdmin):
+    list_display = ("code", "created_dt", "user", "referral_url")
     add_form = ReferralCodeCreateForm
     model = ReferralCode
 

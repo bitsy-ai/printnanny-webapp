@@ -14,7 +14,7 @@ from drf_spectacular.views import (
 
 from print_nanny_webapp.surveys.views import RemoteAccessSurvey1Create
 from print_nanny_webapp.users.views import ThanksView
-from print_nanny_webapp.subscriptions.views import FoundingMemberCheckoutView
+from print_nanny_webapp.subscriptions.views import FoundingMemberSignupView
 
 # Webapp urls
 urlpatterns = [
@@ -50,7 +50,7 @@ urlpatterns = [
         include("print_nanny_webapp.octoprint.urls", namespace="octoprint"),
     ),
     path("", include("qr_code.urls", namespace="qr_code")),
-    path("trial", FoundingMemberCheckoutView.as_view(), name="trial"),
+    path("trial", FoundingMemberSignupView.as_view(), name="trial"),
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
 )  # type: ignore

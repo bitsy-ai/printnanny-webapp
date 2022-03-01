@@ -35,9 +35,16 @@ class FoundingMemberSignupView(SignupView):
     def get_initial(self) -> Dict[str, Any]:
 
         email = self.request.GET.get("email")
+        referral_code = self.request.GET.get("code")
+        if not email and not referral_code:
+            return super().get_initial()
+        initial: Dict[str, str] = dict()
         if email:
-            return dict(email=self.request.GET["email"])
-        return super().get_initial()
+            initial.update(email=self.request.GET["email"])
+        if referral_code:
+            initial.update(referral_code=referral_code)
+        logger.info("Form initialized with data %s", initial)
+        return initial
 
 
 class CheckoutSuccessView(RedirectView):
