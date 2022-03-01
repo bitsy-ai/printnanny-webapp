@@ -12,8 +12,8 @@ spec:
     - downloads.print-nanny.com
     - download.print-nanny.com
     - dl.print-nanny.com
-  # - blog.print-nanny.com
-  # - help.print-nanny.com
+    # - blog.print-nanny.com
+    - help.print-nanny.com
   # - metabase.print-nanny.com
 ---
 apiVersion: networking.gke.io/v1beta1
@@ -105,6 +105,16 @@ spec:
             backend:
               service:
                 name: gcsfuse-nginx
+                port:
+                  number: 80
+    - host: help.print-nanny.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: print-nanny-help
                 port:
                   number: 80
   # ara
