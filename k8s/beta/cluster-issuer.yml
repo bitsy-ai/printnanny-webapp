@@ -2,7 +2,7 @@
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
-  name: letsencrypt-live-issuer
+  name: letsencrypt-beta-issuer
 spec:
   acme:
     # The ACME server URL
@@ -19,5 +19,5 @@ spec:
           cloudDNS:
             # The ID of the GCP project
             # reference: https://docs.cert-manager.io/en/latest/tasks/issuers/setup-acme/dns01/google.html
-            hostedZoneName: "live-print-nanny-com"
+            hostedZoneName: "beta-print-nanny-com"
             project: print-nanny
