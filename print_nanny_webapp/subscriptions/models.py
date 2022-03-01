@@ -69,7 +69,7 @@ class ReferralCode(SafeDeleteModel):
     def referral_url(self):
         domain = Site.objects.get_current().domain
 
-        url_path = reverse("subscriptions:checkout")
+        url_path = reverse("subscriptions:signup")
         q = urlencode({"code": self.code})
         return f"https://{domain}{url_path}?{q}"
 

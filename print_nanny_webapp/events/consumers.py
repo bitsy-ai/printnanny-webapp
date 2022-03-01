@@ -26,7 +26,8 @@ class EventConsumer(AsyncJsonWebsocketConsumer):
 
     async def disconnect(self, code):
         await super().disconnect(code)
-        await self.channel_layer.group_discard(self.group_name, self.channel_name)
+        if self.group_name:
+            await self.channel_layer.group_discard(self.group_name, self.channel_name)
 
     async def receive_json(self, content, **kwargs):
         raise NotImplementedError("Receiving JSON not yet supported over websocket")
