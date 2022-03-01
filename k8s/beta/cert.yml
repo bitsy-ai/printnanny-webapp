@@ -1,0 +1,13 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: beta-print-nanny-com--wildcard
+  namespace: beta
+spec:
+  secretName: beta-print-nanny-com--wildcard
+  issuerRef:
+    name: letsencrypt-beta-issuer
+  dnsNames:
+  - beta.print-nanny.com
+  - '*.beta.print-nanny.com'

@@ -1,0 +1,13 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: live-print-nanny-com--wildcard
+  namespace: live
+spec:
+  secretName: live-print-nanny-com--wildcard
+  issuerRef:
+    name: letsencrypt-live-issuer
+  dnsNames:
+  - live.print-nanny.com
+  - '*.live.print-nanny.com'
