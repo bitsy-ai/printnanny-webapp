@@ -169,7 +169,9 @@ services:
     ports: []
     command:
       - python
-      - print_nanny_webapp/telemetry/subscribers/octoprint_events.py
+      - manage.py
+      - shell
+      - < print_nanny_webapp/telemetry/subscribers/octoprint_events.py
   # alerts:
   #   container_name: print_nanny_webapp_alerts
   #   <<: *django
