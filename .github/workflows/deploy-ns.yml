@@ -1,0 +1,142 @@
+name: Deploy Namespaced
+on:
+  workflow_dispatch:
+
+jobs:
+  mypy:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
+      - name: Mypy
+        shell: bash
+        run: |
+          pip3 install -r requirements/local.txt
+          pip3 install -r requirements/test.txt
+          . .envs/.test/.env.sh
+          mypy
+  lint:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
+      - name: Run black linter
+        shell: bash
+        run: |
+          pip3 install -r requirements/test.txt
+          make lint
+  shellcheck:
+    name: Shellcheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run ShellCheck
+        uses: ludeeus/action-shellcheck@master
+        with:
+          scandir: "./k8s"
+  beta:
+    environment: beta
+    env:
+      CELERY_FLOWER_PASSWORD: ${{ secrets.CELERY_FLOWER_PASSWORD }}
+      CELERY_FLOWER_USER: ${{ secrets.CELERY_FLOWER_USER }}
+      GCP_PROJECT: print-nanny
+      GCP_REGION: us-central1
+
+      COTURN_DATABASE_URL: ${{ secrets.COTURN_DATABASE_URL }}
+      COTURN_SECRET_KEY: ${{ secrets.COTURN_SECRET_KEY }}
+      DJANGO_DATABASE_URL: ${{ secrets.DJANGO_DATABASE_URL }}
+      DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+
+      DJANGO_ADMIN_URL: ${{ secrets.DJANGO_ADMIN_URL }}
+      DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+      DJANGO_SUPERUSER_EMAIL: ${{ secrets.DJANGO_SUPERUSER_EMAIL }}
+      DJANGO_SUPERUSER_PASSWORD: ${{ secrets.DJANGO_SUPERUSER_PASSWORD }}
+      DJANGO_SUPERUSER_USERNAME: ${{ secrets.DJANGO_SUPERUSER_USERNAME }}
+      DJSTRIPE_WEBHOOK_SECRET: ${{ secrets.DJSTRIPE_WEBHOOK_SECRET }}
+      GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+      GCP_SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+      HONEYCOMB_API_KEY: ${{ secrets.HONEYCOMB_API_KEY }}
+      MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
+      MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+      POSTGRES_HOST: "127.0.0.1"
+      POSTGRES_PORT: 5432
+      PRINT_NANNY_BASE_URL: https://printnanny.ai
+      PRINT_NANNY_STATIC_URL: https://printnanny.ai/static/
+      PRINT_NANNY_USER: ${{ secrets.DJANGO_SUPERUSER_USERNAME }}
+      PRINT_NANNY_WS_URL: wss://printnanny.ai/ws
+      STRIPE_PUBLIC_KEY: ${{ secrets.STRIPE_PUBLIC_KEY }}
+      STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+      POSTHOG_API_KEY: ${{ secrets.POSTHOG_API_KEY }}
+      GHOST_ADMIN_API_KEY: false
+      GHOST_CONTENT_API_KEY: false
+      ARA_POSTGRES_USER: ${{ secrets.ARA_POSTGRES_USER }}
+      ARA_POSTGRES_PASSWORD: ${{ secrets.ARA_POSTGRES_PASSWORD }}
+      ARA_POSTGRES_HOST: "127.0.0.1"
+      ARA_SECRET_KEY: ${{ secrets.ARA_SECRET_KEY }}
+      JANUS_CLOUD_API_DOMAIN: janus.beta.print-nanny.com
+      JANUS_CLOUD_ADMIN_SECRET: ${{ secrets.JANUS_ADMIN_SECRET }}
+      JANUS_CLOUD_ADMIN_URL: https://janus.beta.print-nanny.com:7088/admin
+      JANUS_CLOUD_API_URL: https://janus.beta.print-nanny.com:8088/janus
+      JANUS_CLOUD_WS_URL: wss://janus.beta.print-nanny.com:8088
+      PRINTNANNY_NAMESPACE: beta
+    needs: [lint, shellcheck, mypy]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Input Settings
+        run: |
+          echo "Branch: ${{ github.event.inputs.branch }}"
+          echo "Loglevel: ${{ github.event.inputs.loglevel }}"
+          echo "Plugin Version: ${{ github.event.inputs.plugin_version }}"
+          echo "Octoprint Version: ${{ github.event.inputs.octoprint_version }}"
+          echo "Load fixture data: ${{ github.event.inputs.fixtures }}"
+      - name: Checkout branch
+        uses: actions/checkout@v2
+      - name: Install system dependencies
+        run: |
+          sudo apt-get install makepasswd
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+      - name: Write deploy key
+        run: echo $GCP_SERVICE_ACCOUNT_KEY > key.json
+      - name: Active Service Account
+        run: gcloud auth activate-service-account $GCP_SERVICE_ACCOUNT --key-file=key.json
+      - name: Configure docker registry credentials
+        run: gcloud auth configure-docker
+      - name: Deploy to beta namespace
+        id: deploy
+        run: |
+          make namespace-deploy \
+          CLUSTER="www-beta" \
+          GCP_PROJECT="print-nanny" \
+          PRINT_NANNY_USER="${{ secrets.DJANGO_SUPERUSER_USERNAME }}" \
+          PRINT_NANNY_URL="$PRINT_NANNY_BASE_URL" \
+          DJANGO_SUPERUSER_EMAIL="$DJANGO_SUPERUSER_EMAIL"
+          echo ::set-output name=printnanny_client_version::"$(cat version.txt)"
+
+      - name: Send Discord notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.PRINT_NANNY_DISCORD_DEPLOY_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: |
+            🚀 Deployed {{ EVENT_PAYLOAD.repository.full_name }}@{{ GITHUB_SHA }} 🚀
+            ```
+            API Client version: ${{ steps.deploy.outputs.printnanny_client_version }}
+            Cluster: www-beta
+            ```
+            Cluster status: https://console.cloud.google.com/kubernetes/workload/overview?project=print-nanny

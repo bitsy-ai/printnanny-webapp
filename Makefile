@@ -9,6 +9,7 @@ GCP_PROJECT ?= print-nanny-sandbox
 CLUSTER ?= www-sandbox
 ZONE ?= us-central1-c
 
+PRINTNANNY_NAMESPACE ?= beta
 PRINT_NANNY_URL ?= http://localhost:8000/
 PRINT_NANNY_API_URL ?= ${PRINT_NANNY_URL}api/
 OCTOPRINT_URL ?= http://localhost:5005/
@@ -247,6 +248,10 @@ sandbox-email:
 		k8s/sandbox/email.sh
 
 sandbox-ci: sandbox-deploy sandbox-email cypress-ci
+
+namespace-k8s:
+	echo "Rendering templates from $(PRINTNANNY_NAMESPACE)"
+namespace-deploy: build cluster-config prod-config prod-apply
 
 prod-apply: cluster-config
 	GIT_SHA=$(GIT_SHA) k8s/prod/push.sh
