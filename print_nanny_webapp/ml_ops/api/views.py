@@ -46,8 +46,8 @@ class DeviceCalibrationViewSet(
     lookup_field = "id"
 
     def get_queryset(self):
-        user: UserType = self.request.user  # type: ignore
-        return DeviceCalibration.objects.filter(octoprint_device__user=user).all()
+        user = self.request.user
+        return DeviceCalibration.objects.filter(octoprint_device__user=user).all()  # type: ignore
 
     @extend_schema(operation_id="device_calibration_update_or_create")
     @action(methods=["post"], detail=False, url_path="update-or-create")

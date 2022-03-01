@@ -43,15 +43,17 @@ from django.contrib.auth.models import AnonymousUser
 
 logger = logging.getLogger(__name__)
 
+
 @database_sync_to_async
 def get_user(headers):
     try:
-        token_name, token_key = headers[b'authorization'].decode().split()
-        if token_name == 'Bearer':
+        token_name, token_key = headers[b"authorization"].decode().split()
+        if token_name == "Bearer":
             token = Token.objects.get(key=token_key)
             return token.user
     except Token.DoesNotExist:
         return AnonymousUser()
+
 
 ##
 # https://stackoverflow.com/questions/60009296/django-3-0-channels-asgi-tokenauthmiddleware
@@ -61,26 +63,29 @@ class TokenAuthMiddleware:
         self.inner = inner
 
     async def __call__(self, scope, receive, send):
-        headers = dict(scope['headers'])
-        if b'authorization' in headers:
-            scope['user'] = await get_user(headers)
+        headers = dict(scope["headers"])
+        if b"authorization" in headers:
+            scope["user"] = await get_user(headers)
         return await self.inner(scope, receive, send)
 
 
 TokenAuthMiddlewareStack = lambda inner: TokenAuthMiddleware(AuthMiddlewareStack(inner))
 
 websocket_urlpatterns = (
-    print_nanny_webapp.telemetry.routing.websocket_urlpatterns +
-    print_nanny_webapp.events.routing.websocket_urlpatterns +
-    print_nanny_webapp.alerts.routing.websocket_urlpatterns
+    print_nanny_webapp.telemetry.routing.websocket_urlpatterns
+    + print_nanny_webapp.events.routing.websocket_urlpatterns
+    + print_nanny_webapp.alerts.routing.websocket_urlpatterns
 )
-logging.info(f'Registering websocket urlpatterns {websocket_urlpatterns}')
-application = ProtocolTypeRouter({
-  "http": django_application,
-  "websocket": TokenAuthMiddlewareStack(
-      URLRouter(websocket_urlpatterns)),
-  #"metrics":
-  "channel": ChannelNameRouter({
-      "discord": DiscordConsumer.as_asgi(),
-  }),
-})
+logging.info(f"Registering websocket urlpatterns {websocket_urlpatterns}")
+application = ProtocolTypeRouter(
+    {
+        "http": django_application,
+        "websocket": TokenAuthMiddlewareStack(URLRouter(websocket_urlpatterns)),
+        # "metrics":
+        "channel": ChannelNameRouter(
+            {
+                "discord": DiscordConsumer.as_asgi(),
+            }
+        ),
+    }
+)

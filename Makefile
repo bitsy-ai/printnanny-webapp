@@ -55,11 +55,11 @@ clean-requirements: clean-local-requirements clean-test-requirements clean-prod-
 requirements/production.txt:
 	pip-compile requirements/production.in --output-file requirements/production.txt
 
-requirements/test-local.txt:
-	pip-compile requirements/test-local.in --output-file requirements/test-local.txt
+requirements/test.txt:
+	pip-compile requirements/test.in --output-file requirements/test.txt
 
 requirements/test.txt:
-	pip-compile requirements/test-local.in --output-file requirements/test-local.txt
+	pip-compile requirements/test.in --output-file requirements/test.txt
 
 requirements/test-production.txt:
 	pip-compile requirements/test-production.in --output-file requirements/test-production.txt
@@ -70,7 +70,7 @@ install-git-hooks:
 # https://django-environ.readthedocs.io/en/latest/
 # base.py requires certain env vars to be present ; move these or create an env harness for CI tests
 mypy:
-	docker-compose -f local.yml run --rm django mypy
+	docker-compose -f test.yml run --rm django mypy
 
 token:
 	@echo $(PRINT_NANNY_TOKEN)
@@ -258,6 +258,7 @@ blog-deploy:
 
 lint:
 	black print_nanny_webapp
+	black config
 
 vue-dev:
 	cd print_nanny_vue && npm run dev

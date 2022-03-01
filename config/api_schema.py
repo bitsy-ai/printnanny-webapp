@@ -1,7 +1,7 @@
 from drf_yasg.generators import OpenAPISchemaGenerator
 import logging
 
-class CustomOpenAPISchemaGenerator(OpenAPISchemaGenerator):
 
+class CustomOpenAPISchemaGenerator(OpenAPISchemaGenerator):
     def determine_path_prefix(self, paths):
-        return  self._gen.determine_path_prefix(paths)
+        return self._gen.determine_path_prefix(paths)
