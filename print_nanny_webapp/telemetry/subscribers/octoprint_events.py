@@ -7,6 +7,10 @@ from django.conf import settings
 from django.db import IntegrityError
 from google.cloud import pubsub  # type: ignore[attr-defined]
 import google.api_core.exceptions
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
+settings.configure()
+
 from print_nanny_webapp.remote_control.models import OctoPrintDevice
 from print_nanny_webapp.alerts.models import (
     AlertSettings,
@@ -33,7 +37,6 @@ from print_nanny_webapp.remote_control.models import PrintSession, RemoteControl
 # sys.path.insert(0,'/app')
 
 # If DJANGO_SETTINGS_MODULE is unset, default to the local settings
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
 User = get_user_model()
 
 logger = logging.getLogger(__name__)
