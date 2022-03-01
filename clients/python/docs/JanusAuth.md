@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
+**active** | **bool** |  | [readonly] 
 **admin_secret** | **str** |  | [optional] 
 **api_token** | **str** |  | [optional] 
 **config_type** | [**JanusConfigType**](JanusConfigType.md) |  | [optional] 

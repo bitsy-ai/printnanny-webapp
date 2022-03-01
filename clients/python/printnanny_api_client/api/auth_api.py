@@ -62,7 +62,7 @@ class AuthApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: DetailResponse
+        :rtype: EmailAuth
         """
         kwargs['_return_http_data_only'] = True
         return self.auth_email_create_with_http_info(email_auth_request, **kwargs)  # noqa: E501
@@ -100,7 +100,7 @@ class AuthApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(DetailResponse, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(EmailAuth, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -161,7 +161,7 @@ class AuthApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            200: "DetailResponse",
+            200: "EmailAuth",
         }
 
         return self.api_client.call_api(
@@ -206,7 +206,7 @@ class AuthApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: DetailResponse
+        :rtype: MobileAuth
         """
         kwargs['_return_http_data_only'] = True
         return self.auth_mobile_create_with_http_info(mobile_auth_request, **kwargs)  # noqa: E501
@@ -244,7 +244,7 @@ class AuthApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(DetailResponse, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(MobileAuth, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -305,7 +305,7 @@ class AuthApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            200: "DetailResponse",
+            200: "MobileAuth",
         }
 
         return self.api_client.call_api(
@@ -350,7 +350,7 @@ class AuthApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: TokenResponse
+        :rtype: CallbackTokenAuth
         """
         kwargs['_return_http_data_only'] = True
         return self.auth_token_create_with_http_info(callback_token_auth_request, **kwargs)  # noqa: E501
@@ -388,7 +388,7 @@ class AuthApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(TokenResponse, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(CallbackTokenAuth, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -449,7 +449,7 @@ class AuthApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            200: "TokenResponse",
+            200: "CallbackTokenAuth",
         }
 
         return self.api_client.call_api(
@@ -636,7 +636,7 @@ class AuthApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: DetailResponse
+        :rtype: None
         """
         kwargs['_return_http_data_only'] = True
         return self.auth_verify_email_create_with_http_info(**kwargs)  # noqa: E501
@@ -672,7 +672,7 @@ class AuthApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(DetailResponse, status_code(int), headers(HTTPHeaderDict))
+        :rtype: None
         """
 
         local_var_params = locals()
@@ -712,16 +712,10 @@ class AuthApi(object):
         local_var_files = {}
 
         body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
-        response_types_map = {
-            200: "DetailResponse",
-        }
+        response_types_map = {}
 
         return self.api_client.call_api(
             '/auth/verify/email/', 'POST',
@@ -763,7 +757,7 @@ class AuthApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: DetailResponse
+        :rtype: None
         """
         kwargs['_return_http_data_only'] = True
         return self.auth_verify_mobile_create_with_http_info(**kwargs)  # noqa: E501
@@ -799,7 +793,7 @@ class AuthApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(DetailResponse, status_code(int), headers(HTTPHeaderDict))
+        :rtype: None
         """
 
         local_var_params = locals()
@@ -839,16 +833,10 @@ class AuthApi(object):
         local_var_files = {}
 
         body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
-        response_types_map = {
-            200: "DetailResponse",
-        }
+        response_types_map = {}
 
         return self.api_client.call_api(
             '/auth/verify/mobile/', 'POST',

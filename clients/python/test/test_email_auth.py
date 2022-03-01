@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.janus_auth import JanusAuth  # noqa: E501
+from printnanny_api_client.models.email_auth import EmailAuth  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestJanusAuth(unittest.TestCase):
-    """JanusAuth unit test stubs"""
+class TestEmailAuth(unittest.TestCase):
+    """EmailAuth unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,31 +30,22 @@ class TestJanusAuth(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test JanusAuth
+        """Test EmailAuth
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.janus_auth.JanusAuth()  # noqa: E501
+        # model = printnanny_api_client.models.email_auth.EmailAuth()  # noqa: E501
         if include_optional :
-            return JanusAuth(
-                id = 56, 
-                active = True, 
-                admin_secret = '', 
-                api_token = '', 
-                config_type = 'cloud', 
-                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                user = 56
+            return EmailAuth(
+                email = ''
             )
         else :
-            return JanusAuth(
-                id = 56,
-                active = True,
-                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                user = 56,
+            return EmailAuth(
+                email = '',
         )
 
-    def testJanusAuth(self):
-        """Test JanusAuth"""
+    def testEmailAuth(self):
+        """Test EmailAuth"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

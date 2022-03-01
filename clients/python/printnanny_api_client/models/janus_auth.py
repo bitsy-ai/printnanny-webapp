@@ -38,6 +38,7 @@ class JanusAuth(object):
     """
     openapi_types = {
         'id': 'int',
+        'active': 'bool',
         'admin_secret': 'str',
         'api_token': 'str',
         'config_type': 'JanusConfigType',
@@ -47,6 +48,7 @@ class JanusAuth(object):
 
     attribute_map = {
         'id': 'id',
+        'active': 'active',
         'admin_secret': 'admin_secret',
         'api_token': 'api_token',
         'config_type': 'config_type',
@@ -54,13 +56,14 @@ class JanusAuth(object):
         'user': 'user'
     }
 
-    def __init__(self, id=None, admin_secret=None, api_token=None, config_type=None, created_dt=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, active=None, admin_secret=None, api_token=None, config_type=None, created_dt=None, user=None, local_vars_configuration=None):  # noqa: E501
         """JanusAuth - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
+        self._active = None
         self._admin_secret = None
         self._api_token = None
         self._config_type = None
@@ -69,6 +72,7 @@ class JanusAuth(object):
         self.discriminator = None
 
         self.id = id
+        self.active = active
         self.admin_secret = admin_secret
         if api_token is not None:
             self.api_token = api_token
@@ -99,6 +103,29 @@ class JanusAuth(object):
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
+
+    @property
+    def active(self):
+        """Gets the active of this JanusAuth.  # noqa: E501
+
+
+        :return: The active of this JanusAuth.  # noqa: E501
+        :rtype: bool
+        """
+        return self._active
+
+    @active.setter
+    def active(self, active):
+        """Sets the active of this JanusAuth.
+
+
+        :param active: The active of this JanusAuth.  # noqa: E501
+        :type active: bool
+        """
+        if self.local_vars_configuration.client_side_validation and active is None:  # noqa: E501
+            raise ValueError("Invalid value for `active`, must not be `None`")  # noqa: E501
+
+        self._active = active
 
     @property
     def admin_secret(self):

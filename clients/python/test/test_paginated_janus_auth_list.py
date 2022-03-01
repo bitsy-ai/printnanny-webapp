@@ -43,6 +43,7 @@ class TestPaginatedJanusAuthList(unittest.TestCase):
                 results = [
                     printnanny_api_client.models.janus_auth.JanusAuth(
                         id = 56, 
+                        active = True, 
                         admin_secret = '', 
                         api_token = '', 
                         config_type = 'cloud', 

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
+**active** | **bool** |  | [readonly]
 **admin_secret** | Option<**String**> |  | [optional]
 **api_token** | Option<**String**> |  | [optional]
 **config_type** | Option<[**crate::models::JanusConfigType**](JanusConfigType.md)> |  | [optional]
