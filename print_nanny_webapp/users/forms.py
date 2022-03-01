@@ -78,7 +78,7 @@ class UserCreationForm(SignupForm):
             return referral_code
         logger.info("Got referral_code %s", referral_code)
         try:
-            ReferralCode.objects.get(code=referral_code)  # type: ignore
+            ReferralCode.objects.get(code=referral_code)
         except ReferralCode.DoesNotExist:
             raise ValidationError(self.error_messages["referral_code_invalid"])
         return referral_code

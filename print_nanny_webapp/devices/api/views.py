@@ -233,7 +233,7 @@ class PublicKeyViewSet(
     )
     @action(methods=["post"], detail=False, url_path="update-or-create")
     def update_or_create(self, request, device_id=None):
-        serializer = self.get_serializer(data=request.data)
+        serializer: PublicKeySerializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             instance, created = serializer.update_or_create(
                 serializer.validated_data, device_id
@@ -306,7 +306,7 @@ class JanusAuthViewSet(
     )
     @action(methods=["post"], detail=False, url_path="update-or-create")
     def update_or_create(self, request, device_id=None):
-        serializer = self.get_serializer(data=request.data)
+        serializer: JanusAuthSerializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             instance, created = serializer.update_or_create(
                 serializer.validated_data, device_id
