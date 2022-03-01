@@ -1,0 +1,122 @@
+---
+apiVersion: networking.gke.io/v1beta1
+kind: FrontendConfig
+metadata:
+  name: http-to-https
+spec:
+  redirectToHttps:
+    enabled: true
+    responseCodeName: MOVED_PERMANENTLY_DEFAULT
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: printnanny-global
+  annotations:
+    networking.gke.io/v1beta1.FrontendConfig: "http-to-https"
+    kubernetes.io/ingress.global-static-ip-name: "django-static-ip"
+    networking.gke.io/managed-certificates: print-nanny-dot-com
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    # www and api
+    - host: print-nanny.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: django
+                port:
+                  number: 80
+    - host: www.print-nanny.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: django
+                port:
+                  number: 80
+    - host: api.print-nanny.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: django
+                port:
+                  number: 80
+    - host: ara.print-nanny.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ara
+                port:
+                  number: 80
+    - host: downloads.print-nanny.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-gcsfuse
+                port:
+                  number: 80
+    - host: download.print-nanny.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-gcsfuse
+                port:
+                  number: 80
+    - host: dl.print-nanny.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-gcsfuse
+                port:
+                  number: 80
+    - host: help.print-nanny.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: print-nanny-help
+                port:
+                  number: 80
+    - host: blog.print-nanny.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: print-nanny-blog
+                port:
+                  number: 80
+    - host: metabase.print-nanny.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: metabase
+                port:
+                  number: 80

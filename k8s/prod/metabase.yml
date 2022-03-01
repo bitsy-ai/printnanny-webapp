@@ -65,26 +65,3 @@ spec:
       port: 80
       targetPort: 3000
 ---
-apiVersion: networking.gke.io/v1
-kind: ManagedCertificate
-metadata:
-  name: metabase
-spec:
-  domains:
-    - metabase.print-nanny.com
----
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: metabase
-  annotations:
-    networking.gke.io/v1beta1.FrontendConfig: "http-to-https"
-    kubernetes.io/ingress.global-static-ip-name: metabase
-    networking.gke.io/managed-certificates: metabase
-spec:
-  defaultBackend:
-    service:
-      name: metabase
-      port: 
-        number: 80
-

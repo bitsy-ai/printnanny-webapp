@@ -87,33 +87,3 @@ spec:
       name: http
   selector:
     app.kubernetes.io/name: nginx-gcsfuse
----
-apiVersion: networking.gke.io/v1
-kind: ManagedCertificate
-metadata:
-  name: downloads-dot-print-nanny-dot-com
-spec:
-  domains:
-    - downloads.print-nanny.com
-    - download.print-nanny.com
-    - dl.print-nanny.com
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: gcsfuse-nginx
-  annotations:
-    networking.gke.io/v1beta1.FrontendConfig: "http-to-https"
-    kubernetes.io/ingress.global-static-ip-name: "downloads-static-ip"
-    networking.gke.io/managed-certificates: downloads-dot-print-nanny-dot-com
-spec:
-  rules:
-  - http:
-      paths:
-      - path: /*
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: nginx-gcsfuse
-            port:
-              number: 80

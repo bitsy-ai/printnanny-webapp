@@ -141,30 +141,6 @@ spec:
       port: 80
       targetPort: 80
 ---
-apiVersion: networking.gke.io/v1
-kind: ManagedCertificate
-metadata:
-  name: print-nanny-blog
-spec:
-  domains:
-    - blog.print-nanny.com
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: print-nanny-blog
-  annotations:
-    networking.gke.io/v1beta1.FrontendConfig: "http-to-https"
-    kubernetes.io/ingress.global-static-ip-name: ghost-blog-static-ip
-    networking.gke.io/managed-certificates: print-nanny-blog
-spec:
-  defaultBackend:
-    service:
-      name: print-nanny-blog
-      port: 
-        number: 80
-
----
 apiVersion: v1
 kind: ConfigMap
 metadata:
