@@ -24,26 +24,6 @@ spec:
     spec:
       serviceAccountName: cloudsql-client
       containers:
-      - name: cloud-sql-proxy-mysql
-        # It is recommended to use the latest version of the Cloud SQL proxy
-        # Make sure to update on a regular schedule!
-        image: {{ GCE_PROXY_IMAGE }}
-        command:
-          - "/cloud_sql_proxy"
-
-          # If connecting from a VPC-native GKE cluster, you can use the
-          # following flag to have the proxy connect over private IP
-          # - "-ip_address_types=PRIVATE"
-
-          # Replace DB_PORT with the port the proxy should listen on
-          # Defaults: MySQL: 3306, Postgres: 5432, SQLServer: 1433
-          - "-instances={{ GCP_PROJECT }}:{{ GCP_REGION }}:{{ CLOUD_SQL_MYSQL_INSTANCE }}=tcp:{{ MYSQL_PORT }}"
-        securityContext:
-          # The default Cloud SQL proxy image runs as the
-          # "nonroot" user and group (uid: 65532) by default.
-          runAsNonRoot: true
-        ports:
-          - containerPort: {{ MYSQL_PORT }}
       - name: cloud-sql-proxy-postgres
         # It is recommended to use the latest version of the Cloud SQL proxy
         # Make sure to update on a regular schedule!
@@ -74,8 +54,6 @@ spec:
   selector: 
     app: cloud-sql-proxy
   ports:
-    - protocol: TCP
-      port: {{ MYSQL_PORT }}
     - protocol: TCP
       port: {{ POSTGRES_PORT }}
   type: ClusterIP

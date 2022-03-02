@@ -45,7 +45,7 @@ data:
       # without this, the Admin API MUST
       # be enabled, as tokens are added and removed
       # through messages sent there.
-      admin_secret = "{{ JANUS_ADMIN_SECRET }}"
+      admin_secret = "{{ JANUS_CLOUD_ADMIN_SECRET }}"
       # String that all Janus requests must contain
       # to be accepted/authorized by the admin/monitor.
       # only needed if you enabled the admin API
@@ -53,7 +53,7 @@ data:
 
       # Generic settings
       #interface = "1.2.3.4"			# Interface to use (will be used in SDP)
-      server_name = "{{ JANUS_HOSTNAME }}"
+      server_name = "{{ JANUS_CLOUD_DOMAIN }}"
       # Public name of this Janus instance
       # as it will appear in an info request
       session_timeout = 60
@@ -479,7 +479,7 @@ data:
     # it to browsers, you can set 'enforce_cors' to 'true' to have Janus
     # return a '403 Forbidden' for all requests that don't comply.
     cors: {
-      allow_origin = "https://{{ JANUS_HOSTNAME }}"
+      allow_origin = "https://{{ JANUS_CLOUD_DOMAIN }}"
       enforce_cors = false
     }
   janus.transport.websockets.jcfg: |
@@ -537,7 +537,7 @@ data:
     # it to browsers, you can set 'enforce_cors' to 'true' to have Janus
     # return a '403 Forbidden' for all requests that don't comply.
     cors: {
-      allow_origin = "{{ JANUS_HOSTNAME }}"
+      allow_origin = "{{ JANUS_CLOUD_DOMAIN }}"
       enforce_cors = false
     }
 ---
@@ -559,7 +559,7 @@ spec:
       containers:
         - name: janus
           imagePullPolicy: Always
-          image: {{ JANUS_IMAGE_REPO }}:{{ JANUS_VERSION }}
+          image: {{ JANUS_CLOUD_IMAGE }}
           livenessProbe:
             httpGet:
               path: /admin/info # root path serves 302 (login) which is not followed by health check
@@ -620,7 +620,7 @@ metadata:
   name: janus-udp
 spec:
   type: LoadBalancer
-  loadBalancerIP: {{ JANUS_CLOUD_RTP_STATIC_IP }}
+  loadBalancerIP: {{ JANUS_CLOUD_STATIC_IP }}
   sessionAffinity: ClientIP
   selector:
     app: janus

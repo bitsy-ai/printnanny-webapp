@@ -87,7 +87,7 @@ jobs:
       ARA_POSTGRES_PASSWORD: ${{ secrets.ARA_POSTGRES_PASSWORD }}
       ARA_POSTGRES_HOST: "127.0.0.1"
       ARA_SECRET_KEY: ${{ secrets.ARA_SECRET_KEY }}
-      JANUS_CLOUD_API_DOMAIN: janus.beta.print-nanny.com
+      JANUS_CLOUD_DOMAIN: janus.beta.print-nanny.com
       JANUS_CLOUD_ADMIN_SECRET: ${{ secrets.JANUS_ADMIN_SECRET }}
       JANUS_CLOUD_ADMIN_URL: https://janus.beta.print-nanny.com:7088/admin
       JANUS_CLOUD_API_URL: https://janus.beta.print-nanny.com:8088/janus

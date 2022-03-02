@@ -718,7 +718,7 @@ CORS_ALLOWED_ORIGINS = [
 
 # Janus cloud
 # ------------------------------------------------------------------------------
-JANUS_CLOUD_API_DOMAIN = env("JANUS_CLOUD_API_DOMAIN", default="localhost")
+JANUS_CLOUD_DOMAIN = env("JANUS_CLOUD_DOMAIN", default="localhost")
 JANUS_CLOUD_ADMIN_SECRET = env("JANUS_CLOUD_ADMIN_SECRET", default="debug")
 JANUS_CLOUD_ADMIN_URL = env(
     "JANUS_CLOUD_ADMIN_URL", default="http://localhost:7088/admin"

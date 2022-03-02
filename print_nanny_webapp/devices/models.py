@@ -367,7 +367,7 @@ class JanusAuth(SafeDeleteModel):
     @property
     def api_domain(self):
         if self.config_type == JanusConfigType.CLOUD:
-            return settings.JANUS_CLOUD_API_DOMAIN
+            return settings.JANUS_CLOUD_DOMAIN
         raise NotImplementedError(
             f"JanusAuth.api_domain is not implemented for JanusConfigType={self.config_type}"
         )
@@ -495,7 +495,7 @@ class JanusStream(SafeDeleteModel):
     @property
     def api_domain(self):
         if self.config_type == JanusConfigType.CLOUD:
-            return settings.JANUS_CLOUD_API_DOMAIN
+            return settings.JANUS_CLOUD_DOMAIN
         raise NotImplementedError(
             f"JanusAuth.api_domain is not implemented for JanusConfigType={self.config_type}"
         )

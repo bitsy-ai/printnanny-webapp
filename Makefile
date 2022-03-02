@@ -76,17 +76,6 @@ mypy:
 token:
 	@echo $(PRINT_NANNY_TOKEN)
 
-nebula-image:
-	docker build -f compose/production/nebula/nebula.Dockerfile \
-		-t nebula:$(NEBULA_VERSION) \
-		--build-arg NEBULA_VERSION=$(NEBULA_VERSION) \
-		compose/production/nebula/
-
-push-nebula-image: nebula-image
-	docker tag nebula:$(NEBULA_VERSION) \
-		us.gcr.io/$(GCP_PROJECT)/nebula:$(NEBULA_VERSION)
-	docker push us.gcr.io/$(GCP_PROJECT)/nebula:$(NEBULA_VERSION)
-
 octoprint-wait:
 	OCTOPRINT_URL=$(OCTOPRINT_URL) \
 		k8s/sandbox/octoprint-wait.sh
@@ -257,12 +246,14 @@ ns-apply:
 	echo "Using namespace environment $(NAMESPACE_ENV_FILE)"
 	dotenv -f $(NAMESPACE_ENV_FILE) run k8s/templates/apply.sh
 
-namespace-deploy: clean-dist dist/k8s build cluster-config ns-k8s ns-apply
+# namespace-deploy: clean-dist dist/k8s build cluster-config ns-k8s ns-apply
+namespace-deploy: clean-dist dist/k8s cluster-config ns-k8s ns-apply
 
-live-deploy: NAMESPACE_ENV_FILE=.envs/live.env
+
+live-deploy: NAMESPACE_ENV_FILE=.envs/.live/.env
 live-deploy: namespace-deploy
 
-beta-deploy: NAMESPACE_ENV_FILE=.envs/beta.env
+beta-deploy: NAMESPACE_ENV_FILE=.envs/.beta/.env
 beta-deploy: namespace-deploy
 
 prod-apply: cluster-config

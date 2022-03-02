@@ -101,7 +101,7 @@ jobs:
   deploy:
     environment: sandbox
     env:
-      JANUS_CLOUD_API_DOMAIN: janus.sandbox.print-nanny.com
+      JANUS_CLOUD_DOMAIN: janus.sandbox.print-nanny.com
       JANUS_CLOUD_ADMIN_SECRET: ${{ secrets.JANUS_ADMIN_SECRET }}
       JANUS_CLOUD_ADMIN_URL: https://janus.sandbox.print-nanny.com:7088/admin
       JANUS_CLOUD_API_URL: https://janus.sandbox.print-nanny.com:8088/janus

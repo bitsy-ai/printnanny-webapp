@@ -52,6 +52,6 @@ admin: {
 # it to browsers, you can set 'enforce_cors' to 'true' to have Janus
 # return a '403 Forbidden' for all requests that don't comply.
 cors: {
-    #allow_origin = "{{ JANUS_HOSTNAME }}"
+    #allow_origin = "{{ JANUS_CLOUD_DOMAIN }}"
     #enforce_cors = false
 }
