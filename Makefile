@@ -9,6 +9,7 @@ GCP_PROJECT ?= print-nanny-sandbox
 CLUSTER ?= www-sandbox
 ZONE ?= us-central1-c
 
+PRINTNANNY_NAMESPACE ?= beta
 PRINT_NANNY_URL ?= http://localhost:8000/
 PRINT_NANNY_API_URL ?= ${PRINT_NANNY_URL}api/
 OCTOPRINT_URL ?= http://localhost:5005/
@@ -74,17 +75,6 @@ mypy:
 
 token:
 	@echo $(PRINT_NANNY_TOKEN)
-
-nebula-image:
-	docker build -f compose/production/nebula/nebula.Dockerfile \
-		-t nebula:$(NEBULA_VERSION) \
-		--build-arg NEBULA_VERSION=$(NEBULA_VERSION) \
-		compose/production/nebula/
-
-push-nebula-image: nebula-image
-	docker tag nebula:$(NEBULA_VERSION) \
-		us.gcr.io/$(GCP_PROJECT)/nebula:$(NEBULA_VERSION)
-	docker push us.gcr.io/$(GCP_PROJECT)/nebula:$(NEBULA_VERSION)
 
 octoprint-wait:
 	OCTOPRINT_URL=$(OCTOPRINT_URL) \
@@ -247,6 +237,24 @@ sandbox-email:
 		k8s/sandbox/email.sh
 
 sandbox-ci: sandbox-deploy sandbox-email cypress-ci
+
+ns-k8s:
+	echo "Using namespace environment $(NAMESPACE_ENV_FILE)"
+	dotenv -f $(NAMESPACE_ENV_FILE) run k8s/templates/render.sh
+
+ns-apply:
+	echo "Using namespace environment $(NAMESPACE_ENV_FILE)"
+	dotenv -f $(NAMESPACE_ENV_FILE) run k8s/templates/apply.sh
+
+# namespace-deploy: clean-dist dist/k8s build cluster-config ns-k8s ns-apply
+namespace-deploy: clean-dist dist/k8s cluster-config ns-k8s ns-apply
+
+
+live-deploy: NAMESPACE_ENV_FILE=.envs/.live/.env
+live-deploy: namespace-deploy
+
+beta-deploy: NAMESPACE_ENV_FILE=.envs/.beta/.env
+beta-deploy: namespace-deploy
 
 prod-apply: cluster-config
 	GIT_SHA=$(GIT_SHA) k8s/prod/push.sh

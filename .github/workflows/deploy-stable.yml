@@ -85,7 +85,7 @@ jobs:
   deploy:
     environment: stable
     env:
-      JANUS_CLOUD_API_DOMAIN: janus.live.print-nanny.com
+      JANUS_CLOUD_DOMAIN: janus.live.print-nanny.com
       JANUS_CLOUD_ADMIN_SECRET: ${{ secrets.JANUS_ADMIN_SECRET }}
       JANUS_CLOUD_ADMIN_URL: https://janus.live.print-nanny.com:7088/admin
       JANUS_CLOUD_API_URL: https://janus.live.print-nanny.com:8088/janus
