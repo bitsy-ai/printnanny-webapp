@@ -1,0 +1,15 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ PRINTNANNY_NAMESPACE }}-printnanny-ai
+  namespace: {{ PRINTNANNY_NAMESPACE }}
+spec:
+  secretName: {{ PRINTNANNY_NAMESPACE }}-printnanny-ai-tls
+  issuerRef:
+    # The issuer created previously
+    name: letsencrypt-{{ PRINTNANNY_NAMESPACE }}-issuer
+  dnsNames:
+  - printnanny.ai
+  - {{ PRINTNANNY_NAMESPACE }}.printnanny.ai
+  - '*.{{ PRINTNANNY_NAMESPACE }}.printnanny.ai'
