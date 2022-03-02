@@ -2,8 +2,7 @@
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
-  name: letsencrypt-live-issuer
-  namespace: {{ PRINTNANNY_NAMESPACE }}
+  name: letsencrypt-dns-issuer
 spec:
   acme:
     # The ACME server URL
@@ -20,5 +19,5 @@ spec:
           cloudDNS:
             # The ID of the GCP project
             # reference: https://docs.cert-manager.io/en/latest/tasks/issuers/setup-acme/dns01/google.html
-            hostedZoneName: "{{ PRINTNANNY_NAMESPACE }}-print-nanny-com"
+            hostedZoneName: "printnanny-ai"
             project: {{ GCP_PROJECT }}
