@@ -7,8 +7,7 @@ metadata:
 spec:
   secretName: {{ PRINTNANNY_NAMESPACE }}-printnanny-ai-tls
   issuerRef:
-    # The issuer created previously
-    name: letsencrypt-{{ PRINTNANNY_NAMESPACE }}-issuer
+    name: letsencrypt-dns-issuer
   dnsNames:
   - printnanny.ai
   - {{ PRINTNANNY_NAMESPACE }}.printnanny.ai
