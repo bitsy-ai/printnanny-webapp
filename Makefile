@@ -249,9 +249,21 @@ sandbox-email:
 
 sandbox-ci: sandbox-deploy sandbox-email cypress-ci
 
-namespace-k8s:
-	echo "Rendering templates from $(PRINTNANNY_NAMESPACE)"
-namespace-deploy: build cluster-config prod-config prod-apply
+ns-k8s:
+	echo "Using namespace environment $(NAMESPACE_ENV_FILE)"
+	dotenv -f $(NAMESPACE_ENV_FILE) run k8s/templates/render.sh
+
+ns-apply:
+	echo "Using namespace environment $(NAMESPACE_ENV_FILE)"
+	dotenv -f $(NAMESPACE_ENV_FILE) run k8s/templates/apply.sh
+
+namespace-deploy: clean-dist dist/k8s build cluster-config ns-k8s ns-apply
+
+live-deploy: NAMESPACE_ENV_FILE=.envs/live.env
+live-deploy: namespace-deploy
+
+beta-deploy: NAMESPACE_ENV_FILE=.envs/beta.env
+beta-deploy: namespace-deploy
 
 prod-apply: cluster-config
 	GIT_SHA=$(GIT_SHA) k8s/prod/push.sh
