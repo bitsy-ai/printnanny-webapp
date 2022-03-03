@@ -718,7 +718,7 @@ CORS_ALLOWED_ORIGINS = [
 
 # Janus cloud
 # ------------------------------------------------------------------------------
-JANUS_CLOUD_API_DOMAIN = env("JANUS_CLOUD_API_DOMAIN", default="localhost")
+JANUS_CLOUD_DOMAIN = env("JANUS_CLOUD_DOMAIN", default="localhost")
 JANUS_CLOUD_ADMIN_SECRET = env("JANUS_CLOUD_ADMIN_SECRET", default="debug")
 JANUS_CLOUD_ADMIN_URL = env(
     "JANUS_CLOUD_ADMIN_URL", default="http://localhost:7088/admin"
@@ -730,7 +730,6 @@ JANUS_CLOUD_API_URL = env(
 JANUS_CLOUD_API_PORT = env("JANUS_CLOUD_API_PORT", default=8088)
 JANUS_CLOUD_WS_URL = env("JANUS_CLOUD_WS_URL", default="ws://aurora.local:8188")
 JANUS_CLOUD_WS_PORT = env("JANUS_CLOUD_WS_PORT", default=8188)
-JANUS_CLOUD_RTP_DOMAIN = env("JANUS_CLOUD_RTP_DOMAIN", default="aurora.local")
 JANUS_CLOUD_RTP_PORT_RANGE = env.tuple(
     "JANUS_CLOUD_RTP_PORT_RANGE", default=(5000, 5050)
 )
