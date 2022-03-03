@@ -1,7 +1,6 @@
 
 aiohttp
 argon2-cffi
-celery[redis]
 channels
 channels-redis
 discord.py
@@ -10,7 +9,6 @@ django
 django-allauth
 django-anymail[mailgun]
 django-cors-headers
-django-celery-beat
 django-compressor
 django-coturn
 django-coverage-plugin

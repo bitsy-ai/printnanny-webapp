@@ -1,10 +1,9 @@
+import time
+import logging
 from typing import Any, Optional, Union, Dict
 from urllib.parse import urljoin
 from django.apps import apps
 from django.urls import reverse
-from django.template import engines
-import time
-import logging
 
 import requests
 from print_nanny_webapp.alerts.api.serializers import AlertSerializer
@@ -26,7 +25,6 @@ from print_nanny_webapp.alerts.models import (
     PrintStatusAlert,
     VideoStatusAlert,
 )
-from print_nanny_webapp.remote_control.models import OctoPrintDevice
 
 AlertSettings = apps.get_model("alerts", "AlertSettings")
 GeeksToken = apps.get_model("partners", "GeeksToken")

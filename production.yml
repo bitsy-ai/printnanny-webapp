@@ -37,23 +37,3 @@ services:
       context: .
       dockerfile: ./compose/production/redis/Dockerfile
     container_name: redis
-
-  # celeryworker:
-  #   <<: *django
-  #   ports: []
-  #   image: print_nanny_webapp_production_celeryworker
-  #   command: /start-celeryworker
-
-  # celerybeat:
-  #   <<: *django
-  #   ports: []
-  #   image: print_nanny_webapp_production_celerybeat
-  #   command: /start-celerybeat
-
-  # flower:
-  #   <<: *django
-  #   ports: []
-  #   image: print_nanny_webapp_production_flower
-  #   command: /start-flower
-
-  

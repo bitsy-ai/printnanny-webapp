@@ -19,7 +19,6 @@ kubectl apply -f k8s/stable/ara-config.yml
 kubectl apply -f k8s/prod/ara.yml
 # TODO re-enable after event version cutover
 # kubectl apply -f k8s/prod/octoprint-events.yml
-kubectl apply -f k8s/prod/celery-worker.yml
 kubectl apply -f k8s/prod/django.yml
 
 kubectl set image deployment/ara "ara=us.gcr.io/print-nanny/ara:${GIT_SHA}" --record
