@@ -1,0 +1,64 @@
+---
+apiVersion: networking.gke.io/v1beta1
+kind: FrontendConfig
+metadata:
+  namespace: {{ PRINTNANNY_NAMESPACE }}
+  name: http-to-https
+spec:
+  redirectToHttps:
+    enabled: true
+    responseCodeName: MOVED_PERMANENTLY_DEFAULT
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: {{ PRINTNANNY_NAMESPACE }}
+  name: printnanny-{{ PRINTNANNY_NAMESPACE }}
+  annotations:
+    # networking.gke.io/v1beta1.FrontendConfig: "http-to-https"
+    kubernetes.io/ingress.global-static-ip-name: "printnanny-static-ip--{{ PRINTNANNY_NAMESPACE }}"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: letsencrypt-dns-issuer
+    acme.cert-manager.io/http01-edit-in-place: "true"
+spec:
+  tls: # < placing a host in the TLS config will indicate a certificate should be created
+  - hosts:
+    {% if PRINTNANNY_NAMESPACE == 'live' %}
+    - printnanny.ai
+    {% endif %}
+    - {{ PRINTNANNY_NAMESPACE }}.printnanny.ai
+    secretName: {{ PRINTNANNY_NAMESPACE }}-printnanny-ai-tls
+  rules:
+    # live www and api
+    {% if PRINTNANNY_NAMESPACE == 'live' %}
+    - host: printnanny.ai
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: django
+                port:
+                  number: 80
+    {% endif %}
+    - host: {{ PRINTNANNY_NAMESPACE }}.printnanny.ai
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: django
+                port:
+                  number: 80
+    - host: www.{{ PRINTNANNY_NAMESPACE }}.printnanny.ai
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: django
+                port:
+                  number: 80
