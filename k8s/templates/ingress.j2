@@ -62,13 +62,3 @@ spec:
                 name: django
                 port:
                   number: 80
-    - host: {{ PRINTNANNY_NAMESPACE }}.printnanny.ai
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: django
-                port:
-                  number: 80
