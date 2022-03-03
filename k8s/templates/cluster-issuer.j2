@@ -14,10 +14,13 @@ spec:
       name: letsencrypt-issuer
     # Enable the HTTP-01 challenge provider
     solvers:
-      - selector: {}
-        dns01:
+      - dns01:
           cloudDNS:
             # The ID of the GCP project
             # reference: https://docs.cert-manager.io/en/latest/tasks/issuers/setup-acme/dns01/google.html
             hostedZoneName: "printnanny-ai"
             project: {{ GCP_PROJECT }}
+        selector:
+          dnsNames:
+          - 'printnanny.ai'
+          - '*.printnanny.ai'
