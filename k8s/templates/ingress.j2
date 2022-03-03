@@ -15,11 +15,11 @@ metadata:
   namespace: {{ PRINTNANNY_NAMESPACE }}
   name: printnanny-{{ PRINTNANNY_NAMESPACE }}
   annotations:
-    # networking.gke.io/v1beta1.FrontendConfig: "http-to-https"
+    kubernetes.io/ingress.class: "nginx"
+    networking.gke.io/v1beta1.FrontendConfig: "http-to-https"
     kubernetes.io/ingress.global-static-ip-name: "printnanny-static-ip--{{ PRINTNANNY_NAMESPACE }}"
     nginx.ingress.kubernetes.io/rewrite-target: /
     cert-manager.io/cluster-issuer: letsencrypt-dns-issuer
-    acme.cert-manager.io/http01-edit-in-place: "true"
 spec:
   tls: # < placing a host in the TLS config will indicate a certificate should be created
   - hosts:
