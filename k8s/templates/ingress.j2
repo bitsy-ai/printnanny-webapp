@@ -15,7 +15,6 @@ metadata:
   namespace: {{ PRINTNANNY_NAMESPACE }}
   name: printnanny-{{ PRINTNANNY_NAMESPACE }}
   annotations:
-    kubernetes.io/ingress.class: "nginx"
     networking.gke.io/v1beta1.FrontendConfig: "http-to-https"
     kubernetes.io/ingress.global-static-ip-name: "printnanny-static-ip--{{ PRINTNANNY_NAMESPACE }}"
     nginx.ingress.kubernetes.io/rewrite-target: /
