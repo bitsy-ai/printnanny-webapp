@@ -27,6 +27,10 @@ if TYPE_CHECKING:
     from print_nanny_webapp.users.models import User as UserType
 User = get_user_model()
 
+# set stripe api_key for all api calls
+# djstripe_settings automatically selects between test/live key based on STRIPE_LIVE_MODE setting
+stripe.api_key = djstripe_settings.STRIPE_SECRET_KEY
+
 
 class FoundingMemberSignupView(SignupView):
     template_name = "subscriptions/founding-member-signup.html"
