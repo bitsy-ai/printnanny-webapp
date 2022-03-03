@@ -57,7 +57,7 @@ spec:
         image: redis:6.2
       - name: celery-worker
         imagePullPolicy: Always
-        image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp:{{ GIT_SHA }}
+        image: us.gcr.io/printnanny-sandbox/print_nanny_webapp:{{ GIT_SHA }}
         command:
           - /start-celeryworker
         envFrom:
@@ -71,7 +71,7 @@ spec:
         command:
           - python
           - print_nanny_webapp/telemetry/subscribers/octoprint_events.py
-        image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp:{{ GIT_SHA }}
+        image: us.gcr.io/printnanny-sandbox/print_nanny_webapp:{{ GIT_SHA }}
         envFrom:
           - configMapRef:
               name: "sandbox-config"
@@ -80,7 +80,7 @@ spec:
             value: octoprint-events
       - name: django
         imagePullPolicy: Always
-        image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp:{{ GIT_SHA }}
+        image: us.gcr.io/printnanny-sandbox/print_nanny_webapp:{{ GIT_SHA }}
         livenessProbe:
           httpGet:
             path: /health/
