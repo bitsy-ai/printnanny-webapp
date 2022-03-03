@@ -141,7 +141,7 @@ jobs:
       id: deploy
       run: |
         make sandbox-deploy \
-        GCP_PROJECT="print-nanny-sandbox" \
+        GCP_PROJECT="printnanny-sandbox" \
         PRINT_NANNY_USER="${{ secrets.SANDBOX_DJANGO_SUPERUSER_USERNAME }}" \
         PRINT_NANNY_URL="$PRINT_NANNY_URL" \
         OCTOPRINT_URL="$OCTOPRINT_URL" \
@@ -159,7 +159,7 @@ jobs:
             API Client version: ${{ steps.deploy.outputs.printnanny_client_version }}
             Cluster: SANDBOX
             ```
-            Cluster status: https://console.cloud.google.com/kubernetes/workload/overview?project=print-nanny-sandbox
+            Cluster status: https://console.cloud.google.com/kubernetes/workload/overview?project=printnanny-sandbox
             Promote build: https://github.com/bitsy-ai/printnanny-webapp/actions
   promote:
     needs: [ deploy ]

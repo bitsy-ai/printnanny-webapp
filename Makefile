@@ -5,7 +5,7 @@
 # silence targets where credentials are passed
 .SILENT: cypress-open cypress-run cypress-ci local-up local-creds
 
-GCP_PROJECT ?= print-nanny-sandbox
+GCP_PROJECT ?= printnanny-sandbox
 CLUSTER ?= www-sandbox
 ZONE ?= us-central1-c
 
@@ -141,7 +141,7 @@ local-clean:
 		octoprint-nanny-webapp_local_prometheus_data || echo "No volumes found"
 
 .envs/.local/key.json:
-	gcloud iam service-accounts keys create .envs/.local/key.json --iam-account=owner-service-account@print-nanny-sandbox.iam.gserviceaccount.com
+	gcloud iam service-accounts keys create .envs/.local/key.json --iam-account=owner-service-account@printnanny-sandbox.iam.gserviceaccount.com
 
 local-creds: .envs/.local/key.json
 	echo "Mounted Google Cloud Platform service account key from .envs/.local/key.json with id $(shell cat .envs/.local/key.json | jq .private_key_id)"

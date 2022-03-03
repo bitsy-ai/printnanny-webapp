@@ -7,7 +7,7 @@ jobs:
   sandbox:
     environment: sandbox
     env:
-      GCP_PROJECT: print-nanny-sandbox
+      GCP_PROJECT: printnanny-sandbox
       GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.SANDBOX_GCP_SERVICE_ACCOUNT_KEY }}  # TODO replace repo-level secrets with sandbox env-level secrets
       GCP_SERVICE_ACCOUNT: ${{ secrets.SANDBOX_GCP_SERVICE_ACCOUNT }}  # TODO replace repo-level secrets with sandbox env-level secrets
       CLUSTER: www-sandbox
@@ -15,7 +15,7 @@ jobs:
       JANUS_HOSTNAME: janus.sandbox.print-nanny.com
       JANUS_VERSION: 0.11.8
       JANUS_ADMIN_SECRET: ${{ secrets.JANUS_ADMIN_SECRET }}
-      JANUS_IMAGE_REPO: us.gcr.io/print-nanny-sandbox/janus
+      JANUS_IMAGE_REPO: us.gcr.io/printnanny-sandbox/janus
       JANUS_CLOUD_RTP_STATIC_IP: 34.117.233.175
 
     runs-on: ubuntu-latest

@@ -51,7 +51,7 @@ def on_alert_event(message):
     )
     annotated_video_path = annotated_video_path.replace(
         "media/", ""
-    )  # django will prepend media root, this prevents a string like print-nanny-sandbox/media/media/path/to/upload
+    )  # django will prepend media root, this prevents a string like printnanny-sandbox/media/media/path/to/upload
 
     alert_settings, created = AlertSettings.objects.get_or_create(
         user_id=user_id,

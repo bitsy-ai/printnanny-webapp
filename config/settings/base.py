@@ -249,7 +249,7 @@ TEMPLATES = [
 # ------------------------------------------------------------------------------
 # https://django-storages.readthedocs.io/en/latest/#installation
 INSTALLED_APPS += ["storages"]  # noqa F405
-GS_BUCKET_NAME = env("DJANGO_GCP_STORAGE_BUCKET_NAME", default="print-nanny-sandbox")
+GS_BUCKET_NAME = env("DJANGO_GCP_STORAGE_BUCKET_NAME", default="printnanny-sandbox")
 GS_FILE_OVERWRITE = True
 GS_DEFAULT_ACL = "projectPrivate"
 # STATIC
@@ -539,7 +539,7 @@ GCP_LTS_CA_BACKUP = "https://pki.goog/gsr4/GSR4.crt"
 
 GCP_PUBSUB_UNDELIVERED_HEALTH_THRESHOLD_MINUTES = 10
 
-GCP_PROJECT_ID = env("GCP_PROJECT_ID", default="print-nanny-sandbox")
+GCP_PROJECT_ID = env("GCP_PROJECT_ID", default="printnanny-sandbox")
 
 GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION = "us-central1"
 GCP_CLOUD_IOT_STANDALONE_DEVICE_REGISTRY = env(
@@ -718,7 +718,7 @@ CORS_ALLOWED_ORIGINS = [
 
 # Janus cloud
 # ------------------------------------------------------------------------------
-JANUS_CLOUD_DOMAIN = env("JANUS_CLOUD_DOMAIN", default="localhost")
+JANUS_CLOUD_API_DOMAIN = env("JANUS_CLOUD_API_DOMAIN", default="localhost")
 JANUS_CLOUD_ADMIN_SECRET = env("JANUS_CLOUD_ADMIN_SECRET", default="debug")
 JANUS_CLOUD_ADMIN_URL = env(
     "JANUS_CLOUD_ADMIN_URL", default="http://localhost:7088/admin"
