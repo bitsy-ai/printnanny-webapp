@@ -2,15 +2,28 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: {{ PRINTNANNY_NAMESPACE }}-printnanny-ai
+  name: printnanny-ai-tls
   namespace: {{ PRINTNANNY_NAMESPACE }}
 spec:
-  secretName: {{ PRINTNANNY_NAMESPACE }}-printnanny-ai-tls
+  secretName: printnanny-ai-tls
   issuerRef:
     name: letsencrypt-dns-issuer
+    kind: ClusterIssuer
   dnsNames:
   {% if PRINTNANNY_NAMESPACE == 'live' %}
   - printnanny.ai
+  - '*.printnanny.ai'
   {% endif %}
   - {{ PRINTNANNY_NAMESPACE }}.printnanny.ai
   - '*.{{ PRINTNANNY_NAMESPACE }}.printnanny.ai'
+  acme:
+    config:
+      - dns01:
+          provider: clouddns
+        domains:
+          {% if PRINTNANNY_NAMESPACE == 'live' %}
+          - printnanny.ai
+          - '*.printnanny.ai'
+          {% endif %}
+          - {{ PRINTNANNY_NAMESPACE }}.printnanny.ai
+          - '*.{{ PRINTNANNY_NAMESPACE }}.printnanny.ai'

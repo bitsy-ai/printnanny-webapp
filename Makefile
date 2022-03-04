@@ -432,3 +432,26 @@ janus-image:
 	docker tag us.gcr.io/$(GCP_PROJECT)/janus:$(JANUS_VERSION) bitsyai/janus:$(JANUS_VERSION)
 	docker push us.gcr.io/$(GCP_PROJECT)/janus:$(JANUS_VERSION)
 	docker push bitsyai/janus:$(JANUS_VERSION)
+
+cert-manager:
+	helm upgrade -i \
+		cert-manager jetstack/cert-manager \
+		--namespace cert-manager \
+		--create-namespace \
+		--version v1.7.1 \
+		--set installCRDs=true \
+		--set prometheus.enabled=false \
+		--set ingressShim.defaultIssuerName=letsencrypt-dns-issuer \
+		--set ingressShim.defaultIssuerKind=ClusterIssuer \
+		--set ingressShim.defaultIssuerGroup=cert-manager.io
+
+cert-manager-dns:
+	gcloud projects add-iam-policy-binding $(GCP_PROJECT) \
+		--member serviceAccount:dns01-solver@$(GCP_PROJECT).iam.gserviceaccount.com \
+		--role roles/dns.admin
+	gcloud iam service-accounts add-iam-policy-binding \
+		--role roles/iam.workloadIdentityUser \
+		--member "serviceAccount:$(GCP_PROJECT).svc.id.goog[cert-manager/cert-manager]" \
+		dns01-solver@$(GCP_PROJECT).iam.gserviceaccount.com
+	kubectl annotate serviceaccount --namespace=cert-manager cert-manager \
+    "iam.gke.io/gcp-service-account=dns01-solver@$(GCP_PROJECT).iam.gserviceaccount.com"
