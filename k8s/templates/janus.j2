@@ -620,7 +620,7 @@ metadata:
   name: janus-udp
 spec:
   type: LoadBalancer
-  loadBalancerIP: {{ JANUS_CLOUD_STATIC_IP }}
+  loadBalancerIP: {{ JANUS_CLOUD_RTP_IP }}
   sessionAffinity: ClientIP
   selector:
     app: janus

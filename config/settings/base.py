@@ -736,6 +736,7 @@ JANUS_CLOUD_RTP_PORT_RANGE = env.tuple(
 JANUS_CLOUD_STREAMING_ADMIN_KEY = env(
     "JANUS_CLOUD_STREAMING_ADMIN_KEY", default="debugstreaming"
 )
+JANUS_CLOUD_RTP_DOMAIN = env("JANUS_CLOUD_RTP_DOMAIN", default="localhost")
 
 # django-qr-code
 # https://django-qr-code.readthedocs.io/en/latest/pages/README.html
