@@ -237,11 +237,15 @@ sandbox-ci: sandbox-deploy sandbox-email cypress-ci
 
 ns-k8s:
 	echo "Using namespace environment $(NAMESPACE_ENV_FILE)"
-	dotenv -f $(NAMESPACE_ENV_FILE) run k8s/templates/render.sh
+	GIT_SHA=$(GIT_SHA) \
+	GIT_BRANCH=$(GIT_BRANCH) \
+		dotenv -f $(NAMESPACE_ENV_FILE) run k8s/templates/render.sh
 
 ns-apply:
 	echo "Using namespace environment $(NAMESPACE_ENV_FILE)"
-	dotenv -f $(NAMESPACE_ENV_FILE) run k8s/templates/apply.sh
+	GIT_SHA=$(GIT_SHA) \
+	GIT_BRANCH=$(GIT_BRANCH) \
+		dotenv -f $(NAMESPACE_ENV_FILE) run k8s/templates/apply.sh
 
 # namespace-deploy: clean-dist dist/k8s build cluster-config ns-k8s ns-apply
 namespace-deploy: clean-dist dist/k8s cluster-config ns-k8s ns-apply
@@ -254,8 +258,12 @@ beta-deploy: NAMESPACE_ENV_FILE=.envs/.beta/.env
 beta-deploy: namespace-deploy
 
 gh-namespace-deploy: clean-dist dist/k8s build cluster-config
-	./k8s/templates/render.sh
-	./k8s/templates/apply.sh
+	GIT_SHA=$(GIT_SHA) \
+	GIT_BRANCH=$(GIT_BRANCH) \
+		./k8s/templates/render.sh
+	GIT_SHA=$(GIT_SHA) \
+	GIT_BRANCH=$(GIT_BRANCH) \
+		./k8s/templates/apply.sh
 
 prod-apply: cluster-config
 	GIT_SHA=$(GIT_SHA) k8s/prod/push.sh
