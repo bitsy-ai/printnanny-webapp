@@ -1,7 +1,10 @@
 
-name: Live Deploy
+name: Beta Deploy
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   mypy:
@@ -77,7 +80,6 @@ jobs:
       DJANGO_SUPERUSER_PASSWORD: ${{ secrets.DJANGO_SUPERUSER_PASSWORD }}
       DJSTRIPE_WEBHOOK_SECRET: ${{ secrets.DJSTRIPE_WEBHOOK_SECRET }}
       LETSENCRYPT_EMAIL: ${{ secrets.LETSENCRYPT_EMAIL }}
-      GIT_SHA: ${{ env.GITHUB_SHA }}
       GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT }}
       GCP_PROJECT: ${{ secrets.GCP_PROJECT }}
       GCP_REGION: ${{ secrets.GCP_REGION }}
@@ -111,7 +113,10 @@ jobs:
       STRIPE_LIVE_PUBLIC_KEY: ${{ secrets.STRIPE_LIVE_PUBLIC_KEY }}
       STRIPE_LIVE_SECRET_KEY: ${{ secrets.STRIPE_LIVE_SECRET_KEY }}
     needs: [ lint, shellcheck, mypy ]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  push:
+    branches:
+      - master
+      - develop
     steps:
     - name: Input Settings
       run: |
