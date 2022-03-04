@@ -30,7 +30,7 @@ env:
   PRINT_NANNY_USER: ${{ secrets.SANDBOX_DJANGO_SUPERUSER_USERNAME }}
   PRINT_NANNY_URL: https://webapp.sandbox.print-nanny.com/
   PRINT_NANNY_WS_URL: wss://webapp.sandbox.print-nanny.com/ws
-  PRINT_NANNY_STATIC_URL: https://webapp.sandbox.print-nanny.com/static/
+  PRINTNANNY_STATIC_URL: https://webapp.sandbox.print-nanny.com/static/
   OCTOPRINT_URL: https://octoprint.sandbox.print-nanny.com
   DJANGO_SUPERUSER_PASSWORD: ${{ secrets.SANDBOX_DJANGO_SUPERUSER_PASSWORD }}
   DJANGO_SUPERUSER_EMAIL: ${{ secrets.SANDBOX_DJANGO_SUPERUSER_EMAIL }}

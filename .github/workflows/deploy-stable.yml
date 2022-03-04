@@ -25,7 +25,7 @@ env:
   POSTGRES_USER: ${{ secrets.PROD_POSTGRES_USER }}
   POSTGRES_HOST: '127.0.0.1'
   PRINTNANNY_BASE_URL: https://print-nanny.com
-  PRINT_NANNY_STATIC_URL: https://print-nanny.com/static/
+  PRINTNANNY_STATIC_URL: https://print-nanny.com/static/
   PRINT_NANNY_USER: ${{ secrets.PROD_DJANGO_SUPERUSER_USERNAME }}
   PRINT_NANNY_WS_URL: wss://print-nanny.com/ws
   STRIPE_PUBLIC_KEY: ${{ secrets.PROD_STRIPE_PUBLIC_KEY }}
