@@ -157,5 +157,6 @@ jobs:
             ```
             API Client version: ${{ steps.deploy.outputs.printnanny_client_version }}
             Cluster: www-beta
+            Namespace: live
             ```
             Cluster status: https://console.cloud.google.com/kubernetes/workload/overview?project=print-nanny
