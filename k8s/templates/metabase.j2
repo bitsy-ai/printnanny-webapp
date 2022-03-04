@@ -1,8 +1,10 @@
+{% if PRINTNANNY_NAMESPACE == 'live' %}
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: metabase
+  namespace: {{ PRINTNANNY_NAMESPACE }}
 spec:
   replicas: 1
   selector:
@@ -13,7 +15,7 @@ spec:
       labels:
         app: metabase
     spec:
-      serviceAccountName: cloudsql-client
+      serviceAccountName: webapp
       containers:
       - name: cloud-sql-proxy
         image: gcr.io/cloudsql-docker/gce-proxy:1.17
@@ -53,6 +55,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: {{ PRINTNANNY_NAMESPACE }}
   name: metabase
   labels:
     app: metabase
@@ -65,3 +68,16 @@ spec:
       port: 80
       targetPort: 3000
 ---
+kind: ConfigMap 
+apiVersion: v1 
+metadata:
+  namespace: {{ PRINTNANNY_NAMESPACE }}
+  name: metabase
+data:
+  MB_DB_TYPE: "postgres"
+  MB_DB_DBNAME: "{{ METABASE_DB_NAME }}"
+  MB_DB_PORT: "5432"
+  MB_DB_USER: "{{ METABASE_DB_USER }}"
+  MB_DB_PASS: "{{ METABASE_DB_PASS }}"
+  MB_DB_HOST: "127.0.0.1"
+{% endif %}
