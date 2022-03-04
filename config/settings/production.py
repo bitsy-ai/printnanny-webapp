@@ -172,7 +172,7 @@ MIDDLEWARE += ["django_prometheus.middleware.PrometheusAfterMiddleware"]
 
 # Django channels
 BASE_URL = env("DJANGO_BASE_URL", default="https://www.printnanny.ai")
-WS_BASE_URL = env("PRINT_NANNY_WS_URL", default="wss://www.printnanny.ai/ws")
+WS_BASE_URL = env("DJANGO_WS_URL", default="wss://www.printnanny.ai/ws")
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
@@ -205,7 +205,13 @@ GHOST_CONTENT_API_KEY = env("GHOST_CONTENT_API_KEY")
 # ------------------------------------------------------------------------------
 CORS_ALLOWED_ORIGINS = [
     "https://print-nanny.com",
+    "https://www.print-nanny.com",
+    "https://printnanny.ai",
     "https://www.printnanny.ai",
+    "https://live.printnanny.ai",
+    "https://www.live.printnanny.ai",
+    "https://beta.printnanny.ai",
+    "https://www.beta.printnanny.ai",
 ]
 
 # posthog

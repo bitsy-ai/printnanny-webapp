@@ -27,7 +27,7 @@ env:
   DJANGO_BASE_URL: https://print-nanny.com
   DJANGO_STATIC_URL: https://print-nanny.com/static/
   PRINT_NANNY_USER: ${{ secrets.PROD_DJANGO_SUPERUSER_USERNAME }}
-  PRINT_NANNY_WS_URL: wss://print-nanny.com/ws
+  DJANGO_WS_URL: wss://print-nanny.com/ws
   STRIPE_PUBLIC_KEY: ${{ secrets.PROD_STRIPE_PUBLIC_KEY }}
   STRIPE_SECRET_KEY: ${{ secrets.PROD_STRIPE_SECRET_KEY }}
   POSTHOG_API_KEY: ${{ secrets.POSTHOG_API_KEY }}

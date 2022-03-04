@@ -77,7 +77,7 @@ jobs:
       DJANGO_BASE_URL: https://printnanny.ai
       DJANGO_STATIC_URL: https://printnanny.ai/static/
       PRINT_NANNY_USER: ${{ secrets.DJANGO_SUPERUSER_USERNAME }}
-      PRINT_NANNY_WS_URL: wss://printnanny.ai/ws
+      DJANGO_WS_URL: wss://printnanny.ai/ws
       STRIPE_PUBLIC_KEY: ${{ secrets.STRIPE_PUBLIC_KEY }}
       STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
       POSTHOG_API_KEY: ${{ secrets.POSTHOG_API_KEY }}
