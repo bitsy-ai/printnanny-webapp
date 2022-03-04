@@ -5,9 +5,10 @@ from pathlib import Path
 import os
 import socket
 import environ
+import subprocess
 from django.contrib.messages import constants as messages
 
-from print_nanny_webapp import __version__ as PRINT_NANNY_WEBAPP_VERSION
+from print_nanny_webapp import __version__ as API_VERSION
 
 ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 # print_nanny_webapp/
@@ -712,3 +713,7 @@ JANUS_CLOUD_RTP_DOMAIN = env("JANUS_CLOUD_RTP_DOMAIN", default="localhost")
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += ["qr_code"]
 SERVE_QR_CODE_IMAGE_PATH = "qr/"
+
+# set build version
+# ------------------------------------------------------------------------------
+GIT_SHA = env("GIT_SHA", default="No GIT_SHA specified")

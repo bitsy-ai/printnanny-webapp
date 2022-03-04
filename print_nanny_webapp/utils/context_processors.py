@@ -35,8 +35,10 @@ def settings_context(request):
 
     obj = {
         "ABOUT_URL": settings.ABOUT_URL,
+        "API_VERSION": settings.API_VERSION,
         "AVAILABLE_SUBSCRIPTIONS_COUNT": num_subscriptions_available,
         "BLOG_SITE_URL": settings.BLOG_SITE_URL,
+        "GIT_SHA": settings.GIT_SHA,
         "CDN_BASE_URL": settings.CDN_BASE_URL,
         "CURRENT_UTC_TS": int(timezone.now().timestamp()),
         "DEBUG": settings.DEBUG,
