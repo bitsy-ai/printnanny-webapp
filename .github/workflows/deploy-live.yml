@@ -59,7 +59,7 @@ jobs:
       CLOUD_SQL_POSTGRES_INSTANCE: ${{ secrets.CLOUD_SQL_POSTGRES_INSTANCE }}
       CLUSTER: www-beta
       DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
-      DJANGO_ADMIN_UR: ${{ secrets.DJANGO_ADMIN_URL }}
+      DJANGO_ADMIN_URL: ${{ secrets.DJANGO_ADMIN_URL }}
       DJANGO_ALLOWED_HOSTS: ${{ secrets.DJANGO_ALLOWED_HOSTS }}
       DJANGO_BASE_URL: ${{ secrets.DJANGO_BASE_URL }}
       DJANGO_STATIC_URL: ${{ secrets.DJANGO_STATIC_URL }}
@@ -80,6 +80,8 @@ jobs:
       GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT }}
       GCP_PROJECT: ${{ secrets.GCP_PROJECT }}
       GCP_REGION: ${{ secrets.GCP_REGION }}
+      GCP_SERVICE_ACCOUNT: ${{ secrets.PROD_GCP_SERVICE_ACCOUNT }}
+      GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.PROD_GCP_SERVICE_ACCOUNT_KEY  }}
       GCP_CLOUDIOT_DEVICE_REGISTRY: ${{ secrets.GCP_CLOUDIOT_DEVICE_REGISTRY }}
       GHOST_ADMIN_API_KEY: ${{ secrets.GHOST_ADMIN_API_KEY }}
       GHOST_CONTENT_API_KEY: ${{ secrets.GHOST_CONTENT_API_KEY }}
@@ -123,7 +125,7 @@ jobs:
         sudo apt-get install makepasswd
     - uses: actions/setup-node@v2
       with:
-        node-version: '14'
+        node-version: '15'
     - name: Write deploy key
       run: echo $GCP_SERVICE_ACCOUNT_KEY > key.json
     - name: Active Service Account
@@ -136,7 +138,7 @@ jobs:
     - name: Deploy to stable cluster
       id: deploy
       run: |
-        make live-deploy \
+        make gh-namespace-deploy \
         CLUSTER="www-beta" \
         GCP_PROJECT="print-nanny" \
         PRINT_NANNY_USER="${{ secrets.PROD_DJANGO_SUPERUSER_USERNAME }}" \
