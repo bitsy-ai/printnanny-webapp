@@ -21,10 +21,13 @@ metadata:
     kubernetes.io/ingress.global-static-ip-name: "printnanny-static-ip--{{ PRINTNANNY_NAMESPACE }}"
     networking.gke.io/v1beta1.FrontendConfig: "http-to-https"
     nginx.ingress.kubernetes.io/rewrite-target: /
+    acme.cert-manager.io/http01-edit-in-place: "true"
 spec:
   tls:
   - hosts:
       {% if PRINTNANNY_NAMESPACE == 'live' %}
+      - print-nanny.com
+      - www.print-nanny.com
       - printnanny.ai
       - dl.printnanny.ai
       - download.printnanny.ai
@@ -44,7 +47,27 @@ spec:
                 name: django
                 port:
                   number: 80
+    - host: print-nanny.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: django
+                port:
+                  number: 80
     - host: www.printnanny.ai
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: django
+                port:
+                  number: 80
+    - host: www.print-nanny.com
       http:
         paths:
           - path: /

@@ -16,8 +16,8 @@ metadata:
     networking.gke.io/v1beta1.FrontendConfig: "http-to-https"
     kubernetes.io/ingress.global-static-ip-name: "django-static-ip"
     networking.gke.io/managed-certificates: print-nanny-dot-com
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/permanent-redirect: https://www.printnanny.ai$request_uri
+    nginx.ingress.kubernetes.io/server-snippet: |
+      rewrite ^/(.*)$ https://www.printnanny.ai/$1 permanent;
 spec:
   rules:
     # www and api

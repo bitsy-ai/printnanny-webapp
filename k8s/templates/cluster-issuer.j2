@@ -12,7 +12,6 @@ spec:
     # Name of a secret used to store the ACME account private key
     privateKeySecretRef:
       name: letsencrypt-issuer
-    # Enable the HTTP-01 challenge provider
     solvers:
       - dns01:
           cloudDNS:
@@ -28,3 +27,11 @@ spec:
           - '*.beta.printnanny.ai'
           - live.printnanny.ai
           - '*.live.printnanny.ai'
+      - http01:
+          ingress:
+            class: nginx
+        selector:
+          dnsNames:
+          - print-nanny.com
+          - www.print-nanny.com
+          - api.print-nanny.com
