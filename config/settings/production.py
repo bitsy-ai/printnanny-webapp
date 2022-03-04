@@ -217,3 +217,9 @@ CORS_ALLOWED_ORIGINS = [
 # https://posthog.com/docs/libraries/python
 posthog.project_api_key = env("POSTHOG_API_KEY")
 posthog.debug = False
+
+# cloudiot registry
+# ------------------------------------------------------------------------------
+GCP_CLOUDIOT_STANDALONE_DEVICE_REGISTRY = env(
+    "GCP_CLOUDIOT_DEVICE_REGISTRY", default="printnanny-os--live"
+)

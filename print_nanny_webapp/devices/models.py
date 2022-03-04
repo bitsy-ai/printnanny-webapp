@@ -254,8 +254,8 @@ class CloudiotDevice(SafeDeleteModel):
     def gcp_resource(self):
         return self.client.device_path(
             settings.GCP_PROJECT_ID,
-            settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
-            settings.GCP_CLOUD_IOT_STANDALONE_DEVICE_REGISTRY,
+            settings.GCP_CLOUDIOT_DEVICE_REGISTRY_REGION,
+            settings.GCP_CLOUDIOT_STANDALONE_DEVICE_REGISTRY,
             self.num_id,
         )
 
@@ -265,11 +265,11 @@ class CloudiotDevice(SafeDeleteModel):
 
     @property
     def gcp_region(self):
-        return settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION
+        return settings.GCP_CLOUDIOT_DEVICE_REGISTRY_REGION
 
     @property
     def gcp_cloudiot_device_registry(self):
-        return settings.GCP_CLOUD_IOT_STANDALONE_DEVICE_REGISTRY
+        return settings.GCP_CLOUDIOT_STANDALONE_DEVICE_REGISTRY
 
     @property
     def mqtt_bridge_hostname(self):
