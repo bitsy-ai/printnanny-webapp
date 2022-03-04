@@ -138,7 +138,7 @@ jobs:
     - name: Deploy to stable cluster
       id: deploy
       run: |
-        make live-deploy \
+        make gh-namespace-deploy \
         CLUSTER="www-beta" \
         GCP_PROJECT="print-nanny" \
         PRINT_NANNY_USER="${{ secrets.PROD_DJANGO_SUPERUSER_USERNAME }}" \
