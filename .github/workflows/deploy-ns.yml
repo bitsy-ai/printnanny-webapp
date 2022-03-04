@@ -75,7 +75,7 @@ jobs:
       POSTGRES_HOST: "127.0.0.1"
       POSTGRES_PORT: 5432
       DJANGO_BASE_URL: https://printnanny.ai
-      PRINTNANNY_STATIC_URL: https://printnanny.ai/static/
+      DJANGO_STATIC_URL: https://printnanny.ai/static/
       PRINT_NANNY_USER: ${{ secrets.DJANGO_SUPERUSER_USERNAME }}
       PRINT_NANNY_WS_URL: wss://printnanny.ai/ws
       STRIPE_PUBLIC_KEY: ${{ secrets.STRIPE_PUBLIC_KEY }}
