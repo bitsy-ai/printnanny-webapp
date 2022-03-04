@@ -60,6 +60,7 @@ spec:
   apiVersion: cloud.google.com/v1
   kind: BackendConfig
   metadata:
+    namespace: {{ PRINTNANNY_NAMESPACE }}
     name: nginx-gcsfuse
   spec:
     cdn:
@@ -68,6 +69,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: {{ PRINTNANNY_NAMESPACE }}
   name: nginx-gcsfuse
   labels:
     app.kubernetes.io/name: nginx-gcsfuse
