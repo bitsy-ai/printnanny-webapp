@@ -262,7 +262,7 @@ ns-rollout:
 	PRINTNANNY_NAMESPACE=$(PRINTNANNY_NAMESPACE) \
 		./tools/rollout.sh
 
-namespace-deploy: clean-dist dist/k8s cluster-config ns-k8s ns-apply ns-rollout
+namespace-deploy: clean-dist dist/k8s cluster-config build ns-k8s ns-apply ns-rollout
 
 live-deploy: PRINTNANNY_NAMESPACE=live
 live-deploy: namespace-deploy
