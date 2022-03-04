@@ -74,6 +74,16 @@ spec:
                 name: nginx-gcsfuse
                 port:
                   number: 80
+    - host: metabase.printnanny.ai
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: metabase
+                port:
+                  number: 80
     {% endif %}
     - host: {{ PRINTNANNY_NAMESPACE }}.printnanny.ai
       http:
