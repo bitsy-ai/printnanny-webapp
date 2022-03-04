@@ -10,4 +10,5 @@ kubectl apply -f dist/k8s/ara.yml
 kubectl apply -f dist/k8s/django.yml
 kubectl apply -f dist/k8s/janus.yml
 kubectl apply -f dist/k8s/gcsfuse.yml
+kubectl apply -f dist/k8s/metabase.yml
 kubectl apply -f dist/k8s/ingress.yml

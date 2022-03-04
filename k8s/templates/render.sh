@@ -13,3 +13,4 @@ j2 k8s/templates/ara.j2 -o dist/k8s/ara.yml
 j2 k8s/templates/django.j2 -o dist/k8s/django.yml
 j2 k8s/templates/janus.j2 -o dist/k8s/janus.yml
 j2 k8s/templates/gcsfuse.j2 -o dist/k8s/gcsfuse.yml
+j2 k8s/templates/metabase.j2 -o dist/k8s/metabase.yml
