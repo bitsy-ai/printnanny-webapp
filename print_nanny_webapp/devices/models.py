@@ -373,6 +373,14 @@ class JanusAuth(SafeDeleteModel):
         )
 
     @property
+    def rtp_domain(self):
+        if self.config_type == JanusConfigType.CLOUD:
+            return settings.JANUS_CLOUD_RTP_DOMAIN
+        raise NotImplementedError(
+            f"JanusAuth.rpt_domain is not implemented for JanusConfigType={self.config_type}"
+        )
+
+    @property
     def api_port(self):
         if self.config_type == JanusConfigType.CLOUD:
             return settings.JANUS_CLOUD_API_PORT
@@ -490,6 +498,14 @@ class JanusStream(SafeDeleteModel):
             return settings.JANUS_CLOUD_DOMAIN
         raise NotImplementedError(
             f"JanusAuth.api_domain is not implemented for JanusConfigType={self.config_type}"
+        )
+
+    @property
+    def rtp_domain(self):
+        if self.config_type == JanusConfigType.CLOUD:
+            return settings.JANUS_CLOUD_RTP_DOMAIN
+        raise NotImplementedError(
+            f"JanusAuth.rtp_domain is not implemented for JanusConfigType={self.config_type}"
         )
 
     @property
