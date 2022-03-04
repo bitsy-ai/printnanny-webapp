@@ -264,6 +264,7 @@ namespace-deploy: clean-dist dist/k8s cluster-config build ns-k8s ns-apply ns-ro
 
 
 live-deploy: NAMESPACE_ENV_FILE=.envs/.live/.env
+live-deploy: PRINTNANNY_NAMESPACE=live
 live-deploy: namespace-deploy
 
 beta-deploy: NAMESPACE_ENV_FILE=.envs/.beta/.env
