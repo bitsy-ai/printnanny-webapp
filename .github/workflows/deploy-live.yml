@@ -1,43 +1,8 @@
 
-name: Stable Deploy
+name: Live Deploy
 on:
   workflow_dispatch:
 
-env:
-  CELERY_FLOWER_PASSWORD: ${{ secrets.PROD_CELERY_FLOWER_PASSWORD }}
-  CELERY_FLOWER_USER: ${{ secrets.PROD_CELERY_FLOWER_USER }}
-  COTURN_DATABASE_URL: ${{ secrets.PROD_COTURN_DATABASE_URL }}
-  COTURN_SECRET_KEY: ${{ secrets.PROD_COTURN_SECRET_KEY }}
-  DATABASE_URL: ${{ secrets.PROD_DATABASE_URL }}
-  DISCORD_TOKEN: ${{ secrets.PROD_DISCORD_TOKEN }}
-  DJANGO_ADMIN_URL: ${{ secrets.PROD_DJANGO_ADMIN_URL }}
-  DJANGO_SECRET_KEY: ${{ secrets.PROD_DJANGO_SECRET_KEY }}
-  DJANGO_SUPERUSER_EMAIL: ${{ secrets.PROD_DJANGO_SUPERUSER_EMAIL }}
-  DJANGO_SUPERUSER_PASSWORD: ${{ secrets.PROD_DJANGO_SUPERUSER_PASSWORD }}
-  DJANGO_SUPERUSER_USERNAME: ${{ secrets.PROD_DJANGO_SUPERUSER_USERNAME }}
-  DJSTRIPE_WEBHOOK_SECRET: ${{ secrets.PROD_DJSTRIPE_WEBHOOK_SECRET }}
-  GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.PROD_GCP_SERVICE_ACCOUNT_KEY }}
-  GCP_SERVICE_ACCOUNT: ${{ secrets.PROD_GCP_SERVICE_ACCOUNT }}
-  HONEYCOMB_API_KEY: ${{ secrets.HONEYCOMB_API_KEY }}
-  MAILGUN_API_KEY: ${{ secrets.PROD_MAILGUN_API_KEY }}
-  MAILGUN_DOMAIN: ${{ secrets.PROD_MAILGUN_DOMAIN }}
-  POSTGRES_PASSWORD: ${{ secrets.PROD_POSTGRES_PASSWORD }}
-  POSTGRES_USER: ${{ secrets.PROD_POSTGRES_USER }}
-  POSTGRES_HOST: '127.0.0.1'
-  DJANGO_BASE_URL: https://print-nanny.com
-  DJANGO_STATIC_URL: https://print-nanny.com/static/
-  PRINT_NANNY_USER: ${{ secrets.PROD_DJANGO_SUPERUSER_USERNAME }}
-  DJANGO_WS_URL: wss://print-nanny.com/ws
-  STRIPE_PUBLIC_KEY: ${{ secrets.PROD_STRIPE_PUBLIC_KEY }}
-  STRIPE_SECRET_KEY: ${{ secrets.PROD_STRIPE_SECRET_KEY }}
-  POSTHOG_API_KEY: ${{ secrets.POSTHOG_API_KEY }}
-  GHOST_ADMIN_API_KEY: ${{ secrets.PROD_GHOST_ADMIN_API_KEY }}
-  GHOST_CONTENT_API_KEY: ${{ secrets.PROD_GHOST_CONTENT_API_KEY }}
-  GOOGLE_APPLICATION_CREDENTIALS: /etc/service-account/print-nanny-f296cdb68802.json
-  ARA_POSTGRES_USER: ${{ secrets.PROD_ARA_POSTGRES_USER }}
-  ARA_POSTGRES_PASSWORD: ${{ secrets.PROD_ARA_POSTGRES_PASSWORD }}
-  ARA_POSTGRES_HOST: "127.0.0.1"
-  ARA_SECRET_KEY: ${{ secrets.PROD_ARA_SECRET_KEY }}
 jobs:
   mypy:
     # The type of runner that the job will run on
@@ -83,14 +48,64 @@ jobs:
       with:
        scandir: './k8s'
   deploy:
-    environment: stable
+    environment: live
     env:
-      JANUS_CLOUD_DOMAIN: janus.live.print-nanny.com
-      JANUS_CLOUD_ADMIN_SECRET: ${{ secrets.JANUS_ADMIN_SECRET }}
-      JANUS_CLOUD_ADMIN_URL: https://janus.live.print-nanny.com:7088/admin
-      JANUS_CLOUD_API_URL: https://janus.live.print-nanny.com:8088/janus
-      JANUS_CLOUD_WS_URL: wss://janus.live.print-nanny.com:8088
-      JANUS_CLOUD_RTP_DOMAIN: rtp.beta.print-nanny.com
+      ARA_POSTGRES_HOST: ${{ secrets.ARA_POSTGRES_HOST }}
+      ARA_POSTGRES_PASSWORD: ${{ secrets.ARA_POSTGRES_PASSWORD }}
+      ARA_POSTGRES_USER: ${{ secrets.ARA_POSTGRES_USER }}
+      COTURN_DATABASE_URL: ${{ secrets.COTURN_DATABASE_URL }}
+      COTURN_SECRET_KEY: ${{ secrets.COTURN_SECRET_KEY }}
+      COTURN_REALM: ${{ secrets.COTURN_REALM }}
+      CLOUD_SQL_POSTGRES_INSTANCE: ${{ secrets.CLOUD_SQL_POSTGRES_INSTANCE }}
+      CLUSTER: www-beta
+      DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+      DJANGO_ADMIN_UR: ${{ secrets.DJANGO_ADMIN_URL }}
+      DJANGO_ALLOWED_HOSTS: ${{ secrets.DJANGO_ALLOWED_HOSTS }}
+      DJANGO_BASE_URL: ${{ secrets.DJANGO_BASE_URL }}
+      DJANGO_STATIC_URL: ${{ secrets.DJANGO_STATIC_URL }}
+      DJANGO_DATABASE_URL: ${{ secrets.DJANGO_DATABASE_URL }}
+      DJANGO_GCP_STORAGE_BUCKET_NAME: ${{ secrets.DJANGO_GCP_STORAGE_BUCKET_NAME }}
+      DJANGO_POSTGRES_DB: ${{ secrets.DJANGO_POSTGRES_DB }}
+      DJANGO_POSTGRES_HOST: ${{ secrets.DJANGO_POSTGRES_HOST }}
+      DJANGO_POSTGRES_PASSWORD: ${{ secrets.DJANGO_POSTGRES_PASSWORD }}
+      DJANGO_POSTGRES_URL: ${{ secrets.DJANGO_POSTGRES_URL }}
+      DJANGO_POSTGRES_USER: ${{ secrets.DJANGO_POSTGRES_USER }}
+      DJANGO_POSTGRES_PORT: ${{ secrets.DJANGO_POSTGRES_PORT }}
+      DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+      DJANGO_SETTINGS_MODULE: ${{ secrets.DJANGO_SETTINGS_MODULE }}
+      DJANGO_SUPERUSER_EMAIL: ${{ secrets.DJANGO_SUPERUSER_EMAIL }}
+      DJANGO_SUPERUSER_PASSWORD: ${{ secrets.DJANGO_SUPERUSER_PASSWORD }}
+      DJSTRIPE_WEBHOOK_SECRET: ${{ secrets.DJSTRIPE_WEBHOOK_SECRET }}
+      LETSENCRYPT_EMAIL: ${{ secrets.LETSENCRYPT_EMAIL }}
+      GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT }}
+      GCP_PROJECT: ${{ secrets.GCP_PROJECT }}
+      GCP_REGION: ${{ secrets.GCP_REGION }}
+      GCP_CLOUDIOT_DEVICE_REGISTRY: ${{ secrets.GCP_CLOUDIOT_DEVICE_REGISTRY }}
+      GHOST_ADMIN_API_KEY: ${{ secrets.GHOST_ADMIN_API_KEY }}
+      GHOST_CONTENT_API_KEY: ${{ secrets.GHOST_CONTENT_API_KEY }}
+      GCE_PROXY_IMAGE: gcr.io/cloudsql-docker/gce-proxy:1.17
+      HONEYCOMB_API_KEY: ${{ secrets.HONEYCOMB_API_KEY }}
+      HONEYCOMB_DATASET: ${{ secrets.HONEYCOMB_DATASET }}
+      JANUS_CLOUD_ADMIN_SECRET: ${{ secrets.JANUS_CLOUD_ADMIN_SECRET }}
+      JANUS_CLOUD_ADMIN_URL: ${{ secrets.JANUS_CLOUD_ADMIN_URL }}
+      JANUS_CLOUD_API_URL: ${{ secrets.JANUS_CLOUD_API_URL }}
+      JANUS_CLOUD_DOMAIN: ${{ secrets.JANUS_CLOUD_DOMAIN }}
+      JANUS_CLOUD_IMAGE: us.gcr.io/print-nanny/janus:0.11.8
+      JANUS_CLOUD_WS_URL: ${{ secrets.JANUS_CLOUD_WS_URL }}
+      JANUS_CLOUD_RTP_IP: ${{ secrets.JANUS_CLOUD_RTP_IP }}
+      JANUS_CLOUD_RTP_DOMAIN: ${{ secrets.JANUS_CLOUD_RTP_DOMAIN }}
+      MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
+      MAILGUN_API_URL: https://api.mailgun.net/v3
+      MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
+      LOGLEVEL: info
+      POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
+      POSTHOG_API_KEY: ${{ secrets.POSTHOG_API_KEY }}
+      PRINTNANNY_DJANGO_IMAGE: us.gcr.io/print-nanny/print_nanny_webapp:latest
+      PRINTNANNY_NAMESPACE: live
+      REDIS_URL: ${{ secrets.REDIS_URL }}
+      STRIPE_LIVE_MODE: True
+      STRIPE_LIVE_PUBLIC_KEY: ${{ secrets.STRIPE_LIVE_PUBLIC_KEY }}
+      STRIPE_LIVE_SECRET_KEY: ${{ secrets.STRIPE_LIVE_SECRET_KEY }}
     needs: [ lint, shellcheck, mypy ]
     runs-on: ubuntu-latest
     steps:
@@ -121,7 +136,7 @@ jobs:
     - name: Deploy to stable cluster
       id: deploy
       run: |
-        make prod-deploy \
+        make live-deploy \
         CLUSTER="www-beta" \
         GCP_PROJECT="print-nanny" \
         PRINT_NANNY_USER="${{ secrets.PROD_DJANGO_SUPERUSER_USERNAME }}" \
