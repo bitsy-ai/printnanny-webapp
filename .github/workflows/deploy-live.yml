@@ -125,7 +125,7 @@ jobs:
         sudo apt-get install makepasswd
     - uses: actions/setup-node@v2
       with:
-        node-version: '14'
+        node-version: '15'
     - name: Write deploy key
       run: echo $GCP_SERVICE_ACCOUNT_KEY > key.json
     - name: Active Service Account
