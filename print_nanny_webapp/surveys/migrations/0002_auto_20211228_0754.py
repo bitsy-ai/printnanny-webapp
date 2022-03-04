@@ -153,7 +153,7 @@ class Migration(migrations.Migration):
                                 ("3dprinteros", "3D Printer OS"),
                                 ("other", "Other"),
                             ],
-                            help_text="Which 3D printer managers are you using? Select all that apply. Please email leigh@print-nanny.com if you are using software not on this list, or enter details in the 'other' box below.",
+                            help_text="Which 3D printer managers are you using? Select all that apply. Please email leigh@printnanny.ai if you are using software not on this list, or enter details in the 'other' box below.",
                             max_length=32,
                         ),
                         size=None,

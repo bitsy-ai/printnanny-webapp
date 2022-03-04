@@ -45,7 +45,7 @@ class RemoteAccessSurvey1Form(ModelForm):
     )
 
     user_scale_other = CharField(
-        label="If you checked Other, please add details here or email leigh@print-nanny.com",
+        label="If you checked Other, please add details here or email leigh@printnanny.ai",
         required=False,
     )
 
@@ -56,7 +56,7 @@ class RemoteAccessSurvey1Form(ModelForm):
     )
 
     printer_software_other = CharField(
-        label="If you checked Other, please add details here or email leigh@print-nanny.com",
+        label="If you checked Other, please add details here or email leigh@printnanny.ai",
         required=False,
     )
 

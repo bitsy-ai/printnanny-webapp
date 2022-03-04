@@ -74,10 +74,10 @@ jobs:
       POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
       POSTGRES_HOST: "127.0.0.1"
       POSTGRES_PORT: 5432
-      PRINT_NANNY_BASE_URL: https://printnanny.ai
-      PRINT_NANNY_STATIC_URL: https://printnanny.ai/static/
+      DJANGO_BASE_URL: https://printnanny.ai
+      DJANGO_STATIC_URL: https://printnanny.ai/static/
       PRINT_NANNY_USER: ${{ secrets.DJANGO_SUPERUSER_USERNAME }}
-      PRINT_NANNY_WS_URL: wss://printnanny.ai/ws
+      DJANGO_WS_URL: wss://printnanny.ai/ws
       STRIPE_PUBLIC_KEY: ${{ secrets.STRIPE_PUBLIC_KEY }}
       STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
       POSTHOG_API_KEY: ${{ secrets.POSTHOG_API_KEY }}
@@ -124,7 +124,7 @@ jobs:
           CLUSTER="www-beta" \
           GCP_PROJECT="print-nanny" \
           PRINT_NANNY_USER="${{ secrets.DJANGO_SUPERUSER_USERNAME }}" \
-          PRINT_NANNY_URL="$PRINT_NANNY_BASE_URL" \
+          PRINT_NANNY_URL="$DJANGO_BASE_URL" \
           DJANGO_SUPERUSER_EMAIL="$DJANGO_SUPERUSER_EMAIL"
           echo ::set-output name=printnanny_client_version::"$(cat version.txt)"
 

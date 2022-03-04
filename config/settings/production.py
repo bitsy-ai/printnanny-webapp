@@ -1,7 +1,6 @@
 import posthog
-import logging
 from .base import *  # noqa
-from .base import env
+
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -11,10 +10,7 @@ SECRET_KEY = env("DJANGO_SECRET_KEY")
 ALLOWED_HOSTS = env.list(
     "DJANGO_ALLOWED_HOSTS",
     default=[
-        "print-nanny.com",
-        "www.print-nanny.com",
-        # TODO
-        # "api.print-nanny.com",
+        ".printnanny.ai",
     ],
 )
 
@@ -175,8 +171,8 @@ MIDDLEWARE += ["django_prometheus.middleware.PrometheusAfterMiddleware"]
 
 
 # Django channels
-BASE_URL = env("PRINT_NANNY_BASE_URL", default="https://www.print-nanny.com")
-WS_BASE_URL = env("PRINT_NANNY_WS_URL", default="wss://www.print-nanny.com/ws")
+BASE_URL = env("DJANGO_BASE_URL", default="https://www.printnanny.ai")
+WS_BASE_URL = env("DJANGO_WS_URL", default="wss://www.printnanny.ai/ws")
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
@@ -190,7 +186,7 @@ BETA_NOTIFY_EMAIL = ["beta@print-nanny.com"]
 
 GCP_PROJECT_ID = env("GCP_PROJECT_ID", default="print-nanny")
 
-STATIC_URL = "https://www.print-nanny.com/static/"
+STATIC_URL = "https://www.printnanny.ai/static/"
 
 DEBUG = False
 
@@ -210,6 +206,12 @@ GHOST_CONTENT_API_KEY = env("GHOST_CONTENT_API_KEY")
 CORS_ALLOWED_ORIGINS = [
     "https://print-nanny.com",
     "https://www.print-nanny.com",
+    "https://printnanny.ai",
+    "https://www.printnanny.ai",
+    "https://live.printnanny.ai",
+    "https://www.live.printnanny.ai",
+    "https://beta.printnanny.ai",
+    "https://www.beta.printnanny.ai",
 ]
 
 # posthog

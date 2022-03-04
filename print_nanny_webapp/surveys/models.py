@@ -104,7 +104,7 @@ class RemoteAccessSurvey1(models.Model):
         models.CharField(
             max_length=32,
             choices=PrinterSoftware.choices,
-            help_text="Which 3D printer managers are you using? Select all that apply. Please email leigh@print-nanny.com if you are using software not on this list, or enter details in the 'other' box below.",
+            help_text="Which 3D printer managers are you using? Select all that apply. Please email leigh@printnanny.ai if you are using software not on this list, or enter details in the 'other' box below.",
         )
     )
     printer_software_other = models.CharField(

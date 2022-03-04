@@ -314,7 +314,7 @@ EMAIL_BACKEND = env(
 EMAIL_TIMEOUT = 5
 
 DEFAULT_FROM_EMAIL = env(
-    "DJANGO_DEFAULT_FROM_EMAIL", default="Print Nanny <hey@print-nanny.com>"
+    "DJANGO_DEFAULT_FROM_EMAIL", default="Print Nanny <leigh@printnanny.ai>"
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#server-email
 SERVER_EMAIL = env("DJANGO_SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)
@@ -346,7 +346,7 @@ DISCORD_TOKEN = env("DISCORD_TOKEN", default="")
 # Django Admin URL.
 ADMIN_URL = "admin/"
 # https://docs.djangoproject.com/en/dev/ref/settings/#admins
-ADMINS = [("""Leigh Johnson""", "leigh@print-nanny.com")]
+ADMINS = [("""Leigh Johnson""", "leigh@printnanny.ai")]
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
 
@@ -480,11 +480,11 @@ SPECTACULAR_SETTINGS = {
         "EventSource": "print_nanny_webapp.events.enum.EventSource",
     },
     "TITLE": "printnanny-api-client",
-    "DESCRIPTION": "Official API client library for print-nanny.com",
+    "DESCRIPTION": "Official API client library forprintnanny.ai print-nanny.com",
     "LICENSE": {"name": "AGPLv3"},
     "CONTACT": {
         "name": "Leigh Johnson",
-        "email": "leigh@print-nanny.com",
+        "email": "leigh@printnanny.ai",
         "url": "https://print-nanny.com",
     },
 }
