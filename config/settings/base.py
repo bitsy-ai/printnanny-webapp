@@ -346,7 +346,7 @@ DISCORD_TOKEN = env("DISCORD_TOKEN", default="")
 # Django Admin URL.
 ADMIN_URL = "admin/"
 # https://docs.djangoproject.com/en/dev/ref/settings/#admins
-ADMINS = [("""Leigh Johnson""", "leigh@print-nanny.com")]
+ADMINS = [("""Leigh Johnson""", "leigh@printnanny.ai")]
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
 
@@ -484,7 +484,7 @@ SPECTACULAR_SETTINGS = {
     "LICENSE": {"name": "AGPLv3"},
     "CONTACT": {
         "name": "Leigh Johnson",
-        "email": "leigh@print-nanny.com",
+        "email": "leigh@printnanny.ai",
         "url": "https://print-nanny.com",
     },
 }

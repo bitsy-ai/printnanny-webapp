@@ -4,7 +4,7 @@
 # query params
 # include=labels%2Cemail_recipients
 
-# {"members":[{"name":"Leigh Johnson","email":"leigh@print-nanny.com","note":"","subscribed":true,"comped":false,"email_count":0,"email_opened_count":0,"email_open_rate":null,"labels":[]}]}
+# {"members":[{"name":"Leigh Johnson","email":"leigh@printnanny.ai","note":"","subscribed":true,"comped":false,"email_count":0,"email_opened_count":0,"email_open_rate":null,"labels":[]}]}
 from celery import shared_task
 from django.apps import apps
 import logging
