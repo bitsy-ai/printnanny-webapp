@@ -13,17 +13,7 @@ spec:
   {% if PRINTNANNY_NAMESPACE == 'live' %}
   - printnanny.ai
   - '*.printnanny.ai'
-  {% endif %}
+  {% else %}
   - {{ PRINTNANNY_NAMESPACE }}.printnanny.ai
   - '*.{{ PRINTNANNY_NAMESPACE }}.printnanny.ai'
-  acme:
-    config:
-      - dns01:
-          provider: clouddns
-        domains:
-          {% if PRINTNANNY_NAMESPACE == 'live' %}
-          - printnanny.ai
-          - '*.printnanny.ai'
-          {% endif %}
-          - {{ PRINTNANNY_NAMESPACE }}.printnanny.ai
-          - '*.{{ PRINTNANNY_NAMESPACE }}.printnanny.ai'
+  {% endif %}

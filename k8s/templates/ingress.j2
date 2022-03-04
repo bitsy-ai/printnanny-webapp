@@ -18,7 +18,6 @@ metadata:
     kubernetes.io/tls-acme: "true"
     cert-manager.io/cluster-issuer: letsencrypt-dns-issuer
     certmanager.k8s.io/acme-challenge-type: "dns01"
-    cert-manager.io/issuer-kind: "ClusterIssuer"
     kubernetes.io/ingress.global-static-ip-name: "printnanny-static-ip--{{ PRINTNANNY_NAMESPACE }}"
     networking.gke.io/v1beta1.FrontendConfig: "http-to-https"
     nginx.ingress.kubernetes.io/rewrite-target: /
