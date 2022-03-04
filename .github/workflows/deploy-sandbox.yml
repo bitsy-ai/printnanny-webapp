@@ -140,7 +140,7 @@ jobs:
     - name: Deploy sandbox cluster
       id: deploy
       run: |
-        make sandbox-deploy \
+        make gh-namespace-deploy \
         GCP_PROJECT="printnanny-sandbox" \
         PRINT_NANNY_USER="${{ secrets.SANDBOX_DJANGO_SUPERUSER_USERNAME }}" \
         PRINT_NANNY_URL="$PRINT_NANNY_URL" \
