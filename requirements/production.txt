@@ -11,8 +11,6 @@ aiohttp==3.7.4.post0
     #   printnanny-api-client
 aioredis==1.3.1
     # via channels-redis
-amqp==5.0.9
-    # via kombu
 argon2-cffi==21.3.0
     # via -r requirements/production.in
 argon2-cffi-bindings==21.2.0
@@ -43,12 +41,8 @@ backoff==1.11.1
     # via posthog
 backports-zoneinfo==0.2.1
     # via django
-billiard==3.6.4.0
-    # via celery
 cachetools==5.0.0
     # via google-auth
-celery==5.2.3
-    # via flower
 certifi==2021.10.8
     # via requests
 cffi==1.15.0
@@ -66,18 +60,7 @@ chardet==4.0.0
 charset-normalizer==2.0.12
     # via requests
 click==8.0.4
-    # via
-    #   celery
-    #   click-didyoumean
-    #   click-plugins
-    #   click-repl
-    #   uvicorn
-click-didyoumean==0.3.0
-    # via celery
-click-plugins==1.1.1
-    # via celery
-click-repl==0.2.0
-    # via celery
+    # via uvicorn
 constantly==15.1.0
     # via twisted
 coverage==6.3.2
@@ -199,8 +182,6 @@ drfpasswordless==1.5.7
     # via -r requirements/production.in
 flatbuffers==2.0
     # via -r requirements/production.in
-flower==1.0.0
-    # via -r requirements/production.in
 google-api-core[grpc]==2.6.0
     # via
     #   google-cloud-core
@@ -263,8 +244,6 @@ hpack==3.0.0
     # via h2
 httptools==0.3.0
     # via uvicorn
-humanize==4.0.0
-    # via flower
 hyperframe==5.2.0
     # via h2
 hyperlink==21.0.0
@@ -293,8 +272,6 @@ jsonfield==3.1.0
     # via dj-stripe
 jsonschema==4.4.0
     # via drf-spectacular
-kombu==5.2.3
-    # via celery
 libhoney==2.0.0
     # via honeycomb-beeline
 monotonic==1.6
@@ -344,11 +321,7 @@ printnanny-api-client==0.64.0
 priority==1.3.0
     # via twisted
 prometheus-client==0.13.1
-    # via
-    #   django-prometheus
-    #   flower
-prompt-toolkit==3.0.28
-    # via click-repl
+    # via django-prometheus
 proto-plus==1.20.3
     # via
     #   google-cloud-iot
@@ -400,9 +373,7 @@ python3-openid==3.2.0
     # via django-allauth
 pytz==2021.3
     # via
-    #   celery
     #   djangorestframework
-    #   flower
     #   pandas
 pywavelets==1.2.0
     # via scikit-image
@@ -443,7 +414,6 @@ service-identity==21.1.0
 six==1.16.0
     # via
     #   automat
-    #   click-repl
     #   django-coverage-plugin
     #   django-rest-polymorphic
     #   google-auth
@@ -472,8 +442,6 @@ toml==0.10.2
     # via django-stubs
 tomli==2.0.1
     # via mypy
-tornado==6.1
-    # via flower
 twisted[http2,tls]==20.3.0
     # via
     #   -r requirements/production.in
@@ -500,15 +468,8 @@ uvicorn[standard]==0.17.5
     # via -r requirements/production.in
 uvloop==0.16.0
     # via uvicorn
-vine==5.0.0
-    # via
-    #   amqp
-    #   celery
-    #   kombu
 watchgod==0.7
     # via uvicorn
-wcwidth==0.2.5
-    # via prompt-toolkit
 websockets==10.2
     # via uvicorn
 whitenoise==6.0.0

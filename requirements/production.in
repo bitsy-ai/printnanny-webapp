@@ -36,7 +36,6 @@ drfpasswordless
 drf-spectacular
 drf-nested-routers
 flatbuffers
-flower
 google-cloud-core
 google-cloud-iot
 google-cloud-monitoring
