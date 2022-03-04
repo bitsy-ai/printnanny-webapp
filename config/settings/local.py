@@ -79,7 +79,7 @@ GOOGLE_ANALYTICS = ""
 MIDDLEWARE += ["django_prometheus.middleware.PrometheusAfterMiddleware"]
 # django channels
 WS_BASE_URL = env("PRINT_NANNY_WS_URL", default="ws://localhost:8000/ws")
-BASE_URL = env("PRINTNANNY_BASE_URL", default="http://localhost:8000/")
+BASE_URL = env("DJANGO_BASE_URL", default="http://localhost:8000/")
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
