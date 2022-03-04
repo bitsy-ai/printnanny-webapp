@@ -593,7 +593,7 @@ metadata:
   namespace: {{ PRINTNANNY_NAMESPACE }}
 spec:
   healthCheck:
-    checkIntervalSec: 15
+    checkIntervalSec: 30
     port: 7088
     type: HTTP
     requestPath: /admin/info
@@ -618,6 +618,8 @@ kind: Service
 metadata:
   namespace: {{ PRINTNANNY_NAMESPACE }}
   name: janus-udp
+  annotations:
+    cloud.google.com/backend-config: '{"default": "janus-backendconfig"}'
 spec:
   type: LoadBalancer
   loadBalancerIP: {{ JANUS_CLOUD_RTP_IP }}
