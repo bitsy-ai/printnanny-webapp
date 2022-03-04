@@ -195,7 +195,7 @@ DEBUG = False
 STRIPE_LIVE_MODE = True
 
 # ghost member sync
-# Celery task: print_nanny_webapp/users/tasks.py
+# async task print_nanny_webapp/users/tasks.py
 # ------------------------------------------------------------------------------
 GHOST_ADMIN_API_KEY = env("GHOST_ADMIN_API_KEY")
 GHOST_CONTENT_API_KEY = env("GHOST_CONTENT_API_KEY")
