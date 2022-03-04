@@ -19,7 +19,6 @@ kubectl apply -f k8s/stable/ara-config.yml
 kubectl apply -f k8s/prod/ara.yml
 # TODO re-enable after event version cutover
 # kubectl apply -f k8s/prod/octoprint-events.yml
-kubectl apply -f k8s/prod/celery-worker.yml
 kubectl apply -f k8s/prod/django.yml
 
 kubectl set image deployment/ara "ara=us.gcr.io/print-nanny/ara:${GIT_SHA}" --record
@@ -36,6 +35,5 @@ until $ROLLOUT_STATUS_CMD || [ $ATTEMPTS -eq $MAX_ATTEMPTS ]; do
   sleep $SLEEP
 done
 
-kubectl set image deployment/celery-worker "celery-worker=us.gcr.io/print-nanny/print_nanny_webapp:06b6fe3f7f13839b430d6b820004805c07078a4b" --record
 kubectl set image deployment/octoprint-events "octoprint-events=us.gcr.io/print-nanny/print_nanny_webapp:${GIT_SHA}" --record
 # kubectl set image deployment/octoprint-events "alerts=us.gcr.io/print-nanny/print_nanny_webapp:${GIT_SHA}" --record

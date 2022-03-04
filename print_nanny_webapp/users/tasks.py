@@ -5,13 +5,12 @@
 # include=labels%2Cemail_recipients
 
 # {"members":[{"name":"Leigh Johnson","email":"leigh@printnanny.ai","note":"","subscribed":true,"comped":false,"email_count":0,"email_opened_count":0,"email_open_rate":null,"labels":[]}]}
-from celery import shared_task
 from django.apps import apps
 import logging
-import requests  # pip install requests
-import jwt  # pip install pyjwt
 from datetime import datetime as date
-from celery import group, chord, shared_task
+import requests
+import jwt
+from django.apps import apps
 from django.conf import settings
 from print_nanny_webapp.users.models import User
 
@@ -21,9 +20,8 @@ InviteRequest = apps.get_model("users", "InviteRequest")
 logger = logging.getLogger(__name__)
 
 
-@shared_task
 def create_ghost_member(ghost_member):
-    logger.info(f"create_ghost_member task called with ghost_members={ghost_member}")
+    logger.info("create_ghost_member task called with ghost_members=%s", ghost_member)
     # Split the key into ID and SECRET
     api_id, secret = settings.GHOST_ADMIN_API_KEY.split(":")
 
@@ -90,17 +88,16 @@ def create_ghost_member(ghost_member):
     return r.json()
 
 
-@shared_task
-def push_ghost_members():
-    """
-    One-time only task to create ghost members
-    user / invite request manager should handle this going forward
-    """
+# def push_ghost_members():
+#     """
+#     One-time only task to create ghost members
+#     user / invite request manager should handle this going forward
+#     """
 
-    invite_requests = InviteRequest.objects.all()
+#     invite_requests = InviteRequest.objects.all()
 
-    create_tasks = group(
-        [create_ghost_member.si(i.to_ghost_member()) for i in invite_requests]
-    )
+#     create_tasks = group(
+#         [create_ghost_member.si(i.to_ghost_member()) for i in invite_requests]
+#     )
 
-    return create_tasks()
+#     return create_tasks()

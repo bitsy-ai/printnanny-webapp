@@ -67,8 +67,6 @@ if env("USE_DOCKER", default=False) == "yes":
 # ------------------------------------------------------------------------------
 # https://django-extensions.readthedocs.io/en/latest/installation_instructions.html#configuration
 INSTALLED_APPS += ["django_extensions"]  # noqa F405
-# Celery
-# ------------------------------------------------------------------------------
 
 # Your stuff...
 # ------------------------------------------------------------------------------
@@ -84,7 +82,7 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [env("CELERY_BROKER_URL")],
+            "hosts": [env("REDIS_URL")],
             "group_expiry": 1800,
             # "channel_capacity": {
             #     "http.request": 100,

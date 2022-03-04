@@ -11,7 +11,7 @@ class InviteRequestManager(models.Manager):
         from .tasks import create_ghost_member
 
         instance = super().create(**kwargs)
-        task = create_ghost_member.delay([instance.to_ghost_member()])
+        task = create_ghost_member(instance.to_ghost_member())
         logger.info(f"Submitted create_ghost_member with task.id={task.id}")
 
         return instance

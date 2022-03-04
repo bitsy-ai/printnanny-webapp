@@ -1,17 +1,15 @@
 
 aiohttp
 argon2-cffi
-celery[redis]
 channels
 channels-redis
 discord.py
 dj-stripe
-django
+django>3,<4
 django-allauth
 django-allow-cidr
 django-anymail[mailgun]
 django-cors-headers
-django-celery-beat
 django-compressor
 django-coturn
 django-coverage-plugin
@@ -38,7 +36,6 @@ drfpasswordless
 drf-spectacular
 drf-nested-routers
 flatbuffers
-flower
 google-cloud-core
 google-cloud-iot
 google-cloud-monitoring
