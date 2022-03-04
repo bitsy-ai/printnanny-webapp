@@ -17,7 +17,11 @@ metadata:
     kubernetes.io/ingress.global-static-ip-name: "django-static-ip"
     networking.gke.io/managed-certificates: print-nanny-dot-com
     nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/permanent-redirect: https://www.printnanny.ai$request_uri
+    nginx.ingress.kubernetes.io/server-snippet: |
+        if ( $host = "www.print-nanny.com" ) {
+          rewrite ^/(.*)$ https://www.printnanny.ai/$1 permanent;
+          return 301 https://www.printnanny.ai;
+        }
 spec:
   rules:
     # www and api
