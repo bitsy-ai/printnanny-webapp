@@ -256,7 +256,7 @@ live-deploy: namespace-deploy
 beta-deploy: NAMESPACE_ENV_FILE=.envs/.beta/.env
 beta-deploy: namespace-deploy
 
-gh-namespace-deploy: clean-dist dist/k8s cluster-config
+gh-namespace-deploy: clean-dist dist/k8s build cluster-config
 	./k8s/templates/render.sh
 	./k8s/templates/apply.sh
 
