@@ -17,6 +17,7 @@ metadata:
     kubernetes.io/ingress.global-static-ip-name: "django-static-ip"
     networking.gke.io/managed-certificates: print-nanny-dot-com
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/permanent-redirect: https://www.printnanny.ai$request_uri
 spec:
   rules:
     # www and api
@@ -48,16 +49,6 @@ spec:
             backend:
               service:
                 name: django
-                port:
-                  number: 80
-    - host: ara.print-nanny.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: ara
                 port:
                   number: 80
     - host: downloads.print-nanny.com
@@ -120,18 +111,3 @@ spec:
                 name: metabase
                 port:
                   number: 80
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: printnanny-live
-  annotations:
-    networking.gke.io/v1beta1.FrontendConfig: "http-to-https"
-    kubernetes.io/ingress.global-static-ip-name: "janus-static-ip"
-    networking.gke.io/managed-certificates: "live-dot-print-nanny-dot-com"
-spec:
-  defaultBackend:
-    service:
-      name: janus-tcp
-      port:
-        number: 80

@@ -1,14 +1,9 @@
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: cdn
-  annotations:
-    iam.gke.io/gcp-service-account: cdn@print-nanny.iam.gserviceaccount.com
+{% if PRINTNANNY_NAMESPACE == 'live' %}
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: {{ PRINTNANNY_NAMESPACE }}
   name: nginx-gcsfuse
   labels:
     app.kubernetes.io/name: nginx-gcsfuse
@@ -39,7 +34,7 @@ spec:
           lifecycle:
             postStart:
               exec:
-                command: ["gcsfuse", "-o", "allow_other", "printnanny-downloads", "/usr/share/nginx/public-data"]
+                command: ["gcsfuse", "-o", "allow_other", "{{ GCSFUSE_BUCKET }}", "/usr/share/nginx/public-data"]
             preStop:
               exec:
                 command: ["fusermount", "-u", "/usr/share/nginx/public-data"]
@@ -65,6 +60,7 @@ spec:
   apiVersion: cloud.google.com/v1
   kind: BackendConfig
   metadata:
+    namespace: {{ PRINTNANNY_NAMESPACE }}
     name: nginx-gcsfuse
   spec:
     cdn:
@@ -73,6 +69,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: {{ PRINTNANNY_NAMESPACE }}
   name: nginx-gcsfuse
   labels:
     app.kubernetes.io/name: nginx-gcsfuse
@@ -87,3 +84,4 @@ spec:
       name: http
   selector:
     app.kubernetes.io/name: nginx-gcsfuse
+{% endif %}

@@ -26,6 +26,8 @@ spec:
   - hosts:
       {% if PRINTNANNY_NAMESPACE == 'live' %}
       - printnanny.ai
+      - dl.printnanny.ai
+      - download.printnanny.ai
       {% endif %}
       - {{ PRINTNANNY_NAMESPACE }}.printnanny.ai
     secretName: printnanny-ai-tls
@@ -50,6 +52,26 @@ spec:
             backend:
               service:
                 name: django
+                port:
+                  number: 80
+    - host: download.printnanny.ai
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-gcsfuse
+                port:
+                  number: 80
+    - host: dl.printnanny.ai
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-gcsfuse
                 port:
                   number: 80
     {% endif %}
