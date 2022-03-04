@@ -39,8 +39,6 @@ automat==20.2.0
     # via twisted
 backoff==1.11.1
     # via posthog
-backports-zoneinfo==0.2.1
-    # via django
 cachetools==5.0.0
     # via google-auth
 certifi==2021.10.8
@@ -81,7 +79,7 @@ discord-py==1.7.3
     # via -r requirements/local.in
 dj-stripe==2.6.1
     # via -r requirements/local.in
-django==4.0.3
+django==3.2.12
     # via
     #   -r requirements/local.in
     #   channels
@@ -360,6 +358,7 @@ python3-openid==3.2.0
     # via django-allauth
 pytz==2021.3
     # via
+    #   django
     #   djangorestframework
     #   pandas
 pywavelets==1.2.0

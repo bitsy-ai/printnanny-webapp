@@ -5,7 +5,7 @@ channels
 channels-redis
 discord.py
 dj-stripe
-django
+django>3,<4
 django-allauth
 django-anymail[mailgun]
 django-cors-headers
