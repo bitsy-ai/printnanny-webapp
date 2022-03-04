@@ -246,9 +246,21 @@ ns-apply:
 	GIT_SHA=$(GIT_SHA) \
 	GIT_BRANCH=$(GIT_BRANCH) \
 		dotenv -f $(NAMESPACE_ENV_FILE) run k8s/templates/apply.sh
+	GIT_SHA=$(GIT_SHA) \
+	GIT_BRANCH=$(GIT_BRANCH) \
+	PROJECT=$(GCP_PROJECT) \
+	CLUSTER=$(CLUSTER) \
+	PRINTNANNY_NAMESPACE=$(PRINTNANNY_NAMESPACE) \
+		dotenv -f $(NAMESPACE_ENV_FILE) run k8s/templates/apply.sh
 
-# namespace-deploy: clean-dist dist/k8s build cluster-config ns-k8s ns-apply
-namespace-deploy: clean-dist dist/k8s cluster-config ns-k8s ns-apply
+ns-rollout:
+	GIT_SHA=$(GIT_SHA) \
+	GIT_BRANCH=$(GIT_BRANCH) \
+	PROJECT=$(GCP_PROJECT) \
+	CLUSTER=$(CLUSTER) \
+	PRINTNANNY_NAMESPACE=$(PRINTNANNY_NAMESPACE) \
+		./tools/rollout.sh
+namespace-deploy: clean-dist dist/k8s cluster-config build ns-k8s ns-apply ns-rollout
 
 
 live-deploy: NAMESPACE_ENV_FILE=.envs/.live/.env
@@ -264,7 +276,12 @@ gh-namespace-deploy: clean-dist dist/k8s build cluster-config
 	GIT_SHA=$(GIT_SHA) \
 	GIT_BRANCH=$(GIT_BRANCH) \
 		./k8s/templates/apply.sh
-
+	GIT_SHA=$(GIT_SHA) \
+	GIT_BRANCH=$(GIT_BRANCH) \
+	PROJECT=$(GCP_PROJECT) \
+	CLUSTER=$(CLUSTER) \
+	PRINTNANNY_NAMESPACE=$(PRINTNANNY_NAMESPACE) \
+		./tools/rollout.sh
 prod-apply: cluster-config
 	GIT_SHA=$(GIT_SHA) k8s/prod/push.sh
 
