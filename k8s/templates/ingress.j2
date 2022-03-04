@@ -52,6 +52,26 @@ spec:
                 name: django
                 port:
                   number: 80
+    - host: download.printnanny.ai
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-gcsfuse
+                port:
+                  number: 80
+    - host: dl.printnanny.ai
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-gcsfuse
+                port:
+                  number: 80
     {% endif %}
     - host: {{ PRINTNANNY_NAMESPACE }}.printnanny.ai
       http:

@@ -1,0 +1,85 @@
+{% if PRINTNANNY_NAMESPACE == 'live'}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: {{ PRINTNANNY_NAMESPACE }}
+  name: nginx-gcsfuse
+  labels:
+    app.kubernetes.io/name: nginx-gcsfuse
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: nginx-gcsfuse
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: nginx-gcsfuse
+    spec:
+      serviceAccountName: webapp
+      containers:
+        - name: nginx-gcsfuse
+          image: bitsyai/nginx-gcsfuse:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          securityContext:
+            privileged: true
+            capabilities:
+              add:
+                - SYS_ADMIN
+          lifecycle:
+            postStart:
+              exec:
+                command: ["gcsfuse", "-o", "allow_other", "{{ GCSFUSE_BUCKET }}", "/usr/share/nginx/public-data"]
+            preStop:
+              exec:
+                command: ["fusermount", "-u", "/usr/share/nginx/public-data"]
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 60
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 60
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+---
+  apiVersion: cloud.google.com/v1
+  kind: BackendConfig
+  metadata:
+    name: nginx-gcsfuse
+  spec:
+    cdn:
+      enabled: true
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-gcsfuse
+  labels:
+    app.kubernetes.io/name: nginx-gcsfuse
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80":"nginx-gcsfuse"}}'
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: nginx-gcsfuse
+{% endif %}
