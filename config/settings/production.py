@@ -109,7 +109,7 @@ ADMIN_URL = env("DJANGO_ADMIN_URL")
 
 LOGGING = {
     "version": 1,
-    "disable_existing_loggers": True,
+    "disable_existing_loggers": False,
     "formatters": {
         "verbose": {
             "format": "%(levelname)s %(asctime)s %(module)s "
@@ -118,7 +118,7 @@ LOGGING = {
     },
     "handlers": {
         "console": {
-            "level": "DEBUG",
+            "level": LOGLEVEL,
             "class": "logging.StreamHandler",
             "formatter": "verbose",
         }
@@ -128,7 +128,7 @@ LOGGING = {
             "()": "print_nanny_webapp.utils.logging.ExcludeHealthEndpoint",
         },
     },
-    "root": {"level": "INFO", "handlers": ["console"]},
+    "root": {"level": LOGLEVEL, "handlers": ["console"]},
     "loggers": {
         "django.db.backends": {
             "level": "INFO",

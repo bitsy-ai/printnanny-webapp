@@ -101,7 +101,7 @@ jobs:
       MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
       MAILGUN_API_URL: https://api.mailgun.net/v3
       MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
-      LOGLEVEL: info
+      LOGLEVEL: INFO
       POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
       POSTHOG_API_KEY: ${{ secrets.POSTHOG_API_KEY }}
       PRINTNANNY_DJANGO_IMAGE: us.gcr.io/print-nanny/print_nanny_webapp:latest

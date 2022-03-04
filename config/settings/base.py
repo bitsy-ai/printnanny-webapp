@@ -355,6 +355,7 @@ MANAGERS = ADMINS
 # https://docs.djangoproject.com/en/dev/ref/settings/#logging
 # See https://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
+LOGLEVEL = env("LOGLEVEL", default="INFO").upper()
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -366,12 +367,12 @@ LOGGING = {
     },
     "handlers": {
         "console": {
-            "level": "INFO",
+            "level": LOGLEVEL,
             "class": "logging.StreamHandler",
             "formatter": "verbose",
         }
     },
-    "root": {"level": "INFO", "handlers": ["console"]},
+    "root": {"level": LOGLEVEL, "handlers": ["console"]},
 }
 
 REDIS_URL = env("REDIS_URL")
