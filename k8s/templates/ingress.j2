@@ -27,14 +27,18 @@ spec:
   tls:
   - hosts:
       {% if PRINTNANNY_NAMESPACE == 'live' %}
-      - print-nanny.com
-      - www.print-nanny.com
       - printnanny.ai
       - dl.printnanny.ai
       - download.printnanny.ai
       {% endif %}
       - {{ PRINTNANNY_NAMESPACE }}.printnanny.ai
     secretName: printnanny-ai-tls
+  {% if PRINTNANNY_NAMESPACE == 'live' %}
+  - hosts:
+      - print-nanny.com
+      - www.print-nanny.com
+    secretName: printnanny-com-tls
+  {% endif %}
   rules:
     # live www and api
     {% if PRINTNANNY_NAMESPACE == 'live' %}
