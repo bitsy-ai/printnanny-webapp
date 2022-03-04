@@ -22,7 +22,7 @@ class RegistrationUnavailable(APIException, UUID4Mixin):
         self.serial = serial
         self.parent_exception = parent_exception
 
-        self.message = f"Device registration failed for serial={serial} user={user} log_id={self.uuid}. Please email support@print-nanny.com with this message for assistance."
+        self.message = f"Device registration failed for serial={serial} user={user} log_id={self.uuid}. Please email support@printnanny.ai with this message for assistance."
 
         super().__init__(self.message)
 
@@ -37,6 +37,6 @@ class DeviceAlreadyExists(APIException, UUID4Mixin):
         self.serial = serial
         self.parent_exception = parent_exception
 
-        self.message = f"Device registration failed for serial={serial} user={user} log_id={self.uuid}. Please email support@print-nanny.com with this message for assistance."
+        self.message = f"Device registration failed for serial={serial} user={user} log_id={self.uuid}. Please email support@printnanny.ai with this message for assistance."
 
         super().__init__(self.message)
