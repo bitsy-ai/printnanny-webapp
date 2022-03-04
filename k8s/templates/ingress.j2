@@ -26,6 +26,8 @@ spec:
   - hosts:
       {% if PRINTNANNY_NAMESPACE == 'live' %}
       - printnanny.ai
+      - dl.printnanny.ai
+      - download.printnanny.ai
       {% endif %}
       - {{ PRINTNANNY_NAMESPACE }}.printnanny.ai
     secretName: printnanny-ai-tls
