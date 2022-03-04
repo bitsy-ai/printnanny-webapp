@@ -77,7 +77,6 @@ jobs:
       DJANGO_SUPERUSER_PASSWORD: ${{ secrets.DJANGO_SUPERUSER_PASSWORD }}
       DJSTRIPE_WEBHOOK_SECRET: ${{ secrets.DJSTRIPE_WEBHOOK_SECRET }}
       LETSENCRYPT_EMAIL: ${{ secrets.LETSENCRYPT_EMAIL }}
-      GIT_SHA: ${{ env.GITHUB_SHA }}
       GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT }}
       GCP_PROJECT: ${{ secrets.GCP_PROJECT }}
       GCP_REGION: ${{ secrets.GCP_REGION }}
@@ -100,7 +99,7 @@ jobs:
       JANUS_CLOUD_RTP_DOMAIN: ${{ secrets.JANUS_CLOUD_RTP_DOMAIN }}
       MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
       MAILGUN_API_URL: https://api.mailgun.net/v3
-      MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
+      MAILGUN_DOMAIN: mail.printnanny.ai
       LOGLEVEL: INFO
       POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
       POSTHOG_API_KEY: ${{ secrets.POSTHOG_API_KEY }}
@@ -140,6 +139,7 @@ jobs:
     - name: Deploy to stable cluster
       id: deploy
       run: |
+        export GIT_SHA=${{ env.GITHUB_SHA }}
         make gh-namespace-deploy \
         CLUSTER="www-beta" \
         GCP_PROJECT="print-nanny" \
