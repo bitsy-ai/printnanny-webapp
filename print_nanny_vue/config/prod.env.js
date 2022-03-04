@@ -1,6 +1,6 @@
 'use strict'
 module.exports = {
   NODE_ENV: '"production"',
-  BASE_API_URL: '"https://www.print-nanny.com"',
-  BASE_WS_URL: '"wss://www.print-nanny.com/ws/events/"',
+  BASE_API_URL: '"https://www.printnanny.ai"',
+  BASE_WS_URL: '"wss://www.printnanny.ai/ws/events/"',
 }
