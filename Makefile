@@ -9,7 +9,6 @@ GCP_PROJECT ?= printnanny-sandbox
 CLUSTER ?= www-sandbox
 ZONE ?= us-central1-c
 
-PRINTNANNY_NAMESPACE ?= beta
 PRINT_NANNY_URL ?= http://localhost:8000/
 PRINT_NANNY_API_URL ?= ${PRINT_NANNY_URL}api/
 OCTOPRINT_URL ?= http://localhost:5005/
@@ -236,22 +235,24 @@ sandbox-email:
 sandbox-ci: sandbox-deploy sandbox-email cypress-ci
 
 ns-k8s:
-	echo "Using namespace environment $(NAMESPACE_ENV_FILE)"
+	echo "Using namespace environment $(PWD)/.envs/.${PRINTNANNY_NAMESPACE}/.env"
 	GIT_SHA=$(GIT_SHA) \
-	GIT_BRANCH=$(GIT_BRANCH) \
-		dotenv -f $(NAMESPACE_ENV_FILE) run k8s/templates/render.sh
+		dotenv -f $(PWD)/.envs/.${PRINTNANNY_NAMESPACE}/.env run k8s/templates/render.sh
 
 ns-apply:
-	echo "Using namespace environment $(NAMESPACE_ENV_FILE)"
+	echo "Using namespace environment .envs/.$(PRINTNANNY_NAMESPACE)/.env"
 	GIT_SHA=$(GIT_SHA) \
-	GIT_BRANCH=$(GIT_BRANCH) \
-		dotenv -f $(NAMESPACE_ENV_FILE) run k8s/templates/apply.sh
+		dotenv -f ".envs/.$(PRINTNANNY_NAMESPACE)/.env" run k8s/templates/apply.sh
+	
+	dotenv set GIT_SHA $(GIT_SHA)
+	dotenv set PROJECT $(GCP_PROJECT)
+	dotenv set CLUSTER $(CLUSTER)
+	dotenv set PRINTNANNY_NAMESPACE $(PRINTNANNY_NAMESPACE)
 	GIT_SHA=$(GIT_SHA) \
-	GIT_BRANCH=$(GIT_BRANCH) \
 	PROJECT=$(GCP_PROJECT) \
 	CLUSTER=$(CLUSTER) \
 	PRINTNANNY_NAMESPACE=$(PRINTNANNY_NAMESPACE) \
-		dotenv -f $(NAMESPACE_ENV_FILE) run k8s/templates/apply.sh
+		dotenv -f .envs/.${PRINTNANNY_NAMESPACE}/.env run k8s/templates/apply.sh
 
 ns-rollout:
 	GIT_SHA=$(GIT_SHA) \
@@ -260,14 +261,13 @@ ns-rollout:
 	CLUSTER=$(CLUSTER) \
 	PRINTNANNY_NAMESPACE=$(PRINTNANNY_NAMESPACE) \
 		./tools/rollout.sh
-namespace-deploy: clean-dist dist/k8s cluster-config build ns-k8s ns-apply ns-rollout
 
+namespace-deploy: clean-dist dist/k8s cluster-config ns-k8s ns-apply ns-rollout
 
-live-deploy: NAMESPACE_ENV_FILE=.envs/.live/.env
 live-deploy: PRINTNANNY_NAMESPACE=live
 live-deploy: namespace-deploy
 
-beta-deploy: NAMESPACE_ENV_FILE=.envs/.beta/.env
+beta-deploy: PRINTNANNY_NAMESPACE=beta
 beta-deploy: namespace-deploy
 
 gh-namespace-deploy: clean-dist dist/k8s build cluster-config
