@@ -59,7 +59,7 @@ jobs:
       CLOUD_SQL_POSTGRES_INSTANCE: ${{ secrets.CLOUD_SQL_POSTGRES_INSTANCE }}
       CLUSTER: www-beta
       DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
-      DJANGO_ADMIN_UR: ${{ secrets.DJANGO_ADMIN_URL }}
+      DJANGO_ADMIN_URL: ${{ secrets.DJANGO_ADMIN_URL }}
       DJANGO_ALLOWED_HOSTS: ${{ secrets.DJANGO_ALLOWED_HOSTS }}
       DJANGO_BASE_URL: ${{ secrets.DJANGO_BASE_URL }}
       DJANGO_STATIC_URL: ${{ secrets.DJANGO_STATIC_URL }}
