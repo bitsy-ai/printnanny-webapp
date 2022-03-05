@@ -236,22 +236,22 @@ sandbox-email:
 sandbox-ci: sandbox-deploy sandbox-email cypress-ci
 
 ns-k8s:
-	echo "Using namespace environment .envs/$(PRINTNANNY_NAMESPACE)/.env"
+	echo "Using namespace environment .envs/.$(PRINTNANNY_NAMESPACE)/.env"
 	GIT_SHA=$(GIT_SHA) \
 	GIT_BRANCH=$(GIT_BRANCH) \
-		dotenv -f .envs/$(PRINTNANNY_NAMESPACE)/.env run k8s/templates/render.sh
+	dotenv -f .envs/.$(PRINTNANNY_NAMESPACE)/.env run k8s/templates/render.sh
 
 ns-apply: ns-k8s
-	echo "Using namespace environment $(NAMESPACE_ENV_FILE)"
+	echo "Using namespace environment .envs/.$(PRINTNANNY_NAMESPACE)/.env"
 	GIT_SHA=$(GIT_SHA) \
 	GIT_BRANCH=$(GIT_BRANCH) \
-		dotenv -f $(NAMESPACE_ENV_FILE) run k8s/templates/apply.sh
+		dotenv -f .envs/.$(PRINTNANNY_NAMESPACE)/.env run k8s/templates/apply.sh
 	GIT_SHA=$(GIT_SHA) \
 	GIT_BRANCH=$(GIT_BRANCH) \
 	PROJECT=$(GCP_PROJECT) \
 	CLUSTER=$(CLUSTER) \
 	PRINTNANNY_NAMESPACE=$(PRINTNANNY_NAMESPACE) \
-		dotenv -f .envs/$(PRINTNANNY_NAMESPACE)/.env run k8s/templates/apply.sh
+		dotenv -f .envs/.$(PRINTNANNY_NAMESPACE)/.env run k8s/templates/apply.sh
 
 ns-rollout:
 	GIT_SHA=$(GIT_SHA) \
