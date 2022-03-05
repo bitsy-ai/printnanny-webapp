@@ -97,6 +97,9 @@ jobs:
       JANUS_CLOUD_WS_URL: ${{ secrets.JANUS_CLOUD_WS_URL }}
       JANUS_CLOUD_RTP_IP: ${{ secrets.JANUS_CLOUD_RTP_IP }}
       JANUS_CLOUD_RTP_DOMAIN: ${{ secrets.JANUS_CLOUD_RTP_DOMAIN }}
+      METABASE_DB_NAME: ${{ secrets.METABASE_DB_NAME }}
+      METABASE_DB_USER: ${{ secrets.METABASE_DB_USER }}
+      METABASE_DB_PASS: ${{ secrets.METABASE_DB_PASS }}
       MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
       MAILGUN_API_URL: https://api.mailgun.net/v3
       MAILGUN_DOMAIN: mail.printnanny.ai

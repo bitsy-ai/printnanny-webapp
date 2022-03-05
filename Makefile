@@ -9,6 +9,7 @@ GCP_PROJECT ?= printnanny-sandbox
 CLUSTER ?= www-sandbox
 ZONE ?= us-central1-c
 
+PRINTNANNY_NAMESPACE ?= beta
 PRINT_NANNY_URL ?= http://localhost:8000/
 PRINT_NANNY_API_URL ?= ${PRINT_NANNY_URL}api/
 OCTOPRINT_URL ?= http://localhost:5005/
@@ -235,24 +236,22 @@ sandbox-email:
 sandbox-ci: sandbox-deploy sandbox-email cypress-ci
 
 ns-k8s:
-	echo "Using namespace environment $(PWD)/.envs/.${PRINTNANNY_NAMESPACE}/.env"
-	GIT_SHA=$(GIT_SHA) \
-		dotenv -f $(PWD)/.envs/.${PRINTNANNY_NAMESPACE}/.env run k8s/templates/render.sh
-
-ns-apply:
 	echo "Using namespace environment .envs/.$(PRINTNANNY_NAMESPACE)/.env"
 	GIT_SHA=$(GIT_SHA) \
-		dotenv -f ".envs/.$(PRINTNANNY_NAMESPACE)/.env" run k8s/templates/apply.sh
-	
-	dotenv set GIT_SHA $(GIT_SHA)
-	dotenv set PROJECT $(GCP_PROJECT)
-	dotenv set CLUSTER $(CLUSTER)
-	dotenv set PRINTNANNY_NAMESPACE $(PRINTNANNY_NAMESPACE)
+	GIT_BRANCH=$(GIT_BRANCH) \
+	dotenv -f .envs/.$(PRINTNANNY_NAMESPACE)/.env run k8s/templates/render.sh
+
+ns-apply: ns-k8s
+	echo "Using namespace environment .envs/.$(PRINTNANNY_NAMESPACE)/.env"
 	GIT_SHA=$(GIT_SHA) \
+	GIT_BRANCH=$(GIT_BRANCH) \
+		dotenv -f .envs/.$(PRINTNANNY_NAMESPACE)/.env run k8s/templates/apply.sh
+	GIT_SHA=$(GIT_SHA) \
+	GIT_BRANCH=$(GIT_BRANCH) \
 	PROJECT=$(GCP_PROJECT) \
 	CLUSTER=$(CLUSTER) \
 	PRINTNANNY_NAMESPACE=$(PRINTNANNY_NAMESPACE) \
-		dotenv -f .envs/.${PRINTNANNY_NAMESPACE}/.env run k8s/templates/apply.sh
+		dotenv -f .envs/.$(PRINTNANNY_NAMESPACE)/.env run k8s/templates/apply.sh
 
 ns-rollout:
 	GIT_SHA=$(GIT_SHA) \
@@ -262,12 +261,17 @@ ns-rollout:
 	PRINTNANNY_NAMESPACE=$(PRINTNANNY_NAMESPACE) \
 		./tools/rollout.sh
 
-namespace-deploy: clean-dist dist/k8s cluster-config build ns-k8s ns-apply ns-rollout
+namespace-deploy: clean-dist dist/k8s cluster-config build ns-apply ns-rollout
 
-live-deploy: PRINTNANNY_NAMESPACE=live
+namespace-apply: clean-dist dist/k8s cluster-config ns-apply
+
+live-apply: PRINTNANNY_NAMESPACE:=live
+live-apply: namespace-apply
+
+live-deploy: PRINTNANNY_NAMESPACE:=live
 live-deploy: namespace-deploy
 
-beta-deploy: PRINTNANNY_NAMESPACE=beta
+beta-deploy: PRINTNANNY_NAMESPACE:=beta
 beta-deploy: namespace-deploy
 
 gh-namespace-deploy: clean-dist dist/k8s build cluster-config
