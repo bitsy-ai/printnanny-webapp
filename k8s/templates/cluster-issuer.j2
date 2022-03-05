@@ -27,6 +27,13 @@ spec:
           - '*.beta.printnanny.ai'
           - live.printnanny.ai
           - '*.live.printnanny.ai'
+      - dns01:
+          cloudDNS:
+            # The ID of the GCP project
+            # reference: https://docs.cert-manager.io/en/latest/tasks/issuers/setup-acme/dns01/google.html
+            hostedZoneName: "print-nanny-com"
+            project: {{ GCP_PROJECT }}
+        selector:
+          dnsNames:
           - print-nanny.com
           - '*.print-nanny.com'
-
