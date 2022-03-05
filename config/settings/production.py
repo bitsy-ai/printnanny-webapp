@@ -171,8 +171,6 @@ MIDDLEWARE += ["django_prometheus.middleware.PrometheusAfterMiddleware"]
 
 
 # Django channels
-# BASE_URL = env("DJANGO_BASE_URL", default="https://www.printnanny.ai")
-# WS_BASE_URL = env("DJANGO_WS_URL", default="wss://www.printnanny.ai/ws")
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",

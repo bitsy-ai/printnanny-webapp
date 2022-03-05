@@ -241,7 +241,7 @@ ns-k8s:
 	GIT_BRANCH=$(GIT_BRANCH) \
 		dotenv -f $(NAMESPACE_ENV_FILE) run k8s/templates/render.sh
 
-ns-apply:
+ns-apply: ns-k8s
 	echo "Using namespace environment $(NAMESPACE_ENV_FILE)"
 	GIT_SHA=$(GIT_SHA) \
 	GIT_BRANCH=$(GIT_BRANCH) \
@@ -260,10 +260,14 @@ ns-rollout:
 	CLUSTER=$(CLUSTER) \
 	PRINTNANNY_NAMESPACE=$(PRINTNANNY_NAMESPACE) \
 		./tools/rollout.sh
-namespace-deploy: clean-dist dist/k8s cluster-config build ns-k8s ns-apply ns-rollout
 
+namespace-deploy: clean-dist dist/k8s cluster-config build ns-apply ns-rollout
 
-live-deploy: NAMESPACE_ENV_FILE=.envs/.live/.env
+namespace-apply: clean-dist dist/k8s cluster-config ns-apply
+
+live-apply: PRINTNANNY_NAMESPACE=live
+live-apply: namespace-apply
+
 live-deploy: PRINTNANNY_NAMESPACE=live
 live-deploy: namespace-deploy
 

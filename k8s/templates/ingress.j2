@@ -21,7 +21,6 @@ metadata:
     kubernetes.io/ingress.global-static-ip-name: "printnanny-static-ip--{{ PRINTNANNY_NAMESPACE }}"
     networking.gke.io/v1beta1.FrontendConfig: "http-to-https"
     nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
     acme.cert-manager.io/http01-edit-in-place: "true"
 spec:
   tls:
