@@ -265,13 +265,13 @@ namespace-deploy: clean-dist dist/k8s cluster-config build ns-apply ns-rollout
 
 namespace-apply: clean-dist dist/k8s cluster-config ns-apply
 
-live-apply: PRINTNANNY_NAMESPACE=live
+live-apply: PRINTNANNY_NAMESPACE:=live
 live-apply: namespace-apply
 
-live-deploy: PRINTNANNY_NAMESPACE=live
+live-deploy: PRINTNANNY_NAMESPACE:=live
 live-deploy: namespace-deploy
 
-beta-deploy: NAMESPACE_ENV_FILE=.envs/.beta/.env
+beta-deploy: PRINTNANNY_NAMESPACE:=beta
 beta-deploy: namespace-deploy
 
 gh-namespace-deploy: clean-dist dist/k8s build cluster-config
