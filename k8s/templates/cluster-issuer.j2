@@ -29,7 +29,7 @@ spec:
           - '*.live.printnanny.ai'
       - http01:
           ingress:
-            class: nginx
+            class: ingress-gce
         selector:
           dnsNames:
           - print-nanny.com
