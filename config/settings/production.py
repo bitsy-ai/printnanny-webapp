@@ -146,7 +146,9 @@ LOGGING = {
             "level": "WARNING",
             "propagate": True,
         },
-        "daphne": {
+        "uvicorn": {
+            "handlers": ["console"],
+            "level": LOGLEVEL,
             "filters": ["exclude_health_endpoint"],
         },
     },
