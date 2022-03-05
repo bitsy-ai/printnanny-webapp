@@ -216,7 +216,7 @@ class CloudiotDevice(SafeDeleteModel):
     class Meta:
         constraints = [
             UniqueConstraint(
-                fields=["device", "public_key"],
+                fields=["device"],
                 condition=models.Q(deleted=None),
                 name="unique_cloud_iot_device_per_device",
             )

@@ -117,7 +117,7 @@ def update_cloudiot_device(cloudiot_device: CloudiotDevice, public_key: PublicKe
 
 def update_or_create_cloudiot_device(
     public_key: PublicKey,
-) -> Tuple[cloudiot_v1.Device, bool]:
+) -> Tuple[CloudiotDevice, bool]:
     client = cloudiot_v1.DeviceManagerClient()
 
     device_path = client.device_path(
@@ -132,12 +132,19 @@ def update_or_create_cloudiot_device(
             name=device_path
         )
         gcp_response = update_cloudiot_device(existing_cloudiot_device, public_key)
+        logger.info("Found cloudiot device, gcp_response=%s", gcp_response)
     except google.api_core.exceptions.NotFound:
-        logger.warning(f"Device not found {device_path} - creating")
+        logger.info(
+            "Device not found, attempting to create, gcp_response=%s", device_path
+        )
         gcp_response = create_cloudiot_device(public_key)
-    return CloudiotDevice.objects.update_or_create(
+        logger.info("Created cloudiot device, gcp_response=%s", gcp_response)
+    obj, created = CloudiotDevice.objects.filter(
+        device=public_key.device
+    ).update_or_create(
         public_key=public_key,
-        device=public_key.device,
         num_id=gcp_response.num_id,
         name=gcp_response.name,
     )
+    logger.info("Saved CloudiotDevice model %s created=%s", obj, created)
+    return obj, created
