@@ -9,7 +9,7 @@ Alert = apps.get_model("alerts", "AlertMessage")
 OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
 
 
-class SubscriptionRequiredMixin(LoginRequiredMixin, PermissionRequiredMixin):
+class SubscriptionRequiredMixin(LoginRequiredMixin):
     permission_classes = [HasActiveSubscription]
 
 
