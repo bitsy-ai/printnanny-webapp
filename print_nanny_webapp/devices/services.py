@@ -1,5 +1,6 @@
 from __future__ import annotations
 import logging
+from django.db import IntegrityError
 import requests
 from uuid import uuid4
 from typing import Tuple, Dict, Any
@@ -139,15 +140,24 @@ def update_or_create_cloudiot_device(
         )
         gcp_response = create_cloudiot_device(public_key)
         logger.info("Created cloudiot device, gcp_response=%s", gcp_response)
-    obj, created = CloudiotDevice.objects.filter(
-        device=public_key.device
-    ).update_or_create(
-        device=public_key.device,
-        defaults=dict(
-            public_key=public_key,
-            num_id=gcp_response.num_id,
-            name=gcp_response.name,
-        ),
-    )
+    try:
+        obj, created = CloudiotDevice.objects.update_or_create(
+            device=public_key.device,
+            deleted=None,
+            defaults=dict(
+                public_key=public_key,
+                num_id=gcp_response.num_id,
+                name=gcp_response.name,
+            ),
+        )
+    except IntegrityError as e:
+        cloudiot_devices = CloudiotDevice.objects.filter(device=public_key.device).all()
+        logger.warning(
+            "CloudiotDevice.objects.update_or_create raised integrity error=%s. Marking resources for deletion and retrying %s",
+            e,
+            cloudiot_devices,
+        )
+        CloudiotDevice.objects.filter(device=public_key.device).delete()
+        return update_or_create_cloudiot_device(public_key)
     logger.info("Saved CloudiotDevice model %s created=%s", obj, created)
     return obj, created
