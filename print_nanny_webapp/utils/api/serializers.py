@@ -1,6 +1,5 @@
 import json
 from rest_framework import serializers
-from rest_framework.renderers import JSONOpenAPIRenderer
 
 
 class ErrorDetailSerializer(serializers.Serializer):
