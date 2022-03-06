@@ -1,16 +1,10 @@
 import logging
-from typing import Dict, Any
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
-from django.conf import settings
-from django.apps import apps
 from rest_framework.renderers import JSONRenderer
 from google.cloud import iot_v1 as cloudiot_v1
 from print_nanny_webapp.devices.models import (
     CloudiotDevice,
-    JanusStream,
-    JanusAuth,
-    Device,
 )
 from print_nanny_webapp.events.api.serializers import PolymorphicEventSerializer
 from .models import WebRTCEvent, Event
@@ -86,19 +80,7 @@ def broadcast_event(event: Event):
 
 
 def webrtc_stream_start(event: WebRTCEvent) -> WebRTCEvent:
-    from print_nanny_webapp.devices.services import janus_cloud_setup
-
     try:
-        stream = janus_cloud_setup(event.device)
-        event.stream = stream
-        event.save()
-        logger.info(
-            "Added stream %s to event %s, sending to device %s via command topic %s",
-            stream,
-            event,
-            event.device,
-            event.device.cloudiot.command_topic,
-        )
         broadcast_event(event)
         return event
     except Exception as e:
