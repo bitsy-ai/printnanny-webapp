@@ -46,29 +46,12 @@ class TestEvent(Event):
     )
 
 
-class WebRTCEventManager(PolymorphicManager, SafeDeleteManager):
-    def create(self, **kwargs):
-
-        event_name = kwargs.get("event_name")
-        if event_name == WebRTCEventName.STREAM_START:
-            from print_nanny_webapp.devices.services import janus_cloud_setup
-            from print_nanny_webapp.devices.models import Device
-
-            device_id = kwargs.get("device_id")
-            device = Device.objects.get(id=device_id)
-            stream = janus_cloud_setup(device)
-            return super().create(stream=stream, **kwargs)
-
-        return super().create(**kwargs)
-
-
 class WebRTCEvent(Event):
     """
     Events related to WebRTC and PrintNanny video monitoring system
     """
 
     event_type = EventType.WebRTCEvent
-    objects = WebRTCEventManager()
 
     class Meta:
         index_together = [["device", "stream", "event_name"]]
@@ -77,9 +60,7 @@ class WebRTCEvent(Event):
     device = models.ForeignKey(
         "devices.Device", on_delete=models.CASCADE, related_name="webrtc_events"
     )
-    stream = models.ForeignKey(
-        "devices.JanusStream", on_delete=models.CASCADE, null=True
-    )
+    stream = models.ForeignKey("devices.JanusStream", on_delete=models.CASCADE)
     data = models.JSONField(default=dict)
     send_mqtt = models.BooleanField(
         default=True,

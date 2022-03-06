@@ -186,5 +186,6 @@ def janus_cloud_setup(device: Device) -> JanusStream:
     # Janus stores tokens in memory, so added tokens are flushed on restart
     # janus_admin_add_token(janus_auth)
     # 3) Create steaming mountpoint
-    stream, _created = JanusStream.objects.get_or_create(device=device)
-    return stream
+    return JanusStream.objects.get_or_create(
+        device=device, config_type=JanusConfigType.CLOUD
+    )

@@ -7,7 +7,7 @@ import {
   DEVICE,
   GET_DEVICE,
   JANUS_STREAM,
-  GET_JANUS_STREAM
+  SETUP_JANUS_CLOUD
 } from '@/store/devices'
 
 import { EVENTS_MODULE, STREAM_START, STREAM_STOP } from '@/store/events'
@@ -50,8 +50,9 @@ export default {
       this.active = true
 
       this.error = null
-      await this.startStart(this.deviceId)
-      await this.connectStream()
+      const janusStream = await this.setupJanusCloud(this.deviceId)
+      await this.streamStart(this.deviceId, janusStream)
+      await this.connectStream(janusStream)
     },
     async stopMonitoring () {
       this.loading = false
@@ -153,10 +154,9 @@ export default {
         }
       })
     },
-    async connectStream () {
-      console.log('connectStream called with JanusStream', this.janusStream)
-      const janus = new Janus.Client(this.janusStream.websocket_url, {
-        token: this.janusStream.auth.api_token,
+    async connectStream (janusStream) {
+      const janus = new Janus.Client(janusStream.websocket_url, {
+        token: janusStream.auth.api_token,
         keepalive: 'true'
       })
 
@@ -271,14 +271,13 @@ export default {
       // return this.loading === false && this.active === true
     },
     videoStreamEl: function () {
-      return `video-${this.janusStream.id}`
+      return `video-${this.deviceId}`
     }
   },
   async created () {
     // fetch device data
     if (this.deviceId) {
       await this.getDevice(this.deviceId)
-      await this.setupJanusCloud(this.deviceId)
     }
   }
 }
