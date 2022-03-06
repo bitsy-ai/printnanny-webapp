@@ -1,13 +1,50 @@
 import logging
+from typing import List
 from allauth.account.forms import SignupForm
+from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.contrib.auth import forms as admin_forms
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import Group
 from django.utils.translation import gettext_lazy as _
 from django import forms
 from print_nanny_webapp.subscriptions.models import ReferralCode, ReferralSignup
 from print_nanny_webapp.users.models import User, InviteRequest, UserSettings
 
 logger = logging.getLogger(__name__)
+
+# https://stackoverflow.com/a/3964824
+# Create ModelForm based on the Group model.
+class GroupAdminForm(forms.ModelForm):
+    class Meta:
+        model = Group
+        exclude: List[str] = []
+
+    # Add the users field.
+    users = forms.ModelMultipleChoiceField(
+        queryset=User.objects.all(),  # type: ignore[has-type]
+        required=False,
+        # Use the pretty 'filter_horizontal widget'.
+        widget=FilteredSelectMultiple("users", False),
+    )
+
+    def __init__(self, *args, **kwargs):
+        # Do the normal form initialisation.
+        super(GroupAdminForm, self).__init__(*args, **kwargs)
+        # If it is an existing group (saved objects have a pk).
+        if self.instance.pk:
+            # Populate the users field with the current Group users.
+            self.fields["users"].initial = self.instance.user_set.all()
+
+    def save_m2m(self):
+        # Add the users to the Group.
+        self.instance.user_set.set(self.cleaned_data["users"])
+
+    def save(self, *args, **kwargs):
+        # Default save
+        instance = super(GroupAdminForm, self).save()
+        # Save many-to-many data
+        self.save_m2m()
+        return instance
 
 
 class UserSettingsForm(forms.ModelForm):
