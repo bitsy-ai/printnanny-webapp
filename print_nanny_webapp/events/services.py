@@ -82,6 +82,7 @@ def broadcast_event(event: Event):
 def webrtc_stream_start(event: WebRTCEvent) -> WebRTCEvent:
     try:
         broadcast_event(event)
+        logger.info("Success broadcasting event %s", event)
         return event
     except Exception as e:
         logger.error("Error handling event=%s error=%s", event.__dict__, e)

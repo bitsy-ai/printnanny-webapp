@@ -39,7 +39,7 @@ export default {
   methods: {
     ...mapActions(DEVICE_MODULE, {
       getDevice: GET_DEVICE,
-      getJanusStream: GET_JANUS_STREAM
+      setupJanusCloud: SETUP_JANUS_CLOUD
     }),
     ...mapActions(EVENTS_MODULE, {
       streamStart: STREAM_START,
@@ -50,6 +50,7 @@ export default {
       this.active = true
 
       this.error = null
+      await this.startStart(this.deviceId)
       await this.connectStream()
     },
     async stopMonitoring () {
@@ -277,7 +278,7 @@ export default {
     // fetch device data
     if (this.deviceId) {
       await this.getDevice(this.deviceId)
-      await this.getJanusStream(this.deviceId)
+      await this.setupJanusCloud(this.deviceId)
     }
   }
 }
