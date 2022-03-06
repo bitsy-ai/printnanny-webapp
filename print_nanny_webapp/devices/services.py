@@ -151,13 +151,19 @@ def update_or_create_cloudiot_device(
             ),
         )
     except IntegrityError as e:
-        cloudiot_devices = CloudiotDevice.objects.filter(device=public_key.device).all()
+        cloudiot_device = CloudiotDevice.objects.filter(
+            device=public_key.device
+        ).first()
         logger.warning(
-            "CloudiotDevice.objects.update_or_create raised integrity error=%s. Marking resources for deletion and retrying %s",
+            "CloudiotDevice.objects.update_or_create raised integrity error=%s. Updating cloudiot_deice %s",
             e,
-            cloudiot_devices,
+            cloudiot_device,
         )
-        CloudiotDevice.objects.filter(device=public_key.device).delete()
-        return update_or_create_cloudiot_device(public_key)
+        cloudiot_device.public_key = public_key
+        cloudiot_device.num_id = gcp_response.num_id
+        cloudiot_device.name = gcp_response.name
+        cloudiot_device.save()
+        obj = cloudiot_device
+        created = False
     logger.info("Saved CloudiotDevice model %s created=%s", obj, created)
     return obj, created
