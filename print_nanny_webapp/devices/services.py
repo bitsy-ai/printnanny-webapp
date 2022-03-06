@@ -1,16 +1,16 @@
 from __future__ import annotations
 import logging
-from django.db import IntegrityError
-import requests
 from uuid import uuid4
 from typing import Tuple, Dict, Any
+import requests
 from google.cloud import iot_v1 as cloudiot_v1
 import google.api_core.exceptions
+from django.db import IntegrityError
 from django.conf import settings
 from django.template.loader import render_to_string
 from print_nanny_webapp.devices.enum import JanusConfigType
 
-from .models import CloudiotDevice, Device, PublicKey, JanusAuth
+from .models import CloudiotDevice, Device, PublicKey, JanusAuth, JanusStream
 
 logger = logging.getLogger(__name__)
 
@@ -167,3 +167,24 @@ def update_or_create_cloudiot_device(
         created = False
     logger.info("Saved CloudiotDevice model %s created=%s", obj, created)
     return obj, created
+
+
+def janus_cloud_setup(device: Device) -> JanusStream:
+    # 1) get or create JanusAuth for user
+    # TODO: implement JanusAuth.get_or_create for config_type=Edge
+    janus_auth, created = JanusAuth.objects.get_or_create(
+        user=device.user, config_type=JanusConfigType.CLOUD
+    )
+    logger.info(
+        "Retrieved JanusAuth id=%s user=%s created=%s",
+        janus_auth.id,
+        device.user.id,
+        created,
+    )
+
+    # 2) ensure token added to Janus Gateway
+    # Janus stores tokens in memory, so added tokens are flushed on restart
+    # janus_admin_add_token(janus_auth)
+    # 3) Create steaming mountpoint
+    stream, _created = JanusStream.objects.get_or_create(device=device)
+    return stream

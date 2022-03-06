@@ -12,18 +12,11 @@ from print_nanny_webapp.devices.models import (
     JanusAuth,
     Device,
 )
-from print_nanny_webapp.devices.enum import JanusConfigType
 from print_nanny_webapp.events.api.serializers import PolymorphicEventSerializer
 from .models import WebRTCEvent, Event
 from .enum import WebRTCEventName
 
 logger = logging.getLogger(__name__)
-
-
-def janus_cloud_get_or_create_stream(device: Device, auth: JanusAuth) -> JanusStream:
-    url = f"{settings.JANUS_CLOUD_API_URL}"
-    stream, _created = JanusStream.objects.get_or_create(device=device)
-    return stream
 
 
 def publish_mqtt_command(
@@ -92,28 +85,9 @@ def broadcast_event(event: Event):
             logger.warning("Event.send_mqtt broadcast is False, skipping. %s", event)
 
 
-def janus_cloud_setup(device: Device) -> JanusStream:
-    # 1) get or create JanusAuth for user
-    # TODO: implement JanusAuth.get_or_create for config_type=Edge
-    janus_auth, created = JanusAuth.objects.get_or_create(
-        user=device.user, config_type=JanusConfigType.CLOUD
-    )
-    logger.debug(
-        "Retrieved JanusAuth id=%s user=%s created=%s",
-        janus_auth.id,
-        device.user.id,
-        created,
-    )
-
-    # 2) ensure token added to Janus Gateway
-    # Janus stores tokens in memory, so added tokens are flushed on restart
-    # janus_admin_add_token(janus_auth)
-    # 3) Create steaming mountpoint
-    stream = janus_cloud_get_or_create_stream(device, janus_auth)
-    return stream
-
-
 def webrtc_stream_start(event: WebRTCEvent) -> WebRTCEvent:
+    from print_nanny_webapp.devices.services import janus_cloud_setup
+
     try:
         stream = janus_cloud_setup(event.device)
         event.stream = stream
