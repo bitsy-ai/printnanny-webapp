@@ -25,7 +25,7 @@ spec:
           readOnly: true
           name: nginx-conf
       - name: cloud-sql-proxy
-        image: gcr.io/cloudsql-docker/gce-proxy:1.29
+        image: gcr.io/cloudsql-docker/gce-proxy:1.29.0
         command:
           - "/cloud_sql_proxy"
           - "-instances=print-nanny:us-central1:print-nanny-blog=tcp:3306"

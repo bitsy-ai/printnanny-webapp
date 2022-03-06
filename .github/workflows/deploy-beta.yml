@@ -89,7 +89,7 @@ jobs:
       GCSFUSE_BUCKET: printnanny-downloads
       GHOST_ADMIN_API_KEY: ${{ secrets.GHOST_ADMIN_API_KEY }}
       GHOST_CONTENT_API_KEY: ${{ secrets.GHOST_CONTENT_API_KEY }}
-      GCE_PROXY_IMAGE: gcr.io/cloudsql-docker/gce-proxy:1.29
+      GCE_PROXY_IMAGE: gcr.io/cloudsql-docker/gce-proxy:1.29.0
       HONEYCOMB_API_KEY: ${{ secrets.HONEYCOMB_API_KEY }}
       HONEYCOMB_DATASET: ${{ secrets.HONEYCOMB_DATASET }}
       JANUS_CLOUD_ADMIN_SECRET: ${{ secrets.JANUS_CLOUD_ADMIN_SECRET }}

@@ -619,6 +619,7 @@ metadata:
   namespace: {{ PRINTNANNY_NAMESPACE }}
   name: janus-udp
   annotations:
+    cloud.google.com/network-tier: "Standard"
     cloud.google.com/backend-config: '{"default": "janus-backendconfig"}'
 spec:
   type: LoadBalancer
