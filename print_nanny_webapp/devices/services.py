@@ -143,9 +143,11 @@ def update_or_create_cloudiot_device(
         device=public_key.device
     ).update_or_create(
         device=public_key.device,
-        public_key=public_key,
-        num_id=gcp_response.num_id,
-        name=gcp_response.name,
+        defaults=dict(
+            public_key=public_key,
+            num_id=gcp_response.num_id,
+            name=gcp_response.name,
+        ),
     )
     logger.info("Saved CloudiotDevice model %s created=%s", obj, created)
     return obj, created
