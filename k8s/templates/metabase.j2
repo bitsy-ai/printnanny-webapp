@@ -18,7 +18,7 @@ spec:
       serviceAccountName: webapp
       containers:
       - name: cloud-sql-proxy
-        image: gcr.io/cloudsql-docker/gce-proxy:1.17
+        image: gcr.io/cloudsql-docker/gce-proxy:1.29
         command:
           - "/cloud_sql_proxy"
           - "-instances=print-nanny:us-central1:print-nanny=tcp:5432"
