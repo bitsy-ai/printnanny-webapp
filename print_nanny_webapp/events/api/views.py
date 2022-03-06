@@ -80,6 +80,7 @@ class EventViewSet(
         logger.info("EventViewSet.create got serializer %s", serializer)
         serializer.is_valid(raise_exception=True)
         logger.info("EventViewSet.create serializer is_valid=True")
+
         # assert user owns device
         if serializer.validated_data.get("device"):
             device = serializer.validated_data.get("device")
@@ -92,6 +93,7 @@ class EventViewSet(
                         "serializer_data": serializer.validated_data,
                     }
                 )
+
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.validated_data)
         return Response(
@@ -99,4 +101,5 @@ class EventViewSet(
         )
 
     def perform_create(self, serializer):
+
         return serializer.save(user=self.request.user)

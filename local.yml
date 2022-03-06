@@ -116,15 +116,15 @@ services:
       - local_prometheus_data:/prometheus
     command: --web.enable-lifecycle  --config.file=/etc/prometheus/prometheus.yml
 
-  events:
-    container_name: print_nanny_webapp_octoprint_events
-    <<: *django
-    ports: []
-    command:
-      - python
-      - manage.py
-      - shell
-      - < print_nanny_webapp/telemetry/subscribers/octoprint_events.py
+  # events:
+  #   container_name: print_nanny_webapp_octoprint_events
+  #   <<: *django
+  #   ports: []
+  #   command:
+  #     - python
+  #     - manage.py
+  #     - shell
+  #     - < print_nanny_webapp/telemetry/subscribers/octoprint_events.py
   # alerts:
   #   container_name: print_nanny_webapp_alerts
   #   <<: *django
