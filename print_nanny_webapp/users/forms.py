@@ -1,8 +1,8 @@
 import logging
+from typing import List
 from allauth.account.forms import SignupForm
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.contrib.auth import forms as admin_forms
-from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import Group
 from django.utils.translation import gettext_lazy as _
@@ -11,18 +11,17 @@ from print_nanny_webapp.subscriptions.models import ReferralCode, ReferralSignup
 from print_nanny_webapp.users.models import User, InviteRequest, UserSettings
 
 logger = logging.getLogger(__name__)
-User = get_user_model()
 
 # https://stackoverflow.com/a/3964824
 # Create ModelForm based on the Group model.
 class GroupAdminForm(forms.ModelForm):
     class Meta:
         model = Group
-        exclude = []
+        exclude: List[str] = []
 
     # Add the users field.
     users = forms.ModelMultipleChoiceField(
-        queryset=User.objects.all(),
+        queryset=User.objects.all(),  # type: ignore,
         required=False,
         # Use the pretty 'filter_horizontal widget'.
         widget=FilteredSelectMultiple("users", False),
