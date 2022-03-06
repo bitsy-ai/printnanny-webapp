@@ -350,6 +350,7 @@ ADMIN_URL = "admin/"
 ADMINS = [("""Leigh Johnson""", "leigh@printnanny.ai")]
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
+DEMO_GROUP = "demo"
 
 # LOGGING
 # ------------------------------------------------------------------------------
