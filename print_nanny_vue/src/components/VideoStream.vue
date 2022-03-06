@@ -7,7 +7,7 @@ import {
   DEVICE,
   GET_DEVICE,
   JANUS_STREAM,
-  GET_JANUS_STREAM
+  SETUP_JANUS_CLOUD
 } from '@/store/devices'
 
 import { EVENTS_MODULE, STREAM_START, STREAM_STOP } from '@/store/events'
@@ -50,7 +50,7 @@ export default {
       this.active = true
 
       this.error = null
-      await this.startStart(this.deviceId)
+      await this.streamStart(this.deviceId)
       await this.connectStream()
     },
     async stopMonitoring () {
