@@ -142,6 +142,7 @@ def update_or_create_cloudiot_device(
     obj, created = CloudiotDevice.objects.filter(
         device=public_key.device
     ).update_or_create(
+        device=public_key.device,
         public_key=public_key,
         num_id=gcp_response.num_id,
         name=gcp_response.name,
