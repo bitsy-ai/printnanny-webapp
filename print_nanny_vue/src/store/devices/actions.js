@@ -32,7 +32,9 @@ export default {
   async [SETUP_JANUS_CLOUD] ({ commit, state, dispatch }, deviceId) {
     const thisapi = api.DevicesApiFactory(configuration)
     const req = { config_type: api.JanusConfigType.Cloud }
-    const res = await thisapi.devicesJanusStreamUpdateOrCreate(deviceId, req)
+    const res = await thisapi.devicesJanusStreamGetOrCreate(deviceId, req)
+    console.log('Response to devicesJanusStreamGetOrCreate', res)
     commit(SET_JANUS_STREAM_DATA, res.data)
+    return res.data
   }
 }

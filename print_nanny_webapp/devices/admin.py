@@ -14,7 +14,6 @@ class JanusStreamAdmin(admin.ModelAdmin):
         "device",
         "device_hostname",
         "active",
-        "get_info",
         "info",
         "config_type",
         "created_dt",

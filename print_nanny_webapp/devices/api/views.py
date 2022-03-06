@@ -43,7 +43,7 @@ from ..models import (
     PublicKey,
     SystemInfo,
 )
-from ..services import update_or_create_cloudiot_device
+from ..services import janus_cloud_setup, update_or_create_cloudiot_device
 
 logger = logging.getLogger(__name__)
 
@@ -412,31 +412,6 @@ class JanusStreamViewSet(
             OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
         ],
         request=JanusStreamSerializer,
-        operation_id="devices_janus_stream_update_or_create",
-        responses={201: JanusStreamSerializer, 202: JanusStreamSerializer}
-        | generic_create_errors
-        | generic_update_errors,
-    )
-    @action(methods=["post"], detail=False, url_path="update-or-create")
-    def update_or_create(self, request, device_id=None):
-        serializer = self.get_serializer(data=request.data)
-        if serializer.is_valid():
-            instance, created = serializer.update_or_create(  # type: ignore[attr-defined]
-                serializer.validated_data, device_id
-            )
-            response_serializer = self.get_serializer(instance)
-            if not created:
-                return Response(response_serializer.data, status=status.HTTP_200_OK)
-            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    @extend_schema(
-        tags=["janus", "devices"],
-        parameters=[
-            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
-        ],
-        request=JanusStreamSerializer,
         operation_id="devices_janus_stream_get_or_create",
         responses={201: JanusStreamSerializer, 200: JanusStreamSerializer}
         | generic_create_errors
@@ -446,9 +421,9 @@ class JanusStreamViewSet(
     def get_or_create(self, request, device_id=None):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
-            instance, created = serializer.get_or_create(  # type: ignore[attr-defined]
-                serializer.validated_data, device_id
-            )
+            device = Device.objects.get(id=device_id)
+            instance, created = janus_cloud_setup(device)
+            logger.info("GET JanusStream=%s created=%s", instance, created)
             response_serializer = self.get_serializer(instance)
             if not created:
                 return Response(response_serializer.data, status=status.HTTP_200_OK)

@@ -460,26 +460,8 @@ class JanusStream(SafeDeleteModel):
     active = models.BooleanField(default=False)
     secret = models.CharField(max_length=255, default=get_random_string_32)
     pin = models.CharField(max_length=255, default=get_random_string_32)
-    # streaming.info response documented in https://janus.conf.meetecho.com/docs/streaming"
     info = models.JSONField(default=dict)
     rtp_port = models.PositiveSmallIntegerField(default=get_available_port)
-
-    @property
-    def get_info(self):
-        try:
-            req = dict(
-                request="info",
-                secret=self.secret,
-                transaction=uuid4().hex,
-                plugins=["janus.plugin.streaming"],
-            )
-            url = f"{settings.JANUS_CLOUD_API_URL}"
-            res = requests.post(url, json=req)
-            logger.info("Got response to POST %s: %s", url, req)
-            return res.json()
-        except Exception as e:
-            logger.error(e)
-            return None
 
     @property
     def auth(self) -> JanusAuth:
