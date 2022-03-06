@@ -1,14 +1,35 @@
 from django.contrib import admin
 from django.contrib.auth import admin as auth_admin
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Group
+
 from rest_framework.authtoken.models import Token
-from print_nanny_webapp.users.forms import UserChangeForm, UserCreationForm
+from print_nanny_webapp.users.forms import (
+    UserChangeForm,
+    UserCreationForm,
+    GroupAdminForm,
+)
 from print_nanny_webapp.users.models import InviteRequest
 from invitations.utils import get_invitation_model
 
 User = get_user_model()
 
 Invitation = get_invitation_model()
+
+# https://stackoverflow.com/a/39648244
+# Unregister the original Group admin.
+admin.site.unregister(Group)
+
+# Create a new Group admin.
+class GroupAdmin(admin.ModelAdmin):
+    # Use our custom form.
+    form = GroupAdminForm
+    # Filter permissions horizontal as well.
+    filter_horizontal = ["permissions"]
+
+
+# Register the new Group ModelAdmin.
+admin.site.register(Group, GroupAdmin)
 
 
 def create_token(modeladmin, request, queryset):
