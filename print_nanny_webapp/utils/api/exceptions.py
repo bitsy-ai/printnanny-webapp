@@ -1,4 +1,3 @@
-from distutils.log import error
 import logging
 from uuid import uuid4
 from django.http import JsonResponse
@@ -19,14 +18,10 @@ def custom_exception_handler(exc, context):
     # call default exception handler
     response = exception_handler(exc, context)
     error_uuid = uuid4().hex
-    logger.error(
-        "FATAL API EXCEPTION uuid=%s exc=%s context=%s", error_uuid, exc, context
-    )
     # returns response as handled normally by the framework, plus uuid
     if response is not None:
         response.data["error_uuid"] = error_uuid
         return response
-
-    # otherwise, build an error handler
-    payload = dict(error_uuid=error_uuid, exc=exc)
+    logger.error("FATAL API ERROR uuid=%s exc=%s context=%s", error_uuid, exc, context)
+    payload = dict(error_uuid=error_uuid, error=str(exc))
     return JsonResponse(payload, safe=False, status=500)
