@@ -522,30 +522,10 @@ GCP_CLOUDIOT_DEVICE_REGISTRY_REGION = "us-central1"
 GCP_CLOUDIOT_STANDALONE_DEVICE_REGISTRY = env(
     "GCP_CLOUDIOT_DEVICE_REGISTRY", default="printnanny-os--sandbox"
 )
-GCP_CLOUDIOT_OCTOPRINT_DEVICE_REGISTRY = env(
-    "GCP_CLOUDIOT_DEVICE_REGISTRY_DEPRECATED", default="octoprint-devices"
-)
 
 GCP_PUBSUB_TELEMETRY_DEFAULT_TOPIC = env(
     "GCP_PUBSUB_TELEMETRY_DEFAULT",
     default=os.path.join("projects", GCP_PROJECT_ID, "topics/default-telemetry"),
-)
-
-GCP_PUBSUB_OCTOPRINT_EVENTS_TOPIC = env(
-    "GCP_PUBSUB_OCTOPRINT_EVENTS",
-    default=os.path.join("projects", GCP_PROJECT_ID, "topics/octoprint-events"),
-)
-
-GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION = env(
-    "GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION",
-    default=os.path.join(
-        "projects", GCP_PROJECT_ID, "subscriptions/octoprint-events-pull"
-    ),
-)
-
-GCP_PUBSUB_OCTOPRINT_ALERTS_SUBSCRIPTION = env(
-    "GCP_PUBSUB_OCTOPRINT_ALERTS_SUBSCRIPTION",
-    default=os.path.join("projects", GCP_PROJECT_ID, "subscriptions/alerts-pull"),
 )
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
@@ -722,3 +702,33 @@ SERVE_QR_CODE_IMAGE_PATH = "qr/"
 # set build version
 # ------------------------------------------------------------------------------
 GIT_SHA = env("GIT_SHA", default="No GIT_SHA specified")
+
+# OctoPrint
+# ------------------------------------------------------------------------------
+
+# base url for serving OctoPrint in PrintNanny OS
+# see Nginx locations for ref:
+# https://github.com/bitsy-ai/ansible-collection-printnanny/blob/main/roles/octoprint/templates/nginx.locations.j2
+# Trailing slash should match Nginx location
+OCTOPRINT_URL = "/octoprint/"
+
+# legacy octoprint plugin device registry
+GCP_CLOUDIOT_OCTOPRINT_DEVICE_REGISTRY = env(
+    "GCP_CLOUDIOT_DEVICE_REGISTRY_DEPRECATED", default="octoprint-devices"
+)
+# octoprint events topics/subscriptions
+GCP_PUBSUB_OCTOPRINT_EVENTS_TOPIC = env(
+    "GCP_PUBSUB_OCTOPRINT_EVENTS",
+    default=os.path.join("projects", GCP_PROJECT_ID, "topics/octoprint-events"),
+)
+
+GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION = env(
+    "GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION",
+    default=os.path.join(
+        "projects", GCP_PROJECT_ID, "subscriptions/octoprint-events-pull"
+    ),
+)
+GCP_PUBSUB_OCTOPRINT_ALERTS_SUBSCRIPTION = env(
+    "GCP_PUBSUB_OCTOPRINT_ALERTS_SUBSCRIPTION",
+    default=os.path.join("projects", GCP_PROJECT_ID, "subscriptions/alerts-pull"),
+)

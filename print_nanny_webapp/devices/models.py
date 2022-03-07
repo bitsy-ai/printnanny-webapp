@@ -95,6 +95,12 @@ class Device(SafeDeleteModel):
         return reverse("devices:detail", kwargs={"pk": self.id})
 
     @property
+    def octoprint_url(self):
+        # NOTE: http:// protocol + mDNS hostname is hard-coded here while PrintNanny Network is WIP
+        # TODO: f"https://{self.fqdn}{settings.OCTOPRINT_URL}"
+        return f"http://{self.hostname}{settings.OCTOPRINT_URL}"
+
+    @property
     def video_test_url(self):
         return reverse("devices:video", kwargs={"pk": self.id})
 
