@@ -14,13 +14,14 @@ const configuration = new api.Configuration({
   }
 })
 export default {
-  async [STREAM_START](context: any, device: number) {
+  async [STREAM_START](context: any, device: number, stream: number) {
     const thisapi = api.EventsApiFactory(configuration)
-    const req: api.WebRTCEventRequest = {
+    const req: api.WebRTCEventCreateRequest = {
       event_type: api.WebRTCEventEventTypeEnum.WebRtcEvent,
       event_name: api.WebRTCEventName.Start,
       device: device,
-      source: api.EventSource.PrintnannyWebapp
+      source: api.EventSource.PrintnannyWebapp,
+      stream: stream
     }
     const res = await thisapi.eventsCreate(req)
     const event = res.data as WebRTCEvent
