@@ -31,7 +31,6 @@ class TestEventSerializer(serializers.ModelSerializer):
 
 
 class WebRTCEventSerializer(serializers.ModelSerializer):
-    event_type = serializers.ChoiceField(choices=[EventType.WebRTCEvent])
     stream = JanusStreamSerializer()
 
     class Meta:
