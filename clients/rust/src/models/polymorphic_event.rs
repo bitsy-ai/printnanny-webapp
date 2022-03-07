@@ -62,7 +62,7 @@ pub struct WebRtcEvent {
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-#[serde(tag = "event_type")]
+#[serde(tag = "model")]
 pub enum PolymorphicEvent {
     #[serde(rename="TestEvent")]
     TestEvent(TestEvent),

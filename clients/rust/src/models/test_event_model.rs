@@ -11,13 +11,13 @@
 
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum TestEventEventTypeEnum {
+pub enum TestEventModel {
     #[serde(rename = "TestEvent")]
     TestEvent,
 
 }
 
-impl ToString for TestEventEventTypeEnum {
+impl ToString for TestEventModel {
     fn to_string(&self) -> String {
         match self {
             Self::TestEvent => String::from("TestEvent"),
@@ -25,8 +25,8 @@ impl ToString for TestEventEventTypeEnum {
     }
 }
 
-impl Default for TestEventEventTypeEnum {
-    fn default() -> TestEventEventTypeEnum {
+impl Default for TestEventModel {
+    fn default() -> TestEventModel {
         Self::TestEvent
     }
 }

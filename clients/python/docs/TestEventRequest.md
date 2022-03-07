@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**event_type** | [**TestEventEventTypeEnum**](TestEventEventTypeEnum.md) |  | 
+**model** | [**TestEventModel**](TestEventModel.md) |  | 
 **source** | [**EventSource**](EventSource.md) |  | 
 **send_ws** | **bool** | Broadcast to events websocket: /ws/events | [optional] 
 **event_name** | [**TestEventName**](TestEventName.md) |  | 

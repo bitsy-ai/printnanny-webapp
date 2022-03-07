@@ -15,8 +15,8 @@
 pub struct TestEvent {
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "event_type")]
-    pub event_type: crate::models::TestEventEventTypeEnum,
+    #[serde(rename = "model")]
+    pub model: crate::models::TestEventModel,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
     #[serde(rename = "source")]
@@ -38,10 +38,10 @@ pub struct TestEvent {
 }
 
 impl TestEvent {
-    pub fn new(id: i32, event_type: crate::models::TestEventEventTypeEnum, created_dt: String, source: crate::models::EventSource, event_name: crate::models::TestEventName, polymorphic_ctype: i32, user: i32, device: i32) -> TestEvent {
+    pub fn new(id: i32, model: crate::models::TestEventModel, created_dt: String, source: crate::models::EventSource, event_name: crate::models::TestEventName, polymorphic_ctype: i32, user: i32, device: i32) -> TestEvent {
         TestEvent {
             id,
-            event_type,
+            model,
             created_dt,
             source,
             send_ws: None,

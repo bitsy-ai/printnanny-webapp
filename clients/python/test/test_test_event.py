@@ -38,7 +38,7 @@ class TestTestEvent(unittest.TestCase):
         if include_optional :
             return TestEvent(
                 id = 56, 
-                event_type = 'TestEvent', 
+                model = 'TestEvent', 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 source = 'octoprint', 
                 send_ws = True, 
@@ -51,7 +51,7 @@ class TestTestEvent(unittest.TestCase):
         else :
             return TestEvent(
                 id = 56,
-                event_type = 'TestEvent',
+                model = 'TestEvent',
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 source = 'octoprint',
                 event_name = 'mqtt_ping',

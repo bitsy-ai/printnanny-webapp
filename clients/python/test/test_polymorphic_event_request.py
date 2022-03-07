@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.polymorphic_event_create_request import PolymorphicEventCreateRequest  # noqa: E501
+from printnanny_api_client.models.polymorphic_event_request import PolymorphicEventRequest  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestPolymorphicEventCreateRequest(unittest.TestCase):
-    """PolymorphicEventCreateRequest unit test stubs"""
+class TestPolymorphicEventRequest(unittest.TestCase):
+    """PolymorphicEventRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,8 +29,8 @@ class TestPolymorphicEventCreateRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testPolymorphicEventCreateRequest(self):
-        """Test PolymorphicEventCreateRequest"""
+    def testPolymorphicEventRequest(self):
+        """Test PolymorphicEventRequest"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

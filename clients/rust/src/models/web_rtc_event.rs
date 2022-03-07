@@ -15,8 +15,8 @@
 pub struct WebRtcEvent {
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "event_type")]
-    pub event_type: crate::models::EventTypeF42Enum,
+    #[serde(rename = "model")]
+    pub model: crate::models::WebRtcEventModel,
     #[serde(rename = "stream")]
     pub stream: Box<crate::models::JanusStream>,
     #[serde(rename = "created_dt")]
@@ -42,10 +42,10 @@ pub struct WebRtcEvent {
 }
 
 impl WebRtcEvent {
-    pub fn new(id: i32, event_type: crate::models::EventTypeF42Enum, stream: crate::models::JanusStream, created_dt: String, source: crate::models::EventSource, event_name: crate::models::WebRtcEventName, polymorphic_ctype: i32, user: i32, device: i32) -> WebRtcEvent {
+    pub fn new(id: i32, model: crate::models::WebRtcEventModel, stream: crate::models::JanusStream, created_dt: String, source: crate::models::EventSource, event_name: crate::models::WebRtcEventName, polymorphic_ctype: i32, user: i32, device: i32) -> WebRtcEvent {
         WebRtcEvent {
             id,
-            event_type,
+            model,
             stream: Box::new(stream),
             created_dt,
             source,

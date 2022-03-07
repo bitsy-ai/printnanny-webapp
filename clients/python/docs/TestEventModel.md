@@ -1,7 +1,7 @@
-# TestEventEventTypeEnum
+# TestEventModel
+
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

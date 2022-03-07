@@ -13,8 +13,8 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct TestEventRequest {
-    #[serde(rename = "event_type")]
-    pub event_type: crate::models::TestEventEventTypeEnum,
+    #[serde(rename = "model")]
+    pub model: crate::models::TestEventModel,
     #[serde(rename = "source")]
     pub source: crate::models::EventSource,
     /// Broadcast to events websocket: /ws/events
@@ -30,9 +30,9 @@ pub struct TestEventRequest {
 }
 
 impl TestEventRequest {
-    pub fn new(event_type: crate::models::TestEventEventTypeEnum, source: crate::models::EventSource, event_name: crate::models::TestEventName, device: i32) -> TestEventRequest {
+    pub fn new(model: crate::models::TestEventModel, source: crate::models::EventSource, event_name: crate::models::TestEventName, device: i32) -> TestEventRequest {
         TestEventRequest {
-            event_type,
+            model,
             source,
             send_ws: None,
             event_name,

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
-**event_type** | [**crate::models::TestEventEventTypeEnum**](TestEventEventTypeEnum.md) |  | 
+**model** | [**crate::models::TestEventModel**](TestEventModel.md) |  | 
 **created_dt** | **String** |  | [readonly]
 **source** | [**crate::models::EventSource**](EventSource.md) |  | 
 **send_ws** | Option<**bool**> | Broadcast to events websocket: /ws/events | [optional]

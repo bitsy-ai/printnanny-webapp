@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
-**event_type** | [**TestEventEventTypeEnum**](TestEventEventTypeEnum.md) |  | 
+**model** | [**TestEventModel**](TestEventModel.md) |  | 
 **stream** | [**JanusStream**](JanusStream.md) |  | 
 **created_dt** | **datetime** |  | [readonly] 
 **source** | [**EventSource**](EventSource.md) |  | 

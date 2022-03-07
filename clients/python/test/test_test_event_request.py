@@ -37,7 +37,7 @@ class TestTestEventRequest(unittest.TestCase):
         # model = printnanny_api_client.models.test_event_request.TestEventRequest()  # noqa: E501
         if include_optional :
             return TestEventRequest(
-                event_type = 'TestEvent', 
+                model = 'TestEvent', 
                 source = 'octoprint', 
                 send_ws = True, 
                 event_name = 'mqtt_ping', 
@@ -46,7 +46,7 @@ class TestTestEventRequest(unittest.TestCase):
             )
         else :
             return TestEventRequest(
-                event_type = 'TestEvent',
+                model = 'TestEvent',
                 source = 'octoprint',
                 event_name = 'mqtt_ping',
                 device = 56,

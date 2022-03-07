@@ -38,7 +38,7 @@ class TestWebRTCEvent(unittest.TestCase):
         if include_optional :
             return WebRTCEvent(
                 id = 56, 
-                event_type = 'WebRTCEvent', 
+                model = 'WebRTCEvent', 
                 stream = printnanny_api_client.models.janus_stream.JanusStream(
                     id = 56, 
                     auth = null, 
@@ -76,7 +76,7 @@ class TestWebRTCEvent(unittest.TestCase):
         else :
             return WebRTCEvent(
                 id = 56,
-                event_type = 'WebRTCEvent',
+                model = 'WebRTCEvent',
                 stream = printnanny_api_client.models.janus_stream.JanusStream(
                     id = 56, 
                     auth = null, 

@@ -1,4 +1,4 @@
-# EventTypeF42Enum
+# WebRTCEventModel
 
 
 ## Properties

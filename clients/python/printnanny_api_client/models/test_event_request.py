@@ -37,7 +37,7 @@ class TestEventRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'event_type': 'TestEventEventTypeEnum',
+        'model': 'TestEventModel',
         'source': 'EventSource',
         'send_ws': 'bool',
         'event_name': 'TestEventName',
@@ -46,7 +46,7 @@ class TestEventRequest(object):
     }
 
     attribute_map = {
-        'event_type': 'event_type',
+        'model': 'model',
         'source': 'source',
         'send_ws': 'send_ws',
         'event_name': 'event_name',
@@ -54,13 +54,13 @@ class TestEventRequest(object):
         'device': 'device'
     }
 
-    def __init__(self, event_type=None, source=None, send_ws=None, event_name=None, send_mqtt=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, model=None, source=None, send_ws=None, event_name=None, send_mqtt=None, device=None, local_vars_configuration=None):  # noqa: E501
         """TestEventRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
-        self._event_type = None
+        self._model = None
         self._source = None
         self._send_ws = None
         self._event_name = None
@@ -68,7 +68,7 @@ class TestEventRequest(object):
         self._device = None
         self.discriminator = None
 
-        self.event_type = event_type
+        self.model = model
         self.source = source
         if send_ws is not None:
             self.send_ws = send_ws
@@ -78,27 +78,27 @@ class TestEventRequest(object):
         self.device = device
 
     @property
-    def event_type(self):
-        """Gets the event_type of this TestEventRequest.  # noqa: E501
+    def model(self):
+        """Gets the model of this TestEventRequest.  # noqa: E501
 
 
-        :return: The event_type of this TestEventRequest.  # noqa: E501
-        :rtype: TestEventEventTypeEnum
+        :return: The model of this TestEventRequest.  # noqa: E501
+        :rtype: TestEventModel
         """
-        return self._event_type
+        return self._model
 
-    @event_type.setter
-    def event_type(self, event_type):
-        """Sets the event_type of this TestEventRequest.
+    @model.setter
+    def model(self, model):
+        """Sets the model of this TestEventRequest.
 
 
-        :param event_type: The event_type of this TestEventRequest.  # noqa: E501
-        :type event_type: TestEventEventTypeEnum
+        :param model: The model of this TestEventRequest.  # noqa: E501
+        :type model: TestEventModel
         """
-        if self.local_vars_configuration.client_side_validation and event_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and model is None:  # noqa: E501
+            raise ValueError("Invalid value for `model`, must not be `None`")  # noqa: E501
 
-        self._event_type = event_type
+        self._model = model
 
     @property
     def source(self):

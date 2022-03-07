@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
-**event_type** | [**crate::models::EventTypeF42Enum**](EventTypeF42Enum.md) |  | 
+**model** | [**crate::models::WebRtcEventModel**](WebRTCEventModel.md) |  | 
 **stream** | [**crate::models::JanusStream**](JanusStream.md) |  | 
 **created_dt** | **String** |  | [readonly]
 **source** | [**crate::models::EventSource**](EventSource.md) |  | 

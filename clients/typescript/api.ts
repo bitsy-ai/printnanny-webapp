@@ -4365,10 +4365,10 @@ export interface PatchedUserRequest {
 export type PolymorphicEvent = TestEvent | WebRTCEvent;
 
 /**
- * @type PolymorphicEventCreateRequest
+ * @type PolymorphicEventRequest
  * @export
  */
-export type PolymorphicEventCreateRequest = TestEventRequest | WebRTCEventCreateRequest;
+export type PolymorphicEventRequest = TestEventRequest | WebRTCEventRequest;
 
 /**
  * 
@@ -6226,10 +6226,10 @@ export interface TestEvent {
     'id': number;
     /**
      * 
-     * @type {TestEventEventTypeEnum}
+     * @type {TestEventModel}
      * @memberof TestEvent
      */
-    'event_type': TestEventEventTypeEnum;
+    'model': TestEventModel;
     /**
      * 
      * @type {string}
@@ -6285,11 +6285,11 @@ export interface TestEvent {
  * @enum {string}
  */
 
-export const TestEventEventTypeEnum = {
+export const TestEventModel = {
     TestEvent: 'TestEvent'
 } as const;
 
-export type TestEventEventTypeEnum = typeof TestEventEventTypeEnum[keyof typeof TestEventEventTypeEnum];
+export type TestEventModel = typeof TestEventModel[keyof typeof TestEventModel];
 
 
 /**
@@ -6314,10 +6314,10 @@ export type TestEventName = typeof TestEventName[keyof typeof TestEventName];
 export interface TestEventRequest {
     /**
      * 
-     * @type {TestEventEventTypeEnum}
+     * @type {TestEventModel}
      * @memberof TestEventRequest
      */
-    'event_type': TestEventEventTypeEnum;
+    'model': TestEventModel;
     /**
      * 
      * @type {EventSource}
@@ -6408,6 +6408,12 @@ export interface WebRTCEvent {
     'id': number;
     /**
      * 
+     * @type {WebRTCEventModel}
+     * @memberof WebRTCEvent
+     */
+    'model': WebRTCEventModel;
+    /**
+     * 
      * @type {JanusStream}
      * @memberof WebRTCEvent
      */
@@ -6473,68 +6479,13 @@ export interface WebRTCEvent {
  * @enum {string}
  */
 
-export const WebRTCEventCreateEventTypeEnum = {
+export const WebRTCEventModel = {
     WebRtcEvent: 'WebRTCEvent'
 } as const;
 
-export type WebRTCEventCreateEventTypeEnum = typeof WebRTCEventCreateEventTypeEnum[keyof typeof WebRTCEventCreateEventTypeEnum];
+export type WebRTCEventModel = typeof WebRTCEventModel[keyof typeof WebRTCEventModel];
 
 
-/**
- * 
- * @export
- * @interface WebRTCEventCreateRequest
- */
-export interface WebRTCEventCreateRequest {
-    /**
-     * 
-     * @type {WebRTCEventCreateEventTypeEnum}
-     * @memberof WebRTCEventCreateRequest
-     */
-    'event_type': WebRTCEventCreateEventTypeEnum;
-    /**
-     * 
-     * @type {EventSource}
-     * @memberof WebRTCEventCreateRequest
-     */
-    'source': EventSource;
-    /**
-     * Broadcast to events websocket: /ws/events
-     * @type {boolean}
-     * @memberof WebRTCEventCreateRequest
-     */
-    'send_ws'?: boolean;
-    /**
-     * 
-     * @type {WebRTCEventName}
-     * @memberof WebRTCEventCreateRequest
-     */
-    'event_name': WebRTCEventName;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof WebRTCEventCreateRequest
-     */
-    'data'?: { [key: string]: any; };
-    /**
-     * Broadcast to mqtt topic: /devices/{device-id}/commands/
-     * @type {boolean}
-     * @memberof WebRTCEventCreateRequest
-     */
-    'send_mqtt'?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof WebRTCEventCreateRequest
-     */
-    'device': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof WebRTCEventCreateRequest
-     */
-    'stream': number;
-}
 /**
  * 
  * @export
@@ -6553,6 +6504,61 @@ export const WebRTCEventName = {
 export type WebRTCEventName = typeof WebRTCEventName[keyof typeof WebRTCEventName];
 
 
+/**
+ * 
+ * @export
+ * @interface WebRTCEventRequest
+ */
+export interface WebRTCEventRequest {
+    /**
+     * 
+     * @type {WebRTCEventModel}
+     * @memberof WebRTCEventRequest
+     */
+    'model': WebRTCEventModel;
+    /**
+     * 
+     * @type {JanusStreamRequest}
+     * @memberof WebRTCEventRequest
+     */
+    'stream': JanusStreamRequest;
+    /**
+     * 
+     * @type {EventSource}
+     * @memberof WebRTCEventRequest
+     */
+    'source': EventSource;
+    /**
+     * Broadcast to events websocket: /ws/events
+     * @type {boolean}
+     * @memberof WebRTCEventRequest
+     */
+    'send_ws'?: boolean;
+    /**
+     * 
+     * @type {WebRTCEventName}
+     * @memberof WebRTCEventRequest
+     */
+    'event_name': WebRTCEventName;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof WebRTCEventRequest
+     */
+    'data'?: { [key: string]: any; };
+    /**
+     * Broadcast to mqtt topic: /devices/{device-id}/commands/
+     * @type {boolean}
+     * @memberof WebRTCEventRequest
+     */
+    'send_mqtt'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebRTCEventRequest
+     */
+    'device': number;
+}
 
 /**
  * AlertsApi - axios parameter creator
@@ -10460,11 +10466,11 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
     return {
         /**
          * Generic events viewset
-         * @param {PolymorphicEventCreateRequest} [polymorphicEventCreateRequest] 
+         * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        eventsCreate: async (polymorphicEventCreateRequest?: PolymorphicEventCreateRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        eventsCreate: async (polymorphicEventRequest?: PolymorphicEventRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/events/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -10490,7 +10496,7 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(polymorphicEventCreateRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(polymorphicEventRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -10588,12 +10594,12 @@ export const EventsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Generic events viewset
-         * @param {PolymorphicEventCreateRequest} [polymorphicEventCreateRequest] 
+         * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async eventsCreate(polymorphicEventCreateRequest?: PolymorphicEventCreateRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.eventsCreate(polymorphicEventCreateRequest, options);
+        async eventsCreate(polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.eventsCreate(polymorphicEventRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -10628,12 +10634,12 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
     return {
         /**
          * Generic events viewset
-         * @param {PolymorphicEventCreateRequest} [polymorphicEventCreateRequest] 
+         * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        eventsCreate(polymorphicEventCreateRequest?: PolymorphicEventCreateRequest, options?: any): AxiosPromise<PolymorphicEvent> {
-            return localVarFp.eventsCreate(polymorphicEventCreateRequest, options).then((request) => request(axios, basePath));
+        eventsCreate(polymorphicEventRequest?: PolymorphicEventRequest, options?: any): AxiosPromise<PolymorphicEvent> {
+            return localVarFp.eventsCreate(polymorphicEventRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Generic events viewset
@@ -10664,12 +10670,12 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
 export interface EventsApiInterface {
     /**
      * Generic events viewset
-     * @param {PolymorphicEventCreateRequest} [polymorphicEventCreateRequest] 
+     * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    eventsCreate(polymorphicEventCreateRequest?: PolymorphicEventCreateRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
+    eventsCreate(polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
 
     /**
      * Generic events viewset
@@ -10700,13 +10706,13 @@ export interface EventsApiInterface {
 export class EventsApi extends BaseAPI implements EventsApiInterface {
     /**
      * Generic events viewset
-     * @param {PolymorphicEventCreateRequest} [polymorphicEventCreateRequest] 
+     * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public eventsCreate(polymorphicEventCreateRequest?: PolymorphicEventCreateRequest, options?: AxiosRequestConfig) {
-        return EventsApiFp(this.configuration).eventsCreate(polymorphicEventCreateRequest, options).then((request) => request(this.axios, this.basePath));
+    public eventsCreate(polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig) {
+        return EventsApiFp(this.configuration).eventsCreate(polymorphicEventRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
