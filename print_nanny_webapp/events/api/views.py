@@ -103,5 +103,5 @@ class EventViewSet(
 
     def perform_create(self, serializer):
         device = serializer.validated_data.get("device")
-        stream = janus_cloud_setup(device)
+        stream, _ = janus_cloud_setup(device)
         return serializer.save(user=self.request.user, stream=stream)
