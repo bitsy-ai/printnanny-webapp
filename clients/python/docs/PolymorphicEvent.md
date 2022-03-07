@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
 **model** | [**TestEventModel**](TestEventModel.md) |  | 
-**stream** | [**JanusStream**](JanusStream.md) |  | 
+**stream** | [**JanusStream**](JanusStream.md) |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
 **source** | [**EventSource**](EventSource.md) |  | 
 **send_ws** | **bool** | Broadcast to events websocket: /ws/events | [optional] 

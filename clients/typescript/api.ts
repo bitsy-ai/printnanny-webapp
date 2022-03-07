@@ -6518,12 +6518,6 @@ export interface WebRTCEventRequest {
     'model': WebRTCEventModel;
     /**
      * 
-     * @type {JanusStreamRequest}
-     * @memberof WebRTCEventRequest
-     */
-    'stream': JanusStreamRequest;
-    /**
-     * 
      * @type {EventSource}
      * @memberof WebRTCEventRequest
      */

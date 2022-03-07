@@ -166,8 +166,6 @@ class WebRTCEvent(object):
         :param stream: The stream of this WebRTCEvent.  # noqa: E501
         :type stream: JanusStream
         """
-        if self.local_vars_configuration.client_side_validation and stream is None:  # noqa: E501
-            raise ValueError("Invalid value for `stream`, must not be `None`")  # noqa: E501
 
         self._stream = stream
 

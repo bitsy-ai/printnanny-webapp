@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **model** | [**crate::models::TestEventModel**](TestEventModel.md) |  | 
-**stream** | [**crate::models::JanusStreamRequest**](JanusStreamRequest.md) |  | 
 **source** | [**crate::models::EventSource**](EventSource.md) |  | 
 **send_ws** | Option<**bool**> | Broadcast to events websocket: /ws/events | [optional]
 **event_name** | [**crate::models::TestEventName**](TestEventName.md) |  | 

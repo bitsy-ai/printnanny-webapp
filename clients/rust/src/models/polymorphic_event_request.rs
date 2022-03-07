@@ -27,8 +27,6 @@ pub struct TestEventRequest {
 }
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct WebRtcEventRequest {
-        #[serde(rename = "stream")]
-        pub stream: Box<crate::models::JanusStreamRequest>,
         #[serde(rename = "source")]
         pub source: crate::models::EventSource,
         /// Broadcast to events websocket: /ws/events

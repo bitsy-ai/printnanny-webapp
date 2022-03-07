@@ -38,8 +38,6 @@ class TestWebRTCEventRequest(unittest.TestCase):
         if include_optional :
             return WebRTCEventRequest(
                 model = 'WebRTCEvent', 
-                stream = printnanny_api_client.models.janus_stream_request.JanusStreamRequest(
-                    config_type = 'cloud', ), 
                 source = 'octoprint', 
                 send_ws = True, 
                 event_name = 'stream_start', 
@@ -52,8 +50,6 @@ class TestWebRTCEventRequest(unittest.TestCase):
         else :
             return WebRTCEventRequest(
                 model = 'WebRTCEvent',
-                stream = printnanny_api_client.models.janus_stream_request.JanusStreamRequest(
-                    config_type = 'cloud', ),
                 source = 'octoprint',
                 event_name = 'stream_start',
                 device = 56,

@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **model** | [**TestEventModel**](TestEventModel.md) |  | 
-**stream** | [**JanusStreamRequest**](JanusStreamRequest.md) |  | 
 **source** | [**EventSource**](EventSource.md) |  | 
 **send_ws** | **bool** | Broadcast to events websocket: /ws/events | [optional] 
 **event_name** | [**TestEventName**](TestEventName.md) |  | 

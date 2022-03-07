@@ -38,7 +38,6 @@ class WebRTCEventRequest(object):
     """
     openapi_types = {
         'model': 'WebRTCEventModel',
-        'stream': 'JanusStreamRequest',
         'source': 'EventSource',
         'send_ws': 'bool',
         'event_name': 'WebRTCEventName',
@@ -49,7 +48,6 @@ class WebRTCEventRequest(object):
 
     attribute_map = {
         'model': 'model',
-        'stream': 'stream',
         'source': 'source',
         'send_ws': 'send_ws',
         'event_name': 'event_name',
@@ -58,14 +56,13 @@ class WebRTCEventRequest(object):
         'device': 'device'
     }
 
-    def __init__(self, model=None, stream=None, source=None, send_ws=None, event_name=None, data=None, send_mqtt=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, model=None, source=None, send_ws=None, event_name=None, data=None, send_mqtt=None, device=None, local_vars_configuration=None):  # noqa: E501
         """WebRTCEventRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._model = None
-        self._stream = None
         self._source = None
         self._send_ws = None
         self._event_name = None
@@ -75,7 +72,6 @@ class WebRTCEventRequest(object):
         self.discriminator = None
 
         self.model = model
-        self.stream = stream
         self.source = source
         if send_ws is not None:
             self.send_ws = send_ws
@@ -108,29 +104,6 @@ class WebRTCEventRequest(object):
             raise ValueError("Invalid value for `model`, must not be `None`")  # noqa: E501
 
         self._model = model
-
-    @property
-    def stream(self):
-        """Gets the stream of this WebRTCEventRequest.  # noqa: E501
-
-
-        :return: The stream of this WebRTCEventRequest.  # noqa: E501
-        :rtype: JanusStreamRequest
-        """
-        return self._stream
-
-    @stream.setter
-    def stream(self, stream):
-        """Sets the stream of this WebRTCEventRequest.
-
-
-        :param stream: The stream of this WebRTCEventRequest.  # noqa: E501
-        :type stream: JanusStreamRequest
-        """
-        if self.local_vars_configuration.client_side_validation and stream is None:  # noqa: E501
-            raise ValueError("Invalid value for `stream`, must not be `None`")  # noqa: E501
-
-        self._stream = stream
 
     @property
     def source(self):

@@ -15,8 +15,6 @@
 pub struct WebRtcEventRequest {
     #[serde(rename = "model")]
     pub model: crate::models::WebRtcEventModel,
-    #[serde(rename = "stream")]
-    pub stream: Box<crate::models::JanusStreamRequest>,
     #[serde(rename = "source")]
     pub source: crate::models::EventSource,
     /// Broadcast to events websocket: /ws/events
@@ -34,10 +32,9 @@ pub struct WebRtcEventRequest {
 }
 
 impl WebRtcEventRequest {
-    pub fn new(model: crate::models::WebRtcEventModel, stream: crate::models::JanusStreamRequest, source: crate::models::EventSource, event_name: crate::models::WebRtcEventName, device: i32) -> WebRtcEventRequest {
+    pub fn new(model: crate::models::WebRtcEventModel, source: crate::models::EventSource, event_name: crate::models::WebRtcEventName, device: i32) -> WebRtcEventRequest {
         WebRtcEventRequest {
             model,
-            stream: Box::new(stream),
             source,
             send_ws: None,
             event_name,

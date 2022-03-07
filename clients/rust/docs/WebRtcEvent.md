@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
 **model** | [**crate::models::WebRtcEventModel**](WebRTCEventModel.md) |  | 
-**stream** | [**crate::models::JanusStream**](JanusStream.md) |  | 
+**stream** | Option<[**crate::models::JanusStream**](JanusStream.md)> |  | [readonly]
 **created_dt** | **String** |  | [readonly]
 **source** | [**crate::models::EventSource**](EventSource.md) |  | 
 **send_ws** | Option<**bool**> | Broadcast to events websocket: /ws/events | [optional]
