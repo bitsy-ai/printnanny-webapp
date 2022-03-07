@@ -60,7 +60,7 @@ jobs:
       CLUSTER: www-beta
       DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
       DJANGO_ADMIN_URL: ${{ secrets.DJANGO_ADMIN_URL }}
-      DJANGO_ALLOWED_HOSTS: .live.printnanny.ai,,printnanny.ai,.print-nanny.com
+      DJANGO_ALLOWED_HOSTS: .live.printnanny.ai,.printnanny.ai,.print-nanny.com
       DJANGO_BASE_URL: ${{ secrets.DJANGO_BASE_URL }}
       DJANGO_STATIC_URL: ${{ secrets.DJANGO_STATIC_URL }}
       DJANGO_DATABASE_URL: ${{ secrets.DJANGO_DATABASE_URL }}
