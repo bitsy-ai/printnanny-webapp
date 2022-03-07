@@ -6,7 +6,7 @@ from polymorphic.managers import PolymorphicManager
 from polymorphic.models import PolymorphicModel
 from safedelete.managers import SafeDeleteManager
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
-from .enum import EventSource, TestEventName, WebRTCEventName, EventType
+from .enum import EventSource, TestEventName, WebRTCEventName, EventModel
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
@@ -31,7 +31,7 @@ class Event(PolymorphicModel, SafeDeleteModel):
 
 
 class TestEvent(Event):
-    event_type = EventType.TestEvent
+    model = EventModel.TestEvent
 
     class Meta:
         index_together = [["device", "event_name"]]
@@ -51,7 +51,7 @@ class WebRTCEvent(Event):
     Events related to WebRTC and PrintNanny video monitoring system
     """
 
-    event_type = EventType.WebRTCEvent
+    model = EventModel.WebRTCEvent
 
     class Meta:
         index_together = [["device", "stream", "event_name"]]
