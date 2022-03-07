@@ -673,17 +673,20 @@ CORS_ALLOWED_ORIGINS = [
 
 # Janus cloud
 # ------------------------------------------------------------------------------
-JANUS_CLOUD_DOMAIN = env("JANUS_CLOUD_DOMAIN", default="localhost")
+default_janus_hostname = socket.gethostname()
+JANUS_CLOUD_DOMAIN = env("JANUS_CLOUD_DOMAIN", default=default_janus_hostname)
 JANUS_CLOUD_ADMIN_SECRET = env("JANUS_CLOUD_ADMIN_SECRET", default="debug")
 JANUS_CLOUD_ADMIN_URL = env(
-    "JANUS_CLOUD_ADMIN_URL", default="http://localhost:7088/admin"
+    "JANUS_CLOUD_ADMIN_URL", default=f"http://{default_janus_hostname}:7088/admin"
 )
 JANUS_CLOUD_ADMIN_PORT = env("JANUS_CLOUD_ADMIN_PORT", default=7088)
 JANUS_CLOUD_API_URL = env(
-    "JANUS_CLOUD_ADMIN_HTTP_PORT", default="http://localhost:8088/janus"
+    "JANUS_CLOUD_ADMIN_HTTP_PORT", default=f"http://{default_janus_hostname}:8088/janus"
 )
 JANUS_CLOUD_API_PORT = env("JANUS_CLOUD_API_PORT", default=8088)
-JANUS_CLOUD_WS_URL = env("JANUS_CLOUD_WS_URL", default="ws://aurora.local:8188")
+JANUS_CLOUD_WS_URL = env(
+    "JANUS_CLOUD_WS_URL", default=f"ws://{default_janus_hostname}:8188"
+)
 JANUS_CLOUD_WS_PORT = env("JANUS_CLOUD_WS_PORT", default=8188)
 JANUS_CLOUD_RTP_PORT_RANGE = env.tuple(
     "JANUS_CLOUD_RTP_PORT_RANGE", default=(5000, 5050)
@@ -691,7 +694,7 @@ JANUS_CLOUD_RTP_PORT_RANGE = env.tuple(
 JANUS_CLOUD_STREAMING_ADMIN_KEY = env(
     "JANUS_CLOUD_STREAMING_ADMIN_KEY", default="debugstreaming"
 )
-JANUS_CLOUD_RTP_DOMAIN = env("JANUS_CLOUD_RTP_DOMAIN", default="localhost")
+JANUS_CLOUD_RTP_DOMAIN = env("JANUS_CLOUD_RTP_DOMAIN", default=default_janus_hostname)
 
 # django-qr-code
 # https://django-qr-code.readthedocs.io/en/latest/pages/README.html
