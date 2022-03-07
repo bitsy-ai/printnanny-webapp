@@ -4,9 +4,13 @@ from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from rest_polymorphic.serializers import PolymorphicSerializer
 from print_nanny_webapp.devices.api.serializers import JanusStreamSerializer
-from print_nanny_webapp.devices.models import JanusStream
 from print_nanny_webapp.events.models import Event, WebRTCEvent, TestEvent
-from print_nanny_webapp.events.enum import EventSource, EventType
+from print_nanny_webapp.events.enum import (
+    EventSource,
+    EventModel,
+    TestEventModel,
+    WebRTCEventModel,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -22,7 +26,7 @@ class EventSerializer(serializers.ModelSerializer):
 
 
 class TestEventSerializer(serializers.ModelSerializer):
-    event_type = serializers.ChoiceField(choices=[EventType.TestEvent])
+    model = serializers.ChoiceField(choices=[TestEventModel.choices])
 
     class Meta:
         model = TestEvent
@@ -31,51 +35,29 @@ class TestEventSerializer(serializers.ModelSerializer):
 
 
 class WebRTCEventSerializer(serializers.ModelSerializer):
-    event_type = serializers.ChoiceField(choices=[EventType.WebRTCEvent])
+    model = serializers.ChoiceField(choices=[WebRTCEventModel.WebRTCEvent])
     stream = JanusStreamSerializer()
 
     class Meta:
         model = WebRTCEvent
         exclude = ("deleted",)
-        read_only_fields = ("user", "created_dt")
-
-
-class WebRTCEventCreateSerializer(serializers.ModelSerializer):
-    event_type = serializers.ChoiceField(choices=[EventType.WebRTCEvent])
-
-    class Meta:
-        model = WebRTCEvent
-        exclude = ("deleted",)
-        read_only_fields = ("user", "created_dt")
+        read_only_fields = ("user", "created_dt", "stream")
 
 
 class PolymorphicEventSerializer(PolymorphicSerializer):
     """
     Generic polymorphic serializer for all Events
 
-    A few private methods from PolymorphicSerializer are overridden to allow a persistent "event_type" field
-    The default PolymorphicSerializer behavior discards the resourcetype field (event_type in this case) and does not save with the model
+    The model field is used to distinguish Polymorphic serializers/models from each other
+    Each model has a 1-1 relationship with models derived from Event in print_nanny_webapp.events.models
+    The model field is equivalent to a Type
+
+    The event_name field equivalent to a "sub type"
     """
 
-    resource_type_field_name = "event_type"
+    resource_type_field_name = "model"
     # Model -> Serializer mapping
     model_serializer_mapping = {
         WebRTCEvent: WebRTCEventSerializer,
-        TestEvent: TestEventSerializer,
-    }
-
-
-class PolymorphicEventCreateSerializer(PolymorphicSerializer):
-    """
-    Generic polymorphic serializer for all Events
-
-    A few private methods from PolymorphicSerializer are overridden to allow a persistent "event_type" field
-    The default PolymorphicSerializer behavior discards the resourcetype field (event_type in this case) and does not save with the model
-    """
-
-    resource_type_field_name = "event_type"
-    # Model -> Serializer mapping
-    model_serializer_mapping = {
-        WebRTCEvent: WebRTCEventCreateSerializer,
         TestEvent: TestEventSerializer,
     }

@@ -51,7 +51,7 @@ export default {
 
       this.error = null
       const janusStream = await this.setupJanusCloud(this.deviceId)
-      await this.streamStart(this.deviceId, janusStream)
+      await this.streamStart(this.deviceId)
       await this.connectStream(janusStream)
     },
     async stopMonitoring () {

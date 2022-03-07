@@ -748,19 +748,6 @@ export type EventSource = typeof EventSource[keyof typeof EventSource];
 /**
  * 
  * @export
- * @enum {string}
- */
-
-export const EventTypeF42Enum = {
-    WebRtcEvent: 'WebRTCEvent'
-} as const;
-
-export type EventTypeF42Enum = typeof EventTypeF42Enum[keyof typeof EventTypeF42Enum];
-
-
-/**
- * 
- * @export
  * @interface Experiment
  */
 export interface Experiment {
@@ -6421,12 +6408,6 @@ export interface WebRTCEvent {
     'id': number;
     /**
      * 
-     * @type {EventTypeF42Enum}
-     * @memberof WebRTCEvent
-     */
-    'event_type': EventTypeF42Enum;
-    /**
-     * 
      * @type {JanusStream}
      * @memberof WebRTCEvent
      */
@@ -6489,15 +6470,28 @@ export interface WebRTCEvent {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export const WebRTCEventCreateEventTypeEnum = {
+    WebRtcEvent: 'WebRTCEvent'
+} as const;
+
+export type WebRTCEventCreateEventTypeEnum = typeof WebRTCEventCreateEventTypeEnum[keyof typeof WebRTCEventCreateEventTypeEnum];
+
+
+/**
+ * 
+ * @export
  * @interface WebRTCEventCreateRequest
  */
 export interface WebRTCEventCreateRequest {
     /**
      * 
-     * @type {EventTypeF42Enum}
+     * @type {WebRTCEventCreateEventTypeEnum}
      * @memberof WebRTCEventCreateRequest
      */
-    'event_type': EventTypeF42Enum;
+    'event_type': WebRTCEventCreateEventTypeEnum;
     /**
      * 
      * @type {EventSource}
