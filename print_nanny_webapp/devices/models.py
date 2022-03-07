@@ -97,7 +97,8 @@ class Device(SafeDeleteModel):
     @property
     def octoprint_url(self):
         # NOTE: http:// protocol + mDNS hostname is hard-coded here while PrintNanny Network is WIP
-        return f"http://{self.hostname}.local{settings.OCTOPRINT_URL}"
+        # TODO: f"https://{self.fqdn}{settings.OCTOPRINT_URL}"
+        return f"http://{self.hostname}{settings.OCTOPRINT_URL}"
 
     @property
     def video_test_url(self):
