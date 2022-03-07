@@ -29,7 +29,7 @@ def handle_event(sender, instance, created, **kwargs):
             "events.signals.handle_event calling handler %s with instance %s event_type %s",
             handler,
             instance,
-            instance.event_type,
+            instance.model,
         )
 
         if handler is None:

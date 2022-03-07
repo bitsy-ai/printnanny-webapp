@@ -169,7 +169,7 @@ def update_or_create_cloudiot_device(
     return obj, created
 
 
-def janus_cloud_setup(device: Device) -> JanusStream:
+def janus_cloud_setup(device: Device) -> Tuple[JanusStream, bool]:
     # 1) get or create JanusAuth for user
     # TODO: implement JanusAuth.get_or_create for config_type=Edge
     janus_auth, created = JanusAuth.objects.get_or_create(
@@ -186,6 +186,8 @@ def janus_cloud_setup(device: Device) -> JanusStream:
     # Janus stores tokens in memory, so added tokens are flushed on restart
     # janus_admin_add_token(janus_auth)
     # 3) Create steaming mountpoint
-    return JanusStream.objects.get_or_create(
+    stream, created = JanusStream.objects.get_or_create(
         device=device, config_type=JanusConfigType.CLOUD
     )
+    logger.info("Retrieved JanusStream %s created=%s", stream, created)
+    return stream, created
