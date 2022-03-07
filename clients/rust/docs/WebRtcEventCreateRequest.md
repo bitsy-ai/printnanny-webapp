@@ -1,16 +1,17 @@
-# WebRtcEventRequest
+# WebRtcEventCreateRequest
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**event_type** | [**crate::models::WebRtcEventEventTypeEnum**](WebRTCEventEventTypeEnum.md) |  | 
+**event_type** | [**crate::models::EventTypeF42Enum**](EventTypeF42Enum.md) |  | 
 **source** | [**crate::models::EventSource**](EventSource.md) |  | 
 **send_ws** | Option<**bool**> | Broadcast to events websocket: /ws/events | [optional]
 **event_name** | [**crate::models::WebRtcEventName**](WebRTCEventName.md) |  | 
 **data** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **send_mqtt** | Option<**bool**> | Broadcast to mqtt topic: /devices/{device-id}/commands/ | [optional]
 **device** | **i32** |  | 
+**stream** | **i32** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -12,9 +12,9 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct WebRtcEventRequest {
+pub struct WebRtcEventCreateRequest {
     #[serde(rename = "event_type")]
-    pub event_type: crate::models::WebRtcEventEventTypeEnum,
+    pub event_type: crate::models::EventTypeF42Enum,
     #[serde(rename = "source")]
     pub source: crate::models::EventSource,
     /// Broadcast to events websocket: /ws/events
@@ -29,11 +29,13 @@ pub struct WebRtcEventRequest {
     pub send_mqtt: Option<bool>,
     #[serde(rename = "device")]
     pub device: i32,
+    #[serde(rename = "stream")]
+    pub stream: i32,
 }
 
-impl WebRtcEventRequest {
-    pub fn new(event_type: crate::models::WebRtcEventEventTypeEnum, source: crate::models::EventSource, event_name: crate::models::WebRtcEventName, device: i32) -> WebRtcEventRequest {
-        WebRtcEventRequest {
+impl WebRtcEventCreateRequest {
+    pub fn new(event_type: crate::models::EventTypeF42Enum, source: crate::models::EventSource, event_name: crate::models::WebRtcEventName, device: i32, stream: i32) -> WebRtcEventCreateRequest {
+        WebRtcEventCreateRequest {
             event_type,
             source,
             send_ws: None,
@@ -41,6 +43,7 @@ impl WebRtcEventRequest {
             data: None,
             send_mqtt: None,
             device,
+            stream,
         }
     }
 }

@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.web_rtc_event_request import WebRTCEventRequest  # noqa: E501
+from printnanny_api_client.models.web_rtc_event_create_request import WebRTCEventCreateRequest  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestWebRTCEventRequest(unittest.TestCase):
-    """WebRTCEventRequest unit test stubs"""
+class TestWebRTCEventCreateRequest(unittest.TestCase):
+    """WebRTCEventCreateRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,13 +30,13 @@ class TestWebRTCEventRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test WebRTCEventRequest
+        """Test WebRTCEventCreateRequest
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.web_rtc_event_request.WebRTCEventRequest()  # noqa: E501
+        # model = printnanny_api_client.models.web_rtc_event_create_request.WebRTCEventCreateRequest()  # noqa: E501
         if include_optional :
-            return WebRTCEventRequest(
+            return WebRTCEventCreateRequest(
                 event_type = 'WebRTCEvent', 
                 source = 'octoprint', 
                 send_ws = True, 
@@ -45,18 +45,20 @@ class TestWebRTCEventRequest(unittest.TestCase):
                     'key' : null
                     }, 
                 send_mqtt = True, 
-                device = 56
+                device = 56, 
+                stream = 56
             )
         else :
-            return WebRTCEventRequest(
+            return WebRTCEventCreateRequest(
                 event_type = 'WebRTCEvent',
                 source = 'octoprint',
                 event_name = 'stream_start',
                 device = 56,
+                stream = 56,
         )
 
-    def testWebRTCEventRequest(self):
-        """Test WebRTCEventRequest"""
+    def testWebRTCEventCreateRequest(self):
+        """Test WebRTCEventCreateRequest"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

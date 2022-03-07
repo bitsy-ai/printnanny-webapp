@@ -26,7 +26,7 @@ pub struct TestEventRequest {
         pub device: i32,
 }
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-pub struct WebRtcEventRequest {
+pub struct WebRtcEventCreateRequest {
         #[serde(rename = "source")]
         pub source: crate::models::EventSource,
         /// Broadcast to events websocket: /ws/events
@@ -41,15 +41,17 @@ pub struct WebRtcEventRequest {
         pub send_mqtt: Option<bool>,
         #[serde(rename = "device")]
         pub device: i32,
+        #[serde(rename = "stream")]
+        pub stream: i32,
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(tag = "event_type")]
-pub enum PolymorphicEventRequest {
+pub enum PolymorphicEventCreateRequest {
     #[serde(rename="TestEvent")]
     TestEventRequest(TestEventRequest),
     #[serde(rename="WebRTCEvent")]
-    WebRtcEventRequest(WebRtcEventRequest),
+    WebRtcEventCreateRequest(WebRtcEventCreateRequest),
 }
 
 

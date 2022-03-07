@@ -748,6 +748,19 @@ export type EventSource = typeof EventSource[keyof typeof EventSource];
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export const EventTypeF42Enum = {
+    WebRtcEvent: 'WebRTCEvent'
+} as const;
+
+export type EventTypeF42Enum = typeof EventTypeF42Enum[keyof typeof EventTypeF42Enum];
+
+
+/**
+ * 
+ * @export
  * @interface Experiment
  */
 export interface Experiment {
@@ -4365,10 +4378,10 @@ export interface PatchedUserRequest {
 export type PolymorphicEvent = TestEvent | WebRTCEvent;
 
 /**
- * @type PolymorphicEventRequest
+ * @type PolymorphicEventCreateRequest
  * @export
  */
-export type PolymorphicEventRequest = TestEventRequest | WebRTCEventRequest;
+export type PolymorphicEventCreateRequest = TestEventRequest | WebRTCEventCreateRequest;
 
 /**
  * 
@@ -6408,10 +6421,10 @@ export interface WebRTCEvent {
     'id': number;
     /**
      * 
-     * @type {WebRTCEventEventTypeEnum}
+     * @type {EventTypeF42Enum}
      * @memberof WebRTCEvent
      */
-    'event_type': WebRTCEventEventTypeEnum;
+    'event_type': EventTypeF42Enum;
     /**
      * 
      * @type {JanusStream}
@@ -6476,16 +6489,58 @@ export interface WebRTCEvent {
 /**
  * 
  * @export
- * @enum {string}
+ * @interface WebRTCEventCreateRequest
  */
-
-export const WebRTCEventEventTypeEnum = {
-    WebRtcEvent: 'WebRTCEvent'
-} as const;
-
-export type WebRTCEventEventTypeEnum = typeof WebRTCEventEventTypeEnum[keyof typeof WebRTCEventEventTypeEnum];
-
-
+export interface WebRTCEventCreateRequest {
+    /**
+     * 
+     * @type {EventTypeF42Enum}
+     * @memberof WebRTCEventCreateRequest
+     */
+    'event_type': EventTypeF42Enum;
+    /**
+     * 
+     * @type {EventSource}
+     * @memberof WebRTCEventCreateRequest
+     */
+    'source': EventSource;
+    /**
+     * Broadcast to events websocket: /ws/events
+     * @type {boolean}
+     * @memberof WebRTCEventCreateRequest
+     */
+    'send_ws'?: boolean;
+    /**
+     * 
+     * @type {WebRTCEventName}
+     * @memberof WebRTCEventCreateRequest
+     */
+    'event_name': WebRTCEventName;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof WebRTCEventCreateRequest
+     */
+    'data'?: { [key: string]: any; };
+    /**
+     * Broadcast to mqtt topic: /devices/{device-id}/commands/
+     * @type {boolean}
+     * @memberof WebRTCEventCreateRequest
+     */
+    'send_mqtt'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebRTCEventCreateRequest
+     */
+    'device': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebRTCEventCreateRequest
+     */
+    'stream': number;
+}
 /**
  * 
  * @export
@@ -6504,55 +6559,6 @@ export const WebRTCEventName = {
 export type WebRTCEventName = typeof WebRTCEventName[keyof typeof WebRTCEventName];
 
 
-/**
- * 
- * @export
- * @interface WebRTCEventRequest
- */
-export interface WebRTCEventRequest {
-    /**
-     * 
-     * @type {WebRTCEventEventTypeEnum}
-     * @memberof WebRTCEventRequest
-     */
-    'event_type': WebRTCEventEventTypeEnum;
-    /**
-     * 
-     * @type {EventSource}
-     * @memberof WebRTCEventRequest
-     */
-    'source': EventSource;
-    /**
-     * Broadcast to events websocket: /ws/events
-     * @type {boolean}
-     * @memberof WebRTCEventRequest
-     */
-    'send_ws'?: boolean;
-    /**
-     * 
-     * @type {WebRTCEventName}
-     * @memberof WebRTCEventRequest
-     */
-    'event_name': WebRTCEventName;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof WebRTCEventRequest
-     */
-    'data'?: { [key: string]: any; };
-    /**
-     * Broadcast to mqtt topic: /devices/{device-id}/commands/
-     * @type {boolean}
-     * @memberof WebRTCEventRequest
-     */
-    'send_mqtt'?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof WebRTCEventRequest
-     */
-    'device': number;
-}
 
 /**
  * AlertsApi - axios parameter creator
@@ -8139,49 +8145,6 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesJanusStreamUpdateOrCreate: async (deviceId: number, janusStreamRequest?: JanusStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesJanusStreamUpdateOrCreate', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/janus-streams/update-or-create/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(janusStreamRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {JanusStreamRequest} [janusStreamRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
         devicesJanusStreamsCreate: async (deviceId: number, janusStreamRequest?: JanusStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
             assertParamExists('devicesJanusStreamsCreate', 'deviceId', deviceId)
@@ -9255,17 +9218,6 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesJanusStreamUpdateOrCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusStream>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusStreamUpdateOrCreate(deviceId, janusStreamRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {JanusStreamRequest} [janusStreamRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
         async devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusStream>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusStreamsCreate(deviceId, janusStreamRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
@@ -9602,16 +9554,6 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesJanusStreamUpdateOrCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: any): AxiosPromise<JanusStream> {
-            return localVarFp.devicesJanusStreamUpdateOrCreate(deviceId, janusStreamRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {JanusStreamRequest} [janusStreamRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
         devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: any): AxiosPromise<JanusStream> {
             return localVarFp.devicesJanusStreamsCreate(deviceId, janusStreamRequest, options).then((request) => request(axios, basePath));
         },
@@ -9917,16 +9859,6 @@ export interface DevicesApiInterface {
      * @memberof DevicesApiInterface
      */
     devicesJanusStreamGetOrCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig): AxiosPromise<JanusStream>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {JanusStreamRequest} [janusStreamRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesJanusStreamUpdateOrCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig): AxiosPromise<JanusStream>;
 
     /**
      * 
@@ -10265,18 +10197,6 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesJanusStreamUpdateOrCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesJanusStreamUpdateOrCreate(deviceId, janusStreamRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {JanusStreamRequest} [janusStreamRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
     public devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesJanusStreamsCreate(deviceId, janusStreamRequest, options).then((request) => request(this.axios, this.basePath));
     }
@@ -10546,11 +10466,11 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
     return {
         /**
          * Generic events viewset
-         * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
+         * @param {PolymorphicEventCreateRequest} [polymorphicEventCreateRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        eventsCreate: async (polymorphicEventRequest?: PolymorphicEventRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        eventsCreate: async (polymorphicEventCreateRequest?: PolymorphicEventCreateRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/events/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -10576,7 +10496,7 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(polymorphicEventRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(polymorphicEventCreateRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -10674,12 +10594,12 @@ export const EventsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Generic events viewset
-         * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
+         * @param {PolymorphicEventCreateRequest} [polymorphicEventCreateRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async eventsCreate(polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.eventsCreate(polymorphicEventRequest, options);
+        async eventsCreate(polymorphicEventCreateRequest?: PolymorphicEventCreateRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.eventsCreate(polymorphicEventCreateRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -10714,12 +10634,12 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
     return {
         /**
          * Generic events viewset
-         * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
+         * @param {PolymorphicEventCreateRequest} [polymorphicEventCreateRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        eventsCreate(polymorphicEventRequest?: PolymorphicEventRequest, options?: any): AxiosPromise<PolymorphicEvent> {
-            return localVarFp.eventsCreate(polymorphicEventRequest, options).then((request) => request(axios, basePath));
+        eventsCreate(polymorphicEventCreateRequest?: PolymorphicEventCreateRequest, options?: any): AxiosPromise<PolymorphicEvent> {
+            return localVarFp.eventsCreate(polymorphicEventCreateRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Generic events viewset
@@ -10750,12 +10670,12 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
 export interface EventsApiInterface {
     /**
      * Generic events viewset
-     * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
+     * @param {PolymorphicEventCreateRequest} [polymorphicEventCreateRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    eventsCreate(polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
+    eventsCreate(polymorphicEventCreateRequest?: PolymorphicEventCreateRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
 
     /**
      * Generic events viewset
@@ -10786,13 +10706,13 @@ export interface EventsApiInterface {
 export class EventsApi extends BaseAPI implements EventsApiInterface {
     /**
      * Generic events viewset
-     * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
+     * @param {PolymorphicEventCreateRequest} [polymorphicEventCreateRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public eventsCreate(polymorphicEventRequest?: PolymorphicEventRequest, options?: AxiosRequestConfig) {
-        return EventsApiFp(this.configuration).eventsCreate(polymorphicEventRequest, options).then((request) => request(this.axios, this.basePath));
+    public eventsCreate(polymorphicEventCreateRequest?: PolymorphicEventCreateRequest, options?: AxiosRequestConfig) {
+        return EventsApiFp(this.configuration).eventsCreate(polymorphicEventCreateRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -10836,49 +10756,6 @@ export const JanusApiAxiosParamCreator = function (configuration?: Configuration
             // verify required parameter 'deviceId' is not null or undefined
             assertParamExists('devicesJanusStreamGetOrCreate', 'deviceId', deviceId)
             const localVarPath = `/api/devices/{device_id}/janus-streams/get-or-create/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(janusStreamRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {JanusStreamRequest} [janusStreamRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesJanusStreamUpdateOrCreate: async (deviceId: number, janusStreamRequest?: JanusStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesJanusStreamUpdateOrCreate', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/janus-streams/update-or-create/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -11293,17 +11170,6 @@ export const JanusApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesJanusStreamUpdateOrCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusStream>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusStreamUpdateOrCreate(deviceId, janusStreamRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {JanusStreamRequest} [janusStreamRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
         async devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusStream>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusStreamsCreate(deviceId, janusStreamRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
@@ -11413,16 +11279,6 @@ export const JanusApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesJanusStreamUpdateOrCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: any): AxiosPromise<JanusStream> {
-            return localVarFp.devicesJanusStreamUpdateOrCreate(deviceId, janusStreamRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {JanusStreamRequest} [janusStreamRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
         devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: any): AxiosPromise<JanusStream> {
             return localVarFp.devicesJanusStreamsCreate(deviceId, janusStreamRequest, options).then((request) => request(axios, basePath));
         },
@@ -11524,16 +11380,6 @@ export interface JanusApiInterface {
      * @throws {RequiredError}
      * @memberof JanusApiInterface
      */
-    devicesJanusStreamUpdateOrCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig): AxiosPromise<JanusStream>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {JanusStreamRequest} [janusStreamRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof JanusApiInterface
-     */
     devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig): AxiosPromise<JanusStream>;
 
     /**
@@ -11626,18 +11472,6 @@ export class JanusApi extends BaseAPI implements JanusApiInterface {
      */
     public devicesJanusStreamGetOrCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig) {
         return JanusApiFp(this.configuration).devicesJanusStreamGetOrCreate(deviceId, janusStreamRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {JanusStreamRequest} [janusStreamRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof JanusApi
-     */
-    public devicesJanusStreamUpdateOrCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig) {
-        return JanusApiFp(this.configuration).devicesJanusStreamUpdateOrCreate(deviceId, janusStreamRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

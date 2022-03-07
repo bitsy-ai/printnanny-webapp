@@ -11,13 +11,13 @@
 
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum WebRtcEventEventTypeEnum {
+pub enum EventTypeF42Enum {
     #[serde(rename = "WebRTCEvent")]
     WebRTCEvent,
 
 }
 
-impl ToString for WebRtcEventEventTypeEnum {
+impl ToString for EventTypeF42Enum {
     fn to_string(&self) -> String {
         match self {
             Self::WebRTCEvent => String::from("WebRTCEvent"),
@@ -25,8 +25,8 @@ impl ToString for WebRtcEventEventTypeEnum {
     }
 }
 
-impl Default for WebRtcEventEventTypeEnum {
-    fn default() -> WebRtcEventEventTypeEnum {
+impl Default for EventTypeF42Enum {
+    fn default() -> EventTypeF42Enum {
         Self::WebRTCEvent
     }
 }

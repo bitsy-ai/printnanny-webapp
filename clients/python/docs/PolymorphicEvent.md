@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
 **event_type** | [**TestEventEventTypeEnum**](TestEventEventTypeEnum.md) |  | 
-**stream** | [**JanusStream**](JanusStream.md) |  | [readonly] 
+**stream** | [**JanusStream**](JanusStream.md) |  | 
 **created_dt** | **datetime** |  | [readonly] 
 **source** | [**EventSource**](EventSource.md) |  | 
 **send_ws** | **bool** | Broadcast to events websocket: /ws/events | [optional] 

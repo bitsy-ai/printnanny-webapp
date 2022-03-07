@@ -28,6 +28,7 @@ docs/DevicesApi.md
 docs/EmailAuthRequest.md
 docs/ErrorDetail.md
 docs/EventSource.md
+docs/EventTypeF42Enum.md
 docs/EventsApi.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
@@ -116,7 +117,7 @@ docs/PatchedRemoteControlCommandRequest.md
 docs/PatchedSystemInfoRequest.md
 docs/PatchedUserRequest.md
 docs/PolymorphicEvent.md
-docs/PolymorphicEventRequest.md
+docs/PolymorphicEventCreateRequest.md
 docs/PrintJobEvent.md
 docs/PrintJobEventRequest.md
 docs/PrintNannyApiConfig.md
@@ -153,9 +154,8 @@ docs/User.md
 docs/UserRequest.md
 docs/UsersApi.md
 docs/WebRtcEvent.md
-docs/WebRtcEventEventTypeEnum.md
+docs/WebRtcEventCreateRequest.md
 docs/WebRtcEventName.md
-docs/WebRtcEventRequest.md
 git_push.sh
 src/apis/alerts_api.rs
 src/apis/auth_api.rs
@@ -195,6 +195,7 @@ src/models/device_request.rs
 src/models/email_auth_request.rs
 src/models/error_detail.rs
 src/models/event_source.rs
+src/models/event_type_f42_enum.rs
 src/models/experiment.rs
 src/models/experiment_device_config.rs
 src/models/gcode_file.rs
@@ -278,7 +279,7 @@ src/models/patched_remote_control_command_request.rs
 src/models/patched_system_info_request.rs
 src/models/patched_user_request.rs
 src/models/polymorphic_event.rs
-src/models/polymorphic_event_request.rs
+src/models/polymorphic_event_create_request.rs
 src/models/print_job_event.rs
 src/models/print_job_event_request.rs
 src/models/print_nanny_api_config.rs
@@ -311,6 +312,5 @@ src/models/token_response.rs
 src/models/user.rs
 src/models/user_request.rs
 src/models/web_rtc_event.rs
-src/models/web_rtc_event_event_type_enum.rs
+src/models/web_rtc_event_create_request.rs
 src/models/web_rtc_event_name.rs
-src/models/web_rtc_event_request.rs

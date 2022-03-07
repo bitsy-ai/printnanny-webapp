@@ -53,7 +53,7 @@ pub enum EventsRetrieveError {
 
 
 /// Generic events viewset
-pub async fn events_create(configuration: &configuration::Configuration, polymorphic_event_request: Option<crate::models::PolymorphicEventRequest>) -> Result<crate::models::PolymorphicEvent, Error<EventsCreateError>> {
+pub async fn events_create(configuration: &configuration::Configuration, polymorphic_event_create_request: Option<crate::models::PolymorphicEventCreateRequest>) -> Result<crate::models::PolymorphicEvent, Error<EventsCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -67,7 +67,7 @@ pub async fn events_create(configuration: &configuration::Configuration, polymor
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&polymorphic_event_request);
+    local_var_req_builder = local_var_req_builder.json(&polymorphic_event_create_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;

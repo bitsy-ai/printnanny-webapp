@@ -35,12 +35,6 @@ class TestJanusApi(unittest.TestCase):
         """
         pass
 
-    def test_devices_janus_stream_update_or_create(self):
-        """Test case for devices_janus_stream_update_or_create
-
-        """
-        pass
-
     def test_devices_janus_streams_create(self):
         """Test case for devices_janus_streams_create
 

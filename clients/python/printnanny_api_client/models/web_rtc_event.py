@@ -38,7 +38,7 @@ class WebRTCEvent(object):
     """
     openapi_types = {
         'id': 'int',
-        'event_type': 'WebRTCEventEventTypeEnum',
+        'event_type': 'EventTypeF42Enum',
         'stream': 'JanusStream',
         'created_dt': 'datetime',
         'source': 'EventSource',
@@ -131,7 +131,7 @@ class WebRTCEvent(object):
 
 
         :return: The event_type of this WebRTCEvent.  # noqa: E501
-        :rtype: WebRTCEventEventTypeEnum
+        :rtype: EventTypeF42Enum
         """
         return self._event_type
 
@@ -141,7 +141,7 @@ class WebRTCEvent(object):
 
 
         :param event_type: The event_type of this WebRTCEvent.  # noqa: E501
-        :type event_type: WebRTCEventEventTypeEnum
+        :type event_type: EventTypeF42Enum
         """
         if self.local_vars_configuration.client_side_validation and event_type is None:  # noqa: E501
             raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
@@ -166,6 +166,8 @@ class WebRTCEvent(object):
         :param stream: The stream of this WebRTCEvent.  # noqa: E501
         :type stream: JanusStream
         """
+        if self.local_vars_configuration.client_side_validation and stream is None:  # noqa: E501
+            raise ValueError("Invalid value for `stream`, must not be `None`")  # noqa: E501
 
         self._stream = stream
 
