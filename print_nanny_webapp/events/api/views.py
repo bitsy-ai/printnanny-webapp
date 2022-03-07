@@ -22,7 +22,8 @@ from print_nanny_webapp.utils.api.views import (
 )
 from print_nanny_webapp.utils.permissions import IsObjectOwner
 from print_nanny_webapp.events.models import Event
-from .serializers import PolymorphicEventSerializer, PolymorphicEventCreateSerializer
+from print_nanny_webapp.devices.services import janus_cloud_setup
+from .serializers import PolymorphicEventSerializer
 
 Device = apps.get_model("devices", "Device")
 
@@ -39,7 +40,7 @@ logger = logging.getLogger(__name__)
     ),
     create=extend_schema(
         tags=["events"],
-        request=PolymorphicEventCreateSerializer,
+        request=PolymorphicEventSerializer,
         responses={
             201: PolymorphicEventSerializer,
         }
@@ -101,5 +102,6 @@ class EventViewSet(
         )
 
     def perform_create(self, serializer):
-
-        return serializer.save(user=self.request.user)
+        device = serializer.validated_data.get("device")
+        stream = janus_cloud_setup(device)
+        return serializer.save(user=self.request.user, stream=stream)

@@ -1,9 +1,29 @@
 from django.db import models
 
 
-class EventType(models.TextChoices):
+class EventModel(models.TextChoices):
+    """
+    Reference enum for Polymorphic Event models
+    """
+
     WebRTCEvent = "WebRTCEvent"
     TestEvent = "TestEvent"
+
+
+class TestEventModel(models.TextChoices):
+    """
+    Enum with 1 possible value is the easiest way to specify a "constant" value in an OpenAPI schema
+    """
+
+    TestEvent = "TestEvent"
+
+
+class WebRTCEventModel(models.TextChoices):
+    """
+    Enum with 1 possible value is the easiest way to specify a "constant" value in an OpenAPI schema
+    """
+
+    WebRTCEvent = "WebRTCEvent"
 
 
 class TestEventName(models.TextChoices):

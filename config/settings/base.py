@@ -5,7 +5,6 @@ from pathlib import Path
 import os
 import socket
 import environ
-import subprocess
 from django.contrib.messages import constants as messages
 
 from print_nanny_webapp import __version__ as API_VERSION
@@ -449,10 +448,12 @@ SPECTACULAR_SETTINGS = {
         "OctoJobEvent": "print_nanny_webapp.telemetry.enum.PrintJobEventType",
         "OctoPrinterEvent": "print_nanny_webapp.telemetry.enum.PrinterEventType",
         "AlphaEventSource": "print_nanny_webapp.telemetry.enum.EventSource",
-        # begin webrtc event types
+        # begin polymorphic event types
         "TestEventName": "print_nanny_webapp.events.enum.TestEventName",
+        "TestEventModel": "print_nanny_webapp.events.enum.TestEventModel",
         "WebRTCEventName": "print_nanny_webapp.events.enum.WebRTCEventName",
-        "EventType": "print_nanny_webapp.events.enum.EventType",
+        "WebRTCEventModel": "print_nanny_webapp.events.enum.WebRTCEventModel",
+        "EventModel": "print_nanny_webapp.events.enum.EventModel",
         "EventSource": "print_nanny_webapp.events.enum.EventSource",
     },
     "TITLE": "printnanny-api-client",
