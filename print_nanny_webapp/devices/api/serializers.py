@@ -134,6 +134,7 @@ class DeviceSerializer(serializers.ModelSerializer):
     monitoring_active = serializers.BooleanField(default=False)
     setup_complete = serializers.BooleanField(default=False)
     user = UserSerializer(read_only=True)
+    octoprint_url = serializers.CharField(read_only=True)
 
     release_channel = serializers.ChoiceField(
         choices=DeviceReleaseChannel.choices,
