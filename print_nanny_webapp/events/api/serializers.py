@@ -65,7 +65,7 @@ class PolymorphicEventSerializer(PolymorphicSerializer):
     }
 
 
-class PolymorphicEventRequestSerializer(PolymorphicSerializer):
+class PolymorphicEventCreateSerializer(PolymorphicSerializer):
     """
     Generic polymorphic serializer for all Events
 
