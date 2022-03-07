@@ -40,6 +40,15 @@ class WebRTCEventSerializer(serializers.ModelSerializer):
         read_only_fields = ("user", "created_dt")
 
 
+class WebRTCEventCreateSerializer(serializers.ModelSerializer):
+    event_type = serializers.ChoiceField(choices=[EventType.WebRTCEvent])
+
+    class Meta:
+        model = WebRTCEvent
+        exclude = ("deleted",)
+        read_only_fields = ("user", "created_dt")
+
+
 class PolymorphicEventSerializer(PolymorphicSerializer):
     """
     Generic polymorphic serializer for all Events
@@ -52,5 +61,21 @@ class PolymorphicEventSerializer(PolymorphicSerializer):
     # Model -> Serializer mapping
     model_serializer_mapping = {
         WebRTCEvent: WebRTCEventSerializer,
+        TestEvent: TestEventSerializer,
+    }
+
+
+class PolymorphicEventRequestSerializer(PolymorphicSerializer):
+    """
+    Generic polymorphic serializer for all Events
+
+    A few private methods from PolymorphicSerializer are overridden to allow a persistent "event_type" field
+    The default PolymorphicSerializer behavior discards the resourcetype field (event_type in this case) and does not save with the model
+    """
+
+    resource_type_field_name = "event_type"
+    # Model -> Serializer mapping
+    model_serializer_mapping = {
+        WebRTCEvent: WebRTCEventCreateSerializer,
         TestEvent: TestEventSerializer,
     }

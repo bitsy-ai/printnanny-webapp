@@ -22,7 +22,7 @@ from print_nanny_webapp.utils.api.views import (
 )
 from print_nanny_webapp.utils.permissions import IsObjectOwner
 from print_nanny_webapp.events.models import Event
-from .serializers import PolymorphicEventSerializer
+from .serializers import PolymorphicEventSerializer, PolymorphicEventRequestSerializer
 
 Device = apps.get_model("devices", "Device")
 
@@ -39,7 +39,7 @@ logger = logging.getLogger(__name__)
     ),
     create=extend_schema(
         tags=["events"],
-        request=PolymorphicEventSerializer,
+        request=PolymorphicEventRequestSerializer,
         responses={
             201: PolymorphicEventSerializer,
         }
