@@ -91,5 +91,6 @@ def webrtc_stream_start(event: WebRTCEvent) -> WebRTCEvent:
             device=event.device,
             user=event.user,
             send_mqtt=False,
+            stream=event.stream,
         )
         return error_event
