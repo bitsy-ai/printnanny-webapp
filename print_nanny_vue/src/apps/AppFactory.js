@@ -5,7 +5,7 @@ import store from '../store'
 import Vuelidate from '@vuelidate/core'
 import VueCompositionAPI from '@vue/composition-api'
 import { BootstrapVue } from 'bootstrap-vue'
-
+import { WS_URL } from '../services/api'
 import '@/scss/app.scss'
 
 Vue.config.productionTip = false
@@ -15,7 +15,7 @@ Vue.use(VueCookies)
 Vue.use(BootstrapVue)
 Vue.use(
   VueNativeSock,
-  process.env.BASE_WS_URL,
+  WS_URL,
   { store: store, format: 'json', reconnection: true }
 )
 
