@@ -90,6 +90,8 @@ jobs:
       HONEYCOMB_API_KEY: ${{ secrets.HONEYCOMB_API_KEY }}
       HONEYCOMB_DATASET: ${{ secrets.HONEYCOMB_DATASET }}
       JANUS_CLOUD_ADMIN_SECRET: ${{ secrets.JANUS_CLOUD_ADMIN_SECRET }}
+      JANUS_CLOUD_ADMIN_PORT: 7088
+      JANUS_CLOUD_API_PORT: 8088
       JANUS_CLOUD_ADMIN_URL: https://janus.live.printnanny.ai:7088/admin
       JANUS_CLOUD_API_URL: https://janus.live.printnanny.ai:8088/janus
       JANUS_CLOUD_DOMAIN: janus.live.printnanny.ai
