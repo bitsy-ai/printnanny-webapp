@@ -90,13 +90,14 @@ jobs:
       HONEYCOMB_API_KEY: ${{ secrets.HONEYCOMB_API_KEY }}
       HONEYCOMB_DATASET: ${{ secrets.HONEYCOMB_DATASET }}
       JANUS_CLOUD_ADMIN_SECRET: ${{ secrets.JANUS_CLOUD_ADMIN_SECRET }}
-      JANUS_CLOUD_ADMIN_URL: ${{ secrets.JANUS_CLOUD_ADMIN_URL }}
-      JANUS_CLOUD_API_URL: ${{ secrets.JANUS_CLOUD_API_URL }}
-      JANUS_CLOUD_DOMAIN: ${{ secrets.JANUS_CLOUD_DOMAIN }}
+      JANUS_CLOUD_ADMIN_URL: https://janus.live.printnanny.ai:7088/admin
+      JANUS_CLOUD_API_URL: https://janus.live.printnanny.ai:8088/janus
+      JANUS_CLOUD_DOMAIN: janus.live.printnanny.ai
       JANUS_CLOUD_IMAGE: us.gcr.io/print-nanny/janus:0.11.8
-      JANUS_CLOUD_WS_URL: ${{ secrets.JANUS_CLOUD_WS_URL }}
-      JANUS_CLOUD_RTP_IP: ${{ secrets.JANUS_CLOUD_RTP_IP }}
-      JANUS_CLOUD_RTP_DOMAIN: ${{ secrets.JANUS_CLOUD_RTP_DOMAIN }}
+      JANUS_CLOUD_WS_URL: ws://janus.live.printnanny.ai:8188
+      JANUS_CLOUD_RTP_IP: 35.208.45.18
+      JANUS_CLOUD_RTP_DOMAIN: rtp.live.printnanny.ai
+      JANUS_CLOUD_RTP_PORT_RANGE: 5000,6000
       METABASE_DB_NAME: ${{ secrets.METABASE_DB_NAME }}
       METABASE_DB_USER: ${{ secrets.METABASE_DB_USER }}
       METABASE_DB_PASS: ${{ secrets.METABASE_DB_PASS }}
