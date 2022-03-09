@@ -610,8 +610,17 @@ spec:
     app: janus
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 8088
+      port: {{ JANUS_CLOUD_WS_PORT }}
+      targetPort: {{ JANUS_CLOUD_WS_PORT }}
+      name: ws
+    - protocol: TCP
+      port: {{ JANUS_CLOUD_API_PORT }}
+      targetPort: {{ JANUS_CLOUD_API_PORT }}
+      name: api
+    - protocol: TCP
+      port: {{ JANUS_CLOUD_ADMIN_PORT }}
+      targetPort: {{ JANUS_CLOUD_ADMIN_PORT }}
+      name: admin
 ---
 apiVersion: v1
 kind: Service
