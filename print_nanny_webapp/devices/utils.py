@@ -37,7 +37,7 @@ def get_available_port() -> int:
             len(unavailable_ports),
             first_available,
         )
-        return first_available
+        return int(first_available)
     else:
         logger.warning(
             "Database is not synchronized in get_available_port() - returning default of 5001"
