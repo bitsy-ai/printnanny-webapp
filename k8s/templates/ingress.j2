@@ -141,14 +141,14 @@ spec:
                 name: janus-tcp
                 port:
                   number: {{ JANUS_CLOUD_WS_PORT }}
-          - path: /
+          - path: /janus
             pathType: Prefix
             backend:
               service:
                 name: janus-tcp
                 port:
                   number: {{ JANUS_CLOUD_API_PORT }}
-          - path: /
+          - path: /admin
             pathType: Prefix
             backend:
               service:
