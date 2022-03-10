@@ -131,3 +131,27 @@ spec:
                 name: django
                 port:
                   number: 80
+    - host: janus.{{ PRINTNANNY_NAMESPACE }}.printnanny.ai
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: janus-tcp
+                port:
+                  number: {{ JANUS_CLOUD_WS_PORT }}
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: janus-tcp
+                port:
+                  number: {{ JANUS_CLOUD_API_PORT }}
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: janus-tcp
+                port:
+                  number: {{ JANUS_CLOUD_ADMIN_PORT }}
