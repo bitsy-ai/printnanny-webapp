@@ -3,7 +3,7 @@
 set -euo pipefail
 
 docker tag "print_nanny_webapp:${GIT_SHA}" \
-    us.gcr.io/${GCP_PROJECT}/print_nanny_webapp:latest
+    "us.gcr.io/${GCP_PROJECT}/print_nanny_webapp:latest"
 
 docker tag "print_nanny_webapp:${GIT_SHA}" \
     "us.gcr.io/${GCP_PROJECT}/print_nanny_webapp:${GIT_SHA}"
