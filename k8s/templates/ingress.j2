@@ -20,7 +20,6 @@ metadata:
     certmanager.k8s.io/acme-challenge-type: "dns01"
     kubernetes.io/ingress.global-static-ip-name: "printnanny-static-ip--{{ PRINTNANNY_NAMESPACE }}"
     networking.gke.io/v1beta1.FrontendConfig: "http-to-https"
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   tls:
   - hosts:
