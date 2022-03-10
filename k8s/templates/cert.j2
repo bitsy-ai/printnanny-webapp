@@ -13,6 +13,7 @@ spec:
   {% if PRINTNANNY_NAMESPACE == 'live' %}
   - printnanny.ai
   - '*.printnanny.ai'
+  - '*.live.printnanny.ai'
   {% else %}
   - {{ PRINTNANNY_NAMESPACE }}.printnanny.ai
   - '*.{{ PRINTNANNY_NAMESPACE }}.printnanny.ai'
