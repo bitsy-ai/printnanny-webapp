@@ -79,9 +79,9 @@ metadata:
   namespace: {{ PRINTNANNY_NAMESPACE }}
   name: django-backendconfig
 spec:
-  timeoutSec: 1800
+  timeoutSec: 300
   connectionDraining:
-    drainingTimeoutSec: 1800
+    drainingTimeoutSec: 10
   healthCheck:
     checkIntervalSec: 30
     port: 8000
