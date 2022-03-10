@@ -16,7 +16,13 @@ Vue.use(BootstrapVue)
 Vue.use(
   VueNativeSock,
   WS_URL,
-  { store: store, format: 'json', reconnection: true }
+  {
+    store: store,
+    format: 'json',
+    reconnection: true,
+    reconnectionAttempts: 20,
+    reconnectionDelay: 6
+  }
 )
 
 export { Vue, store }
