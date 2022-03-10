@@ -93,11 +93,11 @@ jobs:
       JANUS_CLOUD_ADMIN_PORT: 7088
       JANUS_CLOUD_API_PORT: 8088
       JANUS_CLOUD_WS_PORT: 8188
-      JANUS_CLOUD_ADMIN_URL: https://janus.live.printnanny.ai:7088/admin
-      JANUS_CLOUD_API_URL: https://janus.live.printnanny.ai:8088/janus
+      JANUS_CLOUD_ADMIN_URL: https://janus.live.printnanny.ai/admin
+      JANUS_CLOUD_API_URL: https://janus.live.printnanny.ai/janus
       JANUS_CLOUD_DOMAIN: janus.live.printnanny.ai
       JANUS_CLOUD_IMAGE: us.gcr.io/print-nanny/janus:0.11.8
-      JANUS_CLOUD_WS_URL: wss://janus.live.printnanny.ai:8188
+      JANUS_CLOUD_WS_URL: wss://janus.live.printnanny.ai
       JANUS_CLOUD_RTP_IP: 35.208.45.18
       JANUS_CLOUD_RTP_DOMAIN: rtp.live.printnanny.ai
       JANUS_CLOUD_RTP_PORT_RANGE: 5000,6000
