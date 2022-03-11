@@ -126,13 +126,13 @@ export default {
           const video = document.getElementById(el)
           video.onloadeddata = function (e) {
             console.log('loadeddata event called')
-            // video.play()
-            // return videoReady()
+            video.play()
+            return videoReady()
           }
           video.onloadedmetadata = function (e) {
             console.log('onloadedmetadata event called')
-            video.play()
-            return videoReady()
+            // video.play()
+            // return videoReady()
           }
           const mediaStream = event.streams[0]
           console.log(
@@ -257,18 +257,8 @@ export default {
       device: DEVICE,
       janusStream: JANUS_STREAM
     }),
-    status () {
-      if (this.device.monitoring_active === true) {
-        return 'Video Stream is Online'
-      } else if (this.loading) {
-        return 'Video Stream is Loading'
-      } else {
-        return 'Video Stream is Offline'
-      }
-    },
     showVideo: function () {
-      return true
-      // return this.loading === false && this.active === true
+      return this.loading === false && this.active === true
     },
     videoStreamEl: function () {
       return `video-${this.deviceId}`
@@ -286,15 +276,24 @@ export default {
   <div class="card">
     <div class="card-header">
       <h3 class="card-title text-center">
-        {{ status }}
+        <span v-show="loading" class="text-center mt-3">
+          Waiting for {{ device.hostname }} camera
+        </span>
+        <span v-show="showVideo" class="text-center mt-3">
+          {{ device.hostname }} Live
+        </span>
+        <span v-show="!showVideo && !loading" class="text-center mt-3">
+          {{ device.hostname }} Offline
+        </span>
       </h3>
     </div>
     <div class="card-body">
-      <img
-        :v-show="!monitoringActive"
-        class="img-responsive w-25 d-block mx-auto"
-        :src="offlineImage"
-      />
+      <div v-show="!showVideo">
+        <img
+          class="img-responsive w-25 d-block mx-auto"
+          :src="offlineImage"
+        />
+      </div>
       <div v-show="loading" class="text-center mt-3">
         <span
           class="spinner-border spinner-border-sm"
