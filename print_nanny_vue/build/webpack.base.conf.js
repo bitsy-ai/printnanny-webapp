@@ -81,7 +81,11 @@ module.exports = {
         loader: "ts-loader",
         include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')],
       },
-      { test: /\.js$/, loader: "source-map-loader" },
+      {
+        test: /\.js$/,
+        enforce: "pre",
+        loader: "source-map-loader"
+      },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
