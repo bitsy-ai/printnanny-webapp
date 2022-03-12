@@ -268,6 +268,10 @@ namespace-apply: clean-dist dist/k8s cluster-config ns-apply
 live-apply: PRINTNANNY_NAMESPACE:=live
 live-apply: namespace-apply
 
+live-janus-apply: PRINTNANNY_NAMESPACE:=live
+live-janus-apply: clean-dist dist/k8s cluster-config ns-apply
+
+
 live-deploy: PRINTNANNY_NAMESPACE:=live
 live-deploy: namespace-deploy
 
