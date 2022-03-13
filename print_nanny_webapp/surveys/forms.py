@@ -27,6 +27,10 @@ class RemoteAccessSurvey1Form(ModelForm):
         choices=PrimaryOS.choices,
         label="Which computer operating system do you use? Select all that apply.",
     )
+    printer_models_other = CharField(
+        label="If you checked Other, please add details here",
+        required=False,
+    )
     mobile_os = MultipleChoiceField(
         widget=CheckboxSelectMultiple,
         choices=MobileOS.choices,
@@ -45,7 +49,7 @@ class RemoteAccessSurvey1Form(ModelForm):
     )
 
     user_scale_other = CharField(
-        label="If you checked Other, please add details here or email leigh@printnanny.ai",
+        label="If you checked Other, please add details here",
         required=False,
     )
 
