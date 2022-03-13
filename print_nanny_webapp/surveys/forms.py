@@ -72,9 +72,9 @@ class RemoteAccessSurvey1Form(ModelForm):
         exclude = ["user", "user_agent"]
 
     def save(self, *args, **kwargs):
-        request = kwargs.get("request")
+        request = kwargs.pop("request")
         if request is None:
-            raise ValueError("request is must be defined")
+            raise ValueError("request must be defined")
         # check to see if provided email matches user
         if request.user.is_anonymous:
             email = self.cleaned_data["email"]
