@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 
 def link_customer_by_email(user) -> Customer:
-    customer = Customer.objects.get(email=user.email)
+    customer = Customer.objects.get(email=user.email, deleted=False)
     if customer.subscriber is None:
         customer.subscriber = user
         customer.save()
