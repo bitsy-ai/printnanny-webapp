@@ -39,6 +39,9 @@ def create_token(modeladmin, request, queryset):
 
 @admin.register(User)
 class UserAdmin(auth_admin.UserAdmin):
+    # django-loginas
+    change_form_template = "loginas/change_form.html"
+
     add_form = UserCreationForm
     form = UserChangeForm
     model = User

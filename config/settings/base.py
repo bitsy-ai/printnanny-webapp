@@ -725,3 +725,10 @@ GCP_PUBSUB_OCTOPRINT_ALERTS_SUBSCRIPTION = env(
     "GCP_PUBSUB_OCTOPRINT_ALERTS_SUBSCRIPTION",
     default=os.path.join("projects", GCP_PROJECT_ID, "subscriptions/alerts-pull"),
 )
+
+# django-loginas
+# https://github.com/skorokithakis/django-loginas
+# ------------------------------------------------------------------------------
+
+INSTALLED_APPS += ["loginas"]
+LOGINAS_USERNAME_FIELD = "email"

@@ -22,6 +22,7 @@ django-flags
 django-health-check
 django-invitations
 django-model-utils
+django-loginas
 django-polymorphic
 django-prometheus
 django-qr-code
@@ -52,8 +53,7 @@ pyarrow
 qrcode[pil]
 scikit-image
 stringcase
-twisted[http2,tls]>=21.7 # https://github.com/django/channels/issues/1639
+twisted[http2,tls]<=21 # https://github.com/django/channels/issues/1639
 uvicorn[standard]
 whitenoise
-printnanny-api-client>=0.65.1
-websockets==10.1 # https://github.com/aaugustin/websockets/issues/1138#issuecomment-1059138857
+printnanny-api-client>=0.64.0
