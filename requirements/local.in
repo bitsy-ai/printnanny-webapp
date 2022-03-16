@@ -20,6 +20,7 @@ django-filter
 django-flags
 django-health-check
 django-invitations
+django-loginas
 django-model-utils
 django-polymorphic
 django-prometheus
