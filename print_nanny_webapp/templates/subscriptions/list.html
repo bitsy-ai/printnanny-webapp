@@ -2,6 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% load humanize %}
+{% load timestamp_to_time %}
 
 {% block css %}
 {{ block.super }}
@@ -45,75 +46,141 @@
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="{% url 'dashboard:home' %}">Dashboard</a></li>
 
-                        <li class="breadcrumb-item active">Subscriptions</li>
+                        <li class="breadcrumb-item active">Billing</li>
                     </ol>
                 </div>
-                <h4 class="page-title d-inline-block">Subscriptions
+                <h4 class="page-title d-inline-block">Billing & Payment History
                 </h4>
             </div>
         </div>
     </div>
-
     <div class="row">
-        <div class="card col-12 col-lg-6 d-flex align-items-stretch">
+        <div class="card col-12 col-md-6 d-flex align-items-stretch">
             <div class="card-body">
+                {% if SUBSCRIPTION %}
+                <dl class="row">
+                    <dt class="col-sm-3">Plan</dt>
+                    <dd class="col-sm-9">{{ SUBSCRIPTION.plan.product.name }}</dd>
+                    <dt class="col-sm-3">Start Date</dt>
+                    <dd class="col-sm-9">{{ SUBSCRIPTION.start_date| date }}</dd>
+                    <dt class="col-sm-3">Status</dt>
+                    <dd class="col-sm-9">
+                        {{ SUBSCRIPTION.status | title }}
+                        <!-- {% if SUBSCRIPTION.status == "active" %}
+                        <i class="mdi mdi-circle text-success"></i>
+                        {% elif SUBSCRIPTION.status == "unpaid" or SUBSCRIPTION.status == "past_due" or
+                        SUBSCRIPTION.status == "trialing" %}
+                        <i class="mdi mdi-circle text-warning"></i>
+                        {% elif SUBSCRIPTION.status == "past_due" %}
+                        <i class="mdi mdi-circle text-danger"></i>
+                        {% else %}
+                        <i class="mdi mdi-circle"></i>
+                        {% endif %} -->
+                    </dd>
+                    <dt class="col-sm-3">Next Invoice</dt>
+                    <dd class="col-sm-9">
+                        ${{ NEXT_INVOICE.amount_due }} due {{ SUBSCRIPTION.current_period_end }}
+                        {% if NEXT_INVOICE.discount %}
+                        (discount applied)
+                        {% endif %}
+                        <br>
+                        {% if SUBSCRIPTION.status == "active" or SUBSCRIPTION.status == "trialing" %}
+                        <a class="btn btn-danger btn-sm">Cancel Subscription</a>
+                        <!-- <a class="btn btn-light btn-sm">Pause</a> -->
+                        {% endif %}
 
+                        {% if SUBSCRIPTION.status != "active" and SUBSCRIPTION.status != "trialing" %}
+                        <a class="btn btn-secondary btn-sm">Upgrade Now</a>
+                        {% endif %}
+                    </dd>
+                    <dt class="col-sm-3">Promo Code</dt>
+                    <dd class="col-sm-9">
+                        {% if SUBSCRIPTION.discount %}
+                        {{ SUBSCRIPTION.discount.coupon.name }}
+                        <br>
+                        {{ SUBSCRIPTION.discount.start | timestamp_to_time }} -
+                        {{ SUBSCRIPTION.discount.end | timestamp_to_time }}
 
-                <h4>Payment History</h4>
-                {% if SUBSCRIPTIONS %}
-
-                <table id="subscription-history" class="table table-hover table-centered">
-                    <thead>
-                        <tr>
-
-                            <th>Price</th>
-                            <th>Subscription Status</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for subscription in SUBSCRIPTIONS %}
-                            <tr>
-                                <td>{{ subscription.plan.amount | floatformat:2 | intcomma }} {{ subscription.plan.currency | upper }}</td>
-                                <td>
-                                    {% if subscription.status == "active" %}
-                                        <i class="mdi mdi-circle text-success"></i>
-                                    {% elif subscription.status == "unpaid" or subscription.status == "past_due" %}
-                                        <i class="mdi mdi-circle text-warning"></i>
-                                    {% elif subscription.status == "past_due" %}
-                                        <i class="mdi mdi-circle text-dange"></i>
-                                    {% else %}
-                                        <i class="mdi mdi-circle"></i>
-                                    {% endif %}
-                                    &nbsp;{{ subscription.status | title }}
-                                </td>
-                                <td>{{ subscription.current_period_start | date }}</td>
-                                <td>{{ subscription.current_period_end | date }}</td>
-                                <!-- <td class="table-action">
-                                    <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                                    {% if subscription.status == "active" or subscription.status == "unpaid" or subscription.status == "past_due" %}
-                                        <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                    {% endif %}
-                                </td> -->
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-
+                        {% endif %}
+                    </dd>
+                </dl>
+                <p>A reminder email will be sent to {{ SUBSCRIPTION.customer.email }} 7 days before renewal.
+                </p>
                 {% else %}
-                    <p>You have no active subscriptions. </p>
-
-                    {% for product in PRODUCTS %}
-                        {% for price in product.prices_list %}
-                            <a href="javascript: redirectToStripeCheckout('{{ price.id }}');" class="btn btn-primary btn-lg mb-3 mt-3"><h4>Purchase Founding Membership for {{ price.human_readable_price }}</h4></a>
-                        {% endfor %}
-                    {% endfor %}
+                <p>No subscription found. Email leigh@printprinny.ai if this looks incorret.</p>
                 {% endif %}
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="card col-12 d-flex align-items-stretch">
+            <div class="card-body">
 
+
+                <h4>Previous Payments</h4>
+                <table id="charge-history" class="table table-hover table-centered">
+                    <thead>
+                        <tr>
+
+                            <th>Amount</th>
+                            <th>Transaction Date</th>
+                            <th>Payment Method</th>
+                            <th>Invoice</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for charge in STRIPE_CHARGES %}
+                        <tr>
+                            <td>{{ charge }}</td>
+                            <td>{{ charge.created | date }}</td>
+                            <td>
+                                {% if charge.payment_method.type == "card" %}
+                                {{ charge.payment_method.card.brand }} ending in {{ charge.payment_method.card.last4 }}
+                                {% else %}
+                                {{ charge.payment_method }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a class="btn btn-primary btn-sm" href="{{ charge.invoice.hosted_invoice_url }}">View
+                                    invoice</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="card col-12 d-flex align-items-stretch">
+            <div class="card-body">
+
+
+                <h4>Billing Event History</h4>
+                <table id="charge-history" class="table table-hover table-centered">
+                    <thead>
+                        <tr>
+
+                            <th>Type</th>
+                            <th>Date</th>
+                            <th>ID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for event in STRIPE_EVENTS %}
+                        <tr>
+                            <td>{{ event.type }}</td>
+                            <td>{{ event.created | date }}</td>
+                            <td>
+                                {{ event.data.object.id }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock content %}
 
@@ -137,7 +204,7 @@
     }
 
     function paySubscription(price_id) {
-        var devices = $("input:checkbox[name=devices]:checked").map(function() { return $(this).val() }).get();
+        var devices = $("input:checkbox[name=devices]:checked").map(function () { return $(this).val() }).get();
         var displayError = $("#card-errors");
         displayError.text("");
         displayError.hide();
@@ -171,7 +238,7 @@
                 const stripe = Stripe('{{ STRIPE_PUBLIC_KEY }}');
                 stripe.redirectToCheckout({
                     sessionId: json.session_id
-                }).then(function(result) {
+                }).then(function (result) {
                     // If `redirectToCheckout` fails due to a browser or network
                     // error, display the localized error message to your customer
                     // using `result.error.message`.
