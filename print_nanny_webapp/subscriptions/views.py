@@ -134,9 +134,10 @@ class FoundingMemberCheckoutView(LoginRequiredMixin, TemplateView):
         return JsonResponse({"session_id": session.id}, status=200)
 
 
-class SubscriptionsListView(FormView, AuthenticatedHttpRequest):
+class SubscriptionsListView(LoginRequiredMixin, FormView):
     form_class = PromoCodeForm
     template_name = "subscriptions/list.html"
+    request: AuthenticatedHttpRequest
 
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(*args, **kwargs)
