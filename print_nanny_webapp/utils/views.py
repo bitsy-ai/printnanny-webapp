@@ -1,12 +1,19 @@
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.apps import apps
 from django.views.generic import TemplateView
+from django.http import HttpRequest
+
 from print_nanny_webapp.utils.permissions import HasActiveSubscription
+from print_nanny_webapp.users.models import User
 
 Alert = apps.get_model("alerts", "AlertMessage")
 OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
+
+
+class AuthenticatedHttpRequest(HttpRequest):
+    user: User
 
 
 class SubscriptionRequiredMixin(LoginRequiredMixin):

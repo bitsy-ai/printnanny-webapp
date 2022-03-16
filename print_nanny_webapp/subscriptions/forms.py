@@ -2,6 +2,10 @@ from django import forms
 from .models import ReferralCode, ReferralInvite
 
 
+class PromoCodeForm(forms.Form):
+    code = forms.CharField()
+
+
 class StripeCheckoutForm(forms.Form):
     """
     Create a Stripe Checkout Session & then redirect to checkout page

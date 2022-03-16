@@ -6,25 +6,26 @@
 
 {% block content %}
 <div class="container-fluid">
-        
+
     <!-- start page title -->
-<div class="row">
+    <div class="row">
         <div class="col-12">
             <div class="page-title-box">
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-                      
+
                         <li class="breadcrumb-item active">Devices</li>
                         <li class="breadcrumb-item active">{{ object.name }}</li>
                     </ol>
                 </div>
-                <h3 class="page-title d-inline-flex">Remote Control </h3><span class="badge badge-light">{{object.name}}</span>
+                <h3 class="page-title d-inline-flex">Remote Control </h3><span
+                    class="badge badge-light">{{object.name}}</span>
                 {% include "partials/messages.html"%}
 
             </div>
         </div>
-    </div>  
+    </div>
 
     <div class="row">
 
@@ -36,17 +37,21 @@
                         <i class="mdi mdi-printer-3d"></i><strong> Status</strong>
                     </h4>
                     <dl class="row">
-        
-        
+
+
                         <dt class="col-sm-3">Printer Status</dt>
-                        <dd class="col-sm-9"><i class="mdi mdi-circle {{object.last_printer_event_css_class}}"></i> {{object.last_printer_event.printer_state}}</dd>
+                        <dd class="col-sm-9"><i class="mdi mdi-circle {{object.last_printer_event_css_class}}"></i>
+                            {{object.last_printer_event.printer_state}}</dd>
                         <dt class="col-sm-3">Monitoring Active</dt>
-                        <dd class="col-sm-9"><i class="mdi mdi-circle {{object.monitoring_active_css_class}}"></i> {{object.monitoring_active}}</dd>
+                        <dd class="col-sm-9"><i class="mdi mdi-circle {{object.monitoring_active_css_class}}"></i>
+                            {{object.monitoring_active}}</dd>
 
 
                         <dt class="col-sm-3">Current Job</dt>
                         {%if object.active_session %}
-                        <dd class="col-sm-9">{{object.active_session.gcode_filename }} {%if object.active_session.print_progress %} - {{object.active_session.print_progress}}% complete {% endif %} </dd>
+                        <dd class="col-sm-9">{{object.active_session.gcode_filename }} {%if
+                            object.active_session.print_progress %} - {{object.active_session.print_progress}}% complete
+                            {% endif %} </dd>
                         {% else %}
                         <dd class="col-sm-9">No active print job</dd>
                         {% endif %}
@@ -63,7 +68,7 @@
                     </h4>
                     <dl class="row">
                         <dt class="col-sm-3">Device Config Version</dt>
-                        <dd class="col-sm-9">{{ object.cloudiot_device_status.config.version  }}</dd>
+                        <dd class="col-sm-9">{{ object.cloudiot_device_status.config.version }}</dd>
                         <dt class="col-sm-3">Last Config Applied</dt>
                         <dd class="col-sm-9">{{ object.cloudiot_device_status.config.cloudUpdateTime }}</dd>
                         <dt class="col-sm-3">OctoPrint Version</dt>
@@ -78,7 +83,7 @@
                         <i class="mdi mdi-memory"></i> <strong>Hardware Info</strong>
                     </h4>
                     <dl class="row">
-        
+
                         <dt class="col-sm-3">Platform</dt>
                         <dd class="col-sm-9">{{object.platform}})</dd>
 
@@ -110,20 +115,20 @@
 
                     {% flag_enabled 'PARTNER_3DGEEKS_ENABLED' as partner_3dgeeks_flag %}
                     {% if partner_3dgeeks_flag %}
-                        <h4>
-                            <i class="mdi mdi-lock-check"></i><strong>Partner Apps</strong>
-                        </h4>
-                        <dl class="row">
+                    <h4>
+                        <i class="mdi mdi-lock-check"></i><strong>Partner Apps</strong>
+                    </h4>
+                    <dl class="row">
 
-                            <dt class="col-sm-3"><a target="_blank" href="https://www.3dgeeks.xyz/#/">3D Geeks</a></dt>
-                            <dd class="col-sm-8">{% include 'partials/partners/3d-geeks.html' %}</dd>
-                        </dl>
+                        <dt class="col-sm-3"><a target="_blank" href="https://www.3dgeeks.xyz/#/">3D Geeks</a></dt>
+                        <dd class="col-sm-8">{% include 'partials/partners/3d-geeks.html' %}</dd>
+                    </dl>
                     {% endif %}
                 </div>
-            </div>  
+            </div>
         </div>
         {% include "partials/livestream.html" %}
- 
+
     </div>
 
     <div class="row">

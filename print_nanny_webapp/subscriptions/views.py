@@ -12,13 +12,21 @@ from django.http import HttpRequest, HttpResponse
 from django.contrib.auth import get_user_model
 from django.views.generic import TemplateView
 from django.conf import settings
-from django.db.models import Q
+from django.views.generic.edit import FormView
 import djstripe.models
 import djstripe.enums
 import djstripe.settings
 from djstripe.settings import djstripe_settings
 
-from print_nanny_webapp.utils.views import DashboardView
+from print_nanny_webapp.subscriptions.forms import PromoCodeForm
+from print_nanny_webapp.subscriptions.services import (
+    get_stripe_active_subscription,
+    get_stripe_charges,
+    get_stripe_customer,
+    get_stripe_next_invoice,
+    get_stripe_subscription_events,
+)
+from print_nanny_webapp.utils.views import DashboardView, AuthenticatedHttpRequest
 
 logger = logging.getLogger(__name__)
 
@@ -126,46 +134,31 @@ class FoundingMemberCheckoutView(LoginRequiredMixin, TemplateView):
         return JsonResponse({"session_id": session.id}, status=200)
 
 
-def link_customer_by_email(user) -> djstripe.models.Customer:
-    customer = djstripe.models.Customer.objects.get(email=user.email)
-    if customer.subscriber is None:
-        customer.subscriber = user
-        customer.save()
-    elif customer.subscriber_id != user.id:
-        logger.warning(
-            "Tried to associate djstripe.models.Customer with email=%s with user=%s, but customer already linked to user=%s",
-            customer.email,
-            user,
-            customer.subscriber,
-        )
-    return customer
-
-
-class SubscriptionsListView(DashboardView):
+class SubscriptionsListView(LoginRequiredMixin, FormView):
+    form_class = PromoCodeForm
     template_name = "subscriptions/list.html"
+    request: AuthenticatedHttpRequest
 
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(*args, **kwargs)
         user = self.request.user
+
         try:
-            query = Q(subscriber=self.request.user) | Q(email=user.email)  # type: ignore
-            customer = djstripe.models.Customer.objects.get(query)
-            if not customer.subscriber:
-                link_customer_by_email(user)
-            # attempt to link customer by email
+            stripe_customer = get_stripe_customer(user)
+            ctx["SUBSCRIPTION"] = get_stripe_active_subscription(stripe_customer)
+            ctx["STRIPE_CHARGES"] = get_stripe_charges(stripe_customer)
+            ctx["STRIPE_EVENTS"] = get_stripe_subscription_events(stripe_customer)
+            ctx["NEXT_INVOICE"] = get_stripe_next_invoice(
+                stripe_customer, ctx["SUBSCRIPTION"]
+            )
         except djstripe.models.Customer.DoesNotExist:
-            logger.warning("No stripe customer associated with user=%s", user)
-            customer = None
-        if customer:
-            ctx["SUBSCRIPTIONS"] = customer.subscriptions.all().order_by("-created")
-        else:
-            ctx["SUBSCRIPTIONS"] = None
-
-        ctx["PRODUCTS"] = djstripe.models.Product.objects.filter(active=True)
-        for p in ctx["PRODUCTS"]:
-            p.prices_list = p.prices.filter(active=True)
-
+            logger.error("No stripe customer associated with user=%s", user)
+        logger.info(ctx)
         return ctx
+
+    # def form_valid(self, form):
+    #     # apply coupon to any active subscriptions
+    #     return super().form_valid(form)
 
 
 # @webhooks.handler("subscription_schedule.expiring")
