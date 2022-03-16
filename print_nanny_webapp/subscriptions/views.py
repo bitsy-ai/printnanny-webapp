@@ -26,7 +26,7 @@ from print_nanny_webapp.subscriptions.services import (
     get_stripe_next_invoice,
     get_stripe_subscription_events,
 )
-from print_nanny_webapp.utils.views import DashboardView
+from print_nanny_webapp.utils.views import DashboardView, AuthenticatedHttpRequest
 
 logger = logging.getLogger(__name__)
 
@@ -134,7 +134,7 @@ class FoundingMemberCheckoutView(LoginRequiredMixin, TemplateView):
         return JsonResponse({"session_id": session.id}, status=200)
 
 
-class SubscriptionsListView(FormView):
+class SubscriptionsListView(FormView, AuthenticatedHttpRequest):
     form_class = PromoCodeForm
     template_name = "subscriptions/list.html"
 

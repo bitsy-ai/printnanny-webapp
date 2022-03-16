@@ -35,7 +35,7 @@ def get_stripe_customer(user: User) -> Customer:
     Retrieve djstripe.model.Customer where Customer <-> User relationship may not be set
     Sets Customer.subscriber relationship if unset
     """
-    query = Q(subscriber=user) | Q(email=user.email)  # type: ignore
+    query = Q(subscriber=user) | Q(email=user.email)
     customer = Customer.objects.get(query)
     if not customer.subscriber:
         link_customer_by_email(user)
