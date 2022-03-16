@@ -28,6 +28,8 @@ urlpatterns = [
     path("waitlist/", RemoteAccessSurvey1Create.as_view(), name="waitlist"),
     path("thanks/", ThanksView.as_view(), name="thanks"),
     # Django Admin, use {% url 'admin:index' %}
+    # django-loginas urls must be defined before admin.site.urls
+    path(settings.ADMIN_URL, include("loginas.urls")),
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
     path("users/", include("print_nanny_webapp.users.urls", namespace="users")),
