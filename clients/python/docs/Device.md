@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **monitoring_active** | **bool** |  | [optional] [default to False]
 **setup_complete** | **bool** |  | [optional] [default to False]
 **user** | [**User**](User.md) |  | [readonly] 
+**octoprint_url** | **str** |  | [readonly] 
 **release_channel** | [**DeviceReleaseChannel**](DeviceReleaseChannel.md) |  | [optional] 
 **system_info** | [**SystemInfo**](SystemInfo.md) |  | [readonly] 
 **public_key** | [**PublicKey**](PublicKey.md) |  | [readonly] 

@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **monitoring_active** | Option<**bool**> |  | [optional][default to false]
 **setup_complete** | Option<**bool**> |  | [optional][default to false]
 **user** | Option<[**crate::models::User**](User.md)> |  | [readonly]
+**octoprint_url** | **String** |  | [readonly]
 **release_channel** | Option<[**crate::models::DeviceReleaseChannel**](DeviceReleaseChannel.md)> |  | [optional]
 **system_info** | Option<[**crate::models::SystemInfo**](SystemInfo.md)> |  | [readonly]
 **public_key** | Option<[**crate::models::PublicKey**](PublicKey.md)> |  | [readonly]

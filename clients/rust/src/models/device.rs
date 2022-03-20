@@ -31,6 +31,8 @@ pub struct Device {
     pub setup_complete: Option<bool>,
     #[serde(rename = "user")]
     pub user: Option<Box<crate::models::User>>,
+    #[serde(rename = "octoprint_url")]
+    pub octoprint_url: String,
     #[serde(rename = "release_channel", skip_serializing_if = "Option::is_none")]
     pub release_channel: Option<Box<crate::models::DeviceReleaseChannel>>,
     #[serde(rename = "system_info")]
@@ -47,7 +49,7 @@ pub struct Device {
 }
 
 impl Device {
-    pub fn new(id: i32, cloudiot_device: Option<crate::models::CloudiotDevice>, dashboard_url: String, video_test_url: String, janus_auth: Option<crate::models::JanusAuth>, janus_local_url: String, user: Option<crate::models::User>, system_info: Option<crate::models::SystemInfo>, public_key: Option<crate::models::PublicKey>, created_dt: String, updated_dt: String) -> Device {
+    pub fn new(id: i32, cloudiot_device: Option<crate::models::CloudiotDevice>, dashboard_url: String, video_test_url: String, janus_auth: Option<crate::models::JanusAuth>, janus_local_url: String, user: Option<crate::models::User>, octoprint_url: String, system_info: Option<crate::models::SystemInfo>, public_key: Option<crate::models::PublicKey>, created_dt: String, updated_dt: String) -> Device {
         Device {
             id,
             cloudiot_device: cloudiot_device.map(Box::new),
@@ -58,6 +60,7 @@ impl Device {
             monitoring_active: None,
             setup_complete: None,
             user: user.map(Box::new),
+            octoprint_url,
             release_channel: None,
             system_info: system_info.map(Box::new),
             public_key: public_key.map(Box::new),

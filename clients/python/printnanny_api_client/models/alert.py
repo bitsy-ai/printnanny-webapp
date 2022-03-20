@@ -46,7 +46,7 @@ class Alert(object):
         'manage_device_url': 'str',
         'user': 'int',
         'octoprint_device': 'int',
-        'event_type': 'AlertEventTypeEnum',
+        'event_type': 'EventTypeEnum',
         'seen': 'bool',
         'sent': 'bool',
         'created_dt': 'datetime',
@@ -322,7 +322,7 @@ class Alert(object):
 
 
         :return: The event_type of this Alert.  # noqa: E501
-        :rtype: AlertEventTypeEnum
+        :rtype: EventTypeEnum
         """
         return self._event_type
 
@@ -332,7 +332,7 @@ class Alert(object):
 
 
         :param event_type: The event_type of this Alert.  # noqa: E501
-        :type event_type: AlertEventTypeEnum
+        :type event_type: EventTypeEnum
         """
 
         self._event_type = event_type

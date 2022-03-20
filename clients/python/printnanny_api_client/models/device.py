@@ -46,6 +46,7 @@ class Device(object):
         'monitoring_active': 'bool',
         'setup_complete': 'bool',
         'user': 'User',
+        'octoprint_url': 'str',
         'release_channel': 'DeviceReleaseChannel',
         'system_info': 'SystemInfo',
         'public_key': 'PublicKey',
@@ -64,6 +65,7 @@ class Device(object):
         'monitoring_active': 'monitoring_active',
         'setup_complete': 'setup_complete',
         'user': 'user',
+        'octoprint_url': 'octoprint_url',
         'release_channel': 'release_channel',
         'system_info': 'system_info',
         'public_key': 'public_key',
@@ -72,7 +74,7 @@ class Device(object):
         'hostname': 'hostname'
     }
 
-    def __init__(self, id=None, cloudiot_device=None, dashboard_url=None, video_test_url=None, janus_auth=None, janus_local_url=None, monitoring_active=False, setup_complete=False, user=None, release_channel=None, system_info=None, public_key=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, cloudiot_device=None, dashboard_url=None, video_test_url=None, janus_auth=None, janus_local_url=None, monitoring_active=False, setup_complete=False, user=None, octoprint_url=None, release_channel=None, system_info=None, public_key=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -87,6 +89,7 @@ class Device(object):
         self._monitoring_active = None
         self._setup_complete = None
         self._user = None
+        self._octoprint_url = None
         self._release_channel = None
         self._system_info = None
         self._public_key = None
@@ -106,6 +109,7 @@ class Device(object):
         if setup_complete is not None:
             self.setup_complete = setup_complete
         self.user = user
+        self.octoprint_url = octoprint_url
         self.release_channel = release_channel
         self.system_info = system_info
         self.public_key = public_key
@@ -310,6 +314,29 @@ class Device(object):
         """
 
         self._user = user
+
+    @property
+    def octoprint_url(self):
+        """Gets the octoprint_url of this Device.  # noqa: E501
+
+
+        :return: The octoprint_url of this Device.  # noqa: E501
+        :rtype: str
+        """
+        return self._octoprint_url
+
+    @octoprint_url.setter
+    def octoprint_url(self, octoprint_url):
+        """Sets the octoprint_url of this Device.
+
+
+        :param octoprint_url: The octoprint_url of this Device.  # noqa: E501
+        :type octoprint_url: str
+        """
+        if self.local_vars_configuration.client_side_validation and octoprint_url is None:  # noqa: E501
+            raise ValueError("Invalid value for `octoprint_url`, must not be `None`")  # noqa: E501
+
+        self._octoprint_url = octoprint_url
 
     @property
     def release_channel(self):

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **manage_device_url** | **str** |  | [readonly] 
 **user** | **int** |  | [readonly] 
 **octoprint_device** | **int** |  | [optional] 
-**event_type** | [**AlertEventTypeEnum**](AlertEventTypeEnum.md) |  | [optional] 
+**event_type** | [**EventTypeEnum**](EventTypeEnum.md) |  | [optional] 
 **seen** | **bool** |  | [optional] 
 **sent** | **bool** |  | [optional] 
 **created_dt** | **datetime** |  | [readonly] 
