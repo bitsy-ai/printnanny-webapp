@@ -1243,7 +1243,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **octoprint_settings_create**
-> OctoPrinterProfile octoprint_settings_create(octo_printer_profile_request)
+> OctoPrintSettings octoprint_settings_create(octo_print_settings_request=octo_print_settings_request)
 
 
 
@@ -1282,10 +1282,10 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.OctoprintApi(api_client)
-    octo_printer_profile_request = printnanny_api_client.OctoPrinterProfileRequest() # OctoPrinterProfileRequest | 
+    octo_print_settings_request = printnanny_api_client.OctoPrintSettingsRequest() # OctoPrintSettingsRequest |  (optional)
 
     try:
-        api_response = api_instance.octoprint_settings_create(octo_printer_profile_request)
+        api_response = api_instance.octoprint_settings_create(octo_print_settings_request=octo_print_settings_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling OctoprintApi->octoprint_settings_create: %s\n" % e)
@@ -1324,10 +1324,10 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.OctoprintApi(api_client)
-    octo_printer_profile_request = printnanny_api_client.OctoPrinterProfileRequest() # OctoPrinterProfileRequest | 
+    octo_print_settings_request = printnanny_api_client.OctoPrintSettingsRequest() # OctoPrintSettingsRequest |  (optional)
 
     try:
-        api_response = api_instance.octoprint_settings_create(octo_printer_profile_request)
+        api_response = api_instance.octoprint_settings_create(octo_print_settings_request=octo_print_settings_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling OctoprintApi->octoprint_settings_create: %s\n" % e)
@@ -1337,11 +1337,11 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **octo_printer_profile_request** | [**OctoPrinterProfileRequest**](OctoPrinterProfileRequest.md)|  | 
+ **octo_print_settings_request** | [**OctoPrintSettingsRequest**](OctoPrintSettingsRequest.md)|  | [optional] 
 
 ### Return type
 
-[**OctoPrinterProfile**](OctoPrinterProfile.md)
+[**OctoPrintSettings**](OctoPrintSettings.md)
 
 ### Authorization
 
@@ -1483,7 +1483,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **octoprint_settings_device_update_or_create2**
-> OctoPrinterProfile octoprint_settings_device_update_or_create2(octo_printer_profile_request)
+> OctoPrintSettings octoprint_settings_device_update_or_create2(octo_print_settings_request=octo_print_settings_request)
 
 
 
@@ -1522,10 +1522,10 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.OctoprintApi(api_client)
-    octo_printer_profile_request = printnanny_api_client.OctoPrinterProfileRequest() # OctoPrinterProfileRequest | 
+    octo_print_settings_request = printnanny_api_client.OctoPrintSettingsRequest() # OctoPrintSettingsRequest |  (optional)
 
     try:
-        api_response = api_instance.octoprint_settings_device_update_or_create2(octo_printer_profile_request)
+        api_response = api_instance.octoprint_settings_device_update_or_create2(octo_print_settings_request=octo_print_settings_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling OctoprintApi->octoprint_settings_device_update_or_create2: %s\n" % e)
@@ -1564,10 +1564,10 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.OctoprintApi(api_client)
-    octo_printer_profile_request = printnanny_api_client.OctoPrinterProfileRequest() # OctoPrinterProfileRequest | 
+    octo_print_settings_request = printnanny_api_client.OctoPrintSettingsRequest() # OctoPrintSettingsRequest |  (optional)
 
     try:
-        api_response = api_instance.octoprint_settings_device_update_or_create2(octo_printer_profile_request)
+        api_response = api_instance.octoprint_settings_device_update_or_create2(octo_print_settings_request=octo_print_settings_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling OctoprintApi->octoprint_settings_device_update_or_create2: %s\n" % e)
@@ -1577,11 +1577,11 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **octo_printer_profile_request** | [**OctoPrinterProfileRequest**](OctoPrinterProfileRequest.md)|  | 
+ **octo_print_settings_request** | [**OctoPrintSettingsRequest**](OctoPrintSettingsRequest.md)|  | [optional] 
 
 ### Return type
 
-[**OctoPrinterProfile**](OctoPrinterProfile.md)
+[**OctoPrintSettings**](OctoPrintSettings.md)
 
 ### Authorization
 
@@ -1601,7 +1601,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **octoprint_settings_list**
-> PaginatedOctoPrinterProfileList octoprint_settings_list(page=page)
+> PaginatedOctoPrintSettingsList octoprint_settings_list(page=page)
 
 
 
@@ -1699,7 +1699,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedOctoPrinterProfileList**](PaginatedOctoPrinterProfileList.md)
+[**PaginatedOctoPrintSettingsList**](PaginatedOctoPrintSettingsList.md)
 
 ### Authorization
 
@@ -1722,7 +1722,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **octoprint_settings_partial_update**
-> OctoPrinterProfile octoprint_settings_partial_update(id, patched_octo_printer_profile_request=patched_octo_printer_profile_request)
+> OctoPrintSettings octoprint_settings_partial_update(id, patched_octo_print_settings_request=patched_octo_print_settings_request)
 
 
 
@@ -1762,10 +1762,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.OctoprintApi(api_client)
     id = 56 # int | A unique integer value identifying this octo print settings.
-patched_octo_printer_profile_request = printnanny_api_client.PatchedOctoPrinterProfileRequest() # PatchedOctoPrinterProfileRequest |  (optional)
+patched_octo_print_settings_request = printnanny_api_client.PatchedOctoPrintSettingsRequest() # PatchedOctoPrintSettingsRequest |  (optional)
 
     try:
-        api_response = api_instance.octoprint_settings_partial_update(id, patched_octo_printer_profile_request=patched_octo_printer_profile_request)
+        api_response = api_instance.octoprint_settings_partial_update(id, patched_octo_print_settings_request=patched_octo_print_settings_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling OctoprintApi->octoprint_settings_partial_update: %s\n" % e)
@@ -1805,10 +1805,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.OctoprintApi(api_client)
     id = 56 # int | A unique integer value identifying this octo print settings.
-patched_octo_printer_profile_request = printnanny_api_client.PatchedOctoPrinterProfileRequest() # PatchedOctoPrinterProfileRequest |  (optional)
+patched_octo_print_settings_request = printnanny_api_client.PatchedOctoPrintSettingsRequest() # PatchedOctoPrintSettingsRequest |  (optional)
 
     try:
-        api_response = api_instance.octoprint_settings_partial_update(id, patched_octo_printer_profile_request=patched_octo_printer_profile_request)
+        api_response = api_instance.octoprint_settings_partial_update(id, patched_octo_print_settings_request=patched_octo_print_settings_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling OctoprintApi->octoprint_settings_partial_update: %s\n" % e)
@@ -1819,11 +1819,11 @@ patched_octo_printer_profile_request = printnanny_api_client.PatchedOctoPrinterP
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this octo print settings. | 
- **patched_octo_printer_profile_request** | [**PatchedOctoPrinterProfileRequest**](PatchedOctoPrinterProfileRequest.md)|  | [optional] 
+ **patched_octo_print_settings_request** | [**PatchedOctoPrintSettingsRequest**](PatchedOctoPrintSettingsRequest.md)|  | [optional] 
 
 ### Return type
 
-[**OctoPrinterProfile**](OctoPrinterProfile.md)
+[**OctoPrintSettings**](OctoPrintSettings.md)
 
 ### Authorization
 
@@ -1842,7 +1842,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **octoprint_settings_update**
-> octoprint_settings_update(id, octo_printer_profile_request)
+> octoprint_settings_update(id, octo_print_settings_request=octo_print_settings_request)
 
 
 
@@ -1882,10 +1882,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.OctoprintApi(api_client)
     id = 56 # int | A unique integer value identifying this octo print settings.
-octo_printer_profile_request = printnanny_api_client.OctoPrinterProfileRequest() # OctoPrinterProfileRequest | 
+octo_print_settings_request = printnanny_api_client.OctoPrintSettingsRequest() # OctoPrintSettingsRequest |  (optional)
 
     try:
-        api_instance.octoprint_settings_update(id, octo_printer_profile_request)
+        api_instance.octoprint_settings_update(id, octo_print_settings_request=octo_print_settings_request)
     except ApiException as e:
         print("Exception when calling OctoprintApi->octoprint_settings_update: %s\n" % e)
 ```
@@ -1924,10 +1924,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.OctoprintApi(api_client)
     id = 56 # int | A unique integer value identifying this octo print settings.
-octo_printer_profile_request = printnanny_api_client.OctoPrinterProfileRequest() # OctoPrinterProfileRequest | 
+octo_print_settings_request = printnanny_api_client.OctoPrintSettingsRequest() # OctoPrintSettingsRequest |  (optional)
 
     try:
-        api_instance.octoprint_settings_update(id, octo_printer_profile_request)
+        api_instance.octoprint_settings_update(id, octo_print_settings_request=octo_print_settings_request)
     except ApiException as e:
         print("Exception when calling OctoprintApi->octoprint_settings_update: %s\n" % e)
 ```
@@ -1937,7 +1937,7 @@ octo_printer_profile_request = printnanny_api_client.OctoPrinterProfileRequest()
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this octo print settings. | 
- **octo_printer_profile_request** | [**OctoPrinterProfileRequest**](OctoPrinterProfileRequest.md)|  | 
+ **octo_print_settings_request** | [**OctoPrintSettingsRequest**](OctoPrintSettingsRequest.md)|  | [optional] 
 
 ### Return type
 

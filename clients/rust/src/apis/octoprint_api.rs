@@ -494,7 +494,7 @@ pub async fn octoprint_printer_profiles_update(configuration: &configuration::Co
     }
 }
 
-pub async fn octoprint_settings_create(configuration: &configuration::Configuration, octo_printer_profile_request: crate::models::OctoPrinterProfileRequest) -> Result<crate::models::OctoPrinterProfile, Error<OctoprintSettingsCreateError>> {
+pub async fn octoprint_settings_create(configuration: &configuration::Configuration, octo_print_settings_request: Option<crate::models::OctoPrintSettingsRequest>) -> Result<crate::models::OctoPrintSettings, Error<OctoprintSettingsCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -508,7 +508,7 @@ pub async fn octoprint_settings_create(configuration: &configuration::Configurat
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&octo_printer_profile_request);
+    local_var_req_builder = local_var_req_builder.json(&octo_print_settings_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -556,7 +556,7 @@ pub async fn octoprint_settings_device_update_or_create(configuration: &configur
     }
 }
 
-pub async fn octoprint_settings_device_update_or_create2(configuration: &configuration::Configuration, octo_printer_profile_request: crate::models::OctoPrinterProfileRequest) -> Result<crate::models::OctoPrinterProfile, Error<OctoprintSettingsDeviceUpdateOrCreate2Error>> {
+pub async fn octoprint_settings_device_update_or_create2(configuration: &configuration::Configuration, octo_print_settings_request: Option<crate::models::OctoPrintSettingsRequest>) -> Result<crate::models::OctoPrintSettings, Error<OctoprintSettingsDeviceUpdateOrCreate2Error>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -570,7 +570,7 @@ pub async fn octoprint_settings_device_update_or_create2(configuration: &configu
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&octo_printer_profile_request);
+    local_var_req_builder = local_var_req_builder.json(&octo_print_settings_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -587,7 +587,7 @@ pub async fn octoprint_settings_device_update_or_create2(configuration: &configu
     }
 }
 
-pub async fn octoprint_settings_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedOctoPrinterProfileList, Error<OctoprintSettingsListError>> {
+pub async fn octoprint_settings_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedOctoPrintSettingsList, Error<OctoprintSettingsListError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -620,7 +620,7 @@ pub async fn octoprint_settings_list(configuration: &configuration::Configuratio
     }
 }
 
-pub async fn octoprint_settings_partial_update(configuration: &configuration::Configuration, id: i32, patched_octo_printer_profile_request: Option<crate::models::PatchedOctoPrinterProfileRequest>) -> Result<crate::models::OctoPrinterProfile, Error<OctoprintSettingsPartialUpdateError>> {
+pub async fn octoprint_settings_partial_update(configuration: &configuration::Configuration, id: i32, patched_octo_print_settings_request: Option<crate::models::PatchedOctoPrintSettingsRequest>) -> Result<crate::models::OctoPrintSettings, Error<OctoprintSettingsPartialUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -634,7 +634,7 @@ pub async fn octoprint_settings_partial_update(configuration: &configuration::Co
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&patched_octo_printer_profile_request);
+    local_var_req_builder = local_var_req_builder.json(&patched_octo_print_settings_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -651,7 +651,7 @@ pub async fn octoprint_settings_partial_update(configuration: &configuration::Co
     }
 }
 
-pub async fn octoprint_settings_update(configuration: &configuration::Configuration, id: i32, octo_printer_profile_request: crate::models::OctoPrinterProfileRequest) -> Result<(), Error<OctoprintSettingsUpdateError>> {
+pub async fn octoprint_settings_update(configuration: &configuration::Configuration, id: i32, octo_print_settings_request: Option<crate::models::OctoPrintSettingsRequest>) -> Result<(), Error<OctoprintSettingsUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -665,7 +665,7 @@ pub async fn octoprint_settings_update(configuration: &configuration::Configurat
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&octo_printer_profile_request);
+    local_var_req_builder = local_var_req_builder.json(&octo_print_settings_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;

@@ -35,6 +35,8 @@ docs/JanusStream.md
 docs/JanusStreamRequest.md
 docs/MobileAuthRequest.md
 docs/OctoPrintBackup.md
+docs/OctoPrintSettings.md
+docs/OctoPrintSettingsRequest.md
 docs/OctoPrinterProfile.md
 docs/OctoPrinterProfileRequest.md
 docs/OctoprintApi.md
@@ -45,6 +47,7 @@ docs/PaginatedGcodeFileList.md
 docs/PaginatedJanusAuthList.md
 docs/PaginatedJanusStreamList.md
 docs/PaginatedOctoPrintBackupList.md
+docs/PaginatedOctoPrintSettingsList.md
 docs/PaginatedOctoPrinterProfileList.md
 docs/PaginatedPolymorphicEventList.md
 docs/PaginatedPublicKeyList.md
@@ -57,6 +60,7 @@ docs/PatchedAlertRequest.md
 docs/PatchedCloudiotDeviceRequest.md
 docs/PatchedDeviceRequest.md
 docs/PatchedJanusStreamRequest.md
+docs/PatchedOctoPrintSettingsRequest.md
 docs/PatchedOctoPrinterProfileRequest.md
 docs/PatchedPublicKeyRequest.md
 docs/PatchedSystemInfoRequest.md
@@ -123,6 +127,8 @@ printnanny_api_client/models/janus_stream.py
 printnanny_api_client/models/janus_stream_request.py
 printnanny_api_client/models/mobile_auth_request.py
 printnanny_api_client/models/octo_print_backup.py
+printnanny_api_client/models/octo_print_settings.py
+printnanny_api_client/models/octo_print_settings_request.py
 printnanny_api_client/models/octo_printer_profile.py
 printnanny_api_client/models/octo_printer_profile_request.py
 printnanny_api_client/models/paginated_alert_list.py
@@ -132,6 +138,7 @@ printnanny_api_client/models/paginated_gcode_file_list.py
 printnanny_api_client/models/paginated_janus_auth_list.py
 printnanny_api_client/models/paginated_janus_stream_list.py
 printnanny_api_client/models/paginated_octo_print_backup_list.py
+printnanny_api_client/models/paginated_octo_print_settings_list.py
 printnanny_api_client/models/paginated_octo_printer_profile_list.py
 printnanny_api_client/models/paginated_polymorphic_event_list.py
 printnanny_api_client/models/paginated_public_key_list.py
@@ -143,6 +150,7 @@ printnanny_api_client/models/patched_alert_request.py
 printnanny_api_client/models/patched_cloudiot_device_request.py
 printnanny_api_client/models/patched_device_request.py
 printnanny_api_client/models/patched_janus_stream_request.py
+printnanny_api_client/models/patched_octo_print_settings_request.py
 printnanny_api_client/models/patched_octo_printer_profile_request.py
 printnanny_api_client/models/patched_public_key_request.py
 printnanny_api_client/models/patched_system_info_request.py
@@ -203,6 +211,8 @@ test/test_janus_stream.py
 test/test_janus_stream_request.py
 test/test_mobile_auth_request.py
 test/test_octo_print_backup.py
+test/test_octo_print_settings.py
+test/test_octo_print_settings_request.py
 test/test_octo_printer_profile.py
 test/test_octo_printer_profile_request.py
 test/test_octoprint_api.py
@@ -213,6 +223,7 @@ test/test_paginated_gcode_file_list.py
 test/test_paginated_janus_auth_list.py
 test/test_paginated_janus_stream_list.py
 test/test_paginated_octo_print_backup_list.py
+test/test_paginated_octo_print_settings_list.py
 test/test_paginated_octo_printer_profile_list.py
 test/test_paginated_polymorphic_event_list.py
 test/test_paginated_public_key_list.py
@@ -225,6 +236,7 @@ test/test_patched_alert_request.py
 test/test_patched_cloudiot_device_request.py
 test/test_patched_device_request.py
 test/test_patched_janus_stream_request.py
+test/test_patched_octo_print_settings_request.py
 test/test_patched_octo_printer_profile_request.py
 test/test_patched_public_key_request.py
 test/test_patched_system_info_request.py

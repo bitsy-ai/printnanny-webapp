@@ -310,7 +310,7 @@ Name | Type | Description  | Required | Notes
 
 ## octoprint_settings_create
 
-> crate::models::OctoPrinterProfile octoprint_settings_create(octo_printer_profile_request)
+> crate::models::OctoPrintSettings octoprint_settings_create(octo_print_settings_request)
 
 
 ### Parameters
@@ -318,11 +318,11 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**octo_printer_profile_request** | [**OctoPrinterProfileRequest**](OctoPrinterProfileRequest.md) |  | [required] |
+**octo_print_settings_request** | Option<[**OctoPrintSettingsRequest**](OctoPrintSettingsRequest.md)> |  |  |
 
 ### Return type
 
-[**crate::models::OctoPrinterProfile**](OctoPrinterProfile.md)
+[**crate::models::OctoPrintSettings**](OctoPrintSettings.md)
 
 ### Authorization
 
@@ -366,7 +366,7 @@ Name | Type | Description  | Required | Notes
 
 ## octoprint_settings_device_update_or_create2
 
-> crate::models::OctoPrinterProfile octoprint_settings_device_update_or_create2(octo_printer_profile_request)
+> crate::models::OctoPrintSettings octoprint_settings_device_update_or_create2(octo_print_settings_request)
 
 
 ### Parameters
@@ -374,11 +374,11 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**octo_printer_profile_request** | [**OctoPrinterProfileRequest**](OctoPrinterProfileRequest.md) |  | [required] |
+**octo_print_settings_request** | Option<[**OctoPrintSettingsRequest**](OctoPrintSettingsRequest.md)> |  |  |
 
 ### Return type
 
-[**crate::models::OctoPrinterProfile**](OctoPrinterProfile.md)
+[**crate::models::OctoPrintSettings**](OctoPrintSettings.md)
 
 ### Authorization
 
@@ -394,7 +394,7 @@ Name | Type | Description  | Required | Notes
 
 ## octoprint_settings_list
 
-> crate::models::PaginatedOctoPrinterProfileList octoprint_settings_list(page)
+> crate::models::PaginatedOctoPrintSettingsList octoprint_settings_list(page)
 
 
 ### Parameters
@@ -406,7 +406,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::PaginatedOctoPrinterProfileList**](PaginatedOctoPrinterProfileList.md)
+[**crate::models::PaginatedOctoPrintSettingsList**](PaginatedOctoPrintSettingsList.md)
 
 ### Authorization
 
@@ -422,7 +422,7 @@ Name | Type | Description  | Required | Notes
 
 ## octoprint_settings_partial_update
 
-> crate::models::OctoPrinterProfile octoprint_settings_partial_update(id, patched_octo_printer_profile_request)
+> crate::models::OctoPrintSettings octoprint_settings_partial_update(id, patched_octo_print_settings_request)
 
 
 ### Parameters
@@ -431,11 +431,11 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **i32** | A unique integer value identifying this octo print settings. | [required] |
-**patched_octo_printer_profile_request** | Option<[**PatchedOctoPrinterProfileRequest**](PatchedOctoPrinterProfileRequest.md)> |  |  |
+**patched_octo_print_settings_request** | Option<[**PatchedOctoPrintSettingsRequest**](PatchedOctoPrintSettingsRequest.md)> |  |  |
 
 ### Return type
 
-[**crate::models::OctoPrinterProfile**](OctoPrinterProfile.md)
+[**crate::models::OctoPrintSettings**](OctoPrintSettings.md)
 
 ### Authorization
 
@@ -451,7 +451,7 @@ Name | Type | Description  | Required | Notes
 
 ## octoprint_settings_update
 
-> octoprint_settings_update(id, octo_printer_profile_request)
+> octoprint_settings_update(id, octo_print_settings_request)
 
 
 ### Parameters
@@ -460,7 +460,7 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **i32** | A unique integer value identifying this octo print settings. | [required] |
-**octo_printer_profile_request** | [**OctoPrinterProfileRequest**](OctoPrinterProfileRequest.md) |  | [required] |
+**octo_print_settings_request** | Option<[**OctoPrintSettingsRequest**](OctoPrintSettingsRequest.md)> |  |  |
 
 ### Return type
 
