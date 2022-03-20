@@ -14,7 +14,7 @@ User = get_user_model()
 class OctoPrintSettings(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
 
-    user = models.ForeignKey(
+    user = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name="octoprint_settings"
     )
     sync_gcode = models.BooleanField(

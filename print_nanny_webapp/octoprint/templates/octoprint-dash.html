@@ -12,7 +12,7 @@
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="{% url 'dashboard:home' %}">Home</a></li>
 
-                        <li class="breadcrumb-item active">My Files</li>
+                        <li class="breadcrumb-item active">OctoPrint</li>
                     </ol>
                 </div>
                 <h3 class="page-title d-inline-flex">Manage OctoPrint Plugin</h3>
@@ -20,6 +20,10 @@
         </div>
     </div>
     {% include "device-table.html" %}
-    {% include "partials/octoprint-devices-backup.html" %}
+    <div class="row">
+
+        {% include "octoprint-settings-form.html" %}
+        {% include "octoprint-backups.html" %}
+    </div>
 </div>
 {% endblock content %}

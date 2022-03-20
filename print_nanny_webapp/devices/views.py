@@ -8,16 +8,6 @@ from print_nanny_webapp.devices.models import Device
 logger = logging.getLogger(__name__)
 
 
-class OctoPrintPluginView(LoginRequiredMixin, TemplateView):
-    template_name = "octoprint-dash.html"
-
-    def get_context_data(self, **kwargs):
-        devices = Device.objects.filter(user=self.request.user).all()
-        context = super().get_context_data(**kwargs)
-        context["devices"] = devices
-        return context
-
-
 class ReleaseListView(TemplateView):
     template_name = "releases/releases-list.html"
 

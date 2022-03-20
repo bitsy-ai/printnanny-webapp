@@ -55,7 +55,6 @@ router.register("alerts", AlertViewSet)
 router.register("devices", DeviceViewSet)
 
 # octoprint endpoints (print nanny os data model)
-router.register("octoprint-backups", OctoPrintBackupViewset)
 
 # enables /api/devices/:hostname lookup (no nested routing)
 devices_by_hostname = [
