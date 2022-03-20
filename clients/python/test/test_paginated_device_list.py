@@ -51,6 +51,7 @@ class TestPaginatedDeviceList(unittest.TestCase):
                         monitoring_active = True, 
                         setup_complete = True, 
                         user = null, 
+                        octoprint_url = '', 
                         release_channel = null, 
                         system_info = null, 
                         public_key = null, 

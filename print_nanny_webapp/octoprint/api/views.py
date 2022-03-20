@@ -2,7 +2,6 @@ import logging
 from drf_spectacular.utils import (
     extend_schema,
     extend_schema_view,
-    OpenApiParameter,
 )
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.decorators import action
@@ -36,20 +35,12 @@ logger = logging.getLogger(__name__)
 ##
 @extend_schema_view(
     list=extend_schema(
-        parameters=[
-            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
-        ],
         responses={
             200: OctoPrintSettingsSerializer(),
         }
         | generic_list_errors,
     ),
     create=extend_schema(
-        parameters=[
-            OpenApiParameter(
-                name="device_id", type=int, location=OpenApiParameter.PATH
-            ),
-        ],
         request=OctoPrintSettingsSerializer,
         responses={
             201: OctoPrintSettingsSerializer,
@@ -57,11 +48,6 @@ logger = logging.getLogger(__name__)
         | generic_create_errors,
     ),
     update=extend_schema(
-        parameters=[
-            OpenApiParameter(
-                name="device_id", type=int, location=OpenApiParameter.PATH
-            ),
-        ],
         request=OctoPrintSettingsSerializer,
         responses={
             202: OctoPrintSettingsSerializer,

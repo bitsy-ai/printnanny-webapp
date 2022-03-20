@@ -38,7 +38,7 @@ class AlertRequest(object):
     """
     openapi_types = {
         'octoprint_device': 'int',
-        'event_type': 'AlertEventTypeEnum',
+        'event_type': 'EventTypeEnum',
         'seen': 'bool',
         'sent': 'bool'
     }
@@ -96,7 +96,7 @@ class AlertRequest(object):
 
 
         :return: The event_type of this AlertRequest.  # noqa: E501
-        :rtype: AlertEventTypeEnum
+        :rtype: EventTypeEnum
         """
         return self._event_type
 
@@ -106,7 +106,7 @@ class AlertRequest(object):
 
 
         :param event_type: The event_type of this AlertRequest.  # noqa: E501
-        :type event_type: AlertEventTypeEnum
+        :type event_type: EventTypeEnum
         """
 
         self._event_type = event_type

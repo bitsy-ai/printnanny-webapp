@@ -29,6 +29,12 @@ class TestPartnersGeeks3dApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_alerts_list2(self):
+        """Test case for alerts_list2
+
+        """
+        pass
+
     def test_metadata_retrieve(self):
         """Test case for metadata_retrieve
 
