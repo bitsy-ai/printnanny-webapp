@@ -10,6 +10,7 @@ from print_nanny_webapp.devices.api.views import (
     PublicKeyViewSet,
     SystemInfoViewSet,
     DeviceViewSet,
+    OctoPrintSettingsViewSet,
 )
 from print_nanny_webapp.events.api.views import EventViewSet
 from print_nanny_webapp.ml_ops.api.views import (
@@ -65,6 +66,9 @@ devices_router.register(r"janus-streams", JanusStreamViewSet, basename="janus-st
 
 devices_router.register(r"system-info", SystemInfoViewSet, basename="system-info")
 devices_router.register(r"cloudiot", CloudiotDeviceViewSet, basename="cloudiot")
+devices_router.register(
+    r"octoprint-settings", OctoPrintSettingsViewSet, basename="octoprint-settings"
+)
 
 router.register("events", EventViewSet, basename="events")
 

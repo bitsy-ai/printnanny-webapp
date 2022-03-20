@@ -30,6 +30,7 @@ from print_nanny_webapp.utils.api.views import (
 from .serializers import (
     JanusAuthSerializer,
     JanusStreamSerializer,
+    OctoPrintSettingSerializer,
     PublicKeySerializer,
     CloudiotDeviceSerializer,
     SystemInfoSerializer,
@@ -42,6 +43,7 @@ from ..models import (
     JanusStream,
     PublicKey,
     SystemInfo,
+    OctoPrintSettings,
 )
 from ..services import janus_cloud_setup, update_or_create_cloudiot_device
 
@@ -610,6 +612,77 @@ class CloudiotDeviceViewSet(
             public_key = serializer.validated_data["public_key"]
             # public_key = PublicKey.objects.get(id=public_key_id)
             instance, created = update_or_create_cloudiot_device(public_key)
+            response_serializer = self.get_serializer(instance)
+            if not created:
+                return Response(response_serializer.data, status=status.HTTP_200_OK)
+            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+##
+# OctoPrint Settings
+##
+@extend_schema_view(
+    list=extend_schema(
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        responses={
+            200: OctoPrintSettingSerializer(),
+        }
+        | generic_list_errors,
+    ),
+    create=extend_schema(
+        parameters=[
+            OpenApiParameter(
+                name="device_id", type=int, location=OpenApiParameter.PATH
+            ),
+        ],
+        request=OctoPrintSettingSerializer,
+        responses={
+            201: OctoPrintSettingSerializer,
+        }
+        | generic_create_errors,
+    ),
+    update=extend_schema(
+        parameters=[
+            OpenApiParameter(
+                name="device_id", type=int, location=OpenApiParameter.PATH
+            ),
+        ],
+        request=OctoPrintSettingSerializer,
+        responses={
+            202: OctoPrintSettingSerializer,
+        }.update(generic_update_errors),
+    ),
+)
+class OctoPrintSettingsViewSet(
+    GenericViewSet,
+    CreateModelMixin,
+    ListModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+):
+    serializer_class = OctoPrintSettingSerializer
+    queryset = OctoPrintSettings.objects.all()
+    lookup_field = "id"
+
+    @extend_schema(
+        operation_id="octoprint_settings_device_update_or_create",
+        responses={
+            # 400: PrinterProfileSerializer,
+            200: OctoPrintSettingSerializer,
+            201: OctoPrintSettingSerializer,
+        },
+    )
+    @action(methods=["post"], detail=False, url_path="update-or-create")
+    def update_or_create(self, request, device_id=None):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            instance, created = serializer.update_or_create(  # type: ignore[attr-defined]
+                serializer.validated_data, device_id
+            )
             response_serializer = self.get_serializer(instance)
             if not created:
                 return Response(response_serializer.data, status=status.HTTP_200_OK)
