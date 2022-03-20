@@ -38,7 +38,7 @@ class GeeksViewSet(ViewSet):
         return Response(serializer.data)
 
     @extend_schema(
-        tags=["partners.geeks3"],
+        tags=["partners.geeks3d"],
         operation_id="alerts_list",
         responses={200: Partner3DGeeksAlertSerializer},
     )
