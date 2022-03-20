@@ -19,6 +19,7 @@ from print_nanny_webapp.octoprint.api.serializers import (
     OctoPrintBackupSerializer,
     OctoPrinterProfileSerializer,
     GcodeFileSerializer,
+    OctoPrintSettingsSerializer,
 )
 from print_nanny_webapp.octoprint.models import (
     GcodeFile,
@@ -42,21 +43,21 @@ logger = logging.getLogger(__name__)
 @extend_schema_view(
     list=extend_schema(
         responses={
-            200: OctoPrinterProfileSerializer(),
+            200: OctoPrintSettingsSerializer(),
         }
         | generic_list_errors,
     ),
     create=extend_schema(
-        request=OctoPrinterProfileSerializer,
+        request=OctoPrintSettingsSerializer,
         responses={
-            201: OctoPrinterProfileSerializer,
+            201: OctoPrintSettingsSerializer,
         }
         | generic_create_errors,
     ),
     update=extend_schema(
-        request=OctoPrinterProfileSerializer,
+        request=OctoPrintSettingsSerializer,
         responses={
-            202: OctoPrinterProfileSerializer,
+            202: OctoPrintSettingsSerializer,
         }.update(generic_update_errors),
     ),
 )
@@ -66,7 +67,7 @@ class OctoPrintSettingsViewSet(
     ListModelMixin,
     UpdateModelMixin,
 ):
-    serializer_class = OctoPrinterProfileSerializer
+    serializer_class = OctoPrintSettingsSerializer
     queryset = OctoPrintSettings.objects.all()
     lookup_field = "id"
 
@@ -74,8 +75,8 @@ class OctoPrintSettingsViewSet(
         operation_id="octoprint_settings_device_update_or_create",
         responses={
             # 400: PrinterProfileSerializer,
-            200: OctoPrinterProfileSerializer,
-            201: OctoPrinterProfileSerializer,
+            200: OctoPrintSettingsSerializer,
+            201: OctoPrintSettingsSerializer,
         },
     )
     @action(methods=["post"], detail=False, url_path="update-or-create")

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
+**deleted** | **datetime** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
 **hostname** | **str** |  | 
 **name** | **str** |  | 

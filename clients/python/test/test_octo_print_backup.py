@@ -38,6 +38,7 @@ class TestOctoPrintBackup(unittest.TestCase):
         if include_optional :
             return OctoPrintBackup(
                 id = 56, 
+                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 hostname = '', 
                 name = '', 
@@ -48,6 +49,7 @@ class TestOctoPrintBackup(unittest.TestCase):
         else :
             return OctoPrintBackup(
                 id = 56,
+                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 hostname = '',
                 name = '',

@@ -15,6 +15,8 @@
 pub struct OctoPrintBackup {
     #[serde(rename = "id")]
     pub id: i32,
+    #[serde(rename = "deleted")]
+    pub deleted: String,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
     #[serde(rename = "hostname")]
@@ -30,9 +32,10 @@ pub struct OctoPrintBackup {
 }
 
 impl OctoPrintBackup {
-    pub fn new(id: i32, created_dt: String, hostname: String, name: String, octoprint_version: String, file: String, user: i32) -> OctoPrintBackup {
+    pub fn new(id: i32, deleted: String, created_dt: String, hostname: String, name: String, octoprint_version: String, file: String, user: i32) -> OctoPrintBackup {
         OctoPrintBackup {
             id,
+            deleted,
             created_dt,
             hostname,
             name,
