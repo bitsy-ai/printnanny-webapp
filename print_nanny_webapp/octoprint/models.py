@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.db.models import UniqueConstraint
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 
 from print_nanny_webapp.utils.fields import file_field_upload_to
@@ -36,10 +37,31 @@ class OctoPrintSettings(SafeDeleteModel):
     )
 
 
-class OctoPrintBackup(models.Model):
+class GcodeFile(SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE
+
+    class Meta:
+        unique_together = ("user", "name", "hash")
+        constraints = [
+            UniqueConstraint(
+                fields=["user", "hash"],
+                condition=models.Q(deleted=None),
+                name="unique_gcode_file_hash_per_user",
+            )
+        ]
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="gcode_files")
+    name = models.CharField(max_length=255)
+    file = models.FileField(upload_to="uploads/gcode_file/%Y/%m/%d/")
+    hash = models.CharField(max_length=255)
+
+
+class OctoPrintBackup(SafeDeleteModel):
     """
     Create/restore an OctoPrint backup
     """
+
+    _safedelete_policy = SOFT_DELETE
 
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     hostname = models.CharField(max_length=64)
@@ -52,3 +74,53 @@ class OctoPrintBackup(models.Model):
 
     class Meta:
         ordering = ["-created_dt"]
+
+
+class OctoPrinterProfile(SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE
+
+    class Meta:
+        constraints = [
+            UniqueConstraint(
+                fields=["user", "octoprint_key"],
+                condition=models.Q(deleted=None),
+                name="unique_printer_profile_name_per_user",
+            )
+        ]
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        db_index=True,
+        related_name="octo_printer_profiles",
+    )
+
+    axes_e_inverted = models.BooleanField(null=True)
+    axes_e_speed = models.IntegerField(null=True)
+
+    axes_x_speed = models.IntegerField(null=True)
+    axes_x_inverted = models.BooleanField(null=True)
+
+    axes_y_inverted = models.BooleanField(null=True)
+    axes_y_speed = models.IntegerField(null=True)
+
+    axes_z_inverted = models.BooleanField(null=True)
+    axes_z_speed = models.IntegerField(null=True)
+
+    extruder_count = models.IntegerField(null=True)
+    extruder_nozzle_diameter = models.FloatField(null=True)
+    extruder_shared_nozzle = models.BooleanField(null=True)
+
+    heated_bed = models.BooleanField(null=True)
+    heated_chamber = models.BooleanField(null=True)
+
+    model = models.CharField(max_length=255, null=True, blank=True)
+    name = models.CharField(max_length=255)
+    octoprint_key = models.CharField(max_length=255, db_index=True)
+
+    volume_custom_box = models.JSONField(default={})
+    volume_depth = models.FloatField(null=True)
+    volume_formfactor = models.CharField(null=True, max_length=255)
+    volume_height = models.FloatField(null=True)
+    volume_origin = models.CharField(null=True, max_length=255)
+    volume_width = models.FloatField(null=True)
