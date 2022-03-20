@@ -153,6 +153,9 @@ class GcodeFileViewSet(
     serializer_class = GcodeFileSerializer
     queryset = GcodeFile.objects.all()
     lookup_field = "id"
+    parser_classes = [
+        parsers.MultiPartParser,
+    ]
 
 
 ##
