@@ -12,6 +12,7 @@ from print_nanny_webapp.devices.api.views import (
     DeviceViewSet,
 )
 from print_nanny_webapp.events.api.views import EventViewSet
+from print_nanny_webapp.octoprint.models import OctoPrinterProfile
 from print_nanny_webapp.users.api.views import UserViewSet
 
 from print_nanny_webapp.alerts.api.views import (
@@ -21,8 +22,10 @@ from print_nanny_webapp.alerts.api.views import (
 from print_nanny_webapp.partners.api.views import GeeksViewSet
 from print_nanny_webapp.utils.api.views import PrintNannyApiConfigViewset
 from print_nanny_webapp.octoprint.api.views import (
+    GcodeFileViewSet,
     OctoPrintBackupViewset,
     OctoPrintSettingsViewSet,
+    OctoPrinterProfileViewSet,
 )
 
 router = DefaultRouter()
@@ -48,6 +51,16 @@ devices_router.register(r"cloudiot", CloudiotDeviceViewSet, basename="cloudiot")
 
 router.register(
     r"octoprint/backups", OctoPrintBackupViewset, basename="octoprint-backups"
+)
+router.register(
+    r"octoprint/gcode-files",
+    GcodeFileViewSet,
+    basename="gcode-files",
+)
+router.register(
+    r"octoprint/printer-profiles",
+    OctoPrinterProfileViewSet,
+    basename="octoprint-printer-profiles",
 )
 router.register(
     r"octoprint/settings",
