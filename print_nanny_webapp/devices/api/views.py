@@ -661,7 +661,6 @@ class OctoPrintSettingsViewSet(
     GenericViewSet,
     CreateModelMixin,
     ListModelMixin,
-    RetrieveModelMixin,
     UpdateModelMixin,
 ):
     serializer_class = OctoPrintSettingSerializer
