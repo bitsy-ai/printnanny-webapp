@@ -1,6 +1,4 @@
 import logging
-from uuid import uuid4
-import requests
 from typing import Callable
 from django.conf import settings
 from django.db import models
@@ -543,28 +541,3 @@ class JanusStream(SafeDeleteModel):
         raise NotImplementedError(
             f"JanusAuth.websocket_port not implemented for JanusConfigType={self.config_type}"
         )
-
-
-class OctoPrintSettings(SafeDeleteModel):
-    _safedelete_policy = SOFT_DELETE
-
-    device = models.OneToOneField(
-        Device, on_delete=models.CASCADE, related_name="octoprint_settings"
-    )
-    sync_gcode = models.BooleanField(
-        default=True, help_text="Sync Gcode files to PrintNanny Cloud"
-    )
-    sync_printer_profiles = models.BooleanField(
-        default=True, help_text="Sync Printer Profiles to PrintNanny Cloud"
-    )
-    sync_backups = models.BooleanField(
-        default=True, help_text="Upload OctoPrint backups to PrintNanny Cloud"
-    )
-    monitoring_auto_start = models.BooleanField(
-        default=True,
-        help_text="Start PrintNanny monitoring automatically when a print job begins",
-    )
-    monitoring_auto_pause = models.BooleanField(
-        default=True,
-        help_text="Pause failing print jobs automatically",
-    )
