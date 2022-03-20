@@ -12,7 +12,7 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct PaginatedOctoPrintSettingsList {
+pub struct PaginatedGcodeFileList {
     #[serde(rename = "count", skip_serializing_if = "Option::is_none")]
     pub count: Option<i32>,
     #[serde(rename = "next", skip_serializing_if = "Option::is_none")]
@@ -20,12 +20,12 @@ pub struct PaginatedOctoPrintSettingsList {
     #[serde(rename = "previous", skip_serializing_if = "Option::is_none")]
     pub previous: Option<String>,
     #[serde(rename = "results", skip_serializing_if = "Option::is_none")]
-    pub results: Option<Vec<crate::models::OctoPrintSettings>>,
+    pub results: Option<Vec<crate::models::GcodeFile>>,
 }
 
-impl PaginatedOctoPrintSettingsList {
-    pub fn new() -> PaginatedOctoPrintSettingsList {
-        PaginatedOctoPrintSettingsList {
+impl PaginatedGcodeFileList {
+    pub fn new() -> PaginatedGcodeFileList {
+        PaginatedGcodeFileList {
             count: None,
             next: None,
             previous: None,
