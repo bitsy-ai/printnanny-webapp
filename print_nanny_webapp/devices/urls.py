@@ -6,12 +6,14 @@ from .views import (
     DeviceVideoView,
     DeviceWelcomeDetailView,
     DeviceWelcomeView,
+    OctoPrintPluginView,
     ReleaseListView,
 )
 
 app_name = "devices"
 
 urlpatterns = [
+    path("octoprint/", OctoPrintPluginView.as_view(), name="octoprint"),
     path("releases/", ReleaseListView.as_view(), name="releases-list"),
     path("welcome/", DeviceWelcomeView.as_view(), name="welcome"),
     path(
