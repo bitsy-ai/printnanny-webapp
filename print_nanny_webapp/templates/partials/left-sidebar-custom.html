@@ -65,24 +65,11 @@
                 </ul>
             </li>
 
-
-            <li class="side-nav-item mm-active">
-                <a href="javascript: void(0);" class="side-nav-link" aria-expanded="true">
+            <li class="side-nav-item">
+                <a href="{% url 'octoprint:dashboard' %}" class="side-nav-link">
                     <i class="mdi mdi-power-plug"></i>
-                    <span> {% trans "OctoPrint Plugin" %}
-                    </span>
-                    <span class="menu-arrow"></span>
+                    <span> {% trans "OctoPrint Plugin" %} </span>
                 </a>
-
-                <ul class="side-nav-second-level  mm-collapse mm-show" aria-expanded="true">
-                    <li class="{% if request.resolver_match.url_name == 'surveys:remote-access' %}active{% endif %}">
-                        <a href="{% url 'octoprint:backups-list' %}">Backups</a>
-                    </li>
-                    <li
-                        class="{% if request.resolver_match.url_name == 'dashboard:octoprint-devices:list' %}active{% endif %}">
-                        <a href="{% url 'dashboard:octoprint-devices:list' %}">Plugin Connections</a>
-                    </li>
-                </ul>
             </li>
 
             <li class="side-nav-item mm-active">

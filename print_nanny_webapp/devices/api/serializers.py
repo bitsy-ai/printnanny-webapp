@@ -8,7 +8,6 @@ from print_nanny_webapp.devices.models import (
     CloudiotDevice,
     JanusAuth,
     JanusStream,
-    OctoPrintSettings,
     PublicKey,
     SystemInfo,
 )
@@ -125,17 +124,6 @@ class SystemInfoSerializer(serializers.ModelSerializer):
         )
 
 
-class OctoPrintSettingSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = OctoPrintSettings
-        exclude = ("deleted",)
-
-    def update_or_create(self, validated_data, device):
-        return SystemInfo.objects.filter(device=device).update_or_create(
-            device=device, defaults=validated_data
-        )
-
-
 class DeviceSerializer(serializers.ModelSerializer):
 
     cloudiot_device = CloudiotDeviceSerializer(read_only=True)
@@ -147,7 +135,6 @@ class DeviceSerializer(serializers.ModelSerializer):
     setup_complete = serializers.BooleanField(default=False)
     user = UserSerializer(read_only=True)
     octoprint_url = serializers.CharField(read_only=True)
-    octoprint_settings = OctoPrintSettingSerializer(read_only=True)
 
     release_channel = serializers.ChoiceField(
         choices=DeviceReleaseChannel.choices,

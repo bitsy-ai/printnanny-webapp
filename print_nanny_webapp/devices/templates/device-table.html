@@ -4,14 +4,14 @@
         <div class="card col-12">
             <div class="card-body">
                 <h4 class="header-title">
-                    <i class="mdi mdi-printer-3d"></i> Print Nanny OS Connections
+                    <i class="mdi mdi-printer-3d"></i> PrintNanny OS Connections
                 </h4>
                 {% if devices.count > 0 %}
                 <table class="table table-centered mb-0" id="dashboard-octoprint-devices">
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Monitoring Active</th>
+                            <!-- <th>Monitoring Active</th> -->
 
                             <th>Manage</th>
 
@@ -23,9 +23,9 @@
                         <tr>
                             <td><span class="badge badge-light">{{device.hostname}}</span></td>
 
-                            <td><i class="mdi mdi-circle {{device.monitoring_active_css_class}}"></i>
+                            <!-- <td><i class="mdi mdi-circle {{device.monitoring_active_css_class}}"></i>
                                 {{device.monitoring_active}}</td>
-
+ -->
 
                             <td>
                                 {% if device.setup_complete %}

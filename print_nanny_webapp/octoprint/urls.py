@@ -1,7 +1,10 @@
 from django.urls import path
 
-from .views import OctoPrintBackupsList
+from .views import OctoPrintPluginView
+
 
 app_name = "octoprint"
 
-urlpatterns = [path("backups", OctoPrintBackupsList.as_view(), name="backups-list")]
+urlpatterns = [
+    path("", OctoPrintPluginView.as_view(), name="dashboard"),
+]

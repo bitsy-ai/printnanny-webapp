@@ -26,7 +26,7 @@ from print_nanny_webapp.subscriptions.services import (
     get_stripe_next_invoice,
     get_stripe_subscription_events,
 )
-from print_nanny_webapp.utils.views import DashboardView, AuthenticatedHttpRequest
+from print_nanny_webapp.utils.views import AuthenticatedHttpRequest
 
 logger = logging.getLogger(__name__)
 
