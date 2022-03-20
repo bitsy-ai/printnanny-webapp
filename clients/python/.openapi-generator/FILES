@@ -26,7 +26,6 @@ docs/EventSource.md
 docs/EventTypeEnum.md
 docs/EventsApi.md
 docs/GcodeFile.md
-docs/GcodeFileRequest.md
 docs/JanusApi.md
 docs/JanusAuth.md
 docs/JanusAuthRequest.md
@@ -119,7 +118,6 @@ printnanny_api_client/models/error_detail.py
 printnanny_api_client/models/event_source.py
 printnanny_api_client/models/event_type_enum.py
 printnanny_api_client/models/gcode_file.py
-printnanny_api_client/models/gcode_file_request.py
 printnanny_api_client/models/janus_auth.py
 printnanny_api_client/models/janus_auth_request.py
 printnanny_api_client/models/janus_config_type.py
@@ -202,7 +200,6 @@ test/test_event_source.py
 test/test_event_type_enum.py
 test/test_events_api.py
 test/test_gcode_file.py
-test/test_gcode_file_request.py
 test/test_janus_api.py
 test/test_janus_auth.py
 test/test_janus_auth_request.py

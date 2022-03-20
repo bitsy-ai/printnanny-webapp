@@ -397,7 +397,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **octoprint_gcode_files_create**
-> GcodeFile octoprint_gcode_files_create(gcode_file_request)
+> GcodeFile octoprint_gcode_files_create(name, file, hash)
 
 
 
@@ -436,10 +436,12 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.OctoprintApi(api_client)
-    gcode_file_request = printnanny_api_client.GcodeFileRequest() # GcodeFileRequest | 
+    name = 'name_example' # str | 
+file = '/path/to/file' # file | 
+hash = 'hash_example' # str | 
 
     try:
-        api_response = api_instance.octoprint_gcode_files_create(gcode_file_request)
+        api_response = api_instance.octoprint_gcode_files_create(name, file, hash)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling OctoprintApi->octoprint_gcode_files_create: %s\n" % e)
@@ -478,10 +480,12 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.OctoprintApi(api_client)
-    gcode_file_request = printnanny_api_client.GcodeFileRequest() # GcodeFileRequest | 
+    name = 'name_example' # str | 
+file = '/path/to/file' # file | 
+hash = 'hash_example' # str | 
 
     try:
-        api_response = api_instance.octoprint_gcode_files_create(gcode_file_request)
+        api_response = api_instance.octoprint_gcode_files_create(name, file, hash)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling OctoprintApi->octoprint_gcode_files_create: %s\n" % e)
@@ -491,7 +495,9 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **gcode_file_request** | [**GcodeFileRequest**](GcodeFileRequest.md)|  | 
+ **name** | **str**|  | 
+ **file** | **file**|  | 
+ **hash** | **str**|  | 
 
 ### Return type
 
@@ -503,7 +509,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details

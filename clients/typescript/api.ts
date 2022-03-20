@@ -642,31 +642,6 @@ export interface GcodeFile {
 /**
  * 
  * @export
- * @interface GcodeFileRequest
- */
-export interface GcodeFileRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof GcodeFileRequest
-     */
-    'name': string;
-    /**
-     * 
-     * @type {any}
-     * @memberof GcodeFileRequest
-     */
-    'file': any;
-    /**
-     * 
-     * @type {string}
-     * @memberof GcodeFileRequest
-     */
-    'hash': string;
-}
-/**
- * 
- * @export
  * @interface JanusAuth
  */
 export interface JanusAuth {
@@ -7996,13 +7971,19 @@ export const OctoprintApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
-         * @param {GcodeFileRequest} gcodeFileRequest 
+         * @param {string} name 
+         * @param {any} file 
+         * @param {string} hash 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintGcodeFilesCreate: async (gcodeFileRequest: GcodeFileRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'gcodeFileRequest' is not null or undefined
-            assertParamExists('octoprintGcodeFilesCreate', 'gcodeFileRequest', gcodeFileRequest)
+        octoprintGcodeFilesCreate: async (name: string, file: any, hash: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'name' is not null or undefined
+            assertParamExists('octoprintGcodeFilesCreate', 'name', name)
+            // verify required parameter 'file' is not null or undefined
+            assertParamExists('octoprintGcodeFilesCreate', 'file', file)
+            // verify required parameter 'hash' is not null or undefined
+            assertParamExists('octoprintGcodeFilesCreate', 'hash', hash)
             const localVarPath = `/api/octoprint/gcode-files/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -8014,6 +7995,7 @@ export const OctoprintApiAxiosParamCreator = function (configuration?: Configura
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
 
             // authentication cookieAuth required
 
@@ -8022,13 +8004,25 @@ export const OctoprintApiAxiosParamCreator = function (configuration?: Configura
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
+            if (name !== undefined) { 
+                localVarFormParams.append('name', name as any);
+            }
     
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
+            if (file !== undefined) { 
+                localVarFormParams.append('file', file as any);
+            }
+    
+            if (hash !== undefined) { 
+                localVarFormParams.append('hash', hash as any);
+            }
+    
+    
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(gcodeFileRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = localVarFormParams;
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -8573,12 +8567,14 @@ export const OctoprintApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {GcodeFileRequest} gcodeFileRequest 
+         * @param {string} name 
+         * @param {any} file 
+         * @param {string} hash 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async octoprintGcodeFilesCreate(gcodeFileRequest: GcodeFileRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintGcodeFilesCreate(gcodeFileRequest, options);
+        async octoprintGcodeFilesCreate(name: string, file: any, hash: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintGcodeFilesCreate(name, file, hash, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -8747,12 +8743,14 @@ export const OctoprintApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
-         * @param {GcodeFileRequest} gcodeFileRequest 
+         * @param {string} name 
+         * @param {any} file 
+         * @param {string} hash 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintGcodeFilesCreate(gcodeFileRequest: GcodeFileRequest, options?: any): AxiosPromise<GcodeFile> {
-            return localVarFp.octoprintGcodeFilesCreate(gcodeFileRequest, options).then((request) => request(axios, basePath));
+        octoprintGcodeFilesCreate(name: string, file: any, hash: string, options?: any): AxiosPromise<GcodeFile> {
+            return localVarFp.octoprintGcodeFilesCreate(name, file, hash, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -8907,12 +8905,14 @@ export interface OctoprintApiInterface {
 
     /**
      * 
-     * @param {GcodeFileRequest} gcodeFileRequest 
+     * @param {string} name 
+     * @param {any} file 
+     * @param {string} hash 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OctoprintApiInterface
      */
-    octoprintGcodeFilesCreate(gcodeFileRequest: GcodeFileRequest, options?: AxiosRequestConfig): AxiosPromise<GcodeFile>;
+    octoprintGcodeFilesCreate(name: string, file: any, hash: string, options?: AxiosRequestConfig): AxiosPromise<GcodeFile>;
 
     /**
      * 
@@ -9073,13 +9073,15 @@ export class OctoprintApi extends BaseAPI implements OctoprintApiInterface {
 
     /**
      * 
-     * @param {GcodeFileRequest} gcodeFileRequest 
+     * @param {string} name 
+     * @param {any} file 
+     * @param {string} hash 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OctoprintApi
      */
-    public octoprintGcodeFilesCreate(gcodeFileRequest: GcodeFileRequest, options?: AxiosRequestConfig) {
-        return OctoprintApiFp(this.configuration).octoprintGcodeFilesCreate(gcodeFileRequest, options).then((request) => request(this.axios, this.basePath));
+    public octoprintGcodeFilesCreate(name: string, file: any, hash: string, options?: AxiosRequestConfig) {
+        return OctoprintApiFp(this.configuration).octoprintGcodeFilesCreate(name, file, hash, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

@@ -25,7 +25,6 @@ docs/EventSource.md
 docs/EventTypeEnum.md
 docs/EventsApi.md
 docs/GcodeFile.md
-docs/GcodeFileRequest.md
 docs/JanusApi.md
 docs/JanusAuth.md
 docs/JanusAuthRequest.md
@@ -115,7 +114,6 @@ src/models/error_detail.rs
 src/models/event_source.rs
 src/models/event_type_enum.rs
 src/models/gcode_file.rs
-src/models/gcode_file_request.rs
 src/models/janus_auth.rs
 src/models/janus_auth_request.rs
 src/models/janus_config_type.rs
