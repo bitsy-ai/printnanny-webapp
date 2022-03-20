@@ -274,7 +274,7 @@ pub async fn octoprint_backups_retrieve(configuration: &configuration::Configura
     }
 }
 
-pub async fn octoprint_gcode_files_create(configuration: &configuration::Configuration, gcode_file_request: crate::models::GcodeFileRequest) -> Result<crate::models::GcodeFile, Error<OctoprintGcodeFilesCreateError>> {
+pub async fn octoprint_gcode_files_create(configuration: &configuration::Configuration, name: &str, file: std::path::PathBuf, hash: &str) -> Result<crate::models::GcodeFile, Error<OctoprintGcodeFilesCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -288,7 +288,11 @@ pub async fn octoprint_gcode_files_create(configuration: &configuration::Configu
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&gcode_file_request);
+    let mut local_var_form = reqwest::multipart::Form::new();
+    local_var_form = local_var_form.text("name", name.to_string());
+    // TODO: support file upload for 'file' parameter
+    local_var_form = local_var_form.text("hash", hash.to_string());
+    local_var_req_builder = local_var_req_builder.multipart(local_var_form);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;

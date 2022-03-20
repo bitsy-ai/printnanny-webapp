@@ -512,17 +512,21 @@ class OctoprintApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def octoprint_gcode_files_create(self, gcode_file_request, **kwargs):  # noqa: E501
+    def octoprint_gcode_files_create(self, name, file, hash, **kwargs):  # noqa: E501
         """octoprint_gcode_files_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.octoprint_gcode_files_create(gcode_file_request, async_req=True)
+        >>> thread = api.octoprint_gcode_files_create(name, file, hash, async_req=True)
         >>> result = thread.get()
 
-        :param gcode_file_request: (required)
-        :type gcode_file_request: GcodeFileRequest
+        :param name: (required)
+        :type name: str
+        :param file: (required)
+        :type file: file
+        :param hash: (required)
+        :type hash: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -539,19 +543,23 @@ class OctoprintApi(object):
         :rtype: GcodeFile
         """
         kwargs['_return_http_data_only'] = True
-        return self.octoprint_gcode_files_create_with_http_info(gcode_file_request, **kwargs)  # noqa: E501
+        return self.octoprint_gcode_files_create_with_http_info(name, file, hash, **kwargs)  # noqa: E501
 
-    def octoprint_gcode_files_create_with_http_info(self, gcode_file_request, **kwargs):  # noqa: E501
+    def octoprint_gcode_files_create_with_http_info(self, name, file, hash, **kwargs):  # noqa: E501
         """octoprint_gcode_files_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.octoprint_gcode_files_create_with_http_info(gcode_file_request, async_req=True)
+        >>> thread = api.octoprint_gcode_files_create_with_http_info(name, file, hash, async_req=True)
         >>> result = thread.get()
 
-        :param gcode_file_request: (required)
-        :type gcode_file_request: GcodeFileRequest
+        :param name: (required)
+        :type name: str
+        :param file: (required)
+        :type file: file
+        :param hash: (required)
+        :type hash: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -579,7 +587,9 @@ class OctoprintApi(object):
         local_var_params = locals()
 
         all_params = [
-            'gcode_file_request'
+            'name',
+            'file',
+            'hash'
         ]
         all_params.extend(
             [
@@ -601,11 +611,31 @@ class OctoprintApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'gcode_file_request' is set
-        if self.api_client.client_side_validation and ('gcode_file_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['gcode_file_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `gcode_file_request` when calling `octoprint_gcode_files_create`")  # noqa: E501
+        # verify the required parameter 'name' is set
+        if self.api_client.client_side_validation and ('name' not in local_var_params or  # noqa: E501
+                                                        local_var_params['name'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `name` when calling `octoprint_gcode_files_create`")  # noqa: E501
+        # verify the required parameter 'file' is set
+        if self.api_client.client_side_validation and ('file' not in local_var_params or  # noqa: E501
+                                                        local_var_params['file'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `file` when calling `octoprint_gcode_files_create`")  # noqa: E501
+        # verify the required parameter 'hash' is set
+        if self.api_client.client_side_validation and ('hash' not in local_var_params or  # noqa: E501
+                                                        local_var_params['hash'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `hash` when calling `octoprint_gcode_files_create`")  # noqa: E501
 
+        if self.api_client.client_side_validation and ('name' in local_var_params and  # noqa: E501
+                                                        len(local_var_params['name']) > 255):  # noqa: E501
+            raise ApiValueError("Invalid value for parameter `name` when calling `octoprint_gcode_files_create`, length must be less than or equal to `255`")  # noqa: E501
+        if self.api_client.client_side_validation and ('name' in local_var_params and  # noqa: E501
+                                                        len(local_var_params['name']) < 1):  # noqa: E501
+            raise ApiValueError("Invalid value for parameter `name` when calling `octoprint_gcode_files_create`, length must be greater than or equal to `1`")  # noqa: E501
+        if self.api_client.client_side_validation and ('hash' in local_var_params and  # noqa: E501
+                                                        len(local_var_params['hash']) > 255):  # noqa: E501
+            raise ApiValueError("Invalid value for parameter `hash` when calling `octoprint_gcode_files_create`, length must be less than or equal to `255`")  # noqa: E501
+        if self.api_client.client_side_validation and ('hash' in local_var_params and  # noqa: E501
+                                                        len(local_var_params['hash']) < 1):  # noqa: E501
+            raise ApiValueError("Invalid value for parameter `hash` when calling `octoprint_gcode_files_create`, length must be greater than or equal to `1`")  # noqa: E501
         collection_formats = {}
 
         path_params = {}
@@ -616,10 +646,14 @@ class OctoprintApi(object):
 
         form_params = []
         local_var_files = {}
+        if 'name' in local_var_params:
+            form_params.append(('name', local_var_params['name']))  # noqa: E501
+        if 'file' in local_var_params:
+            local_var_files['file'] = local_var_params['file']  # noqa: E501
+        if 'hash' in local_var_params:
+            form_params.append(('hash', local_var_params['hash']))  # noqa: E501
 
         body_params = None
-        if 'gcode_file_request' in local_var_params:
-            body_params = local_var_params['gcode_file_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -627,7 +661,7 @@ class OctoprintApi(object):
         # HTTP header `Content-Type`
         header_params['Content-Type'] = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
-                ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
+                ['multipart/form-data'],
                 'POST', body_params))  # noqa: E501
 
         # Authentication setting

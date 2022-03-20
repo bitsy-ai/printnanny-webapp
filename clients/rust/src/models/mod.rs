@@ -32,8 +32,6 @@ pub mod event_type_enum;
 pub use self::event_type_enum::EventTypeEnum;
 pub mod gcode_file;
 pub use self::gcode_file::GcodeFile;
-pub mod gcode_file_request;
-pub use self::gcode_file_request::GcodeFileRequest;
 pub mod janus_auth;
 pub use self::janus_auth::JanusAuth;
 pub mod janus_auth_request;

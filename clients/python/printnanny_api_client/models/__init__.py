@@ -32,7 +32,6 @@ from printnanny_api_client.models.error_detail import ErrorDetail
 from printnanny_api_client.models.event_source import EventSource
 from printnanny_api_client.models.event_type_enum import EventTypeEnum
 from printnanny_api_client.models.gcode_file import GcodeFile
-from printnanny_api_client.models.gcode_file_request import GcodeFileRequest
 from printnanny_api_client.models.janus_auth import JanusAuth
 from printnanny_api_client.models.janus_auth_request import JanusAuthRequest
 from printnanny_api_client.models.janus_config_type import JanusConfigType
