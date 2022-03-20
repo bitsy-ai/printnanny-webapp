@@ -9,24 +9,67 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('octoprint', '0004_alter_octoprintbackup_user'),
+        ("octoprint", "0004_alter_octoprintbackup_user"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='OctoPrintSettings',
+            name="OctoPrintSettings",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('deleted', models.DateTimeField(editable=False, null=True)),
-                ('sync_gcode', models.BooleanField(default=True, help_text='Sync Gcode files to PrintNanny Cloud')),
-                ('sync_printer_profiles', models.BooleanField(default=True, help_text='Sync Printer Profiles to PrintNanny Cloud')),
-                ('sync_backups', models.BooleanField(default=True, help_text='Upload OctoPrint backups to PrintNanny Cloud')),
-                ('monitoring_auto_start', models.BooleanField(default=True, help_text='Start PrintNanny monitoring automatically when a print job begins')),
-                ('monitoring_auto_pause', models.BooleanField(default=True, help_text='Pause failing print jobs automatically')),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='octoprint_settings', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("deleted", models.DateTimeField(editable=False, null=True)),
+                (
+                    "sync_gcode",
+                    models.BooleanField(
+                        default=True, help_text="Sync Gcode files to PrintNanny Cloud"
+                    ),
+                ),
+                (
+                    "sync_printer_profiles",
+                    models.BooleanField(
+                        default=True,
+                        help_text="Sync Printer Profiles to PrintNanny Cloud",
+                    ),
+                ),
+                (
+                    "sync_backups",
+                    models.BooleanField(
+                        default=True,
+                        help_text="Upload OctoPrint backups to PrintNanny Cloud",
+                    ),
+                ),
+                (
+                    "monitoring_auto_start",
+                    models.BooleanField(
+                        default=True,
+                        help_text="Start PrintNanny monitoring automatically when a print job begins",
+                    ),
+                ),
+                (
+                    "monitoring_auto_pause",
+                    models.BooleanField(
+                        default=True, help_text="Pause failing print jobs automatically"
+                    ),
+                ),
+                (
+                    "user",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="octoprint_settings",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]

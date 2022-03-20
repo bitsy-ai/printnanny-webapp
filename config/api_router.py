@@ -28,14 +28,6 @@ from print_nanny_webapp.remote_control.api.views import (
     CommandViewSet,
 )
 
-from print_nanny_webapp.telemetry.api.views import (
-    OctoPrintEventViewSet,
-    PrintNannyPluginEventViewSet,
-    PrintJobEventViewSet,
-    RemoteCommandEventViewSet,
-    TelemetryEventViewSet,
-)
-
 from print_nanny_webapp.alerts.api.views import (
     AlertViewSet,  # , PrintSessionAlertViewSet
 )
@@ -79,24 +71,9 @@ router.register(
 
 
 router.register("events", EventViewSet, basename="events")
-
-
-router.register("telemetry-events", TelemetryEventViewSet, basename="telemetry-events")
-router.register(
-    "remote-command-events", RemoteCommandEventViewSet, basename="remote-command-events"
-)
-router.register("octoprint-events", OctoPrintEventViewSet, basename="octoprint-events")
-router.register(
-    "print-nanny-plugin-events",
-    PrintNannyPluginEventViewSet,
-    basename="print-nanny-plugin-events",
-)
-router.register("print-job-events", PrintJobEventViewSet, basename="print-job-events")
-
 router.register("users", UserViewSet)
 user_router = NestedSimpleRouter(router, r"users", lookup="user")
 user_router.register(r"janus-auth", JanusAuthViewSet, basename="janus-auth")
-
 
 router.register(
     "device-calibrations", DeviceCalibrationViewSet, basename="device-calibration"
