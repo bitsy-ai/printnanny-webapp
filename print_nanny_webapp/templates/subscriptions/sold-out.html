@@ -18,19 +18,24 @@
                     </div>
 
                     <div class="card-body p-4">
-                        
+
                         <div class="text-center w-75 m-auto">
                             <h1 class="text-dark-50 text-center mt-0 font-weight-bold">Sold Out</h1>
 
-                            <h4 class="text-dark-50 text-center mt-0 font-weight-bold">{% trans "Sorry, Print Nanny subscriptions are currently sold out." %}</h4>
-                            <p class="text-dark-50 text-center mt-0 font-weight-bold">{% trans "Join the waiting list to get notified when more become available." %}</h4>
+                            <h4 class="text-dark-50 text-center mt-0 font-weight-bold">{% trans "Sorry, PrintNanny
+                                subscriptions are currently sold out." %}</h4>
+                            <p class="text-dark-50 text-center mt-0 font-weight-bold">{% trans "Join the waiting list to
+                                get notified when more become available." %}</h4>
 
-                            {% if IS_SOLD_OUT %}
-                            <a href="{% url 'subscriptions:sold_out' %}" class="btn btn-primary btn-lg btn-rounded mt-3">Get Access Now</a>
-                            {% else %}
-                            <a href="{% url 'request-invite' %}" class="btn btn-primary btn-lg btn-rounded mt-3">Join the Beta Waitlist<i class="mdi mdi-arrow-right ml-1"></i></a>
-                            {% endif %}
-                            
+                                {% if IS_SOLD_OUT %}
+                                <a href="{% url 'subscriptions:sold_out' %}"
+                                    class="btn btn-primary btn-lg btn-rounded mt-3">Get Access Now</a>
+                                {% else %}
+                                <a href="{% url 'request-invite' %}"
+                                    class="btn btn-primary btn-lg btn-rounded mt-3">Join the Beta Waitlist<i
+                                        class="mdi mdi-arrow-right ml-1"></i></a>
+                                {% endif %}
+
 
                         </div>
                     </div> <!-- end card-body -->

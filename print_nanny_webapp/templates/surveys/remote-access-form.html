@@ -9,12 +9,13 @@
             <div class="card-body">
 
                 <div class="card-header primary-gradient pt-4 pb-4 mb-4 text-center bg-primary text-white">
-                    <h1 class="display-4">Print Nanny Network & File Manager</h1>
+                    <h1 class="display-4">PrintNanny Network & File Manager</h1>
                     <h3>Manage your 3D printers from anywhere in the world
                     </h3>
-                
+
                     {% if not user.is_paid_beta_tester %}
-                    <a target="_blank" href="{% url 'subscriptions:checkout' %}" class="mt-2 mb-2 btn btn-lg btn-light pull-left">Become a Founding Member</a>
+                    <a target="_blank" href="{% url 'subscriptions:checkout' %}"
+                        class="mt-2 mb-2 btn btn-lg btn-light pull-left">Become a Founding Member</a>
                     <h3>{{ AVAILABLE_SUBSCRIPTIONS_COUNT }} spots left</h3>
                     {% endif %}
 
@@ -22,18 +23,21 @@
                 <div class="row">
                     <div class="col-12 ribbon-box col-md-6">
                         <div class="ribbon ribbon-primary float-left">
-                            <h4 class="mb-2">Print Nanny Network & File Manager <span class="badge badge-light">Early Access</span></h4>
+                            <h4 class="mb-2">PrintNanny Network & File Manager <span class="badge badge-light">Early
+                                    Access</span></h4>
                         </div>
                         <div class="ribbon-content">
                             <h3>Answer the survey to join the waitlist.</strong>
                             </h3>
-                            <form class="form" id="remote_access" method="post" action="{% url 'surveys:remote-access' %}">
+                            <form class="form" id="remote_access" method="post"
+                                action="{% url 'surveys:remote-access' %}">
                                 <div class="form-group">
                                     {% csrf_token %}
                                     {{ form|crispy }}
                                 </div>
                                 {% if redirect_field_value %}
-                                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                                <input type="hidden" name="{{ redirect_field_name }}"
+                                    value="{{ redirect_field_value }}" />
                                 {% endif %}
                                 <button class="btn btn-primary" type="submit">Submit &raquo;</button>
                             </form>
