@@ -314,12 +314,12 @@ EMAIL_BACKEND = env(
 EMAIL_TIMEOUT = 5
 
 DEFAULT_FROM_EMAIL = env(
-    "DJANGO_DEFAULT_FROM_EMAIL", default="Print Nanny <leigh@printnanny.ai>"
+    "DJANGO_DEFAULT_FROM_EMAIL", default="PrintNanny <leigh@printnanny.ai>"
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#server-email
 SERVER_EMAIL = env("DJANGO_SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-subject-prefix
-EMAIL_SUBJECT_PREFIX = env("DJANGO_EMAIL_SUBJECT_PREFIX", default="[Print Nanny]")
+EMAIL_SUBJECT_PREFIX = env("DJANGO_EMAIL_SUBJECT_PREFIX", default="[PrintNanny]")
 
 # Anymail
 # ------------------------------------------------------------------------------
@@ -496,7 +496,7 @@ ACCOUNT_ADAPTER = "invitations.models.InvitationsAdapter"
 INVITATIONS_ADAPTER = ACCOUNT_ADAPTER
 INVITATIONS_INVITATION_ONLY = False
 INVITATIONS_INVITATION_EXPIRY = 30
-INVITATIONS_EMAIL_SUBJECT_PREFIX = "[Print Nanny]"
+INVITATIONS_EMAIL_SUBJECT_PREFIX = "[PrintNanny]"
 INVITATIONS_ACCEPT_INVITE_AFTER_SIGNUP = True
 
 # channels

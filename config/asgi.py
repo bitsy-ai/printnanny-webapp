@@ -1,5 +1,5 @@
 """
-ASGI config for Print Nanny Webapp project.
+ASGI config for PrintNanny Webapp project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 

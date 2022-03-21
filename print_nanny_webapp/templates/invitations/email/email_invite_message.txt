@@ -2,7 +2,7 @@
 {% autoescape off %}
 {% blocktrans %}
 
-Thank you for volunteering to Beta test Print Nanny!
+Thank you for volunteering to Beta test PrintNanny!
 
 ✨ Click the link below to claim your Beta invitation.
 
@@ -12,7 +12,7 @@ Thank you for volunteering to Beta test Print Nanny!
 
 https://help.print-nanny.com/octoprint-plugin-setup/
 
-🚧 Print Nanny is a work-in-progress! New features are rolled out weekly. Your feedback helps me build the future of fully-automated 3D printing. 
+🚧 PrintNanny is a work-in-progress! New features are rolled out weekly. Your feedback helps me build the future of fully-automated 3D printing. 
 
 Please open a Github issue to report bugs.
 

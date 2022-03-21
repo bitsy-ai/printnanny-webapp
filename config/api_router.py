@@ -35,7 +35,7 @@ router.register("client-config", PrintNannyApiConfigViewset, basename="client-co
 router.register("alerts", AlertViewSet)
 router.register("devices", DeviceViewSet)
 
-# octoprint endpoints (print nanny os data model)
+# octoprint endpoints (PrintNanny os data model)
 
 # enables /api/devices/:hostname lookup (no nested routing)
 devices_by_hostname = [

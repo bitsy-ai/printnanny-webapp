@@ -13,4 +13,4 @@ Status update for job running on {{ DEVICE_NAME }} 💜
 💜 Click to manage this printer: {{ DEVICE_URL }}
 
 Thanks,
-Print Nanny
+PrintNanny

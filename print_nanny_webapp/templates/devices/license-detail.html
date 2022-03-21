@@ -5,12 +5,13 @@
             <i class="mdi mdi-id-card"></i><strong> License Key</strong>
         </h4>
         {% if object.active_license.activated == False %}
-            <div class="alert alert-info col-12" role="alert">
-                <h4 class="alert-heading">Your license hasn't been activated yet!</h4>
-                <p>
-                Follow <a href="{{ help.HELP_ACTIVATE_LICENSE }}">this guide</a> to install Print Nanny OS and activate your license.
-                </p>
-            </div>
+        <div class="alert alert-info col-12" role="alert">
+            <h4 class="alert-heading">Your license hasn't been activated yet!</h4>
+            <p>
+                Follow <a href="{{ help.HELP_ACTIVATE_LICENSE }}">this guide</a> to install PrintNanny OS and activate
+                your license.
+            </p>
+        </div>
         {% endif %}
         <dl class="row">
             <dt class="col-sm-3">Activated</dt>
@@ -18,7 +19,7 @@
             <dt class="col-sm-3">Fingerprint</dt>
             <dd class="col-sm-9">
                 <samp>
-                {{ object.active_license.fingerprint }}
+                    {{ object.active_license.fingerprint }}
                 </samp>
             </dd>
             <!-- <dt class="col-sm-3">Public Key</dt> -->
@@ -32,12 +33,14 @@
             <a href="{% url 'devices:delete' pk=device.id %}"><button class="
                 btn btn-danger">Delete Device</button></a>
         </p>
-        </div>
+    </div>
     <div class="card-footer">
         <p>
-            Print Nanny Staff will <span class="text-danger"><strong>never</strong></span> ask you to share the contents of printnanny_license.zip. <strong>Do not share these with anyone!</strong>
+            PrintNanny Staff will <span class="text-danger"><strong>never</strong></span> ask you to share the contents
+            of printnanny_license.zip. <strong>Do not share these with anyone!</strong>
             <br>
-            <a href="{{ help.ABOUT_DEVICE_PKI }}" target="_blank">This wiki article</a> explains how your license keys protect your device from unauthorized access.
+            <a href="{{ help.ABOUT_DEVICE_PKI }}" target="_blank">This wiki article</a> explains how your license keys
+            protect your device from unauthorized access.
         </p>
     </div>
 </div>

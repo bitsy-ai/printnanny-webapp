@@ -3,20 +3,24 @@
 <div class="col-12 col-lg-6 d-flex align-items-stretch">
   <div class="card">
     <div class="card-body">
-        <h2 class="header-title"><i class="mdi mdi-printer-3d"></i>
-          <i class="mdi mdi-video-box-off"></i>{{object.name}} livestream</h2>
-          <div id="stream-loading-{{object.id}}" class="row">
-            <div class="alert alert-info col-12 col-md-5" role="alert">
-              <h4 class="alert-heading">{{object.name}} web camera is offline</h4>
-              <p>Print Nanny couldn't find a live video stream for this device.</p>
-              <p>Send a <strong>Start Monitoring</strong> command to start the camera feed.</p>
-              <p class="mt-3"><a target="_blank" href="https://help.print-nanny.com/faq/refresh-device-registration/"><button class="btn btn-primary">Troubleshooting Guide</button></a></p>
-            </div>
-            <img src="{% static 'images/sleep.svg' %}" style="opacity: 30%" class="col-md-6 offset-md-1 d-none d-md-block img-fluid float-right"/>
-  
-          </div>
+      <h2 class="header-title"><i class="mdi mdi-printer-3d"></i>
+        <i class="mdi mdi-video-box-off"></i>{{object.name}} livestream
+      </h2>
+      <div id="stream-loading-{{object.id}}" class="row">
+        <div class="alert alert-info col-12 col-md-5" role="alert">
+          <h4 class="alert-heading">{{object.name}} web camera is offline</h4>
+          <p>PrintNanny couldn't find a live video stream for this device.</p>
+          <p>Send a <strong>Start Monitoring</strong> command to start the camera feed.</p>
+          <p class="mt-3"><a target="_blank"
+              href="https://help.print-nanny.com/faq/refresh-device-registration/"><button
+                class="btn btn-primary">Troubleshooting Guide</button></a></p>
+        </div>
+        <img src="{% static 'images/sleep.svg' %}" style="opacity: 30%"
+          class="col-md-6 offset-md-1 d-none d-md-block img-fluid float-right" />
 
-        <img id="stream-{{object.id}}" class="img-fluid">
+      </div>
+
+      <img id="stream-{{object.id}}" class="img-fluid">
     </div>
   </div>
 </div>
