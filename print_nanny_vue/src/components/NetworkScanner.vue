@@ -110,7 +110,7 @@ export default {
       <p>You'll be redirected to another page to verify your account</p>
       <!-- disable "smart" scanning until CA infra is setup, so user doesn't have to install root cert -->
       <!-- <p>
-        Print Nanny can discover new devices on your network.Click
+        PrintNanny can discover new devices on your network.Click
         <strong>Scan</strong> to search.
       </p> -->
       <!-- <b-form id="network-scanner" @submit.prevent=""> -->

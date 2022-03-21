@@ -77,12 +77,12 @@ export default {
     </div>
     <div class="card-body">
       <p class="text-center">
-        Print Nanny uses MQTT to send/receive events from your device.
+        PrintNanny uses MQTT to send/receive events from your device.
       </p>
 
       <div class="row chart-content-bg text-center">
         <div class="col-6">
-          <h2>Print Nanny Network</h2>
+          <h2>PrintNanny Network</h2>
           <h3 class="text-muted mb-0 mt-3">
             <small
               :class="statusClass(mqttPingEvent)"
