@@ -93,7 +93,7 @@ export default {
       color="#02a8b5"
       errorColor="#fa5c7c"
       title="Install in 10 Minutes or Less"
-      subtitle="If your install takes longer than 10 minutes, email leigh@print-nanny.com to receive one FREE month of Print Nanny"
+      subtitle="If your install takes longer than 10 minutes, email leigh@print-nanny.com to receive one FREE month of PrintNanny"
     >
       <tab-content title="Getting Started" icon="">
         <hr />
@@ -120,7 +120,7 @@ export default {
                 <h4>
                   Download latest image
                   <a href="https://print-nanny.com/devices/releases/"
-                    >(see comparison of Print Nanny editions)</a
+                    >(see comparison of PrintNanny editions)</a
                   >.
                 </h4>
                 <a target="_blank" class="btn btn-success mb-3 mt-3" href=""
@@ -170,8 +170,8 @@ export default {
             />
           </div>
           <div class="col-12 col-md-6">
-            <h2 class="header-title text-center">Print Nanny Vision</h2>
-            <p>This is a demonstration of what Print Nanny "sees"</p>
+            <h2 class="header-title text-center">PrintNanny Vision</h2>
+            <p>This is a demonstration of what PrintNanny "sees"</p>
             <video-stream
               v-if="deviceId !== undefined"
               :device-id="deviceId"
