@@ -35,7 +35,8 @@ from channels.routing import ChannelNameRouter, ProtocolTypeRouter, URLRouter
 import print_nanny_webapp.telemetry.routing
 import print_nanny_webapp.events.routing
 import print_nanny_webapp.alerts.routing
-from print_nanny_webapp.alerts.consumers import DiscordConsumer
+
+# from print_nanny_webapp.alerts.consumers import DiscordConsumer
 
 from rest_framework.authtoken.models import Token
 from channels.db import database_sync_to_async
@@ -82,10 +83,10 @@ application = ProtocolTypeRouter(
         "http": django_application,
         "websocket": TokenAuthMiddlewareStack(URLRouter(websocket_urlpatterns)),
         # "metrics":
-        "channel": ChannelNameRouter(
-            {
-                "discord": DiscordConsumer.as_asgi(),
-            }
-        ),
+        # "channel": ChannelNameRouter(
+        #     {
+        #         "discord": DiscordConsumer.as_asgi(),
+        #     }
+        # ),
     }
 )

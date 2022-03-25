@@ -1,9 +1,6 @@
-
-aiohttp
 argon2-cffi
 channels
 channels-redis
-discord.py
 dj-stripe
 django>3,<4
 django-allauth
