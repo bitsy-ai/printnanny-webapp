@@ -722,6 +722,127 @@ export interface JanusAuthRequest {
 /**
  * 
  * @export
+ * @interface JanusCloudStream
+ */
+export interface JanusCloudStream {
+    /**
+     * 
+     * @type {number}
+     * @memberof JanusCloudStream
+     */
+    'id': number;
+    /**
+     * 
+     * @type {JanusAuth}
+     * @memberof JanusCloudStream
+     */
+    'auth': JanusAuth;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusCloudStream
+     */
+    'api_domain': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof JanusCloudStream
+     */
+    'api_port': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusCloudStream
+     */
+    'api_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusCloudStream
+     */
+    'admin_url': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof JanusCloudStream
+     */
+    'admin_port': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusCloudStream
+     */
+    'rtp_domain': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusCloudStream
+     */
+    'websocket_url': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof JanusCloudStream
+     */
+    'websocket_port': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusCloudStream
+     */
+    'config_type': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusCloudStream
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusCloudStream
+     */
+    'updated_dt': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof JanusCloudStream
+     */
+    'active': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusCloudStream
+     */
+    'secret': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusCloudStream
+     */
+    'pin': string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof JanusCloudStream
+     */
+    'info': { [key: string]: any; };
+    /**
+     * 
+     * @type {number}
+     * @memberof JanusCloudStream
+     */
+    'rtp_port': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof JanusCloudStream
+     */
+    'device': number;
+}
+/**
+ * 
+ * @export
  * @enum {string}
  */
 
@@ -733,6 +854,224 @@ export const JanusConfigType = {
 export type JanusConfigType = typeof JanusConfigType[keyof typeof JanusConfigType];
 
 
+/**
+ * 
+ * @export
+ * @interface JanusEdgeStream
+ */
+export interface JanusEdgeStream {
+    /**
+     * 
+     * @type {number}
+     * @memberof JanusEdgeStream
+     */
+    'id': number;
+    /**
+     * 
+     * @type {JanusAuth}
+     * @memberof JanusEdgeStream
+     */
+    'auth': JanusAuth;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusEdgeStream
+     */
+    'api_domain': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof JanusEdgeStream
+     */
+    'api_port': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusEdgeStream
+     */
+    'api_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusEdgeStream
+     */
+    'admin_url': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof JanusEdgeStream
+     */
+    'admin_port': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusEdgeStream
+     */
+    'rtp_domain': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusEdgeStream
+     */
+    'websocket_url': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof JanusEdgeStream
+     */
+    'websocket_port': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusEdgeStream
+     */
+    'config_type': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusEdgeStream
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusEdgeStream
+     */
+    'updated_dt': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof JanusEdgeStream
+     */
+    'active'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusEdgeStream
+     */
+    'secret'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusEdgeStream
+     */
+    'pin'?: string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof JanusEdgeStream
+     */
+    'info'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {number}
+     * @memberof JanusEdgeStream
+     */
+    'rtp_port'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof JanusEdgeStream
+     */
+    'device': number;
+}
+/**
+ * 
+ * @export
+ * @interface JanusEdgeStreamRequest
+ */
+export interface JanusEdgeStreamRequest {
+    /**
+     * 
+     * @type {JanusAuthRequest}
+     * @memberof JanusEdgeStreamRequest
+     */
+    'auth': JanusAuthRequest;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusEdgeStreamRequest
+     */
+    'api_domain': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof JanusEdgeStreamRequest
+     */
+    'api_port': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusEdgeStreamRequest
+     */
+    'api_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusEdgeStreamRequest
+     */
+    'admin_url': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof JanusEdgeStreamRequest
+     */
+    'admin_port': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusEdgeStreamRequest
+     */
+    'rtp_domain': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusEdgeStreamRequest
+     */
+    'websocket_url': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof JanusEdgeStreamRequest
+     */
+    'websocket_port': number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof JanusEdgeStreamRequest
+     */
+    'active'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusEdgeStreamRequest
+     */
+    'secret'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusEdgeStreamRequest
+     */
+    'pin'?: string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof JanusEdgeStreamRequest
+     */
+    'info'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {number}
+     * @memberof JanusEdgeStreamRequest
+     */
+    'rtp_port'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof JanusEdgeStreamRequest
+     */
+    'device': number;
+}
 /**
  * 
  * @export
@@ -804,6 +1143,12 @@ export interface JanusStream {
      * @type {string}
      * @memberof JanusStream
      */
+    'config_type': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusStream
+     */
     'created_dt': string;
     /**
      * 
@@ -811,12 +1156,6 @@ export interface JanusStream {
      * @memberof JanusStream
      */
     'updated_dt': string;
-    /**
-     * 
-     * @type {JanusConfigType}
-     * @memberof JanusStream
-     */
-    'config_type'?: JanusConfigType;
     /**
      * 
      * @type {boolean}
@@ -853,19 +1192,6 @@ export interface JanusStream {
      * @memberof JanusStream
      */
     'device': number;
-}
-/**
- * 
- * @export
- * @interface JanusStreamRequest
- */
-export interface JanusStreamRequest {
-    /**
-     * 
-     * @type {JanusConfigType}
-     * @memberof JanusStreamRequest
-     */
-    'config_type'?: JanusConfigType;
 }
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
@@ -1469,33 +1795,64 @@ export interface PaginatedJanusAuthList {
 /**
  * 
  * @export
- * @interface PaginatedJanusStreamList
+ * @interface PaginatedJanusCloudStreamList
  */
-export interface PaginatedJanusStreamList {
+export interface PaginatedJanusCloudStreamList {
     /**
      * 
      * @type {number}
-     * @memberof PaginatedJanusStreamList
+     * @memberof PaginatedJanusCloudStreamList
      */
     'count'?: number;
     /**
      * 
      * @type {string}
-     * @memberof PaginatedJanusStreamList
+     * @memberof PaginatedJanusCloudStreamList
      */
     'next'?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof PaginatedJanusStreamList
+     * @memberof PaginatedJanusCloudStreamList
      */
     'previous'?: string | null;
     /**
      * 
-     * @type {Array<JanusStream>}
-     * @memberof PaginatedJanusStreamList
+     * @type {Array<JanusCloudStream>}
+     * @memberof PaginatedJanusCloudStreamList
      */
-    'results'?: Array<JanusStream>;
+    'results'?: Array<JanusCloudStream>;
+}
+/**
+ * 
+ * @export
+ * @interface PaginatedJanusEdgeStreamList
+ */
+export interface PaginatedJanusEdgeStreamList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedJanusEdgeStreamList
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedJanusEdgeStreamList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedJanusEdgeStreamList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<JanusEdgeStream>}
+     * @memberof PaginatedJanusEdgeStreamList
+     */
+    'results'?: Array<JanusEdgeStream>;
 }
 /**
  * 
@@ -1884,15 +2241,99 @@ export interface PatchedDeviceRequest {
 /**
  * 
  * @export
- * @interface PatchedJanusStreamRequest
+ * @interface PatchedJanusEdgeStreamRequest
  */
-export interface PatchedJanusStreamRequest {
+export interface PatchedJanusEdgeStreamRequest {
     /**
      * 
-     * @type {JanusConfigType}
-     * @memberof PatchedJanusStreamRequest
+     * @type {JanusAuthRequest}
+     * @memberof PatchedJanusEdgeStreamRequest
      */
-    'config_type'?: JanusConfigType;
+    'auth'?: JanusAuthRequest;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedJanusEdgeStreamRequest
+     */
+    'api_domain'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedJanusEdgeStreamRequest
+     */
+    'api_port'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedJanusEdgeStreamRequest
+     */
+    'api_url'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedJanusEdgeStreamRequest
+     */
+    'admin_url'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedJanusEdgeStreamRequest
+     */
+    'admin_port'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedJanusEdgeStreamRequest
+     */
+    'rtp_domain'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedJanusEdgeStreamRequest
+     */
+    'websocket_url'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedJanusEdgeStreamRequest
+     */
+    'websocket_port'?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedJanusEdgeStreamRequest
+     */
+    'active'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedJanusEdgeStreamRequest
+     */
+    'secret'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedJanusEdgeStreamRequest
+     */
+    'pin'?: string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PatchedJanusEdgeStreamRequest
+     */
+    'info'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedJanusEdgeStreamRequest
+     */
+    'rtp_port'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedJanusEdgeStreamRequest
+     */
+    'device'?: number;
 }
 /**
  * 
@@ -4342,14 +4783,13 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {number} deviceId 
-         * @param {JanusStreamRequest} [janusStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesJanusStreamGetOrCreate: async (deviceId: number, janusStreamRequest?: JanusStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesJanusCloudStreamGetOrCreate: async (deviceId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesJanusStreamGetOrCreate', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/janus-streams/get-or-create/`
+            assertParamExists('devicesJanusCloudStreamGetOrCreate', 'deviceId', deviceId)
+            const localVarPath = `/api/devices/{device_id}/janus-cloud-streams/get-or-create/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4370,12 +4810,9 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
 
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(janusStreamRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -4385,14 +4822,13 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {number} deviceId 
-         * @param {JanusStreamRequest} [janusStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesJanusStreamsCreate: async (deviceId: number, janusStreamRequest?: JanusStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesJanusCloudStreamsCreate: async (deviceId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesJanusStreamsCreate', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/janus-streams/`
+            assertParamExists('devicesJanusCloudStreamsCreate', 'deviceId', deviceId)
+            const localVarPath = `/api/devices/{device_id}/janus-cloud-streams/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4413,12 +4849,9 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
 
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(janusStreamRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -4432,10 +4865,10 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesJanusStreamsList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesJanusCloudStreamsList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesJanusStreamsList', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/janus-streams/`
+            assertParamExists('devicesJanusCloudStreamsList', 'deviceId', deviceId)
+            const localVarPath = `/api/devices/{device_id}/janus-cloud-streams/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4473,16 +4906,15 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
          * 
          * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this janus stream.
-         * @param {PatchedJanusStreamRequest} [patchedJanusStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesJanusStreamsPartialUpdate: async (deviceId: number, id: number, patchedJanusStreamRequest?: PatchedJanusStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesJanusCloudStreamsPartialUpdate: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesJanusStreamsPartialUpdate', 'deviceId', deviceId)
+            assertParamExists('devicesJanusCloudStreamsPartialUpdate', 'deviceId', deviceId)
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesJanusStreamsPartialUpdate', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/janus-streams/{id}/`
+            assertParamExists('devicesJanusCloudStreamsPartialUpdate', 'id', id)
+            const localVarPath = `/api/devices/{device_id}/janus-cloud-streams/{id}/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -4504,12 +4936,9 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
 
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(patchedJanusStreamRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -4523,12 +4952,12 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesJanusStreamsRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesJanusCloudStreamsRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesJanusStreamsRetrieve', 'deviceId', deviceId)
+            assertParamExists('devicesJanusCloudStreamsRetrieve', 'deviceId', deviceId)
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesJanusStreamsRetrieve', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/janus-streams/{id}/`
+            assertParamExists('devicesJanusCloudStreamsRetrieve', 'id', id)
+            const localVarPath = `/api/devices/{device_id}/janus-cloud-streams/{id}/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -4563,16 +4992,285 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
          * 
          * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this janus stream.
-         * @param {JanusStreamRequest} [janusStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesJanusStreamsUpdate: async (deviceId: number, id: number, janusStreamRequest?: JanusStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesJanusCloudStreamsUpdate: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesJanusStreamsUpdate', 'deviceId', deviceId)
+            assertParamExists('devicesJanusCloudStreamsUpdate', 'deviceId', deviceId)
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesJanusStreamsUpdate', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/janus-streams/{id}/`
+            assertParamExists('devicesJanusCloudStreamsUpdate', 'id', id)
+            const localVarPath = `/api/devices/{device_id}/janus-cloud-streams/{id}/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusEdgeStreamGetOrCreate: async (deviceId: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesJanusEdgeStreamGetOrCreate', 'deviceId', deviceId)
+            // verify required parameter 'janusEdgeStreamRequest' is not null or undefined
+            assertParamExists('devicesJanusEdgeStreamGetOrCreate', 'janusEdgeStreamRequest', janusEdgeStreamRequest)
+            const localVarPath = `/api/devices/{device_id}/janus-edge-streams/get-or-create/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(janusEdgeStreamRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusEdgeStreamsCreate: async (deviceId: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesJanusEdgeStreamsCreate', 'deviceId', deviceId)
+            // verify required parameter 'janusEdgeStreamRequest' is not null or undefined
+            assertParamExists('devicesJanusEdgeStreamsCreate', 'janusEdgeStreamRequest', janusEdgeStreamRequest)
+            const localVarPath = `/api/devices/{device_id}/janus-edge-streams/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(janusEdgeStreamRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusEdgeStreamsList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesJanusEdgeStreamsList', 'deviceId', deviceId)
+            const localVarPath = `/api/devices/{device_id}/janus-edge-streams/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this janus stream.
+         * @param {PatchedJanusEdgeStreamRequest} [patchedJanusEdgeStreamRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusEdgeStreamsPartialUpdate: async (deviceId: number, id: number, patchedJanusEdgeStreamRequest?: PatchedJanusEdgeStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesJanusEdgeStreamsPartialUpdate', 'deviceId', deviceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesJanusEdgeStreamsPartialUpdate', 'id', id)
+            const localVarPath = `/api/devices/{device_id}/janus-edge-streams/{id}/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedJanusEdgeStreamRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this janus stream.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusEdgeStreamsRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesJanusEdgeStreamsRetrieve', 'deviceId', deviceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesJanusEdgeStreamsRetrieve', 'id', id)
+            const localVarPath = `/api/devices/{device_id}/janus-edge-streams/{id}/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this janus stream.
+         * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusEdgeStreamsUpdate: async (deviceId: number, id: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesJanusEdgeStreamsUpdate', 'deviceId', deviceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesJanusEdgeStreamsUpdate', 'id', id)
+            // verify required parameter 'janusEdgeStreamRequest' is not null or undefined
+            assertParamExists('devicesJanusEdgeStreamsUpdate', 'janusEdgeStreamRequest', janusEdgeStreamRequest)
+            const localVarPath = `/api/devices/{device_id}/janus-edge-streams/{id}/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -4599,7 +5297,7 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(janusStreamRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(janusEdgeStreamRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -5447,23 +6145,21 @@ export const DevicesApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} deviceId 
-         * @param {JanusStreamRequest} [janusStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesJanusStreamGetOrCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusStream>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusStreamGetOrCreate(deviceId, janusStreamRequest, options);
+        async devicesJanusCloudStreamGetOrCreate(deviceId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusCloudStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusCloudStreamGetOrCreate(deviceId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @param {number} deviceId 
-         * @param {JanusStreamRequest} [janusStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusStream>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusStreamsCreate(deviceId, janusStreamRequest, options);
+        async devicesJanusCloudStreamsCreate(deviceId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusCloudStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusCloudStreamsCreate(deviceId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -5473,20 +6169,8 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesJanusStreamsList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedJanusStreamList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusStreamsList(deviceId, page, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this janus stream.
-         * @param {PatchedJanusStreamRequest} [patchedJanusStreamRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesJanusStreamsPartialUpdate(deviceId: number, id: number, patchedJanusStreamRequest?: PatchedJanusStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusStream>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusStreamsPartialUpdate(deviceId, id, patchedJanusStreamRequest, options);
+        async devicesJanusCloudStreamsList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedJanusCloudStreamList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusCloudStreamsList(deviceId, page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -5496,20 +6180,98 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesJanusStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusStream>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusStreamsRetrieve(deviceId, id, options);
+        async devicesJanusCloudStreamsPartialUpdate(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusCloudStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusCloudStreamsPartialUpdate(deviceId, id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this janus stream.
-         * @param {JanusStreamRequest} [janusStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesJanusStreamsUpdate(deviceId: number, id: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusStream>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusStreamsUpdate(deviceId, id, janusStreamRequest, options);
+        async devicesJanusCloudStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusCloudStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusCloudStreamsRetrieve(deviceId, id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this janus stream.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesJanusCloudStreamsUpdate(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusCloudStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusCloudStreamsUpdate(deviceId, id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesJanusEdgeStreamGetOrCreate(deviceId: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusEdgeStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusEdgeStreamGetOrCreate(deviceId, janusEdgeStreamRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesJanusEdgeStreamsCreate(deviceId: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusEdgeStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusEdgeStreamsCreate(deviceId, janusEdgeStreamRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesJanusEdgeStreamsList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedJanusEdgeStreamList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusEdgeStreamsList(deviceId, page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this janus stream.
+         * @param {PatchedJanusEdgeStreamRequest} [patchedJanusEdgeStreamRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesJanusEdgeStreamsPartialUpdate(deviceId: number, id: number, patchedJanusEdgeStreamRequest?: PatchedJanusEdgeStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusEdgeStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusEdgeStreamsPartialUpdate(deviceId, id, patchedJanusEdgeStreamRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this janus stream.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesJanusEdgeStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusEdgeStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusEdgeStreamsRetrieve(deviceId, id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this janus stream.
+         * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesJanusEdgeStreamsUpdate(deviceId: number, id: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusEdgeStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusEdgeStreamsUpdate(deviceId, id, janusEdgeStreamRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -5784,22 +6546,20 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @param {number} deviceId 
-         * @param {JanusStreamRequest} [janusStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesJanusStreamGetOrCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: any): AxiosPromise<JanusStream> {
-            return localVarFp.devicesJanusStreamGetOrCreate(deviceId, janusStreamRequest, options).then((request) => request(axios, basePath));
+        devicesJanusCloudStreamGetOrCreate(deviceId: number, options?: any): AxiosPromise<JanusCloudStream> {
+            return localVarFp.devicesJanusCloudStreamGetOrCreate(deviceId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {number} deviceId 
-         * @param {JanusStreamRequest} [janusStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: any): AxiosPromise<JanusStream> {
-            return localVarFp.devicesJanusStreamsCreate(deviceId, janusStreamRequest, options).then((request) => request(axios, basePath));
+        devicesJanusCloudStreamsCreate(deviceId: number, options?: any): AxiosPromise<JanusCloudStream> {
+            return localVarFp.devicesJanusCloudStreamsCreate(deviceId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -5808,19 +6568,8 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesJanusStreamsList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedJanusStreamList> {
-            return localVarFp.devicesJanusStreamsList(deviceId, page, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this janus stream.
-         * @param {PatchedJanusStreamRequest} [patchedJanusStreamRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesJanusStreamsPartialUpdate(deviceId: number, id: number, patchedJanusStreamRequest?: PatchedJanusStreamRequest, options?: any): AxiosPromise<JanusStream> {
-            return localVarFp.devicesJanusStreamsPartialUpdate(deviceId, id, patchedJanusStreamRequest, options).then((request) => request(axios, basePath));
+        devicesJanusCloudStreamsList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedJanusCloudStreamList> {
+            return localVarFp.devicesJanusCloudStreamsList(deviceId, page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -5829,19 +6578,90 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesJanusStreamsRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<JanusStream> {
-            return localVarFp.devicesJanusStreamsRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
+        devicesJanusCloudStreamsPartialUpdate(deviceId: number, id: number, options?: any): AxiosPromise<JanusCloudStream> {
+            return localVarFp.devicesJanusCloudStreamsPartialUpdate(deviceId, id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this janus stream.
-         * @param {JanusStreamRequest} [janusStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesJanusStreamsUpdate(deviceId: number, id: number, janusStreamRequest?: JanusStreamRequest, options?: any): AxiosPromise<JanusStream> {
-            return localVarFp.devicesJanusStreamsUpdate(deviceId, id, janusStreamRequest, options).then((request) => request(axios, basePath));
+        devicesJanusCloudStreamsRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<JanusCloudStream> {
+            return localVarFp.devicesJanusCloudStreamsRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this janus stream.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusCloudStreamsUpdate(deviceId: number, id: number, options?: any): AxiosPromise<JanusCloudStream> {
+            return localVarFp.devicesJanusCloudStreamsUpdate(deviceId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusEdgeStreamGetOrCreate(deviceId: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options?: any): AxiosPromise<JanusEdgeStream> {
+            return localVarFp.devicesJanusEdgeStreamGetOrCreate(deviceId, janusEdgeStreamRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusEdgeStreamsCreate(deviceId: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options?: any): AxiosPromise<JanusEdgeStream> {
+            return localVarFp.devicesJanusEdgeStreamsCreate(deviceId, janusEdgeStreamRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusEdgeStreamsList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedJanusEdgeStreamList> {
+            return localVarFp.devicesJanusEdgeStreamsList(deviceId, page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this janus stream.
+         * @param {PatchedJanusEdgeStreamRequest} [patchedJanusEdgeStreamRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusEdgeStreamsPartialUpdate(deviceId: number, id: number, patchedJanusEdgeStreamRequest?: PatchedJanusEdgeStreamRequest, options?: any): AxiosPromise<JanusEdgeStream> {
+            return localVarFp.devicesJanusEdgeStreamsPartialUpdate(deviceId, id, patchedJanusEdgeStreamRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this janus stream.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusEdgeStreamsRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<JanusEdgeStream> {
+            return localVarFp.devicesJanusEdgeStreamsRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this janus stream.
+         * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusEdgeStreamsUpdate(deviceId: number, id: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options?: any): AxiosPromise<JanusEdgeStream> {
+            return localVarFp.devicesJanusEdgeStreamsUpdate(deviceId, id, janusEdgeStreamRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * A device (Raspberry Pi) running Print Nanny OS
@@ -6097,22 +6917,20 @@ export interface DevicesApiInterface {
     /**
      * 
      * @param {number} deviceId 
-     * @param {JanusStreamRequest} [janusStreamRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesJanusStreamGetOrCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig): AxiosPromise<JanusStream>;
+    devicesJanusCloudStreamGetOrCreate(deviceId: number, options?: AxiosRequestConfig): AxiosPromise<JanusCloudStream>;
 
     /**
      * 
      * @param {number} deviceId 
-     * @param {JanusStreamRequest} [janusStreamRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig): AxiosPromise<JanusStream>;
+    devicesJanusCloudStreamsCreate(deviceId: number, options?: AxiosRequestConfig): AxiosPromise<JanusCloudStream>;
 
     /**
      * 
@@ -6122,18 +6940,7 @@ export interface DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesJanusStreamsList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedJanusStreamList>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this janus stream.
-     * @param {PatchedJanusStreamRequest} [patchedJanusStreamRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesJanusStreamsPartialUpdate(deviceId: number, id: number, patchedJanusStreamRequest?: PatchedJanusStreamRequest, options?: AxiosRequestConfig): AxiosPromise<JanusStream>;
+    devicesJanusCloudStreamsList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedJanusCloudStreamList>;
 
     /**
      * 
@@ -6143,18 +6950,89 @@ export interface DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesJanusStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<JanusStream>;
+    devicesJanusCloudStreamsPartialUpdate(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<JanusCloudStream>;
 
     /**
      * 
      * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this janus stream.
-     * @param {JanusStreamRequest} [janusStreamRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesJanusStreamsUpdate(deviceId: number, id: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig): AxiosPromise<JanusStream>;
+    devicesJanusCloudStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<JanusCloudStream>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this janus stream.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesJanusCloudStreamsUpdate(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<JanusCloudStream>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesJanusEdgeStreamGetOrCreate(deviceId: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options?: AxiosRequestConfig): AxiosPromise<JanusEdgeStream>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesJanusEdgeStreamsCreate(deviceId: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options?: AxiosRequestConfig): AxiosPromise<JanusEdgeStream>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesJanusEdgeStreamsList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedJanusEdgeStreamList>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this janus stream.
+     * @param {PatchedJanusEdgeStreamRequest} [patchedJanusEdgeStreamRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesJanusEdgeStreamsPartialUpdate(deviceId: number, id: number, patchedJanusEdgeStreamRequest?: PatchedJanusEdgeStreamRequest, options?: AxiosRequestConfig): AxiosPromise<JanusEdgeStream>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this janus stream.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesJanusEdgeStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<JanusEdgeStream>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this janus stream.
+     * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesJanusEdgeStreamsUpdate(deviceId: number, id: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options?: AxiosRequestConfig): AxiosPromise<JanusEdgeStream>;
 
     /**
      * A device (Raspberry Pi) running Print Nanny OS
@@ -6424,25 +7302,23 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
     /**
      * 
      * @param {number} deviceId 
-     * @param {JanusStreamRequest} [janusStreamRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesJanusStreamGetOrCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesJanusStreamGetOrCreate(deviceId, janusStreamRequest, options).then((request) => request(this.axios, this.basePath));
+    public devicesJanusCloudStreamGetOrCreate(deviceId: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesJanusCloudStreamGetOrCreate(deviceId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @param {number} deviceId 
-     * @param {JanusStreamRequest} [janusStreamRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesJanusStreamsCreate(deviceId, janusStreamRequest, options).then((request) => request(this.axios, this.basePath));
+    public devicesJanusCloudStreamsCreate(deviceId: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesJanusCloudStreamsCreate(deviceId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -6453,21 +7329,8 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesJanusStreamsList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesJanusStreamsList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this janus stream.
-     * @param {PatchedJanusStreamRequest} [patchedJanusStreamRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesJanusStreamsPartialUpdate(deviceId: number, id: number, patchedJanusStreamRequest?: PatchedJanusStreamRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesJanusStreamsPartialUpdate(deviceId, id, patchedJanusStreamRequest, options).then((request) => request(this.axios, this.basePath));
+    public devicesJanusCloudStreamsList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesJanusCloudStreamsList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -6478,21 +7341,106 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesJanusStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesJanusStreamsRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
+    public devicesJanusCloudStreamsPartialUpdate(deviceId: number, id: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesJanusCloudStreamsPartialUpdate(deviceId, id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this janus stream.
-     * @param {JanusStreamRequest} [janusStreamRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesJanusStreamsUpdate(deviceId: number, id: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesJanusStreamsUpdate(deviceId, id, janusStreamRequest, options).then((request) => request(this.axios, this.basePath));
+    public devicesJanusCloudStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesJanusCloudStreamsRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this janus stream.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesJanusCloudStreamsUpdate(deviceId: number, id: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesJanusCloudStreamsUpdate(deviceId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesJanusEdgeStreamGetOrCreate(deviceId: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesJanusEdgeStreamGetOrCreate(deviceId, janusEdgeStreamRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesJanusEdgeStreamsCreate(deviceId: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesJanusEdgeStreamsCreate(deviceId, janusEdgeStreamRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesJanusEdgeStreamsList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesJanusEdgeStreamsList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this janus stream.
+     * @param {PatchedJanusEdgeStreamRequest} [patchedJanusEdgeStreamRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesJanusEdgeStreamsPartialUpdate(deviceId: number, id: number, patchedJanusEdgeStreamRequest?: PatchedJanusEdgeStreamRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesJanusEdgeStreamsPartialUpdate(deviceId, id, patchedJanusEdgeStreamRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this janus stream.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesJanusEdgeStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesJanusEdgeStreamsRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this janus stream.
+     * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesJanusEdgeStreamsUpdate(deviceId: number, id: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesJanusEdgeStreamsUpdate(deviceId, id, janusEdgeStreamRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -6992,14 +7940,13 @@ export const JanusApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * 
          * @param {number} deviceId 
-         * @param {JanusStreamRequest} [janusStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesJanusStreamGetOrCreate: async (deviceId: number, janusStreamRequest?: JanusStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesJanusCloudStreamGetOrCreate: async (deviceId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesJanusStreamGetOrCreate', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/janus-streams/get-or-create/`
+            assertParamExists('devicesJanusCloudStreamGetOrCreate', 'deviceId', deviceId)
+            const localVarPath = `/api/devices/{device_id}/janus-cloud-streams/get-or-create/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -7020,12 +7967,9 @@ export const JanusApiAxiosParamCreator = function (configuration?: Configuration
 
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(janusStreamRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -7035,14 +7979,13 @@ export const JanusApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * 
          * @param {number} deviceId 
-         * @param {JanusStreamRequest} [janusStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesJanusStreamsCreate: async (deviceId: number, janusStreamRequest?: JanusStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesJanusCloudStreamsCreate: async (deviceId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesJanusStreamsCreate', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/janus-streams/`
+            assertParamExists('devicesJanusCloudStreamsCreate', 'deviceId', deviceId)
+            const localVarPath = `/api/devices/{device_id}/janus-cloud-streams/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -7063,12 +8006,9 @@ export const JanusApiAxiosParamCreator = function (configuration?: Configuration
 
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(janusStreamRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -7082,10 +8022,10 @@ export const JanusApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesJanusStreamsList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesJanusCloudStreamsList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesJanusStreamsList', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/janus-streams/`
+            assertParamExists('devicesJanusCloudStreamsList', 'deviceId', deviceId)
+            const localVarPath = `/api/devices/{device_id}/janus-cloud-streams/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -7126,12 +8066,12 @@ export const JanusApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesJanusStreamsRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesJanusCloudStreamsRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesJanusStreamsRetrieve', 'deviceId', deviceId)
+            assertParamExists('devicesJanusCloudStreamsRetrieve', 'deviceId', deviceId)
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesJanusStreamsRetrieve', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/janus-streams/{id}/`
+            assertParamExists('devicesJanusCloudStreamsRetrieve', 'id', id)
+            const localVarPath = `/api/devices/{device_id}/janus-cloud-streams/{id}/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -7166,16 +8106,238 @@ export const JanusApiAxiosParamCreator = function (configuration?: Configuration
          * 
          * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this janus stream.
-         * @param {JanusStreamRequest} [janusStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesJanusStreamsUpdate: async (deviceId: number, id: number, janusStreamRequest?: JanusStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesJanusCloudStreamsUpdate: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesJanusStreamsUpdate', 'deviceId', deviceId)
+            assertParamExists('devicesJanusCloudStreamsUpdate', 'deviceId', deviceId)
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesJanusStreamsUpdate', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/janus-streams/{id}/`
+            assertParamExists('devicesJanusCloudStreamsUpdate', 'id', id)
+            const localVarPath = `/api/devices/{device_id}/janus-cloud-streams/{id}/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusEdgeStreamGetOrCreate: async (deviceId: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesJanusEdgeStreamGetOrCreate', 'deviceId', deviceId)
+            // verify required parameter 'janusEdgeStreamRequest' is not null or undefined
+            assertParamExists('devicesJanusEdgeStreamGetOrCreate', 'janusEdgeStreamRequest', janusEdgeStreamRequest)
+            const localVarPath = `/api/devices/{device_id}/janus-edge-streams/get-or-create/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(janusEdgeStreamRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusEdgeStreamsCreate: async (deviceId: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesJanusEdgeStreamsCreate', 'deviceId', deviceId)
+            // verify required parameter 'janusEdgeStreamRequest' is not null or undefined
+            assertParamExists('devicesJanusEdgeStreamsCreate', 'janusEdgeStreamRequest', janusEdgeStreamRequest)
+            const localVarPath = `/api/devices/{device_id}/janus-edge-streams/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(janusEdgeStreamRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusEdgeStreamsList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesJanusEdgeStreamsList', 'deviceId', deviceId)
+            const localVarPath = `/api/devices/{device_id}/janus-edge-streams/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this janus stream.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusEdgeStreamsRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesJanusEdgeStreamsRetrieve', 'deviceId', deviceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesJanusEdgeStreamsRetrieve', 'id', id)
+            const localVarPath = `/api/devices/{device_id}/janus-edge-streams/{id}/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this janus stream.
+         * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusEdgeStreamsUpdate: async (deviceId: number, id: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesJanusEdgeStreamsUpdate', 'deviceId', deviceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesJanusEdgeStreamsUpdate', 'id', id)
+            // verify required parameter 'janusEdgeStreamRequest' is not null or undefined
+            assertParamExists('devicesJanusEdgeStreamsUpdate', 'janusEdgeStreamRequest', janusEdgeStreamRequest)
+            const localVarPath = `/api/devices/{device_id}/janus-edge-streams/{id}/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -7202,7 +8364,7 @@ export const JanusApiAxiosParamCreator = function (configuration?: Configuration
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(janusStreamRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(janusEdgeStreamRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -7399,23 +8561,21 @@ export const JanusApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} deviceId 
-         * @param {JanusStreamRequest} [janusStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesJanusStreamGetOrCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusStream>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusStreamGetOrCreate(deviceId, janusStreamRequest, options);
+        async devicesJanusCloudStreamGetOrCreate(deviceId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusCloudStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusCloudStreamGetOrCreate(deviceId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @param {number} deviceId 
-         * @param {JanusStreamRequest} [janusStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusStream>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusStreamsCreate(deviceId, janusStreamRequest, options);
+        async devicesJanusCloudStreamsCreate(deviceId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusCloudStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusCloudStreamsCreate(deviceId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -7425,8 +8585,8 @@ export const JanusApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesJanusStreamsList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedJanusStreamList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusStreamsList(deviceId, page, options);
+        async devicesJanusCloudStreamsList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedJanusCloudStreamList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusCloudStreamsList(deviceId, page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -7436,20 +8596,75 @@ export const JanusApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesJanusStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusStream>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusStreamsRetrieve(deviceId, id, options);
+        async devicesJanusCloudStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusCloudStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusCloudStreamsRetrieve(deviceId, id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this janus stream.
-         * @param {JanusStreamRequest} [janusStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesJanusStreamsUpdate(deviceId: number, id: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusStream>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusStreamsUpdate(deviceId, id, janusStreamRequest, options);
+        async devicesJanusCloudStreamsUpdate(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusCloudStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusCloudStreamsUpdate(deviceId, id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesJanusEdgeStreamGetOrCreate(deviceId: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusEdgeStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusEdgeStreamGetOrCreate(deviceId, janusEdgeStreamRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesJanusEdgeStreamsCreate(deviceId: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusEdgeStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusEdgeStreamsCreate(deviceId, janusEdgeStreamRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesJanusEdgeStreamsList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedJanusEdgeStreamList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusEdgeStreamsList(deviceId, page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this janus stream.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesJanusEdgeStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusEdgeStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusEdgeStreamsRetrieve(deviceId, id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this janus stream.
+         * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesJanusEdgeStreamsUpdate(deviceId: number, id: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusEdgeStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusEdgeStreamsUpdate(deviceId, id, janusEdgeStreamRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -7509,22 +8724,20 @@ export const JanusApiFactory = function (configuration?: Configuration, basePath
         /**
          * 
          * @param {number} deviceId 
-         * @param {JanusStreamRequest} [janusStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesJanusStreamGetOrCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: any): AxiosPromise<JanusStream> {
-            return localVarFp.devicesJanusStreamGetOrCreate(deviceId, janusStreamRequest, options).then((request) => request(axios, basePath));
+        devicesJanusCloudStreamGetOrCreate(deviceId: number, options?: any): AxiosPromise<JanusCloudStream> {
+            return localVarFp.devicesJanusCloudStreamGetOrCreate(deviceId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {number} deviceId 
-         * @param {JanusStreamRequest} [janusStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: any): AxiosPromise<JanusStream> {
-            return localVarFp.devicesJanusStreamsCreate(deviceId, janusStreamRequest, options).then((request) => request(axios, basePath));
+        devicesJanusCloudStreamsCreate(deviceId: number, options?: any): AxiosPromise<JanusCloudStream> {
+            return localVarFp.devicesJanusCloudStreamsCreate(deviceId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7533,8 +8746,8 @@ export const JanusApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesJanusStreamsList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedJanusStreamList> {
-            return localVarFp.devicesJanusStreamsList(deviceId, page, options).then((request) => request(axios, basePath));
+        devicesJanusCloudStreamsList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedJanusCloudStreamList> {
+            return localVarFp.devicesJanusCloudStreamsList(deviceId, page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7543,19 +8756,69 @@ export const JanusApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesJanusStreamsRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<JanusStream> {
-            return localVarFp.devicesJanusStreamsRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
+        devicesJanusCloudStreamsRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<JanusCloudStream> {
+            return localVarFp.devicesJanusCloudStreamsRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this janus stream.
-         * @param {JanusStreamRequest} [janusStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesJanusStreamsUpdate(deviceId: number, id: number, janusStreamRequest?: JanusStreamRequest, options?: any): AxiosPromise<JanusStream> {
-            return localVarFp.devicesJanusStreamsUpdate(deviceId, id, janusStreamRequest, options).then((request) => request(axios, basePath));
+        devicesJanusCloudStreamsUpdate(deviceId: number, id: number, options?: any): AxiosPromise<JanusCloudStream> {
+            return localVarFp.devicesJanusCloudStreamsUpdate(deviceId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusEdgeStreamGetOrCreate(deviceId: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options?: any): AxiosPromise<JanusEdgeStream> {
+            return localVarFp.devicesJanusEdgeStreamGetOrCreate(deviceId, janusEdgeStreamRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusEdgeStreamsCreate(deviceId: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options?: any): AxiosPromise<JanusEdgeStream> {
+            return localVarFp.devicesJanusEdgeStreamsCreate(deviceId, janusEdgeStreamRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusEdgeStreamsList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedJanusEdgeStreamList> {
+            return localVarFp.devicesJanusEdgeStreamsList(deviceId, page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this janus stream.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusEdgeStreamsRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<JanusEdgeStream> {
+            return localVarFp.devicesJanusEdgeStreamsRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this janus stream.
+         * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusEdgeStreamsUpdate(deviceId: number, id: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options?: any): AxiosPromise<JanusEdgeStream> {
+            return localVarFp.devicesJanusEdgeStreamsUpdate(deviceId, id, janusEdgeStreamRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7609,22 +8872,20 @@ export interface JanusApiInterface {
     /**
      * 
      * @param {number} deviceId 
-     * @param {JanusStreamRequest} [janusStreamRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof JanusApiInterface
      */
-    devicesJanusStreamGetOrCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig): AxiosPromise<JanusStream>;
+    devicesJanusCloudStreamGetOrCreate(deviceId: number, options?: AxiosRequestConfig): AxiosPromise<JanusCloudStream>;
 
     /**
      * 
      * @param {number} deviceId 
-     * @param {JanusStreamRequest} [janusStreamRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof JanusApiInterface
      */
-    devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig): AxiosPromise<JanusStream>;
+    devicesJanusCloudStreamsCreate(deviceId: number, options?: AxiosRequestConfig): AxiosPromise<JanusCloudStream>;
 
     /**
      * 
@@ -7634,7 +8895,7 @@ export interface JanusApiInterface {
      * @throws {RequiredError}
      * @memberof JanusApiInterface
      */
-    devicesJanusStreamsList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedJanusStreamList>;
+    devicesJanusCloudStreamsList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedJanusCloudStreamList>;
 
     /**
      * 
@@ -7644,18 +8905,68 @@ export interface JanusApiInterface {
      * @throws {RequiredError}
      * @memberof JanusApiInterface
      */
-    devicesJanusStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<JanusStream>;
+    devicesJanusCloudStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<JanusCloudStream>;
 
     /**
      * 
      * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this janus stream.
-     * @param {JanusStreamRequest} [janusStreamRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof JanusApiInterface
      */
-    devicesJanusStreamsUpdate(deviceId: number, id: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig): AxiosPromise<JanusStream>;
+    devicesJanusCloudStreamsUpdate(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<JanusCloudStream>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof JanusApiInterface
+     */
+    devicesJanusEdgeStreamGetOrCreate(deviceId: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options?: AxiosRequestConfig): AxiosPromise<JanusEdgeStream>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof JanusApiInterface
+     */
+    devicesJanusEdgeStreamsCreate(deviceId: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options?: AxiosRequestConfig): AxiosPromise<JanusEdgeStream>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof JanusApiInterface
+     */
+    devicesJanusEdgeStreamsList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedJanusEdgeStreamList>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this janus stream.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof JanusApiInterface
+     */
+    devicesJanusEdgeStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<JanusEdgeStream>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this janus stream.
+     * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof JanusApiInterface
+     */
+    devicesJanusEdgeStreamsUpdate(deviceId: number, id: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options?: AxiosRequestConfig): AxiosPromise<JanusEdgeStream>;
 
     /**
      * 
@@ -7709,25 +9020,23 @@ export class JanusApi extends BaseAPI implements JanusApiInterface {
     /**
      * 
      * @param {number} deviceId 
-     * @param {JanusStreamRequest} [janusStreamRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof JanusApi
      */
-    public devicesJanusStreamGetOrCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig) {
-        return JanusApiFp(this.configuration).devicesJanusStreamGetOrCreate(deviceId, janusStreamRequest, options).then((request) => request(this.axios, this.basePath));
+    public devicesJanusCloudStreamGetOrCreate(deviceId: number, options?: AxiosRequestConfig) {
+        return JanusApiFp(this.configuration).devicesJanusCloudStreamGetOrCreate(deviceId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @param {number} deviceId 
-     * @param {JanusStreamRequest} [janusStreamRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof JanusApi
      */
-    public devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig) {
-        return JanusApiFp(this.configuration).devicesJanusStreamsCreate(deviceId, janusStreamRequest, options).then((request) => request(this.axios, this.basePath));
+    public devicesJanusCloudStreamsCreate(deviceId: number, options?: AxiosRequestConfig) {
+        return JanusApiFp(this.configuration).devicesJanusCloudStreamsCreate(deviceId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7738,8 +9047,8 @@ export class JanusApi extends BaseAPI implements JanusApiInterface {
      * @throws {RequiredError}
      * @memberof JanusApi
      */
-    public devicesJanusStreamsList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
-        return JanusApiFp(this.configuration).devicesJanusStreamsList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
+    public devicesJanusCloudStreamsList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
+        return JanusApiFp(this.configuration).devicesJanusCloudStreamsList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7750,21 +9059,81 @@ export class JanusApi extends BaseAPI implements JanusApiInterface {
      * @throws {RequiredError}
      * @memberof JanusApi
      */
-    public devicesJanusStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
-        return JanusApiFp(this.configuration).devicesJanusStreamsRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
+    public devicesJanusCloudStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
+        return JanusApiFp(this.configuration).devicesJanusCloudStreamsRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this janus stream.
-     * @param {JanusStreamRequest} [janusStreamRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof JanusApi
      */
-    public devicesJanusStreamsUpdate(deviceId: number, id: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig) {
-        return JanusApiFp(this.configuration).devicesJanusStreamsUpdate(deviceId, id, janusStreamRequest, options).then((request) => request(this.axios, this.basePath));
+    public devicesJanusCloudStreamsUpdate(deviceId: number, id: number, options?: AxiosRequestConfig) {
+        return JanusApiFp(this.configuration).devicesJanusCloudStreamsUpdate(deviceId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof JanusApi
+     */
+    public devicesJanusEdgeStreamGetOrCreate(deviceId: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options?: AxiosRequestConfig) {
+        return JanusApiFp(this.configuration).devicesJanusEdgeStreamGetOrCreate(deviceId, janusEdgeStreamRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof JanusApi
+     */
+    public devicesJanusEdgeStreamsCreate(deviceId: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options?: AxiosRequestConfig) {
+        return JanusApiFp(this.configuration).devicesJanusEdgeStreamsCreate(deviceId, janusEdgeStreamRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof JanusApi
+     */
+    public devicesJanusEdgeStreamsList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
+        return JanusApiFp(this.configuration).devicesJanusEdgeStreamsList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this janus stream.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof JanusApi
+     */
+    public devicesJanusEdgeStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
+        return JanusApiFp(this.configuration).devicesJanusEdgeStreamsRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this janus stream.
+     * @param {JanusEdgeStreamRequest} janusEdgeStreamRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof JanusApi
+     */
+    public devicesJanusEdgeStreamsUpdate(deviceId: number, id: number, janusEdgeStreamRequest: JanusEdgeStreamRequest, options?: AxiosRequestConfig) {
+        return JanusApiFp(this.configuration).devicesJanusEdgeStreamsUpdate(deviceId, id, janusEdgeStreamRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

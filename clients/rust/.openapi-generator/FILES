@@ -28,9 +28,11 @@ docs/GcodeFile.md
 docs/JanusApi.md
 docs/JanusAuth.md
 docs/JanusAuthRequest.md
+docs/JanusCloudStream.md
 docs/JanusConfigType.md
+docs/JanusEdgeStream.md
+docs/JanusEdgeStreamRequest.md
 docs/JanusStream.md
-docs/JanusStreamRequest.md
 docs/MobileAuthRequest.md
 docs/OctoPrintBackup.md
 docs/OctoPrintSettings.md
@@ -43,7 +45,8 @@ docs/PaginatedCloudiotDeviceList.md
 docs/PaginatedDeviceList.md
 docs/PaginatedGcodeFileList.md
 docs/PaginatedJanusAuthList.md
-docs/PaginatedJanusStreamList.md
+docs/PaginatedJanusCloudStreamList.md
+docs/PaginatedJanusEdgeStreamList.md
 docs/PaginatedOctoPrintBackupList.md
 docs/PaginatedOctoPrintSettingsList.md
 docs/PaginatedOctoPrinterProfileList.md
@@ -57,7 +60,7 @@ docs/PatchedAlertBulkRequestRequest.md
 docs/PatchedAlertRequest.md
 docs/PatchedCloudiotDeviceRequest.md
 docs/PatchedDeviceRequest.md
-docs/PatchedJanusStreamRequest.md
+docs/PatchedJanusEdgeStreamRequest.md
 docs/PatchedOctoPrintSettingsRequest.md
 docs/PatchedOctoPrinterProfileRequest.md
 docs/PatchedPublicKeyRequest.md
@@ -116,9 +119,11 @@ src/models/event_type_enum.rs
 src/models/gcode_file.rs
 src/models/janus_auth.rs
 src/models/janus_auth_request.rs
+src/models/janus_cloud_stream.rs
 src/models/janus_config_type.rs
+src/models/janus_edge_stream.rs
+src/models/janus_edge_stream_request.rs
 src/models/janus_stream.rs
-src/models/janus_stream_request.rs
 src/models/mobile_auth_request.rs
 src/models/mod.rs
 src/models/octo_print_backup.rs
@@ -131,7 +136,8 @@ src/models/paginated_cloudiot_device_list.rs
 src/models/paginated_device_list.rs
 src/models/paginated_gcode_file_list.rs
 src/models/paginated_janus_auth_list.rs
-src/models/paginated_janus_stream_list.rs
+src/models/paginated_janus_cloud_stream_list.rs
+src/models/paginated_janus_edge_stream_list.rs
 src/models/paginated_octo_print_backup_list.rs
 src/models/paginated_octo_print_settings_list.rs
 src/models/paginated_octo_printer_profile_list.rs
@@ -144,7 +150,7 @@ src/models/patched_alert_bulk_request_request.rs
 src/models/patched_alert_request.rs
 src/models/patched_cloudiot_device_request.rs
 src/models/patched_device_request.rs
-src/models/patched_janus_stream_request.rs
+src/models/patched_janus_edge_stream_request.rs
 src/models/patched_octo_print_settings_request.rs
 src/models/patched_octo_printer_profile_request.rs
 src/models/patched_public_key_request.rs

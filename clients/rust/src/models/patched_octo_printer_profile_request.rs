@@ -32,7 +32,7 @@ pub struct PatchedOctoPrinterProfileRequest {
     #[serde(rename = "extruder_count", skip_serializing_if = "Option::is_none")]
     pub extruder_count: Option<i32>,
     #[serde(rename = "extruder_nozzle_diameter", skip_serializing_if = "Option::is_none")]
-    pub extruder_nozzle_diameter: Option<f32>,
+    pub extruder_nozzle_diameter: Option<f64>,
     #[serde(rename = "extruder_shared_nozzle", skip_serializing_if = "Option::is_none")]
     pub extruder_shared_nozzle: Option<bool>,
     #[serde(rename = "heated_bed", skip_serializing_if = "Option::is_none")]
@@ -48,15 +48,15 @@ pub struct PatchedOctoPrinterProfileRequest {
     #[serde(rename = "volume_custom_box", skip_serializing_if = "Option::is_none")]
     pub volume_custom_box: Option<::std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "volume_depth", skip_serializing_if = "Option::is_none")]
-    pub volume_depth: Option<f32>,
+    pub volume_depth: Option<f64>,
     #[serde(rename = "volume_formfactor", skip_serializing_if = "Option::is_none")]
     pub volume_formfactor: Option<String>,
     #[serde(rename = "volume_height", skip_serializing_if = "Option::is_none")]
-    pub volume_height: Option<f32>,
+    pub volume_height: Option<f64>,
     #[serde(rename = "volume_origin", skip_serializing_if = "Option::is_none")]
     pub volume_origin: Option<String>,
     #[serde(rename = "volume_width", skip_serializing_if = "Option::is_none")]
-    pub volume_width: Option<f32>,
+    pub volume_width: Option<f64>,
 }
 
 impl PatchedOctoPrinterProfileRequest {

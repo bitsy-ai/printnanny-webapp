@@ -1,10 +1,13 @@
-# PatchedJanusStreamRequest
+# PaginatedJanusCloudStreamList
 
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**config_type** | [**JanusConfigType**](JanusConfigType.md) |  | [optional] 
+**count** | **int** |  | [optional] 
+**next** | **str** |  | [optional] 
+**previous** | **str** |  | [optional] 
+**results** | [**list[JanusCloudStream]**](JanusCloudStream.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

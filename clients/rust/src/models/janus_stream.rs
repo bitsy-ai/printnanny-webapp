@@ -33,12 +33,12 @@ pub struct JanusStream {
     pub websocket_url: String,
     #[serde(rename = "websocket_port")]
     pub websocket_port: i32,
+    #[serde(rename = "config_type")]
+    pub config_type: String,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
     #[serde(rename = "updated_dt")]
     pub updated_dt: String,
-    #[serde(rename = "config_type", skip_serializing_if = "Option::is_none")]
-    pub config_type: Option<crate::models::JanusConfigType>,
     #[serde(rename = "active")]
     pub active: bool,
     #[serde(rename = "secret")]
@@ -54,7 +54,7 @@ pub struct JanusStream {
 }
 
 impl JanusStream {
-    pub fn new(id: i32, auth: Option<crate::models::JanusAuth>, api_domain: String, api_port: i32, api_url: String, admin_url: String, admin_port: i32, rtp_domain: String, websocket_url: String, websocket_port: i32, created_dt: String, updated_dt: String, active: bool, secret: String, pin: String, info: ::std::collections::HashMap<String, serde_json::Value>, rtp_port: i32, device: i32) -> JanusStream {
+    pub fn new(id: i32, auth: Option<crate::models::JanusAuth>, api_domain: String, api_port: i32, api_url: String, admin_url: String, admin_port: i32, rtp_domain: String, websocket_url: String, websocket_port: i32, config_type: String, created_dt: String, updated_dt: String, active: bool, secret: String, pin: String, info: ::std::collections::HashMap<String, serde_json::Value>, rtp_port: i32, device: i32) -> JanusStream {
         JanusStream {
             id,
             auth: auth.map(Box::new),
@@ -66,9 +66,9 @@ impl JanusStream {
             rtp_domain,
             websocket_url,
             websocket_port,
+            config_type,
             created_dt,
             updated_dt,
-            config_type: None,
             active,
             secret,
             pin,
