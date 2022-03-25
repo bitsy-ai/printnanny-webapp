@@ -83,6 +83,38 @@ class JanusAuthSerializer(serializers.ModelSerializer):
         )
 
 
+class JanusStreamSerializer(serializers.ModelSerializer):
+    auth = JanusAuthSerializer(read_only=True)
+    api_domain = serializers.CharField(read_only=True)
+    api_port = serializers.IntegerField(read_only=True)
+    api_url = serializers.CharField(read_only=True)
+    admin_url = serializers.CharField(read_only=True)
+    admin_port = serializers.IntegerField(read_only=True)
+    rtp_domain = serializers.CharField(read_only=True)
+    websocket_url = serializers.CharField(read_only=True)
+    websocket_port = serializers.IntegerField(read_only=True)
+    config_type = serializers.SerializerMethodField(read_only=True)
+
+    class Meta:
+        model = JanusStream
+        exclude = ("deleted",)
+        read_only_fields = ("device", "rtp_port", "pin", "secret", "active", "info")
+
+    def update_or_create(self, validated_data, device_id):
+        return JanusStream.objects.filter(device=device_id).update_or_create(
+            device=device_id, defaults=validated_data
+        )
+
+    def get_or_create(self, validated_data, device_id):
+        logger.info(
+            "Attempting JanusStream.objects.get_or_create with validated_data=%s",
+            validated_data,
+        )
+        # get_or_create method requires fkey relationship be 1) instance or 2) use __id field syntax
+        device = Device.objects.get(id=device_id)
+        return JanusStream.objects.get_or_create(device=device, defaults=validated_data)
+
+
 class JanusCloudStreamSerializer(serializers.ModelSerializer):
     auth = JanusAuthSerializer(read_only=True)
     api_domain = serializers.CharField(read_only=True)
