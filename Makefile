@@ -59,8 +59,14 @@ requirements/production.txt:
 requirements/test.txt:
 	pip-compile requirements/test.in --output-file requirements/test.txt
 
-requirements/local.txt:
-	pip-compile requirements/local.in --output-file requirements/local.txt
+requirements-image:
+	docker build -t bitsyai/python:3.9 -f requirements/requirements.Dockerfile requirements/
+
+requirements-prod:
+	docker run -it --rm -v $(pwd)/requirements:/requirements bitsyai/python:3.9 /bin/bash -c "pip-compile /requirements/production.in --output-file /requirements/production.txt"
+
+requirements-local:
+	docker run -it --rm -v $(WORKDIR)/requirements:/requirements bitsyai/python:3.9 /bin/bash -c "pip-compile --verbose /requirements/local.in --output-file /requirements/local.txt"
 
 install-git-hooks:
 	cp -a hooks/. .git/hooks/
