@@ -168,7 +168,6 @@ class JanusEdgeStreamSerializer(serializers.ModelSerializer):
     class Meta:
         model = JanusStream
         exclude = ("deleted",)
-        fields = "__all__"
 
     def update_or_create(self, validated_data, device_id):
         return JanusStream.objects.filter(device=device_id).update_or_create(
