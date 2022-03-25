@@ -29,32 +29,62 @@ class TestJanusApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_devices_janus_stream_get_or_create(self):
-        """Test case for devices_janus_stream_get_or_create
+    def test_devices_janus_cloud_stream_get_or_create(self):
+        """Test case for devices_janus_cloud_stream_get_or_create
 
         """
         pass
 
-    def test_devices_janus_streams_create(self):
-        """Test case for devices_janus_streams_create
+    def test_devices_janus_cloud_streams_create(self):
+        """Test case for devices_janus_cloud_streams_create
 
         """
         pass
 
-    def test_devices_janus_streams_list(self):
-        """Test case for devices_janus_streams_list
+    def test_devices_janus_cloud_streams_list(self):
+        """Test case for devices_janus_cloud_streams_list
 
         """
         pass
 
-    def test_devices_janus_streams_retrieve(self):
-        """Test case for devices_janus_streams_retrieve
+    def test_devices_janus_cloud_streams_retrieve(self):
+        """Test case for devices_janus_cloud_streams_retrieve
 
         """
         pass
 
-    def test_devices_janus_streams_update(self):
-        """Test case for devices_janus_streams_update
+    def test_devices_janus_cloud_streams_update(self):
+        """Test case for devices_janus_cloud_streams_update
+
+        """
+        pass
+
+    def test_devices_janus_edge_stream_get_or_create(self):
+        """Test case for devices_janus_edge_stream_get_or_create
+
+        """
+        pass
+
+    def test_devices_janus_edge_streams_create(self):
+        """Test case for devices_janus_edge_streams_create
+
+        """
+        pass
+
+    def test_devices_janus_edge_streams_list(self):
+        """Test case for devices_janus_edge_streams_list
+
+        """
+        pass
+
+    def test_devices_janus_edge_streams_retrieve(self):
+        """Test case for devices_janus_edge_streams_retrieve
+
+        """
+        pass
+
+    def test_devices_janus_edge_streams_update(self):
+        """Test case for devices_janus_edge_streams_update
 
         """
         pass

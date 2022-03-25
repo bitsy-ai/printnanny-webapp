@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.paginated_janus_stream_list import PaginatedJanusStreamList  # noqa: E501
+from printnanny_api_client.models.paginated_janus_edge_stream_list import PaginatedJanusEdgeStreamList  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestPaginatedJanusStreamList(unittest.TestCase):
-    """PaginatedJanusStreamList unit test stubs"""
+class TestPaginatedJanusEdgeStreamList(unittest.TestCase):
+    """PaginatedJanusEdgeStreamList unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,20 +30,27 @@ class TestPaginatedJanusStreamList(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test PaginatedJanusStreamList
+        """Test PaginatedJanusEdgeStreamList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.paginated_janus_stream_list.PaginatedJanusStreamList()  # noqa: E501
+        # model = printnanny_api_client.models.paginated_janus_edge_stream_list.PaginatedJanusEdgeStreamList()  # noqa: E501
         if include_optional :
-            return PaginatedJanusStreamList(
+            return PaginatedJanusEdgeStreamList(
                 count = 123, 
                 next = 'http://api.example.org/accounts/?page=4', 
                 previous = 'http://api.example.org/accounts/?page=2', 
                 results = [
-                    printnanny_api_client.models.janus_stream.JanusStream(
+                    printnanny_api_client.models.janus_edge_stream.JanusEdgeStream(
                         id = 56, 
-                        auth = null, 
+                        auth = printnanny_api_client.models.janus_auth.JanusAuth(
+                            id = 56, 
+                            active = True, 
+                            admin_secret = '', 
+                            api_token = '', 
+                            config_type = 'cloud', 
+                            created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            user = 56, ), 
                         api_domain = '', 
                         api_port = 56, 
                         api_url = '', 
@@ -52,25 +59,25 @@ class TestPaginatedJanusStreamList(unittest.TestCase):
                         rtp_domain = '', 
                         websocket_url = '', 
                         websocket_port = 56, 
+                        config_type = '', 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        config_type = 'cloud', 
                         active = True, 
                         secret = '', 
                         pin = '', 
                         info = {
                             'key' : null
                             }, 
-                        rtp_port = 56, 
+                        rtp_port = 0, 
                         device = 56, )
                     ]
             )
         else :
-            return PaginatedJanusStreamList(
+            return PaginatedJanusEdgeStreamList(
         )
 
-    def testPaginatedJanusStreamList(self):
-        """Test PaginatedJanusStreamList"""
+    def testPaginatedJanusEdgeStreamList(self):
+        """Test PaginatedJanusEdgeStreamList"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

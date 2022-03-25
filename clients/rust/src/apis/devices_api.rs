@@ -85,10 +85,10 @@ pub enum DevicesCreateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`devices_janus_stream_get_or_create`]
+/// struct for typed errors of method [`devices_janus_cloud_stream_get_or_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum DevicesJanusStreamGetOrCreateError {
+pub enum DevicesJanusCloudStreamGetOrCreateError {
     Status409(crate::models::ErrorDetail),
     Status400(crate::models::ErrorDetail),
     Status401(crate::models::ErrorDetail),
@@ -98,10 +98,10 @@ pub enum DevicesJanusStreamGetOrCreateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`devices_janus_streams_create`]
+/// struct for typed errors of method [`devices_janus_cloud_streams_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum DevicesJanusStreamsCreateError {
+pub enum DevicesJanusCloudStreamsCreateError {
     Status409(crate::models::ErrorDetail),
     Status400(crate::models::ErrorDetail),
     Status401(crate::models::ErrorDetail),
@@ -110,10 +110,10 @@ pub enum DevicesJanusStreamsCreateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`devices_janus_streams_list`]
+/// struct for typed errors of method [`devices_janus_cloud_streams_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum DevicesJanusStreamsListError {
+pub enum DevicesJanusCloudStreamsListError {
     Status400(crate::models::ErrorDetail),
     Status401(crate::models::ErrorDetail),
     Status403(crate::models::ErrorDetail),
@@ -121,17 +121,17 @@ pub enum DevicesJanusStreamsListError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`devices_janus_streams_partial_update`]
+/// struct for typed errors of method [`devices_janus_cloud_streams_partial_update`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum DevicesJanusStreamsPartialUpdateError {
+pub enum DevicesJanusCloudStreamsPartialUpdateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`devices_janus_streams_retrieve`]
+/// struct for typed errors of method [`devices_janus_cloud_streams_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum DevicesJanusStreamsRetrieveError {
+pub enum DevicesJanusCloudStreamsRetrieveError {
     Status404(crate::models::ErrorDetail),
     Status400(crate::models::ErrorDetail),
     Status401(crate::models::ErrorDetail),
@@ -140,10 +140,77 @@ pub enum DevicesJanusStreamsRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`devices_janus_streams_update`]
+/// struct for typed errors of method [`devices_janus_cloud_streams_update`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum DevicesJanusStreamsUpdateError {
+pub enum DevicesJanusCloudStreamsUpdateError {
+    Status409(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`devices_janus_edge_stream_get_or_create`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DevicesJanusEdgeStreamGetOrCreateError {
+    Status409(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
+    Status404(crate::models::ErrorDetail),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`devices_janus_edge_streams_create`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DevicesJanusEdgeStreamsCreateError {
+    Status409(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`devices_janus_edge_streams_list`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DevicesJanusEdgeStreamsListError {
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`devices_janus_edge_streams_partial_update`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DevicesJanusEdgeStreamsPartialUpdateError {
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`devices_janus_edge_streams_retrieve`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DevicesJanusEdgeStreamsRetrieveError {
+    Status404(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`devices_janus_edge_streams_update`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DevicesJanusEdgeStreamsUpdateError {
     Status409(crate::models::ErrorDetail),
     Status400(crate::models::ErrorDetail),
     Status401(crate::models::ErrorDetail),
@@ -538,12 +605,12 @@ pub async fn devices_create(configuration: &configuration::Configuration, device
     }
 }
 
-pub async fn devices_janus_stream_get_or_create(configuration: &configuration::Configuration, device_id: i32, janus_stream_request: Option<crate::models::JanusStreamRequest>) -> Result<crate::models::JanusStream, Error<DevicesJanusStreamGetOrCreateError>> {
+pub async fn devices_janus_cloud_stream_get_or_create(configuration: &configuration::Configuration, device_id: i32) -> Result<crate::models::JanusCloudStream, Error<DevicesJanusCloudStreamGetOrCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/janus-streams/get-or-create/", local_var_configuration.base_path, device_id=device_id);
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/janus-cloud-streams/get-or-create/", local_var_configuration.base_path, device_id=device_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -552,7 +619,6 @@ pub async fn devices_janus_stream_get_or_create(configuration: &configuration::C
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&janus_stream_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -563,18 +629,18 @@ pub async fn devices_janus_stream_get_or_create(configuration: &configuration::C
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<DevicesJanusStreamGetOrCreateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<DevicesJanusCloudStreamGetOrCreateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn devices_janus_streams_create(configuration: &configuration::Configuration, device_id: i32, janus_stream_request: Option<crate::models::JanusStreamRequest>) -> Result<crate::models::JanusStream, Error<DevicesJanusStreamsCreateError>> {
+pub async fn devices_janus_cloud_streams_create(configuration: &configuration::Configuration, device_id: i32) -> Result<crate::models::JanusCloudStream, Error<DevicesJanusCloudStreamsCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/janus-streams/", local_var_configuration.base_path, device_id=device_id);
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/janus-cloud-streams/", local_var_configuration.base_path, device_id=device_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -583,7 +649,6 @@ pub async fn devices_janus_streams_create(configuration: &configuration::Configu
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&janus_stream_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -594,18 +659,18 @@ pub async fn devices_janus_streams_create(configuration: &configuration::Configu
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<DevicesJanusStreamsCreateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<DevicesJanusCloudStreamsCreateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn devices_janus_streams_list(configuration: &configuration::Configuration, device_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedJanusStreamList, Error<DevicesJanusStreamsListError>> {
+pub async fn devices_janus_cloud_streams_list(configuration: &configuration::Configuration, device_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedJanusCloudStreamList, Error<DevicesJanusCloudStreamsListError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/janus-streams/", local_var_configuration.base_path, device_id=device_id);
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/janus-cloud-streams/", local_var_configuration.base_path, device_id=device_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
@@ -627,18 +692,18 @@ pub async fn devices_janus_streams_list(configuration: &configuration::Configura
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<DevicesJanusStreamsListError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<DevicesJanusCloudStreamsListError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn devices_janus_streams_partial_update(configuration: &configuration::Configuration, device_id: i32, id: i32, patched_janus_stream_request: Option<crate::models::PatchedJanusStreamRequest>) -> Result<crate::models::JanusStream, Error<DevicesJanusStreamsPartialUpdateError>> {
+pub async fn devices_janus_cloud_streams_partial_update(configuration: &configuration::Configuration, device_id: i32, id: i32) -> Result<crate::models::JanusCloudStream, Error<DevicesJanusCloudStreamsPartialUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/janus-streams/{id}/", local_var_configuration.base_path, device_id=device_id, id=id);
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/janus-cloud-streams/{id}/", local_var_configuration.base_path, device_id=device_id, id=id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PATCH, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -647,7 +712,6 @@ pub async fn devices_janus_streams_partial_update(configuration: &configuration:
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&patched_janus_stream_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -658,18 +722,18 @@ pub async fn devices_janus_streams_partial_update(configuration: &configuration:
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<DevicesJanusStreamsPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<DevicesJanusCloudStreamsPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn devices_janus_streams_retrieve(configuration: &configuration::Configuration, device_id: i32, id: i32) -> Result<crate::models::JanusStream, Error<DevicesJanusStreamsRetrieveError>> {
+pub async fn devices_janus_cloud_streams_retrieve(configuration: &configuration::Configuration, device_id: i32, id: i32) -> Result<crate::models::JanusCloudStream, Error<DevicesJanusCloudStreamsRetrieveError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/janus-streams/{id}/", local_var_configuration.base_path, device_id=device_id, id=id);
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/janus-cloud-streams/{id}/", local_var_configuration.base_path, device_id=device_id, id=id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -688,18 +752,18 @@ pub async fn devices_janus_streams_retrieve(configuration: &configuration::Confi
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<DevicesJanusStreamsRetrieveError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<DevicesJanusCloudStreamsRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn devices_janus_streams_update(configuration: &configuration::Configuration, device_id: i32, id: i32, janus_stream_request: Option<crate::models::JanusStreamRequest>) -> Result<crate::models::JanusStream, Error<DevicesJanusStreamsUpdateError>> {
+pub async fn devices_janus_cloud_streams_update(configuration: &configuration::Configuration, device_id: i32, id: i32) -> Result<crate::models::JanusCloudStream, Error<DevicesJanusCloudStreamsUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/janus-streams/{id}/", local_var_configuration.base_path, device_id=device_id, id=id);
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/janus-cloud-streams/{id}/", local_var_configuration.base_path, device_id=device_id, id=id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -708,7 +772,6 @@ pub async fn devices_janus_streams_update(configuration: &configuration::Configu
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&janus_stream_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -719,7 +782,194 @@ pub async fn devices_janus_streams_update(configuration: &configuration::Configu
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<DevicesJanusStreamsUpdateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<DevicesJanusCloudStreamsUpdateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn devices_janus_edge_stream_get_or_create(configuration: &configuration::Configuration, device_id: i32, janus_edge_stream_request: crate::models::JanusEdgeStreamRequest) -> Result<crate::models::JanusEdgeStream, Error<DevicesJanusEdgeStreamGetOrCreateError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/janus-edge-streams/get-or-create/", local_var_configuration.base_path, device_id=device_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&janus_edge_stream_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<DevicesJanusEdgeStreamGetOrCreateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn devices_janus_edge_streams_create(configuration: &configuration::Configuration, device_id: i32, janus_edge_stream_request: crate::models::JanusEdgeStreamRequest) -> Result<crate::models::JanusEdgeStream, Error<DevicesJanusEdgeStreamsCreateError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/janus-edge-streams/", local_var_configuration.base_path, device_id=device_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&janus_edge_stream_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<DevicesJanusEdgeStreamsCreateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn devices_janus_edge_streams_list(configuration: &configuration::Configuration, device_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedJanusEdgeStreamList, Error<DevicesJanusEdgeStreamsListError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/janus-edge-streams/", local_var_configuration.base_path, device_id=device_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_str) = page {
+        local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<DevicesJanusEdgeStreamsListError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn devices_janus_edge_streams_partial_update(configuration: &configuration::Configuration, device_id: i32, id: i32, patched_janus_edge_stream_request: Option<crate::models::PatchedJanusEdgeStreamRequest>) -> Result<crate::models::JanusEdgeStream, Error<DevicesJanusEdgeStreamsPartialUpdateError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/janus-edge-streams/{id}/", local_var_configuration.base_path, device_id=device_id, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PATCH, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&patched_janus_edge_stream_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<DevicesJanusEdgeStreamsPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn devices_janus_edge_streams_retrieve(configuration: &configuration::Configuration, device_id: i32, id: i32) -> Result<crate::models::JanusEdgeStream, Error<DevicesJanusEdgeStreamsRetrieveError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/janus-edge-streams/{id}/", local_var_configuration.base_path, device_id=device_id, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<DevicesJanusEdgeStreamsRetrieveError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn devices_janus_edge_streams_update(configuration: &configuration::Configuration, device_id: i32, id: i32, janus_edge_stream_request: crate::models::JanusEdgeStreamRequest) -> Result<crate::models::JanusEdgeStream, Error<DevicesJanusEdgeStreamsUpdateError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/janus-edge-streams/{id}/", local_var_configuration.base_path, device_id=device_id, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&janus_edge_stream_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<DevicesJanusEdgeStreamsUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }

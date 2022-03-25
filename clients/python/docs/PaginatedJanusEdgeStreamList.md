@@ -1,4 +1,4 @@
-# PaginatedJanusStreamList
+# PaginatedJanusEdgeStreamList
 
 
 ## Properties
@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **count** | **int** |  | [optional] 
 **next** | **str** |  | [optional] 
 **previous** | **str** |  | [optional] 
-**results** | [**list[JanusStream]**](JanusStream.md) |  | [optional] 
+**results** | [**list[JanusEdgeStream]**](JanusEdgeStream.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

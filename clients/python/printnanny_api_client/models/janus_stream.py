@@ -47,9 +47,9 @@ class JanusStream(object):
         'rtp_domain': 'str',
         'websocket_url': 'str',
         'websocket_port': 'int',
+        'config_type': 'str',
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
-        'config_type': 'JanusConfigType',
         'active': 'bool',
         'secret': 'str',
         'pin': 'str',
@@ -69,9 +69,9 @@ class JanusStream(object):
         'rtp_domain': 'rtp_domain',
         'websocket_url': 'websocket_url',
         'websocket_port': 'websocket_port',
+        'config_type': 'config_type',
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
-        'config_type': 'config_type',
         'active': 'active',
         'secret': 'secret',
         'pin': 'pin',
@@ -80,7 +80,7 @@ class JanusStream(object):
         'device': 'device'
     }
 
-    def __init__(self, id=None, auth=None, api_domain=None, api_port=None, api_url=None, admin_url=None, admin_port=None, rtp_domain=None, websocket_url=None, websocket_port=None, created_dt=None, updated_dt=None, config_type=None, active=None, secret=None, pin=None, info=None, rtp_port=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, auth=None, api_domain=None, api_port=None, api_url=None, admin_url=None, admin_port=None, rtp_domain=None, websocket_url=None, websocket_port=None, config_type=None, created_dt=None, updated_dt=None, active=None, secret=None, pin=None, info=None, rtp_port=None, device=None, local_vars_configuration=None):  # noqa: E501
         """JanusStream - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -96,9 +96,9 @@ class JanusStream(object):
         self._rtp_domain = None
         self._websocket_url = None
         self._websocket_port = None
+        self._config_type = None
         self._created_dt = None
         self._updated_dt = None
-        self._config_type = None
         self._active = None
         self._secret = None
         self._pin = None
@@ -117,10 +117,9 @@ class JanusStream(object):
         self.rtp_domain = rtp_domain
         self.websocket_url = websocket_url
         self.websocket_port = websocket_port
+        self.config_type = config_type
         self.created_dt = created_dt
         self.updated_dt = updated_dt
-        if config_type is not None:
-            self.config_type = config_type
         self.active = active
         self.secret = secret
         self.pin = pin
@@ -357,6 +356,29 @@ class JanusStream(object):
         self._websocket_port = websocket_port
 
     @property
+    def config_type(self):
+        """Gets the config_type of this JanusStream.  # noqa: E501
+
+
+        :return: The config_type of this JanusStream.  # noqa: E501
+        :rtype: str
+        """
+        return self._config_type
+
+    @config_type.setter
+    def config_type(self, config_type):
+        """Sets the config_type of this JanusStream.
+
+
+        :param config_type: The config_type of this JanusStream.  # noqa: E501
+        :type config_type: str
+        """
+        if self.local_vars_configuration.client_side_validation and config_type is None:  # noqa: E501
+            raise ValueError("Invalid value for `config_type`, must not be `None`")  # noqa: E501
+
+        self._config_type = config_type
+
+    @property
     def created_dt(self):
         """Gets the created_dt of this JanusStream.  # noqa: E501
 
@@ -401,27 +423,6 @@ class JanusStream(object):
             raise ValueError("Invalid value for `updated_dt`, must not be `None`")  # noqa: E501
 
         self._updated_dt = updated_dt
-
-    @property
-    def config_type(self):
-        """Gets the config_type of this JanusStream.  # noqa: E501
-
-
-        :return: The config_type of this JanusStream.  # noqa: E501
-        :rtype: JanusConfigType
-        """
-        return self._config_type
-
-    @config_type.setter
-    def config_type(self, config_type):
-        """Sets the config_type of this JanusStream.
-
-
-        :param config_type: The config_type of this JanusStream.  # noqa: E501
-        :type config_type: JanusConfigType
-        """
-
-        self._config_type = config_type
 
     @property
     def active(self):
