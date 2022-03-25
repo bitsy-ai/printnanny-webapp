@@ -24,7 +24,8 @@ RUN apt-get update \
 
 # Requirements are installed here to ensure they will be cached.
 COPY ./requirements /requirements
-RUN pip install --upgrade pip setuptools wheel
+# setuptools pin: https://github.com/pennersr/django-allauth/issues/3063
+RUN pip install --upgrade pip setuptools==60.10.0 wheel
 RUN pip install -r /requirements/local.txt
 RUN pip install -r /requirements/test.txt
 
