@@ -2,7 +2,7 @@
 set -eu
 
 ATTEMPTS=0
-MAX_ATTEMPTS=30
+MAX_ATTEMPTS=60
 SLEEP=10
 DEPLOYMENT="deployment/webapp"
 ROLLOUT_STATUS_CMD="kubectl rollout status $DEPLOYMENT"
