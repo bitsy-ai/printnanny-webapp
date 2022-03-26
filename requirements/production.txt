@@ -353,8 +353,6 @@ pyasn1-modules==0.2.8
     #   service-identity
 pycparser==2.21
     # via cffi
-pyhamcrest==2.0.3
-    # via twisted
 pyjwt[crypto]==2.3.0
     # via django-allauth
 pyopenssl==22.0.0
@@ -446,7 +444,7 @@ toml==0.10.2
     # via django-stubs
 tomli==2.0.1
     # via mypy
-twisted[http2,tls]==20.3.0
+twisted[http2,tls]==22.2.0
     # via
     #   -r /requirements/production.in
     #   daphne
@@ -462,6 +460,7 @@ typing-extensions==4.1.1
     #   django-stubs
     #   django-stubs-ext
     #   mypy
+    #   twisted
 uritemplate==4.1.1
     # via drf-spectacular
 urllib3==1.26.9
@@ -474,8 +473,10 @@ uvloop==0.16.0
     # via uvicorn
 watchgod==0.8
     # via uvicorn
-websockets==10.2
-    # via uvicorn
+websockets==10.1
+    # via
+    #   -r /requirements/production.in
+    #   uvicorn
 whitenoise==6.0.0
     # via -r /requirements/production.in
 wrapt==1.14.0
