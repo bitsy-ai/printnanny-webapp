@@ -127,7 +127,7 @@ class JanusCloudStreamSerializer(serializers.ModelSerializer):
     websocket_port = serializers.IntegerField(read_only=True)
     config_type = serializers.SerializerMethodField(read_only=True)
 
-    def get_config_type(self) -> str:
+    def get_config_type(self, _obj) -> str:
         return JanusConfigType.CLOUD
 
     class Meta:
@@ -162,7 +162,7 @@ class JanusEdgeStreamSerializer(serializers.ModelSerializer):
     websocket_port = serializers.IntegerField()
     config_type = serializers.SerializerMethodField()
 
-    def get_config_type(self) -> str:
+    def get_config_type(self, _obj) -> str:
         return JanusConfigType.EDGE
 
     class Meta:
