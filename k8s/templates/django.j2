@@ -45,6 +45,13 @@ spec:
           timeoutSeconds: 3
           successThreshold: 1
           failureThreshold: 3
+        resources:
+          requests:
+            memory: "256M"
+            cpu: "500m"
+          limits:
+            memory: "1G"
+            cpu: "1200m"
         command:
           - /start
         envFrom:
