@@ -147,7 +147,7 @@ jobs:
       id: deploy
       run: |
         make gh-namespace-deploy \
-        CLUSTER="www-beta" \
+        CLUSTER="www-spot" \
         GCP_PROJECT="print-nanny" \
         PRINT_NANNY_USER="${{ secrets.PROD_DJANGO_SUPERUSER_USERNAME }}" \
         PRINT_NANNY_URL="$DJANGO_BASE_URL" \
