@@ -165,7 +165,16 @@ MIDDLEWARE += [
     "print_nanny_webapp.middleware.honeycomb.HoneyMiddlewareIgnoreHealthCheck",
 ]
 
-ALLOWED_CIDR_NETS = ["10.12.0.0/14", "10.16.0.0/20"]
+ALLOWED_CIDR_NETS = [
+    # Cluster pod address range (www-beta)
+    "10.12.0.0/14",
+    # Service address range (www-beta)
+    "10.16.0.0/20",
+    # Cluster pod address range (www-spot)
+    "10.40.0.0/14",
+    # Service address range (www-beta)
+    "10.44.0.0/20",
+]
 
 
 # django-prometheus middleware must be last in middleware stack
