@@ -57,7 +57,7 @@ jobs:
       COTURN_SECRET_KEY: ${{ secrets.COTURN_SECRET_KEY }}
       COTURN_REALM: ${{ secrets.COTURN_REALM }}
       CLOUD_SQL_POSTGRES_INSTANCE: ${{ secrets.CLOUD_SQL_POSTGRES_INSTANCE }}
-      CLUSTER: www-beta
+      CLUSTER: www-spot
       DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
       DJANGO_ADMIN_URL: ${{ secrets.DJANGO_ADMIN_URL }}
       DJANGO_ALLOWED_HOSTS: .live.printnanny.ai,.printnanny.ai,.print-nanny.com
@@ -147,7 +147,7 @@ jobs:
       id: deploy
       run: |
         make gh-namespace-deploy \
-        CLUSTER="www-spot" \
+        CLUSTER="$CLUSTER" \
         GCP_PROJECT="print-nanny" \
         PRINT_NANNY_USER="${{ secrets.PROD_DJANGO_SUPERUSER_USERNAME }}" \
         PRINT_NANNY_URL="$DJANGO_BASE_URL" \
@@ -163,7 +163,7 @@ jobs:
             🚀 Deployed {{ EVENT_PAYLOAD.repository.full_name }}@{{ GITHUB_SHA }} 🚀
             ```
             API Client version: ${{ steps.deploy.outputs.printnanny_client_version }}
-            Cluster: www-beta
+            Cluster: ${{ env.CLUSTER }}
             Namespace: live
             ```
             Cluster status: https://console.cloud.google.com/kubernetes/workload/overview?project=print-nanny
