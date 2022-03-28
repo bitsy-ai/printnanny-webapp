@@ -28,6 +28,11 @@ def get_available_port() -> int:
             config_type=JanusConfigType.CLOUD
         ).values("rtp_port")
         logger.info("get_available_port() reserved_ports %s", unavailable_ports)
+        logger.info(
+            "get_available_port() settings.JANUS_CLOUD_RTP_PORT_RANGE %s",
+            settings.JANUS_CLOUD_RTP_PORT_RANGE,
+        )
+
         available_ports = set(list(range(*settings.JANUS_CLOUD_RTP_PORT_RANGE))) - set(
             x["rtp_port"] for x in unavailable_ports
         )
