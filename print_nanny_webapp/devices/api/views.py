@@ -533,7 +533,7 @@ class JanusEdgeStreamViewSet(
     )
     @action(methods=["post"], detail=False, url_path="get-or-create")
     def get_or_create(self, request, device_id=None):
-        serializer = self.get_serializer(data=request.data)
+        serializer: JanusEdgeStreamSerializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             device = Device.objects.get(id=device_id)
             auth_data = serializer.validated_data.pop("auth")
