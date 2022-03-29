@@ -907,7 +907,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_janus_cloud_stream_get_or_create**
-> JanusCloudStream devices_janus_cloud_stream_get_or_create(device_id)
+> JanusCloudStream devices_janus_cloud_stream_get_or_create(device_id, janus_cloud_stream_request)
 
 
 
@@ -947,9 +947,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
+janus_cloud_stream_request = printnanny_api_client.JanusCloudStreamRequest() # JanusCloudStreamRequest | 
 
     try:
-        api_response = api_instance.devices_janus_cloud_stream_get_or_create(device_id)
+        api_response = api_instance.devices_janus_cloud_stream_get_or_create(device_id, janus_cloud_stream_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_janus_cloud_stream_get_or_create: %s\n" % e)
@@ -989,9 +990,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
+janus_cloud_stream_request = printnanny_api_client.JanusCloudStreamRequest() # JanusCloudStreamRequest | 
 
     try:
-        api_response = api_instance.devices_janus_cloud_stream_get_or_create(device_id)
+        api_response = api_instance.devices_janus_cloud_stream_get_or_create(device_id, janus_cloud_stream_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_janus_cloud_stream_get_or_create: %s\n" % e)
@@ -1002,6 +1004,7 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **device_id** | **int**|  | 
+ **janus_cloud_stream_request** | [**JanusCloudStreamRequest**](JanusCloudStreamRequest.md)|  | 
 
 ### Return type
 
@@ -1013,7 +1016,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -1031,7 +1034,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_janus_cloud_streams_create**
-> JanusCloudStream devices_janus_cloud_streams_create(device_id)
+> JanusCloudStream devices_janus_cloud_streams_create(device_id, janus_cloud_stream_request)
 
 
 
@@ -1071,9 +1074,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
+janus_cloud_stream_request = printnanny_api_client.JanusCloudStreamRequest() # JanusCloudStreamRequest | 
 
     try:
-        api_response = api_instance.devices_janus_cloud_streams_create(device_id)
+        api_response = api_instance.devices_janus_cloud_streams_create(device_id, janus_cloud_stream_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_janus_cloud_streams_create: %s\n" % e)
@@ -1113,9 +1117,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
+janus_cloud_stream_request = printnanny_api_client.JanusCloudStreamRequest() # JanusCloudStreamRequest | 
 
     try:
-        api_response = api_instance.devices_janus_cloud_streams_create(device_id)
+        api_response = api_instance.devices_janus_cloud_streams_create(device_id, janus_cloud_stream_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_janus_cloud_streams_create: %s\n" % e)
@@ -1126,6 +1131,7 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **device_id** | **int**|  | 
+ **janus_cloud_stream_request** | [**JanusCloudStreamRequest**](JanusCloudStreamRequest.md)|  | 
 
 ### Return type
 
@@ -1137,7 +1143,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -1277,7 +1283,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_janus_cloud_streams_partial_update**
-> JanusCloudStream devices_janus_cloud_streams_partial_update(device_id, id)
+> JanusCloudStream devices_janus_cloud_streams_partial_update(device_id, id, patched_janus_cloud_stream_request=patched_janus_cloud_stream_request)
 
 
 
@@ -1318,9 +1324,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
 id = 56 # int | A unique integer value identifying this janus stream.
+patched_janus_cloud_stream_request = printnanny_api_client.PatchedJanusCloudStreamRequest() # PatchedJanusCloudStreamRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_janus_cloud_streams_partial_update(device_id, id)
+        api_response = api_instance.devices_janus_cloud_streams_partial_update(device_id, id, patched_janus_cloud_stream_request=patched_janus_cloud_stream_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_janus_cloud_streams_partial_update: %s\n" % e)
@@ -1361,9 +1368,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
 id = 56 # int | A unique integer value identifying this janus stream.
+patched_janus_cloud_stream_request = printnanny_api_client.PatchedJanusCloudStreamRequest() # PatchedJanusCloudStreamRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_janus_cloud_streams_partial_update(device_id, id)
+        api_response = api_instance.devices_janus_cloud_streams_partial_update(device_id, id, patched_janus_cloud_stream_request=patched_janus_cloud_stream_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_janus_cloud_streams_partial_update: %s\n" % e)
@@ -1375,6 +1383,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **device_id** | **int**|  | 
  **id** | **int**| A unique integer value identifying this janus stream. | 
+ **patched_janus_cloud_stream_request** | [**PatchedJanusCloudStreamRequest**](PatchedJanusCloudStreamRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -1386,7 +1395,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -1522,7 +1531,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_janus_cloud_streams_update**
-> JanusCloudStream devices_janus_cloud_streams_update(device_id, id)
+> JanusCloudStream devices_janus_cloud_streams_update(device_id, id, janus_cloud_stream_request)
 
 
 
@@ -1563,9 +1572,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
 id = 56 # int | A unique integer value identifying this janus stream.
+janus_cloud_stream_request = printnanny_api_client.JanusCloudStreamRequest() # JanusCloudStreamRequest | 
 
     try:
-        api_response = api_instance.devices_janus_cloud_streams_update(device_id, id)
+        api_response = api_instance.devices_janus_cloud_streams_update(device_id, id, janus_cloud_stream_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_janus_cloud_streams_update: %s\n" % e)
@@ -1606,9 +1616,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     api_instance = printnanny_api_client.DevicesApi(api_client)
     device_id = 56 # int | 
 id = 56 # int | A unique integer value identifying this janus stream.
+janus_cloud_stream_request = printnanny_api_client.JanusCloudStreamRequest() # JanusCloudStreamRequest | 
 
     try:
-        api_response = api_instance.devices_janus_cloud_streams_update(device_id, id)
+        api_response = api_instance.devices_janus_cloud_streams_update(device_id, id, janus_cloud_stream_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_janus_cloud_streams_update: %s\n" % e)
@@ -1620,6 +1631,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **device_id** | **int**|  | 
  **id** | **int**| A unique integer value identifying this janus stream. | 
+ **janus_cloud_stream_request** | [**JanusCloudStreamRequest**](JanusCloudStreamRequest.md)|  | 
 
 ### Return type
 
@@ -1631,7 +1643,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details

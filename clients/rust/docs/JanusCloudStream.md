@@ -17,12 +17,12 @@ Name | Type | Description | Notes
 **config_type** | **String** |  | [readonly]
 **created_dt** | **String** |  | [readonly]
 **updated_dt** | **String** |  | [readonly]
-**active** | **bool** |  | [readonly]
-**secret** | **String** |  | [readonly]
-**pin** | **String** |  | [readonly]
-**info** | [**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md) |  | [readonly]
-**rtp_port** | **i32** |  | [readonly]
-**device** | **i32** |  | [readonly]
+**active** | Option<**bool**> |  | [optional]
+**secret** | Option<**String**> |  | [optional]
+**pin** | Option<**String**> |  | [optional]
+**info** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
+**rtp_port** | Option<**i32**> |  | [optional]
+**device** | **i32** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

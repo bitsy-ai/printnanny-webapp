@@ -184,7 +184,7 @@ pub enum UsersJanusAuthUpdateOrCreateError {
 }
 
 
-pub async fn devices_janus_cloud_stream_get_or_create(configuration: &configuration::Configuration, device_id: i32) -> Result<crate::models::JanusCloudStream, Error<DevicesJanusCloudStreamGetOrCreateError>> {
+pub async fn devices_janus_cloud_stream_get_or_create(configuration: &configuration::Configuration, device_id: i32, janus_cloud_stream_request: crate::models::JanusCloudStreamRequest) -> Result<crate::models::JanusCloudStream, Error<DevicesJanusCloudStreamGetOrCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -198,6 +198,7 @@ pub async fn devices_janus_cloud_stream_get_or_create(configuration: &configurat
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
+    local_var_req_builder = local_var_req_builder.json(&janus_cloud_stream_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -214,7 +215,7 @@ pub async fn devices_janus_cloud_stream_get_or_create(configuration: &configurat
     }
 }
 
-pub async fn devices_janus_cloud_streams_create(configuration: &configuration::Configuration, device_id: i32) -> Result<crate::models::JanusCloudStream, Error<DevicesJanusCloudStreamsCreateError>> {
+pub async fn devices_janus_cloud_streams_create(configuration: &configuration::Configuration, device_id: i32, janus_cloud_stream_request: crate::models::JanusCloudStreamRequest) -> Result<crate::models::JanusCloudStream, Error<DevicesJanusCloudStreamsCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -228,6 +229,7 @@ pub async fn devices_janus_cloud_streams_create(configuration: &configuration::C
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
+    local_var_req_builder = local_var_req_builder.json(&janus_cloud_stream_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -307,7 +309,7 @@ pub async fn devices_janus_cloud_streams_retrieve(configuration: &configuration:
     }
 }
 
-pub async fn devices_janus_cloud_streams_update(configuration: &configuration::Configuration, device_id: i32, id: i32) -> Result<crate::models::JanusCloudStream, Error<DevicesJanusCloudStreamsUpdateError>> {
+pub async fn devices_janus_cloud_streams_update(configuration: &configuration::Configuration, device_id: i32, id: i32, janus_cloud_stream_request: crate::models::JanusCloudStreamRequest) -> Result<crate::models::JanusCloudStream, Error<DevicesJanusCloudStreamsUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -321,6 +323,7 @@ pub async fn devices_janus_cloud_streams_update(configuration: &configuration::C
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
+    local_var_req_builder = local_var_req_builder.json(&janus_cloud_stream_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;

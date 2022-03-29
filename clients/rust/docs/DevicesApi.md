@@ -251,7 +251,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_janus_cloud_stream_get_or_create
 
-> crate::models::JanusCloudStream devices_janus_cloud_stream_get_or_create(device_id)
+> crate::models::JanusCloudStream devices_janus_cloud_stream_get_or_create(device_id, janus_cloud_stream_request)
 
 
 ### Parameters
@@ -260,6 +260,7 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
+**janus_cloud_stream_request** | [**JanusCloudStreamRequest**](JanusCloudStreamRequest.md) |  | [required] |
 
 ### Return type
 
@@ -271,7 +272,7 @@ Name | Type | Description  | Required | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -279,7 +280,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_janus_cloud_streams_create
 
-> crate::models::JanusCloudStream devices_janus_cloud_streams_create(device_id)
+> crate::models::JanusCloudStream devices_janus_cloud_streams_create(device_id, janus_cloud_stream_request)
 
 
 ### Parameters
@@ -288,6 +289,7 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
+**janus_cloud_stream_request** | [**JanusCloudStreamRequest**](JanusCloudStreamRequest.md) |  | [required] |
 
 ### Return type
 
@@ -299,7 +301,7 @@ Name | Type | Description  | Required | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -336,7 +338,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_janus_cloud_streams_partial_update
 
-> crate::models::JanusCloudStream devices_janus_cloud_streams_partial_update(device_id, id)
+> crate::models::JanusCloudStream devices_janus_cloud_streams_partial_update(device_id, id, patched_janus_cloud_stream_request)
 
 
 ### Parameters
@@ -346,6 +348,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
 **id** | **i32** | A unique integer value identifying this janus stream. | [required] |
+**patched_janus_cloud_stream_request** | Option<[**PatchedJanusCloudStreamRequest**](PatchedJanusCloudStreamRequest.md)> |  |  |
 
 ### Return type
 
@@ -357,7 +360,7 @@ Name | Type | Description  | Required | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -394,7 +397,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_janus_cloud_streams_update
 
-> crate::models::JanusCloudStream devices_janus_cloud_streams_update(device_id, id)
+> crate::models::JanusCloudStream devices_janus_cloud_streams_update(device_id, id, janus_cloud_stream_request)
 
 
 ### Parameters
@@ -404,6 +407,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
 **id** | **i32** | A unique integer value identifying this janus stream. | [required] |
+**janus_cloud_stream_request** | [**JanusCloudStreamRequest**](JanusCloudStreamRequest.md) |  | [required] |
 
 ### Return type
 
@@ -415,7 +419,7 @@ Name | Type | Description  | Required | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
