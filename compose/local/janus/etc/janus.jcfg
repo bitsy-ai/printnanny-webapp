@@ -254,7 +254,7 @@ nat: {
     stun_server = "stun.l.google.com"
     stun_port = 19302
     nice_debug = true
-    full_trickle = true
+    #full_trickle = true
     #ice_nomination = "regular"
     ice_keepalive_conncheck = true
     #ice_lite = true

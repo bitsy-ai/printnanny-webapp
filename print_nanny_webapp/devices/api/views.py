@@ -536,8 +536,21 @@ class JanusEdgeStreamViewSet(
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             device = Device.objects.get(id=device_id)
-            instance, created = janus_cloud_setup(device)
-            logger.info("GET JanusStream=%s created=%s", instance, created)
+            auth_data = serializer.validated_data.pop("auth")
+            auth_data.pop("user")
+            auth_data["user"] = request.user.id
+            instance, created = serializer.get_or_create(
+                serializer.validated_data, device.id
+            )
+            logger.info("Received JanusAuth data=%s", auth_data)
+            auth_serializer = JanusAuthSerializer(data=auth_data)
+            if auth_serializer.is_valid():
+                auth_serializer.save()
+            else:
+                return Response(
+                    auth_serializer.errors, status=status.HTTP_400_BAD_REQUEST
+                )
+            logger.info("GET JanusEdgeStream=%s created=%s", instance, created)
             response_serializer = self.get_serializer(instance)
             if not created:
                 return Response(response_serializer.data, status=status.HTTP_200_OK)

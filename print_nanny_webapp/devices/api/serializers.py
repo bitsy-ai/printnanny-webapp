@@ -93,7 +93,7 @@ class JanusStreamSerializer(serializers.ModelSerializer):
     rtp_domain = serializers.CharField(read_only=True)
     websocket_url = serializers.CharField(read_only=True)
     websocket_port = serializers.IntegerField(read_only=True)
-    config_type = serializers.SerializerMethodField(read_only=True)
+    config_type = serializers.CharField(read_only=True)
 
     class Meta:
         model = JanusStream
