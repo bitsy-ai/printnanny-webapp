@@ -133,7 +133,6 @@ class JanusCloudStreamSerializer(serializers.ModelSerializer):
     class Meta:
         model = JanusStream
         exclude = ("deleted",)
-        read_only_fields = ("device", "rtp_port", "pin", "secret", "active", "info")
 
     def update_or_create(self, validated_data, device_id):
         return JanusStream.objects.filter(device=device_id).update_or_create(

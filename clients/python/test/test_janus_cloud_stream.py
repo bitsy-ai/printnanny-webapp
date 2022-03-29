@@ -56,7 +56,7 @@ class TestJanusCloudStream(unittest.TestCase):
                 info = {
                     'key' : null
                     }, 
-                rtp_port = 56, 
+                rtp_port = 0, 
                 device = 56
             )
         else :
@@ -74,13 +74,6 @@ class TestJanusCloudStream(unittest.TestCase):
                 config_type = '',
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                active = True,
-                secret = '',
-                pin = '',
-                info = {
-                    'key' : null
-                    },
-                rtp_port = 56,
                 device = 56,
         )
 

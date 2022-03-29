@@ -17,12 +17,12 @@ Name | Type | Description | Notes
 **config_type** | **str** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
 **updated_dt** | **datetime** |  | [readonly] 
-**active** | **bool** |  | [readonly] 
-**secret** | **str** |  | [readonly] 
-**pin** | **str** |  | [readonly] 
-**info** | **dict(str, object)** |  | [readonly] 
-**rtp_port** | **int** |  | [readonly] 
-**device** | **int** |  | [readonly] 
+**active** | **bool** |  | [optional] 
+**secret** | **str** |  | [optional] 
+**pin** | **str** |  | [optional] 
+**info** | **dict(str, object)** |  | [optional] 
+**rtp_port** | **int** |  | [optional] 
+**device** | **int** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -120,11 +120,16 @@ class JanusCloudStream(object):
         self.config_type = config_type
         self.created_dt = created_dt
         self.updated_dt = updated_dt
-        self.active = active
-        self.secret = secret
-        self.pin = pin
-        self.info = info
-        self.rtp_port = rtp_port
+        if active is not None:
+            self.active = active
+        if secret is not None:
+            self.secret = secret
+        if pin is not None:
+            self.pin = pin
+        if info is not None:
+            self.info = info
+        if rtp_port is not None:
+            self.rtp_port = rtp_port
         self.device = device
 
     @property
@@ -442,8 +447,6 @@ class JanusCloudStream(object):
         :param active: The active of this JanusCloudStream.  # noqa: E501
         :type active: bool
         """
-        if self.local_vars_configuration.client_side_validation and active is None:  # noqa: E501
-            raise ValueError("Invalid value for `active`, must not be `None`")  # noqa: E501
 
         self._active = active
 
@@ -465,8 +468,9 @@ class JanusCloudStream(object):
         :param secret: The secret of this JanusCloudStream.  # noqa: E501
         :type secret: str
         """
-        if self.local_vars_configuration.client_side_validation and secret is None:  # noqa: E501
-            raise ValueError("Invalid value for `secret`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                secret is not None and len(secret) > 255):
+            raise ValueError("Invalid value for `secret`, length must be less than or equal to `255`")  # noqa: E501
 
         self._secret = secret
 
@@ -488,8 +492,9 @@ class JanusCloudStream(object):
         :param pin: The pin of this JanusCloudStream.  # noqa: E501
         :type pin: str
         """
-        if self.local_vars_configuration.client_side_validation and pin is None:  # noqa: E501
-            raise ValueError("Invalid value for `pin`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                pin is not None and len(pin) > 255):
+            raise ValueError("Invalid value for `pin`, length must be less than or equal to `255`")  # noqa: E501
 
         self._pin = pin
 
@@ -511,8 +516,6 @@ class JanusCloudStream(object):
         :param info: The info of this JanusCloudStream.  # noqa: E501
         :type info: dict(str, object)
         """
-        if self.local_vars_configuration.client_side_validation and info is None:  # noqa: E501
-            raise ValueError("Invalid value for `info`, must not be `None`")  # noqa: E501
 
         self._info = info
 
@@ -534,8 +537,12 @@ class JanusCloudStream(object):
         :param rtp_port: The rtp_port of this JanusCloudStream.  # noqa: E501
         :type rtp_port: int
         """
-        if self.local_vars_configuration.client_side_validation and rtp_port is None:  # noqa: E501
-            raise ValueError("Invalid value for `rtp_port`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                rtp_port is not None and rtp_port > 32767):  # noqa: E501
+            raise ValueError("Invalid value for `rtp_port`, must be a value less than or equal to `32767`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                rtp_port is not None and rtp_port < 0):  # noqa: E501
+            raise ValueError("Invalid value for `rtp_port`, must be a value greater than or equal to `0`")  # noqa: E501
 
         self._rtp_port = rtp_port
 

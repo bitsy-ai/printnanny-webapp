@@ -61,7 +61,7 @@ class TestPaginatedJanusCloudStreamList(unittest.TestCase):
                         info = {
                             'key' : null
                             }, 
-                        rtp_port = 56, 
+                        rtp_port = 0, 
                         device = 56, )
                     ]
             )
