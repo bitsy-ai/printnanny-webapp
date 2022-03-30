@@ -8,6 +8,7 @@ from drf_spectacular.utils import (
     OpenApiParameter,
 )
 from django.db.utils import IntegrityError
+from print_nanny_webapp.devices.enum import JanusConfigType
 
 from rest_framework import status
 from rest_framework.decorators import action
@@ -546,7 +547,9 @@ class JanusEdgeStreamViewSet(
             auth_serializer = JanusAuthSerializer(data=auth_data)
             if auth_serializer.is_valid():
                 auth_serializer.get_or_create(
-                    auth_serializer.validated_data, request.user.id
+                    auth_serializer.validated_data,
+                    request.user.id,
+                    JanusConfigType.EDGE,
                 )
             else:
                 return Response(

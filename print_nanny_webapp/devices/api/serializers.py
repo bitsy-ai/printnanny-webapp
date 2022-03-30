@@ -82,9 +82,9 @@ class JanusAuthSerializer(serializers.ModelSerializer):
             user=user, defaults=validated_data
         )
 
-    def get_or_create(self, validated_data, user):
-        return JanusAuth.objects.filter(user=user).get_or_create(
-            user=user, defaults=validated_data
+    def get_or_create(self, validated_data, user, config_type):
+        return JanusAuth.objects.get_or_create(
+            user=user, config_type=config_type, defaults=validated_data
         )
 
 
