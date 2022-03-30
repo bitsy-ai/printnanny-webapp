@@ -539,7 +539,7 @@ class JanusEdgeStreamViewSet(
             auth_data = serializer.validated_data.pop("auth")
             auth_data.pop("user")
             auth_data["user"] = request.user.id
-            instance, created = serializer.get_or_create(
+            instance, created = serializer.get_or_create(  # type: ignore[attr-defined]
                 serializer.validated_data, device.id
             )
             logger.info("Received JanusAuth data=%s", auth_data)
