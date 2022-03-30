@@ -77,9 +77,14 @@ class JanusAuthSerializer(serializers.ModelSerializer):
         exclude = ("deleted",)
         read_only_fields = ("device", "active")
 
-    def update_or_create(self, validated_data, device):
-        return JanusAuth.objects.filter(device=device).update_or_create(
-            device=device, defaults=validated_data
+    def update_or_create(self, validated_data, user):
+        return JanusAuth.objects.filter(user=user).update_or_create(
+            user=user, defaults=validated_data
+        )
+
+    def get_or_create(self, validated_data, user):
+        return JanusAuth.objects.filter(user=user).get_or_create(
+            user=user, defaults=validated_data
         )
 
 

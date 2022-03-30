@@ -545,7 +545,9 @@ class JanusEdgeStreamViewSet(
             logger.info("Received JanusAuth data=%s", auth_data)
             auth_serializer = JanusAuthSerializer(data=auth_data)
             if auth_serializer.is_valid():
-                auth_serializer.save()
+                auth_serializer.get_or_create(
+                    auth_serializer.validated_data, request.user.id
+                )
             else:
                 return Response(
                     auth_serializer.errors, status=status.HTTP_400_BAD_REQUEST
