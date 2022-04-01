@@ -19,16 +19,10 @@ pub struct JanusEdgeStreamRequest {
     pub api_domain: String,
     #[serde(rename = "api_port")]
     pub api_port: i32,
-    #[serde(rename = "api_url")]
-    pub api_url: String,
-    #[serde(rename = "admin_url")]
-    pub admin_url: String,
     #[serde(rename = "admin_port")]
     pub admin_port: i32,
     #[serde(rename = "rtp_domain")]
     pub rtp_domain: String,
-    #[serde(rename = "websocket_url")]
-    pub websocket_url: String,
     #[serde(rename = "websocket_port")]
     pub websocket_port: i32,
     #[serde(rename = "active", skip_serializing_if = "Option::is_none")]
@@ -39,6 +33,8 @@ pub struct JanusEdgeStreamRequest {
     pub pin: Option<String>,
     #[serde(rename = "info", skip_serializing_if = "Option::is_none")]
     pub info: Option<::std::collections::HashMap<String, serde_json::Value>>,
+    #[serde(rename = "ws_port", skip_serializing_if = "Option::is_none")]
+    pub ws_port: Option<i32>,
     #[serde(rename = "rtp_port", skip_serializing_if = "Option::is_none")]
     pub rtp_port: Option<i32>,
     #[serde(rename = "device")]
@@ -46,21 +42,19 @@ pub struct JanusEdgeStreamRequest {
 }
 
 impl JanusEdgeStreamRequest {
-    pub fn new(auth: crate::models::JanusAuthRequest, api_domain: String, api_port: i32, api_url: String, admin_url: String, admin_port: i32, rtp_domain: String, websocket_url: String, websocket_port: i32, device: i32) -> JanusEdgeStreamRequest {
+    pub fn new(auth: crate::models::JanusAuthRequest, api_domain: String, api_port: i32, admin_port: i32, rtp_domain: String, websocket_port: i32, device: i32) -> JanusEdgeStreamRequest {
         JanusEdgeStreamRequest {
             auth: Box::new(auth),
             api_domain,
             api_port,
-            api_url,
-            admin_url,
             admin_port,
             rtp_domain,
-            websocket_url,
             websocket_port,
             active: None,
             secret: None,
             pin: None,
             info: None,
+            ws_port: None,
             rtp_port: None,
             device,
         }

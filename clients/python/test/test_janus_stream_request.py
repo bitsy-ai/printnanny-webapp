@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.patched_janus_cloud_stream_request import PatchedJanusCloudStreamRequest  # noqa: E501
+from printnanny_api_client.models.janus_stream_request import JanusStreamRequest  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestPatchedJanusCloudStreamRequest(unittest.TestCase):
-    """PatchedJanusCloudStreamRequest unit test stubs"""
+class TestJanusStreamRequest(unittest.TestCase):
+    """JanusStreamRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,29 +30,21 @@ class TestPatchedJanusCloudStreamRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test PatchedJanusCloudStreamRequest
+        """Test JanusStreamRequest
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.patched_janus_cloud_stream_request.PatchedJanusCloudStreamRequest()  # noqa: E501
+        # model = printnanny_api_client.models.janus_stream_request.JanusStreamRequest()  # noqa: E501
         if include_optional :
-            return PatchedJanusCloudStreamRequest(
-                active = True, 
-                secret = '0', 
-                pin = '0', 
-                info = {
-                    'key' : null
-                    }, 
-                ws_port = -2147483648, 
-                rtp_port = 0, 
-                device = 56
+            return JanusStreamRequest(
+                ws_port = -2147483648
             )
         else :
-            return PatchedJanusCloudStreamRequest(
+            return JanusStreamRequest(
         )
 
-    def testPatchedJanusCloudStreamRequest(self):
-        """Test PatchedJanusCloudStreamRequest"""
+    def testJanusStreamRequest(self):
+        """Test JanusStreamRequest"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

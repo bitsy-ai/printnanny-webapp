@@ -8,11 +8,11 @@ Name | Type | Description | Notes
 **auth** | [**JanusAuth**](JanusAuth.md) |  | 
 **api_domain** | **str** |  | 
 **api_port** | **int** |  | 
-**api_url** | **str** |  | 
-**admin_url** | **str** |  | 
+**api_url** | **str** |  | [readonly] 
+**admin_url** | **str** |  | [readonly] 
 **admin_port** | **int** |  | 
 **rtp_domain** | **str** |  | 
-**websocket_url** | **str** |  | 
+**websocket_url** | **str** |  | [readonly] 
 **websocket_port** | **int** |  | 
 **config_type** | **str** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **secret** | **str** |  | [optional] 
 **pin** | **str** |  | [optional] 
 **info** | **dict(str, object)** |  | [optional] 
+**ws_port** | **int** |  | [optional] 
 **rtp_port** | **int** |  | [optional] 
 **device** | **int** |  | 
 

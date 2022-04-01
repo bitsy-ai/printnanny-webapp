@@ -7,16 +7,14 @@ Name | Type | Description | Notes
 **auth** | [**JanusAuthRequest**](JanusAuthRequest.md) |  | 
 **api_domain** | **str** |  | 
 **api_port** | **int** |  | 
-**api_url** | **str** |  | 
-**admin_url** | **str** |  | 
 **admin_port** | **int** |  | 
 **rtp_domain** | **str** |  | 
-**websocket_url** | **str** |  | 
 **websocket_port** | **int** |  | 
 **active** | **bool** |  | [optional] 
 **secret** | **str** |  | [optional] 
 **pin** | **str** |  | [optional] 
 **info** | **dict(str, object)** |  | [optional] 
+**ws_port** | **int** |  | [optional] 
 **rtp_port** | **int** |  | [optional] 
 **device** | **int** |  | 
 

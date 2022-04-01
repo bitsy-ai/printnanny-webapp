@@ -8018,10 +8018,10 @@
     "extend-shallow" "^2.0.1"
     "js-beautify" "^1.6.12"
 
-"printnanny-api-client@0.71.2":
-  "integrity" "sha512-7BCslk2j5W2VaGj/UZUauUG6C+yaED7wkrjuqrex2zJ4jymfiXYvXDKGpMPUMayUzuglya2TetVMaI/+HDhOwA=="
-  "resolved" "https://registry.npmjs.org/printnanny-api-client/-/printnanny-api-client-0.71.2.tgz"
-  "version" "0.71.2"
+"printnanny-api-client@0.71.3":
+  "integrity" "sha512-aER+1rlwIBiE5BW2aAt2JtNGWFwIs8rtCMHRfq3brodiKgIdPau85rZqAOe+3R8vLEBjxxm/SwLPy1VS8dORbQ=="
+  "resolved" "https://registry.npmjs.org/printnanny-api-client/-/printnanny-api-client-0.71.3.tgz"
+  "version" "0.71.3"
   dependencies:
     "axios" "^0.21.4"
 

@@ -47,6 +47,8 @@ pub struct JanusStream {
     pub pin: String,
     #[serde(rename = "info")]
     pub info: ::std::collections::HashMap<String, serde_json::Value>,
+    #[serde(rename = "ws_port", skip_serializing_if = "Option::is_none")]
+    pub ws_port: Option<i32>,
     #[serde(rename = "rtp_port")]
     pub rtp_port: i32,
     #[serde(rename = "device")]
@@ -73,6 +75,7 @@ impl JanusStream {
             secret,
             pin,
             info,
+            ws_port: None,
             rtp_port,
             device,
         }

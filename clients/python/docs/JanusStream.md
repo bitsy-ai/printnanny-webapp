@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **secret** | **str** |  | [readonly] 
 **pin** | **str** |  | [readonly] 
 **info** | **dict(str, object)** |  | [readonly] 
+**ws_port** | **int** |  | [optional] 
 **rtp_port** | **int** |  | [readonly] 
 **device** | **int** |  | [readonly] 
 

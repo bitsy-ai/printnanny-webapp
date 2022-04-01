@@ -47,6 +47,8 @@ pub struct JanusEdgeStream {
     pub pin: Option<String>,
     #[serde(rename = "info", skip_serializing_if = "Option::is_none")]
     pub info: Option<::std::collections::HashMap<String, serde_json::Value>>,
+    #[serde(rename = "ws_port", skip_serializing_if = "Option::is_none")]
+    pub ws_port: Option<i32>,
     #[serde(rename = "rtp_port", skip_serializing_if = "Option::is_none")]
     pub rtp_port: Option<i32>,
     #[serde(rename = "device")]
@@ -73,6 +75,7 @@ impl JanusEdgeStream {
             secret: None,
             pin: None,
             info: None,
+            ws_port: None,
             rtp_port: None,
             device,
         }

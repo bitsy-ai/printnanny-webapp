@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **secret** | **str** |  | [optional] 
 **pin** | **str** |  | [optional] 
 **info** | **dict(str, object)** |  | [optional] 
+**ws_port** | **int** |  | [optional] 
 **rtp_port** | **int** |  | [optional] 
 **device** | **int** |  | [optional] 
 

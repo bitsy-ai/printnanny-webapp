@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **secret** | Option<**String**> |  | [optional]
 **pin** | Option<**String**> |  | [optional]
 **info** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
+**ws_port** | Option<**i32**> |  | [optional]
 **rtp_port** | Option<**i32**> |  | [optional]
 **device** | **i32** |  | 
 

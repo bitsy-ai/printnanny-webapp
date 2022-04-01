@@ -44,11 +44,8 @@ class TestPatchedJanusEdgeStreamRequest(unittest.TestCase):
                     user = 56, ), 
                 api_domain = '0', 
                 api_port = 56, 
-                api_url = '0', 
-                admin_url = '0', 
                 admin_port = 56, 
                 rtp_domain = '0', 
-                websocket_url = '0', 
                 websocket_port = 56, 
                 active = True, 
                 secret = '0', 
@@ -56,6 +53,7 @@ class TestPatchedJanusEdgeStreamRequest(unittest.TestCase):
                 info = {
                     'key' : null
                     }, 
+                ws_port = -2147483648, 
                 rtp_port = 0, 
                 device = 56
             )

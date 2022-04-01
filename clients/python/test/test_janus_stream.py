@@ -56,6 +56,7 @@ class TestJanusStream(unittest.TestCase):
                 info = {
                     'key' : null
                     }, 
+                ws_port = -2147483648, 
                 rtp_port = 56, 
                 device = 56
             )

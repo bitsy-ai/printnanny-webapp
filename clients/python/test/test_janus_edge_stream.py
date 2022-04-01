@@ -63,6 +63,7 @@ class TestJanusEdgeStream(unittest.TestCase):
                 info = {
                     'key' : null
                     }, 
+                ws_port = -2147483648, 
                 rtp_port = 0, 
                 device = 56
             )

@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **secret** | **String** |  | [readonly]
 **pin** | **String** |  | [readonly]
 **info** | [**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md) |  | [readonly]
+**ws_port** | Option<**i32**> |  | [optional]
 **rtp_port** | **i32** |  | [readonly]
 **device** | **i32** |  | [readonly]
 

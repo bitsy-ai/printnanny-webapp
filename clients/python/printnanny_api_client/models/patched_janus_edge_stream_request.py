@@ -40,16 +40,14 @@ class PatchedJanusEdgeStreamRequest(object):
         'auth': 'JanusAuthRequest',
         'api_domain': 'str',
         'api_port': 'int',
-        'api_url': 'str',
-        'admin_url': 'str',
         'admin_port': 'int',
         'rtp_domain': 'str',
-        'websocket_url': 'str',
         'websocket_port': 'int',
         'active': 'bool',
         'secret': 'str',
         'pin': 'str',
         'info': 'dict(str, object)',
+        'ws_port': 'int',
         'rtp_port': 'int',
         'device': 'int'
     }
@@ -58,21 +56,19 @@ class PatchedJanusEdgeStreamRequest(object):
         'auth': 'auth',
         'api_domain': 'api_domain',
         'api_port': 'api_port',
-        'api_url': 'api_url',
-        'admin_url': 'admin_url',
         'admin_port': 'admin_port',
         'rtp_domain': 'rtp_domain',
-        'websocket_url': 'websocket_url',
         'websocket_port': 'websocket_port',
         'active': 'active',
         'secret': 'secret',
         'pin': 'pin',
         'info': 'info',
+        'ws_port': 'ws_port',
         'rtp_port': 'rtp_port',
         'device': 'device'
     }
 
-    def __init__(self, auth=None, api_domain=None, api_port=None, api_url=None, admin_url=None, admin_port=None, rtp_domain=None, websocket_url=None, websocket_port=None, active=None, secret=None, pin=None, info=None, rtp_port=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, auth=None, api_domain=None, api_port=None, admin_port=None, rtp_domain=None, websocket_port=None, active=None, secret=None, pin=None, info=None, ws_port=None, rtp_port=None, device=None, local_vars_configuration=None):  # noqa: E501
         """PatchedJanusEdgeStreamRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -81,16 +77,14 @@ class PatchedJanusEdgeStreamRequest(object):
         self._auth = None
         self._api_domain = None
         self._api_port = None
-        self._api_url = None
-        self._admin_url = None
         self._admin_port = None
         self._rtp_domain = None
-        self._websocket_url = None
         self._websocket_port = None
         self._active = None
         self._secret = None
         self._pin = None
         self._info = None
+        self._ws_port = None
         self._rtp_port = None
         self._device = None
         self.discriminator = None
@@ -101,16 +95,10 @@ class PatchedJanusEdgeStreamRequest(object):
             self.api_domain = api_domain
         if api_port is not None:
             self.api_port = api_port
-        if api_url is not None:
-            self.api_url = api_url
-        if admin_url is not None:
-            self.admin_url = admin_url
         if admin_port is not None:
             self.admin_port = admin_port
         if rtp_domain is not None:
             self.rtp_domain = rtp_domain
-        if websocket_url is not None:
-            self.websocket_url = websocket_url
         if websocket_port is not None:
             self.websocket_port = websocket_port
         if active is not None:
@@ -121,6 +109,8 @@ class PatchedJanusEdgeStreamRequest(object):
             self.pin = pin
         if info is not None:
             self.info = info
+        if ws_port is not None:
+            self.ws_port = ws_port
         if rtp_port is not None:
             self.rtp_port = rtp_port
         if device is not None:
@@ -193,54 +183,6 @@ class PatchedJanusEdgeStreamRequest(object):
         self._api_port = api_port
 
     @property
-    def api_url(self):
-        """Gets the api_url of this PatchedJanusEdgeStreamRequest.  # noqa: E501
-
-
-        :return: The api_url of this PatchedJanusEdgeStreamRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._api_url
-
-    @api_url.setter
-    def api_url(self, api_url):
-        """Sets the api_url of this PatchedJanusEdgeStreamRequest.
-
-
-        :param api_url: The api_url of this PatchedJanusEdgeStreamRequest.  # noqa: E501
-        :type api_url: str
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                api_url is not None and len(api_url) < 1):
-            raise ValueError("Invalid value for `api_url`, length must be greater than or equal to `1`")  # noqa: E501
-
-        self._api_url = api_url
-
-    @property
-    def admin_url(self):
-        """Gets the admin_url of this PatchedJanusEdgeStreamRequest.  # noqa: E501
-
-
-        :return: The admin_url of this PatchedJanusEdgeStreamRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._admin_url
-
-    @admin_url.setter
-    def admin_url(self, admin_url):
-        """Sets the admin_url of this PatchedJanusEdgeStreamRequest.
-
-
-        :param admin_url: The admin_url of this PatchedJanusEdgeStreamRequest.  # noqa: E501
-        :type admin_url: str
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                admin_url is not None and len(admin_url) < 1):
-            raise ValueError("Invalid value for `admin_url`, length must be greater than or equal to `1`")  # noqa: E501
-
-        self._admin_url = admin_url
-
-    @property
     def admin_port(self):
         """Gets the admin_port of this PatchedJanusEdgeStreamRequest.  # noqa: E501
 
@@ -284,30 +226,6 @@ class PatchedJanusEdgeStreamRequest(object):
             raise ValueError("Invalid value for `rtp_domain`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._rtp_domain = rtp_domain
-
-    @property
-    def websocket_url(self):
-        """Gets the websocket_url of this PatchedJanusEdgeStreamRequest.  # noqa: E501
-
-
-        :return: The websocket_url of this PatchedJanusEdgeStreamRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._websocket_url
-
-    @websocket_url.setter
-    def websocket_url(self, websocket_url):
-        """Sets the websocket_url of this PatchedJanusEdgeStreamRequest.
-
-
-        :param websocket_url: The websocket_url of this PatchedJanusEdgeStreamRequest.  # noqa: E501
-        :type websocket_url: str
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                websocket_url is not None and len(websocket_url) < 1):
-            raise ValueError("Invalid value for `websocket_url`, length must be greater than or equal to `1`")  # noqa: E501
-
-        self._websocket_url = websocket_url
 
     @property
     def websocket_port(self):
@@ -425,6 +343,33 @@ class PatchedJanusEdgeStreamRequest(object):
         """
 
         self._info = info
+
+    @property
+    def ws_port(self):
+        """Gets the ws_port of this PatchedJanusEdgeStreamRequest.  # noqa: E501
+
+
+        :return: The ws_port of this PatchedJanusEdgeStreamRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._ws_port
+
+    @ws_port.setter
+    def ws_port(self, ws_port):
+        """Sets the ws_port of this PatchedJanusEdgeStreamRequest.
+
+
+        :param ws_port: The ws_port of this PatchedJanusEdgeStreamRequest.  # noqa: E501
+        :type ws_port: int
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                ws_port is not None and ws_port > 2147483647):  # noqa: E501
+            raise ValueError("Invalid value for `ws_port`, must be a value less than or equal to `2147483647`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                ws_port is not None and ws_port < -2147483648):  # noqa: E501
+            raise ValueError("Invalid value for `ws_port`, must be a value greater than or equal to `-2147483648`")  # noqa: E501
+
+        self._ws_port = ws_port
 
     @property
     def rtp_port(self):
