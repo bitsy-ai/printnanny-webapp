@@ -372,7 +372,7 @@ class JanusStream(SafeDeleteModel):
             ),
             UniqueConstraint(
                 fields=["rtp_port"],
-                condition=models.Q(deleted=None),
+                condition=models.Q(deleted=None, config_type=JanusConfigType.CLOUD),
                 name="unique_port",
             ),
         ]
