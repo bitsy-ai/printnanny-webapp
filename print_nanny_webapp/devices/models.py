@@ -407,8 +407,9 @@ class JanusStream(SafeDeleteModel):
         janus_auth, _created = JanusAuth.objects.get_or_create(
             config_type=self.config_type, user=self.device.user
         )
-        res = janus_admin_add_token(janus_auth, self)
-        logger.info("JanusStream.auth %s", res)
+        if self.config_type == JanusConfigType.CLOUD:
+            res = janus_admin_add_token(janus_auth, self)
+            logger.info("Synced JanusStream.auth %s to %s", res, self.api_domain)
         return janus_auth
 
     @property
