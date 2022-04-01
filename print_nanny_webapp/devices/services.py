@@ -15,7 +15,7 @@ from .models import CloudiotDevice, Device, PublicKey, JanusAuth, JanusStream
 logger = logging.getLogger(__name__)
 
 
-def janus_admin_add_token(janus_auth: JanusAuth) -> Dict[str, Any]:
+def janus_admin_add_token(janus_auth: JanusAuth, stream: JanusStream) -> Dict[str, Any]:
     if janus_auth.config_type == JanusConfigType.CLOUD:
         req = dict(
             janus="add_token",
@@ -24,8 +24,8 @@ def janus_admin_add_token(janus_auth: JanusAuth) -> Dict[str, Any]:
             plugins=["janus.plugin.streaming"],
             transaction=uuid4().hex,
         )
-        res = requests.post(janus_auth.admin_url, json=req)
-        logger.info("Got response to POST %s: %s", janus_auth.admin_url, res)
+        res = requests.post(stream.admin_url, json=req)
+        logger.info("Got response to POST %s: %s", stream.admin_url, res)
         res.raise_for_status()
         return res.json()
     else:
