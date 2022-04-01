@@ -140,7 +140,7 @@ class JanusCloudStreamSerializer(serializers.ModelSerializer):
 
     def update_or_create(self, validated_data, device_id):
         return JanusStream.objects.filter(device=device_id).update_or_create(
-            device=device_id, defaults=validated_data
+            device=device_id, config_type=JanusConfigType.CLOUD, defaults=validated_data
         )
 
     def get_or_create(self, validated_data, device_id):
@@ -150,7 +150,9 @@ class JanusCloudStreamSerializer(serializers.ModelSerializer):
         )
         # get_or_create method requires fkey relationship be 1) instance or 2) use __id field syntax
         device = Device.objects.get(id=device_id)
-        return JanusStream.objects.get_or_create(device=device, defaults=validated_data)
+        return JanusStream.objects.get_or_create(
+            device=device, config_type=JanusConfigType.CLOUD, defaults=validated_data
+        )
 
 
 class JanusEdgeStreamSerializer(serializers.ModelSerializer):
@@ -174,7 +176,7 @@ class JanusEdgeStreamSerializer(serializers.ModelSerializer):
 
     def update_or_create(self, validated_data, device_id):
         return JanusStream.objects.filter(device=device_id).update_or_create(
-            device=device_id, defaults=validated_data
+            device=device_id, config_type=JanusConfigType.EDGE, defaults=validated_data
         )
 
     def get_or_create(self, validated_data, device_id):
@@ -184,7 +186,9 @@ class JanusEdgeStreamSerializer(serializers.ModelSerializer):
         )
         # get_or_create method requires fkey relationship be 1) instance or 2) use __id field syntax
         device = Device.objects.get(id=device_id)
-        return JanusStream.objects.get_or_create(device=device, defaults=validated_data)
+        return JanusStream.objects.get_or_create(
+            device=device, config_type=JanusConfigType.EDGE, defaults=validated_data
+        )
 
 
 class SystemInfoSerializer(serializers.ModelSerializer):
