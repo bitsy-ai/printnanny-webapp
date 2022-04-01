@@ -127,6 +127,7 @@ class JanusCloudStreamSerializer(serializers.ModelSerializer):
     api_url = serializers.CharField(read_only=True)
     admin_url = serializers.CharField(read_only=True)
     admin_port = serializers.IntegerField(read_only=True)
+    rtp_port = serializers.IntegerField(read_only=True)
     rtp_domain = serializers.CharField(read_only=True)
     websocket_url = serializers.CharField(read_only=True)
     websocket_port = serializers.IntegerField(read_only=True)
@@ -161,9 +162,9 @@ class JanusEdgeStreamSerializer(serializers.ModelSerializer):
     api_url = serializers.CharField(read_only=True)
     admin_url = serializers.CharField(read_only=True)
     admin_port = serializers.IntegerField()
+    ws_port = serializers.IntegerField()
     rtp_domain = serializers.CharField()
     websocket_url = serializers.CharField(read_only=True)
-    websocket_port = serializers.IntegerField()
     config_type = serializers.SerializerMethodField()
 
     def get_config_type(self, _obj) -> str:
