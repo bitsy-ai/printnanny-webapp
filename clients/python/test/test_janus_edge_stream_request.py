@@ -45,15 +45,14 @@ class TestJanusEdgeStreamRequest(unittest.TestCase):
                 api_domain = '0', 
                 api_port = 56, 
                 admin_port = 56, 
+                ws_port = 56, 
                 rtp_domain = '0', 
-                websocket_port = 56, 
                 active = True, 
                 secret = '0', 
                 pin = '0', 
                 info = {
                     'key' : null
                     }, 
-                ws_port = -2147483648, 
                 rtp_port = 0, 
                 device = 56
             )
@@ -67,8 +66,8 @@ class TestJanusEdgeStreamRequest(unittest.TestCase):
                 api_domain = '0',
                 api_port = 56,
                 admin_port = 56,
+                ws_port = 56,
                 rtp_domain = '0',
-                websocket_port = 56,
                 device = 56,
         )
 

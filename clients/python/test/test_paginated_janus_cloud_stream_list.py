@@ -49,6 +49,7 @@ class TestPaginatedJanusCloudStreamList(unittest.TestCase):
                         api_url = '', 
                         admin_url = '', 
                         admin_port = 56, 
+                        rtp_port = 56, 
                         rtp_domain = '', 
                         websocket_url = '', 
                         websocket_port = 56, 
@@ -62,7 +63,6 @@ class TestPaginatedJanusCloudStreamList(unittest.TestCase):
                             'key' : null
                             }, 
                         ws_port = -2147483648, 
-                        rtp_port = 0, 
                         device = 56, )
                     ]
             )

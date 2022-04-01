@@ -27,6 +27,8 @@ pub struct JanusCloudStream {
     pub admin_url: String,
     #[serde(rename = "admin_port")]
     pub admin_port: i32,
+    #[serde(rename = "rtp_port")]
+    pub rtp_port: i32,
     #[serde(rename = "rtp_domain")]
     pub rtp_domain: String,
     #[serde(rename = "websocket_url")]
@@ -49,14 +51,12 @@ pub struct JanusCloudStream {
     pub info: Option<::std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "ws_port", skip_serializing_if = "Option::is_none")]
     pub ws_port: Option<i32>,
-    #[serde(rename = "rtp_port", skip_serializing_if = "Option::is_none")]
-    pub rtp_port: Option<i32>,
     #[serde(rename = "device")]
     pub device: i32,
 }
 
 impl JanusCloudStream {
-    pub fn new(id: i32, auth: Option<crate::models::JanusAuth>, api_domain: String, api_port: i32, api_url: String, admin_url: String, admin_port: i32, rtp_domain: String, websocket_url: String, websocket_port: i32, config_type: String, created_dt: String, updated_dt: String, device: i32) -> JanusCloudStream {
+    pub fn new(id: i32, auth: Option<crate::models::JanusAuth>, api_domain: String, api_port: i32, api_url: String, admin_url: String, admin_port: i32, rtp_port: i32, rtp_domain: String, websocket_url: String, websocket_port: i32, config_type: String, created_dt: String, updated_dt: String, device: i32) -> JanusCloudStream {
         JanusCloudStream {
             id,
             auth: auth.map(Box::new),
@@ -65,6 +65,7 @@ impl JanusCloudStream {
             api_url,
             admin_url,
             admin_port,
+            rtp_port,
             rtp_domain,
             websocket_url,
             websocket_port,
@@ -76,7 +77,6 @@ impl JanusCloudStream {
             pin: None,
             info: None,
             ws_port: None,
-            rtp_port: None,
             device,
         }
     }

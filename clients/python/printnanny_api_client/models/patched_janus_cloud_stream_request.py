@@ -42,7 +42,6 @@ class PatchedJanusCloudStreamRequest(object):
         'pin': 'str',
         'info': 'dict(str, object)',
         'ws_port': 'int',
-        'rtp_port': 'int',
         'device': 'int'
     }
 
@@ -52,11 +51,10 @@ class PatchedJanusCloudStreamRequest(object):
         'pin': 'pin',
         'info': 'info',
         'ws_port': 'ws_port',
-        'rtp_port': 'rtp_port',
         'device': 'device'
     }
 
-    def __init__(self, active=None, secret=None, pin=None, info=None, ws_port=None, rtp_port=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, active=None, secret=None, pin=None, info=None, ws_port=None, device=None, local_vars_configuration=None):  # noqa: E501
         """PatchedJanusCloudStreamRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -67,7 +65,6 @@ class PatchedJanusCloudStreamRequest(object):
         self._pin = None
         self._info = None
         self._ws_port = None
-        self._rtp_port = None
         self._device = None
         self.discriminator = None
 
@@ -81,8 +78,6 @@ class PatchedJanusCloudStreamRequest(object):
             self.info = info
         if ws_port is not None:
             self.ws_port = ws_port
-        if rtp_port is not None:
-            self.rtp_port = rtp_port
         if device is not None:
             self.device = device
 
@@ -208,33 +203,6 @@ class PatchedJanusCloudStreamRequest(object):
             raise ValueError("Invalid value for `ws_port`, must be a value greater than or equal to `-2147483648`")  # noqa: E501
 
         self._ws_port = ws_port
-
-    @property
-    def rtp_port(self):
-        """Gets the rtp_port of this PatchedJanusCloudStreamRequest.  # noqa: E501
-
-
-        :return: The rtp_port of this PatchedJanusCloudStreamRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._rtp_port
-
-    @rtp_port.setter
-    def rtp_port(self, rtp_port):
-        """Sets the rtp_port of this PatchedJanusCloudStreamRequest.
-
-
-        :param rtp_port: The rtp_port of this PatchedJanusCloudStreamRequest.  # noqa: E501
-        :type rtp_port: int
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                rtp_port is not None and rtp_port > 32767):  # noqa: E501
-            raise ValueError("Invalid value for `rtp_port`, must be a value less than or equal to `32767`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                rtp_port is not None and rtp_port < 0):  # noqa: E501
-            raise ValueError("Invalid value for `rtp_port`, must be a value greater than or equal to `0`")  # noqa: E501
-
-        self._rtp_port = rtp_port
 
     @property
     def device(self):

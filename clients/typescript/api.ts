@@ -769,6 +769,12 @@ export interface JanusCloudStream {
     'admin_port': number;
     /**
      * 
+     * @type {number}
+     * @memberof JanusCloudStream
+     */
+    'rtp_port': number;
+    /**
+     * 
      * @type {string}
      * @memberof JanusCloudStream
      */
@@ -838,12 +844,6 @@ export interface JanusCloudStream {
      * @type {number}
      * @memberof JanusCloudStream
      */
-    'rtp_port'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof JanusCloudStream
-     */
     'device': number;
 }
 /**
@@ -882,12 +882,6 @@ export interface JanusCloudStreamRequest {
      * @memberof JanusCloudStreamRequest
      */
     'ws_port'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof JanusCloudStreamRequest
-     */
-    'rtp_port'?: number;
     /**
      * 
      * @type {number}
@@ -959,6 +953,12 @@ export interface JanusEdgeStream {
     'admin_port': number;
     /**
      * 
+     * @type {number}
+     * @memberof JanusEdgeStream
+     */
+    'ws_port': number;
+    /**
+     * 
      * @type {string}
      * @memberof JanusEdgeStream
      */
@@ -969,12 +969,6 @@ export interface JanusEdgeStream {
      * @memberof JanusEdgeStream
      */
     'websocket_url': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof JanusEdgeStream
-     */
-    'websocket_port': number;
     /**
      * 
      * @type {string}
@@ -1022,12 +1016,6 @@ export interface JanusEdgeStream {
      * @type {number}
      * @memberof JanusEdgeStream
      */
-    'ws_port'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof JanusEdgeStream
-     */
     'rtp_port'?: number;
     /**
      * 
@@ -1068,16 +1056,16 @@ export interface JanusEdgeStreamRequest {
     'admin_port': number;
     /**
      * 
+     * @type {number}
+     * @memberof JanusEdgeStreamRequest
+     */
+    'ws_port': number;
+    /**
+     * 
      * @type {string}
      * @memberof JanusEdgeStreamRequest
      */
     'rtp_domain': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof JanusEdgeStreamRequest
-     */
-    'websocket_port': number;
     /**
      * 
      * @type {boolean}
@@ -1102,12 +1090,6 @@ export interface JanusEdgeStreamRequest {
      * @memberof JanusEdgeStreamRequest
      */
     'info'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {number}
-     * @memberof JanusEdgeStreamRequest
-     */
-    'ws_port'?: number;
     /**
      * 
      * @type {number}
@@ -2347,12 +2329,6 @@ export interface PatchedJanusCloudStreamRequest {
      * @type {number}
      * @memberof PatchedJanusCloudStreamRequest
      */
-    'rtp_port'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedJanusCloudStreamRequest
-     */
     'device'?: number;
 }
 /**
@@ -2387,16 +2363,16 @@ export interface PatchedJanusEdgeStreamRequest {
     'admin_port'?: number;
     /**
      * 
+     * @type {number}
+     * @memberof PatchedJanusEdgeStreamRequest
+     */
+    'ws_port'?: number;
+    /**
+     * 
      * @type {string}
      * @memberof PatchedJanusEdgeStreamRequest
      */
     'rtp_domain'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedJanusEdgeStreamRequest
-     */
-    'websocket_port'?: number;
     /**
      * 
      * @type {boolean}
@@ -2421,12 +2397,6 @@ export interface PatchedJanusEdgeStreamRequest {
      * @memberof PatchedJanusEdgeStreamRequest
      */
     'info'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedJanusEdgeStreamRequest
-     */
-    'ws_port'?: number;
     /**
      * 
      * @type {number}

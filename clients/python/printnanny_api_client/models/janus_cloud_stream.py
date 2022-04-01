@@ -44,6 +44,7 @@ class JanusCloudStream(object):
         'api_url': 'str',
         'admin_url': 'str',
         'admin_port': 'int',
+        'rtp_port': 'int',
         'rtp_domain': 'str',
         'websocket_url': 'str',
         'websocket_port': 'int',
@@ -55,7 +56,6 @@ class JanusCloudStream(object):
         'pin': 'str',
         'info': 'dict(str, object)',
         'ws_port': 'int',
-        'rtp_port': 'int',
         'device': 'int'
     }
 
@@ -67,6 +67,7 @@ class JanusCloudStream(object):
         'api_url': 'api_url',
         'admin_url': 'admin_url',
         'admin_port': 'admin_port',
+        'rtp_port': 'rtp_port',
         'rtp_domain': 'rtp_domain',
         'websocket_url': 'websocket_url',
         'websocket_port': 'websocket_port',
@@ -78,11 +79,10 @@ class JanusCloudStream(object):
         'pin': 'pin',
         'info': 'info',
         'ws_port': 'ws_port',
-        'rtp_port': 'rtp_port',
         'device': 'device'
     }
 
-    def __init__(self, id=None, auth=None, api_domain=None, api_port=None, api_url=None, admin_url=None, admin_port=None, rtp_domain=None, websocket_url=None, websocket_port=None, config_type=None, created_dt=None, updated_dt=None, active=None, secret=None, pin=None, info=None, ws_port=None, rtp_port=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, auth=None, api_domain=None, api_port=None, api_url=None, admin_url=None, admin_port=None, rtp_port=None, rtp_domain=None, websocket_url=None, websocket_port=None, config_type=None, created_dt=None, updated_dt=None, active=None, secret=None, pin=None, info=None, ws_port=None, device=None, local_vars_configuration=None):  # noqa: E501
         """JanusCloudStream - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -95,6 +95,7 @@ class JanusCloudStream(object):
         self._api_url = None
         self._admin_url = None
         self._admin_port = None
+        self._rtp_port = None
         self._rtp_domain = None
         self._websocket_url = None
         self._websocket_port = None
@@ -106,7 +107,6 @@ class JanusCloudStream(object):
         self._pin = None
         self._info = None
         self._ws_port = None
-        self._rtp_port = None
         self._device = None
         self.discriminator = None
 
@@ -117,6 +117,7 @@ class JanusCloudStream(object):
         self.api_url = api_url
         self.admin_url = admin_url
         self.admin_port = admin_port
+        self.rtp_port = rtp_port
         self.rtp_domain = rtp_domain
         self.websocket_url = websocket_url
         self.websocket_port = websocket_port
@@ -133,8 +134,6 @@ class JanusCloudStream(object):
             self.info = info
         if ws_port is not None:
             self.ws_port = ws_port
-        if rtp_port is not None:
-            self.rtp_port = rtp_port
         self.device = device
 
     @property
@@ -295,6 +294,29 @@ class JanusCloudStream(object):
             raise ValueError("Invalid value for `admin_port`, must not be `None`")  # noqa: E501
 
         self._admin_port = admin_port
+
+    @property
+    def rtp_port(self):
+        """Gets the rtp_port of this JanusCloudStream.  # noqa: E501
+
+
+        :return: The rtp_port of this JanusCloudStream.  # noqa: E501
+        :rtype: int
+        """
+        return self._rtp_port
+
+    @rtp_port.setter
+    def rtp_port(self, rtp_port):
+        """Sets the rtp_port of this JanusCloudStream.
+
+
+        :param rtp_port: The rtp_port of this JanusCloudStream.  # noqa: E501
+        :type rtp_port: int
+        """
+        if self.local_vars_configuration.client_side_validation and rtp_port is None:  # noqa: E501
+            raise ValueError("Invalid value for `rtp_port`, must not be `None`")  # noqa: E501
+
+        self._rtp_port = rtp_port
 
     @property
     def rtp_domain(self):
@@ -550,33 +572,6 @@ class JanusCloudStream(object):
             raise ValueError("Invalid value for `ws_port`, must be a value greater than or equal to `-2147483648`")  # noqa: E501
 
         self._ws_port = ws_port
-
-    @property
-    def rtp_port(self):
-        """Gets the rtp_port of this JanusCloudStream.  # noqa: E501
-
-
-        :return: The rtp_port of this JanusCloudStream.  # noqa: E501
-        :rtype: int
-        """
-        return self._rtp_port
-
-    @rtp_port.setter
-    def rtp_port(self, rtp_port):
-        """Sets the rtp_port of this JanusCloudStream.
-
-
-        :param rtp_port: The rtp_port of this JanusCloudStream.  # noqa: E501
-        :type rtp_port: int
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                rtp_port is not None and rtp_port > 32767):  # noqa: E501
-            raise ValueError("Invalid value for `rtp_port`, must be a value less than or equal to `32767`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                rtp_port is not None and rtp_port < 0):  # noqa: E501
-            raise ValueError("Invalid value for `rtp_port`, must be a value greater than or equal to `0`")  # noqa: E501
-
-        self._rtp_port = rtp_port
 
     @property
     def device(self):

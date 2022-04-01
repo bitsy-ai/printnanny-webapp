@@ -21,10 +21,10 @@ pub struct JanusEdgeStreamRequest {
     pub api_port: i32,
     #[serde(rename = "admin_port")]
     pub admin_port: i32,
+    #[serde(rename = "ws_port")]
+    pub ws_port: i32,
     #[serde(rename = "rtp_domain")]
     pub rtp_domain: String,
-    #[serde(rename = "websocket_port")]
-    pub websocket_port: i32,
     #[serde(rename = "active", skip_serializing_if = "Option::is_none")]
     pub active: Option<bool>,
     #[serde(rename = "secret", skip_serializing_if = "Option::is_none")]
@@ -33,8 +33,6 @@ pub struct JanusEdgeStreamRequest {
     pub pin: Option<String>,
     #[serde(rename = "info", skip_serializing_if = "Option::is_none")]
     pub info: Option<::std::collections::HashMap<String, serde_json::Value>>,
-    #[serde(rename = "ws_port", skip_serializing_if = "Option::is_none")]
-    pub ws_port: Option<i32>,
     #[serde(rename = "rtp_port", skip_serializing_if = "Option::is_none")]
     pub rtp_port: Option<i32>,
     #[serde(rename = "device")]
@@ -42,19 +40,18 @@ pub struct JanusEdgeStreamRequest {
 }
 
 impl JanusEdgeStreamRequest {
-    pub fn new(auth: crate::models::JanusAuthRequest, api_domain: String, api_port: i32, admin_port: i32, rtp_domain: String, websocket_port: i32, device: i32) -> JanusEdgeStreamRequest {
+    pub fn new(auth: crate::models::JanusAuthRequest, api_domain: String, api_port: i32, admin_port: i32, ws_port: i32, rtp_domain: String, device: i32) -> JanusEdgeStreamRequest {
         JanusEdgeStreamRequest {
             auth: Box::new(auth),
             api_domain,
             api_port,
             admin_port,
+            ws_port,
             rtp_domain,
-            websocket_port,
             active: None,
             secret: None,
             pin: None,
             info: None,
-            ws_port: None,
             rtp_port: None,
             device,
         }

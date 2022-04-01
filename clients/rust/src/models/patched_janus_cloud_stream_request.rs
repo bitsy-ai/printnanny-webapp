@@ -23,8 +23,6 @@ pub struct PatchedJanusCloudStreamRequest {
     pub info: Option<::std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "ws_port", skip_serializing_if = "Option::is_none")]
     pub ws_port: Option<i32>,
-    #[serde(rename = "rtp_port", skip_serializing_if = "Option::is_none")]
-    pub rtp_port: Option<i32>,
     #[serde(rename = "device", skip_serializing_if = "Option::is_none")]
     pub device: Option<i32>,
 }
@@ -37,7 +35,6 @@ impl PatchedJanusCloudStreamRequest {
             pin: None,
             info: None,
             ws_port: None,
-            rtp_port: None,
             device: None,
         }
     }

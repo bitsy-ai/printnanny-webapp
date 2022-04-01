@@ -8,13 +8,12 @@ Name | Type | Description | Notes
 **api_domain** | **str** |  | 
 **api_port** | **int** |  | 
 **admin_port** | **int** |  | 
+**ws_port** | **int** |  | 
 **rtp_domain** | **str** |  | 
-**websocket_port** | **int** |  | 
 **active** | **bool** |  | [optional] 
 **secret** | **str** |  | [optional] 
 **pin** | **str** |  | [optional] 
 **info** | **dict(str, object)** |  | [optional] 
-**ws_port** | **int** |  | [optional] 
 **rtp_port** | **int** |  | [optional] 
 **device** | **int** |  | 
 

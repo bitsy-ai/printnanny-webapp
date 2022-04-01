@@ -44,7 +44,6 @@ class TestPatchedJanusCloudStreamRequest(unittest.TestCase):
                     'key' : null
                     }, 
                 ws_port = -2147483648, 
-                rtp_port = 0, 
                 device = 56
             )
         else :

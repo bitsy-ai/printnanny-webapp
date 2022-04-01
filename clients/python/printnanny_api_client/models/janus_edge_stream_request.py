@@ -41,13 +41,12 @@ class JanusEdgeStreamRequest(object):
         'api_domain': 'str',
         'api_port': 'int',
         'admin_port': 'int',
+        'ws_port': 'int',
         'rtp_domain': 'str',
-        'websocket_port': 'int',
         'active': 'bool',
         'secret': 'str',
         'pin': 'str',
         'info': 'dict(str, object)',
-        'ws_port': 'int',
         'rtp_port': 'int',
         'device': 'int'
     }
@@ -57,18 +56,17 @@ class JanusEdgeStreamRequest(object):
         'api_domain': 'api_domain',
         'api_port': 'api_port',
         'admin_port': 'admin_port',
+        'ws_port': 'ws_port',
         'rtp_domain': 'rtp_domain',
-        'websocket_port': 'websocket_port',
         'active': 'active',
         'secret': 'secret',
         'pin': 'pin',
         'info': 'info',
-        'ws_port': 'ws_port',
         'rtp_port': 'rtp_port',
         'device': 'device'
     }
 
-    def __init__(self, auth=None, api_domain=None, api_port=None, admin_port=None, rtp_domain=None, websocket_port=None, active=None, secret=None, pin=None, info=None, ws_port=None, rtp_port=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, auth=None, api_domain=None, api_port=None, admin_port=None, ws_port=None, rtp_domain=None, active=None, secret=None, pin=None, info=None, rtp_port=None, device=None, local_vars_configuration=None):  # noqa: E501
         """JanusEdgeStreamRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -78,13 +76,12 @@ class JanusEdgeStreamRequest(object):
         self._api_domain = None
         self._api_port = None
         self._admin_port = None
+        self._ws_port = None
         self._rtp_domain = None
-        self._websocket_port = None
         self._active = None
         self._secret = None
         self._pin = None
         self._info = None
-        self._ws_port = None
         self._rtp_port = None
         self._device = None
         self.discriminator = None
@@ -93,8 +90,8 @@ class JanusEdgeStreamRequest(object):
         self.api_domain = api_domain
         self.api_port = api_port
         self.admin_port = admin_port
+        self.ws_port = ws_port
         self.rtp_domain = rtp_domain
-        self.websocket_port = websocket_port
         if active is not None:
             self.active = active
         if secret is not None:
@@ -103,8 +100,6 @@ class JanusEdgeStreamRequest(object):
             self.pin = pin
         if info is not None:
             self.info = info
-        if ws_port is not None:
-            self.ws_port = ws_port
         if rtp_port is not None:
             self.rtp_port = rtp_port
         self.device = device
@@ -205,6 +200,29 @@ class JanusEdgeStreamRequest(object):
         self._admin_port = admin_port
 
     @property
+    def ws_port(self):
+        """Gets the ws_port of this JanusEdgeStreamRequest.  # noqa: E501
+
+
+        :return: The ws_port of this JanusEdgeStreamRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._ws_port
+
+    @ws_port.setter
+    def ws_port(self, ws_port):
+        """Sets the ws_port of this JanusEdgeStreamRequest.
+
+
+        :param ws_port: The ws_port of this JanusEdgeStreamRequest.  # noqa: E501
+        :type ws_port: int
+        """
+        if self.local_vars_configuration.client_side_validation and ws_port is None:  # noqa: E501
+            raise ValueError("Invalid value for `ws_port`, must not be `None`")  # noqa: E501
+
+        self._ws_port = ws_port
+
+    @property
     def rtp_domain(self):
         """Gets the rtp_domain of this JanusEdgeStreamRequest.  # noqa: E501
 
@@ -229,29 +247,6 @@ class JanusEdgeStreamRequest(object):
             raise ValueError("Invalid value for `rtp_domain`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._rtp_domain = rtp_domain
-
-    @property
-    def websocket_port(self):
-        """Gets the websocket_port of this JanusEdgeStreamRequest.  # noqa: E501
-
-
-        :return: The websocket_port of this JanusEdgeStreamRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._websocket_port
-
-    @websocket_port.setter
-    def websocket_port(self, websocket_port):
-        """Sets the websocket_port of this JanusEdgeStreamRequest.
-
-
-        :param websocket_port: The websocket_port of this JanusEdgeStreamRequest.  # noqa: E501
-        :type websocket_port: int
-        """
-        if self.local_vars_configuration.client_side_validation and websocket_port is None:  # noqa: E501
-            raise ValueError("Invalid value for `websocket_port`, must not be `None`")  # noqa: E501
-
-        self._websocket_port = websocket_port
 
     @property
     def active(self):
@@ -348,33 +343,6 @@ class JanusEdgeStreamRequest(object):
         """
 
         self._info = info
-
-    @property
-    def ws_port(self):
-        """Gets the ws_port of this JanusEdgeStreamRequest.  # noqa: E501
-
-
-        :return: The ws_port of this JanusEdgeStreamRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._ws_port
-
-    @ws_port.setter
-    def ws_port(self, ws_port):
-        """Sets the ws_port of this JanusEdgeStreamRequest.
-
-
-        :param ws_port: The ws_port of this JanusEdgeStreamRequest.  # noqa: E501
-        :type ws_port: int
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                ws_port is not None and ws_port > 2147483647):  # noqa: E501
-            raise ValueError("Invalid value for `ws_port`, must be a value less than or equal to `2147483647`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                ws_port is not None and ws_port < -2147483648):  # noqa: E501
-            raise ValueError("Invalid value for `ws_port`, must be a value greater than or equal to `-2147483648`")  # noqa: E501
-
-        self._ws_port = ws_port
 
     @property
     def rtp_port(self):

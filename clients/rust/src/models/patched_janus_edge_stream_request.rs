@@ -21,10 +21,10 @@ pub struct PatchedJanusEdgeStreamRequest {
     pub api_port: Option<i32>,
     #[serde(rename = "admin_port", skip_serializing_if = "Option::is_none")]
     pub admin_port: Option<i32>,
+    #[serde(rename = "ws_port", skip_serializing_if = "Option::is_none")]
+    pub ws_port: Option<i32>,
     #[serde(rename = "rtp_domain", skip_serializing_if = "Option::is_none")]
     pub rtp_domain: Option<String>,
-    #[serde(rename = "websocket_port", skip_serializing_if = "Option::is_none")]
-    pub websocket_port: Option<i32>,
     #[serde(rename = "active", skip_serializing_if = "Option::is_none")]
     pub active: Option<bool>,
     #[serde(rename = "secret", skip_serializing_if = "Option::is_none")]
@@ -33,8 +33,6 @@ pub struct PatchedJanusEdgeStreamRequest {
     pub pin: Option<String>,
     #[serde(rename = "info", skip_serializing_if = "Option::is_none")]
     pub info: Option<::std::collections::HashMap<String, serde_json::Value>>,
-    #[serde(rename = "ws_port", skip_serializing_if = "Option::is_none")]
-    pub ws_port: Option<i32>,
     #[serde(rename = "rtp_port", skip_serializing_if = "Option::is_none")]
     pub rtp_port: Option<i32>,
     #[serde(rename = "device", skip_serializing_if = "Option::is_none")]
@@ -48,13 +46,12 @@ impl PatchedJanusEdgeStreamRequest {
             api_domain: None,
             api_port: None,
             admin_port: None,
+            ws_port: None,
             rtp_domain: None,
-            websocket_port: None,
             active: None,
             secret: None,
             pin: None,
             info: None,
-            ws_port: None,
             rtp_port: None,
             device: None,
         }
