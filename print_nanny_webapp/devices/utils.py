@@ -21,7 +21,7 @@ def is_database_synchronized(database):
     return not executor.migration_plan(targets)
 
 
-def get_available_port() -> int:
+def get_available_rtp_port() -> int:
     if is_database_synchronized(DEFAULT_DB_ALIAS):
         JanusStream = apps.get_model("devices", "JanusStream")
         unavailable_ports = JanusStream.objects.filter(

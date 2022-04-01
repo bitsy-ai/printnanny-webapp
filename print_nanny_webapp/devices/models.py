@@ -10,7 +10,7 @@ from google.cloud import iot_v1 as cloudiot_v1
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.signals import pre_softdelete
 
-from .utils import get_available_port
+from .utils import get_available_rtp_port
 from .enum import (
     DeviceReleaseChannel,
     JanusConfigType,
@@ -368,70 +368,6 @@ class JanusAuth(SafeDeleteModel):
             logger.error(e)
             return False
 
-    @property
-    def api_domain(self):
-        if self.config_type == JanusConfigType.CLOUD:
-            return settings.JANUS_CLOUD_DOMAIN
-        raise NotImplementedError(
-            f"JanusAuth.api_domain is not implemented for JanusConfigType={self.config_type}"
-        )
-
-    @property
-    def rtp_domain(self):
-        if self.config_type == JanusConfigType.CLOUD:
-            return settings.JANUS_CLOUD_RTP_DOMAIN
-        raise NotImplementedError(
-            f"JanusAuth.rpt_domain is not implemented for JanusConfigType={self.config_type}"
-        )
-
-    @property
-    def api_port(self):
-        if self.config_type == JanusConfigType.CLOUD:
-            return settings.JANUS_CLOUD_API_PORT
-        raise NotImplementedError(
-            f"JanusAuth.api_port is not implemented for JanusConfigType={self.config_type}"
-        )
-
-    @property
-    def api_url(self):
-        if self.config_type == JanusConfigType.CLOUD:
-            return settings.JANUS_CLOUD_API_URL
-        raise NotImplementedError(
-            f"JanusAuth.api_url not implemented for JanusConfigType={self.config_type}"
-        )
-
-    @property
-    def admin_url(self):
-        if self.config_type == JanusConfigType.CLOUD:
-            return settings.JANUS_CLOUD_ADMIN_URL
-        raise NotImplementedError(
-            f"JanusAuth.admin_url not implemented for JanusConfigType={self.config_type}"
-        )
-
-    @property
-    def admin_port(self):
-        if self.config_type == JanusConfigType.CLOUD:
-            return settings.JANUS_CLOUD_ADMIN_PORT
-        raise NotImplementedError(
-            f"JanusAuth.admin_port not implemented for JanusConfigType={self.config_type}"
-        )
-
-    @property
-    def websocket_url(self):
-        if self.config_type == JanusConfigType.CLOUD:
-            return settings.JANUS_CLOUD_WS_URL
-        raise NotImplementedError(
-            f"JanusAuth.websocket_url not implemented for JanusConfigType={self.config_type}"
-        )
-
-    @property
-    def websocket_port(self):
-        if self.config_type == JanusConfigType.CLOUD:
-            return settings.JANUS_CLOUD_WS_PORT
-        raise NotImplementedError(
-            f"JanusAuth.websocket_port not implemented for JanusConfigType={self.config_type}"
-        )
-
 
 class JanusStream(SafeDeleteModel):
     class Meta:
@@ -465,79 +401,38 @@ class JanusStream(SafeDeleteModel):
     secret = models.CharField(max_length=255, default=get_random_string_32)
     pin = models.CharField(max_length=255, default=get_random_string_32)
     info = models.JSONField(default=dict)
-    rtp_port = models.PositiveSmallIntegerField(default=get_available_port)
+
+    api_port = models.IntegerField(default=settings.JANUS_CLOUD_API_PORT)
+    admin_port = models.IntegerField(default=settings.JANUS_CLOUD_ADMIN_PORT)
+    ws_port = models.IntegerField(default=settings.JANUS_CLOUD_WS_PORT)
+    api_domain = models.CharField(max_length=255, default=settings.JANUS_CLOUD_DOMAIN)
+
+    rtp_port = models.PositiveSmallIntegerField(default=get_available_rtp_port)
+    rtp_domain = models.CharField(
+        max_length=255, default=settings.JANUS_CLOUD_RTP_DOMAIN
+    )
 
     @property
     def auth(self) -> JanusAuth:
-        if self.config_type == JanusConfigType.CLOUD:
-            janus_auth, _created = JanusAuth.objects.get_or_create(
-                config_type=self.config_type, user=self.device.user
-            )
-            return janus_auth
-        raise NotImplementedError(
-            f"JanusStream.janus_auth is not implemented for config_type {self.config_type}"
+        janus_auth, _created = JanusAuth.objects.get_or_create(
+            config_type=self.config_type, user=self.device.user
         )
-
-    @property
-    def api_domain(self):
-        if self.config_type == JanusConfigType.CLOUD:
-            return settings.JANUS_CLOUD_DOMAIN
-        raise NotImplementedError(
-            f"JanusAuth.api_domain is not implemented for JanusConfigType={self.config_type}"
-        )
-
-    @property
-    def rtp_domain(self):
-        if self.config_type == JanusConfigType.CLOUD:
-            return settings.JANUS_CLOUD_RTP_DOMAIN
-        raise NotImplementedError(
-            f"JanusAuth.rtp_domain is not implemented for JanusConfigType={self.config_type}"
-        )
-
-    @property
-    def api_port(self):
-        if self.config_type == JanusConfigType.CLOUD:
-            return settings.JANUS_CLOUD_API_PORT
-        raise NotImplementedError(
-            f"JanusAuth.api_port is not implemented for JanusConfigType={self.config_type}"
-        )
+        return janus_auth
 
     @property
     def api_url(self):
         if self.config_type == JanusConfigType.CLOUD:
             return settings.JANUS_CLOUD_API_URL
-        raise NotImplementedError(
-            f"JanusAuth.api_url not implemented for JanusConfigType={self.config_type}"
-        )
+        return f"http://{self.api_domain}:{self.api_port}/janus"
 
     @property
     def admin_url(self):
         if self.config_type == JanusConfigType.CLOUD:
             return settings.JANUS_CLOUD_ADMIN_URL
-        raise NotImplementedError(
-            f"JanusAuth.admin_url not implemented for JanusConfigType={self.config_type}"
-        )
-
-    @property
-    def admin_port(self):
-        if self.config_type == JanusConfigType.CLOUD:
-            return settings.JANUS_CLOUD_ADMIN_PORT
-        raise NotImplementedError(
-            f"JanusAuth.admin_port not implemented for JanusConfigType={self.config_type}"
-        )
+        return f"http://{self.api_domain}:{self.api_port}/admin"
 
     @property
     def websocket_url(self):
         if self.config_type == JanusConfigType.CLOUD:
             return settings.JANUS_CLOUD_WS_URL
-        raise NotImplementedError(
-            f"JanusAuth.websocket_url not implemented for JanusConfigType={self.config_type}"
-        )
-
-    @property
-    def websocket_port(self):
-        if self.config_type == JanusConfigType.CLOUD:
-            return settings.JANUS_CLOUD_WS_PORT
-        raise NotImplementedError(
-            f"JanusAuth.websocket_port not implemented for JanusConfigType={self.config_type}"
-        )
+        return f"ws://{self.api_domain}:{self.ws_port}"
