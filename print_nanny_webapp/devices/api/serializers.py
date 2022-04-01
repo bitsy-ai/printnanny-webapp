@@ -96,8 +96,8 @@ class JanusStreamSerializer(serializers.ModelSerializer):
     admin_url = serializers.CharField(read_only=True)
     admin_port = serializers.IntegerField(read_only=True)
     rtp_domain = serializers.CharField(read_only=True)
-    websocket_url = serializers.CharField(read_only=True)
-    websocket_port = serializers.IntegerField(read_only=True)
+    ws_url = serializers.CharField(read_only=True)
+    ws_port = serializers.IntegerField(read_only=True)
     config_type = serializers.CharField(read_only=True)
 
     class Meta:
@@ -129,8 +129,8 @@ class JanusCloudStreamSerializer(serializers.ModelSerializer):
     admin_port = serializers.IntegerField(read_only=True)
     rtp_port = serializers.IntegerField(read_only=True)
     rtp_domain = serializers.CharField(read_only=True)
-    websocket_url = serializers.CharField(read_only=True)
-    websocket_port = serializers.IntegerField(read_only=True)
+    ws_url = serializers.CharField(read_only=True)
+    ws_port = serializers.IntegerField(read_only=True)
     config_type = serializers.SerializerMethodField(read_only=True)
 
     def get_config_type(self, _obj) -> str:
@@ -164,7 +164,7 @@ class JanusEdgeStreamSerializer(serializers.ModelSerializer):
     admin_port = serializers.IntegerField()
     ws_port = serializers.IntegerField()
     rtp_domain = serializers.CharField()
-    websocket_url = serializers.CharField(read_only=True)
+    ws_url = serializers.CharField(read_only=True)
     config_type = serializers.SerializerMethodField()
 
     def get_config_type(self, _obj) -> str:

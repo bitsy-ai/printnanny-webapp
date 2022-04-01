@@ -432,7 +432,7 @@ class JanusStream(SafeDeleteModel):
         return f"http://{self.api_domain}:{self.api_port}/admin"
 
     @property
-    def websocket_url(self):
+    def ws_url(self):
         if self.config_type == JanusConfigType.CLOUD:
             return settings.JANUS_CLOUD_WS_URL
         return f"ws://{self.api_domain}:{self.ws_port}"
