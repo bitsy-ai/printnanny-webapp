@@ -653,12 +653,6 @@ export interface JanusAuth {
     'id': number;
     /**
      * 
-     * @type {boolean}
-     * @memberof JanusAuth
-     */
-    'active': boolean;
-    /**
-     * 
      * @type {string}
      * @memberof JanusAuth
      */

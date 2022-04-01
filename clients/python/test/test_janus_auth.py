@@ -38,7 +38,6 @@ class TestJanusAuth(unittest.TestCase):
         if include_optional :
             return JanusAuth(
                 id = 56, 
-                active = True, 
                 admin_secret = '', 
                 api_token = '', 
                 config_type = 'cloud', 
@@ -48,7 +47,6 @@ class TestJanusAuth(unittest.TestCase):
         else :
             return JanusAuth(
                 id = 56,
-                active = True,
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 user = 56,
         )

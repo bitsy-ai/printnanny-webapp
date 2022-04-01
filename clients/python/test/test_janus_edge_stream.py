@@ -40,7 +40,6 @@ class TestJanusEdgeStream(unittest.TestCase):
                 id = 56, 
                 auth = printnanny_api_client.models.janus_auth.JanusAuth(
                     id = 56, 
-                    active = True, 
                     admin_secret = '', 
                     api_token = '', 
                     config_type = 'cloud', 
@@ -71,7 +70,6 @@ class TestJanusEdgeStream(unittest.TestCase):
                 id = 56,
                 auth = printnanny_api_client.models.janus_auth.JanusAuth(
                     id = 56, 
-                    active = True, 
                     admin_secret = '', 
                     api_token = '', 
                     config_type = 'cloud', 
