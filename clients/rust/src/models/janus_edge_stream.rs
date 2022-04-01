@@ -31,8 +31,8 @@ pub struct JanusEdgeStream {
     pub ws_port: i32,
     #[serde(rename = "rtp_domain")]
     pub rtp_domain: String,
-    #[serde(rename = "websocket_url")]
-    pub websocket_url: String,
+    #[serde(rename = "ws_url")]
+    pub ws_url: String,
     #[serde(rename = "config_type")]
     pub config_type: String,
     #[serde(rename = "created_dt")]
@@ -54,7 +54,7 @@ pub struct JanusEdgeStream {
 }
 
 impl JanusEdgeStream {
-    pub fn new(id: i32, auth: crate::models::JanusAuth, api_domain: String, api_port: i32, api_url: String, admin_url: String, admin_port: i32, ws_port: i32, rtp_domain: String, websocket_url: String, config_type: String, created_dt: String, updated_dt: String, device: i32) -> JanusEdgeStream {
+    pub fn new(id: i32, auth: crate::models::JanusAuth, api_domain: String, api_port: i32, api_url: String, admin_url: String, admin_port: i32, ws_port: i32, rtp_domain: String, ws_url: String, config_type: String, created_dt: String, updated_dt: String, device: i32) -> JanusEdgeStream {
         JanusEdgeStream {
             id,
             auth: Box::new(auth),
@@ -65,7 +65,7 @@ impl JanusEdgeStream {
             admin_port,
             ws_port,
             rtp_domain,
-            websocket_url,
+            ws_url,
             config_type,
             created_dt,
             updated_dt,

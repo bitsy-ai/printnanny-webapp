@@ -41,7 +41,6 @@ class JanusCloudStreamRequest(object):
         'secret': 'str',
         'pin': 'str',
         'info': 'dict(str, object)',
-        'ws_port': 'int',
         'device': 'int'
     }
 
@@ -50,11 +49,10 @@ class JanusCloudStreamRequest(object):
         'secret': 'secret',
         'pin': 'pin',
         'info': 'info',
-        'ws_port': 'ws_port',
         'device': 'device'
     }
 
-    def __init__(self, active=None, secret=None, pin=None, info=None, ws_port=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, active=None, secret=None, pin=None, info=None, device=None, local_vars_configuration=None):  # noqa: E501
         """JanusCloudStreamRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -64,7 +62,6 @@ class JanusCloudStreamRequest(object):
         self._secret = None
         self._pin = None
         self._info = None
-        self._ws_port = None
         self._device = None
         self.discriminator = None
 
@@ -76,8 +73,6 @@ class JanusCloudStreamRequest(object):
             self.pin = pin
         if info is not None:
             self.info = info
-        if ws_port is not None:
-            self.ws_port = ws_port
         self.device = device
 
     @property
@@ -175,33 +170,6 @@ class JanusCloudStreamRequest(object):
         """
 
         self._info = info
-
-    @property
-    def ws_port(self):
-        """Gets the ws_port of this JanusCloudStreamRequest.  # noqa: E501
-
-
-        :return: The ws_port of this JanusCloudStreamRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._ws_port
-
-    @ws_port.setter
-    def ws_port(self, ws_port):
-        """Sets the ws_port of this JanusCloudStreamRequest.
-
-
-        :param ws_port: The ws_port of this JanusCloudStreamRequest.  # noqa: E501
-        :type ws_port: int
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                ws_port is not None and ws_port > 2147483647):  # noqa: E501
-            raise ValueError("Invalid value for `ws_port`, must be a value less than or equal to `2147483647`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                ws_port is not None and ws_port < -2147483648):  # noqa: E501
-            raise ValueError("Invalid value for `ws_port`, must be a value greater than or equal to `-2147483648`")  # noqa: E501
-
-        self._ws_port = ws_port
 
     @property
     def device(self):

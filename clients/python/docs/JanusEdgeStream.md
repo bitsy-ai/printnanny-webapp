@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **admin_port** | **int** |  | 
 **ws_port** | **int** |  | 
 **rtp_domain** | **str** |  | 
-**websocket_url** | **str** |  | [readonly] 
+**ws_url** | **str** |  | [readonly] 
 **config_type** | **str** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
 **updated_dt** | **datetime** |  | [readonly] 

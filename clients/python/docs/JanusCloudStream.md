@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 **admin_port** | **int** |  | [readonly] 
 **rtp_port** | **int** |  | [readonly] 
 **rtp_domain** | **str** |  | [readonly] 
-**websocket_url** | **str** |  | [readonly] 
-**websocket_port** | **int** |  | [readonly] 
+**ws_url** | **str** |  | [readonly] 
+**ws_port** | **int** |  | [readonly] 
 **config_type** | **str** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
 **updated_dt** | **datetime** |  | [readonly] 
@@ -22,7 +22,6 @@ Name | Type | Description | Notes
 **secret** | **str** |  | [optional] 
 **pin** | **str** |  | [optional] 
 **info** | **dict(str, object)** |  | [optional] 
-**ws_port** | **int** |  | [optional] 
 **device** | **int** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -46,7 +46,7 @@ class JanusEdgeStream(object):
         'admin_port': 'int',
         'ws_port': 'int',
         'rtp_domain': 'str',
-        'websocket_url': 'str',
+        'ws_url': 'str',
         'config_type': 'str',
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
@@ -68,7 +68,7 @@ class JanusEdgeStream(object):
         'admin_port': 'admin_port',
         'ws_port': 'ws_port',
         'rtp_domain': 'rtp_domain',
-        'websocket_url': 'websocket_url',
+        'ws_url': 'ws_url',
         'config_type': 'config_type',
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
@@ -80,7 +80,7 @@ class JanusEdgeStream(object):
         'device': 'device'
     }
 
-    def __init__(self, id=None, auth=None, api_domain=None, api_port=None, api_url=None, admin_url=None, admin_port=None, ws_port=None, rtp_domain=None, websocket_url=None, config_type=None, created_dt=None, updated_dt=None, active=None, secret=None, pin=None, info=None, rtp_port=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, auth=None, api_domain=None, api_port=None, api_url=None, admin_url=None, admin_port=None, ws_port=None, rtp_domain=None, ws_url=None, config_type=None, created_dt=None, updated_dt=None, active=None, secret=None, pin=None, info=None, rtp_port=None, device=None, local_vars_configuration=None):  # noqa: E501
         """JanusEdgeStream - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -95,7 +95,7 @@ class JanusEdgeStream(object):
         self._admin_port = None
         self._ws_port = None
         self._rtp_domain = None
-        self._websocket_url = None
+        self._ws_url = None
         self._config_type = None
         self._created_dt = None
         self._updated_dt = None
@@ -116,7 +116,7 @@ class JanusEdgeStream(object):
         self.admin_port = admin_port
         self.ws_port = ws_port
         self.rtp_domain = rtp_domain
-        self.websocket_url = websocket_url
+        self.ws_url = ws_url
         self.config_type = config_type
         self.created_dt = created_dt
         self.updated_dt = updated_dt
@@ -340,27 +340,27 @@ class JanusEdgeStream(object):
         self._rtp_domain = rtp_domain
 
     @property
-    def websocket_url(self):
-        """Gets the websocket_url of this JanusEdgeStream.  # noqa: E501
+    def ws_url(self):
+        """Gets the ws_url of this JanusEdgeStream.  # noqa: E501
 
 
-        :return: The websocket_url of this JanusEdgeStream.  # noqa: E501
+        :return: The ws_url of this JanusEdgeStream.  # noqa: E501
         :rtype: str
         """
-        return self._websocket_url
+        return self._ws_url
 
-    @websocket_url.setter
-    def websocket_url(self, websocket_url):
-        """Sets the websocket_url of this JanusEdgeStream.
+    @ws_url.setter
+    def ws_url(self, ws_url):
+        """Sets the ws_url of this JanusEdgeStream.
 
 
-        :param websocket_url: The websocket_url of this JanusEdgeStream.  # noqa: E501
-        :type websocket_url: str
+        :param ws_url: The ws_url of this JanusEdgeStream.  # noqa: E501
+        :type ws_url: str
         """
-        if self.local_vars_configuration.client_side_validation and websocket_url is None:  # noqa: E501
-            raise ValueError("Invalid value for `websocket_url`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and ws_url is None:  # noqa: E501
+            raise ValueError("Invalid value for `ws_url`, must not be `None`")  # noqa: E501
 
-        self._websocket_url = websocket_url
+        self._ws_url = ws_url
 
     @property
     def config_type(self):

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **admin_port** | **i32** |  | 
 **ws_port** | **i32** |  | 
 **rtp_domain** | **String** |  | 
-**websocket_url** | **String** |  | [readonly]
+**ws_url** | **String** |  | [readonly]
 **config_type** | **String** |  | [readonly]
 **created_dt** | **String** |  | [readonly]
 **updated_dt** | **String** |  | [readonly]

@@ -29,10 +29,10 @@ pub struct JanusStream {
     pub admin_port: i32,
     #[serde(rename = "rtp_domain")]
     pub rtp_domain: String,
-    #[serde(rename = "websocket_url")]
-    pub websocket_url: String,
-    #[serde(rename = "websocket_port")]
-    pub websocket_port: i32,
+    #[serde(rename = "ws_url")]
+    pub ws_url: String,
+    #[serde(rename = "ws_port")]
+    pub ws_port: i32,
     #[serde(rename = "config_type")]
     pub config_type: String,
     #[serde(rename = "created_dt")]
@@ -47,8 +47,6 @@ pub struct JanusStream {
     pub pin: String,
     #[serde(rename = "info")]
     pub info: ::std::collections::HashMap<String, serde_json::Value>,
-    #[serde(rename = "ws_port", skip_serializing_if = "Option::is_none")]
-    pub ws_port: Option<i32>,
     #[serde(rename = "rtp_port")]
     pub rtp_port: i32,
     #[serde(rename = "device")]
@@ -56,7 +54,7 @@ pub struct JanusStream {
 }
 
 impl JanusStream {
-    pub fn new(id: i32, auth: Option<crate::models::JanusAuth>, api_domain: String, api_port: i32, api_url: String, admin_url: String, admin_port: i32, rtp_domain: String, websocket_url: String, websocket_port: i32, config_type: String, created_dt: String, updated_dt: String, active: bool, secret: String, pin: String, info: ::std::collections::HashMap<String, serde_json::Value>, rtp_port: i32, device: i32) -> JanusStream {
+    pub fn new(id: i32, auth: Option<crate::models::JanusAuth>, api_domain: String, api_port: i32, api_url: String, admin_url: String, admin_port: i32, rtp_domain: String, ws_url: String, ws_port: i32, config_type: String, created_dt: String, updated_dt: String, active: bool, secret: String, pin: String, info: ::std::collections::HashMap<String, serde_json::Value>, rtp_port: i32, device: i32) -> JanusStream {
         JanusStream {
             id,
             auth: auth.map(Box::new),
@@ -66,8 +64,8 @@ impl JanusStream {
             admin_url,
             admin_port,
             rtp_domain,
-            websocket_url,
-            websocket_port,
+            ws_url,
+            ws_port,
             config_type,
             created_dt,
             updated_dt,
@@ -75,7 +73,6 @@ impl JanusStream {
             secret,
             pin,
             info,
-            ws_port: None,
             rtp_port,
             device,
         }

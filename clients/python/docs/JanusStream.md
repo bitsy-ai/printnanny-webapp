@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 **admin_url** | **str** |  | [readonly] 
 **admin_port** | **int** |  | [readonly] 
 **rtp_domain** | **str** |  | [readonly] 
-**websocket_url** | **str** |  | [readonly] 
-**websocket_port** | **int** |  | [readonly] 
+**ws_url** | **str** |  | [readonly] 
+**ws_port** | **int** |  | [readonly] 
 **config_type** | **str** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
 **updated_dt** | **datetime** |  | [readonly] 
@@ -21,7 +21,6 @@ Name | Type | Description | Notes
 **secret** | **str** |  | [readonly] 
 **pin** | **str** |  | [readonly] 
 **info** | **dict(str, object)** |  | [readonly] 
-**ws_port** | **int** |  | [optional] 
 **rtp_port** | **int** |  | [readonly] 
 **device** | **int** |  | [readonly] 
 

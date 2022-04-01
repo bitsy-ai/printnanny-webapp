@@ -43,7 +43,6 @@ class TestJanusCloudStreamRequest(unittest.TestCase):
                 info = {
                     'key' : null
                     }, 
-                ws_port = -2147483648, 
                 device = 56
             )
         else :

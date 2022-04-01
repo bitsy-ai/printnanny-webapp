@@ -45,8 +45,8 @@ class TestJanusStream(unittest.TestCase):
                 admin_url = '', 
                 admin_port = 56, 
                 rtp_domain = '', 
-                websocket_url = '', 
-                websocket_port = 56, 
+                ws_url = '', 
+                ws_port = 56, 
                 config_type = '', 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
@@ -56,7 +56,6 @@ class TestJanusStream(unittest.TestCase):
                 info = {
                     'key' : null
                     }, 
-                ws_port = -2147483648, 
                 rtp_port = 56, 
                 device = 56
             )
@@ -70,8 +69,8 @@ class TestJanusStream(unittest.TestCase):
                 admin_url = '',
                 admin_port = 56,
                 rtp_domain = '',
-                websocket_url = '',
-                websocket_port = 56,
+                ws_url = '',
+                ws_port = 56,
                 config_type = '',
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),

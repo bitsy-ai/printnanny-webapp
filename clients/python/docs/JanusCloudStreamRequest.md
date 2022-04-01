@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **secret** | **str** |  | [optional] 
 **pin** | **str** |  | [optional] 
 **info** | **dict(str, object)** |  | [optional] 
-**ws_port** | **int** |  | [optional] 
 **device** | **int** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

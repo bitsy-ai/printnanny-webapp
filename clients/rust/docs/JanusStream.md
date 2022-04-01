@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 **admin_url** | **String** |  | [readonly]
 **admin_port** | **i32** |  | [readonly]
 **rtp_domain** | **String** |  | [readonly]
-**websocket_url** | **String** |  | [readonly]
-**websocket_port** | **i32** |  | [readonly]
+**ws_url** | **String** |  | [readonly]
+**ws_port** | **i32** |  | [readonly]
 **config_type** | **String** |  | [readonly]
 **created_dt** | **String** |  | [readonly]
 **updated_dt** | **String** |  | [readonly]
@@ -21,7 +21,6 @@ Name | Type | Description | Notes
 **secret** | **String** |  | [readonly]
 **pin** | **String** |  | [readonly]
 **info** | [**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md) |  | [readonly]
-**ws_port** | Option<**i32**> |  | [optional]
 **rtp_port** | **i32** |  | [readonly]
 **device** | **i32** |  | [readonly]
 

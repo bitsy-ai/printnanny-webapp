@@ -784,13 +784,13 @@ export interface JanusCloudStream {
      * @type {string}
      * @memberof JanusCloudStream
      */
-    'websocket_url': string;
+    'ws_url': string;
     /**
      * 
      * @type {number}
      * @memberof JanusCloudStream
      */
-    'websocket_port': number;
+    'ws_port': number;
     /**
      * 
      * @type {string}
@@ -838,12 +838,6 @@ export interface JanusCloudStream {
      * @type {number}
      * @memberof JanusCloudStream
      */
-    'ws_port'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof JanusCloudStream
-     */
     'device': number;
 }
 /**
@@ -876,12 +870,6 @@ export interface JanusCloudStreamRequest {
      * @memberof JanusCloudStreamRequest
      */
     'info'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {number}
-     * @memberof JanusCloudStreamRequest
-     */
-    'ws_port'?: number;
     /**
      * 
      * @type {number}
@@ -968,7 +956,7 @@ export interface JanusEdgeStream {
      * @type {string}
      * @memberof JanusEdgeStream
      */
-    'websocket_url': string;
+    'ws_url': string;
     /**
      * 
      * @type {string}
@@ -1162,13 +1150,13 @@ export interface JanusStream {
      * @type {string}
      * @memberof JanusStream
      */
-    'websocket_url': string;
+    'ws_url': string;
     /**
      * 
      * @type {number}
      * @memberof JanusStream
      */
-    'websocket_port': number;
+    'ws_port': number;
     /**
      * 
      * @type {string}
@@ -1216,12 +1204,6 @@ export interface JanusStream {
      * @type {number}
      * @memberof JanusStream
      */
-    'ws_port'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof JanusStream
-     */
     'rtp_port': number;
     /**
      * 
@@ -1229,19 +1211,6 @@ export interface JanusStream {
      * @memberof JanusStream
      */
     'device': number;
-}
-/**
- * 
- * @export
- * @interface JanusStreamRequest
- */
-export interface JanusStreamRequest {
-    /**
-     * 
-     * @type {number}
-     * @memberof JanusStreamRequest
-     */
-    'ws_port'?: number;
 }
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
@@ -2318,12 +2287,6 @@ export interface PatchedJanusCloudStreamRequest {
      * @memberof PatchedJanusCloudStreamRequest
      */
     'info'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedJanusCloudStreamRequest
-     */
-    'ws_port'?: number;
     /**
      * 
      * @type {number}
