@@ -156,7 +156,7 @@ export default {
       })
     },
     async connectStream (janusStream) {
-      const janus = new Janus.Client(janusStream.websocket_url, {
+      const janus = new Janus.Client(janusStream.ws_url, {
         token: janusStream.auth.api_token,
         keepalive: 'true'
       })
