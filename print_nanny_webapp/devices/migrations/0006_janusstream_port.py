@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             model_name="janusstream",
             name="port",
             field=models.PositiveSmallIntegerField(
-                default=print_nanny_webapp.devices.utils.get_available_port
+                default=print_nanny_webapp.devices.utils.get_available_rtp_port
             ),
         ),
     ]

@@ -124,16 +124,16 @@ export default {
         console.log('plugin.on pc:track:remote', event)
         if (event.type === 'track') {
           const video = document.getElementById(el)
-          video.onloadeddata = function (e) {
-            console.log('loadeddata event called')
-            video.play()
-            return videoReady()
-          }
-          video.onloadedmetadata = function (e) {
-            console.log('onloadedmetadata event called')
-            // video.play()
-            // return videoReady()
-          }
+          // video.onloadeddata = function (e) {
+          //   console.log('loadeddata event called')
+          //   video.play()
+          //   return videoReady()
+          // }
+          // video.onloadedmetadata = function (e) {
+          //   console.log('onloadedmetadata event called')
+          //   video.play()
+          //   return videoReady()
+          // }
           const mediaStream = event.streams[0]
           console.log(
             'Attaching stream',
@@ -151,6 +151,7 @@ export default {
             video.src = URL.createObjectURL(mediaStream)
           }
           video.play()
+          videoReady()
         }
       })
     },
