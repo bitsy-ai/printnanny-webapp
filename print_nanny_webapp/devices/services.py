@@ -189,5 +189,15 @@ def janus_cloud_setup(device: Device) -> Tuple[JanusStream, bool]:
     stream, created = JanusStream.objects.get_or_create(
         device=device, config_type=JanusConfigType.CLOUD
     )
+    # set rtp/api domains
+    changed = False
+    if stream.rtp_domain != settings.JANUS_CLOUD_RTP_DOMAIN:
+        stream.rtp_domain = settings.JANUS_CLOUD_RTP_DOMAIN
+        changed = True
+    if stream.api_domain != settings.JANUS_CLOUD_DOMAIN:
+        stream.api_domain = settings.JANUS_CLOUD_DOMAIN
+        changed = True
+    if changed:
+        stream.save()
     logger.info("Retrieved JanusStream %s created=%s", stream, created)
     return stream, created
