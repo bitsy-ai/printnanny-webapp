@@ -356,18 +356,6 @@ class JanusAuth(SafeDeleteModel):
     )
     created_dt = models.DateTimeField(auto_now_add=True)
 
-    @property
-    def active(self):
-        from .services import janus_admin_add_token
-
-        try:
-            res = janus_admin_add_token(self)
-            logger.info("JanusAuth.active %s", res)
-            return True
-        except Exception as e:
-            logger.error(e)
-            return False
-
 
 class JanusStream(SafeDeleteModel):
     class Meta:
@@ -414,9 +402,13 @@ class JanusStream(SafeDeleteModel):
 
     @property
     def auth(self) -> JanusAuth:
+        from .services import janus_admin_add_token
+
         janus_auth, _created = JanusAuth.objects.get_or_create(
             config_type=self.config_type, user=self.device.user
         )
+        res = janus_admin_add_token(janus_auth, self)
+        logger.info("JanusStream.auth %s", res)
         return janus_auth
 
     @property
