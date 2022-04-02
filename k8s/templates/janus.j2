@@ -261,7 +261,7 @@ data:
     nat: {
         stun_server = "stun.l.google.com"
         stun_port = 19302
-        nice_debug = false
+        nice_debug = true
         #full_trickle = true
         #ice_nomination = "regular"
         ice_keepalive_conncheck = true
@@ -360,7 +360,7 @@ data:
         # your machine is ready. Note that Linux distributions offer such directives.
         # You could use the following directive in systemd: 'After=network-online.target'
         # https://www.freedesktop.org/software/systemd/man/systemd.unit.html#Before=
-        ignore_unreachable_ice_server = true
+        ignore_unreachable_ice_server = false
     }
 
     # You can choose which of the available plugins should be
