@@ -10014,6 +10014,11 @@
     "core-util-is" "1.0.2"
     "extsprintf" "^1.2.0"
 
+"vue-class-component@^7.2.6":
+  "integrity" "sha512-+eaQXVrAm/LldalI272PpDe3+i4mPis0ORiMYxF6Ae4hyuCh15W8Idet7wPUEs4N4YptgFHGys4UrgNQOMyO6w=="
+  "resolved" "https://registry.npmjs.org/vue-class-component/-/vue-class-component-7.2.6.tgz"
+  "version" "7.2.6"
+
 "vue-cookies@^1.7.4":
   "integrity" "sha512-mOS5Btr8V9zvAtkmQ7/TfqJIropOx7etDAgBywPCmHjvfJl2gFbH2XgoMghleLoyyMTi5eaJss0mPN7arMoslA=="
   "resolved" "https://registry.yarnpkg.com/vue-cookies/-/vue-cookies-1.7.4.tgz"
