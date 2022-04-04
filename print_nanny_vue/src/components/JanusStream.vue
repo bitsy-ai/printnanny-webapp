@@ -1,6 +1,9 @@
 <script lang="ts" >
 import Vue from 'vue'
 import { mapState, mapActions } from 'vuex'
+import * as api from 'printnanny-api-client'
+import adapter from 'webrtc-adapter'
+import Janus from 'janus-gateway-js'
 
 import {
   DEVICE_MODULE,
@@ -12,14 +15,13 @@ import {
 import { EVENTS_MODULE, STREAM_START, STREAM_STOP } from '@/store/events'
 import { JanusVideoStats, JanusStreamComponentData } from '@/models/janus.interfaces'
 
-function initialData () {
-  return {
+function initialData (): JanusStreamComponentData {
+  return  {
     loading: false,
     active: false,
     error: null,
     timer: null,
     videoStats: null,
-    device: null
   }
 }
 
@@ -68,7 +70,7 @@ const JanusStream = Vue.extend({
       streamStart: STREAM_START,
       streamStop: STREAM_STOP
     }),
-    async connectStream (janusStream) {
+    async connectStream (janusStream: api.JanusStream) {
       const janus = new Janus.Client(janusStream.ws_url, {
         token: janusStream.auth.api_token,
         keepalive: 'true'
@@ -95,7 +97,7 @@ const JanusStream = Vue.extend({
         this.timer = setInterval(this.getVideoStats, 200)
         this.setupRemoteTrack(plugin, this.videoStreamEl)
         console.log('Plugin attached', plugin)
-        plugin.on('message', (message, jesp) => {
+        plugin.on('message', (message: any, jesp: any) => {
           console.log('plugin.on message', message, jesp)
         })
 
@@ -110,7 +112,7 @@ const JanusStream = Vue.extend({
       const peer = this.plugin.getPeerConnection()
       if (peer) {
         const stats = await peer.getStats()
-        stats.forEach((stat) => {
+        stats.forEach((stat: any) => {
           switch (stat.type) {
             case 'inbound-rtp':
               _self.parseInboundRtpStat(stat)
@@ -121,7 +123,7 @@ const JanusStream = Vue.extend({
         })
       }
     },
-    async handleError (error) {
+    async handleError (error: any) {
       console.error(error)
       this.error = error
       // this.resetTimer()
@@ -155,7 +157,7 @@ const JanusStream = Vue.extend({
       }
     },
 
-    async getOrCreateStreamMountpoint (plugin) {
+    async getOrCreateStreamMountpoint (plugin: any) {
       try {
         const res = await plugin.connect(this.janusStream.id, {
           type: 'rtp',
@@ -197,17 +199,17 @@ const JanusStream = Vue.extend({
     monitoringActive () {
       return this.device.monitoring_active === true
     },
-    parseInboundRtpStat (stat) {
+    parseInboundRtpStat (stat: any) {
       const prevStat = this.videoStats
-      const nextStat = {}
-      nextStat.bsnow = stat.bytesReceived
-      nextStat.tsnow = stat.timestamp
-      nextStat.fps = stat.framesPerSecond
-      nextStat.packetsLost = stat.packetsLost
-      nextStat.height = stat.frameHeight
-      nextStat.width = stat.frameWidth
-      nextStat.decoderImplementation = stat.decoderImplementation
-
+      const nextStat: JanusVideoStats = {
+          bsnow: stat.bytesReceived,
+          tsnow: stat.timestamp,
+          fps: stat.framesPerSecond,
+          packetsLost: stat.packetsLost,
+          height: stat.frameHeight,
+          width: stat.frameWidth,
+          decoderImplementation: stat.decoderImplementation,
+      }
       if (prevStat == null) {
         nextStat.bsbefore = nextStat.bsnow
         nextStat.tsbefore = nextStat.tsnow
@@ -223,22 +225,22 @@ const JanusStream = Vue.extend({
           ((nextStat.bsnow - nextStat.bsbefore) * 8) / timePassed
         )
         if (adapter.browserDetails.browser === 'safari') {
-          bitRate = parseInt(bitRate / 1000)
+          bitRate = Math.round(bitRate / 1000)
         }
-        bitRate = bitRate + ' kbits/sec'
+        let bitRateStr = bitRate + ' kbits/sec'
 
         nextStat.bsbefore = nextStat.bsnow
         nextStat.tsbefore = nextStat.tsnow
-        nextStat.bitrate = bitRate
+        nextStat.bitrate = bitRateStr
       }
       this.videoStats = nextStat
     },
-    setupRemoteTrack (plugin, el) {
+    setupRemoteTrack (plugin: any, el: any) {
       const videoReady = this.videoReady
-      plugin.on('pc:track:remote', function (event) {
+      plugin.on('pc:track:remote', function (event: any) {
         console.log('plugin.on pc:track:remote', event)
         if (event.type === 'track') {
-          const video = document.getElementById(el)
+          const video = document.getElementById(el) as HTMLMediaElement
           // video.onloadeddata = function (e) {
           //   console.log('loadeddata event called')
           //   video.play()

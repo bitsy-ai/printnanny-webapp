@@ -1,11 +1,16 @@
 import * as api from 'printnanny-api-client'
 
 interface JanusVideoStats {
-    bitrate: string,
-    packetsLost: string,
+    bitrate?: string,
+    bsbefore?: number,
+    bsnow: number,
+    decoderImplementation: string
     fps: string,
     height: string,
-    width: string
+    packetsLost: string,
+    tsbefore?: number
+    tsnow: number,
+    width: string,
 }
 interface JanusStreamComponentData {
     loading: boolean,
