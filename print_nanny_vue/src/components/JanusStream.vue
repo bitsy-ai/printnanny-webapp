@@ -1,7 +1,10 @@
-<script>
+<script lang="ts" >
+import Vue from 'vue'
+import { mapState, mapActions } from 'vuex'
+import * as api from 'printnanny-api-client'
 import adapter from 'webrtc-adapter'
 import Janus from 'janus-gateway-js'
-import { mapState, mapActions } from 'vuex'
+
 import {
   DEVICE_MODULE,
   DEVICE,
@@ -9,21 +12,25 @@ import {
   JANUS_STREAM,
   SETUP_JANUS_CLOUD
 } from '@/store/devices'
-
 import { EVENTS_MODULE, STREAM_START, STREAM_STOP } from '@/store/events'
+import { JanusVideoStats, JanusStreamComponentData } from '@/models/janus.interfaces'
 
-function initialData () {
-  return {
+function initialData (): JanusStreamComponentData {
+  return  {
     loading: false,
     active: false,
     error: null,
     timer: null,
-    videoStats: null
+    videoStats: null,
   }
 }
 
-export default {
+const JanusStream = Vue.extend({
   props: {
+    configType: {
+      type: String,
+      required: true
+    },
     deviceId: {
       type: String,
       required: true
@@ -36,6 +43,24 @@ export default {
   data: function () {
     return initialData()
   },
+  computed: {
+    ...mapState(DEVICE_MODULE, {
+      device: DEVICE,
+      janusStream: JANUS_STREAM
+    }),
+    showVideo: function () {
+      return this.loading === false && this.active === true
+    },
+    videoStreamEl: function () {
+      return `video-${this.deviceId}`
+    }
+  },
+  async created () {
+    // fetch device data
+    if (this.deviceId) {
+      await this.getDevice(this.deviceId)
+    }
+  },
   methods: {
     ...mapActions(DEVICE_MODULE, {
       getDevice: GET_DEVICE,
@@ -45,6 +70,66 @@ export default {
       streamStart: STREAM_START,
       streamStop: STREAM_STOP
     }),
+    async connectStream (janusStream: api.JanusStream) {
+      const janus = new Janus.Client(janusStream.ws_url, {
+        token: janusStream.auth.api_token,
+        keepalive: 'true'
+      })
+
+      console.log(
+        'Browser details detected',
+        adapter.browserDetails.browser,
+        adapter.browserDetails.version
+      )
+      const connection = await janus.createConnection(this.videoStreamEl)
+      this.connection = connection
+      console.log('Created janus connection', connection)
+
+      try {
+        const session = await connection.createSession()
+        this.session = session
+
+        console.log('Created janus session', session)
+
+        const plugin = await session.attachPlugin(Janus.StreamingPlugin.NAME)
+        this.plugin = plugin
+
+        this.timer = setInterval(this.getVideoStats, 200)
+        this.setupRemoteTrack(plugin, this.videoStreamEl)
+        console.log('Plugin attached', plugin)
+        plugin.on('message', (message: any, jesp: any) => {
+          console.log('plugin.on message', message, jesp)
+        })
+
+        const streamInfo = await this.getOrCreateStreamMountpoint(plugin)
+        console.log('got streamInfo', streamInfo)
+      } catch (error) {
+        return await this.handleError(error)
+      }
+    },
+    async getVideoStats () {
+      const _self = this
+      const peer = this.plugin.getPeerConnection()
+      if (peer) {
+        const stats = await peer.getStats()
+        stats.forEach((stat: any) => {
+          switch (stat.type) {
+            case 'inbound-rtp':
+              _self.parseInboundRtpStat(stat)
+              break
+            default:
+              break
+          }
+        })
+      }
+    },
+    async handleError (error: any) {
+      console.error(error)
+      this.error = error
+      // this.resetTimer()
+      await this.stopMonitoring(this.device)
+      this.loading = false
+    },
     async startMonitoring () {
       this.loading = true
       this.active = true
@@ -59,12 +144,8 @@ export default {
       await this.streamStop(this.deviceId)
       await this.reset()
     },
-    monitoringActive () {
-      return this.device.monitoring_active === true
-    },
     async reset () {
       await this.resetJanus()
-      // this.resetTimer()
       this.data = initialData()
     },
     async resetJanus () {
@@ -76,7 +157,7 @@ export default {
       }
     },
 
-    async getOrCreateStreamMountpoint (plugin) {
+    async getOrCreateStreamMountpoint (plugin: any) {
       try {
         const res = await plugin.connect(this.janusStream.id, {
           type: 'rtp',
@@ -115,15 +196,51 @@ export default {
         return await this.getOrCreateStreamMountpoint(plugin)
       }
     },
-    videoReady () {
-      this.loading = false
+    monitoringActive () {
+      return this.device.monitoring_active === true
     },
-    setupRemoteTrack (plugin, el) {
+    parseInboundRtpStat (stat: any) {
+      const prevStat = this.videoStats
+      const nextStat: JanusVideoStats = {
+          bsnow: stat.bytesReceived,
+          tsnow: stat.timestamp,
+          fps: stat.framesPerSecond,
+          packetsLost: stat.packetsLost,
+          height: stat.frameHeight,
+          width: stat.frameWidth,
+          decoderImplementation: stat.decoderImplementation,
+      }
+      if (prevStat == null) {
+        nextStat.bsbefore = nextStat.bsnow
+        nextStat.tsbefore = nextStat.tsnow
+      } else {
+        nextStat.bsbefore = prevStat.bsbefore
+        nextStat.tsbefore = prevStat.tsbefore
+        let timePassed = nextStat.tsnow - nextStat.tsbefore
+        // timestamp is in microseconds in Safari, otherwise miliseconds
+        if (adapter.browserDetails.browser === 'safari') {
+          timePassed = timePassed / 1000
+        }
+        let bitRate = Math.round(
+          ((nextStat.bsnow - nextStat.bsbefore) * 8) / timePassed
+        )
+        if (adapter.browserDetails.browser === 'safari') {
+          bitRate = Math.round(bitRate / 1000)
+        }
+        let bitRateStr = bitRate + ' kbits/sec'
+
+        nextStat.bsbefore = nextStat.bsnow
+        nextStat.tsbefore = nextStat.tsnow
+        nextStat.bitrate = bitRateStr
+      }
+      this.videoStats = nextStat
+    },
+    setupRemoteTrack (plugin: any, el: any) {
       const videoReady = this.videoReady
-      plugin.on('pc:track:remote', function (event) {
+      plugin.on('pc:track:remote', function (event: any) {
         console.log('plugin.on pc:track:remote', event)
         if (event.type === 'track') {
-          const video = document.getElementById(el)
+          const video = document.getElementById(el) as HTMLMediaElement
           // video.onloadeddata = function (e) {
           //   console.log('loadeddata event called')
           //   video.play()
@@ -155,123 +272,13 @@ export default {
         }
       })
     },
-    async connectStream (janusStream) {
-      const janus = new Janus.Client(janusStream.ws_url, {
-        token: janusStream.auth.api_token,
-        keepalive: 'true'
-      })
-
-      console.log(
-        'Browser details detected',
-        adapter.browserDetails.browser,
-        adapter.browserDetails.version
-      )
-      const connection = await janus.createConnection(this.videoStreamEl)
-      this.connection = connection
-      console.log('Created janus connection', connection)
-
-      try {
-        const session = await connection.createSession()
-        this.session = session
-
-        console.log('Created janus session', session)
-
-        const plugin = await session.attachPlugin(Janus.StreamingPlugin.NAME)
-        this.plugin = plugin
-
-        this.timer = setInterval(this.getVideoStats, 200)
-        this.setupRemoteTrack(plugin, this.videoStreamEl)
-        console.log('Plugin attached', plugin)
-        plugin.on('message', (message, jesp) => {
-          console.log('plugin.on message', message, jesp)
-        })
-
-        const streamInfo = await this.getOrCreateStreamMountpoint(plugin)
-        console.log('got streamInfo', streamInfo)
-      } catch (error) {
-        return await this.handleError(error)
-      }
-    },
-    async handleError (error) {
-      console.error(error)
-      this.error = error
-      // this.resetTimer()
-      await this.stopMonitoring(this.device)
+    videoReady () {
       this.loading = false
-    },
-
-    parseInboundRtpStat (stat) {
-      const prevStat = this.videoStats
-      const nextStat = {}
-      nextStat.bsnow = stat.bytesReceived
-      nextStat.tsnow = stat.timestamp
-      nextStat.fps = stat.framesPerSecond
-      nextStat.packetsLost = stat.packetsLost
-      nextStat.height = stat.frameHeight
-      nextStat.width = stat.frameWidth
-      nextStat.decoderImplementation = stat.decoderImplementation
-
-      if (prevStat == null) {
-        nextStat.bsbefore = nextStat.bsnow
-        nextStat.tsbefore = nextStat.tsnow
-      } else {
-        nextStat.bsbefore = prevStat.bsbefore
-        nextStat.tsbefore = prevStat.tsbefore
-        let timePassed = nextStat.tsnow - nextStat.tsbefore
-        // timestamp is in microseconds in Safari, otherwise miliseconds
-        if (adapter.browserDetails.browser === 'safari') {
-          timePassed = timePassed / 1000
-        }
-        let bitRate = Math.round(
-          ((nextStat.bsnow - nextStat.bsbefore) * 8) / timePassed
-        )
-        if (adapter.browserDetails.browser === 'safari') {
-          bitRate = parseInt(bitRate / 1000)
-        }
-        bitRate = bitRate + ' kbits/sec'
-
-        nextStat.bsbefore = nextStat.bsnow
-        nextStat.tsbefore = nextStat.tsnow
-        nextStat.bitrate = bitRate
-      }
-      this.videoStats = nextStat
-    },
-    async getVideoStats () {
-      const _self = this
-      const peer = this.plugin.getPeerConnection()
-      if (peer) {
-        const stats = await peer.getStats()
-        stats.forEach((stat) => {
-          switch (stat.type) {
-            case 'inbound-rtp':
-              _self.parseInboundRtpStat(stat)
-              break
-            default:
-              break
-          }
-        })
-      }
-    }
-  },
-  computed: {
-    ...mapState(DEVICE_MODULE, {
-      device: DEVICE,
-      janusStream: JANUS_STREAM
-    }),
-    showVideo: function () {
-      return this.loading === false && this.active === true
-    },
-    videoStreamEl: function () {
-      return `video-${this.deviceId}`
-    }
-  },
-  async created () {
-    // fetch device data
-    if (this.deviceId) {
-      await this.getDevice(this.deviceId)
     }
   }
-}
+})
+
+export default JanusStream
 </script>
 <template>
   <div class="card">

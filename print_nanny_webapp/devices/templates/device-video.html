@@ -23,14 +23,24 @@
     </div>
     <div class="row">
         <div class="col-12 col-md-9">
-            <span class="video-stream-app">
-                <video-stream device-id="{{ object.id }}" offline-image="{% static 'images/sleep.svg' %}" />
+            <span class="janus-stream-app">
+                <janus-stream device-id="{{ object.id }}" offline-image="{% static 'images/sleep.svg' %}"
+                    config-type="cloud" />
             </span>
         </div>
+        {% if DEBUG %}
+        <div class="col-12 col-md-9">
+            <h2>Local Janus Stream (dev debug)</h2>
+            <span class="janus-stream-app">
+                <janus-stream device-id="{{ object.id }}" offline-image="{% static 'images/sleep.svg' %}"
+                    config-type="edge" />
+            </span>
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endblock content %}
 {% block extra_javascript %}
 {% load render_bundle from webpack_loader %}
-{% render_bundle 'videoStream' %}
+{% render_bundle 'janusStream' %}
 {% endblock %}

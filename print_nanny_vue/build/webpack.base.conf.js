@@ -32,7 +32,7 @@ module.exports = {
     alerts: './src/apps/AlertsDropdown.js',
     taskStatus: './src/apps/TaskStatus.js',
     networkScanner: './src/apps/NetworkScanner.js',
-    videoStream: './src/apps/VideoStream.js',
+    janusStream: './src/apps/JanusStream.js',
     welcomeWizard: './src/apps/WelcomeWizard.js',
   },
   output: {
@@ -80,6 +80,10 @@ module.exports = {
         test: /\.tsx?$/,
         loader: "ts-loader",
         include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')],
+        options: {
+          appendTsSuffixTo: [/\.vue$/],
+          appendTsxSuffixTo: [/\.vue$/]
+        }
       },
       {
         test: /\.js$/,

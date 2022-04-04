@@ -7,7 +7,7 @@ import {
 } from '@/store/wizard'
 import { DEVICE_MODULE, GET_DEVICE } from '@/store/devices'
 import NetworkScanner from '@/components/NetworkScanner'
-import VideoStream from '@/components/VideoStream'
+import JanusStream from '@/components/JanusStream'
 import { FormWizard, TabContent, WizardButton } from 'vue-form-wizard'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 // import MqttPingPong from "./MqttPingPong.vue";
@@ -19,7 +19,7 @@ export default {
     NetworkScanner,
     WizardButton,
     // MqttPingPong,
-    VideoStream
+    JanusStream
   },
   props: {
     deviceId: String,
@@ -161,22 +161,23 @@ export default {
         <div class="text-center row">
           <div class="col-12 col-md-6">
             <h2 class="header-title text-center">Live Camera Feed</h2>
+
             <p>You should see your Raspberry Pi's camera.</p>
-            <video-stream
+            <janus-stream
               v-if="deviceId !== undefined"
               :device-id="deviceId"
               :stream-id="123"
-              id="video-stream-123"
+              id="janus-stream-123"
             />
           </div>
           <div class="col-12 col-md-6">
             <h2 class="header-title text-center">PrintNanny Vision</h2>
             <p>This is a demonstration of what PrintNanny "sees"</p>
-            <video-stream
+            <janus-stream
               v-if="deviceId !== undefined"
               :device-id="deviceId"
               :stream-id="124"
-              id="video-stream-124"
+              id="janus-stream-124"
             />
           </div>
         </div>
