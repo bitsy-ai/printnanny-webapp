@@ -7,7 +7,7 @@ import {
 } from '@/store/wizard'
 import { DEVICE_MODULE, GET_DEVICE } from '@/store/devices'
 import NetworkScanner from '@/components/NetworkScanner'
-import VideoStream from '@/components/VideoStream'
+import JanusStream from '@/components/JanusStream'
 import { FormWizard, TabContent, WizardButton } from 'vue-form-wizard'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 // import MqttPingPong from "./MqttPingPong.vue";
@@ -19,7 +19,7 @@ export default {
     NetworkScanner,
     WizardButton,
     // MqttPingPong,
-    VideoStream
+    JanusStream
   },
   props: {
     deviceId: String,
@@ -161,6 +161,7 @@ export default {
         <div class="text-center row">
           <div class="col-12 col-md-6">
             <h2 class="header-title text-center">Live Camera Feed</h2>
+
             <p>You should see your Raspberry Pi's camera.</p>
             <janus-stream
               v-if="deviceId !== undefined"

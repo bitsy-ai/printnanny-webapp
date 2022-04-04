@@ -24,6 +24,10 @@ function initialData () {
 
 export default {
   props: {
+    configType: {
+      type: String,
+      required: true
+    },
     deviceId: {
       type: String,
       required: true
