@@ -162,21 +162,21 @@ export default {
           <div class="col-12 col-md-6">
             <h2 class="header-title text-center">Live Camera Feed</h2>
             <p>You should see your Raspberry Pi's camera.</p>
-            <video-stream
+            <janus-stream
               v-if="deviceId !== undefined"
               :device-id="deviceId"
               :stream-id="123"
-              id="video-stream-123"
+              id="janus-stream-123"
             />
           </div>
           <div class="col-12 col-md-6">
             <h2 class="header-title text-center">PrintNanny Vision</h2>
             <p>This is a demonstration of what PrintNanny "sees"</p>
-            <video-stream
+            <janus-stream
               v-if="deviceId !== undefined"
               :device-id="deviceId"
               :stream-id="124"
-              id="video-stream-124"
+              id="janus-stream-124"
             />
           </div>
         </div>
