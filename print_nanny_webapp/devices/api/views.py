@@ -36,6 +36,7 @@ from .serializers import (
     CloudiotDeviceSerializer,
     SystemInfoSerializer,
     DeviceSerializer,
+    JanusStreamSerializer,
 )
 from ..models import (
     CloudiotDevice,
@@ -405,7 +406,7 @@ class JanusCloudStreamViewSet(
     CreateModelMixin,
 ):
     serializer_class = JanusCloudStreamSerializer
-    queryset = JanusStream.objects.all()
+    queryset = JanusStream.objects.filter(config_type=JanusConfigType.CLOUD).all()
     lookup_field = "id"
 
     @extend_schema(
@@ -518,7 +519,7 @@ class JanusEdgeStreamViewSet(
     CreateModelMixin,
 ):
     serializer_class = JanusEdgeStreamSerializer
-    queryset = JanusStream.objects.all()
+    queryset = JanusStream.objects.filter(config_type=JanusConfigType.EDGE).all()
     lookup_field = "id"
 
     @extend_schema(
@@ -562,6 +563,50 @@ class JanusEdgeStreamViewSet(
             return Response(response_serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@extend_schema_view(
+    list=extend_schema(
+        tags=["janus", "devices"],
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        responses={
+            200: JanusStreamSerializer(many=True),
+        }
+        | generic_list_errors,
+    ),
+    create=extend_schema(
+        tags=["janus", "devices"],
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        request=JanusStreamSerializer,
+        responses={
+            201: JanusStreamSerializer,
+        }
+        | generic_create_errors,
+    ),
+    retrieve=extend_schema(
+        tags=["janus", "devices"],
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        request=JanusStreamSerializer,
+        responses={
+            200: JanusStreamSerializer,
+        }
+        | generic_get_errors,
+    ),
+)
+class JanusStreamViewSet(
+    GenericViewSet,
+    ListModelMixin,
+    RetrieveModelMixin,
+):
+    serializer_class = JanusStreamSerializer
+    queryset = JanusStream.objects.all()
+    lookup_field = "id"
 
 
 ###

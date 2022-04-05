@@ -11,6 +11,7 @@ from print_nanny_webapp.devices.api.views import (
     PublicKeyViewSet,
     SystemInfoViewSet,
     DeviceViewSet,
+    JanusStreamViewSet,
 )
 from print_nanny_webapp.events.api.views import EventViewSet
 from print_nanny_webapp.users.api.views import UserViewSet
@@ -50,6 +51,7 @@ devices_router.register(
 devices_router.register(
     r"janus-edge-streams", JanusEdgeStreamViewSet, basename="janus-edge-streams"
 )
+devices_router.register(r"janus-streams", JanusStreamViewSet, basename="janus-streams")
 
 devices_router.register(r"system-info", SystemInfoViewSet, basename="system-info")
 devices_router.register(r"cloudiot", CloudiotDeviceViewSet, basename="cloudiot")
