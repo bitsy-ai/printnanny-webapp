@@ -24,16 +24,18 @@ export default {
     // committing mutation to DEVICE_MODULE namespace requires root: true option on broadcast
     context.commit(`${DEVICE_MODULE}/${SET_JANUS_STREAM_DATA}`, event.stream, { root: true })
   },
-  async [STREAM_STOP](context: any, device: number) {
+  async [STREAM_STOP](context: any, device: number, stream: number) {
     const thisapi = api.EventsApiFactory(API_CONFIG)
-    const req = {
+    const req: api.WebRTCEventRequest = {
       model: api.WebRTCEventModel.WebRtcEvent,
       event_name: api.WebRTCEventName.Stop,
       device: device,
-      source: api.EventSource.PrintnannyWebapp
+      source: api.EventSource.PrintnannyWebapp,
+      stream: stream
     }
     const res = await thisapi.eventsCreate(req)
+    const event = res.data as WebRTCEvent
     console.log("eventsCreate response", res)
-    context.commit(SET_SENT_EVENT, res.data)
+    context.commit(SET_SENT_EVENT, event)
   }
 }
