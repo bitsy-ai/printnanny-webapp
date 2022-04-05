@@ -36,12 +36,11 @@ class TestEventSerializer(serializers.ModelSerializer):
 
 class WebRTCEventSerializer(serializers.ModelSerializer):
     model = serializers.ChoiceField(choices=WebRTCEventModel.choices)
-    stream = JanusStreamSerializer(read_only=True)
 
     class Meta:
         model = WebRTCEvent
         exclude = ("deleted",)
-        read_only_fields = ("user", "created_dt", "stream")
+        read_only_fields = ("user", "created_dt")
 
 
 class PolymorphicEventSerializer(PolymorphicSerializer):
