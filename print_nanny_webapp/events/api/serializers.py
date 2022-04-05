@@ -3,11 +3,8 @@ from django.apps import apps
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from rest_polymorphic.serializers import PolymorphicSerializer
-from print_nanny_webapp.devices.api.serializers import JanusStreamSerializer
 from print_nanny_webapp.events.models import Event, WebRTCEvent, TestEvent
 from print_nanny_webapp.events.enum import (
-    EventSource,
-    EventModel,
     TestEventModel,
     WebRTCEventModel,
 )
