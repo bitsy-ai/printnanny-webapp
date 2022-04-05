@@ -143,6 +143,18 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
+    def test_devices_janus_streams_list(self):
+        """Test case for devices_janus_streams_list
+
+        """
+        pass
+
+    def test_devices_janus_streams_retrieve(self):
+        """Test case for devices_janus_streams_retrieve
+
+        """
+        pass
+
     def test_devices_list(self):
         """Test case for devices_list
 

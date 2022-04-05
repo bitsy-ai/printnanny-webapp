@@ -15,7 +15,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.72.0"
+__version__ = "0.72.1"
 
 # import apis into sdk package
 from printnanny_api_client.api.alerts_api import AlertsApi
@@ -63,6 +63,7 @@ from printnanny_api_client.models.janus_cloud_stream_request import JanusCloudSt
 from printnanny_api_client.models.janus_config_type import JanusConfigType
 from printnanny_api_client.models.janus_edge_stream import JanusEdgeStream
 from printnanny_api_client.models.janus_edge_stream_request import JanusEdgeStreamRequest
+from printnanny_api_client.models.janus_stream import JanusStream
 from printnanny_api_client.models.mobile_auth_request import MobileAuthRequest
 from printnanny_api_client.models.octo_print_backup import OctoPrintBackup
 from printnanny_api_client.models.octo_print_settings import OctoPrintSettings
@@ -76,6 +77,7 @@ from printnanny_api_client.models.paginated_gcode_file_list import PaginatedGcod
 from printnanny_api_client.models.paginated_janus_auth_list import PaginatedJanusAuthList
 from printnanny_api_client.models.paginated_janus_cloud_stream_list import PaginatedJanusCloudStreamList
 from printnanny_api_client.models.paginated_janus_edge_stream_list import PaginatedJanusEdgeStreamList
+from printnanny_api_client.models.paginated_janus_stream_list import PaginatedJanusStreamList
 from printnanny_api_client.models.paginated_octo_print_backup_list import PaginatedOctoPrintBackupList
 from printnanny_api_client.models.paginated_octo_print_settings_list import PaginatedOctoPrintSettingsList
 from printnanny_api_client.models.paginated_octo_printer_profile_list import PaginatedOctoPrinterProfileList

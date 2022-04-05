@@ -34,6 +34,7 @@ docs/JanusCloudStreamRequest.md
 docs/JanusConfigType.md
 docs/JanusEdgeStream.md
 docs/JanusEdgeStreamRequest.md
+docs/JanusStream.md
 docs/MobileAuthRequest.md
 docs/OctoPrintBackup.md
 docs/OctoPrintSettings.md
@@ -48,6 +49,7 @@ docs/PaginatedGcodeFileList.md
 docs/PaginatedJanusAuthList.md
 docs/PaginatedJanusCloudStreamList.md
 docs/PaginatedJanusEdgeStreamList.md
+docs/PaginatedJanusStreamList.md
 docs/PaginatedOctoPrintBackupList.md
 docs/PaginatedOctoPrintSettingsList.md
 docs/PaginatedOctoPrinterProfileList.md
@@ -129,6 +131,7 @@ printnanny_api_client/models/janus_cloud_stream_request.py
 printnanny_api_client/models/janus_config_type.py
 printnanny_api_client/models/janus_edge_stream.py
 printnanny_api_client/models/janus_edge_stream_request.py
+printnanny_api_client/models/janus_stream.py
 printnanny_api_client/models/mobile_auth_request.py
 printnanny_api_client/models/octo_print_backup.py
 printnanny_api_client/models/octo_print_settings.py
@@ -142,6 +145,7 @@ printnanny_api_client/models/paginated_gcode_file_list.py
 printnanny_api_client/models/paginated_janus_auth_list.py
 printnanny_api_client/models/paginated_janus_cloud_stream_list.py
 printnanny_api_client/models/paginated_janus_edge_stream_list.py
+printnanny_api_client/models/paginated_janus_stream_list.py
 printnanny_api_client/models/paginated_octo_print_backup_list.py
 printnanny_api_client/models/paginated_octo_print_settings_list.py
 printnanny_api_client/models/paginated_octo_printer_profile_list.py
@@ -216,6 +220,7 @@ test/test_janus_cloud_stream_request.py
 test/test_janus_config_type.py
 test/test_janus_edge_stream.py
 test/test_janus_edge_stream_request.py
+test/test_janus_stream.py
 test/test_mobile_auth_request.py
 test/test_octo_print_backup.py
 test/test_octo_print_settings.py
@@ -230,6 +235,7 @@ test/test_paginated_gcode_file_list.py
 test/test_paginated_janus_auth_list.py
 test/test_paginated_janus_cloud_stream_list.py
 test/test_paginated_janus_edge_stream_list.py
+test/test_paginated_janus_stream_list.py
 test/test_paginated_octo_print_backup_list.py
 test/test_paginated_octo_print_settings_list.py
 test/test_paginated_octo_printer_profile_list.py

@@ -33,6 +33,7 @@ docs/JanusCloudStreamRequest.md
 docs/JanusConfigType.md
 docs/JanusEdgeStream.md
 docs/JanusEdgeStreamRequest.md
+docs/JanusStream.md
 docs/MobileAuthRequest.md
 docs/OctoPrintBackup.md
 docs/OctoPrintSettings.md
@@ -47,6 +48,7 @@ docs/PaginatedGcodeFileList.md
 docs/PaginatedJanusAuthList.md
 docs/PaginatedJanusCloudStreamList.md
 docs/PaginatedJanusEdgeStreamList.md
+docs/PaginatedJanusStreamList.md
 docs/PaginatedOctoPrintBackupList.md
 docs/PaginatedOctoPrintSettingsList.md
 docs/PaginatedOctoPrinterProfileList.md
@@ -125,6 +127,7 @@ src/models/janus_cloud_stream_request.rs
 src/models/janus_config_type.rs
 src/models/janus_edge_stream.rs
 src/models/janus_edge_stream_request.rs
+src/models/janus_stream.rs
 src/models/mobile_auth_request.rs
 src/models/mod.rs
 src/models/octo_print_backup.rs
@@ -139,6 +142,7 @@ src/models/paginated_gcode_file_list.rs
 src/models/paginated_janus_auth_list.rs
 src/models/paginated_janus_cloud_stream_list.rs
 src/models/paginated_janus_edge_stream_list.rs
+src/models/paginated_janus_stream_list.rs
 src/models/paginated_octo_print_backup_list.rs
 src/models/paginated_octo_print_settings_list.rs
 src/models/paginated_octo_printer_profile_list.rs
