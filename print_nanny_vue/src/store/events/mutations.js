@@ -1,5 +1,6 @@
 import { SENT_EVENTS, RECEIVED_EVENTS, EVENTS } from './state'
 
+export const APPEND_EVENT = 'APPEND_EVENT'
 export const SET_SENT_EVENT = 'SET_SENT_EVENT'
 export const SET_RECEIVED_EVENT = 'SET_RECEIVED_EVENT'
 export default {
