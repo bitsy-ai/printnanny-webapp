@@ -1086,127 +1086,6 @@ export interface JanusEdgeStreamRequest {
     'device': number;
 }
 /**
- * 
- * @export
- * @interface JanusStream
- */
-export interface JanusStream {
-    /**
-     * 
-     * @type {number}
-     * @memberof JanusStream
-     */
-    'id': number;
-    /**
-     * 
-     * @type {JanusAuth}
-     * @memberof JanusStream
-     */
-    'auth': JanusAuth;
-    /**
-     * 
-     * @type {string}
-     * @memberof JanusStream
-     */
-    'api_domain': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof JanusStream
-     */
-    'api_port': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof JanusStream
-     */
-    'api_url': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof JanusStream
-     */
-    'admin_url': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof JanusStream
-     */
-    'admin_port': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof JanusStream
-     */
-    'rtp_domain': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof JanusStream
-     */
-    'ws_url': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof JanusStream
-     */
-    'ws_port': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof JanusStream
-     */
-    'config_type': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof JanusStream
-     */
-    'created_dt': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof JanusStream
-     */
-    'updated_dt': string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof JanusStream
-     */
-    'active': boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof JanusStream
-     */
-    'secret': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof JanusStream
-     */
-    'pin': string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof JanusStream
-     */
-    'info': { [key: string]: any; };
-    /**
-     * 
-     * @type {number}
-     * @memberof JanusStream
-     */
-    'rtp_port': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof JanusStream
-     */
-    'device': number;
-}
-/**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
  * @export
  * @interface MobileAuthRequest
@@ -3137,12 +3016,6 @@ export interface WebRTCEvent {
     'model': WebRTCEventModel;
     /**
      * 
-     * @type {JanusStream}
-     * @memberof WebRTCEvent
-     */
-    'stream': JanusStream;
-    /**
-     * 
      * @type {string}
      * @memberof WebRTCEvent
      */
@@ -3195,6 +3068,12 @@ export interface WebRTCEvent {
      * @memberof WebRTCEvent
      */
     'device': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebRTCEvent
+     */
+    'stream': number;
 }
 /**
  * 
@@ -3275,6 +3154,12 @@ export interface WebRTCEventRequest {
      * @memberof WebRTCEventRequest
      */
     'device': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebRTCEventRequest
+     */
+    'stream': number;
 }
 
 /**

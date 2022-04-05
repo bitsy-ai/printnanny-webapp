@@ -46,8 +46,6 @@ pub mod janus_edge_stream;
 pub use self::janus_edge_stream::JanusEdgeStream;
 pub mod janus_edge_stream_request;
 pub use self::janus_edge_stream_request::JanusEdgeStreamRequest;
-pub mod janus_stream;
-pub use self::janus_stream::JanusStream;
 pub mod mobile_auth_request;
 pub use self::mobile_auth_request::MobileAuthRequest;
 pub mod octo_print_backup;

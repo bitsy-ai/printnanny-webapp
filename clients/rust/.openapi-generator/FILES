@@ -33,7 +33,6 @@ docs/JanusCloudStreamRequest.md
 docs/JanusConfigType.md
 docs/JanusEdgeStream.md
 docs/JanusEdgeStreamRequest.md
-docs/JanusStream.md
 docs/MobileAuthRequest.md
 docs/OctoPrintBackup.md
 docs/OctoPrintSettings.md
@@ -126,7 +125,6 @@ src/models/janus_cloud_stream_request.rs
 src/models/janus_config_type.rs
 src/models/janus_edge_stream.rs
 src/models/janus_edge_stream_request.rs
-src/models/janus_stream.rs
 src/models/mobile_auth_request.rs
 src/models/mod.rs
 src/models/octo_print_backup.rs

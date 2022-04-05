@@ -43,7 +43,8 @@ class PolymorphicEventRequest(object):
         'event_name': 'TestEventName',
         'data': 'dict(str, object)',
         'send_mqtt': 'bool',
-        'device': 'int'
+        'device': 'int',
+        'stream': 'int'
     }
 
     attribute_map = {
@@ -53,13 +54,14 @@ class PolymorphicEventRequest(object):
         'event_name': 'event_name',
         'data': 'data',
         'send_mqtt': 'send_mqtt',
-        'device': 'device'
+        'device': 'device',
+        'stream': 'stream'
     }
 
     discriminator_value_class_map = {
     }
 
-    def __init__(self, model=None, source=None, send_ws=None, event_name=None, data=None, send_mqtt=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, model=None, source=None, send_ws=None, event_name=None, data=None, send_mqtt=None, device=None, stream=None, local_vars_configuration=None):  # noqa: E501
         """PolymorphicEventRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -72,6 +74,7 @@ class PolymorphicEventRequest(object):
         self._data = None
         self._send_mqtt = None
         self._device = None
+        self._stream = None
         self.discriminator = 'model'
 
         self.model = model
@@ -84,6 +87,7 @@ class PolymorphicEventRequest(object):
         if send_mqtt is not None:
             self.send_mqtt = send_mqtt
         self.device = device
+        self.stream = stream
 
     @property
     def model(self):
@@ -243,6 +247,29 @@ class PolymorphicEventRequest(object):
             raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
 
         self._device = device
+
+    @property
+    def stream(self):
+        """Gets the stream of this PolymorphicEventRequest.  # noqa: E501
+
+
+        :return: The stream of this PolymorphicEventRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._stream
+
+    @stream.setter
+    def stream(self, stream):
+        """Sets the stream of this PolymorphicEventRequest.
+
+
+        :param stream: The stream of this PolymorphicEventRequest.  # noqa: E501
+        :type stream: int
+        """
+        if self.local_vars_configuration.client_side_validation and stream is None:  # noqa: E501
+            raise ValueError("Invalid value for `stream`, must not be `None`")  # noqa: E501
+
+        self._stream = stream
 
     def get_real_child_model(self, data):
         """Returns the real base class specified by the discriminator"""

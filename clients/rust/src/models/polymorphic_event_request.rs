@@ -41,6 +41,8 @@ pub struct WebRtcEventRequest {
         pub send_mqtt: Option<bool>,
         #[serde(rename = "device")]
         pub device: i32,
+        #[serde(rename = "stream")]
+        pub stream: i32,
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]

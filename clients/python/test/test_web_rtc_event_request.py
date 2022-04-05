@@ -45,7 +45,8 @@ class TestWebRTCEventRequest(unittest.TestCase):
                     'key' : null
                     }, 
                 send_mqtt = True, 
-                device = 56
+                device = 56, 
+                stream = 56
             )
         else :
             return WebRTCEventRequest(
@@ -53,6 +54,7 @@ class TestWebRTCEventRequest(unittest.TestCase):
                 source = 'octoprint',
                 event_name = 'stream_start',
                 device = 56,
+                stream = 56,
         )
 
     def testWebRTCEventRequest(self):

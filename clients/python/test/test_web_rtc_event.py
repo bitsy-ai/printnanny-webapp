@@ -39,7 +39,6 @@ class TestWebRTCEvent(unittest.TestCase):
             return WebRTCEvent(
                 id = 56, 
                 model = 'WebRTCEvent', 
-                stream = None, 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 source = 'octoprint', 
                 send_ws = True, 
@@ -50,19 +49,20 @@ class TestWebRTCEvent(unittest.TestCase):
                 send_mqtt = True, 
                 polymorphic_ctype = 56, 
                 user = 56, 
-                device = 56
+                device = 56, 
+                stream = 56
             )
         else :
             return WebRTCEvent(
                 id = 56,
                 model = 'WebRTCEvent',
-                stream = None,
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 source = 'octoprint',
                 event_name = 'stream_start',
                 polymorphic_ctype = 56,
                 user = 56,
                 device = 56,
+                stream = 56,
         )
 
     def testWebRTCEvent(self):

@@ -29,10 +29,12 @@ pub struct WebRtcEventRequest {
     pub send_mqtt: Option<bool>,
     #[serde(rename = "device")]
     pub device: i32,
+    #[serde(rename = "stream")]
+    pub stream: i32,
 }
 
 impl WebRtcEventRequest {
-    pub fn new(model: crate::models::WebRtcEventModel, source: crate::models::EventSource, event_name: crate::models::WebRtcEventName, device: i32) -> WebRtcEventRequest {
+    pub fn new(model: crate::models::WebRtcEventModel, source: crate::models::EventSource, event_name: crate::models::WebRtcEventName, device: i32, stream: i32) -> WebRtcEventRequest {
         WebRtcEventRequest {
             model,
             source,
@@ -41,6 +43,7 @@ impl WebRtcEventRequest {
             data: None,
             send_mqtt: None,
             device,
+            stream,
         }
     }
 }
