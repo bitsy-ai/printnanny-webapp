@@ -144,7 +144,7 @@ const JanusStream = Vue.extend({
     },
     async stopMonitoring() {
       this.loading = false;
-      await this.streamStop(this.deviceId);
+      await this.streamStop(this.deviceId, this.configType);
       await this.reset();
     },
     async reset() {
