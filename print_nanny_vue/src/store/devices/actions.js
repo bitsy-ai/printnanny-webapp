@@ -7,6 +7,7 @@ import { API_CONFIG } from '../../services/api'
 
 export const GET_DEVICE = 'get_device'
 export const SETUP_JANUS_CLOUD = 'setup_janus_cloud'
+export const SETUP_JANUS_EDGE = 'setup_janus_edge'
 export const GET_JANUS_STREAM = 'get_janus_stream'
 
 export default {
@@ -27,6 +28,14 @@ export default {
     const req = { device: deviceId }
     const res = await thisapi.devicesJanusCloudStreamGetOrCreate(deviceId, req)
     console.log('Response to devicesJanusCloudStreamGetOrCreate', res)
+    commit(SET_JANUS_STREAM_DATA, res.data)
+    return res.data
+  },
+  async [SETUP_JANUS_EDGE] ({ commit, state, dispatch }, deviceId) {
+    const thisapi = api.DevicesApiFactory(API_CONFIG)
+    const req = { device: deviceId }
+    const res = await thisapi.devicesJanusEdgeStreamGetOrCreate(deviceId, req)
+    console.log('Response to devicesJanusEdgeStreamGetOrCreate', res)
     commit(SET_JANUS_STREAM_DATA, res.data)
     return res.data
   }

@@ -11,6 +11,7 @@ import {
   GET_DEVICE,
   JANUS_STREAM,
   SETUP_JANUS_CLOUD,
+  SETUP_JANUS_EDGE,
 } from "@/store/devices";
 import { EVENTS_MODULE, STREAM_START, STREAM_STOP } from "@/store/events";
 import {
@@ -68,6 +69,7 @@ const JanusStream = Vue.extend({
     ...mapActions(DEVICE_MODULE, {
       getDevice: GET_DEVICE,
       setupJanusCloud: SETUP_JANUS_CLOUD,
+      setupJanusEdge: SETUP_JANUS_EDGE,
     }),
     ...mapActions(EVENTS_MODULE, {
       streamStart: STREAM_START,
@@ -133,18 +135,28 @@ const JanusStream = Vue.extend({
       await this.stopMonitoring(this.device);
       this.loading = false;
     },
+
+    async setupJanusStream() {
+      if (this.configType == api.JanusConfigType.Cloud) {
+        return await this.setupJanusCloud(this.deviceId);
+      } else {
+        return await this.setupJanusEdge(this.deviceId);
+      }
+    },
     async startMonitoring() {
       this.loading = true;
       this.active = true;
 
       this.error = null;
-      const janusStream = await this.setupJanusCloud(this.deviceId);
-      await this.streamStart(this.deviceId, this.configType);
+
+      const janusStream = await this.setupJanusStream();
+
+      await this.streamStart(this.deviceId, janusStream.id);
       await this.connectStream(janusStream);
     },
     async stopMonitoring() {
       this.loading = false;
-      await this.streamStop(this.deviceId, this.configType);
+      await this.streamStop(this.deviceId, this.janusStream.id);
       await this.reset();
     },
     async reset() {

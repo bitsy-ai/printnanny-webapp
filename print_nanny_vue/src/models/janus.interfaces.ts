@@ -18,7 +18,8 @@ interface JanusStreamComponentData {
     error?: string,
     timer?: string,
     videoStats?: JanusVideoStats,
-    device?: api.Device
+    device?: api.Device,
+    janusStream?: api.JanusEdgeStream | api.JanusCloudStream
 }
 export {
     JanusStreamComponentData,
