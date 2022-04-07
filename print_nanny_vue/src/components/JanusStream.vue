@@ -1,6 +1,6 @@
 <script lang="ts" >
 import Vue from "vue";
-import { mapState, mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 import * as api from "printnanny-api-client";
 import adapter from "webrtc-adapter";
 import Janus from "janus-gateway-js";
@@ -138,9 +138,9 @@ const JanusStream = Vue.extend({
 
     async setupJanusStream() {
       if (this.configType == api.JanusConfigType.Cloud) {
-        return await this.setupJanusCloud(this.deviceId);
+        return await this.setupJanusCloud(this.device);
       } else {
-        return await this.setupJanusEdge(this.deviceId);
+        return await this.setupJanusEdge(this.device);
       }
     },
     async startMonitoring() {

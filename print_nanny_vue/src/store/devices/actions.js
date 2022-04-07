@@ -1,3 +1,4 @@
+
 import {
   SET_DEVICE_DATA,
   SET_JANUS_STREAM_DATA
@@ -23,18 +24,18 @@ export default {
     console.log('Response to devicesRetrieve', res)
     commit(SET_JANUS_STREAM_DATA, res.data.results[0])
   },
-  async [SETUP_JANUS_CLOUD] ({ commit, state, dispatch }, deviceId) {
+  async [SETUP_JANUS_CLOUD] ({ commit, state, dispatch }, device) {
     const thisapi = api.DevicesApiFactory(API_CONFIG)
-    const req = { device: deviceId }
-    const res = await thisapi.devicesJanusCloudStreamGetOrCreate(deviceId, req)
+    const req = { device: device.id }
+    const res = await thisapi.devicesJanusCloudStreamGetOrCreate(device.id, req)
     console.log('Response to devicesJanusCloudStreamGetOrCreate', res)
     commit(SET_JANUS_STREAM_DATA, res.data)
     return res.data
   },
-  async [SETUP_JANUS_EDGE] ({ commit, state, dispatch }, deviceId) {
+  async [SETUP_JANUS_EDGE] ({ commit, state, dispatch }, device) {
     const thisapi = api.DevicesApiFactory(API_CONFIG)
-    const req = { device: deviceId }
-    const res = await thisapi.devicesJanusEdgeStreamGetOrCreate(deviceId, req)
+    const req = { device: device.id }
+    const res = await thisapi.devicesJanusEdgeStreamGetOrCreate(device.id, req)
     console.log('Response to devicesJanusEdgeStreamGetOrCreate', res)
     commit(SET_JANUS_STREAM_DATA, res.data)
     return res.data
