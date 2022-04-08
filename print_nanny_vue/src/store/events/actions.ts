@@ -8,6 +8,9 @@ export const STREAM_START = 'STREAM_START'
 export const STREAM_STOP = 'STREAM_STOP'
 
 export default {
+  // TODO
+  // import { ActionContext } from "vuex";
+  // context: ActionContext<S,R>
   async [STREAM_START](context: any, { device, stream }: { device: number, stream: number }) {
     const thisapi = api.EventsApiFactory(API_CONFIG)
     const req: api.WebRTCEventRequest = {
