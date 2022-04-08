@@ -129,8 +129,7 @@ const JanusStream = Vue.extend({
     async handleError(error: any) {
       console.error(error);
       this.error = error;
-      // this.resetTimer()
-      await this.stopMonitoring(this.device);
+      await this.stopMonitoring();
       this.loading = false;
     },
     async startMonitoring() {
@@ -145,10 +144,12 @@ const JanusStream = Vue.extend({
     },
     async stopMonitoring() {
       this.loading = false;
-      await this.streamStop({
-        device: this.deviceId,
-        stream: this.janusStream.id,
-      });
+      if (this.janusStream) {
+        await this.streamStop({
+          device: this.deviceId,
+          stream: this.janusStream.id,
+        });
+      }
       await this.reset();
     },
     async reset() {
