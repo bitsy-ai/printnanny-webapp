@@ -2721,6 +2721,18 @@ export interface PrintNannyApiConfig {
      * @memberof PrintNannyApiConfig
      */
     'base_path': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintNannyApiConfig
+     */
+    'static': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintNannyApiConfig
+     */
+    'ws': string;
 }
 /**
  * 
