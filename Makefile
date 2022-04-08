@@ -333,7 +333,7 @@ ts-client: clean-ts-client
 		-o $(PWD)/clients/typescript \
 		-c $(PWD)/clients/typescript.yaml
 
-	cd clients/typescript && npm install && npm build
+	cd clients/typescript && npm install && npm run build
 
 # debugging info: https://openapi-generator.tech/docs/debugging#templates
 rust-client: clean-rust-client openapi-custom-rust-codegen
