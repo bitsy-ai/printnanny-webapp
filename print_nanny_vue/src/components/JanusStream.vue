@@ -11,6 +11,7 @@ import {
   GET_DEVICE,
   JANUS_STREAM,
   SETUP_JANUS_CLOUD,
+  GET_JANUS_STREAM,
 } from "@/store/devices";
 import { EVENTS_MODULE, STREAM_START, STREAM_STOP } from "@/store/events";
 import {
@@ -55,7 +56,7 @@ const JanusStream = Vue.extend({
       return this.loading === false && this.active === true;
     },
     videoStreamEl: function () {
-      return `video-${this.deviceId}`;
+      return `janus-stream-${this.configType}-${this.deviceId}`;
     },
   },
   async created() {
@@ -68,6 +69,7 @@ const JanusStream = Vue.extend({
     ...mapActions(DEVICE_MODULE, {
       getDevice: GET_DEVICE,
       setupJanusCloud: SETUP_JANUS_CLOUD,
+      getJanusStream: GET_JANUS_STREAM,
     }),
     ...mapActions(EVENTS_MODULE, {
       streamStart: STREAM_START,
@@ -129,9 +131,21 @@ const JanusStream = Vue.extend({
     async handleError(error: any) {
       console.error(error);
       this.error = error;
-      // this.resetTimer()
-      await this.stopMonitoring(this.device);
+      await this.stopMonitoring();
       this.loading = false;
+    },
+    async setupJanusStream(): Promise<
+      api.JanusCloudStream | api.JanusEdgeStream
+    > {
+      switch (this.configType) {
+        case api.JanusConfigType.Cloud:
+          return await this.setupJanusCloud(this.deviceId);
+        case api.JanusConfigType.Edge:
+          return await this.getJanusStream({
+            device: this.deviceId,
+            configType: this.configType,
+          });
+      }
     },
     async startMonitoring() {
       this.loading = true;
@@ -139,12 +153,18 @@ const JanusStream = Vue.extend({
 
       this.error = null;
       const janusStream = await this.setupJanusCloud(this.deviceId);
-      await this.streamStart(this.deviceId, this.configType);
+      console.log("Calling this.streamStart with janusStream", janusStream);
+      await this.streamStart({ device: this.deviceId, stream: janusStream.id });
       await this.connectStream(janusStream);
     },
     async stopMonitoring() {
       this.loading = false;
-      await this.streamStop(this.deviceId, this.configType);
+      if (this.janusStream) {
+        await this.streamStop({
+          device: this.deviceId,
+          stream: this.janusStream.id,
+        });
+      }
       await this.reset();
     },
     async reset() {
