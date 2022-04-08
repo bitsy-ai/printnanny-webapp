@@ -14,7 +14,7 @@ class PrintNannyApiConfigSerializer(serializers.Serializer):
     ws = serializers.SerializerMethodField(read_only=True)
 
     def get_static(self, _obj) -> str:
-        absolute_url = self.request.build_absolute_uri(settings.WS_BASE_URL)
+        absolute_url = self.request.build_absolute_uri(settings.STATIC_URL)
         return absolute_url
 
     def get_ws(self, _obj) -> str:
