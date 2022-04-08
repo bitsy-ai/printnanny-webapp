@@ -34,6 +34,8 @@ list_desired_config_schema = extend_schema(
 class PrintNannyApiConfigViewset(ViewSet):
     def list(self, request, *args, **kwargs):
         data = get_api_config(request)
-        serializer = PrintNannyApiConfigSerializer(instance=data)
+        serializer = PrintNannyApiConfigSerializer(
+            instance=data, context=dict(request=request)
+        )
 
         return Response(serializer.data)
