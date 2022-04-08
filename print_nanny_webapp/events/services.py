@@ -46,13 +46,13 @@ def publish_channel_msg(events_channel: str, serializer: PolymorphicEventSeriali
     """
     channel_layer = get_channel_layer()
     data = dict(namespace="EVENTS", mutation="SET_RECEIVED_EVENT", data=serializer.data)
-    bytes_data = JSONRenderer().render(data)
+    utf8_data = JSONRenderer().render(data).decode("utf-8")
 
     async_to_sync(channel_layer.group_send)(
         events_channel,
         {
             "type": "event.send",
-            "data": bytes_data,
+            "data": utf8_data,
         },
     )
 

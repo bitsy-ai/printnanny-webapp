@@ -33,12 +33,4 @@ class EventConsumer(AsyncJsonWebsocketConsumer):
         raise NotImplementedError("Receiving JSON not yet supported over websocket")
 
     async def event_send(self, event):
-        """
-        https://github.com/nathantsoi/vue-native-websocket#with-format-json-enabled
-
-        vue-native-websocket will automatically map the following values if provided:
-        .namespace - map to module namespace defined in print_nanny_vue/src/store/index.js
-        .mutation - automatically call SOCKET_[mutation value]
-        .action - automatically call action
-        """
-        await self.send(text_data=event["data"].encode("utf-8"))
+        await self.send(text_data=event["data"])
