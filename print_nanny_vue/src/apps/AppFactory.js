@@ -5,7 +5,7 @@ import store from '../store'
 import Vuelidate from '@vuelidate/core'
 import VueCompositionAPI from '@vue/composition-api'
 import { BootstrapVue } from 'bootstrap-vue'
-import { WS_URL } from '../services/api'
+import { PRINTNANNY_WS_URL } from '../services/api'
 
 Vue.config.productionTip = false
 Vue.use(Vuelidate)
@@ -14,7 +14,7 @@ Vue.use(VueCookies)
 Vue.use(BootstrapVue)
 Vue.use(
   VueNativeSock,
-  WS_URL,
+  PRINTNANNY_WS_URL,
   {
     store: store,
     format: 'json',
