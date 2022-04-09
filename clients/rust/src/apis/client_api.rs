@@ -16,10 +16,11 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method [`client_config_list`]
+/// struct for typed errors of method [`api_config_retreive`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ClientConfigListError {
+pub enum ApiConfigRetreiveError {
+    Status404(crate::models::ErrorDetail),
     Status400(crate::models::ErrorDetail),
     Status401(crate::models::ErrorDetail),
     Status403(crate::models::ErrorDetail),
@@ -28,12 +29,12 @@ pub enum ClientConfigListError {
 }
 
 
-pub async fn client_config_list(configuration: &configuration::Configuration, ) -> Result<Vec<crate::models::PrintNannyApiConfig>, Error<ClientConfigListError>> {
+pub async fn api_config_retreive(configuration: &configuration::Configuration, ) -> Result<crate::models::PrintNannyApiConfig, Error<ApiConfigRetreiveError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/client-config/", local_var_configuration.base_path);
+    let local_var_uri_str = format!("{}/api/client", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -52,7 +53,7 @@ pub async fn client_config_list(configuration: &configuration::Configuration, ) 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ClientConfigListError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<ApiConfigRetreiveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }

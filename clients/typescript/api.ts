@@ -4432,18 +4432,18 @@ export class AuthApi extends BaseAPI implements AuthApiInterface {
 
 
 /**
- * ClientConfigApi - axios parameter creator
+ * ClientApi - axios parameter creator
  * @export
  */
-export const ClientConfigApiAxiosParamCreator = function (configuration?: Configuration) {
+export const ClientApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        clientConfigList: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/client-config/`;
+        apiConfigRetreive: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/client`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -4476,73 +4476,189 @@ export const ClientConfigApiAxiosParamCreator = function (configuration?: Config
 };
 
 /**
- * ClientConfigApi - functional programming interface
+ * ClientApi - functional programming interface
  * @export
  */
-export const ClientConfigApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = ClientConfigApiAxiosParamCreator(configuration)
+export const ClientApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ClientApiAxiosParamCreator(configuration)
     return {
         /**
          * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async clientConfigList(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PrintNannyApiConfig>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.clientConfigList(options);
+        async apiConfigRetreive(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintNannyApiConfig>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiConfigRetreive(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
 };
 
 /**
- * ClientConfigApi - factory interface
+ * ClientApi - factory interface
  * @export
  */
-export const ClientConfigApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = ClientConfigApiFp(configuration)
+export const ClientApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ClientApiFp(configuration)
     return {
         /**
          * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        clientConfigList(options?: any): AxiosPromise<Array<PrintNannyApiConfig>> {
-            return localVarFp.clientConfigList(options).then((request) => request(axios, basePath));
+        apiConfigRetreive(options?: any): AxiosPromise<PrintNannyApiConfig> {
+            return localVarFp.apiConfigRetreive(options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * ClientConfigApi - interface
+ * ClientApi - interface
  * @export
- * @interface ClientConfigApi
+ * @interface ClientApi
  */
-export interface ClientConfigApiInterface {
+export interface ClientApiInterface {
     /**
      * 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ClientConfigApiInterface
+     * @memberof ClientApiInterface
      */
-    clientConfigList(options?: AxiosRequestConfig): AxiosPromise<Array<PrintNannyApiConfig>>;
+    apiConfigRetreive(options?: AxiosRequestConfig): AxiosPromise<PrintNannyApiConfig>;
 
 }
 
 /**
- * ClientConfigApi - object-oriented interface
+ * ClientApi - object-oriented interface
  * @export
- * @class ClientConfigApi
+ * @class ClientApi
  * @extends {BaseAPI}
  */
-export class ClientConfigApi extends BaseAPI implements ClientConfigApiInterface {
+export class ClientApi extends BaseAPI implements ClientApiInterface {
     /**
      * 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ClientConfigApi
+     * @memberof ClientApi
      */
-    public clientConfigList(options?: AxiosRequestConfig) {
-        return ClientConfigApiFp(this.configuration).clientConfigList(options).then((request) => request(this.axios, this.basePath));
+    public apiConfigRetreive(options?: AxiosRequestConfig) {
+        return ClientApiFp(this.configuration).apiConfigRetreive(options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * ConfigApi - axios parameter creator
+ * @export
+ */
+export const ConfigApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiConfigRetreive: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/client`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * ConfigApi - functional programming interface
+ * @export
+ */
+export const ConfigApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ConfigApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiConfigRetreive(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintNannyApiConfig>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiConfigRetreive(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * ConfigApi - factory interface
+ * @export
+ */
+export const ConfigApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ConfigApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiConfigRetreive(options?: any): AxiosPromise<PrintNannyApiConfig> {
+            return localVarFp.apiConfigRetreive(options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * ConfigApi - interface
+ * @export
+ * @interface ConfigApi
+ */
+export interface ConfigApiInterface {
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigApiInterface
+     */
+    apiConfigRetreive(options?: AxiosRequestConfig): AxiosPromise<PrintNannyApiConfig>;
+
+}
+
+/**
+ * ConfigApi - object-oriented interface
+ * @export
+ * @class ConfigApi
+ * @extends {BaseAPI}
+ */
+export class ConfigApi extends BaseAPI implements ConfigApiInterface {
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigApi
+     */
+    public apiConfigRetreive(options?: AxiosRequestConfig) {
+        return ConfigApiFp(this.configuration).apiConfigRetreive(options).then((request) => request(this.axios, this.basePath));
     }
 }
 

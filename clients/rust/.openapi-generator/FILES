@@ -11,9 +11,10 @@ docs/AuthApi.md
 docs/CallbackTokenAuthRequest.md
 docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
-docs/ClientConfigApi.md
+docs/ClientApi.md
 docs/CloudiotDevice.md
 docs/CloudiotDeviceRequest.md
+docs/ConfigApi.md
 docs/DetailResponse.md
 docs/Device.md
 docs/DeviceReleaseChannel.md
@@ -92,7 +93,8 @@ docs/WebRtcEventRequest.md
 git_push.sh
 src/apis/alerts_api.rs
 src/apis/auth_api.rs
-src/apis/client_config_api.rs
+src/apis/client_api.rs
+src/apis/config_api.rs
 src/apis/configuration.rs
 src/apis/devices_api.rs
 src/apis/events_api.rs

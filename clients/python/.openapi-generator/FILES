@@ -12,9 +12,10 @@ docs/AuthApi.md
 docs/CallbackTokenAuthRequest.md
 docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
-docs/ClientConfigApi.md
+docs/ClientApi.md
 docs/CloudiotDevice.md
 docs/CloudiotDeviceRequest.md
+docs/ConfigApi.md
 docs/DetailResponse.md
 docs/Device.md
 docs/DeviceReleaseChannel.md
@@ -95,7 +96,8 @@ printnanny_api_client/__init__.py
 printnanny_api_client/api/__init__.py
 printnanny_api_client/api/alerts_api.py
 printnanny_api_client/api/auth_api.py
-printnanny_api_client/api/client_config_api.py
+printnanny_api_client/api/client_api.py
+printnanny_api_client/api/config_api.py
 printnanny_api_client/api/devices_api.py
 printnanny_api_client/api/events_api.py
 printnanny_api_client/api/janus_api.py
@@ -198,9 +200,10 @@ test/test_auth_api.py
 test/test_callback_token_auth_request.py
 test/test_callback_token_verification.py
 test/test_callback_token_verification_request.py
-test/test_client_config_api.py
+test/test_client_api.py
 test/test_cloudiot_device.py
 test/test_cloudiot_device_request.py
+test/test_config_api.py
 test/test_detail_response.py
 test/test_device.py
 test/test_device_release_channel.py

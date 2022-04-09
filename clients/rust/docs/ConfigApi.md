@@ -1,16 +1,16 @@
-# \ClientConfigApi
+# \ConfigApi
 
 All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**client_config_list**](ClientConfigApi.md#client_config_list) | **GET** /api/client-config/ | 
+[**api_config_retreive**](ConfigApi.md#api_config_retreive) | **GET** /api/client | 
 
 
 
-## client_config_list
+## api_config_retreive
 
-> Vec<crate::models::PrintNannyApiConfig> client_config_list()
+> crate::models::PrintNannyApiConfig api_config_retreive()
 
 
 ### Parameters
@@ -19,7 +19,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vec<crate::models::PrintNannyApiConfig>**](PrintNannyApiConfig.md)
+[**crate::models::PrintNannyApiConfig**](PrintNannyApiConfig.md)
 
 ### Authorization
 

@@ -1,14 +1,14 @@
-# printnanny_api_client.ClientConfigApi
+# printnanny_api_client.ClientApi
 
 All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**client_config_list**](ClientConfigApi.md#client_config_list) | **GET** /api/client-config/ | 
+[**api_config_retreive**](ClientApi.md#api_config_retreive) | **GET** /api/client | 
 
 
-# **client_config_list**
-> list[PrintNannyApiConfig] client_config_list()
+# **api_config_retreive**
+> PrintNannyApiConfig api_config_retreive()
 
 
 
@@ -46,13 +46,13 @@ configuration = printnanny_api_client.Configuration(
 # Enter a context with an instance of the API client
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = printnanny_api_client.ClientConfigApi(api_client)
+    api_instance = printnanny_api_client.ClientApi(api_client)
     
     try:
-        api_response = api_instance.client_config_list()
+        api_response = api_instance.api_config_retreive()
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling ClientConfigApi->client_config_list: %s\n" % e)
+        print("Exception when calling ClientApi->api_config_retreive: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -87,13 +87,13 @@ configuration = printnanny_api_client.Configuration(
 # Enter a context with an instance of the API client
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = printnanny_api_client.ClientConfigApi(api_client)
+    api_instance = printnanny_api_client.ClientApi(api_client)
     
     try:
-        api_response = api_instance.client_config_list()
+        api_response = api_instance.api_config_retreive()
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling ClientConfigApi->client_config_list: %s\n" % e)
+        print("Exception when calling ClientApi->api_config_retreive: %s\n" % e)
 ```
 
 ### Parameters
@@ -101,7 +101,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**list[PrintNannyApiConfig]**](PrintNannyApiConfig.md)
+[**PrintNannyApiConfig**](PrintNannyApiConfig.md)
 
 ### Authorization
 
@@ -116,6 +116,7 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
+**404** |  |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
 **403** |  |  -  |

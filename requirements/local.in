@@ -52,5 +52,5 @@ stringcase
 twisted>=21.7 # https://github.com/django/channels/issues/1639
 uvicorn[standard]
 whitenoise
-printnanny-api-client>=0.73.0
+printnanny-api-client>=0.73.1
 websockets==10.1 # https://github.com/aaugustin/websockets/issues/1138#issuecomment-1059138857
