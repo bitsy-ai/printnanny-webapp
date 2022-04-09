@@ -85,11 +85,13 @@ class Device(SafeDeleteModel):
         return f"device-id-{self.id}"
 
     @property
-    def dashboard_url(self):
-        return reverse("dashboard:home")
+    def edge_url(self):
+        # NOTE: http:// protocol + mDNS hostname is hard-coded here while PrintNanny Network is WIP
+        # TODO: f"https://{self.fqdn}{settings.OCTOPRINT_URL}"
+        return f"http://{self.hostname}/"
 
     @property
-    def manage_url(self):
+    def cloud_url(self):
         return reverse("devices:detail", kwargs={"pk": self.id})
 
     @property

@@ -205,7 +205,8 @@ class SystemInfoSerializer(serializers.ModelSerializer):
 class DeviceSerializer(serializers.ModelSerializer):
 
     cloudiot_device = CloudiotDeviceSerializer(read_only=True)
-    dashboard_url = serializers.CharField(read_only=True)
+    cloud_url = serializers.CharField(read_only=True)
+    edge_url = serializers.CharField(read_only=True)
     video_test_url = serializers.CharField(read_only=True)
     janus_auth = JanusAuthSerializer(read_only=True)
     janus_local_url = serializers.CharField(read_only=True)
