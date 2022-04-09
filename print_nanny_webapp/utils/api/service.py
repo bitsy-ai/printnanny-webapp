@@ -18,7 +18,7 @@ class PrintNannyApiConfig(TypedDict):
 
 
 def get_api_config(request) -> PrintNannyApiConfig:
-    if isinstance(request.user, AnonymousUser):
+    if request.user.is_anonymous:
         token = None
     else:
         tokenobj, _ = Token.objects.get_or_create(user=request.user)
