@@ -2720,7 +2720,7 @@ export interface PrintNannyApiConfig {
      * @type {string}
      * @memberof PrintNannyApiConfig
      */
-    'bearer_access_token': string;
+    'bearer_access_token': string | null;
     /**
      * 
      * @type {string}
@@ -4455,12 +4455,6 @@ export const ClientApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -4570,12 +4564,6 @@ export const ConfigApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     

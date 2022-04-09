@@ -85,8 +85,6 @@ class PrintNannyApiConfig(object):
         :param bearer_access_token: The bearer_access_token of this PrintNannyApiConfig.  # noqa: E501
         :type bearer_access_token: str
         """
-        if self.local_vars_configuration.client_side_validation and bearer_access_token is None:  # noqa: E501
-            raise ValueError("Invalid value for `bearer_access_token`, must not be `None`")  # noqa: E501
 
         self._bearer_access_token = bearer_access_token
 

@@ -14,7 +14,7 @@
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct PrintNannyApiConfig {
     #[serde(rename = "bearer_access_token")]
-    pub bearer_access_token: String,
+    pub bearer_access_token: Option<String>,
     #[serde(rename = "base_path")]
     pub base_path: String,
     #[serde(rename = "static_url")]
@@ -24,7 +24,7 @@ pub struct PrintNannyApiConfig {
 }
 
 impl PrintNannyApiConfig {
-    pub fn new(bearer_access_token: String, base_path: String, static_url: String, dashboard_url: String) -> PrintNannyApiConfig {
+    pub fn new(bearer_access_token: Option<String>, base_path: String, static_url: String, dashboard_url: String) -> PrintNannyApiConfig {
         PrintNannyApiConfig {
             bearer_access_token,
             base_path,

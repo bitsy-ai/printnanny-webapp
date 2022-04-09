@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**bearer_access_token** | **String** |  | [readonly]
+**bearer_access_token** | Option<**String**> |  | [readonly]
 **base_path** | **String** |  | [readonly]
 **static_url** | **String** |  | [readonly]
 **dashboard_url** | **String** |  | [readonly]
