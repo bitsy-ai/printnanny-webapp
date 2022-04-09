@@ -30,17 +30,15 @@ from print_nanny_webapp.octoprint.api.views import (
 )
 
 router = DefaultRouter()
-
-router.register("client-config", PrintNannyApiConfigViewset, basename="client-config")
-
 router.register("alerts", AlertViewSet)
 router.register("devices", DeviceViewSet)
 
 # octoprint endpoints (PrintNanny os data model)
 
 # enables /api/devices/:hostname lookup (no nested routing)
-devices_by_hostname = [
+other_urls = [
     path("devices/<slug:hostname>", DeviceHostnameViewSet.as_view({"get": "retrieve"})),
+    path("client", PrintNannyApiConfigViewset.as_view(), name="client"),
 ]
 
 devices_router = NestedSimpleRouter(router, r"devices", lookup="device")
@@ -84,4 +82,4 @@ router.register(r"partners/3d-geeks", GeeksViewSet, basename="partner-3d-geeks")
 
 app_name = "api"
 
-urlpatterns = router.urls + devices_router.urls + user_router.urls + devices_by_hostname
+urlpatterns = router.urls + devices_router.urls + user_router.urls + other_urls
