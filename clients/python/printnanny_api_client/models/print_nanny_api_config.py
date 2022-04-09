@@ -39,18 +39,16 @@ class PrintNannyApiConfig(object):
     openapi_types = {
         'bearer_access_token': 'str',
         'base_path': 'str',
-        'static': 'str',
-        'ws': 'str'
+        'static_url': 'str'
     }
 
     attribute_map = {
         'bearer_access_token': 'bearer_access_token',
         'base_path': 'base_path',
-        'static': 'static',
-        'ws': 'ws'
+        'static_url': 'static_url'
     }
 
-    def __init__(self, bearer_access_token=None, base_path=None, static=None, ws=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, bearer_access_token=None, base_path=None, static_url=None, local_vars_configuration=None):  # noqa: E501
         """PrintNannyApiConfig - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -58,14 +56,12 @@ class PrintNannyApiConfig(object):
 
         self._bearer_access_token = None
         self._base_path = None
-        self._static = None
-        self._ws = None
+        self._static_url = None
         self.discriminator = None
 
         self.bearer_access_token = bearer_access_token
         self.base_path = base_path
-        self.static = static
-        self.ws = ws
+        self.static_url = static_url
 
     @property
     def bearer_access_token(self):
@@ -114,50 +110,27 @@ class PrintNannyApiConfig(object):
         self._base_path = base_path
 
     @property
-    def static(self):
-        """Gets the static of this PrintNannyApiConfig.  # noqa: E501
+    def static_url(self):
+        """Gets the static_url of this PrintNannyApiConfig.  # noqa: E501
 
 
-        :return: The static of this PrintNannyApiConfig.  # noqa: E501
+        :return: The static_url of this PrintNannyApiConfig.  # noqa: E501
         :rtype: str
         """
-        return self._static
+        return self._static_url
 
-    @static.setter
-    def static(self, static):
-        """Sets the static of this PrintNannyApiConfig.
+    @static_url.setter
+    def static_url(self, static_url):
+        """Sets the static_url of this PrintNannyApiConfig.
 
 
-        :param static: The static of this PrintNannyApiConfig.  # noqa: E501
-        :type static: str
+        :param static_url: The static_url of this PrintNannyApiConfig.  # noqa: E501
+        :type static_url: str
         """
-        if self.local_vars_configuration.client_side_validation and static is None:  # noqa: E501
-            raise ValueError("Invalid value for `static`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and static_url is None:  # noqa: E501
+            raise ValueError("Invalid value for `static_url`, must not be `None`")  # noqa: E501
 
-        self._static = static
-
-    @property
-    def ws(self):
-        """Gets the ws of this PrintNannyApiConfig.  # noqa: E501
-
-
-        :return: The ws of this PrintNannyApiConfig.  # noqa: E501
-        :rtype: str
-        """
-        return self._ws
-
-    @ws.setter
-    def ws(self, ws):
-        """Sets the ws of this PrintNannyApiConfig.
-
-
-        :param ws: The ws of this PrintNannyApiConfig.  # noqa: E501
-        :type ws: str
-        """
-        if self.local_vars_configuration.client_side_validation and ws is None:  # noqa: E501
-            raise ValueError("Invalid value for `ws`, must not be `None`")  # noqa: E501
-
-        self._ws = ws
+        self._static_url = static_url
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

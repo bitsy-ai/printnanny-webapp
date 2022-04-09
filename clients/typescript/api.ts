@@ -2726,13 +2726,7 @@ export interface PrintNannyApiConfig {
      * @type {string}
      * @memberof PrintNannyApiConfig
      */
-    'static': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintNannyApiConfig
-     */
-    'ws': string;
+    'static_url': string;
 }
 /**
  * 

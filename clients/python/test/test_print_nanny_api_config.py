@@ -39,15 +39,13 @@ class TestPrintNannyApiConfig(unittest.TestCase):
             return PrintNannyApiConfig(
                 bearer_access_token = '', 
                 base_path = '', 
-                static = '', 
-                ws = ''
+                static_url = ''
             )
         else :
             return PrintNannyApiConfig(
                 bearer_access_token = '',
                 base_path = '',
-                static = '',
-                ws = '',
+                static_url = '',
         )
 
     def testPrintNannyApiConfig(self):
