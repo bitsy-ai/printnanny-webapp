@@ -7,7 +7,9 @@ class ErrorDetailSerializer(serializers.Serializer):
 
 
 class PrintNannyApiConfigSerializer(serializers.Serializer):
-    bearer_access_token = serializers.CharField(read_only=True)
+    bearer_access_token = serializers.CharField(
+        read_only=True, required=False, allow_null=True
+    )
     base_path = serializers.CharField(read_only=True)
     static_url = serializers.CharField(read_only=True)
     dashboard_url = serializers.CharField(read_only=True)

@@ -11,24 +11,25 @@ User = get_user_model()
 
 
 class PrintNannyApiConfig(TypedDict):
-    bearer_access_token: str
+    bearer_access_token: Optional[str]
     base_path: str
     static_url: str
     dashboard_url: str
 
 
 def get_api_config(request) -> PrintNannyApiConfig:
-    if type(request.user) == AnonymousUser:
-        raise Exception("APIConfig requires authenticated user to retrieve")
-
-    token, _ = Token.objects.get_or_create(user=request.user)
+    if isinstance(request.user, AnonymousUser):
+        token = None
+    else:
+        tokenobj, _ = Token.objects.get_or_create(user=request.user)
+        token = str(tokenobj)
     base_path = request.build_absolute_uri("/")[
         :-1
     ]  # remove trailing slash for use in API client base_url
     static_url = request.build_absolute_uri(settings.STATIC_URL)
     dashboard_url = request.build_absolute_uri(reverse("dashboard:home"))
     return PrintNannyApiConfig(
-        bearer_access_token=str(token),
+        bearer_access_token=token,
         base_path=base_path,
         static_url=static_url,
         dashboard_url=dashboard_url,

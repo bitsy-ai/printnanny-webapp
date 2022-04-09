@@ -1,3 +1,4 @@
+from typing import List, Any
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework.viewsets import ViewSet, GenericViewSet
 from rest_framework.response import Response
@@ -25,6 +26,10 @@ generic_update_errors = generic_create_errors
 
 
 class PrintNannyApiConfigViewset(APIView):
+    # allow anonymous requests (omit token)
+    authentication_classes: List[Any] = []
+    permission_classes: List[Any] = []
+
     @extend_schema(
         operation_id="api_config_retreive",
         tags=["client", "config"],
