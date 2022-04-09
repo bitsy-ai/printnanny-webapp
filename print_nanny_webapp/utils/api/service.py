@@ -21,8 +21,8 @@ def get_api_config(request) -> PrintNannyApiConfig:
     if isinstance(request.user, AnonymousUser):
         token = None
     else:
-        token, _ = Token.objects.get_or_create(user=request.user)
-        token = str(token)
+        tokenobj, _ = Token.objects.get_or_create(user=request.user)
+        token = str(tokenobj)
     base_path = request.build_absolute_uri("/")[
         :-1
     ]  # remove trailing slash for use in API client base_url
