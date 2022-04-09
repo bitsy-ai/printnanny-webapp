@@ -32,11 +32,14 @@
                                 <!-- <a href="{% url 'devices:detail' pk=device.id %}"><button
                                         class="btn btn-primary btn-sm">View Details</button></a> -->
                                 <a href="{% url 'devices:video' pk=device.id %}"><button
-                                        class="btn btn-primary btn-sm">Start Monitoring</button>
+                                        class="btn btn-primary btn-sm">Camera</button>
+                                </a>
+                                <a target="_blank" href="{{ device.edge_url }}"><button
+                                        class="btn btn-primary btn-sm">PrintNanny
+                                        OS</button>
                                 </a>
                                 <a target="_blank" href="{{ device.octoprint_url }}"><button
-                                        class="btn btn-success btn-sm ml-1">Open
-                                        OctoPrint</button></a>
+                                        class="btn btn-success btn-sm ml-1">OctoPrint</button></a>
                                 {% else %}
                                 <a href="{% url 'devices:welcome-detail' pk=device.id %}"><button
                                         class="btn btn-primary btn-sm">Finish Setup</button></a>

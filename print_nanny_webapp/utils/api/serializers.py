@@ -10,3 +10,4 @@ class PrintNannyApiConfigSerializer(serializers.Serializer):
     bearer_access_token = serializers.CharField(read_only=True)
     base_path = serializers.CharField(read_only=True)
     static_url = serializers.CharField(read_only=True)
+    dashboard_url = serializers.CharField(read_only=True)
