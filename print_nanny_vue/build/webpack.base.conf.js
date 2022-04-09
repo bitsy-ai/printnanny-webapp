@@ -47,7 +47,8 @@ module.exports = {
           test: /[\\/]node_modules[\\/]/,
           name: "chunk-vendors",
           chunks: "all",
-          priority: 1
+          priority: 1,
+          reuseExistingChunk: true,
         },
       },
     }
