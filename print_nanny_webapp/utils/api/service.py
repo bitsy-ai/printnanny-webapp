@@ -26,7 +26,7 @@ def get_api_config(request) -> PrintNannyApiConfig:
         :-1
     ]  # remove trailing slash for use in API client base_url
     static_url = request.build_absolute_uri(settings.STATIC_URL)
-    dashboard_url = reverse("dashboard:home")
+    dashboard_url = request.build_absolute_uri(reverse("dashboard:home"))
     return PrintNannyApiConfig(
         bearer_access_token=str(token),
         base_path=base_path,
