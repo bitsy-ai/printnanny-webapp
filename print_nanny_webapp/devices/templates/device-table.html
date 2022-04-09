@@ -34,7 +34,8 @@
                                 <a href="{% url 'devices:video' pk=device.id %}"><button
                                         class="btn btn-primary btn-sm">Camera</button>
                                 </a>
-                                <a href="{{ device.edge_url }}"><button class="btn btn-primary btn-sm">PrintNanny
+                                <a target="_blank" href="{{ device.edge_url }}"><button
+                                        class="btn btn-primary btn-sm">PrintNanny
                                         OS</button>
                                 </a>
                                 <a target="_blank" href="{{ device.octoprint_url }}"><button
