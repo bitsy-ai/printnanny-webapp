@@ -30,7 +30,7 @@ module.exports = {
   entry: {
     index: './src/index.js',
     alerts: './src/apps/AlertsDropdown.js',
-    taskstatus: './src/apps/TaskStatus.js',
+    taskStatus: './src/apps/TaskStatus.js',
     networkScanner: './src/apps/NetworkScanner.js',
     janusStream: './src/apps/JanusStream.js',
     welcomeWizard: './src/apps/WelcomeWizard.js',
