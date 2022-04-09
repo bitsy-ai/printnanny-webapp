@@ -37,7 +37,7 @@ module.exports = {
   },
   output: {
     path: config.build.assetsRoot,
-    filename: 'js/[name].js',
+    filename: 'js/printnanny-[name].js',
   },
   optimization: {
     moduleIds: 'named',
@@ -45,9 +45,10 @@ module.exports = {
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
-          name: "chunk-vendors",
+          name: "vendor",
           chunks: "all",
-          priority: 1
+          priority: 1,
+          reuseExistingChunk: true,
         },
       },
     }
