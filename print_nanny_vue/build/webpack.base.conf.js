@@ -30,14 +30,14 @@ module.exports = {
   entry: {
     index: './src/index.js',
     alerts: './src/apps/AlertsDropdown.js',
-    taskStatus: './src/apps/TaskStatus.js',
+    taskstatus: './src/apps/TaskStatus.js',
     networkScanner: './src/apps/NetworkScanner.js',
     janusStream: './src/apps/JanusStream.js',
     welcomeWizard: './src/apps/WelcomeWizard.js',
   },
   output: {
     path: config.build.assetsRoot,
-    filename: 'js/[name].js',
+    filename: 'js/printnanny-[name].js',
   },
   optimization: {
     moduleIds: 'named',
