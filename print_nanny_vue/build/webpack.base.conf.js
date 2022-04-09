@@ -45,7 +45,7 @@ module.exports = {
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
-          name: "chunk-vendors",
+          name: "vendor",
           chunks: "all",
           priority: 1,
           reuseExistingChunk: true,
