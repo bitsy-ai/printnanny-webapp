@@ -407,7 +407,13 @@ export interface Device {
      * @type {string}
      * @memberof Device
      */
-    'dashboard_url': string;
+    'cloud_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    'edge_url': string;
     /**
      * 
      * @type {string}
@@ -2727,6 +2733,12 @@ export interface PrintNannyApiConfig {
      * @memberof PrintNannyApiConfig
      */
     'static_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintNannyApiConfig
+     */
+    'dashboard_url': string;
 }
 /**
  * 

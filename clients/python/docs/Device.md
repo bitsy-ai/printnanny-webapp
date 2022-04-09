@@ -6,7 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
 **cloudiot_device** | [**CloudiotDevice**](CloudiotDevice.md) |  | [readonly] 
-**dashboard_url** | **str** |  | [readonly] 
+**cloud_url** | **str** |  | [readonly] 
+**edge_url** | **str** |  | [readonly] 
 **video_test_url** | **str** |  | [readonly] 
 **janus_auth** | [**JanusAuth**](JanusAuth.md) |  | [readonly] 
 **janus_local_url** | **str** |  | [readonly] 

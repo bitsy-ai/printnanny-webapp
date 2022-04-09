@@ -6,7 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
 **cloudiot_device** | Option<[**crate::models::CloudiotDevice**](CloudiotDevice.md)> |  | [readonly]
-**dashboard_url** | **String** |  | [readonly]
+**cloud_url** | **String** |  | [readonly]
+**edge_url** | **String** |  | [readonly]
 **video_test_url** | **String** |  | [readonly]
 **janus_auth** | Option<[**crate::models::JanusAuth**](JanusAuth.md)> |  | [readonly]
 **janus_local_url** | **String** |  | [readonly]

@@ -17,8 +17,10 @@ pub struct Device {
     pub id: i32,
     #[serde(rename = "cloudiot_device")]
     pub cloudiot_device: Option<Box<crate::models::CloudiotDevice>>,
-    #[serde(rename = "dashboard_url")]
-    pub dashboard_url: String,
+    #[serde(rename = "cloud_url")]
+    pub cloud_url: String,
+    #[serde(rename = "edge_url")]
+    pub edge_url: String,
     #[serde(rename = "video_test_url")]
     pub video_test_url: String,
     #[serde(rename = "janus_auth")]
@@ -49,11 +51,12 @@ pub struct Device {
 }
 
 impl Device {
-    pub fn new(id: i32, cloudiot_device: Option<crate::models::CloudiotDevice>, dashboard_url: String, video_test_url: String, janus_auth: Option<crate::models::JanusAuth>, janus_local_url: String, user: Option<crate::models::User>, octoprint_url: String, system_info: Option<crate::models::SystemInfo>, public_key: Option<crate::models::PublicKey>, created_dt: String, updated_dt: String) -> Device {
+    pub fn new(id: i32, cloudiot_device: Option<crate::models::CloudiotDevice>, cloud_url: String, edge_url: String, video_test_url: String, janus_auth: Option<crate::models::JanusAuth>, janus_local_url: String, user: Option<crate::models::User>, octoprint_url: String, system_info: Option<crate::models::SystemInfo>, public_key: Option<crate::models::PublicKey>, created_dt: String, updated_dt: String) -> Device {
         Device {
             id,
             cloudiot_device: cloudiot_device.map(Box::new),
-            dashboard_url,
+            cloud_url,
+            edge_url,
             video_test_url,
             janus_auth: janus_auth.map(Box::new),
             janus_local_url,

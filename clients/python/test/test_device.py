@@ -39,7 +39,8 @@ class TestDevice(unittest.TestCase):
             return Device(
                 id = 56, 
                 cloudiot_device = None, 
-                dashboard_url = '', 
+                cloud_url = '', 
+                edge_url = '', 
                 video_test_url = '', 
                 janus_auth = None, 
                 janus_local_url = '', 
@@ -58,7 +59,8 @@ class TestDevice(unittest.TestCase):
             return Device(
                 id = 56,
                 cloudiot_device = None,
-                dashboard_url = '',
+                cloud_url = '',
+                edge_url = '',
                 video_test_url = '',
                 janus_auth = None,
                 janus_local_url = '',

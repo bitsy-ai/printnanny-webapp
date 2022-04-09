@@ -39,7 +39,8 @@ class Device(object):
     openapi_types = {
         'id': 'int',
         'cloudiot_device': 'CloudiotDevice',
-        'dashboard_url': 'str',
+        'cloud_url': 'str',
+        'edge_url': 'str',
         'video_test_url': 'str',
         'janus_auth': 'JanusAuth',
         'janus_local_url': 'str',
@@ -58,7 +59,8 @@ class Device(object):
     attribute_map = {
         'id': 'id',
         'cloudiot_device': 'cloudiot_device',
-        'dashboard_url': 'dashboard_url',
+        'cloud_url': 'cloud_url',
+        'edge_url': 'edge_url',
         'video_test_url': 'video_test_url',
         'janus_auth': 'janus_auth',
         'janus_local_url': 'janus_local_url',
@@ -74,7 +76,7 @@ class Device(object):
         'hostname': 'hostname'
     }
 
-    def __init__(self, id=None, cloudiot_device=None, dashboard_url=None, video_test_url=None, janus_auth=None, janus_local_url=None, monitoring_active=False, setup_complete=False, user=None, octoprint_url=None, release_channel=None, system_info=None, public_key=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, cloudiot_device=None, cloud_url=None, edge_url=None, video_test_url=None, janus_auth=None, janus_local_url=None, monitoring_active=False, setup_complete=False, user=None, octoprint_url=None, release_channel=None, system_info=None, public_key=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -82,7 +84,8 @@ class Device(object):
 
         self._id = None
         self._cloudiot_device = None
-        self._dashboard_url = None
+        self._cloud_url = None
+        self._edge_url = None
         self._video_test_url = None
         self._janus_auth = None
         self._janus_local_url = None
@@ -100,7 +103,8 @@ class Device(object):
 
         self.id = id
         self.cloudiot_device = cloudiot_device
-        self.dashboard_url = dashboard_url
+        self.cloud_url = cloud_url
+        self.edge_url = edge_url
         self.video_test_url = video_test_url
         self.janus_auth = janus_auth
         self.janus_local_url = janus_local_url
@@ -163,27 +167,50 @@ class Device(object):
         self._cloudiot_device = cloudiot_device
 
     @property
-    def dashboard_url(self):
-        """Gets the dashboard_url of this Device.  # noqa: E501
+    def cloud_url(self):
+        """Gets the cloud_url of this Device.  # noqa: E501
 
 
-        :return: The dashboard_url of this Device.  # noqa: E501
+        :return: The cloud_url of this Device.  # noqa: E501
         :rtype: str
         """
-        return self._dashboard_url
+        return self._cloud_url
 
-    @dashboard_url.setter
-    def dashboard_url(self, dashboard_url):
-        """Sets the dashboard_url of this Device.
+    @cloud_url.setter
+    def cloud_url(self, cloud_url):
+        """Sets the cloud_url of this Device.
 
 
-        :param dashboard_url: The dashboard_url of this Device.  # noqa: E501
-        :type dashboard_url: str
+        :param cloud_url: The cloud_url of this Device.  # noqa: E501
+        :type cloud_url: str
         """
-        if self.local_vars_configuration.client_side_validation and dashboard_url is None:  # noqa: E501
-            raise ValueError("Invalid value for `dashboard_url`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and cloud_url is None:  # noqa: E501
+            raise ValueError("Invalid value for `cloud_url`, must not be `None`")  # noqa: E501
 
-        self._dashboard_url = dashboard_url
+        self._cloud_url = cloud_url
+
+    @property
+    def edge_url(self):
+        """Gets the edge_url of this Device.  # noqa: E501
+
+
+        :return: The edge_url of this Device.  # noqa: E501
+        :rtype: str
+        """
+        return self._edge_url
+
+    @edge_url.setter
+    def edge_url(self, edge_url):
+        """Sets the edge_url of this Device.
+
+
+        :param edge_url: The edge_url of this Device.  # noqa: E501
+        :type edge_url: str
+        """
+        if self.local_vars_configuration.client_side_validation and edge_url is None:  # noqa: E501
+            raise ValueError("Invalid value for `edge_url`, must not be `None`")  # noqa: E501
+
+        self._edge_url = edge_url
 
     @property
     def video_test_url(self):

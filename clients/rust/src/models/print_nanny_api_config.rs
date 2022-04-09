@@ -19,14 +19,17 @@ pub struct PrintNannyApiConfig {
     pub base_path: String,
     #[serde(rename = "static_url")]
     pub static_url: String,
+    #[serde(rename = "dashboard_url")]
+    pub dashboard_url: String,
 }
 
 impl PrintNannyApiConfig {
-    pub fn new(bearer_access_token: String, base_path: String, static_url: String) -> PrintNannyApiConfig {
+    pub fn new(bearer_access_token: String, base_path: String, static_url: String, dashboard_url: String) -> PrintNannyApiConfig {
         PrintNannyApiConfig {
             bearer_access_token,
             base_path,
             static_url,
+            dashboard_url,
         }
     }
 }

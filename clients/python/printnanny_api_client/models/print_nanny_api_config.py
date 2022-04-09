@@ -39,16 +39,18 @@ class PrintNannyApiConfig(object):
     openapi_types = {
         'bearer_access_token': 'str',
         'base_path': 'str',
-        'static_url': 'str'
+        'static_url': 'str',
+        'dashboard_url': 'str'
     }
 
     attribute_map = {
         'bearer_access_token': 'bearer_access_token',
         'base_path': 'base_path',
-        'static_url': 'static_url'
+        'static_url': 'static_url',
+        'dashboard_url': 'dashboard_url'
     }
 
-    def __init__(self, bearer_access_token=None, base_path=None, static_url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, bearer_access_token=None, base_path=None, static_url=None, dashboard_url=None, local_vars_configuration=None):  # noqa: E501
         """PrintNannyApiConfig - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -57,11 +59,13 @@ class PrintNannyApiConfig(object):
         self._bearer_access_token = None
         self._base_path = None
         self._static_url = None
+        self._dashboard_url = None
         self.discriminator = None
 
         self.bearer_access_token = bearer_access_token
         self.base_path = base_path
         self.static_url = static_url
+        self.dashboard_url = dashboard_url
 
     @property
     def bearer_access_token(self):
@@ -131,6 +135,29 @@ class PrintNannyApiConfig(object):
             raise ValueError("Invalid value for `static_url`, must not be `None`")  # noqa: E501
 
         self._static_url = static_url
+
+    @property
+    def dashboard_url(self):
+        """Gets the dashboard_url of this PrintNannyApiConfig.  # noqa: E501
+
+
+        :return: The dashboard_url of this PrintNannyApiConfig.  # noqa: E501
+        :rtype: str
+        """
+        return self._dashboard_url
+
+    @dashboard_url.setter
+    def dashboard_url(self, dashboard_url):
+        """Sets the dashboard_url of this PrintNannyApiConfig.
+
+
+        :param dashboard_url: The dashboard_url of this PrintNannyApiConfig.  # noqa: E501
+        :type dashboard_url: str
+        """
+        if self.local_vars_configuration.client_side_validation and dashboard_url is None:  # noqa: E501
+            raise ValueError("Invalid value for `dashboard_url`, must not be `None`")  # noqa: E501
+
+        self._dashboard_url = dashboard_url
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
