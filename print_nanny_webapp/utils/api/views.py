@@ -27,7 +27,6 @@ generic_update_errors = generic_create_errors
 
 class PrintNannyApiConfigViewset(APIView):
     # allow anonymous requests (omit token)
-    authentication_classes: List[Any] = []
     permission_classes: List[Any] = []
 
     @extend_schema(
