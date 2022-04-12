@@ -27,6 +27,14 @@ class WebRTCEventModel(models.TextChoices):
     WebRTCEvent = "WebRTCEvent"
 
 
+class WebRTCCommandModel(models.TextChoices):
+    """
+    Enum with 1 possible value is the easiest way to specify a "constant" value in an OpenAPI schema
+    """
+
+    WebRTCCommand = "WebRTCCommand"
+
+
 class OctoPrintEventModel(models.TextChoices):
     OctoPrintEvent = "OctoPrintEvent"
 

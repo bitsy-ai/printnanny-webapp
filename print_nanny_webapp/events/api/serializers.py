@@ -5,6 +5,7 @@ from rest_framework import serializers
 from rest_polymorphic.serializers import PolymorphicSerializer
 from print_nanny_webapp.events.models import (
     Event,
+    WebRTCCommand,
     WebRTCEvent,
     TestEvent,
     OctoPrintEvent,
@@ -13,6 +14,7 @@ from print_nanny_webapp.events.enum import (
     OctoPrintEventModel,
     TestEventModel,
     WebRTCEventModel,
+    WebRTCCommandModel,
 )
 
 logger = logging.getLogger(__name__)
@@ -55,6 +57,15 @@ class WebRTCEventSerializer(serializers.ModelSerializer):
         read_only_fields = ("user", "created_dt")
 
 
+class WebRTCCommandSerializer(serializers.ModelSerializer):
+    model = serializers.ChoiceField(choices=WebRTCCommandModel.choices)
+
+    class Meta:
+        model = WebRTCCommand
+        exclude = ("deleted",)
+        read_only_fields = ("user", "created_dt")
+
+
 class PolymorphicEventSerializer(PolymorphicSerializer):
     """
     Generic polymorphic serializer for all Events
@@ -71,5 +82,24 @@ class PolymorphicEventSerializer(PolymorphicSerializer):
     model_serializer_mapping = {
         OctoPrintEvent: OctoPrintEventSerializer,
         WebRTCEvent: WebRTCEventSerializer,
+        WebRTCCommand: WebRTCCommandSerializer,
         TestEvent: TestEventSerializer,
+    }
+
+
+class PolymorphicCommandSerializer(PolymorphicSerializer):
+    """
+    Generic polymorphic serializer for all Commands (Event subtype)
+
+    The model field is used to distinguish Polymorphic serializers/models from each other
+    Each model has a 1-1 relationship with models derived from Event in print_nanny_webapp.events.models
+    The model field is equivalent to a Type
+
+    The event_name field equivalent to a "sub type"
+    """
+
+    resource_type_field_name = "model"
+    # Model -> Serializer mapping
+    model_serializer_mapping = {
+        WebRTCCommand: WebRTCCommandSerializer,
     }
