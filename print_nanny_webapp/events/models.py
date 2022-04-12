@@ -10,6 +10,7 @@ from .enum import (
     WebRTCEventName,
     EventModel,
     OctoPrintEventName,
+    WebRTCCommandName,
 )
 
 User = get_user_model()
@@ -66,6 +67,22 @@ class OctoPrintEvent(Event):
     payload = models.JSONField(default=dict)
 
 
+class WebRTCCommand(Event):
+    model = EventModel.WebRTCCommand
+
+    class Meta:
+        index_together = [["device", "stream", "event_name"]]
+
+    device = models.ForeignKey(
+        "devices.Device", on_delete=models.CASCADE, related_name="webrtc_commands"
+    )
+    event_name = models.CharField(max_length=32, choices=WebRTCCommandName.choices)
+    stream = models.ForeignKey(
+        "devices.JanusStream", on_delete=models.CASCADE, related_name="webrtc_commands"
+    )
+    data = models.JSONField(default=dict)
+
+
 class WebRTCEvent(Event):
     """
     Events related to WebRTC and PrintNanny video monitoring system
@@ -76,13 +93,11 @@ class WebRTCEvent(Event):
     class Meta:
         index_together = [["device", "stream", "event_name"]]
 
-    event_name = models.CharField(max_length=32, choices=WebRTCEventName.choices)
     device = models.ForeignKey(
         "devices.Device", on_delete=models.CASCADE, related_name="webrtc_events"
     )
-    stream = models.ForeignKey("devices.JanusStream", on_delete=models.CASCADE)
-    data = models.JSONField(default=dict)
-    send_mqtt = models.BooleanField(
-        default=True,
-        help_text="Broadcast to mqtt topic: /devices/{device-id}/commands/",
+    event_name = models.CharField(max_length=32, choices=WebRTCEventName.choices)
+    stream = models.ForeignKey(
+        "devices.JanusStream", on_delete=models.CASCADE, related_name="webrtc_events"
     )
+    data = models.JSONField(default=dict)

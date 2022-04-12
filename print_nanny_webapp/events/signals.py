@@ -3,26 +3,25 @@ from typing import Callable, Dict, Tuple, Any
 
 from django.dispatch import receiver
 from django.db.models.signals import post_save
-from numpy import broadcast
 from print_nanny_webapp.events.models import Event
 from .services import (
     broadcast_event,
     webrtc_stream_start,
     # webrtc_stream_start_success,
 )
-from .enum import WebRTCEventName
+from .enum import WebRTCEventName, WebRTCCommandName
 
 logger = logging.getLogger(__name__)
 
 created_handlers: Dict[str, Callable[..., Any]] = {
-    WebRTCEventName.STREAM_START.value: webrtc_stream_start,
+    WebRTCCommandName.STREAM_START.value: webrtc_stream_start,
     WebRTCEventName.STREAM_START_ERROR.value: broadcast_event,
     WebRTCEventName.STREAM_START_SUCCESS.value: broadcast_event,
 }
 
 
 @receiver(post_save, dispatch_uid="event_handler")
-def handle_event(sender, instance, created, **kwargs):
+def handle_event(_sender, instance, created, **kwargs):
     if created is True and isinstance(instance, Event):
         handler = created_handlers.get(instance.event_name)
         logger.info(
