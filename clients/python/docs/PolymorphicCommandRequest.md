@@ -4,10 +4,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**model** | [**WebRTCCommandModelEnum**](WebRTCCommandModelEnum.md) |  | 
+**model** | [**WebRTCCommandModel**](WebRTCCommandModel.md) |  | 
 **source** | [**EventSource**](EventSource.md) |  | 
 **send_ws** | **bool** | Broadcast to events websocket: /ws/events | [optional] 
-**event_name** | [**WebRTCCommandEventNameEnum**](WebRTCCommandEventNameEnum.md) |  | 
+**event_name** | [**WebRTCCommandName**](WebRTCCommandName.md) |  | 
 **data** | **dict(str, object)** |  | [optional] 
 **device** | **int** |  | 
 **stream** | **int** |  | 

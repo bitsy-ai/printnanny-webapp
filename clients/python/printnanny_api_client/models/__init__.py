@@ -99,8 +99,8 @@ from printnanny_api_client.models.token_response import TokenResponse
 from printnanny_api_client.models.user import User
 from printnanny_api_client.models.user_request import UserRequest
 from printnanny_api_client.models.web_rtc_command import WebRTCCommand
-from printnanny_api_client.models.web_rtc_command_event_name_enum import WebRTCCommandEventNameEnum
-from printnanny_api_client.models.web_rtc_command_model_enum import WebRTCCommandModelEnum
+from printnanny_api_client.models.web_rtc_command_model import WebRTCCommandModel
+from printnanny_api_client.models.web_rtc_command_name import WebRTCCommandName
 from printnanny_api_client.models.web_rtc_command_request import WebRTCCommandRequest
 from printnanny_api_client.models.web_rtc_event import WebRTCEvent
 from printnanny_api_client.models.web_rtc_event_model import WebRTCEventModel

@@ -16,7 +16,7 @@ pub struct WebRtcCommand {
     #[serde(rename = "id")]
     pub id: i32,
     #[serde(rename = "model")]
-    pub model: crate::models::WebRtcCommandModelEnum,
+    pub model: crate::models::WebRtcCommandModel,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
     #[serde(rename = "source")]
@@ -25,7 +25,7 @@ pub struct WebRtcCommand {
     #[serde(rename = "send_ws", skip_serializing_if = "Option::is_none")]
     pub send_ws: Option<bool>,
     #[serde(rename = "event_name")]
-    pub event_name: crate::models::WebRtcCommandEventNameEnum,
+    pub event_name: crate::models::WebRtcCommandName,
     #[serde(rename = "data", skip_serializing_if = "Option::is_none")]
     pub data: Option<::std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "polymorphic_ctype")]
@@ -39,7 +39,7 @@ pub struct WebRtcCommand {
 }
 
 impl WebRtcCommand {
-    pub fn new(id: i32, model: crate::models::WebRtcCommandModelEnum, created_dt: String, source: crate::models::EventSource, event_name: crate::models::WebRtcCommandEventNameEnum, polymorphic_ctype: i32, user: i32, device: i32, stream: i32) -> WebRtcCommand {
+    pub fn new(id: i32, model: crate::models::WebRtcCommandModel, created_dt: String, source: crate::models::EventSource, event_name: crate::models::WebRtcCommandName, polymorphic_ctype: i32, user: i32, device: i32, stream: i32) -> WebRtcCommand {
         WebRtcCommand {
             id,
             model,

@@ -3551,10 +3551,10 @@ export interface WebRTCCommand {
     'id': number;
     /**
      * 
-     * @type {WebRTCCommandModelEnum}
+     * @type {WebRTCCommandModel}
      * @memberof WebRTCCommand
      */
-    'model': WebRTCCommandModelEnum;
+    'model': WebRTCCommandModel;
     /**
      * 
      * @type {string}
@@ -3575,10 +3575,10 @@ export interface WebRTCCommand {
     'send_ws'?: boolean;
     /**
      * 
-     * @type {WebRTCCommandEventNameEnum}
+     * @type {WebRTCCommandName}
      * @memberof WebRTCCommand
      */
-    'event_name': WebRTCCommandEventNameEnum;
+    'event_name': WebRTCCommandName;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -3616,12 +3616,11 @@ export interface WebRTCCommand {
  * @enum {string}
  */
 
-export const WebRTCCommandEventNameEnum = {
-    Start: 'stream_start',
-    Stop: 'stream_stop'
+export const WebRTCCommandModel = {
+    WebRtcCommand: 'WebRTCCommand'
 } as const;
 
-export type WebRTCCommandEventNameEnum = typeof WebRTCCommandEventNameEnum[keyof typeof WebRTCCommandEventNameEnum];
+export type WebRTCCommandModel = typeof WebRTCCommandModel[keyof typeof WebRTCCommandModel];
 
 
 /**
@@ -3630,11 +3629,12 @@ export type WebRTCCommandEventNameEnum = typeof WebRTCCommandEventNameEnum[keyof
  * @enum {string}
  */
 
-export const WebRTCCommandModelEnum = {
-    WebRtcCommand: 'WebRTCCommand'
+export const WebRTCCommandName = {
+    Start: 'stream_start',
+    Stop: 'stream_stop'
 } as const;
 
-export type WebRTCCommandModelEnum = typeof WebRTCCommandModelEnum[keyof typeof WebRTCCommandModelEnum];
+export type WebRTCCommandName = typeof WebRTCCommandName[keyof typeof WebRTCCommandName];
 
 
 /**
@@ -3645,10 +3645,10 @@ export type WebRTCCommandModelEnum = typeof WebRTCCommandModelEnum[keyof typeof 
 export interface WebRTCCommandRequest {
     /**
      * 
-     * @type {WebRTCCommandModelEnum}
+     * @type {WebRTCCommandModel}
      * @memberof WebRTCCommandRequest
      */
-    'model': WebRTCCommandModelEnum;
+    'model': WebRTCCommandModel;
     /**
      * 
      * @type {EventSource}
@@ -3663,10 +3663,10 @@ export interface WebRTCCommandRequest {
     'send_ws'?: boolean;
     /**
      * 
-     * @type {WebRTCCommandEventNameEnum}
+     * @type {WebRTCCommandName}
      * @memberof WebRTCCommandRequest
      */
-    'event_name': WebRTCCommandEventNameEnum;
+    'event_name': WebRTCCommandName;
     /**
      * 
      * @type {{ [key: string]: any; }}

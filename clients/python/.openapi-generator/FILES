@@ -100,8 +100,8 @@ docs/User.md
 docs/UserRequest.md
 docs/UsersApi.md
 docs/WebRTCCommand.md
-docs/WebRTCCommandEventNameEnum.md
-docs/WebRTCCommandModelEnum.md
+docs/WebRTCCommandModel.md
+docs/WebRTCCommandName.md
 docs/WebRTCCommandRequest.md
 docs/WebRTCEvent.md
 docs/WebRTCEventModel.md
@@ -210,8 +210,8 @@ printnanny_api_client/models/token_response.py
 printnanny_api_client/models/user.py
 printnanny_api_client/models/user_request.py
 printnanny_api_client/models/web_rtc_command.py
-printnanny_api_client/models/web_rtc_command_event_name_enum.py
-printnanny_api_client/models/web_rtc_command_model_enum.py
+printnanny_api_client/models/web_rtc_command_model.py
+printnanny_api_client/models/web_rtc_command_name.py
 printnanny_api_client/models/web_rtc_command_request.py
 printnanny_api_client/models/web_rtc_event.py
 printnanny_api_client/models/web_rtc_event_model.py
@@ -320,8 +320,8 @@ test/test_user.py
 test/test_user_request.py
 test/test_users_api.py
 test/test_web_rtc_command.py
-test/test_web_rtc_command_event_name_enum.py
-test/test_web_rtc_command_model_enum.py
+test/test_web_rtc_command_model.py
+test/test_web_rtc_command_name.py
 test/test_web_rtc_command_request.py
 test/test_web_rtc_event.py
 test/test_web_rtc_event_model.py

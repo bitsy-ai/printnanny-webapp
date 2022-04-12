@@ -22,7 +22,7 @@ pub struct WebRtcCommand {
         #[serde(rename = "send_ws", skip_serializing_if = "Option::is_none")]
         pub send_ws: Option<bool>,
         #[serde(rename = "event_name")]
-        pub event_name: crate::models::WebRtcCommandEventNameEnum,
+        pub event_name: crate::models::WebRtcCommandName,
         #[serde(rename = "data", skip_serializing_if = "Option::is_none")]
         pub data: Option<::std::collections::HashMap<String, serde_json::Value>>,
         #[serde(rename = "polymorphic_ctype")]

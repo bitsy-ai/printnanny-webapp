@@ -11,13 +11,13 @@
 
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum WebRtcCommandModelEnum {
+pub enum WebRtcCommandModel {
     #[serde(rename = "WebRTCCommand")]
     WebRTCCommand,
 
 }
 
-impl ToString for WebRtcCommandModelEnum {
+impl ToString for WebRtcCommandModel {
     fn to_string(&self) -> String {
         match self {
             Self::WebRTCCommand => String::from("WebRTCCommand"),
@@ -25,8 +25,8 @@ impl ToString for WebRtcCommandModelEnum {
     }
 }
 
-impl Default for WebRtcCommandModelEnum {
-    fn default() -> WebRtcCommandModelEnum {
+impl Default for WebRtcCommandModel {
+    fn default() -> WebRtcCommandModel {
         Self::WebRTCCommand
     }
 }

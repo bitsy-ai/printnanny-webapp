@@ -1,7 +1,7 @@
-# WebRtcCommandModelEnum
+# WebRTCCommandName
+
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

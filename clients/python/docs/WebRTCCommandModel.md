@@ -1,4 +1,4 @@
-# WebRTCCommandEventNameEnum
+# WebRTCCommandModel
 
 
 ## Properties

@@ -99,8 +99,8 @@ docs/User.md
 docs/UserRequest.md
 docs/UsersApi.md
 docs/WebRtcCommand.md
-docs/WebRtcCommandEventNameEnum.md
-docs/WebRtcCommandModelEnum.md
+docs/WebRtcCommandModel.md
+docs/WebRtcCommandName.md
 docs/WebRtcCommandRequest.md
 docs/WebRtcEvent.md
 docs/WebRtcEventModel.md
@@ -207,8 +207,8 @@ src/models/token_response.rs
 src/models/user.rs
 src/models/user_request.rs
 src/models/web_rtc_command.rs
-src/models/web_rtc_command_event_name_enum.rs
-src/models/web_rtc_command_model_enum.rs
+src/models/web_rtc_command_model.rs
+src/models/web_rtc_command_name.rs
 src/models/web_rtc_command_request.rs
 src/models/web_rtc_event.rs
 src/models/web_rtc_event_model.rs

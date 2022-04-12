@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.web_rtc_command_event_name_enum import WebRTCCommandEventNameEnum  # noqa: E501
+from printnanny_api_client.models.web_rtc_command_name import WebRTCCommandName  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestWebRTCCommandEventNameEnum(unittest.TestCase):
-    """WebRTCCommandEventNameEnum unit test stubs"""
+class TestWebRTCCommandName(unittest.TestCase):
+    """WebRTCCommandName unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,20 +30,20 @@ class TestWebRTCCommandEventNameEnum(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test WebRTCCommandEventNameEnum
+        """Test WebRTCCommandName
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.web_rtc_command_event_name_enum.WebRTCCommandEventNameEnum()  # noqa: E501
+        # model = printnanny_api_client.models.web_rtc_command_name.WebRTCCommandName()  # noqa: E501
         if include_optional :
-            return WebRTCCommandEventNameEnum(
+            return WebRTCCommandName(
             )
         else :
-            return WebRTCCommandEventNameEnum(
+            return WebRTCCommandName(
         )
 
-    def testWebRTCCommandEventNameEnum(self):
-        """Test WebRTCCommandEventNameEnum"""
+    def testWebRTCCommandName(self):
+        """Test WebRTCCommandName"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

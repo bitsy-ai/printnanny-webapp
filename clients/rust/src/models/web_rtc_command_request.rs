@@ -14,14 +14,14 @@
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct WebRtcCommandRequest {
     #[serde(rename = "model")]
-    pub model: crate::models::WebRtcCommandModelEnum,
+    pub model: crate::models::WebRtcCommandModel,
     #[serde(rename = "source")]
     pub source: crate::models::EventSource,
     /// Broadcast to events websocket: /ws/events
     #[serde(rename = "send_ws", skip_serializing_if = "Option::is_none")]
     pub send_ws: Option<bool>,
     #[serde(rename = "event_name")]
-    pub event_name: crate::models::WebRtcCommandEventNameEnum,
+    pub event_name: crate::models::WebRtcCommandName,
     #[serde(rename = "data", skip_serializing_if = "Option::is_none")]
     pub data: Option<::std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "device")]
@@ -31,7 +31,7 @@ pub struct WebRtcCommandRequest {
 }
 
 impl WebRtcCommandRequest {
-    pub fn new(model: crate::models::WebRtcCommandModelEnum, source: crate::models::EventSource, event_name: crate::models::WebRtcCommandEventNameEnum, device: i32, stream: i32) -> WebRtcCommandRequest {
+    pub fn new(model: crate::models::WebRtcCommandModel, source: crate::models::EventSource, event_name: crate::models::WebRtcCommandName, device: i32, stream: i32) -> WebRtcCommandRequest {
         WebRtcCommandRequest {
             model,
             source,

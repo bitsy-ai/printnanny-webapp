@@ -38,11 +38,11 @@ class WebRTCCommand(object):
     """
     openapi_types = {
         'id': 'int',
-        'model': 'WebRTCCommandModelEnum',
+        'model': 'WebRTCCommandModel',
         'created_dt': 'datetime',
         'source': 'EventSource',
         'send_ws': 'bool',
-        'event_name': 'WebRTCCommandEventNameEnum',
+        'event_name': 'WebRTCCommandName',
         'data': 'dict(str, object)',
         'polymorphic_ctype': 'int',
         'user': 'int',
@@ -126,7 +126,7 @@ class WebRTCCommand(object):
 
 
         :return: The model of this WebRTCCommand.  # noqa: E501
-        :rtype: WebRTCCommandModelEnum
+        :rtype: WebRTCCommandModel
         """
         return self._model
 
@@ -136,7 +136,7 @@ class WebRTCCommand(object):
 
 
         :param model: The model of this WebRTCCommand.  # noqa: E501
-        :type model: WebRTCCommandModelEnum
+        :type model: WebRTCCommandModel
         """
         if self.local_vars_configuration.client_side_validation and model is None:  # noqa: E501
             raise ValueError("Invalid value for `model`, must not be `None`")  # noqa: E501
@@ -218,7 +218,7 @@ class WebRTCCommand(object):
 
 
         :return: The event_name of this WebRTCCommand.  # noqa: E501
-        :rtype: WebRTCCommandEventNameEnum
+        :rtype: WebRTCCommandName
         """
         return self._event_name
 
@@ -228,7 +228,7 @@ class WebRTCCommand(object):
 
 
         :param event_name: The event_name of this WebRTCCommand.  # noqa: E501
-        :type event_name: WebRTCCommandEventNameEnum
+        :type event_name: WebRTCCommandName
         """
         if self.local_vars_configuration.client_side_validation and event_name is None:  # noqa: E501
             raise ValueError("Invalid value for `event_name`, must not be `None`")  # noqa: E501

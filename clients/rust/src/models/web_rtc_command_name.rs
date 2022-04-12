@@ -11,7 +11,7 @@
 
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum WebRtcCommandEventNameEnum {
+pub enum WebRtcCommandName {
     #[serde(rename = "stream_start")]
     Start,
     #[serde(rename = "stream_stop")]
@@ -19,7 +19,7 @@ pub enum WebRtcCommandEventNameEnum {
 
 }
 
-impl ToString for WebRtcCommandEventNameEnum {
+impl ToString for WebRtcCommandName {
     fn to_string(&self) -> String {
         match self {
             Self::Start => String::from("stream_start"),
@@ -28,8 +28,8 @@ impl ToString for WebRtcCommandEventNameEnum {
     }
 }
 
-impl Default for WebRtcCommandEventNameEnum {
-    fn default() -> WebRtcCommandEventNameEnum {
+impl Default for WebRtcCommandName {
+    fn default() -> WebRtcCommandName {
         Self::Start
     }
 }

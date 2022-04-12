@@ -1,4 +1,4 @@
-# WebRtcCommandEventNameEnum
+# WebRtcCommandName
 
 ## Properties
 

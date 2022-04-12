@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**model** | [**crate::models::WebRtcCommandModelEnum**](WebRTCCommandModelEnum.md) |  | 
+**model** | [**crate::models::WebRtcCommandModel**](WebRTCCommandModel.md) |  | 
 **source** | [**crate::models::EventSource**](EventSource.md) |  | 
 **send_ws** | Option<**bool**> | Broadcast to events websocket: /ws/events | [optional]
-**event_name** | [**crate::models::WebRtcCommandEventNameEnum**](WebRTCCommandEventNameEnum.md) |  | 
+**event_name** | [**crate::models::WebRtcCommandName**](WebRTCCommandName.md) |  | 
 **data** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **device** | **i32** |  | 
 **stream** | **i32** |  | 

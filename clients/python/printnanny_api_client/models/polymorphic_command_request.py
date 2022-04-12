@@ -37,10 +37,10 @@ class PolymorphicCommandRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'model': 'WebRTCCommandModelEnum',
+        'model': 'WebRTCCommandModel',
         'source': 'EventSource',
         'send_ws': 'bool',
-        'event_name': 'WebRTCCommandEventNameEnum',
+        'event_name': 'WebRTCCommandName',
         'data': 'dict(str, object)',
         'device': 'int',
         'stream': 'int'
@@ -90,7 +90,7 @@ class PolymorphicCommandRequest(object):
 
 
         :return: The model of this PolymorphicCommandRequest.  # noqa: E501
-        :rtype: WebRTCCommandModelEnum
+        :rtype: WebRTCCommandModel
         """
         return self._model
 
@@ -100,7 +100,7 @@ class PolymorphicCommandRequest(object):
 
 
         :param model: The model of this PolymorphicCommandRequest.  # noqa: E501
-        :type model: WebRTCCommandModelEnum
+        :type model: WebRTCCommandModel
         """
         if self.local_vars_configuration.client_side_validation and model is None:  # noqa: E501
             raise ValueError("Invalid value for `model`, must not be `None`")  # noqa: E501
@@ -159,7 +159,7 @@ class PolymorphicCommandRequest(object):
 
 
         :return: The event_name of this PolymorphicCommandRequest.  # noqa: E501
-        :rtype: WebRTCCommandEventNameEnum
+        :rtype: WebRTCCommandName
         """
         return self._event_name
 
@@ -169,7 +169,7 @@ class PolymorphicCommandRequest(object):
 
 
         :param event_name: The event_name of this PolymorphicCommandRequest.  # noqa: E501
-        :type event_name: WebRTCCommandEventNameEnum
+        :type event_name: WebRTCCommandName
         """
         if self.local_vars_configuration.client_side_validation and event_name is None:  # noqa: E501
             raise ValueError("Invalid value for `event_name`, must not be `None`")  # noqa: E501
