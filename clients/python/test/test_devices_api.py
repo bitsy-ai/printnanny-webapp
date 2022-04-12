@@ -161,6 +161,12 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
+    def test_devices_octoprint_installs_list(self):
+        """Test case for devices_octoprint_installs_list
+
+        """
+        pass
+
     def test_devices_partial_update(self):
         """Test case for devices_partial_update
 

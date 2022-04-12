@@ -41,9 +41,11 @@ class PolymorphicEventRequest(object):
         'source': 'EventSource',
         'send_ws': 'bool',
         'event_name': 'TestEventName',
+        'payload': 'dict(str, object)',
+        'octoprint_install': 'int',
+        'device': 'int',
         'data': 'dict(str, object)',
         'send_mqtt': 'bool',
-        'device': 'int',
         'stream': 'int'
     }
 
@@ -52,16 +54,18 @@ class PolymorphicEventRequest(object):
         'source': 'source',
         'send_ws': 'send_ws',
         'event_name': 'event_name',
+        'payload': 'payload',
+        'octoprint_install': 'octoprint_install',
+        'device': 'device',
         'data': 'data',
         'send_mqtt': 'send_mqtt',
-        'device': 'device',
         'stream': 'stream'
     }
 
     discriminator_value_class_map = {
     }
 
-    def __init__(self, model=None, source=None, send_ws=None, event_name=None, data=None, send_mqtt=None, device=None, stream=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, model=None, source=None, send_ws=None, event_name=None, payload=None, octoprint_install=None, device=None, data=None, send_mqtt=None, stream=None, local_vars_configuration=None):  # noqa: E501
         """PolymorphicEventRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -71,9 +75,11 @@ class PolymorphicEventRequest(object):
         self._source = None
         self._send_ws = None
         self._event_name = None
+        self._payload = None
+        self._octoprint_install = None
+        self._device = None
         self._data = None
         self._send_mqtt = None
-        self._device = None
         self._stream = None
         self.discriminator = 'model'
 
@@ -82,11 +88,14 @@ class PolymorphicEventRequest(object):
         if send_ws is not None:
             self.send_ws = send_ws
         self.event_name = event_name
+        if payload is not None:
+            self.payload = payload
+        self.octoprint_install = octoprint_install
+        self.device = device
         if data is not None:
             self.data = data
         if send_mqtt is not None:
             self.send_mqtt = send_mqtt
-        self.device = device
         self.stream = stream
 
     @property
@@ -182,6 +191,73 @@ class PolymorphicEventRequest(object):
         self._event_name = event_name
 
     @property
+    def payload(self):
+        """Gets the payload of this PolymorphicEventRequest.  # noqa: E501
+
+
+        :return: The payload of this PolymorphicEventRequest.  # noqa: E501
+        :rtype: dict(str, object)
+        """
+        return self._payload
+
+    @payload.setter
+    def payload(self, payload):
+        """Sets the payload of this PolymorphicEventRequest.
+
+
+        :param payload: The payload of this PolymorphicEventRequest.  # noqa: E501
+        :type payload: dict(str, object)
+        """
+
+        self._payload = payload
+
+    @property
+    def octoprint_install(self):
+        """Gets the octoprint_install of this PolymorphicEventRequest.  # noqa: E501
+
+
+        :return: The octoprint_install of this PolymorphicEventRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._octoprint_install
+
+    @octoprint_install.setter
+    def octoprint_install(self, octoprint_install):
+        """Sets the octoprint_install of this PolymorphicEventRequest.
+
+
+        :param octoprint_install: The octoprint_install of this PolymorphicEventRequest.  # noqa: E501
+        :type octoprint_install: int
+        """
+        if self.local_vars_configuration.client_side_validation and octoprint_install is None:  # noqa: E501
+            raise ValueError("Invalid value for `octoprint_install`, must not be `None`")  # noqa: E501
+
+        self._octoprint_install = octoprint_install
+
+    @property
+    def device(self):
+        """Gets the device of this PolymorphicEventRequest.  # noqa: E501
+
+
+        :return: The device of this PolymorphicEventRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._device
+
+    @device.setter
+    def device(self, device):
+        """Sets the device of this PolymorphicEventRequest.
+
+
+        :param device: The device of this PolymorphicEventRequest.  # noqa: E501
+        :type device: int
+        """
+        if self.local_vars_configuration.client_side_validation and device is None:  # noqa: E501
+            raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
+
+        self._device = device
+
+    @property
     def data(self):
         """Gets the data of this PolymorphicEventRequest.  # noqa: E501
 
@@ -224,29 +300,6 @@ class PolymorphicEventRequest(object):
         """
 
         self._send_mqtt = send_mqtt
-
-    @property
-    def device(self):
-        """Gets the device of this PolymorphicEventRequest.  # noqa: E501
-
-
-        :return: The device of this PolymorphicEventRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._device
-
-    @device.setter
-    def device(self, device):
-        """Sets the device of this PolymorphicEventRequest.
-
-
-        :param device: The device of this PolymorphicEventRequest.  # noqa: E501
-        :type device: int
-        """
-        if self.local_vars_configuration.client_side_validation and device is None:  # noqa: E501
-            raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
-
-        self._device = device
 
     @property
     def stream(self):

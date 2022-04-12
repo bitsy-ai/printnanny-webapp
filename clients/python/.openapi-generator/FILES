@@ -38,6 +38,12 @@ docs/JanusEdgeStreamRequest.md
 docs/JanusStream.md
 docs/MobileAuthRequest.md
 docs/OctoPrintBackup.md
+docs/OctoPrintEvent.md
+docs/OctoPrintEventEventNameEnum.md
+docs/OctoPrintEventModelEnum.md
+docs/OctoPrintEventRequest.md
+docs/OctoPrintInstall.md
+docs/OctoPrintInstallRequest.md
 docs/OctoPrintSettings.md
 docs/OctoPrintSettingsRequest.md
 docs/OctoPrinterProfile.md
@@ -52,6 +58,7 @@ docs/PaginatedJanusCloudStreamList.md
 docs/PaginatedJanusEdgeStreamList.md
 docs/PaginatedJanusStreamList.md
 docs/PaginatedOctoPrintBackupList.md
+docs/PaginatedOctoPrintInstallList.md
 docs/PaginatedOctoPrintSettingsList.md
 docs/PaginatedOctoPrinterProfileList.md
 docs/PaginatedPolymorphicEventList.md
@@ -66,6 +73,7 @@ docs/PatchedCloudiotDeviceRequest.md
 docs/PatchedDeviceRequest.md
 docs/PatchedJanusCloudStreamRequest.md
 docs/PatchedJanusEdgeStreamRequest.md
+docs/PatchedOctoPrintInstallRequest.md
 docs/PatchedOctoPrintSettingsRequest.md
 docs/PatchedOctoPrinterProfileRequest.md
 docs/PatchedPublicKeyRequest.md
@@ -136,6 +144,12 @@ printnanny_api_client/models/janus_edge_stream_request.py
 printnanny_api_client/models/janus_stream.py
 printnanny_api_client/models/mobile_auth_request.py
 printnanny_api_client/models/octo_print_backup.py
+printnanny_api_client/models/octo_print_event.py
+printnanny_api_client/models/octo_print_event_event_name_enum.py
+printnanny_api_client/models/octo_print_event_model_enum.py
+printnanny_api_client/models/octo_print_event_request.py
+printnanny_api_client/models/octo_print_install.py
+printnanny_api_client/models/octo_print_install_request.py
 printnanny_api_client/models/octo_print_settings.py
 printnanny_api_client/models/octo_print_settings_request.py
 printnanny_api_client/models/octo_printer_profile.py
@@ -149,6 +163,7 @@ printnanny_api_client/models/paginated_janus_cloud_stream_list.py
 printnanny_api_client/models/paginated_janus_edge_stream_list.py
 printnanny_api_client/models/paginated_janus_stream_list.py
 printnanny_api_client/models/paginated_octo_print_backup_list.py
+printnanny_api_client/models/paginated_octo_print_install_list.py
 printnanny_api_client/models/paginated_octo_print_settings_list.py
 printnanny_api_client/models/paginated_octo_printer_profile_list.py
 printnanny_api_client/models/paginated_polymorphic_event_list.py
@@ -162,6 +177,7 @@ printnanny_api_client/models/patched_cloudiot_device_request.py
 printnanny_api_client/models/patched_device_request.py
 printnanny_api_client/models/patched_janus_cloud_stream_request.py
 printnanny_api_client/models/patched_janus_edge_stream_request.py
+printnanny_api_client/models/patched_octo_print_install_request.py
 printnanny_api_client/models/patched_octo_print_settings_request.py
 printnanny_api_client/models/patched_octo_printer_profile_request.py
 printnanny_api_client/models/patched_public_key_request.py
@@ -226,6 +242,12 @@ test/test_janus_edge_stream_request.py
 test/test_janus_stream.py
 test/test_mobile_auth_request.py
 test/test_octo_print_backup.py
+test/test_octo_print_event.py
+test/test_octo_print_event_event_name_enum.py
+test/test_octo_print_event_model_enum.py
+test/test_octo_print_event_request.py
+test/test_octo_print_install.py
+test/test_octo_print_install_request.py
 test/test_octo_print_settings.py
 test/test_octo_print_settings_request.py
 test/test_octo_printer_profile.py
@@ -240,6 +262,7 @@ test/test_paginated_janus_cloud_stream_list.py
 test/test_paginated_janus_edge_stream_list.py
 test/test_paginated_janus_stream_list.py
 test/test_paginated_octo_print_backup_list.py
+test/test_paginated_octo_print_install_list.py
 test/test_paginated_octo_print_settings_list.py
 test/test_paginated_octo_printer_profile_list.py
 test/test_paginated_polymorphic_event_list.py
@@ -254,6 +277,7 @@ test/test_patched_cloudiot_device_request.py
 test/test_patched_device_request.py
 test/test_patched_janus_cloud_stream_request.py
 test/test_patched_janus_edge_stream_request.py
+test/test_patched_octo_print_install_request.py
 test/test_patched_octo_print_settings_request.py
 test/test_patched_octo_printer_profile_request.py
 test/test_patched_public_key_request.py

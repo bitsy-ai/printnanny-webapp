@@ -37,6 +37,12 @@ docs/JanusEdgeStreamRequest.md
 docs/JanusStream.md
 docs/MobileAuthRequest.md
 docs/OctoPrintBackup.md
+docs/OctoPrintEvent.md
+docs/OctoPrintEventEventNameEnum.md
+docs/OctoPrintEventModelEnum.md
+docs/OctoPrintEventRequest.md
+docs/OctoPrintInstall.md
+docs/OctoPrintInstallRequest.md
 docs/OctoPrintSettings.md
 docs/OctoPrintSettingsRequest.md
 docs/OctoPrinterProfile.md
@@ -51,6 +57,7 @@ docs/PaginatedJanusCloudStreamList.md
 docs/PaginatedJanusEdgeStreamList.md
 docs/PaginatedJanusStreamList.md
 docs/PaginatedOctoPrintBackupList.md
+docs/PaginatedOctoPrintInstallList.md
 docs/PaginatedOctoPrintSettingsList.md
 docs/PaginatedOctoPrinterProfileList.md
 docs/PaginatedPolymorphicEventList.md
@@ -65,6 +72,7 @@ docs/PatchedCloudiotDeviceRequest.md
 docs/PatchedDeviceRequest.md
 docs/PatchedJanusCloudStreamRequest.md
 docs/PatchedJanusEdgeStreamRequest.md
+docs/PatchedOctoPrintInstallRequest.md
 docs/PatchedOctoPrintSettingsRequest.md
 docs/PatchedOctoPrinterProfileRequest.md
 docs/PatchedPublicKeyRequest.md
@@ -133,6 +141,12 @@ src/models/janus_stream.rs
 src/models/mobile_auth_request.rs
 src/models/mod.rs
 src/models/octo_print_backup.rs
+src/models/octo_print_event.rs
+src/models/octo_print_event_event_name_enum.rs
+src/models/octo_print_event_model_enum.rs
+src/models/octo_print_event_request.rs
+src/models/octo_print_install.rs
+src/models/octo_print_install_request.rs
 src/models/octo_print_settings.rs
 src/models/octo_print_settings_request.rs
 src/models/octo_printer_profile.rs
@@ -146,6 +160,7 @@ src/models/paginated_janus_cloud_stream_list.rs
 src/models/paginated_janus_edge_stream_list.rs
 src/models/paginated_janus_stream_list.rs
 src/models/paginated_octo_print_backup_list.rs
+src/models/paginated_octo_print_install_list.rs
 src/models/paginated_octo_print_settings_list.rs
 src/models/paginated_octo_printer_profile_list.rs
 src/models/paginated_polymorphic_event_list.rs
@@ -159,6 +174,7 @@ src/models/patched_cloudiot_device_request.rs
 src/models/patched_device_request.rs
 src/models/patched_janus_cloud_stream_request.rs
 src/models/patched_janus_edge_stream_request.rs
+src/models/patched_octo_print_install_request.rs
 src/models/patched_octo_print_settings_request.rs
 src/models/patched_octo_printer_profile_request.rs
 src/models/patched_public_key_request.rs

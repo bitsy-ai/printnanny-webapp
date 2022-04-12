@@ -43,11 +43,13 @@ class PolymorphicEvent(object):
         'source': 'EventSource',
         'send_ws': 'bool',
         'event_name': 'TestEventName',
-        'data': 'dict(str, object)',
-        'send_mqtt': 'bool',
+        'payload': 'dict(str, object)',
         'polymorphic_ctype': 'int',
         'user': 'int',
+        'octoprint_install': 'int',
         'device': 'int',
+        'data': 'dict(str, object)',
+        'send_mqtt': 'bool',
         'stream': 'int'
     }
 
@@ -58,18 +60,20 @@ class PolymorphicEvent(object):
         'source': 'source',
         'send_ws': 'send_ws',
         'event_name': 'event_name',
-        'data': 'data',
-        'send_mqtt': 'send_mqtt',
+        'payload': 'payload',
         'polymorphic_ctype': 'polymorphic_ctype',
         'user': 'user',
+        'octoprint_install': 'octoprint_install',
         'device': 'device',
+        'data': 'data',
+        'send_mqtt': 'send_mqtt',
         'stream': 'stream'
     }
 
     discriminator_value_class_map = {
     }
 
-    def __init__(self, id=None, model=None, created_dt=None, source=None, send_ws=None, event_name=None, data=None, send_mqtt=None, polymorphic_ctype=None, user=None, device=None, stream=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, model=None, created_dt=None, source=None, send_ws=None, event_name=None, payload=None, polymorphic_ctype=None, user=None, octoprint_install=None, device=None, data=None, send_mqtt=None, stream=None, local_vars_configuration=None):  # noqa: E501
         """PolymorphicEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -81,11 +85,13 @@ class PolymorphicEvent(object):
         self._source = None
         self._send_ws = None
         self._event_name = None
-        self._data = None
-        self._send_mqtt = None
+        self._payload = None
         self._polymorphic_ctype = None
         self._user = None
+        self._octoprint_install = None
         self._device = None
+        self._data = None
+        self._send_mqtt = None
         self._stream = None
         self.discriminator = 'model'
 
@@ -96,13 +102,16 @@ class PolymorphicEvent(object):
         if send_ws is not None:
             self.send_ws = send_ws
         self.event_name = event_name
+        if payload is not None:
+            self.payload = payload
+        self.polymorphic_ctype = polymorphic_ctype
+        self.user = user
+        self.octoprint_install = octoprint_install
+        self.device = device
         if data is not None:
             self.data = data
         if send_mqtt is not None:
             self.send_mqtt = send_mqtt
-        self.polymorphic_ctype = polymorphic_ctype
-        self.user = user
-        self.device = device
         self.stream = stream
 
     @property
@@ -244,48 +253,25 @@ class PolymorphicEvent(object):
         self._event_name = event_name
 
     @property
-    def data(self):
-        """Gets the data of this PolymorphicEvent.  # noqa: E501
+    def payload(self):
+        """Gets the payload of this PolymorphicEvent.  # noqa: E501
 
 
-        :return: The data of this PolymorphicEvent.  # noqa: E501
+        :return: The payload of this PolymorphicEvent.  # noqa: E501
         :rtype: dict(str, object)
         """
-        return self._data
+        return self._payload
 
-    @data.setter
-    def data(self, data):
-        """Sets the data of this PolymorphicEvent.
+    @payload.setter
+    def payload(self, payload):
+        """Sets the payload of this PolymorphicEvent.
 
 
-        :param data: The data of this PolymorphicEvent.  # noqa: E501
-        :type data: dict(str, object)
+        :param payload: The payload of this PolymorphicEvent.  # noqa: E501
+        :type payload: dict(str, object)
         """
 
-        self._data = data
-
-    @property
-    def send_mqtt(self):
-        """Gets the send_mqtt of this PolymorphicEvent.  # noqa: E501
-
-        Broadcast to mqtt topic: /devices/{device-id}/commands/  # noqa: E501
-
-        :return: The send_mqtt of this PolymorphicEvent.  # noqa: E501
-        :rtype: bool
-        """
-        return self._send_mqtt
-
-    @send_mqtt.setter
-    def send_mqtt(self, send_mqtt):
-        """Sets the send_mqtt of this PolymorphicEvent.
-
-        Broadcast to mqtt topic: /devices/{device-id}/commands/  # noqa: E501
-
-        :param send_mqtt: The send_mqtt of this PolymorphicEvent.  # noqa: E501
-        :type send_mqtt: bool
-        """
-
-        self._send_mqtt = send_mqtt
+        self._payload = payload
 
     @property
     def polymorphic_ctype(self):
@@ -334,6 +320,29 @@ class PolymorphicEvent(object):
         self._user = user
 
     @property
+    def octoprint_install(self):
+        """Gets the octoprint_install of this PolymorphicEvent.  # noqa: E501
+
+
+        :return: The octoprint_install of this PolymorphicEvent.  # noqa: E501
+        :rtype: int
+        """
+        return self._octoprint_install
+
+    @octoprint_install.setter
+    def octoprint_install(self, octoprint_install):
+        """Sets the octoprint_install of this PolymorphicEvent.
+
+
+        :param octoprint_install: The octoprint_install of this PolymorphicEvent.  # noqa: E501
+        :type octoprint_install: int
+        """
+        if self.local_vars_configuration.client_side_validation and octoprint_install is None:  # noqa: E501
+            raise ValueError("Invalid value for `octoprint_install`, must not be `None`")  # noqa: E501
+
+        self._octoprint_install = octoprint_install
+
+    @property
     def device(self):
         """Gets the device of this PolymorphicEvent.  # noqa: E501
 
@@ -355,6 +364,50 @@ class PolymorphicEvent(object):
             raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
 
         self._device = device
+
+    @property
+    def data(self):
+        """Gets the data of this PolymorphicEvent.  # noqa: E501
+
+
+        :return: The data of this PolymorphicEvent.  # noqa: E501
+        :rtype: dict(str, object)
+        """
+        return self._data
+
+    @data.setter
+    def data(self, data):
+        """Sets the data of this PolymorphicEvent.
+
+
+        :param data: The data of this PolymorphicEvent.  # noqa: E501
+        :type data: dict(str, object)
+        """
+
+        self._data = data
+
+    @property
+    def send_mqtt(self):
+        """Gets the send_mqtt of this PolymorphicEvent.  # noqa: E501
+
+        Broadcast to mqtt topic: /devices/{device-id}/commands/  # noqa: E501
+
+        :return: The send_mqtt of this PolymorphicEvent.  # noqa: E501
+        :rtype: bool
+        """
+        return self._send_mqtt
+
+    @send_mqtt.setter
+    def send_mqtt(self, send_mqtt):
+        """Sets the send_mqtt of this PolymorphicEvent.
+
+        Broadcast to mqtt topic: /devices/{device-id}/commands/  # noqa: E501
+
+        :param send_mqtt: The send_mqtt of this PolymorphicEvent.  # noqa: E501
+        :type send_mqtt: bool
+        """
+
+        self._send_mqtt = send_mqtt
 
     @property
     def stream(self):

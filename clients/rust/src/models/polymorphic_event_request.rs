@@ -11,6 +11,22 @@
 
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+pub struct OctoPrintEventRequest {
+        #[serde(rename = "source")]
+        pub source: crate::models::EventSource,
+        /// Broadcast to events websocket: /ws/events
+        #[serde(rename = "send_ws", skip_serializing_if = "Option::is_none")]
+        pub send_ws: Option<bool>,
+        #[serde(rename = "event_name")]
+        pub event_name: crate::models::OctoPrintEventEventNameEnum,
+        #[serde(rename = "payload", skip_serializing_if = "Option::is_none")]
+        pub payload: Option<::std::collections::HashMap<String, serde_json::Value>>,
+        #[serde(rename = "octoprint_install")]
+        pub octoprint_install: i32,
+        #[serde(rename = "device")]
+        pub device: i32,
+}
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct TestEventRequest {
         #[serde(rename = "source")]
         pub source: crate::models::EventSource,
@@ -48,6 +64,8 @@ pub struct WebRtcEventRequest {
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(tag = "model")]
 pub enum PolymorphicEventRequest {
+    #[serde(rename="OctoPrintEvent")]
+    OctoPrintEventRequest(OctoPrintEventRequest),
     #[serde(rename="TestEvent")]
     TestEventRequest(TestEventRequest),
     #[serde(rename="WebRTCEvent")]
