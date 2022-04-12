@@ -3,8 +3,14 @@ from django.apps import apps
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from rest_polymorphic.serializers import PolymorphicSerializer
-from print_nanny_webapp.events.models import Event, WebRTCEvent, TestEvent
+from print_nanny_webapp.events.models import (
+    Event,
+    WebRTCEvent,
+    TestEvent,
+    OctoPrintEvent,
+)
 from print_nanny_webapp.events.enum import (
+    OctoPrintEventModel,
     TestEventModel,
     WebRTCEventModel,
 )
@@ -18,6 +24,15 @@ User = get_user_model()
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
+        exclude = ("deleted",)
+        read_only_fields = ("user", "created_dt")
+
+
+class OctoPrintEventSerializer(serializers.ModelSerializer):
+    model = serializers.ChoiceField(choices=OctoPrintEventModel.choices)
+
+    class Meta:
+        model = OctoPrintEvent
         exclude = ("deleted",)
         read_only_fields = ("user", "created_dt")
 
@@ -54,6 +69,7 @@ class PolymorphicEventSerializer(PolymorphicSerializer):
     resource_type_field_name = "model"
     # Model -> Serializer mapping
     model_serializer_mapping = {
+        OctoPrintEvent: OctoPrintEventSerializer,
         WebRTCEvent: WebRTCEventSerializer,
         TestEvent: TestEventSerializer,
     }
