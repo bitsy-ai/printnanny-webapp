@@ -99,7 +99,7 @@ class OctoPrintInstallViewSet(
     lookup_field = "id"
 
     @extend_schema(
-        operation_id="octoprint_settings_device_update_or_create",
+        operation_id="octoprint_install_device_update_or_create",
         responses={
             # 400: PrinterProfileSerializer,
             200: OctoPrintInstallSerializer,
