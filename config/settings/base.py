@@ -453,6 +453,8 @@ SPECTACULAR_SETTINGS = {
         "TestEventModel": "print_nanny_webapp.events.enum.TestEventModel",
         "WebRTCEventName": "print_nanny_webapp.events.enum.WebRTCEventName",
         "WebRTCEventModel": "print_nanny_webapp.events.enum.WebRTCEventModel",
+        "WebRTCCommandName": "print_nanny_webapp.events.enum.WebRTCCommandName",
+        "WebRTCCommandModel": "print_nanny_webapp.events.enum.WebRTCCommandModel",
         "EventModel": "print_nanny_webapp.events.enum.EventModel",
         "EventSource": "print_nanny_webapp.events.enum.EventSource",
     },
