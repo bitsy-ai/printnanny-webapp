@@ -7,6 +7,7 @@ class EventModel(models.TextChoices):
     """
 
     WebRTCEvent = "WebRTCEvent"
+    WebRTCCommand = "WebRTCCommand"
     TestEvent = "TestEvent"
 
 
@@ -24,6 +25,14 @@ class WebRTCEventModel(models.TextChoices):
     """
 
     WebRTCEvent = "WebRTCEvent"
+
+
+class WebRTCCommandModel(models.TextChoices):
+    """
+    Enum with 1 possible value is the easiest way to specify a "constant" value in an OpenAPI schema
+    """
+
+    WebRTCCommand = "WebRTCCommand"
 
 
 class OctoPrintEventModel(models.TextChoices):
@@ -60,21 +69,23 @@ class TestEventName(models.TextChoices):
     MQTT_PONG = "mqtt_pong", "Pong"
 
 
-class WebRTCEventName(models.TextChoices):
+class WebRTCCommandName(models.TextChoices):
     STREAM_START = (
         "stream_start",
         "Initialize WebRTC mountpoint via Janus Gateway streaming plugin",
     )
+    STREAM_STOP = (
+        "stream_stop",
+        "Initialize teardown of WebRTC mountpoint via Janus Gateway streaming plugin",
+    )
+
+
+class WebRTCEventName(models.TextChoices):
     STREAM_START_SUCCESS = (
         "stream_start_success",
         "Successfully created WebRTC Mountpoint, returns Janus streaming plugin info repsponse",
     )
     STREAM_START_ERROR = "stream_start_error", "Error creating WebRTC Mountpoint"
-
-    STREAM_STOP = (
-        "stream_stop",
-        "Initialize teardown of WebRTC mountpoint via Janus Gateway streaming plugin",
-    )
     STREAM_STOP_SUCCESS = (
         "stream_stop_success",
         "Successfully tore down WebRTC Mountpoint, returns Janus streaming plugin destroyed response",

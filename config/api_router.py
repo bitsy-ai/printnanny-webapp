@@ -1,3 +1,4 @@
+from email.mime import base
 from django.urls import path
 from rest_framework.routers import DefaultRouter
 from rest_framework_nested.routers import NestedSimpleRouter
@@ -13,7 +14,7 @@ from print_nanny_webapp.devices.api.views import (
     DeviceViewSet,
     JanusStreamViewSet,
 )
-from print_nanny_webapp.events.api.views import EventViewSet
+from print_nanny_webapp.events.api.views import CommandViewSet, EventViewSet
 from print_nanny_webapp.users.api.views import UserViewSet
 
 from print_nanny_webapp.alerts.api.views import (
@@ -87,6 +88,7 @@ router.register(
 
 
 router.register("events", EventViewSet, basename="events")
+router.register("commands", CommandViewSet, basename="commands")
 router.register("users", UserViewSet)
 user_router = NestedSimpleRouter(router, r"users", lookup="user")
 user_router.register(r"janus-auth", JanusAuthViewSet, basename="janus-auth")
