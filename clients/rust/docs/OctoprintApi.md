@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**octoprint_gcode_files_create**](OctoprintApi.md#octoprint_gcode_files_create) | **POST** /api/octoprint/gcode-files/ | 
 [**octoprint_gcode_files_list**](OctoprintApi.md#octoprint_gcode_files_list) | **GET** /api/octoprint/gcode-files/ | 
 [**octoprint_gcode_files_retrieve**](OctoprintApi.md#octoprint_gcode_files_retrieve) | **GET** /api/octoprint/gcode-files/{id}/ | 
+[**octoprint_install_update_or_create**](OctoprintApi.md#octoprint_install_update_or_create) | **POST** /api/octoprint/installs/update-or-create/ | 
 [**octoprint_installs_create**](OctoprintApi.md#octoprint_installs_create) | **POST** /api/octoprint/installs/ | 
 [**octoprint_installs_list**](OctoprintApi.md#octoprint_installs_list) | **GET** /api/octoprint/installs/ | 
 [**octoprint_installs_partial_update**](OctoprintApi.md#octoprint_installs_partial_update) | **PATCH** /api/octoprint/installs/{id}/ | 
@@ -18,13 +19,12 @@ Method | HTTP request | Description
 [**octoprint_printer_profiles_list**](OctoprintApi.md#octoprint_printer_profiles_list) | **GET** /api/octoprint/printer-profiles/ | 
 [**octoprint_printer_profiles_partial_update**](OctoprintApi.md#octoprint_printer_profiles_partial_update) | **PATCH** /api/octoprint/printer-profiles/{id}/ | 
 [**octoprint_printer_profiles_update**](OctoprintApi.md#octoprint_printer_profiles_update) | **PUT** /api/octoprint/printer-profiles/{id}/ | 
+[**octoprint_profile_update_or_create**](OctoprintApi.md#octoprint_profile_update_or_create) | **POST** /api/octoprint/printer-profiles/update-or-create/ | 
 [**octoprint_settings_create**](OctoprintApi.md#octoprint_settings_create) | **POST** /api/octoprint/settings/ | 
-[**octoprint_settings_device_update_or_create**](OctoprintApi.md#octoprint_settings_device_update_or_create) | **POST** /api/octoprint/installs/update-or-create/ | 
-[**octoprint_settings_device_update_or_create2**](OctoprintApi.md#octoprint_settings_device_update_or_create2) | **POST** /api/octoprint/printer-profiles/update-or-create/ | 
-[**octoprint_settings_device_update_or_create3**](OctoprintApi.md#octoprint_settings_device_update_or_create3) | **POST** /api/octoprint/settings/update-or-create/ | 
 [**octoprint_settings_list**](OctoprintApi.md#octoprint_settings_list) | **GET** /api/octoprint/settings/ | 
 [**octoprint_settings_partial_update**](OctoprintApi.md#octoprint_settings_partial_update) | **PATCH** /api/octoprint/settings/{id}/ | 
 [**octoprint_settings_update**](OctoprintApi.md#octoprint_settings_update) | **PUT** /api/octoprint/settings/{id}/ | 
+[**octoprint_settings_update_or_create**](OctoprintApi.md#octoprint_settings_update_or_create) | **POST** /api/octoprint/settings/update-or-create/ | 
 
 
 
@@ -196,6 +196,34 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## octoprint_install_update_or_create
+
+> crate::models::OctoPrintInstall octoprint_install_update_or_create(octo_print_install_request)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**octo_print_install_request** | [**OctoPrintInstallRequest**](OctoPrintInstallRequest.md) |  | [required] |
+
+### Return type
+
+[**crate::models::OctoPrintInstall**](OctoPrintInstall.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -429,65 +457,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## octoprint_settings_create
+## octoprint_profile_update_or_create
 
-> crate::models::OctoPrintSettings octoprint_settings_create(octo_print_settings_request)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**octo_print_settings_request** | Option<[**OctoPrintSettingsRequest**](OctoPrintSettingsRequest.md)> |  |  |
-
-### Return type
-
-[**crate::models::OctoPrintSettings**](OctoPrintSettings.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## octoprint_settings_device_update_or_create
-
-> crate::models::OctoPrintInstall octoprint_settings_device_update_or_create(octo_print_install_request)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**octo_print_install_request** | [**OctoPrintInstallRequest**](OctoPrintInstallRequest.md) |  | [required] |
-
-### Return type
-
-[**crate::models::OctoPrintInstall**](OctoPrintInstall.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## octoprint_settings_device_update_or_create2
-
-> crate::models::OctoPrinterProfile octoprint_settings_device_update_or_create2(octo_printer_profile_request)
+> crate::models::OctoPrinterProfile octoprint_profile_update_or_create(octo_printer_profile_request)
 
 
 ### Parameters
@@ -513,9 +485,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## octoprint_settings_device_update_or_create3
+## octoprint_settings_create
 
-> crate::models::OctoPrintSettings octoprint_settings_device_update_or_create3(octo_print_settings_request)
+> crate::models::OctoPrintSettings octoprint_settings_create(octo_print_settings_request)
 
 
 ### Parameters
@@ -623,6 +595,34 @@ Name | Type | Description  | Required | Notes
 
 - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## octoprint_settings_update_or_create
+
+> crate::models::OctoPrintSettings octoprint_settings_update_or_create(octo_print_settings_request)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**octo_print_settings_request** | Option<[**OctoPrintSettingsRequest**](OctoPrintSettingsRequest.md)> |  |  |
+
+### Return type
+
+[**crate::models::OctoPrintSettings**](OctoPrintSettings.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

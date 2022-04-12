@@ -65,6 +65,12 @@ class TestOctoprintApi(unittest.TestCase):
         """
         pass
 
+    def test_octoprint_install_update_or_create(self):
+        """Test case for octoprint_install_update_or_create
+
+        """
+        pass
+
     def test_octoprint_installs_create(self):
         """Test case for octoprint_installs_create
 
@@ -113,26 +119,14 @@ class TestOctoprintApi(unittest.TestCase):
         """
         pass
 
+    def test_octoprint_profile_update_or_create(self):
+        """Test case for octoprint_profile_update_or_create
+
+        """
+        pass
+
     def test_octoprint_settings_create(self):
         """Test case for octoprint_settings_create
-
-        """
-        pass
-
-    def test_octoprint_settings_device_update_or_create(self):
-        """Test case for octoprint_settings_device_update_or_create
-
-        """
-        pass
-
-    def test_octoprint_settings_device_update_or_create2(self):
-        """Test case for octoprint_settings_device_update_or_create2
-
-        """
-        pass
-
-    def test_octoprint_settings_device_update_or_create3(self):
-        """Test case for octoprint_settings_device_update_or_create3
 
         """
         pass
@@ -151,6 +145,12 @@ class TestOctoprintApi(unittest.TestCase):
 
     def test_octoprint_settings_update(self):
         """Test case for octoprint_settings_update
+
+        """
+        pass
+
+    def test_octoprint_settings_update_or_create(self):
+        """Test case for octoprint_settings_update_or_create
 
         """
         pass
