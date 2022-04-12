@@ -7,24 +7,70 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('octoprint', '0007_auto_20220412_0221'),
-        ('devices', '0014_auto_20220401_1652'),
-        ('events', '0008_alter_webrtcevent_stream'),
+        ("octoprint", "0007_auto_20220412_0221"),
+        ("devices", "0014_auto_20220401_1652"),
+        ("events", "0008_alter_webrtcevent_stream"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='OctoPrintEvent',
+            name="OctoPrintEvent",
             fields=[
-                ('event_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='events.event')),
-                ('event_name', models.CharField(choices=[('Startup', 'Server Startup'), ('Shutdown', 'Server Shutdown'), ('PrintProgress', 'Print Progress'), ('Connecting', 'Printer Connecting'), ('Connected', 'Printer Connecting'), ('Disconnecting', 'Printer Disconnecting'), ('Disconnected', 'Printer Disconnected'), ('Error', 'Printer Connection Error'), ('PrintStarted', 'Print Job Started'), ('PrintFailed', 'Print Job Failed'), ('PrintDone', 'Print Job Done'), ('PrintCancelling', 'Print Job Cancelling'), ('PrintCancelled', 'Print Job Cancelled'), ('PrintPaused', 'Print Job Paused'), ('PrintResumed', 'Print Job Resumed')], max_length=32)),
-                ('payload', models.JSONField(default=dict)),
-                ('device', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='octoprint_events', to='devices.device')),
-                ('octoprint_install', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='octoprint_events', to='octoprint.octoprintinstall')),
+                (
+                    "event_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="events.event",
+                    ),
+                ),
+                (
+                    "event_name",
+                    models.CharField(
+                        choices=[
+                            ("Startup", "Server Startup"),
+                            ("Shutdown", "Server Shutdown"),
+                            ("PrintProgress", "Print Progress"),
+                            ("Connecting", "Printer Connecting"),
+                            ("Connected", "Printer Connecting"),
+                            ("Disconnecting", "Printer Disconnecting"),
+                            ("Disconnected", "Printer Disconnected"),
+                            ("Error", "Printer Connection Error"),
+                            ("PrintStarted", "Print Job Started"),
+                            ("PrintFailed", "Print Job Failed"),
+                            ("PrintDone", "Print Job Done"),
+                            ("PrintCancelling", "Print Job Cancelling"),
+                            ("PrintCancelled", "Print Job Cancelled"),
+                            ("PrintPaused", "Print Job Paused"),
+                            ("PrintResumed", "Print Job Resumed"),
+                        ],
+                        max_length=32,
+                    ),
+                ),
+                ("payload", models.JSONField(default=dict)),
+                (
+                    "device",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="octoprint_events",
+                        to="devices.device",
+                    ),
+                ),
+                (
+                    "octoprint_install",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="octoprint_events",
+                        to="octoprint.octoprintinstall",
+                    ),
+                ),
             ],
             options={
-                'index_together': {('octoprint_install', 'device', 'event_name')},
+                "index_together": {("octoprint_install", "device", "event_name")},
             },
-            bases=('events.event',),
+            bases=("events.event",),
         ),
     ]
