@@ -2,11 +2,15 @@ import logging
 
 from django.contrib.auth import get_user_model
 from django.db import models
-from polymorphic.managers import PolymorphicManager
 from polymorphic.models import PolymorphicModel
-from safedelete.managers import SafeDeleteManager
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
-from .enum import EventSource, TestEventName, WebRTCEventName, EventModel
+from .enum import (
+    EventSource,
+    TestEventName,
+    WebRTCEventName,
+    EventModel,
+    OctoPrintEventName,
+)
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
@@ -44,6 +48,22 @@ class TestEvent(Event):
         default=True,
         help_text="Broadcast to mqtt topic: /devices/{device-id}/commands/",
     )
+
+
+class OctoPrintEvent(Event):
+    class Meta:
+        index_together = (("octoprint_install", "device", "event_name"),)
+
+    octoprint_install = models.ForeignKey(
+        "octoprint.OctoPrintInstall",
+        on_delete=models.CASCADE,
+        related_name="octoprint_events",
+    )
+    event_name = models.CharField(max_length=32, choices=OctoPrintEventName.choices)
+    device = models.ForeignKey(
+        "devices.Device", on_delete=models.CASCADE, related_name="octoprint_events"
+    )
+    payload = models.JSONField(default=dict)
 
 
 class WebRTCEvent(Event):
