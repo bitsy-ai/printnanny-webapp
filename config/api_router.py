@@ -25,8 +25,10 @@ from print_nanny_webapp.utils.api.views import PrintNannyApiConfigViewset
 from print_nanny_webapp.octoprint.api.views import (
     GcodeFileViewSet,
     OctoPrintBackupViewset,
+    OctoPrintInstallViewSet,
     OctoPrintSettingsViewSet,
     OctoPrinterProfileViewSet,
+    OctoPrintInstallByDeviceViewSet,
 )
 
 router = DefaultRouter()
@@ -53,7 +55,17 @@ devices_router.register(r"janus-streams", JanusStreamViewSet, basename="janus-st
 
 devices_router.register(r"system-info", SystemInfoViewSet, basename="system-info")
 devices_router.register(r"cloudiot", CloudiotDeviceViewSet, basename="cloudiot")
+devices_router.register(
+    r"octoprint-installs",
+    OctoPrintInstallByDeviceViewSet,
+    basename="octoprint-installs",
+)
 
+router.register(
+    r"octoprint/installs",
+    OctoPrintInstallViewSet,
+    basename="octoprint-installs",
+)
 router.register(
     r"octoprint/backups", OctoPrintBackupViewset, basename="octoprint-backups"
 )

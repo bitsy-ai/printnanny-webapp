@@ -4,7 +4,20 @@ from print_nanny_webapp.octoprint.models import (
     OctoPrintSettings,
     GcodeFile,
     OctoPrinterProfile,
+    OctoPrintInstall,
 )
+
+
+class OctoPrintInstallSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OctoPrintInstall
+        exclude = ("deleted",)
+        read_only_fields = ("user",)
+
+    def update_or_create(self, validated_data, device_id):
+        return OctoPrintInstall.objects.filter(device=device_id).update_or_create(
+            device=device_id, defaults=validated_data
+        )
 
 
 class OctoPrinterProfileSerializer(serializers.ModelSerializer):
