@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **send_ws** | Option<**bool**> | Broadcast to events websocket: /ws/events | [optional]
 **event_name** | [**crate::models::WebRtcEventName**](WebRTCEventName.md) |  | 
 **data** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
-**send_mqtt** | Option<**bool**> | Broadcast to mqtt topic: /devices/{device-id}/commands/ | [optional]
 **device** | **i32** |  | 
 **stream** | **i32** |  | 
 

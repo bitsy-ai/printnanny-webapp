@@ -40,11 +40,10 @@ class TestWebRTCEventRequest(unittest.TestCase):
                 model = 'WebRTCEvent', 
                 source = 'octoprint', 
                 send_ws = True, 
-                event_name = 'stream_start', 
+                event_name = 'stream_start_success', 
                 data = {
                     'key' : null
                     }, 
-                send_mqtt = True, 
                 device = 56, 
                 stream = 56
             )
@@ -52,7 +51,7 @@ class TestWebRTCEventRequest(unittest.TestCase):
             return WebRTCEventRequest(
                 model = 'WebRTCEvent',
                 source = 'octoprint',
-                event_name = 'stream_start',
+                event_name = 'stream_start_success',
                 device = 56,
                 stream = 56,
         )

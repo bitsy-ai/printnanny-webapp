@@ -6,6 +6,7 @@ from __future__ import absolute_import
 from printnanny_api_client.api.alerts_api import AlertsApi
 from printnanny_api_client.api.auth_api import AuthApi
 from printnanny_api_client.api.client_api import ClientApi
+from printnanny_api_client.api.commands_api import CommandsApi
 from printnanny_api_client.api.config_api import ConfigApi
 from printnanny_api_client.api.devices_api import DevicesApi
 from printnanny_api_client.api.events_api import EventsApi

@@ -29,6 +29,24 @@ class TestEventsApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_commands_create(self):
+        """Test case for commands_create
+
+        """
+        pass
+
+    def test_commands_list(self):
+        """Test case for commands_list
+
+        """
+        pass
+
+    def test_commands_retrieve(self):
+        """Test case for commands_retrieve
+
+        """
+        pass
+
     def test_events_create(self):
         """Test case for events_create
 

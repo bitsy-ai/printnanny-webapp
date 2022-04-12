@@ -32,14 +32,12 @@ class WebRTCEventName(object):
     """
     allowed enum values
     """
-    START = "stream_start"
     START_SUCCESS = "stream_start_success"
     START_ERROR = "stream_start_error"
-    STOP = "stream_stop"
     STOP_SUCCESS = "stream_stop_success"
     STOP_ERROR = "stream_stop_error"
 
-    allowable_values = [START, START_SUCCESS, START_ERROR, STOP, STOP_SUCCESS, STOP_ERROR]  # noqa: E501
+    allowable_values = [START_SUCCESS, START_ERROR, STOP_SUCCESS, STOP_ERROR]  # noqa: E501
 
     """
     Attributes:

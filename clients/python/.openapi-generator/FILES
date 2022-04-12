@@ -15,6 +15,7 @@ docs/CallbackTokenVerificationRequest.md
 docs/ClientApi.md
 docs/CloudiotDevice.md
 docs/CloudiotDeviceRequest.md
+docs/CommandsApi.md
 docs/ConfigApi.md
 docs/DetailResponse.md
 docs/Device.md
@@ -61,6 +62,7 @@ docs/PaginatedOctoPrintBackupList.md
 docs/PaginatedOctoPrintInstallList.md
 docs/PaginatedOctoPrintSettingsList.md
 docs/PaginatedOctoPrinterProfileList.md
+docs/PaginatedPolymorphicCommandList.md
 docs/PaginatedPolymorphicEventList.md
 docs/PaginatedPublicKeyList.md
 docs/PaginatedSystemInfoList.md
@@ -79,6 +81,8 @@ docs/PatchedOctoPrinterProfileRequest.md
 docs/PatchedPublicKeyRequest.md
 docs/PatchedSystemInfoRequest.md
 docs/PatchedUserRequest.md
+docs/PolymorphicCommand.md
+docs/PolymorphicCommandRequest.md
 docs/PolymorphicEvent.md
 docs/PolymorphicEventRequest.md
 docs/PrintNannyApiConfig.md
@@ -95,6 +99,10 @@ docs/TokenResponse.md
 docs/User.md
 docs/UserRequest.md
 docs/UsersApi.md
+docs/WebRTCCommand.md
+docs/WebRTCCommandEventNameEnum.md
+docs/WebRTCCommandModelEnum.md
+docs/WebRTCCommandRequest.md
 docs/WebRTCEvent.md
 docs/WebRTCEventModel.md
 docs/WebRTCEventName.md
@@ -105,6 +113,7 @@ printnanny_api_client/api/__init__.py
 printnanny_api_client/api/alerts_api.py
 printnanny_api_client/api/auth_api.py
 printnanny_api_client/api/client_api.py
+printnanny_api_client/api/commands_api.py
 printnanny_api_client/api/config_api.py
 printnanny_api_client/api/devices_api.py
 printnanny_api_client/api/events_api.py
@@ -166,6 +175,7 @@ printnanny_api_client/models/paginated_octo_print_backup_list.py
 printnanny_api_client/models/paginated_octo_print_install_list.py
 printnanny_api_client/models/paginated_octo_print_settings_list.py
 printnanny_api_client/models/paginated_octo_printer_profile_list.py
+printnanny_api_client/models/paginated_polymorphic_command_list.py
 printnanny_api_client/models/paginated_polymorphic_event_list.py
 printnanny_api_client/models/paginated_public_key_list.py
 printnanny_api_client/models/paginated_system_info_list.py
@@ -183,6 +193,8 @@ printnanny_api_client/models/patched_octo_printer_profile_request.py
 printnanny_api_client/models/patched_public_key_request.py
 printnanny_api_client/models/patched_system_info_request.py
 printnanny_api_client/models/patched_user_request.py
+printnanny_api_client/models/polymorphic_command.py
+printnanny_api_client/models/polymorphic_command_request.py
 printnanny_api_client/models/polymorphic_event.py
 printnanny_api_client/models/polymorphic_event_request.py
 printnanny_api_client/models/print_nanny_api_config.py
@@ -197,6 +209,10 @@ printnanny_api_client/models/test_event_request.py
 printnanny_api_client/models/token_response.py
 printnanny_api_client/models/user.py
 printnanny_api_client/models/user_request.py
+printnanny_api_client/models/web_rtc_command.py
+printnanny_api_client/models/web_rtc_command_event_name_enum.py
+printnanny_api_client/models/web_rtc_command_model_enum.py
+printnanny_api_client/models/web_rtc_command_request.py
 printnanny_api_client/models/web_rtc_event.py
 printnanny_api_client/models/web_rtc_event_model.py
 printnanny_api_client/models/web_rtc_event_name.py
@@ -219,6 +235,7 @@ test/test_callback_token_verification_request.py
 test/test_client_api.py
 test/test_cloudiot_device.py
 test/test_cloudiot_device_request.py
+test/test_commands_api.py
 test/test_config_api.py
 test/test_detail_response.py
 test/test_device.py
@@ -265,6 +282,7 @@ test/test_paginated_octo_print_backup_list.py
 test/test_paginated_octo_print_install_list.py
 test/test_paginated_octo_print_settings_list.py
 test/test_paginated_octo_printer_profile_list.py
+test/test_paginated_polymorphic_command_list.py
 test/test_paginated_polymorphic_event_list.py
 test/test_paginated_public_key_list.py
 test/test_paginated_system_info_list.py
@@ -283,6 +301,8 @@ test/test_patched_octo_printer_profile_request.py
 test/test_patched_public_key_request.py
 test/test_patched_system_info_request.py
 test/test_patched_user_request.py
+test/test_polymorphic_command.py
+test/test_polymorphic_command_request.py
 test/test_polymorphic_event.py
 test/test_polymorphic_event_request.py
 test/test_print_nanny_api_config.py
@@ -299,6 +319,10 @@ test/test_token_response.py
 test/test_user.py
 test/test_user_request.py
 test/test_users_api.py
+test/test_web_rtc_command.py
+test/test_web_rtc_command_event_name_enum.py
+test/test_web_rtc_command_model_enum.py
+test/test_web_rtc_command_request.py
 test/test_web_rtc_event.py
 test/test_web_rtc_event_model.py
 test/test_web_rtc_event_name.py

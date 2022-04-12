@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 **octoprint_install** | **int** |  | 
 **device** | **int** |  | 
 **data** | **dict(str, object)** |  | [optional] 
-**send_mqtt** | **bool** | Broadcast to mqtt topic: /devices/{device-id}/commands/ | [optional] 
 **stream** | **int** |  | 
+**send_mqtt** | **bool** | Broadcast to mqtt topic: /devices/{device-id}/commands/ | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

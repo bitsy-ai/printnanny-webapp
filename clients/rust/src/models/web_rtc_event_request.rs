@@ -24,9 +24,6 @@ pub struct WebRtcEventRequest {
     pub event_name: crate::models::WebRtcEventName,
     #[serde(rename = "data", skip_serializing_if = "Option::is_none")]
     pub data: Option<::std::collections::HashMap<String, serde_json::Value>>,
-    /// Broadcast to mqtt topic: /devices/{device-id}/commands/
-    #[serde(rename = "send_mqtt", skip_serializing_if = "Option::is_none")]
-    pub send_mqtt: Option<bool>,
     #[serde(rename = "device")]
     pub device: i32,
     #[serde(rename = "stream")]
@@ -41,7 +38,6 @@ impl WebRtcEventRequest {
             send_ws: None,
             event_name,
             data: None,
-            send_mqtt: None,
             device,
             stream,
         }

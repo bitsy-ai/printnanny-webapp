@@ -15,12 +15,13 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.74.1"
+__version__ = "0.75.0"
 
 # import apis into sdk package
 from printnanny_api_client.api.alerts_api import AlertsApi
 from printnanny_api_client.api.auth_api import AuthApi
 from printnanny_api_client.api.client_api import ClientApi
+from printnanny_api_client.api.commands_api import CommandsApi
 from printnanny_api_client.api.config_api import ConfigApi
 from printnanny_api_client.api.devices_api import DevicesApi
 from printnanny_api_client.api.events_api import EventsApi
@@ -89,6 +90,7 @@ from printnanny_api_client.models.paginated_octo_print_backup_list import Pagina
 from printnanny_api_client.models.paginated_octo_print_install_list import PaginatedOctoPrintInstallList
 from printnanny_api_client.models.paginated_octo_print_settings_list import PaginatedOctoPrintSettingsList
 from printnanny_api_client.models.paginated_octo_printer_profile_list import PaginatedOctoPrinterProfileList
+from printnanny_api_client.models.paginated_polymorphic_command_list import PaginatedPolymorphicCommandList
 from printnanny_api_client.models.paginated_polymorphic_event_list import PaginatedPolymorphicEventList
 from printnanny_api_client.models.paginated_public_key_list import PaginatedPublicKeyList
 from printnanny_api_client.models.paginated_system_info_list import PaginatedSystemInfoList
@@ -106,6 +108,8 @@ from printnanny_api_client.models.patched_octo_printer_profile_request import Pa
 from printnanny_api_client.models.patched_public_key_request import PatchedPublicKeyRequest
 from printnanny_api_client.models.patched_system_info_request import PatchedSystemInfoRequest
 from printnanny_api_client.models.patched_user_request import PatchedUserRequest
+from printnanny_api_client.models.polymorphic_command import PolymorphicCommand
+from printnanny_api_client.models.polymorphic_command_request import PolymorphicCommandRequest
 from printnanny_api_client.models.polymorphic_event import PolymorphicEvent
 from printnanny_api_client.models.polymorphic_event_request import PolymorphicEventRequest
 from printnanny_api_client.models.print_nanny_api_config import PrintNannyApiConfig
@@ -120,6 +124,10 @@ from printnanny_api_client.models.test_event_request import TestEventRequest
 from printnanny_api_client.models.token_response import TokenResponse
 from printnanny_api_client.models.user import User
 from printnanny_api_client.models.user_request import UserRequest
+from printnanny_api_client.models.web_rtc_command import WebRTCCommand
+from printnanny_api_client.models.web_rtc_command_event_name_enum import WebRTCCommandEventNameEnum
+from printnanny_api_client.models.web_rtc_command_model_enum import WebRTCCommandModelEnum
+from printnanny_api_client.models.web_rtc_command_request import WebRTCCommandRequest
 from printnanny_api_client.models.web_rtc_event import WebRTCEvent
 from printnanny_api_client.models.web_rtc_event_model import WebRTCEventModel
 from printnanny_api_client.models.web_rtc_event_name import WebRTCEventName

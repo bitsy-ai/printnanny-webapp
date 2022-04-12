@@ -2291,6 +2291,37 @@ export interface PaginatedOctoPrinterProfileList {
 /**
  * 
  * @export
+ * @interface PaginatedPolymorphicCommandList
+ */
+export interface PaginatedPolymorphicCommandList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedPolymorphicCommandList
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedPolymorphicCommandList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedPolymorphicCommandList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<PolymorphicCommand>}
+     * @memberof PaginatedPolymorphicCommandList
+     */
+    'results'?: Array<PolymorphicCommand>;
+}
+/**
+ * 
+ * @export
  * @interface PaginatedPolymorphicEventList
  */
 export interface PaginatedPolymorphicEventList {
@@ -3026,16 +3057,28 @@ export interface PatchedUserRequest {
     'email'?: string;
 }
 /**
+ * @type PolymorphicCommand
+ * @export
+ */
+export type PolymorphicCommand = WebRTCCommand;
+
+/**
+ * @type PolymorphicCommandRequest
+ * @export
+ */
+export type PolymorphicCommandRequest = WebRTCCommandRequest;
+
+/**
  * @type PolymorphicEvent
  * @export
  */
-export type PolymorphicEvent = OctoPrintEvent | TestEvent | WebRTCEvent;
+export type PolymorphicEvent = OctoPrintEvent | TestEvent | WebRTCCommand | WebRTCEvent;
 
 /**
  * @type PolymorphicEventRequest
  * @export
  */
-export type PolymorphicEventRequest = OctoPrintEventRequest | TestEventRequest | WebRTCEventRequest;
+export type PolymorphicEventRequest = OctoPrintEventRequest | TestEventRequest | WebRTCCommandRequest | WebRTCEventRequest;
 
 /**
  * 
@@ -3497,6 +3540,155 @@ export interface UserRequest {
 /**
  * 
  * @export
+ * @interface WebRTCCommand
+ */
+export interface WebRTCCommand {
+    /**
+     * 
+     * @type {number}
+     * @memberof WebRTCCommand
+     */
+    'id': number;
+    /**
+     * 
+     * @type {WebRTCCommandModelEnum}
+     * @memberof WebRTCCommand
+     */
+    'model': WebRTCCommandModelEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebRTCCommand
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {EventSource}
+     * @memberof WebRTCCommand
+     */
+    'source': EventSource;
+    /**
+     * Broadcast to events websocket: /ws/events
+     * @type {boolean}
+     * @memberof WebRTCCommand
+     */
+    'send_ws'?: boolean;
+    /**
+     * 
+     * @type {WebRTCCommandEventNameEnum}
+     * @memberof WebRTCCommand
+     */
+    'event_name': WebRTCCommandEventNameEnum;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof WebRTCCommand
+     */
+    'data'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {number}
+     * @memberof WebRTCCommand
+     */
+    'polymorphic_ctype': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebRTCCommand
+     */
+    'user': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebRTCCommand
+     */
+    'device': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebRTCCommand
+     */
+    'stream': number;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const WebRTCCommandEventNameEnum = {
+    Start: 'stream_start',
+    Stop: 'stream_stop'
+} as const;
+
+export type WebRTCCommandEventNameEnum = typeof WebRTCCommandEventNameEnum[keyof typeof WebRTCCommandEventNameEnum];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const WebRTCCommandModelEnum = {
+    WebRtcCommand: 'WebRTCCommand'
+} as const;
+
+export type WebRTCCommandModelEnum = typeof WebRTCCommandModelEnum[keyof typeof WebRTCCommandModelEnum];
+
+
+/**
+ * 
+ * @export
+ * @interface WebRTCCommandRequest
+ */
+export interface WebRTCCommandRequest {
+    /**
+     * 
+     * @type {WebRTCCommandModelEnum}
+     * @memberof WebRTCCommandRequest
+     */
+    'model': WebRTCCommandModelEnum;
+    /**
+     * 
+     * @type {EventSource}
+     * @memberof WebRTCCommandRequest
+     */
+    'source': EventSource;
+    /**
+     * Broadcast to events websocket: /ws/events
+     * @type {boolean}
+     * @memberof WebRTCCommandRequest
+     */
+    'send_ws'?: boolean;
+    /**
+     * 
+     * @type {WebRTCCommandEventNameEnum}
+     * @memberof WebRTCCommandRequest
+     */
+    'event_name': WebRTCCommandEventNameEnum;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof WebRTCCommandRequest
+     */
+    'data'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {number}
+     * @memberof WebRTCCommandRequest
+     */
+    'device': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebRTCCommandRequest
+     */
+    'stream': number;
+}
+/**
+ * 
+ * @export
  * @interface WebRTCEvent
  */
 export interface WebRTCEvent {
@@ -3543,12 +3735,6 @@ export interface WebRTCEvent {
      */
     'data'?: { [key: string]: any; };
     /**
-     * Broadcast to mqtt topic: /devices/{device-id}/commands/
-     * @type {boolean}
-     * @memberof WebRTCEvent
-     */
-    'send_mqtt'?: boolean;
-    /**
      * 
      * @type {number}
      * @memberof WebRTCEvent
@@ -3593,10 +3779,8 @@ export type WebRTCEventModel = typeof WebRTCEventModel[keyof typeof WebRTCEventM
  */
 
 export const WebRTCEventName = {
-    Start: 'stream_start',
     StartSuccess: 'stream_start_success',
     StartError: 'stream_start_error',
-    Stop: 'stream_stop',
     StopSuccess: 'stream_stop_success',
     StopError: 'stream_stop_error'
 } as const;
@@ -3640,12 +3824,6 @@ export interface WebRTCEventRequest {
      * @memberof WebRTCEventRequest
      */
     'data'?: { [key: string]: any; };
-    /**
-     * Broadcast to mqtt topic: /devices/{device-id}/commands/
-     * @type {boolean}
-     * @memberof WebRTCEventRequest
-     */
-    'send_mqtt'?: boolean;
     /**
      * 
      * @type {number}
@@ -4871,6 +5049,287 @@ export class ClientApi extends BaseAPI implements ClientApiInterface {
      */
     public apiConfigRetreive(options?: AxiosRequestConfig) {
         return ClientApiFp(this.configuration).apiConfigRetreive(options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * CommandsApi - axios parameter creator
+ * @export
+ */
+export const CommandsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Generic events viewset
+         * @param {PolymorphicCommandRequest} [polymorphicCommandRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        commandsCreate: async (polymorphicCommandRequest?: PolymorphicCommandRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/commands/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(polymorphicCommandRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Generic events viewset
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        commandsList: async (page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/commands/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Generic events viewset
+         * @param {number} id A unique integer value identifying this event.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        commandsRetrieve: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('commandsRetrieve', 'id', id)
+            const localVarPath = `/api/commands/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * CommandsApi - functional programming interface
+ * @export
+ */
+export const CommandsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = CommandsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Generic events viewset
+         * @param {PolymorphicCommandRequest} [polymorphicCommandRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async commandsCreate(polymorphicCommandRequest?: PolymorphicCommandRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicCommand>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.commandsCreate(polymorphicCommandRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Generic events viewset
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async commandsList(page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPolymorphicCommandList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.commandsList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Generic events viewset
+         * @param {number} id A unique integer value identifying this event.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async commandsRetrieve(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicCommand>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.commandsRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * CommandsApi - factory interface
+ * @export
+ */
+export const CommandsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = CommandsApiFp(configuration)
+    return {
+        /**
+         * Generic events viewset
+         * @param {PolymorphicCommandRequest} [polymorphicCommandRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        commandsCreate(polymorphicCommandRequest?: PolymorphicCommandRequest, options?: any): AxiosPromise<PolymorphicCommand> {
+            return localVarFp.commandsCreate(polymorphicCommandRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Generic events viewset
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        commandsList(page?: number, options?: any): AxiosPromise<PaginatedPolymorphicCommandList> {
+            return localVarFp.commandsList(page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Generic events viewset
+         * @param {number} id A unique integer value identifying this event.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        commandsRetrieve(id: number, options?: any): AxiosPromise<PolymorphicCommand> {
+            return localVarFp.commandsRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * CommandsApi - interface
+ * @export
+ * @interface CommandsApi
+ */
+export interface CommandsApiInterface {
+    /**
+     * Generic events viewset
+     * @param {PolymorphicCommandRequest} [polymorphicCommandRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CommandsApiInterface
+     */
+    commandsCreate(polymorphicCommandRequest?: PolymorphicCommandRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicCommand>;
+
+    /**
+     * Generic events viewset
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CommandsApiInterface
+     */
+    commandsList(page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPolymorphicCommandList>;
+
+    /**
+     * Generic events viewset
+     * @param {number} id A unique integer value identifying this event.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CommandsApiInterface
+     */
+    commandsRetrieve(id: number, options?: AxiosRequestConfig): AxiosPromise<PolymorphicCommand>;
+
+}
+
+/**
+ * CommandsApi - object-oriented interface
+ * @export
+ * @class CommandsApi
+ * @extends {BaseAPI}
+ */
+export class CommandsApi extends BaseAPI implements CommandsApiInterface {
+    /**
+     * Generic events viewset
+     * @param {PolymorphicCommandRequest} [polymorphicCommandRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CommandsApi
+     */
+    public commandsCreate(polymorphicCommandRequest?: PolymorphicCommandRequest, options?: AxiosRequestConfig) {
+        return CommandsApiFp(this.configuration).commandsCreate(polymorphicCommandRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Generic events viewset
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CommandsApi
+     */
+    public commandsList(page?: number, options?: AxiosRequestConfig) {
+        return CommandsApiFp(this.configuration).commandsList(page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Generic events viewset
+     * @param {number} id A unique integer value identifying this event.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CommandsApi
+     */
+    public commandsRetrieve(id: number, options?: AxiosRequestConfig) {
+        return CommandsApiFp(this.configuration).commandsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -8487,6 +8946,124 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
     return {
         /**
          * Generic events viewset
+         * @param {PolymorphicCommandRequest} [polymorphicCommandRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        commandsCreate: async (polymorphicCommandRequest?: PolymorphicCommandRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/commands/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(polymorphicCommandRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Generic events viewset
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        commandsList: async (page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/commands/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Generic events viewset
+         * @param {number} id A unique integer value identifying this event.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        commandsRetrieve: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('commandsRetrieve', 'id', id)
+            const localVarPath = `/api/commands/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Generic events viewset
          * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -8615,6 +9192,36 @@ export const EventsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Generic events viewset
+         * @param {PolymorphicCommandRequest} [polymorphicCommandRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async commandsCreate(polymorphicCommandRequest?: PolymorphicCommandRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicCommand>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.commandsCreate(polymorphicCommandRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Generic events viewset
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async commandsList(page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPolymorphicCommandList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.commandsList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Generic events viewset
+         * @param {number} id A unique integer value identifying this event.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async commandsRetrieve(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicCommand>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.commandsRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Generic events viewset
          * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -8655,6 +9262,33 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
     return {
         /**
          * Generic events viewset
+         * @param {PolymorphicCommandRequest} [polymorphicCommandRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        commandsCreate(polymorphicCommandRequest?: PolymorphicCommandRequest, options?: any): AxiosPromise<PolymorphicCommand> {
+            return localVarFp.commandsCreate(polymorphicCommandRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Generic events viewset
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        commandsList(page?: number, options?: any): AxiosPromise<PaginatedPolymorphicCommandList> {
+            return localVarFp.commandsList(page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Generic events viewset
+         * @param {number} id A unique integer value identifying this event.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        commandsRetrieve(id: number, options?: any): AxiosPromise<PolymorphicCommand> {
+            return localVarFp.commandsRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Generic events viewset
          * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -8691,6 +9325,33 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
 export interface EventsApiInterface {
     /**
      * Generic events viewset
+     * @param {PolymorphicCommandRequest} [polymorphicCommandRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApiInterface
+     */
+    commandsCreate(polymorphicCommandRequest?: PolymorphicCommandRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicCommand>;
+
+    /**
+     * Generic events viewset
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApiInterface
+     */
+    commandsList(page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPolymorphicCommandList>;
+
+    /**
+     * Generic events viewset
+     * @param {number} id A unique integer value identifying this event.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApiInterface
+     */
+    commandsRetrieve(id: number, options?: AxiosRequestConfig): AxiosPromise<PolymorphicCommand>;
+
+    /**
+     * Generic events viewset
      * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -8725,6 +9386,39 @@ export interface EventsApiInterface {
  * @extends {BaseAPI}
  */
 export class EventsApi extends BaseAPI implements EventsApiInterface {
+    /**
+     * Generic events viewset
+     * @param {PolymorphicCommandRequest} [polymorphicCommandRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApi
+     */
+    public commandsCreate(polymorphicCommandRequest?: PolymorphicCommandRequest, options?: AxiosRequestConfig) {
+        return EventsApiFp(this.configuration).commandsCreate(polymorphicCommandRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Generic events viewset
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApi
+     */
+    public commandsList(page?: number, options?: AxiosRequestConfig) {
+        return EventsApiFp(this.configuration).commandsList(page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Generic events viewset
+     * @param {number} id A unique integer value identifying this event.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApi
+     */
+    public commandsRetrieve(id: number, options?: AxiosRequestConfig) {
+        return EventsApiFp(this.configuration).commandsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * Generic events viewset
      * @param {PolymorphicEventRequest} [polymorphicEventRequest] 
