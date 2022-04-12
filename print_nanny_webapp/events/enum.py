@@ -26,6 +26,35 @@ class WebRTCEventModel(models.TextChoices):
     WebRTCEvent = "WebRTCEvent"
 
 
+class OctoPrintEventModel(models.TextChoices):
+    OctoPrintEvent = "OctoPrintEvent"
+
+
+class OctoPrintEventName(models.TextChoices):
+    """
+    EVENT_NAME : (OctoPrintEventString, Human-readable description)
+    """
+
+    SERVER_STARTUP = "Startup", "Server Startup"  # server
+    SERVER_SHUTDOWN = "Shutdown", "Server Shutdown"  # server
+    PRINT_PROGRESS = "PrintProgress", "Print Progress"  # printer comms
+    PRINTER_CONNECTING = "Connecting", "Printer Connecting"  # printer comms
+    PRINTER_CONNECTED = "Connected", "Printer Connecting"  # printer comms
+    PRINTER_DISCONNECTING = "Disconnecting", "Printer Disconnecting"  # printer comms
+    PRINTER_DISCONNECTED = (
+        "Disconnected",
+        "Printer Disconnected",
+    )  # printer comms
+    PRINTER_CONNECT_ERROR = "Error", "Printer Connection Error"  # printer comms
+    PRINT_JOB_STARTED = "PrintStarted", "Print Job Started"  # print job
+    PRINT_JOB_FAILED = "PrintFailed", "Print Job Failed"  # print job
+    PRINT_JOB_DONE = "PrintDone", "Print Job Done"  # print job
+    PRINT_JOB_CANCELLING = "PrintCancelling", "Print Job Cancelling"  # print job
+    PRINT_JOB_CANCELLED = "PrintCancelled", "Print Job Cancelled"  # print job
+    PRINT_JOB_PAUSED = "PrintPaused", "Print Job Paused"  # print job
+    PRINT_JOB_RESUMED = "PrintResumed", "Print Job Resumed"  # print job
+
+
 class TestEventName(models.TextChoices):
     MQTT_PING = "mqtt_ping", "Ping"
     MQTT_PONG = "mqtt_pong", "Pong"

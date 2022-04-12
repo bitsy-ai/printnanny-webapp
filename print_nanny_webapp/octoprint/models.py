@@ -12,6 +12,40 @@ User = get_user_model()
 # the models contained in the octoprint app are intended to bridge these two implementations, and eventually contain all octoprint-related models/services
 
 
+class OctoPrintInstall(SafeDeleteModel):
+    class Meta:
+        index_together = (
+            ("created_dt", "user", "device", "updated_dt"),
+            (
+                "printnanny_plugin_version",
+                "octoprint_version",
+                "pip_version",
+                "python_version",
+                "device",
+            ),
+        )
+        constraints = [
+            UniqueConstraint(
+                fields=["device"],
+                condition=models.Q(deleted=None),
+                name="unique_octoprint_install_per_device",
+            )
+        ]
+
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name="octoprint_installs"
+    )
+    device = models.ForeignKey(
+        "devices.Device", on_delete=models.CASCADE, related_name="octoprint_installs"
+    )
+    octoprint_version = models.CharField(max_length=32)
+    pip_version = models.CharField(max_length=32)
+    python_version = models.CharField(max_length=32)
+    printnanny_plugin_version = models.CharField(max_length=32)
+    created_dt = models.DateTimeField(auto_now_add=True)
+    updated_dt = models.DateTimeField(auto_now=True)
+
+
 class OctoPrintSettings(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
 
