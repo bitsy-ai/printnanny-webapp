@@ -8,18 +8,6 @@ from print_nanny_webapp.octoprint.models import (
 )
 
 
-class OctoPrintInstallSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = OctoPrintInstall
-        exclude = ("deleted",)
-        read_only_fields = ("user",)
-
-    def update_or_create(self, validated_data, device_id):
-        return OctoPrintInstall.objects.filter(device=device_id).update_or_create(
-            device=device_id, defaults=validated_data
-        )
-
-
 class OctoPrinterProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = OctoPrinterProfile
@@ -48,6 +36,20 @@ class OctoPrintSettingsSerializer(serializers.ModelSerializer):
     def update_or_create(self, validated_data, user):
         return OctoPrintSettings.objects.filter(user=user).update_or_create(
             defaults=validated_data
+        )
+
+
+class OctoPrintInstallSerializer(serializers.ModelSerializer):
+    settings = OctoPrintSettingsSerializer(read_only=True)
+
+    class Meta:
+        model = OctoPrintInstall
+        exclude = ("deleted",)
+        read_only_fields = ("user",)
+
+    def update_or_create(self, validated_data, device_id):
+        return OctoPrintInstall.objects.filter(device=device_id).update_or_create(
+            device=device_id, defaults=validated_data
         )
 
 
