@@ -1117,7 +1117,7 @@ A device (Raspberry Pi) running Print Nanny OS
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **i32** | A unique integer value identifying this device. | [required] |
-**device_request** | Option<[**DeviceRequest**](DeviceRequest.md)> |  |  |
+**device_request** | [**DeviceRequest**](DeviceRequest.md) |  | [required] |
 
 ### Return type
 

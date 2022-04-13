@@ -38,11 +38,11 @@ class OctoPrintEvent(object):
     """
     openapi_types = {
         'id': 'int',
-        'model': 'OctoPrintEventModelEnum',
+        'model': 'OctoPrintEventModel',
         'created_dt': 'datetime',
         'source': 'EventSource',
         'send_ws': 'bool',
-        'event_name': 'OctoPrintEventEventNameEnum',
+        'event_name': 'OctoPrintEventName',
         'payload': 'dict(str, object)',
         'polymorphic_ctype': 'int',
         'user': 'int',
@@ -126,7 +126,7 @@ class OctoPrintEvent(object):
 
 
         :return: The model of this OctoPrintEvent.  # noqa: E501
-        :rtype: OctoPrintEventModelEnum
+        :rtype: OctoPrintEventModel
         """
         return self._model
 
@@ -136,7 +136,7 @@ class OctoPrintEvent(object):
 
 
         :param model: The model of this OctoPrintEvent.  # noqa: E501
-        :type model: OctoPrintEventModelEnum
+        :type model: OctoPrintEventModel
         """
         if self.local_vars_configuration.client_side_validation and model is None:  # noqa: E501
             raise ValueError("Invalid value for `model`, must not be `None`")  # noqa: E501
@@ -218,7 +218,7 @@ class OctoPrintEvent(object):
 
 
         :return: The event_name of this OctoPrintEvent.  # noqa: E501
-        :rtype: OctoPrintEventEventNameEnum
+        :rtype: OctoPrintEventName
         """
         return self._event_name
 
@@ -228,7 +228,7 @@ class OctoPrintEvent(object):
 
 
         :param event_name: The event_name of this OctoPrintEvent.  # noqa: E501
-        :type event_name: OctoPrintEventEventNameEnum
+        :type event_name: OctoPrintEventName
         """
         if self.local_vars_configuration.client_side_validation and event_name is None:  # noqa: E501
             raise ValueError("Invalid value for `event_name`, must not be `None`")  # noqa: E501

@@ -4513,7 +4513,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_update**
-> devices_update(id, device_request=device_request)
+> devices_update(id, device_request)
 
 
 
@@ -4555,10 +4555,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     id = 56 # int | A unique integer value identifying this device.
-device_request = printnanny_api_client.DeviceRequest() # DeviceRequest |  (optional)
+device_request = printnanny_api_client.DeviceRequest() # DeviceRequest | 
 
     try:
-        api_instance.devices_update(id, device_request=device_request)
+        api_instance.devices_update(id, device_request)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_update: %s\n" % e)
 ```
@@ -4597,10 +4597,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     id = 56 # int | A unique integer value identifying this device.
-device_request = printnanny_api_client.DeviceRequest() # DeviceRequest |  (optional)
+device_request = printnanny_api_client.DeviceRequest() # DeviceRequest | 
 
     try:
-        api_instance.devices_update(id, device_request=device_request)
+        api_instance.devices_update(id, device_request)
     except ApiException as e:
         print("Exception when calling DevicesApi->devices_update: %s\n" % e)
 ```
@@ -4610,7 +4610,7 @@ device_request = printnanny_api_client.DeviceRequest() # DeviceRequest |  (optio
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this device. | 
- **device_request** | [**DeviceRequest**](DeviceRequest.md)|  | [optional] 
+ **device_request** | [**DeviceRequest**](DeviceRequest.md)|  | 
 
 ### Return type
 

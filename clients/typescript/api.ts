@@ -492,6 +492,12 @@ export interface Device {
      * @memberof Device
      */
     'hostname'?: string;
+    /**
+     * 
+     * @type {OsEdition}
+     * @memberof Device
+     */
+    'edition': OsEdition;
 }
 /**
  * 
@@ -537,6 +543,12 @@ export interface DeviceRequest {
      * @memberof DeviceRequest
      */
     'hostname'?: string;
+    /**
+     * 
+     * @type {OsEdition}
+     * @memberof DeviceRequest
+     */
+    'edition': OsEdition;
 }
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
@@ -1294,10 +1306,10 @@ export interface OctoPrintEvent {
     'id': number;
     /**
      * 
-     * @type {OctoPrintEventModelEnum}
+     * @type {OctoPrintEventModel}
      * @memberof OctoPrintEvent
      */
-    'model': OctoPrintEventModelEnum;
+    'model': OctoPrintEventModel;
     /**
      * 
      * @type {string}
@@ -1318,10 +1330,10 @@ export interface OctoPrintEvent {
     'send_ws'?: boolean;
     /**
      * 
-     * @type {OctoPrintEventEventNameEnum}
+     * @type {OctoPrintEventName}
      * @memberof OctoPrintEvent
      */
-    'event_name': OctoPrintEventEventNameEnum;
+    'event_name': OctoPrintEventName;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -1359,7 +1371,20 @@ export interface OctoPrintEvent {
  * @enum {string}
  */
 
-export const OctoPrintEventEventNameEnum = {
+export const OctoPrintEventModel = {
+    OctoPrintEvent: 'OctoPrintEvent'
+} as const;
+
+export type OctoPrintEventModel = typeof OctoPrintEventModel[keyof typeof OctoPrintEventModel];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const OctoPrintEventName = {
     Startup: 'Startup',
     Shutdown: 'Shutdown',
     PrintProgress: 'PrintProgress',
@@ -1377,20 +1402,7 @@ export const OctoPrintEventEventNameEnum = {
     PrintResumed: 'PrintResumed'
 } as const;
 
-export type OctoPrintEventEventNameEnum = typeof OctoPrintEventEventNameEnum[keyof typeof OctoPrintEventEventNameEnum];
-
-
-/**
- * 
- * @export
- * @enum {string}
- */
-
-export const OctoPrintEventModelEnum = {
-    OctoPrintEvent: 'OctoPrintEvent'
-} as const;
-
-export type OctoPrintEventModelEnum = typeof OctoPrintEventModelEnum[keyof typeof OctoPrintEventModelEnum];
+export type OctoPrintEventName = typeof OctoPrintEventName[keyof typeof OctoPrintEventName];
 
 
 /**
@@ -1401,10 +1413,10 @@ export type OctoPrintEventModelEnum = typeof OctoPrintEventModelEnum[keyof typeo
 export interface OctoPrintEventRequest {
     /**
      * 
-     * @type {OctoPrintEventModelEnum}
+     * @type {OctoPrintEventModel}
      * @memberof OctoPrintEventRequest
      */
-    'model': OctoPrintEventModelEnum;
+    'model': OctoPrintEventModel;
     /**
      * 
      * @type {EventSource}
@@ -1419,10 +1431,10 @@ export interface OctoPrintEventRequest {
     'send_ws'?: boolean;
     /**
      * 
-     * @type {OctoPrintEventEventNameEnum}
+     * @type {OctoPrintEventName}
      * @memberof OctoPrintEventRequest
      */
-    'event_name': OctoPrintEventEventNameEnum;
+    'event_name': OctoPrintEventName;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -1916,6 +1928,24 @@ export interface OctoPrinterProfileRequest {
      */
     'volume_width'?: number | null;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const OsEdition = {
+    OctoprintDesktop: 'octoprint_desktop',
+    OctoprintSlim: 'octoprint_slim',
+    RepetierDesktop: 'repetier_desktop',
+    RepetierSlim: 'repetier_slim',
+    MainsailDesktop: 'mainsail_desktop',
+    MainsailSlim: 'mainsail_slim'
+} as const;
+
+export type OsEdition = typeof OsEdition[keyof typeof OsEdition];
+
+
 /**
  * 
  * @export
@@ -2609,6 +2639,12 @@ export interface PatchedDeviceRequest {
      * @memberof PatchedDeviceRequest
      */
     'hostname'?: string;
+    /**
+     * 
+     * @type {OsEdition}
+     * @memberof PatchedDeviceRequest
+     */
+    'edition'?: OsEdition;
 }
 /**
  * 
@@ -7067,13 +7103,15 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * A device (Raspberry Pi) running Print Nanny OS
          * @param {number} id A unique integer value identifying this device.
-         * @param {DeviceRequest} [deviceRequest] 
+         * @param {DeviceRequest} deviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesUpdate: async (id: number, deviceRequest?: DeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesUpdate: async (id: number, deviceRequest: DeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('devicesUpdate', 'id', id)
+            // verify required parameter 'deviceRequest' is not null or undefined
+            assertParamExists('devicesUpdate', 'deviceRequest', deviceRequest)
             const localVarPath = `/api/devices/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -7612,11 +7650,11 @@ export const DevicesApiFp = function(configuration?: Configuration) {
         /**
          * A device (Raspberry Pi) running Print Nanny OS
          * @param {number} id A unique integer value identifying this device.
-         * @param {DeviceRequest} [deviceRequest] 
+         * @param {DeviceRequest} deviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesUpdate(id: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async devicesUpdate(id: number, deviceRequest: DeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesUpdate(id, deviceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -8021,11 +8059,11 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         /**
          * A device (Raspberry Pi) running Print Nanny OS
          * @param {number} id A unique integer value identifying this device.
-         * @param {DeviceRequest} [deviceRequest] 
+         * @param {DeviceRequest} deviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesUpdate(id: number, deviceRequest?: DeviceRequest, options?: any): AxiosPromise<void> {
+        devicesUpdate(id: number, deviceRequest: DeviceRequest, options?: any): AxiosPromise<void> {
             return localVarFp.devicesUpdate(id, deviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -8426,12 +8464,12 @@ export interface DevicesApiInterface {
     /**
      * A device (Raspberry Pi) running Print Nanny OS
      * @param {number} id A unique integer value identifying this device.
-     * @param {DeviceRequest} [deviceRequest] 
+     * @param {DeviceRequest} deviceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesUpdate(id: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig): AxiosPromise<void>;
+    devicesUpdate(id: number, deviceRequest: DeviceRequest, options?: AxiosRequestConfig): AxiosPromise<void>;
 
     /**
      * 
@@ -8903,12 +8941,12 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
     /**
      * A device (Raspberry Pi) running Print Nanny OS
      * @param {number} id A unique integer value identifying this device.
-     * @param {DeviceRequest} [deviceRequest] 
+     * @param {DeviceRequest} deviceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesUpdate(id: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig) {
+    public devicesUpdate(id: number, deviceRequest: DeviceRequest, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesUpdate(id, deviceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 

@@ -53,7 +53,8 @@ class TestDevice(unittest.TestCase):
                 public_key = None, 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                hostname = ''
+                hostname = '', 
+                edition = 'octoprint_desktop'
             )
         else :
             return Device(
@@ -70,6 +71,7 @@ class TestDevice(unittest.TestCase):
                 public_key = None,
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                edition = 'octoprint_desktop',
         )
 
     def testDevice(self):

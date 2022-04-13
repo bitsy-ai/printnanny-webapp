@@ -5584,19 +5584,19 @@ class DevicesApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def devices_update(self, id, **kwargs):  # noqa: E501
+    def devices_update(self, id, device_request, **kwargs):  # noqa: E501
         """devices_update  # noqa: E501
 
         A device (Raspberry Pi) running Print Nanny OS  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_update(id, async_req=True)
+        >>> thread = api.devices_update(id, device_request, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this device. (required)
         :type id: int
-        :param device_request:
+        :param device_request: (required)
         :type device_request: DeviceRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -5614,21 +5614,21 @@ class DevicesApi(object):
         :rtype: None
         """
         kwargs['_return_http_data_only'] = True
-        return self.devices_update_with_http_info(id, **kwargs)  # noqa: E501
+        return self.devices_update_with_http_info(id, device_request, **kwargs)  # noqa: E501
 
-    def devices_update_with_http_info(self, id, **kwargs):  # noqa: E501
+    def devices_update_with_http_info(self, id, device_request, **kwargs):  # noqa: E501
         """devices_update  # noqa: E501
 
         A device (Raspberry Pi) running Print Nanny OS  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_update_with_http_info(id, async_req=True)
+        >>> thread = api.devices_update_with_http_info(id, device_request, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this device. (required)
         :type id: int
-        :param device_request:
+        :param device_request: (required)
         :type device_request: DeviceRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -5684,6 +5684,10 @@ class DevicesApi(object):
         if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
                                                         local_var_params['id'] is None):  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `devices_update`")  # noqa: E501
+        # verify the required parameter 'device_request' is set
+        if self.api_client.client_side_validation and ('device_request' not in local_var_params or  # noqa: E501
+                                                        local_var_params['device_request'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `device_request` when calling `devices_update`")  # noqa: E501
 
         collection_formats = {}
 

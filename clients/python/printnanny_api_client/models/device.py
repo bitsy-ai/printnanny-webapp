@@ -53,7 +53,8 @@ class Device(object):
         'public_key': 'PublicKey',
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
-        'hostname': 'str'
+        'hostname': 'str',
+        'edition': 'OsEdition'
     }
 
     attribute_map = {
@@ -73,10 +74,11 @@ class Device(object):
         'public_key': 'public_key',
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
-        'hostname': 'hostname'
+        'hostname': 'hostname',
+        'edition': 'edition'
     }
 
-    def __init__(self, id=None, cloudiot_device=None, cloud_url=None, edge_url=None, video_test_url=None, janus_auth=None, janus_local_url=None, monitoring_active=False, setup_complete=False, user=None, octoprint_url=None, release_channel=None, system_info=None, public_key=None, created_dt=None, updated_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, cloudiot_device=None, cloud_url=None, edge_url=None, video_test_url=None, janus_auth=None, janus_local_url=None, monitoring_active=False, setup_complete=False, user=None, octoprint_url=None, release_channel=None, system_info=None, public_key=None, created_dt=None, updated_dt=None, hostname=None, edition=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -99,6 +101,7 @@ class Device(object):
         self._created_dt = None
         self._updated_dt = None
         self._hostname = None
+        self._edition = None
         self.discriminator = None
 
         self.id = id
@@ -121,6 +124,7 @@ class Device(object):
         self.updated_dt = updated_dt
         if hostname is not None:
             self.hostname = hostname
+        self.edition = edition
 
     @property
     def id(self):
@@ -499,6 +503,29 @@ class Device(object):
             raise ValueError("Invalid value for `hostname`, length must be less than or equal to `255`")  # noqa: E501
 
         self._hostname = hostname
+
+    @property
+    def edition(self):
+        """Gets the edition of this Device.  # noqa: E501
+
+
+        :return: The edition of this Device.  # noqa: E501
+        :rtype: OsEdition
+        """
+        return self._edition
+
+    @edition.setter
+    def edition(self, edition):
+        """Sets the edition of this Device.
+
+
+        :param edition: The edition of this Device.  # noqa: E501
+        :type edition: OsEdition
+        """
+        if self.local_vars_configuration.client_side_validation and edition is None:  # noqa: E501
+            raise ValueError("Invalid value for `edition`, must not be `None`")  # noqa: E501
+
+        self._edition = edition
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

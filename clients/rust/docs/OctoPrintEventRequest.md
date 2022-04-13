@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**model** | [**crate::models::OctoPrintEventModelEnum**](OctoPrintEventModelEnum.md) |  | 
+**model** | [**crate::models::OctoPrintEventModel**](OctoPrintEventModel.md) |  | 
 **source** | [**crate::models::EventSource**](EventSource.md) |  | 
 **send_ws** | Option<**bool**> | Broadcast to events websocket: /ws/events | [optional]
-**event_name** | [**crate::models::OctoPrintEventEventNameEnum**](OctoPrintEventEventNameEnum.md) |  | 
+**event_name** | [**crate::models::OctoPrintEventName**](OctoPrintEventName.md) |  | 
 **payload** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **octoprint_install** | **i32** |  | 
 **device** | **i32** |  | 

@@ -1,7 +1,7 @@
-# OctoPrintEventEventNameEnum
-
+# OctoPrintEventModel
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

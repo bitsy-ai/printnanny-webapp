@@ -4,10 +4,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**model** | [**OctoPrintEventModelEnum**](OctoPrintEventModelEnum.md) |  | 
+**model** | [**OctoPrintEventModel**](OctoPrintEventModel.md) |  | 
 **source** | [**EventSource**](EventSource.md) |  | 
 **send_ws** | **bool** | Broadcast to events websocket: /ws/events | [optional] 
-**event_name** | [**OctoPrintEventEventNameEnum**](OctoPrintEventEventNameEnum.md) |  | 
+**event_name** | [**OctoPrintEventName**](OctoPrintEventName.md) |  | 
 **payload** | **dict(str, object)** |  | [optional] 
 **octoprint_install** | **int** |  | 
 **device** | **int** |  | 
