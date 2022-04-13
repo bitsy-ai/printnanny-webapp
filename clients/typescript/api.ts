@@ -1936,11 +1936,11 @@ export interface OctoPrinterProfileRequest {
 
 export const OsEdition = {
     OctoprintDesktop: 'octoprint_desktop',
-    OctoprintSlim: 'octoprint_slim',
+    OctoprintLite: 'octoprint_lite',
     RepetierDesktop: 'repetier_desktop',
-    RepetierSlim: 'repetier_slim',
+    RepetierLite: 'repetier_lite',
     MainsailDesktop: 'mainsail_desktop',
-    MainsailSlim: 'mainsail_slim'
+    MainsailLite: 'mainsail_lite'
 } as const;
 
 export type OsEdition = typeof OsEdition[keyof typeof OsEdition];

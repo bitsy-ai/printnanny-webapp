@@ -14,16 +14,16 @@
 pub enum OsEdition {
     #[serde(rename = "octoprint_desktop")]
     OctoprintDesktop,
-    #[serde(rename = "octoprint_slim")]
-    OctoprintSlim,
+    #[serde(rename = "octoprint_lite")]
+    OctoprintLite,
     #[serde(rename = "repetier_desktop")]
     RepetierDesktop,
-    #[serde(rename = "repetier_slim")]
-    RepetierSlim,
+    #[serde(rename = "repetier_lite")]
+    RepetierLite,
     #[serde(rename = "mainsail_desktop")]
     MainsailDesktop,
-    #[serde(rename = "mainsail_slim")]
-    MainsailSlim,
+    #[serde(rename = "mainsail_lite")]
+    MainsailLite,
 
 }
 
@@ -31,11 +31,11 @@ impl ToString for OsEdition {
     fn to_string(&self) -> String {
         match self {
             Self::OctoprintDesktop => String::from("octoprint_desktop"),
-            Self::OctoprintSlim => String::from("octoprint_slim"),
+            Self::OctoprintLite => String::from("octoprint_lite"),
             Self::RepetierDesktop => String::from("repetier_desktop"),
-            Self::RepetierSlim => String::from("repetier_slim"),
+            Self::RepetierLite => String::from("repetier_lite"),
             Self::MainsailDesktop => String::from("mainsail_desktop"),
-            Self::MainsailSlim => String::from("mainsail_slim"),
+            Self::MainsailLite => String::from("mainsail_lite"),
         }
     }
 }

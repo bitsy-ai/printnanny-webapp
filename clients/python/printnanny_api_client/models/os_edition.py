@@ -33,13 +33,13 @@ class OsEdition(object):
     allowed enum values
     """
     OCTOPRINT_DESKTOP = "octoprint_desktop"
-    OCTOPRINT_SLIM = "octoprint_slim"
+    OCTOPRINT_LITE = "octoprint_lite"
     REPETIER_DESKTOP = "repetier_desktop"
-    REPETIER_SLIM = "repetier_slim"
+    REPETIER_LITE = "repetier_lite"
     MAINSAIL_DESKTOP = "mainsail_desktop"
-    MAINSAIL_SLIM = "mainsail_slim"
+    MAINSAIL_LITE = "mainsail_lite"
 
-    allowable_values = [OCTOPRINT_DESKTOP, OCTOPRINT_SLIM, REPETIER_DESKTOP, REPETIER_SLIM, MAINSAIL_DESKTOP, MAINSAIL_SLIM]  # noqa: E501
+    allowable_values = [OCTOPRINT_DESKTOP, OCTOPRINT_LITE, REPETIER_DESKTOP, REPETIER_LITE, MAINSAIL_DESKTOP, MAINSAIL_LITE]  # noqa: E501
 
     """
     Attributes:
