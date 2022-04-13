@@ -81,6 +81,8 @@ class OctoPrintSettings(SafeDeleteModel):
         default=True,
         help_text="Pause failing print jobs automatically",
     )
+    created_dt = models.DateTimeField(auto_now_add=True)
+    updated_dt = models.DateTimeField(auto_now=True)
 
 
 class GcodeFile(SafeDeleteModel):

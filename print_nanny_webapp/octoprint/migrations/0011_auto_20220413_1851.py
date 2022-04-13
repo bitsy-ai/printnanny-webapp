@@ -7,19 +7,21 @@ import django.utils.timezone
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('octoprint', '0010_auto_20220413_1849'),
+        ("octoprint", "0010_auto_20220413_1849"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='octoprintsettings',
-            name='created_dt',
-            field=models.DateTimeField(auto_now_add=True, default=django.utils.timezone.now),
+            model_name="octoprintsettings",
+            name="created_dt",
+            field=models.DateTimeField(
+                auto_now_add=True, default=django.utils.timezone.now
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='octoprintsettings',
-            name='updated_dt',
+            model_name="octoprintsettings",
+            name="updated_dt",
             field=models.DateTimeField(auto_now=True),
         ),
     ]

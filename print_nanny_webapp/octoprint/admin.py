@@ -27,13 +27,35 @@ class OctoPrintInstallAdmin(admin.ModelAdmin):
     model = OctoPrintInstall
 
 
-# @admin.register(OctoPrinterProfile)
-# class OctoPrinterProfileAdmin(admin.ModelAdmin):
-#     list_display = (
-#         "user",
-#         "name",
-#         "printnanny_plugin_version",
-#         "created_dt",
-#         "updated_dt",
-#     )
-#     model = OctoPrinterProfile
+@admin.register(OctoPrinterProfile)
+class OctoPrinterProfileAdmin(admin.ModelAdmin):
+    list_display = (
+        "user",
+        "name",
+        "created_dt",
+        "updated_dt",
+    )
+    model = OctoPrinterProfile
+
+
+@admin.register(OctoPrintSettings)
+class OctoPrintSettingsAdmin(admin.ModelAdmin):
+    list_display = (
+        "octoprint_install",
+        "telemetry_enabled",
+        "events_enabled",
+        "created_dt",
+        "updated_dt",
+    )
+    model = OctoPrintSettings
+
+
+@admin.register(GcodeFile)
+class GcodeFileAdmin(admin.ModelAdmin):
+    list_display = (
+        "user",
+        "name",
+        "hostname",
+        "created_dt",
+    )
+    model = GcodeFile
