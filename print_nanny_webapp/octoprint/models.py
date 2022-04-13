@@ -102,6 +102,7 @@ class GcodeFile(SafeDeleteModel):
     name = models.CharField(max_length=255)
     file = models.FileField(upload_to="uploads/gcode_file/%Y/%m/%d/")
     hash = models.CharField(max_length=255)
+    created_dt = models.DateTimeField(auto_now_add=True)
 
 
 class OctoPrintBackup(SafeDeleteModel):

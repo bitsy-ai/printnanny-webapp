@@ -55,7 +55,6 @@ class GcodeFileAdmin(admin.ModelAdmin):
     list_display = (
         "user",
         "name",
-        "hostname",
         "created_dt",
     )
     model = GcodeFile
