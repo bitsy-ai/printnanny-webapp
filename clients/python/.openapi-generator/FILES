@@ -40,8 +40,8 @@ docs/JanusStream.md
 docs/MobileAuthRequest.md
 docs/OctoPrintBackup.md
 docs/OctoPrintEvent.md
-docs/OctoPrintEventEventNameEnum.md
-docs/OctoPrintEventModelEnum.md
+docs/OctoPrintEventModel.md
+docs/OctoPrintEventName.md
 docs/OctoPrintEventRequest.md
 docs/OctoPrintInstall.md
 docs/OctoPrintInstallRequest.md
@@ -50,6 +50,7 @@ docs/OctoPrintSettingsRequest.md
 docs/OctoPrinterProfile.md
 docs/OctoPrinterProfileRequest.md
 docs/OctoprintApi.md
+docs/OsEdition.md
 docs/PaginatedAlertList.md
 docs/PaginatedCloudiotDeviceList.md
 docs/PaginatedDeviceList.md
@@ -154,8 +155,8 @@ printnanny_api_client/models/janus_stream.py
 printnanny_api_client/models/mobile_auth_request.py
 printnanny_api_client/models/octo_print_backup.py
 printnanny_api_client/models/octo_print_event.py
-printnanny_api_client/models/octo_print_event_event_name_enum.py
-printnanny_api_client/models/octo_print_event_model_enum.py
+printnanny_api_client/models/octo_print_event_model.py
+printnanny_api_client/models/octo_print_event_name.py
 printnanny_api_client/models/octo_print_event_request.py
 printnanny_api_client/models/octo_print_install.py
 printnanny_api_client/models/octo_print_install_request.py
@@ -163,6 +164,7 @@ printnanny_api_client/models/octo_print_settings.py
 printnanny_api_client/models/octo_print_settings_request.py
 printnanny_api_client/models/octo_printer_profile.py
 printnanny_api_client/models/octo_printer_profile_request.py
+printnanny_api_client/models/os_edition.py
 printnanny_api_client/models/paginated_alert_list.py
 printnanny_api_client/models/paginated_cloudiot_device_list.py
 printnanny_api_client/models/paginated_device_list.py
@@ -260,8 +262,8 @@ test/test_janus_stream.py
 test/test_mobile_auth_request.py
 test/test_octo_print_backup.py
 test/test_octo_print_event.py
-test/test_octo_print_event_event_name_enum.py
-test/test_octo_print_event_model_enum.py
+test/test_octo_print_event_model.py
+test/test_octo_print_event_name.py
 test/test_octo_print_event_request.py
 test/test_octo_print_install.py
 test/test_octo_print_install_request.py
@@ -270,6 +272,7 @@ test/test_octo_print_settings_request.py
 test/test_octo_printer_profile.py
 test/test_octo_printer_profile_request.py
 test/test_octoprint_api.py
+test/test_os_edition.py
 test/test_paginated_alert_list.py
 test/test_paginated_cloudiot_device_list.py
 test/test_paginated_device_list.py
