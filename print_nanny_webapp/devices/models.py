@@ -14,6 +14,7 @@ from .utils import get_available_rtp_port
 from .enum import (
     DeviceReleaseChannel,
     JanusConfigType,
+    OsEdition,
 )
 
 UserModel = get_user_model()
@@ -24,12 +25,13 @@ def get_random_string_32():
     return get_random_string(32)
 
 
-def noop():
+# TODO remove cloudiot_device from registry
+def delete_cloudiot_device_from_gcp_registry():
     pass
 
 
 def pre_softdelete_cloudiot_device(instance=None, **kwargs) -> Callable:
-    fn = getattr(instance, "pre_softdelete", noop)
+    fn = getattr(instance, "pre_softdelete", delete_cloudiot_device_from_gcp_registry)
     return fn()
 
 
@@ -71,6 +73,7 @@ class Device(SafeDeleteModel):
         default=DeviceReleaseChannel.STABLE,
         help_text="WARNING: you should only use the nightly developer channel when guided by Print Nanny staff! This unstable channel is intended for QA and verifying bug fixes.",
     )
+    edition = models.CharField(max_length=32, choices=OsEdition.choices)
 
     @property
     def public_key(self):
