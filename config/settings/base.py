@@ -437,6 +437,7 @@ SPECTACULAR_SETTINGS = {
         "CameraType": "print_nanny_webapp.devices.enum.CameraType",
         "JanusConfigType": "print_nanny_webapp.devices.enum.JanusConfigType",
         "DeviceReleaseChannel": "print_nanny_webapp.devices.enum.DeviceReleaseChannel",
+        "OsEdition": "print_nanny_webapp.devices.enum.OsEdition",
         # begin alerts app enums
         "PrintProgressAlertEventType": "print_nanny_webapp.alerts.models.PrintProgressAlert.PrintProgressAlertEventType.choices",
         "AlertMessageType": "print_nanny_webapp.alerts.models.AlertMessage.AlertMessageType.choices",
@@ -449,6 +450,8 @@ SPECTACULAR_SETTINGS = {
         "OctoPrinterEvent": "print_nanny_webapp.telemetry.enum.PrinterEventType",
         "AlphaEventSource": "print_nanny_webapp.telemetry.enum.EventSource",
         # begin polymorphic event types
+        "OctoPrintEventName": "print_nanny_webapp.events.enum.OctoPrintEventName",
+        "OctoPrintEventModel": "print_nanny_webapp.events.enum.OctoPrintEventModel",
         "TestEventName": "print_nanny_webapp.events.enum.TestEventName",
         "TestEventModel": "print_nanny_webapp.events.enum.TestEventModel",
         "WebRTCEventName": "print_nanny_webapp.events.enum.WebRTCEventName",
