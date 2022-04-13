@@ -11,13 +11,13 @@
 
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum OctoPrintEventModelEnum {
+pub enum OctoPrintEventModel {
     #[serde(rename = "OctoPrintEvent")]
     OctoPrintEvent,
 
 }
 
-impl ToString for OctoPrintEventModelEnum {
+impl ToString for OctoPrintEventModel {
     fn to_string(&self) -> String {
         match self {
             Self::OctoPrintEvent => String::from("OctoPrintEvent"),
@@ -25,8 +25,8 @@ impl ToString for OctoPrintEventModelEnum {
     }
 }
 
-impl Default for OctoPrintEventModelEnum {
-    fn default() -> OctoPrintEventModelEnum {
+impl Default for OctoPrintEventModel {
+    fn default() -> OctoPrintEventModel {
         Self::OctoPrintEvent
     }
 }

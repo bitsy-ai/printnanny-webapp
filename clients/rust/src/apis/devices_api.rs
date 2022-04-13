@@ -1549,7 +1549,7 @@ pub async fn devices_system_info_update(configuration: &configuration::Configura
 }
 
 /// A device (Raspberry Pi) running Print Nanny OS
-pub async fn devices_update(configuration: &configuration::Configuration, id: i32, device_request: Option<crate::models::DeviceRequest>) -> Result<(), Error<DevicesUpdateError>> {
+pub async fn devices_update(configuration: &configuration::Configuration, id: i32, device_request: crate::models::DeviceRequest) -> Result<(), Error<DevicesUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

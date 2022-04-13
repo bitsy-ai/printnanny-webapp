@@ -39,8 +39,8 @@ docs/JanusStream.md
 docs/MobileAuthRequest.md
 docs/OctoPrintBackup.md
 docs/OctoPrintEvent.md
-docs/OctoPrintEventEventNameEnum.md
-docs/OctoPrintEventModelEnum.md
+docs/OctoPrintEventModel.md
+docs/OctoPrintEventName.md
 docs/OctoPrintEventRequest.md
 docs/OctoPrintInstall.md
 docs/OctoPrintInstallRequest.md
@@ -49,6 +49,7 @@ docs/OctoPrintSettingsRequest.md
 docs/OctoPrinterProfile.md
 docs/OctoPrinterProfileRequest.md
 docs/OctoprintApi.md
+docs/OsEdition.md
 docs/PaginatedAlertList.md
 docs/PaginatedCloudiotDeviceList.md
 docs/PaginatedDeviceList.md
@@ -151,8 +152,8 @@ src/models/mobile_auth_request.rs
 src/models/mod.rs
 src/models/octo_print_backup.rs
 src/models/octo_print_event.rs
-src/models/octo_print_event_event_name_enum.rs
-src/models/octo_print_event_model_enum.rs
+src/models/octo_print_event_model.rs
+src/models/octo_print_event_name.rs
 src/models/octo_print_event_request.rs
 src/models/octo_print_install.rs
 src/models/octo_print_install_request.rs
@@ -160,6 +161,7 @@ src/models/octo_print_settings.rs
 src/models/octo_print_settings_request.rs
 src/models/octo_printer_profile.rs
 src/models/octo_printer_profile_request.rs
+src/models/os_edition.rs
 src/models/paginated_alert_list.rs
 src/models/paginated_cloudiot_device_list.rs
 src/models/paginated_device_list.rs

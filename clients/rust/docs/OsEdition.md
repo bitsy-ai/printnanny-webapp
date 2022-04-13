@@ -1,4 +1,4 @@
-# OctoPrintEventEventNameEnum
+# OsEdition
 
 ## Properties
 

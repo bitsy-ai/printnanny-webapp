@@ -16,7 +16,7 @@ pub struct OctoPrintEvent {
     #[serde(rename = "id")]
     pub id: i32,
     #[serde(rename = "model")]
-    pub model: crate::models::OctoPrintEventModelEnum,
+    pub model: crate::models::OctoPrintEventModel,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
     #[serde(rename = "source")]
@@ -25,7 +25,7 @@ pub struct OctoPrintEvent {
     #[serde(rename = "send_ws", skip_serializing_if = "Option::is_none")]
     pub send_ws: Option<bool>,
     #[serde(rename = "event_name")]
-    pub event_name: crate::models::OctoPrintEventEventNameEnum,
+    pub event_name: crate::models::OctoPrintEventName,
     #[serde(rename = "payload", skip_serializing_if = "Option::is_none")]
     pub payload: Option<::std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "polymorphic_ctype")]
@@ -39,7 +39,7 @@ pub struct OctoPrintEvent {
 }
 
 impl OctoPrintEvent {
-    pub fn new(id: i32, model: crate::models::OctoPrintEventModelEnum, created_dt: String, source: crate::models::EventSource, event_name: crate::models::OctoPrintEventEventNameEnum, polymorphic_ctype: i32, user: i32, octoprint_install: i32, device: i32) -> OctoPrintEvent {
+    pub fn new(id: i32, model: crate::models::OctoPrintEventModel, created_dt: String, source: crate::models::EventSource, event_name: crate::models::OctoPrintEventName, polymorphic_ctype: i32, user: i32, octoprint_install: i32, device: i32) -> OctoPrintEvent {
         OctoPrintEvent {
             id,
             model,

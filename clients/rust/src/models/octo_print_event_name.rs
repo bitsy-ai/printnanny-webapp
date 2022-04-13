@@ -11,7 +11,7 @@
 
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum OctoPrintEventEventNameEnum {
+pub enum OctoPrintEventName {
     #[serde(rename = "Startup")]
     Startup,
     #[serde(rename = "Shutdown")]
@@ -45,7 +45,7 @@ pub enum OctoPrintEventEventNameEnum {
 
 }
 
-impl ToString for OctoPrintEventEventNameEnum {
+impl ToString for OctoPrintEventName {
     fn to_string(&self) -> String {
         match self {
             Self::Startup => String::from("Startup"),
@@ -67,8 +67,8 @@ impl ToString for OctoPrintEventEventNameEnum {
     }
 }
 
-impl Default for OctoPrintEventEventNameEnum {
-    fn default() -> OctoPrintEventEventNameEnum {
+impl Default for OctoPrintEventName {
+    fn default() -> OctoPrintEventName {
         Self::Startup
     }
 }
