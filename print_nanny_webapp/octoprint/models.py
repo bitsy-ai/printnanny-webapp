@@ -81,6 +81,8 @@ class OctoPrintSettings(SafeDeleteModel):
         default=True,
         help_text="Pause failing print jobs automatically",
     )
+    created_dt = models.DateTimeField(auto_now_add=True)
+    updated_dt = models.DateTimeField(auto_now=True)
 
 
 class GcodeFile(SafeDeleteModel):
@@ -170,3 +172,5 @@ class OctoPrinterProfile(SafeDeleteModel):
     volume_height = models.FloatField(null=True)
     volume_origin = models.CharField(null=True, max_length=255)
     volume_width = models.FloatField(null=True)
+    created_dt = models.DateTimeField(auto_now_add=True)
+    updated_dt = models.DateTimeField(auto_now=True)
