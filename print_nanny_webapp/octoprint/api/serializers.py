@@ -1,3 +1,4 @@
+import logging
 from rest_framework import serializers
 from print_nanny_webapp.octoprint.models import (
     OctoPrintBackup,
@@ -6,6 +7,8 @@ from print_nanny_webapp.octoprint.models import (
     OctoPrinterProfile,
     OctoPrintInstall,
 )
+
+logger = logging.getLogger(__name__)
 
 
 class OctoPrinterProfileSerializer(serializers.ModelSerializer):
@@ -48,9 +51,19 @@ class OctoPrintInstallSerializer(serializers.ModelSerializer):
         read_only_fields = ("user",)
 
     def update_or_create(self, validated_data, device_id):
-        return OctoPrintInstall.objects.filter(device=device_id).update_or_create(
+
+        instance = OctoPrintInstall.objects.filter(device=device_id).update_or_create(
             device=device_id, defaults=validated_data
         )
+        # initialize OctoPrintSettings
+        if instance.settings is None:
+            settings, created = OctoPrintSettings.objects.get_or_create(
+                octoprint_install=instance
+            )
+            if created:
+                logger.info("Created default %s for %s", settings, instance)
+                instance.refresh_from_db()
+        return instance
 
 
 class OctoPrintBackupSerializer(serializers.ModelSerializer):
