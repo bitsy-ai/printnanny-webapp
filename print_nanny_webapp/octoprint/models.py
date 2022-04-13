@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.conf import settings
 from django.db import models
 from django.db.models import UniqueConstraint
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
@@ -49,17 +50,28 @@ class OctoPrintInstall(SafeDeleteModel):
 class OctoPrintSettings(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
 
-    user = models.OneToOneField(
-        User, on_delete=models.CASCADE, related_name="octoprint_settings"
+    octoprint_install = models.OneToOneField(
+        OctoPrintInstall, on_delete=models.CASCADE, related_name="settings"
+    )
+    events_enabled = models.BooleanField(
+        default=False,
+        help_text="Send OctoPrint events to PrintNanny Cloud https://docs.octoprint.org/en/master/events/index.html",
+    )
+    telemetry_enabled = models.BooleanField(
+        default=False,
+        help_text="Send telemetry data to PrintNanny Cloud for debugging/analytics purposes",
     )
     sync_gcode = models.BooleanField(
-        default=True, help_text="Sync Gcode files to PrintNanny Cloud"
+        default=True, help_text="Sync Gcode files to/from PrintNanny Cloud"
     )
     sync_printer_profiles = models.BooleanField(
-        default=True, help_text="Sync Printer Profiles to PrintNanny Cloud"
+        default=True, help_text="Sync Printer Profiles to/from PrintNanny Cloud"
     )
     sync_backups = models.BooleanField(
         default=True, help_text="Upload OctoPrint backups to PrintNanny Cloud"
+    )
+    auto_backup = models.CharField(
+        max_length=64, default=settings.PRINTNANNY_OS_DEFAULT_BACKUP_SCHEDULE
     )
     monitoring_auto_start = models.BooleanField(
         default=True,

@@ -731,6 +731,9 @@ GCP_PUBSUB_OCTOPRINT_ALERTS_SUBSCRIPTION = env(
     default=os.path.join("projects", GCP_PROJECT_ID, "subscriptions/alerts-pull"),
 )
 
+# default backup schedule for PrintNanny OS
+PRINTNANNY_OS_DEFAULT_BACKUP_SCHEDULE = "0 0 * * 2"
+
 # django-loginas
 # https://github.com/skorokithakis/django-loginas
 # ------------------------------------------------------------------------------
