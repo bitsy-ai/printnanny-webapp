@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
+**settings** | [**OctoPrintSettings**](OctoPrintSettings.md) |  | [readonly] 
 **octoprint_version** | **str** |  | 
 **pip_version** | **str** |  | 
 **python_version** | **str** |  | 

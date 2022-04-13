@@ -37,14 +37,19 @@ class TestOctoPrintSettingsRequest(unittest.TestCase):
         # model = printnanny_api_client.models.octo_print_settings_request.OctoPrintSettingsRequest()  # noqa: E501
         if include_optional :
             return OctoPrintSettingsRequest(
+                events_enabled = True, 
+                telemetry_enabled = True, 
                 sync_gcode = True, 
                 sync_printer_profiles = True, 
                 sync_backups = True, 
+                auto_backup = '0', 
                 monitoring_auto_start = True, 
-                monitoring_auto_pause = True
+                monitoring_auto_pause = True, 
+                octoprint_install = 56
             )
         else :
             return OctoPrintSettingsRequest(
+                octoprint_install = 56,
         )
 
     def testOctoPrintSettingsRequest(self):

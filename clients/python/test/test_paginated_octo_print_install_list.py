@@ -43,6 +43,7 @@ class TestPaginatedOctoPrintInstallList(unittest.TestCase):
                 results = [
                     printnanny_api_client.models.octo_print_install.OctoPrintInstall(
                         id = 56, 
+                        settings = null, 
                         octoprint_version = '', 
                         pip_version = '', 
                         python_version = '', 

@@ -38,51 +38,66 @@ class OctoPrintSettings(object):
     """
     openapi_types = {
         'id': 'int',
+        'events_enabled': 'bool',
+        'telemetry_enabled': 'bool',
         'sync_gcode': 'bool',
         'sync_printer_profiles': 'bool',
         'sync_backups': 'bool',
+        'auto_backup': 'str',
         'monitoring_auto_start': 'bool',
         'monitoring_auto_pause': 'bool',
-        'user': 'int'
+        'octoprint_install': 'int'
     }
 
     attribute_map = {
         'id': 'id',
+        'events_enabled': 'events_enabled',
+        'telemetry_enabled': 'telemetry_enabled',
         'sync_gcode': 'sync_gcode',
         'sync_printer_profiles': 'sync_printer_profiles',
         'sync_backups': 'sync_backups',
+        'auto_backup': 'auto_backup',
         'monitoring_auto_start': 'monitoring_auto_start',
         'monitoring_auto_pause': 'monitoring_auto_pause',
-        'user': 'user'
+        'octoprint_install': 'octoprint_install'
     }
 
-    def __init__(self, id=None, sync_gcode=None, sync_printer_profiles=None, sync_backups=None, monitoring_auto_start=None, monitoring_auto_pause=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, events_enabled=None, telemetry_enabled=None, sync_gcode=None, sync_printer_profiles=None, sync_backups=None, auto_backup=None, monitoring_auto_start=None, monitoring_auto_pause=None, octoprint_install=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintSettings - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
+        self._events_enabled = None
+        self._telemetry_enabled = None
         self._sync_gcode = None
         self._sync_printer_profiles = None
         self._sync_backups = None
+        self._auto_backup = None
         self._monitoring_auto_start = None
         self._monitoring_auto_pause = None
-        self._user = None
+        self._octoprint_install = None
         self.discriminator = None
 
         self.id = id
+        if events_enabled is not None:
+            self.events_enabled = events_enabled
+        if telemetry_enabled is not None:
+            self.telemetry_enabled = telemetry_enabled
         if sync_gcode is not None:
             self.sync_gcode = sync_gcode
         if sync_printer_profiles is not None:
             self.sync_printer_profiles = sync_printer_profiles
         if sync_backups is not None:
             self.sync_backups = sync_backups
+        if auto_backup is not None:
+            self.auto_backup = auto_backup
         if monitoring_auto_start is not None:
             self.monitoring_auto_start = monitoring_auto_start
         if monitoring_auto_pause is not None:
             self.monitoring_auto_pause = monitoring_auto_pause
-        self.user = user
+        self.octoprint_install = octoprint_install
 
     @property
     def id(self):
@@ -108,10 +123,56 @@ class OctoPrintSettings(object):
         self._id = id
 
     @property
+    def events_enabled(self):
+        """Gets the events_enabled of this OctoPrintSettings.  # noqa: E501
+
+        Send OctoPrint events to PrintNanny Cloud https://docs.octoprint.org/en/master/events/index.html  # noqa: E501
+
+        :return: The events_enabled of this OctoPrintSettings.  # noqa: E501
+        :rtype: bool
+        """
+        return self._events_enabled
+
+    @events_enabled.setter
+    def events_enabled(self, events_enabled):
+        """Sets the events_enabled of this OctoPrintSettings.
+
+        Send OctoPrint events to PrintNanny Cloud https://docs.octoprint.org/en/master/events/index.html  # noqa: E501
+
+        :param events_enabled: The events_enabled of this OctoPrintSettings.  # noqa: E501
+        :type events_enabled: bool
+        """
+
+        self._events_enabled = events_enabled
+
+    @property
+    def telemetry_enabled(self):
+        """Gets the telemetry_enabled of this OctoPrintSettings.  # noqa: E501
+
+        Send telemetry data to PrintNanny Cloud for debugging/analytics purposes  # noqa: E501
+
+        :return: The telemetry_enabled of this OctoPrintSettings.  # noqa: E501
+        :rtype: bool
+        """
+        return self._telemetry_enabled
+
+    @telemetry_enabled.setter
+    def telemetry_enabled(self, telemetry_enabled):
+        """Sets the telemetry_enabled of this OctoPrintSettings.
+
+        Send telemetry data to PrintNanny Cloud for debugging/analytics purposes  # noqa: E501
+
+        :param telemetry_enabled: The telemetry_enabled of this OctoPrintSettings.  # noqa: E501
+        :type telemetry_enabled: bool
+        """
+
+        self._telemetry_enabled = telemetry_enabled
+
+    @property
     def sync_gcode(self):
         """Gets the sync_gcode of this OctoPrintSettings.  # noqa: E501
 
-        Sync Gcode files to PrintNanny Cloud  # noqa: E501
+        Sync Gcode files to/from PrintNanny Cloud  # noqa: E501
 
         :return: The sync_gcode of this OctoPrintSettings.  # noqa: E501
         :rtype: bool
@@ -122,7 +183,7 @@ class OctoPrintSettings(object):
     def sync_gcode(self, sync_gcode):
         """Sets the sync_gcode of this OctoPrintSettings.
 
-        Sync Gcode files to PrintNanny Cloud  # noqa: E501
+        Sync Gcode files to/from PrintNanny Cloud  # noqa: E501
 
         :param sync_gcode: The sync_gcode of this OctoPrintSettings.  # noqa: E501
         :type sync_gcode: bool
@@ -134,7 +195,7 @@ class OctoPrintSettings(object):
     def sync_printer_profiles(self):
         """Gets the sync_printer_profiles of this OctoPrintSettings.  # noqa: E501
 
-        Sync Printer Profiles to PrintNanny Cloud  # noqa: E501
+        Sync Printer Profiles to/from PrintNanny Cloud  # noqa: E501
 
         :return: The sync_printer_profiles of this OctoPrintSettings.  # noqa: E501
         :rtype: bool
@@ -145,7 +206,7 @@ class OctoPrintSettings(object):
     def sync_printer_profiles(self, sync_printer_profiles):
         """Sets the sync_printer_profiles of this OctoPrintSettings.
 
-        Sync Printer Profiles to PrintNanny Cloud  # noqa: E501
+        Sync Printer Profiles to/from PrintNanny Cloud  # noqa: E501
 
         :param sync_printer_profiles: The sync_printer_profiles of this OctoPrintSettings.  # noqa: E501
         :type sync_printer_profiles: bool
@@ -175,6 +236,30 @@ class OctoPrintSettings(object):
         """
 
         self._sync_backups = sync_backups
+
+    @property
+    def auto_backup(self):
+        """Gets the auto_backup of this OctoPrintSettings.  # noqa: E501
+
+
+        :return: The auto_backup of this OctoPrintSettings.  # noqa: E501
+        :rtype: str
+        """
+        return self._auto_backup
+
+    @auto_backup.setter
+    def auto_backup(self, auto_backup):
+        """Sets the auto_backup of this OctoPrintSettings.
+
+
+        :param auto_backup: The auto_backup of this OctoPrintSettings.  # noqa: E501
+        :type auto_backup: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                auto_backup is not None and len(auto_backup) > 64):
+            raise ValueError("Invalid value for `auto_backup`, length must be less than or equal to `64`")  # noqa: E501
+
+        self._auto_backup = auto_backup
 
     @property
     def monitoring_auto_start(self):
@@ -223,27 +308,27 @@ class OctoPrintSettings(object):
         self._monitoring_auto_pause = monitoring_auto_pause
 
     @property
-    def user(self):
-        """Gets the user of this OctoPrintSettings.  # noqa: E501
+    def octoprint_install(self):
+        """Gets the octoprint_install of this OctoPrintSettings.  # noqa: E501
 
 
-        :return: The user of this OctoPrintSettings.  # noqa: E501
+        :return: The octoprint_install of this OctoPrintSettings.  # noqa: E501
         :rtype: int
         """
-        return self._user
+        return self._octoprint_install
 
-    @user.setter
-    def user(self, user):
-        """Sets the user of this OctoPrintSettings.
+    @octoprint_install.setter
+    def octoprint_install(self, octoprint_install):
+        """Sets the octoprint_install of this OctoPrintSettings.
 
 
-        :param user: The user of this OctoPrintSettings.  # noqa: E501
-        :type user: int
+        :param octoprint_install: The octoprint_install of this OctoPrintSettings.  # noqa: E501
+        :type octoprint_install: int
         """
-        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
-            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and octoprint_install is None:  # noqa: E501
+            raise ValueError("Invalid value for `octoprint_install`, must not be `None`")  # noqa: E501
 
-        self._user = user
+        self._octoprint_install = octoprint_install
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

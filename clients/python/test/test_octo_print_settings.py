@@ -38,17 +38,20 @@ class TestOctoPrintSettings(unittest.TestCase):
         if include_optional :
             return OctoPrintSettings(
                 id = 56, 
+                events_enabled = True, 
+                telemetry_enabled = True, 
                 sync_gcode = True, 
                 sync_printer_profiles = True, 
                 sync_backups = True, 
+                auto_backup = '', 
                 monitoring_auto_start = True, 
                 monitoring_auto_pause = True, 
-                user = 56
+                octoprint_install = 56
             )
         else :
             return OctoPrintSettings(
                 id = 56,
-                user = 56,
+                octoprint_install = 56,
         )
 
     def testOctoPrintSettings(self):

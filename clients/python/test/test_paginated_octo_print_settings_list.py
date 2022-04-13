@@ -43,12 +43,15 @@ class TestPaginatedOctoPrintSettingsList(unittest.TestCase):
                 results = [
                     printnanny_api_client.models.octo_print_settings.OctoPrintSettings(
                         id = 56, 
+                        events_enabled = True, 
+                        telemetry_enabled = True, 
                         sync_gcode = True, 
                         sync_printer_profiles = True, 
                         sync_backups = True, 
+                        auto_backup = '', 
                         monitoring_auto_start = True, 
                         monitoring_auto_pause = True, 
-                        user = 56, )
+                        octoprint_install = 56, )
                     ]
             )
         else :

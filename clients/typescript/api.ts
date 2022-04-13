@@ -1468,6 +1468,12 @@ export interface OctoPrintInstall {
     'id': number;
     /**
      * 
+     * @type {OctoPrintSettings}
+     * @memberof OctoPrintInstall
+     */
+    'settings': OctoPrintSettings;
+    /**
+     * 
      * @type {string}
      * @memberof OctoPrintInstall
      */
@@ -1565,13 +1571,25 @@ export interface OctoPrintSettings {
      */
     'id': number;
     /**
-     * Sync Gcode files to PrintNanny Cloud
+     * Send OctoPrint events to PrintNanny Cloud https://docs.octoprint.org/en/master/events/index.html
+     * @type {boolean}
+     * @memberof OctoPrintSettings
+     */
+    'events_enabled'?: boolean;
+    /**
+     * Send telemetry data to PrintNanny Cloud for debugging/analytics purposes
+     * @type {boolean}
+     * @memberof OctoPrintSettings
+     */
+    'telemetry_enabled'?: boolean;
+    /**
+     * Sync Gcode files to/from PrintNanny Cloud
      * @type {boolean}
      * @memberof OctoPrintSettings
      */
     'sync_gcode'?: boolean;
     /**
-     * Sync Printer Profiles to PrintNanny Cloud
+     * Sync Printer Profiles to/from PrintNanny Cloud
      * @type {boolean}
      * @memberof OctoPrintSettings
      */
@@ -1582,6 +1600,12 @@ export interface OctoPrintSettings {
      * @memberof OctoPrintSettings
      */
     'sync_backups'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoPrintSettings
+     */
+    'auto_backup'?: string;
     /**
      * Start PrintNanny monitoring automatically when a print job begins
      * @type {boolean}
@@ -1599,7 +1623,7 @@ export interface OctoPrintSettings {
      * @type {number}
      * @memberof OctoPrintSettings
      */
-    'user': number;
+    'octoprint_install': number;
 }
 /**
  * 
@@ -1608,13 +1632,25 @@ export interface OctoPrintSettings {
  */
 export interface OctoPrintSettingsRequest {
     /**
-     * Sync Gcode files to PrintNanny Cloud
+     * Send OctoPrint events to PrintNanny Cloud https://docs.octoprint.org/en/master/events/index.html
+     * @type {boolean}
+     * @memberof OctoPrintSettingsRequest
+     */
+    'events_enabled'?: boolean;
+    /**
+     * Send telemetry data to PrintNanny Cloud for debugging/analytics purposes
+     * @type {boolean}
+     * @memberof OctoPrintSettingsRequest
+     */
+    'telemetry_enabled'?: boolean;
+    /**
+     * Sync Gcode files to/from PrintNanny Cloud
      * @type {boolean}
      * @memberof OctoPrintSettingsRequest
      */
     'sync_gcode'?: boolean;
     /**
-     * Sync Printer Profiles to PrintNanny Cloud
+     * Sync Printer Profiles to/from PrintNanny Cloud
      * @type {boolean}
      * @memberof OctoPrintSettingsRequest
      */
@@ -1625,6 +1661,12 @@ export interface OctoPrintSettingsRequest {
      * @memberof OctoPrintSettingsRequest
      */
     'sync_backups'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoPrintSettingsRequest
+     */
+    'auto_backup'?: string;
     /**
      * Start PrintNanny monitoring automatically when a print job begins
      * @type {boolean}
@@ -1637,6 +1679,12 @@ export interface OctoPrintSettingsRequest {
      * @memberof OctoPrintSettingsRequest
      */
     'monitoring_auto_pause'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoPrintSettingsRequest
+     */
+    'octoprint_install': number;
 }
 /**
  * 
@@ -2806,13 +2854,25 @@ export interface PatchedOctoPrintInstallRequest {
  */
 export interface PatchedOctoPrintSettingsRequest {
     /**
-     * Sync Gcode files to PrintNanny Cloud
+     * Send OctoPrint events to PrintNanny Cloud https://docs.octoprint.org/en/master/events/index.html
+     * @type {boolean}
+     * @memberof PatchedOctoPrintSettingsRequest
+     */
+    'events_enabled'?: boolean;
+    /**
+     * Send telemetry data to PrintNanny Cloud for debugging/analytics purposes
+     * @type {boolean}
+     * @memberof PatchedOctoPrintSettingsRequest
+     */
+    'telemetry_enabled'?: boolean;
+    /**
+     * Sync Gcode files to/from PrintNanny Cloud
      * @type {boolean}
      * @memberof PatchedOctoPrintSettingsRequest
      */
     'sync_gcode'?: boolean;
     /**
-     * Sync Printer Profiles to PrintNanny Cloud
+     * Sync Printer Profiles to/from PrintNanny Cloud
      * @type {boolean}
      * @memberof PatchedOctoPrintSettingsRequest
      */
@@ -2823,6 +2883,12 @@ export interface PatchedOctoPrintSettingsRequest {
      * @memberof PatchedOctoPrintSettingsRequest
      */
     'sync_backups'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedOctoPrintSettingsRequest
+     */
+    'auto_backup'?: string;
     /**
      * Start PrintNanny monitoring automatically when a print job begins
      * @type {boolean}
@@ -2835,6 +2901,12 @@ export interface PatchedOctoPrintSettingsRequest {
      * @memberof PatchedOctoPrintSettingsRequest
      */
     'monitoring_auto_pause'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedOctoPrintSettingsRequest
+     */
+    'octoprint_install'?: number;
 }
 /**
  * 
@@ -11663,11 +11735,13 @@ export const OctoprintApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
-         * @param {OctoPrintSettingsRequest} [octoPrintSettingsRequest] 
+         * @param {OctoPrintSettingsRequest} octoPrintSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintSettingsCreate: async (octoPrintSettingsRequest?: OctoPrintSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        octoprintSettingsCreate: async (octoPrintSettingsRequest: OctoPrintSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'octoPrintSettingsRequest' is not null or undefined
+            assertParamExists('octoprintSettingsCreate', 'octoPrintSettingsRequest', octoPrintSettingsRequest)
             const localVarPath = `/api/octoprint/settings/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -11786,13 +11860,15 @@ export const OctoprintApiAxiosParamCreator = function (configuration?: Configura
         /**
          * 
          * @param {number} id A unique integer value identifying this octo print settings.
-         * @param {OctoPrintSettingsRequest} [octoPrintSettingsRequest] 
+         * @param {OctoPrintSettingsRequest} octoPrintSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintSettingsUpdate: async (id: number, octoPrintSettingsRequest?: OctoPrintSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        octoprintSettingsUpdate: async (id: number, octoPrintSettingsRequest: OctoPrintSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('octoprintSettingsUpdate', 'id', id)
+            // verify required parameter 'octoPrintSettingsRequest' is not null or undefined
+            assertParamExists('octoprintSettingsUpdate', 'octoPrintSettingsRequest', octoPrintSettingsRequest)
             const localVarPath = `/api/octoprint/settings/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -11828,11 +11904,13 @@ export const OctoprintApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
-         * @param {OctoPrintSettingsRequest} [octoPrintSettingsRequest] 
+         * @param {OctoPrintSettingsRequest} octoPrintSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintSettingsUpdateOrCreate: async (octoPrintSettingsRequest?: OctoPrintSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        octoprintSettingsUpdateOrCreate: async (octoPrintSettingsRequest: OctoPrintSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'octoPrintSettingsRequest' is not null or undefined
+            assertParamExists('octoprintSettingsUpdateOrCreate', 'octoPrintSettingsRequest', octoPrintSettingsRequest)
             const localVarPath = `/api/octoprint/settings/update-or-create/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -12046,11 +12124,11 @@ export const OctoprintApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {OctoPrintSettingsRequest} [octoPrintSettingsRequest] 
+         * @param {OctoPrintSettingsRequest} octoPrintSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async octoprintSettingsCreate(octoPrintSettingsRequest?: OctoPrintSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintSettings>> {
+        async octoprintSettingsCreate(octoPrintSettingsRequest: OctoPrintSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintSettings>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintSettingsCreate(octoPrintSettingsRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -12078,21 +12156,21 @@ export const OctoprintApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} id A unique integer value identifying this octo print settings.
-         * @param {OctoPrintSettingsRequest} [octoPrintSettingsRequest] 
+         * @param {OctoPrintSettingsRequest} octoPrintSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async octoprintSettingsUpdate(id: number, octoPrintSettingsRequest?: OctoPrintSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async octoprintSettingsUpdate(id: number, octoPrintSettingsRequest: OctoPrintSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintSettingsUpdate(id, octoPrintSettingsRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {OctoPrintSettingsRequest} [octoPrintSettingsRequest] 
+         * @param {OctoPrintSettingsRequest} octoPrintSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async octoprintSettingsUpdateOrCreate(octoPrintSettingsRequest?: OctoPrintSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintSettings>> {
+        async octoprintSettingsUpdateOrCreate(octoPrintSettingsRequest: OctoPrintSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintSettings>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintSettingsUpdateOrCreate(octoPrintSettingsRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -12261,11 +12339,11 @@ export const OctoprintApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
-         * @param {OctoPrintSettingsRequest} [octoPrintSettingsRequest] 
+         * @param {OctoPrintSettingsRequest} octoPrintSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintSettingsCreate(octoPrintSettingsRequest?: OctoPrintSettingsRequest, options?: any): AxiosPromise<OctoPrintSettings> {
+        octoprintSettingsCreate(octoPrintSettingsRequest: OctoPrintSettingsRequest, options?: any): AxiosPromise<OctoPrintSettings> {
             return localVarFp.octoprintSettingsCreate(octoPrintSettingsRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -12290,20 +12368,20 @@ export const OctoprintApiFactory = function (configuration?: Configuration, base
         /**
          * 
          * @param {number} id A unique integer value identifying this octo print settings.
-         * @param {OctoPrintSettingsRequest} [octoPrintSettingsRequest] 
+         * @param {OctoPrintSettingsRequest} octoPrintSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintSettingsUpdate(id: number, octoPrintSettingsRequest?: OctoPrintSettingsRequest, options?: any): AxiosPromise<void> {
+        octoprintSettingsUpdate(id: number, octoPrintSettingsRequest: OctoPrintSettingsRequest, options?: any): AxiosPromise<void> {
             return localVarFp.octoprintSettingsUpdate(id, octoPrintSettingsRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {OctoPrintSettingsRequest} [octoPrintSettingsRequest] 
+         * @param {OctoPrintSettingsRequest} octoPrintSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintSettingsUpdateOrCreate(octoPrintSettingsRequest?: OctoPrintSettingsRequest, options?: any): AxiosPromise<OctoPrintSettings> {
+        octoprintSettingsUpdateOrCreate(octoPrintSettingsRequest: OctoPrintSettingsRequest, options?: any): AxiosPromise<OctoPrintSettings> {
             return localVarFp.octoprintSettingsUpdateOrCreate(octoPrintSettingsRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -12470,12 +12548,12 @@ export interface OctoprintApiInterface {
 
     /**
      * 
-     * @param {OctoPrintSettingsRequest} [octoPrintSettingsRequest] 
+     * @param {OctoPrintSettingsRequest} octoPrintSettingsRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OctoprintApiInterface
      */
-    octoprintSettingsCreate(octoPrintSettingsRequest?: OctoPrintSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<OctoPrintSettings>;
+    octoprintSettingsCreate(octoPrintSettingsRequest: OctoPrintSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<OctoPrintSettings>;
 
     /**
      * 
@@ -12499,21 +12577,21 @@ export interface OctoprintApiInterface {
     /**
      * 
      * @param {number} id A unique integer value identifying this octo print settings.
-     * @param {OctoPrintSettingsRequest} [octoPrintSettingsRequest] 
+     * @param {OctoPrintSettingsRequest} octoPrintSettingsRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OctoprintApiInterface
      */
-    octoprintSettingsUpdate(id: number, octoPrintSettingsRequest?: OctoPrintSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<void>;
+    octoprintSettingsUpdate(id: number, octoPrintSettingsRequest: OctoPrintSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<void>;
 
     /**
      * 
-     * @param {OctoPrintSettingsRequest} [octoPrintSettingsRequest] 
+     * @param {OctoPrintSettingsRequest} octoPrintSettingsRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OctoprintApiInterface
      */
-    octoprintSettingsUpdateOrCreate(octoPrintSettingsRequest?: OctoPrintSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<OctoPrintSettings>;
+    octoprintSettingsUpdateOrCreate(octoPrintSettingsRequest: OctoPrintSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<OctoPrintSettings>;
 
 }
 
@@ -12711,12 +12789,12 @@ export class OctoprintApi extends BaseAPI implements OctoprintApiInterface {
 
     /**
      * 
-     * @param {OctoPrintSettingsRequest} [octoPrintSettingsRequest] 
+     * @param {OctoPrintSettingsRequest} octoPrintSettingsRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OctoprintApi
      */
-    public octoprintSettingsCreate(octoPrintSettingsRequest?: OctoPrintSettingsRequest, options?: AxiosRequestConfig) {
+    public octoprintSettingsCreate(octoPrintSettingsRequest: OctoPrintSettingsRequest, options?: AxiosRequestConfig) {
         return OctoprintApiFp(this.configuration).octoprintSettingsCreate(octoPrintSettingsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -12746,23 +12824,23 @@ export class OctoprintApi extends BaseAPI implements OctoprintApiInterface {
     /**
      * 
      * @param {number} id A unique integer value identifying this octo print settings.
-     * @param {OctoPrintSettingsRequest} [octoPrintSettingsRequest] 
+     * @param {OctoPrintSettingsRequest} octoPrintSettingsRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OctoprintApi
      */
-    public octoprintSettingsUpdate(id: number, octoPrintSettingsRequest?: OctoPrintSettingsRequest, options?: AxiosRequestConfig) {
+    public octoprintSettingsUpdate(id: number, octoPrintSettingsRequest: OctoPrintSettingsRequest, options?: AxiosRequestConfig) {
         return OctoprintApiFp(this.configuration).octoprintSettingsUpdate(id, octoPrintSettingsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {OctoPrintSettingsRequest} [octoPrintSettingsRequest] 
+     * @param {OctoPrintSettingsRequest} octoPrintSettingsRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OctoprintApi
      */
-    public octoprintSettingsUpdateOrCreate(octoPrintSettingsRequest?: OctoPrintSettingsRequest, options?: AxiosRequestConfig) {
+    public octoprintSettingsUpdateOrCreate(octoPrintSettingsRequest: OctoPrintSettingsRequest, options?: AxiosRequestConfig) {
         return OctoprintApiFp(this.configuration).octoprintSettingsUpdateOrCreate(octoPrintSettingsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }

@@ -38,6 +38,7 @@ class OctoPrintInstall(object):
     """
     openapi_types = {
         'id': 'int',
+        'settings': 'OctoPrintSettings',
         'octoprint_version': 'str',
         'pip_version': 'str',
         'python_version': 'str',
@@ -50,6 +51,7 @@ class OctoPrintInstall(object):
 
     attribute_map = {
         'id': 'id',
+        'settings': 'settings',
         'octoprint_version': 'octoprint_version',
         'pip_version': 'pip_version',
         'python_version': 'python_version',
@@ -60,13 +62,14 @@ class OctoPrintInstall(object):
         'device': 'device'
     }
 
-    def __init__(self, id=None, octoprint_version=None, pip_version=None, python_version=None, printnanny_plugin_version=None, created_dt=None, updated_dt=None, user=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, settings=None, octoprint_version=None, pip_version=None, python_version=None, printnanny_plugin_version=None, created_dt=None, updated_dt=None, user=None, device=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintInstall - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
+        self._settings = None
         self._octoprint_version = None
         self._pip_version = None
         self._python_version = None
@@ -78,6 +81,7 @@ class OctoPrintInstall(object):
         self.discriminator = None
 
         self.id = id
+        self.settings = settings
         self.octoprint_version = octoprint_version
         self.pip_version = pip_version
         self.python_version = python_version
@@ -109,6 +113,27 @@ class OctoPrintInstall(object):
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
+
+    @property
+    def settings(self):
+        """Gets the settings of this OctoPrintInstall.  # noqa: E501
+
+
+        :return: The settings of this OctoPrintInstall.  # noqa: E501
+        :rtype: OctoPrintSettings
+        """
+        return self._settings
+
+    @settings.setter
+    def settings(self, settings):
+        """Sets the settings of this OctoPrintInstall.
+
+
+        :param settings: The settings of this OctoPrintInstall.  # noqa: E501
+        :type settings: OctoPrintSettings
+        """
+
+        self._settings = settings
 
     @property
     def octoprint_version(self):

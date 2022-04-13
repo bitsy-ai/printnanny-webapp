@@ -15,6 +15,8 @@
 pub struct OctoPrintInstall {
     #[serde(rename = "id")]
     pub id: i32,
+    #[serde(rename = "settings")]
+    pub settings: Option<Box<crate::models::OctoPrintSettings>>,
     #[serde(rename = "octoprint_version")]
     pub octoprint_version: String,
     #[serde(rename = "pip_version")]
@@ -34,9 +36,10 @@ pub struct OctoPrintInstall {
 }
 
 impl OctoPrintInstall {
-    pub fn new(id: i32, octoprint_version: String, pip_version: String, python_version: String, printnanny_plugin_version: String, created_dt: String, updated_dt: String, user: i32, device: i32) -> OctoPrintInstall {
+    pub fn new(id: i32, settings: Option<crate::models::OctoPrintSettings>, octoprint_version: String, pip_version: String, python_version: String, printnanny_plugin_version: String, created_dt: String, updated_dt: String, user: i32, device: i32) -> OctoPrintInstall {
         OctoPrintInstall {
             id,
+            settings: settings.map(Box::new),
             octoprint_version,
             pip_version,
             python_version,

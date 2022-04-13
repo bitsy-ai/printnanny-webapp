@@ -38,6 +38,7 @@ class TestOctoPrintInstall(unittest.TestCase):
         if include_optional :
             return OctoPrintInstall(
                 id = 56, 
+                settings = None, 
                 octoprint_version = '', 
                 pip_version = '', 
                 python_version = '', 
@@ -50,6 +51,7 @@ class TestOctoPrintInstall(unittest.TestCase):
         else :
             return OctoPrintInstall(
                 id = 56,
+                settings = None,
                 octoprint_version = '',
                 pip_version = '',
                 python_version = '',

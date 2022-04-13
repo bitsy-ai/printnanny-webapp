@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
+**settings** | Option<[**crate::models::OctoPrintSettings**](OctoPrintSettings.md)> |  | [readonly]
 **octoprint_version** | **String** |  | 
 **pip_version** | **String** |  | 
 **python_version** | **String** |  | 

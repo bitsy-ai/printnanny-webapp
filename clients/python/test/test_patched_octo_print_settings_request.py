@@ -37,11 +37,15 @@ class TestPatchedOctoPrintSettingsRequest(unittest.TestCase):
         # model = printnanny_api_client.models.patched_octo_print_settings_request.PatchedOctoPrintSettingsRequest()  # noqa: E501
         if include_optional :
             return PatchedOctoPrintSettingsRequest(
+                events_enabled = True, 
+                telemetry_enabled = True, 
                 sync_gcode = True, 
                 sync_printer_profiles = True, 
                 sync_backups = True, 
+                auto_backup = '0', 
                 monitoring_auto_start = True, 
-                monitoring_auto_pause = True
+                monitoring_auto_pause = True, 
+                octoprint_install = 56
             )
         else :
             return PatchedOctoPrintSettingsRequest(

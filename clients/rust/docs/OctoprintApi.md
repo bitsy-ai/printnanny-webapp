@@ -495,7 +495,7 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**octo_print_settings_request** | Option<[**OctoPrintSettingsRequest**](OctoPrintSettingsRequest.md)> |  |  |
+**octo_print_settings_request** | [**OctoPrintSettingsRequest**](OctoPrintSettingsRequest.md) |  | [required] |
 
 ### Return type
 
@@ -581,7 +581,7 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **i32** | A unique integer value identifying this octo print settings. | [required] |
-**octo_print_settings_request** | Option<[**OctoPrintSettingsRequest**](OctoPrintSettingsRequest.md)> |  |  |
+**octo_print_settings_request** | [**OctoPrintSettingsRequest**](OctoPrintSettingsRequest.md) |  | [required] |
 
 ### Return type
 
@@ -609,7 +609,7 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**octo_print_settings_request** | Option<[**OctoPrintSettingsRequest**](OctoPrintSettingsRequest.md)> |  |  |
+**octo_print_settings_request** | [**OctoPrintSettingsRequest**](OctoPrintSettingsRequest.md) |  | [required] |
 
 ### Return type
 

@@ -730,7 +730,7 @@ pub async fn octoprint_profile_update_or_create(configuration: &configuration::C
     }
 }
 
-pub async fn octoprint_settings_create(configuration: &configuration::Configuration, octo_print_settings_request: Option<crate::models::OctoPrintSettingsRequest>) -> Result<crate::models::OctoPrintSettings, Error<OctoprintSettingsCreateError>> {
+pub async fn octoprint_settings_create(configuration: &configuration::Configuration, octo_print_settings_request: crate::models::OctoPrintSettingsRequest) -> Result<crate::models::OctoPrintSettings, Error<OctoprintSettingsCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -825,7 +825,7 @@ pub async fn octoprint_settings_partial_update(configuration: &configuration::Co
     }
 }
 
-pub async fn octoprint_settings_update(configuration: &configuration::Configuration, id: i32, octo_print_settings_request: Option<crate::models::OctoPrintSettingsRequest>) -> Result<(), Error<OctoprintSettingsUpdateError>> {
+pub async fn octoprint_settings_update(configuration: &configuration::Configuration, id: i32, octo_print_settings_request: crate::models::OctoPrintSettingsRequest) -> Result<(), Error<OctoprintSettingsUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -856,7 +856,7 @@ pub async fn octoprint_settings_update(configuration: &configuration::Configurat
     }
 }
 
-pub async fn octoprint_settings_update_or_create(configuration: &configuration::Configuration, octo_print_settings_request: Option<crate::models::OctoPrintSettingsRequest>) -> Result<crate::models::OctoPrintSettings, Error<OctoprintSettingsUpdateOrCreateError>> {
+pub async fn octoprint_settings_update_or_create(configuration: &configuration::Configuration, octo_print_settings_request: crate::models::OctoPrintSettingsRequest) -> Result<crate::models::OctoPrintSettings, Error<OctoprintSettingsUpdateOrCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
