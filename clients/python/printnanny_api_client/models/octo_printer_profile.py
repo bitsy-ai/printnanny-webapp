@@ -60,6 +60,8 @@ class OctoPrinterProfile(object):
         'volume_height': 'float',
         'volume_origin': 'str',
         'volume_width': 'float',
+        'created_dt': 'datetime',
+        'updated_dt': 'datetime',
         'user': 'int'
     }
 
@@ -87,10 +89,12 @@ class OctoPrinterProfile(object):
         'volume_height': 'volume_height',
         'volume_origin': 'volume_origin',
         'volume_width': 'volume_width',
+        'created_dt': 'created_dt',
+        'updated_dt': 'updated_dt',
         'user': 'user'
     }
 
-    def __init__(self, id=None, axes_e_inverted=None, axes_e_speed=None, axes_x_speed=None, axes_x_inverted=None, axes_y_inverted=None, axes_y_speed=None, axes_z_inverted=None, axes_z_speed=None, extruder_count=None, extruder_nozzle_diameter=None, extruder_shared_nozzle=None, heated_bed=None, heated_chamber=None, model=None, name=None, octoprint_key=None, volume_custom_box=None, volume_depth=None, volume_formfactor=None, volume_height=None, volume_origin=None, volume_width=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, axes_e_inverted=None, axes_e_speed=None, axes_x_speed=None, axes_x_inverted=None, axes_y_inverted=None, axes_y_speed=None, axes_z_inverted=None, axes_z_speed=None, extruder_count=None, extruder_nozzle_diameter=None, extruder_shared_nozzle=None, heated_bed=None, heated_chamber=None, model=None, name=None, octoprint_key=None, volume_custom_box=None, volume_depth=None, volume_formfactor=None, volume_height=None, volume_origin=None, volume_width=None, created_dt=None, updated_dt=None, user=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrinterProfile - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -119,6 +123,8 @@ class OctoPrinterProfile(object):
         self._volume_height = None
         self._volume_origin = None
         self._volume_width = None
+        self._created_dt = None
+        self._updated_dt = None
         self._user = None
         self.discriminator = None
 
@@ -146,6 +152,8 @@ class OctoPrinterProfile(object):
         self.volume_height = volume_height
         self.volume_origin = volume_origin
         self.volume_width = volume_width
+        self.created_dt = created_dt
+        self.updated_dt = updated_dt
         self.user = user
 
     @property
@@ -681,6 +689,52 @@ class OctoPrinterProfile(object):
         """
 
         self._volume_width = volume_width
+
+    @property
+    def created_dt(self):
+        """Gets the created_dt of this OctoPrinterProfile.  # noqa: E501
+
+
+        :return: The created_dt of this OctoPrinterProfile.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._created_dt
+
+    @created_dt.setter
+    def created_dt(self, created_dt):
+        """Sets the created_dt of this OctoPrinterProfile.
+
+
+        :param created_dt: The created_dt of this OctoPrinterProfile.  # noqa: E501
+        :type created_dt: datetime
+        """
+        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
+
+        self._created_dt = created_dt
+
+    @property
+    def updated_dt(self):
+        """Gets the updated_dt of this OctoPrinterProfile.  # noqa: E501
+
+
+        :return: The updated_dt of this OctoPrinterProfile.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._updated_dt
+
+    @updated_dt.setter
+    def updated_dt(self, updated_dt):
+        """Sets the updated_dt of this OctoPrinterProfile.
+
+
+        :param updated_dt: The updated_dt of this OctoPrinterProfile.  # noqa: E501
+        :type updated_dt: datetime
+        """
+        if self.local_vars_configuration.client_side_validation and updated_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `updated_dt`, must not be `None`")  # noqa: E501
+
+        self._updated_dt = updated_dt
 
     @property
     def user(self):

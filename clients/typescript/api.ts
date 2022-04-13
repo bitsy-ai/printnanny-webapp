@@ -652,6 +652,12 @@ export interface GcodeFile {
     'hash': string;
     /**
      * 
+     * @type {string}
+     * @memberof GcodeFile
+     */
+    'created_dt': string;
+    /**
+     * 
      * @type {number}
      * @memberof GcodeFile
      */
@@ -1620,6 +1626,18 @@ export interface OctoPrintSettings {
     'monitoring_auto_pause'?: boolean;
     /**
      * 
+     * @type {string}
+     * @memberof OctoPrintSettings
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoPrintSettings
+     */
+    'updated_dt': string;
+    /**
+     * 
      * @type {number}
      * @memberof OctoPrintSettings
      */
@@ -1830,6 +1848,18 @@ export interface OctoPrinterProfile {
      * @memberof OctoPrinterProfile
      */
     'volume_width'?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoPrinterProfile
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoPrinterProfile
+     */
+    'updated_dt': string;
     /**
      * 
      * @type {number}

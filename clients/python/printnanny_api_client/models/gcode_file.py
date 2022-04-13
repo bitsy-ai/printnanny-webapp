@@ -41,6 +41,7 @@ class GcodeFile(object):
         'name': 'str',
         'file': 'str',
         'hash': 'str',
+        'created_dt': 'datetime',
         'user': 'int'
     }
 
@@ -49,10 +50,11 @@ class GcodeFile(object):
         'name': 'name',
         'file': 'file',
         'hash': 'hash',
+        'created_dt': 'created_dt',
         'user': 'user'
     }
 
-    def __init__(self, id=None, name=None, file=None, hash=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, file=None, hash=None, created_dt=None, user=None, local_vars_configuration=None):  # noqa: E501
         """GcodeFile - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -62,6 +64,7 @@ class GcodeFile(object):
         self._name = None
         self._file = None
         self._hash = None
+        self._created_dt = None
         self._user = None
         self.discriminator = None
 
@@ -69,6 +72,7 @@ class GcodeFile(object):
         self.name = name
         self.file = file
         self.hash = hash
+        self.created_dt = created_dt
         self.user = user
 
     @property
@@ -168,6 +172,29 @@ class GcodeFile(object):
             raise ValueError("Invalid value for `hash`, length must be less than or equal to `255`")  # noqa: E501
 
         self._hash = hash
+
+    @property
+    def created_dt(self):
+        """Gets the created_dt of this GcodeFile.  # noqa: E501
+
+
+        :return: The created_dt of this GcodeFile.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._created_dt
+
+    @created_dt.setter
+    def created_dt(self, created_dt):
+        """Sets the created_dt of this GcodeFile.
+
+
+        :param created_dt: The created_dt of this GcodeFile.  # noqa: E501
+        :type created_dt: datetime
+        """
+        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
+
+        self._created_dt = created_dt
 
     @property
     def user(self):

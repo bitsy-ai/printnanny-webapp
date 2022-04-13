@@ -38,12 +38,16 @@ pub struct OctoPrintSettings {
     /// Pause failing print jobs automatically
     #[serde(rename = "monitoring_auto_pause", skip_serializing_if = "Option::is_none")]
     pub monitoring_auto_pause: Option<bool>,
+    #[serde(rename = "created_dt")]
+    pub created_dt: String,
+    #[serde(rename = "updated_dt")]
+    pub updated_dt: String,
     #[serde(rename = "octoprint_install")]
     pub octoprint_install: i32,
 }
 
 impl OctoPrintSettings {
-    pub fn new(id: i32, octoprint_install: i32) -> OctoPrintSettings {
+    pub fn new(id: i32, created_dt: String, updated_dt: String, octoprint_install: i32) -> OctoPrintSettings {
         OctoPrintSettings {
             id,
             events_enabled: None,
@@ -54,6 +58,8 @@ impl OctoPrintSettings {
             auto_backup: None,
             monitoring_auto_start: None,
             monitoring_auto_pause: None,
+            created_dt,
+            updated_dt,
             octoprint_install,
         }
     }

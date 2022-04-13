@@ -27,6 +27,8 @@ Name | Type | Description | Notes
 **volume_height** | Option<**f64**> |  | [optional]
 **volume_origin** | Option<**String**> |  | [optional]
 **volume_width** | Option<**f64**> |  | [optional]
+**created_dt** | **String** |  | [readonly]
+**updated_dt** | **String** |  | [readonly]
 **user** | **i32** |  | [readonly]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

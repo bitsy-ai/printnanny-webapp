@@ -62,6 +62,8 @@ class TestOctoPrinterProfile(unittest.TestCase):
                 volume_height = 1.337, 
                 volume_origin = '', 
                 volume_width = 1.337, 
+                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 user = 56
             )
         else :
@@ -69,6 +71,8 @@ class TestOctoPrinterProfile(unittest.TestCase):
                 id = 56,
                 name = '',
                 octoprint_key = '',
+                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 user = 56,
         )
 

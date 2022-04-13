@@ -46,6 +46,8 @@ class OctoPrintSettings(object):
         'auto_backup': 'str',
         'monitoring_auto_start': 'bool',
         'monitoring_auto_pause': 'bool',
+        'created_dt': 'datetime',
+        'updated_dt': 'datetime',
         'octoprint_install': 'int'
     }
 
@@ -59,10 +61,12 @@ class OctoPrintSettings(object):
         'auto_backup': 'auto_backup',
         'monitoring_auto_start': 'monitoring_auto_start',
         'monitoring_auto_pause': 'monitoring_auto_pause',
+        'created_dt': 'created_dt',
+        'updated_dt': 'updated_dt',
         'octoprint_install': 'octoprint_install'
     }
 
-    def __init__(self, id=None, events_enabled=None, telemetry_enabled=None, sync_gcode=None, sync_printer_profiles=None, sync_backups=None, auto_backup=None, monitoring_auto_start=None, monitoring_auto_pause=None, octoprint_install=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, events_enabled=None, telemetry_enabled=None, sync_gcode=None, sync_printer_profiles=None, sync_backups=None, auto_backup=None, monitoring_auto_start=None, monitoring_auto_pause=None, created_dt=None, updated_dt=None, octoprint_install=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintSettings - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -77,6 +81,8 @@ class OctoPrintSettings(object):
         self._auto_backup = None
         self._monitoring_auto_start = None
         self._monitoring_auto_pause = None
+        self._created_dt = None
+        self._updated_dt = None
         self._octoprint_install = None
         self.discriminator = None
 
@@ -97,6 +103,8 @@ class OctoPrintSettings(object):
             self.monitoring_auto_start = monitoring_auto_start
         if monitoring_auto_pause is not None:
             self.monitoring_auto_pause = monitoring_auto_pause
+        self.created_dt = created_dt
+        self.updated_dt = updated_dt
         self.octoprint_install = octoprint_install
 
     @property
@@ -306,6 +314,52 @@ class OctoPrintSettings(object):
         """
 
         self._monitoring_auto_pause = monitoring_auto_pause
+
+    @property
+    def created_dt(self):
+        """Gets the created_dt of this OctoPrintSettings.  # noqa: E501
+
+
+        :return: The created_dt of this OctoPrintSettings.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._created_dt
+
+    @created_dt.setter
+    def created_dt(self, created_dt):
+        """Sets the created_dt of this OctoPrintSettings.
+
+
+        :param created_dt: The created_dt of this OctoPrintSettings.  # noqa: E501
+        :type created_dt: datetime
+        """
+        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
+
+        self._created_dt = created_dt
+
+    @property
+    def updated_dt(self):
+        """Gets the updated_dt of this OctoPrintSettings.  # noqa: E501
+
+
+        :return: The updated_dt of this OctoPrintSettings.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._updated_dt
+
+    @updated_dt.setter
+    def updated_dt(self, updated_dt):
+        """Sets the updated_dt of this OctoPrintSettings.
+
+
+        :param updated_dt: The updated_dt of this OctoPrintSettings.  # noqa: E501
+        :type updated_dt: datetime
+        """
+        if self.local_vars_configuration.client_side_validation and updated_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `updated_dt`, must not be `None`")  # noqa: E501
+
+        self._updated_dt = updated_dt
 
     @property
     def octoprint_install(self):

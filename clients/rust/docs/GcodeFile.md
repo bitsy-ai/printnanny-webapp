@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **name** | **String** |  | 
 **file** | **String** |  | 
 **hash** | **String** |  | 
+**created_dt** | **String** |  | [readonly]
 **user** | **i32** |  | [readonly]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

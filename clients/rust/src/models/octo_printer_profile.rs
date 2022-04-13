@@ -59,12 +59,16 @@ pub struct OctoPrinterProfile {
     pub volume_origin: Option<String>,
     #[serde(rename = "volume_width", skip_serializing_if = "Option::is_none")]
     pub volume_width: Option<f64>,
+    #[serde(rename = "created_dt")]
+    pub created_dt: String,
+    #[serde(rename = "updated_dt")]
+    pub updated_dt: String,
     #[serde(rename = "user")]
     pub user: i32,
 }
 
 impl OctoPrinterProfile {
-    pub fn new(id: i32, name: String, octoprint_key: String, user: i32) -> OctoPrinterProfile {
+    pub fn new(id: i32, name: String, octoprint_key: String, created_dt: String, updated_dt: String, user: i32) -> OctoPrinterProfile {
         OctoPrinterProfile {
             id,
             axes_e_inverted: None,
@@ -89,6 +93,8 @@ impl OctoPrinterProfile {
             volume_height: None,
             volume_origin: None,
             volume_width: None,
+            created_dt,
+            updated_dt,
             user,
         }
     }
