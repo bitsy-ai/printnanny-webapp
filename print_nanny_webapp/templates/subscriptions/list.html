@@ -69,14 +69,15 @@
                     </dd>
                     <dt class="col-sm-3">Next Invoice</dt>
                     <dd class="col-sm-9">
-                        ${{ NEXT_INVOICE.amount_due }} due {{ SUBSCRIPTION.current_period_end }}
+                        ${{ NEXT_INVOICE.amount_due|floatformat:-2|intcomma }} due {{ SUBSCRIPTION.current_period_end}}
                         {% if NEXT_INVOICE.discount %}
                         (discount applied)
                         {% endif %}
                         <br>
                         {% if SUBSCRIPTION.status == "active" or SUBSCRIPTION.status == "trialing" %}
-                        <a class="btn btn-danger btn-sm">Cancel Subscription</a>
-                        <!-- <a class="btn btn-light btn-sm">Pause</a> -->
+                        <a target="_blank" href="mailto:leigh@printnanny.ai?subject=Cancel PrintNanny subscription"
+                            class="btn btn-danger btn-sm">Cancel Subscription</a>
+                        <br><small>Send an email to leigh@printnanny.ai to cancel your subscription.</small>
                         {% endif %}
 
                         {% if SUBSCRIPTION.status != "active" and SUBSCRIPTION.status != "trialing" %}
