@@ -75,8 +75,9 @@
                         {% endif %}
                         <br>
                         {% if SUBSCRIPTION.status == "active" or SUBSCRIPTION.status == "trialing" %}
-                        <a class="btn btn-danger btn-sm">Cancel Subscription</a>
-                        <!-- <a class="btn btn-light btn-sm">Pause</a> -->
+                        <a target="_blank" href="mailto:leigh@printnanny.ai?subject=Cancel PrintNanny subscription"
+                            class="btn btn-danger btn-sm">Cancel Subscription</a>
+                        <br><small>Send an email to leigh@printnanny.ai to cancel your subscription.</small>
                         {% endif %}
 
                         {% if SUBSCRIPTION.status != "active" and SUBSCRIPTION.status != "trialing" %}
