@@ -2,7 +2,6 @@ from typing import Any, Dict, TYPE_CHECKING
 import json
 import logging
 import stripe
-from decimal import Decimal
 from allauth.account.views import SignupView
 from django.http.response import JsonResponse
 from django.apps import apps
@@ -152,12 +151,11 @@ class SubscriptionsListView(LoginRequiredMixin, FormView):
             ctx["NEXT_INVOICE"] = get_stripe_next_invoice(
                 stripe_customer, ctx["SUBSCRIPTION"]
             )
-            ctx["NEXT_INVOICE"].amount_due = Decimal(
-                ctx["NEXT_INVOICE"].amount_due / 100
+            ctx["NEXT_INVOICE"].amount_due = round(
+                ctx["NEXT_INVOICE"].amount_due / 100, 2
             )
         except djstripe.models.Customer.DoesNotExist:
             logger.error("No stripe customer associated with user=%s", user)
-        logger.info(ctx)
         return ctx
 
     # def form_valid(self, form):
