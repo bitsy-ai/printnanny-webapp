@@ -1,4 +1,5 @@
 import logging
+from typing import Dict, Any, Tuple
 from rest_framework import serializers
 from print_nanny_webapp.octoprint.models import (
     OctoPrintBackup,
@@ -50,20 +51,20 @@ class OctoPrintInstallSerializer(serializers.ModelSerializer):
         exclude = ("deleted",)
         read_only_fields = ("user",)
 
-    def update_or_create(self, validated_data, device_id):
+    def update_or_create(
+        self, validated_data: Dict[Any, Any], device_id: int, user_id: int
+    ) -> Tuple[OctoPrintInstall, bool]:
 
-        instance = OctoPrintInstall.objects.filter(device=device_id).update_or_create(
-            device=device_id, defaults=validated_data
-        )
-        # initialize OctoPrintSettings
-        if instance.settings is None:
-            settings, created = OctoPrintSettings.objects.get_or_create(
-                octoprint_install=instance
-            )
-            if created:
-                logger.info("Created default %s for %s", settings, instance)
-                instance.refresh_from_db()
-        return instance
+        instance, created = OctoPrintInstall.objects.filter(
+            device=device_id, user=user_id
+        ).update_or_create(device=device_id, user=user_id, defaults=validated_data)
+        logger.info("Saved %s created=%s", instance, created)
+
+        if created:
+            settings = OctoPrintSettings.objects.create(octoprint_install=instance)
+            logger.info("Created default %s for %s", settings, instance)
+            instance.refresh_from_db()
+        return instance, created
 
 
 class OctoPrintBackupSerializer(serializers.ModelSerializer):

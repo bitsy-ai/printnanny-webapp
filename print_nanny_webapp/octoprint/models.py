@@ -46,6 +46,10 @@ class OctoPrintInstall(SafeDeleteModel):
     created_dt = models.DateTimeField(auto_now_add=True)
     updated_dt = models.DateTimeField(auto_now=True)
 
+    # @property
+    # def settings(self):
+    #     return OctoPrintSettings.objects.get(octoprint_install=self)
+
 
 class OctoPrintSettings(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
