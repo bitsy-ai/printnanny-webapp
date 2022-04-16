@@ -116,7 +116,7 @@ class OctoPrintInstallViewSet(
         if serializer.is_valid():
             device_id = request.data.get("device")
             instance, created = serializer.update_or_create(  # type: ignore[attr-defined]
-                serializer.validated_data, device_id
+                serializer.validated_data, device_id, self.request.user
             )
             response_serializer = self.get_serializer(instance)
             if not created:

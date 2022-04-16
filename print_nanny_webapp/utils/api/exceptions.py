@@ -1,4 +1,5 @@
 import logging
+import traceback
 from uuid import uuid4
 from django.http import JsonResponse
 from rest_framework.views import exception_handler
@@ -22,6 +23,12 @@ def custom_exception_handler(exc, context):
     if response is not None:
         response.data["error_uuid"] = error_uuid
         return response
-    logger.error("FATAL API ERROR uuid=%s exc=%s context=%s", error_uuid, exc, context)
+    logger.error(
+        "FATAL API ERROR uuid=%s exc=%s traceback=%s context=%s",
+        error_uuid,
+        exc,
+        traceback.format_exc(),
+        context,
+    )
     payload = dict(error_uuid=error_uuid, error=str(exc))
     return JsonResponse(payload, safe=False, status=500)
