@@ -62,6 +62,9 @@ class OctoPrintInstallByDeviceViewSet(
     def get_queryset(self, *_args, device_id=None, **_kwargs):
         return self.queryset.filter(device=device_id)
 
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
 
 ##
 # OctoPrintInstall (no device filter)
@@ -122,6 +125,9 @@ class OctoPrintInstallViewSet(
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
 
 ##
 # OctoPrint Settings
@@ -179,6 +185,9 @@ class OctoPrintSettingsViewSet(
             return Response(response_serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 
 @extend_schema_view(
@@ -244,6 +253,9 @@ class GcodeFileViewSet(
         parsers.MultiPartParser,
     ]
 
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
 
 ##
 # OctoPrint Settings
@@ -300,3 +312,6 @@ class OctoPrinterProfileViewSet(
             return Response(response_serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
