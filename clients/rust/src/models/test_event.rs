@@ -21,14 +21,8 @@ pub struct TestEvent {
     pub created_dt: String,
     #[serde(rename = "source")]
     pub source: crate::models::EventSource,
-    /// Broadcast to events websocket: /ws/events
-    #[serde(rename = "send_ws", skip_serializing_if = "Option::is_none")]
-    pub send_ws: Option<bool>,
     #[serde(rename = "event_name")]
     pub event_name: crate::models::TestEventName,
-    /// Broadcast to mqtt topic: /devices/{device-id}/commands/
-    #[serde(rename = "send_mqtt", skip_serializing_if = "Option::is_none")]
-    pub send_mqtt: Option<bool>,
     #[serde(rename = "polymorphic_ctype")]
     pub polymorphic_ctype: i32,
     #[serde(rename = "user")]
@@ -44,9 +38,7 @@ impl TestEvent {
             model,
             created_dt,
             source,
-            send_ws: None,
             event_name,
-            send_mqtt: None,
             polymorphic_ctype,
             user,
             device,

@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **model** | [**OctoPrintEventModel**](OctoPrintEventModel.md) |  | 
 **created_dt** | **datetime** |  | [readonly] 
 **source** | [**EventSource**](EventSource.md) |  | 
-**send_ws** | **bool** | Broadcast to events websocket: /ws/events | [optional] 
 **event_name** | [**OctoPrintEventName**](OctoPrintEventName.md) |  | 
 **payload** | **dict(str, object)** |  | [optional] 
 **polymorphic_ctype** | **int** |  | [readonly] 

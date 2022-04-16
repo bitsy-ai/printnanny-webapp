@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **model** | [**crate::models::OctoPrintEventModel**](OctoPrintEventModel.md) |  | 
 **created_dt** | **String** |  | [readonly]
 **source** | [**crate::models::EventSource**](EventSource.md) |  | 
-**send_ws** | Option<**bool**> | Broadcast to events websocket: /ws/events | [optional]
 **event_name** | [**crate::models::OctoPrintEventName**](OctoPrintEventName.md) |  | 
 **payload** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **polymorphic_ctype** | **i32** |  | [readonly]

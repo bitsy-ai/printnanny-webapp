@@ -17,14 +17,8 @@ pub struct TestEventRequest {
     pub model: crate::models::TestEventModel,
     #[serde(rename = "source")]
     pub source: crate::models::EventSource,
-    /// Broadcast to events websocket: /ws/events
-    #[serde(rename = "send_ws", skip_serializing_if = "Option::is_none")]
-    pub send_ws: Option<bool>,
     #[serde(rename = "event_name")]
     pub event_name: crate::models::TestEventName,
-    /// Broadcast to mqtt topic: /devices/{device-id}/commands/
-    #[serde(rename = "send_mqtt", skip_serializing_if = "Option::is_none")]
-    pub send_mqtt: Option<bool>,
     #[serde(rename = "device")]
     pub device: i32,
 }
@@ -34,9 +28,7 @@ impl TestEventRequest {
         TestEventRequest {
             model,
             source,
-            send_ws: None,
             event_name,
-            send_mqtt: None,
             device,
         }
     }

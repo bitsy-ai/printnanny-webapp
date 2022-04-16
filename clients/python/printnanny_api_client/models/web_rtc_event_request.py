@@ -39,7 +39,6 @@ class WebRTCEventRequest(object):
     openapi_types = {
         'model': 'WebRTCEventModel',
         'source': 'EventSource',
-        'send_ws': 'bool',
         'event_name': 'WebRTCEventName',
         'data': 'dict(str, object)',
         'device': 'int',
@@ -49,14 +48,13 @@ class WebRTCEventRequest(object):
     attribute_map = {
         'model': 'model',
         'source': 'source',
-        'send_ws': 'send_ws',
         'event_name': 'event_name',
         'data': 'data',
         'device': 'device',
         'stream': 'stream'
     }
 
-    def __init__(self, model=None, source=None, send_ws=None, event_name=None, data=None, device=None, stream=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, model=None, source=None, event_name=None, data=None, device=None, stream=None, local_vars_configuration=None):  # noqa: E501
         """WebRTCEventRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -64,7 +62,6 @@ class WebRTCEventRequest(object):
 
         self._model = None
         self._source = None
-        self._send_ws = None
         self._event_name = None
         self._data = None
         self._device = None
@@ -73,8 +70,6 @@ class WebRTCEventRequest(object):
 
         self.model = model
         self.source = source
-        if send_ws is not None:
-            self.send_ws = send_ws
         self.event_name = event_name
         if data is not None:
             self.data = data
@@ -126,29 +121,6 @@ class WebRTCEventRequest(object):
             raise ValueError("Invalid value for `source`, must not be `None`")  # noqa: E501
 
         self._source = source
-
-    @property
-    def send_ws(self):
-        """Gets the send_ws of this WebRTCEventRequest.  # noqa: E501
-
-        Broadcast to events websocket: /ws/events  # noqa: E501
-
-        :return: The send_ws of this WebRTCEventRequest.  # noqa: E501
-        :rtype: bool
-        """
-        return self._send_ws
-
-    @send_ws.setter
-    def send_ws(self, send_ws):
-        """Sets the send_ws of this WebRTCEventRequest.
-
-        Broadcast to events websocket: /ws/events  # noqa: E501
-
-        :param send_ws: The send_ws of this WebRTCEventRequest.  # noqa: E501
-        :type send_ws: bool
-        """
-
-        self._send_ws = send_ws
 
     @property
     def event_name(self):

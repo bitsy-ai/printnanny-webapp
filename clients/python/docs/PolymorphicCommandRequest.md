@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **model** | [**WebRTCCommandModel**](WebRTCCommandModel.md) |  | 
 **source** | [**EventSource**](EventSource.md) |  | 
-**send_ws** | **bool** | Broadcast to events websocket: /ws/events | [optional] 
 **event_name** | [**WebRTCCommandName**](WebRTCCommandName.md) |  | 
 **data** | **dict(str, object)** |  | [optional] 
 **device** | **int** |  | 

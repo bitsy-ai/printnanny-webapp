@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **model** | [**OctoPrintEventModel**](OctoPrintEventModel.md) |  | 
 **source** | [**EventSource**](EventSource.md) |  | 
-**send_ws** | **bool** | Broadcast to events websocket: /ws/events | [optional] 
 **event_name** | [**OctoPrintEventName**](OctoPrintEventName.md) |  | 
 **payload** | **dict(str, object)** |  | [optional] 
 **octoprint_install** | **int** |  | 

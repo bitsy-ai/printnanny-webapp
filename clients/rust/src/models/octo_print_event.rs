@@ -21,9 +21,6 @@ pub struct OctoPrintEvent {
     pub created_dt: String,
     #[serde(rename = "source")]
     pub source: crate::models::EventSource,
-    /// Broadcast to events websocket: /ws/events
-    #[serde(rename = "send_ws", skip_serializing_if = "Option::is_none")]
-    pub send_ws: Option<bool>,
     #[serde(rename = "event_name")]
     pub event_name: crate::models::OctoPrintEventName,
     #[serde(rename = "payload", skip_serializing_if = "Option::is_none")]
@@ -45,7 +42,6 @@ impl OctoPrintEvent {
             model,
             created_dt,
             source,
-            send_ws: None,
             event_name,
             payload: None,
             polymorphic_ctype,

@@ -39,7 +39,6 @@ class TestWebRTCCommandRequest(unittest.TestCase):
             return WebRTCCommandRequest(
                 model = 'WebRTCCommand', 
                 source = 'octoprint', 
-                send_ws = True, 
                 event_name = 'stream_start', 
                 data = {
                     'key' : null

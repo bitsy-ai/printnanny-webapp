@@ -39,33 +39,29 @@ class PolymorphicEventRequest(object):
     openapi_types = {
         'model': 'TestEventModel',
         'source': 'EventSource',
-        'send_ws': 'bool',
         'event_name': 'TestEventName',
         'payload': 'dict(str, object)',
         'octoprint_install': 'int',
         'device': 'int',
         'data': 'dict(str, object)',
-        'stream': 'int',
-        'send_mqtt': 'bool'
+        'stream': 'int'
     }
 
     attribute_map = {
         'model': 'model',
         'source': 'source',
-        'send_ws': 'send_ws',
         'event_name': 'event_name',
         'payload': 'payload',
         'octoprint_install': 'octoprint_install',
         'device': 'device',
         'data': 'data',
-        'stream': 'stream',
-        'send_mqtt': 'send_mqtt'
+        'stream': 'stream'
     }
 
     discriminator_value_class_map = {
     }
 
-    def __init__(self, model=None, source=None, send_ws=None, event_name=None, payload=None, octoprint_install=None, device=None, data=None, stream=None, send_mqtt=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, model=None, source=None, event_name=None, payload=None, octoprint_install=None, device=None, data=None, stream=None, local_vars_configuration=None):  # noqa: E501
         """PolymorphicEventRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -73,20 +69,16 @@ class PolymorphicEventRequest(object):
 
         self._model = None
         self._source = None
-        self._send_ws = None
         self._event_name = None
         self._payload = None
         self._octoprint_install = None
         self._device = None
         self._data = None
         self._stream = None
-        self._send_mqtt = None
         self.discriminator = 'model'
 
         self.model = model
         self.source = source
-        if send_ws is not None:
-            self.send_ws = send_ws
         self.event_name = event_name
         if payload is not None:
             self.payload = payload
@@ -95,8 +87,6 @@ class PolymorphicEventRequest(object):
         if data is not None:
             self.data = data
         self.stream = stream
-        if send_mqtt is not None:
-            self.send_mqtt = send_mqtt
 
     @property
     def model(self):
@@ -143,29 +133,6 @@ class PolymorphicEventRequest(object):
             raise ValueError("Invalid value for `source`, must not be `None`")  # noqa: E501
 
         self._source = source
-
-    @property
-    def send_ws(self):
-        """Gets the send_ws of this PolymorphicEventRequest.  # noqa: E501
-
-        Broadcast to events websocket: /ws/events  # noqa: E501
-
-        :return: The send_ws of this PolymorphicEventRequest.  # noqa: E501
-        :rtype: bool
-        """
-        return self._send_ws
-
-    @send_ws.setter
-    def send_ws(self, send_ws):
-        """Sets the send_ws of this PolymorphicEventRequest.
-
-        Broadcast to events websocket: /ws/events  # noqa: E501
-
-        :param send_ws: The send_ws of this PolymorphicEventRequest.  # noqa: E501
-        :type send_ws: bool
-        """
-
-        self._send_ws = send_ws
 
     @property
     def event_name(self):
@@ -300,29 +267,6 @@ class PolymorphicEventRequest(object):
             raise ValueError("Invalid value for `stream`, must not be `None`")  # noqa: E501
 
         self._stream = stream
-
-    @property
-    def send_mqtt(self):
-        """Gets the send_mqtt of this PolymorphicEventRequest.  # noqa: E501
-
-        Broadcast to mqtt topic: /devices/{device-id}/commands/  # noqa: E501
-
-        :return: The send_mqtt of this PolymorphicEventRequest.  # noqa: E501
-        :rtype: bool
-        """
-        return self._send_mqtt
-
-    @send_mqtt.setter
-    def send_mqtt(self, send_mqtt):
-        """Sets the send_mqtt of this PolymorphicEventRequest.
-
-        Broadcast to mqtt topic: /devices/{device-id}/commands/  # noqa: E501
-
-        :param send_mqtt: The send_mqtt of this PolymorphicEventRequest.  # noqa: E501
-        :type send_mqtt: bool
-        """
-
-        self._send_mqtt = send_mqtt
 
     def get_real_child_model(self, data):
         """Returns the real base class specified by the discriminator"""

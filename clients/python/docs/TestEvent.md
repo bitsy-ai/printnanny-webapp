@@ -8,9 +8,7 @@ Name | Type | Description | Notes
 **model** | [**TestEventModel**](TestEventModel.md) |  | 
 **created_dt** | **datetime** |  | [readonly] 
 **source** | [**EventSource**](EventSource.md) |  | 
-**send_ws** | **bool** | Broadcast to events websocket: /ws/events | [optional] 
 **event_name** | [**TestEventName**](TestEventName.md) |  | 
-**send_mqtt** | **bool** | Broadcast to mqtt topic: /devices/{device-id}/commands/ | [optional] 
 **polymorphic_ctype** | **int** |  | [readonly] 
 **user** | **int** |  | [readonly] 
 **device** | **int** |  | 

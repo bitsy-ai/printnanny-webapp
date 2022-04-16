@@ -39,22 +39,18 @@ class TestEventRequest(object):
     openapi_types = {
         'model': 'TestEventModel',
         'source': 'EventSource',
-        'send_ws': 'bool',
         'event_name': 'TestEventName',
-        'send_mqtt': 'bool',
         'device': 'int'
     }
 
     attribute_map = {
         'model': 'model',
         'source': 'source',
-        'send_ws': 'send_ws',
         'event_name': 'event_name',
-        'send_mqtt': 'send_mqtt',
         'device': 'device'
     }
 
-    def __init__(self, model=None, source=None, send_ws=None, event_name=None, send_mqtt=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, model=None, source=None, event_name=None, device=None, local_vars_configuration=None):  # noqa: E501
         """TestEventRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -62,19 +58,13 @@ class TestEventRequest(object):
 
         self._model = None
         self._source = None
-        self._send_ws = None
         self._event_name = None
-        self._send_mqtt = None
         self._device = None
         self.discriminator = None
 
         self.model = model
         self.source = source
-        if send_ws is not None:
-            self.send_ws = send_ws
         self.event_name = event_name
-        if send_mqtt is not None:
-            self.send_mqtt = send_mqtt
         self.device = device
 
     @property
@@ -124,29 +114,6 @@ class TestEventRequest(object):
         self._source = source
 
     @property
-    def send_ws(self):
-        """Gets the send_ws of this TestEventRequest.  # noqa: E501
-
-        Broadcast to events websocket: /ws/events  # noqa: E501
-
-        :return: The send_ws of this TestEventRequest.  # noqa: E501
-        :rtype: bool
-        """
-        return self._send_ws
-
-    @send_ws.setter
-    def send_ws(self, send_ws):
-        """Sets the send_ws of this TestEventRequest.
-
-        Broadcast to events websocket: /ws/events  # noqa: E501
-
-        :param send_ws: The send_ws of this TestEventRequest.  # noqa: E501
-        :type send_ws: bool
-        """
-
-        self._send_ws = send_ws
-
-    @property
     def event_name(self):
         """Gets the event_name of this TestEventRequest.  # noqa: E501
 
@@ -168,29 +135,6 @@ class TestEventRequest(object):
             raise ValueError("Invalid value for `event_name`, must not be `None`")  # noqa: E501
 
         self._event_name = event_name
-
-    @property
-    def send_mqtt(self):
-        """Gets the send_mqtt of this TestEventRequest.  # noqa: E501
-
-        Broadcast to mqtt topic: /devices/{device-id}/commands/  # noqa: E501
-
-        :return: The send_mqtt of this TestEventRequest.  # noqa: E501
-        :rtype: bool
-        """
-        return self._send_mqtt
-
-    @send_mqtt.setter
-    def send_mqtt(self, send_mqtt):
-        """Sets the send_mqtt of this TestEventRequest.
-
-        Broadcast to mqtt topic: /devices/{device-id}/commands/  # noqa: E501
-
-        :param send_mqtt: The send_mqtt of this TestEventRequest.  # noqa: E501
-        :type send_mqtt: bool
-        """
-
-        self._send_mqtt = send_mqtt
 
     @property
     def device(self):

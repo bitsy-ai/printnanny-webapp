@@ -1329,12 +1329,6 @@ export interface OctoPrintEvent {
      */
     'source': EventSource;
     /**
-     * Broadcast to events websocket: /ws/events
-     * @type {boolean}
-     * @memberof OctoPrintEvent
-     */
-    'send_ws'?: boolean;
-    /**
      * 
      * @type {OctoPrintEventName}
      * @memberof OctoPrintEvent
@@ -1429,12 +1423,6 @@ export interface OctoPrintEventRequest {
      * @memberof OctoPrintEventRequest
      */
     'source': EventSource;
-    /**
-     * Broadcast to events websocket: /ws/events
-     * @type {boolean}
-     * @memberof OctoPrintEventRequest
-     */
-    'send_ws'?: boolean;
     /**
      * 
      * @type {OctoPrintEventName}
@@ -3524,23 +3512,11 @@ export interface TestEvent {
      */
     'source': EventSource;
     /**
-     * Broadcast to events websocket: /ws/events
-     * @type {boolean}
-     * @memberof TestEvent
-     */
-    'send_ws'?: boolean;
-    /**
      * 
      * @type {TestEventName}
      * @memberof TestEvent
      */
     'event_name': TestEventName;
-    /**
-     * Broadcast to mqtt topic: /devices/{device-id}/commands/
-     * @type {boolean}
-     * @memberof TestEvent
-     */
-    'send_mqtt'?: boolean;
     /**
      * 
      * @type {number}
@@ -3606,23 +3582,11 @@ export interface TestEventRequest {
      */
     'source': EventSource;
     /**
-     * Broadcast to events websocket: /ws/events
-     * @type {boolean}
-     * @memberof TestEventRequest
-     */
-    'send_ws'?: boolean;
-    /**
      * 
      * @type {TestEventName}
      * @memberof TestEventRequest
      */
     'event_name': TestEventName;
-    /**
-     * Broadcast to mqtt topic: /devices/{device-id}/commands/
-     * @type {boolean}
-     * @memberof TestEventRequest
-     */
-    'send_mqtt'?: boolean;
     /**
      * 
      * @type {number}
@@ -3706,12 +3670,6 @@ export interface WebRTCCommand {
      */
     'source': EventSource;
     /**
-     * Broadcast to events websocket: /ws/events
-     * @type {boolean}
-     * @memberof WebRTCCommand
-     */
-    'send_ws'?: boolean;
-    /**
      * 
      * @type {WebRTCCommandName}
      * @memberof WebRTCCommand
@@ -3794,12 +3752,6 @@ export interface WebRTCCommandRequest {
      */
     'source': EventSource;
     /**
-     * Broadcast to events websocket: /ws/events
-     * @type {boolean}
-     * @memberof WebRTCCommandRequest
-     */
-    'send_ws'?: boolean;
-    /**
      * 
      * @type {WebRTCCommandName}
      * @memberof WebRTCCommandRequest
@@ -3854,12 +3806,6 @@ export interface WebRTCEvent {
      * @memberof WebRTCEvent
      */
     'source': EventSource;
-    /**
-     * Broadcast to events websocket: /ws/events
-     * @type {boolean}
-     * @memberof WebRTCEvent
-     */
-    'send_ws'?: boolean;
     /**
      * 
      * @type {WebRTCEventName}
@@ -3944,12 +3890,6 @@ export interface WebRTCEventRequest {
      * @memberof WebRTCEventRequest
      */
     'source': EventSource;
-    /**
-     * Broadcast to events websocket: /ws/events
-     * @type {boolean}
-     * @memberof WebRTCEventRequest
-     */
-    'send_ws'?: boolean;
     /**
      * 
      * @type {WebRTCEventName}

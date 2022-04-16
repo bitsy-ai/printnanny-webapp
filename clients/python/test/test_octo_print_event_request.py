@@ -39,7 +39,6 @@ class TestOctoPrintEventRequest(unittest.TestCase):
             return OctoPrintEventRequest(
                 model = 'OctoPrintEvent', 
                 source = 'octoprint', 
-                send_ws = True, 
                 event_name = 'Startup', 
                 payload = {
                     'key' : null

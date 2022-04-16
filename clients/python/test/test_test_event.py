@@ -41,9 +41,7 @@ class TestTestEvent(unittest.TestCase):
                 model = 'TestEvent', 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 source = 'octoprint', 
-                send_ws = True, 
                 event_name = 'mqtt_ping', 
-                send_mqtt = True, 
                 polymorphic_ctype = 56, 
                 user = 56, 
                 device = 56

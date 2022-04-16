@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **model** | [**WebRTCEventModel**](WebRTCEventModel.md) |  | 
 **created_dt** | **datetime** |  | [readonly] 
 **source** | [**EventSource**](EventSource.md) |  | 
-**send_ws** | **bool** | Broadcast to events websocket: /ws/events | [optional] 
 **event_name** | [**WebRTCEventName**](WebRTCEventName.md) |  | 
 **data** | **dict(str, object)** |  | [optional] 
 **polymorphic_ctype** | **int** |  | [readonly] 

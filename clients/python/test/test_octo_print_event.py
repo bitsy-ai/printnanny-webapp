@@ -41,7 +41,6 @@ class TestOctoPrintEvent(unittest.TestCase):
                 model = 'OctoPrintEvent', 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 source = 'octoprint', 
-                send_ws = True, 
                 event_name = 'Startup', 
                 payload = {
                     'key' : null

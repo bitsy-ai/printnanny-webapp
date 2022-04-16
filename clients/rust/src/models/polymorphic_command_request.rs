@@ -14,9 +14,6 @@
 pub struct WebRtcCommandRequest {
         #[serde(rename = "source")]
         pub source: crate::models::EventSource,
-        /// Broadcast to events websocket: /ws/events
-        #[serde(rename = "send_ws", skip_serializing_if = "Option::is_none")]
-        pub send_ws: Option<bool>,
         #[serde(rename = "event_name")]
         pub event_name: crate::models::WebRtcCommandName,
         #[serde(rename = "data", skip_serializing_if = "Option::is_none")]
