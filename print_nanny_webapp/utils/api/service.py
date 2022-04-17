@@ -1,7 +1,7 @@
 from typing import TypedDict, Optional
 import logging
+import urllib.parse
 
-from django.contrib.auth.models import AnonymousUser
 from django.contrib.auth import get_user_model
 from django.conf import settings
 from django.urls import reverse
@@ -29,8 +29,8 @@ def get_api_config(request) -> PrintNannyApiConfig:
     base_path = request.build_absolute_uri("/")[
         :-1
     ]  # remove trailing slash for use in API client base_url
-    static_url = request.build_absolute_uri(settings.STATIC_URL)
-    dashboard_url = request.build_absolute_uri(reverse("dashboard:home"))
+    static_url = urllib.parse.urljoin(base_path, settings.STATIC_URL)
+    dashboard_url = urllib.parse.urljoin(base_path, reverse("dashboard:home"))
     config = PrintNannyApiConfig(
         bearer_access_token=token,
         base_path=base_path,
