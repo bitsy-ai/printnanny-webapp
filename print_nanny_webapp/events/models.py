@@ -6,6 +6,7 @@ from polymorphic.models import PolymorphicModel
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from .enum import (
     EventSource,
+    OctoPrintEventModel,
     TestEventName,
     WebRTCEventName,
     EventModel,
@@ -45,6 +46,8 @@ class TestEvent(Event):
 
 
 class OctoPrintEvent(Event):
+    model = OctoPrintEventModel.OctoPrintEvent
+
     class Meta:
         index_together = (("octoprint_install", "device", "event_name"),)
 

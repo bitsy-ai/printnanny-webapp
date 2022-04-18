@@ -8,7 +8,7 @@ from print_nanny_webapp.devices.models import (
 )
 from print_nanny_webapp.events.api.serializers import PolymorphicEventSerializer
 from .models import WebRTCEvent, Event
-from .enum import WebRTCEventName
+from .enum import WebRTCEventName, WebRTCCommandModel
 
 logger = logging.getLogger(__name__)
 
@@ -65,18 +65,13 @@ def broadcast_event(event: Event):
     /devices/:id/commands/# MQTT command topic - receives all Events with Event.device set
     """
     serializer = PolymorphicEventSerializer(instance=event)
+    # publish event to websocket (all models)
+    publish_channel_msg(event.device.user.events_channel, serializer)
+    logger.info("Published event %s to Django channel", event)
 
-    if event.send_ws is True:
-        publish_channel_msg(event.device.user.events_channel, serializer)
-        logger.info("Published event %s to Django channel", event)
-    else:
-        logger.warning("Event.send_ws is False, skipping. %s", event)
-    if hasattr(event, "device") and event.device is not None:
-        if event.send_mqtt is True:
-            publish_mqtt_command(event.device.cloudiot, serializer)
-            logger.info("Published event %s to MQTT commands topic", event)
-        else:
-            logger.warning("Event.send_mqtt broadcast is False, skipping. %s", event)
+    if event.model == WebRTCCommandModel.WebRTCCommand:
+        publish_mqtt_command(event.device.cloudiot, serializer)
+        logger.info("Published event %s to MQTT commands topic", event)
 
 
 def webrtc_stream_start(event: WebRTCEvent) -> WebRTCEvent:
@@ -90,7 +85,6 @@ def webrtc_stream_start(event: WebRTCEvent) -> WebRTCEvent:
             event_name=WebRTCEventName.STREAM_START_ERROR,
             device=event.device,
             user=event.user,
-            send_mqtt=False,
             stream=event.stream,
         )
         return error_event
