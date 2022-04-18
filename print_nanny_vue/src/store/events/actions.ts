@@ -13,7 +13,7 @@ export default {
   // context: ActionContext<S,R>
   async [STREAM_START](context: any, { device, stream }: { device: number, stream: number }) {
     const thisapi = api.EventsApiFactory(PRINTNANNY_API_CONFIG)
-    const req: api.WebRTCCommandRequest = {
+    const req: api.WebRTCCommandCreateRequest = {
       model: api.WebRTCCommandModel.WebRtcCommand,
       event_name: api.WebRTCCommandName.Start,
       device: device,
@@ -28,7 +28,7 @@ export default {
   },
   async[STREAM_STOP](context: any, { device, stream }: { device: number, stream: number }) {
     const thisapi = api.EventsApiFactory(PRINTNANNY_API_CONFIG)
-    const req: api.WebRTCCommandRequest = {
+    const req: api.WebRTCCommandCreateRequest = {
       model: api.WebRTCCommandModel.WebRtcCommand,
       event_name: api.WebRTCCommandName.Stop,
       device: device,
