@@ -42,7 +42,7 @@ class OctoPrintInstall(SafeDeleteModel):
     octoprint_version = models.CharField(max_length=32)
     pip_version = models.CharField(max_length=32)
     python_version = models.CharField(max_length=32)
-    printnanny_plugin_version = models.CharField(max_length=32)
+    printnanny_plugin_version = models.CharField(max_length=64)
     created_dt = models.DateTimeField(auto_now_add=True)
     updated_dt = models.DateTimeField(auto_now=True)
 
