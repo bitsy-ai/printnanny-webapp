@@ -58,7 +58,7 @@ class WebRTCEventSerializer(serializers.ModelSerializer):
         read_only_fields = ("user", "created_dt")
 
 
-class WebRTCCommandRequestSerializer(serializers.ModelSerializer):
+class WebRTCCommandCreateSerializer(serializers.ModelSerializer):
     model = serializers.ChoiceField(choices=WebRTCCommandModel.choices)
 
     class Meta:
@@ -77,7 +77,7 @@ class WebRTCCommandSerializer(serializers.ModelSerializer):
         read_only_fields = ("user", "created_dt")
 
 
-class PolymorphicEventRequestSerializer(PolymorphicSerializer):
+class PolymorphicEventCreateSerializer(PolymorphicSerializer):
     """
     Generic polymorphic serializer for all Events
 
@@ -93,7 +93,7 @@ class PolymorphicEventRequestSerializer(PolymorphicSerializer):
     model_serializer_mapping = {
         OctoPrintEvent: OctoPrintEventSerializer,
         WebRTCEvent: WebRTCEventSerializer,
-        WebRTCCommand: WebRTCCommandRequestSerializer,
+        WebRTCCommand: WebRTCCommandCreateSerializer,
         TestEvent: TestEventSerializer,
     }
 
@@ -119,7 +119,7 @@ class PolymorphicEventSerializer(PolymorphicSerializer):
     }
 
 
-class PolymorphicCommandRequestSerializer(PolymorphicSerializer):
+class PolymorphicCommandCreateSerializer(PolymorphicSerializer):
     """
     Generic polymorphic serializer for all Commands (Event subtype)
 
@@ -133,7 +133,7 @@ class PolymorphicCommandRequestSerializer(PolymorphicSerializer):
     resource_type_field_name = "model"
     # Model -> Serializer mapping
     model_serializer_mapping = {
-        WebRTCCommand: WebRTCCommandRequestSerializer,
+        WebRTCCommand: WebRTCCommandCreateSerializer,
     }
 
 
