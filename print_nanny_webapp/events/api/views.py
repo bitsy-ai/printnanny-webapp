@@ -25,8 +25,8 @@ from print_nanny_webapp.events.models import Event
 from .serializers import (
     PolymorphicEventSerializer,
     PolymorphicCommandSerializer,
-    PolymorphicEventRequestSerializer,
-    PolymorphicCommandRequestSerializer,
+    PolymorphicEventCreateSerializer,
+    PolymorphicCommandCreateSerializer,
 )
 
 Device = apps.get_model("devices", "Device")
@@ -44,7 +44,7 @@ logger = logging.getLogger(__name__)
     ),
     create=extend_schema(
         tags=["events"],
-        request=PolymorphicEventRequestSerializer,
+        request=PolymorphicEventCreateSerializer,
         responses={
             201: PolymorphicEventSerializer,
         }
@@ -117,7 +117,7 @@ class EventViewSet(
     ),
     create=extend_schema(
         tags=["events", "commands"],
-        request=PolymorphicCommandRequestSerializer,
+        request=PolymorphicCommandCreateSerializer,
         responses={
             201: PolymorphicCommandSerializer,
         }
