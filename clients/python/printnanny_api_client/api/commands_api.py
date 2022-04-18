@@ -47,8 +47,8 @@ class CommandsApi(object):
         >>> thread = api.commands_create(async_req=True)
         >>> result = thread.get()
 
-        :param polymorphic_command_request:
-        :type polymorphic_command_request: PolymorphicCommandRequest
+        :param polymorphic_command_request_request:
+        :type polymorphic_command_request_request: PolymorphicCommandRequestRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -77,8 +77,8 @@ class CommandsApi(object):
         >>> thread = api.commands_create_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param polymorphic_command_request:
-        :type polymorphic_command_request: PolymorphicCommandRequest
+        :param polymorphic_command_request_request:
+        :type polymorphic_command_request_request: PolymorphicCommandRequestRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -106,7 +106,7 @@ class CommandsApi(object):
         local_var_params = locals()
 
         all_params = [
-            'polymorphic_command_request'
+            'polymorphic_command_request_request'
         ]
         all_params.extend(
             [
@@ -141,8 +141,8 @@ class CommandsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'polymorphic_command_request' in local_var_params:
-            body_params = local_var_params['polymorphic_command_request']
+        if 'polymorphic_command_request_request' in local_var_params:
+            body_params = local_var_params['polymorphic_command_request_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501

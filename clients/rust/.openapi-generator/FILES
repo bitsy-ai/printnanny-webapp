@@ -82,9 +82,9 @@ docs/PatchedPublicKeyRequest.md
 docs/PatchedSystemInfoRequest.md
 docs/PatchedUserRequest.md
 docs/PolymorphicCommand.md
-docs/PolymorphicCommandRequest.md
+docs/PolymorphicCommandRequestRequest.md
 docs/PolymorphicEvent.md
-docs/PolymorphicEventRequest.md
+docs/PolymorphicEventRequestRequest.md
 docs/PrintNannyApiConfig.md
 docs/PublicKey.md
 docs/PublicKeyRequest.md
@@ -102,7 +102,7 @@ docs/UsersApi.md
 docs/WebRtcCommand.md
 docs/WebRtcCommandModel.md
 docs/WebRtcCommandName.md
-docs/WebRtcCommandRequest.md
+docs/WebRtcCommandRequestRequest.md
 docs/WebRtcEvent.md
 docs/WebRtcEventModel.md
 docs/WebRtcEventName.md
@@ -193,9 +193,9 @@ src/models/patched_public_key_request.rs
 src/models/patched_system_info_request.rs
 src/models/patched_user_request.rs
 src/models/polymorphic_command.rs
-src/models/polymorphic_command_request.rs
+src/models/polymorphic_command_request_request.rs
 src/models/polymorphic_event.rs
-src/models/polymorphic_event_request.rs
+src/models/polymorphic_event_request_request.rs
 src/models/print_nanny_api_config.rs
 src/models/public_key.rs
 src/models/public_key_request.rs
@@ -211,7 +211,7 @@ src/models/user_request.rs
 src/models/web_rtc_command.rs
 src/models/web_rtc_command_model.rs
 src/models/web_rtc_command_name.rs
-src/models/web_rtc_command_request.rs
+src/models/web_rtc_command_request_request.rs
 src/models/web_rtc_event.rs
 src/models/web_rtc_event_model.rs
 src/models/web_rtc_event_name.rs

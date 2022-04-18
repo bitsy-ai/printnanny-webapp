@@ -12,7 +12,7 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct WebRtcCommandRequest {
+pub struct WebRtcCommandRequestRequest {
     #[serde(rename = "model")]
     pub model: crate::models::WebRtcCommandModel,
     #[serde(rename = "source")]
@@ -27,9 +27,9 @@ pub struct WebRtcCommandRequest {
     pub stream: i32,
 }
 
-impl WebRtcCommandRequest {
-    pub fn new(model: crate::models::WebRtcCommandModel, source: crate::models::EventSource, event_name: crate::models::WebRtcCommandName, device: i32, stream: i32) -> WebRtcCommandRequest {
-        WebRtcCommandRequest {
+impl WebRtcCommandRequestRequest {
+    pub fn new(model: crate::models::WebRtcCommandModel, source: crate::models::EventSource, event_name: crate::models::WebRtcCommandName, device: i32, stream: i32) -> WebRtcCommandRequestRequest {
+        WebRtcCommandRequestRequest {
             model,
             source,
             event_name,

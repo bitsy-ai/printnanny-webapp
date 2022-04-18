@@ -15,6 +15,8 @@
 pub struct WebRtcCommand {
     #[serde(rename = "id")]
     pub id: i32,
+    #[serde(rename = "stream")]
+    pub stream: Option<Box<crate::models::JanusStream>>,
     #[serde(rename = "model")]
     pub model: crate::models::WebRtcCommandModel,
     #[serde(rename = "created_dt")]
@@ -31,14 +33,13 @@ pub struct WebRtcCommand {
     pub user: i32,
     #[serde(rename = "device")]
     pub device: i32,
-    #[serde(rename = "stream")]
-    pub stream: i32,
 }
 
 impl WebRtcCommand {
-    pub fn new(id: i32, model: crate::models::WebRtcCommandModel, created_dt: String, source: crate::models::EventSource, event_name: crate::models::WebRtcCommandName, polymorphic_ctype: i32, user: i32, device: i32, stream: i32) -> WebRtcCommand {
+    pub fn new(id: i32, stream: Option<crate::models::JanusStream>, model: crate::models::WebRtcCommandModel, created_dt: String, source: crate::models::EventSource, event_name: crate::models::WebRtcCommandName, polymorphic_ctype: i32, user: i32, device: i32) -> WebRtcCommand {
         WebRtcCommand {
             id,
+            stream: stream.map(Box::new),
             model,
             created_dt,
             source,
@@ -47,7 +48,6 @@ impl WebRtcCommand {
             polymorphic_ctype,
             user,
             device,
-            stream,
         }
     }
 }

@@ -53,7 +53,7 @@ pub enum CommandsRetrieveError {
 
 
 /// Generic events viewset
-pub async fn commands_create(configuration: &configuration::Configuration, polymorphic_command_request: Option<crate::models::PolymorphicCommandRequest>) -> Result<crate::models::PolymorphicCommand, Error<CommandsCreateError>> {
+pub async fn commands_create(configuration: &configuration::Configuration, polymorphic_command_request_request: Option<crate::models::PolymorphicCommandRequestRequest>) -> Result<crate::models::PolymorphicCommand, Error<CommandsCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -67,7 +67,7 @@ pub async fn commands_create(configuration: &configuration::Configuration, polym
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&polymorphic_command_request);
+    local_var_req_builder = local_var_req_builder.json(&polymorphic_command_request_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;

@@ -1,16 +1,14 @@
-# PolymorphicEventRequest
+# PolymorphicCommandRequestRequest
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**model** | [**crate::models::TestEventModel**](TestEventModel.md) |  | 
+**model** | [**crate::models::WebRtcCommandModel**](WebRTCCommandModel.md) |  | 
 **source** | [**crate::models::EventSource**](EventSource.md) |  | 
-**event_name** | [**crate::models::TestEventName**](TestEventName.md) |  | 
-**payload** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
-**octoprint_install** | **i32** |  | 
-**device** | **i32** |  | 
+**event_name** | [**crate::models::WebRtcCommandName**](WebRTCCommandName.md) |  | 
 **data** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
+**device** | **i32** |  | 
 **stream** | **i32** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

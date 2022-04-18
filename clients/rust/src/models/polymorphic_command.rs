@@ -14,6 +14,8 @@
 pub struct WebRtcCommand {
         #[serde(rename = "id")]
         pub id: i32,
+        #[serde(rename = "stream")]
+        pub stream: Option<Box<crate::models::JanusStream>>,
         #[serde(rename = "created_dt")]
         pub created_dt: String,
         #[serde(rename = "source")]
@@ -28,8 +30,6 @@ pub struct WebRtcCommand {
         pub user: i32,
         #[serde(rename = "device")]
         pub device: i32,
-        #[serde(rename = "stream")]
-        pub stream: i32,
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]

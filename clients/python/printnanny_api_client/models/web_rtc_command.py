@@ -38,6 +38,7 @@ class WebRTCCommand(object):
     """
     openapi_types = {
         'id': 'int',
+        'stream': 'JanusStream',
         'model': 'WebRTCCommandModel',
         'created_dt': 'datetime',
         'source': 'EventSource',
@@ -45,12 +46,12 @@ class WebRTCCommand(object):
         'data': 'dict(str, object)',
         'polymorphic_ctype': 'int',
         'user': 'int',
-        'device': 'int',
-        'stream': 'int'
+        'device': 'int'
     }
 
     attribute_map = {
         'id': 'id',
+        'stream': 'stream',
         'model': 'model',
         'created_dt': 'created_dt',
         'source': 'source',
@@ -58,17 +59,17 @@ class WebRTCCommand(object):
         'data': 'data',
         'polymorphic_ctype': 'polymorphic_ctype',
         'user': 'user',
-        'device': 'device',
-        'stream': 'stream'
+        'device': 'device'
     }
 
-    def __init__(self, id=None, model=None, created_dt=None, source=None, event_name=None, data=None, polymorphic_ctype=None, user=None, device=None, stream=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, stream=None, model=None, created_dt=None, source=None, event_name=None, data=None, polymorphic_ctype=None, user=None, device=None, local_vars_configuration=None):  # noqa: E501
         """WebRTCCommand - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
+        self._stream = None
         self._model = None
         self._created_dt = None
         self._source = None
@@ -77,10 +78,10 @@ class WebRTCCommand(object):
         self._polymorphic_ctype = None
         self._user = None
         self._device = None
-        self._stream = None
         self.discriminator = None
 
         self.id = id
+        self.stream = stream
         self.model = model
         self.created_dt = created_dt
         self.source = source
@@ -90,7 +91,6 @@ class WebRTCCommand(object):
         self.polymorphic_ctype = polymorphic_ctype
         self.user = user
         self.device = device
-        self.stream = stream
 
     @property
     def id(self):
@@ -114,6 +114,27 @@ class WebRTCCommand(object):
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
+
+    @property
+    def stream(self):
+        """Gets the stream of this WebRTCCommand.  # noqa: E501
+
+
+        :return: The stream of this WebRTCCommand.  # noqa: E501
+        :rtype: JanusStream
+        """
+        return self._stream
+
+    @stream.setter
+    def stream(self, stream):
+        """Sets the stream of this WebRTCCommand.
+
+
+        :param stream: The stream of this WebRTCCommand.  # noqa: E501
+        :type stream: JanusStream
+        """
+
+        self._stream = stream
 
     @property
     def model(self):
@@ -296,29 +317,6 @@ class WebRTCCommand(object):
             raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
 
         self._device = device
-
-    @property
-    def stream(self):
-        """Gets the stream of this WebRTCCommand.  # noqa: E501
-
-
-        :return: The stream of this WebRTCCommand.  # noqa: E501
-        :rtype: int
-        """
-        return self._stream
-
-    @stream.setter
-    def stream(self, stream):
-        """Sets the stream of this WebRTCCommand.
-
-
-        :param stream: The stream of this WebRTCCommand.  # noqa: E501
-        :type stream: int
-        """
-        if self.local_vars_configuration.client_side_validation and stream is None:  # noqa: E501
-            raise ValueError("Invalid value for `stream`, must not be `None`")  # noqa: E501
-
-        self._stream = stream
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

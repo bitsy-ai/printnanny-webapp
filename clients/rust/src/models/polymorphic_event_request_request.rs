@@ -33,7 +33,7 @@ pub struct TestEventRequest {
         pub device: i32,
 }
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-pub struct WebRtcCommandRequest {
+pub struct WebRtcCommandRequestRequest {
         #[serde(rename = "source")]
         pub source: crate::models::EventSource,
         #[serde(rename = "event_name")]
@@ -61,13 +61,13 @@ pub struct WebRtcEventRequest {
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(tag = "model")]
-pub enum PolymorphicEventRequest {
+pub enum PolymorphicEventRequestRequest {
     #[serde(rename="OctoPrintEvent")]
     OctoPrintEventRequest(OctoPrintEventRequest),
     #[serde(rename="TestEvent")]
     TestEventRequest(TestEventRequest),
     #[serde(rename="WebRTCCommand")]
-    WebRtcCommandRequest(WebRtcCommandRequest),
+    WebRtcCommandRequestRequest(WebRtcCommandRequestRequest),
     #[serde(rename="WebRTCEvent")]
     WebRtcEventRequest(WebRtcEventRequest),
 }

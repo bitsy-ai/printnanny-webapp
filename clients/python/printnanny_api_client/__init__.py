@@ -15,7 +15,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.78.1"
+__version__ = "0.78.2"
 
 # import apis into sdk package
 from printnanny_api_client.api.alerts_api import AlertsApi
@@ -110,9 +110,9 @@ from printnanny_api_client.models.patched_public_key_request import PatchedPubli
 from printnanny_api_client.models.patched_system_info_request import PatchedSystemInfoRequest
 from printnanny_api_client.models.patched_user_request import PatchedUserRequest
 from printnanny_api_client.models.polymorphic_command import PolymorphicCommand
-from printnanny_api_client.models.polymorphic_command_request import PolymorphicCommandRequest
+from printnanny_api_client.models.polymorphic_command_request_request import PolymorphicCommandRequestRequest
 from printnanny_api_client.models.polymorphic_event import PolymorphicEvent
-from printnanny_api_client.models.polymorphic_event_request import PolymorphicEventRequest
+from printnanny_api_client.models.polymorphic_event_request_request import PolymorphicEventRequestRequest
 from printnanny_api_client.models.print_nanny_api_config import PrintNannyApiConfig
 from printnanny_api_client.models.public_key import PublicKey
 from printnanny_api_client.models.public_key_request import PublicKeyRequest
@@ -128,7 +128,7 @@ from printnanny_api_client.models.user_request import UserRequest
 from printnanny_api_client.models.web_rtc_command import WebRTCCommand
 from printnanny_api_client.models.web_rtc_command_model import WebRTCCommandModel
 from printnanny_api_client.models.web_rtc_command_name import WebRTCCommandName
-from printnanny_api_client.models.web_rtc_command_request import WebRTCCommandRequest
+from printnanny_api_client.models.web_rtc_command_request_request import WebRTCCommandRequestRequest
 from printnanny_api_client.models.web_rtc_event import WebRTCEvent
 from printnanny_api_client.models.web_rtc_event_model import WebRTCEventModel
 from printnanny_api_client.models.web_rtc_event_name import WebRTCEventName

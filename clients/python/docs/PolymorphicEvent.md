@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **octoprint_install** | **int** |  | 
 **device** | **int** |  | 
 **data** | **dict(str, object)** |  | [optional] 
-**stream** | **int** |  | 
+**stream** | [**JanusStream**](JanusStream.md) |  | [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

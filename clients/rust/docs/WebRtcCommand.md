@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
+**stream** | Option<[**crate::models::JanusStream**](JanusStream.md)> |  | [readonly]
 **model** | [**crate::models::WebRtcCommandModel**](WebRTCCommandModel.md) |  | 
 **created_dt** | **String** |  | [readonly]
 **source** | [**crate::models::EventSource**](EventSource.md) |  | 
@@ -13,7 +14,6 @@ Name | Type | Description | Notes
 **polymorphic_ctype** | **i32** |  | [readonly]
 **user** | **i32** |  | [readonly]
 **device** | **i32** |  | 
-**stream** | **i32** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

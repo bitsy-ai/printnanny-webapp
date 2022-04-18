@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## commands_create
 
-> crate::models::PolymorphicCommand commands_create(polymorphic_command_request)
+> crate::models::PolymorphicCommand commands_create(polymorphic_command_request_request)
 
 
 Generic events viewset
@@ -25,7 +25,7 @@ Generic events viewset
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**polymorphic_command_request** | Option<[**PolymorphicCommandRequest**](PolymorphicCommandRequest.md)> |  |  |
+**polymorphic_command_request_request** | Option<[**PolymorphicCommandRequestRequest**](PolymorphicCommandRequestRequest.md)> |  |  |
 
 ### Return type
 
@@ -105,7 +105,7 @@ Name | Type | Description  | Required | Notes
 
 ## events_create
 
-> crate::models::PolymorphicEvent events_create(polymorphic_event_request)
+> crate::models::PolymorphicEvent events_create(polymorphic_event_request_request)
 
 
 Generic events viewset
@@ -115,7 +115,7 @@ Generic events viewset
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**polymorphic_event_request** | Option<[**PolymorphicEventRequest**](PolymorphicEventRequest.md)> |  |  |
+**polymorphic_event_request_request** | Option<[**PolymorphicEventRequestRequest**](PolymorphicEventRequestRequest.md)> |  |  |
 
 ### Return type
 

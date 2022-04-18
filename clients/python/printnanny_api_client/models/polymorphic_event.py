@@ -48,7 +48,7 @@ class PolymorphicEvent(object):
         'octoprint_install': 'int',
         'device': 'int',
         'data': 'dict(str, object)',
-        'stream': 'int'
+        'stream': 'JanusStream'
     }
 
     attribute_map = {
@@ -359,7 +359,7 @@ class PolymorphicEvent(object):
 
 
         :return: The stream of this PolymorphicEvent.  # noqa: E501
-        :rtype: int
+        :rtype: JanusStream
         """
         return self._stream
 
@@ -369,10 +369,8 @@ class PolymorphicEvent(object):
 
 
         :param stream: The stream of this PolymorphicEvent.  # noqa: E501
-        :type stream: int
+        :type stream: JanusStream
         """
-        if self.local_vars_configuration.client_side_validation and stream is None:  # noqa: E501
-            raise ValueError("Invalid value for `stream`, must not be `None`")  # noqa: E501
 
         self._stream = stream
 
