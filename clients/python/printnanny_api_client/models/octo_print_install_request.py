@@ -179,8 +179,8 @@ class OctoPrintInstallRequest(object):
         if self.local_vars_configuration.client_side_validation and printnanny_plugin_version is None:  # noqa: E501
             raise ValueError("Invalid value for `printnanny_plugin_version`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
-                printnanny_plugin_version is not None and len(printnanny_plugin_version) > 32):
-            raise ValueError("Invalid value for `printnanny_plugin_version`, length must be less than or equal to `32`")  # noqa: E501
+                printnanny_plugin_version is not None and len(printnanny_plugin_version) > 64):
+            raise ValueError("Invalid value for `printnanny_plugin_version`, length must be less than or equal to `64`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 printnanny_plugin_version is not None and len(printnanny_plugin_version) < 1):
             raise ValueError("Invalid value for `printnanny_plugin_version`, length must be greater than or equal to `1`")  # noqa: E501
