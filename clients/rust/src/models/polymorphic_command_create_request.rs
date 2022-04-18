@@ -11,7 +11,7 @@
 
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-pub struct WebRtcCommandRequestRequest {
+pub struct WebRtcCommandCreateRequest {
         #[serde(rename = "source")]
         pub source: crate::models::EventSource,
         #[serde(rename = "event_name")]
@@ -26,9 +26,9 @@ pub struct WebRtcCommandRequestRequest {
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(tag = "model")]
-pub enum PolymorphicCommandRequestRequest {
+pub enum PolymorphicCommandCreateRequest {
     #[serde(rename="WebRTCCommand")]
-    WebRtcCommandRequestRequest(WebRtcCommandRequestRequest),
+    WebRtcCommandCreateRequest(WebRtcCommandCreateRequest),
 }
 
 

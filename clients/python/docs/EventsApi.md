@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 
 # **commands_create**
-> PolymorphicCommand commands_create(polymorphic_command_request_request=polymorphic_command_request_request)
+> PolymorphicCommand commands_create(polymorphic_command_create_request=polymorphic_command_create_request)
 
 
 
@@ -54,10 +54,10 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.EventsApi(api_client)
-    polymorphic_command_request_request = printnanny_api_client.PolymorphicCommandRequestRequest() # PolymorphicCommandRequestRequest |  (optional)
+    polymorphic_command_create_request = printnanny_api_client.PolymorphicCommandCreateRequest() # PolymorphicCommandCreateRequest |  (optional)
 
     try:
-        api_response = api_instance.commands_create(polymorphic_command_request_request=polymorphic_command_request_request)
+        api_response = api_instance.commands_create(polymorphic_command_create_request=polymorphic_command_create_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling EventsApi->commands_create: %s\n" % e)
@@ -96,10 +96,10 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.EventsApi(api_client)
-    polymorphic_command_request_request = printnanny_api_client.PolymorphicCommandRequestRequest() # PolymorphicCommandRequestRequest |  (optional)
+    polymorphic_command_create_request = printnanny_api_client.PolymorphicCommandCreateRequest() # PolymorphicCommandCreateRequest |  (optional)
 
     try:
-        api_response = api_instance.commands_create(polymorphic_command_request_request=polymorphic_command_request_request)
+        api_response = api_instance.commands_create(polymorphic_command_create_request=polymorphic_command_create_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling EventsApi->commands_create: %s\n" % e)
@@ -109,7 +109,7 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **polymorphic_command_request_request** | [**PolymorphicCommandRequestRequest**](PolymorphicCommandRequestRequest.md)|  | [optional] 
+ **polymorphic_command_create_request** | [**PolymorphicCommandCreateRequest**](PolymorphicCommandCreateRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -384,7 +384,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **events_create**
-> PolymorphicEvent events_create(polymorphic_event_request_request=polymorphic_event_request_request)
+> PolymorphicEvent events_create(polymorphic_event_create_request=polymorphic_event_create_request)
 
 
 
@@ -425,10 +425,10 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.EventsApi(api_client)
-    polymorphic_event_request_request = printnanny_api_client.PolymorphicEventRequestRequest() # PolymorphicEventRequestRequest |  (optional)
+    polymorphic_event_create_request = printnanny_api_client.PolymorphicEventCreateRequest() # PolymorphicEventCreateRequest |  (optional)
 
     try:
-        api_response = api_instance.events_create(polymorphic_event_request_request=polymorphic_event_request_request)
+        api_response = api_instance.events_create(polymorphic_event_create_request=polymorphic_event_create_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling EventsApi->events_create: %s\n" % e)
@@ -467,10 +467,10 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.EventsApi(api_client)
-    polymorphic_event_request_request = printnanny_api_client.PolymorphicEventRequestRequest() # PolymorphicEventRequestRequest |  (optional)
+    polymorphic_event_create_request = printnanny_api_client.PolymorphicEventCreateRequest() # PolymorphicEventCreateRequest |  (optional)
 
     try:
-        api_response = api_instance.events_create(polymorphic_event_request_request=polymorphic_event_request_request)
+        api_response = api_instance.events_create(polymorphic_event_create_request=polymorphic_event_create_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling EventsApi->events_create: %s\n" % e)
@@ -480,7 +480,7 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **polymorphic_event_request_request** | [**PolymorphicEventRequestRequest**](PolymorphicEventRequestRequest.md)|  | [optional] 
+ **polymorphic_event_create_request** | [**PolymorphicEventCreateRequest**](PolymorphicEventCreateRequest.md)|  | [optional] 
 
 ### Return type
 

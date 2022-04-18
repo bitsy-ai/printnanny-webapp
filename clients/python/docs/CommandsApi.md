@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **commands_create**
-> PolymorphicCommand commands_create(polymorphic_command_request_request=polymorphic_command_request_request)
+> PolymorphicCommand commands_create(polymorphic_command_create_request=polymorphic_command_create_request)
 
 
 
@@ -51,10 +51,10 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.CommandsApi(api_client)
-    polymorphic_command_request_request = printnanny_api_client.PolymorphicCommandRequestRequest() # PolymorphicCommandRequestRequest |  (optional)
+    polymorphic_command_create_request = printnanny_api_client.PolymorphicCommandCreateRequest() # PolymorphicCommandCreateRequest |  (optional)
 
     try:
-        api_response = api_instance.commands_create(polymorphic_command_request_request=polymorphic_command_request_request)
+        api_response = api_instance.commands_create(polymorphic_command_create_request=polymorphic_command_create_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CommandsApi->commands_create: %s\n" % e)
@@ -93,10 +93,10 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.CommandsApi(api_client)
-    polymorphic_command_request_request = printnanny_api_client.PolymorphicCommandRequestRequest() # PolymorphicCommandRequestRequest |  (optional)
+    polymorphic_command_create_request = printnanny_api_client.PolymorphicCommandCreateRequest() # PolymorphicCommandCreateRequest |  (optional)
 
     try:
-        api_response = api_instance.commands_create(polymorphic_command_request_request=polymorphic_command_request_request)
+        api_response = api_instance.commands_create(polymorphic_command_create_request=polymorphic_command_create_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CommandsApi->commands_create: %s\n" % e)
@@ -106,7 +106,7 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **polymorphic_command_request_request** | [**PolymorphicCommandRequestRequest**](PolymorphicCommandRequestRequest.md)|  | [optional] 
+ **polymorphic_command_create_request** | [**PolymorphicCommandCreateRequest**](PolymorphicCommandCreateRequest.md)|  | [optional] 
 
 ### Return type
 

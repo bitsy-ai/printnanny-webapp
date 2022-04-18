@@ -1,4 +1,4 @@
-# PolymorphicCommandRequestRequest
+# PolymorphicCommandCreateRequest
 
 ## Properties
 

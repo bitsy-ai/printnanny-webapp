@@ -47,8 +47,8 @@ class EventsApi(object):
         >>> thread = api.commands_create(async_req=True)
         >>> result = thread.get()
 
-        :param polymorphic_command_request_request:
-        :type polymorphic_command_request_request: PolymorphicCommandRequestRequest
+        :param polymorphic_command_create_request:
+        :type polymorphic_command_create_request: PolymorphicCommandCreateRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -77,8 +77,8 @@ class EventsApi(object):
         >>> thread = api.commands_create_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param polymorphic_command_request_request:
-        :type polymorphic_command_request_request: PolymorphicCommandRequestRequest
+        :param polymorphic_command_create_request:
+        :type polymorphic_command_create_request: PolymorphicCommandCreateRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -106,7 +106,7 @@ class EventsApi(object):
         local_var_params = locals()
 
         all_params = [
-            'polymorphic_command_request_request'
+            'polymorphic_command_create_request'
         ]
         all_params.extend(
             [
@@ -141,8 +141,8 @@ class EventsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'polymorphic_command_request_request' in local_var_params:
-            body_params = local_var_params['polymorphic_command_request_request']
+        if 'polymorphic_command_create_request' in local_var_params:
+            body_params = local_var_params['polymorphic_command_create_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -473,8 +473,8 @@ class EventsApi(object):
         >>> thread = api.events_create(async_req=True)
         >>> result = thread.get()
 
-        :param polymorphic_event_request_request:
-        :type polymorphic_event_request_request: PolymorphicEventRequestRequest
+        :param polymorphic_event_create_request:
+        :type polymorphic_event_create_request: PolymorphicEventCreateRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -503,8 +503,8 @@ class EventsApi(object):
         >>> thread = api.events_create_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param polymorphic_event_request_request:
-        :type polymorphic_event_request_request: PolymorphicEventRequestRequest
+        :param polymorphic_event_create_request:
+        :type polymorphic_event_create_request: PolymorphicEventCreateRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -532,7 +532,7 @@ class EventsApi(object):
         local_var_params = locals()
 
         all_params = [
-            'polymorphic_event_request_request'
+            'polymorphic_event_create_request'
         ]
         all_params.extend(
             [
@@ -567,8 +567,8 @@ class EventsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'polymorphic_event_request_request' in local_var_params:
-            body_params = local_var_params['polymorphic_event_request_request']
+        if 'polymorphic_event_create_request' in local_var_params:
+            body_params = local_var_params['polymorphic_event_create_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501

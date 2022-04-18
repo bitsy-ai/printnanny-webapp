@@ -1,4 +1,4 @@
-# WebRtcCommandRequestRequest
+# WebRtcCommandCreateRequest
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# PolymorphicCommandRequestRequest
+# WebRTCCommandCreateRequest
 
 
 ## Properties

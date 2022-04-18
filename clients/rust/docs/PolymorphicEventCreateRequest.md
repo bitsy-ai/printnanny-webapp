@@ -1,4 +1,4 @@
-# PolymorphicEventRequestRequest
+# PolymorphicEventCreateRequest
 
 ## Properties
 

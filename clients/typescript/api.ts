@@ -3189,10 +3189,10 @@ export interface PatchedUserRequest {
 export type PolymorphicCommand = WebRTCCommand;
 
 /**
- * @type PolymorphicCommandRequestRequest
+ * @type PolymorphicCommandCreateRequest
  * @export
  */
-export type PolymorphicCommandRequestRequest = WebRTCCommandRequestRequest;
+export type PolymorphicCommandCreateRequest = WebRTCCommandCreateRequest;
 
 /**
  * @type PolymorphicEvent
@@ -3201,10 +3201,10 @@ export type PolymorphicCommandRequestRequest = WebRTCCommandRequestRequest;
 export type PolymorphicEvent = OctoPrintEvent | TestEvent | WebRTCCommand | WebRTCEvent;
 
 /**
- * @type PolymorphicEventRequestRequest
+ * @type PolymorphicEventCreateRequest
  * @export
  */
-export type PolymorphicEventRequestRequest = OctoPrintEventRequest | TestEventRequest | WebRTCCommandRequestRequest | WebRTCEventRequest;
+export type PolymorphicEventCreateRequest = OctoPrintEventRequest | TestEventRequest | WebRTCCommandCreateRequest | WebRTCEventRequest;
 
 /**
  * 
@@ -3709,6 +3709,49 @@ export interface WebRTCCommand {
 /**
  * 
  * @export
+ * @interface WebRTCCommandCreateRequest
+ */
+export interface WebRTCCommandCreateRequest {
+    /**
+     * 
+     * @type {WebRTCCommandModel}
+     * @memberof WebRTCCommandCreateRequest
+     */
+    'model': WebRTCCommandModel;
+    /**
+     * 
+     * @type {EventSource}
+     * @memberof WebRTCCommandCreateRequest
+     */
+    'source': EventSource;
+    /**
+     * 
+     * @type {WebRTCCommandName}
+     * @memberof WebRTCCommandCreateRequest
+     */
+    'event_name': WebRTCCommandName;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof WebRTCCommandCreateRequest
+     */
+    'data'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {number}
+     * @memberof WebRTCCommandCreateRequest
+     */
+    'device': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebRTCCommandCreateRequest
+     */
+    'stream': number;
+}
+/**
+ * 
+ * @export
  * @enum {string}
  */
 
@@ -3733,49 +3776,6 @@ export const WebRTCCommandName = {
 export type WebRTCCommandName = typeof WebRTCCommandName[keyof typeof WebRTCCommandName];
 
 
-/**
- * 
- * @export
- * @interface WebRTCCommandRequestRequest
- */
-export interface WebRTCCommandRequestRequest {
-    /**
-     * 
-     * @type {WebRTCCommandModel}
-     * @memberof WebRTCCommandRequestRequest
-     */
-    'model': WebRTCCommandModel;
-    /**
-     * 
-     * @type {EventSource}
-     * @memberof WebRTCCommandRequestRequest
-     */
-    'source': EventSource;
-    /**
-     * 
-     * @type {WebRTCCommandName}
-     * @memberof WebRTCCommandRequestRequest
-     */
-    'event_name': WebRTCCommandName;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof WebRTCCommandRequestRequest
-     */
-    'data'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {number}
-     * @memberof WebRTCCommandRequestRequest
-     */
-    'device': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof WebRTCCommandRequestRequest
-     */
-    'stream': number;
-}
 /**
  * 
  * @export
@@ -5139,11 +5139,11 @@ export const CommandsApiAxiosParamCreator = function (configuration?: Configurat
     return {
         /**
          * Generic events viewset
-         * @param {PolymorphicCommandRequestRequest} [polymorphicCommandRequestRequest] 
+         * @param {PolymorphicCommandCreateRequest} [polymorphicCommandCreateRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        commandsCreate: async (polymorphicCommandRequestRequest?: PolymorphicCommandRequestRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        commandsCreate: async (polymorphicCommandCreateRequest?: PolymorphicCommandCreateRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/commands/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -5169,7 +5169,7 @@ export const CommandsApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(polymorphicCommandRequestRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(polymorphicCommandCreateRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -5267,12 +5267,12 @@ export const CommandsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Generic events viewset
-         * @param {PolymorphicCommandRequestRequest} [polymorphicCommandRequestRequest] 
+         * @param {PolymorphicCommandCreateRequest} [polymorphicCommandCreateRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async commandsCreate(polymorphicCommandRequestRequest?: PolymorphicCommandRequestRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicCommand>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.commandsCreate(polymorphicCommandRequestRequest, options);
+        async commandsCreate(polymorphicCommandCreateRequest?: PolymorphicCommandCreateRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicCommand>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.commandsCreate(polymorphicCommandCreateRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -5307,12 +5307,12 @@ export const CommandsApiFactory = function (configuration?: Configuration, baseP
     return {
         /**
          * Generic events viewset
-         * @param {PolymorphicCommandRequestRequest} [polymorphicCommandRequestRequest] 
+         * @param {PolymorphicCommandCreateRequest} [polymorphicCommandCreateRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        commandsCreate(polymorphicCommandRequestRequest?: PolymorphicCommandRequestRequest, options?: any): AxiosPromise<PolymorphicCommand> {
-            return localVarFp.commandsCreate(polymorphicCommandRequestRequest, options).then((request) => request(axios, basePath));
+        commandsCreate(polymorphicCommandCreateRequest?: PolymorphicCommandCreateRequest, options?: any): AxiosPromise<PolymorphicCommand> {
+            return localVarFp.commandsCreate(polymorphicCommandCreateRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Generic events viewset
@@ -5343,12 +5343,12 @@ export const CommandsApiFactory = function (configuration?: Configuration, baseP
 export interface CommandsApiInterface {
     /**
      * Generic events viewset
-     * @param {PolymorphicCommandRequestRequest} [polymorphicCommandRequestRequest] 
+     * @param {PolymorphicCommandCreateRequest} [polymorphicCommandCreateRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CommandsApiInterface
      */
-    commandsCreate(polymorphicCommandRequestRequest?: PolymorphicCommandRequestRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicCommand>;
+    commandsCreate(polymorphicCommandCreateRequest?: PolymorphicCommandCreateRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicCommand>;
 
     /**
      * Generic events viewset
@@ -5379,13 +5379,13 @@ export interface CommandsApiInterface {
 export class CommandsApi extends BaseAPI implements CommandsApiInterface {
     /**
      * Generic events viewset
-     * @param {PolymorphicCommandRequestRequest} [polymorphicCommandRequestRequest] 
+     * @param {PolymorphicCommandCreateRequest} [polymorphicCommandCreateRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CommandsApi
      */
-    public commandsCreate(polymorphicCommandRequestRequest?: PolymorphicCommandRequestRequest, options?: AxiosRequestConfig) {
-        return CommandsApiFp(this.configuration).commandsCreate(polymorphicCommandRequestRequest, options).then((request) => request(this.axios, this.basePath));
+    public commandsCreate(polymorphicCommandCreateRequest?: PolymorphicCommandCreateRequest, options?: AxiosRequestConfig) {
+        return CommandsApiFp(this.configuration).commandsCreate(polymorphicCommandCreateRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -9026,11 +9026,11 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
     return {
         /**
          * Generic events viewset
-         * @param {PolymorphicCommandRequestRequest} [polymorphicCommandRequestRequest] 
+         * @param {PolymorphicCommandCreateRequest} [polymorphicCommandCreateRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        commandsCreate: async (polymorphicCommandRequestRequest?: PolymorphicCommandRequestRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        commandsCreate: async (polymorphicCommandCreateRequest?: PolymorphicCommandCreateRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/commands/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -9056,7 +9056,7 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(polymorphicCommandRequestRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(polymorphicCommandCreateRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -9144,11 +9144,11 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * Generic events viewset
-         * @param {PolymorphicEventRequestRequest} [polymorphicEventRequestRequest] 
+         * @param {PolymorphicEventCreateRequest} [polymorphicEventCreateRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        eventsCreate: async (polymorphicEventRequestRequest?: PolymorphicEventRequestRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        eventsCreate: async (polymorphicEventCreateRequest?: PolymorphicEventCreateRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/events/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -9174,7 +9174,7 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(polymorphicEventRequestRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(polymorphicEventCreateRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -9272,12 +9272,12 @@ export const EventsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Generic events viewset
-         * @param {PolymorphicCommandRequestRequest} [polymorphicCommandRequestRequest] 
+         * @param {PolymorphicCommandCreateRequest} [polymorphicCommandCreateRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async commandsCreate(polymorphicCommandRequestRequest?: PolymorphicCommandRequestRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicCommand>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.commandsCreate(polymorphicCommandRequestRequest, options);
+        async commandsCreate(polymorphicCommandCreateRequest?: PolymorphicCommandCreateRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicCommand>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.commandsCreate(polymorphicCommandCreateRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -9302,12 +9302,12 @@ export const EventsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Generic events viewset
-         * @param {PolymorphicEventRequestRequest} [polymorphicEventRequestRequest] 
+         * @param {PolymorphicEventCreateRequest} [polymorphicEventCreateRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async eventsCreate(polymorphicEventRequestRequest?: PolymorphicEventRequestRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.eventsCreate(polymorphicEventRequestRequest, options);
+        async eventsCreate(polymorphicEventCreateRequest?: PolymorphicEventCreateRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.eventsCreate(polymorphicEventCreateRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -9342,12 +9342,12 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
     return {
         /**
          * Generic events viewset
-         * @param {PolymorphicCommandRequestRequest} [polymorphicCommandRequestRequest] 
+         * @param {PolymorphicCommandCreateRequest} [polymorphicCommandCreateRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        commandsCreate(polymorphicCommandRequestRequest?: PolymorphicCommandRequestRequest, options?: any): AxiosPromise<PolymorphicCommand> {
-            return localVarFp.commandsCreate(polymorphicCommandRequestRequest, options).then((request) => request(axios, basePath));
+        commandsCreate(polymorphicCommandCreateRequest?: PolymorphicCommandCreateRequest, options?: any): AxiosPromise<PolymorphicCommand> {
+            return localVarFp.commandsCreate(polymorphicCommandCreateRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Generic events viewset
@@ -9369,12 +9369,12 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * Generic events viewset
-         * @param {PolymorphicEventRequestRequest} [polymorphicEventRequestRequest] 
+         * @param {PolymorphicEventCreateRequest} [polymorphicEventCreateRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        eventsCreate(polymorphicEventRequestRequest?: PolymorphicEventRequestRequest, options?: any): AxiosPromise<PolymorphicEvent> {
-            return localVarFp.eventsCreate(polymorphicEventRequestRequest, options).then((request) => request(axios, basePath));
+        eventsCreate(polymorphicEventCreateRequest?: PolymorphicEventCreateRequest, options?: any): AxiosPromise<PolymorphicEvent> {
+            return localVarFp.eventsCreate(polymorphicEventCreateRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Generic events viewset
@@ -9405,12 +9405,12 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
 export interface EventsApiInterface {
     /**
      * Generic events viewset
-     * @param {PolymorphicCommandRequestRequest} [polymorphicCommandRequestRequest] 
+     * @param {PolymorphicCommandCreateRequest} [polymorphicCommandCreateRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    commandsCreate(polymorphicCommandRequestRequest?: PolymorphicCommandRequestRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicCommand>;
+    commandsCreate(polymorphicCommandCreateRequest?: PolymorphicCommandCreateRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicCommand>;
 
     /**
      * Generic events viewset
@@ -9432,12 +9432,12 @@ export interface EventsApiInterface {
 
     /**
      * Generic events viewset
-     * @param {PolymorphicEventRequestRequest} [polymorphicEventRequestRequest] 
+     * @param {PolymorphicEventCreateRequest} [polymorphicEventCreateRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    eventsCreate(polymorphicEventRequestRequest?: PolymorphicEventRequestRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
+    eventsCreate(polymorphicEventCreateRequest?: PolymorphicEventCreateRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicEvent>;
 
     /**
      * Generic events viewset
@@ -9468,13 +9468,13 @@ export interface EventsApiInterface {
 export class EventsApi extends BaseAPI implements EventsApiInterface {
     /**
      * Generic events viewset
-     * @param {PolymorphicCommandRequestRequest} [polymorphicCommandRequestRequest] 
+     * @param {PolymorphicCommandCreateRequest} [polymorphicCommandCreateRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public commandsCreate(polymorphicCommandRequestRequest?: PolymorphicCommandRequestRequest, options?: AxiosRequestConfig) {
-        return EventsApiFp(this.configuration).commandsCreate(polymorphicCommandRequestRequest, options).then((request) => request(this.axios, this.basePath));
+    public commandsCreate(polymorphicCommandCreateRequest?: PolymorphicCommandCreateRequest, options?: AxiosRequestConfig) {
+        return EventsApiFp(this.configuration).commandsCreate(polymorphicCommandCreateRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -9501,13 +9501,13 @@ export class EventsApi extends BaseAPI implements EventsApiInterface {
 
     /**
      * Generic events viewset
-     * @param {PolymorphicEventRequestRequest} [polymorphicEventRequestRequest] 
+     * @param {PolymorphicEventCreateRequest} [polymorphicEventCreateRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public eventsCreate(polymorphicEventRequestRequest?: PolymorphicEventRequestRequest, options?: AxiosRequestConfig) {
-        return EventsApiFp(this.configuration).eventsCreate(polymorphicEventRequestRequest, options).then((request) => request(this.axios, this.basePath));
+    public eventsCreate(polymorphicEventCreateRequest?: PolymorphicEventCreateRequest, options?: AxiosRequestConfig) {
+        return EventsApiFp(this.configuration).eventsCreate(polymorphicEventCreateRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
