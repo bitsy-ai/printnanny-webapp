@@ -9,13 +9,17 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('octoprint', '0013_alter_octoprintinstall_printnanny_plugin_version'),
+        ("octoprint", "0013_alter_octoprintinstall_printnanny_plugin_version"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='octoprintinstall',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='octoprint_installs', to=settings.AUTH_USER_MODEL),
+            model_name="octoprintinstall",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="octoprint_installs",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
     ]
