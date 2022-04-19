@@ -209,6 +209,7 @@ GHOST_CONTENT_API_KEY = env("GHOST_CONTENT_API_KEY")
 
 # CORS
 # see also: corsheaders.middleware.CorsMiddleware
+# https://pypi.org/project/django-cors-headers/
 # ------------------------------------------------------------------------------
 CORS_ALLOWED_ORIGINS = [
     "https://print-nanny.com",
@@ -220,6 +221,10 @@ CORS_ALLOWED_ORIGINS = [
     "https://beta.printnanny.ai",
     "https://www.beta.printnanny.ai",
 ]
+
+# apply CORS headers to all endpoints EXCEPT endpoints beginning with /api* (API is a public resource)
+CORS_URLS_REGEX = r"^(?!.*(api)).*"
+
 
 # posthog
 # ------------------------------------------------------------------------------
