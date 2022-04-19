@@ -222,10 +222,6 @@ CORS_ALLOWED_ORIGINS = [
     "https://www.beta.printnanny.ai",
 ]
 
-# apply CORS headers to all endpoints EXCEPT endpoints beginning with /api* (API is a public resource)
-CORS_URLS_REGEX = r"^(?!/api/).*$"
-
-
 # posthog
 # ------------------------------------------------------------------------------
 # https://posthog.com/docs/libraries/python
