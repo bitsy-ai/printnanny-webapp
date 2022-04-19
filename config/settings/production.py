@@ -223,7 +223,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 # apply CORS headers to all endpoints EXCEPT endpoints beginning with /api* (API is a public resource)
-CORS_URLS_REGEX = r"^(?!.*(api)).*"
+CORS_URLS_REGEX = r"^(?!/api/).*$"
 
 
 # posthog
