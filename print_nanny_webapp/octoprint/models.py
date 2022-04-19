@@ -33,7 +33,7 @@ class OctoPrintInstall(SafeDeleteModel):
             )
         ]
 
-    user = models.OneToOneField(
+    user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="octoprint_installs"
     )
     device = models.ForeignKey(
