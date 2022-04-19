@@ -79,7 +79,7 @@ class EventViewSet(
 
     def create(self, request, *args, **kwargs):
         logger.info("EventViewSet.create handling request.data %s", request.data)
-        serializer = self.get_serializer(data=request.data)
+        serializer = PolymorphicEventCreateSerializer(data=request.data)
         logger.info("EventViewSet.create got serializer %s", serializer)
         serializer.is_valid(raise_exception=True)
         logger.info("EventViewSet.create serializer is_valid=True")
@@ -152,7 +152,7 @@ class CommandViewSet(
 
     def create(self, request, *args, **kwargs):
         logger.info("EventViewSet.create handling request.data %s", request.data)
-        serializer = self.get_serializer(data=request.data)
+        serializer = PolymorphicCommandCreateSerializer(data=request.data)
         logger.info("EventViewSet.create got serializer %s", serializer)
         serializer.is_valid(raise_exception=True)
         logger.info("EventViewSet.create serializer is_valid=True")
