@@ -2,33 +2,39 @@ import * as api from 'printnanny-api-client'
 
 const PRINTNANNY_API_URL: string = process.env.PRINTNANNY_API_URL
 const PRINTNANNY_WS_URL: string = process.env.PRINTNANNY_API_URL
-
 let PRINTNANNY_API_CONFIG: api.Configuration = new api.Configuration({
-    basePath: PRINTNANNY_API_URL
+    basePath: window.location.origin
 })
 
 declare global {
     interface Window {
         PRINTNANNY_API_TOKEN: string;
+        PRINTNANNY_API_PROXY: string;
     }
 }
 
 // if loading javascript same-origin, prefer to authenticate with cookies + csrftoken
 if (PRINTNANNY_API_URL.includes(window.location.origin)) {
     PRINTNANNY_API_CONFIG = new api.Configuration({
-        basePath: PRINTNANNY_API_URL,
+        basePath: window.location.origin,
         baseOptions: {
             xsrfCookieName: 'csrftoken',
             xsrfHeaderName: 'X-CSRFTOKEN',
             withCredentials: true
         }
     })
-    // require api token to authenticate x-origin requests
-} else if (window.PRINTNANNY_API_TOKEN !== undefined) {
-    PRINTNANNY_API_CONFIG = new api.Configuration({
-        basePath: PRINTNANNY_API_URL,
-        accessToken: window.PRINTNANNY_API_TOKEN
-    })
+} else if (window.PRINTNANNY_API_PROXY !== undefined) {
+    if (window.PRINTNANNY_API_TOKEN !== undefined) {
+        PRINTNANNY_API_CONFIG = new api.Configuration({
+            basePath: window.PRINTNANNY_API_PROXY,
+            accessToken: window.PRINTNANNY_API_TOKEN
+        })
+    } else {
+        PRINTNANNY_API_CONFIG = new api.Configuration({
+            basePath: window.PRINTNANNY_API_PROXY
+        })
+    }
+
 } else {
     console.warn(`PRINTNANNY_API_TOKEN not set, requests to ${PRINTNANNY_API_URL} will be anonymous`, PRINTNANNY_API_URL)
 }
