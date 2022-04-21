@@ -1,6 +1,7 @@
 """
 Base settings to build other settings files upon.
 """
+from typing import List
 from pathlib import Path
 import os
 import socket
@@ -686,8 +687,8 @@ JANUS_CLOUD_API_URL = env("JANUS_CLOUD_API_URL", default="http://aurora:8088/jan
 JANUS_CLOUD_API_PORT: int = int(env("JANUS_CLOUD_API_PORT", default=8088))
 JANUS_CLOUD_WS_URL = env("JANUS_CLOUD_WS_URL", default="ws://aurora.local:8188")
 JANUS_CLOUD_WS_PORT: int = int(env("JANUS_CLOUD_WS_PORT", default=8188))
-JANUS_CLOUD_RTP_PORT_RANGE = (
-    int(x) for x in env.tuple("JANUS_CLOUD_RTP_PORT_RANGE", default=(5000, 5050))
+JANUS_CLOUD_RTP_PORT_RANGE: List[int] = list(
+    map(int, env.tuple("JANUS_CLOUD_RTP_PORT_RANGE", default=(5000, 5050)))
 )
 JANUS_CLOUD_RTP_DOMAIN = env("JANUS_CLOUD_RTP_DOMAIN", default="aurora")
 
