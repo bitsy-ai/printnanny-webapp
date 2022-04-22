@@ -32,7 +32,10 @@ export default {
         break;
     }
     console.log('Response to devicesRetrieve', res)
-    context.commit(SET_JANUS_STREAM_DATA, res.data.results[0])
+    if (res.data.results.length >= 1) {
+      context.commit(SET_JANUS_STREAM_DATA, res.data.results[0])
+      return res.data.results[0]
+    }
   },
   async [SETUP_JANUS_CLOUD](context: any, deviceId: number) {
     const thisapi = api.DevicesApiFactory(PRINTNANNY_API_CONFIG)

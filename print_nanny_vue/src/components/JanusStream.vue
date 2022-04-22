@@ -154,7 +154,10 @@ const JanusStream = Vue.extend({
       this.error = null;
       const janusStream = await this.setupJanusStream();
       console.log("Calling this.streamStart with janusStream", janusStream);
-      await this.streamStart({ device: this.deviceId, stream: janusStream.id });
+      await this.streamStart({
+        device: janusStream.device.id,
+        stream: janusStream.id,
+      });
       await this.connectStream(janusStream);
     },
     async stopMonitoring() {
