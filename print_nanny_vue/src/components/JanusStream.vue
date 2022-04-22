@@ -172,7 +172,9 @@ const JanusStream = Vue.extend({
     },
     async reset() {
       await this.resetJanus();
-      this.data = initialData();
+      const data = initialData();
+      Object.assign(this.$data, data);
+      console.debug("Reset JanusStream component to initial state", data);
     },
     async resetJanus() {
       if (this.plugin) {
