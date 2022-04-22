@@ -13,7 +13,6 @@ from django.conf import settings
 from django.contrib.postgres.fields import ArrayField, JSONField
 from google.cloud import iot_v1 as cloudiot_v1
 from google.protobuf.json_format import MessageToDict
-import stringcase
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.managers import SafeDeleteManager
 from safedelete.signals import pre_softdelete
@@ -495,7 +494,3 @@ class RemoteControlCommand(models.Model):
     iotcore_response = JSONField(default={})
 
     metadata = JSONField(default={})
-
-    @property
-    def octoprint_event_type(self):
-        return self.PLUGIN_EVENT_PREFIX + stringcase.snakecase(self.command)

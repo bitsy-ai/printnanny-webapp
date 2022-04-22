@@ -121,23 +121,3 @@ class FixObtainMobileVerificationCallbackToken(OpenApiViewExtension):
                 pass
 
         return Fixed
-
-
-# /auth/verify/
-# double-check that the endpoint belongs to the request.user and mark the alias as verified
-class FixObtainMobileVerificationCallbackToken(OpenApiViewExtension):
-    target_class = "drfpasswordless.views.ObtainMobileVerificationCallbackToken"
-
-    def view_replacement(self):
-        class Fixed(self.target_class):
-            serializer_class = CallbackTokenVerificationSerializer
-
-            @extend_schema(
-                request=CallbackTokenVerificationSerializer,
-                responses=DetailResponseSerializer,
-                tags=[api_settings.PASSWORDLESS_AUTH_PREFIX.replace("/", "")],
-            )
-            def post(self, request, *args, **kwargs):
-                pass
-
-        return Fixed
