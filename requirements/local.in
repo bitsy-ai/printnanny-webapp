@@ -48,7 +48,6 @@ psycopg2
 pyarrow
 qrcode[pil]
 scikit-image
-stringcase
 twisted>=21.7 # https://github.com/django/channels/issues/1639
 uvicorn[standard]
 whitenoise

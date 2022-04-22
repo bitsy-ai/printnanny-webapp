@@ -4,8 +4,11 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 
-from .service import get_api_config
-from .serializers import PrintNannyApiConfigSerializer, ErrorDetailSerializer
+from print_nanny_webapp.utils.api.service import get_api_config
+from print_nanny_webapp.utils.api.serializers import (
+    PrintNannyApiConfigSerializer,
+    ErrorDetailSerializer,
+)
 
 
 generic_list_errors = {
