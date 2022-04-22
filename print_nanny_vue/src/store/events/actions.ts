@@ -26,7 +26,7 @@ export default {
     console.log("eventsCreate response", res)
     context.commit(SET_SENT_EVENT, event)
   },
-  async[STREAM_STOP](context: any, { device, stream }: { device: number, stream: number }) {
+  async [STREAM_STOP](context: any, { device, stream }: { device: number, stream: number }) {
     const thisapi = api.EventsApiFactory(PRINTNANNY_API_CONFIG)
     const req: api.WebRTCCommandCreateRequest = {
       model: api.WebRTCCommandModel.WebRtcCommand,
