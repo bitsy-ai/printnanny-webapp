@@ -20,15 +20,15 @@ export default {
     console.log('Response to devicesRetrieve', res)
     context.commit(SET_DEVICE_DATA, res.data)
   },
-  async [GET_JANUS_STREAM](context: any, { deviceId, configType }: { deviceId: number, configType: api.JanusConfigType }) {
+  async [GET_JANUS_STREAM](context: any, { device, configType }: { device: number, configType: api.JanusConfigType }) {
     const thisapi = api.DevicesApiFactory(PRINTNANNY_API_CONFIG)
     let res;
     switch (configType) {
       case api.JanusConfigType.Cloud:
-        res = await thisapi.devicesJanusCloudStreamsList(deviceId)
+        res = await thisapi.devicesJanusCloudStreamsList(device)
         break;
       case api.JanusConfigType.Edge:
-        res = await thisapi.devicesJanusEdgeStreamsList(deviceId)
+        res = await thisapi.devicesJanusEdgeStreamsList(device)
         break;
     }
     console.log('Response to devicesRetrieve', res)
