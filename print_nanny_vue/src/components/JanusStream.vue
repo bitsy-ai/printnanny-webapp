@@ -152,7 +152,7 @@ const JanusStream = Vue.extend({
       this.active = true;
 
       this.error = null;
-      const janusStream = await this.setupJanusCloud(this.deviceId);
+      const janusStream = await this.setupJanusStream();
       console.log("Calling this.streamStart with janusStream", janusStream);
       await this.streamStart({ device: this.deviceId, stream: janusStream.id });
       await this.connectStream(janusStream);
