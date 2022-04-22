@@ -1,4 +1,5 @@
 import logging
+from typing import Union
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 from rest_framework.renderers import JSONRenderer
@@ -7,7 +8,7 @@ from print_nanny_webapp.devices.models import (
     CloudiotDevice,
 )
 from print_nanny_webapp.events.api.serializers import PolymorphicEventSerializer
-from .models import WebRTCEvent, Event
+from .models import WebRTCCommand, WebRTCEvent, Event
 from .enum import WebRTCEventName, WebRTCCommandModel
 
 logger = logging.getLogger(__name__)
@@ -74,15 +75,29 @@ def broadcast_event(event: Event):
         logger.info("Published event %s to MQTT commands topic", event)
 
 
-def webrtc_stream_start(event: WebRTCEvent) -> WebRTCEvent:
+def webrtc_stream_start(event: WebRTCCommand) -> Union[WebRTCCommand, WebRTCEvent]:
     try:
         broadcast_event(event)
-        logger.info("Success broadcasting event %s", event)
         return event
     except Exception as e:
         logger.error("Error handling event=%s error=%s", event.__dict__, e)
         error_event = WebRTCEvent.objects.create(
             event_name=WebRTCEventName.STREAM_START_ERROR,
+            device=event.device,
+            user=event.user,
+            stream=event.stream,
+        )
+        return error_event
+
+
+def webrtc_stream_stop(event: WebRTCCommand) -> Union[WebRTCCommand, WebRTCEvent]:
+    try:
+        broadcast_event(event)
+        return event
+    except Exception as e:
+        logger.error("Error handling event=%s error=%s", event.__dict__, e)
+        error_event = WebRTCEvent.objects.create(
+            event_name=WebRTCEventName.STREAM_STOP_ERROR,
             device=event.device,
             user=event.user,
             stream=event.stream,
