@@ -33,7 +33,7 @@ export default {
         res = await thisapi.devicesJanusEdgeStreamsList(device)
         break;
     }
-    console.log('Response to devicesRetrieve', res)
+    console.log('Response to GET_JANUS_STREAM', res)
     if (res.data.results.length >= 1) {
       context.commit(SET_JANUS_STREAM_DATA, res.data.results[0])
       return res.data.results[0]
