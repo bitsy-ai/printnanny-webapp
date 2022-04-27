@@ -423,17 +423,6 @@ stripe-local-webhooks:
 djstripe-sync-local:
 	docker-compose -f local.yml run --rm django python manage.py djstripe_sync_models
 
-ara-image:
-	docker build \
-		--tag us.gcr.io/print-nanny/ara:${GIT_SHA} \
-		-f compose/production/ara/Dockerfile compose/production/ara
-	docker tag us.gcr.io/print-nanny/ara:${GIT_SHA} us.gcr.io/print-nanny/ara:fedora33-source-latest
-	docker push us.gcr.io/print-nanny/ara:fedora33-source-latest
-	docker push us.gcr.io/print-nanny/ara:${GIT_SHA}
-
-ara-rollout: ara-image
-	kubectl set image deployment/ara ara=us.gcr.io/print-nanny/ara:${GIT_SHA} --record
-
 gcs-fuse-image:
 	docker build \
 		--tag bitsyai/nginx-gcsfuse \

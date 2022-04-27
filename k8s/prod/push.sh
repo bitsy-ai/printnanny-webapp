@@ -16,12 +16,10 @@ docker push "us.gcr.io/print-nanny/print_nanny_webapp:${GIT_SHA}"
 
 kubectl apply -f k8s/stable/configmap.yml
 kubectl apply -f k8s/stable/ara-config.yml
-kubectl apply -f k8s/prod/ara.yml
 # TODO re-enable after event version cutover
 # kubectl apply -f k8s/prod/octoprint-events.yml
 kubectl apply -f k8s/prod/django.yml
 
-kubectl set image deployment/ara "ara=us.gcr.io/print-nanny/ara:${GIT_SHA}" --record
 kubectl set image deployment/django "django=us.gcr.io/print-nanny/print_nanny_webapp:${GIT_SHA}" --record
 ATTEMPTS=0
 MAX_ATTEMPTS=30
