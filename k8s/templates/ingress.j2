@@ -155,3 +155,13 @@ spec:
                 name: janus-tcp
                 port:
                   number: {{ JANUS_CLOUD_ADMIN_PORT }}
+    - host: ota.{{ PRINTNANNY_NAMESPACE }}.printnanny.ai
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: mender-api-gateway
+              port:
+                number: 80
