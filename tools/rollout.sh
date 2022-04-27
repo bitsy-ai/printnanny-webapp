@@ -11,8 +11,6 @@ docker tag "print_nanny_webapp:${GIT_SHA}" \
 docker push us.gcr.io/${GCP_PROJECT}/print_nanny_webapp:latest
 docker push "us.gcr.io/${GCP_PROJECT}/print_nanny_webapp:${GIT_SHA}"
 
-
-kubectl -n "$PRINTNANNY_NAMESPACE" set image deployment/ara "ara=us.gcr.io/${GCP_PROJECT}/ara:${GIT_SHA}" --record
 kubectl  -n "$PRINTNANNY_NAMESPACE" set image deployment/django "django=us.gcr.io/${GCP_PROJECT}/print_nanny_webapp:${GIT_SHA}" --record
 ATTEMPTS=0
 MAX_ATTEMPTS=30
