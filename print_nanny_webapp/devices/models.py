@@ -208,11 +208,6 @@ class SystemInfo(SafeDeleteModel):
         help_text="PrintNanny OS image version string from /boot/image_version.txt",
     )
 
-    ansible_collection_version = models.CharField(
-        max_length=255,
-        help_text="PrintNanny OS ansible collection version string. Releaes: https://github.com/bitsy-ai/ansible-collection-printnanny",
-    )
-
 
 class CloudiotDevice(SafeDeleteModel):
     """
