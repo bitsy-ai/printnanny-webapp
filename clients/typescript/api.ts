@@ -3157,12 +3157,6 @@ export interface PatchedSystemInfoRequest {
      */
     'image_version'?: string;
     /**
-     * PrintNanny OS ansible collection version string. Releaes: https://github.com/bitsy-ai/ansible-collection-printnanny
-     * @type {string}
-     * @memberof PatchedSystemInfoRequest
-     */
-    'ansible_collection_version'?: string;
-    /**
      * 
      * @type {number}
      * @memberof PatchedSystemInfoRequest
@@ -3402,12 +3396,6 @@ export interface SystemInfo {
      */
     'image_version': string;
     /**
-     * PrintNanny OS ansible collection version string. Releaes: https://github.com/bitsy-ai/ansible-collection-printnanny
-     * @type {string}
-     * @memberof SystemInfo
-     */
-    'ansible_collection_version': string;
-    /**
      * 
      * @type {number}
      * @memberof SystemInfo
@@ -3468,12 +3456,6 @@ export interface SystemInfoRequest {
      * @memberof SystemInfoRequest
      */
     'image_version': string;
-    /**
-     * PrintNanny OS ansible collection version string. Releaes: https://github.com/bitsy-ai/ansible-collection-printnanny
-     * @type {string}
-     * @memberof SystemInfoRequest
-     */
-    'ansible_collection_version': string;
     /**
      * 
      * @type {number}

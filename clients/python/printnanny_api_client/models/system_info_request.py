@@ -45,7 +45,6 @@ class SystemInfoRequest(object):
         'cores': 'int',
         'ram': 'int',
         'image_version': 'str',
-        'ansible_collection_version': 'str',
         'device': 'int'
     }
 
@@ -58,11 +57,10 @@ class SystemInfoRequest(object):
         'cores': 'cores',
         'ram': 'ram',
         'image_version': 'image_version',
-        'ansible_collection_version': 'ansible_collection_version',
         'device': 'device'
     }
 
-    def __init__(self, machine_id=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, image_version=None, ansible_collection_version=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, machine_id=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, image_version=None, device=None, local_vars_configuration=None):  # noqa: E501
         """SystemInfoRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -76,7 +74,6 @@ class SystemInfoRequest(object):
         self._cores = None
         self._ram = None
         self._image_version = None
-        self._ansible_collection_version = None
         self._device = None
         self.discriminator = None
 
@@ -88,7 +85,6 @@ class SystemInfoRequest(object):
         self.cores = cores
         self.ram = ram
         self.image_version = image_version
-        self.ansible_collection_version = ansible_collection_version
         self.device = device
 
     @property
@@ -334,37 +330,6 @@ class SystemInfoRequest(object):
             raise ValueError("Invalid value for `image_version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._image_version = image_version
-
-    @property
-    def ansible_collection_version(self):
-        """Gets the ansible_collection_version of this SystemInfoRequest.  # noqa: E501
-
-        PrintNanny OS ansible collection version string. Releaes: https://github.com/bitsy-ai/ansible-collection-printnanny  # noqa: E501
-
-        :return: The ansible_collection_version of this SystemInfoRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._ansible_collection_version
-
-    @ansible_collection_version.setter
-    def ansible_collection_version(self, ansible_collection_version):
-        """Sets the ansible_collection_version of this SystemInfoRequest.
-
-        PrintNanny OS ansible collection version string. Releaes: https://github.com/bitsy-ai/ansible-collection-printnanny  # noqa: E501
-
-        :param ansible_collection_version: The ansible_collection_version of this SystemInfoRequest.  # noqa: E501
-        :type ansible_collection_version: str
-        """
-        if self.local_vars_configuration.client_side_validation and ansible_collection_version is None:  # noqa: E501
-            raise ValueError("Invalid value for `ansible_collection_version`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                ansible_collection_version is not None and len(ansible_collection_version) > 255):
-            raise ValueError("Invalid value for `ansible_collection_version`, length must be less than or equal to `255`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                ansible_collection_version is not None and len(ansible_collection_version) < 1):
-            raise ValueError("Invalid value for `ansible_collection_version`, length must be greater than or equal to `1`")  # noqa: E501
-
-        self._ansible_collection_version = ansible_collection_version
 
     @property
     def device(self):
