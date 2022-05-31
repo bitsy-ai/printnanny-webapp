@@ -43,7 +43,7 @@
                     <a class="nav-link" href="{% url 'subscriptions:checkout' %}">Become a Founding Member</a>
                 </li>
                 <li class="nav-item mx-lg-1">
-                    <a class="nav-link" href="{% url 'surveys:remote-access' %}">Join Waitlist</a>
+                    <a class="nav-link" href="{% url 'surveys:remote-access' %}">Join the Waitlist</a>
                 </li>
                 <!-- <li class="nav-item mx-lg-1">
                             <a class="nav-link" href="">Clients</a>
@@ -55,7 +55,7 @@
 
             <!-- right menu -->
             <ul class="navbar-nav ml-auto align-items-center">
-                <!-- <li class="nav-item mr-1">
+                <!-- <li class="nav-item mr-1">f
                             {% comment %} <a href="{% url 'subscriptions:checkout' %}" class="nav-link d-lg-none">Register</a> {% endcomment %}
                             <a href="#" class="nav-link d-lg-none">Register</a>
                             {% comment %} <a href="{% url 'subscriptions:checkout' %}" class="btn btn-sm btn-light btn-rounded d-none d-lg-inline-flex"> {% endcomment %}
@@ -84,24 +84,23 @@
 <!-- START HERO -->
 <section class="hero-section pt-0 text-center text-md-left">
     <div class="container-fluid">
-        <h1 class="text-center text-white display-4 p-4">
-            <strong>👀 Stop Babysitting Your 3D Printer</strong>
-        </h1>
-        <div class="row pl-md-5">
-
-            <div class="col-md-4">
+        <div class="row pl-md-2">
+            <h1 class="text-center text-white display-3 col-12 pb-4">
+                <strong>👀 Stop Babysitting Your 3D Printer</strong>
+            </h1>
+            <div class="col-12 col-md-8 embed-responsive embed-responsive-16by9">
+                <video class="embed-responsive-item" autoplay muted loop controls>
+                    <source src="https://cdn.printnanny.ai/www/demo-video-2.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="col-md-4 text-center">
                 <div class="m-md-2">
-                    <h2 class="text-white display-6 mb-md-3">
-                        <strong>👶 Hire a PrintNanny</strong>
-                    </h2>
-
-                    <p class="lead text-white"><strong>✨ Failing jobs stop automatically</strong></p>
+                    <p class="lead text-white"><strong>✨ Failure & Defect Monitoring</strong></p>
+                    <p class="lead text-white"><strong>🎥 Live Video Feed</strong></p>
+                    <p class="lead text-white"><strong>📁 Sync & Backup Files</strong></p>
+                    <p class="lead text-white"><strong>🔐 Secure remote Control</strong></p>
+                    <p class="lead text-white"><strong>❤️ Easy Install for Raspberry Pi</strong></p>
                     <p class="lead text-white"><strong>💚 Compatible with OctoPrint</strong></p>
-                    <p class="lead text-white"><strong>🎥 Live video feed</strong></p>
-                    <p class="lead text-white"><strong>📁 Sync & backup files</strong></p>
-                    <p class="lead text-white"><strong>🔐 Secure remote control</strong></p>
-                    <p class="lead text-white"><strong>❤️ Easy install for Raspberry Pi</strong></p>
-                    <p class="lead text-white"><strong>🛠️ No-code automation</strong></p>
 
                     <div class="text-center mt-3">
                         <a href="{% url 'subscriptions:checkout' %}" class="btn btn-danger btn-lg m-1"><strong
@@ -109,17 +108,14 @@
                                 Early Access</strong>
                         </a>
                         <p class="text-white h3 mt-3">Skip the Waitlist</p>
-                        <p class="text-white lead">Founding Members enjoy special perks.</p>
-                        <p class="text-white lead">Free 30-day trial. Money-back guarantee.</p>
-                        <h1 class="mt-2"><i class="mdi mdi-heart-multiple-outline text-white"></i></h1>
+                        <p class="text-white">Founding Members skip the waitlist and enjoy special perks. <br>Free
+                            30-day trial. Money-back
+                            guarantee.</p>
 
                     </div>
 
 
                 </div>
-            </div>
-            <div class="col-12 col-md-8">
-                {% include 'partials/demo-carousel.html' with active=2 %}
             </div>
         </div>
     </div>
@@ -150,58 +146,77 @@
                 </div>
             </div>
         </div>
-        <div class="row mt-md-2 align-items-center">
-            <div class="col-12 col-md-6 p-md-3 p-lg-5">
-                <div class="bg-primary primary-gradient rounded-circle text-center p-4 p-md-4 p-lg-5">
-                    <img src="{% static 'images/logo-square-white.svg' %}" alt="" class="img-fluid p-sm-1 p-md-4" />
-
-                    {% if request.resolver_match.url_name == 'referrals:trial' %}
-                    <a href="{% url 'subscriptions:checkout' %}" class="btn btn-success btn-lg mb-2">Free Trial</i></a>
-                    <br>
-                    <a href="{% url 'request-invite' %}" class="btn btn-light">Join
-                        Waitlist</i></a>
-                    {% else %}
-                    <a href="{% url 'subscriptions:checkout' %}" class="btn btn-success btn-lg mb-2">Get
-                        Access
-                        Now</i></a>
-                    <br>
-                    <a href="{% url 'request-invite' %}" class="btn btn-light">Join
-                        Waitlist</i></a>
-                    {% endif %}
-                </div>
-            </div>
-            <div class="col-md-6 pt-4 pb-4">
+        <hr>
+        <div class="row mt-md-2 align-items-center text-center">
+            <div class="col-12 pt-4 pb-4">
                 <h1 id="live-monitoring">🔮 Live Monitoring </h1>
-                <p class="lead text-muted"> You'll be <strong class="text-primary">automatically notified</strong> of
-                    common issues:
+                <p class="lead text-muted"> You'll be <strong class="text-danger">automatically notified</strong> of
+                    common issues and print job progress
                 </p>
-                <div>
-                    <p class="h2 py-1">Layer Warping & Adhesion Issues</p>
-                    <p class="lead text-muted">PrintNanny can spot <strong class="text-primary">warping in bottom
-                            layers</strong> and detects <strong class="text-primary">unexpected shifts</strong>.</p>
-                    <div class="row">
-                        <div class="col-6">
-                            <img src="{% static 'images/landing-adhesion.png' %}" alt="" class="img-fluid h-100" />
+                <hr>
+                <p class="h2 py-1">⚠️ Clogged Nozzle & Low Filament
+                <p>
+                <p class="lead text-muted">PrintNanny has an eye for
+                    <strong class="text-primary">irregular extrusion</strong>
+                    like a <strong class="text-primary">clogged nozzle</strong> and <strong
+                        class="text-primary">spaghetti</strong>
+                </p>
+
+                <div class="row">
+                    <div class="col-6 embed-responsive embed-responsive-16by9">
+                        <video class="embed-responsive-item" autoplay muted loop controls>
+                            <source src="https://cdn.printnanny.ai/www/demo-video-1.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="col-6 embed-responsive embed-responsive-16by9">
+                        <video class="embed-responsive-item" autoplay muted loop controls>
+                            <source src="https://cdn.printnanny.ai/www/demo-video-3.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <hr>
+                <h2 class="h2 col-12 py-1">😨 Layer Warping & Adhesion Failure</h2>
+                <div class="row d-flex justify-content-around">
+                    <div class="card col-md-3">
+                        <img src="{% static 'images/landing-adhesion.png' %}"
+                            alt="A screenshot of PrintNanny detecting an adhesion failure"
+                            class="embed-responsive embed-responsive-16by9 card-img-top" />
+                        <div class="card-body">
+                            <p class="card-text">PrintNanny detects <strong>adhesion issues</strong>, where the object
+                                moves unexpectedly during a print job.</p>
                         </div>
-                        <div class="col-6">
-                            <img src="{% static 'images/landing-warp.png' %}" alt="" class="img-fluid h-100" />
+                        <div class="card-footer">
+                            <a href="{% url 'request-invite' %}" class="btn btn-primary">Join the
+                                Waitlist</i></a>
+                        </div>
+                    </div>
+                    <div class="card col-md-3 col-12  d-none d-md-block">
+                        <img src="{% static 'images/logo-square-white.svg' %}" alt="PrintNanny.ai logo"
+                            class="card-img-top embed-responsive embed-responsive-16by9 " />
+                        <div class="card-body">
+                            <p class="card-text">Founding Members skip the waitlist and enjoy immediate <strong>Beta
+                                    Access</strong>, special
+                                perks, and
+                                exclusive swag.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{% url 'subscriptions:checkout' %}" class="btn btn-danger">Explore Founding Member
+                                Perks </i></a>
                         </div>
                     </div>
 
-                    <p class="h2 py-1">Clogged Nozzle & Low Filament
-                    <p>
-                    <p class="lead text-muted">PrintNanny has an eye for
-                        <strong class="text-primary">irregular extrusion</strong>
-                        like a <strong class="text-primary">clogged nozzle</strong> and <strong
-                            class="text-primary">spaghetti</strong>
-                    </p>
+                    <div class="card col-md-3 col-12">
+                        <img src="{% static 'images/landing-warp.png' %}"
+                            alt="A screenshot of PrintNanny detecting a warped layer lifting from a 3D printer's heat bead"
+                            class="embed-responsive embed-responsive-16by9 card-img-top" />
+                        <div class="card-body">
+                            <p class="card-text">PrintNanny can spot <strong>layer warping</strong> and automatically
+                                adjust head bed temperature when the ambient environment changes.</p>
 
-                    <div class="row">
-                        <div class="col-6">
-                            {% include 'partials/demo-carousel.html' with active=1 %}
                         </div>
-                        <div class="col-6">
-                            {% include 'partials/demo-carousel.html' with active=4 %}
+                        <div class="card-footer">
+                            <a href="{% url 'request-invite' %}" class="btn btn-primary">Join the
+                                Waitlist</i></a>
                         </div>
                     </div>
 
@@ -223,8 +238,7 @@
                         <p class="lead">☁️ Sync Files & Backup Automatically</p>
                         <p class="lead text-center">
                             <a class="btn btn-danger btn-lg mb-2" href="{% url 'subscriptions:checkout' %}"
-                                role="button">Get
-                                Early Access</a>
+                                role="button">Become a Founding Member</a>
                             <br>
                             <a class="btn btn-light btn-dark" href="{% url 'request-invite' %}" role="button">Join
                                 Waitlist</a>
