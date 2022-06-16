@@ -230,6 +230,11 @@ class DeviceSerializer(serializers.ModelSerializer):
 
 
 class LicenseSerializer(serializers.ModelSerializer):
+    id = serializers.CharField(required=True)
+    user = serializers.PrimaryKeyRelatedField(
+        required=True, queryset=User.objects.all()
+    )
+
     class Meta:
         model = License
         exclude = ("deleted",)

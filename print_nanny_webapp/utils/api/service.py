@@ -20,11 +20,15 @@ class PrintNannyApiConfig(TypedDict):
     dashboard_url: str
 
 
-def get_api_config(request) -> PrintNannyApiConfig:
-    if request.user.is_anonymous:
-        token = None
+def get_api_config(request, user=None) -> PrintNannyApiConfig:
+    if user is None:
+        if request.user.is_anonymous:
+            token = None
+        else:
+            tokenobj, _ = Token.objects.get_or_create(user=request.user)
+            token = str(tokenobj)
     else:
-        tokenobj, _ = Token.objects.get_or_create(user=request.user)
+        tokenobj, _ = Token.objects.get_or_create(user=user)
         token = str(tokenobj)
     base_path = request.build_absolute_uri("/")[
         :-1
