@@ -230,6 +230,12 @@ class DeviceSerializer(serializers.ModelSerializer):
 
 
 class LicenseSerializer(serializers.ModelSerializer):
+    # current combo of mypy + drf have a hard time handling AbstractUser + other abstract serialized fields
+    id = serializers.CharField(required=True)
+    user = serializers.PrimaryKeyRelatedField(
+        required=True, queryset=User.objects.all()  # type: ignore
+    )
+
     class Meta:
         model = License
         exclude = ("deleted",)

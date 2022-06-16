@@ -10,6 +10,8 @@ from drf_spectacular.utils import (
 from django.db.utils import IntegrityError
 from print_nanny_webapp.devices.enum import JanusConfigType
 
+from django.contrib.auth import get_user_model
+from rest_framework.permissions import AllowAny
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.mixins import (
@@ -22,6 +24,7 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from print_nanny_webapp.utils.api.exceptions import AlreadyExists
+from print_nanny_webapp.utils.api.serializers import PrintNannyApiConfigSerializer
 from print_nanny_webapp.utils.api.views import (
     generic_create_errors,
     generic_list_errors,
@@ -48,7 +51,10 @@ from ..models import (
     SystemInfo,
     License,
 )
+from print_nanny_webapp.utils.api.service import get_api_config
 from ..services import janus_cloud_setup, update_or_create_cloudiot_device
+
+User = get_user_model()
 
 logger = logging.getLogger(__name__)
 
@@ -800,17 +806,37 @@ class CloudiotDeviceViewSet(
 ##
 # License
 ##
-
-
-@extend_schema_view(
-    retrieve=extend_schema(
-        responses={
-            200: LicenseSerializer,
-        }
-        | generic_get_errors,
-    ),
-    update=extend_schema(responses={202: LicenseSerializer} | generic_update_errors),
-)
-class LicenseViewSet(GenericViewSet, RetrieveModelMixin, UpdateModelMixin):
+class LicenseVerifyViewSet(GenericViewSet):
     serializer_class = LicenseSerializer
     queryset = License.objects.all()
+    permission_classes = [AllowAny]
+
+    @extend_schema(
+        tags=["licenses"],
+        operation_id="license_verify",
+        responses={
+            200: PrintNannyApiConfigSerializer,
+        }
+        | generic_get_errors,
+    )
+    @action(methods=["post"], detail=False, url_path="verify")
+    def verify(self, request):
+        """
+        Verifies that license key and email match
+        Returns API credentials if license is inactive
+        """
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            # verify License key and provided email match
+            license_id = serializer.validated_data.get("id")
+            user = serializer.validated_data.get("user")
+            obj = License.objects.get(id=license_id)
+            if obj.user.id == user.id:
+                config_data = get_api_config(request, user)
+                response_serializer = PrintNannyApiConfigSerializer(
+                    instance=config_data, context=dict(request=request), many=False
+                )
+                return Response(response_serializer.data)
+            errors = dict(detail="Invalid license key", code="invalid_license")
+            return Response(errors, status.HTTP_403_FORBIDDEN)
+        return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)

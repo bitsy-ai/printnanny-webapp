@@ -1,4 +1,4 @@
-from ast import Delete
+import json
 import logging
 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -58,7 +58,8 @@ class LicenseDownloadView(LoginRequiredMixin, SingleObjectMixin, View):
 
     def get(self, request, pk=None):
         obj = License.objects.get(id=pk)
-        content = LicenseSerializer(instance=obj)
-        response = HttpResponse(content, content_type="application/json")
+        serializer = LicenseSerializer(instance=obj)
+        json_str = json.dumps(serializer.data)
+        response = HttpResponse(json_str, content_type="application/json")
         response["Content-Disposition"] = "attachment; filename=license.txt"
         return response
