@@ -710,7 +710,13 @@ GIT_SHA = env("GIT_SHA", default="No GIT_SHA specified")
 # https://github.com/bitsy-ai/ansible-collection-printnanny/blob/main/roles/octoprint/templates/nginx.locations.j2
 # Trailing slash should match Nginx location
 OCTOPRINT_URL = "/octoprint/"
-
+PRINTNANNY_OS_RELEASE_URL = "https://github.com/bitsy-ai/printnanny-os/releases"
+PRINTNANNY_OS_INSTALL_URL = (
+    "https://github.com/bitsy-ai/printnanny-os/blob/main/docs/INSTALL.MD"
+)
+PRINTNANNY_OS_UPGRADE_URL = (
+    "https://github.com/bitsy-ai/printnanny-os/blob/main/docs/UPGRADE.MD"
+)
 # legacy octoprint plugin device registry
 GCP_CLOUDIOT_OCTOPRINT_DEVICE_REGISTRY = env(
     "GCP_CLOUDIOT_DEVICE_REGISTRY_DEPRECATED", default="octoprint-devices"

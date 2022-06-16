@@ -6,7 +6,6 @@ from .views import (
     DeviceVideoView,
     DeviceWelcomeDetailView,
     DeviceWelcomeView,
-    ReleaseListView,
     LicenseDeleteView,
     LicenseDownloadView,
 )
@@ -22,7 +21,6 @@ urlpatterns = [
         LicenseDownloadView.as_view(),
         name="license-download",
     ),
-    path("releases/", ReleaseListView.as_view(), name="releases-list"),
     path("welcome/", DeviceWelcomeView.as_view(), name="welcome"),
     path(
         "welcome/<slug:pk>/", DeviceWelcomeDetailView.as_view(), name="welcome-detail"
