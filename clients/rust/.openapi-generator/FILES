@@ -36,6 +36,9 @@ docs/JanusConfigType.md
 docs/JanusEdgeStream.md
 docs/JanusEdgeStreamRequest.md
 docs/JanusStream.md
+docs/License.md
+docs/LicenseRequest.md
+docs/LicensesApi.md
 docs/MobileAuthRequest.md
 docs/OctoPrintBackup.md
 docs/OctoPrintEvent.md
@@ -75,6 +78,7 @@ docs/PatchedCloudiotDeviceRequest.md
 docs/PatchedDeviceRequest.md
 docs/PatchedJanusCloudStreamRequest.md
 docs/PatchedJanusEdgeStreamRequest.md
+docs/PatchedLicenseRequest.md
 docs/PatchedOctoPrintInstallRequest.md
 docs/PatchedOctoPrintSettingsRequest.md
 docs/PatchedOctoPrinterProfileRequest.md
@@ -117,6 +121,7 @@ src/apis/configuration.rs
 src/apis/devices_api.rs
 src/apis/events_api.rs
 src/apis/janus_api.rs
+src/apis/licenses_api.rs
 src/apis/mod.rs
 src/apis/octoprint_api.rs
 src/apis/partners_geeks3d_api.rs
@@ -148,6 +153,8 @@ src/models/janus_config_type.rs
 src/models/janus_edge_stream.rs
 src/models/janus_edge_stream_request.rs
 src/models/janus_stream.rs
+src/models/license.rs
+src/models/license_request.rs
 src/models/mobile_auth_request.rs
 src/models/mod.rs
 src/models/octo_print_backup.rs
@@ -186,6 +193,7 @@ src/models/patched_cloudiot_device_request.rs
 src/models/patched_device_request.rs
 src/models/patched_janus_cloud_stream_request.rs
 src/models/patched_janus_edge_stream_request.rs
+src/models/patched_license_request.rs
 src/models/patched_octo_print_install_request.rs
 src/models/patched_octo_print_settings_request.rs
 src/models/patched_octo_printer_profile_request.rs
