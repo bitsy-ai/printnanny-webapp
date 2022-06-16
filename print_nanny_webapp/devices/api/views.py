@@ -8,9 +8,6 @@ from drf_spectacular.utils import (
     OpenApiParameter,
 )
 from django.db.utils import IntegrityError
-from clients.python.printnanny_api_client.models.print_nanny_api_config import (
-    PrintNannyApiConfig,
-)
 from print_nanny_webapp.devices.enum import JanusConfigType
 
 from rest_framework import status
