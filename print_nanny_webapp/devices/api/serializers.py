@@ -6,6 +6,7 @@ from django.contrib.auth import get_user_model
 from print_nanny_webapp.devices.models import (
     Device,
     CloudiotDevice,
+    License,
     JanusAuth,
     JanusStream,
     PublicKey,
@@ -225,4 +226,9 @@ class DeviceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Device
         depth = 2
+        exclude = ("deleted",)
+
+class LicenseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = License
         exclude = ("deleted",)

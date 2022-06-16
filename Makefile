@@ -485,3 +485,6 @@ cert-manager-dns:
 		dns01-solver@$(GCP_PROJECT).iam.gserviceaccount.com
 	kubectl annotate serviceaccount --namespace=cert-manager cert-manager \
     "iam.gke.io/gcp-service-account=dns01-solver@$(GCP_PROJECT).iam.gserviceaccount.com"
+
+migrations:
+	docker-compose -f local.yml exec django python manage.py makemigrations

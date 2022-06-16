@@ -9,10 +9,12 @@ from print_nanny_webapp.devices.api.views import (
     JanusAuthViewSet,
     JanusCloudStreamViewSet,
     JanusEdgeStreamViewSet,
+    LicenseViewSet,
     PublicKeyViewSet,
     SystemInfoViewSet,
     DeviceViewSet,
     JanusStreamViewSet,
+    LicenseViewSet
 )
 from print_nanny_webapp.events.api.views import CommandViewSet, EventViewSet
 from print_nanny_webapp.users.api.views import UserViewSet
@@ -42,6 +44,7 @@ router.register("devices", DeviceViewSet)
 other_urls = [
     path("devices/<slug:hostname>", DeviceHostnameViewSet.as_view({"get": "retrieve"})),
     path("client", PrintNannyApiConfigViewset.as_view(), name="client"),
+    path("licenses", LicenseViewSet.as_view(), name="licenses")
 ]
 
 devices_router = NestedSimpleRouter(router, r"devices", lookup="device")

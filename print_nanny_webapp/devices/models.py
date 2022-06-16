@@ -1,5 +1,6 @@
 import logging
 from typing import Callable
+from uuid import uuid4
 from django.conf import settings
 from django.db import models
 from django.contrib.auth import get_user_model
@@ -36,7 +37,6 @@ def pre_softdelete_cloudiot_device(instance=None, **kwargs) -> Callable:
 
 
 pre_softdelete.connect(pre_softdelete_cloudiot_device)
-
 
 class Device(SafeDeleteModel):
     """
@@ -123,6 +123,12 @@ class Device(SafeDeleteModel):
     def janus_local_url(self):
         return f"http://{self.hostname}:8088/janus"
 
+class License(SafeDeleteModel):
+    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
+    device = models.ForeignKey(Device, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
+    updated_dt = models.DateTimeField(db_index=True, auto_now=True)
 
 class AnsibleFactsd(models.Model):
 

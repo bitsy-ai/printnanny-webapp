@@ -32,6 +32,7 @@ from .serializers import (
     JanusAuthSerializer,
     JanusEdgeStreamSerializer,
     JanusCloudStreamSerializer,
+    LicenseSerializer,
     PublicKeySerializer,
     CloudiotDeviceSerializer,
     SystemInfoSerializer,
@@ -45,6 +46,7 @@ from ..models import (
     JanusStream,
     PublicKey,
     SystemInfo,
+    License
 )
 from ..services import janus_cloud_setup, update_or_create_cloudiot_device
 
@@ -793,3 +795,28 @@ class CloudiotDeviceViewSet(
             return Response(response_serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+##
+# License
+##
+
+@extend_schema_view(
+    retrieve=extend_schema(
+        responses={
+            200: LicenseSerializer,
+        }
+        | generic_get_errors,
+    ),
+    update=extend_schema(
+        responses={
+            202: LicenseSerializer
+        } | generic_update_errors
+    ),
+)
+class LicenseViewSet(
+    GenericViewSet,
+    RetrieveModelMixin,
+    UpdateModelMixin
+):
+    serializer_class = LicenseSerializer
+    queryset = License.objects.all()
