@@ -125,7 +125,7 @@ class Device(SafeDeleteModel):
 
 class License(SafeDeleteModel):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    device = models.ForeignKey(Device, on_delete=models.CASCADE, null=True)
+    device = models.ForeignKey(Device, on_delete=models.CASCADE, null=True, related_name="licenses")
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     updated_dt = models.DateTimeField(db_index=True, auto_now=True)

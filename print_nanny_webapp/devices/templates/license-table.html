@@ -1,0 +1,54 @@
+{% load humanize %}
+<div class="row">
+    <div class="col-12 d-flex align-items-stretch">
+        <div class="card col-12">
+            <div class="card-body">
+                <h4 class="header-title flex-row">
+                    <i class="mdi mdi-printer-3d"></i> Licenses
+                    <form method="POST" class="d-inline-flex">
+                        {% csrf_token %}
+                        {{ forms.downvote.as_p }}
+                        <button name="action" value="license_generate" type="submit"
+                            class="btn btn-sm btn-primary">Generate License Key</button>
+                    </form>
+                </h4>
+                {% if licenses.count > 0 %}
+                <table class="table table-centered mb-0" id="dashboard-octoprint-licenses">
+                    <thead>
+                        <tr>
+                            <th>Key</th>
+                            <th>Device</th>
+                            <th>Actions</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for license in licenses %}
+                        <tr>
+                            <td><span class="badge badge-light">{{license.id}}</span></td>
+                            <td>
+                                {% if license.device %}
+                                {{ license.device.hostname }}
+                                {% else %}
+                                Inactive
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{% url 'devices:license-delete' pk=license.id %}"><button
+                                        class="btn btn-danger btn-sm">Revoke</button>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+
+                {% else %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+</div>

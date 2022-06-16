@@ -1,9 +1,10 @@
+from ast import Delete
 import logging
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView, DeleteView
 from django.views.generic.base import TemplateView
-from print_nanny_webapp.devices.models import Device
+from print_nanny_webapp.devices.models import Device, License
 
 logger = logging.getLogger(__name__)
 
@@ -43,3 +44,8 @@ class DeviceWelcomeDetailView(LoginRequiredMixin, DetailView):
     model = Device
     template_name = "device-welcome.html"
     paginate_by = 10
+
+class LicenseDeleteView(LoginRequiredMixin, DeleteView):
+    model = License
+    template_name = "license-delete.html"
+
