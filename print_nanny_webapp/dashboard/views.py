@@ -249,7 +249,7 @@ octoprint_device_dashboard_list_view = OctoPrintDeviceListView.as_view()
 
 class VideoDashboardView(LoginRequiredMixin, TemplateView, MultiFormsView):
     template_name = "dashboard/video-list.html"
-    success_url = "/dashboard/videos/"  # type: ignore
+    success_url = "/dashboard/videos/"
     form_classes = {
         "needs_review": FeedbackForm,
     }

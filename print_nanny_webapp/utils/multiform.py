@@ -14,7 +14,7 @@ class MultiFormMixin(ContextMixin):
 
     initial = {}
     prefix = None
-    success_url = None
+    success_url: Optional[str] = None
 
     def get_form_classes(self):
         return self.form_classes
