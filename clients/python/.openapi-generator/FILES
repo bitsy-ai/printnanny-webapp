@@ -37,7 +37,6 @@ docs/JanusConfigType.md
 docs/JanusEdgeStream.md
 docs/JanusEdgeStreamRequest.md
 docs/JanusStream.md
-docs/License.md
 docs/LicenseRequest.md
 docs/LicensesApi.md
 docs/MobileAuthRequest.md
@@ -79,7 +78,6 @@ docs/PatchedCloudiotDeviceRequest.md
 docs/PatchedDeviceRequest.md
 docs/PatchedJanusCloudStreamRequest.md
 docs/PatchedJanusEdgeStreamRequest.md
-docs/PatchedLicenseRequest.md
 docs/PatchedOctoPrintInstallRequest.md
 docs/PatchedOctoPrintSettingsRequest.md
 docs/PatchedOctoPrinterProfileRequest.md
@@ -157,7 +155,6 @@ printnanny_api_client/models/janus_config_type.py
 printnanny_api_client/models/janus_edge_stream.py
 printnanny_api_client/models/janus_edge_stream_request.py
 printnanny_api_client/models/janus_stream.py
-printnanny_api_client/models/license.py
 printnanny_api_client/models/license_request.py
 printnanny_api_client/models/mobile_auth_request.py
 printnanny_api_client/models/octo_print_backup.py
@@ -196,7 +193,6 @@ printnanny_api_client/models/patched_cloudiot_device_request.py
 printnanny_api_client/models/patched_device_request.py
 printnanny_api_client/models/patched_janus_cloud_stream_request.py
 printnanny_api_client/models/patched_janus_edge_stream_request.py
-printnanny_api_client/models/patched_license_request.py
 printnanny_api_client/models/patched_octo_print_install_request.py
 printnanny_api_client/models/patched_octo_print_settings_request.py
 printnanny_api_client/models/patched_octo_printer_profile_request.py
@@ -267,7 +263,6 @@ test/test_janus_config_type.py
 test/test_janus_edge_stream.py
 test/test_janus_edge_stream_request.py
 test/test_janus_stream.py
-test/test_license.py
 test/test_license_request.py
 test/test_licenses_api.py
 test/test_mobile_auth_request.py
@@ -309,7 +304,6 @@ test/test_patched_cloudiot_device_request.py
 test/test_patched_device_request.py
 test/test_patched_janus_cloud_stream_request.py
 test/test_patched_janus_edge_stream_request.py
-test/test_patched_license_request.py
 test/test_patched_octo_print_install_request.py
 test/test_patched_octo_print_settings_request.py
 test/test_patched_octo_printer_profile_request.py

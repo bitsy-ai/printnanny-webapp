@@ -16,17 +16,10 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method [`licenses_partial_update`]
+/// struct for typed errors of method [`license_verify`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum LicensesPartialUpdateError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`licenses_retrieve`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum LicensesRetrieveError {
+pub enum LicenseVerifyError {
     Status404(crate::models::ErrorDetail),
     Status400(crate::models::ErrorDetail),
     Status401(crate::models::ErrorDetail),
@@ -35,87 +28,15 @@ pub enum LicensesRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`licenses_update`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum LicensesUpdateError {
-    Status409(crate::models::ErrorDetail),
-    Status400(crate::models::ErrorDetail),
-    Status401(crate::models::ErrorDetail),
-    Status403(crate::models::ErrorDetail),
-    Status500(crate::models::ErrorDetail),
-    UnknownValue(serde_json::Value),
-}
 
-
-pub async fn licenses_partial_update(configuration: &configuration::Configuration, id: &str, patched_license_request: Option<crate::models::PatchedLicenseRequest>) -> Result<crate::models::License, Error<LicensesPartialUpdateError>> {
+/// Verifies that license key and email match Returns API credentials if license is inactive
+pub async fn license_verify(configuration: &configuration::Configuration, license_request: crate::models::LicenseRequest) -> Result<crate::models::PrintNannyApiConfig, Error<LicenseVerifyError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/licenses/{id}/", local_var_configuration.base_path, id=crate::apis::urlencode(id));
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PATCH, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    local_var_req_builder = local_var_req_builder.json(&patched_license_request);
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<LicensesPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn licenses_retrieve(configuration: &configuration::Configuration, id: &str) -> Result<crate::models::License, Error<LicensesRetrieveError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/api/licenses/{id}/", local_var_configuration.base_path, id=crate::apis::urlencode(id));
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<LicensesRetrieveError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn licenses_update(configuration: &configuration::Configuration, id: &str, license_request: crate::models::LicenseRequest) -> Result<crate::models::License, Error<LicensesUpdateError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/api/licenses/{id}/", local_var_configuration.base_path, id=crate::apis::urlencode(id));
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/license/verify/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -134,7 +55,7 @@ pub async fn licenses_update(configuration: &configuration::Configuration, id: &
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<LicensesUpdateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<LicenseVerifyError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }

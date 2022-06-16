@@ -37,11 +37,13 @@ class TestLicenseRequest(unittest.TestCase):
         # model = printnanny_api_client.models.license_request.LicenseRequest()  # noqa: E501
         if include_optional :
             return LicenseRequest(
-                device = 56, 
-                user = 56
+                id = '0', 
+                user = 56, 
+                device = 56
             )
         else :
             return LicenseRequest(
+                id = '0',
                 user = 56,
         )
 

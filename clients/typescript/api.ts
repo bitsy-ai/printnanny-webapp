@@ -1233,58 +1233,27 @@ export interface JanusStream {
 /**
  * 
  * @export
- * @interface License
- */
-export interface License {
-    /**
-     * 
-     * @type {string}
-     * @memberof License
-     */
-    'id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof License
-     */
-    'created_dt': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof License
-     */
-    'updated_dt': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof License
-     */
-    'device'?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof License
-     */
-    'user': number;
-}
-/**
- * 
- * @export
  * @interface LicenseRequest
  */
 export interface LicenseRequest {
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof LicenseRequest
      */
-    'device'?: number | null;
+    'id': string;
     /**
      * 
      * @type {number}
      * @memberof LicenseRequest
      */
     'user': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof LicenseRequest
+     */
+    'device'?: number | null;
 }
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
@@ -2883,25 +2852,6 @@ export interface PatchedJanusEdgeStreamRequest {
      * @memberof PatchedJanusEdgeStreamRequest
      */
     'device'?: number;
-}
-/**
- * 
- * @export
- * @interface PatchedLicenseRequest
- */
-export interface PatchedLicenseRequest {
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedLicenseRequest
-     */
-    'device'?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedLicenseRequest
-     */
-    'user'?: number;
 }
 /**
  * 
@@ -11056,101 +11006,15 @@ export class JanusApi extends BaseAPI implements JanusApiInterface {
 export const LicensesApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * 
-         * @param {string} id A UUID string identifying this license.
-         * @param {PatchedLicenseRequest} [patchedLicenseRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        licensesPartialUpdate: async (id: string, patchedLicenseRequest?: PatchedLicenseRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('licensesPartialUpdate', 'id', id)
-            const localVarPath = `/api/licenses/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(patchedLicenseRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} id A UUID string identifying this license.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        licensesRetrieve: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('licensesRetrieve', 'id', id)
-            const localVarPath = `/api/licenses/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} id A UUID string identifying this license.
+         * Verifies that license key and email match Returns API credentials if license is inactive
          * @param {LicenseRequest} licenseRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        licensesUpdate: async (id: string, licenseRequest: LicenseRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('licensesUpdate', 'id', id)
+        licenseVerify: async (licenseRequest: LicenseRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'licenseRequest' is not null or undefined
-            assertParamExists('licensesUpdate', 'licenseRequest', licenseRequest)
-            const localVarPath = `/api/licenses/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            assertParamExists('licenseVerify', 'licenseRequest', licenseRequest)
+            const localVarPath = `/api/license/verify/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -11158,7 +11022,7 @@ export const LicensesApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -11193,35 +11057,13 @@ export const LicensesApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = LicensesApiAxiosParamCreator(configuration)
     return {
         /**
-         * 
-         * @param {string} id A UUID string identifying this license.
-         * @param {PatchedLicenseRequest} [patchedLicenseRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async licensesPartialUpdate(id: string, patchedLicenseRequest?: PatchedLicenseRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<License>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.licensesPartialUpdate(id, patchedLicenseRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} id A UUID string identifying this license.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async licensesRetrieve(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<License>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.licensesRetrieve(id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} id A UUID string identifying this license.
+         * Verifies that license key and email match Returns API credentials if license is inactive
          * @param {LicenseRequest} licenseRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async licensesUpdate(id: string, licenseRequest: LicenseRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<License>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.licensesUpdate(id, licenseRequest, options);
+        async licenseVerify(licenseRequest: LicenseRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintNannyApiConfig>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.licenseVerify(licenseRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -11235,33 +11077,13 @@ export const LicensesApiFactory = function (configuration?: Configuration, baseP
     const localVarFp = LicensesApiFp(configuration)
     return {
         /**
-         * 
-         * @param {string} id A UUID string identifying this license.
-         * @param {PatchedLicenseRequest} [patchedLicenseRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        licensesPartialUpdate(id: string, patchedLicenseRequest?: PatchedLicenseRequest, options?: any): AxiosPromise<License> {
-            return localVarFp.licensesPartialUpdate(id, patchedLicenseRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} id A UUID string identifying this license.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        licensesRetrieve(id: string, options?: any): AxiosPromise<License> {
-            return localVarFp.licensesRetrieve(id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} id A UUID string identifying this license.
+         * Verifies that license key and email match Returns API credentials if license is inactive
          * @param {LicenseRequest} licenseRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        licensesUpdate(id: string, licenseRequest: LicenseRequest, options?: any): AxiosPromise<License> {
-            return localVarFp.licensesUpdate(id, licenseRequest, options).then((request) => request(axios, basePath));
+        licenseVerify(licenseRequest: LicenseRequest, options?: any): AxiosPromise<PrintNannyApiConfig> {
+            return localVarFp.licenseVerify(licenseRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -11273,33 +11095,13 @@ export const LicensesApiFactory = function (configuration?: Configuration, baseP
  */
 export interface LicensesApiInterface {
     /**
-     * 
-     * @param {string} id A UUID string identifying this license.
-     * @param {PatchedLicenseRequest} [patchedLicenseRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof LicensesApiInterface
-     */
-    licensesPartialUpdate(id: string, patchedLicenseRequest?: PatchedLicenseRequest, options?: AxiosRequestConfig): AxiosPromise<License>;
-
-    /**
-     * 
-     * @param {string} id A UUID string identifying this license.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof LicensesApiInterface
-     */
-    licensesRetrieve(id: string, options?: AxiosRequestConfig): AxiosPromise<License>;
-
-    /**
-     * 
-     * @param {string} id A UUID string identifying this license.
+     * Verifies that license key and email match Returns API credentials if license is inactive
      * @param {LicenseRequest} licenseRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof LicensesApiInterface
      */
-    licensesUpdate(id: string, licenseRequest: LicenseRequest, options?: AxiosRequestConfig): AxiosPromise<License>;
+    licenseVerify(licenseRequest: LicenseRequest, options?: AxiosRequestConfig): AxiosPromise<PrintNannyApiConfig>;
 
 }
 
@@ -11311,38 +11113,14 @@ export interface LicensesApiInterface {
  */
 export class LicensesApi extends BaseAPI implements LicensesApiInterface {
     /**
-     * 
-     * @param {string} id A UUID string identifying this license.
-     * @param {PatchedLicenseRequest} [patchedLicenseRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof LicensesApi
-     */
-    public licensesPartialUpdate(id: string, patchedLicenseRequest?: PatchedLicenseRequest, options?: AxiosRequestConfig) {
-        return LicensesApiFp(this.configuration).licensesPartialUpdate(id, patchedLicenseRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} id A UUID string identifying this license.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof LicensesApi
-     */
-    public licensesRetrieve(id: string, options?: AxiosRequestConfig) {
-        return LicensesApiFp(this.configuration).licensesRetrieve(id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} id A UUID string identifying this license.
+     * Verifies that license key and email match Returns API credentials if license is inactive
      * @param {LicenseRequest} licenseRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof LicensesApi
      */
-    public licensesUpdate(id: string, licenseRequest: LicenseRequest, options?: AxiosRequestConfig) {
-        return LicensesApiFp(this.configuration).licensesUpdate(id, licenseRequest, options).then((request) => request(this.axios, this.basePath));
+    public licenseVerify(licenseRequest: LicenseRequest, options?: AxiosRequestConfig) {
+        return LicensesApiFp(this.configuration).licenseVerify(licenseRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

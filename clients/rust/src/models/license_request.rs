@@ -13,17 +13,20 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct LicenseRequest {
-    #[serde(rename = "device", skip_serializing_if = "Option::is_none")]
-    pub device: Option<i32>,
+    #[serde(rename = "id")]
+    pub id: String,
     #[serde(rename = "user")]
     pub user: i32,
+    #[serde(rename = "device", skip_serializing_if = "Option::is_none")]
+    pub device: Option<i32>,
 }
 
 impl LicenseRequest {
-    pub fn new(user: i32) -> LicenseRequest {
+    pub fn new(id: String, user: i32) -> LicenseRequest {
         LicenseRequest {
-            device: None,
+            id,
             user,
+            device: None,
         }
     }
 }
