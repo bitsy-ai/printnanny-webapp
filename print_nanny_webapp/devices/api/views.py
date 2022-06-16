@@ -811,14 +811,19 @@ class CloudiotDeviceViewSet(
             200: LicenseSerializer,
         }
         | generic_get_errors,
+        tags=["devices", "licenses"],
     ),
-    update=extend_schema(responses={202: LicenseSerializer} | generic_update_errors),
+    update=extend_schema(
+        tags=["devices", "licenses"],
+        responses={202: LicenseSerializer} | generic_update_errors,
+    ),
 )
 class LicenseViewSet(GenericViewSet, RetrieveModelMixin, UpdateModelMixin):
     serializer_class = LicenseSerializer
     queryset = License.objects.all()
 
     @extend_schema(
+        tags=["devices", "licenses"],
         operation_id="license_verify",
         responses={
             200: PrintNannyApiConfigSerializer,
