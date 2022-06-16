@@ -13,10 +13,6 @@ from .api.serializers import LicenseSerializer
 logger = logging.getLogger(__name__)
 
 
-class ReleaseListView(TemplateView):
-    template_name = "releases/releases-list.html"
-
-
 class DeviceDeleteView(DeleteView, DetailView):
     template_name = "devices/delete-form.html"
     success_url = "/dashboard"

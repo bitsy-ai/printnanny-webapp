@@ -47,20 +47,13 @@
                     <span class="menu-arrow"></span>
                 </a>
                 <ul class="side-nav-second-level  mm-collapse mm-show" aria-expanded="true">
-                    <li
-                        class="{% if request.resolver_match.url_name == 'devices:releases-list' or '' %}active{% endif %}">
-                        <a href="{% url 'devices:releases-list' %}">{% trans "Learn More" %}
+                    <li>
+                        <a target="_blank" href="{{ PRINTNANNY_OS_RELEASE_URL }}">{% trans "Releases" %}
                         </a>
                     </li>
-                    <li
-                        class="{% if request.resolver_match.url_name == 'devices:install-guide' or '' %}active{% endif %}">
-                        <a href="{% url 'devices:welcome' %}">{% trans "Install Guide" %}
+                    <li>
+                        <a target="_blank" href="{{ PRINTNANNY_OS_INSTALL_URL }}">{% trans "Install Guide" %}
                         </a>
-                    </li>
-                    <li class="{% if request.resolver_match.url_name == 'surveys:remote-access' %}active{% endif %}">
-                        <a href="{% url 'surveys:remote-access' %}"> <span>
-                                {% trans "My Network" %} </span> &nbsp;<span class="badge badge-light">Alpha</span>
-                            </span>
                     </li>
                 </ul>
             </li>
