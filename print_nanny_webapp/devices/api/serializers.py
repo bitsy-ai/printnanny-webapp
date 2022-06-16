@@ -230,8 +230,9 @@ class DeviceSerializer(serializers.ModelSerializer):
 
 
 class LicenseSerializer(serializers.ModelSerializer):
-    id = serializers.CharField(required=True)
-    user = serializers.PrimaryKeyRelatedField(
+    # current combo of mypy + drf have a hard time handling AbstractUser + other abstract serialized fields
+    id = serializers.CharField(required=True)  # type: ignore[var-annotated]
+    user = serializers.PrimaryKeyRelatedField(  # type: ignore[has-type]
         required=True, queryset=User.objects.all()
     )
 
