@@ -7,8 +7,7 @@
                     <i class="mdi mdi-printer-3d"></i> Licenses
                     <form method="POST" class="d-inline-flex">
                         {% csrf_token %}
-                        {{ forms.downvote.as_p }}
-                        <button name="action" value="license_generate" type="submit"
+                        <button name="action" value="generate_license" type="submit"
                             class="btn btn-sm btn-primary">Generate License Key</button>
                     </form>
                 </h4>

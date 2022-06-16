@@ -45,7 +45,8 @@ class DeviceWelcomeDetailView(LoginRequiredMixin, DetailView):
     template_name = "device-welcome.html"
     paginate_by = 10
 
+
 class LicenseDeleteView(LoginRequiredMixin, DeleteView):
     model = License
     template_name = "license-delete.html"
-
+    success_url = "/dashboard/"

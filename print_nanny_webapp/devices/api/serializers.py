@@ -228,6 +228,7 @@ class DeviceSerializer(serializers.ModelSerializer):
         depth = 2
         exclude = ("deleted",)
 
+
 class LicenseSerializer(serializers.ModelSerializer):
     class Meta:
         model = License

@@ -13,7 +13,9 @@ from .views import (
 app_name = "devices"
 
 urlpatterns = [
-    path("licenses/<slug:pk>/delete",  LicenseDeleteView.as_view(), name="license-delete"),
+    path(
+        "licenses/<slug:pk>/delete", LicenseDeleteView.as_view(), name="license-delete"
+    ),
     path("releases/", ReleaseListView.as_view(), name="releases-list"),
     path("welcome/", DeviceWelcomeView.as_view(), name="welcome"),
     path(

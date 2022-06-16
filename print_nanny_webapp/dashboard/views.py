@@ -12,6 +12,7 @@ from .forms import (
     AppNotificationForm,
     RemoteControlCommandForm,
     RemoveDeviceForm,
+    LicenseGenerateForm,
 )
 
 from django.http import HttpResponseRedirect
@@ -25,7 +26,6 @@ from print_nanny_webapp.utils.multiform import MultiFormsView
 from print_nanny_webapp.partners.forms import RevokeGeeksTokenForm
 from print_nanny_webapp.alerts.tasks.alerts import AlertTask
 from print_nanny_webapp.utils.views import DashboardView
-from print_nanny_webapp.devices.forms import LicenseGenerateForm
 from django.contrib import messages
 
 User = get_user_model()
@@ -53,15 +53,12 @@ class HomeDashboardView(DashboardView, MultiFormsView):
     template_name = "dashboard/home.html"
     success_url = "/dashboard"
 
-    form_classes = {
-        "generate_license": LicenseGenerateForm
-    }
+    form_classes = {"generate_license": LicenseGenerateForm}
 
-    def generate_license_form_valid(self, form):
-        license = License.objects.create(user=self.request.user)
-        logger.info("Created license %s", license)
+    def generate_license_form_valid(self, *args, **kwargs):
+        lic = License.objects.create(user=self.request.user)
+        logger.info("Created license %s", lic)
         return HttpResponseRedirect(self.request.path_info)
-
 
     def get_user_settings_initial(self):
         settings = UserSettings.objects.filter(user=self.request.user.id).first()
@@ -81,6 +78,8 @@ class HomeDashboardView(DashboardView, MultiFormsView):
         context["octoprint_backups"] = octoprint_backups
         context["devices"] = devices
         context["licenses"] = licenses
+
+        logger.info("Fetched licenses %s", licenses)
 
         return context
 
