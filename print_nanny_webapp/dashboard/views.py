@@ -12,6 +12,7 @@ from .forms import (
     AppNotificationForm,
     RemoteControlCommandForm,
     RemoveDeviceForm,
+    LicenseGenerateForm,
 )
 
 from django.http import HttpResponseRedirect
@@ -43,13 +44,23 @@ AlertSettings = apps.get_model("alerts", "AlertSettings")
 TestAlert = apps.get_model("alerts", "TestAlert")
 VideoStatusAlert = apps.get_model("alerts", "VideoStatusAlert")
 logger = logging.getLogger(__name__)
+License = apps.get_model("devices", "License")
 
 
-class HomeDashboardView(DashboardView):
+class HomeDashboardView(DashboardView, MultiFormsView):
 
     model = User
     template_name = "dashboard/home.html"
     success_url = "/dashboard"
+
+    form_classes = {
+        "generate_license": LicenseGenerateForm,
+    }
+
+    def generate_license_form_valid(self, *args, **kwargs):
+        lic = License.objects.create(user=self.request.user)
+        logger.info("Created license %s", lic)
+        return HttpResponseRedirect(self.request.path_info)
 
     def get_user_settings_initial(self):
         settings = UserSettings.objects.filter(user=self.request.user.id).first()
@@ -64,9 +75,13 @@ class HomeDashboardView(DashboardView):
         token, created = Token.objects.get_or_create(user=self.request.user)
         octoprint_backups = OctoPrintBackups.objects.filter(user=self.request.user)[:10]
         devices = Devices.objects.filter(user=self.request.user)
+        licenses = License.objects.filter(user=self.request.user)
         context["user"].token = token
         context["octoprint_backups"] = octoprint_backups
         context["devices"] = devices
+        context["licenses"] = licenses
+
+        logger.info("Fetched licenses %s", licenses)
 
         return context
 

@@ -1,0 +1,53 @@
+{% extends "vertical_base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block title_extra %}Raspberry Pis{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li clm bass="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Manage Licenses</a></li>
+                        <li class="breadcrumb-item active">Delete</li>
+                    </ol>
+                </div>
+                <h3 class="page-title d-inline-flex">Delete License</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-8 d-flex align-items-stretch">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="header-title">
+                        <i class="mdi mdi-printer-3d"></i>Are you sure you want to revoke {{ object.id }}?
+                    </h2>
+                    {% if object.device != none %}
+                    <p>
+                        {{ object.device.hostname }} is registered with this license key. If you revoke this license, {{
+                        object.device.hostname }} will lose access to PrintNanny.
+                    </p>
+                    <p><span class="badge badge-danger">WARNING</span> this can't be undone!</p>
+
+                    {% else %}
+                    <p>✅ No devices are using this license.</p>
+                    {% endif %}
+                    <form method="post">
+                        {% csrf_token %}
+                        {{form|crispy }}
+                        <input type="submit" value="Yes, Delete {{ object.hostname }}" class="btn btn-danger">
+                        <a href="{% url 'dashboard:home' %}"><input value="My Dashboard" class="btn btn-secondary">
+                        </a>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock content %}

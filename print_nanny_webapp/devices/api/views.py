@@ -46,7 +46,7 @@ from ..models import (
     JanusStream,
     PublicKey,
     SystemInfo,
-    License
+    License,
 )
 from ..services import janus_cloud_setup, update_or_create_cloudiot_device
 
@@ -796,9 +796,11 @@ class CloudiotDeviceViewSet(
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 ##
 # License
 ##
+
 
 @extend_schema_view(
     retrieve=extend_schema(
@@ -807,16 +809,8 @@ class CloudiotDeviceViewSet(
         }
         | generic_get_errors,
     ),
-    update=extend_schema(
-        responses={
-            202: LicenseSerializer
-        } | generic_update_errors
-    ),
+    update=extend_schema(responses={202: LicenseSerializer} | generic_update_errors),
 )
-class LicenseViewSet(
-    GenericViewSet,
-    RetrieveModelMixin,
-    UpdateModelMixin
-):
+class LicenseViewSet(GenericViewSet, RetrieveModelMixin, UpdateModelMixin):
     serializer_class = LicenseSerializer
     queryset = License.objects.all()

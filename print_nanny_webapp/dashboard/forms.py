@@ -39,6 +39,13 @@ class TimelapseCancelForm(forms.Form):
         self.helper.form_method = "post"
 
 
+class LicenseGenerateForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = "post"
+
+
 class FeedbackForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

@@ -38,6 +38,7 @@ def pre_softdelete_cloudiot_device(instance=None, **kwargs) -> Callable:
 
 pre_softdelete.connect(pre_softdelete_cloudiot_device)
 
+
 class Device(SafeDeleteModel):
     """
     Raspberry Pi running PrintNanny OS
@@ -123,12 +124,16 @@ class Device(SafeDeleteModel):
     def janus_local_url(self):
         return f"http://{self.hostname}:8088/janus"
 
+
 class License(SafeDeleteModel):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    device = models.ForeignKey(Device, on_delete=models.CASCADE, null=True)
+    device = models.ForeignKey(
+        Device, on_delete=models.CASCADE, null=True, related_name="licenses"
+    )
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     updated_dt = models.DateTimeField(db_index=True, auto_now=True)
+
 
 class AnsibleFactsd(models.Model):
 
