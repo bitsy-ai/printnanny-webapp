@@ -43,7 +43,7 @@ router.register("devices", DeviceViewSet)
 other_urls = [
     path("devices/<slug:hostname>", DeviceHostnameViewSet.as_view({"get": "retrieve"})),
     path("client", PrintNannyApiConfigViewset.as_view(), name="client"),
-    path("licenses", LicenseViewSet, name="licenses")
+    path("licenses", LicenseViewSet, name="licenses"),
 ]
 
 devices_router = NestedSimpleRouter(router, r"devices", lookup="device")

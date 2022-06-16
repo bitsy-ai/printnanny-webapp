@@ -53,7 +53,9 @@ class HomeDashboardView(DashboardView, MultiFormsView):
     template_name = "dashboard/home.html"
     success_url = "/dashboard"
 
-    form_classes = {"generate_license": LicenseGenerateForm}
+    form_classes = {
+        "generate_license": LicenseGenerateForm,
+    }
 
     def generate_license_form_valid(self, *args, **kwargs):
         lic = License.objects.create(user=self.request.user)

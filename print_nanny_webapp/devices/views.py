@@ -4,7 +4,11 @@ import logging
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView, DeleteView
 from django.views.generic.base import TemplateView
+from django.views import View
+from django.http import HttpResponse
+from django.views.generic.detail import SingleObjectMixin
 from print_nanny_webapp.devices.models import Device, License
+from .api.serializers import LicenseSerializer
 
 logger = logging.getLogger(__name__)
 
@@ -50,3 +54,15 @@ class LicenseDeleteView(LoginRequiredMixin, DeleteView):
     model = License
     template_name = "license-delete.html"
     success_url = "/dashboard/"
+
+
+class LicenseDownloadView(LoginRequiredMixin, SingleObjectMixin, View):
+    model = License
+    slug_field = "id"
+
+    def get(self, request, pk=None):
+        obj = License.objects.get(id=pk)
+        content = LicenseSerializer(instance=obj)
+        response = HttpResponse(content, content_type="application/json")
+        response["Content-Disposition"] = "attachment; filename=license.txt"
+        return response

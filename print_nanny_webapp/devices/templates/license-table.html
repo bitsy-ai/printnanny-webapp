@@ -34,6 +34,9 @@
                                 {% endif %}
                             </td>
                             <td>
+                                <a href="{% url 'devices:license-download' pk=license.id %}"><button
+                                        class="btn btn-primary btn-sm">Download</button>
+                                </a>
                                 <a href="{% url 'devices:license-delete' pk=license.id %}"><button
                                         class="btn btn-danger btn-sm">Revoke</button>
                                 </a>
