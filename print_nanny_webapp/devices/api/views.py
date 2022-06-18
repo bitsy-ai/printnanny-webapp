@@ -804,7 +804,7 @@ class CloudiotDeviceViewSet(
 
 
 ##
-# License
+# License verify (allow anonymous request, trade license key for short-lived api credential)
 ##
 class LicenseVerifyViewSet(GenericViewSet):
     serializer_class = LicenseSerializer
@@ -815,7 +815,7 @@ class LicenseVerifyViewSet(GenericViewSet):
         tags=["licenses"],
         operation_id="license_verify",
         responses={
-            200: PrintNannyApiConfigSerializer,
+            202: PrintNannyApiConfigSerializer,
         }
         | generic_get_errors,
     )
@@ -836,7 +836,42 @@ class LicenseVerifyViewSet(GenericViewSet):
                 response_serializer = PrintNannyApiConfigSerializer(
                     instance=config_data, context=dict(request=request), many=False
                 )
-                return Response(response_serializer.data)
+                return Response(response_serializer.data, status.HTTP_202_ACCEPTED)
+            errors = dict(detail="Invalid license key", code="invalid_license")
+            return Response(errors, status.HTTP_403_FORBIDDEN)
+        return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+
+
+##
+# License activate (require short-lived api credential)
+##
+class LicenseActivateViewSet(GenericViewSet):
+    serializer_class = LicenseSerializer
+    queryset = License.objects.all()
+
+    @extend_schema(
+        tags=["licenses"],
+        operation_id="license_activate",
+        responses={
+            202: LicenseSerializer,
+        }
+        | generic_get_errors,
+    )
+    @action(methods=["post"], detail=True, url_path="activate")
+    def activate(self, request):
+        """
+        Marks License as activated (by setting Device fkey relation)
+        """
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            # verify License key and provided email match
+            license_id = serializer.validated_data.get("id")
+            user = serializer.validated_data.get("user")
+            device = serializer.validated_data.get("device")
+            obj = License.objects.get(id=license_id)
+            if obj.user.id == user.id and device.user.id == user.id:
+                serializer.save()
+                return Response(serializer.data, status.HTTP_202_ACCEPTED)
             errors = dict(detail="Invalid license key", code="invalid_license")
             return Response(errors, status.HTTP_403_FORBIDDEN)
         return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
