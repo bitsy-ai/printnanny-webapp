@@ -37,6 +37,7 @@ docs/JanusConfigType.md
 docs/JanusEdgeStream.md
 docs/JanusEdgeStreamRequest.md
 docs/JanusStream.md
+docs/License.md
 docs/LicenseRequest.md
 docs/LicensesApi.md
 docs/MobileAuthRequest.md
@@ -155,6 +156,7 @@ printnanny_api_client/models/janus_config_type.py
 printnanny_api_client/models/janus_edge_stream.py
 printnanny_api_client/models/janus_edge_stream_request.py
 printnanny_api_client/models/janus_stream.py
+printnanny_api_client/models/license.py
 printnanny_api_client/models/license_request.py
 printnanny_api_client/models/mobile_auth_request.py
 printnanny_api_client/models/octo_print_backup.py
@@ -263,6 +265,7 @@ test/test_janus_config_type.py
 test/test_janus_edge_stream.py
 test/test_janus_edge_stream_request.py
 test/test_janus_stream.py
+test/test_license.py
 test/test_license_request.py
 test/test_licenses_api.py
 test/test_mobile_auth_request.py

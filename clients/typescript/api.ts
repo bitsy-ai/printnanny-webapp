@@ -1233,6 +1233,43 @@ export interface JanusStream {
 /**
  * 
  * @export
+ * @interface License
+ */
+export interface License {
+    /**
+     * 
+     * @type {string}
+     * @memberof License
+     */
+    'id': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof License
+     */
+    'user': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof License
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof License
+     */
+    'updated_dt': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof License
+     */
+    'device'?: number | null;
+}
+/**
+ * 
+ * @export
  * @interface LicenseRequest
  */
 export interface LicenseRequest {
@@ -11042,6 +11079,51 @@ export class JanusApi extends BaseAPI implements JanusApiInterface {
 export const LicensesApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
+         * Marks License as activated (by setting Device fkey relation)
+         * @param {string} id A UUID string identifying this license.
+         * @param {LicenseRequest} licenseRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        licenseActivate: async (id: string, licenseRequest: LicenseRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('licenseActivate', 'id', id)
+            // verify required parameter 'licenseRequest' is not null or undefined
+            assertParamExists('licenseActivate', 'licenseRequest', licenseRequest)
+            const localVarPath = `/api/license/{id}/activate/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(licenseRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Verifies that license key and email match Returns API credentials if license is inactive
          * @param {LicenseRequest} licenseRequest 
          * @param {*} [options] Override http request option.
@@ -11093,6 +11175,17 @@ export const LicensesApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = LicensesApiAxiosParamCreator(configuration)
     return {
         /**
+         * Marks License as activated (by setting Device fkey relation)
+         * @param {string} id A UUID string identifying this license.
+         * @param {LicenseRequest} licenseRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async licenseActivate(id: string, licenseRequest: LicenseRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<License>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.licenseActivate(id, licenseRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Verifies that license key and email match Returns API credentials if license is inactive
          * @param {LicenseRequest} licenseRequest 
          * @param {*} [options] Override http request option.
@@ -11113,6 +11206,16 @@ export const LicensesApiFactory = function (configuration?: Configuration, baseP
     const localVarFp = LicensesApiFp(configuration)
     return {
         /**
+         * Marks License as activated (by setting Device fkey relation)
+         * @param {string} id A UUID string identifying this license.
+         * @param {LicenseRequest} licenseRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        licenseActivate(id: string, licenseRequest: LicenseRequest, options?: any): AxiosPromise<License> {
+            return localVarFp.licenseActivate(id, licenseRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Verifies that license key and email match Returns API credentials if license is inactive
          * @param {LicenseRequest} licenseRequest 
          * @param {*} [options] Override http request option.
@@ -11131,6 +11234,16 @@ export const LicensesApiFactory = function (configuration?: Configuration, baseP
  */
 export interface LicensesApiInterface {
     /**
+     * Marks License as activated (by setting Device fkey relation)
+     * @param {string} id A UUID string identifying this license.
+     * @param {LicenseRequest} licenseRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LicensesApiInterface
+     */
+    licenseActivate(id: string, licenseRequest: LicenseRequest, options?: AxiosRequestConfig): AxiosPromise<License>;
+
+    /**
      * Verifies that license key and email match Returns API credentials if license is inactive
      * @param {LicenseRequest} licenseRequest 
      * @param {*} [options] Override http request option.
@@ -11148,6 +11261,18 @@ export interface LicensesApiInterface {
  * @extends {BaseAPI}
  */
 export class LicensesApi extends BaseAPI implements LicensesApiInterface {
+    /**
+     * Marks License as activated (by setting Device fkey relation)
+     * @param {string} id A UUID string identifying this license.
+     * @param {LicenseRequest} licenseRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LicensesApi
+     */
+    public licenseActivate(id: string, licenseRequest: LicenseRequest, options?: AxiosRequestConfig) {
+        return LicensesApiFp(this.configuration).licenseActivate(id, licenseRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * Verifies that license key and email match Returns API credentials if license is inactive
      * @param {LicenseRequest} licenseRequest 

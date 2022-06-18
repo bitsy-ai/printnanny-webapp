@@ -48,6 +48,8 @@ pub mod janus_edge_stream_request;
 pub use self::janus_edge_stream_request::JanusEdgeStreamRequest;
 pub mod janus_stream;
 pub use self::janus_stream::JanusStream;
+pub mod license;
+pub use self::license::License;
 pub mod license_request;
 pub use self::license_request::LicenseRequest;
 pub mod mobile_auth_request;

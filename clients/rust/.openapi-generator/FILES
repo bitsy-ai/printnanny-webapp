@@ -36,6 +36,7 @@ docs/JanusConfigType.md
 docs/JanusEdgeStream.md
 docs/JanusEdgeStreamRequest.md
 docs/JanusStream.md
+docs/License.md
 docs/LicenseRequest.md
 docs/LicensesApi.md
 docs/MobileAuthRequest.md
@@ -151,6 +152,7 @@ src/models/janus_config_type.rs
 src/models/janus_edge_stream.rs
 src/models/janus_edge_stream_request.rs
 src/models/janus_stream.rs
+src/models/license.rs
 src/models/license_request.rs
 src/models/mobile_auth_request.rs
 src/models/mod.rs
