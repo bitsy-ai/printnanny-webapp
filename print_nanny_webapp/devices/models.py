@@ -214,9 +214,12 @@ class SystemInfo(SafeDeleteModel):
     ram = models.BigIntegerField()
     device = models.ForeignKey(Device, on_delete=models.CASCADE)
 
-    image_version = models.CharField(
+    os_version_id = models.CharField(
         max_length=255,
-        help_text="PrintNanny OS image version string from /boot/image_version.txt",
+        help_text="PrintNanny OS VERSION_ID from /etc/os-release",
+    )
+    os_build_id = models.DateTimeField(
+        max_length=255, help_text="PrintNanny OS BUILD_ID from /etc/os-release"
     )
 
 
