@@ -16,31 +16,19 @@ pub enum Error<T> {
     ResponseError(ResponseContent<T>),
 }
 
-impl<T> fmt::Display for Error<T> {
+impl <T> fmt::Display for Error<T> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let (module, e) = match self {
             Error::Reqwest(e) => ("reqwest", e.to_string()),
             Error::Serde(e) => ("serde", e.to_string()),
             Error::Io(e) => ("IO", e.to_string()),
-            Error::ResponseError(e) => match &e.entity {
-                Some(entity) => (
-                    "response",
-                    format!(
-                        "status code: {} content: {} entity: {}",
-                        e.status, e.content, entity
-                    ),
-                ),
-                None => (
-                    "response",
-                    format!("status code: {} content: {}", e.status, e.content),
-                ),
-            },
+            Error::ResponseError(e) => ("response", format!("status code: {} content: {}", e.status, e.content)),
         };
         write!(f, "error in {}: {}", module, e)
     }
 }
 
-impl<T: fmt::Debug> error::Error for Error<T> {
+impl <T: fmt::Debug> error::Error for Error<T> {
     fn source(&self) -> Option<&(dyn error::Error + 'static)> {
         Some(match self {
             Error::Reqwest(e) => e,
@@ -51,19 +39,19 @@ impl<T: fmt::Debug> error::Error for Error<T> {
     }
 }
 
-impl<T> From<reqwest::Error> for Error<T> {
+impl <T> From<reqwest::Error> for Error<T> {
     fn from(e: reqwest::Error) -> Self {
         Error::Reqwest(e)
     }
 }
 
-impl<T> From<serde_json::Error> for Error<T> {
+impl <T> From<serde_json::Error> for Error<T> {
     fn from(e: serde_json::Error) -> Self {
         Error::Serde(e)
     }
 }
 
-impl<T> From<std::io::Error> for Error<T> {
+impl <T> From<std::io::Error> for Error<T> {
     fn from(e: std::io::Error) -> Self {
         Error::Io(e)
     }
