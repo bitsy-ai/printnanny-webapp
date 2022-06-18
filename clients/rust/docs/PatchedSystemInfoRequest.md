@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **machine_id** | Option<**String**> | Populated from /etc/machine-id | [optional]
-**hardware** | Option<**String**> | Populated from /proc/cpuinfo HARDWARE | [optional]
 **revision** | Option<**String**> | Populated from /proc/cpuinfo REVISION | [optional]
 **model** | Option<**String**> | Populated from /proc/cpuinfo MODEL | [optional]
 **serial** | Option<**String**> | Populated from /proc/cpuinfo SERIAL | [optional]
@@ -13,6 +12,8 @@ Name | Type | Description | Notes
 **ram** | Option<**i64**> |  | [optional]
 **os_version_id** | Option<**String**> | PrintNanny OS VERSION_ID from /etc/os-release | [optional]
 **os_build_id** | Option<**String**> | PrintNanny OS BUILD_ID from /etc/os-release | [optional]
+**os_variant_id** | Option<**String**> | PrintNanny OS VARIANT_ID from /etc/os-release | [optional]
+**os_release_json** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> | Full contents of /etc/os-release in key:value format | [optional]
 **device** | Option<**i32**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

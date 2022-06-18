@@ -38,7 +38,6 @@ class PatchedSystemInfoRequest(object):
     """
     openapi_types = {
         'machine_id': 'str',
-        'hardware': 'str',
         'revision': 'str',
         'model': 'str',
         'serial': 'str',
@@ -46,12 +45,13 @@ class PatchedSystemInfoRequest(object):
         'ram': 'int',
         'os_version_id': 'str',
         'os_build_id': 'datetime',
+        'os_variant_id': 'str',
+        'os_release_json': 'dict(str, object)',
         'device': 'int'
     }
 
     attribute_map = {
         'machine_id': 'machine_id',
-        'hardware': 'hardware',
         'revision': 'revision',
         'model': 'model',
         'serial': 'serial',
@@ -59,17 +59,18 @@ class PatchedSystemInfoRequest(object):
         'ram': 'ram',
         'os_version_id': 'os_version_id',
         'os_build_id': 'os_build_id',
+        'os_variant_id': 'os_variant_id',
+        'os_release_json': 'os_release_json',
         'device': 'device'
     }
 
-    def __init__(self, machine_id=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, os_version_id=None, os_build_id=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, machine_id=None, revision=None, model=None, serial=None, cores=None, ram=None, os_version_id=None, os_build_id=None, os_variant_id=None, os_release_json=None, device=None, local_vars_configuration=None):  # noqa: E501
         """PatchedSystemInfoRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._machine_id = None
-        self._hardware = None
         self._revision = None
         self._model = None
         self._serial = None
@@ -77,13 +78,13 @@ class PatchedSystemInfoRequest(object):
         self._ram = None
         self._os_version_id = None
         self._os_build_id = None
+        self._os_variant_id = None
+        self._os_release_json = None
         self._device = None
         self.discriminator = None
 
         if machine_id is not None:
             self.machine_id = machine_id
-        if hardware is not None:
-            self.hardware = hardware
         if revision is not None:
             self.revision = revision
         if model is not None:
@@ -98,6 +99,10 @@ class PatchedSystemInfoRequest(object):
             self.os_version_id = os_version_id
         if os_build_id is not None:
             self.os_build_id = os_build_id
+        if os_variant_id is not None:
+            self.os_variant_id = os_variant_id
+        if os_release_json is not None:
+            self.os_release_json = os_release_json
         if device is not None:
             self.device = device
 
@@ -129,35 +134,6 @@ class PatchedSystemInfoRequest(object):
             raise ValueError("Invalid value for `machine_id`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._machine_id = machine_id
-
-    @property
-    def hardware(self):
-        """Gets the hardware of this PatchedSystemInfoRequest.  # noqa: E501
-
-        Populated from /proc/cpuinfo HARDWARE  # noqa: E501
-
-        :return: The hardware of this PatchedSystemInfoRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._hardware
-
-    @hardware.setter
-    def hardware(self, hardware):
-        """Sets the hardware of this PatchedSystemInfoRequest.
-
-        Populated from /proc/cpuinfo HARDWARE  # noqa: E501
-
-        :param hardware: The hardware of this PatchedSystemInfoRequest.  # noqa: E501
-        :type hardware: str
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                hardware is not None and len(hardware) > 255):
-            raise ValueError("Invalid value for `hardware`, length must be less than or equal to `255`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                hardware is not None and len(hardware) < 1):
-            raise ValueError("Invalid value for `hardware`, length must be greater than or equal to `1`")  # noqa: E501
-
-        self._hardware = hardware
 
     @property
     def revision(self):
@@ -351,6 +327,58 @@ class PatchedSystemInfoRequest(object):
         """
 
         self._os_build_id = os_build_id
+
+    @property
+    def os_variant_id(self):
+        """Gets the os_variant_id of this PatchedSystemInfoRequest.  # noqa: E501
+
+        PrintNanny OS VARIANT_ID from /etc/os-release  # noqa: E501
+
+        :return: The os_variant_id of this PatchedSystemInfoRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._os_variant_id
+
+    @os_variant_id.setter
+    def os_variant_id(self, os_variant_id):
+        """Sets the os_variant_id of this PatchedSystemInfoRequest.
+
+        PrintNanny OS VARIANT_ID from /etc/os-release  # noqa: E501
+
+        :param os_variant_id: The os_variant_id of this PatchedSystemInfoRequest.  # noqa: E501
+        :type os_variant_id: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                os_variant_id is not None and len(os_variant_id) > 255):
+            raise ValueError("Invalid value for `os_variant_id`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                os_variant_id is not None and len(os_variant_id) < 1):
+            raise ValueError("Invalid value for `os_variant_id`, length must be greater than or equal to `1`")  # noqa: E501
+
+        self._os_variant_id = os_variant_id
+
+    @property
+    def os_release_json(self):
+        """Gets the os_release_json of this PatchedSystemInfoRequest.  # noqa: E501
+
+        Full contents of /etc/os-release in key:value format  # noqa: E501
+
+        :return: The os_release_json of this PatchedSystemInfoRequest.  # noqa: E501
+        :rtype: dict(str, object)
+        """
+        return self._os_release_json
+
+    @os_release_json.setter
+    def os_release_json(self, os_release_json):
+        """Sets the os_release_json of this PatchedSystemInfoRequest.
+
+        Full contents of /etc/os-release in key:value format  # noqa: E501
+
+        :param os_release_json: The os_release_json of this PatchedSystemInfoRequest.  # noqa: E501
+        :type os_release_json: dict(str, object)
+        """
+
+        self._os_release_json = os_release_json
 
     @property
     def device(self):

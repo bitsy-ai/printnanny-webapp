@@ -16,9 +16,6 @@ pub struct PatchedSystemInfoRequest {
     /// Populated from /etc/machine-id
     #[serde(rename = "machine_id", skip_serializing_if = "Option::is_none")]
     pub machine_id: Option<String>,
-    /// Populated from /proc/cpuinfo HARDWARE
-    #[serde(rename = "hardware", skip_serializing_if = "Option::is_none")]
-    pub hardware: Option<String>,
     /// Populated from /proc/cpuinfo REVISION
     #[serde(rename = "revision", skip_serializing_if = "Option::is_none")]
     pub revision: Option<String>,
@@ -38,6 +35,12 @@ pub struct PatchedSystemInfoRequest {
     /// PrintNanny OS BUILD_ID from /etc/os-release
     #[serde(rename = "os_build_id", skip_serializing_if = "Option::is_none")]
     pub os_build_id: Option<String>,
+    /// PrintNanny OS VARIANT_ID from /etc/os-release
+    #[serde(rename = "os_variant_id", skip_serializing_if = "Option::is_none")]
+    pub os_variant_id: Option<String>,
+    /// Full contents of /etc/os-release in key:value format
+    #[serde(rename = "os_release_json", skip_serializing_if = "Option::is_none")]
+    pub os_release_json: Option<::std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "device", skip_serializing_if = "Option::is_none")]
     pub device: Option<i32>,
 }
@@ -46,7 +49,6 @@ impl PatchedSystemInfoRequest {
     pub fn new() -> PatchedSystemInfoRequest {
         PatchedSystemInfoRequest {
             machine_id: None,
-            hardware: None,
             revision: None,
             model: None,
             serial: None,
@@ -54,6 +56,8 @@ impl PatchedSystemInfoRequest {
             ram: None,
             os_version_id: None,
             os_build_id: None,
+            os_variant_id: None,
+            os_release_json: None,
             device: None,
         }
     }

@@ -3140,12 +3140,6 @@ export interface PatchedSystemInfoRequest {
      */
     'machine_id'?: string;
     /**
-     * Populated from /proc/cpuinfo HARDWARE
-     * @type {string}
-     * @memberof PatchedSystemInfoRequest
-     */
-    'hardware'?: string;
-    /**
      * Populated from /proc/cpuinfo REVISION
      * @type {string}
      * @memberof PatchedSystemInfoRequest
@@ -3187,6 +3181,18 @@ export interface PatchedSystemInfoRequest {
      * @memberof PatchedSystemInfoRequest
      */
     'os_build_id'?: string;
+    /**
+     * PrintNanny OS VARIANT_ID from /etc/os-release
+     * @type {string}
+     * @memberof PatchedSystemInfoRequest
+     */
+    'os_variant_id'?: string;
+    /**
+     * Full contents of /etc/os-release in key:value format
+     * @type {{ [key: string]: any; }}
+     * @memberof PatchedSystemInfoRequest
+     */
+    'os_release_json'?: { [key: string]: any; };
     /**
      * 
      * @type {number}
@@ -3385,12 +3391,6 @@ export interface SystemInfo {
      */
     'machine_id': string;
     /**
-     * Populated from /proc/cpuinfo HARDWARE
-     * @type {string}
-     * @memberof SystemInfo
-     */
-    'hardware': string;
-    /**
      * Populated from /proc/cpuinfo REVISION
      * @type {string}
      * @memberof SystemInfo
@@ -3432,6 +3432,18 @@ export interface SystemInfo {
      * @memberof SystemInfo
      */
     'os_build_id': string;
+    /**
+     * PrintNanny OS VARIANT_ID from /etc/os-release
+     * @type {string}
+     * @memberof SystemInfo
+     */
+    'os_variant_id': string;
+    /**
+     * Full contents of /etc/os-release in key:value format
+     * @type {{ [key: string]: any; }}
+     * @memberof SystemInfo
+     */
+    'os_release_json'?: { [key: string]: any; };
     /**
      * 
      * @type {number}
@@ -3452,12 +3464,6 @@ export interface SystemInfoRequest {
      */
     'machine_id': string;
     /**
-     * Populated from /proc/cpuinfo HARDWARE
-     * @type {string}
-     * @memberof SystemInfoRequest
-     */
-    'hardware': string;
-    /**
      * Populated from /proc/cpuinfo REVISION
      * @type {string}
      * @memberof SystemInfoRequest
@@ -3499,6 +3505,18 @@ export interface SystemInfoRequest {
      * @memberof SystemInfoRequest
      */
     'os_build_id': string;
+    /**
+     * PrintNanny OS VARIANT_ID from /etc/os-release
+     * @type {string}
+     * @memberof SystemInfoRequest
+     */
+    'os_variant_id': string;
+    /**
+     * Full contents of /etc/os-release in key:value format
+     * @type {{ [key: string]: any; }}
+     * @memberof SystemInfoRequest
+     */
+    'os_release_json'?: { [key: string]: any; };
     /**
      * 
      * @type {number}

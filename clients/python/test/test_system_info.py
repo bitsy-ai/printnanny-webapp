@@ -41,7 +41,6 @@ class TestSystemInfo(unittest.TestCase):
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 machine_id = '', 
-                hardware = '', 
                 revision = '', 
                 model = '', 
                 serial = '', 
@@ -49,6 +48,10 @@ class TestSystemInfo(unittest.TestCase):
                 ram = -9223372036854775808, 
                 os_version_id = '', 
                 os_build_id = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                os_variant_id = '', 
+                os_release_json = {
+                    'key' : null
+                    }, 
                 device = 56
             )
         else :
@@ -57,7 +60,6 @@ class TestSystemInfo(unittest.TestCase):
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 machine_id = '',
-                hardware = '',
                 revision = '',
                 model = '',
                 serial = '',
@@ -65,6 +67,7 @@ class TestSystemInfo(unittest.TestCase):
                 ram = -9223372036854775808,
                 os_version_id = '',
                 os_build_id = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                os_variant_id = '',
                 device = 56,
         )
 

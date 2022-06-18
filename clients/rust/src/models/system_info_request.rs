@@ -16,9 +16,6 @@ pub struct SystemInfoRequest {
     /// Populated from /etc/machine-id
     #[serde(rename = "machine_id")]
     pub machine_id: String,
-    /// Populated from /proc/cpuinfo HARDWARE
-    #[serde(rename = "hardware")]
-    pub hardware: String,
     /// Populated from /proc/cpuinfo REVISION
     #[serde(rename = "revision")]
     pub revision: String,
@@ -38,15 +35,20 @@ pub struct SystemInfoRequest {
     /// PrintNanny OS BUILD_ID from /etc/os-release
     #[serde(rename = "os_build_id")]
     pub os_build_id: String,
+    /// PrintNanny OS VARIANT_ID from /etc/os-release
+    #[serde(rename = "os_variant_id")]
+    pub os_variant_id: String,
+    /// Full contents of /etc/os-release in key:value format
+    #[serde(rename = "os_release_json", skip_serializing_if = "Option::is_none")]
+    pub os_release_json: Option<::std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "device")]
     pub device: i32,
 }
 
 impl SystemInfoRequest {
-    pub fn new(machine_id: String, hardware: String, revision: String, model: String, serial: String, cores: i32, ram: i64, os_version_id: String, os_build_id: String, device: i32) -> SystemInfoRequest {
+    pub fn new(machine_id: String, revision: String, model: String, serial: String, cores: i32, ram: i64, os_version_id: String, os_build_id: String, os_variant_id: String, device: i32) -> SystemInfoRequest {
         SystemInfoRequest {
             machine_id,
-            hardware,
             revision,
             model,
             serial,
@@ -54,6 +56,8 @@ impl SystemInfoRequest {
             ram,
             os_version_id,
             os_build_id,
+            os_variant_id,
+            os_release_json: None,
             device,
         }
     }

@@ -38,7 +38,6 @@ class TestSystemInfoRequest(unittest.TestCase):
         if include_optional :
             return SystemInfoRequest(
                 machine_id = '0', 
-                hardware = '0', 
                 revision = '0', 
                 model = '0', 
                 serial = '0', 
@@ -46,12 +45,15 @@ class TestSystemInfoRequest(unittest.TestCase):
                 ram = -9223372036854775808, 
                 os_version_id = '0', 
                 os_build_id = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                os_variant_id = '0', 
+                os_release_json = {
+                    'key' : null
+                    }, 
                 device = 56
             )
         else :
             return SystemInfoRequest(
                 machine_id = '0',
-                hardware = '0',
                 revision = '0',
                 model = '0',
                 serial = '0',
@@ -59,6 +61,7 @@ class TestSystemInfoRequest(unittest.TestCase):
                 ram = -9223372036854775808,
                 os_version_id = '0',
                 os_build_id = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                os_variant_id = '0',
                 device = 56,
         )
 
