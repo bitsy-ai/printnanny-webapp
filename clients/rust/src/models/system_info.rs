@@ -38,15 +38,18 @@ pub struct SystemInfo {
     pub cores: i32,
     #[serde(rename = "ram")]
     pub ram: i64,
-    /// PrintNanny OS image version string from /boot/image_version.txt
-    #[serde(rename = "image_version")]
-    pub image_version: String,
+    /// PrintNanny OS VERSION_ID from /etc/os-release
+    #[serde(rename = "os_version_id")]
+    pub os_version_id: String,
+    /// PrintNanny OS BUILD_ID from /etc/os-release
+    #[serde(rename = "os_build_id")]
+    pub os_build_id: String,
     #[serde(rename = "device")]
     pub device: i32,
 }
 
 impl SystemInfo {
-    pub fn new(id: i32, created_dt: String, updated_dt: String, machine_id: String, hardware: String, revision: String, model: String, serial: String, cores: i32, ram: i64, image_version: String, device: i32) -> SystemInfo {
+    pub fn new(id: i32, created_dt: String, updated_dt: String, machine_id: String, hardware: String, revision: String, model: String, serial: String, cores: i32, ram: i64, os_version_id: String, os_build_id: String, device: i32) -> SystemInfo {
         SystemInfo {
             id,
             created_dt,
@@ -58,7 +61,8 @@ impl SystemInfo {
             serial,
             cores,
             ram,
-            image_version,
+            os_version_id,
+            os_build_id,
             device,
         }
     }

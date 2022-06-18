@@ -32,9 +32,12 @@ pub struct PatchedSystemInfoRequest {
     pub cores: Option<i32>,
     #[serde(rename = "ram", skip_serializing_if = "Option::is_none")]
     pub ram: Option<i64>,
-    /// PrintNanny OS image version string from /boot/image_version.txt
-    #[serde(rename = "image_version", skip_serializing_if = "Option::is_none")]
-    pub image_version: Option<String>,
+    /// PrintNanny OS VERSION_ID from /etc/os-release
+    #[serde(rename = "os_version_id", skip_serializing_if = "Option::is_none")]
+    pub os_version_id: Option<String>,
+    /// PrintNanny OS BUILD_ID from /etc/os-release
+    #[serde(rename = "os_build_id", skip_serializing_if = "Option::is_none")]
+    pub os_build_id: Option<String>,
     #[serde(rename = "device", skip_serializing_if = "Option::is_none")]
     pub device: Option<i32>,
 }
@@ -49,7 +52,8 @@ impl PatchedSystemInfoRequest {
             serial: None,
             cores: None,
             ram: None,
-            image_version: None,
+            os_version_id: None,
+            os_build_id: None,
             device: None,
         }
     }

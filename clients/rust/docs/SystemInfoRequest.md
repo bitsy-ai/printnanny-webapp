@@ -11,7 +11,8 @@ Name | Type | Description | Notes
 **serial** | **String** | Populated from /proc/cpuinfo SERIAL | 
 **cores** | **i32** |  | 
 **ram** | **i64** |  | 
-**image_version** | **String** | PrintNanny OS image version string from /boot/image_version.txt | 
+**os_version_id** | **String** | PrintNanny OS VERSION_ID from /etc/os-release | 
+**os_build_id** | **String** | PrintNanny OS BUILD_ID from /etc/os-release | 
 **device** | **i32** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

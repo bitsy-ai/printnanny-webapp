@@ -3176,11 +3176,17 @@ export interface PatchedSystemInfoRequest {
      */
     'ram'?: number;
     /**
-     * PrintNanny OS image version string from /boot/image_version.txt
+     * PrintNanny OS VERSION_ID from /etc/os-release
      * @type {string}
      * @memberof PatchedSystemInfoRequest
      */
-    'image_version'?: string;
+    'os_version_id'?: string;
+    /**
+     * PrintNanny OS BUILD_ID from /etc/os-release
+     * @type {string}
+     * @memberof PatchedSystemInfoRequest
+     */
+    'os_build_id'?: string;
     /**
      * 
      * @type {number}
@@ -3415,11 +3421,17 @@ export interface SystemInfo {
      */
     'ram': number;
     /**
-     * PrintNanny OS image version string from /boot/image_version.txt
+     * PrintNanny OS VERSION_ID from /etc/os-release
      * @type {string}
      * @memberof SystemInfo
      */
-    'image_version': string;
+    'os_version_id': string;
+    /**
+     * PrintNanny OS BUILD_ID from /etc/os-release
+     * @type {string}
+     * @memberof SystemInfo
+     */
+    'os_build_id': string;
     /**
      * 
      * @type {number}
@@ -3476,11 +3488,17 @@ export interface SystemInfoRequest {
      */
     'ram': number;
     /**
-     * PrintNanny OS image version string from /boot/image_version.txt
+     * PrintNanny OS VERSION_ID from /etc/os-release
      * @type {string}
      * @memberof SystemInfoRequest
      */
-    'image_version': string;
+    'os_version_id': string;
+    /**
+     * PrintNanny OS BUILD_ID from /etc/os-release
+     * @type {string}
+     * @memberof SystemInfoRequest
+     */
+    'os_build_id': string;
     /**
      * 
      * @type {number}

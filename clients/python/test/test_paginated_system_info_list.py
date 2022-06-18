@@ -52,7 +52,8 @@ class TestPaginatedSystemInfoList(unittest.TestCase):
                         serial = '', 
                         cores = -2147483648, 
                         ram = -9223372036854775808, 
-                        image_version = '', 
+                        os_version_id = '', 
+                        os_build_id = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         device = 56, )
                     ]
             )

@@ -44,7 +44,8 @@ class TestPatchedSystemInfoRequest(unittest.TestCase):
                 serial = '0', 
                 cores = -2147483648, 
                 ram = -9223372036854775808, 
-                image_version = '0', 
+                os_version_id = '0', 
+                os_build_id = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 device = 56
             )
         else :

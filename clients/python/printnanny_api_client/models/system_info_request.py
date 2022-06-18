@@ -44,7 +44,8 @@ class SystemInfoRequest(object):
         'serial': 'str',
         'cores': 'int',
         'ram': 'int',
-        'image_version': 'str',
+        'os_version_id': 'str',
+        'os_build_id': 'datetime',
         'device': 'int'
     }
 
@@ -56,11 +57,12 @@ class SystemInfoRequest(object):
         'serial': 'serial',
         'cores': 'cores',
         'ram': 'ram',
-        'image_version': 'image_version',
+        'os_version_id': 'os_version_id',
+        'os_build_id': 'os_build_id',
         'device': 'device'
     }
 
-    def __init__(self, machine_id=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, image_version=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, machine_id=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, os_version_id=None, os_build_id=None, device=None, local_vars_configuration=None):  # noqa: E501
         """SystemInfoRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -73,7 +75,8 @@ class SystemInfoRequest(object):
         self._serial = None
         self._cores = None
         self._ram = None
-        self._image_version = None
+        self._os_version_id = None
+        self._os_build_id = None
         self._device = None
         self.discriminator = None
 
@@ -84,7 +87,8 @@ class SystemInfoRequest(object):
         self.serial = serial
         self.cores = cores
         self.ram = ram
-        self.image_version = image_version
+        self.os_version_id = os_version_id
+        self.os_build_id = os_build_id
         self.device = device
 
     @property
@@ -301,35 +305,60 @@ class SystemInfoRequest(object):
         self._ram = ram
 
     @property
-    def image_version(self):
-        """Gets the image_version of this SystemInfoRequest.  # noqa: E501
+    def os_version_id(self):
+        """Gets the os_version_id of this SystemInfoRequest.  # noqa: E501
 
-        PrintNanny OS image version string from /boot/image_version.txt  # noqa: E501
+        PrintNanny OS VERSION_ID from /etc/os-release  # noqa: E501
 
-        :return: The image_version of this SystemInfoRequest.  # noqa: E501
+        :return: The os_version_id of this SystemInfoRequest.  # noqa: E501
         :rtype: str
         """
-        return self._image_version
+        return self._os_version_id
 
-    @image_version.setter
-    def image_version(self, image_version):
-        """Sets the image_version of this SystemInfoRequest.
+    @os_version_id.setter
+    def os_version_id(self, os_version_id):
+        """Sets the os_version_id of this SystemInfoRequest.
 
-        PrintNanny OS image version string from /boot/image_version.txt  # noqa: E501
+        PrintNanny OS VERSION_ID from /etc/os-release  # noqa: E501
 
-        :param image_version: The image_version of this SystemInfoRequest.  # noqa: E501
-        :type image_version: str
+        :param os_version_id: The os_version_id of this SystemInfoRequest.  # noqa: E501
+        :type os_version_id: str
         """
-        if self.local_vars_configuration.client_side_validation and image_version is None:  # noqa: E501
-            raise ValueError("Invalid value for `image_version`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and os_version_id is None:  # noqa: E501
+            raise ValueError("Invalid value for `os_version_id`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
-                image_version is not None and len(image_version) > 255):
-            raise ValueError("Invalid value for `image_version`, length must be less than or equal to `255`")  # noqa: E501
+                os_version_id is not None and len(os_version_id) > 255):
+            raise ValueError("Invalid value for `os_version_id`, length must be less than or equal to `255`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
-                image_version is not None and len(image_version) < 1):
-            raise ValueError("Invalid value for `image_version`, length must be greater than or equal to `1`")  # noqa: E501
+                os_version_id is not None and len(os_version_id) < 1):
+            raise ValueError("Invalid value for `os_version_id`, length must be greater than or equal to `1`")  # noqa: E501
 
-        self._image_version = image_version
+        self._os_version_id = os_version_id
+
+    @property
+    def os_build_id(self):
+        """Gets the os_build_id of this SystemInfoRequest.  # noqa: E501
+
+        PrintNanny OS BUILD_ID from /etc/os-release  # noqa: E501
+
+        :return: The os_build_id of this SystemInfoRequest.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._os_build_id
+
+    @os_build_id.setter
+    def os_build_id(self, os_build_id):
+        """Sets the os_build_id of this SystemInfoRequest.
+
+        PrintNanny OS BUILD_ID from /etc/os-release  # noqa: E501
+
+        :param os_build_id: The os_build_id of this SystemInfoRequest.  # noqa: E501
+        :type os_build_id: datetime
+        """
+        if self.local_vars_configuration.client_side_validation and os_build_id is None:  # noqa: E501
+            raise ValueError("Invalid value for `os_build_id`, must not be `None`")  # noqa: E501
+
+        self._os_build_id = os_build_id
 
     @property
     def device(self):
