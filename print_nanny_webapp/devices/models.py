@@ -178,7 +178,10 @@ class SystemInfo(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
 
     class Meta:
-        index_together = ("device", "created_dt", "updated_dt")
+        index_together = (
+            ("device", "created_dt", "updated_dt"),
+            ("os_build_id", "os_variant_id", "os_version_id", "device"),
+        )
         constraints = [
             UniqueConstraint(
                 fields=["device"],
@@ -192,10 +195,6 @@ class SystemInfo(SafeDeleteModel):
 
     machine_id = models.CharField(
         max_length=255, help_text="Populated from /etc/machine-id"
-    )
-    # /proc/cpuinfo HARDWARE
-    hardware = models.CharField(
-        max_length=255, help_text="Populated from /proc/cpuinfo HARDWARE"
     )
     # /proc/cpuinfo REVISION
     revision = models.CharField(
@@ -220,6 +219,14 @@ class SystemInfo(SafeDeleteModel):
     )
     os_build_id = models.DateTimeField(
         max_length=255, help_text="PrintNanny OS BUILD_ID from /etc/os-release"
+    )
+
+    os_variant_id = models.CharField(
+        max_length=255, help_text="PrintNanny OS VARIANT_ID from /etc/os-release"
+    )
+
+    os_release_json = models.JSONField(
+        default=dict, help_text="Full contents of /etc/os-release in key:value format"
     )
 
 
