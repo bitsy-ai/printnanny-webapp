@@ -870,8 +870,10 @@ class LicenseActivateViewSet(GenericViewSet):
             device = serializer.validated_data.get("device")
             obj = License.objects.get(id=license_id)
             if obj.user.id == user.id and device.user.id == user.id:
-                serializer.save()
-                return Response(serializer.data, status.HTTP_202_ACCEPTED)
+                obj.device = device
+                obj.save()
+                response_serializer = self.get_serializer(instance=obj)
+                return Response(response_serializer.data, status.HTTP_202_ACCEPTED)
             errors = dict(detail="Invalid license key", code="invalid_license")
             return Response(errors, status.HTTP_403_FORBIDDEN)
         return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
