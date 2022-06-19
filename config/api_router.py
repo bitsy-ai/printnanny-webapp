@@ -20,6 +20,7 @@ from print_nanny_webapp.events.api.views import CommandViewSet, EventViewSet
 from print_nanny_webapp.users.api.views import UserViewSet
 
 from print_nanny_webapp.alerts.api.views import (
+    AlertSettingsViewSet,
     AlertViewSet,  # , PrintSessionAlertViewSet
 )
 
@@ -36,6 +37,7 @@ from print_nanny_webapp.octoprint.api.views import (
 
 router = DefaultRouter()
 router.register("alerts", AlertViewSet)
+router.register("alert-settings", AlertSettingsViewSet)
 router.register("devices", DeviceViewSet)
 
 # octoprint endpoints (PrintNanny os data model)

@@ -113,3 +113,10 @@ class AlertBulkResponseSerializer(serializers.Serializer):
 
     received = serializers.IntegerField()
     updated = serializers.IntegerField()
+
+
+class AlertSettingsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AlertSettings
+        read_only_fields = ("user",)
+        fields = "__all__"
