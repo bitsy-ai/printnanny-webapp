@@ -6,7 +6,11 @@ MANIFEST.in
 README.md
 docs/Alert.md
 docs/AlertBulkResponse.md
+docs/AlertMethodsEnum.md
 docs/AlertRequest.md
+docs/AlertSettings.md
+docs/AlertSettingsApi.md
+docs/AlertSettingsRequest.md
 docs/AlertsApi.md
 docs/AuthApi.md
 docs/CallbackTokenAuthRequest.md
@@ -26,6 +30,7 @@ docs/EmailAuthRequest.md
 docs/ErrorDetail.md
 docs/EventSource.md
 docs/EventTypeEnum.md
+docs/EventTypesEnum.md
 docs/EventsApi.md
 docs/GcodeFile.md
 docs/JanusApi.md
@@ -75,6 +80,7 @@ docs/Partner3DGeeksMetadata.md
 docs/PartnersGeeks3dApi.md
 docs/PatchedAlertBulkRequestRequest.md
 docs/PatchedAlertRequest.md
+docs/PatchedAlertSettingsRequest.md
 docs/PatchedCloudiotDeviceRequest.md
 docs/PatchedDeviceRequest.md
 docs/PatchedJanusCloudStreamRequest.md
@@ -114,6 +120,7 @@ docs/WebRTCEventRequest.md
 git_push.sh
 printnanny_api_client/__init__.py
 printnanny_api_client/api/__init__.py
+printnanny_api_client/api/alert_settings_api.py
 printnanny_api_client/api/alerts_api.py
 printnanny_api_client/api/auth_api.py
 printnanny_api_client/api/client_api.py
@@ -133,7 +140,10 @@ printnanny_api_client/exceptions.py
 printnanny_api_client/models/__init__.py
 printnanny_api_client/models/alert.py
 printnanny_api_client/models/alert_bulk_response.py
+printnanny_api_client/models/alert_methods_enum.py
 printnanny_api_client/models/alert_request.py
+printnanny_api_client/models/alert_settings.py
+printnanny_api_client/models/alert_settings_request.py
 printnanny_api_client/models/callback_token_auth_request.py
 printnanny_api_client/models/callback_token_verification.py
 printnanny_api_client/models/callback_token_verification_request.py
@@ -147,6 +157,7 @@ printnanny_api_client/models/email_auth_request.py
 printnanny_api_client/models/error_detail.py
 printnanny_api_client/models/event_source.py
 printnanny_api_client/models/event_type_enum.py
+printnanny_api_client/models/event_types_enum.py
 printnanny_api_client/models/gcode_file.py
 printnanny_api_client/models/janus_auth.py
 printnanny_api_client/models/janus_auth_request.py
@@ -191,6 +202,7 @@ printnanny_api_client/models/partner3_d_geeks_alert.py
 printnanny_api_client/models/partner3_d_geeks_metadata.py
 printnanny_api_client/models/patched_alert_bulk_request_request.py
 printnanny_api_client/models/patched_alert_request.py
+printnanny_api_client/models/patched_alert_settings_request.py
 printnanny_api_client/models/patched_cloudiot_device_request.py
 printnanny_api_client/models/patched_device_request.py
 printnanny_api_client/models/patched_janus_cloud_stream_request.py
@@ -234,7 +246,11 @@ test-requirements.txt
 test/__init__.py
 test/test_alert.py
 test/test_alert_bulk_response.py
+test/test_alert_methods_enum.py
 test/test_alert_request.py
+test/test_alert_settings.py
+test/test_alert_settings_api.py
+test/test_alert_settings_request.py
 test/test_alerts_api.py
 test/test_auth_api.py
 test/test_callback_token_auth_request.py
@@ -254,6 +270,7 @@ test/test_email_auth_request.py
 test/test_error_detail.py
 test/test_event_source.py
 test/test_event_type_enum.py
+test/test_event_types_enum.py
 test/test_events_api.py
 test/test_gcode_file.py
 test/test_janus_api.py
@@ -303,6 +320,7 @@ test/test_partner3_d_geeks_metadata.py
 test/test_partners_geeks3d_api.py
 test/test_patched_alert_bulk_request_request.py
 test/test_patched_alert_request.py
+test/test_patched_alert_settings_request.py
 test/test_patched_cloudiot_device_request.py
 test/test_patched_device_request.py
 test/test_patched_janus_cloud_stream_request.py

@@ -140,6 +140,22 @@ export interface AlertBulkResponse {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export const AlertMethodsEnum = {
+    Ui: 'UI',
+    Email: 'EMAIL',
+    Discord: 'DISCORD',
+    Partner3Dgeeks: 'PARTNER_3DGEEKS'
+} as const;
+
+export type AlertMethodsEnum = typeof AlertMethodsEnum[keyof typeof AlertMethodsEnum];
+
+
+/**
+ * 
+ * @export
  * @interface AlertRequest
  */
 export interface AlertRequest {
@@ -167,6 +183,92 @@ export interface AlertRequest {
      * @memberof AlertRequest
      */
     'sent'?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface AlertSettings
+ */
+export interface AlertSettings {
+    /**
+     * 
+     * @type {number}
+     * @memberof AlertSettings
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof AlertSettings
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AlertSettings
+     */
+    'updated_dt': string;
+    /**
+     * 
+     * @type {Array<AlertMethodsEnum>}
+     * @memberof AlertSettings
+     */
+    'alert_methods'?: Array<AlertMethodsEnum>;
+    /**
+     * 
+     * @type {Array<EventTypesEnum>}
+     * @memberof AlertSettings
+     */
+    'event_types'?: Array<EventTypesEnum>;
+    /**
+     * Send notifications to a Discord channel. Please check out this guide to <a href=\'https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks\'>generate a webhook</a> url and paste it here.
+     * @type {string}
+     * @memberof AlertSettings
+     */
+    'discord_webhook'?: string | null;
+    /**
+     * Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress
+     * @type {number}
+     * @memberof AlertSettings
+     */
+    'print_progress_percent'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AlertSettings
+     */
+    'user': number;
+}
+/**
+ * 
+ * @export
+ * @interface AlertSettingsRequest
+ */
+export interface AlertSettingsRequest {
+    /**
+     * 
+     * @type {Array<AlertMethodsEnum>}
+     * @memberof AlertSettingsRequest
+     */
+    'alert_methods'?: Array<AlertMethodsEnum>;
+    /**
+     * 
+     * @type {Array<EventTypesEnum>}
+     * @memberof AlertSettingsRequest
+     */
+    'event_types'?: Array<EventTypesEnum>;
+    /**
+     * Send notifications to a Discord channel. Please check out this guide to <a href=\'https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks\'>generate a webhook</a> url and paste it here.
+     * @type {string}
+     * @memberof AlertSettingsRequest
+     */
+    'discord_webhook'?: string | null;
+    /**
+     * Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress
+     * @type {number}
+     * @memberof AlertSettingsRequest
+     */
+    'print_progress_percent'?: number;
 }
 /**
  * Abstract class inspired by DRF\'s own token serializer. Returns a user if valid, None or a message if not.
@@ -618,6 +720,20 @@ export const EventTypeEnum = {
 } as const;
 
 export type EventTypeEnum = typeof EventTypeEnum[keyof typeof EventTypeEnum];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const EventTypesEnum = {
+    PrintHealth: 'PrintHealth',
+    PrintStatus: 'PrintStatus'
+} as const;
+
+export type EventTypesEnum = typeof EventTypesEnum[keyof typeof EventTypesEnum];
 
 
 /**
@@ -2727,6 +2843,37 @@ export interface PatchedAlertRequest {
 /**
  * 
  * @export
+ * @interface PatchedAlertSettingsRequest
+ */
+export interface PatchedAlertSettingsRequest {
+    /**
+     * 
+     * @type {Array<AlertMethodsEnum>}
+     * @memberof PatchedAlertSettingsRequest
+     */
+    'alert_methods'?: Array<AlertMethodsEnum>;
+    /**
+     * 
+     * @type {Array<EventTypesEnum>}
+     * @memberof PatchedAlertSettingsRequest
+     */
+    'event_types'?: Array<EventTypesEnum>;
+    /**
+     * Send notifications to a Discord channel. Please check out this guide to <a href=\'https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks\'>generate a webhook</a> url and paste it here.
+     * @type {string}
+     * @memberof PatchedAlertSettingsRequest
+     */
+    'discord_webhook'?: string | null;
+    /**
+     * Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress
+     * @type {number}
+     * @memberof PatchedAlertSettingsRequest
+     */
+    'print_progress_percent'?: number;
+}
+/**
+ * 
+ * @export
  * @interface PatchedCloudiotDeviceRequest
  */
 export interface PatchedCloudiotDeviceRequest {
@@ -3995,6 +4142,294 @@ export interface WebRTCEventRequest {
      */
     'stream': number;
 }
+
+/**
+ * AlertSettingsApi - axios parameter creator
+ * @export
+ */
+export const AlertSettingsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsGetOrCreateRetrieve: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/alert-settings/get-or-create/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert settings.
+         * @param {PatchedAlertSettingsRequest} [patchedAlertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsPartialUpdate: async (id: number, patchedAlertSettingsRequest?: PatchedAlertSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('alertSettingsPartialUpdate', 'id', id)
+            const localVarPath = `/api/alert-settings/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedAlertSettingsRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert settings.
+         * @param {AlertSettingsRequest} [alertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsUpdate: async (id: number, alertSettingsRequest?: AlertSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('alertSettingsUpdate', 'id', id)
+            const localVarPath = `/api/alert-settings/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(alertSettingsRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * AlertSettingsApi - functional programming interface
+ * @export
+ */
+export const AlertSettingsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = AlertSettingsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertSettingsGetOrCreateRetrieve(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertSettingsGetOrCreateRetrieve(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert settings.
+         * @param {PatchedAlertSettingsRequest} [patchedAlertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertSettingsPartialUpdate(id: number, patchedAlertSettingsRequest?: PatchedAlertSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertSettingsPartialUpdate(id, patchedAlertSettingsRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert settings.
+         * @param {AlertSettingsRequest} [alertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertSettingsUpdate(id: number, alertSettingsRequest?: AlertSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertSettingsUpdate(id, alertSettingsRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * AlertSettingsApi - factory interface
+ * @export
+ */
+export const AlertSettingsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = AlertSettingsApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsGetOrCreateRetrieve(options?: any): AxiosPromise<AlertSettings> {
+            return localVarFp.alertSettingsGetOrCreateRetrieve(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert settings.
+         * @param {PatchedAlertSettingsRequest} [patchedAlertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsPartialUpdate(id: number, patchedAlertSettingsRequest?: PatchedAlertSettingsRequest, options?: any): AxiosPromise<AlertSettings> {
+            return localVarFp.alertSettingsPartialUpdate(id, patchedAlertSettingsRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert settings.
+         * @param {AlertSettingsRequest} [alertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsUpdate(id: number, alertSettingsRequest?: AlertSettingsRequest, options?: any): AxiosPromise<AlertSettings> {
+            return localVarFp.alertSettingsUpdate(id, alertSettingsRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * AlertSettingsApi - interface
+ * @export
+ * @interface AlertSettingsApi
+ */
+export interface AlertSettingsApiInterface {
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApiInterface
+     */
+    alertSettingsGetOrCreateRetrieve(options?: AxiosRequestConfig): AxiosPromise<AlertSettings>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this alert settings.
+     * @param {PatchedAlertSettingsRequest} [patchedAlertSettingsRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApiInterface
+     */
+    alertSettingsPartialUpdate(id: number, patchedAlertSettingsRequest?: PatchedAlertSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<AlertSettings>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this alert settings.
+     * @param {AlertSettingsRequest} [alertSettingsRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApiInterface
+     */
+    alertSettingsUpdate(id: number, alertSettingsRequest?: AlertSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<AlertSettings>;
+
+}
+
+/**
+ * AlertSettingsApi - object-oriented interface
+ * @export
+ * @class AlertSettingsApi
+ * @extends {BaseAPI}
+ */
+export class AlertSettingsApi extends BaseAPI implements AlertSettingsApiInterface {
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApi
+     */
+    public alertSettingsGetOrCreateRetrieve(options?: AxiosRequestConfig) {
+        return AlertSettingsApiFp(this.configuration).alertSettingsGetOrCreateRetrieve(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this alert settings.
+     * @param {PatchedAlertSettingsRequest} [patchedAlertSettingsRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApi
+     */
+    public alertSettingsPartialUpdate(id: number, patchedAlertSettingsRequest?: PatchedAlertSettingsRequest, options?: AxiosRequestConfig) {
+        return AlertSettingsApiFp(this.configuration).alertSettingsPartialUpdate(id, patchedAlertSettingsRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this alert settings.
+     * @param {AlertSettingsRequest} [alertSettingsRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApi
+     */
+    public alertSettingsUpdate(id: number, alertSettingsRequest?: AlertSettingsRequest, options?: AxiosRequestConfig) {
+        return AlertSettingsApiFp(this.configuration).alertSettingsUpdate(id, alertSettingsRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
 
 /**
  * AlertsApi - axios parameter creator

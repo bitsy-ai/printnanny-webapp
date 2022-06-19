@@ -15,9 +15,10 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.85.3"
+__version__ = "0.86.0"
 
 # import apis into sdk package
+from printnanny_api_client.api.alert_settings_api import AlertSettingsApi
 from printnanny_api_client.api.alerts_api import AlertsApi
 from printnanny_api_client.api.auth_api import AuthApi
 from printnanny_api_client.api.client_api import ClientApi
@@ -44,7 +45,10 @@ from printnanny_api_client.exceptions import ApiException
 # import models into sdk package
 from printnanny_api_client.models.alert import Alert
 from printnanny_api_client.models.alert_bulk_response import AlertBulkResponse
+from printnanny_api_client.models.alert_methods_enum import AlertMethodsEnum
 from printnanny_api_client.models.alert_request import AlertRequest
+from printnanny_api_client.models.alert_settings import AlertSettings
+from printnanny_api_client.models.alert_settings_request import AlertSettingsRequest
 from printnanny_api_client.models.callback_token_auth_request import CallbackTokenAuthRequest
 from printnanny_api_client.models.callback_token_verification import CallbackTokenVerification
 from printnanny_api_client.models.callback_token_verification_request import CallbackTokenVerificationRequest
@@ -58,6 +62,7 @@ from printnanny_api_client.models.email_auth_request import EmailAuthRequest
 from printnanny_api_client.models.error_detail import ErrorDetail
 from printnanny_api_client.models.event_source import EventSource
 from printnanny_api_client.models.event_type_enum import EventTypeEnum
+from printnanny_api_client.models.event_types_enum import EventTypesEnum
 from printnanny_api_client.models.gcode_file import GcodeFile
 from printnanny_api_client.models.janus_auth import JanusAuth
 from printnanny_api_client.models.janus_auth_request import JanusAuthRequest
@@ -102,6 +107,7 @@ from printnanny_api_client.models.partner3_d_geeks_alert import Partner3DGeeksAl
 from printnanny_api_client.models.partner3_d_geeks_metadata import Partner3DGeeksMetadata
 from printnanny_api_client.models.patched_alert_bulk_request_request import PatchedAlertBulkRequestRequest
 from printnanny_api_client.models.patched_alert_request import PatchedAlertRequest
+from printnanny_api_client.models.patched_alert_settings_request import PatchedAlertSettingsRequest
 from printnanny_api_client.models.patched_cloudiot_device_request import PatchedCloudiotDeviceRequest
 from printnanny_api_client.models.patched_device_request import PatchedDeviceRequest
 from printnanny_api_client.models.patched_janus_cloud_stream_request import PatchedJanusCloudStreamRequest
