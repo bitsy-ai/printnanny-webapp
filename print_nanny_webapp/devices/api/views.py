@@ -858,12 +858,12 @@ class LicenseActivateViewSet(GenericViewSet):
         | generic_get_errors,
     )
     @action(methods=["post"], detail=True, url_path="activate")
-    def activate(self, request):
+    def activate(self, request, pk=None):
         """
         Marks License as activated (by setting Device fkey relation)
         """
         serializer = self.get_serializer(data=request.data)
-        if serializer.is_valid():
+        if serializer.is_valid() and pk is not None:
             # verify License key and provided email match
             license_id = serializer.validated_data.get("id")
             user = serializer.validated_data.get("user")
