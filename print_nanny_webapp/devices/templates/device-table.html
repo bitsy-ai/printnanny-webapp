@@ -12,8 +12,8 @@
                         <tr>
                             <th>Name</th>
                             <!-- <th>Monitoring Active</th> -->
-
-                            <th>Manage</th>
+                            <th>Edition</th>
+                            <th>Actions</th>
 
                         </tr>
                     </thead>
@@ -22,18 +22,18 @@
                         {% for device in devices %}
                         <tr>
                             <td><span class="badge badge-light">{{device.hostname}}</span></td>
-
+                            <td>{{ device.system_info.os_variant_id }} - {{ device.system_info.os_version_id }} </td>
                             <!-- <td><i class="mdi mdi-circle {{device.monitoring_active_css_class}}"></i>
                                 {{device.monitoring_active}}</td>
- -->
+                            -->
 
                             <td>
                                 {% if device.setup_complete %}
                                 <!-- <a href="{% url 'devices:detail' pk=device.id %}"><button
                                         class="btn btn-primary btn-sm">View Details</button></a> -->
-                                <a href="{% url 'devices:video' pk=device.id %}"><button
+                                {# <a href="{% url 'devices:video' pk=device.id %}"><button
                                         class="btn btn-primary btn-sm">Camera</button>
-                                </a>
+                                </a> #}
                                 <a target="_blank" href="{{ device.edge_url }}"><button
                                         class="btn btn-primary btn-sm">PrintNanny
                                         OS</button>

@@ -56,8 +56,6 @@ class Device(SafeDeleteModel):
             )
         ]
 
-    monitoring_active = models.BooleanField(default=False)
-    setup_complete = models.BooleanField(default=False)
     created_dt = models.DateTimeField(auto_now_add=True)
     updated_dt = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(
@@ -68,13 +66,6 @@ class Device(SafeDeleteModel):
         help_text="Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension)",
         default="printnanny",
     )
-    release_channel = models.CharField(
-        max_length=8,
-        choices=DeviceReleaseChannel.choices,
-        default=DeviceReleaseChannel.STABLE,
-        help_text="WARNING: you should only use the nightly developer channel when guided by Print Nanny staff! This unstable channel is intended for QA and verifying bug fixes.",
-    )
-    edition = models.CharField(max_length=32, choices=OsEdition.choices)
 
     @property
     def public_key(self):
@@ -211,7 +202,9 @@ class SystemInfo(SafeDeleteModel):
     # /proc/cpuinfo MAX PROCESSOR
     cores = models.IntegerField()
     ram = models.BigIntegerField()
-    device = models.ForeignKey(Device, on_delete=models.CASCADE)
+    device = models.ForeignKey(
+        Device, on_delete=models.CASCADE, related_name="system_info"
+    )
 
     os_version_id = models.CharField(
         max_length=255,

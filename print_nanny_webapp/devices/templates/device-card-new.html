@@ -1,0 +1,25 @@
+{% load static i18n %}
+
+<div class="col-sm-12 col-md-6">
+    <div class="card">
+        <div class="card-body">
+            <p> <a href="{% url 'devices:create' %}" class="btn btn-large btn-primary">
+                    <i class="mdi mdi-plus"></i>{% trans "New Connection" %}
+                </a></p>
+            <p>{% trans "Connect a new PrintNanny OS installation to PrintNanny Cloud." %}</p>
+            <hr>
+            <p> <a target="_blank" href="{{ PRINTNANNY_OS_RELEASE_URL }}" class="btn btn-large btn-light">
+                    {% trans "Download PrintNanny OS" %}
+                </a>
+                <a target="_blank" href="{{ PRINTNANNY_OS_INSTALL_URL }}" class="btn btn-large btn-light">
+                    {% trans "Install Guide" %}
+                </a>
+            </p>
+            <p>Need help getting started?</p>
+            <p><a href="{{ PRINTNANNY_OS_RELEASE_URL }}">Download</a> the latest
+                image and then follow the
+                <a href="{{ PRINTNANNY_OS_INSTALL_URL }}">Install Guide</a> to begin.
+            </p>
+        </div>
+    </div>
+</div>
