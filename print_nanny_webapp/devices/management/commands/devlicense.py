@@ -8,7 +8,7 @@ from print_nanny_webapp.devices.api.serializers import LicenseSerializer
 from print_nanny_webapp.devices.models import Device
 from print_nanny_webapp.utils.api.service import get_api_config
 
-UserModel = get_user_model()
+User = get_user_model()
 
 
 class Command(BaseCommand):
@@ -25,7 +25,7 @@ class Command(BaseCommand):
             raise CommandError(
                 f"Refusing to generate test license.json because settings.DEBUG={settings.DEBUG} (must be True)"
             )
-        user = UserModel.objects.get(email=options["email"])
+        user = User.objects.get(email=options["email"])  # type: ignore
         self.stdout.write(f"Generating license.json with credentials for user={user}")
         device, created = Device.objects.get_or_create(
             user=user, hostname=options["hostname"]
