@@ -1,7 +1,7 @@
 from django.contrib import admin
 from print_nanny_webapp.octoprint.models import (
     OctoPrintBackup,
-    OctoPrintInstall,
+    OctoPrintServer,
     OctoPrinterProfile,
     OctoPrintSettings,
     GcodeFile,
@@ -14,8 +14,8 @@ class OctoPrintBackupAdmin(admin.ModelAdmin):
     model = OctoPrintBackup
 
 
-@admin.register(OctoPrintInstall)
-class OctoPrintInstallAdmin(admin.ModelAdmin):
+@admin.register(OctoPrintServer)
+class OctoPrintServerAdmin(admin.ModelAdmin):
     list_display = (
         "device",
         "user",
@@ -24,7 +24,7 @@ class OctoPrintInstallAdmin(admin.ModelAdmin):
         "created_dt",
         "updated_dt",
     )
-    model = OctoPrintInstall
+    model = OctoPrintServer
 
 
 @admin.register(OctoPrinterProfile)

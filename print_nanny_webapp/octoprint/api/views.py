@@ -17,14 +17,14 @@ from print_nanny_webapp.octoprint.api.serializers import (
     OctoPrinterProfileSerializer,
     GcodeFileSerializer,
     OctoPrintSettingsSerializer,
-    OctoPrintInstallSerializer,
+    OctoPrintServerSerializer,
 )
 from print_nanny_webapp.octoprint.models import (
     GcodeFile,
     OctoPrintBackup,
     OctoPrintSettings,
     OctoPrinterProfile,
-    OctoPrintInstall,
+    OctoPrintServer,
 )
 from print_nanny_webapp.utils.api.views import (
     generic_create_errors,
@@ -37,7 +37,7 @@ from print_nanny_webapp.utils.api.views import (
 logger = logging.getLogger(__name__)
 
 ##
-# OctoPrintInstall (by device param)
+# OctoPrintServer (by device param)
 ##
 @extend_schema_view(
     list=extend_schema(
@@ -45,18 +45,18 @@ logger = logging.getLogger(__name__)
             OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
         ],
         responses={
-            200: OctoPrintInstallSerializer(),
+            200: OctoPrintServerSerializer(),
         }
         | generic_list_errors,
     ),
     tags=["octoprint"],
 )
-class OctoPrintInstallByDeviceViewSet(
+class OctoPrintServerByDeviceViewSet(
     GenericViewSet,
     ListModelMixin,
 ):
-    serializer_class = OctoPrintInstallSerializer
-    queryset = OctoPrintInstall.objects.all()
+    serializer_class = OctoPrintServerSerializer
+    queryset = OctoPrintServer.objects.all()
     lookup_field = "id"
 
     def get_queryset(self, *_args, device_id=None, **_kwargs):
@@ -67,46 +67,46 @@ class OctoPrintInstallByDeviceViewSet(
 
 
 ##
-# OctoPrintInstall (no device filter)
+# OctoPrintServer (no device filter)
 ##
 @extend_schema_view(
     list=extend_schema(
         responses={
-            200: OctoPrintInstallSerializer(),
+            200: OctoPrintServerSerializer(),
         }
         | generic_list_errors,
     ),
     create=extend_schema(
-        request=OctoPrintInstallSerializer,
+        request=OctoPrintServerSerializer,
         responses={
-            201: OctoPrintInstallSerializer,
+            201: OctoPrintServerSerializer,
         }
         | generic_create_errors,
     ),
     update=extend_schema(
-        request=OctoPrintInstallSerializer,
+        request=OctoPrintServerSerializer,
         responses={
-            202: OctoPrintInstallSerializer,
+            202: OctoPrintServerSerializer,
         }.update(generic_update_errors),
     ),
     tags=["octoprint"],
 )
-class OctoPrintInstallViewSet(
+class OctoPrintServerViewSet(
     GenericViewSet,
     CreateModelMixin,
     ListModelMixin,
     UpdateModelMixin,
 ):
-    serializer_class = OctoPrintInstallSerializer
-    queryset = OctoPrintInstall.objects.all()
+    serializer_class = OctoPrintServerSerializer
+    queryset = OctoPrintServer.objects.all()
     lookup_field = "id"
 
     @extend_schema(
         operation_id="octoprint_install_update_or_create",
         responses={
             # 400: PrinterProfileSerializer,
-            200: OctoPrintInstallSerializer,
-            201: OctoPrintInstallSerializer,
+            200: OctoPrintServerSerializer,
+            201: OctoPrintServerSerializer,
         },
         tags=["octoprint"],
     )
