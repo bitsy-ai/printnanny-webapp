@@ -234,4 +234,4 @@ class LicenseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Device
-        fields = ("hostname", "created_dt", "user", "api")
+        fields = ("id", "hostname", "created_dt", "user", "api")
