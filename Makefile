@@ -33,11 +33,14 @@ GHA_ENVIRONMENT ?= sandbox
 DOCKER_COMPOSE_PROJECT_NAME="print_nanny_webapp"
 GHOST_VERSION ?=4.32-alpine
 
+TMPDIR ?= .tmp
 WORKDIR ?=$(PWD)
 OPENAPI_GENERATOR_WORKDIR ?= $(HOME)/projects/openapi-generator
 OPENAPI_GENERATOR_CLI_JAR ?= $(OPENAPI_GENERATOR_WORKDIR)/modules/openapi-generator-cli/target/openapi-generator-cli.jar
 OPENAPI_CUSTOM_RUST_GENERATOR_JAR ?= $(HOME)/.m2/repository/org/openapitools/rust-client-openapi-generator/1.0.0/rust-client-openapi-generator-1.0.0.jar
 
+$(TMPDIR):
+	mkdir $(TMPDIR)
 
 openapi-custom-rust-codegen:
 	cd $(OPENAPI_GENERATOR_WORKDIR) && ./mvnw clean install -f ~/projects/octoprint-nanny-webapp/client-templates/rust-client-codegen
@@ -488,3 +491,10 @@ cert-manager-dns:
 
 migrations:
 	docker-compose -f local.yml exec django python manage.py makemigrations
+
+dev-license: $(TMPDIR)
+	docker-compose -f local.yml exec django python manage.py devlicense \
+		--email=$(DJANGO_SUPERUSER_EMAIL) \
+		--hostname=$(shell hostname) \
+		--out=$(TMPDIR)/license.json \
+		--port=8000
