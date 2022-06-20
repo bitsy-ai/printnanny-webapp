@@ -29,15 +29,15 @@ class OctoPrintServer(SafeDeleteModel):
             UniqueConstraint(
                 fields=["device"],
                 condition=models.Q(deleted=None),
-                name="unique_octoprint_install_per_device",
+                name="unique_octoprint_server_per_device",
             )
         ]
 
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="octoprint_installs"
+        User, on_delete=models.CASCADE, related_name="octoprint_servers"
     )
     device = models.ForeignKey(
-        "devices.Device", on_delete=models.CASCADE, related_name="octoprint_installs"
+        "devices.Device", on_delete=models.CASCADE, related_name="octoprint_servers"
     )
     octoprint_version = models.CharField(max_length=32)
     pip_version = models.CharField(max_length=32)
@@ -48,13 +48,13 @@ class OctoPrintServer(SafeDeleteModel):
 
     # @property
     # def settings(self):
-    #     return OctoPrintSettings.objects.get(octoprint_install=self)
+    #     return OctoPrintSettings.objects.get(octoprint_server=self)
 
 
 class OctoPrintSettings(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
 
-    octoprint_install = models.OneToOneField(
+    octoprint_server = models.OneToOneField(
         OctoPrintServer, on_delete=models.CASCADE, related_name="settings"
     )
     events_enabled = models.BooleanField(

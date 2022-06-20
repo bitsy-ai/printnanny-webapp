@@ -102,7 +102,7 @@ class OctoPrintServerViewSet(
     lookup_field = "id"
 
     @extend_schema(
-        operation_id="octoprint_install_update_or_create",
+        operation_id="octoprint_server_update_or_create",
         responses={
             # 400: PrinterProfileSerializer,
             200: OctoPrintServerSerializer,
