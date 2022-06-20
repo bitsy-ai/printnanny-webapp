@@ -9,7 +9,6 @@ from print_nanny_webapp.devices.api.views import (
     JanusAuthViewSet,
     JanusCloudStreamViewSet,
     JanusEdgeStreamViewSet,
-    LicenseVerifyViewSet,
     PublicKeyViewSet,
     SystemInfoViewSet,
     DeviceViewSet,
@@ -89,7 +88,6 @@ router.register(
     basename="octoprint-settings",
 )
 
-router.register("license", LicenseVerifyViewSet, basename="license-verify")
 router.register("events", EventViewSet, basename="events")
 router.register("commands", CommandViewSet, basename="commands")
 router.register("users", UserViewSet)

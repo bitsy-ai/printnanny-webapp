@@ -8,6 +8,7 @@ from django.views import View
 from django.http import HttpResponse
 from django.views.generic.detail import SingleObjectMixin
 from print_nanny_webapp.devices.models import Device
+from print_nanny_webapp.utils.api.service import get_api_config
 from .api.serializers import LicenseSerializer
 
 logger = logging.getLogger(__name__)
@@ -63,6 +64,8 @@ class LicenseDownloadView(LoginRequiredMixin, SingleObjectMixin, View):
 
     def get(self, request, pk=None):
         obj = Device.objects.get(id=pk)
+        obj.api = get_api_config(request, obj.user)
+
         serializer = LicenseSerializer(instance=obj)
         json_str = json.dumps(serializer.data)
         response = HttpResponse(json_str, content_type="application/json")

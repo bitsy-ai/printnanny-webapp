@@ -64,7 +64,6 @@ class Device(SafeDeleteModel):
         help_text="Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension)",
         default="printnanny",
     )
-    license_key = models.UUIDField(default=uuid4, editable=False)
 
     @property
     def is_active(self) -> bool:

@@ -16,6 +16,7 @@ from ..enum import (
     JanusConfigType,
 )
 from print_nanny_webapp.users.api.serializers import UserSerializer
+from print_nanny_webapp.utils.api.serializers import PrintNannyApiConfigSerializer
 
 User = get_user_model()
 
@@ -229,6 +230,8 @@ class DeviceSerializer(serializers.ModelSerializer):
 
 
 class LicenseSerializer(serializers.ModelSerializer):
+    api = PrintNannyApiConfigSerializer(read_only=True)
+
     class Meta:
         model = Device
-        exclude = ("deleted",)
+        fields = ("hostname", "created_dt", "user", "api")
