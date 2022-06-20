@@ -44,8 +44,6 @@ from printnanny_api_client.models.janus_config_type import JanusConfigType
 from printnanny_api_client.models.janus_edge_stream import JanusEdgeStream
 from printnanny_api_client.models.janus_edge_stream_request import JanusEdgeStreamRequest
 from printnanny_api_client.models.janus_stream import JanusStream
-from printnanny_api_client.models.license import License
-from printnanny_api_client.models.license_request import LicenseRequest
 from printnanny_api_client.models.mobile_auth_request import MobileAuthRequest
 from printnanny_api_client.models.octo_print_backup import OctoPrintBackup
 from printnanny_api_client.models.octo_print_event import OctoPrintEvent
@@ -58,7 +56,6 @@ from printnanny_api_client.models.octo_print_settings import OctoPrintSettings
 from printnanny_api_client.models.octo_print_settings_request import OctoPrintSettingsRequest
 from printnanny_api_client.models.octo_printer_profile import OctoPrinterProfile
 from printnanny_api_client.models.octo_printer_profile_request import OctoPrinterProfileRequest
-from printnanny_api_client.models.os_edition import OsEdition
 from printnanny_api_client.models.paginated_alert_list import PaginatedAlertList
 from printnanny_api_client.models.paginated_cloudiot_device_list import PaginatedCloudiotDeviceList
 from printnanny_api_client.models.paginated_device_list import PaginatedDeviceList

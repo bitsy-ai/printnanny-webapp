@@ -19,9 +19,7 @@ Name | Type | Description | Notes
 **system_info** | Option<[**crate::models::SystemInfo**](SystemInfo.md)> |  | [readonly]
 **public_key** | Option<[**crate::models::PublicKey**](PublicKey.md)> |  | [readonly]
 **created_dt** | **String** |  | [readonly]
-**updated_dt** | **String** |  | [readonly]
 **hostname** | Option<**String**> | Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension) | [optional]
-**edition** | [**crate::models::OsEdition**](OsEdition.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

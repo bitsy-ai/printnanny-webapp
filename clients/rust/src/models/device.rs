@@ -43,17 +43,13 @@ pub struct Device {
     pub public_key: Option<Box<crate::models::PublicKey>>,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
-    #[serde(rename = "updated_dt")]
-    pub updated_dt: String,
     /// Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension)
     #[serde(rename = "hostname", skip_serializing_if = "Option::is_none")]
     pub hostname: Option<String>,
-    #[serde(rename = "edition")]
-    pub edition: crate::models::OsEdition,
 }
 
 impl Device {
-    pub fn new(id: i32, cloudiot_device: Option<crate::models::CloudiotDevice>, cloud_url: String, edge_url: String, video_test_url: String, janus_auth: Option<crate::models::JanusAuth>, janus_local_url: String, user: Option<crate::models::User>, octoprint_url: String, system_info: Option<crate::models::SystemInfo>, public_key: Option<crate::models::PublicKey>, created_dt: String, updated_dt: String, edition: crate::models::OsEdition) -> Device {
+    pub fn new(id: i32, cloudiot_device: Option<crate::models::CloudiotDevice>, cloud_url: String, edge_url: String, video_test_url: String, janus_auth: Option<crate::models::JanusAuth>, janus_local_url: String, user: Option<crate::models::User>, octoprint_url: String, system_info: Option<crate::models::SystemInfo>, public_key: Option<crate::models::PublicKey>, created_dt: String) -> Device {
         Device {
             id,
             cloudiot_device: cloudiot_device.map(Box::new),
@@ -70,9 +66,7 @@ impl Device {
             system_info: system_info.map(Box::new),
             public_key: public_key.map(Box::new),
             created_dt,
-            updated_dt,
             hostname: None,
-            edition,
         }
     }
 }

@@ -7,27 +7,27 @@ import uuid
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devices', '0021_auto_20220619_2227'),
+        ("devices", "0021_auto_20220619_2227"),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='AnsibleFactsd',
+            name="AnsibleFactsd",
         ),
         migrations.AddField(
-            model_name='device',
-            name='license_key',
+            model_name="device",
+            name="license_key",
             field=models.UUIDField(default=uuid.uuid4, editable=False),
         ),
         migrations.AlterIndexTogether(
-            name='device',
-            index_together={('hostname', 'created_dt')},
+            name="device",
+            index_together={("hostname", "created_dt")},
         ),
         migrations.DeleteModel(
-            name='License',
+            name="License",
         ),
         migrations.RemoveField(
-            model_name='device',
-            name='updated_dt',
+            model_name="device",
+            name="updated_dt",
         ),
     ]

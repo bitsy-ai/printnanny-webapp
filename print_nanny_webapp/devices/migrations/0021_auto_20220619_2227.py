@@ -7,29 +7,33 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devices', '0020_auto_20220618_1947'),
+        ("devices", "0020_auto_20220618_1947"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='device',
-            name='edition',
+            model_name="device",
+            name="edition",
         ),
         migrations.RemoveField(
-            model_name='device',
-            name='monitoring_active',
+            model_name="device",
+            name="monitoring_active",
         ),
         migrations.RemoveField(
-            model_name='device',
-            name='release_channel',
+            model_name="device",
+            name="release_channel",
         ),
         migrations.RemoveField(
-            model_name='device',
-            name='setup_complete',
+            model_name="device",
+            name="setup_complete",
         ),
         migrations.AlterField(
-            model_name='systeminfo',
-            name='device',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='system_info', to='devices.device'),
+            model_name="systeminfo",
+            name="device",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="system_info",
+                to="devices.device",
+            ),
         ),
     ]

@@ -15,7 +15,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.86.0"
+__version__ = "0.88.0"
 
 # import apis into sdk package
 from printnanny_api_client.api.alert_settings_api import AlertSettingsApi
@@ -27,7 +27,6 @@ from printnanny_api_client.api.config_api import ConfigApi
 from printnanny_api_client.api.devices_api import DevicesApi
 from printnanny_api_client.api.events_api import EventsApi
 from printnanny_api_client.api.janus_api import JanusApi
-from printnanny_api_client.api.licenses_api import LicensesApi
 from printnanny_api_client.api.octoprint_api import OctoprintApi
 from printnanny_api_client.api.partners_geeks3d_api import PartnersGeeks3dApi
 from printnanny_api_client.api.schema_api import SchemaApi
@@ -72,8 +71,6 @@ from printnanny_api_client.models.janus_config_type import JanusConfigType
 from printnanny_api_client.models.janus_edge_stream import JanusEdgeStream
 from printnanny_api_client.models.janus_edge_stream_request import JanusEdgeStreamRequest
 from printnanny_api_client.models.janus_stream import JanusStream
-from printnanny_api_client.models.license import License
-from printnanny_api_client.models.license_request import LicenseRequest
 from printnanny_api_client.models.mobile_auth_request import MobileAuthRequest
 from printnanny_api_client.models.octo_print_backup import OctoPrintBackup
 from printnanny_api_client.models.octo_print_event import OctoPrintEvent
@@ -86,7 +83,6 @@ from printnanny_api_client.models.octo_print_settings import OctoPrintSettings
 from printnanny_api_client.models.octo_print_settings_request import OctoPrintSettingsRequest
 from printnanny_api_client.models.octo_printer_profile import OctoPrinterProfile
 from printnanny_api_client.models.octo_printer_profile_request import OctoPrinterProfileRequest
-from printnanny_api_client.models.os_edition import OsEdition
 from printnanny_api_client.models.paginated_alert_list import PaginatedAlertList
 from printnanny_api_client.models.paginated_cloudiot_device_list import PaginatedCloudiotDeviceList
 from printnanny_api_client.models.paginated_device_list import PaginatedDeviceList

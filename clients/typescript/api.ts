@@ -583,23 +583,11 @@ export interface Device {
      */
     'created_dt': string;
     /**
-     * 
-     * @type {string}
-     * @memberof Device
-     */
-    'updated_dt': string;
-    /**
      * Please enter the hostname you set in the Raspberry Pi Imager\'s Advanced Options menu (without .local extension)
      * @type {string}
      * @memberof Device
      */
     'hostname'?: string;
-    /**
-     * 
-     * @type {OsEdition}
-     * @memberof Device
-     */
-    'edition': OsEdition;
 }
 /**
  * 
@@ -645,12 +633,6 @@ export interface DeviceRequest {
      * @memberof DeviceRequest
      */
     'hostname'?: string;
-    /**
-     * 
-     * @type {OsEdition}
-     * @memberof DeviceRequest
-     */
-    'edition': OsEdition;
 }
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
@@ -1345,68 +1327,6 @@ export interface JanusStream {
      * @memberof JanusStream
      */
     'device': number;
-}
-/**
- * 
- * @export
- * @interface License
- */
-export interface License {
-    /**
-     * 
-     * @type {string}
-     * @memberof License
-     */
-    'id': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof License
-     */
-    'user': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof License
-     */
-    'created_dt': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof License
-     */
-    'updated_dt': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof License
-     */
-    'device'?: number | null;
-}
-/**
- * 
- * @export
- * @interface LicenseRequest
- */
-export interface LicenseRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof LicenseRequest
-     */
-    'id': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof LicenseRequest
-     */
-    'user': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof LicenseRequest
-     */
-    'device'?: number | null;
 }
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
@@ -2175,24 +2095,6 @@ export interface OctoPrinterProfileRequest {
 /**
  * 
  * @export
- * @enum {string}
- */
-
-export const OsEdition = {
-    OctoprintDesktop: 'octoprint_desktop',
-    OctoprintLite: 'octoprint_lite',
-    RepetierDesktop: 'repetier_desktop',
-    RepetierLite: 'repetier_lite',
-    MainsailDesktop: 'mainsail_desktop',
-    MainsailLite: 'mainsail_lite'
-} as const;
-
-export type OsEdition = typeof OsEdition[keyof typeof OsEdition];
-
-
-/**
- * 
- * @export
  * @interface PaginatedAlertList
  */
 export interface PaginatedAlertList {
@@ -2914,12 +2816,6 @@ export interface PatchedDeviceRequest {
      * @memberof PatchedDeviceRequest
      */
     'hostname'?: string;
-    /**
-     * 
-     * @type {OsEdition}
-     * @memberof PatchedDeviceRequest
-     */
-    'edition'?: OsEdition;
 }
 /**
  * 
@@ -7660,15 +7556,13 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * A device (Raspberry Pi) running Print Nanny OS
          * @param {number} id A unique integer value identifying this device.
-         * @param {DeviceRequest} deviceRequest 
+         * @param {DeviceRequest} [deviceRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesUpdate: async (id: number, deviceRequest: DeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesUpdate: async (id: number, deviceRequest?: DeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('devicesUpdate', 'id', id)
-            // verify required parameter 'deviceRequest' is not null or undefined
-            assertParamExists('devicesUpdate', 'deviceRequest', deviceRequest)
             const localVarPath = `/api/devices/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -8207,11 +8101,11 @@ export const DevicesApiFp = function(configuration?: Configuration) {
         /**
          * A device (Raspberry Pi) running Print Nanny OS
          * @param {number} id A unique integer value identifying this device.
-         * @param {DeviceRequest} deviceRequest 
+         * @param {DeviceRequest} [deviceRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesUpdate(id: number, deviceRequest: DeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async devicesUpdate(id: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesUpdate(id, deviceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -8616,11 +8510,11 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         /**
          * A device (Raspberry Pi) running Print Nanny OS
          * @param {number} id A unique integer value identifying this device.
-         * @param {DeviceRequest} deviceRequest 
+         * @param {DeviceRequest} [deviceRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesUpdate(id: number, deviceRequest: DeviceRequest, options?: any): AxiosPromise<void> {
+        devicesUpdate(id: number, deviceRequest?: DeviceRequest, options?: any): AxiosPromise<void> {
             return localVarFp.devicesUpdate(id, deviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -9021,12 +8915,12 @@ export interface DevicesApiInterface {
     /**
      * A device (Raspberry Pi) running Print Nanny OS
      * @param {number} id A unique integer value identifying this device.
-     * @param {DeviceRequest} deviceRequest 
+     * @param {DeviceRequest} [deviceRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesUpdate(id: number, deviceRequest: DeviceRequest, options?: AxiosRequestConfig): AxiosPromise<void>;
+    devicesUpdate(id: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig): AxiosPromise<void>;
 
     /**
      * 
@@ -9498,12 +9392,12 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
     /**
      * A device (Raspberry Pi) running Print Nanny OS
      * @param {number} id A unique integer value identifying this device.
-     * @param {DeviceRequest} deviceRequest 
+     * @param {DeviceRequest} [deviceRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesUpdate(id: number, deviceRequest: DeviceRequest, options?: AxiosRequestConfig) {
+    public devicesUpdate(id: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesUpdate(id, deviceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -11503,220 +11397,6 @@ export class JanusApi extends BaseAPI implements JanusApiInterface {
      */
     public usersJanusAuthUpdateOrCreate(userId: number, janusAuthRequest: JanusAuthRequest, options?: AxiosRequestConfig) {
         return JanusApiFp(this.configuration).usersJanusAuthUpdateOrCreate(userId, janusAuthRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-}
-
-
-/**
- * LicensesApi - axios parameter creator
- * @export
- */
-export const LicensesApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * Marks License as activated (by setting Device fkey relation)
-         * @param {string} id A UUID string identifying this license.
-         * @param {LicenseRequest} licenseRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        licenseActivate: async (id: string, licenseRequest: LicenseRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('licenseActivate', 'id', id)
-            // verify required parameter 'licenseRequest' is not null or undefined
-            assertParamExists('licenseActivate', 'licenseRequest', licenseRequest)
-            const localVarPath = `/api/license/{id}/activate/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(licenseRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Verifies that license key and email match Returns API credentials if license is inactive
-         * @param {LicenseRequest} licenseRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        licenseVerify: async (licenseRequest: LicenseRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'licenseRequest' is not null or undefined
-            assertParamExists('licenseVerify', 'licenseRequest', licenseRequest)
-            const localVarPath = `/api/license/verify/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(licenseRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * LicensesApi - functional programming interface
- * @export
- */
-export const LicensesApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = LicensesApiAxiosParamCreator(configuration)
-    return {
-        /**
-         * Marks License as activated (by setting Device fkey relation)
-         * @param {string} id A UUID string identifying this license.
-         * @param {LicenseRequest} licenseRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async licenseActivate(id: string, licenseRequest: LicenseRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<License>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.licenseActivate(id, licenseRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * Verifies that license key and email match Returns API credentials if license is inactive
-         * @param {LicenseRequest} licenseRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async licenseVerify(licenseRequest: LicenseRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintNannyApiConfig>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.licenseVerify(licenseRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-    }
-};
-
-/**
- * LicensesApi - factory interface
- * @export
- */
-export const LicensesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = LicensesApiFp(configuration)
-    return {
-        /**
-         * Marks License as activated (by setting Device fkey relation)
-         * @param {string} id A UUID string identifying this license.
-         * @param {LicenseRequest} licenseRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        licenseActivate(id: string, licenseRequest: LicenseRequest, options?: any): AxiosPromise<License> {
-            return localVarFp.licenseActivate(id, licenseRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Verifies that license key and email match Returns API credentials if license is inactive
-         * @param {LicenseRequest} licenseRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        licenseVerify(licenseRequest: LicenseRequest, options?: any): AxiosPromise<PrintNannyApiConfig> {
-            return localVarFp.licenseVerify(licenseRequest, options).then((request) => request(axios, basePath));
-        },
-    };
-};
-
-/**
- * LicensesApi - interface
- * @export
- * @interface LicensesApi
- */
-export interface LicensesApiInterface {
-    /**
-     * Marks License as activated (by setting Device fkey relation)
-     * @param {string} id A UUID string identifying this license.
-     * @param {LicenseRequest} licenseRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof LicensesApiInterface
-     */
-    licenseActivate(id: string, licenseRequest: LicenseRequest, options?: AxiosRequestConfig): AxiosPromise<License>;
-
-    /**
-     * Verifies that license key and email match Returns API credentials if license is inactive
-     * @param {LicenseRequest} licenseRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof LicensesApiInterface
-     */
-    licenseVerify(licenseRequest: LicenseRequest, options?: AxiosRequestConfig): AxiosPromise<PrintNannyApiConfig>;
-
-}
-
-/**
- * LicensesApi - object-oriented interface
- * @export
- * @class LicensesApi
- * @extends {BaseAPI}
- */
-export class LicensesApi extends BaseAPI implements LicensesApiInterface {
-    /**
-     * Marks License as activated (by setting Device fkey relation)
-     * @param {string} id A UUID string identifying this license.
-     * @param {LicenseRequest} licenseRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof LicensesApi
-     */
-    public licenseActivate(id: string, licenseRequest: LicenseRequest, options?: AxiosRequestConfig) {
-        return LicensesApiFp(this.configuration).licenseActivate(id, licenseRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Verifies that license key and email match Returns API credentials if license is inactive
-     * @param {LicenseRequest} licenseRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof LicensesApi
-     */
-    public licenseVerify(licenseRequest: LicenseRequest, options?: AxiosRequestConfig) {
-        return LicensesApiFp(this.configuration).licenseVerify(licenseRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

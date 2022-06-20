@@ -40,19 +40,17 @@ class DeviceRequest(object):
         'monitoring_active': 'bool',
         'setup_complete': 'bool',
         'release_channel': 'DeviceReleaseChannel',
-        'hostname': 'str',
-        'edition': 'OsEdition'
+        'hostname': 'str'
     }
 
     attribute_map = {
         'monitoring_active': 'monitoring_active',
         'setup_complete': 'setup_complete',
         'release_channel': 'release_channel',
-        'hostname': 'hostname',
-        'edition': 'edition'
+        'hostname': 'hostname'
     }
 
-    def __init__(self, monitoring_active=False, setup_complete=False, release_channel=None, hostname=None, edition=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, monitoring_active=False, setup_complete=False, release_channel=None, hostname=None, local_vars_configuration=None):  # noqa: E501
         """DeviceRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -62,7 +60,6 @@ class DeviceRequest(object):
         self._setup_complete = None
         self._release_channel = None
         self._hostname = None
-        self._edition = None
         self.discriminator = None
 
         if monitoring_active is not None:
@@ -72,7 +69,6 @@ class DeviceRequest(object):
         self.release_channel = release_channel
         if hostname is not None:
             self.hostname = hostname
-        self.edition = edition
 
     @property
     def monitoring_active(self):
@@ -165,29 +161,6 @@ class DeviceRequest(object):
             raise ValueError("Invalid value for `hostname`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._hostname = hostname
-
-    @property
-    def edition(self):
-        """Gets the edition of this DeviceRequest.  # noqa: E501
-
-
-        :return: The edition of this DeviceRequest.  # noqa: E501
-        :rtype: OsEdition
-        """
-        return self._edition
-
-    @edition.setter
-    def edition(self, edition):
-        """Sets the edition of this DeviceRequest.
-
-
-        :param edition: The edition of this DeviceRequest.  # noqa: E501
-        :type edition: OsEdition
-        """
-        if self.local_vars_configuration.client_side_validation and edition is None:  # noqa: E501
-            raise ValueError("Invalid value for `edition`, must not be `None`")  # noqa: E501
-
-        self._edition = edition
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

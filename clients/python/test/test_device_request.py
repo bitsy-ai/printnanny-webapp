@@ -40,12 +40,10 @@ class TestDeviceRequest(unittest.TestCase):
                 monitoring_active = True, 
                 setup_complete = True, 
                 release_channel = None, 
-                hostname = '0', 
-                edition = 'octoprint_desktop'
+                hostname = '0'
             )
         else :
             return DeviceRequest(
-                edition = 'octoprint_desktop',
         )
 
     def testDeviceRequest(self):
