@@ -1,7 +1,6 @@
 import logging
 from datetime import datetime
-from typing import Callable, Optional
-from uuid import uuid4
+from typing import Callable, Optional, TypedDict
 from django.conf import settings
 from django.db import models
 from django.contrib.auth import get_user_model
@@ -38,6 +37,13 @@ def pre_softdelete_cloudiot_device(instance=None, **kwargs) -> Callable:
 pre_softdelete.connect(pre_softdelete_cloudiot_device)
 
 
+class DeviceUrls(TypedDict):
+    cloud_dash: str
+    edge_dash: str
+    swupdate: str
+    octoprint: str
+
+
 class Device(SafeDeleteModel):
     """
     Raspberry Pi running PrintNanny OS
@@ -66,6 +72,23 @@ class Device(SafeDeleteModel):
     )
 
     @property
+    def urls(self) -> DeviceUrls:
+        cloud_dash = reverse("devices:detail", kwargs={"pk": self.id})
+        # NOTE: http:// protocol + mDNS hostname is hard-coded here while PrintNanny Network is WIP
+        # TODO: f"https://{self.fqdn}{settings.OCTOPRINT_URL}"
+        edge_dash = f"http://{self.hostname}/"
+        swupdate = f"http://{self.hostname}:8080/"  # TODO configure from settings
+        # NOTE: http:// protocol + mDNS hostname is hard-coded here while PrintNanny Network is WIP
+        # TODO: f"https://{self.fqdn}{settings.OCTOPRINT_URL}"
+        octoprint = f"http://{self.hostname}{settings.OCTOPRINT_URL}"
+        return DeviceUrls(
+            cloud_dash=cloud_dash,
+            edge_dash=edge_dash,
+            swupdate=swupdate,
+            octoprint=octoprint,
+        )
+
+    @property
     def system_info(self):
         return self.system_infos.first()
 
@@ -90,32 +113,8 @@ class Device(SafeDeleteModel):
         return self.public_keys.first()
 
     @property
-    def janus_auth(self):
-        return self.janus_auths.first()
-
-    @property
     def cloudiot_name(self):
         return f"device-id-{self.id}"
-
-    @property
-    def edge_dash_url(self):
-        # NOTE: http:// protocol + mDNS hostname is hard-coded here while PrintNanny Network is WIP
-        # TODO: f"https://{self.fqdn}{settings.OCTOPRINT_URL}"
-        return f"http://{self.hostname}/"
-
-    @property
-    def cloud_url(self):
-        return reverse("devices:detail", kwargs={"pk": self.id})
-
-    @property
-    def octoprint_url(self):
-        # NOTE: http:// protocol + mDNS hostname is hard-coded here while PrintNanny Network is WIP
-        # TODO: f"https://{self.fqdn}{settings.OCTOPRINT_URL}"
-        return f"http://{self.hostname}{settings.OCTOPRINT_URL}"
-
-    @property
-    def video_test_url(self):
-        return reverse("devices:video", kwargs={"pk": self.id})
 
     @property
     def cloudiot_device(self):
@@ -128,10 +127,6 @@ class Device(SafeDeleteModel):
     @property
     def html_id(self) -> str:
         return f"device-{self.id}"
-
-    @property
-    def janus_local_url(self):
-        return f"http://{self.hostname}:8088/janus"
 
 
 class PublicKey(SafeDeleteModel):
