@@ -319,7 +319,7 @@ export default JanusStream;
           {{ device.hostname }} Live
         </span>
         <span v-show="!showVideo && !loading" class="text-center mt-3">
-          {{ device.hostname }} Offline
+          Monitoring Offline
         </span>
       </h3>
     </div>
