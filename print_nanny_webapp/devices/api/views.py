@@ -821,15 +821,15 @@ class LicenseVerifyViewSet(GenericViewSet):
     @action(methods=["post"], detail=False, url_path="verify")
     def verify(self, request):
         """
-        Verifies that license key and email match
+        Verifies that license key and user match
         Returns API credentials if license is inactive
         """
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
-            # verify License key and provided email match
-            license_id = serializer.validated_data.get("id")
+            # verify License key and provided user
+            license_id = serializer.validated_data.get("key")
             user = serializer.validated_data.get("user")
-            obj = License.objects.get(id=license_id)
+            obj = Device.objects.get(key=license_id)
             if obj.user.id == user.id:
                 config_data = get_api_config(request, user)
                 response_serializer = PrintNannyApiConfigSerializer(

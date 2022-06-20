@@ -82,6 +82,7 @@ class Device(SafeDeleteModel):
         info = self.system_info.first()
         if info is not None:
             return info.updated_dt
+        return None
 
     @property
     def public_key(self):
@@ -96,7 +97,7 @@ class Device(SafeDeleteModel):
         return f"device-id-{self.id}"
 
     @property
-    def edge_url(self):
+    def edge_dash_url(self):
         # NOTE: http:// protocol + mDNS hostname is hard-coded here while PrintNanny Network is WIP
         # TODO: f"https://{self.fqdn}{settings.OCTOPRINT_URL}"
         return f"http://{self.hostname}/"
