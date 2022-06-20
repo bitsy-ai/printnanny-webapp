@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **auto_backup** | Option<**String**> |  | [optional]
 **monitoring_auto_start** | Option<**bool**> | Start PrintNanny monitoring automatically when a print job begins | [optional]
 **monitoring_auto_pause** | Option<**bool**> | Pause failing print jobs automatically | [optional]
-**octoprint_install** | Option<**i32**> |  | [optional]
+**octoprint_server** | Option<**i32**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

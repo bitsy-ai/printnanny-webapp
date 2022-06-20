@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **payload** | **dict(str, object)** |  | [optional] 
 **polymorphic_ctype** | **int** |  | [readonly] 
 **user** | **int** |  | [readonly] 
-**octoprint_install** | **int** |  | 
+**octoprint_server** | **int** |  | 
 **device** | **int** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

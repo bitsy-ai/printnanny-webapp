@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **monitoring_auto_pause** | **bool** | Pause failing print jobs automatically | [optional] 
 **created_dt** | **datetime** |  | [readonly] 
 **updated_dt** | **datetime** |  | [readonly] 
-**octoprint_install** | **int** |  | 
+**octoprint_server** | **int** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -18,8 +18,8 @@ pub struct OctoPrintEventRequest {
         pub event_name: crate::models::OctoPrintEventName,
         #[serde(rename = "payload", skip_serializing_if = "Option::is_none")]
         pub payload: Option<::std::collections::HashMap<String, serde_json::Value>>,
-        #[serde(rename = "octoprint_install")]
-        pub octoprint_install: i32,
+        #[serde(rename = "octoprint_server")]
+        pub octoprint_server: i32,
         #[serde(rename = "device")]
         pub device: i32,
 }

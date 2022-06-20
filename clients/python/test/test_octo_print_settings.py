@@ -48,14 +48,14 @@ class TestOctoPrintSettings(unittest.TestCase):
                 monitoring_auto_pause = True, 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                octoprint_install = 56
+                octoprint_server = 56
             )
         else :
             return OctoPrintSettings(
                 id = 56,
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                octoprint_install = 56,
+                octoprint_server = 56,
         )
 
     def testOctoPrintSettings(self):

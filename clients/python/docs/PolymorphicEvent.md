@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **payload** | **dict(str, object)** |  | [optional] 
 **polymorphic_ctype** | **int** |  | [readonly] 
 **user** | **int** |  | [readonly] 
-**octoprint_install** | **int** |  | 
+**octoprint_server** | **int** |  | 
 **device** | **int** |  | 
 **data** | **dict(str, object)** |  | [optional] 
 **stream** | [**JanusStream**](JanusStream.md) |  | [readonly] 

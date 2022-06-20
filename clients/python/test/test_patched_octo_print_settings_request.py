@@ -45,7 +45,7 @@ class TestPatchedOctoPrintSettingsRequest(unittest.TestCase):
                 auto_backup = '0', 
                 monitoring_auto_start = True, 
                 monitoring_auto_pause = True, 
-                octoprint_install = 56
+                octoprint_server = 56
             )
         else :
             return PatchedOctoPrintSettingsRequest(

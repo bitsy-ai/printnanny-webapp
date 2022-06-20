@@ -41,7 +41,7 @@ class PolymorphicEventCreateRequest(object):
         'source': 'EventSource',
         'event_name': 'TestEventName',
         'payload': 'dict(str, object)',
-        'octoprint_install': 'int',
+        'octoprint_server': 'int',
         'device': 'int',
         'data': 'dict(str, object)',
         'stream': 'int'
@@ -52,7 +52,7 @@ class PolymorphicEventCreateRequest(object):
         'source': 'source',
         'event_name': 'event_name',
         'payload': 'payload',
-        'octoprint_install': 'octoprint_install',
+        'octoprint_server': 'octoprint_server',
         'device': 'device',
         'data': 'data',
         'stream': 'stream'
@@ -61,7 +61,7 @@ class PolymorphicEventCreateRequest(object):
     discriminator_value_class_map = {
     }
 
-    def __init__(self, model=None, source=None, event_name=None, payload=None, octoprint_install=None, device=None, data=None, stream=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, model=None, source=None, event_name=None, payload=None, octoprint_server=None, device=None, data=None, stream=None, local_vars_configuration=None):  # noqa: E501
         """PolymorphicEventCreateRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -71,7 +71,7 @@ class PolymorphicEventCreateRequest(object):
         self._source = None
         self._event_name = None
         self._payload = None
-        self._octoprint_install = None
+        self._octoprint_server = None
         self._device = None
         self._data = None
         self._stream = None
@@ -82,7 +82,7 @@ class PolymorphicEventCreateRequest(object):
         self.event_name = event_name
         if payload is not None:
             self.payload = payload
-        self.octoprint_install = octoprint_install
+        self.octoprint_server = octoprint_server
         self.device = device
         if data is not None:
             self.data = data
@@ -179,27 +179,27 @@ class PolymorphicEventCreateRequest(object):
         self._payload = payload
 
     @property
-    def octoprint_install(self):
-        """Gets the octoprint_install of this PolymorphicEventCreateRequest.  # noqa: E501
+    def octoprint_server(self):
+        """Gets the octoprint_server of this PolymorphicEventCreateRequest.  # noqa: E501
 
 
-        :return: The octoprint_install of this PolymorphicEventCreateRequest.  # noqa: E501
+        :return: The octoprint_server of this PolymorphicEventCreateRequest.  # noqa: E501
         :rtype: int
         """
-        return self._octoprint_install
+        return self._octoprint_server
 
-    @octoprint_install.setter
-    def octoprint_install(self, octoprint_install):
-        """Sets the octoprint_install of this PolymorphicEventCreateRequest.
+    @octoprint_server.setter
+    def octoprint_server(self, octoprint_server):
+        """Sets the octoprint_server of this PolymorphicEventCreateRequest.
 
 
-        :param octoprint_install: The octoprint_install of this PolymorphicEventCreateRequest.  # noqa: E501
-        :type octoprint_install: int
+        :param octoprint_server: The octoprint_server of this PolymorphicEventCreateRequest.  # noqa: E501
+        :type octoprint_server: int
         """
-        if self.local_vars_configuration.client_side_validation and octoprint_install is None:  # noqa: E501
-            raise ValueError("Invalid value for `octoprint_install`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and octoprint_server is None:  # noqa: E501
+            raise ValueError("Invalid value for `octoprint_server`, must not be `None`")  # noqa: E501
 
-        self._octoprint_install = octoprint_install
+        self._octoprint_server = octoprint_server
 
     @property
     def device(self):

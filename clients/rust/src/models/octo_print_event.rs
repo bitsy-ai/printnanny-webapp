@@ -29,14 +29,14 @@ pub struct OctoPrintEvent {
     pub polymorphic_ctype: i32,
     #[serde(rename = "user")]
     pub user: i32,
-    #[serde(rename = "octoprint_install")]
-    pub octoprint_install: i32,
+    #[serde(rename = "octoprint_server")]
+    pub octoprint_server: i32,
     #[serde(rename = "device")]
     pub device: i32,
 }
 
 impl OctoPrintEvent {
-    pub fn new(id: i32, model: crate::models::OctoPrintEventModel, created_dt: String, source: crate::models::EventSource, event_name: crate::models::OctoPrintEventName, polymorphic_ctype: i32, user: i32, octoprint_install: i32, device: i32) -> OctoPrintEvent {
+    pub fn new(id: i32, model: crate::models::OctoPrintEventModel, created_dt: String, source: crate::models::EventSource, event_name: crate::models::OctoPrintEventName, polymorphic_ctype: i32, user: i32, octoprint_server: i32, device: i32) -> OctoPrintEvent {
         OctoPrintEvent {
             id,
             model,
@@ -46,7 +46,7 @@ impl OctoPrintEvent {
             payload: None,
             polymorphic_ctype,
             user,
-            octoprint_install,
+            octoprint_server,
             device,
         }
     }

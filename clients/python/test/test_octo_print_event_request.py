@@ -43,7 +43,7 @@ class TestOctoPrintEventRequest(unittest.TestCase):
                 payload = {
                     'key' : null
                     }, 
-                octoprint_install = 56, 
+                octoprint_server = 56, 
                 device = 56
             )
         else :
@@ -51,7 +51,7 @@ class TestOctoPrintEventRequest(unittest.TestCase):
                 model = 'OctoPrintEvent',
                 source = 'octoprint',
                 event_name = 'Startup',
-                octoprint_install = 56,
+                octoprint_server = 56,
                 device = 56,
         )
 

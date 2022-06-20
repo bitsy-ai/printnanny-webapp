@@ -48,7 +48,7 @@ class OctoPrintSettings(object):
         'monitoring_auto_pause': 'bool',
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
-        'octoprint_install': 'int'
+        'octoprint_server': 'int'
     }
 
     attribute_map = {
@@ -63,10 +63,10 @@ class OctoPrintSettings(object):
         'monitoring_auto_pause': 'monitoring_auto_pause',
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
-        'octoprint_install': 'octoprint_install'
+        'octoprint_server': 'octoprint_server'
     }
 
-    def __init__(self, id=None, events_enabled=None, telemetry_enabled=None, sync_gcode=None, sync_printer_profiles=None, sync_backups=None, auto_backup=None, monitoring_auto_start=None, monitoring_auto_pause=None, created_dt=None, updated_dt=None, octoprint_install=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, events_enabled=None, telemetry_enabled=None, sync_gcode=None, sync_printer_profiles=None, sync_backups=None, auto_backup=None, monitoring_auto_start=None, monitoring_auto_pause=None, created_dt=None, updated_dt=None, octoprint_server=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintSettings - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -83,7 +83,7 @@ class OctoPrintSettings(object):
         self._monitoring_auto_pause = None
         self._created_dt = None
         self._updated_dt = None
-        self._octoprint_install = None
+        self._octoprint_server = None
         self.discriminator = None
 
         self.id = id
@@ -105,7 +105,7 @@ class OctoPrintSettings(object):
             self.monitoring_auto_pause = monitoring_auto_pause
         self.created_dt = created_dt
         self.updated_dt = updated_dt
-        self.octoprint_install = octoprint_install
+        self.octoprint_server = octoprint_server
 
     @property
     def id(self):
@@ -362,27 +362,27 @@ class OctoPrintSettings(object):
         self._updated_dt = updated_dt
 
     @property
-    def octoprint_install(self):
-        """Gets the octoprint_install of this OctoPrintSettings.  # noqa: E501
+    def octoprint_server(self):
+        """Gets the octoprint_server of this OctoPrintSettings.  # noqa: E501
 
 
-        :return: The octoprint_install of this OctoPrintSettings.  # noqa: E501
+        :return: The octoprint_server of this OctoPrintSettings.  # noqa: E501
         :rtype: int
         """
-        return self._octoprint_install
+        return self._octoprint_server
 
-    @octoprint_install.setter
-    def octoprint_install(self, octoprint_install):
-        """Sets the octoprint_install of this OctoPrintSettings.
+    @octoprint_server.setter
+    def octoprint_server(self, octoprint_server):
+        """Sets the octoprint_server of this OctoPrintSettings.
 
 
-        :param octoprint_install: The octoprint_install of this OctoPrintSettings.  # noqa: E501
-        :type octoprint_install: int
+        :param octoprint_server: The octoprint_server of this OctoPrintSettings.  # noqa: E501
+        :type octoprint_server: int
         """
-        if self.local_vars_configuration.client_side_validation and octoprint_install is None:  # noqa: E501
-            raise ValueError("Invalid value for `octoprint_install`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and octoprint_server is None:  # noqa: E501
+            raise ValueError("Invalid value for `octoprint_server`, must not be `None`")  # noqa: E501
 
-        self._octoprint_install = octoprint_install
+        self._octoprint_server = octoprint_server
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

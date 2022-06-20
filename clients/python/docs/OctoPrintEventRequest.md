@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **source** | [**EventSource**](EventSource.md) |  | 
 **event_name** | [**OctoPrintEventName**](OctoPrintEventName.md) |  | 
 **payload** | **dict(str, object)** |  | [optional] 
-**octoprint_install** | **int** |  | 
+**octoprint_server** | **int** |  | 
 **device** | **int** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -45,7 +45,7 @@ class PatchedOctoPrintSettingsRequest(object):
         'auto_backup': 'str',
         'monitoring_auto_start': 'bool',
         'monitoring_auto_pause': 'bool',
-        'octoprint_install': 'int'
+        'octoprint_server': 'int'
     }
 
     attribute_map = {
@@ -57,10 +57,10 @@ class PatchedOctoPrintSettingsRequest(object):
         'auto_backup': 'auto_backup',
         'monitoring_auto_start': 'monitoring_auto_start',
         'monitoring_auto_pause': 'monitoring_auto_pause',
-        'octoprint_install': 'octoprint_install'
+        'octoprint_server': 'octoprint_server'
     }
 
-    def __init__(self, events_enabled=None, telemetry_enabled=None, sync_gcode=None, sync_printer_profiles=None, sync_backups=None, auto_backup=None, monitoring_auto_start=None, monitoring_auto_pause=None, octoprint_install=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, events_enabled=None, telemetry_enabled=None, sync_gcode=None, sync_printer_profiles=None, sync_backups=None, auto_backup=None, monitoring_auto_start=None, monitoring_auto_pause=None, octoprint_server=None, local_vars_configuration=None):  # noqa: E501
         """PatchedOctoPrintSettingsRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -74,7 +74,7 @@ class PatchedOctoPrintSettingsRequest(object):
         self._auto_backup = None
         self._monitoring_auto_start = None
         self._monitoring_auto_pause = None
-        self._octoprint_install = None
+        self._octoprint_server = None
         self.discriminator = None
 
         if events_enabled is not None:
@@ -93,8 +93,8 @@ class PatchedOctoPrintSettingsRequest(object):
             self.monitoring_auto_start = monitoring_auto_start
         if monitoring_auto_pause is not None:
             self.monitoring_auto_pause = monitoring_auto_pause
-        if octoprint_install is not None:
-            self.octoprint_install = octoprint_install
+        if octoprint_server is not None:
+            self.octoprint_server = octoprint_server
 
     @property
     def events_enabled(self):
@@ -285,25 +285,25 @@ class PatchedOctoPrintSettingsRequest(object):
         self._monitoring_auto_pause = monitoring_auto_pause
 
     @property
-    def octoprint_install(self):
-        """Gets the octoprint_install of this PatchedOctoPrintSettingsRequest.  # noqa: E501
+    def octoprint_server(self):
+        """Gets the octoprint_server of this PatchedOctoPrintSettingsRequest.  # noqa: E501
 
 
-        :return: The octoprint_install of this PatchedOctoPrintSettingsRequest.  # noqa: E501
+        :return: The octoprint_server of this PatchedOctoPrintSettingsRequest.  # noqa: E501
         :rtype: int
         """
-        return self._octoprint_install
+        return self._octoprint_server
 
-    @octoprint_install.setter
-    def octoprint_install(self, octoprint_install):
-        """Sets the octoprint_install of this PatchedOctoPrintSettingsRequest.
+    @octoprint_server.setter
+    def octoprint_server(self, octoprint_server):
+        """Sets the octoprint_server of this PatchedOctoPrintSettingsRequest.
 
 
-        :param octoprint_install: The octoprint_install of this PatchedOctoPrintSettingsRequest.  # noqa: E501
-        :type octoprint_install: int
+        :param octoprint_server: The octoprint_server of this PatchedOctoPrintSettingsRequest.  # noqa: E501
+        :type octoprint_server: int
         """
 
-        self._octoprint_install = octoprint_install
+        self._octoprint_server = octoprint_server
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

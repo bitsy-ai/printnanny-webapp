@@ -970,149 +970,6 @@ class OctoprintApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def octoprint_install_update_or_create(self, octo_print_server_request, **kwargs):  # noqa: E501
-        """octoprint_install_update_or_create  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.octoprint_install_update_or_create(octo_print_server_request, async_req=True)
-        >>> result = thread.get()
-
-        :param octo_print_server_request: (required)
-        :type octo_print_server_request: OctoPrintServerRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: OctoPrintServer
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.octoprint_install_update_or_create_with_http_info(octo_print_server_request, **kwargs)  # noqa: E501
-
-    def octoprint_install_update_or_create_with_http_info(self, octo_print_server_request, **kwargs):  # noqa: E501
-        """octoprint_install_update_or_create  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.octoprint_install_update_or_create_with_http_info(octo_print_server_request, async_req=True)
-        >>> result = thread.get()
-
-        :param octo_print_server_request: (required)
-        :type octo_print_server_request: OctoPrintServerRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(OctoPrintServer, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        local_var_params = locals()
-
-        all_params = [
-            'octo_print_server_request'
-        ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method octoprint_install_update_or_create" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'octo_print_server_request' is set
-        if self.api_client.client_side_validation and ('octo_print_server_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['octo_print_server_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `octo_print_server_request` when calling `octoprint_install_update_or_create`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-
-        query_params = []
-
-        header_params = dict(local_var_params.get('_headers', {}))
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'octo_print_server_request' in local_var_params:
-            body_params = local_var_params['octo_print_server_request']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
-                'POST', body_params))  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-
-        response_types_map = {
-            200: "OctoPrintServer",
-            201: "OctoPrintServer",
-        }
-
-        return self.api_client.call_api(
-            '/api/octoprint-servers/update-or-create/', 'POST',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_types_map=response_types_map,
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats,
-            _request_auth=local_var_params.get('_request_auth'))
-
     def octoprint_printer_profiles_create(self, octo_printer_profile_request, **kwargs):  # noqa: E501
         """octoprint_printer_profiles_create  # noqa: E501
 
@@ -1820,6 +1677,149 @@ class OctoprintApi(object):
 
         return self.api_client.call_api(
             '/api/octoprint/printer-profiles/update-or-create/', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
+    def octoprint_server_update_or_create(self, octo_print_server_request, **kwargs):  # noqa: E501
+        """octoprint_server_update_or_create  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.octoprint_server_update_or_create(octo_print_server_request, async_req=True)
+        >>> result = thread.get()
+
+        :param octo_print_server_request: (required)
+        :type octo_print_server_request: OctoPrintServerRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: OctoPrintServer
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.octoprint_server_update_or_create_with_http_info(octo_print_server_request, **kwargs)  # noqa: E501
+
+    def octoprint_server_update_or_create_with_http_info(self, octo_print_server_request, **kwargs):  # noqa: E501
+        """octoprint_server_update_or_create  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.octoprint_server_update_or_create_with_http_info(octo_print_server_request, async_req=True)
+        >>> result = thread.get()
+
+        :param octo_print_server_request: (required)
+        :type octo_print_server_request: OctoPrintServerRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(OctoPrintServer, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'octo_print_server_request'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method octoprint_server_update_or_create" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'octo_print_server_request' is set
+        if self.api_client.client_side_validation and ('octo_print_server_request' not in local_var_params or  # noqa: E501
+                                                        local_var_params['octo_print_server_request'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `octo_print_server_request` when calling `octoprint_server_update_or_create`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = dict(local_var_params.get('_headers', {}))
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'octo_print_server_request' in local_var_params:
+            body_params = local_var_params['octo_print_server_request']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
+                'POST', body_params))  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
+
+        response_types_map = {
+            200: "OctoPrintServer",
+            201: "OctoPrintServer",
+        }
+
+        return self.api_client.call_api(
+            '/api/octoprint-servers/update-or-create/', 'POST',
             path_params,
             query_params,
             header_params,

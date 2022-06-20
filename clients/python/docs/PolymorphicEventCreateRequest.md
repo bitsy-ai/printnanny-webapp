@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **source** | [**EventSource**](EventSource.md) |  | 
 **event_name** | [**TestEventName**](TestEventName.md) |  | 
 **payload** | **dict(str, object)** |  | [optional] 
-**octoprint_install** | **int** |  | 
+**octoprint_server** | **int** |  | 
 **device** | **int** |  | 
 **data** | **dict(str, object)** |  | [optional] 
 **stream** | **int** |  | 

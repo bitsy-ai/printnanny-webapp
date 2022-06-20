@@ -36,8 +36,8 @@ pub struct PatchedOctoPrintSettingsRequest {
     /// Pause failing print jobs automatically
     #[serde(rename = "monitoring_auto_pause", skip_serializing_if = "Option::is_none")]
     pub monitoring_auto_pause: Option<bool>,
-    #[serde(rename = "octoprint_install", skip_serializing_if = "Option::is_none")]
-    pub octoprint_install: Option<i32>,
+    #[serde(rename = "octoprint_server", skip_serializing_if = "Option::is_none")]
+    pub octoprint_server: Option<i32>,
 }
 
 impl PatchedOctoPrintSettingsRequest {
@@ -51,7 +51,7 @@ impl PatchedOctoPrintSettingsRequest {
             auto_backup: None,
             monitoring_auto_start: None,
             monitoring_auto_pause: None,
-            octoprint_install: None,
+            octoprint_server: None,
         }
     }
 }

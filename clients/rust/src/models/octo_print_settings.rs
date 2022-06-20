@@ -42,12 +42,12 @@ pub struct OctoPrintSettings {
     pub created_dt: String,
     #[serde(rename = "updated_dt")]
     pub updated_dt: String,
-    #[serde(rename = "octoprint_install")]
-    pub octoprint_install: i32,
+    #[serde(rename = "octoprint_server")]
+    pub octoprint_server: i32,
 }
 
 impl OctoPrintSettings {
-    pub fn new(id: i32, created_dt: String, updated_dt: String, octoprint_install: i32) -> OctoPrintSettings {
+    pub fn new(id: i32, created_dt: String, updated_dt: String, octoprint_server: i32) -> OctoPrintSettings {
         OctoPrintSettings {
             id,
             events_enabled: None,
@@ -60,7 +60,7 @@ impl OctoPrintSettings {
             monitoring_auto_pause: None,
             created_dt,
             updated_dt,
-            octoprint_install,
+            octoprint_server,
         }
     }
 }

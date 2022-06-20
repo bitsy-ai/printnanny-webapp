@@ -65,12 +65,6 @@ class TestOctoprintApi(unittest.TestCase):
         """
         pass
 
-    def test_octoprint_install_update_or_create(self):
-        """Test case for octoprint_install_update_or_create
-
-        """
-        pass
-
     def test_octoprint_printer_profiles_create(self):
         """Test case for octoprint_printer_profiles_create
 
@@ -97,6 +91,12 @@ class TestOctoprintApi(unittest.TestCase):
 
     def test_octoprint_profile_update_or_create(self):
         """Test case for octoprint_profile_update_or_create
+
+        """
+        pass
+
+    def test_octoprint_server_update_or_create(self):
+        """Test case for octoprint_server_update_or_create
 
         """
         pass

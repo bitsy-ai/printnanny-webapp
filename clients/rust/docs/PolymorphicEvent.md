@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **payload** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **polymorphic_ctype** | **i32** |  | [readonly]
 **user** | **i32** |  | [readonly]
-**octoprint_install** | **i32** |  | 
+**octoprint_server** | **i32** |  | 
 **device** | **i32** |  | 
 **data** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **stream** | Option<[**crate::models::JanusStream**](JanusStream.md)> |  | [readonly]

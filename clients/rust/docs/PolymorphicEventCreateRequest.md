@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **source** | [**crate::models::EventSource**](EventSource.md) |  | 
 **event_name** | [**crate::models::TestEventName**](TestEventName.md) |  | 
 **payload** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
-**octoprint_install** | **i32** |  | 
+**octoprint_server** | **i32** |  | 
 **device** | **i32** |  | 
 **data** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **stream** | **i32** |  | 

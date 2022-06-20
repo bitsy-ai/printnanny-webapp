@@ -86,13 +86,6 @@ pub enum OctoprintGcodeFilesRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`octoprint_install_update_or_create`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum OctoprintInstallUpdateOrCreateError {
-    UnknownValue(serde_json::Value),
-}
-
 /// struct for typed errors of method [`octoprint_printer_profiles_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -134,6 +127,13 @@ pub enum OctoprintPrinterProfilesUpdateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum OctoprintProfileUpdateOrCreateError {
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`octoprint_server_update_or_create`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum OctoprintServerUpdateOrCreateError {
     UnknownValue(serde_json::Value),
 }
 
@@ -379,37 +379,6 @@ pub async fn octoprint_gcode_files_retrieve(configuration: &configuration::Confi
     }
 }
 
-pub async fn octoprint_install_update_or_create(configuration: &configuration::Configuration, octo_print_server_request: crate::models::OctoPrintServerRequest) -> Result<crate::models::OctoPrintServer, Error<OctoprintInstallUpdateOrCreateError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/api/octoprint-servers/update-or-create/", local_var_configuration.base_path);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    local_var_req_builder = local_var_req_builder.json(&octo_print_server_request);
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<OctoprintInstallUpdateOrCreateError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
 pub async fn octoprint_printer_profiles_create(configuration: &configuration::Configuration, octo_printer_profile_request: crate::models::OctoPrinterProfileRequest) -> Result<crate::models::OctoPrinterProfile, Error<OctoprintPrinterProfilesCreateError>> {
     let local_var_configuration = configuration;
 
@@ -562,6 +531,37 @@ pub async fn octoprint_profile_update_or_create(configuration: &configuration::C
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<OctoprintProfileUpdateOrCreateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn octoprint_server_update_or_create(configuration: &configuration::Configuration, octo_print_server_request: crate::models::OctoPrintServerRequest) -> Result<crate::models::OctoPrintServer, Error<OctoprintServerUpdateOrCreateError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/api/octoprint-servers/update-or-create/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&octo_print_server_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<OctoprintServerUpdateOrCreateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }

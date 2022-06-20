@@ -47,7 +47,7 @@ class TestOctoPrintEvent(unittest.TestCase):
                     }, 
                 polymorphic_ctype = 56, 
                 user = 56, 
-                octoprint_install = 56, 
+                octoprint_server = 56, 
                 device = 56
             )
         else :
@@ -59,7 +59,7 @@ class TestOctoPrintEvent(unittest.TestCase):
                 event_name = 'Startup',
                 polymorphic_ctype = 56,
                 user = 56,
-                octoprint_install = 56,
+                octoprint_server = 56,
                 device = 56,
         )
 

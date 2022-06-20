@@ -45,7 +45,7 @@ class OctoPrintEvent(object):
         'payload': 'dict(str, object)',
         'polymorphic_ctype': 'int',
         'user': 'int',
-        'octoprint_install': 'int',
+        'octoprint_server': 'int',
         'device': 'int'
     }
 
@@ -58,11 +58,11 @@ class OctoPrintEvent(object):
         'payload': 'payload',
         'polymorphic_ctype': 'polymorphic_ctype',
         'user': 'user',
-        'octoprint_install': 'octoprint_install',
+        'octoprint_server': 'octoprint_server',
         'device': 'device'
     }
 
-    def __init__(self, id=None, model=None, created_dt=None, source=None, event_name=None, payload=None, polymorphic_ctype=None, user=None, octoprint_install=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, model=None, created_dt=None, source=None, event_name=None, payload=None, polymorphic_ctype=None, user=None, octoprint_server=None, device=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -76,7 +76,7 @@ class OctoPrintEvent(object):
         self._payload = None
         self._polymorphic_ctype = None
         self._user = None
-        self._octoprint_install = None
+        self._octoprint_server = None
         self._device = None
         self.discriminator = None
 
@@ -89,7 +89,7 @@ class OctoPrintEvent(object):
             self.payload = payload
         self.polymorphic_ctype = polymorphic_ctype
         self.user = user
-        self.octoprint_install = octoprint_install
+        self.octoprint_server = octoprint_server
         self.device = device
 
     @property
@@ -275,27 +275,27 @@ class OctoPrintEvent(object):
         self._user = user
 
     @property
-    def octoprint_install(self):
-        """Gets the octoprint_install of this OctoPrintEvent.  # noqa: E501
+    def octoprint_server(self):
+        """Gets the octoprint_server of this OctoPrintEvent.  # noqa: E501
 
 
-        :return: The octoprint_install of this OctoPrintEvent.  # noqa: E501
+        :return: The octoprint_server of this OctoPrintEvent.  # noqa: E501
         :rtype: int
         """
-        return self._octoprint_install
+        return self._octoprint_server
 
-    @octoprint_install.setter
-    def octoprint_install(self, octoprint_install):
-        """Sets the octoprint_install of this OctoPrintEvent.
+    @octoprint_server.setter
+    def octoprint_server(self, octoprint_server):
+        """Sets the octoprint_server of this OctoPrintEvent.
 
 
-        :param octoprint_install: The octoprint_install of this OctoPrintEvent.  # noqa: E501
-        :type octoprint_install: int
+        :param octoprint_server: The octoprint_server of this OctoPrintEvent.  # noqa: E501
+        :type octoprint_server: int
         """
-        if self.local_vars_configuration.client_side_validation and octoprint_install is None:  # noqa: E501
-            raise ValueError("Invalid value for `octoprint_install`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and octoprint_server is None:  # noqa: E501
+            raise ValueError("Invalid value for `octoprint_server`, must not be `None`")  # noqa: E501
 
-        self._octoprint_install = octoprint_install
+        self._octoprint_server = octoprint_server
 
     @property
     def device(self):

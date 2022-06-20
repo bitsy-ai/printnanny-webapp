@@ -26,8 +26,8 @@ pub struct OctoPrintEvent {
         pub polymorphic_ctype: i32,
         #[serde(rename = "user")]
         pub user: i32,
-        #[serde(rename = "octoprint_install")]
-        pub octoprint_install: i32,
+        #[serde(rename = "octoprint_server")]
+        pub octoprint_server: i32,
         #[serde(rename = "device")]
         pub device: i32,
 }
