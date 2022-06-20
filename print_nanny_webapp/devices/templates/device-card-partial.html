@@ -30,9 +30,9 @@
                 License</a>
             {% else %}
             {% if device.is_octoprint %}
-            <a target="_blank" href="{{ device.octoprint_url }}" class="btn btn-success btn-sm ml-1">OctoPrint</a>
+            <a target="_blank" href="{{ device.urls.octoprint }}" class="btn btn-success btn-sm ml-1">OctoPrint</a>
             {% endif %}
-            <a target="_blank" href="{{ device.edge_dash_url }}" class="btn btn-light btn-sm ml-1">Pi Dashboard</a>
+            <a target="_blank" href="{{ device.urls.edge_dash }}" class="btn btn-light btn-sm ml-1">Pi Dashboard</a>
             {% endif %}
 
             <a href="{% url 'devices:delete' pk=device.id %}"><button

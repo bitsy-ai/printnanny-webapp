@@ -6,13 +6,13 @@ from django.contrib.auth import get_user_model
 from print_nanny_webapp.devices.models import (
     Device,
     CloudiotDevice,
+    DeviceUrls,
     JanusAuth,
     JanusStream,
     PublicKey,
     SystemInfo,
 )
 from ..enum import (
-    DeviceReleaseChannel,
     JanusConfigType,
 )
 from print_nanny_webapp.users.api.serializers import UserSerializer
@@ -206,12 +206,14 @@ class SystemInfoSerializer(serializers.ModelSerializer):
 class DeviceSerializer(serializers.ModelSerializer):
 
     cloudiot_device = CloudiotDeviceSerializer(read_only=True)
-    cloud_dash_url = serializers.CharField(read_only=True)
-    edge_dash_url = serializers.CharField(read_only=True)
     user = UserSerializer(read_only=True)
-    octoprint_url = serializers.CharField(read_only=True)
     system_info = SystemInfoSerializer(read_only=True)
     public_key = PublicKeySerializer(read_only=True)
+
+    urls = serializers.SerializerMethodField()
+
+    def get_urls(self, obj) -> DeviceUrls:
+        return obj.urls
 
     class Meta:
         model = Device

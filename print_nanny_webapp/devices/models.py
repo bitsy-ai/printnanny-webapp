@@ -37,6 +37,13 @@ def pre_softdelete_cloudiot_device(instance=None, **kwargs) -> Callable:
 pre_softdelete.connect(pre_softdelete_cloudiot_device)
 
 
+class DeviceUrls(TypedDict):
+    cloud_dash: str
+    edge_dash: str
+    swupdate: str
+    octoprint: str
+
+
 class Device(SafeDeleteModel):
     """
     Raspberry Pi running PrintNanny OS
@@ -65,6 +72,23 @@ class Device(SafeDeleteModel):
     )
 
     @property
+    def urls(self) -> DeviceUrls:
+        cloud_dash = reverse("devices:detail", kwargs={"pk": self.id})
+        # NOTE: http:// protocol + mDNS hostname is hard-coded here while PrintNanny Network is WIP
+        # TODO: f"https://{self.fqdn}{settings.OCTOPRINT_URL}"
+        edge_dash = f"http://{self.hostname}/"
+        swupdate = f"http://{self.hostname}:8080/"  # TODO configure from settings
+        # NOTE: http:// protocol + mDNS hostname is hard-coded here while PrintNanny Network is WIP
+        # TODO: f"https://{self.fqdn}{settings.OCTOPRINT_URL}"
+        octoprint = f"http://{self.hostname}{settings.OCTOPRINT_URL}"
+        return DeviceUrls(
+            cloud_dash=cloud_dash,
+            edge_dash=edge_dash,
+            swupdate=swupdate,
+            octoprint=octoprint,
+        )
+
+    @property
     def system_info(self):
         return self.system_infos.first()
 
@@ -91,22 +115,6 @@ class Device(SafeDeleteModel):
     @property
     def cloudiot_name(self):
         return f"device-id-{self.id}"
-
-    @property
-    def edge_dash_url(self):
-        # NOTE: http:// protocol + mDNS hostname is hard-coded here while PrintNanny Network is WIP
-        # TODO: f"https://{self.fqdn}{settings.OCTOPRINT_URL}"
-        return f"http://{self.hostname}/"
-
-    @property
-    def cloud_dash_url(self):
-        return reverse("devices:detail", kwargs={"pk": self.id})
-
-    @property
-    def octoprint_url(self):
-        # NOTE: http:// protocol + mDNS hostname is hard-coded here while PrintNanny Network is WIP
-        # TODO: f"https://{self.fqdn}{settings.OCTOPRINT_URL}"
-        return f"http://{self.hostname}{settings.OCTOPRINT_URL}"
 
     @property
     def cloudiot_device(self):
