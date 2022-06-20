@@ -800,3 +800,31 @@ class CloudiotDeviceViewSet(
             return Response(response_serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+##
+# License download
+##
+class LicenseDownloadViewSet(
+    GenericViewSet,
+):
+    serializer_class = LicenseSerializer
+
+    @extend_schema(
+        parameters=[
+            OpenApiParameter(
+                name="device_id", type=int, location=OpenApiParameter.PATH
+            ),
+        ],
+        responses={
+            200: LicenseSerializer,
+        }
+        | generic_get_errors,
+    )
+    @action(methods=["get"], detail=False, url_path="download")
+    def download(self, request, device_id=None):
+        device = Device.objects.get(id=device_id)
+        api = get_api_config(request, device.user)
+        instance = dict(device=device, api=api)
+        serializer = LicenseSerializer(instance=instance)
+        return Response(serializer.data, status=status.HTTP_200_OK)
