@@ -1,0 +1,20 @@
+{% load static i18n humanize %}
+
+<dl class="row">
+    <dt class="col-sm-3">{% trans "Last Seen" %}</dt>
+    <dd class="col-sm-3">{{ device.last_seen | naturaltime }}</dd>
+    <dt class="col-sm-3">{% trans "OS Version" %}</dt>
+    <dd class="col-sm-3">
+        {{ device.system_info.os_release_json.PRETTY_NAME }}
+    </dd>
+    <dt class="col-sm-3">Hardware</dt>
+    <dd class="col-sm-3">
+        {{ device.system_info.model }}
+    </dd>
+
+    <!-- <dt class="col-sm-3">Last Telemetry</dt>
+    <dd class="col-sm-9">{{ object.cloudiot_device_status.lastEventTime }}</dd>
+
+    <dt class="col-sm-3">Last Heartbeat</dt>
+    <dd class="col-sm-9">{{ object.cloudiot_device_status.lastHeartbeatTime }}</dd> -->
+</dl>
