@@ -1,0 +1,40 @@
+{% extends "vertical_base.html" %}
+{% load static i18n %}
+{% load crispy_forms_tags %}
+
+
+{% block title_extra %}{% trans "New Connection"%}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li clm bass="breadcrumb-item"><a href="{% url 'dashboard:home' %}">Home</a></li>
+                        <li class="breadcrumb-item active">{% trans "New Connection"%}</li>
+                    </ol>
+                </div>
+                <h3 class="page-title d-inline-flex">{% trans "Connect PrintNanny OS" %}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-8 d-flex align-items-stretch">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{form|crispy }}
+                        <input type="submit" value="{% trans 'Save' %}" class="btn btn-primary">
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <p>Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options.</p>
+                    <img class="img-fluid" src="{% static 'images/example-hostname.png' %}">
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock content %}

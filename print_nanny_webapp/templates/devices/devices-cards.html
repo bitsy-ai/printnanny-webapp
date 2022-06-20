@@ -1,9 +1,0 @@
-{% load humanize %}
-{% load static %}
-
-<div class="row">
-  {% for device in devices %}
-  {% include "devices/partials/camera-stream-card.html" with device=device %}
-  {% endfor %}
-
-</div>

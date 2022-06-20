@@ -1,15 +1,10 @@
 import logging
-from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 
-from print_nanny_webapp.utils.multiform import MultiFormsView, BaseMultipleFormsView
+from print_nanny_webapp.utils.multiform import MultiFormsView
 from print_nanny_webapp.dashboard.views import DashboardView
-from print_nanny_webapp.remote_control.models import OctoPrintDevice
-from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
-from asgiref.sync import async_to_sync
-from channels.layers import get_channel_layer
 
 from .models import AlertSettings, TestAlert
 

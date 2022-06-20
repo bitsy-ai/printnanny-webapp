@@ -1,5 +1,6 @@
 import logging
-from typing import Callable
+from datetime import datetime
+from typing import Callable, Optional
 from uuid import uuid4
 from django.conf import settings
 from django.db import models
@@ -13,9 +14,7 @@ from safedelete.signals import pre_softdelete
 
 from .utils import get_available_rtp_port
 from .enum import (
-    DeviceReleaseChannel,
     JanusConfigType,
-    OsEdition,
 )
 
 UserModel = get_user_model()
@@ -47,7 +46,7 @@ class Device(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
 
     class Meta:
-        index_together = (("hostname", "created_dt", "updated_dt"),)
+        index_together = (("hostname", "created_dt"),)
         constraints = [
             UniqueConstraint(
                 fields=["user", "hostname"],
@@ -56,10 +55,7 @@ class Device(SafeDeleteModel):
             )
         ]
 
-    monitoring_active = models.BooleanField(default=False)
-    setup_complete = models.BooleanField(default=False)
     created_dt = models.DateTimeField(auto_now_add=True)
-    updated_dt = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(
         UserModel, on_delete=models.CASCADE, related_name="devices"
     )
@@ -68,13 +64,24 @@ class Device(SafeDeleteModel):
         help_text="Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension)",
         default="printnanny",
     )
-    release_channel = models.CharField(
-        max_length=8,
-        choices=DeviceReleaseChannel.choices,
-        default=DeviceReleaseChannel.STABLE,
-        help_text="WARNING: you should only use the nightly developer channel when guided by Print Nanny staff! This unstable channel is intended for QA and verifying bug fixes.",
-    )
-    edition = models.CharField(max_length=32, choices=OsEdition.choices)
+
+    @property
+    def is_active(self) -> bool:
+        return self.system_info.first() is not None
+
+    @property
+    def is_octoprint(self) -> bool:
+        info = self.system_info.first()
+        if info is not None:
+            return "octoprint" in info.os_variant_id
+        return False
+
+    @property
+    def last_seen(self) -> Optional[datetime]:
+        info = self.system_info.first()
+        if info is not None:
+            return info.updated_dt
+        return None
 
     @property
     def public_key(self):
@@ -89,7 +96,7 @@ class Device(SafeDeleteModel):
         return f"device-id-{self.id}"
 
     @property
-    def edge_url(self):
+    def edge_dash_url(self):
         # NOTE: http:// protocol + mDNS hostname is hard-coded here while PrintNanny Network is WIP
         # TODO: f"https://{self.fqdn}{settings.OCTOPRINT_URL}"
         return f"http://{self.hostname}/"
@@ -123,23 +130,6 @@ class Device(SafeDeleteModel):
     @property
     def janus_local_url(self):
         return f"http://{self.hostname}:8088/janus"
-
-
-class License(SafeDeleteModel):
-    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    device = models.ForeignKey(
-        Device, on_delete=models.CASCADE, null=True, related_name="licenses"
-    )
-    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
-    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
-    updated_dt = models.DateTimeField(db_index=True, auto_now=True)
-
-
-class AnsibleFactsd(models.Model):
-
-    namespace = models.CharField(max_length=64, default="printnanny")
-    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
-    updated_dt = models.DateTimeField(db_index=True, auto_now=True)
 
 
 class PublicKey(SafeDeleteModel):
@@ -211,7 +201,9 @@ class SystemInfo(SafeDeleteModel):
     # /proc/cpuinfo MAX PROCESSOR
     cores = models.IntegerField()
     ram = models.BigIntegerField()
-    device = models.ForeignKey(Device, on_delete=models.CASCADE)
+    device = models.ForeignKey(
+        Device, on_delete=models.CASCADE, related_name="system_info"
+    )
 
     os_version_id = models.CharField(
         max_length=255,

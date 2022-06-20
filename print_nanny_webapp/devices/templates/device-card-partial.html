@@ -1,0 +1,42 @@
+{% load static i18n humanize %}
+
+<div class="col-sm-12 col-md-6">
+    <div class="card">
+        <div class="card-header">
+            <strong>{{ device.hostname }}</strong>
+            {% if device.is_active %}
+            <span class="float-right">Last seen:
+                <strong>{{ device.last_seen | naturaltime }}</strong>
+            </span>
+            {% else %}
+            <span class="float-right">Last seen:
+                <strong>Never</strong></span>
+
+            {% endif %}
+        </div>
+
+        <div class="card-body">
+            {% if not device.is_active %}
+            <p>Waiting for first boot. </p>
+            <p>Follow the directions in the <a href="{{ PRINTNANNY_OS_INSTALL_URL }}">Install
+                    Guide</a> to finish setup.
+            </p>
+            {% endif %}
+        </div>
+
+        <div class="card-footer">
+            {% if not device.is_active %}
+            <a class="btn btn-primary btn-sm" href="{% url 'devices:license-download' pk=device.id %}">Download
+                License</a>
+            {% else %}
+            {% if device.is_octoprint %}
+            <a target="_blank" href="{{ device.octoprint_url }}" class="btn btn-success btn-sm ml-1">OctoPrint</a>
+            {% endif %}
+            <a target="_blank" href="{{ device.edge_dash_url }}" class="btn btn-light btn-sm ml-1">Pi Dashboard</a>
+            {% endif %}
+
+            <a href="{% url 'devices:delete' pk=device.id %}"><button
+                    class="btn btn-danger btn-sm ml-1 float-right">Delete</button></a>
+        </div>
+    </div>
+</div>

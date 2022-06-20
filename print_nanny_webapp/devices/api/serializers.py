@@ -6,7 +6,6 @@ from django.contrib.auth import get_user_model
 from print_nanny_webapp.devices.models import (
     Device,
     CloudiotDevice,
-    License,
     JanusAuth,
     JanusStream,
     PublicKey,
@@ -17,6 +16,7 @@ from ..enum import (
     JanusConfigType,
 )
 from print_nanny_webapp.users.api.serializers import UserSerializer
+from print_nanny_webapp.utils.api.serializers import PrintNannyApiConfigSerializer
 
 User = get_user_model()
 
@@ -230,12 +230,8 @@ class DeviceSerializer(serializers.ModelSerializer):
 
 
 class LicenseSerializer(serializers.ModelSerializer):
-    # current combo of mypy + drf have a hard time handling AbstractUser + other abstract serialized fields
-    id = serializers.CharField(required=True)
-    user = serializers.PrimaryKeyRelatedField(
-        required=True, queryset=User.objects.all()  # type: ignore
-    )
+    api = PrintNannyApiConfigSerializer(read_only=True)
 
     class Meta:
-        model = License
-        exclude = ("deleted",)
+        model = Device
+        fields = ("hostname", "created_dt", "user", "api")

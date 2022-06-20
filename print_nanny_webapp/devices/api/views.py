@@ -49,7 +49,6 @@ from ..models import (
     JanusStream,
     PublicKey,
     SystemInfo,
-    License,
 )
 from print_nanny_webapp.utils.api.service import get_api_config
 from ..services import janus_cloud_setup, update_or_create_cloudiot_device
@@ -801,79 +800,3 @@ class CloudiotDeviceViewSet(
             return Response(response_serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-##
-# License verify (allow anonymous request, trade license key for short-lived api credential)
-##
-class LicenseVerifyViewSet(GenericViewSet):
-    serializer_class = LicenseSerializer
-    queryset = License.objects.all()
-    permission_classes = [AllowAny]
-
-    @extend_schema(
-        tags=["licenses"],
-        operation_id="license_verify",
-        responses={
-            202: PrintNannyApiConfigSerializer,
-        }
-        | generic_get_errors,
-    )
-    @action(methods=["post"], detail=False, url_path="verify")
-    def verify(self, request):
-        """
-        Verifies that license key and email match
-        Returns API credentials if license is inactive
-        """
-        serializer = self.get_serializer(data=request.data)
-        if serializer.is_valid():
-            # verify License key and provided email match
-            license_id = serializer.validated_data.get("id")
-            user = serializer.validated_data.get("user")
-            obj = License.objects.get(id=license_id)
-            if obj.user.id == user.id:
-                config_data = get_api_config(request, user)
-                response_serializer = PrintNannyApiConfigSerializer(
-                    instance=config_data, context=dict(request=request), many=False
-                )
-                return Response(response_serializer.data, status.HTTP_202_ACCEPTED)
-            errors = dict(detail="Invalid license key", code="invalid_license")
-            return Response(errors, status.HTTP_403_FORBIDDEN)
-        return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
-
-
-##
-# License activate (require short-lived api credential)
-##
-class LicenseActivateViewSet(GenericViewSet):
-    serializer_class = LicenseSerializer
-    queryset = License.objects.all()
-
-    @extend_schema(
-        tags=["licenses"],
-        operation_id="license_activate",
-        responses={
-            202: LicenseSerializer,
-        }
-        | generic_get_errors,
-    )
-    @action(methods=["post"], detail=True, url_path="activate")
-    def activate(self, request, pk=None):
-        """
-        Marks License as activated (by setting Device fkey relation)
-        """
-        serializer = self.get_serializer(data=request.data)
-        if serializer.is_valid() and pk is not None:
-            # verify License key and provided email match
-            license_id = serializer.validated_data.get("id")
-            user = serializer.validated_data.get("user")
-            device = serializer.validated_data.get("device")
-            obj = License.objects.get(id=license_id)
-            if obj.user.id == user.id and device.user.id == user.id:
-                obj.device = device
-                obj.save()
-                response_serializer = self.get_serializer(instance=obj)
-                return Response(response_serializer.data, status.HTTP_202_ACCEPTED)
-            errors = dict(detail="Invalid license key", code="invalid_license")
-            return Response(errors, status.HTTP_403_FORBIDDEN)
-        return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
