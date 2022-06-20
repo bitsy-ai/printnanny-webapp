@@ -63,10 +63,11 @@ class LicenseDownloadView(LoginRequiredMixin, SingleObjectMixin, View):
     slug_field = "id"
 
     def get(self, request, pk=None):
-        obj = Device.objects.get(id=pk)
-        obj.api = get_api_config(request, obj.user)
+        device = Device.objects.get(id=pk)
+        api = get_api_config(request, device.user)
+        instance = dict(device=device, api=api)
 
-        serializer = LicenseSerializer(instance=obj)
+        serializer = LicenseSerializer(instance=instance)
         json_str = json.dumps(serializer.data)
         response = HttpResponse(json_str, content_type="application/json")
         response["Content-Disposition"] = "attachment; filename=license.json"

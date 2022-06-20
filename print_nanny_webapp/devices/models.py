@@ -66,21 +66,23 @@ class Device(SafeDeleteModel):
     )
 
     @property
+    def system_info(self):
+        return self.system_infos.first()
+
+    @property
     def is_active(self) -> bool:
-        return self.system_info.first() is not None
+        return self.system_info is not None
 
     @property
     def is_octoprint(self) -> bool:
-        info = self.system_info.first()
-        if info is not None:
-            return "octoprint" in info.os_variant_id
+        if self.system_info is not None:
+            return "octoprint" in self.system_info.os_variant_id
         return False
 
     @property
     def last_seen(self) -> Optional[datetime]:
-        info = self.system_info.first()
-        if info is not None:
-            return info.updated_dt
+        if self.system_info is not None:
+            return self.system_info.updated_dt
         return None
 
     @property
@@ -202,7 +204,7 @@ class SystemInfo(SafeDeleteModel):
     cores = models.IntegerField()
     ram = models.BigIntegerField()
     device = models.ForeignKey(
-        Device, on_delete=models.CASCADE, related_name="system_info"
+        Device, on_delete=models.CASCADE, related_name="system_infos"
     )
 
     os_version_id = models.CharField(

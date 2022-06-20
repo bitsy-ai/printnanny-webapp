@@ -211,27 +211,23 @@ class DeviceSerializer(serializers.ModelSerializer):
     video_test_url = serializers.CharField(read_only=True)
     janus_auth = JanusAuthSerializer(read_only=True)
     janus_local_url = serializers.CharField(read_only=True)
-    monitoring_active = serializers.BooleanField(default=False)
-    setup_complete = serializers.BooleanField(default=False)
     user = UserSerializer(read_only=True)
     octoprint_url = serializers.CharField(read_only=True)
-
-    release_channel = serializers.ChoiceField(
-        choices=DeviceReleaseChannel.choices,
-        default=DeviceReleaseChannel.STABLE,
-    )
     system_info = SystemInfoSerializer(read_only=True)
     public_key = PublicKeySerializer(read_only=True)
 
     class Meta:
         model = Device
-        depth = 2
+        depth = 1
         exclude = ("deleted",)
 
 
-class LicenseSerializer(serializers.ModelSerializer):
+class LicenseSerializer(serializers.Serializer):
     api = PrintNannyApiConfigSerializer(read_only=True)
+    device = DeviceSerializer(read_only=True)
 
     class Meta:
-        model = Device
-        fields = ("id", "hostname", "created_dt", "user", "api")
+        fields = (
+            "device",
+            "api",
+        )
