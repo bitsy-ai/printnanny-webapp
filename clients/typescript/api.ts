@@ -506,46 +506,10 @@ export interface Device {
     'cloudiot_device': CloudiotDevice;
     /**
      * 
-     * @type {string}
-     * @memberof Device
-     */
-    'cloud_url': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Device
-     */
-    'edge_url': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Device
-     */
-    'video_test_url': string;
-    /**
-     * 
-     * @type {JanusAuth}
-     * @memberof Device
-     */
-    'janus_auth': JanusAuth;
-    /**
-     * 
-     * @type {string}
-     * @memberof Device
-     */
-    'janus_local_url': string;
-    /**
-     * 
      * @type {User}
      * @memberof Device
      */
     'user': User;
-    /**
-     * 
-     * @type {string}
-     * @memberof Device
-     */
-    'octoprint_url': string;
     /**
      * 
      * @type {SystemInfo}
@@ -558,6 +522,12 @@ export interface Device {
      * @memberof Device
      */
     'public_key': PublicKey;
+    /**
+     * 
+     * @type {DeviceUrls}
+     * @memberof Device
+     */
+    'urls': DeviceUrls;
     /**
      * 
      * @type {string}
@@ -583,6 +553,37 @@ export interface DeviceRequest {
      * @memberof DeviceRequest
      */
     'hostname'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface DeviceUrls
+ */
+export interface DeviceUrls {
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceUrls
+     */
+    'cloud_dash': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceUrls
+     */
+    'edge_dash': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceUrls
+     */
+    'swupdate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceUrls
+     */
+    'octoprint': string;
 }
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.

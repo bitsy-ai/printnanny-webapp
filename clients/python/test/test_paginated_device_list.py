@@ -44,15 +44,14 @@ class TestPaginatedDeviceList(unittest.TestCase):
                     printnanny_api_client.models.device.Device(
                         id = 56, 
                         cloudiot_device = null, 
-                        cloud_url = '', 
-                        edge_url = '', 
-                        video_test_url = '', 
-                        janus_auth = null, 
-                        janus_local_url = '', 
                         user = null, 
-                        octoprint_url = '', 
                         system_info = null, 
                         public_key = null, 
+                        urls = printnanny_api_client.models.device_urls.Device_urls(
+                            cloud_dash = '', 
+                            edge_dash = '', 
+                            swupdate = '', 
+                            octoprint = '', ), 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         hostname = '', )
                     ]

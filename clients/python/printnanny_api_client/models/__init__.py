@@ -29,6 +29,7 @@ from printnanny_api_client.models.cloudiot_device_request import CloudiotDeviceR
 from printnanny_api_client.models.detail_response import DetailResponse
 from printnanny_api_client.models.device import Device
 from printnanny_api_client.models.device_request import DeviceRequest
+from printnanny_api_client.models.device_urls import DeviceUrls
 from printnanny_api_client.models.email_auth_request import EmailAuthRequest
 from printnanny_api_client.models.error_detail import ErrorDetail
 from printnanny_api_client.models.event_source import EventSource

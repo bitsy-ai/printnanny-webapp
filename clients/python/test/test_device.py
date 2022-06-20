@@ -39,15 +39,14 @@ class TestDevice(unittest.TestCase):
             return Device(
                 id = 56, 
                 cloudiot_device = None, 
-                cloud_url = '', 
-                edge_url = '', 
-                video_test_url = '', 
-                janus_auth = None, 
-                janus_local_url = '', 
                 user = None, 
-                octoprint_url = '', 
                 system_info = None, 
                 public_key = None, 
+                urls = printnanny_api_client.models.device_urls.Device_urls(
+                    cloud_dash = '', 
+                    edge_dash = '', 
+                    swupdate = '', 
+                    octoprint = '', ), 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 hostname = ''
             )
@@ -55,15 +54,14 @@ class TestDevice(unittest.TestCase):
             return Device(
                 id = 56,
                 cloudiot_device = None,
-                cloud_url = '',
-                edge_url = '',
-                video_test_url = '',
-                janus_auth = None,
-                janus_local_url = '',
                 user = None,
-                octoprint_url = '',
                 system_info = None,
                 public_key = None,
+                urls = printnanny_api_client.models.device_urls.Device_urls(
+                    cloud_dash = '', 
+                    edge_dash = '', 
+                    swupdate = '', 
+                    octoprint = '', ),
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
         )
 

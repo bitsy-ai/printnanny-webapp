@@ -23,6 +23,7 @@ docs/ConfigApi.md
 docs/DetailResponse.md
 docs/Device.md
 docs/DeviceRequest.md
+docs/DeviceUrls.md
 docs/DevicesApi.md
 docs/EmailAuthRequest.md
 docs/ErrorDetail.md
@@ -143,6 +144,7 @@ src/models/cloudiot_device_request.rs
 src/models/detail_response.rs
 src/models/device.rs
 src/models/device_request.rs
+src/models/device_urls.rs
 src/models/email_auth_request.rs
 src/models/error_detail.rs
 src/models/event_source.rs

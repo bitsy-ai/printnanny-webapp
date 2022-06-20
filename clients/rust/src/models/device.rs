@@ -17,24 +17,14 @@ pub struct Device {
     pub id: i32,
     #[serde(rename = "cloudiot_device")]
     pub cloudiot_device: Option<Box<crate::models::CloudiotDevice>>,
-    #[serde(rename = "cloud_url")]
-    pub cloud_url: String,
-    #[serde(rename = "edge_url")]
-    pub edge_url: String,
-    #[serde(rename = "video_test_url")]
-    pub video_test_url: String,
-    #[serde(rename = "janus_auth")]
-    pub janus_auth: Option<Box<crate::models::JanusAuth>>,
-    #[serde(rename = "janus_local_url")]
-    pub janus_local_url: String,
     #[serde(rename = "user")]
     pub user: Option<Box<crate::models::User>>,
-    #[serde(rename = "octoprint_url")]
-    pub octoprint_url: String,
     #[serde(rename = "system_info")]
     pub system_info: Option<Box<crate::models::SystemInfo>>,
     #[serde(rename = "public_key")]
     pub public_key: Option<Box<crate::models::PublicKey>>,
+    #[serde(rename = "urls")]
+    pub urls: Box<crate::models::DeviceUrls>,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
     /// Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension)
@@ -43,19 +33,14 @@ pub struct Device {
 }
 
 impl Device {
-    pub fn new(id: i32, cloudiot_device: Option<crate::models::CloudiotDevice>, cloud_url: String, edge_url: String, video_test_url: String, janus_auth: Option<crate::models::JanusAuth>, janus_local_url: String, user: Option<crate::models::User>, octoprint_url: String, system_info: Option<crate::models::SystemInfo>, public_key: Option<crate::models::PublicKey>, created_dt: String) -> Device {
+    pub fn new(id: i32, cloudiot_device: Option<crate::models::CloudiotDevice>, user: Option<crate::models::User>, system_info: Option<crate::models::SystemInfo>, public_key: Option<crate::models::PublicKey>, urls: crate::models::DeviceUrls, created_dt: String) -> Device {
         Device {
             id,
             cloudiot_device: cloudiot_device.map(Box::new),
-            cloud_url,
-            edge_url,
-            video_test_url,
-            janus_auth: janus_auth.map(Box::new),
-            janus_local_url,
             user: user.map(Box::new),
-            octoprint_url,
             system_info: system_info.map(Box::new),
             public_key: public_key.map(Box::new),
+            urls: Box::new(urls),
             created_dt,
             hostname: None,
         }

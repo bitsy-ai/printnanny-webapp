@@ -39,15 +39,10 @@ class Device(object):
     openapi_types = {
         'id': 'int',
         'cloudiot_device': 'CloudiotDevice',
-        'cloud_url': 'str',
-        'edge_url': 'str',
-        'video_test_url': 'str',
-        'janus_auth': 'JanusAuth',
-        'janus_local_url': 'str',
         'user': 'User',
-        'octoprint_url': 'str',
         'system_info': 'SystemInfo',
         'public_key': 'PublicKey',
+        'urls': 'DeviceUrls',
         'created_dt': 'datetime',
         'hostname': 'str'
     }
@@ -55,20 +50,15 @@ class Device(object):
     attribute_map = {
         'id': 'id',
         'cloudiot_device': 'cloudiot_device',
-        'cloud_url': 'cloud_url',
-        'edge_url': 'edge_url',
-        'video_test_url': 'video_test_url',
-        'janus_auth': 'janus_auth',
-        'janus_local_url': 'janus_local_url',
         'user': 'user',
-        'octoprint_url': 'octoprint_url',
         'system_info': 'system_info',
         'public_key': 'public_key',
+        'urls': 'urls',
         'created_dt': 'created_dt',
         'hostname': 'hostname'
     }
 
-    def __init__(self, id=None, cloudiot_device=None, cloud_url=None, edge_url=None, video_test_url=None, janus_auth=None, janus_local_url=None, user=None, octoprint_url=None, system_info=None, public_key=None, created_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, cloudiot_device=None, user=None, system_info=None, public_key=None, urls=None, created_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -76,30 +66,20 @@ class Device(object):
 
         self._id = None
         self._cloudiot_device = None
-        self._cloud_url = None
-        self._edge_url = None
-        self._video_test_url = None
-        self._janus_auth = None
-        self._janus_local_url = None
         self._user = None
-        self._octoprint_url = None
         self._system_info = None
         self._public_key = None
+        self._urls = None
         self._created_dt = None
         self._hostname = None
         self.discriminator = None
 
         self.id = id
         self.cloudiot_device = cloudiot_device
-        self.cloud_url = cloud_url
-        self.edge_url = edge_url
-        self.video_test_url = video_test_url
-        self.janus_auth = janus_auth
-        self.janus_local_url = janus_local_url
         self.user = user
-        self.octoprint_url = octoprint_url
         self.system_info = system_info
         self.public_key = public_key
+        self.urls = urls
         self.created_dt = created_dt
         if hostname is not None:
             self.hostname = hostname
@@ -149,119 +129,6 @@ class Device(object):
         self._cloudiot_device = cloudiot_device
 
     @property
-    def cloud_url(self):
-        """Gets the cloud_url of this Device.  # noqa: E501
-
-
-        :return: The cloud_url of this Device.  # noqa: E501
-        :rtype: str
-        """
-        return self._cloud_url
-
-    @cloud_url.setter
-    def cloud_url(self, cloud_url):
-        """Sets the cloud_url of this Device.
-
-
-        :param cloud_url: The cloud_url of this Device.  # noqa: E501
-        :type cloud_url: str
-        """
-        if self.local_vars_configuration.client_side_validation and cloud_url is None:  # noqa: E501
-            raise ValueError("Invalid value for `cloud_url`, must not be `None`")  # noqa: E501
-
-        self._cloud_url = cloud_url
-
-    @property
-    def edge_url(self):
-        """Gets the edge_url of this Device.  # noqa: E501
-
-
-        :return: The edge_url of this Device.  # noqa: E501
-        :rtype: str
-        """
-        return self._edge_url
-
-    @edge_url.setter
-    def edge_url(self, edge_url):
-        """Sets the edge_url of this Device.
-
-
-        :param edge_url: The edge_url of this Device.  # noqa: E501
-        :type edge_url: str
-        """
-        if self.local_vars_configuration.client_side_validation and edge_url is None:  # noqa: E501
-            raise ValueError("Invalid value for `edge_url`, must not be `None`")  # noqa: E501
-
-        self._edge_url = edge_url
-
-    @property
-    def video_test_url(self):
-        """Gets the video_test_url of this Device.  # noqa: E501
-
-
-        :return: The video_test_url of this Device.  # noqa: E501
-        :rtype: str
-        """
-        return self._video_test_url
-
-    @video_test_url.setter
-    def video_test_url(self, video_test_url):
-        """Sets the video_test_url of this Device.
-
-
-        :param video_test_url: The video_test_url of this Device.  # noqa: E501
-        :type video_test_url: str
-        """
-        if self.local_vars_configuration.client_side_validation and video_test_url is None:  # noqa: E501
-            raise ValueError("Invalid value for `video_test_url`, must not be `None`")  # noqa: E501
-
-        self._video_test_url = video_test_url
-
-    @property
-    def janus_auth(self):
-        """Gets the janus_auth of this Device.  # noqa: E501
-
-
-        :return: The janus_auth of this Device.  # noqa: E501
-        :rtype: JanusAuth
-        """
-        return self._janus_auth
-
-    @janus_auth.setter
-    def janus_auth(self, janus_auth):
-        """Sets the janus_auth of this Device.
-
-
-        :param janus_auth: The janus_auth of this Device.  # noqa: E501
-        :type janus_auth: JanusAuth
-        """
-
-        self._janus_auth = janus_auth
-
-    @property
-    def janus_local_url(self):
-        """Gets the janus_local_url of this Device.  # noqa: E501
-
-
-        :return: The janus_local_url of this Device.  # noqa: E501
-        :rtype: str
-        """
-        return self._janus_local_url
-
-    @janus_local_url.setter
-    def janus_local_url(self, janus_local_url):
-        """Sets the janus_local_url of this Device.
-
-
-        :param janus_local_url: The janus_local_url of this Device.  # noqa: E501
-        :type janus_local_url: str
-        """
-        if self.local_vars_configuration.client_side_validation and janus_local_url is None:  # noqa: E501
-            raise ValueError("Invalid value for `janus_local_url`, must not be `None`")  # noqa: E501
-
-        self._janus_local_url = janus_local_url
-
-    @property
     def user(self):
         """Gets the user of this Device.  # noqa: E501
 
@@ -281,29 +148,6 @@ class Device(object):
         """
 
         self._user = user
-
-    @property
-    def octoprint_url(self):
-        """Gets the octoprint_url of this Device.  # noqa: E501
-
-
-        :return: The octoprint_url of this Device.  # noqa: E501
-        :rtype: str
-        """
-        return self._octoprint_url
-
-    @octoprint_url.setter
-    def octoprint_url(self, octoprint_url):
-        """Sets the octoprint_url of this Device.
-
-
-        :param octoprint_url: The octoprint_url of this Device.  # noqa: E501
-        :type octoprint_url: str
-        """
-        if self.local_vars_configuration.client_side_validation and octoprint_url is None:  # noqa: E501
-            raise ValueError("Invalid value for `octoprint_url`, must not be `None`")  # noqa: E501
-
-        self._octoprint_url = octoprint_url
 
     @property
     def system_info(self):
@@ -346,6 +190,29 @@ class Device(object):
         """
 
         self._public_key = public_key
+
+    @property
+    def urls(self):
+        """Gets the urls of this Device.  # noqa: E501
+
+
+        :return: The urls of this Device.  # noqa: E501
+        :rtype: DeviceUrls
+        """
+        return self._urls
+
+    @urls.setter
+    def urls(self, urls):
+        """Sets the urls of this Device.
+
+
+        :param urls: The urls of this Device.  # noqa: E501
+        :type urls: DeviceUrls
+        """
+        if self.local_vars_configuration.client_side_validation and urls is None:  # noqa: E501
+            raise ValueError("Invalid value for `urls`, must not be `None`")  # noqa: E501
+
+        self._urls = urls
 
     @property
     def created_dt(self):

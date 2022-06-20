@@ -26,6 +26,8 @@ pub mod device;
 pub use self::device::Device;
 pub mod device_request;
 pub use self::device_request::DeviceRequest;
+pub mod device_urls;
+pub use self::device_urls::DeviceUrls;
 pub mod email_auth_request;
 pub use self::email_auth_request::EmailAuthRequest;
 pub mod error_detail;
