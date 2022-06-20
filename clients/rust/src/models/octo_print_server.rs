@@ -12,7 +12,11 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct OctoPrintInstallRequest {
+pub struct OctoPrintServer {
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "settings")]
+    pub settings: Option<Box<crate::models::OctoPrintSettings>>,
     #[serde(rename = "octoprint_version")]
     pub octoprint_version: String,
     #[serde(rename = "pip_version")]
@@ -21,17 +25,28 @@ pub struct OctoPrintInstallRequest {
     pub python_version: String,
     #[serde(rename = "printnanny_plugin_version")]
     pub printnanny_plugin_version: String,
+    #[serde(rename = "created_dt")]
+    pub created_dt: String,
+    #[serde(rename = "updated_dt")]
+    pub updated_dt: String,
+    #[serde(rename = "user")]
+    pub user: i32,
     #[serde(rename = "device")]
     pub device: i32,
 }
 
-impl OctoPrintInstallRequest {
-    pub fn new(octoprint_version: String, pip_version: String, python_version: String, printnanny_plugin_version: String, device: i32) -> OctoPrintInstallRequest {
-        OctoPrintInstallRequest {
+impl OctoPrintServer {
+    pub fn new(id: i32, settings: Option<crate::models::OctoPrintSettings>, octoprint_version: String, pip_version: String, python_version: String, printnanny_plugin_version: String, created_dt: String, updated_dt: String, user: i32, device: i32) -> OctoPrintServer {
+        OctoPrintServer {
+            id,
+            settings: settings.map(Box::new),
             octoprint_version,
             pip_version,
             python_version,
             printnanny_plugin_version,
+            created_dt,
+            updated_dt,
+            user,
             device,
         }
     }

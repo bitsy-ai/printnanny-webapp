@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.paginated_octo_print_install_list import PaginatedOctoPrintInstallList  # noqa: E501
+from printnanny_api_client.models.paginated_octo_print_server_list import PaginatedOctoPrintServerList  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestPaginatedOctoPrintInstallList(unittest.TestCase):
-    """PaginatedOctoPrintInstallList unit test stubs"""
+class TestPaginatedOctoPrintServerList(unittest.TestCase):
+    """PaginatedOctoPrintServerList unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,18 +30,18 @@ class TestPaginatedOctoPrintInstallList(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test PaginatedOctoPrintInstallList
+        """Test PaginatedOctoPrintServerList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.paginated_octo_print_install_list.PaginatedOctoPrintInstallList()  # noqa: E501
+        # model = printnanny_api_client.models.paginated_octo_print_server_list.PaginatedOctoPrintServerList()  # noqa: E501
         if include_optional :
-            return PaginatedOctoPrintInstallList(
+            return PaginatedOctoPrintServerList(
                 count = 123, 
                 next = 'http://api.example.org/accounts/?page=4', 
                 previous = 'http://api.example.org/accounts/?page=2', 
                 results = [
-                    printnanny_api_client.models.octo_print_install.OctoPrintInstall(
+                    printnanny_api_client.models.octo_print_server.OctoPrintServer(
                         id = 56, 
                         settings = null, 
                         octoprint_version = '', 
@@ -55,11 +55,11 @@ class TestPaginatedOctoPrintInstallList(unittest.TestCase):
                     ]
             )
         else :
-            return PaginatedOctoPrintInstallList(
+            return PaginatedOctoPrintServerList(
         )
 
-    def testPaginatedOctoPrintInstallList(self):
-        """Test PaginatedOctoPrintInstallList"""
+    def testPaginatedOctoPrintServerList(self):
+        """Test PaginatedOctoPrintServerList"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

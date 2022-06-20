@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.octo_print_install import OctoPrintInstall  # noqa: E501
+from printnanny_api_client.models.octo_print_server import OctoPrintServer  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestOctoPrintInstall(unittest.TestCase):
-    """OctoPrintInstall unit test stubs"""
+class TestOctoPrintServer(unittest.TestCase):
+    """OctoPrintServer unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,13 +30,13 @@ class TestOctoPrintInstall(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test OctoPrintInstall
+        """Test OctoPrintServer
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.octo_print_install.OctoPrintInstall()  # noqa: E501
+        # model = printnanny_api_client.models.octo_print_server.OctoPrintServer()  # noqa: E501
         if include_optional :
-            return OctoPrintInstall(
+            return OctoPrintServer(
                 id = 56, 
                 settings = None, 
                 octoprint_version = '', 
@@ -49,7 +49,7 @@ class TestOctoPrintInstall(unittest.TestCase):
                 device = 56
             )
         else :
-            return OctoPrintInstall(
+            return OctoPrintServer(
                 id = 56,
                 settings = None,
                 octoprint_version = '',
@@ -62,8 +62,8 @@ class TestOctoPrintInstall(unittest.TestCase):
                 device = 56,
         )
 
-    def testOctoPrintInstall(self):
-        """Test OctoPrintInstall"""
+    def testOctoPrintServer(self):
+        """Test OctoPrintServer"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

@@ -27,7 +27,7 @@ Method | HTTP request | Description
 [**devices_janus_streams_retrieve**](DevicesApi.md#devices_janus_streams_retrieve) | **GET** /api/devices/{device_id}/janus-streams/{id}/ | 
 [**devices_license_download_retrieve**](DevicesApi.md#devices_license_download_retrieve) | **GET** /api/devices/{device_id}/license/download/ | 
 [**devices_list**](DevicesApi.md#devices_list) | **GET** /api/devices/ | 
-[**devices_octoprint_installs_list**](DevicesApi.md#devices_octoprint_installs_list) | **GET** /api/devices/{device_id}/octoprint-installs/ | 
+[**devices_octoprint_servers_list**](DevicesApi.md#devices_octoprint_servers_list) | **GET** /api/devices/{device_id}/octoprint-servers/ | 
 [**devices_partial_update**](DevicesApi.md#devices_partial_update) | **PATCH** /api/devices/{id}/ | 
 [**devices_public_keys_create**](DevicesApi.md#devices_public_keys_create) | **POST** /api/devices/{device_id}/public-keys/ | 
 [**devices_public_keys_list**](DevicesApi.md#devices_public_keys_list) | **GET** /api/devices/{device_id}/public-keys/ | 
@@ -2908,8 +2908,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_octoprint_installs_list**
-> PaginatedOctoPrintInstallList devices_octoprint_installs_list(device_id, page=page)
+# **devices_octoprint_servers_list**
+> PaginatedOctoPrintServerList devices_octoprint_servers_list(device_id, page=page)
 
 
 
@@ -2952,10 +2952,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.devices_octoprint_installs_list(device_id, page=page)
+        api_response = api_instance.devices_octoprint_servers_list(device_id, page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_octoprint_installs_list: %s\n" % e)
+        print("Exception when calling DevicesApi->devices_octoprint_servers_list: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -2995,10 +2995,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.devices_octoprint_installs_list(device_id, page=page)
+        api_response = api_instance.devices_octoprint_servers_list(device_id, page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_octoprint_installs_list: %s\n" % e)
+        print("Exception when calling DevicesApi->devices_octoprint_servers_list: %s\n" % e)
 ```
 
 ### Parameters
@@ -3010,7 +3010,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedOctoPrintInstallList**](PaginatedOctoPrintInstallList.md)
+[**PaginatedOctoPrintServerList**](PaginatedOctoPrintServerList.md)
 
 ### Authorization
 

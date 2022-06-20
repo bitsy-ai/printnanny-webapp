@@ -1,4 +1,4 @@
-# PatchedOctoPrintInstallRequest
+# PatchedOctoPrintServerRequest
 
 ## Properties
 

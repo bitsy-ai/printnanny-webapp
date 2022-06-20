@@ -27,7 +27,7 @@ Method | HTTP request | Description
 [**devices_janus_streams_retrieve**](DevicesApi.md#devices_janus_streams_retrieve) | **GET** /api/devices/{device_id}/janus-streams/{id}/ | 
 [**devices_license_download_retrieve**](DevicesApi.md#devices_license_download_retrieve) | **GET** /api/devices/{device_id}/license/download/ | 
 [**devices_list**](DevicesApi.md#devices_list) | **GET** /api/devices/ | 
-[**devices_octoprint_installs_list**](DevicesApi.md#devices_octoprint_installs_list) | **GET** /api/devices/{device_id}/octoprint-installs/ | 
+[**devices_octoprint_servers_list**](DevicesApi.md#devices_octoprint_servers_list) | **GET** /api/devices/{device_id}/octoprint-servers/ | 
 [**devices_partial_update**](DevicesApi.md#devices_partial_update) | **PATCH** /api/devices/{id}/ | 
 [**devices_public_keys_create**](DevicesApi.md#devices_public_keys_create) | **POST** /api/devices/{device_id}/public-keys/ | 
 [**devices_public_keys_list**](DevicesApi.md#devices_public_keys_list) | **GET** /api/devices/{device_id}/public-keys/ | 
@@ -721,9 +721,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## devices_octoprint_installs_list
+## devices_octoprint_servers_list
 
-> crate::models::PaginatedOctoPrintInstallList devices_octoprint_installs_list(device_id, page)
+> crate::models::PaginatedOctoPrintServerList devices_octoprint_servers_list(device_id, page)
 
 
 ### Parameters
@@ -736,7 +736,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::PaginatedOctoPrintInstallList**](PaginatedOctoPrintInstallList.md)
+[**crate::models::PaginatedOctoPrintServerList**](PaginatedOctoPrintServerList.md)
 
 ### Authorization
 

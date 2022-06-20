@@ -13,6 +13,7 @@ from printnanny_api_client.api.devices_api import DevicesApi
 from printnanny_api_client.api.events_api import EventsApi
 from printnanny_api_client.api.janus_api import JanusApi
 from printnanny_api_client.api.octoprint_api import OctoprintApi
+from printnanny_api_client.api.octoprint_servers_api import OctoprintServersApi
 from printnanny_api_client.api.partners_geeks3d_api import PartnersGeeks3dApi
 from printnanny_api_client.api.schema_api import SchemaApi
 from printnanny_api_client.api.users_api import UsersApi

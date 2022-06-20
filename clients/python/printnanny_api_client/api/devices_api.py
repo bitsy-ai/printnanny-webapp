@@ -3586,13 +3586,13 @@ class DevicesApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def devices_octoprint_installs_list(self, device_id, **kwargs):  # noqa: E501
-        """devices_octoprint_installs_list  # noqa: E501
+    def devices_octoprint_servers_list(self, device_id, **kwargs):  # noqa: E501
+        """devices_octoprint_servers_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_octoprint_installs_list(device_id, async_req=True)
+        >>> thread = api.devices_octoprint_servers_list(device_id, async_req=True)
         >>> result = thread.get()
 
         :param device_id: (required)
@@ -3612,18 +3612,18 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: PaginatedOctoPrintInstallList
+        :rtype: PaginatedOctoPrintServerList
         """
         kwargs['_return_http_data_only'] = True
-        return self.devices_octoprint_installs_list_with_http_info(device_id, **kwargs)  # noqa: E501
+        return self.devices_octoprint_servers_list_with_http_info(device_id, **kwargs)  # noqa: E501
 
-    def devices_octoprint_installs_list_with_http_info(self, device_id, **kwargs):  # noqa: E501
-        """devices_octoprint_installs_list  # noqa: E501
+    def devices_octoprint_servers_list_with_http_info(self, device_id, **kwargs):  # noqa: E501
+        """devices_octoprint_servers_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.devices_octoprint_installs_list_with_http_info(device_id, async_req=True)
+        >>> thread = api.devices_octoprint_servers_list_with_http_info(device_id, async_req=True)
         >>> result = thread.get()
 
         :param device_id: (required)
@@ -3651,7 +3651,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(PaginatedOctoPrintInstallList, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(PaginatedOctoPrintServerList, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -3676,14 +3676,14 @@ class DevicesApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method devices_octoprint_installs_list" % key
+                    " to method devices_octoprint_servers_list" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'device_id' is set
         if self.api_client.client_side_validation and ('device_id' not in local_var_params or  # noqa: E501
                                                         local_var_params['device_id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `device_id` when calling `devices_octoprint_installs_list`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `device_id` when calling `devices_octoprint_servers_list`")  # noqa: E501
 
         collection_formats = {}
 
@@ -3709,7 +3709,7 @@ class DevicesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
         response_types_map = {
-            200: "PaginatedOctoPrintInstallList",
+            200: "PaginatedOctoPrintServerList",
             400: "ErrorDetail",
             401: "ErrorDetail",
             403: "ErrorDetail",
@@ -3717,7 +3717,7 @@ class DevicesApi(object):
         }
 
         return self.api_client.call_api(
-            '/api/devices/{device_id}/octoprint-installs/', 'GET',
+            '/api/devices/{device_id}/octoprint-servers/', 'GET',
             path_params,
             query_params,
             header_params,

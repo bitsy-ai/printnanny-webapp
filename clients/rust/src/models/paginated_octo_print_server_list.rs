@@ -12,7 +12,7 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct PaginatedOctoPrintInstallList {
+pub struct PaginatedOctoPrintServerList {
     #[serde(rename = "count", skip_serializing_if = "Option::is_none")]
     pub count: Option<i32>,
     #[serde(rename = "next", skip_serializing_if = "Option::is_none")]
@@ -20,12 +20,12 @@ pub struct PaginatedOctoPrintInstallList {
     #[serde(rename = "previous", skip_serializing_if = "Option::is_none")]
     pub previous: Option<String>,
     #[serde(rename = "results", skip_serializing_if = "Option::is_none")]
-    pub results: Option<Vec<crate::models::OctoPrintInstall>>,
+    pub results: Option<Vec<crate::models::OctoPrintServer>>,
 }
 
-impl PaginatedOctoPrintInstallList {
-    pub fn new() -> PaginatedOctoPrintInstallList {
-        PaginatedOctoPrintInstallList {
+impl PaginatedOctoPrintServerList {
+    pub fn new() -> PaginatedOctoPrintServerList {
+        PaginatedOctoPrintServerList {
             count: None,
             next: None,
             previous: None,

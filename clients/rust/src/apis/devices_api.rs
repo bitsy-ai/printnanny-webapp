@@ -265,10 +265,10 @@ pub enum DevicesListError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`devices_octoprint_installs_list`]
+/// struct for typed errors of method [`devices_octoprint_servers_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum DevicesOctoprintInstallsListError {
+pub enum DevicesOctoprintServersListError {
     Status400(crate::models::ErrorDetail),
     Status401(crate::models::ErrorDetail),
     Status403(crate::models::ErrorDetail),
@@ -1152,12 +1152,12 @@ pub async fn devices_list(configuration: &configuration::Configuration, page: Op
     }
 }
 
-pub async fn devices_octoprint_installs_list(configuration: &configuration::Configuration, device_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedOctoPrintInstallList, Error<DevicesOctoprintInstallsListError>> {
+pub async fn devices_octoprint_servers_list(configuration: &configuration::Configuration, device_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedOctoPrintServerList, Error<DevicesOctoprintServersListError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/devices/{device_id}/octoprint-installs/", local_var_configuration.base_path, device_id=device_id);
+    let local_var_uri_str = format!("{}/api/devices/{device_id}/octoprint-servers/", local_var_configuration.base_path, device_id=device_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
@@ -1179,7 +1179,7 @@ pub async fn devices_octoprint_installs_list(configuration: &configuration::Conf
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<DevicesOctoprintInstallsListError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<DevicesOctoprintServersListError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }

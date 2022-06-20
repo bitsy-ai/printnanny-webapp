@@ -7,15 +7,15 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('events', '0011_auto_20220415_0329'),
+        ("events", "0011_auto_20220415_0329"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('devices', '0024_alter_systeminfo_device'),
-        ('octoprint', '0014_alter_octoprintinstall_user'),
+        ("devices", "0024_alter_systeminfo_device"),
+        ("octoprint", "0014_alter_octoprintinstall_user"),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='OctoPrintInstall',
-            new_name='OctoPrintServer',
+            old_name="OctoPrintInstall",
+            new_name="OctoPrintServer",
         ),
     ]

@@ -15,7 +15,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.88.3"
+__version__ = "0.89.0"
 
 # import apis into sdk package
 from printnanny_api_client.api.alert_settings_api import AlertSettingsApi
@@ -28,6 +28,7 @@ from printnanny_api_client.api.devices_api import DevicesApi
 from printnanny_api_client.api.events_api import EventsApi
 from printnanny_api_client.api.janus_api import JanusApi
 from printnanny_api_client.api.octoprint_api import OctoprintApi
+from printnanny_api_client.api.octoprint_servers_api import OctoprintServersApi
 from printnanny_api_client.api.partners_geeks3d_api import PartnersGeeks3dApi
 from printnanny_api_client.api.schema_api import SchemaApi
 from printnanny_api_client.api.users_api import UsersApi
@@ -78,8 +79,8 @@ from printnanny_api_client.models.octo_print_event import OctoPrintEvent
 from printnanny_api_client.models.octo_print_event_model import OctoPrintEventModel
 from printnanny_api_client.models.octo_print_event_name import OctoPrintEventName
 from printnanny_api_client.models.octo_print_event_request import OctoPrintEventRequest
-from printnanny_api_client.models.octo_print_install import OctoPrintInstall
-from printnanny_api_client.models.octo_print_install_request import OctoPrintInstallRequest
+from printnanny_api_client.models.octo_print_server import OctoPrintServer
+from printnanny_api_client.models.octo_print_server_request import OctoPrintServerRequest
 from printnanny_api_client.models.octo_print_settings import OctoPrintSettings
 from printnanny_api_client.models.octo_print_settings_request import OctoPrintSettingsRequest
 from printnanny_api_client.models.octo_printer_profile import OctoPrinterProfile
@@ -93,7 +94,7 @@ from printnanny_api_client.models.paginated_janus_cloud_stream_list import Pagin
 from printnanny_api_client.models.paginated_janus_edge_stream_list import PaginatedJanusEdgeStreamList
 from printnanny_api_client.models.paginated_janus_stream_list import PaginatedJanusStreamList
 from printnanny_api_client.models.paginated_octo_print_backup_list import PaginatedOctoPrintBackupList
-from printnanny_api_client.models.paginated_octo_print_install_list import PaginatedOctoPrintInstallList
+from printnanny_api_client.models.paginated_octo_print_server_list import PaginatedOctoPrintServerList
 from printnanny_api_client.models.paginated_octo_print_settings_list import PaginatedOctoPrintSettingsList
 from printnanny_api_client.models.paginated_octo_printer_profile_list import PaginatedOctoPrinterProfileList
 from printnanny_api_client.models.paginated_polymorphic_command_list import PaginatedPolymorphicCommandList
@@ -109,7 +110,7 @@ from printnanny_api_client.models.patched_cloudiot_device_request import Patched
 from printnanny_api_client.models.patched_device_request import PatchedDeviceRequest
 from printnanny_api_client.models.patched_janus_cloud_stream_request import PatchedJanusCloudStreamRequest
 from printnanny_api_client.models.patched_janus_edge_stream_request import PatchedJanusEdgeStreamRequest
-from printnanny_api_client.models.patched_octo_print_install_request import PatchedOctoPrintInstallRequest
+from printnanny_api_client.models.patched_octo_print_server_request import PatchedOctoPrintServerRequest
 from printnanny_api_client.models.patched_octo_print_settings_request import PatchedOctoPrintSettingsRequest
 from printnanny_api_client.models.patched_octo_printer_profile_request import PatchedOctoPrinterProfileRequest
 from printnanny_api_client.models.patched_public_key_request import PatchedPublicKeyRequest

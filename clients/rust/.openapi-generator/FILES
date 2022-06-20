@@ -48,13 +48,14 @@ docs/OctoPrintEvent.md
 docs/OctoPrintEventModel.md
 docs/OctoPrintEventName.md
 docs/OctoPrintEventRequest.md
-docs/OctoPrintInstall.md
-docs/OctoPrintInstallRequest.md
+docs/OctoPrintServer.md
+docs/OctoPrintServerRequest.md
 docs/OctoPrintSettings.md
 docs/OctoPrintSettingsRequest.md
 docs/OctoPrinterProfile.md
 docs/OctoPrinterProfileRequest.md
 docs/OctoprintApi.md
+docs/OctoprintServersApi.md
 docs/PaginatedAlertList.md
 docs/PaginatedCloudiotDeviceList.md
 docs/PaginatedDeviceList.md
@@ -64,7 +65,7 @@ docs/PaginatedJanusCloudStreamList.md
 docs/PaginatedJanusEdgeStreamList.md
 docs/PaginatedJanusStreamList.md
 docs/PaginatedOctoPrintBackupList.md
-docs/PaginatedOctoPrintInstallList.md
+docs/PaginatedOctoPrintServerList.md
 docs/PaginatedOctoPrintSettingsList.md
 docs/PaginatedOctoPrinterProfileList.md
 docs/PaginatedPolymorphicCommandList.md
@@ -81,7 +82,7 @@ docs/PatchedCloudiotDeviceRequest.md
 docs/PatchedDeviceRequest.md
 docs/PatchedJanusCloudStreamRequest.md
 docs/PatchedJanusEdgeStreamRequest.md
-docs/PatchedOctoPrintInstallRequest.md
+docs/PatchedOctoPrintServerRequest.md
 docs/PatchedOctoPrintSettingsRequest.md
 docs/PatchedOctoPrinterProfileRequest.md
 docs/PatchedPublicKeyRequest.md
@@ -126,6 +127,7 @@ src/apis/events_api.rs
 src/apis/janus_api.rs
 src/apis/mod.rs
 src/apis/octoprint_api.rs
+src/apis/octoprint_servers_api.rs
 src/apis/partners_geeks3d_api.rs
 src/apis/schema_api.rs
 src/apis/users_api.rs
@@ -167,8 +169,8 @@ src/models/octo_print_event.rs
 src/models/octo_print_event_model.rs
 src/models/octo_print_event_name.rs
 src/models/octo_print_event_request.rs
-src/models/octo_print_install.rs
-src/models/octo_print_install_request.rs
+src/models/octo_print_server.rs
+src/models/octo_print_server_request.rs
 src/models/octo_print_settings.rs
 src/models/octo_print_settings_request.rs
 src/models/octo_printer_profile.rs
@@ -182,7 +184,7 @@ src/models/paginated_janus_cloud_stream_list.rs
 src/models/paginated_janus_edge_stream_list.rs
 src/models/paginated_janus_stream_list.rs
 src/models/paginated_octo_print_backup_list.rs
-src/models/paginated_octo_print_install_list.rs
+src/models/paginated_octo_print_server_list.rs
 src/models/paginated_octo_print_settings_list.rs
 src/models/paginated_octo_printer_profile_list.rs
 src/models/paginated_polymorphic_command_list.rs
@@ -198,7 +200,7 @@ src/models/patched_cloudiot_device_request.rs
 src/models/patched_device_request.rs
 src/models/patched_janus_cloud_stream_request.rs
 src/models/patched_janus_edge_stream_request.rs
-src/models/patched_octo_print_install_request.rs
+src/models/patched_octo_print_server_request.rs
 src/models/patched_octo_print_settings_request.rs
 src/models/patched_octo_printer_profile_request.rs
 src/models/patched_public_key_request.rs

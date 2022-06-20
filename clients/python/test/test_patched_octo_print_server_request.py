@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import printnanny_api_client
-from printnanny_api_client.models.octo_print_install_request import OctoPrintInstallRequest  # noqa: E501
+from printnanny_api_client.models.patched_octo_print_server_request import PatchedOctoPrintServerRequest  # noqa: E501
 from printnanny_api_client.rest import ApiException
 
-class TestOctoPrintInstallRequest(unittest.TestCase):
-    """OctoPrintInstallRequest unit test stubs"""
+class TestPatchedOctoPrintServerRequest(unittest.TestCase):
+    """PatchedOctoPrintServerRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,13 +30,13 @@ class TestOctoPrintInstallRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test OctoPrintInstallRequest
+        """Test PatchedOctoPrintServerRequest
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = printnanny_api_client.models.octo_print_install_request.OctoPrintInstallRequest()  # noqa: E501
+        # model = printnanny_api_client.models.patched_octo_print_server_request.PatchedOctoPrintServerRequest()  # noqa: E501
         if include_optional :
-            return OctoPrintInstallRequest(
+            return PatchedOctoPrintServerRequest(
                 octoprint_version = '0', 
                 pip_version = '0', 
                 python_version = '0', 
@@ -44,16 +44,11 @@ class TestOctoPrintInstallRequest(unittest.TestCase):
                 device = 56
             )
         else :
-            return OctoPrintInstallRequest(
-                octoprint_version = '0',
-                pip_version = '0',
-                python_version = '0',
-                printnanny_plugin_version = '0',
-                device = 56,
+            return PatchedOctoPrintServerRequest(
         )
 
-    def testOctoPrintInstallRequest(self):
-        """Test OctoPrintInstallRequest"""
+    def testPatchedOctoPrintServerRequest(self):
+        """Test PatchedOctoPrintServerRequest"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

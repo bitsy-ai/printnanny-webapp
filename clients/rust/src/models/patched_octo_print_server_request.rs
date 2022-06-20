@@ -12,7 +12,7 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct PatchedOctoPrintInstallRequest {
+pub struct PatchedOctoPrintServerRequest {
     #[serde(rename = "octoprint_version", skip_serializing_if = "Option::is_none")]
     pub octoprint_version: Option<String>,
     #[serde(rename = "pip_version", skip_serializing_if = "Option::is_none")]
@@ -25,9 +25,9 @@ pub struct PatchedOctoPrintInstallRequest {
     pub device: Option<i32>,
 }
 
-impl PatchedOctoPrintInstallRequest {
-    pub fn new() -> PatchedOctoPrintInstallRequest {
-        PatchedOctoPrintInstallRequest {
+impl PatchedOctoPrintServerRequest {
+    pub fn new() -> PatchedOctoPrintServerRequest {
+        PatchedOctoPrintServerRequest {
             octoprint_version: None,
             pip_version: None,
             python_version: None,
