@@ -6,7 +6,7 @@ from print_nanny_webapp.octoprint.models import (
     OctoPrintSettings,
     GcodeFile,
     OctoPrinterProfile,
-    OctoPrintInstall,
+    OctoPrintServer,
 )
 
 logger = logging.getLogger(__name__)
@@ -43,19 +43,19 @@ class OctoPrintSettingsSerializer(serializers.ModelSerializer):
         )
 
 
-class OctoPrintInstallSerializer(serializers.ModelSerializer):
+class OctoPrintServerSerializer(serializers.ModelSerializer):
     settings = OctoPrintSettingsSerializer(read_only=True)
 
     class Meta:
-        model = OctoPrintInstall
+        model = OctoPrintServer
         exclude = ("deleted",)
         read_only_fields = ("user",)
 
     def update_or_create(
         self, validated_data: Dict[Any, Any], device_id: int, user_id: int
-    ) -> Tuple[OctoPrintInstall, bool]:
+    ) -> Tuple[OctoPrintServer, bool]:
 
-        instance, created = OctoPrintInstall.objects.filter(
+        instance, created = OctoPrintServer.objects.filter(
             device=device_id, user=user_id
         ).update_or_create(device=device_id, user=user_id, defaults=validated_data)
         logger.info("Saved %s created=%s", instance, created)

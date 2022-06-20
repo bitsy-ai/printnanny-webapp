@@ -13,7 +13,7 @@ User = get_user_model()
 # the models contained in the octoprint app are intended to bridge these two implementations, and eventually contain all octoprint-related models/services
 
 
-class OctoPrintInstall(SafeDeleteModel):
+class OctoPrintServer(SafeDeleteModel):
     class Meta:
         index_together = (
             ("created_dt", "user", "device", "updated_dt"),
@@ -55,7 +55,7 @@ class OctoPrintSettings(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
 
     octoprint_install = models.OneToOneField(
-        OctoPrintInstall, on_delete=models.CASCADE, related_name="settings"
+        OctoPrintServer, on_delete=models.CASCADE, related_name="settings"
     )
     events_enabled = models.BooleanField(
         default=False,
