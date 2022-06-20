@@ -1,7 +1,6 @@
 import logging
 from datetime import datetime
-from typing import Callable, Optional
-from uuid import uuid4
+from typing import Callable, Optional, TypedDict
 from django.conf import settings
 from django.db import models
 from django.contrib.auth import get_user_model
@@ -90,10 +89,6 @@ class Device(SafeDeleteModel):
         return self.public_keys.first()
 
     @property
-    def janus_auth(self):
-        return self.janus_auths.first()
-
-    @property
     def cloudiot_name(self):
         return f"device-id-{self.id}"
 
@@ -104,7 +99,7 @@ class Device(SafeDeleteModel):
         return f"http://{self.hostname}/"
 
     @property
-    def cloud_url(self):
+    def cloud_dash_url(self):
         return reverse("devices:detail", kwargs={"pk": self.id})
 
     @property
@@ -112,10 +107,6 @@ class Device(SafeDeleteModel):
         # NOTE: http:// protocol + mDNS hostname is hard-coded here while PrintNanny Network is WIP
         # TODO: f"https://{self.fqdn}{settings.OCTOPRINT_URL}"
         return f"http://{self.hostname}{settings.OCTOPRINT_URL}"
-
-    @property
-    def video_test_url(self):
-        return reverse("devices:video", kwargs={"pk": self.id})
 
     @property
     def cloudiot_device(self):
@@ -128,10 +119,6 @@ class Device(SafeDeleteModel):
     @property
     def html_id(self) -> str:
         return f"device-{self.id}"
-
-    @property
-    def janus_local_url(self):
-        return f"http://{self.hostname}:8088/janus"
 
 
 class PublicKey(SafeDeleteModel):

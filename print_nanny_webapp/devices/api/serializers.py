@@ -206,11 +206,8 @@ class SystemInfoSerializer(serializers.ModelSerializer):
 class DeviceSerializer(serializers.ModelSerializer):
 
     cloudiot_device = CloudiotDeviceSerializer(read_only=True)
-    cloud_url = serializers.CharField(read_only=True)
-    edge_url = serializers.CharField(read_only=True)
-    video_test_url = serializers.CharField(read_only=True)
-    janus_auth = JanusAuthSerializer(read_only=True)
-    janus_local_url = serializers.CharField(read_only=True)
+    cloud_dash_url = serializers.CharField(read_only=True)
+    edge_dash_url = serializers.CharField(read_only=True)
     user = UserSerializer(read_only=True)
     octoprint_url = serializers.CharField(read_only=True)
     system_info = SystemInfoSerializer(read_only=True)
