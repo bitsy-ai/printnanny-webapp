@@ -61,7 +61,7 @@ class OctoPrintServerSerializer(serializers.ModelSerializer):
         logger.info("Saved %s created=%s", instance, created)
 
         if created:
-            settings = OctoPrintSettings.objects.create(octoprint_install=instance)
+            settings = OctoPrintSettings.objects.create(octoprint_server=instance)
             logger.info("Created default %s for %s", settings, instance)
             instance.refresh_from_db()
         return instance, created

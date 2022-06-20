@@ -49,9 +49,9 @@ class OctoPrintEvent(Event):
     model = OctoPrintEventModel.OctoPrintEvent
 
     class Meta:
-        index_together = (("octoprint_install", "device", "event_name"),)
+        index_together = (("octoprint_server", "device", "event_name"),)
 
-    octoprint_install = models.ForeignKey(
+    octoprint_server = models.ForeignKey(
         "octoprint.OctoPrintServer",
         on_delete=models.CASCADE,
         related_name="octoprint_events",
