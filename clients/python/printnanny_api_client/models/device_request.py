@@ -37,101 +37,24 @@ class DeviceRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'monitoring_active': 'bool',
-        'setup_complete': 'bool',
-        'release_channel': 'DeviceReleaseChannel',
         'hostname': 'str'
     }
 
     attribute_map = {
-        'monitoring_active': 'monitoring_active',
-        'setup_complete': 'setup_complete',
-        'release_channel': 'release_channel',
         'hostname': 'hostname'
     }
 
-    def __init__(self, monitoring_active=False, setup_complete=False, release_channel=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, hostname=None, local_vars_configuration=None):  # noqa: E501
         """DeviceRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
-        self._monitoring_active = None
-        self._setup_complete = None
-        self._release_channel = None
         self._hostname = None
         self.discriminator = None
 
-        if monitoring_active is not None:
-            self.monitoring_active = monitoring_active
-        if setup_complete is not None:
-            self.setup_complete = setup_complete
-        self.release_channel = release_channel
         if hostname is not None:
             self.hostname = hostname
-
-    @property
-    def monitoring_active(self):
-        """Gets the monitoring_active of this DeviceRequest.  # noqa: E501
-
-
-        :return: The monitoring_active of this DeviceRequest.  # noqa: E501
-        :rtype: bool
-        """
-        return self._monitoring_active
-
-    @monitoring_active.setter
-    def monitoring_active(self, monitoring_active):
-        """Sets the monitoring_active of this DeviceRequest.
-
-
-        :param monitoring_active: The monitoring_active of this DeviceRequest.  # noqa: E501
-        :type monitoring_active: bool
-        """
-
-        self._monitoring_active = monitoring_active
-
-    @property
-    def setup_complete(self):
-        """Gets the setup_complete of this DeviceRequest.  # noqa: E501
-
-
-        :return: The setup_complete of this DeviceRequest.  # noqa: E501
-        :rtype: bool
-        """
-        return self._setup_complete
-
-    @setup_complete.setter
-    def setup_complete(self, setup_complete):
-        """Sets the setup_complete of this DeviceRequest.
-
-
-        :param setup_complete: The setup_complete of this DeviceRequest.  # noqa: E501
-        :type setup_complete: bool
-        """
-
-        self._setup_complete = setup_complete
-
-    @property
-    def release_channel(self):
-        """Gets the release_channel of this DeviceRequest.  # noqa: E501
-
-
-        :return: The release_channel of this DeviceRequest.  # noqa: E501
-        :rtype: DeviceReleaseChannel
-        """
-        return self._release_channel
-
-    @release_channel.setter
-    def release_channel(self, release_channel):
-        """Sets the release_channel of this DeviceRequest.
-
-
-        :param release_channel: The release_channel of this DeviceRequest.  # noqa: E501
-        :type release_channel: DeviceReleaseChannel
-        """
-
-        self._release_channel = release_channel
 
     @property
     def hostname(self):

@@ -27,16 +27,10 @@ pub struct Device {
     pub janus_auth: Option<Box<crate::models::JanusAuth>>,
     #[serde(rename = "janus_local_url")]
     pub janus_local_url: String,
-    #[serde(rename = "monitoring_active", skip_serializing_if = "Option::is_none")]
-    pub monitoring_active: Option<bool>,
-    #[serde(rename = "setup_complete", skip_serializing_if = "Option::is_none")]
-    pub setup_complete: Option<bool>,
     #[serde(rename = "user")]
     pub user: Option<Box<crate::models::User>>,
     #[serde(rename = "octoprint_url")]
     pub octoprint_url: String,
-    #[serde(rename = "release_channel", skip_serializing_if = "Option::is_none")]
-    pub release_channel: Option<Box<crate::models::DeviceReleaseChannel>>,
     #[serde(rename = "system_info")]
     pub system_info: Option<Box<crate::models::SystemInfo>>,
     #[serde(rename = "public_key")]
@@ -58,11 +52,8 @@ impl Device {
             video_test_url,
             janus_auth: janus_auth.map(Box::new),
             janus_local_url,
-            monitoring_active: None,
-            setup_complete: None,
             user: user.map(Box::new),
             octoprint_url,
-            release_channel: None,
             system_info: system_info.map(Box::new),
             public_key: public_key.map(Box::new),
             created_dt,

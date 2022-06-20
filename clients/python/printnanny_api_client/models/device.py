@@ -44,11 +44,8 @@ class Device(object):
         'video_test_url': 'str',
         'janus_auth': 'JanusAuth',
         'janus_local_url': 'str',
-        'monitoring_active': 'bool',
-        'setup_complete': 'bool',
         'user': 'User',
         'octoprint_url': 'str',
-        'release_channel': 'DeviceReleaseChannel',
         'system_info': 'SystemInfo',
         'public_key': 'PublicKey',
         'created_dt': 'datetime',
@@ -63,18 +60,15 @@ class Device(object):
         'video_test_url': 'video_test_url',
         'janus_auth': 'janus_auth',
         'janus_local_url': 'janus_local_url',
-        'monitoring_active': 'monitoring_active',
-        'setup_complete': 'setup_complete',
         'user': 'user',
         'octoprint_url': 'octoprint_url',
-        'release_channel': 'release_channel',
         'system_info': 'system_info',
         'public_key': 'public_key',
         'created_dt': 'created_dt',
         'hostname': 'hostname'
     }
 
-    def __init__(self, id=None, cloudiot_device=None, cloud_url=None, edge_url=None, video_test_url=None, janus_auth=None, janus_local_url=None, monitoring_active=False, setup_complete=False, user=None, octoprint_url=None, release_channel=None, system_info=None, public_key=None, created_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, cloudiot_device=None, cloud_url=None, edge_url=None, video_test_url=None, janus_auth=None, janus_local_url=None, user=None, octoprint_url=None, system_info=None, public_key=None, created_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -87,11 +81,8 @@ class Device(object):
         self._video_test_url = None
         self._janus_auth = None
         self._janus_local_url = None
-        self._monitoring_active = None
-        self._setup_complete = None
         self._user = None
         self._octoprint_url = None
-        self._release_channel = None
         self._system_info = None
         self._public_key = None
         self._created_dt = None
@@ -105,13 +96,8 @@ class Device(object):
         self.video_test_url = video_test_url
         self.janus_auth = janus_auth
         self.janus_local_url = janus_local_url
-        if monitoring_active is not None:
-            self.monitoring_active = monitoring_active
-        if setup_complete is not None:
-            self.setup_complete = setup_complete
         self.user = user
         self.octoprint_url = octoprint_url
-        self.release_channel = release_channel
         self.system_info = system_info
         self.public_key = public_key
         self.created_dt = created_dt
@@ -276,48 +262,6 @@ class Device(object):
         self._janus_local_url = janus_local_url
 
     @property
-    def monitoring_active(self):
-        """Gets the monitoring_active of this Device.  # noqa: E501
-
-
-        :return: The monitoring_active of this Device.  # noqa: E501
-        :rtype: bool
-        """
-        return self._monitoring_active
-
-    @monitoring_active.setter
-    def monitoring_active(self, monitoring_active):
-        """Sets the monitoring_active of this Device.
-
-
-        :param monitoring_active: The monitoring_active of this Device.  # noqa: E501
-        :type monitoring_active: bool
-        """
-
-        self._monitoring_active = monitoring_active
-
-    @property
-    def setup_complete(self):
-        """Gets the setup_complete of this Device.  # noqa: E501
-
-
-        :return: The setup_complete of this Device.  # noqa: E501
-        :rtype: bool
-        """
-        return self._setup_complete
-
-    @setup_complete.setter
-    def setup_complete(self, setup_complete):
-        """Sets the setup_complete of this Device.
-
-
-        :param setup_complete: The setup_complete of this Device.  # noqa: E501
-        :type setup_complete: bool
-        """
-
-        self._setup_complete = setup_complete
-
-    @property
     def user(self):
         """Gets the user of this Device.  # noqa: E501
 
@@ -360,27 +304,6 @@ class Device(object):
             raise ValueError("Invalid value for `octoprint_url`, must not be `None`")  # noqa: E501
 
         self._octoprint_url = octoprint_url
-
-    @property
-    def release_channel(self):
-        """Gets the release_channel of this Device.  # noqa: E501
-
-
-        :return: The release_channel of this Device.  # noqa: E501
-        :rtype: DeviceReleaseChannel
-        """
-        return self._release_channel
-
-    @release_channel.setter
-    def release_channel(self, release_channel):
-        """Sets the release_channel of this Device.
-
-
-        :param release_channel: The release_channel of this Device.  # noqa: E501
-        :type release_channel: DeviceReleaseChannel
-        """
-
-        self._release_channel = release_channel
 
     @property
     def system_info(self):

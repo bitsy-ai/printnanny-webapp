@@ -536,18 +536,6 @@ export interface Device {
     'janus_local_url': string;
     /**
      * 
-     * @type {boolean}
-     * @memberof Device
-     */
-    'monitoring_active'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Device
-     */
-    'setup_complete'?: boolean;
-    /**
-     * 
      * @type {User}
      * @memberof Device
      */
@@ -558,12 +546,6 @@ export interface Device {
      * @memberof Device
      */
     'octoprint_url': string;
-    /**
-     * 
-     * @type {DeviceReleaseChannel}
-     * @memberof Device
-     */
-    'release_channel'?: DeviceReleaseChannel;
     /**
      * 
      * @type {SystemInfo}
@@ -592,41 +574,9 @@ export interface Device {
 /**
  * 
  * @export
- * @enum {string}
- */
-
-export const DeviceReleaseChannel = {
-    Stable: 'stable',
-    Nightly: 'nightly'
-} as const;
-
-export type DeviceReleaseChannel = typeof DeviceReleaseChannel[keyof typeof DeviceReleaseChannel];
-
-
-/**
- * 
- * @export
  * @interface DeviceRequest
  */
 export interface DeviceRequest {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof DeviceRequest
-     */
-    'monitoring_active'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof DeviceRequest
-     */
-    'setup_complete'?: boolean;
-    /**
-     * 
-     * @type {DeviceReleaseChannel}
-     * @memberof DeviceRequest
-     */
-    'release_channel'?: DeviceReleaseChannel;
     /**
      * Please enter the hostname you set in the Raspberry Pi Imager\'s Advanced Options menu (without .local extension)
      * @type {string}
@@ -1327,6 +1277,25 @@ export interface JanusStream {
      * @memberof JanusStream
      */
     'device': number;
+}
+/**
+ * 
+ * @export
+ * @interface License
+ */
+export interface License {
+    /**
+     * 
+     * @type {PrintNannyApiConfig}
+     * @memberof License
+     */
+    'api': PrintNannyApiConfig;
+    /**
+     * 
+     * @type {Device}
+     * @memberof License
+     */
+    'device': Device;
 }
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
@@ -2792,24 +2761,6 @@ export interface PatchedCloudiotDeviceRequest {
  * @interface PatchedDeviceRequest
  */
 export interface PatchedDeviceRequest {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedDeviceRequest
-     */
-    'monitoring_active'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedDeviceRequest
-     */
-    'setup_complete'?: boolean;
-    /**
-     * 
-     * @type {DeviceReleaseChannel}
-     * @memberof PatchedDeviceRequest
-     */
-    'release_channel'?: DeviceReleaseChannel;
     /**
      * Please enter the hostname you set in the Raspberry Pi Imager\'s Advanced Options menu (without .local extension)
      * @type {string}
@@ -6893,6 +6844,45 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
+         * 
+         * @param {number} deviceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesLicenseDownloadRetrieve: async (deviceId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesLicenseDownloadRetrieve', 'deviceId', deviceId)
+            const localVarPath = `/api/devices/{device_id}/license/download/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * A device (Raspberry Pi) running Print Nanny OS
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
@@ -7933,6 +7923,16 @@ export const DevicesApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * 
+         * @param {number} deviceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesLicenseDownloadRetrieve(deviceId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<License>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesLicenseDownloadRetrieve(deviceId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * A device (Raspberry Pi) running Print Nanny OS
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
@@ -8357,6 +8357,15 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.devicesJanusStreamsRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
         },
         /**
+         * 
+         * @param {number} deviceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesLicenseDownloadRetrieve(deviceId: number, options?: any): AxiosPromise<License> {
+            return localVarFp.devicesLicenseDownloadRetrieve(deviceId, options).then((request) => request(axios, basePath));
+        },
+        /**
          * A device (Raspberry Pi) running Print Nanny OS
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
@@ -8760,6 +8769,15 @@ export interface DevicesApiInterface {
      * @memberof DevicesApiInterface
      */
     devicesJanusStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<JanusStream>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesLicenseDownloadRetrieve(deviceId: number, options?: AxiosRequestConfig): AxiosPromise<License>;
 
     /**
      * A device (Raspberry Pi) running Print Nanny OS
@@ -9206,6 +9224,17 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      */
     public devicesJanusStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesJanusStreamsRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesLicenseDownloadRetrieve(deviceId: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesLicenseDownloadRetrieve(deviceId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

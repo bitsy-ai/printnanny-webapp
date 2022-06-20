@@ -22,7 +22,6 @@ docs/CommandsApi.md
 docs/ConfigApi.md
 docs/DetailResponse.md
 docs/Device.md
-docs/DeviceReleaseChannel.md
 docs/DeviceRequest.md
 docs/DevicesApi.md
 docs/EmailAuthRequest.md
@@ -41,6 +40,7 @@ docs/JanusConfigType.md
 docs/JanusEdgeStream.md
 docs/JanusEdgeStreamRequest.md
 docs/JanusStream.md
+docs/License.md
 docs/MobileAuthRequest.md
 docs/OctoPrintBackup.md
 docs/OctoPrintEvent.md
@@ -142,7 +142,6 @@ src/models/cloudiot_device.rs
 src/models/cloudiot_device_request.rs
 src/models/detail_response.rs
 src/models/device.rs
-src/models/device_release_channel.rs
 src/models/device_request.rs
 src/models/email_auth_request.rs
 src/models/error_detail.rs
@@ -158,6 +157,7 @@ src/models/janus_config_type.rs
 src/models/janus_edge_stream.rs
 src/models/janus_edge_stream_request.rs
 src/models/janus_stream.rs
+src/models/license.rs
 src/models/mobile_auth_request.rs
 src/models/mod.rs
 src/models/octo_print_backup.rs
