@@ -1,6 +1,6 @@
 ### Python template
 # Byte-compiled / optimized / DLL files
-
+.tmp
 .envs/.live
 .envs/.beta
 dist/
