@@ -19,6 +19,10 @@ from print_nanny_webapp.subscriptions.views import FoundingMemberSignupView
 # Webapp urls
 urlpatterns = [
     re_path(r"^health/", include("health_check.urls"), name="health"),
+    path(
+        "privacy-policy",
+        TemplateView.as_view(template_name="legal/privacy-policy.html"),
+    ),
     path("", TemplateView.as_view(template_name="landing/landing.html"), name="home"),
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
