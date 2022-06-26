@@ -11,6 +11,8 @@ from google.cloud import iot_v1 as cloudiot_v1
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.signals import pre_softdelete
 
+from print_nanny_webapp.alerts.api.serializers import AlertSettings
+
 from .utils import get_available_rtp_port
 from .enum import (
     JanusConfigType,
@@ -87,6 +89,11 @@ class Device(SafeDeleteModel):
             swupdate=swupdate,
             octoprint=octoprint,
         )
+
+    @property
+    def alert_settings(self):
+        obj, _ = AlertSettings.objects.get_or_create(user=self.user)
+        return obj
 
     @property
     def system_info(self):
