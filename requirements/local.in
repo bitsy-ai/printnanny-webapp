@@ -53,4 +53,3 @@ uvicorn[standard]
 whitenoise
 printnanny-api-client>=0.91.0
 websockets==10.1 # https://github.com/aaugustin/websockets/issues/1138#issuecomment-1059138857
-types-toml
