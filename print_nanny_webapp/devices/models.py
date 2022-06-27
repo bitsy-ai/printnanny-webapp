@@ -72,6 +72,8 @@ class Device(SafeDeleteModel):
         default="printnanny",
     )
 
+    fqdn = models.CharField(max_length=255, default="printnanny.local")
+
     @property
     def urls(self) -> DeviceUrls:
         cloud_dash = reverse("devices:detail", kwargs={"pk": self.id})
