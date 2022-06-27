@@ -17,6 +17,5 @@ django-stubs
 djangorestframework-stubs
 mypy-protobuf
 types-requests
-types-protobuf
 types-six
 types-toml
