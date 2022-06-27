@@ -50,6 +50,8 @@ class DeviceCreateView(LoginRequiredMixin, CreateView):
         """
 
         obj = form.save(commit=False)
+        # TODO remove hard-coded .loal and replace with Wireguard fqdn
+        obj.fqdn = f"{obj.hostname}.local"
         obj.user = self.request.user
         obj.save()
         self.object = obj
