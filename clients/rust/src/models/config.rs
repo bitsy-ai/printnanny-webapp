@@ -12,16 +12,16 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct License {
+pub struct Config {
     #[serde(rename = "api")]
     pub api: Option<Box<crate::models::PrintNannyApiConfig>>,
     #[serde(rename = "device")]
     pub device: Option<Box<crate::models::Device>>,
 }
 
-impl License {
-    pub fn new(api: Option<crate::models::PrintNannyApiConfig>, device: Option<crate::models::Device>) -> License {
-        License {
+impl Config {
+    pub fn new(api: Option<crate::models::PrintNannyApiConfig>, device: Option<crate::models::Device>) -> Config {
+        Config {
             api: api.map(Box::new),
             device: device.map(Box::new),
         }

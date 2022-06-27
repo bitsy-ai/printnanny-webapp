@@ -65,6 +65,12 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
+    def test_devices_config_download_retrieve(self):
+        """Test case for devices_config_download_retrieve
+
+        """
+        pass
+
     def test_devices_create(self):
         """Test case for devices_create
 
@@ -151,12 +157,6 @@ class TestDevicesApi(unittest.TestCase):
 
     def test_devices_janus_streams_retrieve(self):
         """Test case for devices_janus_streams_retrieve
-
-        """
-        pass
-
-    def test_devices_license_download_retrieve(self):
-        """Test case for devices_license_download_retrieve
 
         """
         pass

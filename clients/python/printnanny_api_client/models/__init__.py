@@ -26,6 +26,7 @@ from printnanny_api_client.models.callback_token_verification import CallbackTok
 from printnanny_api_client.models.callback_token_verification_request import CallbackTokenVerificationRequest
 from printnanny_api_client.models.cloudiot_device import CloudiotDevice
 from printnanny_api_client.models.cloudiot_device_request import CloudiotDeviceRequest
+from printnanny_api_client.models.config import Config
 from printnanny_api_client.models.detail_response import DetailResponse
 from printnanny_api_client.models.device import Device
 from printnanny_api_client.models.device_request import DeviceRequest
@@ -44,7 +45,6 @@ from printnanny_api_client.models.janus_config_type import JanusConfigType
 from printnanny_api_client.models.janus_edge_stream import JanusEdgeStream
 from printnanny_api_client.models.janus_edge_stream_request import JanusEdgeStreamRequest
 from printnanny_api_client.models.janus_stream import JanusStream
-from printnanny_api_client.models.license import License
 from printnanny_api_client.models.mobile_auth_request import MobileAuthRequest
 from printnanny_api_client.models.octo_print_backup import OctoPrintBackup
 from printnanny_api_client.models.octo_print_event import OctoPrintEvent

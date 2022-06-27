@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**devices_cloudiot_partial_update**](DevicesApi.md#devices_cloudiot_partial_update) | **PATCH** /api/devices/{device_id}/cloudiot/{id}/ | 
 [**devices_cloudiot_retrieve**](DevicesApi.md#devices_cloudiot_retrieve) | **GET** /api/devices/{device_id}/cloudiot/{id}/ | 
 [**devices_cloudiot_update**](DevicesApi.md#devices_cloudiot_update) | **PUT** /api/devices/{device_id}/cloudiot/{id}/ | 
+[**devices_config_download_retrieve**](DevicesApi.md#devices_config_download_retrieve) | **GET** /api/devices/{device_id}/config/download/ | 
 [**devices_create**](DevicesApi.md#devices_create) | **POST** /api/devices/ | 
 [**devices_janus_cloud_stream_get_or_create**](DevicesApi.md#devices_janus_cloud_stream_get_or_create) | **POST** /api/devices/{device_id}/janus-cloud-streams/get-or-create/ | 
 [**devices_janus_cloud_streams_create**](DevicesApi.md#devices_janus_cloud_streams_create) | **POST** /api/devices/{device_id}/janus-cloud-streams/ | 
@@ -25,7 +26,6 @@ Method | HTTP request | Description
 [**devices_janus_edge_streams_update**](DevicesApi.md#devices_janus_edge_streams_update) | **PUT** /api/devices/{device_id}/janus-edge-streams/{id}/ | 
 [**devices_janus_streams_list**](DevicesApi.md#devices_janus_streams_list) | **GET** /api/devices/{device_id}/janus-streams/ | 
 [**devices_janus_streams_retrieve**](DevicesApi.md#devices_janus_streams_retrieve) | **GET** /api/devices/{device_id}/janus-streams/{id}/ | 
-[**devices_license_download_retrieve**](DevicesApi.md#devices_license_download_retrieve) | **GET** /api/devices/{device_id}/license/download/ | 
 [**devices_list**](DevicesApi.md#devices_list) | **GET** /api/devices/ | 
 [**devices_octoprint_servers_list**](DevicesApi.md#devices_octoprint_servers_list) | **GET** /api/devices/{device_id}/octoprint-servers/ | 
 [**devices_partial_update**](DevicesApi.md#devices_partial_update) | **PATCH** /api/devices/{id}/ | 
@@ -219,6 +219,34 @@ Name | Type | Description  | Required | Notes
 
 - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## devices_config_download_retrieve
+
+> crate::models::Config devices_config_download_retrieve(device_id)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_id** | **i32** |  | [required] |
+
+### Return type
+
+[**crate::models::Config**](Config.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -650,34 +678,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::JanusStream**](JanusStream.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## devices_license_download_retrieve
-
-> crate::models::License devices_license_download_retrieve(device_id)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-
-### Return type
-
-[**crate::models::License**](License.md)
 
 ### Authorization
 

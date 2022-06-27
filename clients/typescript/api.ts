@@ -474,6 +474,25 @@ export interface CloudiotDeviceRequest {
     'public_key': number;
 }
 /**
+ * 
+ * @export
+ * @interface Config
+ */
+export interface Config {
+    /**
+     * 
+     * @type {PrintNannyApiConfig}
+     * @memberof Config
+     */
+    'api': PrintNannyApiConfig;
+    /**
+     * 
+     * @type {Device}
+     * @memberof Config
+     */
+    'device': Device;
+}
+/**
  * Generic auth response serializer
  * @export
  * @interface DetailResponse
@@ -1296,25 +1315,6 @@ export interface JanusStream {
      * @memberof JanusStream
      */
     'device': number;
-}
-/**
- * 
- * @export
- * @interface License
- */
-export interface License {
-    /**
-     * 
-     * @type {PrintNannyApiConfig}
-     * @memberof License
-     */
-    'api': PrintNannyApiConfig;
-    /**
-     * 
-     * @type {Device}
-     * @memberof License
-     */
-    'device': Device;
 }
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
@@ -6195,6 +6195,45 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
+         * 
+         * @param {number} deviceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesConfigDownloadRetrieve: async (deviceId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesConfigDownloadRetrieve', 'deviceId', deviceId)
+            const localVarPath = `/api/devices/{device_id}/config/download/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * A device (Raspberry Pi) running Print Nanny OS
          * @param {DeviceRequest} deviceRequest 
          * @param {*} [options] Override http request option.
@@ -6840,45 +6879,6 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             const localVarPath = `/api/devices/{device_id}/janus-streams/{id}/`
                 .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesLicenseDownloadRetrieve: async (deviceId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesLicenseDownloadRetrieve', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/license/download/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -7780,6 +7780,16 @@ export const DevicesApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * 
+         * @param {number} deviceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesConfigDownloadRetrieve(deviceId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Config>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesConfigDownloadRetrieve(deviceId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * A device (Raspberry Pi) running Print Nanny OS
          * @param {DeviceRequest} deviceRequest 
          * @param {*} [options] Override http request option.
@@ -7945,16 +7955,6 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          */
         async devicesJanusStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusStream>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusStreamsRetrieve(deviceId, id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesLicenseDownloadRetrieve(deviceId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<License>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesLicenseDownloadRetrieve(deviceId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -8229,6 +8229,15 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.devicesCloudiotUpdate(deviceId, id, cloudiotDeviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
+         * 
+         * @param {number} deviceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesConfigDownloadRetrieve(deviceId: number, options?: any): AxiosPromise<Config> {
+            return localVarFp.devicesConfigDownloadRetrieve(deviceId, options).then((request) => request(axios, basePath));
+        },
+        /**
          * A device (Raspberry Pi) running Print Nanny OS
          * @param {DeviceRequest} deviceRequest 
          * @param {*} [options] Override http request option.
@@ -8380,15 +8389,6 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          */
         devicesJanusStreamsRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<JanusStream> {
             return localVarFp.devicesJanusStreamsRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesLicenseDownloadRetrieve(deviceId: number, options?: any): AxiosPromise<License> {
-            return localVarFp.devicesLicenseDownloadRetrieve(deviceId, options).then((request) => request(axios, basePath));
         },
         /**
          * A device (Raspberry Pi) running Print Nanny OS
@@ -8643,6 +8643,15 @@ export interface DevicesApiInterface {
     devicesCloudiotUpdate(deviceId: number, id: string, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): AxiosPromise<void>;
 
     /**
+     * 
+     * @param {number} deviceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesConfigDownloadRetrieve(deviceId: number, options?: AxiosRequestConfig): AxiosPromise<Config>;
+
+    /**
      * A device (Raspberry Pi) running Print Nanny OS
      * @param {DeviceRequest} deviceRequest 
      * @param {*} [options] Override http request option.
@@ -8794,15 +8803,6 @@ export interface DevicesApiInterface {
      * @memberof DevicesApiInterface
      */
     devicesJanusStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<JanusStream>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesLicenseDownloadRetrieve(deviceId: number, options?: AxiosRequestConfig): AxiosPromise<License>;
 
     /**
      * A device (Raspberry Pi) running Print Nanny OS
@@ -9069,6 +9069,17 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
     }
 
     /**
+     * 
+     * @param {number} deviceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesConfigDownloadRetrieve(deviceId: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesConfigDownloadRetrieve(deviceId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * A device (Raspberry Pi) running Print Nanny OS
      * @param {DeviceRequest} deviceRequest 
      * @param {*} [options] Override http request option.
@@ -9249,17 +9260,6 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      */
     public devicesJanusStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesJanusStreamsRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesLicenseDownloadRetrieve(deviceId: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesLicenseDownloadRetrieve(deviceId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
