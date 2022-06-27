@@ -38,6 +38,7 @@ class TestDevice(unittest.TestCase):
         if include_optional :
             return Device(
                 id = 56, 
+                alert_settings = None, 
                 cloudiot_device = None, 
                 user = None, 
                 system_info = None, 
@@ -53,6 +54,7 @@ class TestDevice(unittest.TestCase):
         else :
             return Device(
                 id = 56,
+                alert_settings = None,
                 cloudiot_device = None,
                 user = None,
                 system_info = None,

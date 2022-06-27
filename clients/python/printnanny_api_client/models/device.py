@@ -38,6 +38,7 @@ class Device(object):
     """
     openapi_types = {
         'id': 'int',
+        'alert_settings': 'AlertSettings',
         'cloudiot_device': 'CloudiotDevice',
         'user': 'User',
         'system_info': 'SystemInfo',
@@ -49,6 +50,7 @@ class Device(object):
 
     attribute_map = {
         'id': 'id',
+        'alert_settings': 'alert_settings',
         'cloudiot_device': 'cloudiot_device',
         'user': 'user',
         'system_info': 'system_info',
@@ -58,13 +60,14 @@ class Device(object):
         'hostname': 'hostname'
     }
 
-    def __init__(self, id=None, cloudiot_device=None, user=None, system_info=None, public_key=None, urls=None, created_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, alert_settings=None, cloudiot_device=None, user=None, system_info=None, public_key=None, urls=None, created_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
+        self._alert_settings = None
         self._cloudiot_device = None
         self._user = None
         self._system_info = None
@@ -75,6 +78,7 @@ class Device(object):
         self.discriminator = None
 
         self.id = id
+        self.alert_settings = alert_settings
         self.cloudiot_device = cloudiot_device
         self.user = user
         self.system_info = system_info
@@ -106,6 +110,27 @@ class Device(object):
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
+
+    @property
+    def alert_settings(self):
+        """Gets the alert_settings of this Device.  # noqa: E501
+
+
+        :return: The alert_settings of this Device.  # noqa: E501
+        :rtype: AlertSettings
+        """
+        return self._alert_settings
+
+    @alert_settings.setter
+    def alert_settings(self, alert_settings):
+        """Sets the alert_settings of this Device.
+
+
+        :param alert_settings: The alert_settings of this Device.  # noqa: E501
+        :type alert_settings: AlertSettings
+        """
+
+        self._alert_settings = alert_settings
 
     @property
     def cloudiot_device(self):

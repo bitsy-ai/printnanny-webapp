@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
+**alert_settings** | [**AlertSettings**](AlertSettings.md) |  | [readonly] 
 **cloudiot_device** | [**CloudiotDevice**](CloudiotDevice.md) |  | [readonly] 
 **user** | [**User**](User.md) |  | [readonly] 
 **system_info** | [**SystemInfo**](SystemInfo.md) |  | [readonly] 

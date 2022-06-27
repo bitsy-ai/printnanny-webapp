@@ -15,6 +15,8 @@
 pub struct Device {
     #[serde(rename = "id")]
     pub id: i32,
+    #[serde(rename = "alert_settings")]
+    pub alert_settings: Option<Box<crate::models::AlertSettings>>,
     #[serde(rename = "cloudiot_device")]
     pub cloudiot_device: Option<Box<crate::models::CloudiotDevice>>,
     #[serde(rename = "user")]
@@ -33,9 +35,10 @@ pub struct Device {
 }
 
 impl Device {
-    pub fn new(id: i32, cloudiot_device: Option<crate::models::CloudiotDevice>, user: Option<crate::models::User>, system_info: Option<crate::models::SystemInfo>, public_key: Option<crate::models::PublicKey>, urls: crate::models::DeviceUrls, created_dt: String) -> Device {
+    pub fn new(id: i32, alert_settings: Option<crate::models::AlertSettings>, cloudiot_device: Option<crate::models::CloudiotDevice>, user: Option<crate::models::User>, system_info: Option<crate::models::SystemInfo>, public_key: Option<crate::models::PublicKey>, urls: crate::models::DeviceUrls, created_dt: String) -> Device {
         Device {
             id,
+            alert_settings: alert_settings.map(Box::new),
             cloudiot_device: cloudiot_device.map(Box::new),
             user: user.map(Box::new),
             system_info: system_info.map(Box::new),

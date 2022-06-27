@@ -500,6 +500,12 @@ export interface Device {
     'id': number;
     /**
      * 
+     * @type {AlertSettings}
+     * @memberof Device
+     */
+    'alert_settings': AlertSettings;
+    /**
+     * 
      * @type {CloudiotDevice}
      * @memberof Device
      */

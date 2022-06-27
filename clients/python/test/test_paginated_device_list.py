@@ -43,6 +43,7 @@ class TestPaginatedDeviceList(unittest.TestCase):
                 results = [
                     printnanny_api_client.models.device.Device(
                         id = 56, 
+                        alert_settings = null, 
                         cloudiot_device = null, 
                         user = null, 
                         system_info = null, 
