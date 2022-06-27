@@ -77,12 +77,8 @@ class Device(SafeDeleteModel):
     @property
     def urls(self) -> DeviceUrls:
         cloud_dash = reverse("devices:detail", kwargs={"pk": self.id})
-        # NOTE: http:// protocol + mDNS hostname is hard-coded here while PrintNanny Network is WIP
-        # TODO: f"https://{self.fqdn}{settings.OCTOPRINT_URL}"
         edge_dash = f"http://{self.fqdn}/"
-        swupdate = f"http://{self.fqdn}:8080/"  # TODO configure from settings
-        # NOTE: http:// protocol + mDNS hostname is hard-coded here while PrintNanny Network is WIP
-        # TODO: f"https://{self.fqdn}{settings.OCTOPRINT_URL}"
+        swupdate = f"http://{self.fqdn}/update/"
         octoprint = f"http://{self.fqdn}{settings.OCTOPRINT_URL}"
         return DeviceUrls(
             cloud_dash=cloud_dash,
