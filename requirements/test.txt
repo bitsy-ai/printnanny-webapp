@@ -98,8 +98,10 @@ platformdirs==2.5.2
     # via black
 pluggy==1.0.0
     # via pytest
-protobuf==4.21.2
-    # via mypy-protobuf
+protobuf==3.20.0
+    # via
+    #   -r requirements/test.in
+    #   mypy-protobuf
 py==1.11.0
     # via pytest
 pycparser==2.21
@@ -167,7 +169,9 @@ twine==4.0.1
 types-markdown==3.3.29
     # via djangorestframework-stubs
 types-protobuf==3.19.22
-    # via mypy-protobuf
+    # via
+    #   -r requirements/test.in
+    #   mypy-protobuf
 types-pytz==2022.1.1
     # via django-stubs
 types-pyyaml==6.0.9
