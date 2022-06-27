@@ -76,5 +76,5 @@ class ConfigDownloadView(LoginRequiredMixin, View):
         json_str = json.dumps(serializer.data)
         toml_str = toml.dumps(json.loads(json_str))
         response = HttpResponse(toml_str, content_type="application/toml")
-        response["Content-Disposition"] = "attachment; filename=PrintNanny.toml"
+        response["Content-Disposition"] = "attachment; filename=printnanny.toml"
         return response

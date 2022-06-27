@@ -12,7 +12,7 @@ User = get_user_model()
 
 
 class Command(BaseCommand):
-    help = "Generates a PrintNanny.toml for development environment"
+    help = "Generates a printnanny.toml for development environment"
 
     def add_arguments(self, parser):
         parser.add_argument("--email", type=str)
