@@ -48,7 +48,7 @@ other_urls = [
 ]
 
 devices_router = NestedSimpleRouter(router, r"devices", lookup="device")
-devices_router.register("license", ConfigDownloadViewSet, basename="license")
+devices_router.register("config", ConfigDownloadViewSet, basename="config")
 devices_router.register(r"public-keys", PublicKeyViewSet, basename="public-keys")
 devices_router.register(
     r"janus-cloud-streams", JanusCloudStreamViewSet, basename="janus-cloud-streams"
