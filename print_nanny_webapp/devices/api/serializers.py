@@ -222,7 +222,7 @@ class DeviceSerializer(serializers.ModelSerializer):
         exclude = ("deleted",)
 
 
-class LicenseSerializer(serializers.Serializer):
+class ConfigSerializer(serializers.Serializer):
     api = PrintNannyApiConfigSerializer(read_only=True)
     device = DeviceSerializer(read_only=True)
 

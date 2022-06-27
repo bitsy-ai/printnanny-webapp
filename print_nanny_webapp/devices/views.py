@@ -1,3 +1,4 @@
+import toml
 import json
 import logging
 
@@ -9,7 +10,7 @@ from django.http import HttpResponse
 from django.views.generic.detail import SingleObjectMixin
 from print_nanny_webapp.devices.models import Device
 from print_nanny_webapp.utils.api.service import get_api_config
-from .api.serializers import LicenseSerializer
+from .api.serializers import ConfigSerializer
 
 logger = logging.getLogger(__name__)
 
@@ -60,7 +61,7 @@ class DeviceCreateView(LoginRequiredMixin, CreateView):
         return HttpResponseRedirect(success_url)
 
 
-class LicenseDownloadView(LoginRequiredMixin, SingleObjectMixin, View):
+class ConfigDownloadView(LoginRequiredMixin, View):
     model = Device
     slug_field = "id"
 
@@ -69,8 +70,11 @@ class LicenseDownloadView(LoginRequiredMixin, SingleObjectMixin, View):
         api = get_api_config(request, device.user)
         instance = dict(device=device, api=api)
 
-        serializer = LicenseSerializer(instance=instance)
+        serializer = ConfigSerializer(instance=instance)
+        # use .toml for user-facing configs
+        # I'm sure there's a better way to serialize than DRF to_representation() -> JSON string -> Dict -> TOML string
         json_str = json.dumps(serializer.data)
-        response = HttpResponse(json_str, content_type="application/json")
-        response["Content-Disposition"] = "attachment; filename=license.json"
+        toml_str = toml.dumps(json.loads(json_str))
+        response = HttpResponse(toml_str, content_type="application/toml")
+        response["Content-Disposition"] = "attachment; filename=PrintNanny.toml"
         return response
