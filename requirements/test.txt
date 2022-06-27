@@ -167,9 +167,7 @@ twine==4.0.1
 types-markdown==3.3.29
     # via djangorestframework-stubs
 types-protobuf==3.19.22
-    # via
-    #   -r requirements/test.in
-    #   mypy-protobuf
+    # via mypy-protobuf
 types-pytz==2022.1.1
     # via django-stubs
 types-pyyaml==6.0.9
