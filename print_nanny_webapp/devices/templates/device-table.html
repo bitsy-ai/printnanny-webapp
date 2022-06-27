@@ -56,8 +56,8 @@
                 <div class="row">
                     <div class="alert alert-warning mb-0" role="alert">
                         <h4 class="alert-heading">No Devices Found</h4>
-                        <p class="mb-0"><a class="btn btn-primary" href="{% url 'devices:welcome' %}">Get Started
-                                with Print Nanny OS</a></p>
+                        <p class="mb-0">Get started by installing PrintNanny OS.</p>
+                        <a href="{{ PRINTNANNY_OS_INSTALL_URL }}" class="btn btn-primary">Install Guide</a>
                     </div>
                 </div>
                 {% endif %}
