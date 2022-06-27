@@ -546,6 +546,12 @@ export interface Device {
      * @memberof Device
      */
     'hostname'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    'fqdn'?: string;
 }
 /**
  * 
@@ -559,6 +565,12 @@ export interface DeviceRequest {
      * @memberof DeviceRequest
      */
     'hostname'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceRequest
+     */
+    'fqdn'?: string;
 }
 /**
  * 
@@ -2774,6 +2786,12 @@ export interface PatchedDeviceRequest {
      * @memberof PatchedDeviceRequest
      */
     'hostname'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedDeviceRequest
+     */
+    'fqdn'?: string;
 }
 /**
  * 

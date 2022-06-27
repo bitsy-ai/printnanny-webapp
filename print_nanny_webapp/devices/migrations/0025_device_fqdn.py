@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devices', '0024_alter_systeminfo_device'),
+        ("devices", "0024_alter_systeminfo_device"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='device',
-            name='fqdn',
-            field=models.CharField(default='printnanny.local', max_length=255),
+            model_name="device",
+            name="fqdn",
+            field=models.CharField(default="printnanny.local", max_length=255),
         ),
     ]

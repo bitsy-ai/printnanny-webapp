@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **urls** | [**crate::models::DeviceUrls**](Device_urls.md) |  | 
 **created_dt** | **String** |  | [readonly]
 **hostname** | Option<**String**> | Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension) | [optional]
+**fqdn** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

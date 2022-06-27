@@ -45,7 +45,8 @@ class Device(object):
         'public_key': 'PublicKey',
         'urls': 'DeviceUrls',
         'created_dt': 'datetime',
-        'hostname': 'str'
+        'hostname': 'str',
+        'fqdn': 'str'
     }
 
     attribute_map = {
@@ -57,10 +58,11 @@ class Device(object):
         'public_key': 'public_key',
         'urls': 'urls',
         'created_dt': 'created_dt',
-        'hostname': 'hostname'
+        'hostname': 'hostname',
+        'fqdn': 'fqdn'
     }
 
-    def __init__(self, id=None, alert_settings=None, cloudiot_device=None, user=None, system_info=None, public_key=None, urls=None, created_dt=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, alert_settings=None, cloudiot_device=None, user=None, system_info=None, public_key=None, urls=None, created_dt=None, hostname=None, fqdn=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -75,6 +77,7 @@ class Device(object):
         self._urls = None
         self._created_dt = None
         self._hostname = None
+        self._fqdn = None
         self.discriminator = None
 
         self.id = id
@@ -87,6 +90,8 @@ class Device(object):
         self.created_dt = created_dt
         if hostname is not None:
             self.hostname = hostname
+        if fqdn is not None:
+            self.fqdn = fqdn
 
     @property
     def id(self):
@@ -287,6 +292,30 @@ class Device(object):
             raise ValueError("Invalid value for `hostname`, length must be less than or equal to `255`")  # noqa: E501
 
         self._hostname = hostname
+
+    @property
+    def fqdn(self):
+        """Gets the fqdn of this Device.  # noqa: E501
+
+
+        :return: The fqdn of this Device.  # noqa: E501
+        :rtype: str
+        """
+        return self._fqdn
+
+    @fqdn.setter
+    def fqdn(self, fqdn):
+        """Sets the fqdn of this Device.
+
+
+        :param fqdn: The fqdn of this Device.  # noqa: E501
+        :type fqdn: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                fqdn is not None and len(fqdn) > 255):
+            raise ValueError("Invalid value for `fqdn`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._fqdn = fqdn
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

@@ -37,7 +37,8 @@ class TestDeviceRequest(unittest.TestCase):
         # model = printnanny_api_client.models.device_request.DeviceRequest()  # noqa: E501
         if include_optional :
             return DeviceRequest(
-                hostname = '0'
+                hostname = '0', 
+                fqdn = '0'
             )
         else :
             return DeviceRequest(

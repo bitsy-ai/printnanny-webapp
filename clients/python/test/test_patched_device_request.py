@@ -37,7 +37,8 @@ class TestPatchedDeviceRequest(unittest.TestCase):
         # model = printnanny_api_client.models.patched_device_request.PatchedDeviceRequest()  # noqa: E501
         if include_optional :
             return PatchedDeviceRequest(
-                hostname = '0'
+                hostname = '0', 
+                fqdn = '0'
             )
         else :
             return PatchedDeviceRequest(

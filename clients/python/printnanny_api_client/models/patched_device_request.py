@@ -37,24 +37,29 @@ class PatchedDeviceRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'hostname': 'str'
+        'hostname': 'str',
+        'fqdn': 'str'
     }
 
     attribute_map = {
-        'hostname': 'hostname'
+        'hostname': 'hostname',
+        'fqdn': 'fqdn'
     }
 
-    def __init__(self, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, hostname=None, fqdn=None, local_vars_configuration=None):  # noqa: E501
         """PatchedDeviceRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._hostname = None
+        self._fqdn = None
         self.discriminator = None
 
         if hostname is not None:
             self.hostname = hostname
+        if fqdn is not None:
+            self.fqdn = fqdn
 
     @property
     def hostname(self):
@@ -84,6 +89,33 @@ class PatchedDeviceRequest(object):
             raise ValueError("Invalid value for `hostname`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._hostname = hostname
+
+    @property
+    def fqdn(self):
+        """Gets the fqdn of this PatchedDeviceRequest.  # noqa: E501
+
+
+        :return: The fqdn of this PatchedDeviceRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._fqdn
+
+    @fqdn.setter
+    def fqdn(self, fqdn):
+        """Sets the fqdn of this PatchedDeviceRequest.
+
+
+        :param fqdn: The fqdn of this PatchedDeviceRequest.  # noqa: E501
+        :type fqdn: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                fqdn is not None and len(fqdn) > 255):
+            raise ValueError("Invalid value for `fqdn`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                fqdn is not None and len(fqdn) < 1):
+            raise ValueError("Invalid value for `fqdn`, length must be greater than or equal to `1`")  # noqa: E501
+
+        self._fqdn = fqdn
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

@@ -16,12 +16,15 @@ pub struct DeviceRequest {
     /// Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension)
     #[serde(rename = "hostname", skip_serializing_if = "Option::is_none")]
     pub hostname: Option<String>,
+    #[serde(rename = "fqdn", skip_serializing_if = "Option::is_none")]
+    pub fqdn: Option<String>,
 }
 
 impl DeviceRequest {
     pub fn new() -> DeviceRequest {
         DeviceRequest {
             hostname: None,
+            fqdn: None,
         }
     }
 }
