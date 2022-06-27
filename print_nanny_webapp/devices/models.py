@@ -1,6 +1,7 @@
 import logging
 from datetime import datetime
 from typing import Callable, Optional, TypedDict
+from django.apps import apps
 from django.conf import settings
 from django.db import models
 from django.contrib.auth import get_user_model
@@ -10,8 +11,6 @@ from django.utils.crypto import get_random_string
 from google.cloud import iot_v1 as cloudiot_v1
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.signals import pre_softdelete
-
-from print_nanny_webapp.alerts.api.serializers import AlertSettings
 
 from .utils import get_available_rtp_port
 from .enum import (
@@ -92,6 +91,7 @@ class Device(SafeDeleteModel):
 
     @property
     def alert_settings(self):
+        AlertSettings = apps.get_model("alerts", "AlertSettings")
         obj, _ = AlertSettings.objects.get_or_create(user=self.user)
         return obj
 
