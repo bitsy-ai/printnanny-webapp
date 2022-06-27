@@ -24,7 +24,7 @@
 
         <div class="card-footer">
             {% if not device.is_active %}
-            <a class="btn btn-primary btn-sm" href="{% url 'devices:license-download' pk=device.id %}">Download
+            <a class="btn btn-primary btn-sm" href="{% url 'devices:config-download' pk=device.id %}">Download
                 License</a>
             {% else %}
             {% if device.is_octoprint %}

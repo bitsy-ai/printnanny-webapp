@@ -19,3 +19,5 @@ mypy-protobuf
 types-requests
 types-protobuf
 types-six
+types-toml
+protobuf<=3.20

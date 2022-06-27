@@ -35,7 +35,7 @@ from .serializers import (
     JanusAuthSerializer,
     JanusEdgeStreamSerializer,
     JanusCloudStreamSerializer,
-    LicenseSerializer,
+    ConfigSerializer,
     PublicKeySerializer,
     CloudiotDeviceSerializer,
     SystemInfoSerializer,
@@ -805,10 +805,10 @@ class CloudiotDeviceViewSet(
 ##
 # License download
 ##
-class LicenseDownloadViewSet(
+class ConfigDownloadViewSet(
     GenericViewSet,
 ):
-    serializer_class = LicenseSerializer
+    serializer_class = ConfigSerializer
 
     @extend_schema(
         parameters=[
@@ -817,7 +817,7 @@ class LicenseDownloadViewSet(
             ),
         ],
         responses={
-            200: LicenseSerializer,
+            200: ConfigSerializer,
         }
         | generic_get_errors,
     )
@@ -826,5 +826,5 @@ class LicenseDownloadViewSet(
         device = Device.objects.get(id=device_id)
         api = get_api_config(request, device.user)
         instance = dict(device=device, api=api)
-        serializer = LicenseSerializer(instance=instance)
+        serializer = ConfigSerializer(instance=instance)
         return Response(serializer.data, status=status.HTTP_200_OK)

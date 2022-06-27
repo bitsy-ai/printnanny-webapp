@@ -5,16 +5,16 @@ from .views import (
     DeviceDetailView,
     DeviceVideoView,
     DeviceCreateView,
-    LicenseDownloadView,
+    ConfigDownloadView,
 )
 
 app_name = "devices"
 
 urlpatterns = [
     path(
-        "licenses/<slug:pk>/download",
-        LicenseDownloadView.as_view(),
-        name="license-download",
+        "config/<slug:pk>/download",
+        ConfigDownloadView.as_view(),
+        name="config-download",
     ),
     path("<slug:pk>/", DeviceDetailView.as_view(), name="detail"),
     path("<slug:pk>/delete", DeviceDeleteView.as_view(), name="delete"),

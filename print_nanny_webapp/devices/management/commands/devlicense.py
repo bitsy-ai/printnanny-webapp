@@ -1,10 +1,10 @@
-import json
+import toml
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.http import HttpRequest
 
-from print_nanny_webapp.devices.api.serializers import LicenseSerializer
+from print_nanny_webapp.devices.api.serializers import ConfigSerializer
 from print_nanny_webapp.devices.models import Device
 from print_nanny_webapp.utils.api.service import get_api_config
 
@@ -12,7 +12,7 @@ User = get_user_model()
 
 
 class Command(BaseCommand):
-    help = "Generates a license.json for development environment"
+    help = "Generates a PrintNanny.toml for development environment"
 
     def add_arguments(self, parser):
         parser.add_argument("--email", type=str)
@@ -39,7 +39,7 @@ class Command(BaseCommand):
 
         api = get_api_config(request, user=user)
         instance = dict(device=device, api=api)
-        serializer = LicenseSerializer(instance=instance)
+        serializer = ConfigSerializer(instance=instance)
         with open(options["out"], "w") as f:
-            json.dump(serializer.data, f)
+            toml.dump(serializer.data, f)
         self.stdout.write(self.style.SUCCESS(f"Created {options['out']}"))
