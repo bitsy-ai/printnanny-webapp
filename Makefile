@@ -492,9 +492,9 @@ cert-manager-dns:
 migrations:
 	docker-compose -f local.yml exec django python manage.py makemigrations
 
-dev-license: $(TMPDIR)
-	docker-compose -f local.yml exec django python manage.py devlicense \
+dev-config: $(TMPDIR)
+	docker-compose -f local.yml exec django python manage.py devconfig \
 		--email=$(DJANGO_SUPERUSER_EMAIL) \
 		--hostname=$(shell hostname) \
-		--out=$(TMPDIR)/license.json \
+		--out=$(TMPDIR)/printnanny.toml \
 		--port=8000
