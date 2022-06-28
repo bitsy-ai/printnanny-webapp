@@ -1,4 +1,5 @@
 import toml
+import json
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -40,6 +41,9 @@ class Command(BaseCommand):
         api = get_api_config(request, user=user)
         instance = dict(device=device, api=api)
         serializer = ConfigSerializer(instance=instance)
-        with open(options["out"], "w") as f:
-            toml.dump(serializer.data, f)
+        # use .toml for user-facing configs
+        # I'm sure there's a better way to serialize than DRF to_representation() -> JSON string -> Dict -> TOML string
+        json_str = json.dumps(serializer.data)
+        with open(options["out"], "w+") as f:
+            toml.dump(json.loads(json_str), f)
         self.stdout.write(self.style.SUCCESS(f"Created {options['out']}"))

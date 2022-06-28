@@ -39,6 +39,8 @@ OPENAPI_GENERATOR_WORKDIR ?= $(HOME)/projects/openapi-generator
 OPENAPI_GENERATOR_CLI_JAR ?= $(OPENAPI_GENERATOR_WORKDIR)/modules/openapi-generator-cli/target/openapi-generator-cli.jar
 OPENAPI_CUSTOM_RUST_GENERATOR_JAR ?= $(HOME)/.m2/repository/org/openapitools/rust-client-openapi-generator/1.0.0/rust-client-openapi-generator-1.0.0.jar
 
+PRINTNANNY_CONFIG_DEV ?= $(TMPDIR)/printnanny.toml
+
 $(TMPDIR):
 	mkdir $(TMPDIR)
 
@@ -496,5 +498,5 @@ dev-config: $(TMPDIR)
 	docker-compose -f local.yml exec django python manage.py devconfig \
 		--email=$(DJANGO_SUPERUSER_EMAIL) \
 		--hostname=$(shell hostname) \
-		--out=$(TMPDIR)/printnanny.toml \
+		--out=$(PRINTNANNY_CONFIG_DEV) \
 		--port=8000
