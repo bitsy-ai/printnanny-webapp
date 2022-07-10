@@ -160,7 +160,6 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
-    "django.middleware.common.BrokenLinkEmailsMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
@@ -240,7 +239,6 @@ TEMPLATES = [
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
                 "print_nanny_webapp.utils.context_processors.settings_context",
-                "print_nanny_webapp.utils.context_processors.help_context",
             ],
         },
     }
@@ -555,17 +553,10 @@ INSTALLED_APPS += [
 ]
 
 # ------------------------------------------------------------------------------
-# help guides + other notion wiki links
+# docs site
+DOCS_SITE_URL = "https://docs.printnanny.ai/docs/category/quick-start/"
+DOCS_SITE__QUICKSTART = DOCS_SITE_URL
 
-ROADMAP_URL = (
-    "https://bitsy-ai.notion.site/Print-Nanny-Roadmap-7b48a2c8d83248eea2de14edfeaf52ee"
-)
-HELP_OCTOPRINT_PLUGIN_SETUP = "https://help.print-nanny.com/octoprint-plugin-setup/"
-HELP_WIKI = "https://www.notion.so/bitsy-ai/Print-Nanny-Guides-Support-ac1079fafc944d769aa21cf8bffe4692"
-HELP_DEVICE_PKI = "https://www.notion.so/bitsy-ai/Securing-IoT-Devices-with-PKI-f9e728fb1e734e6d95efb930d9f23620"
-ERROR_ACTIVATE_LICENSE = "https://www.notion.so/bitsy-ai/License-Activation-Failed-99bb98ebc01546979717da214d2198c8"
-HELP_BOOK_30M = "https://calendly.com/bitsy-ai-labs/30min"
-HELP_BOOK_60M = "https://calendly.com/bitsy-ai-labs/60min"
 # dj-stripe
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += ["djstripe"]
@@ -624,11 +615,6 @@ GCP_RENDER_VIDEO_TOPIC = "VideoRenderRequest"
 # links
 # ------------------------------------------------------------------------------
 DISCORD_URL = "https://discord.gg/sf23bk2hPr"
-REPORT_ISSUE_URL = (
-    "https://help.print-nanny.com/faq/how-to-report-issue-with-octoprint-logs"
-)
-HELP_SITE_URL = "https://help.print-nanny.com"
-BLOG_SITE_URL = "https://blog.print-nanny.com"
 ABOUT_URL = "https://blog.print-nanny.com/about"
 GITHUB_ISSUE_URL = "https://github.com/bitsy-ai/octoprint-nanny-plugin/issues/new"
 
