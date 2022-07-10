@@ -1,4 +1,4 @@
 {% load i18n %}
 {% autoescape off %}
-{% blocktrans %} Invitation to join Private Beta {% endblocktrans %}
+{% blocktrans %} Invitation to join PrintNanny.ai Beta {% endblocktrans %}
 {% endautoescape %}

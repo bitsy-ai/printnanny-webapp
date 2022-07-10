@@ -191,7 +191,7 @@ class UserSettings(models.Model):
 
 class GhostMember(models.Model):
     """
-    Periodically synced with Ghost's user/member API @ help.print-nanny.com
+    Periodically synced with Ghost's user/member API
     """
 
     class SiteChoices(models.TextChoices):

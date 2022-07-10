@@ -10,17 +10,7 @@ from config.settings.base import PAID_BETA_SUBSCRIPTION_LIMIT
 logger = logging.getLogger(__name__)
 
 
-def help_context(_request):
-    return {
-        "HELP_WIKI_URL": settings.HELP_WIKI,
-        "ERROR_ACTIVATE_LICENSE": settings.ERROR_ACTIVATE_LICENSE,
-        "DEVICE_PKI": settings.HELP_DEVICE_PKI,
-        "ROADMAP_URL": settings.ROADMAP_URL,
-        "PRINTNANNY_OS_INSTALL_URL": settings.PRINTNANNY_OS_INSTALL_URL,
-    }
-
-
-def settings_context(request):
+def settings_context(_request):
     """Settings available by default to the templates context."""
     # Note: we intentionally do NOT expose the entire settings
     # to prevent accidental leaking of sensitive information
@@ -38,7 +28,6 @@ def settings_context(request):
         "ABOUT_URL": settings.ABOUT_URL,
         "API_VERSION": settings.API_VERSION,
         "AVAILABLE_SUBSCRIPTIONS_COUNT": num_subscriptions_available,
-        "BLOG_SITE_URL": settings.BLOG_SITE_URL,
         "GIT_SHA": settings.GIT_SHA,
         "CDN_BASE_URL": settings.CDN_BASE_URL,
         "CURRENT_UTC_TS": int(timezone.now().timestamp()),
@@ -49,18 +38,16 @@ def settings_context(request):
             "https://cdn.printnanny.ai/www/demo-video-3.mp4",
             "https://cdn.printnanny.ai/www/demo-video-4.mp4",
         ],
+        "DOCS_SITE_URL": settings.DOCS_SITE_URL,
+        "DOCS_SITE__QUICKSTART": settings.DOCS_SITE__QUICKSTART,
         "DISCORD_URL": settings.DISCORD_URL,
         "GOOGLE_ANALYTICS": settings.GOOGLE_ANALYTICS,
-        "HELP_OCTOPRINT_PLUGIN_SETUP": settings.HELP_OCTOPRINT_PLUGIN_SETUP,
-        "HELP_SITE_URL": settings.HELP_SITE_URL,
         "IS_SOLD_OUT": sold_out,
         "PAID_BETA_LAUNCH_TIMESTAMP": int(settings.PAID_BETA_LAUNCH_TIMESTAMP),
         "PAID_BETA_SUBSCRIPTION_LIMIT": PAID_BETA_SUBSCRIPTION_LIMIT,
         "POSTHOG_API_KEY": settings.POSTHOG_API_KEY,
         "PRINTNANNY_OS_RELEASE_URL": settings.PRINTNANNY_OS_RELEASE_URL,
         "PRINTNANNY_OS_INSTALL_URL": settings.PRINTNANNY_OS_INSTALL_URL,
-        "REPORT_ISSUE_URL": settings.REPORT_ISSUE_URL,
-        "ROADMAP_URL": settings.ROADMAP_URL,
         "STRIPE_PUBLIC_KEY": djstripe_settings.STRIPE_PUBLIC_KEY,
         "WS_BASE_URL": settings.WS_BASE_URL,
     }
