@@ -36,10 +36,12 @@
                                     href="{% url 'devices:config-download' pk=device.id %}">Download
                                     Config</a>
                                 {% else %}
-                                {% if device.is_octoprint %}
+                                <a target="_blank" href="{{ device.urls.swupdate }}"
+                                    class="btn btn-primary btn-sm ml-1">Update</a>
+                                {% endif %}
+                                {% if device.is_octoprint and device.is_active %}
                                 <a target="_blank" href="{{ device.urls.octoprint }}"
                                     class="btn btn-success btn-sm ml-1">OctoPrint</a>
-                                {% endif %}
                                 {% endif %}
                                 <a href="{% url 'devices:delete' pk=device.id %}"><button
                                         class="btn btn-danger btn-sm ml-1 float-right">Delete</button></a>
