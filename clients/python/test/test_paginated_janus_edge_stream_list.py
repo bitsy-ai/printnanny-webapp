@@ -43,13 +43,6 @@ class TestPaginatedJanusEdgeStreamList(unittest.TestCase):
                 results = [
                     printnanny_api_client.models.janus_edge_stream.JanusEdgeStream(
                         id = 56, 
-                        auth = printnanny_api_client.models.janus_auth.JanusAuth(
-                            id = 56, 
-                            admin_secret = '', 
-                            api_token = '', 
-                            config_type = 'cloud', 
-                            created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                            user = 56, ), 
                         api_domain = '', 
                         api_port = 56, 
                         api_url = '', 
@@ -62,11 +55,10 @@ class TestPaginatedJanusEdgeStreamList(unittest.TestCase):
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         active = True, 
-                        secret = '', 
-                        pin = '', 
-                        info = {
-                            'key' : null
-                            }, 
+                        stream_secret = '', 
+                        stream_pin = '', 
+                        api_token = '', 
+                        admin_secret = '', 
                         rtp_port = 0, 
                         device = 56, )
                     ]

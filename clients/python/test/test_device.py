@@ -39,6 +39,7 @@ class TestDevice(unittest.TestCase):
             return Device(
                 id = 56, 
                 alert_settings = None, 
+                settings = None, 
                 cloudiot_device = None, 
                 user = None, 
                 system_info = None, 
@@ -56,6 +57,7 @@ class TestDevice(unittest.TestCase):
             return Device(
                 id = 56,
                 alert_settings = None,
+                settings = None,
                 cloudiot_device = None,
                 user = None,
                 system_info = None,

@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
-**auth** | [**JanusAuth**](JanusAuth.md) |  | [readonly] 
 **api_domain** | **str** |  | [readonly] 
 **api_port** | **int** |  | [readonly] 
 **api_url** | **str** |  | [readonly] 
@@ -18,9 +17,10 @@ Name | Type | Description | Notes
 **created_dt** | **datetime** |  | [readonly] 
 **updated_dt** | **datetime** |  | [readonly] 
 **active** | **bool** |  | [readonly] 
-**secret** | **str** |  | [readonly] 
-**pin** | **str** |  | [readonly] 
-**info** | **dict(str, object)** |  | [readonly] 
+**stream_secret** | **str** |  | [optional] 
+**stream_pin** | **str** |  | [optional] 
+**api_token** | **str** |  | [optional] 
+**admin_secret** | **str** |  | [optional] 
 **rtp_port** | **int** |  | [readonly] 
 **device** | **int** |  | [readonly] 
 

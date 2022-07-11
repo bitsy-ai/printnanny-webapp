@@ -4,16 +4,16 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**auth** | [**JanusAuthRequest**](JanusAuthRequest.md) |  | [optional] 
 **api_domain** | **str** |  | [optional] 
 **api_port** | **int** |  | [optional] 
 **admin_port** | **int** |  | [optional] 
 **ws_port** | **int** |  | [optional] 
 **rtp_domain** | **str** |  | [optional] 
 **active** | **bool** |  | [optional] 
-**secret** | **str** |  | [optional] 
-**pin** | **str** |  | [optional] 
-**info** | **dict(str, object)** |  | [optional] 
+**stream_secret** | **str** |  | [optional] 
+**stream_pin** | **str** |  | [optional] 
+**api_token** | **str** |  | [optional] 
+**admin_secret** | **str** |  | [optional] 
 **rtp_port** | **int** |  | [optional] 
 **device** | **int** |  | [optional] 
 

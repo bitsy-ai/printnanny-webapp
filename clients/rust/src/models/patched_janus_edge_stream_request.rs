@@ -13,8 +13,6 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct PatchedJanusEdgeStreamRequest {
-    #[serde(rename = "auth", skip_serializing_if = "Option::is_none")]
-    pub auth: Option<Box<crate::models::JanusAuthRequest>>,
     #[serde(rename = "api_domain", skip_serializing_if = "Option::is_none")]
     pub api_domain: Option<String>,
     #[serde(rename = "api_port", skip_serializing_if = "Option::is_none")]
@@ -27,12 +25,14 @@ pub struct PatchedJanusEdgeStreamRequest {
     pub rtp_domain: Option<String>,
     #[serde(rename = "active", skip_serializing_if = "Option::is_none")]
     pub active: Option<bool>,
-    #[serde(rename = "secret", skip_serializing_if = "Option::is_none")]
-    pub secret: Option<String>,
-    #[serde(rename = "pin", skip_serializing_if = "Option::is_none")]
-    pub pin: Option<String>,
-    #[serde(rename = "info", skip_serializing_if = "Option::is_none")]
-    pub info: Option<::std::collections::HashMap<String, serde_json::Value>>,
+    #[serde(rename = "stream_secret", skip_serializing_if = "Option::is_none")]
+    pub stream_secret: Option<String>,
+    #[serde(rename = "stream_pin", skip_serializing_if = "Option::is_none")]
+    pub stream_pin: Option<String>,
+    #[serde(rename = "api_token", skip_serializing_if = "Option::is_none")]
+    pub api_token: Option<String>,
+    #[serde(rename = "admin_secret", skip_serializing_if = "Option::is_none")]
+    pub admin_secret: Option<String>,
     #[serde(rename = "rtp_port", skip_serializing_if = "Option::is_none")]
     pub rtp_port: Option<i32>,
     #[serde(rename = "device", skip_serializing_if = "Option::is_none")]
@@ -42,16 +42,16 @@ pub struct PatchedJanusEdgeStreamRequest {
 impl PatchedJanusEdgeStreamRequest {
     pub fn new() -> PatchedJanusEdgeStreamRequest {
         PatchedJanusEdgeStreamRequest {
-            auth: None,
             api_domain: None,
             api_port: None,
             admin_port: None,
             ws_port: None,
             rtp_domain: None,
             active: None,
-            secret: None,
-            pin: None,
-            info: None,
+            stream_secret: None,
+            stream_pin: None,
+            api_token: None,
+            admin_secret: None,
             rtp_port: None,
             device: None,
         }

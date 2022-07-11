@@ -221,6 +221,30 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
+    def test_devices_settings_list(self):
+        """Test case for devices_settings_list
+
+        """
+        pass
+
+    def test_devices_settings_partial_update(self):
+        """Test case for devices_settings_partial_update
+
+        """
+        pass
+
+    def test_devices_settings_retrieve(self):
+        """Test case for devices_settings_retrieve
+
+        """
+        pass
+
+    def test_devices_settings_update(self):
+        """Test case for devices_settings_update
+
+        """
+        pass
+
     def test_devices_system_info_create(self):
         """Test case for devices_system_info_create
 

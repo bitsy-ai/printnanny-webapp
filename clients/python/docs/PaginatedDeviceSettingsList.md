@@ -1,13 +1,13 @@
-# JanusAuthRequest
+# PaginatedDeviceSettingsList
 
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**admin_secret** | **str** |  | [optional] 
-**api_token** | **str** |  | [optional] 
-**config_type** | [**JanusConfigType**](JanusConfigType.md) |  | [optional] 
-**user** | **int** |  | 
+**count** | **int** |  | [optional] 
+**next** | **str** |  | [optional] 
+**previous** | **str** |  | [optional] 
+**results** | [**list[DeviceSettings]**](DeviceSettings.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

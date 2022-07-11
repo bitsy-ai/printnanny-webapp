@@ -38,41 +38,46 @@ class JanusCloudStreamRequest(object):
     """
     openapi_types = {
         'active': 'bool',
-        'secret': 'str',
-        'pin': 'str',
-        'info': 'dict(str, object)',
+        'stream_secret': 'str',
+        'stream_pin': 'str',
+        'api_token': 'str',
+        'admin_secret': 'str',
         'device': 'int'
     }
 
     attribute_map = {
         'active': 'active',
-        'secret': 'secret',
-        'pin': 'pin',
-        'info': 'info',
+        'stream_secret': 'stream_secret',
+        'stream_pin': 'stream_pin',
+        'api_token': 'api_token',
+        'admin_secret': 'admin_secret',
         'device': 'device'
     }
 
-    def __init__(self, active=None, secret=None, pin=None, info=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, active=None, stream_secret=None, stream_pin=None, api_token=None, admin_secret=None, device=None, local_vars_configuration=None):  # noqa: E501
         """JanusCloudStreamRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._active = None
-        self._secret = None
-        self._pin = None
-        self._info = None
+        self._stream_secret = None
+        self._stream_pin = None
+        self._api_token = None
+        self._admin_secret = None
         self._device = None
         self.discriminator = None
 
         if active is not None:
             self.active = active
-        if secret is not None:
-            self.secret = secret
-        if pin is not None:
-            self.pin = pin
-        if info is not None:
-            self.info = info
+        if stream_secret is not None:
+            self.stream_secret = stream_secret
+        if stream_pin is not None:
+            self.stream_pin = stream_pin
+        if api_token is not None:
+            self.api_token = api_token
+        if admin_secret is not None:
+            self.admin_secret = admin_secret
         self.device = device
 
     @property
@@ -97,79 +102,112 @@ class JanusCloudStreamRequest(object):
         self._active = active
 
     @property
-    def secret(self):
-        """Gets the secret of this JanusCloudStreamRequest.  # noqa: E501
+    def stream_secret(self):
+        """Gets the stream_secret of this JanusCloudStreamRequest.  # noqa: E501
 
 
-        :return: The secret of this JanusCloudStreamRequest.  # noqa: E501
+        :return: The stream_secret of this JanusCloudStreamRequest.  # noqa: E501
         :rtype: str
         """
-        return self._secret
+        return self._stream_secret
 
-    @secret.setter
-    def secret(self, secret):
-        """Sets the secret of this JanusCloudStreamRequest.
+    @stream_secret.setter
+    def stream_secret(self, stream_secret):
+        """Sets the stream_secret of this JanusCloudStreamRequest.
 
 
-        :param secret: The secret of this JanusCloudStreamRequest.  # noqa: E501
-        :type secret: str
+        :param stream_secret: The stream_secret of this JanusCloudStreamRequest.  # noqa: E501
+        :type stream_secret: str
         """
         if (self.local_vars_configuration.client_side_validation and
-                secret is not None and len(secret) > 255):
-            raise ValueError("Invalid value for `secret`, length must be less than or equal to `255`")  # noqa: E501
+                stream_secret is not None and len(stream_secret) > 255):
+            raise ValueError("Invalid value for `stream_secret`, length must be less than or equal to `255`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
-                secret is not None and len(secret) < 1):
-            raise ValueError("Invalid value for `secret`, length must be greater than or equal to `1`")  # noqa: E501
+                stream_secret is not None and len(stream_secret) < 1):
+            raise ValueError("Invalid value for `stream_secret`, length must be greater than or equal to `1`")  # noqa: E501
 
-        self._secret = secret
+        self._stream_secret = stream_secret
 
     @property
-    def pin(self):
-        """Gets the pin of this JanusCloudStreamRequest.  # noqa: E501
+    def stream_pin(self):
+        """Gets the stream_pin of this JanusCloudStreamRequest.  # noqa: E501
 
 
-        :return: The pin of this JanusCloudStreamRequest.  # noqa: E501
+        :return: The stream_pin of this JanusCloudStreamRequest.  # noqa: E501
         :rtype: str
         """
-        return self._pin
+        return self._stream_pin
 
-    @pin.setter
-    def pin(self, pin):
-        """Sets the pin of this JanusCloudStreamRequest.
+    @stream_pin.setter
+    def stream_pin(self, stream_pin):
+        """Sets the stream_pin of this JanusCloudStreamRequest.
 
 
-        :param pin: The pin of this JanusCloudStreamRequest.  # noqa: E501
-        :type pin: str
+        :param stream_pin: The stream_pin of this JanusCloudStreamRequest.  # noqa: E501
+        :type stream_pin: str
         """
         if (self.local_vars_configuration.client_side_validation and
-                pin is not None and len(pin) > 255):
-            raise ValueError("Invalid value for `pin`, length must be less than or equal to `255`")  # noqa: E501
+                stream_pin is not None and len(stream_pin) > 255):
+            raise ValueError("Invalid value for `stream_pin`, length must be less than or equal to `255`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
-                pin is not None and len(pin) < 1):
-            raise ValueError("Invalid value for `pin`, length must be greater than or equal to `1`")  # noqa: E501
+                stream_pin is not None and len(stream_pin) < 1):
+            raise ValueError("Invalid value for `stream_pin`, length must be greater than or equal to `1`")  # noqa: E501
 
-        self._pin = pin
+        self._stream_pin = stream_pin
 
     @property
-    def info(self):
-        """Gets the info of this JanusCloudStreamRequest.  # noqa: E501
+    def api_token(self):
+        """Gets the api_token of this JanusCloudStreamRequest.  # noqa: E501
 
 
-        :return: The info of this JanusCloudStreamRequest.  # noqa: E501
-        :rtype: dict(str, object)
+        :return: The api_token of this JanusCloudStreamRequest.  # noqa: E501
+        :rtype: str
         """
-        return self._info
+        return self._api_token
 
-    @info.setter
-    def info(self, info):
-        """Sets the info of this JanusCloudStreamRequest.
+    @api_token.setter
+    def api_token(self, api_token):
+        """Sets the api_token of this JanusCloudStreamRequest.
 
 
-        :param info: The info of this JanusCloudStreamRequest.  # noqa: E501
-        :type info: dict(str, object)
+        :param api_token: The api_token of this JanusCloudStreamRequest.  # noqa: E501
+        :type api_token: str
         """
+        if (self.local_vars_configuration.client_side_validation and
+                api_token is not None and len(api_token) > 255):
+            raise ValueError("Invalid value for `api_token`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                api_token is not None and len(api_token) < 1):
+            raise ValueError("Invalid value for `api_token`, length must be greater than or equal to `1`")  # noqa: E501
 
-        self._info = info
+        self._api_token = api_token
+
+    @property
+    def admin_secret(self):
+        """Gets the admin_secret of this JanusCloudStreamRequest.  # noqa: E501
+
+
+        :return: The admin_secret of this JanusCloudStreamRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._admin_secret
+
+    @admin_secret.setter
+    def admin_secret(self, admin_secret):
+        """Sets the admin_secret of this JanusCloudStreamRequest.
+
+
+        :param admin_secret: The admin_secret of this JanusCloudStreamRequest.  # noqa: E501
+        :type admin_secret: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                admin_secret is not None and len(admin_secret) > 255):
+            raise ValueError("Invalid value for `admin_secret`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                admin_secret is not None and len(admin_secret) < 1):
+            raise ValueError("Invalid value for `admin_secret`, length must be greater than or equal to `1`")  # noqa: E501
+
+        self._admin_secret = admin_secret
 
     @property
     def device(self):

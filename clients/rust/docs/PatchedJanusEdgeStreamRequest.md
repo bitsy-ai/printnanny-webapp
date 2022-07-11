@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**auth** | Option<[**crate::models::JanusAuthRequest**](JanusAuthRequest.md)> |  | [optional]
 **api_domain** | Option<**String**> |  | [optional]
 **api_port** | Option<**i32**> |  | [optional]
 **admin_port** | Option<**i32**> |  | [optional]
 **ws_port** | Option<**i32**> |  | [optional]
 **rtp_domain** | Option<**String**> |  | [optional]
 **active** | Option<**bool**> |  | [optional]
-**secret** | Option<**String**> |  | [optional]
-**pin** | Option<**String**> |  | [optional]
-**info** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
+**stream_secret** | Option<**String**> |  | [optional]
+**stream_pin** | Option<**String**> |  | [optional]
+**api_token** | Option<**String**> |  | [optional]
+**admin_secret** | Option<**String**> |  | [optional]
 **rtp_port** | Option<**i32**> |  | [optional]
 **device** | Option<**i32**> |  | [optional]
 

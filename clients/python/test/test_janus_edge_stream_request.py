@@ -37,32 +37,21 @@ class TestJanusEdgeStreamRequest(unittest.TestCase):
         # model = printnanny_api_client.models.janus_edge_stream_request.JanusEdgeStreamRequest()  # noqa: E501
         if include_optional :
             return JanusEdgeStreamRequest(
-                auth = printnanny_api_client.models.janus_auth_request.JanusAuthRequest(
-                    admin_secret = '0', 
-                    api_token = '0', 
-                    config_type = 'cloud', 
-                    user = 56, ), 
                 api_domain = '0', 
                 api_port = 56, 
                 admin_port = 56, 
                 ws_port = 56, 
                 rtp_domain = '0', 
                 active = True, 
-                secret = '0', 
-                pin = '0', 
-                info = {
-                    'key' : null
-                    }, 
+                stream_secret = '0', 
+                stream_pin = '0', 
+                api_token = '0', 
+                admin_secret = '0', 
                 rtp_port = 0, 
                 device = 56
             )
         else :
             return JanusEdgeStreamRequest(
-                auth = printnanny_api_client.models.janus_auth_request.JanusAuthRequest(
-                    admin_secret = '0', 
-                    api_token = '0', 
-                    config_type = 'cloud', 
-                    user = 56, ),
                 api_domain = '0',
                 api_port = 56,
                 admin_port = 56,

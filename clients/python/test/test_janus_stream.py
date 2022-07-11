@@ -38,7 +38,6 @@ class TestJanusStream(unittest.TestCase):
         if include_optional :
             return JanusStream(
                 id = 56, 
-                auth = None, 
                 api_domain = '', 
                 api_port = 56, 
                 api_url = '', 
@@ -51,18 +50,16 @@ class TestJanusStream(unittest.TestCase):
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 active = True, 
-                secret = '', 
-                pin = '', 
-                info = {
-                    'key' : null
-                    }, 
+                stream_secret = '', 
+                stream_pin = '', 
+                api_token = '', 
+                admin_secret = '', 
                 rtp_port = 56, 
                 device = 56
             )
         else :
             return JanusStream(
                 id = 56,
-                auth = None,
                 api_domain = '',
                 api_port = 56,
                 api_url = '',
@@ -75,11 +72,6 @@ class TestJanusStream(unittest.TestCase):
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 active = True,
-                secret = '',
-                pin = '',
-                info = {
-                    'key' : null
-                    },
                 rtp_port = 56,
                 device = 56,
         )

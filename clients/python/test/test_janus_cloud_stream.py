@@ -38,7 +38,6 @@ class TestJanusCloudStream(unittest.TestCase):
         if include_optional :
             return JanusCloudStream(
                 id = 56, 
-                auth = None, 
                 api_domain = '', 
                 api_port = 56, 
                 api_url = '', 
@@ -52,17 +51,15 @@ class TestJanusCloudStream(unittest.TestCase):
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 active = True, 
-                secret = '', 
-                pin = '', 
-                info = {
-                    'key' : null
-                    }, 
+                stream_secret = '', 
+                stream_pin = '', 
+                api_token = '', 
+                admin_secret = '', 
                 device = 56
             )
         else :
             return JanusCloudStream(
                 id = 56,
-                auth = None,
                 api_domain = '',
                 api_port = 56,
                 api_url = '',

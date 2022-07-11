@@ -24,6 +24,8 @@ docs/ConfigApi.md
 docs/DetailResponse.md
 docs/Device.md
 docs/DeviceRequest.md
+docs/DeviceSettings.md
+docs/DeviceSettingsRequest.md
 docs/DeviceUrls.md
 docs/DevicesApi.md
 docs/EmailAuthRequest.md
@@ -34,11 +36,8 @@ docs/EventTypesEnum.md
 docs/EventsApi.md
 docs/GcodeFile.md
 docs/JanusApi.md
-docs/JanusAuth.md
-docs/JanusAuthRequest.md
 docs/JanusCloudStream.md
 docs/JanusCloudStreamRequest.md
-docs/JanusConfigType.md
 docs/JanusEdgeStream.md
 docs/JanusEdgeStreamRequest.md
 docs/JanusStream.md
@@ -59,8 +58,8 @@ docs/OctoprintServersApi.md
 docs/PaginatedAlertList.md
 docs/PaginatedCloudiotDeviceList.md
 docs/PaginatedDeviceList.md
+docs/PaginatedDeviceSettingsList.md
 docs/PaginatedGcodeFileList.md
-docs/PaginatedJanusAuthList.md
 docs/PaginatedJanusCloudStreamList.md
 docs/PaginatedJanusEdgeStreamList.md
 docs/PaginatedJanusStreamList.md
@@ -80,6 +79,7 @@ docs/PatchedAlertRequest.md
 docs/PatchedAlertSettingsRequest.md
 docs/PatchedCloudiotDeviceRequest.md
 docs/PatchedDeviceRequest.md
+docs/PatchedDeviceSettingsRequest.md
 docs/PatchedJanusCloudStreamRequest.md
 docs/PatchedJanusEdgeStreamRequest.md
 docs/PatchedOctoPrintServerRequest.md
@@ -147,6 +147,8 @@ src/models/config.rs
 src/models/detail_response.rs
 src/models/device.rs
 src/models/device_request.rs
+src/models/device_settings.rs
+src/models/device_settings_request.rs
 src/models/device_urls.rs
 src/models/email_auth_request.rs
 src/models/error_detail.rs
@@ -154,11 +156,8 @@ src/models/event_source.rs
 src/models/event_type_enum.rs
 src/models/event_types_enum.rs
 src/models/gcode_file.rs
-src/models/janus_auth.rs
-src/models/janus_auth_request.rs
 src/models/janus_cloud_stream.rs
 src/models/janus_cloud_stream_request.rs
-src/models/janus_config_type.rs
 src/models/janus_edge_stream.rs
 src/models/janus_edge_stream_request.rs
 src/models/janus_stream.rs
@@ -178,8 +177,8 @@ src/models/octo_printer_profile_request.rs
 src/models/paginated_alert_list.rs
 src/models/paginated_cloudiot_device_list.rs
 src/models/paginated_device_list.rs
+src/models/paginated_device_settings_list.rs
 src/models/paginated_gcode_file_list.rs
-src/models/paginated_janus_auth_list.rs
 src/models/paginated_janus_cloud_stream_list.rs
 src/models/paginated_janus_edge_stream_list.rs
 src/models/paginated_janus_stream_list.rs
@@ -198,6 +197,7 @@ src/models/patched_alert_request.rs
 src/models/patched_alert_settings_request.rs
 src/models/patched_cloudiot_device_request.rs
 src/models/patched_device_request.rs
+src/models/patched_device_settings_request.rs
 src/models/patched_janus_cloud_stream_request.rs
 src/models/patched_janus_edge_stream_request.rs
 src/models/patched_octo_print_server_request.rs

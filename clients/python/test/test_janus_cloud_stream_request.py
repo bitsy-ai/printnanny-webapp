@@ -38,11 +38,10 @@ class TestJanusCloudStreamRequest(unittest.TestCase):
         if include_optional :
             return JanusCloudStreamRequest(
                 active = True, 
-                secret = '0', 
-                pin = '0', 
-                info = {
-                    'key' : null
-                    }, 
+                stream_secret = '0', 
+                stream_pin = '0', 
+                api_token = '0', 
+                admin_secret = '0', 
                 device = 56
             )
         else :

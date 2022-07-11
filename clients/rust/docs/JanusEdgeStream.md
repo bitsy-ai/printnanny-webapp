@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
-**auth** | [**crate::models::JanusAuth**](JanusAuth.md) |  | 
 **api_domain** | **String** |  | 
 **api_port** | **i32** |  | 
 **api_url** | **String** |  | [readonly]
@@ -18,9 +17,10 @@ Name | Type | Description | Notes
 **created_dt** | **String** |  | [readonly]
 **updated_dt** | **String** |  | [readonly]
 **active** | Option<**bool**> |  | [optional]
-**secret** | Option<**String**> |  | [optional]
-**pin** | Option<**String**> |  | [optional]
-**info** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
+**stream_secret** | Option<**String**> |  | [optional]
+**stream_pin** | Option<**String**> |  | [optional]
+**api_token** | Option<**String**> |  | [optional]
+**admin_secret** | Option<**String**> |  | [optional]
 **rtp_port** | Option<**i32**> |  | [optional]
 **device** | **i32** |  | 
 

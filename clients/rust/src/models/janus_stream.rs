@@ -15,8 +15,6 @@
 pub struct JanusStream {
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "auth")]
-    pub auth: Option<Box<crate::models::JanusAuth>>,
     #[serde(rename = "api_domain")]
     pub api_domain: String,
     #[serde(rename = "api_port")]
@@ -41,12 +39,14 @@ pub struct JanusStream {
     pub updated_dt: String,
     #[serde(rename = "active")]
     pub active: bool,
-    #[serde(rename = "secret")]
-    pub secret: String,
-    #[serde(rename = "pin")]
-    pub pin: String,
-    #[serde(rename = "info")]
-    pub info: ::std::collections::HashMap<String, serde_json::Value>,
+    #[serde(rename = "stream_secret", skip_serializing_if = "Option::is_none")]
+    pub stream_secret: Option<String>,
+    #[serde(rename = "stream_pin", skip_serializing_if = "Option::is_none")]
+    pub stream_pin: Option<String>,
+    #[serde(rename = "api_token", skip_serializing_if = "Option::is_none")]
+    pub api_token: Option<String>,
+    #[serde(rename = "admin_secret", skip_serializing_if = "Option::is_none")]
+    pub admin_secret: Option<String>,
     #[serde(rename = "rtp_port")]
     pub rtp_port: i32,
     #[serde(rename = "device")]
@@ -54,10 +54,9 @@ pub struct JanusStream {
 }
 
 impl JanusStream {
-    pub fn new(id: i32, auth: Option<crate::models::JanusAuth>, api_domain: String, api_port: i32, api_url: String, admin_url: String, admin_port: i32, rtp_domain: String, ws_url: String, ws_port: i32, config_type: String, created_dt: String, updated_dt: String, active: bool, secret: String, pin: String, info: ::std::collections::HashMap<String, serde_json::Value>, rtp_port: i32, device: i32) -> JanusStream {
+    pub fn new(id: i32, api_domain: String, api_port: i32, api_url: String, admin_url: String, admin_port: i32, rtp_domain: String, ws_url: String, ws_port: i32, config_type: String, created_dt: String, updated_dt: String, active: bool, rtp_port: i32, device: i32) -> JanusStream {
         JanusStream {
             id,
-            auth: auth.map(Box::new),
             api_domain,
             api_port,
             api_url,
@@ -70,9 +69,10 @@ impl JanusStream {
             created_dt,
             updated_dt,
             active,
-            secret,
-            pin,
-            info,
+            stream_secret: None,
+            stream_pin: None,
+            api_token: None,
+            admin_secret: None,
             rtp_port,
             device,
         }

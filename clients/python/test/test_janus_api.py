@@ -101,30 +101,6 @@ class TestJanusApi(unittest.TestCase):
         """
         pass
 
-    def test_users_janus_auth_create(self):
-        """Test case for users_janus_auth_create
-
-        """
-        pass
-
-    def test_users_janus_auth_list(self):
-        """Test case for users_janus_auth_list
-
-        """
-        pass
-
-    def test_users_janus_auth_retrieve(self):
-        """Test case for users_janus_auth_retrieve
-
-        """
-        pass
-
-    def test_users_janus_auth_update_or_create(self):
-        """Test case for users_janus_auth_update_or_create
-
-        """
-        pass
-
 
 if __name__ == '__main__':
     unittest.main()

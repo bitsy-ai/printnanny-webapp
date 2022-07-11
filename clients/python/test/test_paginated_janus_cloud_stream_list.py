@@ -43,7 +43,6 @@ class TestPaginatedJanusCloudStreamList(unittest.TestCase):
                 results = [
                     printnanny_api_client.models.janus_cloud_stream.JanusCloudStream(
                         id = 56, 
-                        auth = null, 
                         api_domain = '', 
                         api_port = 56, 
                         api_url = '', 
@@ -57,11 +56,10 @@ class TestPaginatedJanusCloudStreamList(unittest.TestCase):
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         active = True, 
-                        secret = '', 
-                        pin = '', 
-                        info = {
-                            'key' : null
-                            }, 
+                        stream_secret = '', 
+                        stream_pin = '', 
+                        api_token = '', 
+                        admin_secret = '', 
                         device = 56, )
                     ]
             )
