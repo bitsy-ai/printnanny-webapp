@@ -94,8 +94,8 @@ class Device(SafeDeleteModel):
         return obj
 
     @property
-    def device_settings(self):
-        obj, _ = DeviceSettings.objects.get_or_create(device=self.id)
+    def settings(self):
+        obj, _ = DeviceSettings.objects.get_or_create(device=self)
         return obj
 
     @property
@@ -157,7 +157,9 @@ class DeviceSettings(SafeDeleteModel):
     device = models.ForeignKey(Device, on_delete=models.CASCADE)
     updated_dt = models.DateTimeField(auto_now=True)
 
-    octoprint_enabled = models.BooleanField(default=True, help_text="Enable OctoPrint")
+    octoprint_enabled = models.BooleanField(
+        default=True, help_text="Start OctoPrint service"
+    )
     cloud_video_enabled = models.BooleanField(
         default=True, help_text="Send camera stream to PrintNanny Cloud"
     )

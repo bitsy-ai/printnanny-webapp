@@ -4,7 +4,7 @@ import logging
 
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import DetailView, DeleteView, CreateView
+from django.views.generic import DetailView, DeleteView, CreateView, UpdateView
 from django.views import View
 from django.http import HttpResponse
 from print_nanny_webapp.devices.models import Device, DeviceSettings
@@ -30,8 +30,9 @@ class DeviceDetailView(LoginRequiredMixin, DetailView):
     template_name = "devices/device-detail.html"
 
 
-class DeviceSettingsView(LoginRequiredMixin, DetailView):
+class DeviceSettingsView(LoginRequiredMixin, UpdateView):
     model = DeviceSettings
+    fields = ["octoprint_enabled", "cloud_video_enabled", "telemetry_enabled"]
     template_name = "device-settings.html"
 
 
