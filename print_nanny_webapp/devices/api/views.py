@@ -328,6 +328,7 @@ class JanusStreamViewSet(
     GenericViewSet,
     ListModelMixin,
     RetrieveModelMixin,
+    UpdateModelMixin,
 ):
     serializer_class = JanusStreamSerializer
     queryset = JanusStream.objects.all()
