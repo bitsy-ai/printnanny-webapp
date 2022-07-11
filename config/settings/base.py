@@ -677,6 +677,7 @@ JANUS_CLOUD_API_PORT: int = int(env("JANUS_CLOUD_API_PORT", default=8088))
 JANUS_CLOUD_WS_URL = env(
     "JANUS_CLOUD_WS_URL", default=f"ws://{JANUS_CLOUD_DOMAIN}:8188"
 )
+JANUS_CLOUD_ADMIN_PORT: int = int(env("JANUS_CLOUD_ADMIN_PORT", default=7088))
 JANUS_CLOUD_WS_PORT: int = int(env("JANUS_CLOUD_WS_PORT", default=8188))
 JANUS_CLOUD_RTP_PORT_RANGE: List[int] = list(
     map(int, env.tuple("JANUS_CLOUD_RTP_PORT_RANGE", default=(5000, 5050)))

@@ -11,7 +11,6 @@ from django.db.utils import IntegrityError
 from print_nanny_webapp.devices.enum import JanusConfigType
 
 from django.contrib.auth import get_user_model
-from rest_framework.permissions import AllowAny
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.mixins import (
@@ -24,7 +23,6 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from print_nanny_webapp.utils.api.exceptions import AlreadyExists
-from print_nanny_webapp.utils.api.serializers import PrintNannyApiConfigSerializer
 from print_nanny_webapp.utils.api.views import (
     generic_create_errors,
     generic_list_errors,
@@ -40,6 +38,7 @@ from .serializers import (
     SystemInfoSerializer,
     DeviceSerializer,
     JanusStreamSerializer,
+    DeviceSettingsSerializer,
 )
 from ..models import (
     CloudiotDevice,
@@ -47,6 +46,7 @@ from ..models import (
     JanusStream,
     PublicKey,
     SystemInfo,
+    DeviceSettings,
 )
 from print_nanny_webapp.utils.api.service import get_api_config
 from ..services import janus_cloud_setup, update_or_create_cloudiot_device
@@ -252,6 +252,41 @@ class PublicKeyViewSet(
             return Response(response_serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+###
+# DeviceSettings views
+###
+@extend_schema_view(
+    list=extend_schema(
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        responses={
+            200: DeviceSettingsSerializer(many=False),
+        }
+        | generic_list_errors,
+    ),
+    update=extend_schema(
+        parameters=[
+            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        request=DeviceSettingsSerializer,
+        responses={
+            202: DeviceSettingsSerializer,
+        }
+        | generic_create_errors,
+    ),
+)
+class DeviceSettingsViewSet(
+    GenericViewSet,
+    ListModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+):
+    serializer_class = DeviceSettingsSerializer
+    queryset = DeviceSettings.objects.all()
+    lookup_field = "id"
 
 
 ###
