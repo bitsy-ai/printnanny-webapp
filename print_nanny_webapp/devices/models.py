@@ -99,6 +99,24 @@ class Device(SafeDeleteModel):
         return obj
 
     @property
+    def janus_edge(self):
+        obj, _ = JanusStream.objects.get_or_create(
+            device=self,
+            rtp_port=settings.JANUS_EDGE_VIDEO_RTP_PORT,
+            config_type=JanusConfigType.EDGE,
+        )
+        return obj
+
+    @property
+    def janus_cloud(self):
+        # RTP port is automatically assigned from available open ports
+        # admin_secret intentionally set to Null to avoid leaking cloud gateway secret via API responses
+        obj, _ = JanusStream.objects.get_or_create(
+            device=self, config_type=JanusConfigType.CLOUD, admin_secret=None
+        )
+        return obj
+
+    @property
     def system_info(self):
         return self.system_infos.first()
 
@@ -429,9 +447,13 @@ class JanusStream(SafeDeleteModel):
     stream_secret = models.CharField(max_length=255, default=get_random_string_32)
     stream_pin = models.CharField(max_length=255, default=get_random_string_32)
 
-    api_token = models.CharField(max_length=255, default="")
-    admin_secret = models.CharField(max_length=255, default="")
-
+    api_token = models.CharField(max_length=255, default=get_random_string_32)
+    admin_secret = models.CharField(
+        max_length=255,
+        default=get_random_string_32,
+        null=True,
+        help_text="Janus Gateway Admin API secret. Will be null if config_type=CLOUD",
+    )
     rtp_port = models.PositiveSmallIntegerField(default=get_available_rtp_port)
 
     @property

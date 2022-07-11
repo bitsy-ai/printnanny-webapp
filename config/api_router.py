@@ -6,8 +6,6 @@ from rest_framework_nested.routers import NestedSimpleRouter
 from print_nanny_webapp.devices.api.views import (
     CloudiotDeviceViewSet,
     DeviceHostnameViewSet,
-    JanusCloudStreamViewSet,
-    JanusEdgeStreamViewSet,
     PublicKeyViewSet,
     SystemInfoViewSet,
     DeviceViewSet,
@@ -51,12 +49,6 @@ devices_router = NestedSimpleRouter(router, r"devices", lookup="device")
 devices_router.register("config", ConfigDownloadViewSet, basename="config")
 devices_router.register("settings", DeviceSettingsViewSet, basename="settings")
 devices_router.register(r"public-keys", PublicKeyViewSet, basename="public-keys")
-devices_router.register(
-    r"janus-cloud-streams", JanusCloudStreamViewSet, basename="janus-cloud-streams"
-)
-devices_router.register(
-    r"janus-edge-streams", JanusEdgeStreamViewSet, basename="janus-edge-streams"
-)
 devices_router.register(r"janus-streams", JanusStreamViewSet, basename="janus-streams")
 
 devices_router.register(r"system-info", SystemInfoViewSet, basename="system-info")
