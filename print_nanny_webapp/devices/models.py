@@ -428,9 +428,6 @@ class JanusStream(SafeDeleteModel):
     )
     stream_secret = models.CharField(max_length=255, default=get_random_string_32)
     stream_pin = models.CharField(max_length=255, default=get_random_string_32)
-    rtp_domain = models.CharField(
-        max_length=255, default=settings.JANUS_CLOUD_RTP_DOMAIN
-    )
 
     api_token = models.CharField(max_length=255, default="")
     admin_secret = models.CharField(max_length=255, default="")
