@@ -662,20 +662,36 @@ CORS_ALLOWED_ORIGINS = [
     f"http://{socket.gethostname()}:8000",
 ]
 
-# Janus cloud
+# Janus Cloud defaults
+# in production, Janus Gateway is deployed to Cloud as an SFU and adressible over internet
 # ------------------------------------------------------------------------------
-JANUS_CLOUD_DOMAIN = env("JANUS_CLOUD_DOMAIN", default="aurora")
+JANUS_CLOUD_DOMAIN = env("JANUS_CLOUD_DOMAIN", default="aurora.local")
 JANUS_CLOUD_ADMIN_SECRET = env("JANUS_CLOUD_ADMIN_SECRET", default="debug")
-JANUS_CLOUD_ADMIN_URL = env("JANUS_CLOUD_ADMIN_URL", default="http://aurora:7088/admin")
-JANUS_CLOUD_ADMIN_PORT: int = int(env("JANUS_CLOUD_ADMIN_PORT", default=7088))
-JANUS_CLOUD_API_URL = env("JANUS_CLOUD_API_URL", default="http://aurora:8088/janus")
+JANUS_CLOUD_ADMIN_URL = env(
+    "JANUS_CLOUD_ADMIN_URL", default=f"http://{JANUS_CLOUD_DOMAIN}:7088/admin"
+)
+JANUS_CLOUD_API_URL = env(
+    "JANUS_CLOUD_API_URL", default=f"http://{JANUS_CLOUD_DOMAIN}:8088/janus"
+)
 JANUS_CLOUD_API_PORT: int = int(env("JANUS_CLOUD_API_PORT", default=8088))
-JANUS_CLOUD_WS_URL = env("JANUS_CLOUD_WS_URL", default="ws://aurora.local:8188")
+JANUS_CLOUD_WS_URL = env(
+    "JANUS_CLOUD_WS_URL", default=f"ws://{JANUS_CLOUD_DOMAIN}:8188"
+)
 JANUS_CLOUD_WS_PORT: int = int(env("JANUS_CLOUD_WS_PORT", default=8188))
 JANUS_CLOUD_RTP_PORT_RANGE: List[int] = list(
     map(int, env.tuple("JANUS_CLOUD_RTP_PORT_RANGE", default=(5000, 5050)))
 )
 JANUS_CLOUD_RTP_DOMAIN = env("JANUS_CLOUD_RTP_DOMAIN", default="aurora")
+
+# Janus Edge defaults
+# in production, Janus Gateway is deployed to edge device and addressible to LAN peers
+# ------------------------------------------------------------------------------
+JANUS_EDGE_ADMIN_SECRET = env("JANUS_EDGE_ADMIN_SECRET", default="debug")
+JANUS_EDGE_ADMIN_PORT: int = int(env("JANUS_EDGE_ADMIN_PORT", default=7088))
+
+JANUS_EDGE_API_PORT: int = int(env("JANUS_EDGE_API_PORT", default=8088))
+JANUS_EDGE_WS_PORT: int = int(env("JANUS_EDGE_WS_PORT", default=8188))
+
 
 # django-qr-code
 # https://django-qr-code.readthedocs.io/en/latest/pages/README.html
