@@ -88,6 +88,19 @@ class Device(SafeDeleteModel):
         )
 
     @property
+    def octoprint_server(self):
+        OctoPrintServer = apps.get_model("octoprint", "OctoPrintServer")
+        obj, _ = OctoPrintServer.objects.get_or_create(user=self.user, device=self)
+        return obj
+
+    @property
+    def octoprint_settings(self):
+        server = self.octoprint_server
+        OctoPrintSettings = apps.get_model("octoprint", "OctoPrintSettings")
+        obj, _ = OctoPrintSettings.objects.get_or_create(octoprint_server=server)
+        return obj
+
+    @property
     def alert_settings(self):
         AlertSettings = apps.get_model("alerts", "AlertSettings")
         obj, _ = AlertSettings.objects.get_or_create(user=self.user)
