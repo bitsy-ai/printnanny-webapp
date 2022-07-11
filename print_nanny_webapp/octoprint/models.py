@@ -39,10 +39,10 @@ class OctoPrintServer(SafeDeleteModel):
     device = models.ForeignKey(
         "devices.Device", on_delete=models.CASCADE, related_name="octoprint_servers"
     )
-    octoprint_version = models.CharField(max_length=32)
-    pip_version = models.CharField(max_length=32)
-    python_version = models.CharField(max_length=32)
-    printnanny_plugin_version = models.CharField(max_length=64)
+    octoprint_version = models.CharField(max_length=32, default="")
+    pip_version = models.CharField(max_length=32, default="")
+    python_version = models.CharField(max_length=32, default="")
+    printnanny_plugin_version = models.CharField(max_length=64, default="")
     created_dt = models.DateTimeField(auto_now_add=True)
     updated_dt = models.DateTimeField(auto_now=True)
 

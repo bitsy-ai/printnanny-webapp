@@ -18,6 +18,7 @@ from ..enum import (
 from print_nanny_webapp.users.api.serializers import UserSerializer
 from print_nanny_webapp.utils.api.serializers import PrintNannyApiConfigSerializer
 from print_nanny_webapp.alerts.api.serializers import AlertSettingsSerializer
+from print_nanny_webapp.octoprint.api.serializers import OctoPrintServerSerializer
 
 User = get_user_model()
 
@@ -129,6 +130,8 @@ class DeviceSerializer(serializers.ModelSerializer):
 
     janus_edge = JanusStreamSerializer(read_only=True)
     janus_cloud = JanusStreamSerializer(read_only=True)
+
+    octoprint_server = OctoPrintServerSerializer(read_only=True)
 
     urls = serializers.SerializerMethodField()
 

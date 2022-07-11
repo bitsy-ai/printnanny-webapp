@@ -49,6 +49,7 @@ class OctoPrintServerSerializer(serializers.ModelSerializer):
     class Meta:
         model = OctoPrintServer
         exclude = ("deleted",)
+        depth = 1
         read_only_fields = ("user",)
 
     def update_or_create(
