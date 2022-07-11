@@ -5,6 +5,7 @@ from drf_spectacular.types import OpenApiTypes
 from django.contrib.auth import get_user_model
 from print_nanny_webapp.devices.models import (
     Device,
+    DeviceSettings,
     CloudiotDevice,
     DeviceUrls,
     JanusStream,
@@ -31,6 +32,12 @@ logger = logging.getLogger(__name__)
 class Int64Field(serializers.Field):
     def to_representation(self, value):
         return value
+
+
+class DeviceSettingsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DeviceSettings
+        exclude = ("deleted",)
 
 
 class CloudiotDeviceSerializer(serializers.ModelSerializer):
@@ -185,6 +192,7 @@ class SystemInfoSerializer(serializers.ModelSerializer):
 
 class DeviceSerializer(serializers.ModelSerializer):
     alert_settings = AlertSettingsSerializer(read_only=True)
+    settings = DeviceSettingsSerializer(read_only=True)
     cloudiot_device = CloudiotDeviceSerializer(read_only=True)
     user = UserSerializer(read_only=True)
     system_info = SystemInfoSerializer(read_only=True)

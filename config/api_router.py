@@ -13,6 +13,7 @@ from print_nanny_webapp.devices.api.views import (
     DeviceViewSet,
     JanusStreamViewSet,
     ConfigDownloadViewSet,
+    DeviceSettingsViewSet,
 )
 from print_nanny_webapp.events.api.views import CommandViewSet, EventViewSet
 from print_nanny_webapp.users.api.views import UserViewSet
@@ -48,6 +49,7 @@ other_urls = [
 
 devices_router = NestedSimpleRouter(router, r"devices", lookup="device")
 devices_router.register("config", ConfigDownloadViewSet, basename="config")
+devices_router.register("settings", DeviceSettingsViewSet, basename="settings")
 devices_router.register(r"public-keys", PublicKeyViewSet, basename="public-keys")
 devices_router.register(
     r"janus-cloud-streams", JanusCloudStreamViewSet, basename="janus-cloud-streams"
