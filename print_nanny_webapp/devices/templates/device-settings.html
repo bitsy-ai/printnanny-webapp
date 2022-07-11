@@ -37,7 +37,7 @@
                             {% csrf_token %}
                             {{ forms.device_settings | crispy }}
                             <button type="submit" name="action" value="device_settings" class="btn btn-primary">Apply
-                                Settings & Reboot</button>
+                                Settings</button>
                         </form>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                             {% csrf_token %}
                             {{ forms.octoprint_settings | crispy }}
                             <button type="submit" name="action" value="octoprint_settings" class="btn btn-primary">Apply
-                                Settings & Reboot</button>
+                                Settings</button>
                         </form>
                     </div>
                 </div>
