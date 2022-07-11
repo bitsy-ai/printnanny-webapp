@@ -51,6 +51,7 @@ class TestPaginatedDeviceList(unittest.TestCase):
                         public_key = null, 
                         janus_edge = null, 
                         janus_cloud = null, 
+                        octoprint_server = null, 
                         urls = printnanny_api_client.models.device_urls.Device_urls(
                             cloud_dash = '', 
                             edge_dash = '', 

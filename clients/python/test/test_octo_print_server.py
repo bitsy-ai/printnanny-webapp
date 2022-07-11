@@ -45,21 +45,17 @@ class TestOctoPrintServer(unittest.TestCase):
                 printnanny_plugin_version = '', 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                user = 56, 
-                device = 56
+                user = None, 
+                device = None
             )
         else :
             return OctoPrintServer(
                 id = 56,
                 settings = None,
-                octoprint_version = '',
-                pip_version = '',
-                python_version = '',
-                printnanny_plugin_version = '',
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                user = 56,
-                device = 56,
+                user = None,
+                device = None,
         )
 
     def testOctoPrintServer(self):

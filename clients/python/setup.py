@@ -14,7 +14,7 @@
 from setuptools import setup, find_namespace_packages  # noqa: H301
 
 NAME = "printnanny-api-client"
-VERSION = "0.93.1"
+VERSION = "0.93.2"
 # To install the library, run the following
 #
 # python setup.py install

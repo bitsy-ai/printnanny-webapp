@@ -13,26 +13,23 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct OctoPrintServerRequest {
-    #[serde(rename = "octoprint_version")]
-    pub octoprint_version: String,
-    #[serde(rename = "pip_version")]
-    pub pip_version: String,
-    #[serde(rename = "python_version")]
-    pub python_version: String,
-    #[serde(rename = "printnanny_plugin_version")]
-    pub printnanny_plugin_version: String,
-    #[serde(rename = "device")]
-    pub device: i32,
+    #[serde(rename = "octoprint_version", skip_serializing_if = "Option::is_none")]
+    pub octoprint_version: Option<String>,
+    #[serde(rename = "pip_version", skip_serializing_if = "Option::is_none")]
+    pub pip_version: Option<String>,
+    #[serde(rename = "python_version", skip_serializing_if = "Option::is_none")]
+    pub python_version: Option<String>,
+    #[serde(rename = "printnanny_plugin_version", skip_serializing_if = "Option::is_none")]
+    pub printnanny_plugin_version: Option<String>,
 }
 
 impl OctoPrintServerRequest {
-    pub fn new(octoprint_version: String, pip_version: String, python_version: String, printnanny_plugin_version: String, device: i32) -> OctoPrintServerRequest {
+    pub fn new() -> OctoPrintServerRequest {
         OctoPrintServerRequest {
-            octoprint_version,
-            pip_version,
-            python_version,
-            printnanny_plugin_version,
-            device,
+            octoprint_version: None,
+            pip_version: None,
+            python_version: None,
+            printnanny_plugin_version: None,
         }
     }
 }

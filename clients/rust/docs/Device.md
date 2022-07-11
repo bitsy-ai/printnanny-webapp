@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **public_key** | Option<[**crate::models::PublicKey**](PublicKey.md)> |  | [readonly]
 **janus_edge** | Option<[**crate::models::JanusStream**](JanusStream.md)> |  | [readonly]
 **janus_cloud** | Option<[**crate::models::JanusStream**](JanusStream.md)> |  | [readonly]
+**octoprint_server** | Option<[**crate::models::OctoPrintServer**](OctoPrintServer.md)> |  | [readonly]
 **urls** | [**crate::models::DeviceUrls**](Device_urls.md) |  | 
 **created_dt** | **String** |  | [readonly]
 **hostname** | Option<**String**> | Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension) | [optional]

@@ -21,8 +21,6 @@ pub struct PatchedOctoPrintServerRequest {
     pub python_version: Option<String>,
     #[serde(rename = "printnanny_plugin_version", skip_serializing_if = "Option::is_none")]
     pub printnanny_plugin_version: Option<String>,
-    #[serde(rename = "device", skip_serializing_if = "Option::is_none")]
-    pub device: Option<i32>,
 }
 
 impl PatchedOctoPrintServerRequest {
@@ -32,7 +30,6 @@ impl PatchedOctoPrintServerRequest {
             pip_version: None,
             python_version: None,
             printnanny_plugin_version: None,
-            device: None,
         }
     }
 }

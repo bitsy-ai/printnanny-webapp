@@ -46,6 +46,7 @@ class Device(object):
         'public_key': 'PublicKey',
         'janus_edge': 'JanusStream',
         'janus_cloud': 'JanusStream',
+        'octoprint_server': 'OctoPrintServer',
         'urls': 'DeviceUrls',
         'created_dt': 'datetime',
         'hostname': 'str',
@@ -62,13 +63,14 @@ class Device(object):
         'public_key': 'public_key',
         'janus_edge': 'janus_edge',
         'janus_cloud': 'janus_cloud',
+        'octoprint_server': 'octoprint_server',
         'urls': 'urls',
         'created_dt': 'created_dt',
         'hostname': 'hostname',
         'fqdn': 'fqdn'
     }
 
-    def __init__(self, id=None, alert_settings=None, settings=None, cloudiot_device=None, user=None, system_info=None, public_key=None, janus_edge=None, janus_cloud=None, urls=None, created_dt=None, hostname=None, fqdn=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, alert_settings=None, settings=None, cloudiot_device=None, user=None, system_info=None, public_key=None, janus_edge=None, janus_cloud=None, octoprint_server=None, urls=None, created_dt=None, hostname=None, fqdn=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -83,6 +85,7 @@ class Device(object):
         self._public_key = None
         self._janus_edge = None
         self._janus_cloud = None
+        self._octoprint_server = None
         self._urls = None
         self._created_dt = None
         self._hostname = None
@@ -98,6 +101,7 @@ class Device(object):
         self.public_key = public_key
         self.janus_edge = janus_edge
         self.janus_cloud = janus_cloud
+        self.octoprint_server = octoprint_server
         self.urls = urls
         self.created_dt = created_dt
         if hostname is not None:
@@ -295,6 +299,27 @@ class Device(object):
         """
 
         self._janus_cloud = janus_cloud
+
+    @property
+    def octoprint_server(self):
+        """Gets the octoprint_server of this Device.  # noqa: E501
+
+
+        :return: The octoprint_server of this Device.  # noqa: E501
+        :rtype: OctoPrintServer
+        """
+        return self._octoprint_server
+
+    @octoprint_server.setter
+    def octoprint_server(self, octoprint_server):
+        """Sets the octoprint_server of this Device.
+
+
+        :param octoprint_server: The octoprint_server of this Device.  # noqa: E501
+        :type octoprint_server: OctoPrintServer
+        """
+
+        self._octoprint_server = octoprint_server
 
     @property
     def urls(self):

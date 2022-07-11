@@ -54,7 +54,7 @@ pub enum OctoprintServersUpdateError {
 }
 
 
-pub async fn octoprint_servers_create(configuration: &configuration::Configuration, octo_print_server_request: crate::models::OctoPrintServerRequest) -> Result<crate::models::OctoPrintServer, Error<OctoprintServersCreateError>> {
+pub async fn octoprint_servers_create(configuration: &configuration::Configuration, octo_print_server_request: Option<crate::models::OctoPrintServerRequest>) -> Result<crate::models::OctoPrintServer, Error<OctoprintServersCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -149,7 +149,7 @@ pub async fn octoprint_servers_partial_update(configuration: &configuration::Con
     }
 }
 
-pub async fn octoprint_servers_update(configuration: &configuration::Configuration, id: i32, octo_print_server_request: crate::models::OctoPrintServerRequest) -> Result<(), Error<OctoprintServersUpdateError>> {
+pub async fn octoprint_servers_update(configuration: &configuration::Configuration, id: i32, octo_print_server_request: Option<crate::models::OctoPrintServerRequest>) -> Result<(), Error<OctoprintServersUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

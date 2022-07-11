@@ -536,7 +536,7 @@ pub async fn octoprint_profile_update_or_create(configuration: &configuration::C
     }
 }
 
-pub async fn octoprint_server_update_or_create(configuration: &configuration::Configuration, octo_print_server_request: crate::models::OctoPrintServerRequest) -> Result<crate::models::OctoPrintServer, Error<OctoprintServerUpdateOrCreateError>> {
+pub async fn octoprint_server_update_or_create(configuration: &configuration::Configuration, octo_print_server_request: Option<crate::models::OctoPrintServerRequest>) -> Result<crate::models::OctoPrintServer, Error<OctoprintServerUpdateOrCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

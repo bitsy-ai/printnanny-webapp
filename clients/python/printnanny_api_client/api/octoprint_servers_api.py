@@ -37,16 +37,16 @@ class OctoprintServersApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def octoprint_servers_create(self, octo_print_server_request, **kwargs):  # noqa: E501
+    def octoprint_servers_create(self, **kwargs):  # noqa: E501
         """octoprint_servers_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.octoprint_servers_create(octo_print_server_request, async_req=True)
+        >>> thread = api.octoprint_servers_create(async_req=True)
         >>> result = thread.get()
 
-        :param octo_print_server_request: (required)
+        :param octo_print_server_request:
         :type octo_print_server_request: OctoPrintServerRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -64,18 +64,18 @@ class OctoprintServersApi(object):
         :rtype: OctoPrintServer
         """
         kwargs['_return_http_data_only'] = True
-        return self.octoprint_servers_create_with_http_info(octo_print_server_request, **kwargs)  # noqa: E501
+        return self.octoprint_servers_create_with_http_info(**kwargs)  # noqa: E501
 
-    def octoprint_servers_create_with_http_info(self, octo_print_server_request, **kwargs):  # noqa: E501
+    def octoprint_servers_create_with_http_info(self, **kwargs):  # noqa: E501
         """octoprint_servers_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.octoprint_servers_create_with_http_info(octo_print_server_request, async_req=True)
+        >>> thread = api.octoprint_servers_create_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param octo_print_server_request: (required)
+        :param octo_print_server_request:
         :type octo_print_server_request: OctoPrintServerRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -126,10 +126,6 @@ class OctoprintServersApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'octo_print_server_request' is set
-        if self.api_client.client_side_validation and ('octo_print_server_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['octo_print_server_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `octo_print_server_request` when calling `octoprint_servers_create`")  # noqa: E501
 
         collection_formats = {}
 
@@ -469,18 +465,18 @@ class OctoprintServersApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def octoprint_servers_update(self, id, octo_print_server_request, **kwargs):  # noqa: E501
+    def octoprint_servers_update(self, id, **kwargs):  # noqa: E501
         """octoprint_servers_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.octoprint_servers_update(id, octo_print_server_request, async_req=True)
+        >>> thread = api.octoprint_servers_update(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this octo print server. (required)
         :type id: int
-        :param octo_print_server_request: (required)
+        :param octo_print_server_request:
         :type octo_print_server_request: OctoPrintServerRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -498,20 +494,20 @@ class OctoprintServersApi(object):
         :rtype: None
         """
         kwargs['_return_http_data_only'] = True
-        return self.octoprint_servers_update_with_http_info(id, octo_print_server_request, **kwargs)  # noqa: E501
+        return self.octoprint_servers_update_with_http_info(id, **kwargs)  # noqa: E501
 
-    def octoprint_servers_update_with_http_info(self, id, octo_print_server_request, **kwargs):  # noqa: E501
+    def octoprint_servers_update_with_http_info(self, id, **kwargs):  # noqa: E501
         """octoprint_servers_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.octoprint_servers_update_with_http_info(id, octo_print_server_request, async_req=True)
+        >>> thread = api.octoprint_servers_update_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this octo print server. (required)
         :type id: int
-        :param octo_print_server_request: (required)
+        :param octo_print_server_request:
         :type octo_print_server_request: OctoPrintServerRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -567,10 +563,6 @@ class OctoprintServersApi(object):
         if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
                                                         local_var_params['id'] is None):  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `octoprint_servers_update`")  # noqa: E501
-        # verify the required parameter 'octo_print_server_request' is set
-        if self.api_client.client_side_validation and ('octo_print_server_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['octo_print_server_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `octo_print_server_request` when calling `octoprint_servers_update`")  # noqa: E501
 
         collection_formats = {}
 

@@ -40,8 +40,7 @@ class TestPatchedOctoPrintServerRequest(unittest.TestCase):
                 octoprint_version = '0', 
                 pip_version = '0', 
                 python_version = '0', 
-                printnanny_plugin_version = '0', 
-                device = 56
+                printnanny_plugin_version = '0'
             )
         else :
             return PatchedOctoPrintServerRequest(

@@ -46,6 +46,7 @@ class TestDevice(unittest.TestCase):
                 public_key = None, 
                 janus_edge = None, 
                 janus_cloud = None, 
+                octoprint_server = None, 
                 urls = printnanny_api_client.models.device_urls.Device_urls(
                     cloud_dash = '', 
                     edge_dash = '', 
@@ -66,6 +67,7 @@ class TestDevice(unittest.TestCase):
                 public_key = None,
                 janus_edge = None,
                 janus_cloud = None,
+                octoprint_server = None,
                 urls = printnanny_api_client.models.device_urls.Device_urls(
                     cloud_dash = '', 
                     edge_dash = '', 

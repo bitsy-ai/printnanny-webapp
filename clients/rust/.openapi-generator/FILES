@@ -40,6 +40,8 @@ docs/JanusConfigType.md
 docs/JanusStream.md
 docs/JanusStreamRequest.md
 docs/MobileAuthRequest.md
+docs/Nested.md
+docs/NestedRequest.md
 docs/OctoPrintBackup.md
 docs/OctoPrintEvent.md
 docs/OctoPrintEventModel.md
@@ -156,6 +158,8 @@ src/models/janus_stream.rs
 src/models/janus_stream_request.rs
 src/models/mobile_auth_request.rs
 src/models/mod.rs
+src/models/nested.rs
+src/models/nested_request.rs
 src/models/octo_print_backup.rs
 src/models/octo_print_event.rs
 src/models/octo_print_event_model.rs

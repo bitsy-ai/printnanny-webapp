@@ -40,19 +40,17 @@ class PatchedOctoPrintServerRequest(object):
         'octoprint_version': 'str',
         'pip_version': 'str',
         'python_version': 'str',
-        'printnanny_plugin_version': 'str',
-        'device': 'int'
+        'printnanny_plugin_version': 'str'
     }
 
     attribute_map = {
         'octoprint_version': 'octoprint_version',
         'pip_version': 'pip_version',
         'python_version': 'python_version',
-        'printnanny_plugin_version': 'printnanny_plugin_version',
-        'device': 'device'
+        'printnanny_plugin_version': 'printnanny_plugin_version'
     }
 
-    def __init__(self, octoprint_version=None, pip_version=None, python_version=None, printnanny_plugin_version=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, octoprint_version=None, pip_version=None, python_version=None, printnanny_plugin_version=None, local_vars_configuration=None):  # noqa: E501
         """PatchedOctoPrintServerRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -62,7 +60,6 @@ class PatchedOctoPrintServerRequest(object):
         self._pip_version = None
         self._python_version = None
         self._printnanny_plugin_version = None
-        self._device = None
         self.discriminator = None
 
         if octoprint_version is not None:
@@ -73,8 +70,6 @@ class PatchedOctoPrintServerRequest(object):
             self.python_version = python_version
         if printnanny_plugin_version is not None:
             self.printnanny_plugin_version = printnanny_plugin_version
-        if device is not None:
-            self.device = device
 
     @property
     def octoprint_version(self):
@@ -183,27 +178,6 @@ class PatchedOctoPrintServerRequest(object):
             raise ValueError("Invalid value for `printnanny_plugin_version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._printnanny_plugin_version = printnanny_plugin_version
-
-    @property
-    def device(self):
-        """Gets the device of this PatchedOctoPrintServerRequest.  # noqa: E501
-
-
-        :return: The device of this PatchedOctoPrintServerRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._device
-
-    @device.setter
-    def device(self, device):
-        """Sets the device of this PatchedOctoPrintServerRequest.
-
-
-        :param device: The device of this PatchedOctoPrintServerRequest.  # noqa: E501
-        :type device: int
-        """
-
-        self._device = device
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

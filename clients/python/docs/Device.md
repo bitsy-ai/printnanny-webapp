@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **public_key** | [**PublicKey**](PublicKey.md) |  | [readonly] 
 **janus_edge** | [**JanusStream**](JanusStream.md) |  | [readonly] 
 **janus_cloud** | [**JanusStream**](JanusStream.md) |  | [readonly] 
+**octoprint_server** | [**OctoPrintServer**](OctoPrintServer.md) |  | [readonly] 
 **urls** | [**DeviceUrls**](DeviceUrls.md) |  | 
 **created_dt** | **datetime** |  | [readonly] 
 **hostname** | **str** | Please enter the hostname you set in the Raspberry Pi Imager&#39;s Advanced Options menu (without .local extension) | [optional] 

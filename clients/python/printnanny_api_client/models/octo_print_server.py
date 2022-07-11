@@ -45,8 +45,8 @@ class OctoPrintServer(object):
         'printnanny_plugin_version': 'str',
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
-        'user': 'int',
-        'device': 'int'
+        'user': 'Nested',
+        'device': 'Nested'
     }
 
     attribute_map = {
@@ -82,10 +82,14 @@ class OctoPrintServer(object):
 
         self.id = id
         self.settings = settings
-        self.octoprint_version = octoprint_version
-        self.pip_version = pip_version
-        self.python_version = python_version
-        self.printnanny_plugin_version = printnanny_plugin_version
+        if octoprint_version is not None:
+            self.octoprint_version = octoprint_version
+        if pip_version is not None:
+            self.pip_version = pip_version
+        if python_version is not None:
+            self.python_version = python_version
+        if printnanny_plugin_version is not None:
+            self.printnanny_plugin_version = printnanny_plugin_version
         self.created_dt = created_dt
         self.updated_dt = updated_dt
         self.user = user
@@ -153,8 +157,6 @@ class OctoPrintServer(object):
         :param octoprint_version: The octoprint_version of this OctoPrintServer.  # noqa: E501
         :type octoprint_version: str
         """
-        if self.local_vars_configuration.client_side_validation and octoprint_version is None:  # noqa: E501
-            raise ValueError("Invalid value for `octoprint_version`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 octoprint_version is not None and len(octoprint_version) > 32):
             raise ValueError("Invalid value for `octoprint_version`, length must be less than or equal to `32`")  # noqa: E501
@@ -179,8 +181,6 @@ class OctoPrintServer(object):
         :param pip_version: The pip_version of this OctoPrintServer.  # noqa: E501
         :type pip_version: str
         """
-        if self.local_vars_configuration.client_side_validation and pip_version is None:  # noqa: E501
-            raise ValueError("Invalid value for `pip_version`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 pip_version is not None and len(pip_version) > 32):
             raise ValueError("Invalid value for `pip_version`, length must be less than or equal to `32`")  # noqa: E501
@@ -205,8 +205,6 @@ class OctoPrintServer(object):
         :param python_version: The python_version of this OctoPrintServer.  # noqa: E501
         :type python_version: str
         """
-        if self.local_vars_configuration.client_side_validation and python_version is None:  # noqa: E501
-            raise ValueError("Invalid value for `python_version`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 python_version is not None and len(python_version) > 32):
             raise ValueError("Invalid value for `python_version`, length must be less than or equal to `32`")  # noqa: E501
@@ -231,8 +229,6 @@ class OctoPrintServer(object):
         :param printnanny_plugin_version: The printnanny_plugin_version of this OctoPrintServer.  # noqa: E501
         :type printnanny_plugin_version: str
         """
-        if self.local_vars_configuration.client_side_validation and printnanny_plugin_version is None:  # noqa: E501
-            raise ValueError("Invalid value for `printnanny_plugin_version`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 printnanny_plugin_version is not None and len(printnanny_plugin_version) > 64):
             raise ValueError("Invalid value for `printnanny_plugin_version`, length must be less than or equal to `64`")  # noqa: E501
@@ -291,7 +287,7 @@ class OctoPrintServer(object):
 
 
         :return: The user of this OctoPrintServer.  # noqa: E501
-        :rtype: int
+        :rtype: Nested
         """
         return self._user
 
@@ -301,10 +297,8 @@ class OctoPrintServer(object):
 
 
         :param user: The user of this OctoPrintServer.  # noqa: E501
-        :type user: int
+        :type user: Nested
         """
-        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
-            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
 
         self._user = user
 
@@ -314,7 +308,7 @@ class OctoPrintServer(object):
 
 
         :return: The device of this OctoPrintServer.  # noqa: E501
-        :rtype: int
+        :rtype: Nested
         """
         return self._device
 
@@ -324,10 +318,8 @@ class OctoPrintServer(object):
 
 
         :param device: The device of this OctoPrintServer.  # noqa: E501
-        :type device: int
+        :type device: Nested
         """
-        if self.local_vars_configuration.client_side_validation and device is None:  # noqa: E501
-            raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
 
         self._device = device
 
