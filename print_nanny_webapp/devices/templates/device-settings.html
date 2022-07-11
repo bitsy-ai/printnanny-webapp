@@ -1,0 +1,47 @@
+{% extends "dashboard/base.html" %}
+{% load static humanize %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="{% url 'dashboard:home' %}">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'dashboard:home' %}">
+                                {{ object.device.hostname}}</a>
+                        </li>
+                        <li class="breadcrumb-item active">Settings</li>
+                    </ol>
+                </div>
+                <h3 class="page-title d-inline-flex">Configure {{ object.device.hostname }}
+                    - last updated {{object.updated_dt | naturaltime }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-6 d-flex align-items-stretch">
+            <div class="card col-12">
+
+                <div class="card-body">
+                    <div class="card-title">
+                        <h4 class="page-title">Configure {{ object.device.hostname }}</h4>
+                        <p>Settings will be applied after device reboots.</p>
+                    </div>
+                    <div class="form-group">
+                        <form method="POST" id="alert-event-settings">
+                            {% csrf_token %}
+                            {{ form | crispy }}
+                            <button type="submit" name="action" class="btn btn-primary">Apply Settings & Reboot</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

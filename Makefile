@@ -494,6 +494,9 @@ cert-manager-dns:
 migrations:
 	docker-compose -f local.yml exec django python manage.py makemigrations
 
+migrate:
+	docker-compose -f local.yml exec django python manage.py migrate
+
 dev-config: $(TMPDIR)
 	docker-compose -f local.yml exec django python manage.py devconfig \
 		--email=$(DJANGO_SUPERUSER_EMAIL) \

@@ -4,11 +4,10 @@ import logging
 
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import DetailView, DeleteView, CreateView
+from django.views.generic import DetailView, DeleteView, CreateView, UpdateView
 from django.views import View
 from django.http import HttpResponse
-from django.views.generic.detail import SingleObjectMixin
-from print_nanny_webapp.devices.models import Device
+from print_nanny_webapp.devices.models import Device, DeviceSettings
 from print_nanny_webapp.utils.api.service import get_api_config
 from .api.serializers import ConfigSerializer
 
@@ -29,13 +28,12 @@ class DeviceVideoView(LoginRequiredMixin, DetailView):
 class DeviceDetailView(LoginRequiredMixin, DetailView):
     model = Device
     template_name = "devices/device-detail.html"
-    paginate_by = 10
 
-    # TODO implement reverse for events using MultipleObjectMixin
-    # def get_context_data(self, **kwargs):
-    #     tasks = self.get_object().events.all()
-    #     context = super().get_context_data(object_list=tasks, **kwargs)
-    #     return context
+
+class DeviceSettingsView(LoginRequiredMixin, UpdateView):
+    model = DeviceSettings
+    fields = ["octoprint_enabled", "cloud_video_enabled", "telemetry_enabled"]
+    template_name = "device-settings.html"
 
 
 class DeviceCreateView(LoginRequiredMixin, CreateView):

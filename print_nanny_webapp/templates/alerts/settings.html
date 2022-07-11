@@ -88,21 +88,3 @@
     </div>
 </div>
 {% endblock content %}
-
-{% block extra_javascript %}
-{{ block.super }}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"
-    integrity="sha512-pUhApVQtLbnpLtJn6DuzDD5o2xtmLJnJ7oBoMsBnzOkVkpqofGLGPaBJ6ayD2zQe3lCgCibhJBi4cj5wAxwVKA=="
-    crossorigin="anonymous"></script>
-
-{% for token in tokens %}
-<script>
-    (function () {
-        var qr = new QRious({
-            element: document.getElementById('token-{{ token.octoprint_device.name }}-qrcode'),
-            value: '{{ token.key }}'
-        });
-    })();
-</script>
-{% endfor %}
-{% endblock %}
