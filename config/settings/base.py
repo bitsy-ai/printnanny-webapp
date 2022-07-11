@@ -689,7 +689,7 @@ JANUS_CLOUD_RTP_DOMAIN = env("JANUS_CLOUD_RTP_DOMAIN", default="aurora")
 # ------------------------------------------------------------------------------
 JANUS_EDGE_ADMIN_SECRET = env("JANUS_EDGE_ADMIN_SECRET", default="debug")
 JANUS_EDGE_ADMIN_PORT: int = int(env("JANUS_EDGE_ADMIN_PORT", default=7088))
-
+JANUS_EDGE_VIDEO_RTP_PORT: int = int(env("JANUS_EDGE_VIDEO_RTP_PORT", default=5105))
 JANUS_EDGE_API_PORT: int = int(env("JANUS_EDGE_API_PORT", default=8088))
 JANUS_EDGE_WS_PORT: int = int(env("JANUS_EDGE_WS_PORT", default=8188))
 
