@@ -42,9 +42,7 @@ class OctoPrinterProfileAdmin(admin.ModelAdmin):
 class OctoPrintSettingsAdmin(admin.ModelAdmin):
     list_display = (
         "octoprint_server",
-        "telemetry_enabled",
         "events_enabled",
-        "created_dt",
         "updated_dt",
     )
     model = OctoPrintSettings
