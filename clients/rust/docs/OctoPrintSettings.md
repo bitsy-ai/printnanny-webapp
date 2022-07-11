@@ -5,15 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
-**events_enabled** | Option<**bool**> | Send OctoPrint events to PrintNanny Cloud https://docs.octoprint.org/en/master/events/index.html | [optional]
-**telemetry_enabled** | Option<**bool**> | Send telemetry data to PrintNanny Cloud for debugging/analytics purposes | [optional]
+**octoprint_enabled** | Option<**bool**> | Start OctoPrint service | [optional]
+**events_enabled** | Option<**bool**> | Send OctoPrint events related to print job status/progress to PrintNanny Cloud https://docs.octoprint.org/en/master/events/index.html | [optional]
 **sync_gcode** | Option<**bool**> | Sync Gcode files to/from PrintNanny Cloud | [optional]
 **sync_printer_profiles** | Option<**bool**> | Sync Printer Profiles to/from PrintNanny Cloud | [optional]
 **sync_backups** | Option<**bool**> | Upload OctoPrint backups to PrintNanny Cloud | [optional]
 **auto_backup** | Option<**String**> |  | [optional]
-**monitoring_auto_start** | Option<**bool**> | Start PrintNanny monitoring automatically when a print job begins | [optional]
-**monitoring_auto_pause** | Option<**bool**> | Pause failing print jobs automatically | [optional]
-**created_dt** | **String** |  | [readonly]
 **updated_dt** | **String** |  | [readonly]
 **octoprint_server** | **i32** |  | 
 

@@ -37,7 +37,6 @@ class TestDeviceSettingsRequest(unittest.TestCase):
         # model = printnanny_api_client.models.device_settings_request.DeviceSettingsRequest()  # noqa: E501
         if include_optional :
             return DeviceSettingsRequest(
-                octoprint_enabled = True, 
                 cloud_video_enabled = True, 
                 telemetry_enabled = True, 
                 device = 56

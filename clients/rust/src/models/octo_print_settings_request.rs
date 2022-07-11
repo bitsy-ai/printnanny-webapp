@@ -13,12 +13,12 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct OctoPrintSettingsRequest {
-    /// Send OctoPrint events to PrintNanny Cloud https://docs.octoprint.org/en/master/events/index.html
+    /// Start OctoPrint service
+    #[serde(rename = "octoprint_enabled", skip_serializing_if = "Option::is_none")]
+    pub octoprint_enabled: Option<bool>,
+    /// Send OctoPrint events related to print job status/progress to PrintNanny Cloud https://docs.octoprint.org/en/master/events/index.html
     #[serde(rename = "events_enabled", skip_serializing_if = "Option::is_none")]
     pub events_enabled: Option<bool>,
-    /// Send telemetry data to PrintNanny Cloud for debugging/analytics purposes
-    #[serde(rename = "telemetry_enabled", skip_serializing_if = "Option::is_none")]
-    pub telemetry_enabled: Option<bool>,
     /// Sync Gcode files to/from PrintNanny Cloud
     #[serde(rename = "sync_gcode", skip_serializing_if = "Option::is_none")]
     pub sync_gcode: Option<bool>,
@@ -30,12 +30,6 @@ pub struct OctoPrintSettingsRequest {
     pub sync_backups: Option<bool>,
     #[serde(rename = "auto_backup", skip_serializing_if = "Option::is_none")]
     pub auto_backup: Option<String>,
-    /// Start PrintNanny monitoring automatically when a print job begins
-    #[serde(rename = "monitoring_auto_start", skip_serializing_if = "Option::is_none")]
-    pub monitoring_auto_start: Option<bool>,
-    /// Pause failing print jobs automatically
-    #[serde(rename = "monitoring_auto_pause", skip_serializing_if = "Option::is_none")]
-    pub monitoring_auto_pause: Option<bool>,
     #[serde(rename = "octoprint_server")]
     pub octoprint_server: i32,
 }
@@ -43,14 +37,12 @@ pub struct OctoPrintSettingsRequest {
 impl OctoPrintSettingsRequest {
     pub fn new(octoprint_server: i32) -> OctoPrintSettingsRequest {
         OctoPrintSettingsRequest {
+            octoprint_enabled: None,
             events_enabled: None,
-            telemetry_enabled: None,
             sync_gcode: None,
             sync_printer_profiles: None,
             sync_backups: None,
             auto_backup: None,
-            monitoring_auto_start: None,
-            monitoring_auto_pause: None,
             octoprint_server,
         }
     }

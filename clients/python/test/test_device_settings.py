@@ -39,7 +39,6 @@ class TestDeviceSettings(unittest.TestCase):
             return DeviceSettings(
                 id = 56, 
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                octoprint_enabled = True, 
                 cloud_video_enabled = True, 
                 telemetry_enabled = True, 
                 device = 56

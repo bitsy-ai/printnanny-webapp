@@ -17,9 +17,6 @@ pub struct DeviceSettings {
     pub id: i32,
     #[serde(rename = "updated_dt")]
     pub updated_dt: String,
-    /// Start OctoPrint service
-    #[serde(rename = "octoprint_enabled", skip_serializing_if = "Option::is_none")]
-    pub octoprint_enabled: Option<bool>,
     /// Send camera stream to PrintNanny Cloud
     #[serde(rename = "cloud_video_enabled", skip_serializing_if = "Option::is_none")]
     pub cloud_video_enabled: Option<bool>,
@@ -35,7 +32,6 @@ impl DeviceSettings {
         DeviceSettings {
             id,
             updated_dt,
-            octoprint_enabled: None,
             cloud_video_enabled: None,
             telemetry_enabled: None,
             device,

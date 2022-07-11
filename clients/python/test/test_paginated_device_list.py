@@ -49,6 +49,8 @@ class TestPaginatedDeviceList(unittest.TestCase):
                         user = null, 
                         system_info = null, 
                         public_key = null, 
+                        janus_edge = null, 
+                        janus_cloud = null, 
                         urls = printnanny_api_client.models.device_urls.Device_urls(
                             cloud_dash = '', 
                             edge_dash = '', 

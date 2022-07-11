@@ -12,17 +12,7 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct JanusEdgeStreamRequest {
-    #[serde(rename = "api_domain")]
-    pub api_domain: String,
-    #[serde(rename = "api_port")]
-    pub api_port: i32,
-    #[serde(rename = "admin_port")]
-    pub admin_port: i32,
-    #[serde(rename = "ws_port")]
-    pub ws_port: i32,
-    #[serde(rename = "rtp_domain")]
-    pub rtp_domain: String,
+pub struct JanusStreamRequest {
     #[serde(rename = "active", skip_serializing_if = "Option::is_none")]
     pub active: Option<bool>,
     #[serde(rename = "stream_secret", skip_serializing_if = "Option::is_none")]
@@ -31,29 +21,18 @@ pub struct JanusEdgeStreamRequest {
     pub stream_pin: Option<String>,
     #[serde(rename = "api_token", skip_serializing_if = "Option::is_none")]
     pub api_token: Option<String>,
-    #[serde(rename = "admin_secret", skip_serializing_if = "Option::is_none")]
-    pub admin_secret: Option<String>,
     #[serde(rename = "rtp_port", skip_serializing_if = "Option::is_none")]
     pub rtp_port: Option<i32>,
-    #[serde(rename = "device")]
-    pub device: i32,
 }
 
-impl JanusEdgeStreamRequest {
-    pub fn new(api_domain: String, api_port: i32, admin_port: i32, ws_port: i32, rtp_domain: String, device: i32) -> JanusEdgeStreamRequest {
-        JanusEdgeStreamRequest {
-            api_domain,
-            api_port,
-            admin_port,
-            ws_port,
-            rtp_domain,
+impl JanusStreamRequest {
+    pub fn new() -> JanusStreamRequest {
+        JanusStreamRequest {
             active: None,
             stream_secret: None,
             stream_pin: None,
             api_token: None,
-            admin_secret: None,
             rtp_port: None,
-            device,
         }
     }
 }

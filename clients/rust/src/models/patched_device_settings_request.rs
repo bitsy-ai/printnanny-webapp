@@ -13,9 +13,6 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct PatchedDeviceSettingsRequest {
-    /// Start OctoPrint service
-    #[serde(rename = "octoprint_enabled", skip_serializing_if = "Option::is_none")]
-    pub octoprint_enabled: Option<bool>,
     /// Send camera stream to PrintNanny Cloud
     #[serde(rename = "cloud_video_enabled", skip_serializing_if = "Option::is_none")]
     pub cloud_video_enabled: Option<bool>,
@@ -29,7 +26,6 @@ pub struct PatchedDeviceSettingsRequest {
 impl PatchedDeviceSettingsRequest {
     pub fn new() -> PatchedDeviceSettingsRequest {
         PatchedDeviceSettingsRequest {
-            octoprint_enabled: None,
             cloud_video_enabled: None,
             telemetry_enabled: None,
             device: None,

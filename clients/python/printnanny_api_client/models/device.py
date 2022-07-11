@@ -44,6 +44,8 @@ class Device(object):
         'user': 'User',
         'system_info': 'SystemInfo',
         'public_key': 'PublicKey',
+        'janus_edge': 'JanusStream',
+        'janus_cloud': 'JanusStream',
         'urls': 'DeviceUrls',
         'created_dt': 'datetime',
         'hostname': 'str',
@@ -58,13 +60,15 @@ class Device(object):
         'user': 'user',
         'system_info': 'system_info',
         'public_key': 'public_key',
+        'janus_edge': 'janus_edge',
+        'janus_cloud': 'janus_cloud',
         'urls': 'urls',
         'created_dt': 'created_dt',
         'hostname': 'hostname',
         'fqdn': 'fqdn'
     }
 
-    def __init__(self, id=None, alert_settings=None, settings=None, cloudiot_device=None, user=None, system_info=None, public_key=None, urls=None, created_dt=None, hostname=None, fqdn=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, alert_settings=None, settings=None, cloudiot_device=None, user=None, system_info=None, public_key=None, janus_edge=None, janus_cloud=None, urls=None, created_dt=None, hostname=None, fqdn=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -77,6 +81,8 @@ class Device(object):
         self._user = None
         self._system_info = None
         self._public_key = None
+        self._janus_edge = None
+        self._janus_cloud = None
         self._urls = None
         self._created_dt = None
         self._hostname = None
@@ -90,6 +96,8 @@ class Device(object):
         self.user = user
         self.system_info = system_info
         self.public_key = public_key
+        self.janus_edge = janus_edge
+        self.janus_cloud = janus_cloud
         self.urls = urls
         self.created_dt = created_dt
         if hostname is not None:
@@ -245,6 +253,48 @@ class Device(object):
         """
 
         self._public_key = public_key
+
+    @property
+    def janus_edge(self):
+        """Gets the janus_edge of this Device.  # noqa: E501
+
+
+        :return: The janus_edge of this Device.  # noqa: E501
+        :rtype: JanusStream
+        """
+        return self._janus_edge
+
+    @janus_edge.setter
+    def janus_edge(self, janus_edge):
+        """Sets the janus_edge of this Device.
+
+
+        :param janus_edge: The janus_edge of this Device.  # noqa: E501
+        :type janus_edge: JanusStream
+        """
+
+        self._janus_edge = janus_edge
+
+    @property
+    def janus_cloud(self):
+        """Gets the janus_cloud of this Device.  # noqa: E501
+
+
+        :return: The janus_cloud of this Device.  # noqa: E501
+        :rtype: JanusStream
+        """
+        return self._janus_cloud
+
+    @janus_cloud.setter
+    def janus_cloud(self, janus_cloud):
+        """Sets the janus_cloud of this Device.
+
+
+        :param janus_cloud: The janus_cloud of this Device.  # noqa: E501
+        :type janus_cloud: JanusStream
+        """
+
+        self._janus_cloud = janus_cloud
 
     @property
     def urls(self):

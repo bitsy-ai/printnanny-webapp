@@ -37,7 +37,6 @@ class TestPatchedDeviceSettingsRequest(unittest.TestCase):
         # model = printnanny_api_client.models.patched_device_settings_request.PatchedDeviceSettingsRequest()  # noqa: E501
         if include_optional :
             return PatchedDeviceSettingsRequest(
-                octoprint_enabled = True, 
                 cloud_video_enabled = True, 
                 telemetry_enabled = True, 
                 device = 56

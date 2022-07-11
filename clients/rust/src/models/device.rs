@@ -27,6 +27,10 @@ pub struct Device {
     pub system_info: Option<Box<crate::models::SystemInfo>>,
     #[serde(rename = "public_key")]
     pub public_key: Option<Box<crate::models::PublicKey>>,
+    #[serde(rename = "janus_edge")]
+    pub janus_edge: Option<Box<crate::models::JanusStream>>,
+    #[serde(rename = "janus_cloud")]
+    pub janus_cloud: Option<Box<crate::models::JanusStream>>,
     #[serde(rename = "urls")]
     pub urls: Box<crate::models::DeviceUrls>,
     #[serde(rename = "created_dt")]
@@ -39,7 +43,7 @@ pub struct Device {
 }
 
 impl Device {
-    pub fn new(id: i32, alert_settings: Option<crate::models::AlertSettings>, settings: Option<crate::models::DeviceSettings>, cloudiot_device: Option<crate::models::CloudiotDevice>, user: Option<crate::models::User>, system_info: Option<crate::models::SystemInfo>, public_key: Option<crate::models::PublicKey>, urls: crate::models::DeviceUrls, created_dt: String) -> Device {
+    pub fn new(id: i32, alert_settings: Option<crate::models::AlertSettings>, settings: Option<crate::models::DeviceSettings>, cloudiot_device: Option<crate::models::CloudiotDevice>, user: Option<crate::models::User>, system_info: Option<crate::models::SystemInfo>, public_key: Option<crate::models::PublicKey>, janus_edge: Option<crate::models::JanusStream>, janus_cloud: Option<crate::models::JanusStream>, urls: crate::models::DeviceUrls, created_dt: String) -> Device {
         Device {
             id,
             alert_settings: alert_settings.map(Box::new),
@@ -48,6 +52,8 @@ impl Device {
             user: user.map(Box::new),
             system_info: system_info.map(Box::new),
             public_key: public_key.map(Box::new),
+            janus_edge: janus_edge.map(Box::new),
+            janus_cloud: janus_cloud.map(Box::new),
             urls: Box::new(urls),
             created_dt,
             hostname: None,

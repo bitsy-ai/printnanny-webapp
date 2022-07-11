@@ -12,7 +12,7 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct PatchedJanusCloudStreamRequest {
+pub struct PatchedJanusStreamRequest {
     #[serde(rename = "active", skip_serializing_if = "Option::is_none")]
     pub active: Option<bool>,
     #[serde(rename = "stream_secret", skip_serializing_if = "Option::is_none")]
@@ -21,21 +21,18 @@ pub struct PatchedJanusCloudStreamRequest {
     pub stream_pin: Option<String>,
     #[serde(rename = "api_token", skip_serializing_if = "Option::is_none")]
     pub api_token: Option<String>,
-    #[serde(rename = "admin_secret", skip_serializing_if = "Option::is_none")]
-    pub admin_secret: Option<String>,
-    #[serde(rename = "device", skip_serializing_if = "Option::is_none")]
-    pub device: Option<i32>,
+    #[serde(rename = "rtp_port", skip_serializing_if = "Option::is_none")]
+    pub rtp_port: Option<i32>,
 }
 
-impl PatchedJanusCloudStreamRequest {
-    pub fn new() -> PatchedJanusCloudStreamRequest {
-        PatchedJanusCloudStreamRequest {
+impl PatchedJanusStreamRequest {
+    pub fn new() -> PatchedJanusStreamRequest {
+        PatchedJanusStreamRequest {
             active: None,
             stream_secret: None,
             stream_pin: None,
             api_token: None,
-            admin_secret: None,
-            device: None,
+            rtp_port: None,
         }
     }
 }

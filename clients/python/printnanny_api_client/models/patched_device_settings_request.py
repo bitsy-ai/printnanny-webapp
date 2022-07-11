@@ -37,62 +37,34 @@ class PatchedDeviceSettingsRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'octoprint_enabled': 'bool',
         'cloud_video_enabled': 'bool',
         'telemetry_enabled': 'bool',
         'device': 'int'
     }
 
     attribute_map = {
-        'octoprint_enabled': 'octoprint_enabled',
         'cloud_video_enabled': 'cloud_video_enabled',
         'telemetry_enabled': 'telemetry_enabled',
         'device': 'device'
     }
 
-    def __init__(self, octoprint_enabled=None, cloud_video_enabled=None, telemetry_enabled=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, cloud_video_enabled=None, telemetry_enabled=None, device=None, local_vars_configuration=None):  # noqa: E501
         """PatchedDeviceSettingsRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
-        self._octoprint_enabled = None
         self._cloud_video_enabled = None
         self._telemetry_enabled = None
         self._device = None
         self.discriminator = None
 
-        if octoprint_enabled is not None:
-            self.octoprint_enabled = octoprint_enabled
         if cloud_video_enabled is not None:
             self.cloud_video_enabled = cloud_video_enabled
         if telemetry_enabled is not None:
             self.telemetry_enabled = telemetry_enabled
         if device is not None:
             self.device = device
-
-    @property
-    def octoprint_enabled(self):
-        """Gets the octoprint_enabled of this PatchedDeviceSettingsRequest.  # noqa: E501
-
-        Start OctoPrint service  # noqa: E501
-
-        :return: The octoprint_enabled of this PatchedDeviceSettingsRequest.  # noqa: E501
-        :rtype: bool
-        """
-        return self._octoprint_enabled
-
-    @octoprint_enabled.setter
-    def octoprint_enabled(self, octoprint_enabled):
-        """Sets the octoprint_enabled of this PatchedDeviceSettingsRequest.
-
-        Start OctoPrint service  # noqa: E501
-
-        :param octoprint_enabled: The octoprint_enabled of this PatchedDeviceSettingsRequest.  # noqa: E501
-        :type octoprint_enabled: bool
-        """
-
-        self._octoprint_enabled = octoprint_enabled
 
     @property
     def cloud_video_enabled(self):

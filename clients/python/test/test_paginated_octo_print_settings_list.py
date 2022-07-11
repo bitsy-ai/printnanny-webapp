@@ -43,15 +43,12 @@ class TestPaginatedOctoPrintSettingsList(unittest.TestCase):
                 results = [
                     printnanny_api_client.models.octo_print_settings.OctoPrintSettings(
                         id = 56, 
+                        octoprint_enabled = True, 
                         events_enabled = True, 
-                        telemetry_enabled = True, 
                         sync_gcode = True, 
                         sync_printer_profiles = True, 
                         sync_backups = True, 
                         auto_backup = '', 
-                        monitoring_auto_start = True, 
-                        monitoring_auto_pause = True, 
-                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         octoprint_server = 56, )
                     ]
