@@ -6,7 +6,6 @@ from rest_framework_nested.routers import NestedSimpleRouter
 from print_nanny_webapp.devices.api.views import (
     CloudiotDeviceViewSet,
     DeviceHostnameViewSet,
-    JanusAuthViewSet,
     JanusCloudStreamViewSet,
     JanusEdgeStreamViewSet,
     PublicKeyViewSet,
@@ -94,7 +93,6 @@ router.register("events", EventViewSet, basename="events")
 router.register("commands", CommandViewSet, basename="commands")
 router.register("users", UserViewSet)
 user_router = NestedSimpleRouter(router, r"users", lookup="user")
-user_router.register(r"janus-auth", JanusAuthViewSet, basename="janus-auth")
 router.register(r"partners/3d-geeks", GeeksViewSet, basename="partner-3d-geeks")
 
 app_name = "api"

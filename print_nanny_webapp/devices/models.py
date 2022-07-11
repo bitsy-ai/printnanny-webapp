@@ -94,6 +94,11 @@ class Device(SafeDeleteModel):
         return obj
 
     @property
+    def device_settings(self):
+        obj, _ = DeviceSettings.objects.get_or_create(device=self.id)
+        return obj
+
+    @property
     def system_info(self):
         return self.system_infos.first()
 
@@ -132,6 +137,38 @@ class Device(SafeDeleteModel):
     @property
     def html_id(self) -> str:
         return f"device-{self.id}"
+
+
+class DeviceSettings(SafeDeleteModel):
+    """
+    User-facing settings, configurable per device
+    """
+
+    class Meta:
+        index_together = ("device", "updated_dt")
+        constraints = [
+            UniqueConstraint(
+                fields=["device"],
+                condition=models.Q(deleted=None),
+                name="unique_settings_per_device",
+            )
+        ]
+
+    device = models.ForeignKey(Device, on_delete=models.CASCADE)
+    updated_dt = models.DateTimeField(auto_now=True)
+
+    octoprint_enabled = models.BooleanField(default=True, help_text="Enable OctoPrint")
+    cloud_video_enabled = models.BooleanField(
+        default=True, help_text="Send camera stream to PrintNanny Cloud"
+    )
+    telemetry_enabled = models.BooleanField(
+        default=False,
+        help_text="Send telemetry and performance profiling data to PrintNanny Cloud",
+    )
+
+    @property
+    def user(self):
+        return self.device.user
 
 
 class PublicKey(SafeDeleteModel):
@@ -350,33 +387,19 @@ class CloudiotDevice(SafeDeleteModel):
         return f"/devices/{self.num_id}/state"
 
 
-class JanusAuth(SafeDeleteModel):
-    class Meta:
-        index_together = ("user", "config_type", "created_dt")
-        constraints = [
-            UniqueConstraint(
-                fields=["user", "config_type"],
-                condition=models.Q(deleted=None),
-                name="unique_janus_auth_per_config_type_per_user",
-            )
-        ]
-
-    admin_secret = models.CharField(max_length=255, null=True)
-    api_token = models.CharField(max_length=255, default=get_random_string_32)
-    config_type = models.CharField(
-        max_length=32, choices=JanusConfigType.choices, default=JanusConfigType.CLOUD
-    )
-    user = models.ForeignKey(
-        "users.User", on_delete=models.CASCADE, related_name="janus_auth"
-    )
-    created_dt = models.DateTimeField(auto_now_add=True)
-
-
 class JanusStream(SafeDeleteModel):
+    """
+    Configuration model intended for use with Janus Gateway Streaming Plugin API
+
+    2 config_type variations: JanusConfigType.CLOUD JanusConfigType.EDGE
+
+
+    """
+
     class Meta:
         index_together = (
             ("device", "created_dt", "updated_dt"),
-            ("device", "active", "config_type"),
+            ("device", "config_type"),
         )
 
         constraints = [
@@ -397,35 +420,46 @@ class JanusStream(SafeDeleteModel):
     config_type = models.CharField(
         max_length=32, choices=JanusConfigType.choices, default=JanusConfigType.CLOUD
     )
+    active = models.BooleanField(default=False)
     device = models.ForeignKey(
         Device, on_delete=models.CASCADE, related_name="janus_streams"
     )
-    active = models.BooleanField(default=False)
-    secret = models.CharField(max_length=255, default=get_random_string_32)
-    pin = models.CharField(max_length=255, default=get_random_string_32)
-    info = models.JSONField(default=dict)
-
-    api_port = models.IntegerField(default=settings.JANUS_CLOUD_API_PORT)
-    admin_port = models.IntegerField(default=settings.JANUS_CLOUD_ADMIN_PORT)
-    ws_port = models.IntegerField(default=settings.JANUS_CLOUD_WS_PORT)
-    api_domain = models.CharField(max_length=255, default=settings.JANUS_CLOUD_DOMAIN)
-
-    rtp_port = models.PositiveSmallIntegerField(default=get_available_rtp_port)
+    stream_secret = models.CharField(max_length=255, default=get_random_string_32)
+    stream_pin = models.CharField(max_length=255, default=get_random_string_32)
     rtp_domain = models.CharField(
         max_length=255, default=settings.JANUS_CLOUD_RTP_DOMAIN
     )
 
-    @property
-    def auth(self) -> JanusAuth:
-        from .services import janus_admin_add_token
+    api_token = models.CharField(max_length=255, default="")
+    admin_secret = models.CharField(max_length=255, default="")
 
-        janus_auth, _created = JanusAuth.objects.get_or_create(
-            config_type=self.config_type, user=self.device.user
-        )
+    rtp_port = models.PositiveSmallIntegerField(default=get_available_rtp_port)
+
+    @property
+    def pt(self) -> int:
+        return 96
+
+    @property
+    def rtpmap(self) -> str:
+        return "H264/90000"
+
+    @property
+    def admin_port(self) -> int:
         if self.config_type == JanusConfigType.CLOUD:
-            res = janus_admin_add_token(janus_auth, self)
-            logger.info("Synced JanusStream.auth %s to %s", res, self.api_domain)
-        return janus_auth
+            return settings.JANUS_CLOUD_ADMIN_PORT
+        return settings.JANUS_EDGE_ADMIN_PORT
+
+    @property
+    def admin_url(self):
+        if self.config_type == JanusConfigType.CLOUD:
+            return settings.JANUS_CLOUD_ADMIN_URL
+        return f"http://{self.api_domain}:{self.api_port}/admin"
+
+    @property
+    def api_port(self) -> int:
+        if self.config_type == JanusConfigType.CLOUD:
+            return settings.JANUS_CLOUD_API_PORT
+        return settings.JANUS_EDGE_API_PORT
 
     @property
     def api_url(self):
@@ -434,10 +468,23 @@ class JanusStream(SafeDeleteModel):
         return f"http://{self.api_domain}:{self.api_port}/janus"
 
     @property
-    def admin_url(self):
+    def api_domain(self) -> str:
         if self.config_type == JanusConfigType.CLOUD:
-            return settings.JANUS_CLOUD_ADMIN_URL
-        return f"http://{self.api_domain}:{self.api_port}/admin"
+            return settings.JANUS_CLOUD_DOMAIN
+        return self.device.fqdn
+
+    @property
+    def rtp_domain(self) -> str:
+        if self.config_type == JanusConfigType.CLOUD:
+            return settings.JANUS_CLOUD_RTP_DOMAIN
+        return self.device.fqdn
+
+    @property
+    def ws_port(self) -> int:
+        if self.config_type == JanusConfigType.CLOUD:
+            return settings.JANUS_CLOUD_WS_PORT
+        else:
+            return settings.JANUS_EDGE_WS_PORT
 
     @property
     def ws_url(self):

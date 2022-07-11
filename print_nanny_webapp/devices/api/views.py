@@ -32,7 +32,6 @@ from print_nanny_webapp.utils.api.views import (
     generic_update_errors,
 )
 from .serializers import (
-    JanusAuthSerializer,
     JanusEdgeStreamSerializer,
     JanusCloudStreamSerializer,
     ConfigSerializer,
@@ -45,7 +44,6 @@ from .serializers import (
 from ..models import (
     CloudiotDevice,
     Device,
-    JanusAuth,
     JanusStream,
     PublicKey,
     SystemInfo,
@@ -237,79 +235,6 @@ class PublicKeyViewSet(
             # 400: PrinterProfileSerializer,
             200: PublicKeySerializer,
             201: PublicKeySerializer,
-        }
-        | generic_create_errors
-        | generic_update_errors,
-    )
-    @action(methods=["post"], detail=False, url_path="update-or-create")
-    def update_or_create(self, request, device_id=None):
-        serializer = self.get_serializer(data=request.data)
-        if serializer.is_valid():
-            instance, created = serializer.update_or_create(  # type: ignore[attr-defined]
-                serializer.validated_data, device_id
-            )
-            response_serializer = self.get_serializer(instance)
-            if not created:
-                return Response(response_serializer.data, status=status.HTTP_200_OK)
-            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-##
-# JanusAuth views
-##
-@extend_schema_view(
-    list=extend_schema(
-        tags=["users", "janus"],
-        parameters=[
-            OpenApiParameter(name="user_id", type=int, location=OpenApiParameter.PATH)
-        ],
-        responses={
-            200: JanusAuthSerializer(many=True),
-        }
-        | generic_list_errors,
-    ),
-    create=extend_schema(
-        tags=["users", "janus"],
-        parameters=[
-            OpenApiParameter(name="user_id", type=int, location=OpenApiParameter.PATH)
-        ],
-        request=JanusAuthSerializer,
-        responses={
-            201: JanusAuthSerializer,
-        }
-        | generic_create_errors,
-    ),
-    retrieve=extend_schema(
-        tags=["users", "janus"],
-        parameters=[
-            OpenApiParameter(name="user_id", type=int, location=OpenApiParameter.PATH)
-        ],
-        request=JanusAuthSerializer,
-        responses={
-            200: JanusAuthSerializer,
-        }
-        | generic_get_errors,
-    ),
-)
-class JanusAuthViewSet(
-    GenericViewSet,
-    ListModelMixin,
-    RetrieveModelMixin,
-    CreateModelMixin,
-):
-    serializer_class = JanusAuthSerializer
-    queryset = JanusAuth.objects.all()
-    lookup_field = "id"
-
-    @extend_schema(
-        tags=["users", "janus"],
-        operation_id="users_janus_auth_update_or_create",
-        responses={
-            # 400: PrinterProfileSerializer,
-            200: JanusAuthSerializer,
-            201: JanusAuthSerializer,
         }
         | generic_create_errors
         | generic_update_errors,
@@ -545,24 +470,9 @@ class JanusEdgeStreamViewSet(
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             device = Device.objects.get(id=device_id)
-            auth_data = serializer.validated_data.pop("auth")
-            auth_data.pop("user")
-            auth_data["user"] = request.user.id
             instance, created = serializer.get_or_create(  # type: ignore[attr-defined]
                 serializer.validated_data, device.id
             )
-            logger.info("Received JanusAuth data=%s", auth_data)
-            auth_serializer = JanusAuthSerializer(data=auth_data)
-            if auth_serializer.is_valid():
-                auth_serializer.get_or_create(
-                    auth_serializer.validated_data,
-                    request.user.id,
-                    JanusConfigType.EDGE,
-                )
-            else:
-                return Response(
-                    auth_serializer.errors, status=status.HTTP_400_BAD_REQUEST
-                )
             logger.info("GET JanusEdgeStream=%s created=%s", instance, created)
             response_serializer = self.get_serializer(instance)
             if not created:

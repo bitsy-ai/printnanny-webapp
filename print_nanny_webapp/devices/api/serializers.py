@@ -7,7 +7,6 @@ from print_nanny_webapp.devices.models import (
     Device,
     CloudiotDevice,
     DeviceUrls,
-    JanusAuth,
     JanusStream,
     PublicKey,
     SystemInfo,
@@ -71,25 +70,7 @@ class PublicKeySerializer(serializers.ModelSerializer):
         )
 
 
-class JanusAuthSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = JanusAuth
-        exclude = ("deleted",)
-        read_only_fields = ("device",)
-
-    def update_or_create(self, validated_data, user):
-        return JanusAuth.objects.filter(user=user).update_or_create(
-            user=user, defaults=validated_data
-        )
-
-    def get_or_create(self, validated_data, user, config_type):
-        return JanusAuth.objects.get_or_create(
-            user=user, config_type=config_type, defaults=validated_data
-        )
-
-
 class JanusStreamSerializer(serializers.ModelSerializer):
-    auth = JanusAuthSerializer(read_only=True)
     api_domain = serializers.CharField(read_only=True)
     api_port = serializers.IntegerField(read_only=True)
     api_url = serializers.CharField(read_only=True)
@@ -121,7 +102,6 @@ class JanusStreamSerializer(serializers.ModelSerializer):
 
 
 class JanusCloudStreamSerializer(serializers.ModelSerializer):
-    auth = JanusAuthSerializer(read_only=True)
     api_domain = serializers.CharField(read_only=True)
     api_port = serializers.IntegerField(read_only=True)
     api_url = serializers.CharField(read_only=True)
@@ -158,7 +138,6 @@ class JanusCloudStreamSerializer(serializers.ModelSerializer):
 
 
 class JanusEdgeStreamSerializer(serializers.ModelSerializer):
-    auth = JanusAuthSerializer()
     api_domain = serializers.CharField()
     api_port = serializers.IntegerField()
     api_url = serializers.CharField(read_only=True)

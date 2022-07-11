@@ -1,5 +1,5 @@
 from django.contrib import admin
-from print_nanny_webapp.devices.models import Device, JanusStream, JanusAuth
+from print_nanny_webapp.devices.models import Device, JanusStream
 
 
 @admin.register(Device)
@@ -14,7 +14,6 @@ class JanusStreamAdmin(admin.ModelAdmin):
         "device",
         "device_hostname",
         "active",
-        "info",
         "config_type",
         "created_dt",
     )
@@ -23,13 +22,3 @@ class JanusStreamAdmin(admin.ModelAdmin):
     @admin.display(ordering="device__hostname", description="Device Hostname")
     def device_hostname(self, obj):
         return obj.device.hostname
-
-
-@admin.register(JanusAuth)
-class JanusAuthAdmin(admin.ModelAdmin):
-    list_display = ("user", "user_email", "config_type", "created_dt")
-    model = JanusAuth
-
-    @admin.display(ordering="user__email", description="User Email")
-    def user_email(self, obj):
-        return obj.user.email

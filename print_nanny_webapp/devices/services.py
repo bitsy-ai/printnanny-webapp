@@ -10,16 +10,16 @@ from django.conf import settings
 from django.template.loader import render_to_string
 from print_nanny_webapp.devices.enum import JanusConfigType
 
-from .models import CloudiotDevice, Device, PublicKey, JanusAuth, JanusStream
+from .models import CloudiotDevice, Device, PublicKey, JanusStream
 
 logger = logging.getLogger(__name__)
 
 
-def janus_admin_add_token(janus_auth: JanusAuth, stream: JanusStream) -> Dict[str, Any]:
-    if janus_auth.config_type == JanusConfigType.CLOUD:
+def janus_admin_add_token(stream: JanusStream) -> Dict[str, Any]:
+    if stream.config_type == JanusConfigType.CLOUD:
         req = dict(
             janus="add_token",
-            token=janus_auth.api_token,
+            token=stream.api_token,
             admin_secret=settings.JANUS_CLOUD_ADMIN_SECRET,
             plugins=["janus.plugin.streaming"],
             transaction=uuid4().hex,
@@ -170,14 +170,13 @@ def update_or_create_cloudiot_device(
 
 
 def janus_cloud_setup(device: Device) -> Tuple[JanusStream, bool]:
-    # 1) get or create JanusAuth for user
-    # TODO: implement JanusAuth.get_or_create for config_type=Edge
-    janus_auth, created = JanusAuth.objects.get_or_create(
-        user=device.user, config_type=JanusConfigType.CLOUD
+    # 1) get or create JanusStream mountpoint
+    stream, created = JanusStream.objects.get_or_create(
+        device=device, config_type=JanusConfigType.CLOUD
     )
     logger.info(
-        "Retrieved JanusAuth id=%s user=%s created=%s",
-        janus_auth.id,
+        "Retrieved JanusStream id=%s user=%s created=%s",
+        stream.id,
         device.user.id,
         created,
     )
@@ -185,19 +184,5 @@ def janus_cloud_setup(device: Device) -> Tuple[JanusStream, bool]:
     # 2) ensure token added to Janus Gateway
     # Janus stores tokens in memory, so added tokens are flushed on restart
     # janus_admin_add_token(janus_auth)
-    # 3) Create steaming mountpoint
-    stream, created = JanusStream.objects.get_or_create(
-        device=device, config_type=JanusConfigType.CLOUD
-    )
-    # set rtp/api domains
-    changed = False
-    if stream.rtp_domain != settings.JANUS_CLOUD_RTP_DOMAIN:
-        stream.rtp_domain = settings.JANUS_CLOUD_RTP_DOMAIN
-        changed = True
-    if stream.api_domain != settings.JANUS_CLOUD_DOMAIN:
-        stream.api_domain = settings.JANUS_CLOUD_DOMAIN
-        changed = True
-    if changed:
-        stream.save()
     logger.info("Retrieved JanusStream %s created=%s", stream, created)
     return stream, created
