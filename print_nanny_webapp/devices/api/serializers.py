@@ -91,7 +91,7 @@ class JanusStreamSerializer(serializers.ModelSerializer):
     class Meta:
         model = JanusStream
         exclude = ("deleted",)
-        read_only_fields = ("device",)
+        read_only_fields = ("device", "config_type")
 
     def update_or_create(self, validated_data, device_id):
         return JanusStream.objects.filter(device=device_id).update_or_create(
@@ -126,6 +126,9 @@ class DeviceSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
     system_info = SystemInfoSerializer(read_only=True)
     public_key = PublicKeySerializer(read_only=True)
+
+    janus_edge = JanusStreamSerializer(read_only=True)
+    janus_cloud = JanusStreamSerializer(read_only=True)
 
     urls = serializers.SerializerMethodField()
 
