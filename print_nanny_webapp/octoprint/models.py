@@ -57,13 +57,12 @@ class OctoPrintSettings(SafeDeleteModel):
     octoprint_server = models.OneToOneField(
         OctoPrintServer, on_delete=models.CASCADE, related_name="settings"
     )
-    events_enabled = models.BooleanField(
-        default=False,
-        help_text="Send OctoPrint events to PrintNanny Cloud https://docs.octoprint.org/en/master/events/index.html",
+    octoprint_enabled = models.BooleanField(
+        default=True, help_text="Start OctoPrint service"
     )
-    telemetry_enabled = models.BooleanField(
-        default=False,
-        help_text="Send telemetry data to PrintNanny Cloud for debugging/analytics purposes",
+    events_enabled = models.BooleanField(
+        default=True,
+        help_text="Send OctoPrint events related to print job status/progress to PrintNanny Cloud https://docs.octoprint.org/en/master/events/index.html",
     )
     sync_gcode = models.BooleanField(
         default=True, help_text="Sync Gcode files to/from PrintNanny Cloud"
@@ -77,15 +76,6 @@ class OctoPrintSettings(SafeDeleteModel):
     auto_backup = models.CharField(
         max_length=64, default=settings.PRINTNANNY_OS_DEFAULT_BACKUP_SCHEDULE
     )
-    monitoring_auto_start = models.BooleanField(
-        default=True,
-        help_text="Start PrintNanny monitoring automatically when a print job begins",
-    )
-    monitoring_auto_pause = models.BooleanField(
-        default=True,
-        help_text="Pause failing print jobs automatically",
-    )
-    created_dt = models.DateTimeField(auto_now_add=True)
     updated_dt = models.DateTimeField(auto_now=True)
 
 

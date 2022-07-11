@@ -29,14 +29,34 @@
 
                 <div class="card-body">
                     <div class="card-title">
-                        <h4 class="page-title">Configure {{ object.device.hostname }}</h4>
+                        <h4 class="page-title">PrintNanny Cloud Settings</h4>
                         <p>Settings will be applied after device reboots.</p>
                     </div>
                     <div class="form-group">
-                        <form method="POST" id="alert-event-settings">
+                        <form method="POST" id="device-settings-form">
                             {% csrf_token %}
-                            {{ form | crispy }}
-                            <button type="submit" name="action" class="btn btn-primary">Apply Settings & Reboot</button>
+                            {{ forms.device_settings | crispy }}
+                            <button type="submit" name="action" value="device_settings" class="btn btn-primary">Apply
+                                Settings & Reboot</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 d-flex align-items-stretch">
+            <div class="card col-12">
+
+                <div class="card-body">
+                    <div class="card-title">
+                        <h4 class="page-title">OctoPrint Settings</h4>
+                        <p>Settings will be applied after device reboots.</p>
+                    </div>
+                    <div class="form-group">
+                        <form method="POST" id="octoprint-settings-form">
+                            {% csrf_token %}
+                            {{ forms.octoprint_settings | crispy }}
+                            <button type="submit" name="action" value="octoprint_settings" class="btn btn-primary">Apply
+                                Settings & Reboot</button>
                         </form>
                     </div>
                 </div>

@@ -5,4 +5,4 @@ from .models import OctoPrintSettings
 class OctoPrintSettingsForm(forms.ModelForm):
     class Meta:
         model = OctoPrintSettings
-        exclude = ("user",)
+        fields = ("octoprint_enabled", "events_enabled", "sync_backups")
