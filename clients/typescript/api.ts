@@ -975,170 +975,6 @@ export interface MobileAuthRequest {
 /**
  * 
  * @export
- * @interface Nested
- */
-export interface Nested {
-    /**
-     * 
-     * @type {number}
-     * @memberof Nested
-     */
-    'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof Nested
-     */
-    'password': string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Nested
-     */
-    'is_serviceuser'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Nested
-     */
-    'is_superuser'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Nested
-     */
-    'is_staff'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Nested
-     */
-    'is_active'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof Nested
-     */
-    'date_joined'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Nested
-     */
-    'last_login'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Nested
-     */
-    'first_name'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Nested
-     */
-    'last_name'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Nested
-     */
-    'email': string;
-    /**
-     * The groups this user belongs to. A user will get all permissions granted to each of their groups.
-     * @type {Array<number>}
-     * @memberof Nested
-     */
-    'groups'?: Array<number>;
-    /**
-     * Specific permissions for this user.
-     * @type {Array<number>}
-     * @memberof Nested
-     */
-    'user_permissions'?: Array<number>;
-}
-/**
- * 
- * @export
- * @interface NestedRequest
- */
-export interface NestedRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof NestedRequest
-     */
-    'password': string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof NestedRequest
-     */
-    'is_serviceuser'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof NestedRequest
-     */
-    'is_superuser'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof NestedRequest
-     */
-    'is_staff'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof NestedRequest
-     */
-    'is_active'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof NestedRequest
-     */
-    'date_joined'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof NestedRequest
-     */
-    'last_login'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof NestedRequest
-     */
-    'first_name'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof NestedRequest
-     */
-    'last_name'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof NestedRequest
-     */
-    'email': string;
-    /**
-     * The groups this user belongs to. A user will get all permissions granted to each of their groups.
-     * @type {Array<number>}
-     * @memberof NestedRequest
-     */
-    'groups'?: Array<number>;
-    /**
-     * Specific permissions for this user.
-     * @type {Array<number>}
-     * @memberof NestedRequest
-     */
-    'user_permissions'?: Array<number>;
-}
-/**
- * 
- * @export
  * @interface OctoPrintBackup
  */
 export interface OctoPrintBackup {
@@ -1397,16 +1233,16 @@ export interface OctoPrintServer {
     'updated_dt': string;
     /**
      * 
-     * @type {Nested}
+     * @type {number}
      * @memberof OctoPrintServer
      */
-    'user': Nested;
+    'user': number;
     /**
      * 
-     * @type {Nested}
+     * @type {number}
      * @memberof OctoPrintServer
      */
-    'device': Nested;
+    'device': number;
 }
 /**
  * 
@@ -1438,6 +1274,12 @@ export interface OctoPrintServerRequest {
      * @memberof OctoPrintServerRequest
      */
     'printnanny_plugin_version'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoPrintServerRequest
+     */
+    'device': number;
 }
 /**
  * 
@@ -2594,6 +2436,12 @@ export interface PatchedOctoPrintServerRequest {
      * @memberof PatchedOctoPrintServerRequest
      */
     'printnanny_plugin_version'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedOctoPrintServerRequest
+     */
+    'device'?: number;
 }
 /**
  * 
@@ -9829,11 +9677,13 @@ export const OctoprintApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
-         * @param {OctoPrintServerRequest} [octoPrintServerRequest] 
+         * @param {OctoPrintServerRequest} octoPrintServerRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintServerUpdateOrCreate: async (octoPrintServerRequest?: OctoPrintServerRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        octoprintServerUpdateOrCreate: async (octoPrintServerRequest: OctoPrintServerRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'octoPrintServerRequest' is not null or undefined
+            assertParamExists('octoprintServerUpdateOrCreate', 'octoPrintServerRequest', octoPrintServerRequest)
             const localVarPath = `/api/octoprint-servers/update-or-create/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -10205,11 +10055,11 @@ export const OctoprintApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {OctoPrintServerRequest} [octoPrintServerRequest] 
+         * @param {OctoPrintServerRequest} octoPrintServerRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async octoprintServerUpdateOrCreate(octoPrintServerRequest?: OctoPrintServerRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintServer>> {
+        async octoprintServerUpdateOrCreate(octoPrintServerRequest: OctoPrintServerRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintServer>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintServerUpdateOrCreate(octoPrintServerRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -10383,11 +10233,11 @@ export const OctoprintApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
-         * @param {OctoPrintServerRequest} [octoPrintServerRequest] 
+         * @param {OctoPrintServerRequest} octoPrintServerRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintServerUpdateOrCreate(octoPrintServerRequest?: OctoPrintServerRequest, options?: any): AxiosPromise<OctoPrintServer> {
+        octoprintServerUpdateOrCreate(octoPrintServerRequest: OctoPrintServerRequest, options?: any): AxiosPromise<OctoPrintServer> {
             return localVarFp.octoprintServerUpdateOrCreate(octoPrintServerRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -10554,12 +10404,12 @@ export interface OctoprintApiInterface {
 
     /**
      * 
-     * @param {OctoPrintServerRequest} [octoPrintServerRequest] 
+     * @param {OctoPrintServerRequest} octoPrintServerRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OctoprintApiInterface
      */
-    octoprintServerUpdateOrCreate(octoPrintServerRequest?: OctoPrintServerRequest, options?: AxiosRequestConfig): AxiosPromise<OctoPrintServer>;
+    octoprintServerUpdateOrCreate(octoPrintServerRequest: OctoPrintServerRequest, options?: AxiosRequestConfig): AxiosPromise<OctoPrintServer>;
 
     /**
      * 
@@ -10747,12 +10597,12 @@ export class OctoprintApi extends BaseAPI implements OctoprintApiInterface {
 
     /**
      * 
-     * @param {OctoPrintServerRequest} [octoPrintServerRequest] 
+     * @param {OctoPrintServerRequest} octoPrintServerRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OctoprintApi
      */
-    public octoprintServerUpdateOrCreate(octoPrintServerRequest?: OctoPrintServerRequest, options?: AxiosRequestConfig) {
+    public octoprintServerUpdateOrCreate(octoPrintServerRequest: OctoPrintServerRequest, options?: AxiosRequestConfig) {
         return OctoprintApiFp(this.configuration).octoprintServerUpdateOrCreate(octoPrintServerRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -10823,11 +10673,13 @@ export const OctoprintServersApiAxiosParamCreator = function (configuration?: Co
     return {
         /**
          * 
-         * @param {OctoPrintServerRequest} [octoPrintServerRequest] 
+         * @param {OctoPrintServerRequest} octoPrintServerRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintServersCreate: async (octoPrintServerRequest?: OctoPrintServerRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        octoprintServersCreate: async (octoPrintServerRequest: OctoPrintServerRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'octoPrintServerRequest' is not null or undefined
+            assertParamExists('octoprintServersCreate', 'octoPrintServerRequest', octoPrintServerRequest)
             const localVarPath = `/api/octoprint-servers/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -10946,13 +10798,15 @@ export const OctoprintServersApiAxiosParamCreator = function (configuration?: Co
         /**
          * 
          * @param {number} id A unique integer value identifying this octo print server.
-         * @param {OctoPrintServerRequest} [octoPrintServerRequest] 
+         * @param {OctoPrintServerRequest} octoPrintServerRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintServersUpdate: async (id: number, octoPrintServerRequest?: OctoPrintServerRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        octoprintServersUpdate: async (id: number, octoPrintServerRequest: OctoPrintServerRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('octoprintServersUpdate', 'id', id)
+            // verify required parameter 'octoPrintServerRequest' is not null or undefined
+            assertParamExists('octoprintServersUpdate', 'octoPrintServerRequest', octoPrintServerRequest)
             const localVarPath = `/api/octoprint-servers/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -10998,11 +10852,11 @@ export const OctoprintServersApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {OctoPrintServerRequest} [octoPrintServerRequest] 
+         * @param {OctoPrintServerRequest} octoPrintServerRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async octoprintServersCreate(octoPrintServerRequest?: OctoPrintServerRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintServer>> {
+        async octoprintServersCreate(octoPrintServerRequest: OctoPrintServerRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintServer>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintServersCreate(octoPrintServerRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -11030,11 +10884,11 @@ export const OctoprintServersApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} id A unique integer value identifying this octo print server.
-         * @param {OctoPrintServerRequest} [octoPrintServerRequest] 
+         * @param {OctoPrintServerRequest} octoPrintServerRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async octoprintServersUpdate(id: number, octoPrintServerRequest?: OctoPrintServerRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async octoprintServersUpdate(id: number, octoPrintServerRequest: OctoPrintServerRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintServersUpdate(id, octoPrintServerRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -11050,11 +10904,11 @@ export const OctoprintServersApiFactory = function (configuration?: Configuratio
     return {
         /**
          * 
-         * @param {OctoPrintServerRequest} [octoPrintServerRequest] 
+         * @param {OctoPrintServerRequest} octoPrintServerRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintServersCreate(octoPrintServerRequest?: OctoPrintServerRequest, options?: any): AxiosPromise<OctoPrintServer> {
+        octoprintServersCreate(octoPrintServerRequest: OctoPrintServerRequest, options?: any): AxiosPromise<OctoPrintServer> {
             return localVarFp.octoprintServersCreate(octoPrintServerRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -11079,11 +10933,11 @@ export const OctoprintServersApiFactory = function (configuration?: Configuratio
         /**
          * 
          * @param {number} id A unique integer value identifying this octo print server.
-         * @param {OctoPrintServerRequest} [octoPrintServerRequest] 
+         * @param {OctoPrintServerRequest} octoPrintServerRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintServersUpdate(id: number, octoPrintServerRequest?: OctoPrintServerRequest, options?: any): AxiosPromise<void> {
+        octoprintServersUpdate(id: number, octoPrintServerRequest: OctoPrintServerRequest, options?: any): AxiosPromise<void> {
             return localVarFp.octoprintServersUpdate(id, octoPrintServerRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -11097,12 +10951,12 @@ export const OctoprintServersApiFactory = function (configuration?: Configuratio
 export interface OctoprintServersApiInterface {
     /**
      * 
-     * @param {OctoPrintServerRequest} [octoPrintServerRequest] 
+     * @param {OctoPrintServerRequest} octoPrintServerRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OctoprintServersApiInterface
      */
-    octoprintServersCreate(octoPrintServerRequest?: OctoPrintServerRequest, options?: AxiosRequestConfig): AxiosPromise<OctoPrintServer>;
+    octoprintServersCreate(octoPrintServerRequest: OctoPrintServerRequest, options?: AxiosRequestConfig): AxiosPromise<OctoPrintServer>;
 
     /**
      * 
@@ -11126,12 +10980,12 @@ export interface OctoprintServersApiInterface {
     /**
      * 
      * @param {number} id A unique integer value identifying this octo print server.
-     * @param {OctoPrintServerRequest} [octoPrintServerRequest] 
+     * @param {OctoPrintServerRequest} octoPrintServerRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OctoprintServersApiInterface
      */
-    octoprintServersUpdate(id: number, octoPrintServerRequest?: OctoPrintServerRequest, options?: AxiosRequestConfig): AxiosPromise<void>;
+    octoprintServersUpdate(id: number, octoPrintServerRequest: OctoPrintServerRequest, options?: AxiosRequestConfig): AxiosPromise<void>;
 
 }
 
@@ -11144,12 +10998,12 @@ export interface OctoprintServersApiInterface {
 export class OctoprintServersApi extends BaseAPI implements OctoprintServersApiInterface {
     /**
      * 
-     * @param {OctoPrintServerRequest} [octoPrintServerRequest] 
+     * @param {OctoPrintServerRequest} octoPrintServerRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OctoprintServersApi
      */
-    public octoprintServersCreate(octoPrintServerRequest?: OctoPrintServerRequest, options?: AxiosRequestConfig) {
+    public octoprintServersCreate(octoPrintServerRequest: OctoPrintServerRequest, options?: AxiosRequestConfig) {
         return OctoprintServersApiFp(this.configuration).octoprintServersCreate(octoPrintServerRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -11179,12 +11033,12 @@ export class OctoprintServersApi extends BaseAPI implements OctoprintServersApiI
     /**
      * 
      * @param {number} id A unique integer value identifying this octo print server.
-     * @param {OctoPrintServerRequest} [octoPrintServerRequest] 
+     * @param {OctoPrintServerRequest} octoPrintServerRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OctoprintServersApi
      */
-    public octoprintServersUpdate(id: number, octoPrintServerRequest?: OctoPrintServerRequest, options?: AxiosRequestConfig) {
+    public octoprintServersUpdate(id: number, octoPrintServerRequest: OctoPrintServerRequest, options?: AxiosRequestConfig) {
         return OctoprintServersApiFp(this.configuration).octoprintServersUpdate(id, octoPrintServerRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }

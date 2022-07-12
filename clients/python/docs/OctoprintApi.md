@@ -1368,7 +1368,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **octoprint_server_update_or_create**
-> OctoPrintServer octoprint_server_update_or_create(octo_print_server_request=octo_print_server_request)
+> OctoPrintServer octoprint_server_update_or_create(octo_print_server_request)
 
 
 
@@ -1407,10 +1407,10 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.OctoprintApi(api_client)
-    octo_print_server_request = printnanny_api_client.OctoPrintServerRequest() # OctoPrintServerRequest |  (optional)
+    octo_print_server_request = printnanny_api_client.OctoPrintServerRequest() # OctoPrintServerRequest | 
 
     try:
-        api_response = api_instance.octoprint_server_update_or_create(octo_print_server_request=octo_print_server_request)
+        api_response = api_instance.octoprint_server_update_or_create(octo_print_server_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling OctoprintApi->octoprint_server_update_or_create: %s\n" % e)
@@ -1449,10 +1449,10 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.OctoprintApi(api_client)
-    octo_print_server_request = printnanny_api_client.OctoPrintServerRequest() # OctoPrintServerRequest |  (optional)
+    octo_print_server_request = printnanny_api_client.OctoPrintServerRequest() # OctoPrintServerRequest | 
 
     try:
-        api_response = api_instance.octoprint_server_update_or_create(octo_print_server_request=octo_print_server_request)
+        api_response = api_instance.octoprint_server_update_or_create(octo_print_server_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling OctoprintApi->octoprint_server_update_or_create: %s\n" % e)
@@ -1462,7 +1462,7 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **octo_print_server_request** | [**OctoPrintServerRequest**](OctoPrintServerRequest.md)|  | [optional] 
+ **octo_print_server_request** | [**OctoPrintServerRequest**](OctoPrintServerRequest.md)|  | 
 
 ### Return type
 

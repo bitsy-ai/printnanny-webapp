@@ -21,15 +21,18 @@ pub struct OctoPrintServerRequest {
     pub python_version: Option<String>,
     #[serde(rename = "printnanny_plugin_version", skip_serializing_if = "Option::is_none")]
     pub printnanny_plugin_version: Option<String>,
+    #[serde(rename = "device")]
+    pub device: i32,
 }
 
 impl OctoPrintServerRequest {
-    pub fn new() -> OctoPrintServerRequest {
+    pub fn new(device: i32) -> OctoPrintServerRequest {
         OctoPrintServerRequest {
             octoprint_version: None,
             pip_version: None,
             python_version: None,
             printnanny_plugin_version: None,
+            device,
         }
     }
 }

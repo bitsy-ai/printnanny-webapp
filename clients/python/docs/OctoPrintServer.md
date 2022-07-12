@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 **printnanny_plugin_version** | **str** |  | [optional] 
 **created_dt** | **datetime** |  | [readonly] 
 **updated_dt** | **datetime** |  | [readonly] 
-**user** | [**Nested**](Nested.md) |  | [readonly] 
-**device** | [**Nested**](Nested.md) |  | [readonly] 
+**user** | **int** |  | [readonly] 
+**device** | **int** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

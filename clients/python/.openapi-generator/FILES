@@ -41,8 +41,6 @@ docs/JanusConfigType.md
 docs/JanusStream.md
 docs/JanusStreamRequest.md
 docs/MobileAuthRequest.md
-docs/Nested.md
-docs/NestedRequest.md
 docs/OctoPrintBackup.md
 docs/OctoPrintEvent.md
 docs/OctoPrintEventModel.md
@@ -161,8 +159,6 @@ printnanny_api_client/models/janus_config_type.py
 printnanny_api_client/models/janus_stream.py
 printnanny_api_client/models/janus_stream_request.py
 printnanny_api_client/models/mobile_auth_request.py
-printnanny_api_client/models/nested.py
-printnanny_api_client/models/nested_request.py
 printnanny_api_client/models/octo_print_backup.py
 printnanny_api_client/models/octo_print_event.py
 printnanny_api_client/models/octo_print_event_model.py
@@ -271,8 +267,6 @@ test/test_janus_config_type.py
 test/test_janus_stream.py
 test/test_janus_stream_request.py
 test/test_mobile_auth_request.py
-test/test_nested.py
-test/test_nested_request.py
 test/test_octo_print_backup.py
 test/test_octo_print_event.py
 test/test_octo_print_event_model.py

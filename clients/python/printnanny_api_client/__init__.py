@@ -15,7 +15,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.93.2"
+__version__ = "0.93.3"
 
 # import apis into sdk package
 from printnanny_api_client.api.alert_settings_api import AlertSettingsApi
@@ -71,8 +71,6 @@ from printnanny_api_client.models.janus_config_type import JanusConfigType
 from printnanny_api_client.models.janus_stream import JanusStream
 from printnanny_api_client.models.janus_stream_request import JanusStreamRequest
 from printnanny_api_client.models.mobile_auth_request import MobileAuthRequest
-from printnanny_api_client.models.nested import Nested
-from printnanny_api_client.models.nested_request import NestedRequest
 from printnanny_api_client.models.octo_print_backup import OctoPrintBackup
 from printnanny_api_client.models.octo_print_event import OctoPrintEvent
 from printnanny_api_client.models.octo_print_event_model import OctoPrintEventModel

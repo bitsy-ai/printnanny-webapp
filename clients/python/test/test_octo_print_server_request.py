@@ -40,10 +40,12 @@ class TestOctoPrintServerRequest(unittest.TestCase):
                 octoprint_version = '0', 
                 pip_version = '0', 
                 python_version = '0', 
-                printnanny_plugin_version = '0'
+                printnanny_plugin_version = '0', 
+                device = 56
             )
         else :
             return OctoPrintServerRequest(
+                device = 56,
         )
 
     def testOctoPrintServerRequest(self):

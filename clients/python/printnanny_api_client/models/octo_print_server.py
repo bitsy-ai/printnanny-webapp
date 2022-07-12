@@ -45,8 +45,8 @@ class OctoPrintServer(object):
         'printnanny_plugin_version': 'str',
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
-        'user': 'Nested',
-        'device': 'Nested'
+        'user': 'int',
+        'device': 'int'
     }
 
     attribute_map = {
@@ -287,7 +287,7 @@ class OctoPrintServer(object):
 
 
         :return: The user of this OctoPrintServer.  # noqa: E501
-        :rtype: Nested
+        :rtype: int
         """
         return self._user
 
@@ -297,8 +297,10 @@ class OctoPrintServer(object):
 
 
         :param user: The user of this OctoPrintServer.  # noqa: E501
-        :type user: Nested
+        :type user: int
         """
+        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
+            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
 
         self._user = user
 
@@ -308,7 +310,7 @@ class OctoPrintServer(object):
 
 
         :return: The device of this OctoPrintServer.  # noqa: E501
-        :rtype: Nested
+        :rtype: int
         """
         return self._device
 
@@ -318,8 +320,10 @@ class OctoPrintServer(object):
 
 
         :param device: The device of this OctoPrintServer.  # noqa: E501
-        :type device: Nested
+        :type device: int
         """
+        if self.local_vars_configuration.client_side_validation and device is None:  # noqa: E501
+            raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
 
         self._device = device
 

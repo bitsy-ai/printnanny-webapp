@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**octo_print_server_request** | Option<[**OctoPrintServerRequest**](OctoPrintServerRequest.md)> |  |  |
+**octo_print_server_request** | [**OctoPrintServerRequest**](OctoPrintServerRequest.md) |  | [required] |
 
 ### Return type
 
@@ -107,7 +107,7 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **i32** | A unique integer value identifying this octo print server. | [required] |
-**octo_print_server_request** | Option<[**OctoPrintServerRequest**](OctoPrintServerRequest.md)> |  |  |
+**octo_print_server_request** | [**OctoPrintServerRequest**](OctoPrintServerRequest.md) |  | [required] |
 
 ### Return type
 

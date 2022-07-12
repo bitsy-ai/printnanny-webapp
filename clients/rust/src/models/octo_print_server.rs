@@ -30,13 +30,13 @@ pub struct OctoPrintServer {
     #[serde(rename = "updated_dt")]
     pub updated_dt: String,
     #[serde(rename = "user")]
-    pub user: Option<Box<crate::models::Nested>>,
+    pub user: i32,
     #[serde(rename = "device")]
-    pub device: Option<Box<crate::models::Nested>>,
+    pub device: i32,
 }
 
 impl OctoPrintServer {
-    pub fn new(id: i32, settings: Option<crate::models::OctoPrintSettings>, created_dt: String, updated_dt: String, user: Option<crate::models::Nested>, device: Option<crate::models::Nested>) -> OctoPrintServer {
+    pub fn new(id: i32, settings: Option<crate::models::OctoPrintSettings>, created_dt: String, updated_dt: String, user: i32, device: i32) -> OctoPrintServer {
         OctoPrintServer {
             id,
             settings: settings.map(Box::new),
@@ -46,8 +46,8 @@ impl OctoPrintServer {
             printnanny_plugin_version: None,
             created_dt,
             updated_dt,
-            user: user.map(Box::new),
-            device: device.map(Box::new),
+            user,
+            device,
         }
     }
 }
