@@ -91,8 +91,30 @@ class JanusStreamSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = JanusStream
-        exclude = ("deleted",)
-        read_only_fields = ("device", "config_type")
+        fields = (
+            "created_dt",
+            "updated_dt",
+            "config_type",
+            "active",
+            "device",
+            "stream_secret",
+            "stream_pin",
+            "api_token",
+            "admin_secret",
+            "rtp_port",
+            "rtp_domain",
+            "pt",
+            "rtpmap",
+            "admin_port",
+            "admin_url",
+            "api_port",
+            "api_url",
+            "api_domain",
+            "rtp_domain",
+            "ws_port",
+            "ws_url",
+        )
+        read_only_fields = ("device", "config_type", "updated_dt", "created_dt")
 
     def update_or_create(self, validated_data, device_id):
         return JanusStream.objects.filter(device=device_id).update_or_create(
