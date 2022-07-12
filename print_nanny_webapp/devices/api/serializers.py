@@ -114,7 +114,7 @@ class JanusStreamSerializer(serializers.ModelSerializer):
             "ws_port",
             "ws_url",
         )
-        read_only_fields = ("device", "config_type")
+        read_only_fields = ("device", "config_type", "updated_dt", "created_dt")
 
     def update_or_create(self, validated_data, device_id):
         return JanusStream.objects.filter(device=device_id).update_or_create(
