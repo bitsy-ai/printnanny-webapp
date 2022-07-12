@@ -37,26 +37,44 @@ class TestJanusStream(unittest.TestCase):
         # model = printnanny_api_client.models.janus_stream.JanusStream()  # noqa: E501
         if include_optional :
             return JanusStream(
-                id = 56, 
-                admin_secret = '', 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 config_type = None, 
                 active = True, 
+                device = 56, 
                 stream_secret = '', 
                 stream_pin = '', 
                 api_token = '', 
+                admin_secret = '', 
                 rtp_port = 0, 
-                device = 56
+                rtp_domain = '', 
+                pt = 56, 
+                rtpmap = '', 
+                admin_port = 56, 
+                admin_url = '', 
+                api_port = 56, 
+                api_url = '', 
+                api_domain = '', 
+                ws_port = 56, 
+                ws_url = ''
             )
         else :
             return JanusStream(
-                id = 56,
-                admin_secret = '',
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 config_type = None,
                 device = 56,
+                admin_secret = '',
+                rtp_domain = '',
+                pt = 56,
+                rtpmap = '',
+                admin_port = 56,
+                admin_url = '',
+                api_port = 56,
+                api_url = '',
+                api_domain = '',
+                ws_port = 56,
+                ws_url = '',
         )
 
     def testJanusStream(self):

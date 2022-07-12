@@ -857,18 +857,6 @@ export type JanusConfigType = typeof JanusConfigType[keyof typeof JanusConfigTyp
 export interface JanusStream {
     /**
      * 
-     * @type {number}
-     * @memberof JanusStream
-     */
-    'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof JanusStream
-     */
-    'admin_secret': string;
-    /**
-     * 
      * @type {string}
      * @memberof JanusStream
      */
@@ -893,6 +881,12 @@ export interface JanusStream {
     'active'?: boolean;
     /**
      * 
+     * @type {number}
+     * @memberof JanusStream
+     */
+    'device': number;
+    /**
+     * 
      * @type {string}
      * @memberof JanusStream
      */
@@ -911,16 +905,76 @@ export interface JanusStream {
     'api_token'?: string;
     /**
      * 
+     * @type {string}
+     * @memberof JanusStream
+     */
+    'admin_secret': string;
+    /**
+     * 
      * @type {number}
      * @memberof JanusStream
      */
     'rtp_port'?: number;
     /**
      * 
+     * @type {string}
+     * @memberof JanusStream
+     */
+    'rtp_domain': string;
+    /**
+     * 
      * @type {number}
      * @memberof JanusStream
      */
-    'device': number;
+    'pt': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusStream
+     */
+    'rtpmap': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof JanusStream
+     */
+    'admin_port': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusStream
+     */
+    'admin_url': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof JanusStream
+     */
+    'api_port': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusStream
+     */
+    'api_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusStream
+     */
+    'api_domain': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof JanusStream
+     */
+    'ws_port': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof JanusStream
+     */
+    'ws_url': string;
 }
 /**
  * 
