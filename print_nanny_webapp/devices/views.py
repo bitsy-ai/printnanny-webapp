@@ -4,7 +4,7 @@ import logging
 
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import DetailView, DeleteView, CreateView
+from django.views.generic import DetailView, DeleteView, CreateView, ListView
 from django.views import View
 from django.http import HttpResponse
 from print_nanny_webapp.devices.models import Device, DeviceSettings
@@ -25,6 +25,11 @@ class DeviceDeleteView(DeleteView, DetailView):
 
 class DeviceVideoView(LoginRequiredMixin, DetailView):
     template_name = "device-video.html"
+    model = Device
+
+
+class DeviceCameraListView(LoginRequiredMixin, ListView):
+    template_name = "device-camera-cards.html"
     model = Device
 
 

@@ -7,6 +7,7 @@ from .views import (
     DeviceCreateView,
     ConfigDownloadView,
     DeviceSettingsView,
+    DeviceCameraListView,
 )
 
 app_name = "devices"
@@ -20,6 +21,7 @@ urlpatterns = [
     path("<slug:pk>/settings", DeviceSettingsView.as_view(), name="settings"),
     path("<slug:pk>/", DeviceDetailView.as_view(), name="detail"),
     path("<slug:pk>/delete", DeviceDeleteView.as_view(), name="delete"),
+    path("cameras", DeviceCameraListView.as_view(), name="cameras-list"),
     path("<slug:pk>/video", DeviceVideoView.as_view(), name="video"),
     path("connect", DeviceCreateView.as_view(), name="create"),
 ]

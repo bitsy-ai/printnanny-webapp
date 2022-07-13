@@ -1,5 +1,6 @@
 {% load static %}
 
 <span class="janus-stream-app">
-    <janus-stream device-id="{{ device.id }}" offline-image="{% static 'images/sleep.svg' %}" config-type="cloud" />
+    <janus-stream janus-stream-id="{{ device.janus_cloud.id }}" device-id="{{ device.id }}"
+        offline-image="{% static 'images/sleep.svg' %}" config-type="cloud" />
 </span>
