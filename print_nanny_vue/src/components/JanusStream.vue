@@ -4,21 +4,20 @@ import { mapState, mapActions } from "vuex";
 import * as api from "printnanny-api-client";
 import adapter from "webrtc-adapter";
 import Janus from "janus-gateway-js";
-
 import {
   DEVICE_MODULE,
   DEVICE,
   GET_DEVICE,
   JANUS_STREAM,
-  GET_JANUS_STREAM
+  GET_JANUS_STREAM,
 } from "@/store/devices";
 import { EVENTS_MODULE, STREAM_START, STREAM_STOP } from "@/store/events";
 import {
   JanusVideoStats,
-  JanusStreamComponentData
+  JanusStreamComponentData,
 } from "@/models/janus.interfaces";
 
-const initialData = function(): JanusStreamComponentData {
+function initialData(): JanusStreamComponentData {
   return {
     loading: false,
     active: false,
@@ -48,7 +47,13 @@ const JanusStream = Vue.extend({
     },
   },
   data: function () {
-    return initialData();
+    return {
+    loading: false,
+    active: false,
+    error: null,
+    timer: null,
+    videoStats: null,
+    };
   },
   computed: {
     ...mapState(DEVICE_MODULE, {
@@ -351,15 +356,13 @@ export default JanusStream;
       <button
         v-if="!active && !loading"
         @click="startMonitoring"
-        class="btn btn-primary btn-sm mr-2 ml-2"
-      >
+        class="btn btn-primary btn-sm mr-2 ml-2">
         <i class="mdi mdi-camera"></i> Start Cloud Camera
       </button>
       <button
         v-if="active || loading"
         @click="stopMonitoring"
-        class="btn btn-primary btn-sm mr-2 ml-2"
-      >
+        class="btn btn-primary btn-sm mr-2 ml-2">
         <i class="mdi mdi-camera"></i> Stop Cloud Camera
       </button>
     </div>

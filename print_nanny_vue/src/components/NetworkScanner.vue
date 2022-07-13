@@ -9,6 +9,9 @@ import {
 } from '@/store/wizard'
 
 export default {
+  setup () {
+    return { v$: useVuelidate() }
+  },
   data: function () {
     return {
       form: { hostname: '' },
@@ -19,9 +22,6 @@ export default {
       retryTimeout: null,
       port: 9001
     }
-  },
-  setup () {
-    return { v$: useVuelidate() }
   },
   validations () {
     return {

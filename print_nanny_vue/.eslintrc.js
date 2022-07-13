@@ -37,9 +37,9 @@ module.exports = {
       'plugin:vue/recommended'
     ],
     // If need to support jsx
-    //     parserOptions: {
-    //       ecmaFeatures: { jsx: true }
-    //     },
+    parserOptions: {
+      ecmaFeatures: { jsx: true }
+    },
 
     /**
      * Typescript Rules
