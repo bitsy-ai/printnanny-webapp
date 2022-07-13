@@ -39,6 +39,8 @@
                                     class="btn btn-primary btn-sm ml-1">Update</a>
                                 <a target="_blank" href="{% url 'devices:settings' pk=device.settings.id %}"
                                     class="btn btn-primary btn-sm ml-1">Settings</a>
+                                <a target="_blank" href="{% url 'devices:camera' pk=device.id %}"
+                                    class="btn btn-primary btn-sm ml-1">Camera</a>
                                 {% endif %}
                                 {% if device.is_octoprint and device.is_active %}
                                 <a target="_blank" href="{{ device.urls.octoprint }}"
@@ -60,7 +62,7 @@
                     <div class="alert alert-warning mb-0" role="alert">
                         <h4 class="alert-heading">No Devices Found</h4>
                         <p class="mb-0">Get started by installing PrintNanny OS.</p>
-                        <a href="{{ PRINTNANNY_OS_INSTALL_URL }}" class="btn btn-primary">Install Guide</a>
+                        <a href="{{ DOCS_SITE__QUICKSTART }}" class="btn btn-primary">Install Guide</a>
                     </div>
                 </div>
                 {% endif %}
