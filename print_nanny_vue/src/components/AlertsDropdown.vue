@@ -34,52 +34,60 @@ export default {
 </script>
 
 <template>
-<b-nav-item-dropdown
+  <b-nav-item-dropdown
     class="notification-list"
     right
     menu-class="dropdown-menu-animated dropdown-lg"
     toggle-class="nav-link arrow-none"
-    v-on:toggle="seenAll"
->
-    <template slot="button-content" >
-        <i class="mdi mdi-bell-outline noti-icon"></i>
-        <span class="noti-icon-badge" v-if="unreadAlerts.length"></span>
+    @toggle="seenAll"
+  >
+    <template slot="button-content">
+      <i class="mdi mdi-bell-outline noti-icon" />
+      <span
+        v-if="unreadAlerts.length"
+        class="noti-icon-badge"
+      />
     </template>
 
     <div class="dropdown-item noti-title">
-        <h5 class="m-0">
-            Notification
-        </h5>
+      <h5 class="m-0">
+        Notification
+      </h5>
     </div>
 
-    <simplebar style="max-height: 230px;" v-if="!alerts.results.length">
-       <p class="text-muted mb-0 user-msg"><center>You're all caught up!</center></p>
+    <simplebar
+      v-if="!alerts.results.length"
+      style="max-height: 230px;"
+    >
+      <p class="text-muted mb-0 user-msg">
+        <center>You're all caught up!</center>
+      </p>
     </simplebar>
 
     <simplebar style="max-height: 230px;">
-    <a
+      <a
         v-for="item in alerts.results"
         :key="item.id"
         class="dropdown-item notify-item"
-    >
+      >
         <div
-        class="notify-icon bg-info"
+          class="notify-icon bg-info"
         >
-        <i class="mdi mdi-bell-outline"></i>
+          <i class="mdi mdi-bell-outline" />
         </div>
-        <p class="notify-details">{{item.message}}</p>
+        <p class="notify-details">{{ item.message }}</p>
         <p class="text-muted mb-0 user-msg">
-        <small>{{item.event_type}} {{item.time}}</small>
+          <small>{{ item.event_type }} {{ item.time }}</small>
         </p>
-    </a>
+      </a>
     </simplebar>
 
     <a
-    href="/alerts/"
-    class="dropdown-item text-center text-primary notify-item notify-all"
+      href="/alerts/"
+      class="dropdown-item text-center text-primary notify-item notify-all"
     >
-    View history
-    <i class="fi-arrow-right"></i>
+      View history
+      <i class="fi-arrow-right" />
     </a>
-</b-nav-item-dropdown>
+  </b-nav-item-dropdown>
 </template>

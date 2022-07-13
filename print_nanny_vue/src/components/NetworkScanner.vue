@@ -106,7 +106,9 @@ export default {
 <template>
   <div class="row">
     <div class="col-6 offset-3">
-      <h2 class="mb-2">Enter Raspberry Pi's Hostname</h2>
+      <h2 class="mb-2">
+        Enter Raspberry Pi's Hostname
+      </h2>
       <p>You'll be redirected to another page to verify your account</p>
       <!-- disable "smart" scanning until CA infra is setup, so user doesn't have to install root cert -->
       <!-- <p>
@@ -116,15 +118,19 @@ export default {
       <!-- <b-form id="network-scanner" @submit.prevent=""> -->
       <b-row>
         <b-col sm="8">
-          <b-form-input v-model="form.hostname" placeholder="printnanny.local">
-          </b-form-input>
+          <b-form-input
+            v-model="form.hostname"
+            placeholder="printnanny.local"
+          />
           <div :class="{ error: v$.$errors.length }">
             <div
-              class="input-errors text-danger"
               v-for="error of v$.$errors"
               :key="error.$uid"
+              class="input-errors text-danger"
             >
-              <div class="error-msg">{{ error.$message }}</div>
+              <div class="error-msg">
+                {{ error.$message }}
+              </div>
             </div>
           </div>
         </b-col>
@@ -134,7 +140,10 @@ export default {
             :href="`http://${form.hostname}:80/`"
             :disabled="form.hostname == ''"
           >
-            <button class="btn btn-secondary" :disabled="form.hostname == ''">
+            <button
+              class="btn btn-secondary"
+              :disabled="form.hostname == ''"
+            >
               <!-- <button class="btn btn-secondary" type="submit"> -->
               <!-- <span v-if="loading">
                   <span
@@ -154,9 +163,7 @@ export default {
     <div class="col-6 offset-3">
       <pre class="text-left">
 <br>
-<code v-text="logs">
-
-</code>
+<code v-text="logs" />
 </pre>
     </div>
   </div>

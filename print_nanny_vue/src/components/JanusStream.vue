@@ -10,16 +10,15 @@ import {
   DEVICE,
   GET_DEVICE,
   JANUS_STREAM,
-  SETUP_JANUS_CLOUD,
-  GET_JANUS_STREAM,
+  GET_JANUS_STREAM
 } from "@/store/devices";
 import { EVENTS_MODULE, STREAM_START, STREAM_STOP } from "@/store/events";
 import {
   JanusVideoStats,
-  JanusStreamComponentData,
+  JanusStreamComponentData
 } from "@/models/janus.interfaces";
 
-function initialData(): JanusStreamComponentData {
+const initialData = function(): JanusStreamComponentData {
   return {
     loading: false,
     active: false,
@@ -36,6 +35,10 @@ const JanusStream = Vue.extend({
       required: true,
     },
     deviceId: {
+      type: String,
+      required: true,
+    },
+    janusStreamId: {
       type: String,
       required: true,
     },
@@ -68,7 +71,6 @@ const JanusStream = Vue.extend({
   methods: {
     ...mapActions(DEVICE_MODULE, {
       getDevice: GET_DEVICE,
-      setupJanusCloud: SETUP_JANUS_CLOUD,
       getJanusStream: GET_JANUS_STREAM,
     }),
     ...mapActions(EVENTS_MODULE, {
@@ -77,7 +79,7 @@ const JanusStream = Vue.extend({
     }),
     async connectStream(janusStream: api.JanusStream) {
       const janus = new Janus.Client(janusStream.ws_url, {
-        token: janusStream.auth.api_token,
+        token: janusStream.api_token,
         keepalive: "true",
       });
 
@@ -134,18 +136,12 @@ const JanusStream = Vue.extend({
       await this.stopMonitoring();
       this.loading = false;
     },
-    async setupJanusStream(): Promise<
-      api.JanusCloudStream | api.JanusEdgeStream
-    > {
-      switch (this.configType) {
-        case api.JanusConfigType.Cloud:
-          return await this.setupJanusCloud(this.deviceId);
-        case api.JanusConfigType.Edge:
-          return await this.getJanusStream({
-            device: this.deviceId,
-            configType: this.configType,
-          });
-      }
+    async setupJanusStream(): Promise<api.JanusStream> {
+      return await this.getJanusStream({
+        deviceId: this.deviceId,
+        janusStreamId: this.janusStreamId,
+        configType: this.configType,
+      });
     },
     async startMonitoring() {
       this.loading = true;
@@ -269,16 +265,6 @@ const JanusStream = Vue.extend({
         console.log("plugin.on pc:track:remote", event);
         if (event.type === "track") {
           const video = document.getElementById(el) as HTMLMediaElement;
-          // video.onloadeddata = function (e) {
-          //   console.log('loadeddata event called')
-          //   video.play()
-          //   return videoReady()
-          // }
-          // video.onloadedmetadata = function (e) {
-          //   console.log('onloadedmetadata event called')
-          //   video.play()
-          //   return videoReady()
-          // }
           const mediaStream = event.streams[0];
           console.log(
             "Attaching stream",
@@ -319,7 +305,7 @@ export default JanusStream;
           {{ device.hostname }} Live
         </span>
         <span v-show="!showVideo && !loading" class="text-center mt-3">
-          Monitoring Offline
+          Cloud Stream is Offline
         </span>
       </h3>
     </div>
@@ -358,8 +344,6 @@ export default JanusStream;
           <dd class="col-sm-3">
             {{ videoStats.height }} x {{ videoStats.width }}
           </dd>
-          <!-- <dt class="col-sm-3">Decoder</dt>
-                <dd class="col-sm-3">{{ videoStats.decoderImplementation }}</dd> -->
         </dl>
       </div>
     </div>
@@ -367,16 +351,16 @@ export default JanusStream;
       <button
         v-if="!active && !loading"
         @click="startMonitoring"
-        class="btn btn-dark btn-sm mr-2 ml-2"
+        class="btn btn-primary btn-sm mr-2 ml-2"
       >
-        <i class="mdi mdi-camera"></i> Start Monitoring
+        <i class="mdi mdi-camera"></i> Start Cloud Camera
       </button>
       <button
         v-if="active || loading"
         @click="stopMonitoring"
-        class="btn btn-dark btn-sm mr-2 ml-2"
+        class="btn btn-primary btn-sm mr-2 ml-2"
       >
-        <i class="mdi mdi-camera"></i> Stop Monitoring
+        <i class="mdi mdi-camera"></i> Stop Cloud Camera
       </button>
     </div>
   </div>

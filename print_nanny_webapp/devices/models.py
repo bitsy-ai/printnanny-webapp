@@ -125,7 +125,7 @@ class Device(SafeDeleteModel):
         # RTP port is automatically assigned from available open ports
         # admin_secret intentionally set to Null to avoid leaking cloud gateway secret via API responses
         obj, _ = JanusStream.objects.get_or_create(
-            device=self, config_type=JanusConfigType.CLOUD, admin_secret=None
+            device=self, config_type=JanusConfigType.CLOUD
         )
         return obj
 

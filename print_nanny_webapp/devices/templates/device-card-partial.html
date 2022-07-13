@@ -5,35 +5,12 @@
         <div class="card-header">
             <strong>{{ device.hostname }}</strong>
 
-            <a target="_blank" href="{{ device.urls.edge_dash }}" class="btn btn-light btn-sm ml-1 float-right">Pi
-                Dashboard</a>
-
+            <a target="_blank" href="{% url 'devices:settings' pk=device.settings.id %}"
+                class="btn btn-primary btn-sm ml-1 float-right">Settings</a>
+            <a target="_blank" href="{{ device.urls.octoprint }}"
+                class="btn btn-success btn-sm ml-1 float-right">OctoPrint</a>
         </div>
-
-        <div class="card-body">
-            {% if not device.is_active %}
-            <p>Waiting for first boot. </p>
-            <p>Follow the directions in the <a href="{{ DOCS_SITE__QUICKSTART }}">Install
-                    Guide</a> to finish setup.
-            </p>
-            {% else %}
-            {% include "device-system-info.html" %}
-            {% include "device-cloud-video.html" %}
-            {% endif %}
-        </div>
-
-        <div class="card-footer">
-            {% if not device.is_active %}
-            <a class="btn btn-primary btn-sm" href="{% url 'devices:config-download' pk=device.id %}">Download
-                License</a>
-            {% else %}
-            {% if device.is_octoprint %}
-            <a target="_blank" href="{{ device.urls.octoprint }}" class="btn btn-success btn-sm ml-1">OctoPrint</a>
-            {% endif %}
-            {% endif %}
-            <a href="{% url 'devices:delete' pk=device.id %}"><button
-                    class="btn btn-danger btn-sm ml-1 float-right">Delete</button></a>
-        </div>
+        {% include "device-cloud-video.html" %}
     </div>
 </div>
 
