@@ -39,8 +39,6 @@
                                     class="btn btn-primary btn-sm ml-1">Update</a>
                                 <a target="_blank" href="{% url 'devices:settings' pk=device.settings.id %}"
                                     class="btn btn-primary btn-sm ml-1">Settings</a>
-                                <a target="_blank" href="{% url 'devices:camera' pk=device.id %}"
-                                    class="btn btn-primary btn-sm ml-1">Camera</a>
                                 {% endif %}
                                 {% if device.is_octoprint and device.is_active %}
                                 <a target="_blank" href="{{ device.urls.octoprint }}"
