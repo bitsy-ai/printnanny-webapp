@@ -13,8 +13,7 @@ module.exports = {
     // consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
     'plugin:vue/essential',
     // https://github.com/standard/standard/blob/master/docs/RULES-en.md
-    'standard',
-    'plugin:vue/recommended'
+    'standard'
   ],
   // required to lint *.vue files
   plugins: [
@@ -30,16 +29,12 @@ module.exports = {
   overrides: [{
     files: ["*.ts", "*.tsx"],
     parser: "@typescript-eslint/parser",
-    plugins: ["@typescript-eslint", "vue"],
-    extends: [
-      'plugin:@typescript-eslint/recommended',
-      'plugin:import/typescript',
-      'plugin:vue/recommended'
-    ],
+    plugins: ["@typescript-eslint"],
+
     // If need to support jsx
-    parserOptions: {
-      ecmaFeatures: { jsx: true }
-    },
+    //     parserOptions: {
+    //       ecmaFeatures: { jsx: true }
+    //     },
 
     /**
      * Typescript Rules

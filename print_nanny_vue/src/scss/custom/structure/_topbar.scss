@@ -22,16 +22,13 @@
         text-align: center;
         top: 0;
         left: 0;
-
         .logo {
             line-height: $topbar-height;
-
             i {
                 display: none;
             }
         }
     }
-
     .topbar-right-menu {
         li {
             float: left;
@@ -43,7 +40,6 @@
                 }
             }
         }
-
         .nav-link {
             padding: 0;
             color: $gray-600;
@@ -81,7 +77,6 @@
         background-color: $bg-topbar-search;
         box-shadow: none;
     }
-
     span {
         position: absolute;
         z-index: 9;
@@ -90,7 +85,6 @@
         left: 10px;
         top: 0;
     }
-
     .input-group-append {
         margin-left: 0;
         z-index: 4;
@@ -151,15 +145,12 @@
             margin-left: 45px;
             text-overflow: ellipsis;
             white-space: nowrap;
-
             b {
                 font-weight: 500;
             }
-
             small {
                 display: block;
             }
-
             span {
                 display: block;
                 overflow: hidden;
@@ -168,14 +159,13 @@
                 font-size: 13px;
             }
         }
-
+        
         .user-msg {
             margin-left: 45px;
             white-space: normal;
             line-height: 16px;
         }
     }
-
     .topbar-dropdown-menu {
         .notify-item {
             padding: 7px 20px;
@@ -185,9 +175,7 @@
 
 .profile-dropdown {
     width: 170px;
-
-    i,
-    span {
+    i,span {
         vertical-align: middle;
     }
 }
@@ -200,13 +188,11 @@
     border: 1px solid $gray-100;
     border-width: 0 1px;
     min-height: $topbar-height;
-
     .account-user-settings {
         position: absolute;
         top: 0;
         left: 15px;
     }
-
     .account-user-avatar {
         position: absolute;
         top: calc(#{$topbar-height - 32px} / 2);
@@ -217,13 +203,11 @@
             width: 32px;
         }
     }
-
     .account-position {
         display: block;
         font-size: 12px;
         margin-top: -3px;
     }
-
     .account-user-name {
         display: block;
         font-weight: $font-weight-semibold;
@@ -254,7 +238,7 @@
     .navbar-custom {
         padding-left: 0;
     }
-
+    
     .button-menu-mobile {
         &.disable-btn {
             display: inline-block;
@@ -274,19 +258,17 @@
 }
 
 @include media-breakpoint-down(sm) {
-
+    
     .navbar-custom {
         left: 0;
         padding: 0 10px;
         margin: -5px -10px 0;
     }
-
     .button-menu-mobile {
         &.disable-btn {
             display: inline-block;
         }
     }
-
     .nav-user {
         padding: 17px 5px 17px 57px !important;
 
@@ -312,8 +294,8 @@
     background-color: $bg-topbar-dark;
 
     .nav-user {
-        background-color: lighten($bg-topbar-dark, 5%);
-        border: 1px solid lighten($bg-topbar-dark, 7.5%);
+        background-color: lighten($bg-topbar-dark,5%);
+        border: 1px solid lighten($bg-topbar-dark,7.5%);
     }
 
     .topbar-right-menu {
@@ -331,7 +313,6 @@
             background-color: $bg-topbar-dark-search;
             color: $white;
         }
-
         span {
             color: $gray-600;
         }
@@ -348,7 +329,7 @@ body[data-layout-mode="boxed"] {
     .navbar-custom {
         position: relative;
         left: 0 !important;
-        margin: -$topbar-height calc(-$grid-gutter-width / 2) 0;
+        margin: -$topbar-height (-$grid-gutter-width / 2) 0;
     }
 
     &[data-layout="topnav"] {

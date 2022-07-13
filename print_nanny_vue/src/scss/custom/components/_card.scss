@@ -14,19 +14,15 @@
         font-size: $h4-font-size;
         margin-top: 0;
     }
-
     .card-drop {
         font-size: 20px;
         line-height: 0;
         color: inherit;
     }
-
     .card-widgets {
         float: right;
         height: 16px;
-
-        >a,
-        .card-action {
+        > a, .card-action {
             color: inherit;
             font-size: 18px;
             display: inline-block;
@@ -70,8 +66,8 @@
         position: absolute;
         left: 50%;
         top: 50%;
-        margin-left: - calc($grid-gutter-width / 2);
-        margin-top: - calc($grid-gutter-width / 2);
+        margin-left: - ($grid-gutter-width / 2);
+        margin-top: - ($grid-gutter-width / 2);
     }
 }
 
@@ -79,11 +75,9 @@
     0% {
         transform: perspective(120px) rotateX(0deg) rotateY(0deg);
     }
-
     50% {
         transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
     }
-
     100% {
         transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
     }
@@ -93,7 +87,7 @@
 
 .card-pricing {
     position: relative;
-
+    
     .card-pricing-plan-name {
         padding-bottom: 20px;
     }
@@ -118,7 +112,6 @@
             text-transform: uppercase;
         }
     }
-
     .card-pricing-features {
         color: $gray-600;
         list-style: none;
@@ -138,7 +131,7 @@
     }
 
     .card-pricing-plan-tag {
-        background-color: rgba($danger, 0.2);
+        background-color: rgba($danger,0.2);
         color: $danger;
         padding: 5px 0;
         font-weight: 700;
