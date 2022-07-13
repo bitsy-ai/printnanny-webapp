@@ -23,7 +23,12 @@ urlpatterns = [
         "privacy-policy",
         TemplateView.as_view(template_name="legal/privacy-policy.html"),
     ),
-    path("", TemplateView.as_view(template_name="landing/landing.html"), name="home"),
+    # path("", TemplateView.as_view(template_name="landing/landing.html"), name="home"),
+    path(
+        "",
+        TemplateView.as_view(template_name="pages/landing/landing.html"),
+        name="home",
+    ),
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),

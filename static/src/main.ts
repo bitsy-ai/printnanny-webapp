@@ -1,9 +1,14 @@
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-import App from './App.vue'
-import './index.css'
-const app = createApp(App)
+import "vite/modulepreload-polyfill";
 
-app.use(createPinia())
+import { createApp } from "vue";
+import { createPinia } from "pinia";
+import router from "./router";
 
-app.mount('#app')
+import App from "./App.vue";
+import "./index.css";
+const app = createApp(App);
+
+app.use(createPinia());
+app.use(router);
+
+app.mount("#app");

@@ -163,6 +163,14 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+# Vitejs loader
+# https://github.com/MrBin99/django-vite
+# ------------------------------------------------------------------------------
+INSTALLED_APPS += ["django_vite"]
+DJANGO_VITE_ASSETS_PATH = ROOT_DIR / "static" / "dist"
+DJANGO_VITE_DEV_MODE = DEBUG
+DJANGO_VITE_STATIC_URL_PREFIX = "bundler"
+
 # STATIC
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-root
@@ -181,6 +189,7 @@ STATICFILES_DIRS = [
     ("images", str(APPS_DIR / "static/images")),
     ("js", str(APPS_DIR / "static/js")),
     ("vue", str(APPS_DIR / "static/vue")),
+    (DJANGO_VITE_STATIC_URL_PREFIX, DJANGO_VITE_ASSETS_PATH),
 ]
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [
@@ -220,7 +229,7 @@ TEMPLATES = [
         # https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-TEMPLATES-BACKEND
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         # https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
-        "DIRS": [str(APPS_DIR / "templates")],
+        "DIRS": [str(APPS_DIR / "templates"), str(APPS_DIR / "templates-tailwind")],
         "OPTIONS": {
             # https://docs.djangoproject.com/en/dev/ref/settings/#template-loaders
             # https://docs.djangoproject.com/en/dev/ref/templates/api/#loader-types
