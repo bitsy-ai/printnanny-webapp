@@ -6,7 +6,7 @@ const { merge } = require('webpack-merge');
 const path = require('path')
 const baseWebpackConfig = require('./webpack.base.conf')
 const portfinder = require('portfinder')
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const { VueLoaderPlugin } = require('vue-loader');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 
