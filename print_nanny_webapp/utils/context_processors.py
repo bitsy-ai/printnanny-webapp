@@ -47,7 +47,7 @@ def settings_context(_request):
         "PAID_BETA_SUBSCRIPTION_LIMIT": PAID_BETA_SUBSCRIPTION_LIMIT,
         "POSTHOG_API_KEY": settings.POSTHOG_API_KEY,
         "PRINTNANNY_OS_RELEASE_URL": settings.PRINTNANNY_OS_RELEASE_URL,
-        "PRINTNANNY_OS_INSTALL_URL": settings.PRINTNANNY_OS_INSTALL_URL,
+        "DOCS_SITE__QUICKSTART": settings.DOCS_SITE__QUICKSTART,
         "STRIPE_PUBLIC_KEY": djstripe_settings.STRIPE_PUBLIC_KEY,
         "WS_BASE_URL": settings.WS_BASE_URL,
     }

@@ -713,9 +713,6 @@ GIT_SHA = env("GIT_SHA", default="No GIT_SHA specified")
 # Trailing slash should match Nginx location
 OCTOPRINT_URL = "/octoprint/"
 PRINTNANNY_OS_RELEASE_URL = "https://github.com/bitsy-ai/printnanny-os/releases"
-PRINTNANNY_OS_INSTALL_URL = (
-    "https://github.com/bitsy-ai/printnanny-os/blob/main/docs/INSTALL.MD"
-)
 PRINTNANNY_OS_UPGRADE_URL = (
     "https://github.com/bitsy-ai/printnanny-os/blob/main/docs/UPGRADE.MD"
 )
