@@ -28,6 +28,7 @@ django-storages[google]
 django-stubs
 django-redis
 django-webpack-loader
+django-vite
 djangorestframework
 drf-spectacular
 drfpasswordless
