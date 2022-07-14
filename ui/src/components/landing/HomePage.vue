@@ -4,16 +4,7 @@
       <Popover as="header" class="relative">
         <div class="bg-gray-900 pt-6">
           <nav
-            class="
-              relative
-              max-w-7xl
-              mx-auto
-              flex
-              items-center
-              justify-between
-              px-4
-              sm:px-6
-            "
+            class="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6"
             aria-label="Global"
           >
             <div class="flex items-center flex-1">
@@ -28,20 +19,7 @@
                 </a>
                 <div class="-mr-2 flex items-center md:hidden">
                   <PopoverButton
-                    class="
-                      bg-gray-900
-                      rounded-md
-                      p-2
-                      inline-flex
-                      items-center
-                      justify-center
-                      text-gray-400
-                      hover:bg-gray-800
-                      focus:outline-none
-                      focus:ring-2
-                      focus-ring-inset
-                      focus:ring-white
-                    "
+                    class="bg-gray-900 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-800 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white"
                   >
                     <span class="sr-only">Open main menu</span>
                     <MenuIcon class="h-6 w-6" aria-hidden="true" />
@@ -67,19 +45,7 @@
               </a>
               <a
                 href="/request-invite"
-                class="
-                  inline-flex
-                  items-center
-                  px-4
-                  py-2
-                  border border-transparent
-                  text-base
-                  font-medium
-                  rounded-md
-                  text-white
-                  bg-gray-600
-                  hover:bg-gray-700
-                "
+                class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700"
               >
                 Request Access
               </a>
@@ -97,25 +63,10 @@
         >
           <PopoverPanel
             focus
-            class="
-              absolute
-              top-0
-              inset-x-0
-              p-2
-              transition
-              transform
-              origin-top
-              md:hidden
-            "
+            class="absolute top-0 inset-x-0 p-2 transition transform origin-top md:hidden"
           >
             <div
-              class="
-                rounded-lg
-                shadow-md
-                bg-white
-                ring-1 ring-black ring-opacity-5
-                overflow-hidden
-              "
+              class="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden"
             >
               <div class="px-5 pt-4 flex items-center justify-between">
                 <div>
@@ -127,20 +78,7 @@
                 </div>
                 <div class="-mr-2">
                   <PopoverButton
-                    class="
-                      bg-white
-                      rounded-md
-                      p-2
-                      inline-flex
-                      items-center
-                      justify-center
-                      text-gray-400
-                      hover:bg-gray-100
-                      focus:outline-none
-                      focus:ring-2
-                      focus:ring-inset
-                      focus:ring-cyan-600
-                    "
+                    class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-600"
                   >
                     <span class="sr-only">Close menu</span>
                     <XIcon class="h-6 w-6" aria-hidden="true" />
@@ -153,37 +91,14 @@
                     v-for="item in navigation"
                     :key="item.name"
                     :href="item.href"
-                    class="
-                      block
-                      px-3
-                      py-2
-                      rounded-md
-                      text-base
-                      font-medium
-                      text-gray-900
-                      hover:bg-gray-50
-                    "
+                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
                     >{{ item.name }}</a
                   >
                 </div>
                 <div class="mt-6 px-5">
                   <a
                     href="#"
-                    class="
-                      block
-                      text-center
-                      w-full
-                      py-3
-                      px-4
-                      rounded-md
-                      shadow
-                      bg-gradient-to-r
-                      from-indigo-300
-                      to-cyan-600
-                      text-white
-                      font-medium
-                      hover:from-teal-600 hover:to-cyan-700
-                    "
+                    class="block text-center w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-300 to-cyan-600 text-white font-medium hover:from-teal-600 hover:to-cyan-700"
                     >Request Acesss</a
                   >
                 </div>
@@ -205,13 +120,7 @@
           <div class="mx-auto">
             <div class="lg:grid lg:grid-cols-2 lg:gap-8">
               <div
-                class="
-                  mx-auto
-                  max-w-md
-                  px-4
-                  sm:max-w-2xl sm:px-6 sm:text-center
-                  lg:px-0 lg:text-left lg:flex lg:items-center
-                "
+                class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 sm:text-center lg:px-0 lg:text-left lg:flex lg:items-center"
               >
                 <div class="lg:py-24">
                   <!-- <a
@@ -253,78 +162,32 @@
                     />
                   </a> -->
                   <h1
-                    class="
-                      mt-4
-                      text-4xl
-                      tracking-tight
-                      font-extrabold
-                      text-white
-                      sm:mt-5 sm:text-6xl
-                      lg:mt-6
-                      xl:text-6xl
-                    "
+                    class="mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl"
                   >
                     <span
-                      class="
-                        block
-                        pb-3
-                        block
-                        bg-clip-text
-                        text-transparent
-                        bg-gradient-to-r
-                        from-indigo-300
-                        to-violet-500
-                        sm:pb-5
-                      "
+                      class="block pb-3 block bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 to-violet-500 sm:pb-5"
                       >Stop babysitting</span
                     >
                     <span
-                      class="
-                        pb-3
-                        bg-clip-text
-                        text-transparent
-                        bg-gradient-to-r
-                        from-indigo-200
-                        to-violet-400
-                        sm:pb-5
-                      "
+                      class="pb-3 bg-clip-text text-transparent bg-gradient-to-r from-indigo-200 to-violet-400 sm:pb-5"
                       >your 3D printer</span
                     >
                     👀
                   </h1>
                   <p
-                    class="
-                      mt-4
-                      text-base text-gray-300
-                      sm:text-xl
-                      lg:text-lg
-                      xl:text-xl
-                    "
+                    class="mt-4 text-base text-gray-300 sm:text-xl lg:text-lg xl:text-xl"
                   >
-                    Receive quality control alerts and live job progress.
+                    Quality control alerts and live progress updates.
                   </p>
                   <p
-                    class="
-                      mt-4
-                      text-base text-gray-300
-                      sm:text-xl
-                      lg:text-lg
-                      xl:text-xl
-                    "
+                    class="mt-4 text-base text-gray-300 sm:text-xl lg:text-lg xl:text-xl"
                   >
-                    Control your printer from anywhere in the world.
+                    Control your 3D printer from anywhere in the world.
                   </p>
                   <p
-                    class="
-                      mt-4
-                      text-base text-gray-300
-                      sm:text-xl
-                      lg:text-lg
-                      xl:text-xl
-                    "
+                    class="mt-4 text-base text-gray-300 sm:text-xl lg:text-lg xl:text-xl"
                   >
-                    Settings and file revisions automatically synced across your
-                    devices.
+                    Settings and files synced across your devices.
                   </p>
                   <div class="mt-10 sm:mt-12">
                     <form action="#" class="sm:max-w-xl sm:mx-auto lg:mx-0">
@@ -337,45 +200,13 @@
                             id="email"
                             type="email"
                             placeholder="Enter your email"
-                            class="
-                              block
-                              w-full
-                              px-4
-                              py-3
-                              rounded-md
-                              border-0
-                              text-base text-gray-900
-                              placeholder-gray-500
-                              focus:outline-none
-                              focus:ring-2
-                              focus:ring-offset-2
-                              focus:ring-cyan-400
-                              focus:ring-offset-gray-900
-                            "
+                            class="block w-full px-4 py-3 rounded-md border-0 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
                           />
                         </div>
                         <div class="mt-3 sm:mt-0 sm:ml-3">
                           <button
                             type="submit"
-                            class="
-                              block
-                              w-full
-                              py-3
-                              px-4
-                              rounded-md
-                              shadow
-                              bg-gradient-to-r
-                              from-indigo-500
-                              to-violet-600
-                              text-white
-                              font-medium
-                              hover:from-indigo-600 hover:to-violet-700
-                              focus:outline-none
-                              focus:ring-2
-                              focus:ring-offset-2
-                              focus:ring-cyan-400
-                              focus:ring-offset-gray-900
-                            "
+                            class="block w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
                           >
                             Request Access
                           </button>
@@ -393,28 +224,14 @@
               </div>
               <div class="mt-12 -mb-16 sm:-mb-48 lg:m-0 lg:relative">
                 <div
-                  class="
-                    mx-auto
-                    max-w-md
-                    px-4
-                    sm:max-w-2xl sm:px-6
-                    lg:max-w-none lg:px-0
-                  "
+                  class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0"
                 >
                   <video
                     autoplay="true"
                     muted="true"
                     loop="true"
                     controls="true"
-                    class="
-                      w-full
-                      lg:absolute
-                      lg:inset-y-0
-                      lg:left-0
-                      lg:h-full
-                      lg:w-auto
-                      lg:max-w-none
-                    "
+                    class="w-full lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
                   >
                     <source
                       src="https://cdn.printnanny.ai/www/demo-video-2.mp4"
@@ -428,43 +245,27 @@
         </div>
 
         <!-- Feature section with quality control demo -->
-        <div class="relative bg-gray-50 pt-16 sm:pt-24 lg:pt-32" id="quality-control">
+        <div
+          class="relative bg-gray-50 pt-16 sm:pt-24 lg:pt-32"
+          id="quality-control"
+        >
           <div
-            class="
-              mx-auto
-              max-w-md
-              px-4
-              text-center
-              sm:px-6 sm:max-w-3xl
-              lg:px-8 lg:max-w-7xl
-            "
+            class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl"
           >
             <div>
               <h2
-                class="
-                  text-base
-                  font-semibold
-                  tracking-wider
-                  text-indigo-600
-                  uppercase
-                "
+                class="text-base font-semibold tracking-wider text-indigo-600 uppercase"
               >
                 PrintNanny QC
               </h2>
               <p
-                class="
-                  mt-2
-                  text-3xl
-                  font-extrabold
-                  text-gray-900
-                  tracking-tight
-                  sm:text-4xl
-                "
+                class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
               >
                 🔮 Quality Control that Never Sleeps
               </p>
               <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-                Get notified or automatically pause if print doesn't pass quality standards.
+                Get notified or automatically pause if print doesn't pass
+                quality standards.
               </p>
             </div>
             <div class="mt-12">
@@ -474,42 +275,26 @@
         </div>
 
         <!-- Feature section with grid -->
-        <div class="relative bg-white py-16 sm:py-24 lg:py-32" id="printnanny-os">
+        <div
+          class="relative bg-white py-16 sm:py-24 lg:py-32"
+          id="printnanny-os"
+        >
           <div
-            class="
-              mx-auto
-              max-w-md
-              px-4
-              text-center
-              sm:max-w-3xl sm:px-6
-              lg:px-8 lg:max-w-7xl
-            "
+            class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl"
           >
             <h2
-              class="
-                text-base
-                font-semibold
-                tracking-wider
-                text-indigo-600
-                uppercase
-              "
+              class="text-base font-semibold tracking-wider text-indigo-600 uppercase"
             >
               PrintNanny OS
             </h2>
             <p
-              class="
-                mt-2
-                text-3xl
-                font-extrabold
-                text-gray-900
-                tracking-tight
-                sm:text-4xl
-              "
+              class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
             >
               Tame your menagerie of devices
             </p>
             <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-              Tired of re-imaging your printer controllers? <br>Mix and match OctoPrint, Repetier, and Mainsail with PrintNanny OS.
+              Tired of re-imaging your printer controllers? <br />Mix and match
+              OctoPrint, Repetier, and Mainsail with PrintNanny OS.
             </p>
             <div class="mt-12">
               <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -522,17 +307,7 @@
                     <div class="-mt-6">
                       <div>
                         <span
-                          class="
-                            inline-flex
-                            items-center
-                            justify-center
-                            p-3
-                            bg-gradient-to-r
-                            from-indigo-500
-                            to-violet-600
-                            rounded-md
-                            shadow-lg
-                          "
+                          class="inline-flex items-center justify-center p-3 bg-gradient-to-r from-indigo-500 to-violet-600 rounded-md shadow-lg"
                         >
                           <component
                             :is="feature.icon"
@@ -542,13 +317,7 @@
                         </span>
                       </div>
                       <h3
-                        class="
-                          mt-8
-                          text-lg
-                          font-medium
-                          text-gray-900
-                          tracking-tight
-                        "
+                        class="mt-8 text-lg font-medium text-gray-900 tracking-tight"
                       >
                         {{ feature.name }}
                       </h3>
@@ -569,58 +338,34 @@
         <div class="relative bg-gray-50 py-16 sm:py-24 lg:py-32">
           <div class="relative">
             <div
-              class="
-                text-center
-                mx-auto
-                max-w-md
-                px-4
-                sm:max-w-3xl sm:px-6
-                lg:px-8 lg:max-w-7xl
-              "
+              class="text-center mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl"
             >
               <h2
-                class="
-                  text-base
-                  font-semibold
-                  tracking-wider
-                  text-indigo-600
-                  uppercase
-                "
+                class="text-base font-semibold tracking-wider text-indigo-600 uppercase"
               >
                 Join the Community
               </h2>
               <p
-                class="
-                  mt-2
-                  text-3xl
-                  font-extrabold
-                  text-gray-900
-                  tracking-tight
-                  sm:text-4xl
-                "
+                class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
               >
                 Learn More
               </p>
               <p class="mt-5 mb-5 mx-auto max-w-prose text-xl text-gray-500">
-                Learn more about PrintNanny's development, roadmap, and join an amazing community.
+                Learn more about PrintNanny's development, roadmap, and join an
+                amazing community.
               </p>
               <p>
-              <a href="https://discord.gg/sf23bk2hPr" target="_blank" class="bg-indigo-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
+                <a
+                  href="https://discord.gg/sf23bk2hPr"
+                  target="_blank"
+                  class="bg-indigo-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+                >
                   Join Discord
-              </a>
+                </a>
               </p>
             </div>
             <div
-              class="
-                mt-12
-                mx-auto
-                max-w-md
-                px-4
-                grid
-                gap-8
-                sm:max-w-lg sm:px-6
-                lg:px-8 lg:grid-cols-3 lg:max-w-7xl
-              "
+              class="mt-12 mx-auto max-w-md px-4 grid gap-8 sm:max-w-lg sm:px-6 lg:px-8 lg:grid-cols-3 lg:max-w-7xl"
             >
               <div
                 v-for="post in blogPosts"
@@ -658,7 +403,6 @@
 
         <!-- CTA Section -->
       </main>
-
     </div>
   </div>
 </template>
@@ -677,7 +421,7 @@ import {
   FolderOpenIcon,
   GlobeIcon,
   VideoCameraIcon,
-  DesktopComputerIcon
+  DesktopComputerIcon,
 } from "@heroicons/vue/outline";
 import { ChevronRightIcon, ExternalLinkIcon } from "@heroicons/vue/solid";
 import DemoQualityAlert from "@/components/demo/DemoQualityAlert.vue";
@@ -688,7 +432,10 @@ const navigation = [
   { name: "Quality Control", href: "#quality-control" },
   { name: "PrintNanny OS", href: "#printnanny-os" },
   { name: "Join Discord", href: "https://discord.gg/sf23bk2hPr" },
-  { name: "Quick Start", href: "https://docs.printnanny.ai/docs/category/quick-start/" },
+  {
+    name: "Quick Start",
+    href: "https://docs.printnanny.ai/docs/category/quick-start/",
+  },
 ];
 const features = [
   {
@@ -725,7 +472,7 @@ const features = [
     name: "Access from Anywhere",
     description:
       "Connect to a secure Wireguard VPN to control your PrintNanny devices from anywhere.",
-    icon: GlobeIcon ,
+    icon: GlobeIcon,
   },
 ];
 const blogPosts = [
@@ -735,9 +482,11 @@ const blogPosts = [
     href: "https://towardsdatascience.com/soft-launching-an-ai-ml-product-as-a-solo-founder-87ee81bbe6f6",
     date: "Apr 19, 2021",
     datetime: "2021-04-19",
-    category: { name: "Featured in Towards Data Science", href: "https://towardsdatascience.com/soft-launching-an-ai-ml-product-as-a-solo-founder-87ee81bbe6f6" },
-    imageUrl:
-      "https://miro.medium.com/proxy/0*1zq-gwSYQip4eoid",
+    category: {
+      name: "Featured in Towards Data Science",
+      href: "https://towardsdatascience.com/soft-launching-an-ai-ml-product-as-a-solo-founder-87ee81bbe6f6",
+    },
+    imageUrl: "https://miro.medium.com/proxy/0*1zq-gwSYQip4eoid",
     preview:
       "The origin story of PrintNanny, plus a technical deep dive into one of the early prototypes.",
     readingLength: "20 min read",
@@ -748,10 +497,12 @@ const blogPosts = [
     href: "https://www.youtube.com/watch?v=eJqV5nPjOZQ&t=8559s",
     date: "Feb 27, 2021",
     datetime: "2021-02-27",
-    category: { name: "Video", href: "https://www.youtube.com/watch?v=eJqV5nPjOZQ&t=8559" },
-    imageUrl:  tfEverywhereImg,
-    preview:
-      "How PrintNanny's ensemble detection algorithm works.",
+    category: {
+      name: "Video",
+      href: "https://www.youtube.com/watch?v=eJqV5nPjOZQ&t=8559",
+    },
+    imageUrl: tfEverywhereImg,
+    preview: "How PrintNanny's ensemble detection algorithm works.",
     readingLength: "60 min",
   },
   {
@@ -760,12 +511,13 @@ const blogPosts = [
     href: "https://bit.ly/google-io-21-print-nanny",
     date: "Feb 12, 2021",
     datetime: "2021-02-12",
-    category: { name: "Slide Deck", href: "https://bit.ly/google-io-21-print-nanny" },
+    category: {
+      name: "Slide Deck",
+      href: "https://bit.ly/google-io-21-print-nanny",
+    },
     imageUrl: googleIoImg,
-    preview:
-      "Training & evaluating PrintNanny's first detection model",
+    preview: "Training & evaluating PrintNanny's first detection model",
     readingLength: "10 min",
   },
 ];
-
 </script>
