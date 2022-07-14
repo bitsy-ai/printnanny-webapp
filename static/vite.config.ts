@@ -7,42 +7,31 @@ import vueJsx from "@vitejs/plugin-vue-jsx";
 const { resolve } = require("path");
 
 // https://vitejs.dev/config/
-// export default defineConfig({
-//   base: '/static/bundler/',
-//   root: resolve('./src'),
-//   server: {
-//     host: 'localhost',
-//     port: 3000,
-//     open: false,
-//   },
-//   build: {
-//     outDir: resolve('./dist'),
-//     assetsDir: '',
-//     manifest: true,
-//     rollupOptions: {
-//       input: {
-//         main: resolve('./src/main.ts'),
-//         bundle: resolve('./src/bundle.ts'),
-
-//       },
-//       // output: {
-//       //   chunkFileNames: undefined,
-//       // },
-//     }
-//   },
-//   plugins: [vue(), vueJsx()],
-//   resolve: {
-//     alias: {
-//       '@': fileURLToPath(new URL('./src', import.meta.url))
-//     }
-//   }
-// })
-
 export default defineConfig({
+  base: '/static/bundler/',
+  root: resolve('./src'),
+  server: {
+    host: 'localhost',
+    port: 3000,
+    open: false,
+  },
+  build: {
+    outDir: resolve('./dist'),
+    manifest: true,
+    rollupOptions: {
+      input: {
+        landing: resolve('./src/apps/landing.ts'),
+
+      },
+      // output: {
+      //   chunkFileNames: undefined,
+      // },
+    }
+  },
   plugins: [vue(), vueJsx()],
   resolve: {
     alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
-    },
-  },
-});
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  }
+})

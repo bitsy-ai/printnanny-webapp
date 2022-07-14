@@ -121,7 +121,7 @@
                 <div>
                   <img
                     class="h-8 w-auto"
-                    src="@/assets/logo.svg"
+                    src="@/assets/logo/logo-text-rect-white.svg"
                     alt="PrintNanny"
                   />
                 </div>
@@ -402,10 +402,10 @@
                   "
                 >
                   <video
-                    autoplay=""
-                    muted=""
-                    loop=""
-                    controls=""
+                    autoplay="true"
+                    muted="true"
+                    loop="true"
+                    controls="true"
                     class="
                       w-full
                       lg:absolute
