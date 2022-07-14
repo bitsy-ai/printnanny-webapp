@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { LockClosedIcon } from "@heroicons/vue/solid";
-import { useUserStore } from "@/stores/user";
+import { useAccountStore } from "@/stores/account";
 import { useForm, useField, Field, ErrorMessage, Form } from "vee-validate";
 import { toRef, ref } from "vue";
 import * as yup from "yup";
@@ -13,9 +13,9 @@ const schema = yup.object({
   password: yup.string().required(),
 });
 
-const user = useUserStore();
+const account = useAccountStore();
 async function onSubmit(values: any) {
-  const res = await user.login(values as apiTypes.LoginRequest);
+  const res = await account.login(values as apiTypes.LoginRequest);
   console.log("Got Response", res);
 }
 </script>

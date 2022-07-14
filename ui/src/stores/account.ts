@@ -1,5 +1,6 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
+import * as apiTypes from "printnanny-api-client";
 
 const apiConfig = new api.Configuration({
   basePath: window.location.origin,
@@ -9,12 +10,13 @@ const apiConfig = new api.Configuration({
     withCredentials: true,
   },
 });
-debugger;
 const accountsApi = api.AccountsApiFactory(apiConfig);
 
 export const useUserStore = defineStore({
-  id: "user",
-  state: () => ({}),
+  id: "accounts",
+  state: () => ({
+    user?: apiTypes.User,
+  }),
   actions: {
     /**
      * Attempt to login a user
