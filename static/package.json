@@ -18,6 +18,7 @@
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/forms": "^0.5.2",
     "pinia": "^2.0.14",
+    "printnanny-api-client": "file:../clients/typescript",
     "vue": "^3.2.37",
     "vue-router": "^4.1.2"
   },

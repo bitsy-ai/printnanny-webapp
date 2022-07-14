@@ -1,18 +1,18 @@
 {
-  "name": "printnanny-api-client",
-  "version": "0.93.4",
-  "description": "OpenAPI client for printnanny-api-client",
+  "name": "{{npmName}}",
+  "version": "{{npmVersion}}",
+  "description": "OpenAPI client for {{npmName}}",
   "author": "OpenAPI-Generator Contributors",
   "repository": {
     "type": "git",
-    "url": "https://github.com/GIT_USER_ID/GIT_REPO_ID.git"
+    "url": "https://{{gitHost}}/{{gitUserId}}/{{gitRepoId}}.git"
   },
   "keywords": [
     "axios",
     "typescript",
     "openapi-client",
     "openapi-generator",
-    "printnanny-api-client"
+    "{{npmName}}"
   ],
   "license": "Unlicense",
   "main": "./dist/index.js",
@@ -28,5 +28,10 @@
   "devDependencies": {
     "@types/node": "^12.11.5",
     "typescript": "^4.0"
+  }{{#npmRepository}},{{/npmRepository}}
+{{#npmRepository}}
+  "publishConfig": {
+    "registry": "{{npmRepository}}"
   }
+{{/npmRepository}}
 }

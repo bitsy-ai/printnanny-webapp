@@ -8,6 +8,14 @@ const { resolve } = require("path");
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  optimizeDeps: {
+    include: ['printnanny-api-client']
+  },
+  build: {
+    commonjsOptions: {
+      include: [/linked-dep/, /node_modules/]
+    }
+  },
   server: {
     host: '0.0.0.0',
     proxy: {
