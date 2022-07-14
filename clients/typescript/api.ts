@@ -724,6 +724,32 @@ export interface EmailAuthRequest {
 /**
  * 
  * @export
+ * @interface EmailChange
+ */
+export interface EmailChange {
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailChange
+     */
+    'email': string;
+}
+/**
+ * 
+ * @export
+ * @interface EmailChangeRequest
+ */
+export interface EmailChangeRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailChangeRequest
+     */
+    'email': string;
+}
+/**
+ * 
+ * @export
  * @interface ErrorDetail
  */
 export interface ErrorDetail {
@@ -1012,6 +1038,44 @@ export interface JanusStreamRequest {
      * @memberof JanusStreamRequest
      */
     'rtp_port'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface Login
+ */
+export interface Login {
+    /**
+     * 
+     * @type {string}
+     * @memberof Login
+     */
+    'email': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Login
+     */
+    'password': string;
+}
+/**
+ * 
+ * @export
+ * @interface LoginRequest
+ */
+export interface LoginRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof LoginRequest
+     */
+    'email': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LoginRequest
+     */
+    'password': string;
 }
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
@@ -2292,6 +2356,96 @@ export interface Partner3DGeeksMetadata {
     'verified': string;
 }
 /**
+ * 
+ * @export
+ * @interface PasswordChange
+ */
+export interface PasswordChange {
+    /**
+     * 
+     * @type {string}
+     * @memberof PasswordChange
+     */
+    'password': string;
+}
+/**
+ * 
+ * @export
+ * @interface PasswordChangeRequest
+ */
+export interface PasswordChangeRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof PasswordChangeRequest
+     */
+    'password': string;
+}
+/**
+ * 
+ * @export
+ * @interface PasswordReset
+ */
+export interface PasswordReset {
+    /**
+     * 
+     * @type {string}
+     * @memberof PasswordReset
+     */
+    'email': string;
+}
+/**
+ * 
+ * @export
+ * @interface PasswordResetRequest
+ */
+export interface PasswordResetRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof PasswordResetRequest
+     */
+    'email': string;
+}
+/**
+ * 
+ * @export
+ * @interface PasswordResetVerified
+ */
+export interface PasswordResetVerified {
+    /**
+     * 
+     * @type {string}
+     * @memberof PasswordResetVerified
+     */
+    'code': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PasswordResetVerified
+     */
+    'password': string;
+}
+/**
+ * 
+ * @export
+ * @interface PasswordResetVerifiedRequest
+ */
+export interface PasswordResetVerifiedRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof PasswordResetVerifiedRequest
+     */
+    'code': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PasswordResetVerifiedRequest
+     */
+    'password': string;
+}
+/**
  * Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests
  * @export
  * @interface PatchedAlertBulkRequestRequest
@@ -2956,6 +3110,68 @@ export interface PublicKeyRequest {
     'device': number;
 }
 /**
+ * Don\'t require email to be unique so visitor can signup multiple times, if misplace verification email.  Handle in view.
+ * @export
+ * @interface Signup
+ */
+export interface Signup {
+    /**
+     * 
+     * @type {string}
+     * @memberof Signup
+     */
+    'email': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Signup
+     */
+    'password': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Signup
+     */
+    'first_name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Signup
+     */
+    'last_name'?: string;
+}
+/**
+ * Don\'t require email to be unique so visitor can signup multiple times, if misplace verification email.  Handle in view.
+ * @export
+ * @interface SignupRequest
+ */
+export interface SignupRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof SignupRequest
+     */
+    'email': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SignupRequest
+     */
+    'password': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SignupRequest
+     */
+    'first_name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SignupRequest
+     */
+    'last_name'?: string;
+}
+/**
  * 
  * @export
  * @interface SystemInfo
@@ -3253,16 +3469,28 @@ export interface TokenResponse {
 export interface User {
     /**
      * 
+     * @type {number}
+     * @memberof User
+     */
+    'id': number;
+    /**
+     * 
      * @type {string}
      * @memberof User
      */
     'email': string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof User
      */
-    'id': number;
+    'first_name'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'last_name'?: string | null;
 }
 /**
  * 
@@ -3553,6 +3781,1800 @@ export interface WebRTCEventRequest {
      */
     'stream': number;
 }
+
+/**
+ * AccountsApi - axios parameter creator
+ * @export
+ */
+export const AccountsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {EmailChangeRequest} emailChangeRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsEmailChangeCreate: async (emailChangeRequest: EmailChangeRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'emailChangeRequest' is not null or undefined
+            assertParamExists('accountsEmailChangeCreate', 'emailChangeRequest', emailChangeRequest)
+            const localVarPath = `/api/accounts/email/change/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(emailChangeRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {EmailChangeRequest} emailChangeRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsEmailChangeFormattedCreate: async (format: '.json', emailChangeRequest: EmailChangeRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'format' is not null or undefined
+            assertParamExists('accountsEmailChangeFormattedCreate', 'format', format)
+            // verify required parameter 'emailChangeRequest' is not null or undefined
+            assertParamExists('accountsEmailChangeFormattedCreate', 'emailChangeRequest', emailChangeRequest)
+            const localVarPath = `/api/accounts/email/change{format}`
+                .replace(`{${"format"}}`, encodeURIComponent(String(format)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(emailChangeRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsEmailChangeVerifyFormattedRetrieve: async (format: '.json', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'format' is not null or undefined
+            assertParamExists('accountsEmailChangeVerifyFormattedRetrieve', 'format', format)
+            const localVarPath = `/api/accounts/email/change/verify{format}`
+                .replace(`{${"format"}}`, encodeURIComponent(String(format)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsEmailChangeVerifyRetrieve: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/accounts/email/change/verify/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {LoginRequest} loginRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsLoginCreate: async (loginRequest: LoginRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'loginRequest' is not null or undefined
+            assertParamExists('accountsLoginCreate', 'loginRequest', loginRequest)
+            const localVarPath = `/api/accounts/login/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(loginRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {LoginRequest} loginRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsLoginFormattedCreate: async (format: '.json', loginRequest: LoginRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'format' is not null or undefined
+            assertParamExists('accountsLoginFormattedCreate', 'format', format)
+            // verify required parameter 'loginRequest' is not null or undefined
+            assertParamExists('accountsLoginFormattedCreate', 'loginRequest', loginRequest)
+            const localVarPath = `/api/accounts/login{format}`
+                .replace(`{${"format"}}`, encodeURIComponent(String(format)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(loginRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Remove all auth tokens owned by request.user.
+         * @param {'.json'} format 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsLogoutFormattedRetrieve: async (format: '.json', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'format' is not null or undefined
+            assertParamExists('accountsLogoutFormattedRetrieve', 'format', format)
+            const localVarPath = `/api/accounts/logout{format}`
+                .replace(`{${"format"}}`, encodeURIComponent(String(format)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Remove all auth tokens owned by request.user.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsLogoutRetrieve: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/accounts/logout/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {PasswordChangeRequest} passwordChangeRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsPasswordChangeCreate: async (passwordChangeRequest: PasswordChangeRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'passwordChangeRequest' is not null or undefined
+            assertParamExists('accountsPasswordChangeCreate', 'passwordChangeRequest', passwordChangeRequest)
+            const localVarPath = `/api/accounts/password/change/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(passwordChangeRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {PasswordChangeRequest} passwordChangeRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsPasswordChangeFormattedCreate: async (format: '.json', passwordChangeRequest: PasswordChangeRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'format' is not null or undefined
+            assertParamExists('accountsPasswordChangeFormattedCreate', 'format', format)
+            // verify required parameter 'passwordChangeRequest' is not null or undefined
+            assertParamExists('accountsPasswordChangeFormattedCreate', 'passwordChangeRequest', passwordChangeRequest)
+            const localVarPath = `/api/accounts/password/change{format}`
+                .replace(`{${"format"}}`, encodeURIComponent(String(format)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(passwordChangeRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {PasswordResetRequest} passwordResetRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsPasswordResetCreate: async (passwordResetRequest: PasswordResetRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'passwordResetRequest' is not null or undefined
+            assertParamExists('accountsPasswordResetCreate', 'passwordResetRequest', passwordResetRequest)
+            const localVarPath = `/api/accounts/password/reset/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(passwordResetRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {PasswordResetRequest} passwordResetRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsPasswordResetFormattedCreate: async (format: '.json', passwordResetRequest: PasswordResetRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'format' is not null or undefined
+            assertParamExists('accountsPasswordResetFormattedCreate', 'format', format)
+            // verify required parameter 'passwordResetRequest' is not null or undefined
+            assertParamExists('accountsPasswordResetFormattedCreate', 'passwordResetRequest', passwordResetRequest)
+            const localVarPath = `/api/accounts/password/reset{format}`
+                .replace(`{${"format"}}`, encodeURIComponent(String(format)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(passwordResetRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {PasswordResetVerifiedRequest} passwordResetVerifiedRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsPasswordResetVerifiedCreate: async (passwordResetVerifiedRequest: PasswordResetVerifiedRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'passwordResetVerifiedRequest' is not null or undefined
+            assertParamExists('accountsPasswordResetVerifiedCreate', 'passwordResetVerifiedRequest', passwordResetVerifiedRequest)
+            const localVarPath = `/api/accounts/password/reset/verified/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(passwordResetVerifiedRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {PasswordResetVerifiedRequest} passwordResetVerifiedRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsPasswordResetVerifiedFormattedCreate: async (format: '.json', passwordResetVerifiedRequest: PasswordResetVerifiedRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'format' is not null or undefined
+            assertParamExists('accountsPasswordResetVerifiedFormattedCreate', 'format', format)
+            // verify required parameter 'passwordResetVerifiedRequest' is not null or undefined
+            assertParamExists('accountsPasswordResetVerifiedFormattedCreate', 'passwordResetVerifiedRequest', passwordResetVerifiedRequest)
+            const localVarPath = `/api/accounts/password/reset/verified{format}`
+                .replace(`{${"format"}}`, encodeURIComponent(String(format)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(passwordResetVerifiedRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsPasswordResetVerifyFormattedRetrieve: async (format: '.json', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'format' is not null or undefined
+            assertParamExists('accountsPasswordResetVerifyFormattedRetrieve', 'format', format)
+            const localVarPath = `/api/accounts/password/reset/verify{format}`
+                .replace(`{${"format"}}`, encodeURIComponent(String(format)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsPasswordResetVerifyRetrieve: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/accounts/password/reset/verify/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {SignupRequest} signupRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsSignupCreate: async (signupRequest: SignupRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'signupRequest' is not null or undefined
+            assertParamExists('accountsSignupCreate', 'signupRequest', signupRequest)
+            const localVarPath = `/api/accounts/signup/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(signupRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {SignupRequest} signupRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsSignupFormattedCreate: async (format: '.json', signupRequest: SignupRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'format' is not null or undefined
+            assertParamExists('accountsSignupFormattedCreate', 'format', format)
+            // verify required parameter 'signupRequest' is not null or undefined
+            assertParamExists('accountsSignupFormattedCreate', 'signupRequest', signupRequest)
+            const localVarPath = `/api/accounts/signup{format}`
+                .replace(`{${"format"}}`, encodeURIComponent(String(format)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(signupRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsSignupVerifyFormattedRetrieve: async (format: '.json', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'format' is not null or undefined
+            assertParamExists('accountsSignupVerifyFormattedRetrieve', 'format', format)
+            const localVarPath = `/api/accounts/signup/verify{format}`
+                .replace(`{${"format"}}`, encodeURIComponent(String(format)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsSignupVerifyRetrieve: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/accounts/signup/verify/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsUsersMeFormattedRetrieve: async (format: '.json', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'format' is not null or undefined
+            assertParamExists('accountsUsersMeFormattedRetrieve', 'format', format)
+            const localVarPath = `/api/accounts/users/me{format}`
+                .replace(`{${"format"}}`, encodeURIComponent(String(format)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsUsersMeRetrieve: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/accounts/users/me/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * AccountsApi - functional programming interface
+ * @export
+ */
+export const AccountsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = AccountsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {EmailChangeRequest} emailChangeRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsEmailChangeCreate(emailChangeRequest: EmailChangeRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EmailChange>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsEmailChangeCreate(emailChangeRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {EmailChangeRequest} emailChangeRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsEmailChangeFormattedCreate(format: '.json', emailChangeRequest: EmailChangeRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EmailChange>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsEmailChangeFormattedCreate(format, emailChangeRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsEmailChangeVerifyFormattedRetrieve(format: '.json', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsEmailChangeVerifyFormattedRetrieve(format, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsEmailChangeVerifyRetrieve(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsEmailChangeVerifyRetrieve(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {LoginRequest} loginRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsLoginCreate(loginRequest: LoginRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Login>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsLoginCreate(loginRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {LoginRequest} loginRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsLoginFormattedCreate(format: '.json', loginRequest: LoginRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Login>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsLoginFormattedCreate(format, loginRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Remove all auth tokens owned by request.user.
+         * @param {'.json'} format 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsLogoutFormattedRetrieve(format: '.json', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsLogoutFormattedRetrieve(format, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Remove all auth tokens owned by request.user.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsLogoutRetrieve(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsLogoutRetrieve(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {PasswordChangeRequest} passwordChangeRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsPasswordChangeCreate(passwordChangeRequest: PasswordChangeRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PasswordChange>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsPasswordChangeCreate(passwordChangeRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {PasswordChangeRequest} passwordChangeRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsPasswordChangeFormattedCreate(format: '.json', passwordChangeRequest: PasswordChangeRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PasswordChange>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsPasswordChangeFormattedCreate(format, passwordChangeRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {PasswordResetRequest} passwordResetRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsPasswordResetCreate(passwordResetRequest: PasswordResetRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PasswordReset>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsPasswordResetCreate(passwordResetRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {PasswordResetRequest} passwordResetRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsPasswordResetFormattedCreate(format: '.json', passwordResetRequest: PasswordResetRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PasswordReset>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsPasswordResetFormattedCreate(format, passwordResetRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {PasswordResetVerifiedRequest} passwordResetVerifiedRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsPasswordResetVerifiedCreate(passwordResetVerifiedRequest: PasswordResetVerifiedRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PasswordResetVerified>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsPasswordResetVerifiedCreate(passwordResetVerifiedRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {PasswordResetVerifiedRequest} passwordResetVerifiedRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsPasswordResetVerifiedFormattedCreate(format: '.json', passwordResetVerifiedRequest: PasswordResetVerifiedRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PasswordResetVerified>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsPasswordResetVerifiedFormattedCreate(format, passwordResetVerifiedRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsPasswordResetVerifyFormattedRetrieve(format: '.json', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsPasswordResetVerifyFormattedRetrieve(format, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsPasswordResetVerifyRetrieve(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsPasswordResetVerifyRetrieve(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {SignupRequest} signupRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsSignupCreate(signupRequest: SignupRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Signup>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsSignupCreate(signupRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {SignupRequest} signupRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsSignupFormattedCreate(format: '.json', signupRequest: SignupRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Signup>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsSignupFormattedCreate(format, signupRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsSignupVerifyFormattedRetrieve(format: '.json', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsSignupVerifyFormattedRetrieve(format, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsSignupVerifyRetrieve(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsSignupVerifyRetrieve(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsUsersMeFormattedRetrieve(format: '.json', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsUsersMeFormattedRetrieve(format, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsUsersMeRetrieve(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsUsersMeRetrieve(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * AccountsApi - factory interface
+ * @export
+ */
+export const AccountsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = AccountsApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {EmailChangeRequest} emailChangeRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsEmailChangeCreate(emailChangeRequest: EmailChangeRequest, options?: any): AxiosPromise<EmailChange> {
+            return localVarFp.accountsEmailChangeCreate(emailChangeRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {EmailChangeRequest} emailChangeRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsEmailChangeFormattedCreate(format: '.json', emailChangeRequest: EmailChangeRequest, options?: any): AxiosPromise<EmailChange> {
+            return localVarFp.accountsEmailChangeFormattedCreate(format, emailChangeRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsEmailChangeVerifyFormattedRetrieve(format: '.json', options?: any): AxiosPromise<void> {
+            return localVarFp.accountsEmailChangeVerifyFormattedRetrieve(format, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsEmailChangeVerifyRetrieve(options?: any): AxiosPromise<void> {
+            return localVarFp.accountsEmailChangeVerifyRetrieve(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {LoginRequest} loginRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsLoginCreate(loginRequest: LoginRequest, options?: any): AxiosPromise<Login> {
+            return localVarFp.accountsLoginCreate(loginRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {LoginRequest} loginRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsLoginFormattedCreate(format: '.json', loginRequest: LoginRequest, options?: any): AxiosPromise<Login> {
+            return localVarFp.accountsLoginFormattedCreate(format, loginRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Remove all auth tokens owned by request.user.
+         * @param {'.json'} format 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsLogoutFormattedRetrieve(format: '.json', options?: any): AxiosPromise<void> {
+            return localVarFp.accountsLogoutFormattedRetrieve(format, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Remove all auth tokens owned by request.user.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsLogoutRetrieve(options?: any): AxiosPromise<void> {
+            return localVarFp.accountsLogoutRetrieve(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {PasswordChangeRequest} passwordChangeRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsPasswordChangeCreate(passwordChangeRequest: PasswordChangeRequest, options?: any): AxiosPromise<PasswordChange> {
+            return localVarFp.accountsPasswordChangeCreate(passwordChangeRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {PasswordChangeRequest} passwordChangeRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsPasswordChangeFormattedCreate(format: '.json', passwordChangeRequest: PasswordChangeRequest, options?: any): AxiosPromise<PasswordChange> {
+            return localVarFp.accountsPasswordChangeFormattedCreate(format, passwordChangeRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {PasswordResetRequest} passwordResetRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsPasswordResetCreate(passwordResetRequest: PasswordResetRequest, options?: any): AxiosPromise<PasswordReset> {
+            return localVarFp.accountsPasswordResetCreate(passwordResetRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {PasswordResetRequest} passwordResetRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsPasswordResetFormattedCreate(format: '.json', passwordResetRequest: PasswordResetRequest, options?: any): AxiosPromise<PasswordReset> {
+            return localVarFp.accountsPasswordResetFormattedCreate(format, passwordResetRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {PasswordResetVerifiedRequest} passwordResetVerifiedRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsPasswordResetVerifiedCreate(passwordResetVerifiedRequest: PasswordResetVerifiedRequest, options?: any): AxiosPromise<PasswordResetVerified> {
+            return localVarFp.accountsPasswordResetVerifiedCreate(passwordResetVerifiedRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {PasswordResetVerifiedRequest} passwordResetVerifiedRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsPasswordResetVerifiedFormattedCreate(format: '.json', passwordResetVerifiedRequest: PasswordResetVerifiedRequest, options?: any): AxiosPromise<PasswordResetVerified> {
+            return localVarFp.accountsPasswordResetVerifiedFormattedCreate(format, passwordResetVerifiedRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsPasswordResetVerifyFormattedRetrieve(format: '.json', options?: any): AxiosPromise<void> {
+            return localVarFp.accountsPasswordResetVerifyFormattedRetrieve(format, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsPasswordResetVerifyRetrieve(options?: any): AxiosPromise<void> {
+            return localVarFp.accountsPasswordResetVerifyRetrieve(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {SignupRequest} signupRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsSignupCreate(signupRequest: SignupRequest, options?: any): AxiosPromise<Signup> {
+            return localVarFp.accountsSignupCreate(signupRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {SignupRequest} signupRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsSignupFormattedCreate(format: '.json', signupRequest: SignupRequest, options?: any): AxiosPromise<Signup> {
+            return localVarFp.accountsSignupFormattedCreate(format, signupRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsSignupVerifyFormattedRetrieve(format: '.json', options?: any): AxiosPromise<void> {
+            return localVarFp.accountsSignupVerifyFormattedRetrieve(format, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsSignupVerifyRetrieve(options?: any): AxiosPromise<void> {
+            return localVarFp.accountsSignupVerifyRetrieve(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {'.json'} format 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsUsersMeFormattedRetrieve(format: '.json', options?: any): AxiosPromise<User> {
+            return localVarFp.accountsUsersMeFormattedRetrieve(format, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsUsersMeRetrieve(options?: any): AxiosPromise<User> {
+            return localVarFp.accountsUsersMeRetrieve(options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * AccountsApi - interface
+ * @export
+ * @interface AccountsApi
+ */
+export interface AccountsApiInterface {
+    /**
+     * 
+     * @param {EmailChangeRequest} emailChangeRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsEmailChangeCreate(emailChangeRequest: EmailChangeRequest, options?: AxiosRequestConfig): AxiosPromise<EmailChange>;
+
+    /**
+     * 
+     * @param {'.json'} format 
+     * @param {EmailChangeRequest} emailChangeRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsEmailChangeFormattedCreate(format: '.json', emailChangeRequest: EmailChangeRequest, options?: AxiosRequestConfig): AxiosPromise<EmailChange>;
+
+    /**
+     * 
+     * @param {'.json'} format 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsEmailChangeVerifyFormattedRetrieve(format: '.json', options?: AxiosRequestConfig): AxiosPromise<void>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsEmailChangeVerifyRetrieve(options?: AxiosRequestConfig): AxiosPromise<void>;
+
+    /**
+     * 
+     * @param {LoginRequest} loginRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsLoginCreate(loginRequest: LoginRequest, options?: AxiosRequestConfig): AxiosPromise<Login>;
+
+    /**
+     * 
+     * @param {'.json'} format 
+     * @param {LoginRequest} loginRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsLoginFormattedCreate(format: '.json', loginRequest: LoginRequest, options?: AxiosRequestConfig): AxiosPromise<Login>;
+
+    /**
+     * Remove all auth tokens owned by request.user.
+     * @param {'.json'} format 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsLogoutFormattedRetrieve(format: '.json', options?: AxiosRequestConfig): AxiosPromise<void>;
+
+    /**
+     * Remove all auth tokens owned by request.user.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsLogoutRetrieve(options?: AxiosRequestConfig): AxiosPromise<void>;
+
+    /**
+     * 
+     * @param {PasswordChangeRequest} passwordChangeRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsPasswordChangeCreate(passwordChangeRequest: PasswordChangeRequest, options?: AxiosRequestConfig): AxiosPromise<PasswordChange>;
+
+    /**
+     * 
+     * @param {'.json'} format 
+     * @param {PasswordChangeRequest} passwordChangeRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsPasswordChangeFormattedCreate(format: '.json', passwordChangeRequest: PasswordChangeRequest, options?: AxiosRequestConfig): AxiosPromise<PasswordChange>;
+
+    /**
+     * 
+     * @param {PasswordResetRequest} passwordResetRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsPasswordResetCreate(passwordResetRequest: PasswordResetRequest, options?: AxiosRequestConfig): AxiosPromise<PasswordReset>;
+
+    /**
+     * 
+     * @param {'.json'} format 
+     * @param {PasswordResetRequest} passwordResetRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsPasswordResetFormattedCreate(format: '.json', passwordResetRequest: PasswordResetRequest, options?: AxiosRequestConfig): AxiosPromise<PasswordReset>;
+
+    /**
+     * 
+     * @param {PasswordResetVerifiedRequest} passwordResetVerifiedRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsPasswordResetVerifiedCreate(passwordResetVerifiedRequest: PasswordResetVerifiedRequest, options?: AxiosRequestConfig): AxiosPromise<PasswordResetVerified>;
+
+    /**
+     * 
+     * @param {'.json'} format 
+     * @param {PasswordResetVerifiedRequest} passwordResetVerifiedRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsPasswordResetVerifiedFormattedCreate(format: '.json', passwordResetVerifiedRequest: PasswordResetVerifiedRequest, options?: AxiosRequestConfig): AxiosPromise<PasswordResetVerified>;
+
+    /**
+     * 
+     * @param {'.json'} format 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsPasswordResetVerifyFormattedRetrieve(format: '.json', options?: AxiosRequestConfig): AxiosPromise<void>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsPasswordResetVerifyRetrieve(options?: AxiosRequestConfig): AxiosPromise<void>;
+
+    /**
+     * 
+     * @param {SignupRequest} signupRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsSignupCreate(signupRequest: SignupRequest, options?: AxiosRequestConfig): AxiosPromise<Signup>;
+
+    /**
+     * 
+     * @param {'.json'} format 
+     * @param {SignupRequest} signupRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsSignupFormattedCreate(format: '.json', signupRequest: SignupRequest, options?: AxiosRequestConfig): AxiosPromise<Signup>;
+
+    /**
+     * 
+     * @param {'.json'} format 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsSignupVerifyFormattedRetrieve(format: '.json', options?: AxiosRequestConfig): AxiosPromise<void>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsSignupVerifyRetrieve(options?: AxiosRequestConfig): AxiosPromise<void>;
+
+    /**
+     * 
+     * @param {'.json'} format 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsUsersMeFormattedRetrieve(format: '.json', options?: AxiosRequestConfig): AxiosPromise<User>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsUsersMeRetrieve(options?: AxiosRequestConfig): AxiosPromise<User>;
+
+}
+
+/**
+ * AccountsApi - object-oriented interface
+ * @export
+ * @class AccountsApi
+ * @extends {BaseAPI}
+ */
+export class AccountsApi extends BaseAPI implements AccountsApiInterface {
+    /**
+     * 
+     * @param {EmailChangeRequest} emailChangeRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsEmailChangeCreate(emailChangeRequest: EmailChangeRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsEmailChangeCreate(emailChangeRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {'.json'} format 
+     * @param {EmailChangeRequest} emailChangeRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsEmailChangeFormattedCreate(format: '.json', emailChangeRequest: EmailChangeRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsEmailChangeFormattedCreate(format, emailChangeRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {'.json'} format 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsEmailChangeVerifyFormattedRetrieve(format: '.json', options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsEmailChangeVerifyFormattedRetrieve(format, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsEmailChangeVerifyRetrieve(options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsEmailChangeVerifyRetrieve(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {LoginRequest} loginRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsLoginCreate(loginRequest: LoginRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsLoginCreate(loginRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {'.json'} format 
+     * @param {LoginRequest} loginRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsLoginFormattedCreate(format: '.json', loginRequest: LoginRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsLoginFormattedCreate(format, loginRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Remove all auth tokens owned by request.user.
+     * @param {'.json'} format 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsLogoutFormattedRetrieve(format: '.json', options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsLogoutFormattedRetrieve(format, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Remove all auth tokens owned by request.user.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsLogoutRetrieve(options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsLogoutRetrieve(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {PasswordChangeRequest} passwordChangeRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsPasswordChangeCreate(passwordChangeRequest: PasswordChangeRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsPasswordChangeCreate(passwordChangeRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {'.json'} format 
+     * @param {PasswordChangeRequest} passwordChangeRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsPasswordChangeFormattedCreate(format: '.json', passwordChangeRequest: PasswordChangeRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsPasswordChangeFormattedCreate(format, passwordChangeRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {PasswordResetRequest} passwordResetRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsPasswordResetCreate(passwordResetRequest: PasswordResetRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsPasswordResetCreate(passwordResetRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {'.json'} format 
+     * @param {PasswordResetRequest} passwordResetRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsPasswordResetFormattedCreate(format: '.json', passwordResetRequest: PasswordResetRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsPasswordResetFormattedCreate(format, passwordResetRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {PasswordResetVerifiedRequest} passwordResetVerifiedRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsPasswordResetVerifiedCreate(passwordResetVerifiedRequest: PasswordResetVerifiedRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsPasswordResetVerifiedCreate(passwordResetVerifiedRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {'.json'} format 
+     * @param {PasswordResetVerifiedRequest} passwordResetVerifiedRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsPasswordResetVerifiedFormattedCreate(format: '.json', passwordResetVerifiedRequest: PasswordResetVerifiedRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsPasswordResetVerifiedFormattedCreate(format, passwordResetVerifiedRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {'.json'} format 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsPasswordResetVerifyFormattedRetrieve(format: '.json', options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsPasswordResetVerifyFormattedRetrieve(format, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsPasswordResetVerifyRetrieve(options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsPasswordResetVerifyRetrieve(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {SignupRequest} signupRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsSignupCreate(signupRequest: SignupRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsSignupCreate(signupRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {'.json'} format 
+     * @param {SignupRequest} signupRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsSignupFormattedCreate(format: '.json', signupRequest: SignupRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsSignupFormattedCreate(format, signupRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {'.json'} format 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsSignupVerifyFormattedRetrieve(format: '.json', options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsSignupVerifyFormattedRetrieve(format, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsSignupVerifyRetrieve(options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsSignupVerifyRetrieve(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {'.json'} format 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsUsersMeFormattedRetrieve(format: '.json', options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsUsersMeFormattedRetrieve(format, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsUsersMeRetrieve(options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsUsersMeRetrieve(options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
 
 /**
  * AlertSettingsApi - axios parameter creator
