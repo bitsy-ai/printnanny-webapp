@@ -8,24 +8,15 @@ const { resolve } = require("path");
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/static/bundler/',
-  root: resolve('./src'),
   server: {
-    host: 'localhost',
-    port: 3000,
-    open: false,
-  },
-  build: {
-    outDir: resolve('./dist'),
-    manifest: true,
-    rollupOptions: {
-      input: {
-        landing: resolve('./src/apps/landing.ts'),
-
-      },
-      // output: {
-      //   chunkFileNames: undefined,
-      // },
+    host: '0.0.0.0',
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+      }
     }
   },
   plugins: [vue(), vueJsx()],

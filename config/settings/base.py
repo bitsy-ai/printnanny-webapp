@@ -163,14 +163,14 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+# Django Rest Authemail
+# https://github.com/celiao/django-rest-authemail
+# ------------------------------------------------------------------------------
+INSTALLED_APPS += ["authemail"]
+
 # Vitejs loader
 # https://github.com/MrBin99/django-vite
 # ------------------------------------------------------------------------------
-INSTALLED_APPS += ["django_vite"]
-DJANGO_VITE_ASSETS_PATH = ROOT_DIR / "static" / "dist"
-DJANGO_VITE_DEV_MODE = DEBUG
-DJANGO_VITE_STATIC_URL_PREFIX = "bundler"
-
 # STATIC
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-root
@@ -181,15 +181,14 @@ STATIC_URL = env("DJANGO_STATIC_URL", default="static/")
 BASE_URL = env("DJANGO_BASE_URL", default="/")
 WS_BASE_URL = env("DJANGO_WS_URL", default="/ws")
 
-VUE_APP_DIR = os.path.join(ROOT_DIR, "print_nanny_vue")
 # @TODO rm these staticfiles dirs
 STATICFILES_DIRS = [
     ("css", str(APPS_DIR / "static/css")),
     ("fonts", str(APPS_DIR / "static/fonts")),
     ("images", str(APPS_DIR / "static/images")),
     ("js", str(APPS_DIR / "static/js")),
-    ("vue", str(APPS_DIR / "static/vue")),
-    (DJANGO_VITE_STATIC_URL_PREFIX, DJANGO_VITE_ASSETS_PATH),
+    # ("vue", str(APPS_DIR / "static/vue")),
+    # (DJANGO_VITE_STATIC_URL_PREFIX, DJANGO_VITE_ASSETS_PATH),
 ]
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [
@@ -199,19 +198,19 @@ STATICFILES_FINDERS = [
 
 # Webpack loader
 # ------------------------------------------------------------------------------
-INSTALLED_APPS += ["webpack_loader"]
+# INSTALLED_APPS += ["webpack_loader"]
 
-WEBPACK_LOADER = {
-    "DEFAULT": {
-        "CACHE": not DEBUG,
-        "BUNDLE_DIR_NAME": "vue/",  # must end with slash
-        "STATS_FILE": os.path.join(VUE_APP_DIR, "webpack-stats.json"),
-        "POLL_INTERVAL": 0.1,
-        "TIMEOUT": None,
-        "IGNORE": [r".+\.hot-update.js", r".+\.map"],
-        "LOADER_CLASS": "webpack_loader.loader.WebpackLoader",
-    }
-}
+# WEBPACK_LOADER = {
+#     "DEFAULT": {
+#         "CACHE": not DEBUG,
+#         "BUNDLE_DIR_NAME": "vue/",  # must end with slash
+#         "STATS_FILE": os.path.join(VUE_APP_DIR, "webpack-stats.json"),
+#         "POLL_INTERVAL": 0.1,
+#         "TIMEOUT": None,
+#         "IGNORE": [r".+\.hot-update.js", r".+\.map"],
+#         "LOADER_CLASS": "webpack_loader.loader.WebpackLoader",
+#     }
+# }
 
 
 # MEDIA
@@ -229,7 +228,7 @@ TEMPLATES = [
         # https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-TEMPLATES-BACKEND
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         # https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
-        "DIRS": [str(APPS_DIR / "templates"), str(APPS_DIR / "templates-tailwind")],
+        "DIRS": [str(APPS_DIR / "templates-v2")],
         "OPTIONS": {
             # https://docs.djangoproject.com/en/dev/ref/settings/#template-loaders
             # https://docs.djangoproject.com/en/dev/ref/templates/api/#loader-types

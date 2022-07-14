@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import Landing from "@/components/landing/Landing.vue";
+import HomePage from "@/components/landing/HomePage.vue";
 </script>
 
 <template>
   <main>
-    <Landing />
+    <HomePage />
   </main>
 </template>
