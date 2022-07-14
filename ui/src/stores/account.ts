@@ -1,6 +1,8 @@
+import type { UiError } from "@/types";
 import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
 import * as apiTypes from "printnanny-api-client";
+import { useAlertStore } from "./alerts";
 
 const apiConfig = new api.Configuration({
   basePath: window.location.origin,
@@ -12,10 +14,14 @@ const apiConfig = new api.Configuration({
 });
 const accountsApi = api.AccountsApiFactory(apiConfig);
 
-export const useUserStore = defineStore({
+
+export const useAccountStore = defineStore({
   id: "accounts",
   state: () => ({
-    user?: apiTypes.User,
+    /** @type { api.User } */
+    user: {},
+    /** @type { api.RequiredError } */
+    apiError: {}
   }),
   actions: {
     /**
@@ -23,17 +29,30 @@ export const useUserStore = defineStore({
      * @param {api.LoginRequest} request
      */
     async login(request: api.LoginRequest) {
-      console.log("Sending login request", request);
-      console.log("Logging api import", api);
-      const userData = await accountsApi.accountsLoginCreate(request);
-      console.log("User data received", userData);
-      // this.$patch({
-      //   ...userData,
-      // });
+      try {
+        const userData = await accountsApi.accountsLoginCreate(request);
+        console.log("User data received", userData);
+
+      }
+      catch (e: any) {
+        if (e.isAxiosError) {
+          const alerts = useAlertStore();
+
+          const alert: UiError = {
+            header: e.response.statusText,
+            message: e.response.data.detail,
+            error: e
+          }
+          alerts.push(alert);
+          console.error(e.response)
+        } else {
+          throw e;
+        }
+      }
     },
   },
 });
 
 if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useUserStore, import.meta.hot));
+  import.meta.hot.accept(acceptHMRUpdate(useAccountStore, import.meta.hot));
 }
