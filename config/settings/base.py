@@ -471,13 +471,14 @@ SPECTACULAR_SETTINGS = {
         "EventSource": "print_nanny_webapp.events.enum.EventSource",
     },
     "TITLE": "printnanny-api-client",
-    "DESCRIPTION": "Official API client library forprintnanny.ai print-nanny.com",
+    "DESCRIPTION": "Official API client library for printnanny.ai",
     "LICENSE": {"name": "AGPLv3"},
     "CONTACT": {
         "name": "Leigh Johnson",
         "email": "leigh@printnanny.ai",
-        "url": "https://print-nanny.com",
+        "url": "https://printnanny.ai",
     },
+    "PREPROCESSING_HOOKS": ["drf_spectacular.hooks.preprocess_exclude_path_format"],
 }
 
 # django-filters
