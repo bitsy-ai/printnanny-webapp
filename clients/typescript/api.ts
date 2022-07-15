@@ -2878,25 +2878,6 @@ export interface PatchedSystemInfoRequest {
     'device'?: number;
 }
 /**
- * User model w/o password
- * @export
- * @interface PatchedUserDetailsRequest
- */
-export interface PatchedUserDetailsRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedUserDetailsRequest
-     */
-    'first_name'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedUserDetailsRequest
-     */
-    'last_name'?: string | null;
-}
-/**
  * 
  * @export
  * @interface PatchedUserRequest
@@ -2908,6 +2889,18 @@ export interface PatchedUserRequest {
      * @memberof PatchedUserRequest
      */
     'email'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedUserRequest
+     */
+    'first_name'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedUserRequest
+     */
+    'last_name'?: string | null;
 }
 /**
  * @type PolymorphicCommand
@@ -3428,56 +3421,24 @@ export interface User {
      * @memberof User
      */
     'id': number;
-}
-/**
- * User model w/o password
- * @export
- * @interface UserDetails
- */
-export interface UserDetails {
-    /**
-     * 
-     * @type {number}
-     * @memberof UserDetails
-     */
-    'pk': number;
     /**
      * 
      * @type {string}
-     * @memberof UserDetails
-     */
-    'email': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserDetails
+     * @memberof User
      */
     'first_name'?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof UserDetails
+     * @memberof User
      */
     'last_name'?: string | null;
-}
-/**
- * User model w/o password
- * @export
- * @interface UserDetailsRequest
- */
-export interface UserDetailsRequest {
     /**
      * 
-     * @type {string}
-     * @memberof UserDetailsRequest
+     * @type {boolean}
+     * @memberof User
      */
-    'first_name'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserDetailsRequest
-     */
-    'last_name'?: string | null;
+    'is_beta_tester': boolean;
 }
 /**
  * 
@@ -3491,6 +3452,18 @@ export interface UserRequest {
      * @memberof UserRequest
      */
     'email': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserRequest
+     */
+    'first_name'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserRequest
+     */
+    'last_name'?: string | null;
 }
 /**
  * 
@@ -4112,11 +4085,11 @@ export const AccountsApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
-         * @param {PatchedUserDetailsRequest} [patchedUserDetailsRequest] 
+         * @param {PatchedUserRequest} [patchedUserRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsUserPartialUpdate: async (patchedUserDetailsRequest?: PatchedUserDetailsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        accountsUserPartialUpdate: async (patchedUserRequest?: PatchedUserRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/accounts/user/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4142,7 +4115,7 @@ export const AccountsApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(patchedUserDetailsRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedUserRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -4186,11 +4159,13 @@ export const AccountsApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
-         * @param {UserDetailsRequest} [userDetailsRequest] 
+         * @param {UserRequest} userRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsUserUpdate: async (userDetailsRequest?: UserDetailsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        accountsUserUpdate: async (userRequest: UserRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'userRequest' is not null or undefined
+            assertParamExists('accountsUserUpdate', 'userRequest', userRequest)
             const localVarPath = `/api/accounts/user/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4216,7 +4191,7 @@ export const AccountsApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(userDetailsRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(userRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -4314,12 +4289,12 @@ export const AccountsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
-         * @param {PatchedUserDetailsRequest} [patchedUserDetailsRequest] 
+         * @param {PatchedUserRequest} [patchedUserRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsUserPartialUpdate(patchedUserDetailsRequest?: PatchedUserDetailsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserDetails>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsUserPartialUpdate(patchedUserDetailsRequest, options);
+        async accountsUserPartialUpdate(patchedUserRequest?: PatchedUserRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsUserPartialUpdate(patchedUserRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -4327,18 +4302,18 @@ export const AccountsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsUserRetrieve(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserDetails>> {
+        async accountsUserRetrieve(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsUserRetrieve(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
-         * @param {UserDetailsRequest} [userDetailsRequest] 
+         * @param {UserRequest} userRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsUserUpdate(userDetailsRequest?: UserDetailsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserDetails>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsUserUpdate(userDetailsRequest, options);
+        async accountsUserUpdate(userRequest: UserRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsUserUpdate(userRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -4424,29 +4399,29 @@ export const AccountsApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
-         * @param {PatchedUserDetailsRequest} [patchedUserDetailsRequest] 
+         * @param {PatchedUserRequest} [patchedUserRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsUserPartialUpdate(patchedUserDetailsRequest?: PatchedUserDetailsRequest, options?: any): AxiosPromise<UserDetails> {
-            return localVarFp.accountsUserPartialUpdate(patchedUserDetailsRequest, options).then((request) => request(axios, basePath));
+        accountsUserPartialUpdate(patchedUserRequest?: PatchedUserRequest, options?: any): AxiosPromise<User> {
+            return localVarFp.accountsUserPartialUpdate(patchedUserRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsUserRetrieve(options?: any): AxiosPromise<UserDetails> {
+        accountsUserRetrieve(options?: any): AxiosPromise<User> {
             return localVarFp.accountsUserRetrieve(options).then((request) => request(axios, basePath));
         },
         /**
          * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
-         * @param {UserDetailsRequest} [userDetailsRequest] 
+         * @param {UserRequest} userRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsUserUpdate(userDetailsRequest?: UserDetailsRequest, options?: any): AxiosPromise<UserDetails> {
-            return localVarFp.accountsUserUpdate(userDetailsRequest, options).then((request) => request(axios, basePath));
+        accountsUserUpdate(userRequest: UserRequest, options?: any): AxiosPromise<User> {
+            return localVarFp.accountsUserUpdate(userRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -4530,12 +4505,12 @@ export interface AccountsApiInterface {
 
     /**
      * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
-     * @param {PatchedUserDetailsRequest} [patchedUserDetailsRequest] 
+     * @param {PatchedUserRequest} [patchedUserRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountsApiInterface
      */
-    accountsUserPartialUpdate(patchedUserDetailsRequest?: PatchedUserDetailsRequest, options?: AxiosRequestConfig): AxiosPromise<UserDetails>;
+    accountsUserPartialUpdate(patchedUserRequest?: PatchedUserRequest, options?: AxiosRequestConfig): AxiosPromise<User>;
 
     /**
      * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
@@ -4543,16 +4518,16 @@ export interface AccountsApiInterface {
      * @throws {RequiredError}
      * @memberof AccountsApiInterface
      */
-    accountsUserRetrieve(options?: AxiosRequestConfig): AxiosPromise<UserDetails>;
+    accountsUserRetrieve(options?: AxiosRequestConfig): AxiosPromise<User>;
 
     /**
      * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
-     * @param {UserDetailsRequest} [userDetailsRequest] 
+     * @param {UserRequest} userRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountsApiInterface
      */
-    accountsUserUpdate(userDetailsRequest?: UserDetailsRequest, options?: AxiosRequestConfig): AxiosPromise<UserDetails>;
+    accountsUserUpdate(userRequest: UserRequest, options?: AxiosRequestConfig): AxiosPromise<User>;
 
 }
 
@@ -4652,13 +4627,13 @@ export class AccountsApi extends BaseAPI implements AccountsApiInterface {
 
     /**
      * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
-     * @param {PatchedUserDetailsRequest} [patchedUserDetailsRequest] 
+     * @param {PatchedUserRequest} [patchedUserRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountsApi
      */
-    public accountsUserPartialUpdate(patchedUserDetailsRequest?: PatchedUserDetailsRequest, options?: AxiosRequestConfig) {
-        return AccountsApiFp(this.configuration).accountsUserPartialUpdate(patchedUserDetailsRequest, options).then((request) => request(this.axios, this.basePath));
+    public accountsUserPartialUpdate(patchedUserRequest?: PatchedUserRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsUserPartialUpdate(patchedUserRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4673,13 +4648,13 @@ export class AccountsApi extends BaseAPI implements AccountsApiInterface {
 
     /**
      * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
-     * @param {UserDetailsRequest} [userDetailsRequest] 
+     * @param {UserRequest} userRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountsApi
      */
-    public accountsUserUpdate(userDetailsRequest?: UserDetailsRequest, options?: AxiosRequestConfig) {
-        return AccountsApiFp(this.configuration).accountsUserUpdate(userDetailsRequest, options).then((request) => request(this.axios, this.basePath));
+    public accountsUserUpdate(userRequest: UserRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsUserUpdate(userRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -12547,374 +12522,6 @@ export class SchemaApi extends BaseAPI implements SchemaApiInterface {
      */
     public schemaRetrieve(lang?: 'af' | 'ar' | 'ar-dz' | 'ast' | 'az' | 'be' | 'bg' | 'bn' | 'br' | 'bs' | 'ca' | 'cs' | 'cy' | 'da' | 'de' | 'dsb' | 'el' | 'en' | 'en-au' | 'en-gb' | 'eo' | 'es' | 'es-ar' | 'es-co' | 'es-mx' | 'es-ni' | 'es-ve' | 'et' | 'eu' | 'fa' | 'fi' | 'fr' | 'fy' | 'ga' | 'gd' | 'gl' | 'he' | 'hi' | 'hr' | 'hsb' | 'hu' | 'hy' | 'ia' | 'id' | 'ig' | 'io' | 'is' | 'it' | 'ja' | 'ka' | 'kab' | 'kk' | 'km' | 'kn' | 'ko' | 'ky' | 'lb' | 'lt' | 'lv' | 'mk' | 'ml' | 'mn' | 'mr' | 'my' | 'nb' | 'ne' | 'nl' | 'nn' | 'os' | 'pa' | 'pl' | 'pt' | 'pt-br' | 'ro' | 'ru' | 'sk' | 'sl' | 'sq' | 'sr' | 'sr-latn' | 'sv' | 'sw' | 'ta' | 'te' | 'tg' | 'th' | 'tk' | 'tr' | 'tt' | 'udm' | 'uk' | 'ur' | 'uz' | 'vi' | 'zh-hans' | 'zh-hant', options?: AxiosRequestConfig) {
         return SchemaApiFp(this.configuration).schemaRetrieve(lang, options).then((request) => request(this.axios, this.basePath));
-    }
-}
-
-
-/**
- * UsersApi - axios parameter creator
- * @export
- */
-export const UsersApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        usersMeRetrieve: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/users/me/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this user.
-         * @param {PatchedUserRequest} [patchedUserRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        usersPartialUpdate: async (id: number, patchedUserRequest?: PatchedUserRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('usersPartialUpdate', 'id', id)
-            const localVarPath = `/api/users/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(patchedUserRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this user.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        usersRetrieve: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('usersRetrieve', 'id', id)
-            const localVarPath = `/api/users/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this user.
-         * @param {UserRequest} userRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        usersUpdate: async (id: number, userRequest: UserRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('usersUpdate', 'id', id)
-            // verify required parameter 'userRequest' is not null or undefined
-            assertParamExists('usersUpdate', 'userRequest', userRequest)
-            const localVarPath = `/api/users/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(userRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * UsersApi - functional programming interface
- * @export
- */
-export const UsersApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = UsersApiAxiosParamCreator(configuration)
-    return {
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async usersMeRetrieve(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.usersMeRetrieve(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this user.
-         * @param {PatchedUserRequest} [patchedUserRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async usersPartialUpdate(id: number, patchedUserRequest?: PatchedUserRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.usersPartialUpdate(id, patchedUserRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this user.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async usersRetrieve(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.usersRetrieve(id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this user.
-         * @param {UserRequest} userRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async usersUpdate(id: number, userRequest: UserRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.usersUpdate(id, userRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-    }
-};
-
-/**
- * UsersApi - factory interface
- * @export
- */
-export const UsersApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = UsersApiFp(configuration)
-    return {
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        usersMeRetrieve(options?: any): AxiosPromise<User> {
-            return localVarFp.usersMeRetrieve(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this user.
-         * @param {PatchedUserRequest} [patchedUserRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        usersPartialUpdate(id: number, patchedUserRequest?: PatchedUserRequest, options?: any): AxiosPromise<User> {
-            return localVarFp.usersPartialUpdate(id, patchedUserRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this user.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        usersRetrieve(id: number, options?: any): AxiosPromise<User> {
-            return localVarFp.usersRetrieve(id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this user.
-         * @param {UserRequest} userRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        usersUpdate(id: number, userRequest: UserRequest, options?: any): AxiosPromise<User> {
-            return localVarFp.usersUpdate(id, userRequest, options).then((request) => request(axios, basePath));
-        },
-    };
-};
-
-/**
- * UsersApi - interface
- * @export
- * @interface UsersApi
- */
-export interface UsersApiInterface {
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UsersApiInterface
-     */
-    usersMeRetrieve(options?: AxiosRequestConfig): AxiosPromise<User>;
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this user.
-     * @param {PatchedUserRequest} [patchedUserRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UsersApiInterface
-     */
-    usersPartialUpdate(id: number, patchedUserRequest?: PatchedUserRequest, options?: AxiosRequestConfig): AxiosPromise<User>;
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this user.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UsersApiInterface
-     */
-    usersRetrieve(id: number, options?: AxiosRequestConfig): AxiosPromise<User>;
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this user.
-     * @param {UserRequest} userRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UsersApiInterface
-     */
-    usersUpdate(id: number, userRequest: UserRequest, options?: AxiosRequestConfig): AxiosPromise<User>;
-
-}
-
-/**
- * UsersApi - object-oriented interface
- * @export
- * @class UsersApi
- * @extends {BaseAPI}
- */
-export class UsersApi extends BaseAPI implements UsersApiInterface {
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UsersApi
-     */
-    public usersMeRetrieve(options?: AxiosRequestConfig) {
-        return UsersApiFp(this.configuration).usersMeRetrieve(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this user.
-     * @param {PatchedUserRequest} [patchedUserRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UsersApi
-     */
-    public usersPartialUpdate(id: number, patchedUserRequest?: PatchedUserRequest, options?: AxiosRequestConfig) {
-        return UsersApiFp(this.configuration).usersPartialUpdate(id, patchedUserRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this user.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UsersApi
-     */
-    public usersRetrieve(id: number, options?: AxiosRequestConfig) {
-        return UsersApiFp(this.configuration).usersRetrieve(id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this user.
-     * @param {UserRequest} userRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UsersApi
-     */
-    public usersUpdate(id: number, userRequest: UserRequest, options?: AxiosRequestConfig) {
-        return UsersApiFp(this.configuration).usersUpdate(id, userRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

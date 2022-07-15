@@ -12,7 +12,6 @@ from print_nanny_webapp.devices.api.views import (
     DeviceSettingsViewSet,
 )
 from print_nanny_webapp.events.api.views import CommandViewSet, EventViewSet
-from print_nanny_webapp.users.api.views import UserViewSet
 
 from print_nanny_webapp.alerts.api.views import (
     AlertSettingsViewSet,
@@ -84,10 +83,8 @@ router.register(
 
 router.register("events", EventViewSet, basename="events")
 router.register("commands", CommandViewSet, basename="commands")
-router.register("users", UserViewSet)
-user_router = NestedSimpleRouter(router, r"users", lookup="user")
 router.register(r"partners/3d-geeks", GeeksViewSet, basename="partner-3d-geeks")
 
 app_name = "api"
 
-urlpatterns = router.urls + devices_router.urls + user_router.urls + other_urls
+urlpatterns = router.urls + devices_router.urls + other_urls
