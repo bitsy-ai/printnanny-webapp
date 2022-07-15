@@ -18,32 +18,42 @@ const accountsApi = api.AccountsApiFactory(apiConfig);
 
 export const useAccountStore = defineStore({
   id: "accounts",
-  state: async () => {
-    try {
-      const userData = await accountsApi.accountsUserRetrieve();
-      const user = userData.data;
-      console.log("Authenticated as user", user);
-      return {
-        /** @type { api.User } */
-        user: user,
-        /** @type { api.RequiredError } */
-        apiError: {}
-      }
+  // persist option provided by: https://github.com/prazdevs/pinia-plugin-persistedstate
+  persist: true,
+  state: () => (
+    {
+      /** @type { api.User } */
+      user: null,
+      /** @type { api.RequiredError } */
+      apiError: {}
     }
-    catch (e: any) {
-      return {
-        /** @type { api.User } */
-        user: null,
-        /** @type { api.RequiredError } */
-        apiError: {}
-      }
-    }
-
-  },
+  ),
   getters: {
     isAuthenticated: (state) => state.user !== null,
   },
   actions: {
+    async fetchUser() {
+      try {
+        const userData = await accountsApi.accountsUserRetrieve();
+        const user = userData.data;
+        console.log("Authenticated as user", user);
+        return this.$patch({
+          /** @type { api.User } */
+          user: user,
+          /** @type { api.RequiredError } */
+          apiError: {}
+        })
+      }
+      catch (e: any) {
+        console.warn("No authentication data is set", e)
+        this.$patch({
+          /** @type { api.User } */
+          user: null,
+          /** @type { api.RequiredError } */
+          apiError: e
+        })
+      }
+    },
     async resendVerificationEmail(email: string) {
       console.log("Resending verification email to: ", email)
     },
@@ -53,31 +63,25 @@ export const useAccountStore = defineStore({
      */
     async login(request: api.LoginRequest) {
       try {
-        const userData = await accountsApi.accountsLoginCreate(request);
-        console.log("User data received", userData);
-
+        await accountsApi.accountsLoginCreate(request);
+        await this.fetchUser();
+        await this.router.push({ name: 'dashboard' });
       }
       catch (e: any) {
         if (e.isAxiosError) {
           const alerts = useAlertStore();
+          var msg;
+          if (e.response.data.non_field_errors && e.response.data.non_field_errors.length > 0) {
+            msg = e.response.data.non_field_errors.join("\n")
+          } else if (e.response.data.detail) {
+            msg = e.response.data.detail
+          } else {
+            msg = e.response.data;
+          }
           const alert: UiError = {
             header: e.response.statusText,
-            message: e.response.data.detail,
+            message: msg,
             error: e,
-          }
-
-          switch (e.response.data.detail) {
-            case 'User account not verified.': {
-              let action: AlertAction = {
-                color: "indigo",
-                text: "📧 Re-send verification email",
-                onClick: () => this.resendVerificationEmail(request.email)
-              }
-              alert.actions = [action]
-            }
-            default: {
-              break;
-            }
           }
           alerts.push(alert);
           console.error(e.response)
