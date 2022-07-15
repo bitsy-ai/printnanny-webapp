@@ -18,17 +18,13 @@
           </div>
           <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
             <MenuItems class="z-10 mx-3 origin-top absolute right-0 left-0 mt-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-200 focus:outline-none">
+              <!-- menuItems Array -->
               <div class="py-1">
-                <MenuItem v-slot="{ active }">
-                  <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">View profile</a>
-                </MenuItem>
-                <MenuItem v-slot="{ active }">
-                  <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">Settings</a>
-                </MenuItem>
-                <MenuItem v-slot="{ active }">
-                  <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">Notifications</a>
+                <MenuItem v-for="item in menuItems" :key="item.name">
+                  <router-link :to="item.link" :class="[item.active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">{{item.name}}</router-link>
                 </MenuItem>
               </div>
+              <!-- linkItems Array -->
               <div class="py-1">
                 <MenuItem v-slot="{ active }">
                   <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">Get desktop app</a>
@@ -49,16 +45,30 @@
         </Menu>
 </template>
 <script setup lang="ts">
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRouter } from 'vue-router';
 import {
   Menu,
   MenuButton,
   MenuItem,
   MenuItems,
 } from '@headlessui/vue'
-import { SelectorIcon } from '@heroicons/vue/solid'
+import { SelectorIcon, CogIcon, CreditCardIcon  } from '@heroicons/vue/solid'
 
 import { useAccountStore } from "@/stores/account";
 const account =  useAccountStore();
+
+const router = useRouter();
+
+// app routes
+const menuItems = [
+  {name: "Settings", link: {name: "settings"}, icon: CogIcon, active: router.currentRoute.value.name == "settings"},
+  {name: "Billing", link: {name: "billing"}, icon: CreditCardIcon }
+];
+
+// external links or hrefs
+const linkItems = [
+  {name: "Documentation", href: "https://docs.printnanny.ai/docs/category/quick-start/"},
+  {name: "Report Issue", href: "https://github.com/bitsy-ai/printnanny-os/issues"}
+]
 
 </script>

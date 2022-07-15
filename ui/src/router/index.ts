@@ -56,8 +56,12 @@ const router = createRouter({
       component: () => import("@/views/AboutView.vue"),
     },
     // begin device routes
-    { path: "/device/connect", name: "device-connect", component: () => import("@/views/DeviceCreateView.vue") }
+    { path: "/device/connect", name: "device-connect", component: () => import("@/views/DeviceCreateView.vue") },
     // end device routes
+
+    // begin profile/settings/billings routers
+    { path: "/settings", name: "settings", component: () => import("@/views/SettingsView.vue") },
+    { path: "/billing", name: "billing", component: () => import("@/views/BillingView.vue") },
   ],
 });
 
