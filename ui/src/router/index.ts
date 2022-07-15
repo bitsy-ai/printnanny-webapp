@@ -3,6 +3,7 @@ import HomeView from "../views/HomeView.vue";
 import LoginView from "../views/LoginView.vue";
 import DashboardView from "../views/DashboardView.vue";
 import { useAccountStore } from "@/stores/account";
+import { useDeviceStore } from "@/stores/devices";
 
 
 const router = createRouter({
@@ -17,6 +18,10 @@ const router = createRouter({
       path: "/dashboard",
       name: "dashboard",
       component: DashboardView,
+      beforeEnter: async (to, from) => {
+        const devices = useDeviceStore();
+        await devices.fetch();
+      }
     },
     {
       path: "/login",
