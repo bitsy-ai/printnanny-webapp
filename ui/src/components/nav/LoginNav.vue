@@ -20,7 +20,14 @@
     href="/dashboard"
     class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700"
     >
-    Open Dashboard
+    Dashboard
+    </a>
+    <a
+    v-if="account.isAuthenticated"
+    href="/logout"
+    class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700"
+    >
+    Logout
     </a>
 </div>
 </template>
