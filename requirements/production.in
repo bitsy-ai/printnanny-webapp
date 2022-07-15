@@ -5,6 +5,7 @@ channels
 channels-redis
 discord.py
 dj-stripe
+dj-rest-auth
 django>3,<4
 django-allauth
 django-allow-cidr

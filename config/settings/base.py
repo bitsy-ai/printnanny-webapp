@@ -747,6 +747,18 @@ PRINTNANNY_OS_DEFAULT_BACKUP_SCHEDULE = "0 0 * * 2"
 # django-loginas
 # https://github.com/skorokithakis/django-loginas
 # ------------------------------------------------------------------------------
-
 INSTALLED_APPS += ["loginas"]
 LOGINAS_USERNAME_FIELD = "email"
+
+
+# dj_rest_auth
+# https://github.com/iMerica/dj-rest-auth
+# https://dj-rest-auth.readthedocs.io/en/latest/index.html
+# ------------------------------------------------------------------------------
+INSTALLED_APPS += ["dj_rest_auth", "dj_rest_auth.registration"]
+REST_AUTH_SERIALIZERS = {
+    "LOGIN_SERIALIZER": "print_nanny_webapp.dj_rest_auth.serializers.LoginSerializer"
+}
+REST_AUTH_REGISTER_SERIALIZERS = {
+    "REGISTER_SERIALIZER": "print_nanny_webapp.dj_rest_auth.serializers.RegisterSerializer"
+}

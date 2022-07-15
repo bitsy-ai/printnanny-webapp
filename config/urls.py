@@ -88,6 +88,8 @@ urlpatterns += [
     path("api/", include("config.api_router")),
     # OpenAPI Schema
     path("api/schema/", SpectacularJSONAPIView.as_view(), name="schema"),
+    path("api/accounts/", include("dj_rest_auth.urls")),
+    path("api/accounts/registration/", include("dj_rest_auth.registration.urls")),
     # OpenAPI UIs
     path(
         "api/schema/swagger-ui/",
