@@ -2,7 +2,7 @@
 import FooterNav from "@/components/nav/FooterNav.vue";
 import StickyAlerts from "@/components/alerts/StickyAlerts.vue";
 import DashboardPage from "@/components/pages/DashboardPage.vue";
-import DeviceCreateView from "@/components/dashboard/DeviceCreate.vue";
+import DeviceCreateView from "@/components/devices/DeviceCreate.vue";
 </script>
 
 <template>

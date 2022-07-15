@@ -62,7 +62,7 @@ const router = useRouter();
 // app routes
 const menuItems = [
   {name: "Settings", link: {name: "settings"}, icon: CogIcon, active: router.currentRoute.value.name == "settings"},
-  {name: "Billing", link: {name: "billing"}, icon: CreditCardIcon }
+  {name: "Subscription & Billing", link: {name: "billing"}, icon: CreditCardIcon }
 ];
 
 // external links or hrefs

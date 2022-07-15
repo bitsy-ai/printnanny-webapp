@@ -173,9 +173,9 @@ import {
 import { ClockIcon, HomeIcon, MenuAlt1Icon, ViewListIcon, XIcon } from '@heroicons/vue/outline'
 import { ChevronRightIcon, DotsVerticalIcon, SearchIcon, SelectorIcon, PlusIcon } from '@heroicons/vue/solid'
 import ProfileMenu from "@/components/nav/ProfileMenu.vue";
-import DeviceEmpty from "@/components/dashboard/DeviceEmpty.vue";
-import DeviceList from "@/components/dashboard/DeviceList.vue";
-import PinnedDevices from "@/components/dashboard/PinnedDevices.vue";
+import DeviceEmpty from "@/components/devices/DeviceEmpty.vue";
+import DeviceList from "@/components/devices/DeviceList.vue";
+import PinnedDevices from "@/components/devices/PinnedDevices.vue";
 import SidebarNav from "@/components/nav/SidebarNav.vue";
 import { useAccountStore } from "@/stores/account";
 
