@@ -40,6 +40,9 @@ export const useAccountStore = defineStore({
     }
 
   },
+  getters: {
+    isAuthenticated: (state) => state.user !== null,
+  },
   actions: {
     async resendVerificationEmail(email: string) {
       console.log("Resending verification email to: ", email)

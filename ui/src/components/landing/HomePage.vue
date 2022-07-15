@@ -36,20 +36,7 @@
                 >
               </div>
             </div>
-            <div class="hidden md:flex md:items-center md:space-x-6">
-              <a
-                href="/login"
-                class="text-base font-medium text-white hover:text-gray-300"
-              >
-                Log in
-              </a>
-              <a
-                href="/request-invite"
-                class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700"
-              >
-                Request Access
-              </a>
-            </div>
+            <LoginNav />
           </nav>
         </div>
 
@@ -95,19 +82,7 @@
                     >{{ item.name }}</a
                   >
                 </div>
-                <div class="mt-6 px-5">
-                  <a
-                    href="#"
-                    class="block text-center w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-300 to-cyan-600 text-white font-medium hover:from-teal-600 hover:to-cyan-700"
-                    >Request Acesss</a
-                  >
-                </div>
-                <div class="mt-6 px-5">
-                  <p class="text-center text-base font-medium text-gray-500">
-                    Existing customer?
-                    <a href="#" class="text-gray-900 hover:underline">Login</a>
-                  </p>
-                </div>
+                <MobileLoginNav />
               </div>
             </div>
           </PopoverPanel>
@@ -424,6 +399,8 @@ import {
   DesktopComputerIcon,
 } from "@heroicons/vue/outline";
 import { ChevronRightIcon, ExternalLinkIcon } from "@heroicons/vue/solid";
+import LoginNav from "@/components/nav/LoginNav.vue";
+import MobileLoginNav from "@/components/nav/MobileLoginNav.vue";
 import DemoQualityAlert from "@/components/demo/DemoQualityAlert.vue";
 import googleIoImg from "@/assets/press/google-io.png";
 import tfEverywhereImg from "@/assets/press/tensorflow-everywhere-na.png";
