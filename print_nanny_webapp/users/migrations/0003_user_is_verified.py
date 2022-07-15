@@ -6,13 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0002_user_is_serviceuser'),
+        ("users", "0002_user_is_serviceuser"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='user',
-            name='is_verified',
-            field=models.BooleanField(default=False, help_text='Designates whether this user has completed the email verification process to allow login.', verbose_name='verified'),
+            model_name="user",
+            name="is_verified",
+            field=models.BooleanField(
+                default=False,
+                help_text="Designates whether this user has completed the email verification process to allow login.",
+                verbose_name="verified",
+            ),
         ),
     ]

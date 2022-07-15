@@ -6,28 +6,28 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('octoprint', '0017_auto_20220711_2233'),
+        ("octoprint", "0017_auto_20220711_2233"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='octoprintserver',
-            name='octoprint_version',
-            field=models.CharField(default='', max_length=32),
+            model_name="octoprintserver",
+            name="octoprint_version",
+            field=models.CharField(default="", max_length=32),
         ),
         migrations.AlterField(
-            model_name='octoprintserver',
-            name='pip_version',
-            field=models.CharField(default='', max_length=32),
+            model_name="octoprintserver",
+            name="pip_version",
+            field=models.CharField(default="", max_length=32),
         ),
         migrations.AlterField(
-            model_name='octoprintserver',
-            name='printnanny_plugin_version',
-            field=models.CharField(default='', max_length=64),
+            model_name="octoprintserver",
+            name="printnanny_plugin_version",
+            field=models.CharField(default="", max_length=64),
         ),
         migrations.AlterField(
-            model_name='octoprintserver',
-            name='python_version',
-            field=models.CharField(default='', max_length=32),
+            model_name="octoprintserver",
+            name="python_version",
+            field=models.CharField(default="", max_length=32),
         ),
     ]
