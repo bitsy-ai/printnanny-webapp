@@ -8,7 +8,6 @@ from django.utils import timezone
 from django.db import models
 from rest_framework import serializers
 from anymail.message import AnymailMessage
-from authemail.models import EmailUserManager, EmailAbstractUser
 
 from print_nanny_webapp.utils.fields import ChoiceArrayField
 from print_nanny_webapp.subscriptions.models import MemberBadge
@@ -126,8 +125,7 @@ class InviteRequestSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class User(EmailAbstractUser):
-    objects = EmailUserManager()
+class User(AbstractUser):
 
     is_serviceuser = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)

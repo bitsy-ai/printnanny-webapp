@@ -4,7 +4,6 @@ channels-redis
 dj-stripe
 django>3,<4
 django-allauth
-django-rest-authemail
 django-anymail[mailgun]
 django-cors-headers
 django-compressor

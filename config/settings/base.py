@@ -163,13 +163,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-# Django Rest Authemail
-# https://github.com/celiao/django-rest-authemail
-# ------------------------------------------------------------------------------
-INSTALLED_APPS += ["authemail"]
-# disable email verification for new users
-AUTH_EMAIL_VERIFICATION = False
-
 # Vitejs loader
 # https://github.com/MrBin99/django-vite
 # ------------------------------------------------------------------------------

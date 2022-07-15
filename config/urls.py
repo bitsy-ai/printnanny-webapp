@@ -86,8 +86,6 @@ import print_nanny_webapp.drfpasswordless.schema
 urlpatterns += [
     # API base urls
     path("api/", include("config.api_router")),
-    # https://github.com/celiao/django-rest-authemail urls
-    path("api/accounts/", include("authemail.urls")),
     # OpenAPI Schema
     path("api/schema/", SpectacularJSONAPIView.as_view(), name="schema"),
     # OpenAPI UIs

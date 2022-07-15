@@ -1,8 +1,6 @@
-from email.mime import base
 from django.urls import path
 from rest_framework.routers import DefaultRouter
 from rest_framework_nested.routers import NestedSimpleRouter
-
 from print_nanny_webapp.devices.api.views import (
     CloudiotDeviceViewSet,
     DeviceHostnameViewSet,
@@ -31,6 +29,7 @@ from print_nanny_webapp.octoprint.api.views import (
     OctoPrinterProfileViewSet,
     OctoPrintServerByDeviceViewSet,
 )
+
 
 router = DefaultRouter()
 router.register("alerts", AlertViewSet)

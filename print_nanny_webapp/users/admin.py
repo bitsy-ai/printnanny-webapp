@@ -11,7 +11,6 @@ from print_nanny_webapp.users.forms import (
 )
 from print_nanny_webapp.users.models import InviteRequest
 from invitations.utils import get_invitation_model
-from authemail.admin import EmailUserAdmin
 
 User = get_user_model()
 
@@ -38,7 +37,7 @@ def create_token(modeladmin, request, queryset):
         Token.objects.get_or_create(user=user)
 
 
-class UserAdmin(EmailUserAdmin):
+class UserAdmin(auth_admin.UserAdmin):
     # django-loginas
     change_form_template = "loginas/change_form.html"
 
@@ -100,11 +99,6 @@ def send_beta_invite(modeladmin, request, queryset):
         invite.send_invitation(request)
         invite_request.invited = True
         invite_request.save()
-
-
-# required to un-register authemail admin model https://github.com/celiao/django-rest-authemail
-admin.site.unregister(get_user_model())
-admin.site.register(get_user_model(), UserAdmin)
 
 
 @admin.register(InviteRequest)

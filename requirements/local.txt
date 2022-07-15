@@ -98,7 +98,6 @@ django==3.2.12
     #   django-polymorphic
     #   django-qr-code
     #   django-redis
-    #   django-rest-authemail
     #   django-rest-polymorphic
     #   django-safedelete
     #   django-storages
@@ -154,8 +153,6 @@ django-qr-code==3.0.0
     # via -r /requirements/local.in
 django-redis==5.2.0
     # via -r /requirements/local.in
-django-rest-authemail==2.1.4
-    # via -r /requirements/local.in
 django-rest-polymorphic==0.1.9
     # via -r /requirements/local.in
 django-safedelete==1.1.2
@@ -173,7 +170,6 @@ django-webpack-loader==1.4.1
 djangorestframework==3.13.1
     # via
     #   -r /requirements/local.in
-    #   django-rest-authemail
     #   django-rest-polymorphic
     #   drf-nested-routers
     #   drf-spectacular
@@ -387,7 +383,6 @@ requests==2.27.1
     # via
     #   django-allauth
     #   django-anymail
-    #   django-rest-authemail
     #   google-api-core
     #   google-cloud-storage
     #   libhoney
