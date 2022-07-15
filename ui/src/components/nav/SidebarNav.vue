@@ -24,7 +24,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
-import { HomeIcon, QuestionMarkCircleIcon,  DocumentDownloadIcon } from '@heroicons/vue/outline';
+import { HomeIcon, QuestionMarkCircleIcon,  DocumentDownloadIcon, ExclamationIcon, ChatIcon } from '@heroicons/vue/outline';
 // app-based navigiation links
 const app_nav = [
   { name: 'Dashboard', link: {name: "dashboard" }, icon: HomeIcon, current: true },
@@ -35,7 +35,9 @@ const app_nav = [
 // external hrefs
 const link_nav = [
   { name: 'Quick Start', href: "https://docs.printnanny.ai/docs/category/quick-start/", icon: QuestionMarkCircleIcon},
-  { name: 'Latest Release', href: "https://docs.printnanny.ai/docs/release-history/0.2.0-beryl-kirkstone/", icon: DocumentDownloadIcon }
+  { name: 'Latest Release', href: "https://docs.printnanny.ai/docs/release-history/0.2.0-beryl-kirkstone/", icon: DocumentDownloadIcon },
+  { name: 'Report Issue', href: "https://github.com/bitsy-ai/printnanny-os/issues/new/choose", icon: ExclamationIcon },
+  { name: 'Join Discord', href: "https://discord.gg/sf23bk2hPr", icon: ChatIcon }
 
 ]
 
