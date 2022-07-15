@@ -15,8 +15,8 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: "/dashboard",
-      name: "dashboard",
+      path: "/devices",
+      name: "devices",
       component: DashboardView,
       beforeEnter: async (to, from) => {
         const devices = useDeviceStore();

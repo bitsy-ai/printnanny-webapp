@@ -23,11 +23,14 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
-import { RouterLink } from 'vue-router';
-import { HomeIcon, QuestionMarkCircleIcon,  DocumentDownloadIcon, ExclamationIcon, ChatIcon } from '@heroicons/vue/outline';
+import { RouterLink, useRouter } from 'vue-router';
+import { HomeIcon, QuestionMarkCircleIcon,  DocumentDownloadIcon, ExclamationIcon, ChatIcon, VideoCameraIcon } from '@heroicons/vue/outline';
+
+const router = useRouter();
 // app-based navigiation links
 const app_nav = [
-  { name: 'Dashboard', link: {name: "dashboard" }, icon: HomeIcon, current: true },
+  { name: 'My Network', link: {name: "devices" }, icon: HomeIcon, current: router.currentRoute.value.name == "devices"},
+//   { name: 'My Cameras', link: {name: "cameras" }, icon: VideoCameraIcon, current: router.currentRoute.value.name == "cameras"},
 //   { name: 'My tasks', href: '#', icon: ViewListIcon, current: false },
 //   { name: 'Recent', href: '#', icon: ClockIcon, current: false },
 ]

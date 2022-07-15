@@ -56,6 +56,7 @@ export const useDeviceStore = defineStore({
         async fetch() {
             try {
                 const res = await devicesApi.devicesList();
+                console.log("Fetched devices: ", res.data.results);
                 return this.$patch({
                     devices: res.data.results
                 });
