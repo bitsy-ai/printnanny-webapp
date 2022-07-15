@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * printnanny-api-client
- * Official API client library forprintnanny.ai print-nanny.com
+ * Official API client library for printnanny.ai
  *
  * The version of the OpenAPI document: 0.0.0
  * Contact: leigh@printnanny.ai

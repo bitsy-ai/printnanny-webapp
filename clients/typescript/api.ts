@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * printnanny-api-client
- * Official API client library forprintnanny.ai print-nanny.com
+ * Official API client library for printnanny.ai
  *
  * The version of the OpenAPI document: 0.0.0
  * Contact: leigh@printnanny.ai
@@ -724,32 +724,6 @@ export interface EmailAuthRequest {
 /**
  * 
  * @export
- * @interface EmailChange
- */
-export interface EmailChange {
-    /**
-     * 
-     * @type {string}
-     * @memberof EmailChange
-     */
-    'email': string;
-}
-/**
- * 
- * @export
- * @interface EmailChangeRequest
- */
-export interface EmailChangeRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof EmailChangeRequest
-     */
-    'email': string;
-}
-/**
- * 
- * @export
  * @interface ErrorDetail
  */
 export interface ErrorDetail {
@@ -1038,25 +1012,6 @@ export interface JanusStreamRequest {
      * @memberof JanusStreamRequest
      */
     'rtp_port'?: number;
-}
-/**
- * 
- * @export
- * @interface Login
- */
-export interface Login {
-    /**
-     * 
-     * @type {string}
-     * @memberof Login
-     */
-    'email': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Login
-     */
-    'password': string;
 }
 /**
  * 
@@ -2358,19 +2313,6 @@ export interface Partner3DGeeksMetadata {
 /**
  * 
  * @export
- * @interface PasswordChange
- */
-export interface PasswordChange {
-    /**
-     * 
-     * @type {string}
-     * @memberof PasswordChange
-     */
-    'password': string;
-}
-/**
- * 
- * @export
  * @interface PasswordChangeRequest
  */
 export interface PasswordChangeRequest {
@@ -2379,23 +2321,47 @@ export interface PasswordChangeRequest {
      * @type {string}
      * @memberof PasswordChangeRequest
      */
-    'password': string;
-}
-/**
- * 
- * @export
- * @interface PasswordReset
- */
-export interface PasswordReset {
+    'new_password1': string;
     /**
      * 
      * @type {string}
-     * @memberof PasswordReset
+     * @memberof PasswordChangeRequest
      */
-    'email': string;
+    'new_password2': string;
 }
 /**
- * 
+ * Serializer for confirming a password reset attempt.
+ * @export
+ * @interface PasswordResetConfirmRequest
+ */
+export interface PasswordResetConfirmRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof PasswordResetConfirmRequest
+     */
+    'new_password1': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PasswordResetConfirmRequest
+     */
+    'new_password2': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PasswordResetConfirmRequest
+     */
+    'uid': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PasswordResetConfirmRequest
+     */
+    'token': string;
+}
+/**
+ * Serializer for requesting a password reset e-mail.
  * @export
  * @interface PasswordResetRequest
  */
@@ -2406,44 +2372,6 @@ export interface PasswordResetRequest {
      * @memberof PasswordResetRequest
      */
     'email': string;
-}
-/**
- * 
- * @export
- * @interface PasswordResetVerified
- */
-export interface PasswordResetVerified {
-    /**
-     * 
-     * @type {string}
-     * @memberof PasswordResetVerified
-     */
-    'code': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PasswordResetVerified
-     */
-    'password': string;
-}
-/**
- * 
- * @export
- * @interface PasswordResetVerifiedRequest
- */
-export interface PasswordResetVerifiedRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof PasswordResetVerifiedRequest
-     */
-    'code': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PasswordResetVerifiedRequest
-     */
-    'password': string;
 }
 /**
  * Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests
@@ -2950,6 +2878,25 @@ export interface PatchedSystemInfoRequest {
     'device'?: number;
 }
 /**
+ * User model w/o password
+ * @export
+ * @interface PatchedUserDetailsRequest
+ */
+export interface PatchedUserDetailsRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedUserDetailsRequest
+     */
+    'first_name'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedUserDetailsRequest
+     */
+    'last_name'?: string | null;
+}
+/**
  * 
  * @export
  * @interface PatchedUserRequest
@@ -3110,66 +3057,55 @@ export interface PublicKeyRequest {
     'device': number;
 }
 /**
- * Don\'t require email to be unique so visitor can signup multiple times, if misplace verification email.  Handle in view.
+ * 
  * @export
- * @interface Signup
+ * @interface RegisterRequest
  */
-export interface Signup {
+export interface RegisterRequest {
     /**
      * 
      * @type {string}
-     * @memberof Signup
+     * @memberof RegisterRequest
      */
     'email': string;
     /**
      * 
      * @type {string}
-     * @memberof Signup
+     * @memberof RegisterRequest
      */
-    'password': string;
+    'password1': string;
     /**
      * 
      * @type {string}
-     * @memberof Signup
+     * @memberof RegisterRequest
      */
-    'first_name'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Signup
-     */
-    'last_name'?: string;
+    'password2': string;
 }
 /**
- * Don\'t require email to be unique so visitor can signup multiple times, if misplace verification email.  Handle in view.
+ * 
  * @export
- * @interface SignupRequest
+ * @interface ResendEmailVerificationRequest
  */
-export interface SignupRequest {
+export interface ResendEmailVerificationRequest {
     /**
      * 
      * @type {string}
-     * @memberof SignupRequest
+     * @memberof ResendEmailVerificationRequest
      */
     'email': string;
+}
+/**
+ * 
+ * @export
+ * @interface RestAuthDetail
+ */
+export interface RestAuthDetail {
     /**
      * 
      * @type {string}
-     * @memberof SignupRequest
+     * @memberof RestAuthDetail
      */
-    'password': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SignupRequest
-     */
-    'first_name'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SignupRequest
-     */
-    'last_name'?: string;
+    'detail': string;
 }
 /**
  * 
@@ -3449,6 +3385,19 @@ export interface TestEventRequest {
     'device': number;
 }
 /**
+ * Serializer for Token model.
+ * @export
+ * @interface Token
+ */
+export interface Token {
+    /**
+     * 
+     * @type {string}
+     * @memberof Token
+     */
+    'key': string;
+}
+/**
  * Our default response serializer.
  * @export
  * @interface TokenResponse
@@ -3469,26 +3418,64 @@ export interface TokenResponse {
 export interface User {
     /**
      * 
-     * @type {number}
-     * @memberof User
-     */
-    'id': number;
-    /**
-     * 
      * @type {string}
      * @memberof User
      */
     'email': string;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof User
+     */
+    'id': number;
+}
+/**
+ * User model w/o password
+ * @export
+ * @interface UserDetails
+ */
+export interface UserDetails {
+    /**
+     * 
+     * @type {number}
+     * @memberof UserDetails
+     */
+    'pk': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDetails
+     */
+    'email': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDetails
      */
     'first_name'?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof User
+     * @memberof UserDetails
+     */
+    'last_name'?: string | null;
+}
+/**
+ * User model w/o password
+ * @export
+ * @interface UserDetailsRequest
+ */
+export interface UserDetailsRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDetailsRequest
+     */
+    'first_name'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDetailsRequest
      */
     'last_name'?: string | null;
 }
@@ -3504,6 +3491,19 @@ export interface UserRequest {
      * @memberof UserRequest
      */
     'email': string;
+}
+/**
+ * 
+ * @export
+ * @interface VerifyEmailRequest
+ */
+export interface VerifyEmailRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof VerifyEmailRequest
+     */
+    'key': string;
 }
 /**
  * 
@@ -3789,167 +3789,7 @@ export interface WebRTCEventRequest {
 export const AccountsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * 
-         * @param {EmailChangeRequest} emailChangeRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        accountsEmailChangeCreate: async (emailChangeRequest: EmailChangeRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'emailChangeRequest' is not null or undefined
-            assertParamExists('accountsEmailChangeCreate', 'emailChangeRequest', emailChangeRequest)
-            const localVarPath = `/api/accounts/email/change/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(emailChangeRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {'.json'} format 
-         * @param {EmailChangeRequest} emailChangeRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        accountsEmailChangeFormattedCreate: async (format: '.json', emailChangeRequest: EmailChangeRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'format' is not null or undefined
-            assertParamExists('accountsEmailChangeFormattedCreate', 'format', format)
-            // verify required parameter 'emailChangeRequest' is not null or undefined
-            assertParamExists('accountsEmailChangeFormattedCreate', 'emailChangeRequest', emailChangeRequest)
-            const localVarPath = `/api/accounts/email/change{format}`
-                .replace(`{${"format"}}`, encodeURIComponent(String(format)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(emailChangeRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {'.json'} format 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        accountsEmailChangeVerifyFormattedRetrieve: async (format: '.json', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'format' is not null or undefined
-            assertParamExists('accountsEmailChangeVerifyFormattedRetrieve', 'format', format)
-            const localVarPath = `/api/accounts/email/change/verify{format}`
-                .replace(`{${"format"}}`, encodeURIComponent(String(format)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        accountsEmailChangeVerifyRetrieve: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/accounts/email/change/verify/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
+         * Check the credentials and return the REST Token if the credentials are valid and authenticated. Calls Django Auth login method to register User ID in Django session framework  Accept the following POST parameters: username, password Return the REST Framework Token Object\'s key.
          * @param {LoginRequest} loginRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -3990,19 +3830,12 @@ export const AccountsApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * 
-         * @param {'.json'} format 
-         * @param {LoginRequest} loginRequest 
+         * Calls Django logout method and delete the Token object assigned to the current User object.  Accepts/Returns nothing.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsLoginFormattedCreate: async (format: '.json', loginRequest: LoginRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'format' is not null or undefined
-            assertParamExists('accountsLoginFormattedCreate', 'format', format)
-            // verify required parameter 'loginRequest' is not null or undefined
-            assertParamExists('accountsLoginFormattedCreate', 'loginRequest', loginRequest)
-            const localVarPath = `/api/accounts/login{format}`
-                .replace(`{${"format"}}`, encodeURIComponent(String(format)));
+        accountsLogoutCreate: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/accounts/logout/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -4022,48 +3855,6 @@ export const AccountsApiAxiosParamCreator = function (configuration?: Configurat
 
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(loginRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Remove all auth tokens owned by request.user.
-         * @param {'.json'} format 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        accountsLogoutFormattedRetrieve: async (format: '.json', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'format' is not null or undefined
-            assertParamExists('accountsLogoutFormattedRetrieve', 'format', format)
-            const localVarPath = `/api/accounts/logout{format}`
-                .replace(`{${"format"}}`, encodeURIComponent(String(format)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -4074,42 +3865,7 @@ export const AccountsApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * Remove all auth tokens owned by request.user.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        accountsLogoutRetrieve: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/accounts/logout/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
+         * Calls Django Auth SetPasswordForm save method.  Accepts the following POST parameters: new_password1, new_password2 Returns the success/fail message.
          * @param {PasswordChangeRequest} passwordChangeRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4150,19 +3906,15 @@ export const AccountsApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * 
-         * @param {'.json'} format 
-         * @param {PasswordChangeRequest} passwordChangeRequest 
+         * Password reset e-mail link is confirmed, therefore this resets the user\'s password.  Accepts the following POST parameters: token, uid,     new_password1, new_password2 Returns the success/fail message.
+         * @param {PasswordResetConfirmRequest} passwordResetConfirmRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsPasswordChangeFormattedCreate: async (format: '.json', passwordChangeRequest: PasswordChangeRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'format' is not null or undefined
-            assertParamExists('accountsPasswordChangeFormattedCreate', 'format', format)
-            // verify required parameter 'passwordChangeRequest' is not null or undefined
-            assertParamExists('accountsPasswordChangeFormattedCreate', 'passwordChangeRequest', passwordChangeRequest)
-            const localVarPath = `/api/accounts/password/change{format}`
-                .replace(`{${"format"}}`, encodeURIComponent(String(format)));
+        accountsPasswordResetConfirmCreate: async (passwordResetConfirmRequest: PasswordResetConfirmRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'passwordResetConfirmRequest' is not null or undefined
+            assertParamExists('accountsPasswordResetConfirmCreate', 'passwordResetConfirmRequest', passwordResetConfirmRequest)
+            const localVarPath = `/api/accounts/password/reset/confirm/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -4187,7 +3939,7 @@ export const AccountsApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(passwordChangeRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(passwordResetConfirmRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -4195,7 +3947,7 @@ export const AccountsApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * 
+         * Calls Django Auth PasswordResetForm save method.  Accepts the following POST parameters: email Returns the success/fail message.
          * @param {PasswordResetRequest} passwordResetRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4237,18 +3989,14 @@ export const AccountsApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @param {'.json'} format 
-         * @param {PasswordResetRequest} passwordResetRequest 
+         * @param {RegisterRequest} registerRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsPasswordResetFormattedCreate: async (format: '.json', passwordResetRequest: PasswordResetRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'format' is not null or undefined
-            assertParamExists('accountsPasswordResetFormattedCreate', 'format', format)
-            // verify required parameter 'passwordResetRequest' is not null or undefined
-            assertParamExists('accountsPasswordResetFormattedCreate', 'passwordResetRequest', passwordResetRequest)
-            const localVarPath = `/api/accounts/password/reset{format}`
-                .replace(`{${"format"}}`, encodeURIComponent(String(format)));
+        accountsRegistrationCreate: async (registerRequest: RegisterRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'registerRequest' is not null or undefined
+            assertParamExists('accountsRegistrationCreate', 'registerRequest', registerRequest)
+            const localVarPath = `/api/accounts/registration/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -4273,7 +4021,7 @@ export const AccountsApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(passwordResetRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(registerRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -4282,14 +4030,14 @@ export const AccountsApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @param {PasswordResetVerifiedRequest} passwordResetVerifiedRequest 
+         * @param {ResendEmailVerificationRequest} resendEmailVerificationRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsPasswordResetVerifiedCreate: async (passwordResetVerifiedRequest: PasswordResetVerifiedRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'passwordResetVerifiedRequest' is not null or undefined
-            assertParamExists('accountsPasswordResetVerifiedCreate', 'passwordResetVerifiedRequest', passwordResetVerifiedRequest)
-            const localVarPath = `/api/accounts/password/reset/verified/`;
+        accountsRegistrationResendEmailCreate: async (resendEmailVerificationRequest: ResendEmailVerificationRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'resendEmailVerificationRequest' is not null or undefined
+            assertParamExists('accountsRegistrationResendEmailCreate', 'resendEmailVerificationRequest', resendEmailVerificationRequest)
+            const localVarPath = `/api/accounts/registration/resend-email/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -4314,7 +4062,7 @@ export const AccountsApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(passwordResetVerifiedRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(resendEmailVerificationRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -4323,18 +4071,14 @@ export const AccountsApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @param {'.json'} format 
-         * @param {PasswordResetVerifiedRequest} passwordResetVerifiedRequest 
+         * @param {VerifyEmailRequest} verifyEmailRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsPasswordResetVerifiedFormattedCreate: async (format: '.json', passwordResetVerifiedRequest: PasswordResetVerifiedRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'format' is not null or undefined
-            assertParamExists('accountsPasswordResetVerifiedFormattedCreate', 'format', format)
-            // verify required parameter 'passwordResetVerifiedRequest' is not null or undefined
-            assertParamExists('accountsPasswordResetVerifiedFormattedCreate', 'passwordResetVerifiedRequest', passwordResetVerifiedRequest)
-            const localVarPath = `/api/accounts/password/reset/verified{format}`
-                .replace(`{${"format"}}`, encodeURIComponent(String(format)));
+        accountsRegistrationVerifyEmailCreate: async (verifyEmailRequest: VerifyEmailRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'verifyEmailRequest' is not null or undefined
+            assertParamExists('accountsRegistrationVerifyEmailCreate', 'verifyEmailRequest', verifyEmailRequest)
+            const localVarPath = `/api/accounts/registration/verify-email/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -4359,7 +4103,7 @@ export const AccountsApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(passwordResetVerifiedRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(verifyEmailRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -4367,16 +4111,13 @@ export const AccountsApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * 
-         * @param {'.json'} format 
+         * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
+         * @param {PatchedUserDetailsRequest} [patchedUserDetailsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsPasswordResetVerifyFormattedRetrieve: async (format: '.json', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'format' is not null or undefined
-            assertParamExists('accountsPasswordResetVerifyFormattedRetrieve', 'format', format)
-            const localVarPath = `/api/accounts/password/reset/verify{format}`
-                .replace(`{${"format"}}`, encodeURIComponent(String(format)));
+        accountsUserPartialUpdate: async (patchedUserDetailsRequest?: PatchedUserDetailsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/accounts/user/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -4384,80 +4125,7 @@ export const AccountsApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        accountsPasswordResetVerifyRetrieve: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/accounts/password/reset/verify/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {SignupRequest} signupRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        accountsSignupCreate: async (signupRequest: SignupRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'signupRequest' is not null or undefined
-            assertParamExists('accountsSignupCreate', 'signupRequest', signupRequest)
-            const localVarPath = `/api/accounts/signup/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -4474,7 +4142,7 @@ export const AccountsApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(signupRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedUserDetailsRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -4482,19 +4150,12 @@ export const AccountsApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * 
-         * @param {'.json'} format 
-         * @param {SignupRequest} signupRequest 
+         * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsSignupFormattedCreate: async (format: '.json', signupRequest: SignupRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'format' is not null or undefined
-            assertParamExists('accountsSignupFormattedCreate', 'format', format)
-            // verify required parameter 'signupRequest' is not null or undefined
-            assertParamExists('accountsSignupFormattedCreate', 'signupRequest', signupRequest)
-            const localVarPath = `/api/accounts/signup{format}`
-                .replace(`{${"format"}}`, encodeURIComponent(String(format)));
+        accountsUserRetrieve: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/accounts/user/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -4502,7 +4163,43 @@ export const AccountsApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
+         * @param {UserDetailsRequest} [userDetailsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsUserUpdate: async (userDetailsRequest?: UserDetailsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/accounts/user/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -4519,155 +4216,7 @@ export const AccountsApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(signupRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {'.json'} format 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        accountsSignupVerifyFormattedRetrieve: async (format: '.json', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'format' is not null or undefined
-            assertParamExists('accountsSignupVerifyFormattedRetrieve', 'format', format)
-            const localVarPath = `/api/accounts/signup/verify{format}`
-                .replace(`{${"format"}}`, encodeURIComponent(String(format)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        accountsSignupVerifyRetrieve: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/accounts/signup/verify/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {'.json'} format 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        accountsUsersMeFormattedRetrieve: async (format: '.json', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'format' is not null or undefined
-            assertParamExists('accountsUsersMeFormattedRetrieve', 'format', format)
-            const localVarPath = `/api/accounts/users/me{format}`
-                .replace(`{${"format"}}`, encodeURIComponent(String(format)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        accountsUsersMeRetrieve: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/accounts/users/me/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(userDetailsRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -4685,224 +4234,111 @@ export const AccountsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = AccountsApiAxiosParamCreator(configuration)
     return {
         /**
-         * 
-         * @param {EmailChangeRequest} emailChangeRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async accountsEmailChangeCreate(emailChangeRequest: EmailChangeRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EmailChange>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsEmailChangeCreate(emailChangeRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {'.json'} format 
-         * @param {EmailChangeRequest} emailChangeRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async accountsEmailChangeFormattedCreate(format: '.json', emailChangeRequest: EmailChangeRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EmailChange>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsEmailChangeFormattedCreate(format, emailChangeRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {'.json'} format 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async accountsEmailChangeVerifyFormattedRetrieve(format: '.json', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsEmailChangeVerifyFormattedRetrieve(format, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async accountsEmailChangeVerifyRetrieve(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsEmailChangeVerifyRetrieve(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
+         * Check the credentials and return the REST Token if the credentials are valid and authenticated. Calls Django Auth login method to register User ID in Django session framework  Accept the following POST parameters: username, password Return the REST Framework Token Object\'s key.
          * @param {LoginRequest} loginRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsLoginCreate(loginRequest: LoginRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Login>> {
+        async accountsLoginCreate(loginRequest: LoginRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Token>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsLoginCreate(loginRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * 
-         * @param {'.json'} format 
-         * @param {LoginRequest} loginRequest 
+         * Calls Django logout method and delete the Token object assigned to the current User object.  Accepts/Returns nothing.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsLoginFormattedCreate(format: '.json', loginRequest: LoginRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Login>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsLoginFormattedCreate(format, loginRequest, options);
+        async accountsLogoutCreate(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RestAuthDetail>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsLogoutCreate(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Remove all auth tokens owned by request.user.
-         * @param {'.json'} format 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async accountsLogoutFormattedRetrieve(format: '.json', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsLogoutFormattedRetrieve(format, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * Remove all auth tokens owned by request.user.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async accountsLogoutRetrieve(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsLogoutRetrieve(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
+         * Calls Django Auth SetPasswordForm save method.  Accepts the following POST parameters: new_password1, new_password2 Returns the success/fail message.
          * @param {PasswordChangeRequest} passwordChangeRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsPasswordChangeCreate(passwordChangeRequest: PasswordChangeRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PasswordChange>> {
+        async accountsPasswordChangeCreate(passwordChangeRequest: PasswordChangeRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RestAuthDetail>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsPasswordChangeCreate(passwordChangeRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * 
-         * @param {'.json'} format 
-         * @param {PasswordChangeRequest} passwordChangeRequest 
+         * Password reset e-mail link is confirmed, therefore this resets the user\'s password.  Accepts the following POST parameters: token, uid,     new_password1, new_password2 Returns the success/fail message.
+         * @param {PasswordResetConfirmRequest} passwordResetConfirmRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsPasswordChangeFormattedCreate(format: '.json', passwordChangeRequest: PasswordChangeRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PasswordChange>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsPasswordChangeFormattedCreate(format, passwordChangeRequest, options);
+        async accountsPasswordResetConfirmCreate(passwordResetConfirmRequest: PasswordResetConfirmRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RestAuthDetail>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsPasswordResetConfirmCreate(passwordResetConfirmRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * 
+         * Calls Django Auth PasswordResetForm save method.  Accepts the following POST parameters: email Returns the success/fail message.
          * @param {PasswordResetRequest} passwordResetRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsPasswordResetCreate(passwordResetRequest: PasswordResetRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PasswordReset>> {
+        async accountsPasswordResetCreate(passwordResetRequest: PasswordResetRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RestAuthDetail>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsPasswordResetCreate(passwordResetRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {'.json'} format 
-         * @param {PasswordResetRequest} passwordResetRequest 
+         * @param {RegisterRequest} registerRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsPasswordResetFormattedCreate(format: '.json', passwordResetRequest: PasswordResetRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PasswordReset>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsPasswordResetFormattedCreate(format, passwordResetRequest, options);
+        async accountsRegistrationCreate(registerRequest: RegisterRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Token>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsRegistrationCreate(registerRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {PasswordResetVerifiedRequest} passwordResetVerifiedRequest 
+         * @param {ResendEmailVerificationRequest} resendEmailVerificationRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsPasswordResetVerifiedCreate(passwordResetVerifiedRequest: PasswordResetVerifiedRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PasswordResetVerified>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsPasswordResetVerifiedCreate(passwordResetVerifiedRequest, options);
+        async accountsRegistrationResendEmailCreate(resendEmailVerificationRequest: ResendEmailVerificationRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RestAuthDetail>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsRegistrationResendEmailCreate(resendEmailVerificationRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {'.json'} format 
-         * @param {PasswordResetVerifiedRequest} passwordResetVerifiedRequest 
+         * @param {VerifyEmailRequest} verifyEmailRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsPasswordResetVerifiedFormattedCreate(format: '.json', passwordResetVerifiedRequest: PasswordResetVerifiedRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PasswordResetVerified>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsPasswordResetVerifiedFormattedCreate(format, passwordResetVerifiedRequest, options);
+        async accountsRegistrationVerifyEmailCreate(verifyEmailRequest: VerifyEmailRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RestAuthDetail>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsRegistrationVerifyEmailCreate(verifyEmailRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * 
-         * @param {'.json'} format 
+         * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
+         * @param {PatchedUserDetailsRequest} [patchedUserDetailsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsPasswordResetVerifyFormattedRetrieve(format: '.json', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsPasswordResetVerifyFormattedRetrieve(format, options);
+        async accountsUserPartialUpdate(patchedUserDetailsRequest?: PatchedUserDetailsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserDetails>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsUserPartialUpdate(patchedUserDetailsRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * 
+         * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsPasswordResetVerifyRetrieve(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsPasswordResetVerifyRetrieve(options);
+        async accountsUserRetrieve(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserDetails>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsUserRetrieve(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * 
-         * @param {SignupRequest} signupRequest 
+         * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
+         * @param {UserDetailsRequest} [userDetailsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsSignupCreate(signupRequest: SignupRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Signup>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsSignupCreate(signupRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {'.json'} format 
-         * @param {SignupRequest} signupRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async accountsSignupFormattedCreate(format: '.json', signupRequest: SignupRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Signup>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsSignupFormattedCreate(format, signupRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {'.json'} format 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async accountsSignupVerifyFormattedRetrieve(format: '.json', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsSignupVerifyFormattedRetrieve(format, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async accountsSignupVerifyRetrieve(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsSignupVerifyRetrieve(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {'.json'} format 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async accountsUsersMeFormattedRetrieve(format: '.json', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsUsersMeFormattedRetrieve(format, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async accountsUsersMeRetrieve(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsUsersMeRetrieve(options);
+        async accountsUserUpdate(userDetailsRequest?: UserDetailsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserDetails>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsUserUpdate(userDetailsRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -4916,203 +4352,101 @@ export const AccountsApiFactory = function (configuration?: Configuration, baseP
     const localVarFp = AccountsApiFp(configuration)
     return {
         /**
-         * 
-         * @param {EmailChangeRequest} emailChangeRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        accountsEmailChangeCreate(emailChangeRequest: EmailChangeRequest, options?: any): AxiosPromise<EmailChange> {
-            return localVarFp.accountsEmailChangeCreate(emailChangeRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {'.json'} format 
-         * @param {EmailChangeRequest} emailChangeRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        accountsEmailChangeFormattedCreate(format: '.json', emailChangeRequest: EmailChangeRequest, options?: any): AxiosPromise<EmailChange> {
-            return localVarFp.accountsEmailChangeFormattedCreate(format, emailChangeRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {'.json'} format 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        accountsEmailChangeVerifyFormattedRetrieve(format: '.json', options?: any): AxiosPromise<void> {
-            return localVarFp.accountsEmailChangeVerifyFormattedRetrieve(format, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        accountsEmailChangeVerifyRetrieve(options?: any): AxiosPromise<void> {
-            return localVarFp.accountsEmailChangeVerifyRetrieve(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
+         * Check the credentials and return the REST Token if the credentials are valid and authenticated. Calls Django Auth login method to register User ID in Django session framework  Accept the following POST parameters: username, password Return the REST Framework Token Object\'s key.
          * @param {LoginRequest} loginRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsLoginCreate(loginRequest: LoginRequest, options?: any): AxiosPromise<Login> {
+        accountsLoginCreate(loginRequest: LoginRequest, options?: any): AxiosPromise<Token> {
             return localVarFp.accountsLoginCreate(loginRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
-         * @param {'.json'} format 
-         * @param {LoginRequest} loginRequest 
+         * Calls Django logout method and delete the Token object assigned to the current User object.  Accepts/Returns nothing.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsLoginFormattedCreate(format: '.json', loginRequest: LoginRequest, options?: any): AxiosPromise<Login> {
-            return localVarFp.accountsLoginFormattedCreate(format, loginRequest, options).then((request) => request(axios, basePath));
+        accountsLogoutCreate(options?: any): AxiosPromise<RestAuthDetail> {
+            return localVarFp.accountsLogoutCreate(options).then((request) => request(axios, basePath));
         },
         /**
-         * Remove all auth tokens owned by request.user.
-         * @param {'.json'} format 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        accountsLogoutFormattedRetrieve(format: '.json', options?: any): AxiosPromise<void> {
-            return localVarFp.accountsLogoutFormattedRetrieve(format, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Remove all auth tokens owned by request.user.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        accountsLogoutRetrieve(options?: any): AxiosPromise<void> {
-            return localVarFp.accountsLogoutRetrieve(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
+         * Calls Django Auth SetPasswordForm save method.  Accepts the following POST parameters: new_password1, new_password2 Returns the success/fail message.
          * @param {PasswordChangeRequest} passwordChangeRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsPasswordChangeCreate(passwordChangeRequest: PasswordChangeRequest, options?: any): AxiosPromise<PasswordChange> {
+        accountsPasswordChangeCreate(passwordChangeRequest: PasswordChangeRequest, options?: any): AxiosPromise<RestAuthDetail> {
             return localVarFp.accountsPasswordChangeCreate(passwordChangeRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
-         * @param {'.json'} format 
-         * @param {PasswordChangeRequest} passwordChangeRequest 
+         * Password reset e-mail link is confirmed, therefore this resets the user\'s password.  Accepts the following POST parameters: token, uid,     new_password1, new_password2 Returns the success/fail message.
+         * @param {PasswordResetConfirmRequest} passwordResetConfirmRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsPasswordChangeFormattedCreate(format: '.json', passwordChangeRequest: PasswordChangeRequest, options?: any): AxiosPromise<PasswordChange> {
-            return localVarFp.accountsPasswordChangeFormattedCreate(format, passwordChangeRequest, options).then((request) => request(axios, basePath));
+        accountsPasswordResetConfirmCreate(passwordResetConfirmRequest: PasswordResetConfirmRequest, options?: any): AxiosPromise<RestAuthDetail> {
+            return localVarFp.accountsPasswordResetConfirmCreate(passwordResetConfirmRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
+         * Calls Django Auth PasswordResetForm save method.  Accepts the following POST parameters: email Returns the success/fail message.
          * @param {PasswordResetRequest} passwordResetRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsPasswordResetCreate(passwordResetRequest: PasswordResetRequest, options?: any): AxiosPromise<PasswordReset> {
+        accountsPasswordResetCreate(passwordResetRequest: PasswordResetRequest, options?: any): AxiosPromise<RestAuthDetail> {
             return localVarFp.accountsPasswordResetCreate(passwordResetRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {'.json'} format 
-         * @param {PasswordResetRequest} passwordResetRequest 
+         * @param {RegisterRequest} registerRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsPasswordResetFormattedCreate(format: '.json', passwordResetRequest: PasswordResetRequest, options?: any): AxiosPromise<PasswordReset> {
-            return localVarFp.accountsPasswordResetFormattedCreate(format, passwordResetRequest, options).then((request) => request(axios, basePath));
+        accountsRegistrationCreate(registerRequest: RegisterRequest, options?: any): AxiosPromise<Token> {
+            return localVarFp.accountsRegistrationCreate(registerRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {PasswordResetVerifiedRequest} passwordResetVerifiedRequest 
+         * @param {ResendEmailVerificationRequest} resendEmailVerificationRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsPasswordResetVerifiedCreate(passwordResetVerifiedRequest: PasswordResetVerifiedRequest, options?: any): AxiosPromise<PasswordResetVerified> {
-            return localVarFp.accountsPasswordResetVerifiedCreate(passwordResetVerifiedRequest, options).then((request) => request(axios, basePath));
+        accountsRegistrationResendEmailCreate(resendEmailVerificationRequest: ResendEmailVerificationRequest, options?: any): AxiosPromise<RestAuthDetail> {
+            return localVarFp.accountsRegistrationResendEmailCreate(resendEmailVerificationRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {'.json'} format 
-         * @param {PasswordResetVerifiedRequest} passwordResetVerifiedRequest 
+         * @param {VerifyEmailRequest} verifyEmailRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsPasswordResetVerifiedFormattedCreate(format: '.json', passwordResetVerifiedRequest: PasswordResetVerifiedRequest, options?: any): AxiosPromise<PasswordResetVerified> {
-            return localVarFp.accountsPasswordResetVerifiedFormattedCreate(format, passwordResetVerifiedRequest, options).then((request) => request(axios, basePath));
+        accountsRegistrationVerifyEmailCreate(verifyEmailRequest: VerifyEmailRequest, options?: any): AxiosPromise<RestAuthDetail> {
+            return localVarFp.accountsRegistrationVerifyEmailCreate(verifyEmailRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
-         * @param {'.json'} format 
+         * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
+         * @param {PatchedUserDetailsRequest} [patchedUserDetailsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsPasswordResetVerifyFormattedRetrieve(format: '.json', options?: any): AxiosPromise<void> {
-            return localVarFp.accountsPasswordResetVerifyFormattedRetrieve(format, options).then((request) => request(axios, basePath));
+        accountsUserPartialUpdate(patchedUserDetailsRequest?: PatchedUserDetailsRequest, options?: any): AxiosPromise<UserDetails> {
+            return localVarFp.accountsUserPartialUpdate(patchedUserDetailsRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
+         * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsPasswordResetVerifyRetrieve(options?: any): AxiosPromise<void> {
-            return localVarFp.accountsPasswordResetVerifyRetrieve(options).then((request) => request(axios, basePath));
+        accountsUserRetrieve(options?: any): AxiosPromise<UserDetails> {
+            return localVarFp.accountsUserRetrieve(options).then((request) => request(axios, basePath));
         },
         /**
-         * 
-         * @param {SignupRequest} signupRequest 
+         * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
+         * @param {UserDetailsRequest} [userDetailsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsSignupCreate(signupRequest: SignupRequest, options?: any): AxiosPromise<Signup> {
-            return localVarFp.accountsSignupCreate(signupRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {'.json'} format 
-         * @param {SignupRequest} signupRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        accountsSignupFormattedCreate(format: '.json', signupRequest: SignupRequest, options?: any): AxiosPromise<Signup> {
-            return localVarFp.accountsSignupFormattedCreate(format, signupRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {'.json'} format 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        accountsSignupVerifyFormattedRetrieve(format: '.json', options?: any): AxiosPromise<void> {
-            return localVarFp.accountsSignupVerifyFormattedRetrieve(format, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        accountsSignupVerifyRetrieve(options?: any): AxiosPromise<void> {
-            return localVarFp.accountsSignupVerifyRetrieve(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {'.json'} format 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        accountsUsersMeFormattedRetrieve(format: '.json', options?: any): AxiosPromise<User> {
-            return localVarFp.accountsUsersMeFormattedRetrieve(format, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        accountsUsersMeRetrieve(options?: any): AxiosPromise<User> {
-            return localVarFp.accountsUsersMeRetrieve(options).then((request) => request(axios, basePath));
+        accountsUserUpdate(userDetailsRequest?: UserDetailsRequest, options?: any): AxiosPromise<UserDetails> {
+            return localVarFp.accountsUserUpdate(userDetailsRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -5124,203 +4458,101 @@ export const AccountsApiFactory = function (configuration?: Configuration, baseP
  */
 export interface AccountsApiInterface {
     /**
-     * 
-     * @param {EmailChangeRequest} emailChangeRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AccountsApiInterface
-     */
-    accountsEmailChangeCreate(emailChangeRequest: EmailChangeRequest, options?: AxiosRequestConfig): AxiosPromise<EmailChange>;
-
-    /**
-     * 
-     * @param {'.json'} format 
-     * @param {EmailChangeRequest} emailChangeRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AccountsApiInterface
-     */
-    accountsEmailChangeFormattedCreate(format: '.json', emailChangeRequest: EmailChangeRequest, options?: AxiosRequestConfig): AxiosPromise<EmailChange>;
-
-    /**
-     * 
-     * @param {'.json'} format 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AccountsApiInterface
-     */
-    accountsEmailChangeVerifyFormattedRetrieve(format: '.json', options?: AxiosRequestConfig): AxiosPromise<void>;
-
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AccountsApiInterface
-     */
-    accountsEmailChangeVerifyRetrieve(options?: AxiosRequestConfig): AxiosPromise<void>;
-
-    /**
-     * 
+     * Check the credentials and return the REST Token if the credentials are valid and authenticated. Calls Django Auth login method to register User ID in Django session framework  Accept the following POST parameters: username, password Return the REST Framework Token Object\'s key.
      * @param {LoginRequest} loginRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountsApiInterface
      */
-    accountsLoginCreate(loginRequest: LoginRequest, options?: AxiosRequestConfig): AxiosPromise<Login>;
+    accountsLoginCreate(loginRequest: LoginRequest, options?: AxiosRequestConfig): AxiosPromise<Token>;
 
     /**
-     * 
-     * @param {'.json'} format 
-     * @param {LoginRequest} loginRequest 
+     * Calls Django logout method and delete the Token object assigned to the current User object.  Accepts/Returns nothing.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountsApiInterface
      */
-    accountsLoginFormattedCreate(format: '.json', loginRequest: LoginRequest, options?: AxiosRequestConfig): AxiosPromise<Login>;
+    accountsLogoutCreate(options?: AxiosRequestConfig): AxiosPromise<RestAuthDetail>;
 
     /**
-     * Remove all auth tokens owned by request.user.
-     * @param {'.json'} format 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AccountsApiInterface
-     */
-    accountsLogoutFormattedRetrieve(format: '.json', options?: AxiosRequestConfig): AxiosPromise<void>;
-
-    /**
-     * Remove all auth tokens owned by request.user.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AccountsApiInterface
-     */
-    accountsLogoutRetrieve(options?: AxiosRequestConfig): AxiosPromise<void>;
-
-    /**
-     * 
+     * Calls Django Auth SetPasswordForm save method.  Accepts the following POST parameters: new_password1, new_password2 Returns the success/fail message.
      * @param {PasswordChangeRequest} passwordChangeRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountsApiInterface
      */
-    accountsPasswordChangeCreate(passwordChangeRequest: PasswordChangeRequest, options?: AxiosRequestConfig): AxiosPromise<PasswordChange>;
+    accountsPasswordChangeCreate(passwordChangeRequest: PasswordChangeRequest, options?: AxiosRequestConfig): AxiosPromise<RestAuthDetail>;
 
     /**
-     * 
-     * @param {'.json'} format 
-     * @param {PasswordChangeRequest} passwordChangeRequest 
+     * Password reset e-mail link is confirmed, therefore this resets the user\'s password.  Accepts the following POST parameters: token, uid,     new_password1, new_password2 Returns the success/fail message.
+     * @param {PasswordResetConfirmRequest} passwordResetConfirmRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountsApiInterface
      */
-    accountsPasswordChangeFormattedCreate(format: '.json', passwordChangeRequest: PasswordChangeRequest, options?: AxiosRequestConfig): AxiosPromise<PasswordChange>;
+    accountsPasswordResetConfirmCreate(passwordResetConfirmRequest: PasswordResetConfirmRequest, options?: AxiosRequestConfig): AxiosPromise<RestAuthDetail>;
 
     /**
-     * 
+     * Calls Django Auth PasswordResetForm save method.  Accepts the following POST parameters: email Returns the success/fail message.
      * @param {PasswordResetRequest} passwordResetRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountsApiInterface
      */
-    accountsPasswordResetCreate(passwordResetRequest: PasswordResetRequest, options?: AxiosRequestConfig): AxiosPromise<PasswordReset>;
+    accountsPasswordResetCreate(passwordResetRequest: PasswordResetRequest, options?: AxiosRequestConfig): AxiosPromise<RestAuthDetail>;
 
     /**
      * 
-     * @param {'.json'} format 
-     * @param {PasswordResetRequest} passwordResetRequest 
+     * @param {RegisterRequest} registerRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountsApiInterface
      */
-    accountsPasswordResetFormattedCreate(format: '.json', passwordResetRequest: PasswordResetRequest, options?: AxiosRequestConfig): AxiosPromise<PasswordReset>;
+    accountsRegistrationCreate(registerRequest: RegisterRequest, options?: AxiosRequestConfig): AxiosPromise<Token>;
 
     /**
      * 
-     * @param {PasswordResetVerifiedRequest} passwordResetVerifiedRequest 
+     * @param {ResendEmailVerificationRequest} resendEmailVerificationRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountsApiInterface
      */
-    accountsPasswordResetVerifiedCreate(passwordResetVerifiedRequest: PasswordResetVerifiedRequest, options?: AxiosRequestConfig): AxiosPromise<PasswordResetVerified>;
+    accountsRegistrationResendEmailCreate(resendEmailVerificationRequest: ResendEmailVerificationRequest, options?: AxiosRequestConfig): AxiosPromise<RestAuthDetail>;
 
     /**
      * 
-     * @param {'.json'} format 
-     * @param {PasswordResetVerifiedRequest} passwordResetVerifiedRequest 
+     * @param {VerifyEmailRequest} verifyEmailRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountsApiInterface
      */
-    accountsPasswordResetVerifiedFormattedCreate(format: '.json', passwordResetVerifiedRequest: PasswordResetVerifiedRequest, options?: AxiosRequestConfig): AxiosPromise<PasswordResetVerified>;
+    accountsRegistrationVerifyEmailCreate(verifyEmailRequest: VerifyEmailRequest, options?: AxiosRequestConfig): AxiosPromise<RestAuthDetail>;
 
     /**
-     * 
-     * @param {'.json'} format 
+     * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
+     * @param {PatchedUserDetailsRequest} [patchedUserDetailsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountsApiInterface
      */
-    accountsPasswordResetVerifyFormattedRetrieve(format: '.json', options?: AxiosRequestConfig): AxiosPromise<void>;
+    accountsUserPartialUpdate(patchedUserDetailsRequest?: PatchedUserDetailsRequest, options?: AxiosRequestConfig): AxiosPromise<UserDetails>;
 
     /**
-     * 
+     * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountsApiInterface
      */
-    accountsPasswordResetVerifyRetrieve(options?: AxiosRequestConfig): AxiosPromise<void>;
+    accountsUserRetrieve(options?: AxiosRequestConfig): AxiosPromise<UserDetails>;
 
     /**
-     * 
-     * @param {SignupRequest} signupRequest 
+     * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
+     * @param {UserDetailsRequest} [userDetailsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountsApiInterface
      */
-    accountsSignupCreate(signupRequest: SignupRequest, options?: AxiosRequestConfig): AxiosPromise<Signup>;
-
-    /**
-     * 
-     * @param {'.json'} format 
-     * @param {SignupRequest} signupRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AccountsApiInterface
-     */
-    accountsSignupFormattedCreate(format: '.json', signupRequest: SignupRequest, options?: AxiosRequestConfig): AxiosPromise<Signup>;
-
-    /**
-     * 
-     * @param {'.json'} format 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AccountsApiInterface
-     */
-    accountsSignupVerifyFormattedRetrieve(format: '.json', options?: AxiosRequestConfig): AxiosPromise<void>;
-
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AccountsApiInterface
-     */
-    accountsSignupVerifyRetrieve(options?: AxiosRequestConfig): AxiosPromise<void>;
-
-    /**
-     * 
-     * @param {'.json'} format 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AccountsApiInterface
-     */
-    accountsUsersMeFormattedRetrieve(format: '.json', options?: AxiosRequestConfig): AxiosPromise<User>;
-
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AccountsApiInterface
-     */
-    accountsUsersMeRetrieve(options?: AxiosRequestConfig): AxiosPromise<User>;
+    accountsUserUpdate(userDetailsRequest?: UserDetailsRequest, options?: AxiosRequestConfig): AxiosPromise<UserDetails>;
 
 }
 
@@ -5332,51 +4564,7 @@ export interface AccountsApiInterface {
  */
 export class AccountsApi extends BaseAPI implements AccountsApiInterface {
     /**
-     * 
-     * @param {EmailChangeRequest} emailChangeRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AccountsApi
-     */
-    public accountsEmailChangeCreate(emailChangeRequest: EmailChangeRequest, options?: AxiosRequestConfig) {
-        return AccountsApiFp(this.configuration).accountsEmailChangeCreate(emailChangeRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {'.json'} format 
-     * @param {EmailChangeRequest} emailChangeRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AccountsApi
-     */
-    public accountsEmailChangeFormattedCreate(format: '.json', emailChangeRequest: EmailChangeRequest, options?: AxiosRequestConfig) {
-        return AccountsApiFp(this.configuration).accountsEmailChangeFormattedCreate(format, emailChangeRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {'.json'} format 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AccountsApi
-     */
-    public accountsEmailChangeVerifyFormattedRetrieve(format: '.json', options?: AxiosRequestConfig) {
-        return AccountsApiFp(this.configuration).accountsEmailChangeVerifyFormattedRetrieve(format, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AccountsApi
-     */
-    public accountsEmailChangeVerifyRetrieve(options?: AxiosRequestConfig) {
-        return AccountsApiFp(this.configuration).accountsEmailChangeVerifyRetrieve(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
+     * Check the credentials and return the REST Token if the credentials are valid and authenticated. Calls Django Auth login method to register User ID in Django session framework  Accept the following POST parameters: username, password Return the REST Framework Token Object\'s key.
      * @param {LoginRequest} loginRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5387,40 +4575,17 @@ export class AccountsApi extends BaseAPI implements AccountsApiInterface {
     }
 
     /**
-     * 
-     * @param {'.json'} format 
-     * @param {LoginRequest} loginRequest 
+     * Calls Django logout method and delete the Token object assigned to the current User object.  Accepts/Returns nothing.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountsApi
      */
-    public accountsLoginFormattedCreate(format: '.json', loginRequest: LoginRequest, options?: AxiosRequestConfig) {
-        return AccountsApiFp(this.configuration).accountsLoginFormattedCreate(format, loginRequest, options).then((request) => request(this.axios, this.basePath));
+    public accountsLogoutCreate(options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsLogoutCreate(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Remove all auth tokens owned by request.user.
-     * @param {'.json'} format 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AccountsApi
-     */
-    public accountsLogoutFormattedRetrieve(format: '.json', options?: AxiosRequestConfig) {
-        return AccountsApiFp(this.configuration).accountsLogoutFormattedRetrieve(format, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Remove all auth tokens owned by request.user.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AccountsApi
-     */
-    public accountsLogoutRetrieve(options?: AxiosRequestConfig) {
-        return AccountsApiFp(this.configuration).accountsLogoutRetrieve(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
+     * Calls Django Auth SetPasswordForm save method.  Accepts the following POST parameters: new_password1, new_password2 Returns the success/fail message.
      * @param {PasswordChangeRequest} passwordChangeRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5431,19 +4596,18 @@ export class AccountsApi extends BaseAPI implements AccountsApiInterface {
     }
 
     /**
-     * 
-     * @param {'.json'} format 
-     * @param {PasswordChangeRequest} passwordChangeRequest 
+     * Password reset e-mail link is confirmed, therefore this resets the user\'s password.  Accepts the following POST parameters: token, uid,     new_password1, new_password2 Returns the success/fail message.
+     * @param {PasswordResetConfirmRequest} passwordResetConfirmRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountsApi
      */
-    public accountsPasswordChangeFormattedCreate(format: '.json', passwordChangeRequest: PasswordChangeRequest, options?: AxiosRequestConfig) {
-        return AccountsApiFp(this.configuration).accountsPasswordChangeFormattedCreate(format, passwordChangeRequest, options).then((request) => request(this.axios, this.basePath));
+    public accountsPasswordResetConfirmCreate(passwordResetConfirmRequest: PasswordResetConfirmRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsPasswordResetConfirmCreate(passwordResetConfirmRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * 
+     * Calls Django Auth PasswordResetForm save method.  Accepts the following POST parameters: email Returns the success/fail message.
      * @param {PasswordResetRequest} passwordResetRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5455,123 +4619,67 @@ export class AccountsApi extends BaseAPI implements AccountsApiInterface {
 
     /**
      * 
-     * @param {'.json'} format 
-     * @param {PasswordResetRequest} passwordResetRequest 
+     * @param {RegisterRequest} registerRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountsApi
      */
-    public accountsPasswordResetFormattedCreate(format: '.json', passwordResetRequest: PasswordResetRequest, options?: AxiosRequestConfig) {
-        return AccountsApiFp(this.configuration).accountsPasswordResetFormattedCreate(format, passwordResetRequest, options).then((request) => request(this.axios, this.basePath));
+    public accountsRegistrationCreate(registerRequest: RegisterRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsRegistrationCreate(registerRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {PasswordResetVerifiedRequest} passwordResetVerifiedRequest 
+     * @param {ResendEmailVerificationRequest} resendEmailVerificationRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountsApi
      */
-    public accountsPasswordResetVerifiedCreate(passwordResetVerifiedRequest: PasswordResetVerifiedRequest, options?: AxiosRequestConfig) {
-        return AccountsApiFp(this.configuration).accountsPasswordResetVerifiedCreate(passwordResetVerifiedRequest, options).then((request) => request(this.axios, this.basePath));
+    public accountsRegistrationResendEmailCreate(resendEmailVerificationRequest: ResendEmailVerificationRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsRegistrationResendEmailCreate(resendEmailVerificationRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {'.json'} format 
-     * @param {PasswordResetVerifiedRequest} passwordResetVerifiedRequest 
+     * @param {VerifyEmailRequest} verifyEmailRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountsApi
      */
-    public accountsPasswordResetVerifiedFormattedCreate(format: '.json', passwordResetVerifiedRequest: PasswordResetVerifiedRequest, options?: AxiosRequestConfig) {
-        return AccountsApiFp(this.configuration).accountsPasswordResetVerifiedFormattedCreate(format, passwordResetVerifiedRequest, options).then((request) => request(this.axios, this.basePath));
+    public accountsRegistrationVerifyEmailCreate(verifyEmailRequest: VerifyEmailRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsRegistrationVerifyEmailCreate(verifyEmailRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * 
-     * @param {'.json'} format 
+     * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
+     * @param {PatchedUserDetailsRequest} [patchedUserDetailsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountsApi
      */
-    public accountsPasswordResetVerifyFormattedRetrieve(format: '.json', options?: AxiosRequestConfig) {
-        return AccountsApiFp(this.configuration).accountsPasswordResetVerifyFormattedRetrieve(format, options).then((request) => request(this.axios, this.basePath));
+    public accountsUserPartialUpdate(patchedUserDetailsRequest?: PatchedUserDetailsRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsUserPartialUpdate(patchedUserDetailsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * 
+     * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountsApi
      */
-    public accountsPasswordResetVerifyRetrieve(options?: AxiosRequestConfig) {
-        return AccountsApiFp(this.configuration).accountsPasswordResetVerifyRetrieve(options).then((request) => request(this.axios, this.basePath));
+    public accountsUserRetrieve(options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsUserRetrieve(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * 
-     * @param {SignupRequest} signupRequest 
+     * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
+     * @param {UserDetailsRequest} [userDetailsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountsApi
      */
-    public accountsSignupCreate(signupRequest: SignupRequest, options?: AxiosRequestConfig) {
-        return AccountsApiFp(this.configuration).accountsSignupCreate(signupRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {'.json'} format 
-     * @param {SignupRequest} signupRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AccountsApi
-     */
-    public accountsSignupFormattedCreate(format: '.json', signupRequest: SignupRequest, options?: AxiosRequestConfig) {
-        return AccountsApiFp(this.configuration).accountsSignupFormattedCreate(format, signupRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {'.json'} format 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AccountsApi
-     */
-    public accountsSignupVerifyFormattedRetrieve(format: '.json', options?: AxiosRequestConfig) {
-        return AccountsApiFp(this.configuration).accountsSignupVerifyFormattedRetrieve(format, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AccountsApi
-     */
-    public accountsSignupVerifyRetrieve(options?: AxiosRequestConfig) {
-        return AccountsApiFp(this.configuration).accountsSignupVerifyRetrieve(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {'.json'} format 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AccountsApi
-     */
-    public accountsUsersMeFormattedRetrieve(format: '.json', options?: AxiosRequestConfig) {
-        return AccountsApiFp(this.configuration).accountsUsersMeFormattedRetrieve(format, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AccountsApi
-     */
-    public accountsUsersMeRetrieve(options?: AxiosRequestConfig) {
-        return AccountsApiFp(this.configuration).accountsUsersMeRetrieve(options).then((request) => request(this.axios, this.basePath));
+    public accountsUserUpdate(userDetailsRequest?: UserDetailsRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsUserUpdate(userDetailsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
