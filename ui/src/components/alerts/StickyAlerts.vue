@@ -4,8 +4,10 @@
   <div aria-live="assertive" class="fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start">
     <div class="w-full flex flex-col items-center space-y-4 sm:items-end">
       <!-- Notification panel, dynamically insert this into the live region when it needs to be displayed -->
-        <SimpleAlert v-for="alert in alertStore.alerts" :key="alert.id" :header="alert.header" :message="alert.message" >
-
+        <SimpleAlert v-for="alert in alertStore.alerts" :key="alert.id" :header="alert.header" :message="alert.message" :actions="alert.actions">
+            <template #icon v-if="alert.error">
+                <ExclamationIcon class="h-6 w-6 text-red-400"/>
+            </template>
         </SimpleAlert>
     </div>
   </div>
@@ -14,7 +16,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useAlertStore } from '@/stores/alerts';
-import {  XIcon} from '@heroicons/vue/outline'
+import {  ExclamationIcon } from '@heroicons/vue/outline'
 import SimpleAlert from './SimpleAlert.vue'
 
 const alertStore = useAlertStore();

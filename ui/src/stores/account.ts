@@ -3,6 +3,7 @@ import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
 import * as apiTypes from "printnanny-api-client";
 import { useAlertStore } from "./alerts";
+import { XIcon } from '@heroicons/vue/solid'
 
 const apiConfig = new api.Configuration({
   basePath: window.location.origin,
@@ -24,6 +25,9 @@ export const useAccountStore = defineStore({
     apiError: {}
   }),
   actions: {
+    async resendVerificationEmail(email: string) {
+      console.log("Resending verification email to: ", email)
+    },
     /**
      * Attempt to login a user
      * @param {api.LoginRequest} request
@@ -37,11 +41,24 @@ export const useAccountStore = defineStore({
       catch (e: any) {
         if (e.isAxiosError) {
           const alerts = useAlertStore();
-
           const alert: UiError = {
             header: e.response.statusText,
             message: e.response.data.detail,
-            error: e
+            error: e,
+          }
+
+          switch (e.response.data.detail) {
+            case 'User account not verified.': {
+              let action: AlertAction = {
+                color: "indigo",
+                text: "📧 Re-send verification email",
+                onClick: () => this.resendVerificationEmail(request.email)
+              }
+              alert.actions = [action]
+            }
+            default: {
+              break;
+            }
           }
           alerts.push(alert);
           console.error(e.response)

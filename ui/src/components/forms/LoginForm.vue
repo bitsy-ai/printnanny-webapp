@@ -1,12 +1,16 @@
 <script setup lang="ts">
-import { LockClosedIcon } from "@heroicons/vue/solid";
+import { LockClosedIcon , RefreshIcon} from "@heroicons/vue/solid";
 import { useAccountStore } from "@/stores/account";
 import { useForm, useField, Field, ErrorMessage, Form } from "vee-validate";
-import { toRef, ref } from "vue";
+import { toRef, ref, reactive } from "vue";
 import * as yup from "yup";
 import type * as apiTypes from "printnanny-api-client";
 
-const isLoading = ref(false);
+const loading = ref(false);
+const state = reactive({
+  loading
+});
+
 // define a validation schema
 const schema = yup.object({
   email: yup.string().required().email(),
@@ -15,8 +19,10 @@ const schema = yup.object({
 
 const account = useAccountStore();
 async function onSubmit(values: any) {
+  state.loading = true;
   const res = await account.login(values as apiTypes.LoginRequest);
   console.log("Got Response", res);
+  state.loading = false;
 }
 </script>
 <template>
@@ -69,13 +75,19 @@ async function onSubmit(values: any) {
         <error-message className="text-red-500" name="password"></error-message>
 
         <button
-          :disabled="isLoading || !meta.valid"
+          :disabled="state.loading || !meta.valid"
           type="submit"
           class="group mt-2 relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-25"
         >
           <span class="absolute left-0 inset-y-0 flex items-center pl-3">
             <LockClosedIcon
+              v-if="!state.loading"
               class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+              aria-hidden="true"
+            />
+            <RefreshIcon
+              v-if="state.loading"
+              class="animate-spin h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
               aria-hidden="true"
             />
           </span>
