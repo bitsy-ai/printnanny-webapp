@@ -5,9 +5,14 @@ import StickyAlerts from "@/components/alerts/StickyAlerts.vue";
 </script>
 
 <template>
-  <main>
-    <StickyAlerts />
+<div class="flex flex-col h-screen justify-between">
+  <StickyAlerts />
+  <main class="mb-auto h-full">
     <LoginForm />
-    <FooterNav />
   </main>
+  <FooterNav />
+
+</div>
+
+
 </template>

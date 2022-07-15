@@ -1,4 +1,4 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
+<!-- Alerts Container (top-right corner )-->
 <template>
   <!-- Global notification live region, render this permanently at the end of the document -->
   <div aria-live="assertive" class="fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start">
