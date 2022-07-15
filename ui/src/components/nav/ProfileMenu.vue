@@ -39,7 +39,9 @@
               </div>
               <div class="py-1">
                 <MenuItem v-slot="{ active }">
-                  <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">Logout</a>
+                    <router-link to="logout" replace>	
+                    <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">Logout</a>
+                    </router-link>
                 </MenuItem>
               </div>
             </MenuItems>
@@ -47,6 +49,7 @@
         </Menu>
 </template>
 <script setup lang="ts">
+import { RouterLink } from 'vue-router';
 import {
   Menu,
   MenuButton,

@@ -32,6 +32,16 @@ const router = createRouter({
       // },
       component: LoginView,
     },
+    // clear account store data and direct to home
+    {
+      path: "/logout",
+      name: "logout",
+      redirect: { name: "home" },
+      beforeEnter: async (to, from) => {
+        const account = useAccountStore();
+        await account.logout();
+      }
+    },
     {
       path: "/about",
       name: "about",

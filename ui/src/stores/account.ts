@@ -90,6 +90,19 @@ export const useAccountStore = defineStore({
         }
       }
     },
+    /**
+     * Invalidate current session
+     */
+    async logout() {
+      // nothing to do if user not set
+      if (this.user == null) {
+        console.warn("logout action called without user set");
+        return
+      }
+      await accountsApi.accountsLogoutCreate();
+      this.$reset();
+      console.debug("Successfully logged out");
+    }
   },
 });
 
