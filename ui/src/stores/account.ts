@@ -18,12 +18,28 @@ const accountsApi = api.AccountsApiFactory(apiConfig);
 
 export const useAccountStore = defineStore({
   id: "accounts",
-  state: () => ({
-    /** @type { api.User } */
-    user: {},
-    /** @type { api.RequiredError } */
-    apiError: {}
-  }),
+  state: async () => {
+    try {
+      const userData = await accountsApi.accountsUserRetrieve();
+      const user = userData.data;
+      console.log("Authenticated as user", user);
+      return {
+        /** @type { api.User } */
+        user: user,
+        /** @type { api.RequiredError } */
+        apiError: {}
+      }
+    }
+    catch (e: any) {
+      return {
+        /** @type { api.User } */
+        user: null,
+        /** @type { api.RequiredError } */
+        apiError: {}
+      }
+    }
+
+  },
   actions: {
     async resendVerificationEmail(email: string) {
       console.log("Resending verification email to: ", email)
