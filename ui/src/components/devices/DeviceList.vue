@@ -50,7 +50,7 @@
       <div
         class="align-middle inline-block min-w-full border-b border-gray-200"
       >
-        <table class="min-w-full">
+        <table class="min-w-full table-fixed">
           <thead>
             <tr class="border-t border-gray-200">
               <th
@@ -75,12 +75,13 @@
           </thead>
           <tbody class="bg-white divide-y divide-gray-100">
             <!-- No devices found -->
-            <DeviceEmpty v-if="deviceStore.devices.length == 0" />
+            <DeviceEmpty v-if="deviceStore.showEmpty" />
             <!-- device list -->
             <tr
               v-for="device in deviceStore.devices"
-              v-if="deviceStore.devices.length > 0"
+              v-if="!showEmpty"
               :key="device.id"
+              class="flex-row"
             >
               <td
                 class="px-6 py-3 max-w-0 whitespace-nowrap text-sm font-medium text-gray-900"
@@ -130,4 +131,5 @@
 import { useDeviceStore } from "@/stores/devices";
 import DeviceEmpty from "./DeviceEmpty.vue";
 const deviceStore = useDeviceStore();
+deviceStore.fetch();
 </script>

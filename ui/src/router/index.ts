@@ -17,11 +17,7 @@ const router = createRouter({
     {
       path: "/devices",
       name: "devices",
-      component: DashboardView,
-      beforeEnter: async (to, from) => {
-        const devices = useDeviceStore();
-        await devices.fetch();
-      },
+      component: DashboardView
     },
     {
       path: "/login",

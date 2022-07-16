@@ -19,7 +19,11 @@ export const useDeviceStore = defineStore({
   state: () => ({
     /** @type { Device[] } */
     devices: [],
+    loading: false
   }),
+  getters: {
+    showEmpty: (state) => state.loading == false && state.devices.length == 0
+  },
   actions: {
     async create(hostname) {
       try {
@@ -58,10 +62,11 @@ export const useDeviceStore = defineStore({
       }
     },
     async fetch() {
+      this.$patch({ loading: true });
       try {
         const res = await devicesApi.devicesList();
         console.log("Fetched devices: ", res.data.results);
-        return this.$patch({
+        this.$patch({
           devices: res.data.results,
         });
       } catch (e: any) {
@@ -91,6 +96,7 @@ export const useDeviceStore = defineStore({
           throw e;
         }
       }
+      this.$patch({ loading: false });
     },
   },
 });

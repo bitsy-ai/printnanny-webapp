@@ -14,7 +14,6 @@ const apiConfig = new api.Configuration({
   },
 });
 const accountsApi = api.AccountsApiFactory(apiConfig);
-const alertSettingsApi = api.AlertSettingsApi(apiConfig);
 
 export const useAccountStore = defineStore({
   id: "accounts",
