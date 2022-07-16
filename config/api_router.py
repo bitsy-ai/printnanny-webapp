@@ -53,9 +53,9 @@ other_urls = [
         name="billing-cancel",
     ),
     path(
-        "billing/<slug:subscription_id>/reactive/",
+        "billing/<slug:subscription_id>/reactivate/",
         BillingReactivateView.as_view(),
-        name="billing-reactive",
+        name="billing-reactivate",
     ),
 ]
 

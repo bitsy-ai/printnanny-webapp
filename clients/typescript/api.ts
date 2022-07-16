@@ -4688,6 +4688,30 @@ export interface StripeSubscription {
     'schedule': StripeSubscriptionSchedule;
     /**
      * 
+     * @type {boolean}
+     * @memberof StripeSubscription
+     */
+    'is_period_current': boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof StripeSubscription
+     */
+    'is_status_current': boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof StripeSubscription
+     */
+    'is_status_temporarily_current': boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof StripeSubscription
+     */
+    'is_valid': boolean;
+    /**
+     * 
      * @type {string}
      * @memberof StripeSubscription
      */
@@ -8085,7 +8109,7 @@ export const BillingApiAxiosParamCreator = function (configuration?: Configurati
         billingCancelCreate: async (subscriptionId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'subscriptionId' is not null or undefined
             assertParamExists('billingCancelCreate', 'subscriptionId', subscriptionId)
-            const localVarPath = `/api/billing/cancel/{subscription_id}`
+            const localVarPath = `/api/billing/{subscription_id}/cancel/`
                 .replace(`{${"subscription_id"}}`, encodeURIComponent(String(subscriptionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -8117,14 +8141,14 @@ export const BillingApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} subscriptionId 
+         * @param {string} subscriptionId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        billingReactiveCreate: async (subscriptionId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        billingReactivateCreate: async (subscriptionId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'subscriptionId' is not null or undefined
-            assertParamExists('billingReactiveCreate', 'subscriptionId', subscriptionId)
-            const localVarPath = `/api/billing/reactive/{subscription_id}`
+            assertParamExists('billingReactivateCreate', 'subscriptionId', subscriptionId)
+            const localVarPath = `/api/billing/{subscription_id}/reactivate/`
                 .replace(`{${"subscription_id"}}`, encodeURIComponent(String(subscriptionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -8211,12 +8235,12 @@ export const BillingApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} subscriptionId 
+         * @param {string} subscriptionId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async billingReactiveCreate(subscriptionId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BillingSummary>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.billingReactiveCreate(subscriptionId, options);
+        async billingReactivateCreate(subscriptionId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BillingSummary>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.billingReactivateCreate(subscriptionId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -8249,12 +8273,12 @@ export const BillingApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @param {number} subscriptionId 
+         * @param {string} subscriptionId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        billingReactiveCreate(subscriptionId: number, options?: any): AxiosPromise<BillingSummary> {
-            return localVarFp.billingReactiveCreate(subscriptionId, options).then((request) => request(axios, basePath));
+        billingReactivateCreate(subscriptionId: string, options?: any): AxiosPromise<BillingSummary> {
+            return localVarFp.billingReactivateCreate(subscriptionId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -8284,12 +8308,12 @@ export interface BillingApiInterface {
 
     /**
      * 
-     * @param {number} subscriptionId 
+     * @param {string} subscriptionId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BillingApiInterface
      */
-    billingReactiveCreate(subscriptionId: number, options?: AxiosRequestConfig): AxiosPromise<BillingSummary>;
+    billingReactivateCreate(subscriptionId: string, options?: AxiosRequestConfig): AxiosPromise<BillingSummary>;
 
     /**
      * 
@@ -8321,13 +8345,13 @@ export class BillingApi extends BaseAPI implements BillingApiInterface {
 
     /**
      * 
-     * @param {number} subscriptionId 
+     * @param {string} subscriptionId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BillingApi
      */
-    public billingReactiveCreate(subscriptionId: number, options?: AxiosRequestConfig) {
-        return BillingApiFp(this.configuration).billingReactiveCreate(subscriptionId, options).then((request) => request(this.axios, this.basePath));
+    public billingReactivateCreate(subscriptionId: string, options?: AxiosRequestConfig) {
+        return BillingApiFp(this.configuration).billingReactivateCreate(subscriptionId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

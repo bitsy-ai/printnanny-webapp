@@ -2,7 +2,7 @@
 import FooterNav from "@/components/nav/FooterNav.vue";
 import StickyAlerts from "@/components/alerts/StickyAlerts.vue";
 import DashboardPage from "@/components/pages/DashboardPage.vue";
-import BillingCancelForm from "@/components/forms/BillingCancelForm.vue";
+import BillingUpdateForm from "@/components/forms/BillingUpdateForm.vue";
 </script>
 
 <template>
@@ -17,7 +17,7 @@ import BillingCancelForm from "@/components/forms/BillingCancelForm.vue";
         <span></span>
       </template>
       <template #content>
-        <BillingCancelForm />
+        <BillingUpdateForm />
       </template>
     </DashboardPage>
   </main>

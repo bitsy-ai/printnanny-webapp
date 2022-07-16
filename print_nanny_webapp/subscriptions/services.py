@@ -25,7 +25,7 @@ def link_customer_by_email(user) -> Customer:
     return customer
 
 
-def get_stripe_active_subscription(customer: Customer) -> Subscription:
+def get_stripe_subscription(customer: Customer) -> Subscription:
     subscriptions = customer.subscriptions.all().order_by("-created")
     return subscriptions.first()
 

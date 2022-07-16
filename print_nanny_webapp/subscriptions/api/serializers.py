@@ -38,6 +38,11 @@ class StripeSubscriptionSerializer(serializers.ModelSerializer):
     default_payment_method = StripePaymentMethodSerializer()
     schedule = StripeSubscriptionSchedule()
 
+    is_period_current = serializers.BooleanField()
+    is_status_current = serializers.BooleanField()
+    is_status_temporarily_current = serializers.BooleanField()
+    is_valid = serializers.BooleanField()
+
     class Meta:
         model = Subscription
         fields = "__all__"

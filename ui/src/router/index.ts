@@ -80,6 +80,15 @@ const router = createRouter({
         await billing.fetch();
       }
     },
+    {
+      path: "/billing/update",
+      name: "billing-update",
+      component: () => import("@/views/BillingUpdateView.vue"),
+      beforeEnter: async (to, from) => {
+        const billing = useBillingStore();
+        await billing.fetch();
+      }
+    },
   ],
 });
 
