@@ -125,5 +125,5 @@ class BillingSummarySerializer(serializers.Serializer):
     charges = StripeChargeSerializer(many=True)
     events = StripeEventSerializer(many=True)
     next_invoice = StripeNextInvoiceSerializer(allow_null=True, required=False)
-    # customer = StripeCustomerSerializer()
-    # user = UserSerializer(allow_null=True, required=False)
+    customer = StripeCustomerSerializer()
+    user = UserSerializer(allow_null=True, required=False)

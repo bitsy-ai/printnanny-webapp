@@ -2,12 +2,12 @@ from pyrsistent import m
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from drf_spectacular.utils import extend_schema_view, extend_schema
+from drf_spectacular.utils import extend_schema_view, extend_schema, OpenApiParameter
+from stripe import Subscription
+
 
 from print_nanny_webapp.subscriptions.api.serializers import BillingSummarySerializer
-from print_nanny_webapp.utils.api.views import (
-    generic_get_errors,
-)
+from print_nanny_webapp.utils.api.views import generic_get_errors
 from print_nanny_webapp.subscriptions.services import (
     get_stripe_active_subscription,
     get_stripe_charges,
@@ -36,7 +36,72 @@ class BillingSummaryView(APIView):
                 charges=charges,
                 events=events,
                 next_invoice=next_invoice,
-                # user=request.user,
+                user=request.user,
+                customer=stripe_customer,
+            )
+        )
+        return Response(serializer.data)
+
+
+@extend_schema_view(
+    tags=["billing"],
+    post=extend_schema(
+        parameters=[
+            OpenApiParameter(
+                name="subscription_id", type=int, location=OpenApiParameter.PATH
+            )
+        ],
+        responses={201: BillingSummarySerializer(many=False)},
+    ),
+)
+class BillingCancelView(APIView):
+    def post(self, request, subscription_id=None):
+        subscription = Subscription.objects.get(id=subscription_id)
+        subscription.cancel()
+        stripe_customer = get_stripe_customer(request.user)
+        charges = get_stripe_charges(stripe_customer)
+        events = get_stripe_subscription_events(stripe_customer)
+        next_invoice = get_stripe_next_invoice(stripe_customer, subscription)
+        serializer = BillingSummarySerializer(
+            instance=dict(
+                subscription=subscription,
+                charges=charges,
+                events=events,
+                next_invoice=next_invoice,
+                user=request.user,
+                customer=stripe_customer,
+            )
+        )
+        return Response(serializer.data)
+
+
+@extend_schema_view(
+    tags=["billing"],
+    post=extend_schema(
+        parameters=[
+            OpenApiParameter(
+                name="subscription_id", type=int, location=OpenApiParameter.PATH
+            )
+        ],
+        responses={201: BillingSummarySerializer(many=False)},
+    ),
+)
+class BillingReactivateView(APIView):
+    def post(self, request, subscription_id=None):
+        subscription = Subscription.objects.get(id=subscription_id)
+        subscription.reactivate()
+        stripe_customer = get_stripe_customer(request.user)
+        charges = get_stripe_charges(stripe_customer)
+        events = get_stripe_subscription_events(stripe_customer)
+        next_invoice = get_stripe_next_invoice(stripe_customer, subscription)
+        serializer = BillingSummarySerializer(
+            instance=dict(
+                subscription=subscription,
+                charges=charges,
+                events=events,
+                next_invoice=next_invoice,
+                user=request.user,
+                customer=stripe_customer,
             )
         )
         return Response(serializer.data)
