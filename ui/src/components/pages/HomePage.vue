@@ -221,8 +221,8 @@
 
         <!-- Feature section with quality control demo -->
         <div
-          class="relative bg-gray-50 pt-16 sm:pt-24 lg:pt-32"
           id="quality-control"
+          class="relative bg-gray-50 pt-16 sm:pt-24 lg:pt-32"
         >
           <div
             class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl"
@@ -251,8 +251,8 @@
 
         <!-- Feature section with grid -->
         <div
-          class="relative bg-white py-16 sm:py-24 lg:py-32"
           id="printnanny-os"
+          class="relative bg-white py-16 sm:py-24 lg:py-32"
         >
           <div
             class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl"

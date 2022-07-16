@@ -34,8 +34,8 @@ const show = ref(true);
             <div class="h-0 flex-1 flex">
               <button
                 type="button"
-                @click="show = false"
                 class="w-full border border-transparent rounded-none rounded-br-lg px-4 py-3 flex items-center justify-center text-sm font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                @click="show = false"
               >
                 Dismiss
               </button>
@@ -87,8 +87,8 @@ const show = ref(true);
             <div class="h-0 flex-1 flex">
               <button
                 type="button"
-                @click="show = false"
                 class="w-full border border-transparent rounded-none rounded-br-lg px-4 py-3 flex items-center justify-center text-sm font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                @click="show = false"
               >
                 Dismiss
               </button>

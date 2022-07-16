@@ -5,12 +5,9 @@ import DashboardPage from "@/components/pages/DashboardPage.vue";
 </script>
 
 <template>
-<div class="flex flex-col h-screen justify-between">
-  <StickyAlerts />
-  <header>
-  </header>
-  <main class="mb-auto h-full">
-    settings view
-  </main>
-</div>
+  <div class="flex flex-col h-screen justify-between">
+    <StickyAlerts />
+    <header></header>
+    <main class="mb-auto h-full">settings view</main>
+  </div>
 </template>

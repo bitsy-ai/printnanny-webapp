@@ -1,11 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
-import LoginView from "../views/LoginView.vue";
-import DashboardView from "../views/DashboardView.vue";
+import HomeView from "@/views/HomeView.vue";
+import LoginView from "@/views/LoginView.vue";
+import DashboardView from "@/views/DashboardView.vue";
 import { useAccountStore } from "@/stores/account";
 import { useDeviceStore } from "@/stores/devices";
 import { useBillingStore } from "@/stores/billing";
-
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,7 +21,7 @@ const router = createRouter({
       beforeEnter: async (to, from) => {
         const devices = useDeviceStore();
         await devices.fetch();
-      }
+      },
     },
     {
       path: "/login",
@@ -46,7 +45,7 @@ const router = createRouter({
       beforeEnter: async (to, from) => {
         const account = useAccountStore();
         await account.logout();
-      }
+      },
     },
     {
       path: "/about",
@@ -57,11 +56,19 @@ const router = createRouter({
       component: () => import("@/views/AboutView.vue"),
     },
     // begin device routes
-    { path: "/device/connect", name: "device-connect", component: () => import("@/views/DeviceCreateView.vue") },
+    {
+      path: "/device/connect",
+      name: "device-connect",
+      component: () => import("@/views/DeviceCreateView.vue"),
+    },
     // end device routes
 
     // begin profile/settings/billings routers
-    { path: "/settings", name: "settings", component: () => import("@/views/SettingsView.vue") },
+    {
+      path: "/settings",
+      name: "settings",
+      component: () => import("@/views/SettingsView.vue"),
+    },
     {
       path: "/billing",
       name: "billing",
@@ -69,7 +76,7 @@ const router = createRouter({
       beforeEnter: async (to, from) => {
         const billing = useBillingStore();
         await billing.fetch();
-      }
+      },
     },
     {
       path: "/billing/cancel",
@@ -78,7 +85,7 @@ const router = createRouter({
       beforeEnter: async (to, from) => {
         const billing = useBillingStore();
         await billing.fetch();
-      }
+      },
     },
     {
       path: "/billing/update",
@@ -87,7 +94,17 @@ const router = createRouter({
       beforeEnter: async (to, from) => {
         const billing = useBillingStore();
         await billing.fetch();
-      }
+      },
+    },
+    {
+      path: "/privacy",
+      name: "privacy",
+      component: () => import("@/views/PrivacyView.vue"),
+    },
+    {
+      path: "/terms",
+      name: "terms",
+      component: () => import("@/views/TermsOfServiceView.vue"),
     },
   ],
 });
@@ -99,13 +116,13 @@ router.beforeEach(async (to, from) => {
     // make sure the user is authenticated
     !account.isAuthenticated &&
     // ❗️ Avoid an infinite redirect
-    to.name !== 'login' &&
+    to.name !== "login" &&
     // ❗️ Login is not required for home view
-    to.name !== 'home'
+    to.name !== "home"
   ) {
     // redirect the user to the login page
-    return { name: 'login' }
+    return { name: "login" };
   }
-})
+});
 
 export default router;

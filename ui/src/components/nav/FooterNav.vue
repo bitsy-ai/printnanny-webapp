@@ -35,9 +35,8 @@ const footerNavigation = {
     { name: "Partners", href: "#" },
   ],
   legal: [
-    { name: "Claim", href: "#" },
-    { name: "Privacy", href: "#" },
-    { name: "Terms", href: "#" },
+    { name: "Privacy", link: { name: "privacy" } },
+    { name: "Terms of Service", link: { name: "terms" } },
   ],
   social: [
     {
@@ -136,6 +135,39 @@ const footerNavigation = {
                   >
                     {{ item.name }}
                   </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="md:grid md:grid-cols-2 md:gap-8">
+            <!-- About section -->
+            <!--
+                <div>
+                  <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Company</h3>
+                  <ul role="list" class="mt-4 space-y-4">
+                    <li v-for="item in footerNavigation.company" :key="item.name">
+                      <a :href="item.href" class="text-base text-gray-500 hover:text-gray-900">
+                        {{ item.name }}
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              -->
+            <!-- Legal section -->
+            <div class="mt-12 md:mt-0">
+              <h3
+                class="text-sm font-semibold text-gray-400 tracking-wider uppercase"
+              >
+                Legal
+              </h3>
+              <ul role="list" class="mt-4 space-y-4">
+                <li v-for="item in footerNavigation.legal" :key="item.name">
+                  <router-link
+                    :to="item.link"
+                    class="text-base text-gray-500 hover:text-white-900"
+                  >
+                    {{ item.name }}
+                  </router-link>
                 </li>
               </ul>
             </div>

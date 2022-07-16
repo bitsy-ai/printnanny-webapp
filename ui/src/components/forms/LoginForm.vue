@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LockClosedIcon , RefreshIcon} from "@heroicons/vue/solid";
+import { LockClosedIcon, RefreshIcon } from "@heroicons/vue/solid";
 import { useAccountStore } from "@/stores/account";
 import { useForm, useField, Field, ErrorMessage, Form } from "vee-validate";
 import { toRef, ref, reactive } from "vue";
@@ -8,7 +8,7 @@ import type * as apiTypes from "printnanny-api-client";
 
 const loading = ref(false);
 const state = reactive({
-  loading
+  loading,
 });
 
 // define a validation schema
@@ -50,29 +50,32 @@ async function onSubmit(values: any) {
           >
         </p>
       </div>
-      <Form @submit="onSubmit" v-slot="{ meta }" :validation-schema="schema">
+      <Form v-slot="{ meta }" :validation-schema="schema" @submit="onSubmit">
         <label for="email" class="sr-only">Email address</label>
-        <error-message className="text-red-500" name="email"></error-message>
+        <error-message class-name="text-red-500" name="email"></error-message>
         <Field
-          name="email"
           id="email"
+          name="email"
           type="email"
           autocomplete="email"
-          className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          class-name="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
           placeholder="Email address"
           rules="required"
         />
         <label for="password" class="sr-only">Password</label>
         <Field
-          name="password"
           id="password"
+          name="password"
           type="password"
           autocomplete="current-password"
-          className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          class-name="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
           placeholder="Password"
           rules="required"
         />
-        <error-message className="text-red-500" name="password"></error-message>
+        <error-message
+          class-name="text-red-500"
+          name="password"
+        ></error-message>
 
         <button
           :disabled="state.loading || !meta.valid"

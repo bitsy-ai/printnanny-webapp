@@ -1,9 +1,8 @@
 <template>
-<!-- subscription status -->
+  <!-- subscription status -->
   <div>
-      <SubscriptionInfo v-if="billingStore.summary.subscription" />
+    <SubscriptionInfo v-if="billingStore.summary.subscription" />
   </div>
-
 </template>
 <script setup lang="ts">
 import SubscriptionInfo from "@/components/billing/SubscriptionInfo.vue";

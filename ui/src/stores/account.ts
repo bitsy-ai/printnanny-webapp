@@ -3,7 +3,7 @@ import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
 import * as apiTypes from "printnanny-api-client";
 import { useAlertStore } from "./alerts";
-import { XIcon } from '@heroicons/vue/solid'
+import { XIcon } from "@heroicons/vue/solid";
 
 const apiConfig = new api.Configuration({
   basePath: window.location.origin,
@@ -15,19 +15,16 @@ const apiConfig = new api.Configuration({
 });
 const accountsApi = api.AccountsApiFactory(apiConfig);
 
-
 export const useAccountStore = defineStore({
   id: "accounts",
   // persist option provided by: https://github.com/prazdevs/pinia-plugin-persistedstate
   persist: true,
-  state: () => (
-    {
-      /** @type { api.User } */
-      user: null,
-      /** @type { api.RequiredError } */
-      apiError: {}
-    }
-  ),
+  state: () => ({
+    /** @type { api.User } */
+    user: null,
+    /** @type { api.RequiredError } */
+    apiError: {},
+  }),
   getters: {
     isAuthenticated: (state) => state.user !== null,
   },
@@ -41,21 +38,20 @@ export const useAccountStore = defineStore({
           /** @type { api.User } */
           user: user,
           /** @type { api.RequiredError } */
-          apiError: {}
-        })
-      }
-      catch (e: any) {
-        console.warn("No authentication data is set", e)
+          apiError: {},
+        });
+      } catch (e: any) {
+        console.warn("No authentication data is set", e);
         this.$patch({
           /** @type { api.User } */
           user: null,
           /** @type { api.RequiredError } */
-          apiError: e
-        })
+          apiError: e,
+        });
       }
     },
     async resendVerificationEmail(email: string) {
-      console.log("Resending verification email to: ", email)
+      console.log("Resending verification email to: ", email);
     },
     /**
      * Attempt to login a user
@@ -65,16 +61,18 @@ export const useAccountStore = defineStore({
       try {
         await accountsApi.accountsLoginCreate(request);
         await this.fetchUser();
-        await this.router.push({ name: 'dashboard' });
-      }
-      catch (e: any) {
+        await this.router.push({ name: "dashboard" });
+      } catch (e: any) {
         if (e.isAxiosError) {
           const alerts = useAlertStore();
-          var msg;
-          if (e.response.data.non_field_errors && e.response.data.non_field_errors.length > 0) {
-            msg = e.response.data.non_field_errors.join("\n")
+          let msg;
+          if (
+            e.response.data.non_field_errors &&
+            e.response.data.non_field_errors.length > 0
+          ) {
+            msg = e.response.data.non_field_errors.join("\n");
           } else if (e.response.data.detail) {
-            msg = e.response.data.detail
+            msg = e.response.data.detail;
           } else {
             msg = e.response.data;
           }
@@ -82,9 +80,9 @@ export const useAccountStore = defineStore({
             header: e.response.statusText,
             message: msg,
             error: e,
-          }
+          };
           alerts.push(alert);
-          console.error(e.response)
+          console.error(e.response);
         } else {
           throw e;
         }
@@ -97,12 +95,12 @@ export const useAccountStore = defineStore({
       // nothing to do if user not set
       if (this.user == null) {
         console.warn("logout action called without user set");
-        return
+        return;
       }
       await accountsApi.accountsLogoutCreate();
       this.$reset();
       console.debug("Successfully logged out");
-    }
+    },
   },
 });
 

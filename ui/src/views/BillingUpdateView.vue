@@ -6,20 +6,19 @@ import BillingUpdateForm from "@/components/forms/BillingUpdateForm.vue";
 </script>
 
 <template>
-<div class="flex flex-col h-screen justify-between">
-  <StickyAlerts />
-  <header>
-  </header>
-  <main class="mb-auto h-full">
-    <DashboardPage>
-      <!-- Replace pinned devices with billing header -->
-      <template #pinned>
-        <span></span>
-      </template>
-      <template #content>
-        <BillingUpdateForm />
-      </template>
-    </DashboardPage>
-  </main>
-</div>
+  <div class="flex flex-col h-screen justify-between">
+    <StickyAlerts />
+    <header></header>
+    <main class="mb-auto h-full">
+      <DashboardPage>
+        <!-- Replace pinned devices with billing header -->
+        <template #pinned>
+          <span></span>
+        </template>
+        <template #content>
+          <BillingUpdateForm />
+        </template>
+      </DashboardPage>
+    </main>
+  </div>
 </template>
