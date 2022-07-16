@@ -102,6 +102,11 @@ const router = createRouter({
       name: "terms",
       component: () => import("@/views/TermsOfServiceView.vue"),
     },
+    {
+      path: "/notifications/settings",
+      name: "alertSettings",
+      component: () => import("@/views/AlertSettingsView.vue"),
+    },
   ],
 });
 

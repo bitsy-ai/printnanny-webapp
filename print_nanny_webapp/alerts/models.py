@@ -29,7 +29,7 @@ class GenericAlertEventType(models.TextChoices):
     Required for rust client generator
     """
 
-    PRINT_HEALTH = "PrintHealth", "Print health alerts"
+    PRINT_QUALITY = "PrintQuality", "Quality control alerts"
     PRINT_STATUS = (
         "PrintStatus",
         "Print status updates (percent progress, paused, resumed, failed)",
@@ -52,7 +52,7 @@ class GenericAlertEventType(models.TextChoices):
 
 class AlertSettings(models.Model):
     class AlertSettingsEventType(models.TextChoices):
-        PRINT_HEALTH = "PrintHealth", "Print health alerts"
+        PRINT_QUALITY = "PrintQuality", "Quality control alerts"
         PRINT_STATUS = (
             "PrintStatus",
             "Print status updates (percent progress, paused, resumed, failed)",
@@ -83,7 +83,7 @@ class AlertSettings(models.Model):
         models.CharField(choices=AlertSettingsEventType.choices, max_length=255),
         blank=True,
         default=(
-            AlertSettingsEventType.PRINT_HEALTH,
+            AlertSettingsEventType.PRINT_QUALITY,
             AlertSettingsEventType.PRINT_STATUS,
         ),
     )
@@ -293,7 +293,7 @@ class AlertMessage(models.Model):
     class AlertMessageType(models.TextChoices):
         TEST = "Test", "Hello {{ FIRST_NAME }} 👋"
         VIDEO_DONE = "VideoDone", "{{ GCODE_FILE }} - timelapse done 🎥"
-        PRINT_HEALTH = "PrintHealth", "{{ GCODE_FILE }} - job is unhealthy 😵"
+        PRINT_QUALITY = "PrintQuality", "{{ GCODE_FILE }} - failing quality control ❌"
         PRINT_PROGRESS = (
             "PrintProgress",
             "{{ GCODE_FILE }} - {{ PRINT_PROGRESS }}% complete ⏳",

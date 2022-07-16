@@ -97,6 +97,7 @@ import {
   ExclamationIcon,
   ChatIcon,
   MapIcon,
+  BellIcon
 } from "@heroicons/vue/outline";
 
 const router = useRouter();
@@ -107,6 +108,13 @@ const app_nav = [
     link: { name: "devices" },
     icon: HomeIcon,
     current: router.currentRoute.value.name == "devices",
+  },
+  {
+    name: "Notifications",
+    link: { name: "alertSettings"},
+    icon: BellIcon,
+    current: router.currentRoute.value.name == "alertSettings",
+
   },
   //   { name: 'My Cameras', link: {name: "cameras" }, icon: VideoCameraIcon, current: router.currentRoute.value.name == "cameras"},
   //   { name: 'My tasks', href: '#', icon: ViewListIcon, current: false },
@@ -139,8 +147,8 @@ const misc_nav = [
     icon: DocumentDownloadIcon,
   },
   {
-    name: "Next Release",
-    href: "https://docs.printnanny.ai/docs/release-history/0.2.0-beryl-kirkstone/",
+    name: "In Development",
+    href: "https://github.com/bitsy-ai/printnanny-os/milestones",
     icon: MapIcon,
   },
 ];
