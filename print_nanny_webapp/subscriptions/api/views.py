@@ -19,7 +19,7 @@ from print_nanny_webapp.subscriptions.services import (
 
 @extend_schema_view(
     tags=["billing"],
-    retrieve=extend_schema(
+    get=extend_schema(
         responses={200: BillingSummarySerializer(many=False)} | generic_get_errors
     ),
 )
@@ -31,12 +31,12 @@ class BillingSummaryView(APIView):
         events = get_stripe_subscription_events(stripe_customer)
         next_invoice = get_stripe_next_invoice(stripe_customer, subscription)
         serializer = BillingSummarySerializer(
-            data=dict(
-                subscriptions=[subscription],
+            instance=dict(
+                subscription=subscription,
                 charges=charges,
                 events=events,
                 next_invoice=next_invoice,
-                user=request.suer,
+                # user=request.user,
             )
         )
         return Response(serializer.data)
