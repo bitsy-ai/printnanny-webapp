@@ -361,6 +361,12 @@ export interface BillingSummary {
      * @memberof BillingSummary
      */
     'user'?: User | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof BillingSummary
+     */
+    'billing_portal_url': string;
 }
 /**
  * 

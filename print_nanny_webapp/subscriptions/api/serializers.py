@@ -132,3 +132,12 @@ class BillingSummarySerializer(serializers.Serializer):
     next_invoice = StripeNextInvoiceSerializer(allow_null=True, required=False)
     customer = StripeCustomerSerializer()
     user = UserSerializer(allow_null=True, required=False)
+
+    billing_portal_url = serializers.SerializerMethodField()
+
+    def get_billing_portal_url(self, obj) -> str:
+        session = stripe.billing_portal.Session.create(
+            customer=obj["customer"].id,
+            return_url="https://printnanny.ai/billing",
+        )
+        return session.url

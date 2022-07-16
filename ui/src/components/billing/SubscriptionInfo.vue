@@ -3,7 +3,11 @@
   <div class="bg-white shadow overflow-hidden sm:rounded-lg">
     <div class="px-4 py-5 sm:px-6">
       <h3 class="text-lg leading-6 font-medium text-gray-900">Subscription Info</h3>
-      <p class="mt-1 max-w-2xl text-sm text-gray-500">Details about your current PrintNanny subscription.</p>
+      <p v-if="billingStore.summary.subscription.is_valid" class="mt-1 max-w-2xl text-sm text-gray-500">Details about your current PrintNanny subscription.</p>
+      <p v-if="!billingStore.summary.subscription.is_valid" class="mt-1 max-w-2xl text-sm text-red-500">
+        Needs Attention
+      </p>
+
     </div>
     <div class="border-t border-gray-200">
       <dl>
@@ -49,7 +53,8 @@
 
 <script setup lang="ts">
 import moment from "moment";
-import { PaperClipIcon } from '@heroicons/vue/solid'
+import { PaperClipIcon } from '@heroicons/vue/solid';
+import { ExclamationIcon } from "@heroicons/vue/outline";
 import { useBillingStore } from "@/stores/billing";
 import SubscriptionCharges from "@/components/billing/SubscriptionCharges.vue";
 import SubscriptionAction from "@/components/billing/SubscriptionAction.vue";
