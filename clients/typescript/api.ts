@@ -24,6 +24,22 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export const AggregateUsageEnum = {
+    LastDuringPeriod: 'last_during_period',
+    LastEver: 'last_ever',
+    Max: 'max',
+    Sum: 'sum'
+} as const;
+
+export type AggregateUsageEnum = typeof AggregateUsageEnum[keyof typeof AggregateUsageEnum];
+
+
+/**
+ * 
+ * @export
  * @interface Alert
  */
 export interface Alert {
@@ -292,6 +308,20 @@ export type BillingReasonEnum = typeof BillingReasonEnum[keyof typeof BillingRea
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export const BillingSchemeEnum = {
+    PerUnit: 'per_unit',
+    Tiered: 'tiered'
+} as const;
+
+export type BillingSchemeEnum = typeof BillingSchemeEnum[keyof typeof BillingSchemeEnum];
+
+
+/**
+ * 
+ * @export
  * @interface BillingSummary
  */
 export interface BillingSummary {
@@ -319,6 +349,18 @@ export interface BillingSummary {
      * @memberof BillingSummary
      */
     'next_invoice'?: StripeNextInvoice | null;
+    /**
+     * 
+     * @type {StripeCustomer}
+     * @memberof BillingSummary
+     */
+    'customer': StripeCustomer;
+    /**
+     * 
+     * @type {User}
+     * @memberof BillingSummary
+     */
+    'user'?: User | null;
 }
 /**
  * 
@@ -816,6 +858,20 @@ export interface EmailAuthRequest {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export const EndBehaviorEnum = {
+    Cancel: 'cancel',
+    Release: 'release'
+} as const;
+
+export type EndBehaviorEnum = typeof EndBehaviorEnum[keyof typeof EndBehaviorEnum];
+
+
+/**
+ * 
+ * @export
  * @interface ErrorDetail
  */
 export interface ErrorDetail {
@@ -1026,6 +1082,22 @@ export interface GcodeFile {
      */
     'user': number;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const IntervalEnum = {
+    Day: 'day',
+    Month: 'month',
+    Week: 'week',
+    Year: 'year'
+} as const;
+
+export type IntervalEnum = typeof IntervalEnum[keyof typeof IntervalEnum];
+
+
 /**
  * 
  * @export
@@ -3605,6 +3677,187 @@ export type StripeChargeStatusEnum = typeof StripeChargeStatusEnum[keyof typeof 
 /**
  * 
  * @export
+ * @interface StripeCustomer
+ */
+export interface StripeCustomer {
+    /**
+     * 
+     * @type {number}
+     * @memberof StripeCustomer
+     */
+    'djstripe_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'djstripe_created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'djstripe_updated': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'id': string;
+    /**
+     * Null here indicates that the livemode status is unknown or was previously unrecorded. Otherwise, this field indicates whether this record comes from Stripe test mode or live mode operation.
+     * @type {boolean}
+     * @memberof StripeCustomer
+     */
+    'livemode'?: boolean | null;
+    /**
+     * The datetime this object was created in stripe.
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'created'?: string | null;
+    /**
+     * A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeCustomer
+     */
+    'metadata'?: { [key: string]: any; } | null;
+    /**
+     * A description of this object.
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'description'?: string | null;
+    /**
+     * The customer\'s address.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeCustomer
+     */
+    'address'?: { [key: string]: any; } | null;
+    /**
+     * Current balance (in cents), if any, being stored on the customer\'s account. If negative, the customer has credit to apply to the next invoice. If positive, the customer has an amount owed that will be added to the next invoice. The balance does not refer to any unpaid invoices; it solely takes into account amounts that have yet to be successfully applied to any invoice. This balance is only taken into account for recurring billing purposes (i.e., subscriptions, invoices, invoice items).
+     * @type {number}
+     * @memberof StripeCustomer
+     */
+    'balance'?: number | null;
+    /**
+     * The currency the customer can be charged in for recurring billing purposes
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'currency'?: string;
+    /**
+     * Whether or not the latest charge for the customer\'s latest invoice has failed.
+     * @type {boolean}
+     * @memberof StripeCustomer
+     */
+    'delinquent'?: boolean | null;
+    /**
+     * Whether the Customer instance has been deleted upstream in Stripe or not.
+     * @type {boolean}
+     * @memberof StripeCustomer
+     */
+    'deleted'?: boolean | null;
+    /**
+     * If a coupon is present, the date at which it was applied.
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'coupon_start': string;
+    /**
+     * If a coupon is present and has a limited duration, the date that the discount will end.
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'coupon_end': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'email'?: string;
+    /**
+     * The prefix for the customer used to generate unique invoice numbers.
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'invoice_prefix'?: string;
+    /**
+     * The customer\'s default invoice settings.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeCustomer
+     */
+    'invoice_settings'?: { [key: string]: any; } | null;
+    /**
+     * The customer\'s full name or business name.
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'name'?: string;
+    /**
+     * The customer\'s phone number.
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'phone'?: string;
+    /**
+     * The customer\'s preferred locales (languages), ordered by preference.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeCustomer
+     */
+    'preferred_locales'?: { [key: string]: any; } | null;
+    /**
+     * Shipping information associated with the customer.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeCustomer
+     */
+    'shipping'?: { [key: string]: any; } | null;
+    /**
+     * Describes the customer\'s tax exemption status. When set to reverse, invoice and receipt PDFs include the text \"Reverse charge\".
+     * @type {TaxExemptEnum}
+     * @memberof StripeCustomer
+     */
+    'tax_exempt'?: TaxExemptEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'date_purged': string;
+    /**
+     * The Stripe Account this object belongs to.
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'djstripe_owner_account': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'default_source'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof StripeCustomer
+     */
+    'coupon'?: number | null;
+    /**
+     * default payment method used for subscriptions and invoices for the customer.
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'default_payment_method'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof StripeCustomer
+     */
+    'subscriber': number | null;
+}
+/**
+ * 
+ * @export
  * @interface StripeEvent
  */
 export interface StripeEvent {
@@ -4062,6 +4315,350 @@ export type StripeNextInvoiceStatusEnum = typeof StripeNextInvoiceStatusEnum[key
 /**
  * 
  * @export
+ * @interface StripePaymentMethod
+ */
+export interface StripePaymentMethod {
+    /**
+     * 
+     * @type {number}
+     * @memberof StripePaymentMethod
+     */
+    'djstripe_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripePaymentMethod
+     */
+    'djstripe_created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripePaymentMethod
+     */
+    'djstripe_updated': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripePaymentMethod
+     */
+    'id': string;
+    /**
+     * Null here indicates that the livemode status is unknown or was previously unrecorded. Otherwise, this field indicates whether this record comes from Stripe test mode or live mode operation.
+     * @type {boolean}
+     * @memberof StripePaymentMethod
+     */
+    'livemode'?: boolean | null;
+    /**
+     * The datetime this object was created in stripe.
+     * @type {string}
+     * @memberof StripePaymentMethod
+     */
+    'created'?: string | null;
+    /**
+     * A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'metadata'?: { [key: string]: any; } | null;
+    /**
+     * Billing information associated with the PaymentMethod that may be used or required by particular types of payment methods.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'billing_details': { [key: string]: any; };
+    /**
+     * The type of the PaymentMethod.
+     * @type {TypeEnum}
+     * @memberof StripePaymentMethod
+     */
+    'type': TypeEnum;
+    /**
+     * Additional information for payment methods of type `acss_debit`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'acss_debit'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `afterpay_clearpay`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'afterpay_clearpay'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `alipay`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'alipay'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `au_becs_debit`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'au_becs_debit'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `bacs_debit`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'bacs_debit'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `bancontact`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'bancontact'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `boleto`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'boleto'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `card`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'card'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `card_present`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'card_present'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `eps`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'eps'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `fpx`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'fpx'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `giropay`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'giropay'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `grabpay`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'grabpay'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `ideal`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'ideal'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `interac_present`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'interac_present'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `oxxo`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'oxxo'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `p24`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'p24'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `sepa_debit`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'sepa_debit'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `sofort`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'sofort'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `wechat_pay`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'wechat_pay'?: { [key: string]: any; } | null;
+    /**
+     * The Stripe Account this object belongs to.
+     * @type {string}
+     * @memberof StripePaymentMethod
+     */
+    'djstripe_owner_account'?: string | null;
+    /**
+     * Customer to which this PaymentMethod is saved. This will not be set when the PaymentMethod has not been saved to a Customer.
+     * @type {string}
+     * @memberof StripePaymentMethod
+     */
+    'customer'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface StripePlan
+ */
+export interface StripePlan {
+    /**
+     * 
+     * @type {number}
+     * @memberof StripePlan
+     */
+    'djstripe_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripePlan
+     */
+    'djstripe_created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripePlan
+     */
+    'djstripe_updated': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripePlan
+     */
+    'id': string;
+    /**
+     * Null here indicates that the livemode status is unknown or was previously unrecorded. Otherwise, this field indicates whether this record comes from Stripe test mode or live mode operation.
+     * @type {boolean}
+     * @memberof StripePlan
+     */
+    'livemode'?: boolean | null;
+    /**
+     * The datetime this object was created in stripe.
+     * @type {string}
+     * @memberof StripePlan
+     */
+    'created'?: string | null;
+    /**
+     * A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePlan
+     */
+    'metadata'?: { [key: string]: any; } | null;
+    /**
+     * A description of this object.
+     * @type {string}
+     * @memberof StripePlan
+     */
+    'description'?: string | null;
+    /**
+     * Whether the plan can be used for new purchases.
+     * @type {boolean}
+     * @memberof StripePlan
+     */
+    'active': boolean;
+    /**
+     * Specifies a usage aggregation strategy for plans of usage_type=metered. Allowed values are `sum` for summing up all usage during a period, `last_during_period` for picking the last usage record reported within a period, `last_ever` for picking the last usage record ever (across period bounds) or max which picks the usage record with the maximum reported usage during a period. Defaults to `sum`.
+     * @type {AggregateUsageEnum | BlankEnum}
+     * @memberof StripePlan
+     */
+    'aggregate_usage'?: AggregateUsageEnum | BlankEnum;
+    /**
+     * Amount (as decimal) to be charged on the interval specified.
+     * @type {string}
+     * @memberof StripePlan
+     */
+    'amount'?: string | null;
+    /**
+     * The unit amount in cents to be charged, represented as a decimal string with at most 12 decimal places.
+     * @type {string}
+     * @memberof StripePlan
+     */
+    'amount_decimal'?: string | null;
+    /**
+     * Describes how to compute the price per period. Either `per_unit` or `tiered`. `per_unit` indicates that the fixed amount (specified in amount) will be charged per unit in quantity (for plans with `usage_type=licensed`), or per unit of total usage (for plans with `usage_type=metered`). `tiered` indicates that the unit pricing will be computed using a tiering strategy as defined using the tiers and tiers_mode attributes.
+     * @type {BillingSchemeEnum | BlankEnum}
+     * @memberof StripePlan
+     */
+    'billing_scheme'?: BillingSchemeEnum | BlankEnum;
+    /**
+     * Three-letter ISO currency code
+     * @type {string}
+     * @memberof StripePlan
+     */
+    'currency': string;
+    /**
+     * The frequency with which a subscription should be billed.
+     * @type {IntervalEnum}
+     * @memberof StripePlan
+     */
+    'interval': IntervalEnum;
+    /**
+     * The number of intervals (specified in the interval property) between each subscription billing.
+     * @type {number}
+     * @memberof StripePlan
+     */
+    'interval_count'?: number | null;
+    /**
+     * A brief description of the plan, hidden from customers.
+     * @type {string}
+     * @memberof StripePlan
+     */
+    'nickname'?: string;
+    /**
+     * Each element represents a pricing tier. This parameter requires `billing_scheme` to be set to `tiered`.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePlan
+     */
+    'tiers'?: { [key: string]: any; } | null;
+    /**
+     * Defines if the tiering price should be `graduated` or `volume` based. In `volume`-based tiering, the maximum quantity within a period determines the per unit price, in `graduated` tiering pricing can successively change as the quantity grows.
+     * @type {TiersModeEnum | BlankEnum | NullEnum}
+     * @memberof StripePlan
+     */
+    'tiers_mode'?: TiersModeEnum | BlankEnum | NullEnum | null;
+    /**
+     * Apply a transformation to the reported usage or set quantity before computing the billed price. Cannot be combined with `tiers`.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePlan
+     */
+    'transform_usage'?: { [key: string]: any; } | null;
+    /**
+     * Number of trial period days granted when subscribing a customer to this plan. Null if the plan has no trial period.
+     * @type {number}
+     * @memberof StripePlan
+     */
+    'trial_period_days'?: number | null;
+    /**
+     * Configures how the quantity per period should be determined, can be either `metered` or `licensed`. `licensed` will automatically bill the `quantity` set for a plan when adding it to a subscription, `metered` will aggregate the total usage based on usage records. Defaults to `licensed`.
+     * @type {UsageTypeEnum}
+     * @memberof StripePlan
+     */
+    'usage_type'?: UsageTypeEnum;
+    /**
+     * The Stripe Account this object belongs to.
+     * @type {string}
+     * @memberof StripePlan
+     */
+    'djstripe_owner_account'?: string | null;
+    /**
+     * The product whose pricing this plan determines.
+     * @type {string}
+     * @memberof StripePlan
+     */
+    'product'?: string | null;
+}
+/**
+ * 
+ * @export
  * @interface StripeSubscription
  */
 export interface StripeSubscription {
@@ -4071,6 +4668,24 @@ export interface StripeSubscription {
      * @memberof StripeSubscription
      */
     'djstripe_id': number;
+    /**
+     * 
+     * @type {StripePlan}
+     * @memberof StripeSubscription
+     */
+    'plan': StripePlan;
+    /**
+     * 
+     * @type {StripePaymentMethod}
+     * @memberof StripeSubscription
+     */
+    'default_payment_method': StripePaymentMethod;
+    /**
+     * 
+     * @type {StripeSubscriptionSchedule}
+     * @memberof StripeSubscription
+     */
+    'schedule': StripeSubscriptionSchedule;
     /**
      * 
      * @type {string}
@@ -4246,12 +4861,6 @@ export interface StripeSubscription {
      */
     'customer': string;
     /**
-     * The default payment method for the subscription. It must belong to the customer associated with the subscription. If not set, invoices will use the default payment method in the customer\'s invoice settings.
-     * @type {string}
-     * @memberof StripeSubscription
-     */
-    'default_payment_method'?: string | null;
-    /**
      * The default payment source for the subscription. It must belong to the customer associated with the subscription and be in a chargeable state. If not set, defaults to the customer\'s default source.
      * @type {string}
      * @memberof StripeSubscription
@@ -4270,24 +4879,156 @@ export interface StripeSubscription {
      */
     'pending_setup_intent'?: string | null;
     /**
-     * The plan associated with this subscription. This value will be `null` for multi-plan subscriptions
-     * @type {number}
-     * @memberof StripeSubscription
-     */
-    'plan'?: number | null;
-    /**
-     * The schedule associated with this subscription.
-     * @type {number}
-     * @memberof StripeSubscription
-     */
-    'schedule'?: number | null;
-    /**
      * The tax rates that will apply to any subscription item that does not have tax_rates set. Invoices created will have their default_tax_rates populated from the subscription.
      * @type {Array<number>}
      * @memberof StripeSubscription
      */
     'default_tax_rates'?: Array<number>;
 }
+/**
+ * 
+ * @export
+ * @interface StripeSubscriptionSchedule
+ */
+export interface StripeSubscriptionSchedule {
+    /**
+     * 
+     * @type {number}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'djstripe_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'djstripe_created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'djstripe_updated': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'id': string;
+    /**
+     * Null here indicates that the livemode status is unknown or was previously unrecorded. Otherwise, this field indicates whether this record comes from Stripe test mode or live mode operation.
+     * @type {boolean}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'livemode'?: boolean | null;
+    /**
+     * The datetime this object was created in stripe.
+     * @type {string}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'created'?: string | null;
+    /**
+     * A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'metadata'?: { [key: string]: any; } | null;
+    /**
+     * A description of this object.
+     * @type {string}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'description'?: string | null;
+    /**
+     * Define thresholds at which an invoice will be sent, and the related subscription advanced to a new billing period.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'billing_thresholds'?: { [key: string]: any; } | null;
+    /**
+     * Time at which the subscription schedule was canceled.
+     * @type {string}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'canceled_at'?: string | null;
+    /**
+     * Time at which the subscription schedule was completed.
+     * @type {string}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'completed_at'?: string | null;
+    /**
+     * Object representing the start and end dates for the current phase of the subscription schedule, if it is `active`.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'current_phase'?: { [key: string]: any; } | null;
+    /**
+     * Object representing the subscription schedule\'s default settings.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'default_settings'?: { [key: string]: any; } | null;
+    /**
+     * Behavior of the subscription schedule and underlying subscription when it ends.
+     * @type {EndBehaviorEnum}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'end_behavior': EndBehaviorEnum;
+    /**
+     * Configuration for the subscription schedule\'s phases.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'phases'?: { [key: string]: any; } | null;
+    /**
+     * Time at which the subscription schedule was released.
+     * @type {string}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'released_at'?: string | null;
+    /**
+     * The present status of the subscription schedule. Possible values are `not_started`, `active`, `completed`, `released`, and `canceled`.
+     * @type {StripeSubscriptionScheduleStatusEnum}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'status': StripeSubscriptionScheduleStatusEnum;
+    /**
+     * The Stripe Account this object belongs to.
+     * @type {string}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'djstripe_owner_account'?: string | null;
+    /**
+     * The customer who owns the subscription schedule.
+     * @type {number}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'customer': number;
+    /**
+     * The subscription once managed by this subscription schedule (if it is released).
+     * @type {number}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'released_subscription'?: number | null;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const StripeSubscriptionScheduleStatusEnum = {
+    Active: 'active',
+    Canceled: 'canceled',
+    Completed: 'completed',
+    NotStarted: 'not_started',
+    Released: 'released'
+} as const;
+
+export type StripeSubscriptionScheduleStatusEnum = typeof StripeSubscriptionScheduleStatusEnum[keyof typeof StripeSubscriptionScheduleStatusEnum];
+
+
 /**
  * 
  * @export
@@ -4474,6 +5215,21 @@ export interface SystemInfoRequest {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export const TaxExemptEnum = {
+    Exempt: 'exempt',
+    None: 'none',
+    Reverse: 'reverse'
+} as const;
+
+export type TaxExemptEnum = typeof TaxExemptEnum[keyof typeof TaxExemptEnum];
+
+
+/**
+ * 
+ * @export
  * @interface TestEvent
  */
 export interface TestEvent {
@@ -4585,6 +5341,20 @@ export interface TestEventRequest {
     'device': number;
 }
 /**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const TiersModeEnum = {
+    Graduated: 'graduated',
+    Volume: 'volume'
+} as const;
+
+export type TiersModeEnum = typeof TiersModeEnum[keyof typeof TiersModeEnum];
+
+
+/**
  * Serializer for Token model.
  * @export
  * @interface Token
@@ -4610,6 +5380,53 @@ export interface TokenResponse {
      */
     'token': string;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const TypeEnum = {
+    AcssDebit: 'acss_debit',
+    AfterpayClearpay: 'afterpay_clearpay',
+    Alipay: 'alipay',
+    AuBecsDebit: 'au_becs_debit',
+    BacsDebit: 'bacs_debit',
+    Bancontact: 'bancontact',
+    Boleto: 'boleto',
+    Card: 'card',
+    CardPresent: 'card_present',
+    Eps: 'eps',
+    Fpx: 'fpx',
+    Giropay: 'giropay',
+    Grabpay: 'grabpay',
+    Ideal: 'ideal',
+    InteracPresent: 'interac_present',
+    Klarna: 'klarna',
+    Oxxo: 'oxxo',
+    P24: 'p24',
+    SepaDebit: 'sepa_debit',
+    Sofort: 'sofort',
+    WechatPay: 'wechat_pay'
+} as const;
+
+export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const UsageTypeEnum = {
+    Licensed: 'licensed',
+    Metered: 'metered'
+} as const;
+
+export type UsageTypeEnum = typeof UsageTypeEnum[keyof typeof UsageTypeEnum];
+
+
 /**
  * 
  * @export
@@ -7261,6 +8078,84 @@ export const BillingApiAxiosParamCreator = function (configuration?: Configurati
     return {
         /**
          * 
+         * @param {number} subscriptionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        billingCancelCreate: async (subscriptionId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'subscriptionId' is not null or undefined
+            assertParamExists('billingCancelCreate', 'subscriptionId', subscriptionId)
+            const localVarPath = `/api/billing/cancel/{subscription_id}`
+                .replace(`{${"subscription_id"}}`, encodeURIComponent(String(subscriptionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} subscriptionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        billingReactiveCreate: async (subscriptionId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'subscriptionId' is not null or undefined
+            assertParamExists('billingReactiveCreate', 'subscriptionId', subscriptionId)
+            const localVarPath = `/api/billing/reactive/{subscription_id}`
+                .replace(`{${"subscription_id"}}`, encodeURIComponent(String(subscriptionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7306,6 +8201,26 @@ export const BillingApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {number} subscriptionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async billingCancelCreate(subscriptionId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BillingSummary>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.billingCancelCreate(subscriptionId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} subscriptionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async billingReactiveCreate(subscriptionId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BillingSummary>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.billingReactiveCreate(subscriptionId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7325,6 +8240,24 @@ export const BillingApiFactory = function (configuration?: Configuration, basePa
     return {
         /**
          * 
+         * @param {number} subscriptionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        billingCancelCreate(subscriptionId: number, options?: any): AxiosPromise<BillingSummary> {
+            return localVarFp.billingCancelCreate(subscriptionId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} subscriptionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        billingReactiveCreate(subscriptionId: number, options?: any): AxiosPromise<BillingSummary> {
+            return localVarFp.billingReactiveCreate(subscriptionId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7342,6 +8275,24 @@ export const BillingApiFactory = function (configuration?: Configuration, basePa
 export interface BillingApiInterface {
     /**
      * 
+     * @param {number} subscriptionId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BillingApiInterface
+     */
+    billingCancelCreate(subscriptionId: number, options?: AxiosRequestConfig): AxiosPromise<BillingSummary>;
+
+    /**
+     * 
+     * @param {number} subscriptionId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BillingApiInterface
+     */
+    billingReactiveCreate(subscriptionId: number, options?: AxiosRequestConfig): AxiosPromise<BillingSummary>;
+
+    /**
+     * 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BillingApiInterface
@@ -7357,6 +8308,28 @@ export interface BillingApiInterface {
  * @extends {BaseAPI}
  */
 export class BillingApi extends BaseAPI implements BillingApiInterface {
+    /**
+     * 
+     * @param {number} subscriptionId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BillingApi
+     */
+    public billingCancelCreate(subscriptionId: number, options?: AxiosRequestConfig) {
+        return BillingApiFp(this.configuration).billingCancelCreate(subscriptionId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} subscriptionId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BillingApi
+     */
+    public billingReactiveCreate(subscriptionId: number, options?: AxiosRequestConfig) {
+        return BillingApiFp(this.configuration).billingReactiveCreate(subscriptionId, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @param {*} [options] Override http request option.
