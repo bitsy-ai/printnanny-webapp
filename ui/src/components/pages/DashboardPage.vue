@@ -145,10 +145,6 @@
             </router-link>
           </div>
         </div>
-      <!-- Pinned devices (v-slot can be replaced with #pinned )-->
-      <slot name="pinned">
-        <PinnedDevices />
-      </slot>
       <!-- Main content area (v-slot can be replaced with #content )-->
       <slot name="content">
         <DeviceList />

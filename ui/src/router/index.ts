@@ -71,6 +71,15 @@ const router = createRouter({
         await billing.fetch();
       }
     },
+    {
+      path: "/billing/cancel",
+      name: "billing-cancel",
+      component: () => import("@/views/BillingCancelView.vue"),
+      beforeEnter: async (to, from) => {
+        const billing = useBillingStore();
+        await billing.fetch();
+      }
+    },
   ],
 });
 

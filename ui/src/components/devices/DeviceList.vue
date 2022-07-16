@@ -1,6 +1,10 @@
 <template>
 <section>
     <!-- Devices list (only on smallest breakpoint) -->
+      <!-- Pinned devices (v-slot can be replaced with #pinned )-->
+    <slot name="pinned">
+        <PinnedDevices />
+    </slot>
     <div class="mt-10 sm:hidden">
         <div class="px-4 sm:px-6">
         <h2 class="text-gray-500 text-xs font-medium uppercase tracking-wide">Devices</h2>
