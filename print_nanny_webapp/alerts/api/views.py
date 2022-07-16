@@ -4,6 +4,7 @@ from rest_framework.exceptions import APIException
 
 from rest_framework import status
 from rest_framework.response import Response
+from rest_framework.generics import GenericAPIView
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import (
     ListModelMixin,
@@ -121,14 +122,51 @@ class AlertViewSet(
         return Response(serializer.data)
 
 
-##
-# Alert Settings
-##
+# ##
+# # Alert Settings
+# ##
+# @extend_schema_view(
+#     tags=["alerts"],
+#     retrieve=extend_schema(
+#         responses={200: AlertSettingsSerializer(many=False)} | generic_get_errors
+#     ),
+#     update=extend_schema(
+#         request=AlertSettingsSerializer,
+#         responses={202: AlertSettingsSerializer} | generic_update_errors,
+#     ),
+# )
+# class AlertSettingsViewSet(GenericViewSet, UpdateModelMixin):
+#     serializer_class = AlertSettingsSerializer
+#     queryset = AlertSettings.objects.all()
+#     lookup_field = "id"
+#     pagination_class = None
+
+#     def get_queryset(self):
+#         user = self.request.user
+#         return AlertSettings.objects.filter(user=user).first()
+
+#     @extend_schema(
+#         responses={
+#             200: AlertSettingsSerializer(many=False),
+#             201: AlertSettingsSerializer(many=False),
+#         }
+#         | generic_get_errors
+#     )
+#     @action(methods=["get"], detail=False, url_path="get-or-create")
+#     def get_or_create(self, _request, *args, **kwargs):
+#         instance, created = AlertSettings.objects.get_or_create(user=self.request.user)
+#         serializer = self.get_serializer(instance)
+#         if created:
+#             return Response(serializer.data, status.HTTP_201_CREATED)
+#         return Response(serializer.data, status.HTTP_200_OK)
+
+#     def perform_create(self, serializer):
+#         serializer.save(user=self.request.user)
+
+
 @extend_schema_view(
     tags=["alerts"],
-    retrieve=extend_schema(
-        responses={200: AlertSettingsSerializer(many=False)} | generic_get_errors
-    ),
+    list=extend_schema(responses=AlertSettingsSerializer),
     update=extend_schema(
         request=AlertSettingsSerializer,
         responses={202: AlertSettingsSerializer} | generic_update_errors,
@@ -140,23 +178,10 @@ class AlertSettingsViewSet(GenericViewSet, UpdateModelMixin):
     lookup_field = "id"
     pagination_class = None
 
-    def get_queryset(self):
-        user = self.request.user
-        return AlertSettings.objects.filter(user=user).first()
+    def list(self, request, **kwargs):
+        instance, _created = AlertSettings.objects.get_or_create(user=request.user)
+        serializer = AlertSettingsSerializer(instance, many=False)
 
-    @extend_schema(
-        responses={
-            200: AlertSettingsSerializer(many=False),
-            201: AlertSettingsSerializer(many=False),
-        }
-        | generic_get_errors
-    )
-    @action(methods=["get"], detail=False, url_path="get-or-create")
-    def get_or_create(self, _request, *args, **kwargs):
-        instance, created = AlertSettings.objects.get_or_create(user=self.request.user)
-        serializer = self.get_serializer(instance)
-        if created:
-            return Response(serializer.data, status.HTTP_201_CREATED)
         return Response(serializer.data, status.HTTP_200_OK)
 
     def perform_create(self, serializer):

@@ -14,30 +14,28 @@ const apiConfig = new api.Configuration({
   },
 });
 const accountsApi = api.AccountsApiFactory(apiConfig);
+const alertSettingsApi = api.AlertSettingsApi(apiConfig);
 
 export const useAccountStore = defineStore({
   id: "accounts",
   // persist option provided by: https://github.com/prazdevs/pinia-plugin-persistedstate
   persist: true,
   state: () => ({
-    /** @type { api.User } */
     user: null,
-    /** @type { api.RequiredError } */
     apiError: {},
   }),
   getters: {
     isAuthenticated: (state) => state.user !== null,
   },
   actions: {
+
     async fetchUser() {
       try {
         const userData = await accountsApi.accountsUserRetrieve();
         const user = userData.data;
         console.log("Authenticated as user", user);
         return this.$patch({
-          /** @type { api.User } */
           user: user,
-          /** @type { api.RequiredError } */
           apiError: {},
         });
       } catch (e: any) {

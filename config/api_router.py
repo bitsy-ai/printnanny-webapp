@@ -37,8 +37,16 @@ from print_nanny_webapp.octoprint.api.views import (
 
 router = DefaultRouter()
 router.register("alerts", AlertViewSet)
-router.register("alert-settings", AlertSettingsViewSet)
+router.register("alerts/settings", AlertSettingsViewSet)
+
 router.register("devices", DeviceViewSet)
+
+# extra_alerts_urls = [
+#     path(
+#         "alerts/settings",
+#         AlertSettingsView.as_view({"get": "get", "post": "update"}),
+#     )
+# ]
 
 # octoprint endpoints (PrintNanny os data model)
 
