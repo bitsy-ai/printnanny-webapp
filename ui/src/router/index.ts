@@ -4,6 +4,7 @@ import LoginView from "../views/LoginView.vue";
 import DashboardView from "../views/DashboardView.vue";
 import { useAccountStore } from "@/stores/account";
 import { useDeviceStore } from "@/stores/devices";
+import { useBillingStore } from "@/stores/billing";
 
 
 const router = createRouter({
@@ -61,7 +62,15 @@ const router = createRouter({
 
     // begin profile/settings/billings routers
     { path: "/settings", name: "settings", component: () => import("@/views/SettingsView.vue") },
-    { path: "/billing", name: "billing", component: () => import("@/views/BillingView.vue") },
+    {
+      path: "/billing",
+      name: "billing",
+      component: () => import("@/views/BillingView.vue"),
+      beforeEnter: async (to, from) => {
+        const billing = useBillingStore();
+        await billing.fetch();
+      }
+    },
   ],
 });
 

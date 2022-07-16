@@ -1,7 +1,13 @@
 from django.db import models
 from rest_framework import serializers
-from djstripe.models.billing import Subscription, UpcomingInvoice
+from djstripe.models.billing import (
+    Subscription,
+    UpcomingInvoice,
+    Plan,
+    SubscriptionSchedule,
+)
 from djstripe.models.core import Event, Customer, Charge
+from djstripe.models.payment_methods import PaymentMethod
 from djstripe.fields import StripeDateTimeField
 from djstripe.utils import convert_tstamp
 import stripe
@@ -9,7 +15,29 @@ import stripe
 from print_nanny_webapp.users.api.serializers import UserSerializer
 
 
+class StripeSubscriptionSchedule(serializers.ModelSerializer):
+    class Meta:
+        model = SubscriptionSchedule
+        fields = "__all__"
+
+
+class StripePlanSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Plan
+        fields = "__all__"
+
+
+class StripePaymentMethodSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PaymentMethod
+        fields = "__all__"
+
+
 class StripeSubscriptionSerializer(serializers.ModelSerializer):
+    plan = StripePlanSerializer()
+    default_payment_method = StripePaymentMethodSerializer()
+    schedule = StripeSubscriptionSchedule()
+
     class Meta:
         model = Subscription
         fields = "__all__"
