@@ -271,6 +271,69 @@ export interface AlertSettingsRequest {
     'print_progress_percent'?: number;
 }
 /**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const BillingReasonEnum = {
+    Manual: 'manual',
+    Subscription: 'subscription',
+    SubscriptionCreate: 'subscription_create',
+    SubscriptionCycle: 'subscription_cycle',
+    SubscriptionThreshold: 'subscription_threshold',
+    SubscriptionUpdate: 'subscription_update',
+    Upcoming: 'upcoming'
+} as const;
+
+export type BillingReasonEnum = typeof BillingReasonEnum[keyof typeof BillingReasonEnum];
+
+
+/**
+ * 
+ * @export
+ * @interface BillingSummary
+ */
+export interface BillingSummary {
+    /**
+     * 
+     * @type {StripeSubscription}
+     * @memberof BillingSummary
+     */
+    'subscription': StripeSubscription;
+    /**
+     * 
+     * @type {Array<StripeCharge>}
+     * @memberof BillingSummary
+     */
+    'charges': Array<StripeCharge>;
+    /**
+     * 
+     * @type {Array<StripeEvent>}
+     * @memberof BillingSummary
+     */
+    'events': Array<StripeEvent>;
+    /**
+     * 
+     * @type {StripeNextInvoice}
+     * @memberof BillingSummary
+     */
+    'next_invoice'?: StripeNextInvoice | null;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const BlankEnum = {
+    Empty: ''
+} as const;
+
+export type BlankEnum = typeof BlankEnum[keyof typeof BlankEnum];
+
+
+/**
  * Abstract class inspired by DRF\'s own token serializer. Returns a user if valid, None or a message if not.
  * @export
  * @interface CallbackTokenAuthRequest
@@ -476,6 +539,20 @@ export interface CloudiotDeviceRequest {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export const CollectionMethodEnum = {
+    ChargeAutomatically: 'charge_automatically',
+    SendInvoice: 'send_invoice'
+} as const;
+
+export type CollectionMethodEnum = typeof CollectionMethodEnum[keyof typeof CollectionMethodEnum];
+
+
+/**
+ * 
+ * @export
  * @interface Config
  */
 export interface Config {
@@ -492,6 +569,21 @@ export interface Config {
      */
     'device': Device;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const CustomerTaxExemptEnum = {
+    Exempt: 'exempt',
+    None: 'none',
+    Reverse: 'reverse'
+} as const;
+
+export type CustomerTaxExemptEnum = typeof CustomerTaxExemptEnum[keyof typeof CustomerTaxExemptEnum];
+
+
 /**
  * Generic auth response serializer
  * @export
@@ -795,6 +887,105 @@ export type EventTypesEnum = typeof EventTypesEnum[keyof typeof EventTypesEnum];
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export const FailureCodeEnum = {
+    AccountAlreadyExists: 'account_already_exists',
+    AccountCountryInvalidAddress: 'account_country_invalid_address',
+    AccountInvalid: 'account_invalid',
+    AccountNumberInvalid: 'account_number_invalid',
+    AlipayUpgradeRequired: 'alipay_upgrade_required',
+    AmountTooLarge: 'amount_too_large',
+    AmountTooSmall: 'amount_too_small',
+    ApiKeyExpired: 'api_key_expired',
+    BalanceInsufficient: 'balance_insufficient',
+    BankAccountExists: 'bank_account_exists',
+    BankAccountUnusable: 'bank_account_unusable',
+    BankAccountUnverified: 'bank_account_unverified',
+    BitcoinUpgradeRequired: 'bitcoin_upgrade_required',
+    CardDeclined: 'card_declined',
+    ChargeAlreadyCaptured: 'charge_already_captured',
+    ChargeAlreadyRefunded: 'charge_already_refunded',
+    ChargeDisputed: 'charge_disputed',
+    ChargeExceedsSourceLimit: 'charge_exceeds_source_limit',
+    ChargeExpiredForCapture: 'charge_expired_for_capture',
+    CountryUnsupported: 'country_unsupported',
+    CouponExpired: 'coupon_expired',
+    CustomerMaxSubscriptions: 'customer_max_subscriptions',
+    EmailInvalid: 'email_invalid',
+    ExpiredCard: 'expired_card',
+    IdempotencyKeyInUse: 'idempotency_key_in_use',
+    IncorrectAddress: 'incorrect_address',
+    IncorrectCvc: 'incorrect_cvc',
+    IncorrectNumber: 'incorrect_number',
+    IncorrectZip: 'incorrect_zip',
+    InstantPayoutsUnsupported: 'instant_payouts_unsupported',
+    InvalidCardType: 'invalid_card_type',
+    InvalidChargeAmount: 'invalid_charge_amount',
+    InvalidCvc: 'invalid_cvc',
+    InvalidExpiryMonth: 'invalid_expiry_month',
+    InvalidExpiryYear: 'invalid_expiry_year',
+    InvalidNumber: 'invalid_number',
+    InvalidSourceUsage: 'invalid_source_usage',
+    InvalidSwipeData: 'invalid_swipe_data',
+    InvoiceNoCustomerLineItems: 'invoice_no_customer_line_items',
+    InvoiceNoSubscriptionLineItems: 'invoice_no_subscription_line_items',
+    InvoiceNotEditable: 'invoice_not_editable',
+    InvoiceUpcomingNone: 'invoice_upcoming_none',
+    LivemodeMismatch: 'livemode_mismatch',
+    Missing: 'missing',
+    NotAllowedOnStandardAccount: 'not_allowed_on_standard_account',
+    OrderCreationFailed: 'order_creation_failed',
+    OrderRequiredSettings: 'order_required_settings',
+    OrderStatusInvalid: 'order_status_invalid',
+    OrderUpstreamTimeout: 'order_upstream_timeout',
+    OutOfInventory: 'out_of_inventory',
+    ParameterInvalidEmpty: 'parameter_invalid_empty',
+    ParameterInvalidInteger: 'parameter_invalid_integer',
+    ParameterInvalidStringBlank: 'parameter_invalid_string_blank',
+    ParameterInvalidStringEmpty: 'parameter_invalid_string_empty',
+    ParameterMissing: 'parameter_missing',
+    ParameterUnknown: 'parameter_unknown',
+    ParametersExclusive: 'parameters_exclusive',
+    PaymentIntentAuthenticationFailure: 'payment_intent_authentication_failure',
+    PaymentIntentIncompatiblePaymentMethod: 'payment_intent_incompatible_payment_method',
+    PaymentIntentInvalidParameter: 'payment_intent_invalid_parameter',
+    PaymentIntentPaymentAttemptFailed: 'payment_intent_payment_attempt_failed',
+    PaymentIntentUnexpectedState: 'payment_intent_unexpected_state',
+    PaymentMethodUnactivated: 'payment_method_unactivated',
+    PaymentMethodUnexpectedState: 'payment_method_unexpected_state',
+    PayoutsNotAllowed: 'payouts_not_allowed',
+    PlatformApiKeyExpired: 'platform_api_key_expired',
+    PostalCodeInvalid: 'postal_code_invalid',
+    ProcessingError: 'processing_error',
+    ProductInactive: 'product_inactive',
+    RateLimit: 'rate_limit',
+    ResourceAlreadyExists: 'resource_already_exists',
+    ResourceMissing: 'resource_missing',
+    RoutingNumberInvalid: 'routing_number_invalid',
+    SecretKeyRequired: 'secret_key_required',
+    SepaUnsupportedAccount: 'sepa_unsupported_account',
+    ShippingCalculationFailed: 'shipping_calculation_failed',
+    SkuInactive: 'sku_inactive',
+    StateUnsupported: 'state_unsupported',
+    TaxIdInvalid: 'tax_id_invalid',
+    TaxesCalculationFailed: 'taxes_calculation_failed',
+    TestmodeChargesOnly: 'testmode_charges_only',
+    TlsVersionUnsupported: 'tls_version_unsupported',
+    TokenAlreadyUsed: 'token_already_used',
+    TokenInUse: 'token_in_use',
+    TransfersNotAllowed: 'transfers_not_allowed',
+    UpstreamOrderCreationFailed: 'upstream_order_creation_failed',
+    UrlInvalid: 'url_invalid'
+} as const;
+
+export type FailureCodeEnum = typeof FailureCodeEnum[keyof typeof FailureCodeEnum];
+
+
+/**
+ * 
+ * @export
  * @interface GcodeFile
  */
 export interface GcodeFile {
@@ -1045,6 +1236,19 @@ export interface MobileAuthRequest {
      */
     'mobile': string;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const NullEnum = {
+    Null: 'null'
+} as const;
+
+export type NullEnum = typeof NullEnum[keyof typeof NullEnum];
+
+
 /**
  * 
  * @export
@@ -3100,6 +3304,1009 @@ export interface RestAuthDetail {
      */
     'detail': string;
 }
+/**
+ * 
+ * @export
+ * @interface StripeCharge
+ */
+export interface StripeCharge {
+    /**
+     * 
+     * @type {number}
+     * @memberof StripeCharge
+     */
+    'djstripe_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'djstripe_created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'djstripe_updated': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'id': string;
+    /**
+     * Null here indicates that the livemode status is unknown or was previously unrecorded. Otherwise, this field indicates whether this record comes from Stripe test mode or live mode operation.
+     * @type {boolean}
+     * @memberof StripeCharge
+     */
+    'livemode'?: boolean | null;
+    /**
+     * The datetime this object was created in stripe.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'created'?: string | null;
+    /**
+     * A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeCharge
+     */
+    'metadata'?: { [key: string]: any; } | null;
+    /**
+     * A description of this object.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'description'?: string | null;
+    /**
+     * Amount charged (as decimal).
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'amount': string;
+    /**
+     * Amount (as decimal) captured (can be less than the amount attribute on the charge if a partial capture was issued).
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'amount_captured'?: string | null;
+    /**
+     * Amount (as decimal) refunded (can be less than the amount attribute on the charge if a partial refund was issued).
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'amount_refunded': string;
+    /**
+     * ID of the Connect application that created the charge.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'application'?: string;
+    /**
+     * The amount (as decimal) of the application fee (if any) requested for the charge.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'application_fee_amount'?: string | null;
+    /**
+     * Billing information associated with the PaymentMethod at the time of the transaction.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeCharge
+     */
+    'billing_details'?: { [key: string]: any; } | null;
+    /**
+     * The full statement descriptor that is passed to card networks, and that is displayed on your customers\' credit card and bank statements. Allows you to see what the statement descriptor looks like after the static and dynamic portions are combined.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'calculated_statement_descriptor'?: string;
+    /**
+     * If the charge was created without capturing, this boolean represents whether or not it is still uncaptured or has since been captured.
+     * @type {boolean}
+     * @memberof StripeCharge
+     */
+    'captured'?: boolean;
+    /**
+     * The currency in which the charge was made.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'currency': string;
+    /**
+     * Whether the charge has been disputed.
+     * @type {boolean}
+     * @memberof StripeCharge
+     */
+    'disputed'?: boolean;
+    /**
+     * Error code explaining reason for charge failure if available.
+     * @type {FailureCodeEnum | BlankEnum}
+     * @memberof StripeCharge
+     */
+    'failure_code'?: FailureCodeEnum | BlankEnum;
+    /**
+     * Message to user further explaining reason for charge failure if available.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'failure_message'?: string;
+    /**
+     * Hash with information on fraud assessments for the charge.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeCharge
+     */
+    'fraud_details'?: { [key: string]: any; } | null;
+    /**
+     * Details about whether or not the payment was accepted, and why.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeCharge
+     */
+    'outcome'?: { [key: string]: any; } | null;
+    /**
+     * True if the charge succeeded, or was successfully authorized for later capture, False otherwise.
+     * @type {boolean}
+     * @memberof StripeCharge
+     */
+    'paid'?: boolean;
+    /**
+     * Details about the payment method at the time of the transaction.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeCharge
+     */
+    'payment_method_details'?: { [key: string]: any; } | null;
+    /**
+     * The email address that the receipt for this charge was sent to.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'receipt_email'?: string;
+    /**
+     * The transaction number that appears on email receipts sent for this charge.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'receipt_number'?: string;
+    /**
+     * This is the URL to view the receipt for this charge. The receipt is kept up-to-date to the latest state of the charge, including any refunds. If the charge is for an Invoice, the receipt will be stylized as an Invoice receipt.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'receipt_url'?: string;
+    /**
+     * Whether or not the charge has been fully refunded. If the charge is only partially refunded, this attribute will still be false.
+     * @type {boolean}
+     * @memberof StripeCharge
+     */
+    'refunded'?: boolean;
+    /**
+     * Shipping information for the charge
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeCharge
+     */
+    'shipping'?: { [key: string]: any; } | null;
+    /**
+     * For card charges, use statement_descriptor_suffix instead. Otherwise, you can use this value as the complete description of a charge on your customers\' statements. Must contain at least one letter, maximum 22 characters.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'statement_descriptor'?: string | null;
+    /**
+     * Provides information about the charge that customers see on their statements. Concatenated with the prefix (shortened descriptor) or statement descriptor that\'s set on the account to form the complete statement descriptor. Maximum 22 characters for the concatenated descriptor.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'statement_descriptor_suffix'?: string | null;
+    /**
+     * The status of the payment.
+     * @type {StripeChargeStatusEnum}
+     * @memberof StripeCharge
+     */
+    'status': StripeChargeStatusEnum;
+    /**
+     * An optional dictionary including the account to automatically transfer to as part of a destination charge.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeCharge
+     */
+    'transfer_data'?: { [key: string]: any; } | null;
+    /**
+     * A string that identifies this transaction as part of a group.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'transfer_group'?: string | null;
+    /**
+     * The Stripe Account this object belongs to.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'djstripe_owner_account'?: string | null;
+    /**
+     * The application fee (if any) for the charge.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'application_fee'?: string | null;
+    /**
+     * The balance transaction that describes the impact of this charge on your account balance (not including refunds or disputes).
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'balance_transaction'?: string | null;
+    /**
+     * The customer associated with this charge.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'customer'?: string | null;
+    /**
+     * Details about the dispute if the charge has been disputed.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'dispute'?: string | null;
+    /**
+     * The invoice this charge is for if one exists.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'invoice'?: string | null;
+    /**
+     * The account (if any) the charge was made on behalf of without triggering an automatic transfer.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'on_behalf_of'?: string | null;
+    /**
+     * PaymentIntent associated with this charge, if one exists.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'payment_intent'?: string | null;
+    /**
+     * PaymentMethod used in this charge.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'payment_method'?: string | null;
+    /**
+     * The source used for this charge.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'source'?: string | null;
+    /**
+     * The transfer which created this charge. Only present if the charge came from another Stripe account.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'source_transfer'?: string | null;
+    /**
+     * The transfer to the `destination` account (only applicable if the charge was created using the `destination` parameter).
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'transfer'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const StripeChargeStatusEnum = {
+    Failed: 'failed',
+    Pending: 'pending',
+    Succeeded: 'succeeded'
+} as const;
+
+export type StripeChargeStatusEnum = typeof StripeChargeStatusEnum[keyof typeof StripeChargeStatusEnum];
+
+
+/**
+ * 
+ * @export
+ * @interface StripeEvent
+ */
+export interface StripeEvent {
+    /**
+     * 
+     * @type {number}
+     * @memberof StripeEvent
+     */
+    'djstripe_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeEvent
+     */
+    'djstripe_created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeEvent
+     */
+    'djstripe_updated': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeEvent
+     */
+    'id': string;
+    /**
+     * Null here indicates that the livemode status is unknown or was previously unrecorded. Otherwise, this field indicates whether this record comes from Stripe test mode or live mode operation.
+     * @type {boolean}
+     * @memberof StripeEvent
+     */
+    'livemode'?: boolean | null;
+    /**
+     * The datetime this object was created in stripe.
+     * @type {string}
+     * @memberof StripeEvent
+     */
+    'created'?: string | null;
+    /**
+     * A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeEvent
+     */
+    'metadata'?: { [key: string]: any; } | null;
+    /**
+     * A description of this object.
+     * @type {string}
+     * @memberof StripeEvent
+     */
+    'description'?: string | null;
+    /**
+     * the API version at which the event data was rendered. Blank for old entries only, all new entries will have this value
+     * @type {string}
+     * @memberof StripeEvent
+     */
+    'api_version'?: string;
+    /**
+     * data received at webhook. data should be considered to be garbage until validity check is run and valid flag is set
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeEvent
+     */
+    'data': { [key: string]: any; };
+    /**
+     * Information about the request that triggered this event, for traceability purposes. If empty string then this is an old entry without that data. If Null then this is not an old entry, but a Stripe \'automated\' event with no associated request.
+     * @type {string}
+     * @memberof StripeEvent
+     */
+    'request_id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeEvent
+     */
+    'idempotency_key'?: string;
+    /**
+     * Stripe\'s event description code
+     * @type {string}
+     * @memberof StripeEvent
+     */
+    'type': string;
+    /**
+     * The Stripe Account this object belongs to.
+     * @type {string}
+     * @memberof StripeEvent
+     */
+    'djstripe_owner_account'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface StripeNextInvoice
+ */
+export interface StripeNextInvoice {
+    /**
+     * 
+     * @type {number}
+     * @memberof StripeNextInvoice
+     */
+    'djstripe_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'djstripe_created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'djstripe_updated': string;
+    /**
+     * Null here indicates that the livemode status is unknown or was previously unrecorded. Otherwise, this field indicates whether this record comes from Stripe test mode or live mode operation.
+     * @type {boolean}
+     * @memberof StripeNextInvoice
+     */
+    'livemode'?: boolean | null;
+    /**
+     * The datetime this object was created in stripe.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'created'?: string | null;
+    /**
+     * A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeNextInvoice
+     */
+    'metadata'?: { [key: string]: any; } | null;
+    /**
+     * A description of this object.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'description'?: string | null;
+    /**
+     * The country of the business associated with this invoice, most often the business creating the invoice.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'account_country'?: string;
+    /**
+     * The public name of the business associated with this invoice, most often the business creating the invoice.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'account_name'?: string;
+    /**
+     * Final amount due (as decimal) at this time for this invoice. If the invoice\'s total is smaller than the minimum charge amount, for example, or if there is account credit that can be applied to the invoice, the amount_due may be 0. If there is a positive starting_balance for the invoice (the customer owes money), the amount_due will also take that into account. The charge that gets generated for the invoice will be for the amount specified in amount_due.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'amount_due': string;
+    /**
+     * The amount, (as decimal), that was paid.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'amount_paid'?: string | null;
+    /**
+     * The amount remaining, (as decimal), that is due.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'amount_remaining'?: string | null;
+    /**
+     * The fee (as decimal) that will be applied to the invoice and transferred to the application owner\'s Stripe account when the invoice is paid.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'application_fee_amount'?: string | null;
+    /**
+     * Number of payment attempts made for this invoice, from the perspective of the payment retry schedule. Any payment attempt counts as the first attempt, and subsequently only automatic retries increment the attempt count. In other words, manual payment attempts after the first attempt do not affect the retry schedule.
+     * @type {number}
+     * @memberof StripeNextInvoice
+     */
+    'attempt_count': number;
+    /**
+     * Whether or not an attempt has been made to pay the invoice. An invoice is not attempted until 1 hour after the ``invoice.created`` webhook, for example, so you might not want to display that invoice as unpaid to your users.
+     * @type {boolean}
+     * @memberof StripeNextInvoice
+     */
+    'attempted'?: boolean;
+    /**
+     * Controls whether Stripe will perform automatic collection of the invoice. When false, the invoice\'s state will not automatically advance without an explicit action.
+     * @type {boolean}
+     * @memberof StripeNextInvoice
+     */
+    'auto_advance'?: boolean | null;
+    /**
+     * Indicates the reason why the invoice was created. subscription_cycle indicates an invoice created by a subscription advancing into a new period. subscription_create indicates an invoice created due to creating a subscription. subscription_update indicates an invoice created due to updating a subscription. subscription is set for all old invoices to indicate either a change to a subscription or a period advancement. manual is set for all invoices unrelated to a subscription (for example: created via the invoice editor). The upcoming value is reserved for simulated invoices per the upcoming invoice endpoint. subscription_threshold indicates an invoice created due to a billing threshold being reached.
+     * @type {BillingReasonEnum | BlankEnum}
+     * @memberof StripeNextInvoice
+     */
+    'billing_reason'?: BillingReasonEnum | BlankEnum;
+    /**
+     * When charging automatically, Stripe will attempt to pay this invoice using the default source attached to the customer. When sending an invoice, Stripe will email this invoice to the customer with payment instructions.
+     * @type {CollectionMethodEnum | NullEnum}
+     * @memberof StripeNextInvoice
+     */
+    'collection_method'?: CollectionMethodEnum | NullEnum | null;
+    /**
+     * Three-letter ISO currency code
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'currency': string;
+    /**
+     * The customer\'s address. Until the invoice is finalized, this field will equal customer.address. Once the invoice is finalized, this field will no longer be updated.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeNextInvoice
+     */
+    'customer_address'?: { [key: string]: any; } | null;
+    /**
+     * The customer\'s email. Until the invoice is finalized, this field will equal customer.email. Once the invoice is finalized, this field will no longer be updated.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'customer_email'?: string;
+    /**
+     * The customer\'s name. Until the invoice is finalized, this field will equal customer.name. Once the invoice is finalized, this field will no longer be updated.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'customer_name'?: string;
+    /**
+     * The customer\'s phone number. Until the invoice is finalized, this field will equal customer.phone. Once the invoice is finalized, this field will no longer be updated.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'customer_phone'?: string;
+    /**
+     * The customer\'s shipping information. Until the invoice is finalized, this field will equal customer.shipping. Once the invoice is finalized, this field will no longer be updated.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeNextInvoice
+     */
+    'customer_shipping'?: { [key: string]: any; } | null;
+    /**
+     * The customer\'s tax exempt status. Until the invoice is finalized, this field will equal customer.tax_exempt. Once the invoice is finalized, this field will no longer be updated.
+     * @type {CustomerTaxExemptEnum}
+     * @memberof StripeNextInvoice
+     */
+    'customer_tax_exempt'?: CustomerTaxExemptEnum;
+    /**
+     * Describes the current discount applied to this subscription, if there is one. When billing, a discount applied to a subscription overrides a discount applied on a customer-wide basis.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeNextInvoice
+     */
+    'discount'?: { [key: string]: any; } | null;
+    /**
+     * The date on which payment for this invoice is due. This value will be null for invoices where billing=charge_automatically.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'due_date'?: string | null;
+    /**
+     * Ending customer balance (in cents) after attempting to pay invoice. If the invoice has not been attempted yet, this will be null.
+     * @type {number}
+     * @memberof StripeNextInvoice
+     */
+    'ending_balance'?: number | null;
+    /**
+     * Footer displayed on the invoice.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'footer'?: string;
+    /**
+     * The URL for the hosted invoice page, which allows customers to view and pay an invoice. If the invoice has not been frozen yet, this will be null.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'hosted_invoice_url'?: string;
+    /**
+     * The link to download the PDF for the invoice. If the invoice has not been frozen yet, this will be null.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'invoice_pdf'?: string;
+    /**
+     * The time at which payment will next be attempted.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'next_payment_attempt'?: string | null;
+    /**
+     * A unique, identifying string that appears on emails sent to the customer for this invoice. This starts with the customer\'s unique invoice_prefix if it is specified.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'number'?: string;
+    /**
+     * Whether payment was successfully collected for this invoice. An invoice can be paid (most commonly) with a charge or with credit from the customer\'s account balance.
+     * @type {boolean}
+     * @memberof StripeNextInvoice
+     */
+    'paid'?: boolean;
+    /**
+     * End of the usage period during which invoice items were added to this invoice.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'period_end': string;
+    /**
+     * Start of the usage period during which invoice items were added to this invoice.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'period_start': string;
+    /**
+     * Total amount (in cents) of all post-payment credit notes issued for this invoice.
+     * @type {number}
+     * @memberof StripeNextInvoice
+     */
+    'post_payment_credit_notes_amount'?: number | null;
+    /**
+     * Total amount (in cents) of all pre-payment credit notes issued for this invoice.
+     * @type {number}
+     * @memberof StripeNextInvoice
+     */
+    'pre_payment_credit_notes_amount'?: number | null;
+    /**
+     * This is the transaction number that appears on email receipts sent for this invoice.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'receipt_number'?: string | null;
+    /**
+     * Starting customer balance (in cents) before attempting to pay invoice. If the invoice has not been attempted yet, this will be the current customer balance.
+     * @type {number}
+     * @memberof StripeNextInvoice
+     */
+    'starting_balance': number;
+    /**
+     * An arbitrary string to be displayed on your customer\'s credit card statement. The statement description may not include <>\"\' characters, and will appear on your customer\'s statement in capital letters. Non-ASCII characters are automatically stripped. While most banks display this information consistently, some may display it incorrectly or not at all.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'statement_descriptor'?: string;
+    /**
+     * The status of the invoice, one of draft, open, paid, uncollectible, or void.
+     * @type {StripeNextInvoiceStatusEnum | BlankEnum}
+     * @memberof StripeNextInvoice
+     */
+    'status'?: StripeNextInvoiceStatusEnum | BlankEnum;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeNextInvoice
+     */
+    'status_transitions'?: { [key: string]: any; } | null;
+    /**
+     * Only set for upcoming invoices that preview prorations. The time used to calculate prorations.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'subscription_proration_date'?: string | null;
+    /**
+     * Total (as decimal) of all subscriptions, invoice items, and prorations on the invoice before any discount or tax is applied.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'subtotal': string;
+    /**
+     * The amount (as decimal) of tax included in the total, calculated from ``tax_percent`` and the subtotal. If no ``tax_percent`` is defined, this value will be null.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'tax'?: string | null;
+    /**
+     * This percentage of the subtotal has been added to the total amount of the invoice, including invoice line items and discounts. This field is inherited from the subscription\'s ``tax_percent`` field, but can be changed before the invoice is paid. This field defaults to null.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'tax_percent'?: string | null;
+    /**
+     * If billing_reason is set to subscription_threshold this returns more information on which threshold rules triggered the invoice.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeNextInvoice
+     */
+    'threshold_reason'?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'total': string;
+    /**
+     * The time at which webhooks for this invoice were successfully delivered (if the invoice had no webhooks to deliver, this will match `date`). Invoice payment is delayed until webhooks are delivered, or until all webhook delivery attempts have been exhausted.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'webhooks_delivered_at'?: string | null;
+    /**
+     * The Stripe Account this object belongs to.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'djstripe_owner_account'?: string | null;
+    /**
+     * The latest charge generated for this invoice, if any.
+     * @type {number}
+     * @memberof StripeNextInvoice
+     */
+    'charge'?: number | null;
+    /**
+     * The customer associated with this invoice.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'customer': string;
+    /**
+     * Default payment method for the invoice. It must belong to the customer associated with the invoice. If not set, defaults to the subscription\'s default payment method, if any, or to the default payment method in the customer\'s invoice settings.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'default_payment_method'?: string | null;
+    /**
+     * The PaymentIntent associated with this invoice. The PaymentIntent is generated when the invoice is finalized, and can then be used to pay the invoice.Note that voiding an invoice will cancel the PaymentIntent
+     * @type {number}
+     * @memberof StripeNextInvoice
+     */
+    'payment_intent'?: number | null;
+    /**
+     * The subscription that this invoice was prepared for, if any.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'subscription'?: string | null;
+    /**
+     * The default payment source for the invoice. It must belong to the customer associated with the invoice and be in a chargeable state. If not set, defaults to the subscription\'s default source, if any, or to the customer\'s default source.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'default_source'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const StripeNextInvoiceStatusEnum = {
+    Draft: 'draft',
+    Open: 'open',
+    Paid: 'paid',
+    Uncollectible: 'uncollectible',
+    Void: 'void'
+} as const;
+
+export type StripeNextInvoiceStatusEnum = typeof StripeNextInvoiceStatusEnum[keyof typeof StripeNextInvoiceStatusEnum];
+
+
+/**
+ * 
+ * @export
+ * @interface StripeSubscription
+ */
+export interface StripeSubscription {
+    /**
+     * 
+     * @type {number}
+     * @memberof StripeSubscription
+     */
+    'djstripe_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'djstripe_created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'djstripe_updated': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'id': string;
+    /**
+     * Null here indicates that the livemode status is unknown or was previously unrecorded. Otherwise, this field indicates whether this record comes from Stripe test mode or live mode operation.
+     * @type {boolean}
+     * @memberof StripeSubscription
+     */
+    'livemode'?: boolean | null;
+    /**
+     * The datetime this object was created in stripe.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'created'?: string | null;
+    /**
+     * A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeSubscription
+     */
+    'metadata'?: { [key: string]: any; } | null;
+    /**
+     * A description of this object.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'description'?: string | null;
+    /**
+     * A positive decimal that represents the fee percentage of the subscription invoice amount that will be transferred to the application owner\'s Stripe account each billing period.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'application_fee_percent'?: string | null;
+    /**
+     * Determines the date of the first full invoice, and, for plans with `month` or `year` intervals, the day of the month for subsequent invoices.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'billing_cycle_anchor'?: string | null;
+    /**
+     * Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeSubscription
+     */
+    'billing_thresholds'?: { [key: string]: any; } | null;
+    /**
+     * A date in the future at which the subscription will automatically get canceled.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'cancel_at'?: string | null;
+    /**
+     * If the subscription has been canceled with the ``at_period_end`` flag set to true, ``cancel_at_period_end`` on the subscription will be true. You can use this attribute to determine whether a subscription that has a status of active is scheduled to be canceled at the end of the current period.
+     * @type {boolean}
+     * @memberof StripeSubscription
+     */
+    'cancel_at_period_end'?: boolean;
+    /**
+     * If the subscription has been canceled, the date of that cancellation. If the subscription was canceled with ``cancel_at_period_end``, canceled_at will still reflect the date of the initial cancellation request, not the end of the subscription period when the subscription is automatically moved to a canceled state.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'canceled_at'?: string | null;
+    /**
+     * Either `charge_automatically`, or `send_invoice`. When charging automatically, Stripe will attempt to pay this subscription at the end of the cycle using the default source attached to the customer. When sending an invoice, Stripe will email your customer an invoice with payment instructions.
+     * @type {CollectionMethodEnum}
+     * @memberof StripeSubscription
+     */
+    'collection_method': CollectionMethodEnum;
+    /**
+     * End of the current period for which the subscription has been invoiced. At the end of this period, a new invoice will be created.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'current_period_end': string;
+    /**
+     * Start of the current period for which the subscription has been invoiced.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'current_period_start': string;
+    /**
+     * Number of days a customer has to pay invoices generated by this subscription. This value will be `null` for subscriptions where `billing=charge_automatically`.
+     * @type {number}
+     * @memberof StripeSubscription
+     */
+    'days_until_due'?: number | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeSubscription
+     */
+    'discount'?: { [key: string]: any; } | null;
+    /**
+     * If the subscription has ended (either because it was canceled or because the customer was switched to a subscription to a new plan), the date the subscription ended.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'ended_at'?: string | null;
+    /**
+     * Specifies the approximate timestamp on which any pending invoice items will be billed according to the schedule provided at pending_invoice_item_interval.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'next_pending_invoice_item_invoice'?: string | null;
+    /**
+     * Specifies an interval for how often to bill for any pending invoice items. It is analogous to calling Create an invoice for the given subscription at the specified interval.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeSubscription
+     */
+    'pending_invoice_item_interval'?: { [key: string]: any; } | null;
+    /**
+     * If specified, pending updates that will be applied to the subscription once the latest_invoice has been paid.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeSubscription
+     */
+    'pending_update'?: { [key: string]: any; } | null;
+    /**
+     * The quantity applied to this subscription. This value will be `null` for multi-plan subscriptions
+     * @type {number}
+     * @memberof StripeSubscription
+     */
+    'quantity'?: number | null;
+    /**
+     * Date when the subscription was first created. The date might differ from the created date due to backdating.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'start_date'?: string | null;
+    /**
+     * The status of this subscription.
+     * @type {StripeSubscriptionStatusEnum}
+     * @memberof StripeSubscription
+     */
+    'status': StripeSubscriptionStatusEnum;
+    /**
+     * If the subscription has a trial, the end of that trial.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'trial_end'?: string | null;
+    /**
+     * If the subscription has a trial, the beginning of that trial.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'trial_start'?: string | null;
+    /**
+     * The Stripe Account this object belongs to.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'djstripe_owner_account'?: string | null;
+    /**
+     * The customer associated with this subscription.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'customer': string;
+    /**
+     * The default payment method for the subscription. It must belong to the customer associated with the subscription. If not set, invoices will use the default payment method in the customer\'s invoice settings.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'default_payment_method'?: string | null;
+    /**
+     * The default payment source for the subscription. It must belong to the customer associated with the subscription and be in a chargeable state. If not set, defaults to the customer\'s default source.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'default_source'?: string | null;
+    /**
+     * The most recent invoice this subscription has generated.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'latest_invoice'?: string | null;
+    /**
+     * We can use this SetupIntent to collect user authentication when creating a subscription without immediate payment or updating a subscription\'s payment method, allowing you to optimize for off-session payments.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'pending_setup_intent'?: string | null;
+    /**
+     * The plan associated with this subscription. This value will be `null` for multi-plan subscriptions
+     * @type {number}
+     * @memberof StripeSubscription
+     */
+    'plan'?: number | null;
+    /**
+     * The schedule associated with this subscription.
+     * @type {number}
+     * @memberof StripeSubscription
+     */
+    'schedule'?: number | null;
+    /**
+     * The tax rates that will apply to any subscription item that does not have tax_rates set. Invoices created will have their default_tax_rates populated from the subscription.
+     * @type {Array<number>}
+     * @memberof StripeSubscription
+     */
+    'default_tax_rates'?: Array<number>;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const StripeSubscriptionStatusEnum = {
+    Active: 'active',
+    Canceled: 'canceled',
+    Incomplete: 'incomplete',
+    IncompleteExpired: 'incomplete_expired',
+    PastDue: 'past_due',
+    Trialing: 'trialing',
+    Unpaid: 'unpaid'
+} as const;
+
+export type StripeSubscriptionStatusEnum = typeof StripeSubscriptionStatusEnum[keyof typeof StripeSubscriptionStatusEnum];
+
+
 /**
  * 
  * @export
@@ -6042,6 +7249,122 @@ export class AuthApi extends BaseAPI implements AuthApiInterface {
      */
     public authVerifyMobileCreate(options?: AxiosRequestConfig) {
         return AuthApiFp(this.configuration).authVerifyMobileCreate(options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * BillingApi - axios parameter creator
+ * @export
+ */
+export const BillingApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        billingSummaryRetrieve: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/billing/summary`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * BillingApi - functional programming interface
+ * @export
+ */
+export const BillingApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = BillingApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async billingSummaryRetrieve(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BillingSummary>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.billingSummaryRetrieve(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * BillingApi - factory interface
+ * @export
+ */
+export const BillingApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = BillingApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        billingSummaryRetrieve(options?: any): AxiosPromise<BillingSummary> {
+            return localVarFp.billingSummaryRetrieve(options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * BillingApi - interface
+ * @export
+ * @interface BillingApi
+ */
+export interface BillingApiInterface {
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BillingApiInterface
+     */
+    billingSummaryRetrieve(options?: AxiosRequestConfig): AxiosPromise<BillingSummary>;
+
+}
+
+/**
+ * BillingApi - object-oriented interface
+ * @export
+ * @class BillingApi
+ * @extends {BaseAPI}
+ */
+export class BillingApi extends BaseAPI implements BillingApiInterface {
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BillingApi
+     */
+    public billingSummaryRetrieve(options?: AxiosRequestConfig) {
+        return BillingApiFp(this.configuration).billingSummaryRetrieve(options).then((request) => request(this.axios, this.basePath));
     }
 }
 
