@@ -36,8 +36,8 @@ from print_nanny_webapp.octoprint.api.views import (
 
 
 router = DefaultRouter()
-router.register("alerts", AlertViewSet)
-router.register("alerts/settings", AlertSettingsViewSet)
+router.register("alerts", AlertViewSet, basename="alerts")
+router.register(r"alert-settings", AlertSettingsViewSet, basename="alert-settings")
 
 router.register("devices", DeviceViewSet)
 

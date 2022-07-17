@@ -135,7 +135,7 @@ class OctoPrintServerViewSet(
 @extend_schema_view(
     list=extend_schema(
         responses={
-            200: OctoPrintSettingsSerializer(),
+            200: OctoPrintSettingsSerializer,
         }
         | generic_list_errors,
     ),

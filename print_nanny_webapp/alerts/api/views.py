@@ -4,12 +4,12 @@ from rest_framework.exceptions import APIException
 
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.generics import GenericAPIView
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import (
     ListModelMixin,
     RetrieveModelMixin,
     UpdateModelMixin,
+    CreateModelMixin,
 )
 from rest_framework.decorators import action
 from django.apps import apps
@@ -172,7 +172,9 @@ class AlertViewSet(
         responses={202: AlertSettingsSerializer} | generic_update_errors,
     ),
 )
-class AlertSettingsViewSet(GenericViewSet, UpdateModelMixin):
+class AlertSettingsViewSet(
+    GenericViewSet, CreateModelMixin, ListModelMixin, UpdateModelMixin
+):
     serializer_class = AlertSettingsSerializer
     queryset = AlertSettings.objects.all()
     lookup_field = "id"
