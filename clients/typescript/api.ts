@@ -917,7 +917,7 @@ export type EventSource = typeof EventSource[keyof typeof EventSource];
  */
 
 export const EventTypeEnum = {
-    PrintHealth: 'PrintHealth',
+    PrintQuality: 'PrintQuality',
     PrintStatus: 'PrintStatus',
     PrintNannyWebapp: 'PrintNannyWebapp',
     PrintProgress: 'PrintProgress',
@@ -939,7 +939,7 @@ export type EventTypeEnum = typeof EventTypeEnum[keyof typeof EventTypeEnum];
  */
 
 export const EventTypesEnum = {
-    PrintHealth: 'PrintHealth',
+    PrintQuality: 'PrintQuality',
     PrintStatus: 'PrintStatus'
 } as const;
 
