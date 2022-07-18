@@ -19,8 +19,11 @@ export const useBillingStore = defineStore({
   id: "billing",
   state: () => ({
     /** @type { BillingSummary } */
-    summary: {},
+    summary: null
   }),
+  getters: {
+    billingFormReady: (state) => state.summary !== null
+  },
   actions: {
     async cancel() {
       const alerts = useAlertStore();

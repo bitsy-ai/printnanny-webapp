@@ -68,29 +68,7 @@ const router = createRouter({
     {
       path: "/settings/billing",
       name: "billing",
-      component: () => import("@/views/BillingView.vue"),
-      beforeEnter: async (to, from) => {
-        const billing = useBillingStore();
-        await billing.fetch();
-      },
-    },
-    {
-      path: "/settings/billing/cancel",
-      name: "billing-cancel",
-      component: () => import("@/views/BillingCancelView.vue"),
-      beforeEnter: async (to, from) => {
-        const billing = useBillingStore();
-        await billing.fetch();
-      },
-    },
-    {
-      path: "/settings//billing/update",
-      name: "billing-update",
-      component: () => import("@/views/BillingUpdateView.vue"),
-      beforeEnter: async (to, from) => {
-        const billing = useBillingStore();
-        await billing.fetch();
-      },
+      component: () => import("@/views/SettingsView.vue"),
     },
     {
       path: "/privacy",

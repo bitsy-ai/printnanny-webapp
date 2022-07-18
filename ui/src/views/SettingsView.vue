@@ -2,7 +2,7 @@
 import FooterNav from "@/components/nav/FooterNav.vue";
 import StickyAlerts from "@/components/alerts/StickyAlerts.vue";
 import DashboardPage from "@/components/pages/DashboardPage.vue";
-import SubscriptionDashboard from "@/components/billing/SubscriptionDashboard.vue";
+import BillingForm from "@/components/forms/BillingForm.vue";
 import AlertSettingsForm from "@/components/forms/AlertSettingsForm.vue";
 import { RouterLink, useRouter } from "vue-router";
 
@@ -11,7 +11,7 @@ const router = useRouter();
 
 const navigation = [
   { name: 'Notifications', link: {name: 'alertSettings' }, icon: BellIcon, key: 'alertSettings', component: AlertSettingsForm },
-  { name: 'Plan & Billing', link: {name: 'billing' }, icon: CreditCardIcon, key: 'billing', component: SubscriptionDashboard },
+  { name: 'Plan & Billing', link: {name: 'billing' }, icon: CreditCardIcon, key: 'billing', component: BillingForm },
 ]
 
 function isActiveRoute(key){
@@ -42,8 +42,10 @@ function isActiveRoute(key){
             </aside>
 
             <!-- settings section content -->
-            <section v-for="item in navigation" class="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
-                <component :is="item.component" v-if="isActiveRoute(item.key)"/>
+            <section class="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
+              <main v-for="item in navigation">
+                <component :is="item.component" v-show="isActiveRoute(item.key)"/>
+              </main>
             </section>
         </div>
       </template>
