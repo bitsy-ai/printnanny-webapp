@@ -124,10 +124,7 @@ cypress-ci: octoprint-wait
 sandbox-logs:
 	kubectl logs --all-containers -l branch=$(GIT_BRANCH)
 ui:
-	npm install && npm run build
-
-vue:
-	cd print_nanny_vue && yarn install && yarn run build
+	cd ui && npm install && npm run build
 
 docker-image:
 	DOCKER_BUILDKIT=1 docker build \
@@ -153,9 +150,6 @@ local-clean:
 
 local-creds: .envs/.local/key.json
 	echo "Mounted Google Cloud Platform service account key from .envs/.local/key.json with id $(shell cat .envs/.local/key.json | jq .private_key_id)"
-
-local-vue-build:
-	cd print_nanny_vue && yarn install && yarn run dev
 
 local-image-build:
 	DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f local.yml build
@@ -302,6 +296,7 @@ gh-namespace-deploy: clean-dist dist/k8s build cluster-config
 	CLUSTER=$(CLUSTER) \
 	PRINTNANNY_NAMESPACE=$(PRINTNANNY_NAMESPACE) \
 		./tools/rollout.sh
+
 prod-apply: cluster-config
 	GIT_SHA=$(GIT_SHA) k8s/prod/push.sh
 
@@ -313,9 +308,6 @@ blog-deploy:
 lint:
 	black print_nanny_webapp
 	black config
-
-vue-dev:
-	cd print_nanny_vue && npm run dev
 
 clean-ts-client:
 	find . -name '*.hot-update.js' -exec rm -fr {} +
