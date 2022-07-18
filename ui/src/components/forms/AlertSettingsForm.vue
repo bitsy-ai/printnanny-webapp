@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { useAlertStore } from "@/stores/alerts";
-import { Field, ErrorMessage, Form } from "vee-validate";
-import type * as apiTypes from "printnanny-api-client";
 
 const alertStore = useAlertStore();
 alertStore.fetchSettingsMetadata();
@@ -41,15 +39,17 @@ alertStore.fetchSettings();
             </div>
             <div class="mt-4 space-y-4">
               <div
-                v-for="(option, index) in alertStore.alertSettingsFieldset.event_types
-                  .child.choices"
+                v-for="(option, index) in alertStore.alertSettingsFieldset
+                  .event_types.child.choices"
                 :key="index"
                 class="relative flex items-start"
               >
                 <div class="flex items-center h-5">
                   <input
                     id="comments"
-                    :checked="alertStore.settings?.event_types?.includes(option.value)"
+                    :checked="
+                      alertStore.settings?.event_types?.includes(option.value)
+                    "
                     value="{{ option.value}}"
                     name="{{option.value}}"
                     type="checkbox"

@@ -3,16 +3,8 @@ import * as api from "printnanny-api-client";
 import type * as apiTypes from "printnanny-api-client";
 import { useAlertStore } from "./alerts";
 import type { UiAlert } from "@/types";
-
-const apiConfig = new api.Configuration({
-  basePath: window.location.origin,
-  baseOptions: {
-    xsrfCookieName: "csrftoken",
-    xsrfHeaderName: "X-CSRFTOKEN",
-    withCredentials: true,
-  },
-});
-const devicesApi = api.DevicesApiFactory(apiConfig);
+import { ApiConfig } from "@/utils/api";
+const devicesApi = api.DevicesApiFactory(ApiConfig);
 
 export const useDeviceStore = defineStore({
   id: "devices",
@@ -31,7 +23,8 @@ export const useDeviceStore = defineStore({
           hostname,
           fqdn: `${hostname}.local`,
         };
-        const res = devicesApi.devicesCreate(req);
+        const res = await devicesApi.devicesCreate(req);
+        console.log("Created device: ", res.data);
       } catch (e: any) {
         if (e.isAxiosError) {
           const alerts = useAlertStore();
@@ -52,8 +45,7 @@ export const useDeviceStore = defineStore({
             header: e.response.statusText,
             message: msg,
             error: e,
-            actions: []
-
+            actions: [],
           };
           alerts.push(alert);
           console.error(e.response);
@@ -90,7 +82,7 @@ export const useDeviceStore = defineStore({
             header: e.response.statusText,
             message: msg,
             error: e,
-            actions: []
+            actions: [],
           };
           alerts.push(alert);
           console.error(e.response);

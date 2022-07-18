@@ -63,7 +63,7 @@
             <!-- device list -->
             <tr
               v-for="device in deviceStore.devices"
-              v-if="!deviceStore.showEmpty"
+              v-show="!deviceStore.showEmpty"
               :key="device.id"
               class="flex-row"
             >

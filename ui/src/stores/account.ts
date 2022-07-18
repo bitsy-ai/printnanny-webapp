@@ -3,16 +3,8 @@ import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
 import { useAlertStore } from "./alerts";
 import { useRouter } from "vue-router";
-
-const apiConfig = new api.Configuration({
-  basePath: window.location.origin,
-  baseOptions: {
-    xsrfCookieName: "csrftoken",
-    xsrfHeaderName: "X-CSRFTOKEN",
-    withCredentials: true,
-  },
-});
-const accountsApi = api.AccountsApiFactory(apiConfig);
+import { ApiConfig } from "@/utils/api";
+const accountsApi = api.AccountsApiFactory(ApiConfig);
 
 export const useAccountStore = defineStore({
   id: "accounts",
@@ -30,12 +22,12 @@ export const useAccountStore = defineStore({
       try {
         const req: api.EmailWaitlistRequest = { email };
         const res = await accountsApi.accountsEmailWaitlistCreate(req);
+        console.debug("accountsApi.accountsEmailWaitlistCreate rsponse", res);
         const alert: UiAlert = {
           header: "Thanks for signing up!",
           error: undefined,
           message: `We'll send an email to ${email} when beta spots open. `,
-          actions: []
-
+          actions: [],
         };
         alerts.push(alert);
       } catch (e: any) {
@@ -52,8 +44,7 @@ export const useAccountStore = defineStore({
             header: e.response.statusText,
             message: msg,
             error: e,
-            actions: []
-
+            actions: [],
           };
           alerts.push(alert);
           console.error(e.response);
@@ -108,8 +99,7 @@ export const useAccountStore = defineStore({
             header: e.response.statusText,
             message: msg,
             error: e,
-            actions: []
-
+            actions: [],
           };
           alerts.push(alert);
           console.error(e.response);

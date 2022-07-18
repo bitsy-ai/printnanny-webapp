@@ -1,15 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, useRouter } from "vue-router";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
-import {
-  SelectorIcon,
-  CogIcon,
-  CreditCardIcon,
-  BellIcon,
-} from "@heroicons/vue/solid";
-
-import { useAccountStore } from "@/stores/account";
-const account = useAccountStore();
+import { CogIcon, CreditCardIcon, BellIcon } from "@heroicons/vue/solid";
 
 const router = useRouter();
 
@@ -67,56 +59,34 @@ const linkItems = [
         class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-200 focus:outline-none"
       >
         <div class="py-1">
-          <MenuItem v-slot="{ active }">
-            <a
-              href="#"
+          <MenuItem
+            v-for="item in menuItems"
+            v-slot="{ active }"
+            :key="item.name"
+          >
+            <router-link
+              :to="item.link"
               :class="[
                 active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                 'block px-4 py-2 text-sm',
               ]"
-              >View profile</a
-            >
-          </MenuItem>
-          <MenuItem v-slot="{ active }">
-            <a
-              href="#"
-              :class="[
-                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                'block px-4 py-2 text-sm',
-              ]"
-              >Settings</a
-            >
-          </MenuItem>
-          <MenuItem v-slot="{ active }">
-            <a
-              href="#"
-              :class="[
-                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                'block px-4 py-2 text-sm',
-              ]"
-              >Notifications</a
+              >{{ item.name }}</router-link
             >
           </MenuItem>
         </div>
         <div class="py-1">
-          <MenuItem v-slot="{ active }">
+          <MenuItem
+            v-for="item in linkItems"
+            v-slot="{ active }"
+            :key="item.name"
+          >
             <a
-              href="#"
+              :href="item.href"
               :class="[
                 active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                 'block px-4 py-2 text-sm',
               ]"
-              >Get desktop app</a
-            >
-          </MenuItem>
-          <MenuItem v-slot="{ active }">
-            <a
-              href="#"
-              :class="[
-                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                'block px-4 py-2 text-sm',
-              ]"
-              >Support</a
+              >{{ item.name }}</a
             >
           </MenuItem>
         </div>

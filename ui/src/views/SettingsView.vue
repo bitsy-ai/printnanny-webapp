@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import FooterNav from "@/components/nav/FooterNav.vue";
 import StickyAlerts from "@/components/alerts/StickyAlerts.vue";
 import DashboardPage from "@/components/pages/DashboardPage.vue";
 import BillingForm from "@/components/forms/BillingForm.vue";
@@ -75,7 +74,7 @@ function isActiveRoute(key: string) {
 
             <!-- settings section content -->
             <section class="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
-              <main v-for="item in navigation">
+              <main v-for="item in navigation" :key="item.key">
                 <component
                   :is="item.component"
                   v-show="isActiveRoute(item.key)"

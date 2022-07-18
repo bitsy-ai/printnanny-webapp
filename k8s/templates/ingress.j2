@@ -27,6 +27,8 @@ spec:
       - printnanny.ai
       - dl.printnanny.ai
       - download.printnanny.ai
+      - api.printnanny.ai
+      - www.printnanny.ai
       {% endif %}
       - {{ PRINTNANNY_NAMESPACE }}.printnanny.ai
       - janus.{{ PRINTNANNY_NAMESPACE }}.printnanny.ai
@@ -41,6 +43,16 @@ spec:
     # live www and api
     {% if PRINTNANNY_NAMESPACE == 'live' %}
     - host: printnanny.ai
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: django
+                port:
+                  number: 80
+    - host: api.printnanny.ai
       http:
         paths:
           - path: /

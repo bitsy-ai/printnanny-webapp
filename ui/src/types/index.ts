@@ -7,7 +7,6 @@ import type { FunctionalComponent, HTMLAttributes, VNodeProps } from "vue";
 export interface AlertAction {
   color: string;
   text: string;
-  onClick: Function;
 }
 
 export interface UiAlert {
@@ -15,7 +14,7 @@ export interface UiAlert {
   header: string;
   icon?: FunctionalComponent<HTMLAttributes & VNodeProps>;
   actions: Array<AlertAction>;
-  error: Error | undefined
+  error: Error | undefined;
 }
 
 // TODO union of | apiTypes.Alert

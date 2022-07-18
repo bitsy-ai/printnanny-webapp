@@ -3,21 +3,13 @@ import * as api from "printnanny-api-client";
 import { useAlertStore } from "./alerts";
 import type { UiAlert } from "@/types";
 import { useRouter } from "vue-router";
-
-const apiConfig = new api.Configuration({
-  basePath: window.location.origin,
-  baseOptions: {
-    xsrfCookieName: "csrftoken",
-    xsrfHeaderName: "X-CSRFTOKEN",
-    withCredentials: true,
-  },
-});
-const billingApi = api.BillingApiFactory(apiConfig);
+import { ApiConfig } from "@/utils/api";
+const billingApi = api.BillingApiFactory(ApiConfig);
 
 export const useBillingStore = defineStore({
   id: "billing",
   state: () => ({
-    summary: undefined as api.BillingSummary | undefined
+    summary: undefined as api.BillingSummary | undefined,
   }),
   getters: {
     billingFormReady: (state) => state.summary !== undefined,
@@ -26,7 +18,9 @@ export const useBillingStore = defineStore({
     async cancel() {
       const alerts = useAlertStore();
       const router = useRouter();
-      if (this.summary == undefined) { return }
+      if (this.summary == undefined) {
+        return;
+      }
       try {
         const res = await billingApi.billingCancelCreate(
           parseInt(this.summary.subscription.id)
@@ -65,7 +59,7 @@ export const useBillingStore = defineStore({
             header: e.response.statusText,
             message: msg,
             error: e,
-            actions: []
+            actions: [],
           };
           alerts.push(alert);
           console.error(e.response);
@@ -78,7 +72,7 @@ export const useBillingStore = defineStore({
       const alerts = useAlertStore();
       const router = useRouter();
       if (this.summary === undefined) {
-        return
+        return;
       } else {
         try {
           const res = await billingApi.billingReactivateCreate(
@@ -93,7 +87,7 @@ export const useBillingStore = defineStore({
             header: "Subscription reactivated",
             message:
               "Welcome back! Email support@printnanny.ai if you need any further assistance.",
-            error: undefined
+            error: undefined,
           };
           alerts.push(alert);
           this.$patch({ summary: res.data });
@@ -118,8 +112,7 @@ export const useBillingStore = defineStore({
               header: e.response.statusText,
               message: msg,
               error: e,
-              actions: []
-
+              actions: [],
             };
             alerts.push(alert);
             console.error(e.response);
@@ -154,8 +147,7 @@ export const useBillingStore = defineStore({
             header: e.response.statusText,
             message: msg,
             error: e,
-            actions: []
-
+            actions: [],
           };
           alerts.push(alert);
           console.error(e.response);

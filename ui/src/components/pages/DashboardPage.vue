@@ -156,37 +156,17 @@ import { useRouter } from "vue-router";
 import {
   Dialog,
   DialogPanel,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
-import {
-  ClockIcon,
-  HomeIcon,
-  MenuAlt1Icon,
-  ViewListIcon,
-  XIcon,
-} from "@heroicons/vue/outline";
-import {
-  ChevronRightIcon,
-  DotsVerticalIcon,
-  SearchIcon,
-  SelectorIcon,
-  PlusIcon,
-} from "@heroicons/vue/solid";
+import { MenuAlt1Icon, XIcon } from "@heroicons/vue/outline";
 import ProfileMenu from "@/components/nav/ProfileMenu.vue";
-import DeviceEmpty from "@/components/devices/DeviceEmpty.vue";
 import DeviceList from "@/components/devices/DeviceList.vue";
 // import PinnedDevices from "@/components/devices/PinnedDevices.vue";
 import SidebarNav from "@/components/nav/SidebarNav.vue";
 import MobileProfileMenu from "@/components/nav/MobileProfileMenu.vue";
 import MobileSidebarNav from "@/components/nav/MobileSidebarNav.vue";
-import { useAccountStore } from "@/stores/account";
 
-const account = useAccountStore();
 const router = useRouter();
 
 async function refresh() {

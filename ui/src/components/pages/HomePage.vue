@@ -168,7 +168,6 @@
                   </p>
                   <div class="mt-10 sm:mt-12">
                     <Form
-                      v-slot="{ meta }"
                       class="sm:max-w-xl sm:mx-auto lg:mx-0"
                       :validation-schema="schema"
                       @submit="onSubmit"
@@ -396,26 +395,21 @@
   </div>
 </template>
 <script setup lang="ts">
-import { defineComponent, h, ref, reactive } from "vue";
+import { ref, reactive } from "vue";
 import { Field, ErrorMessage, Form } from "vee-validate";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 import * as yup from "yup";
 
 import {
-  CloudUploadIcon,
   CogIcon,
-  LockClosedIcon,
   MenuIcon,
   RefreshIcon,
-  ServerIcon,
-  ShieldCheckIcon,
   XIcon,
   FolderOpenIcon,
   GlobeIcon,
   VideoCameraIcon,
   DesktopComputerIcon,
 } from "@heroicons/vue/outline";
-import { ChevronRightIcon, ExternalLinkIcon } from "@heroicons/vue/solid";
 import LoginNav from "@/components/nav/LoginNav.vue";
 import MobileLoginNav from "@/components/nav/MobileLoginNav.vue";
 import DemoQualityAlert from "@/components/demo/DemoQualityAlert.vue";
@@ -437,7 +431,7 @@ const schema = yup.object({
 
 async function onSubmit(values: any) {
   state.loading = true;
-  const res = await accountStore.submitEmailWaitlist(values.email);
+  await accountStore.submitEmailWaitlist(values.email);
   state.loading = false;
 }
 

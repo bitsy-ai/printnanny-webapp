@@ -2,18 +2,8 @@ import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
 import type * as apiTypes from "printnanny-api-client";
 import type { UiAlert } from "@/types";
-
-const apiConfig = new api.Configuration({
-  basePath: window.location.origin,
-  baseOptions: {
-    xsrfCookieName: "csrftoken",
-    xsrfHeaderName: "X-CSRFTOKEN",
-    withCredentials: true,
-  },
-});
-
-const alertsApi = api.AlertsApiFactory(apiConfig);
-const alertSettingsApi = api.AlertSettingsApiFactory(apiConfig);
+import { ApiConfig } from "@/utils/api";
+const alertSettingsApi = api.AlertSettingsApiFactory(ApiConfig);
 
 export const useAlertStore = defineStore({
   id: "alerts",
@@ -27,12 +17,15 @@ export const useAlertStore = defineStore({
     showEmpty: (state) => state.loading == false && state.alerts.length == 0,
     alertSettingsFieldset: (state) => {
       const exclude = ["id", "created_dt", "updated_dt"];
-      if (state.settingsMetadata == undefined) { return }
+      if (state.settingsMetadata == undefined) {
+        return;
+      }
       return Object.keys(state.settingsMetadata.fieldset)
         .filter((key) => !exclude.includes(key))
         .reduce((obj: any, key: string) => {
-          if (state.settingsMetadata?.fieldset[key] == undefined) { return }
-          else {
+          if (state.settingsMetadata?.fieldset[key] == undefined) {
+            return;
+          } else {
             obj[key] = state.settingsMetadata?.fieldset[key];
             return obj;
           }
@@ -70,7 +63,7 @@ export const useAlertStore = defineStore({
             header: e.response.statusText,
             message: msg,
             error: e,
-            actions: []
+            actions: [],
           };
           this.alerts.push(alert);
           console.error(e.response);
@@ -104,7 +97,7 @@ export const useAlertStore = defineStore({
             header: e.response.statusText,
             message: msg,
             error: e,
-            actions: []
+            actions: [],
           };
           this.alerts.push(alert);
           console.error(e.response);
