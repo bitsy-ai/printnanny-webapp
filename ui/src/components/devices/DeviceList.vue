@@ -3,7 +3,7 @@
     <!-- Devices list (only on smallest breakpoint) -->
     <!-- Pinned devices (v-slot can be replaced with #pinned )-->
     <slot name="pinned">
-      <PinnedDevices />
+      <!-- <PinnedDevices /> -->
     </slot>
     <div class="mt-10 sm:hidden">
       <div class="px-4 sm:px-6">
@@ -20,22 +20,6 @@
             href="#"
             class="group flex items-center justify-between px-4 py-4 hover:bg-gray-50 sm:px-6"
           >
-            <span class="flex items-center truncate space-x-3">
-              <span
-                :class="[
-                  device.bgColorClass,
-                  'w-2.5 h-2.5 flex-shrink-0 rounded-full',
-                ]"
-                aria-hidden="true"
-              />
-              <span class="font-medium truncate text-sm leading-6">
-                {{ device.title }}
-                {{ " " }}
-                <span class="truncate font-normal text-gray-500"
-                  >in {{ device.team }}</span
-                >
-              </span>
-            </span>
             <ChevronRightIcon
               class="ml-4 h-5 w-5 text-gray-400 group-hover:text-gray-500"
               aria-hidden="true"

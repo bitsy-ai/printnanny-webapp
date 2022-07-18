@@ -1,7 +1,7 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
 import type * as apiTypes from "printnanny-api-client";
-import type { Alert, UiError } from "@/types";
+import type { UiAlert } from "@/types";
 
 const apiConfig = new api.Configuration({
   basePath: window.location.origin,
@@ -18,7 +18,7 @@ const alertSettingsApi = api.AlertSettingsApiFactory(apiConfig);
 export const useAlertStore = defineStore({
   id: "alerts",
   state: () => ({
-    alerts: [] as Array<Alert>,
+    alerts: [] as Array<UiAlert | UiAlert>,
     settings: undefined as apiTypes.AlertSettings | undefined,
     settingsMetadata: undefined as apiTypes.OptionsMetadata | undefined,
     loading: false,
@@ -66,10 +66,11 @@ export const useAlertStore = defineStore({
           } else {
             msg = e.response.data;
           }
-          const alert: UiError = {
+          const alert: UiAlert = {
             header: e.response.statusText,
             message: msg,
             error: e,
+            actions: []
           };
           this.alerts.push(alert);
           console.error(e.response);
@@ -99,10 +100,11 @@ export const useAlertStore = defineStore({
           } else {
             msg = e.response.data;
           }
-          const alert: UiError = {
+          const alert: UiAlert = {
             header: e.response.statusText,
             message: msg,
             error: e,
+            actions: []
           };
           this.alerts.push(alert);
           console.error(e.response);
@@ -112,12 +114,8 @@ export const useAlertStore = defineStore({
       }
       this.$patch({ loading: false });
     },
-    push(alert: Alert) {
+    push(alert: UiAlert | UiAlert) {
       this.alerts.push(alert);
-    },
-    dismiss(alert: Alert) {
-      const alerts = this.alerts.filter((a) => a !== alert);
-      this.$patch({ alerts });
     },
   },
 });

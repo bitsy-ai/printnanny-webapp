@@ -6,12 +6,6 @@ import type * as apiTypes from "printnanny-api-client";
 const alertStore = useAlertStore();
 alertStore.fetchSettingsMetadata();
 alertStore.fetchSettings();
-
-function isOptionChecked(value: string, fieldName: string) {
-  if (alertStore.settings[fieldName] !== undefined){
-    return alertStore.settings[fieldName].includes(value);
-  }
-}
 </script>
 <template>
   <form
@@ -47,14 +41,15 @@ function isOptionChecked(value: string, fieldName: string) {
             </div>
             <div class="mt-4 space-y-4">
               <div
-                v-for="option in alertStore.alertSettingsFieldset.event_types
+                v-for="(option, index) in alertStore.alertSettingsFieldset.event_types
                   .child.choices"
+                :key="index"
                 class="relative flex items-start"
               >
                 <div class="flex items-center h-5">
                   <input
                     id="comments"
-                    :checked="isOptionChecked(option.value, 'event_types')"
+                    :checked="alertStore.settings?.event_types?.includes(option.value)"
                     value="{{ option.value}}"
                     name="{{option.value}}"
                     type="checkbox"

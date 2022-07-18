@@ -4,7 +4,7 @@ import { useForm, useField, Field, ErrorMessage, Form } from "vee-validate";
 import { ref, reactive } from "vue";
 import * as yup from "yup";
 import { useDeviceStore } from "@/stores/devices";
-import { useRouter } from "vue-rotuer";
+import { useRouter } from "vue-router"
 
 const router = useRouter();
 const deviceStore = useDeviceStore();

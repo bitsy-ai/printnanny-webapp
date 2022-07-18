@@ -10,10 +10,10 @@
           <span class="flex min-w-0 items-center justify-between space-x-3">
             <span class="flex-1 flex flex-col min-w-0">
               <span class="text-gray-900 text-sm font-medium truncate"
-                >👋 Welcome, {{ account.user.first_name || "Maker" }}</span
+                >👋 Welcome, {{ account.user?.first_name || "Maker" }}</span
               >
               <span class="text-gray-500 text-sm truncate">{{
-                account.user.email
+                account.user?.email
               }}</span>
             </span>
           </span>
@@ -50,7 +50,7 @@
         </div>
         <!-- linkItems Array -->
         <div class="py-1">
-          <MenuItem v-for="item in linkItems" v-slot="{ active }">
+          <MenuItem v-for="item in linkItems" v-slot="{ active }" :key="item.name">
             <a
               :href="item.href"
               :class="[

@@ -180,7 +180,7 @@ import {
 import ProfileMenu from "@/components/nav/ProfileMenu.vue";
 import DeviceEmpty from "@/components/devices/DeviceEmpty.vue";
 import DeviceList from "@/components/devices/DeviceList.vue";
-import PinnedDevices from "@/components/devices/PinnedDevices.vue";
+// import PinnedDevices from "@/components/devices/PinnedDevices.vue";
 import SidebarNav from "@/components/nav/SidebarNav.vue";
 import MobileProfileMenu from "@/components/nav/MobileProfileMenu.vue";
 import MobileSidebarNav from "@/components/nav/MobileSidebarNav.vue";

@@ -74,9 +74,9 @@
           >
             <dt class="text-sm font-medium text-gray-500">Amount</dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              {{ billingStore.summary?.subscription?.plan.amount }}
-              {{ billingStore.summary?.subscription?.plan.currency }} per
-              {{ billingStore.summary?.subscription?.plan.interval }}
+              {{ billingStore.summary?.subscription?.plan?.amount }}
+              {{ billingStore.summary?.subscription?.plan?.currency }} per
+              {{ billingStore.summary?.subscription?.plan?.interval }}
             </dd>
           </div>
           <div
@@ -85,13 +85,11 @@
             <dt class="text-sm font-medium text-gray-500">Payment Method</dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
               {{
-                billingStore.summary?.subscription?.default_payment_method.card
-                  .brand
+                billingStore.summary?.subscription?.default_payment_method?.card?.brand
               }}
               ending in
               {{
-                billingStore.summary?.subscription?.default_payment_method.card
-                  .last4
+                billingStore.summary?.subscription?.default_payment_method?.card?.last4
               }}
             </dd>
           </div>
@@ -119,7 +117,8 @@ import SubscriptionAction from "@/components/billing/SubscriptionAction.vue";
 const billingStore = useBillingStore();
 billingStore.fetch();
 
-function formattedDate(date: string) {
+function formattedDate(date: string | undefined) {
+  if (date === undefined){ return }
   return moment(date).format("YYYY-MM-DD");
 }
 </script>

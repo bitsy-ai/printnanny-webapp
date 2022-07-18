@@ -58,10 +58,7 @@ const props = defineProps({
     default: "bg-white",
   },
   actions: {
-    /**
-     * [AlertAction]
-     */
-    type: Array,
+    type: Array<AlertAction>,
   },
 });
 

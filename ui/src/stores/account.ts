@@ -1,4 +1,4 @@
-import type { UiError, UiAlert } from "@/types";
+import type { UiAlert } from "@/types";
 import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
 import { useAlertStore } from "./alerts";
@@ -32,7 +32,10 @@ export const useAccountStore = defineStore({
         const res = await accountsApi.accountsEmailWaitlistCreate(req);
         const alert: UiAlert = {
           header: "Thanks for signing up!",
+          error: undefined,
           message: `We'll send an email to ${email} when beta spots open. `,
+          actions: []
+
         };
         alerts.push(alert);
       } catch (e: any) {
@@ -45,10 +48,12 @@ export const useAccountStore = defineStore({
           } else {
             msg = e.response.data;
           }
-          const alert: UiError = {
+          const alert: UiAlert = {
             header: e.response.statusText,
             message: msg,
             error: e,
+            actions: []
+
           };
           alerts.push(alert);
           console.error(e.response);
@@ -99,10 +104,12 @@ export const useAccountStore = defineStore({
           } else {
             msg = e.response.data;
           }
-          const alert: UiError = {
+          const alert: UiAlert = {
             header: e.response.statusText,
             message: msg,
             error: e,
+            actions: []
+
           };
           alerts.push(alert);
           console.error(e.response);

@@ -2,7 +2,7 @@ import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
 import type * as apiTypes from "printnanny-api-client";
 import { useAlertStore } from "./alerts";
-import type { UiError } from "@/types";
+import type { UiAlert } from "@/types";
 
 const apiConfig = new api.Configuration({
   basePath: window.location.origin,
@@ -48,10 +48,12 @@ export const useDeviceStore = defineStore({
           } else {
             msg = e.response.data;
           }
-          const alert: UiError = {
+          const alert: UiAlert = {
             header: e.response.statusText,
             message: msg,
             error: e,
+            actions: []
+
           };
           alerts.push(alert);
           console.error(e.response);
@@ -84,10 +86,11 @@ export const useDeviceStore = defineStore({
           } else {
             msg = e.response.data;
           }
-          const alert: UiError = {
+          const alert: UiAlert = {
             header: e.response.statusText,
             message: msg,
             error: e,
+            actions: []
           };
           alerts.push(alert);
           console.error(e.response);

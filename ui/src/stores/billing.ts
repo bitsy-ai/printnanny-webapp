@@ -1,7 +1,7 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
 import { useAlertStore } from "./alerts";
-import type { UiAlert, UiError } from "@/types";
+import type { UiAlert } from "@/types";
 import { useRouter } from "vue-router";
 
 const apiConfig = new api.Configuration({
@@ -36,6 +36,8 @@ export const useBillingStore = defineStore({
           res.data
         );
         const alert: UiAlert = {
+          actions: [],
+          error: undefined,
           header: "Subscription was cancelled",
           message:
             "Sorry to see you go! Email support@printnanny.ai if you need any further assistance.",
@@ -59,10 +61,11 @@ export const useBillingStore = defineStore({
           } else {
             msg = e.response.data;
           }
-          const alert: UiError = {
+          const alert: UiAlert = {
             header: e.response.statusText,
             message: msg,
             error: e,
+            actions: []
           };
           alerts.push(alert);
           console.error(e.response);
@@ -86,9 +89,11 @@ export const useBillingStore = defineStore({
             res.data
           );
           const alert: UiAlert = {
+            actions: [],
             header: "Subscription reactivated",
             message:
               "Welcome back! Email support@printnanny.ai if you need any further assistance.",
+            error: undefined
           };
           alerts.push(alert);
           this.$patch({ summary: res.data });
@@ -109,10 +114,12 @@ export const useBillingStore = defineStore({
             } else {
               msg = e.response.data;
             }
-            const alert: UiError = {
+            const alert: UiAlert = {
               header: e.response.statusText,
               message: msg,
               error: e,
+              actions: []
+
             };
             alerts.push(alert);
             console.error(e.response);
@@ -143,10 +150,12 @@ export const useBillingStore = defineStore({
           } else {
             msg = e.response.data;
           }
-          const alert: UiError = {
+          const alert: UiAlert = {
             header: e.response.statusText,
             message: msg,
             error: e,
+            actions: []
+
           };
           alerts.push(alert);
           console.error(e.response);

@@ -26,7 +26,7 @@ const navigation = [
   },
 ];
 
-function isActiveRoute(key) {
+function isActiveRoute(key: string) {
   return router.currentRoute.value.name == key;
 }
 </script>
@@ -49,12 +49,12 @@ function isActiveRoute(key) {
                   :key="item.key"
                   :to="item.link"
                   :class="[
-                    item.current
+                    isActiveRoute(item.key)
                       ? 'bg-gray-50 text-indigo-700 hover:text-indigo-700 hover:bg-white'
                       : 'text-gray-900 hover:text-gray-900 hover:bg-gray-50',
                     'group rounded-md px-3 py-2 flex items-center text-sm font-medium',
                   ]"
-                  :aria-current="item.current ? 'page' : undefined"
+                  :aria-current="isActiveRoute(item.key) ? 'page' : undefined"
                 >
                   <component
                     :is="item.icon"
