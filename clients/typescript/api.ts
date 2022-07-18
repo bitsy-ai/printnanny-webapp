@@ -749,12 +749,6 @@ export interface Device {
  */
 export interface DeviceRequest {
     /**
-     * 
-     * @type {string}
-     * @memberof DeviceRequest
-     */
-    'last_boot': string;
-    /**
      * Please enter the hostname you set in the Raspberry Pi Imager\'s Advanced Options menu (without .local extension)
      * @type {string}
      * @memberof DeviceRequest
@@ -2836,12 +2830,6 @@ export interface PatchedCloudiotDeviceRequest {
  * @interface PatchedDeviceRequest
  */
 export interface PatchedDeviceRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedDeviceRequest
-     */
-    'last_boot'?: string;
     /**
      * Please enter the hostname you set in the Raspberry Pi Imager\'s Advanced Options menu (without .local extension)
      * @type {string}
@@ -10759,15 +10747,13 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * A device (Raspberry Pi) running Print Nanny OS
          * @param {number} id A unique integer value identifying this device.
-         * @param {DeviceRequest} deviceRequest 
+         * @param {DeviceRequest} [deviceRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesUpdate: async (id: number, deviceRequest: DeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        devicesUpdate: async (id: number, deviceRequest?: DeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('devicesUpdate', 'id', id)
-            // verify required parameter 'deviceRequest' is not null or undefined
-            assertParamExists('devicesUpdate', 'deviceRequest', deviceRequest)
             const localVarPath = `/api/devices/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -11272,11 +11258,11 @@ export const DevicesApiFp = function(configuration?: Configuration) {
         /**
          * A device (Raspberry Pi) running Print Nanny OS
          * @param {number} id A unique integer value identifying this device.
-         * @param {DeviceRequest} deviceRequest 
+         * @param {DeviceRequest} [deviceRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesUpdate(id: number, deviceRequest: DeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async devicesUpdate(id: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesUpdate(id, deviceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -11650,11 +11636,11 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         /**
          * A device (Raspberry Pi) running Print Nanny OS
          * @param {number} id A unique integer value identifying this device.
-         * @param {DeviceRequest} deviceRequest 
+         * @param {DeviceRequest} [deviceRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesUpdate(id: number, deviceRequest: DeviceRequest, options?: any): AxiosPromise<void> {
+        devicesUpdate(id: number, deviceRequest?: DeviceRequest, options?: any): AxiosPromise<void> {
             return localVarFp.devicesUpdate(id, deviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -12024,12 +12010,12 @@ export interface DevicesApiInterface {
     /**
      * A device (Raspberry Pi) running Print Nanny OS
      * @param {number} id A unique integer value identifying this device.
-     * @param {DeviceRequest} deviceRequest 
+     * @param {DeviceRequest} [deviceRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesUpdate(id: number, deviceRequest: DeviceRequest, options?: AxiosRequestConfig): AxiosPromise<void>;
+    devicesUpdate(id: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig): AxiosPromise<void>;
 
     /**
      * 
@@ -12464,12 +12450,12 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
     /**
      * A device (Raspberry Pi) running Print Nanny OS
      * @param {number} id A unique integer value identifying this device.
-     * @param {DeviceRequest} deviceRequest 
+     * @param {DeviceRequest} [deviceRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesUpdate(id: number, deviceRequest: DeviceRequest, options?: AxiosRequestConfig) {
+    public devicesUpdate(id: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesUpdate(id, deviceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
