@@ -27,7 +27,18 @@ export const useAlertStore = defineStore({
     loading: false
   }),
   getters: {
-    showEmpty: (state) => state.loading == false && state.alerts.length == 0
+    showEmpty: (state) => state.loading == false && state.alerts.length == 0,
+    alertSettingsFieldset: (state) => {
+      const exclude = ["id", "created_dt", "updated_dt"]
+      if (state.settingsMetadata !== null) {
+        return Object.keys(state.settingsMetadata.fieldset)
+          .filter(key => !exclude.includes(key))
+          .reduce((obj, key) => {
+            obj[key] = state.settingsMetadata.fieldset[key];
+            return obj;
+          }, {});
+      }
+    }
   },
   actions: {
     async fetchSettingsMetadata() {
@@ -35,8 +46,8 @@ export const useAlertStore = defineStore({
       try {
         const alertsSettingsMetadata = await alertSettingsApi.alertSettingsMetadata();
         console.log("Fetched AlertSettings OPTIONS data: ", alertsSettingsMetadata);
-        this.$patch({ settingsMetadata: alertsSettingsMetadata.options });
-
+        this.$patch({ settingsMetadata: alertsSettingsMetadata.data });
+        console.log("Form fieldset: ", this.alertSettingsFieldset);
       }
       catch (e: any) {
         if (e.isAxiosError) {
