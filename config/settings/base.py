@@ -13,6 +13,7 @@ from print_nanny_webapp import __version__ as API_VERSION
 ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 # print_nanny_webapp/
 APPS_DIR = ROOT_DIR / "print_nanny_webapp"
+UI_DIR = ROOT_DIR / "ui"
 env = environ.Env()
 
 READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
@@ -90,7 +91,6 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "print_nanny_webapp.alerts.apps.AlertsConfig",
-    "print_nanny_webapp.dashboard.apps.DashboardConfig",
     "print_nanny_webapp.devices.apps.DevicesConfig",
     "print_nanny_webapp.ml_ops.apps.MlOpsConfig",
     "print_nanny_webapp.partners.apps.PartnersConfig",
@@ -177,42 +177,19 @@ BASE_URL = env("DJANGO_BASE_URL", default="/")
 WS_BASE_URL = env("DJANGO_WS_URL", default="/ws")
 
 # @TODO rm these staticfiles dirs
-STATICFILES_DIRS = [
-    ("css", str(APPS_DIR / "static/css")),
-    ("fonts", str(APPS_DIR / "static/fonts")),
-    ("images", str(APPS_DIR / "static/images")),
-    ("js", str(APPS_DIR / "static/js")),
-    # ("vue", str(APPS_DIR / "static/vue")),
-    # (DJANGO_VITE_STATIC_URL_PREFIX, DJANGO_VITE_ASSETS_PATH),
-]
+STATICFILES_DIRS = [("ui", "ui/dist")]
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
 
-# Webpack loader
-# ------------------------------------------------------------------------------
-# INSTALLED_APPS += ["webpack_loader"]
-
-# WEBPACK_LOADER = {
-#     "DEFAULT": {
-#         "CACHE": not DEBUG,
-#         "BUNDLE_DIR_NAME": "vue/",  # must end with slash
-#         "STATS_FILE": os.path.join(VUE_APP_DIR, "webpack-stats.json"),
-#         "POLL_INTERVAL": 0.1,
-#         "TIMEOUT": None,
-#         "IGNORE": [r".+\.hot-update.js", r".+\.map"],
-#         "LOADER_CLASS": "webpack_loader.loader.WebpackLoader",
-#     }
-# }
-
-
 # MEDIA
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#media-root
 MEDIA_ROOT = str(APPS_DIR / "media")
 # https://docs.djangoproject.com/en/dev/ref/settings/#media-url
+
 
 # TMP_ROOT = str(ROOT_DIR / ".tmp")
 # TEMPLATES
@@ -223,7 +200,7 @@ TEMPLATES = [
         # https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-TEMPLATES-BACKEND
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         # https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
-        "DIRS": [str(APPS_DIR / "templates-v2")],
+        "DIRS": [str(APPS_DIR / "templates")],
         "OPTIONS": {
             # https://docs.djangoproject.com/en/dev/ref/settings/#template-loaders
             # https://docs.djangoproject.com/en/dev/ref/templates/api/#loader-types

@@ -165,7 +165,6 @@ django-stubs==1.9.0
     # via -r /requirements/local.in
 django-stubs-ext==0.3.1
     # via django-stubs
-django-webpack-loader==1.4.1
     # via -r /requirements/local.in
 djangorestframework==3.13.1
     # via

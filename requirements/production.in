@@ -32,7 +32,6 @@ django-redis
 django-safedelete
 django-storages[google]
 django-stubs
-django-webpack-loader
 djangorestframework
 drfpasswordless
 drf-spectacular
