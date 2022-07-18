@@ -3,7 +3,7 @@ import logging
 from rest_framework.mixins import (
     ListModelMixin,
     RetrieveModelMixin,
-    CreateModelMixin,
+    OptionsCreateModelMixin,
 )
 from rest_framework.viewsets import GenericViewSet
 
@@ -41,7 +41,7 @@ logger = logging.getLogger(__name__)
     )
 )
 class TelemetryEventViewSet(
-    GenericViewSet, ListModelMixin, RetrieveModelMixin, CreateModelMixin
+    GenericViewSet, ListModelMixin, RetrieveModelMixin, OptionsCreateModelMixin
 ):
     serializer_class = TelemetryEventPolymorphicSerializer
     queryset = TelemetryEvent.objects.all()
@@ -79,7 +79,7 @@ class RemoteCommandEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMix
     )
 )
 class OctoPrintEventViewSet(
-    CreateModelMixin, GenericViewSet, ListModelMixin, RetrieveModelMixin
+    OptionsCreateModelMixin, GenericViewSet, ListModelMixin, RetrieveModelMixin
 ):
     serializer_class = OctoPrintEventSerializer
     queryset = OctoPrintEvent.objects.all()

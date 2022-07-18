@@ -411,7 +411,7 @@ INSTALLED_APPS += ["drf_spectacular"]
 PAGE_SIZE = 20
 REST_FRAMEWORK = {
     "DEFAULT_METADATA_CLASS": "rest_framework.metadata.SimpleMetadata",
-    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_SCHEMA_CLASS": "print_nanny_webapp.utils.api.openapi.CustomAutoSchema",
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.SessionAuthentication",
         "print_nanny_webapp.users.authentication.BearerTokenAuthentication",
@@ -434,6 +434,7 @@ SPECTACULAR_SETTINGS = {
     "COMPONENT_SPLIT_REQUEST": True,
     "ENUM_ADD_EXPLICIT_BLANK_NULL_CHOICE": True,
     "SCHEMA_COERCE_PATH_PK_SUFFIX": True,
+    "DEFAULT_GENERATOR_CLASS": "print_nanny_webapp.utils.api.metadata.CustomSchemaGenerator",
     "ENUM_NAME_OVERRIDES": {
         # TODO refactor event apps+namespaces for clarity before adding mainsail
         # begin device app enums
@@ -472,7 +473,13 @@ SPECTACULAR_SETTINGS = {
         "email": "leigh@printnanny.ai",
         "url": "https://printnanny.ai",
     },
-    "PREPROCESSING_HOOKS": ["drf_spectacular.hooks.preprocess_exclude_path_format"],
+    "PREPROCESSING_HOOKS": [
+        "drf_spectacular.hooks.preprocess_exclude_path_format",
+        "print_nanny_webapp.utils.api.openapi.drf_spectacular_preprocessor",
+    ],
+    # "POSTPROCESSING_HOOKS": [
+    #     "print_nanny_webapp.utils.api.openapi.drf_spectacular_postprocessor"
+    # ],
 }
 
 # django-filters

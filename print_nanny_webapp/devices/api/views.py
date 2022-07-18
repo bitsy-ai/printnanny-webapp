@@ -1,6 +1,7 @@
 import logging
 
 from typing import Any
+from click import Option
 
 from drf_spectacular.utils import (
     extend_schema,
@@ -281,6 +282,7 @@ class DeviceSettingsViewSet(
     ListModelMixin,
     RetrieveModelMixin,
     UpdateModelMixin,
+    CreateModelMixin,
 ):
     serializer_class = DeviceSettingsSerializer
     queryset = DeviceSettings.objects.all()
@@ -329,6 +331,7 @@ class JanusStreamViewSet(
     ListModelMixin,
     RetrieveModelMixin,
     UpdateModelMixin,
+    CreateModelMixin,
 ):
     serializer_class = JanusStreamSerializer
     queryset = JanusStream.objects.all()

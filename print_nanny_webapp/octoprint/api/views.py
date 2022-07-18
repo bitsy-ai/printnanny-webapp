@@ -1,14 +1,10 @@
 import logging
+from optparse import Option
 from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiParameter
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.decorators import action
 from rest_framework import parsers
-from rest_framework.mixins import (
-    ListModelMixin,
-    RetrieveModelMixin,
-    CreateModelMixin,
-    UpdateModelMixin,
-)
+from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, UpdateModelMixin
 from rest_framework import status
 from rest_framework.response import Response
 
@@ -32,6 +28,7 @@ from print_nanny_webapp.utils.api.views import (
     generic_update_errors,
     generic_get_errors,
 )
+from print_nanny_webapp.utils.api.viewsets import CreateModelMixin
 
 
 logger = logging.getLogger(__name__)
@@ -205,10 +202,7 @@ class OctoPrintSettingsViewSet(
     tags=["octoprint"],
 )
 class OctoPrintBackupViewset(
-    GenericViewSet,
-    ListModelMixin,
-    RetrieveModelMixin,
-    CreateModelMixin,
+    GenericViewSet, ListModelMixin, RetrieveModelMixin, CreateModelMixin
 ):
     serializer_class = OctoPrintBackupSerializer
     queryset = OctoPrintBackup.objects.all()

@@ -4,7 +4,7 @@ from rest_framework.mixins import (
     ListModelMixin,
     RetrieveModelMixin,
     UpdateModelMixin,
-    CreateModelMixin,
+    OptionsCreateModelMixin,
 )
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet, ViewSet
@@ -95,7 +95,7 @@ class CommandViewSet(
 )
 class PrintSessionViewSet(
     UpdateModelMixin,
-    CreateModelMixin,
+    OptionsCreateModelMixin,
     ListModelMixin,
     RetrieveModelMixin,
     GenericViewSet,
@@ -132,7 +132,7 @@ class PrintSessionViewSet(
 
 @extend_schema(tags=["remote-control"])
 class PrinterProfileViewSet(
-    CreateModelMixin,
+    OptionsCreateModelMixin,
     ListModelMixin,
     RetrieveModelMixin,
     UpdateModelMixin,
@@ -183,7 +183,7 @@ class PrinterProfileViewSet(
 
 @extend_schema(tags=["remote-control"])
 class GcodeFileViewSet(
-    CreateModelMixin,
+    OptionsCreateModelMixin,
     ListModelMixin,
     RetrieveModelMixin,
     UpdateModelMixin,
@@ -239,7 +239,7 @@ class GcodeFileViewSet(
 
 @extend_schema(tags=["remote-control"])
 class OctoPrintDeviceViewSet(
-    CreateModelMixin,
+    OptionsCreateModelMixin,
     GenericViewSet,
     ListModelMixin,
     RetrieveModelMixin,

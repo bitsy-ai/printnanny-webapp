@@ -12,7 +12,6 @@ from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import (
     ListModelMixin,
     RetrieveModelMixin,
-    CreateModelMixin,
 )
 from rest_framework.permissions import IsAuthenticated
 from print_nanny_webapp.utils.api.views import (
@@ -28,6 +27,7 @@ from .serializers import (
     PolymorphicEventCreateSerializer,
     PolymorphicCommandCreateSerializer,
 )
+from print_nanny_webapp.utils.api.viewsets import CreateModelMixin
 
 Device = apps.get_model("devices", "Device")
 

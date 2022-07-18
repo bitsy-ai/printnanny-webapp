@@ -6714,6 +6714,372 @@ export class AccountsApi extends BaseAPI implements AccountsApiInterface {
 
 
 /**
+ * AlertSettingsApi - axios parameter creator
+ * @export
+ */
+export const AlertSettingsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {AlertSettingsRequest} [alertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsCreate: async (alertSettingsRequest?: AlertSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/alert-settings/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(alertSettingsRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsList: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/alert-settings/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert settings.
+         * @param {PatchedAlertSettingsRequest} [patchedAlertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsPartialUpdate: async (id: number, patchedAlertSettingsRequest?: PatchedAlertSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('alertSettingsPartialUpdate', 'id', id)
+            const localVarPath = `/api/alert-settings/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedAlertSettingsRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert settings.
+         * @param {AlertSettingsRequest} [alertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsUpdate: async (id: number, alertSettingsRequest?: AlertSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('alertSettingsUpdate', 'id', id)
+            const localVarPath = `/api/alert-settings/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(alertSettingsRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * AlertSettingsApi - functional programming interface
+ * @export
+ */
+export const AlertSettingsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = AlertSettingsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {AlertSettingsRequest} [alertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertSettingsCreate(alertSettingsRequest?: AlertSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertSettingsCreate(alertSettingsRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertSettingsList(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertSettingsList(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert settings.
+         * @param {PatchedAlertSettingsRequest} [patchedAlertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertSettingsPartialUpdate(id: number, patchedAlertSettingsRequest?: PatchedAlertSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertSettingsPartialUpdate(id, patchedAlertSettingsRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert settings.
+         * @param {AlertSettingsRequest} [alertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertSettingsUpdate(id: number, alertSettingsRequest?: AlertSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertSettingsUpdate(id, alertSettingsRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * AlertSettingsApi - factory interface
+ * @export
+ */
+export const AlertSettingsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = AlertSettingsApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {AlertSettingsRequest} [alertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsCreate(alertSettingsRequest?: AlertSettingsRequest, options?: any): AxiosPromise<AlertSettings> {
+            return localVarFp.alertSettingsCreate(alertSettingsRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsList(options?: any): AxiosPromise<AlertSettings> {
+            return localVarFp.alertSettingsList(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert settings.
+         * @param {PatchedAlertSettingsRequest} [patchedAlertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsPartialUpdate(id: number, patchedAlertSettingsRequest?: PatchedAlertSettingsRequest, options?: any): AxiosPromise<AlertSettings> {
+            return localVarFp.alertSettingsPartialUpdate(id, patchedAlertSettingsRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert settings.
+         * @param {AlertSettingsRequest} [alertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsUpdate(id: number, alertSettingsRequest?: AlertSettingsRequest, options?: any): AxiosPromise<AlertSettings> {
+            return localVarFp.alertSettingsUpdate(id, alertSettingsRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * AlertSettingsApi - interface
+ * @export
+ * @interface AlertSettingsApi
+ */
+export interface AlertSettingsApiInterface {
+    /**
+     * 
+     * @param {AlertSettingsRequest} [alertSettingsRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApiInterface
+     */
+    alertSettingsCreate(alertSettingsRequest?: AlertSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<AlertSettings>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApiInterface
+     */
+    alertSettingsList(options?: AxiosRequestConfig): AxiosPromise<AlertSettings>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this alert settings.
+     * @param {PatchedAlertSettingsRequest} [patchedAlertSettingsRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApiInterface
+     */
+    alertSettingsPartialUpdate(id: number, patchedAlertSettingsRequest?: PatchedAlertSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<AlertSettings>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this alert settings.
+     * @param {AlertSettingsRequest} [alertSettingsRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApiInterface
+     */
+    alertSettingsUpdate(id: number, alertSettingsRequest?: AlertSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<AlertSettings>;
+
+}
+
+/**
+ * AlertSettingsApi - object-oriented interface
+ * @export
+ * @class AlertSettingsApi
+ * @extends {BaseAPI}
+ */
+export class AlertSettingsApi extends BaseAPI implements AlertSettingsApiInterface {
+    /**
+     * 
+     * @param {AlertSettingsRequest} [alertSettingsRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApi
+     */
+    public alertSettingsCreate(alertSettingsRequest?: AlertSettingsRequest, options?: AxiosRequestConfig) {
+        return AlertSettingsApiFp(this.configuration).alertSettingsCreate(alertSettingsRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApi
+     */
+    public alertSettingsList(options?: AxiosRequestConfig) {
+        return AlertSettingsApiFp(this.configuration).alertSettingsList(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this alert settings.
+     * @param {PatchedAlertSettingsRequest} [patchedAlertSettingsRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApi
+     */
+    public alertSettingsPartialUpdate(id: number, patchedAlertSettingsRequest?: PatchedAlertSettingsRequest, options?: AxiosRequestConfig) {
+        return AlertSettingsApiFp(this.configuration).alertSettingsPartialUpdate(id, patchedAlertSettingsRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this alert settings.
+     * @param {AlertSettingsRequest} [alertSettingsRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApi
+     */
+    public alertSettingsUpdate(id: number, alertSettingsRequest?: AlertSettingsRequest, options?: AxiosRequestConfig) {
+        return AlertSettingsApiFp(this.configuration).alertSettingsUpdate(id, alertSettingsRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
  * AlertsApi - axios parameter creator
  * @export
  */
@@ -6920,127 +7286,6 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertsSettingsList: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/alerts/settings/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this alert settings.
-         * @param {PatchedAlertSettingsRequest} [patchedAlertSettingsRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        alertsSettingsPartialUpdate: async (id: number, patchedAlertSettingsRequest?: PatchedAlertSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('alertsSettingsPartialUpdate', 'id', id)
-            const localVarPath = `/api/alerts/settings/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(patchedAlertSettingsRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this alert settings.
-         * @param {AlertSettingsRequest} [alertSettingsRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        alertsSettingsUpdate: async (id: number, alertSettingsRequest?: AlertSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('alertsSettingsUpdate', 'id', id)
-            const localVarPath = `/api/alerts/settings/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(alertSettingsRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
         alertsUnread: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/alerts/unread/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -7179,37 +7424,6 @@ export const AlertsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async alertsSettingsList(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertSettings>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.alertsSettingsList(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this alert settings.
-         * @param {PatchedAlertSettingsRequest} [patchedAlertSettingsRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async alertsSettingsPartialUpdate(id: number, patchedAlertSettingsRequest?: PatchedAlertSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertSettings>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.alertsSettingsPartialUpdate(id, patchedAlertSettingsRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this alert settings.
-         * @param {AlertSettingsRequest} [alertSettingsRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async alertsSettingsUpdate(id: number, alertSettingsRequest?: AlertSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertSettings>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.alertsSettingsUpdate(id, alertSettingsRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
         async alertsUnread(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertBulkResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.alertsUnread(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
@@ -7285,34 +7499,6 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertsSettingsList(options?: any): AxiosPromise<AlertSettings> {
-            return localVarFp.alertsSettingsList(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this alert settings.
-         * @param {PatchedAlertSettingsRequest} [patchedAlertSettingsRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        alertsSettingsPartialUpdate(id: number, patchedAlertSettingsRequest?: PatchedAlertSettingsRequest, options?: any): AxiosPromise<AlertSettings> {
-            return localVarFp.alertsSettingsPartialUpdate(id, patchedAlertSettingsRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this alert settings.
-         * @param {AlertSettingsRequest} [alertSettingsRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        alertsSettingsUpdate(id: number, alertSettingsRequest?: AlertSettingsRequest, options?: any): AxiosPromise<AlertSettings> {
-            return localVarFp.alertsSettingsUpdate(id, alertSettingsRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
         alertsUnread(options?: any): AxiosPromise<AlertBulkResponse> {
             return localVarFp.alertsUnread(options).then((request) => request(axios, basePath));
         },
@@ -7379,34 +7565,6 @@ export interface AlertsApiInterface {
      * @memberof AlertsApiInterface
      */
     alertsSeen(patchedAlertBulkRequestRequest?: PatchedAlertBulkRequestRequest, options?: AxiosRequestConfig): AxiosPromise<AlertBulkResponse>;
-
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AlertsApiInterface
-     */
-    alertsSettingsList(options?: AxiosRequestConfig): AxiosPromise<AlertSettings>;
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this alert settings.
-     * @param {PatchedAlertSettingsRequest} [patchedAlertSettingsRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AlertsApiInterface
-     */
-    alertsSettingsPartialUpdate(id: number, patchedAlertSettingsRequest?: PatchedAlertSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<AlertSettings>;
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this alert settings.
-     * @param {AlertSettingsRequest} [alertSettingsRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AlertsApiInterface
-     */
-    alertsSettingsUpdate(id: number, alertSettingsRequest?: AlertSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<AlertSettings>;
 
     /**
      * 
@@ -7488,40 +7646,6 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
      */
     public alertsSeen(patchedAlertBulkRequestRequest?: PatchedAlertBulkRequestRequest, options?: AxiosRequestConfig) {
         return AlertsApiFp(this.configuration).alertsSeen(patchedAlertBulkRequestRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AlertsApi
-     */
-    public alertsSettingsList(options?: AxiosRequestConfig) {
-        return AlertsApiFp(this.configuration).alertsSettingsList(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this alert settings.
-     * @param {PatchedAlertSettingsRequest} [patchedAlertSettingsRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AlertsApi
-     */
-    public alertsSettingsPartialUpdate(id: number, patchedAlertSettingsRequest?: PatchedAlertSettingsRequest, options?: AxiosRequestConfig) {
-        return AlertsApiFp(this.configuration).alertsSettingsPartialUpdate(id, patchedAlertSettingsRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this alert settings.
-     * @param {AlertSettingsRequest} [alertSettingsRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AlertsApi
-     */
-    public alertsSettingsUpdate(id: number, alertSettingsRequest?: AlertSettingsRequest, options?: AxiosRequestConfig) {
-        return AlertsApiFp(this.configuration).alertsSettingsUpdate(id, alertSettingsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
