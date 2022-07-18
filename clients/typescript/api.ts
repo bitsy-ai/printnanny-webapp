@@ -864,6 +864,44 @@ export interface EmailAuthRequest {
 /**
  * 
  * @export
+ * @interface EmailWaitlist
+ */
+export interface EmailWaitlist {
+    /**
+     * 
+     * @type {number}
+     * @memberof EmailWaitlist
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailWaitlist
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailWaitlist
+     */
+    'email': string;
+}
+/**
+ * 
+ * @export
+ * @interface EmailWaitlistRequest
+ */
+export interface EmailWaitlistRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailWaitlistRequest
+     */
+    'email': string;
+}
+/**
+ * 
+ * @export
  * @enum {string}
  */
 
@@ -5853,6 +5891,47 @@ export interface WebRTCEventRequest {
 export const AccountsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
+         * A device (Raspberry Pi) running Print Nanny OS
+         * @param {EmailWaitlistRequest} emailWaitlistRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsEmailWaitlistCreate: async (emailWaitlistRequest: EmailWaitlistRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'emailWaitlistRequest' is not null or undefined
+            assertParamExists('accountsEmailWaitlistCreate', 'emailWaitlistRequest', emailWaitlistRequest)
+            const localVarPath = `/api/accounts/email-waitlist/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(emailWaitlistRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Check the credentials and return the REST Token if the credentials are valid and authenticated. Calls Django Auth login method to register User ID in Django session framework  Accept the following POST parameters: username, password Return the REST Framework Token Object\'s key.
          * @param {LoginRequest} loginRequest 
          * @param {*} [options] Override http request option.
@@ -6300,6 +6379,16 @@ export const AccountsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = AccountsApiAxiosParamCreator(configuration)
     return {
         /**
+         * A device (Raspberry Pi) running Print Nanny OS
+         * @param {EmailWaitlistRequest} emailWaitlistRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsEmailWaitlistCreate(emailWaitlistRequest: EmailWaitlistRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EmailWaitlist>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsEmailWaitlistCreate(emailWaitlistRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Check the credentials and return the REST Token if the credentials are valid and authenticated. Calls Django Auth login method to register User ID in Django session framework  Accept the following POST parameters: username, password Return the REST Framework Token Object\'s key.
          * @param {LoginRequest} loginRequest 
          * @param {*} [options] Override http request option.
@@ -6418,6 +6507,15 @@ export const AccountsApiFactory = function (configuration?: Configuration, baseP
     const localVarFp = AccountsApiFp(configuration)
     return {
         /**
+         * A device (Raspberry Pi) running Print Nanny OS
+         * @param {EmailWaitlistRequest} emailWaitlistRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsEmailWaitlistCreate(emailWaitlistRequest: EmailWaitlistRequest, options?: any): AxiosPromise<EmailWaitlist> {
+            return localVarFp.accountsEmailWaitlistCreate(emailWaitlistRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Check the credentials and return the REST Token if the credentials are valid and authenticated. Calls Django Auth login method to register User ID in Django session framework  Accept the following POST parameters: username, password Return the REST Framework Token Object\'s key.
          * @param {LoginRequest} loginRequest 
          * @param {*} [options] Override http request option.
@@ -6524,6 +6622,15 @@ export const AccountsApiFactory = function (configuration?: Configuration, baseP
  */
 export interface AccountsApiInterface {
     /**
+     * A device (Raspberry Pi) running Print Nanny OS
+     * @param {EmailWaitlistRequest} emailWaitlistRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsEmailWaitlistCreate(emailWaitlistRequest: EmailWaitlistRequest, options?: AxiosRequestConfig): AxiosPromise<EmailWaitlist>;
+
+    /**
      * Check the credentials and return the REST Token if the credentials are valid and authenticated. Calls Django Auth login method to register User ID in Django session framework  Accept the following POST parameters: username, password Return the REST Framework Token Object\'s key.
      * @param {LoginRequest} loginRequest 
      * @param {*} [options] Override http request option.
@@ -6629,6 +6736,17 @@ export interface AccountsApiInterface {
  * @extends {BaseAPI}
  */
 export class AccountsApi extends BaseAPI implements AccountsApiInterface {
+    /**
+     * A device (Raspberry Pi) running Print Nanny OS
+     * @param {EmailWaitlistRequest} emailWaitlistRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsEmailWaitlistCreate(emailWaitlistRequest: EmailWaitlistRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsEmailWaitlistCreate(emailWaitlistRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * Check the credentials and return the REST Token if the credentials are valid and authenticated. Calls Django Auth login method to register User ID in Django session framework  Accept the following POST parameters: username, password Return the REST Framework Token Object\'s key.
      * @param {LoginRequest} loginRequest 

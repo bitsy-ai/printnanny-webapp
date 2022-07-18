@@ -1,7 +1,6 @@
 import logging
 
 from typing import Any
-from click import Option
 
 from drf_spectacular.utils import (
     extend_schema,

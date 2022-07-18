@@ -17,6 +17,11 @@ import json
 from .managers import CustomUserManager
 
 
+class EmailWaitlist(models.Model):
+    created_dt = models.DateTimeField(auto_now_add=True)
+    email = models.EmailField(unique=True)
+
+
 class InviteRequest(models.Model):
     class PrinterBrand(models.TextChoices):
         PRUSA = "PRUSA", "Prusa"

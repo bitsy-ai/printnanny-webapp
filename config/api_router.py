@@ -33,9 +33,12 @@ from print_nanny_webapp.octoprint.api.views import (
     OctoPrinterProfileViewSet,
     OctoPrintServerByDeviceViewSet,
 )
+from print_nanny_webapp.users.api.views import EmailWaitlistViewSet
 
 
 router = DefaultRouter()
+
+router.register("accounts/email-waitlist", EmailWaitlistViewSet, "email-waitlist")
 router.register("alerts", AlertViewSet, basename="alerts")
 router.register(r"alert-settings", AlertSettingsViewSet, basename="alert-settings")
 
