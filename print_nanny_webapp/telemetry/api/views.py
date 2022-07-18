@@ -1,15 +1,10 @@
 import logging
 
-from rest_framework.mixins import (
-    ListModelMixin,
-    RetrieveModelMixin,
-    OptionsCreateModelMixin,
-)
+from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, CreateModelMixin
 from rest_framework.viewsets import GenericViewSet
 
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from django.apps import apps
-from django.conf import settings
 
 from .serializers import (
     OctoPrintEventSerializer,
@@ -41,7 +36,7 @@ logger = logging.getLogger(__name__)
     )
 )
 class TelemetryEventViewSet(
-    GenericViewSet, ListModelMixin, RetrieveModelMixin, OptionsCreateModelMixin
+    GenericViewSet, ListModelMixin, RetrieveModelMixin, CreateModelMixin
 ):
     serializer_class = TelemetryEventPolymorphicSerializer
     queryset = TelemetryEvent.objects.all()
@@ -79,7 +74,7 @@ class RemoteCommandEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMix
     )
 )
 class OctoPrintEventViewSet(
-    OptionsCreateModelMixin, GenericViewSet, ListModelMixin, RetrieveModelMixin
+    CreateModelMixin, GenericViewSet, ListModelMixin, RetrieveModelMixin
 ):
     serializer_class = OctoPrintEventSerializer
     queryset = OctoPrintEvent.objects.all()
