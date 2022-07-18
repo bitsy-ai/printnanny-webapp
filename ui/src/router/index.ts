@@ -66,7 +66,7 @@ const router = createRouter({
       component: () => import("@/views/SettingsView.vue"),
     },
     {
-      path: "/billing",
+      path: "/settings/billing",
       name: "billing",
       component: () => import("@/views/BillingView.vue"),
       beforeEnter: async (to, from) => {
@@ -75,7 +75,7 @@ const router = createRouter({
       },
     },
     {
-      path: "/billing/cancel",
+      path: "/settings/billing/cancel",
       name: "billing-cancel",
       component: () => import("@/views/BillingCancelView.vue"),
       beforeEnter: async (to, from) => {
@@ -84,7 +84,7 @@ const router = createRouter({
       },
     },
     {
-      path: "/billing/update",
+      path: "/settings//billing/update",
       name: "billing-update",
       component: () => import("@/views/BillingUpdateView.vue"),
       beforeEnter: async (to, from) => {
@@ -105,7 +105,7 @@ const router = createRouter({
     {
       path: "/notifications/settings",
       name: "alertSettings",
-      component: () => import("@/views/AlertSettingsView.vue"),
+      component: () => import("@/views/SettingsView.vue"),
     },
   ],
 });

@@ -38,7 +38,8 @@ export const useAlertStore = defineStore({
             return obj;
           }, {});
       }
-    }
+    },
+    settingsFormReady: (state) => state.settings !== null && state.settingsMetadata !== null
   },
   actions: {
     async fetchSettingsMetadata() {
@@ -78,7 +79,7 @@ export const useAlertStore = defineStore({
     async fetchSettings() {
       this.$patch({ loading: true });
       try {
-        const alertsSettingsData = await alertsApi.alertsSettingsList();
+        const alertsSettingsData = await alertSettingsApi.alertSettingsList();
         console.log("Fetched AlertSettings data: ", alertsSettingsData.data);
         this.$patch({ settings: alertsSettingsData.data });
       }
