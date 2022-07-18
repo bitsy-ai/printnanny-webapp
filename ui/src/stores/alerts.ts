@@ -10,69 +10,14 @@ export const useAlertStore = defineStore({
   state: () => ({
     alerts: [] as Array<UiAlert | UiAlert>,
     settings: undefined as apiTypes.AlertSettings | undefined,
-    settingsMetadata: undefined as apiTypes.OptionsMetadata | undefined,
     loading: false,
   }),
   getters: {
     showEmpty: (state) => state.loading == false && state.alerts.length == 0,
-    alertSettingsFieldset: (state) => {
-      const exclude = ["id", "created_dt", "updated_dt"];
-      if (state.settingsMetadata == undefined) {
-        return;
-      }
-      return Object.keys(state.settingsMetadata.fieldset)
-        .filter((key) => !exclude.includes(key))
-        .reduce((obj: any, key: string) => {
-          if (state.settingsMetadata?.fieldset[key] == undefined) {
-            return;
-          } else {
-            obj[key] = state.settingsMetadata?.fieldset[key];
-            return obj;
-          }
-        }, {});
-    },
     settingsFormReady: (state) =>
-      state.settings !== undefined && state.settingsMetadata !== undefined,
+      state.settings !== undefined,
   },
   actions: {
-    async fetchSettingsMetadata() {
-      this.$patch({ loading: true });
-      try {
-        const alertsSettingsMetadata =
-          await alertSettingsApi.alertSettingsMetadata();
-        console.log(
-          "Fetched AlertSettings OPTIONS data: ",
-          alertsSettingsMetadata
-        );
-        this.$patch({ settingsMetadata: alertsSettingsMetadata.data });
-        console.log("Form fieldset: ", this.alertSettingsFieldset);
-      } catch (e: any) {
-        if (e.isAxiosError) {
-          let msg;
-          if (
-            e.response.data.non_field_errors &&
-            e.response.data.non_field_errors.length > 0
-          ) {
-            msg = e.response.data.non_field_errors.join("\n");
-          } else if (e.response.data.detail) {
-            msg = e.response.data.detail;
-          } else {
-            msg = e.response.data;
-          }
-          const alert: UiAlert = {
-            header: e.response.statusText,
-            message: msg,
-            error: e,
-            actions: [],
-          };
-          this.alerts.push(alert);
-          console.error(e.response);
-        } else {
-          throw e;
-        }
-      }
-      this.$patch({ loading: false });
-    },
     async fetchSettings() {
       this.$patch({ loading: true });
 
