@@ -27,7 +27,42 @@ export const useAccountStore = defineStore({
     isAuthenticated: (state) => state.user !== null,
   },
   actions: {
-
+    async submitEmailWaitlist(email: String) {
+      const alerts = useAlertStore();
+      try {
+        const req: apiTypes.EmailWaitlistRequest = { email };
+        const res = await accountsApi.accountsEmailWaitlistCreate(req);
+        const alert: UiAlert = {
+          header: "Thanks for signing up!",
+          message: `We'll send an email to ${email} when beta spots open. `
+        };
+        alerts.push(alert);
+      }
+      catch (e: any) {
+        if (e.isAxiosError) {
+          let msg;
+          if (
+            e.response.data.email &&
+            e.response.data.email.length > 0
+          ) {
+            msg = e.response.data.email.join("\n");
+          } else if (e.response.data.detail) {
+            msg = e.response.data.detail;
+          } else {
+            msg = e.response.data;
+          }
+          const alert: UiError = {
+            header: e.response.statusText,
+            message: msg,
+            error: e,
+          };
+          alerts.push(alert);
+          console.error(e.response);
+        } else {
+          throw e;
+        }
+      }
+    },
     async fetchUser() {
       try {
         const userData = await accountsApi.accountsUserRetrieve();

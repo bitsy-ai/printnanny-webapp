@@ -92,6 +92,8 @@
         <div
           class="pt-10 bg-gray-900 sm:pt-16 lg:pt-8 lg:pb-14 lg:overflow-hidden"
         >
+              <StickyAlerts />
+
           <div class="mx-auto">
             <div class="lg:grid lg:grid-cols-2 lg:gap-8">
               <div
@@ -165,18 +167,22 @@
                     Settings and files synced across your devices.
                   </p>
                   <div class="mt-10 sm:mt-12">
-                    <form action="#" class="sm:max-w-xl sm:mx-auto lg:mx-0">
+                    <Form v-slot="{ meta }" class="sm:max-w-xl sm:mx-auto lg:mx-0" @submit="onSubmit"  :validation-schema="schema">
                       <div class="sm:flex">
                         <div class="min-w-0 flex-1">
                           <label for="email" class="sr-only"
                             >Email address</label
                           >
-                          <input
+                          <Field
                             id="email"
+                            name="email"
                             type="email"
-                            placeholder="Enter your email"
+                            autocomplete="email"
                             class="block w-full px-4 py-3 rounded-md border-0 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+                            placeholder="Email address"
+                            rules="required"
                           />
+                          <error-message class="text-red-500" name="email"></error-message>
                         </div>
                         <div class="mt-3 sm:mt-0 sm:ml-3">
                           <button
@@ -188,10 +194,8 @@
                         </div>
                       </div>
                       <p class="mt-3 text-sm text-gray-300 sm:mt-4">
-                        <!-- By providing your email, you agree to our
-                        <a href="#" class="font-medium text-white"
-                          >terms of service</a
-                        >. -->
+                        By providing your email, you agree to our
+                        <a href="/terms" class="font-medium text-white">Terms of Service.</a>
                       </p>
                     </form>
                   </div>
@@ -382,8 +386,11 @@
   </div>
 </template>
 <script setup lang="ts">
-import { defineComponent, h } from "vue";
+import { defineComponent, h, ref, reactive } from "vue";
+import { Field, ErrorMessage, Form } from "vee-validate";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
+import * as yup from "yup";
+
 import {
   CloudUploadIcon,
   CogIcon,
@@ -402,8 +409,28 @@ import { ChevronRightIcon, ExternalLinkIcon } from "@heroicons/vue/solid";
 import LoginNav from "@/components/nav/LoginNav.vue";
 import MobileLoginNav from "@/components/nav/MobileLoginNav.vue";
 import DemoQualityAlert from "@/components/demo/DemoQualityAlert.vue";
+import StickyAlerts from "@/components/alerts/StickyAlerts.vue";
+
 import googleIoImg from "@/assets/press/google-io.png";
 import tfEverywhereImg from "@/assets/press/tensorflow-everywhere-na.png";
+import { useAccountStore } from "@/stores/account";
+
+const accountStore = useAccountStore();
+const loading = ref(false);
+const state = reactive({
+  loading,
+});
+// define a validation schema
+const schema = yup.object({
+  email: yup.string().required().email(),
+});
+
+
+async function onSubmit(values: any) {
+  state.loading = true;
+  const res = await  accountStore.submitEmailWaitlist(values.email);
+  state.loading = false;
+}
 
 const navigation = [
   { name: "Quality Control", href: "#quality-control" },
