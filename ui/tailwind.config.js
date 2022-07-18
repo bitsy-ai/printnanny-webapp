@@ -1,5 +1,3 @@
-const { resolve } = require("path");
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [

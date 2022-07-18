@@ -23,7 +23,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
 import { useAlertStore } from "@/stores/alerts";
 import { ExclamationIcon } from "@heroicons/vue/outline";
 import SimpleAlert from "./SimpleAlert.vue";

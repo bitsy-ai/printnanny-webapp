@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import { RouterLink, useRouter } from "vue-router";
 import {
   HomeIcon,
@@ -62,8 +61,6 @@ const misc_nav = [
     icon: MapIcon,
   },
 ];
-
-const sidebarOpen = ref(false);
 </script>
 <template>
   <div class="mt-5 flex-1 h-0 overflow-y-auto">

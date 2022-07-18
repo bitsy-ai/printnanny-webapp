@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import FooterNav from "@/components/nav/FooterNav.vue";
 import StickyAlerts from "@/components/alerts/StickyAlerts.vue";
 import DashboardPage from "@/components/pages/DashboardPage.vue";
 import AlertSettingsForm from "@/components/forms/AlertSettingsForm.vue";

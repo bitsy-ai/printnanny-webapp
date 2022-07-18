@@ -3,8 +3,6 @@ import HomeView from "@/views/HomeView.vue";
 import LoginView from "@/views/LoginView.vue";
 import DashboardView from "@/views/DashboardView.vue";
 import { useAccountStore } from "@/stores/account";
-import { useDeviceStore } from "@/stores/devices";
-import { useBillingStore } from "@/stores/billing";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,7 +36,7 @@ const router = createRouter({
       path: "/logout",
       name: "logout",
       redirect: { name: "home" },
-      beforeEnter: async (to, from) => {
+      beforeEnter: async (_to, _from) => {
         const account = useAccountStore();
         await account.logout();
       },
@@ -88,7 +86,7 @@ const router = createRouter({
   ],
 });
 
-router.beforeEach(async (to, from) => {
+router.beforeEach(async (to, _from) => {
   const account = useAccountStore();
   await account.fetchUser();
   if (

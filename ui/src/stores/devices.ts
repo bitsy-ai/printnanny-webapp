@@ -24,6 +24,7 @@ export const useDeviceStore = defineStore({
           fqdn: `${hostname}.local`,
         };
         const res = devicesApi.devicesCreate(req);
+        console.log("Created device: ", res.data);
       } catch (e: any) {
         if (e.isAxiosError) {
           const alerts = useAlertStore();
@@ -44,8 +45,7 @@ export const useDeviceStore = defineStore({
             header: e.response.statusText,
             message: msg,
             error: e,
-            actions: []
-
+            actions: [],
           };
           alerts.push(alert);
           console.error(e.response);
@@ -82,7 +82,7 @@ export const useDeviceStore = defineStore({
             header: e.response.statusText,
             message: msg,
             error: e,
-            actions: []
+            actions: [],
           };
           alerts.push(alert);
           console.error(e.response);

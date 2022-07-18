@@ -29,7 +29,6 @@
   </span>
 </template>
 <script setup lang="ts">
-import * as apiTypes from "printnanny-api-client";
 import { useBillingStore } from "@/stores/billing";
 import { ExclamationIcon } from "@heroicons/vue/outline";
 const billingStore = useBillingStore();

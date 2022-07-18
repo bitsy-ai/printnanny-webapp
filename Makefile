@@ -125,11 +125,18 @@ cypress-ci: octoprint-wait
 
 sandbox-logs:
 	kubectl logs --all-containers -l branch=$(GIT_BRANCH)
+
 ui:
 	cd ui && npm install && npm run build
 
-ui-deply:
+ui-deploy:
 	cd ui/dist && gsutil rsync -R . $(UI_DEPLOY_PATH)
+
+ui-install:
+	cd ui/dist && npm run install
+
+ui-lint:
+	cd ui/dist && npm run lint
 
 docker-image:
 	DOCKER_BUILDKIT=1 docker build \

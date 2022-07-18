@@ -49,9 +49,15 @@ import { XIcon } from "@heroicons/vue/solid";
 import { ref } from "vue";
 import AlertActionFooter from "./AlertActionFooter.vue";
 import type { AlertAction } from "@/types";
-const props = defineProps({
-  message: String,
-  header: String,
+defineProps({
+  message: {
+    type: String,
+    default: "",
+  },
+  header: {
+    type: String,
+    default: "",
+  },
   bgColor: {
     type: String,
     required: false,
@@ -59,6 +65,7 @@ const props = defineProps({
   },
   actions: {
     type: Array<AlertAction>,
+    default: [],
   },
 });
 

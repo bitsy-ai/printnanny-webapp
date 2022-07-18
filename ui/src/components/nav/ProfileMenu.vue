@@ -50,7 +50,11 @@
         </div>
         <!-- linkItems Array -->
         <div class="py-1">
-          <MenuItem v-for="item in linkItems" v-slot="{ active }" :key="item.name">
+          <MenuItem
+            v-for="item in linkItems"
+            v-slot="{ active }"
+            :key="item.name"
+          >
             <a
               :href="item.href"
               :class="[

@@ -88,7 +88,6 @@
   </nav>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
 import { RouterLink, useRouter } from "vue-router";
 import {
   HomeIcon,
@@ -151,6 +150,4 @@ const misc_nav = [
     icon: MapIcon,
   },
 ];
-
-const sidebarOpen = ref(false);
 </script>
