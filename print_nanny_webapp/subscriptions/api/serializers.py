@@ -112,7 +112,7 @@ class StripeNextInvoiceSerializer(serializers.ModelSerializer):
     serializer_field_mapping[
         stripe.api_resources.list_object.ListObject
     ] = serializers.JSONField  # type: ignore
-    serializer_related_to_field = InvoiceSlugRelatedField()
+    serializer_related_to_field = InvoiceSlugRelatedField  # type: ignore
 
     class Meta:
         model = UpcomingInvoice
