@@ -8,6 +8,7 @@ import vueJsx from "@vitejs/plugin-vue-jsx";
 export default defineConfig({
   server: {
     host: "0.0.0.0",
+    cors: false,
     proxy: {
       "/api": {
         target: "http://localhost:8000",

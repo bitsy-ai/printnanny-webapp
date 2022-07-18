@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { useBillingStore } from "@/stores/billing";
+import { useAlertStore } from "@/stores/alerts";
 import { Field, ErrorMessage, Form } from "vee-validate";
 import type * as apiTypes from "printnanny-api-client";
 
-const billingStore = useBillingStore();
+const alertStore = useAlertStore();
+alertStore.fetchSettingsMetadata();
 </script>
 <template>
 <div class="p-12">
