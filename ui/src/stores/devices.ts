@@ -23,7 +23,7 @@ export const useDeviceStore = defineStore({
           hostname,
           fqdn: `${hostname}.local`,
         };
-        const res = devicesApi.devicesCreate(req);
+        const res = await devicesApi.devicesCreate(req);
         console.log("Created device: ", res.data);
       } catch (e: any) {
         if (e.isAxiosError) {

@@ -39,7 +39,7 @@ export const useBillingStore = defineStore({
         alerts.push(alert);
         this.$patch({ summary: res.data });
         router.push({ name: "billing" });
-      } catch (e) {
+      } catch (e: any) {
         if (e.isAxiosError) {
           const alerts = useAlertStore();
           let msg;
@@ -92,7 +92,7 @@ export const useBillingStore = defineStore({
           alerts.push(alert);
           this.$patch({ summary: res.data });
           router.push({ name: "billing" });
-        } catch (e) {
+        } catch (e: any) {
           if (e.isAxiosError) {
             const alerts = useAlertStore();
             let msg;
@@ -127,7 +127,7 @@ export const useBillingStore = defineStore({
         const res = await billingApi.billingSummaryRetrieve();
         console.log("Fetched billing summary: ", res.data);
         return this.$patch({ summary: res.data });
-      } catch (e: unknown) {
+      } catch (e: any) {
         if (e.isAxiosError) {
           const alerts = useAlertStore();
           let msg;
