@@ -1,4 +1,8 @@
+import copy
+from collections import OrderedDict
+
 from rest_framework import serializers
+from rest_framework.utils import model_meta
 
 
 class ErrorDetailSerializer(serializers.Serializer):
@@ -13,3 +17,15 @@ class PrintNannyApiConfigSerializer(serializers.Serializer):
     base_path = serializers.CharField(read_only=True)
     static_url = serializers.CharField(read_only=True)
     dashboard_url = serializers.CharField(read_only=True)
+
+
+class OptionsSerializer(serializers.Serializer):
+    """
+    An `OptionsModelSerializer` documents the OPTIONS response for a model endpoint
+    """
+
+    name = serializers.CharField()
+    description = serializers.CharField()
+    renders = serializers.ListField(child=serializers.CharField())
+    parses = serializers.ListField(child=serializers.CharField())
+    fieldset = serializers.DictField()

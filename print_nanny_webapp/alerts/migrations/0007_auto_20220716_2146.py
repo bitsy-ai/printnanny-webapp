@@ -7,18 +7,60 @@ import print_nanny_webapp.utils.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0006_videostatusalert_needs_review'),
+        ("alerts", "0006_videostatusalert_needs_review"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='alertmessage',
-            name='event_type',
-            field=models.CharField(choices=[('Test', 'Hello {{ FIRST_NAME }} 👋'), ('VideoDone', '{{ GCODE_FILE }} - timelapse done 🎥'), ('PrintQuality', '{{ GCODE_FILE }} - failing quality control ❌'), ('PrintProgress', '{{ GCODE_FILE }} - {{ PRINT_PROGRESS }}% complete ⏳'), ('PrintDone', '{{ GCODE_FILE }} - job finished ✅'), ('PrintFailed', '{{ GCODE_FILE }} - job failed ❌'), ('PrintPaused', '{{ GCODE_FILE }} - job paused ⏸️'), ('PrintResumed', '{{ GCODE_FILE }} - job resumed ⏯️'), ('PrintStarted', '{{ GCODE_FILE }} - job started 🏁'), ('PrintCancelled', '{{ GCODE_FILE }} - job cancelled ❌'), ('Shutdown', '{{ DEVICE_NAME }} - OctoPrint server shutdown 😴'), ('Startup', '{{ DEVICE_NAME }} - OctoPrint server startup ✨'), ('Connected', '{{ DEVICE_NAME }} - OctoPrint connected to printer 🔗'), ('Disconnected', '{{ DEVICE_NAME }} - OctoPrint disconnected from printer 💥')], max_length=255, null=True),
+            model_name="alertmessage",
+            name="event_type",
+            field=models.CharField(
+                choices=[
+                    ("Test", "Hello {{ FIRST_NAME }} 👋"),
+                    ("VideoDone", "{{ GCODE_FILE }} - timelapse done 🎥"),
+                    ("PrintQuality", "{{ GCODE_FILE }} - failing quality control ❌"),
+                    (
+                        "PrintProgress",
+                        "{{ GCODE_FILE }} - {{ PRINT_PROGRESS }}% complete ⏳",
+                    ),
+                    ("PrintDone", "{{ GCODE_FILE }} - job finished ✅"),
+                    ("PrintFailed", "{{ GCODE_FILE }} - job failed ❌"),
+                    ("PrintPaused", "{{ GCODE_FILE }} - job paused ⏸️"),
+                    ("PrintResumed", "{{ GCODE_FILE }} - job resumed ⏯️"),
+                    ("PrintStarted", "{{ GCODE_FILE }} - job started 🏁"),
+                    ("PrintCancelled", "{{ GCODE_FILE }} - job cancelled ❌"),
+                    ("Shutdown", "{{ DEVICE_NAME }} - OctoPrint server shutdown 😴"),
+                    ("Startup", "{{ DEVICE_NAME }} - OctoPrint server startup ✨"),
+                    (
+                        "Connected",
+                        "{{ DEVICE_NAME }} - OctoPrint connected to printer 🔗",
+                    ),
+                    (
+                        "Disconnected",
+                        "{{ DEVICE_NAME }} - OctoPrint disconnected from printer 💥",
+                    ),
+                ],
+                max_length=255,
+                null=True,
+            ),
         ),
         migrations.AlterField(
-            model_name='alertsettings',
-            name='event_types',
-            field=print_nanny_webapp.utils.fields.ChoiceArrayField(base_field=models.CharField(choices=[('PrintQuality', 'Quality control alerts'), ('PrintStatus', 'Print status updates (percent progress, paused, resumed, failed)')], max_length=255), blank=True, default=('PrintQuality', 'PrintStatus'), size=None),
+            model_name="alertsettings",
+            name="event_types",
+            field=print_nanny_webapp.utils.fields.ChoiceArrayField(
+                base_field=models.CharField(
+                    choices=[
+                        ("PrintQuality", "Quality control alerts"),
+                        (
+                            "PrintStatus",
+                            "Print status updates (percent progress, paused, resumed, failed)",
+                        ),
+                    ],
+                    max_length=255,
+                ),
+                blank=True,
+                default=("PrintQuality", "PrintStatus"),
+                size=None,
+            ),
         ),
     ]

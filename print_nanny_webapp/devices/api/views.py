@@ -9,7 +9,6 @@ from drf_spectacular.utils import (
     OpenApiParameter,
 )
 from django.db.utils import IntegrityError
-from print_nanny_webapp.devices.enum import JanusConfigType
 
 from django.contrib.auth import get_user_model
 from rest_framework import status

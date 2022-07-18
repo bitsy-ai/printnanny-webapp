@@ -6,7 +6,7 @@ def drf_spectacular_preprocessor(endpoints):
     for (path, path_regex, method, callback) in orig_endpoints:
         # add OPTIONS to any viewset with POST (create) method, exclude update-or-create actions
         # OPTIONS response is used to build forms and ui elements
-        if method == "POST" and "update-or-create" not in path:
+        if getattr(callback.cls, "openapi_options", False) and method == "POST":
             endpoints.append([path, path_regex, "OPTIONS", callback])
     return endpoints
 

@@ -410,7 +410,7 @@ SOCIALACCOUNT_ADAPTER = "print_nanny_webapp.users.adapters.SocialAccountAdapter"
 INSTALLED_APPS += ["drf_spectacular"]
 PAGE_SIZE = 20
 REST_FRAMEWORK = {
-    "DEFAULT_METADATA_CLASS": "rest_framework.metadata.SimpleMetadata",
+    "DEFAULT_METADATA_CLASS": "print_nanny_webapp.utils.api.metadata.FormMetadata",
     "DEFAULT_SCHEMA_CLASS": "print_nanny_webapp.utils.api.openapi.CustomAutoSchema",
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.SessionAuthentication",
@@ -434,7 +434,7 @@ SPECTACULAR_SETTINGS = {
     "COMPONENT_SPLIT_REQUEST": True,
     "ENUM_ADD_EXPLICIT_BLANK_NULL_CHOICE": True,
     "SCHEMA_COERCE_PATH_PK_SUFFIX": True,
-    "DEFAULT_GENERATOR_CLASS": "print_nanny_webapp.utils.api.metadata.CustomSchemaGenerator",
+    "DEFAULT_GENERATOR_CLASS": "print_nanny_webapp.utils.api.generators.CustomSchemaGenerator",
     "ENUM_NAME_OVERRIDES": {
         # TODO refactor event apps+namespaces for clarity before adding mainsail
         # begin device app enums

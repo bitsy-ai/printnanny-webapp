@@ -14,7 +14,7 @@ from rest_framework.mixins import (
 from rest_framework.decorators import action
 from django.apps import apps
 
-from print_nanny_webapp.utils.api.viewsets import MetadataModelMixin
+from print_nanny_webapp.utils.api.serializers import OptionsSerializer
 from .serializers import (
     AlertSerializer,
     AlertBulkRequestSerializer,
@@ -23,7 +23,6 @@ from .serializers import (
 )
 from print_nanny_webapp.utils.api.views import (
     generic_update_errors,
-    generic_get_errors,
 )
 
 
@@ -134,18 +133,23 @@ class AlertViewSet(
         request=AlertSettingsSerializer,
         responses={202: AlertSettingsSerializer} | generic_update_errors,
     ),
+    options=extend_schema(
+        responses={
+            200: OptionsSerializer,
+        }
+    ),
 )
 class AlertSettingsViewSet(
     GenericViewSet,
     CreateModelMixin,
     ListModelMixin,
     UpdateModelMixin,
-    MetadataModelMixin,
 ):
     serializer_class = AlertSettingsSerializer
     queryset = AlertSettings.objects.all()
     lookup_field = "id"
     pagination_class = None
+    openapi_options = True
 
     def list(self, request, **kwargs):
         instance, _created = AlertSettings.objects.get_or_create(user=request.user)
