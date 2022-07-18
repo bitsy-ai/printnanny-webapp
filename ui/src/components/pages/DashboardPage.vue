@@ -51,74 +51,7 @@
                   </button>
                 </div>
               </TransitionChild>
-              <div class="flex-shrink-0 flex items-center px-4">
-                <img
-                  class="h-8 w-auto"
-                  src="@/assets/logo/logo-rect-light.svg"
-                  alt="PrintNanny"
-                />
-              </div>
-              <div class="mt-5 flex-1 h-0 overflow-y-auto">
-                <nav class="px-2">
-                  <div class="space-y-1">
-                    <a
-                      v-for="item in navigation"
-                      :key="item.name"
-                      :href="item.href"
-                      :class="[
-                        item.current
-                          ? 'bg-gray-100 text-gray-900'
-                          : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50',
-                        'group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md',
-                      ]"
-                      :aria-current="item.current ? 'page' : undefined"
-                    >
-                      <component
-                        :is="item.icon"
-                        :class="[
-                          item.current
-                            ? 'text-gray-500'
-                            : 'text-gray-400 group-hover:text-gray-500',
-                          'mr-3 flex-shrink-0 h-6 w-6',
-                        ]"
-                        aria-hidden="true"
-                      />
-                      {{ item.name }}
-                    </a>
-                  </div>
-                  <div class="mt-8">
-                    <h3
-                      id="mobile-teams-headline"
-                      class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider"
-                    >
-                      Teams
-                    </h3>
-                    <div
-                      class="mt-1 space-y-1"
-                      role="group"
-                      aria-labelledby="mobile-teams-headline"
-                    >
-                      <a
-                        v-for="team in teams"
-                        :key="team.name"
-                        :href="team.href"
-                        class="group flex items-center px-3 py-2 text-base leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50"
-                      >
-                        <span
-                          :class="[
-                            team.bgColorClass,
-                            'w-2.5 h-2.5 mr-4 rounded-full',
-                          ]"
-                          aria-hidden="true"
-                        />
-                        <span class="truncate">
-                          {{ team.name }}
-                        </span>
-                      </a>
-                    </div>
-                  </div>
-                </nav>
-              </div>
+            <MobileSidebarNav />
             </DialogPanel>
           </TransitionChild>
           <div class="flex-shrink-0 w-14" aria-hidden="true">
@@ -247,6 +180,7 @@ import DeviceList from "@/components/devices/DeviceList.vue";
 import PinnedDevices from "@/components/devices/PinnedDevices.vue";
 import SidebarNav from "@/components/nav/SidebarNav.vue";
 import MobileProfileMenu from "@/components/nav/MobileProfileMenu.vue";
+import MobileSidebarNav from "@/components/nav/MobileSidebarNav.vue";
 import { useAccountStore } from "@/stores/account";
 
 const account = useAccountStore();
