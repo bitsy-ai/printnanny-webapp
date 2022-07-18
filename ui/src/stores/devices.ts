@@ -19,10 +19,10 @@ export const useDeviceStore = defineStore({
   state: () => ({
     /** @type { Device[] } */
     devices: [],
-    loading: false
+    loading: false,
   }),
   getters: {
-    showEmpty: (state) => state.loading == false && state.devices.length == 0
+    showEmpty: (state) => state.loading == false && state.devices.length == 0,
   },
   actions: {
     async create(hostname) {

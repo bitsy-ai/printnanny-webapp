@@ -19,10 +19,10 @@ export const useBillingStore = defineStore({
   id: "billing",
   state: () => ({
     /** @type { BillingSummary } */
-    summary: null
+    summary: null,
   }),
   getters: {
-    billingFormReady: (state) => state.summary !== null
+    billingFormReady: (state) => state.summary !== null,
   },
   actions: {
     async cancel() {

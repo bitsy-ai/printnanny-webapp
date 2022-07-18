@@ -92,7 +92,7 @@
         <div
           class="pt-10 bg-gray-900 sm:pt-16 lg:pt-8 lg:pb-14 lg:overflow-hidden"
         >
-              <StickyAlerts />
+          <StickyAlerts />
 
           <div class="mx-auto">
             <div class="lg:grid lg:grid-cols-2 lg:gap-8">
@@ -167,7 +167,12 @@
                     Settings and files synced across your devices.
                   </p>
                   <div class="mt-10 sm:mt-12">
-                    <Form v-slot="{ meta }" class="sm:max-w-xl sm:mx-auto lg:mx-0" @submit="onSubmit"  :validation-schema="schema">
+                    <Form
+                      v-slot="{ meta }"
+                      class="sm:max-w-xl sm:mx-auto lg:mx-0"
+                      :validation-schema="schema"
+                      @submit="onSubmit"
+                    >
                       <div class="sm:flex">
                         <div class="min-w-0 flex-1">
                           <label for="email" class="sr-only"
@@ -182,7 +187,10 @@
                             placeholder="Email address"
                             rules="required"
                           />
-                          <error-message class="text-red-500" name="email"></error-message>
+                          <error-message
+                            class="text-red-500"
+                            name="email"
+                          ></error-message>
                         </div>
                         <div class="mt-3 sm:mt-0 sm:ml-3">
                           <button
@@ -195,9 +203,11 @@
                       </div>
                       <p class="mt-3 text-sm text-gray-300 sm:mt-4">
                         By providing your email, you agree to our
-                        <a href="/terms" class="font-medium text-white">Terms of Service.</a>
+                        <a href="/terms" class="font-medium text-white"
+                          >Terms of Service.</a
+                        >
                       </p>
-                    </form>
+                    </Form>
                   </div>
                 </div>
               </div>
@@ -425,10 +435,9 @@ const schema = yup.object({
   email: yup.string().required().email(),
 });
 
-
 async function onSubmit(values: any) {
   state.loading = true;
-  const res = await  accountStore.submitEmailWaitlist(values.email);
+  const res = await accountStore.submitEmailWaitlist(values.email);
   state.loading = false;
 }
 

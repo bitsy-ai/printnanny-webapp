@@ -24,33 +24,37 @@ export const useAlertStore = defineStore({
     settings: null,
     /** @type { apiTypes.OptionsMetadata } */
     settingsMetadata: null,
-    loading: false
+    loading: false,
   }),
   getters: {
     showEmpty: (state) => state.loading == false && state.alerts.length == 0,
     alertSettingsFieldset: (state) => {
-      const exclude = ["id", "created_dt", "updated_dt"]
+      const exclude = ["id", "created_dt", "updated_dt"];
       if (state.settingsMetadata !== null) {
         return Object.keys(state.settingsMetadata.fieldset)
-          .filter(key => !exclude.includes(key))
+          .filter((key) => !exclude.includes(key))
           .reduce((obj, key) => {
             obj[key] = state.settingsMetadata.fieldset[key];
             return obj;
           }, {});
       }
     },
-    settingsFormReady: (state) => state.settings !== null && state.settingsMetadata !== null
+    settingsFormReady: (state) =>
+      state.settings !== null && state.settingsMetadata !== null,
   },
   actions: {
     async fetchSettingsMetadata() {
       this.$patch({ loading: true });
       try {
-        const alertsSettingsMetadata = await alertSettingsApi.alertSettingsMetadata();
-        console.log("Fetched AlertSettings OPTIONS data: ", alertsSettingsMetadata);
+        const alertsSettingsMetadata =
+          await alertSettingsApi.alertSettingsMetadata();
+        console.log(
+          "Fetched AlertSettings OPTIONS data: ",
+          alertsSettingsMetadata
+        );
         this.$patch({ settingsMetadata: alertsSettingsMetadata.data });
         console.log("Form fieldset: ", this.alertSettingsFieldset);
-      }
-      catch (e: any) {
+      } catch (e: any) {
         if (e.isAxiosError) {
           let msg;
           if (
@@ -82,8 +86,7 @@ export const useAlertStore = defineStore({
         const alertsSettingsData = await alertSettingsApi.alertSettingsList();
         console.log("Fetched AlertSettings data: ", alertsSettingsData.data);
         this.$patch({ settings: alertsSettingsData.data });
-      }
-      catch (e: any) {
+      } catch (e: any) {
         if (e.isAxiosError) {
           let msg;
           if (

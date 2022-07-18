@@ -12,6 +12,10 @@
     "@vue/eslint-config-typescript/recommended",
     "@vue/eslint-config-prettier"
   ],
+  "ignorePatterns": [
+    "PrivacyPolicy.vue",
+    "TermsOfService.vue"
+  ],
   "overrides": [
     {
       "files": [
@@ -19,7 +23,7 @@
       ],
       "extends": [
         "plugin:cypress/recommended"
-      ],
-    },
-  ],
+      ]
+    }
+  ]
 }

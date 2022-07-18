@@ -27,24 +27,20 @@ export const useAccountStore = defineStore({
     isAuthenticated: (state) => state.user !== null,
   },
   actions: {
-    async submitEmailWaitlist(email: String) {
+    async submitEmailWaitlist(email: string) {
       const alerts = useAlertStore();
       try {
         const req: apiTypes.EmailWaitlistRequest = { email };
         const res = await accountsApi.accountsEmailWaitlistCreate(req);
         const alert: UiAlert = {
           header: "Thanks for signing up!",
-          message: `We'll send an email to ${email} when beta spots open. `
+          message: `We'll send an email to ${email} when beta spots open. `,
         };
         alerts.push(alert);
-      }
-      catch (e: any) {
+      } catch (e: any) {
         if (e.isAxiosError) {
           let msg;
-          if (
-            e.response.data.email &&
-            e.response.data.email.length > 0
-          ) {
+          if (e.response.data.email && e.response.data.email.length > 0) {
             msg = e.response.data.email.join("\n");
           } else if (e.response.data.detail) {
             msg = e.response.data.detail;

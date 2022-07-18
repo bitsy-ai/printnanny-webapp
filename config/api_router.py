@@ -44,13 +44,6 @@ router.register(r"alert-settings", AlertSettingsViewSet, basename="alert-setting
 
 router.register("devices", DeviceViewSet)
 
-# extra_alerts_urls = [
-#     path(
-#         "alerts/settings",
-#         AlertSettingsView.as_view({"get": "get", "post": "update"}),
-#     )
-# ]
-
 # octoprint endpoints (PrintNanny os data model)
 
 # enables /api/devices/:hostname lookup (no nested routing)

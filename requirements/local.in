@@ -27,7 +27,6 @@ django-rest-polymorphic
 django-safedelete
 django-storages[google]
 django-stubs
-django-vite
 django-webpack-loader
 django>3,<4
 djangorestframework
