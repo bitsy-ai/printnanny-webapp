@@ -19,7 +19,7 @@ class PrintNannyApiConfigSerializer(serializers.Serializer):
     dashboard_url = serializers.CharField(read_only=True)
 
 
-class OptionsSerializer(serializers.Serializer):
+class OptionsMetadataSerializer(serializers.Serializer):
     """
     An `OptionsModelSerializer` documents the OPTIONS response for a model endpoint
     """

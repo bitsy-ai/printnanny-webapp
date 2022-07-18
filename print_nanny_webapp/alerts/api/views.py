@@ -14,7 +14,7 @@ from rest_framework.mixins import (
 from rest_framework.decorators import action
 from django.apps import apps
 
-from print_nanny_webapp.utils.api.serializers import OptionsSerializer
+from print_nanny_webapp.utils.api.serializers import OptionsMetadataSerializer
 from .serializers import (
     AlertSerializer,
     AlertBulkRequestSerializer,
@@ -135,7 +135,7 @@ class AlertViewSet(
     ),
     options=extend_schema(
         responses={
-            200: OptionsSerializer,
+            200: OptionsMetadataSerializer,
         }
     ),
 )

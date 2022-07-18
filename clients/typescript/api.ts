@@ -2049,6 +2049,43 @@ export interface OctoPrinterProfileRequest {
     'volume_width'?: number | null;
 }
 /**
+ * An `OptionsModelSerializer` documents the OPTIONS response for a model endpoint
+ * @export
+ * @interface OptionsMetadata
+ */
+export interface OptionsMetadata {
+    /**
+     * 
+     * @type {string}
+     * @memberof OptionsMetadata
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OptionsMetadata
+     */
+    'description': string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof OptionsMetadata
+     */
+    'renders': Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof OptionsMetadata
+     */
+    'parses': Array<string>;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OptionsMetadata
+     */
+    'fieldset': { [key: string]: any; };
+}
+/**
  * 
  * @export
  * @interface PaginatedAlertList
@@ -6795,6 +6832,41 @@ export const AlertSettingsApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsMetadata: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/alert-settings/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'OPTIONS', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {number} id A unique integer value identifying this alert settings.
          * @param {PatchedAlertSettingsRequest} [patchedAlertSettingsRequest] 
          * @param {*} [options] Override http request option.
@@ -6910,6 +6982,15 @@ export const AlertSettingsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertSettingsMetadata(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OptionsMetadata>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertSettingsMetadata(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {number} id A unique integer value identifying this alert settings.
          * @param {PatchedAlertSettingsRequest} [patchedAlertSettingsRequest] 
          * @param {*} [options] Override http request option.
@@ -6959,6 +7040,14 @@ export const AlertSettingsApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsMetadata(options?: any): AxiosPromise<OptionsMetadata> {
+            return localVarFp.alertSettingsMetadata(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {number} id A unique integer value identifying this alert settings.
          * @param {PatchedAlertSettingsRequest} [patchedAlertSettingsRequest] 
          * @param {*} [options] Override http request option.
@@ -7002,6 +7091,14 @@ export interface AlertSettingsApiInterface {
      * @memberof AlertSettingsApiInterface
      */
     alertSettingsList(options?: AxiosRequestConfig): AxiosPromise<AlertSettings>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApiInterface
+     */
+    alertSettingsMetadata(options?: AxiosRequestConfig): AxiosPromise<OptionsMetadata>;
 
     /**
      * 
@@ -7055,6 +7152,16 @@ export class AlertSettingsApi extends BaseAPI implements AlertSettingsApiInterfa
 
     /**
      * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApi
+     */
+    public alertSettingsMetadata(options?: AxiosRequestConfig) {
+        return AlertSettingsApiFp(this.configuration).alertSettingsMetadata(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @param {number} id A unique integer value identifying this alert settings.
      * @param {PatchedAlertSettingsRequest} [patchedAlertSettingsRequest] 
      * @param {*} [options] Override http request option.
@@ -7085,6 +7192,45 @@ export class AlertSettingsApi extends BaseAPI implements AlertSettingsApiInterfa
  */
 export const AlertsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * 
+         * @param {AlertRequest} [alertRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsCreate: async (alertRequest?: AlertRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/alerts/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(alertRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * 
          * @param {number} [page] A page number within the paginated result set.
@@ -7371,6 +7517,16 @@ export const AlertsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {AlertRequest} [alertRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertsCreate(alertRequest?: AlertRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Alert>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertsCreate(alertRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -7451,6 +7607,15 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
     return {
         /**
          * 
+         * @param {AlertRequest} [alertRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsCreate(alertRequest?: AlertRequest, options?: any): AxiosPromise<Alert> {
+            return localVarFp.alertsCreate(alertRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -7523,6 +7688,15 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
 export interface AlertsApiInterface {
     /**
      * 
+     * @param {AlertRequest} [alertRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    alertsCreate(alertRequest?: AlertRequest, options?: AxiosRequestConfig): AxiosPromise<Alert>;
+
+    /**
+     * 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -7593,6 +7767,17 @@ export interface AlertsApiInterface {
  * @extends {BaseAPI}
  */
 export class AlertsApi extends BaseAPI implements AlertsApiInterface {
+    /**
+     * 
+     * @param {AlertRequest} [alertRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public alertsCreate(alertRequest?: AlertRequest, options?: AxiosRequestConfig) {
+        return AlertsApiFp(this.configuration).alertsCreate(alertRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @param {number} [page] A page number within the paginated result set.
@@ -9325,6 +9510,49 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {number} deviceId 
+         * @param {JanusStreamRequest} [janusStreamRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusStreamsCreate: async (deviceId: number, janusStreamRequest?: JanusStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesJanusStreamsCreate', 'deviceId', deviceId)
+            const localVarPath = `/api/devices/{device_id}/janus-streams/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(janusStreamRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -9930,6 +10158,51 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {DeviceSettingsRequest} deviceSettingsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesSettingsCreate: async (deviceId: number, deviceSettingsRequest: DeviceSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesSettingsCreate', 'deviceId', deviceId)
+            // verify required parameter 'deviceSettingsRequest' is not null or undefined
+            assertParamExists('devicesSettingsCreate', 'deviceSettingsRequest', deviceSettingsRequest)
+            const localVarPath = `/api/devices/{device_id}/settings/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(deviceSettingsRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -10581,6 +10854,17 @@ export const DevicesApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} deviceId 
+         * @param {JanusStreamRequest} [janusStreamRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusStreamsCreate(deviceId, janusStreamRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -10731,6 +11015,17 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          */
         async devicesRetrieveHostname(hostname: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesRetrieveHostname(hostname, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {DeviceSettingsRequest} deviceSettingsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesSettingsCreate(deviceId: number, deviceSettingsRequest: DeviceSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesSettingsCreate(deviceId, deviceSettingsRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -10962,6 +11257,16 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @param {number} deviceId 
+         * @param {JanusStreamRequest} [janusStreamRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: any): AxiosPromise<JanusStream> {
+            return localVarFp.devicesJanusStreamsCreate(deviceId, janusStreamRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -11099,6 +11404,16 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          */
         devicesRetrieveHostname(hostname: string, options?: any): AxiosPromise<Device> {
             return localVarFp.devicesRetrieveHostname(hostname, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {DeviceSettingsRequest} deviceSettingsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesSettingsCreate(deviceId: number, deviceSettingsRequest: DeviceSettingsRequest, options?: any): AxiosPromise<DeviceSettings> {
+            return localVarFp.devicesSettingsCreate(deviceId, deviceSettingsRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -11316,6 +11631,16 @@ export interface DevicesApiInterface {
     /**
      * 
      * @param {number} deviceId 
+     * @param {JanusStreamRequest} [janusStreamRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig): AxiosPromise<JanusStream>;
+
+    /**
+     * 
+     * @param {number} deviceId 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -11453,6 +11778,16 @@ export interface DevicesApiInterface {
      * @memberof DevicesApiInterface
      */
     devicesRetrieveHostname(hostname: string, options?: AxiosRequestConfig): AxiosPromise<Device>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {DeviceSettingsRequest} deviceSettingsRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesSettingsCreate(deviceId: number, deviceSettingsRequest: DeviceSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<DeviceSettings>;
 
     /**
      * 
@@ -11686,6 +12021,18 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
     /**
      * 
      * @param {number} deviceId 
+     * @param {JanusStreamRequest} [janusStreamRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesJanusStreamsCreate(deviceId, janusStreamRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -11850,6 +12197,18 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      */
     public devicesRetrieveHostname(hostname: string, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesRetrieveHostname(hostname, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {DeviceSettingsRequest} deviceSettingsRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesSettingsCreate(deviceId: number, deviceSettingsRequest: DeviceSettingsRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesSettingsCreate(deviceId, deviceSettingsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -12527,6 +12886,49 @@ export const JanusApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * 
          * @param {number} deviceId 
+         * @param {JanusStreamRequest} [janusStreamRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusStreamsCreate: async (deviceId: number, janusStreamRequest?: JanusStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesJanusStreamsCreate', 'deviceId', deviceId)
+            const localVarPath = `/api/devices/{device_id}/janus-streams/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(janusStreamRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -12624,6 +13026,17 @@ export const JanusApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} deviceId 
+         * @param {JanusStreamRequest} [janusStreamRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusStreamsCreate(deviceId, janusStreamRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -12656,6 +13069,16 @@ export const JanusApiFactory = function (configuration?: Configuration, basePath
         /**
          * 
          * @param {number} deviceId 
+         * @param {JanusStreamRequest} [janusStreamRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: any): AxiosPromise<JanusStream> {
+            return localVarFp.devicesJanusStreamsCreate(deviceId, janusStreamRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -12685,6 +13108,16 @@ export interface JanusApiInterface {
     /**
      * 
      * @param {number} deviceId 
+     * @param {JanusStreamRequest} [janusStreamRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof JanusApiInterface
+     */
+    devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig): AxiosPromise<JanusStream>;
+
+    /**
+     * 
+     * @param {number} deviceId 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -12711,6 +13144,18 @@ export interface JanusApiInterface {
  * @extends {BaseAPI}
  */
 export class JanusApi extends BaseAPI implements JanusApiInterface {
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {JanusStreamRequest} [janusStreamRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof JanusApi
+     */
+    public devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig) {
+        return JanusApiFp(this.configuration).devicesJanusStreamsCreate(deviceId, janusStreamRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @param {number} deviceId 
