@@ -98,7 +98,7 @@ Name | Type | Description  | Required | Notes
 
 ## octoprint_servers_update
 
-> octoprint_servers_update(id, octo_print_server_request)
+> crate::models::OctoPrintServer octoprint_servers_update(id, octo_print_server_request)
 
 
 ### Parameters
@@ -111,7 +111,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
- (empty response body)
+[**crate::models::OctoPrintServer**](OctoPrintServer.md)
 
 ### Authorization
 
@@ -120,7 +120,7 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -374,7 +374,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **octoprint_servers_update**
-> octoprint_servers_update(id, octo_print_server_request)
+> OctoPrintServer octoprint_servers_update(id, octo_print_server_request)
 
 
 
@@ -417,7 +417,8 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 octo_print_server_request = printnanny_api_client.OctoPrintServerRequest() # OctoPrintServerRequest | 
 
     try:
-        api_instance.octoprint_servers_update(id, octo_print_server_request)
+        api_response = api_instance.octoprint_servers_update(id, octo_print_server_request)
+        pprint(api_response)
     except ApiException as e:
         print("Exception when calling OctoprintServersApi->octoprint_servers_update: %s\n" % e)
 ```
@@ -459,7 +460,8 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 octo_print_server_request = printnanny_api_client.OctoPrintServerRequest() # OctoPrintServerRequest | 
 
     try:
-        api_instance.octoprint_servers_update(id, octo_print_server_request)
+        api_response = api_instance.octoprint_servers_update(id, octo_print_server_request)
+        pprint(api_response)
     except ApiException as e:
         print("Exception when calling OctoprintServersApi->octoprint_servers_update: %s\n" % e)
 ```
@@ -473,7 +475,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**OctoPrintServer**](OctoPrintServer.md)
 
 ### Authorization
 
@@ -482,12 +484,17 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | No response body |  -  |
+**202** |  |  -  |
+**409** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

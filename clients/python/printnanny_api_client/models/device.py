@@ -3,7 +3,7 @@
 """
     printnanny-api-client
 
-    Official API client library forprintnanny.ai print-nanny.com  # noqa: E501
+    Official API client library for printnanny.ai  # noqa: E501
 
     The version of the OpenAPI document: 0.0.0
     Contact: leigh@printnanny.ai
@@ -38,6 +38,7 @@ class Device(object):
     """
     openapi_types = {
         'id': 'int',
+        'last_boot': 'str',
         'alert_settings': 'AlertSettings',
         'settings': 'DeviceSettings',
         'cloudiot_device': 'CloudiotDevice',
@@ -55,6 +56,7 @@ class Device(object):
 
     attribute_map = {
         'id': 'id',
+        'last_boot': 'last_boot',
         'alert_settings': 'alert_settings',
         'settings': 'settings',
         'cloudiot_device': 'cloudiot_device',
@@ -70,13 +72,14 @@ class Device(object):
         'fqdn': 'fqdn'
     }
 
-    def __init__(self, id=None, alert_settings=None, settings=None, cloudiot_device=None, user=None, system_info=None, public_key=None, janus_edge=None, janus_cloud=None, octoprint_server=None, urls=None, created_dt=None, hostname=None, fqdn=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, last_boot=None, alert_settings=None, settings=None, cloudiot_device=None, user=None, system_info=None, public_key=None, janus_edge=None, janus_cloud=None, octoprint_server=None, urls=None, created_dt=None, hostname=None, fqdn=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
+        self._last_boot = None
         self._alert_settings = None
         self._settings = None
         self._cloudiot_device = None
@@ -93,6 +96,7 @@ class Device(object):
         self.discriminator = None
 
         self.id = id
+        self.last_boot = last_boot
         self.alert_settings = alert_settings
         self.settings = settings
         self.cloudiot_device = cloudiot_device
@@ -131,6 +135,29 @@ class Device(object):
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
+
+    @property
+    def last_boot(self):
+        """Gets the last_boot of this Device.  # noqa: E501
+
+
+        :return: The last_boot of this Device.  # noqa: E501
+        :rtype: str
+        """
+        return self._last_boot
+
+    @last_boot.setter
+    def last_boot(self, last_boot):
+        """Sets the last_boot of this Device.
+
+
+        :param last_boot: The last_boot of this Device.  # noqa: E501
+        :type last_boot: str
+        """
+        if self.local_vars_configuration.client_side_validation and last_boot is None:  # noqa: E501
+            raise ValueError("Invalid value for `last_boot`, must not be `None`")  # noqa: E501
+
+        self._last_boot = last_boot
 
     @property
     def alert_settings(self):

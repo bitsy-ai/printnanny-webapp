@@ -2,7 +2,7 @@
 """
     printnanny-api-client
 
-    Official API client library forprintnanny.ai print-nanny.com  # noqa: E501
+    Official API client library for printnanny.ai  # noqa: E501
 
     The version of the OpenAPI document: 0.0.0
     Contact: leigh@printnanny.ai
@@ -80,7 +80,7 @@ class ApiClient(object):
             self.default_headers[header_name] = header_value
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = 'OpenAPI-Generator/0.93.4/python'
+        self.user_agent = 'OpenAPI-Generator/0.94.1/python'
         self.client_side_validation = configuration.client_side_validation
 
     async def __aenter__(self):

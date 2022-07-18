@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
+**last_boot** | **String** |  | [readonly]
 **alert_settings** | Option<[**crate::models::AlertSettings**](AlertSettings.md)> |  | [readonly]
 **settings** | Option<[**crate::models::DeviceSettings**](DeviceSettings.md)> |  | [readonly]
 **cloudiot_device** | Option<[**crate::models::CloudiotDevice**](CloudiotDevice.md)> |  | [readonly]

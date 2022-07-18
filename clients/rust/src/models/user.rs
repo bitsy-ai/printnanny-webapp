@@ -1,7 +1,7 @@
 /*
  * printnanny-api-client
  *
- * Official API client library forprintnanny.ai print-nanny.com
+ * Official API client library for printnanny.ai
  *
  * The version of the OpenAPI document: 0.0.0
  * Contact: leigh@printnanny.ai
@@ -17,13 +17,22 @@ pub struct User {
     pub email: String,
     #[serde(rename = "id")]
     pub id: i32,
+    #[serde(rename = "first_name", skip_serializing_if = "Option::is_none")]
+    pub first_name: Option<String>,
+    #[serde(rename = "last_name", skip_serializing_if = "Option::is_none")]
+    pub last_name: Option<String>,
+    #[serde(rename = "is_beta_tester")]
+    pub is_beta_tester: bool,
 }
 
 impl User {
-    pub fn new(email: String, id: i32) -> User {
+    pub fn new(email: String, id: i32, is_beta_tester: bool) -> User {
         User {
             email,
             id,
+            first_name: None,
+            last_name: None,
+            is_beta_tester,
         }
     }
 }

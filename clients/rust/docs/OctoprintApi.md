@@ -284,7 +284,7 @@ Name | Type | Description  | Required | Notes
 
 ## octoprint_printer_profiles_update
 
-> octoprint_printer_profiles_update(id, octo_printer_profile_request)
+> crate::models::OctoPrinterProfile octoprint_printer_profiles_update(id, octo_printer_profile_request)
 
 
 ### Parameters
@@ -297,7 +297,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
- (empty response body)
+[**crate::models::OctoPrinterProfile**](OctoPrinterProfile.md)
 
 ### Authorization
 
@@ -306,7 +306,7 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -454,7 +454,7 @@ Name | Type | Description  | Required | Notes
 
 ## octoprint_settings_update
 
-> octoprint_settings_update(id, octo_print_settings_request)
+> crate::models::OctoPrintSettings octoprint_settings_update(id, octo_print_settings_request)
 
 
 ### Parameters
@@ -467,7 +467,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
- (empty response body)
+[**crate::models::OctoPrintSettings**](OctoPrintSettings.md)
 
 ### Authorization
 
@@ -476,7 +476,7 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

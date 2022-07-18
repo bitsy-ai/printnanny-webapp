@@ -1132,7 +1132,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **octoprint_printer_profiles_update**
-> octoprint_printer_profiles_update(id, octo_printer_profile_request)
+> OctoPrinterProfile octoprint_printer_profiles_update(id, octo_printer_profile_request)
 
 
 
@@ -1175,7 +1175,8 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 octo_printer_profile_request = printnanny_api_client.OctoPrinterProfileRequest() # OctoPrinterProfileRequest | 
 
     try:
-        api_instance.octoprint_printer_profiles_update(id, octo_printer_profile_request)
+        api_response = api_instance.octoprint_printer_profiles_update(id, octo_printer_profile_request)
+        pprint(api_response)
     except ApiException as e:
         print("Exception when calling OctoprintApi->octoprint_printer_profiles_update: %s\n" % e)
 ```
@@ -1217,7 +1218,8 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 octo_printer_profile_request = printnanny_api_client.OctoPrinterProfileRequest() # OctoPrinterProfileRequest | 
 
     try:
-        api_instance.octoprint_printer_profiles_update(id, octo_printer_profile_request)
+        api_response = api_instance.octoprint_printer_profiles_update(id, octo_printer_profile_request)
+        pprint(api_response)
     except ApiException as e:
         print("Exception when calling OctoprintApi->octoprint_printer_profiles_update: %s\n" % e)
 ```
@@ -1231,7 +1233,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**OctoPrinterProfile**](OctoPrinterProfile.md)
 
 ### Authorization
 
@@ -1240,12 +1242,17 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | No response body |  -  |
+**202** |  |  -  |
+**409** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1849,7 +1856,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **octoprint_settings_update**
-> octoprint_settings_update(id, octo_print_settings_request)
+> OctoPrintSettings octoprint_settings_update(id, octo_print_settings_request)
 
 
 
@@ -1892,7 +1899,8 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 octo_print_settings_request = printnanny_api_client.OctoPrintSettingsRequest() # OctoPrintSettingsRequest | 
 
     try:
-        api_instance.octoprint_settings_update(id, octo_print_settings_request)
+        api_response = api_instance.octoprint_settings_update(id, octo_print_settings_request)
+        pprint(api_response)
     except ApiException as e:
         print("Exception when calling OctoprintApi->octoprint_settings_update: %s\n" % e)
 ```
@@ -1934,7 +1942,8 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 octo_print_settings_request = printnanny_api_client.OctoPrintSettingsRequest() # OctoPrintSettingsRequest | 
 
     try:
-        api_instance.octoprint_settings_update(id, octo_print_settings_request)
+        api_response = api_instance.octoprint_settings_update(id, octo_print_settings_request)
+        pprint(api_response)
     except ApiException as e:
         print("Exception when calling OctoprintApi->octoprint_settings_update: %s\n" % e)
 ```
@@ -1948,7 +1957,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**OctoPrintSettings**](OctoPrintSettings.md)
 
 ### Authorization
 
@@ -1957,12 +1966,17 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | No response body |  -  |
+**202** |  |  -  |
+**409** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

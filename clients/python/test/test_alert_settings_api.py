@@ -3,7 +3,7 @@
 """
     printnanny-api-client
 
-    Official API client library forprintnanny.ai print-nanny.com  # noqa: E501
+    Official API client library for printnanny.ai  # noqa: E501
 
     The version of the OpenAPI document: 0.0.0
     Contact: leigh@printnanny.ai
@@ -29,8 +29,14 @@ class TestAlertSettingsApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_alert_settings_get_or_create_retrieve(self):
-        """Test case for alert_settings_get_or_create_retrieve
+    def test_alert_settings_create(self):
+        """Test case for alert_settings_create
+
+        """
+        pass
+
+    def test_alert_settings_list(self):
+        """Test case for alert_settings_list
 
         """
         pass

@@ -3,7 +3,7 @@
 """
     printnanny-api-client
 
-    Official API client library forprintnanny.ai print-nanny.com  # noqa: E501
+    Official API client library for printnanny.ai  # noqa: E501
 
     The version of the OpenAPI document: 0.0.0
     Contact: leigh@printnanny.ai
@@ -414,7 +414,7 @@ conf = printnanny_api_client.Configuration(
                "OS: {env}\n"\
                "Python Version: {pyversion}\n"\
                "Version of the API: 0.0.0\n"\
-               "SDK Package Version: 0.93.4".\
+               "SDK Package Version: 0.94.1".\
                format(env=sys.platform, pyversion=sys.version)
 
     def get_host_settings(self):
