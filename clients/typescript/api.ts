@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * printnanny-api-client
- * Official API client library forprintnanny.ai print-nanny.com
+ * Official API client library for printnanny.ai
  *
  * The version of the OpenAPI document: 0.0.0
  * Contact: leigh@printnanny.ai
@@ -20,6 +20,22 @@ import globalAxios, { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'ax
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from './common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from './base';
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const AggregateUsageEnum = {
+    LastDuringPeriod: 'last_during_period',
+    LastEver: 'last_ever',
+    Max: 'max',
+    Sum: 'sum'
+} as const;
+
+export type AggregateUsageEnum = typeof AggregateUsageEnum[keyof typeof AggregateUsageEnum];
+
 
 /**
  * 
@@ -271,6 +287,101 @@ export interface AlertSettingsRequest {
     'print_progress_percent'?: number;
 }
 /**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const BillingReasonEnum = {
+    Manual: 'manual',
+    Subscription: 'subscription',
+    SubscriptionCreate: 'subscription_create',
+    SubscriptionCycle: 'subscription_cycle',
+    SubscriptionThreshold: 'subscription_threshold',
+    SubscriptionUpdate: 'subscription_update',
+    Upcoming: 'upcoming'
+} as const;
+
+export type BillingReasonEnum = typeof BillingReasonEnum[keyof typeof BillingReasonEnum];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const BillingSchemeEnum = {
+    PerUnit: 'per_unit',
+    Tiered: 'tiered'
+} as const;
+
+export type BillingSchemeEnum = typeof BillingSchemeEnum[keyof typeof BillingSchemeEnum];
+
+
+/**
+ * 
+ * @export
+ * @interface BillingSummary
+ */
+export interface BillingSummary {
+    /**
+     * 
+     * @type {StripeSubscription}
+     * @memberof BillingSummary
+     */
+    'subscription': StripeSubscription;
+    /**
+     * 
+     * @type {Array<StripeCharge>}
+     * @memberof BillingSummary
+     */
+    'charges': Array<StripeCharge>;
+    /**
+     * 
+     * @type {Array<StripeEvent>}
+     * @memberof BillingSummary
+     */
+    'events': Array<StripeEvent>;
+    /**
+     * 
+     * @type {StripeNextInvoice}
+     * @memberof BillingSummary
+     */
+    'next_invoice'?: StripeNextInvoice | null;
+    /**
+     * 
+     * @type {StripeCustomer}
+     * @memberof BillingSummary
+     */
+    'customer': StripeCustomer;
+    /**
+     * 
+     * @type {User}
+     * @memberof BillingSummary
+     */
+    'user'?: User | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof BillingSummary
+     */
+    'billing_portal_url': string;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const BlankEnum = {
+    Empty: ''
+} as const;
+
+export type BlankEnum = typeof BlankEnum[keyof typeof BlankEnum];
+
+
+/**
  * Abstract class inspired by DRF\'s own token serializer. Returns a user if valid, None or a message if not.
  * @export
  * @interface CallbackTokenAuthRequest
@@ -476,6 +587,20 @@ export interface CloudiotDeviceRequest {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export const CollectionMethodEnum = {
+    ChargeAutomatically: 'charge_automatically',
+    SendInvoice: 'send_invoice'
+} as const;
+
+export type CollectionMethodEnum = typeof CollectionMethodEnum[keyof typeof CollectionMethodEnum];
+
+
+/**
+ * 
+ * @export
  * @interface Config
  */
 export interface Config {
@@ -492,6 +617,21 @@ export interface Config {
      */
     'device': Device;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const CustomerTaxExemptEnum = {
+    Exempt: 'exempt',
+    None: 'none',
+    Reverse: 'reverse'
+} as const;
+
+export type CustomerTaxExemptEnum = typeof CustomerTaxExemptEnum[keyof typeof CustomerTaxExemptEnum];
+
+
 /**
  * Generic auth response serializer
  * @export
@@ -517,6 +657,12 @@ export interface Device {
      * @memberof Device
      */
     'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    'last_boot': string;
     /**
      * 
      * @type {AlertSettings}
@@ -724,6 +870,58 @@ export interface EmailAuthRequest {
 /**
  * 
  * @export
+ * @interface EmailWaitlist
+ */
+export interface EmailWaitlist {
+    /**
+     * 
+     * @type {number}
+     * @memberof EmailWaitlist
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailWaitlist
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailWaitlist
+     */
+    'email': string;
+}
+/**
+ * 
+ * @export
+ * @interface EmailWaitlistRequest
+ */
+export interface EmailWaitlistRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailWaitlistRequest
+     */
+    'email': string;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const EndBehaviorEnum = {
+    Cancel: 'cancel',
+    Release: 'release'
+} as const;
+
+export type EndBehaviorEnum = typeof EndBehaviorEnum[keyof typeof EndBehaviorEnum];
+
+
+/**
+ * 
+ * @export
  * @interface ErrorDetail
  */
 export interface ErrorDetail {
@@ -763,7 +961,7 @@ export type EventSource = typeof EventSource[keyof typeof EventSource];
  */
 
 export const EventTypeEnum = {
-    PrintHealth: 'PrintHealth',
+    PrintQuality: 'PrintQuality',
     PrintStatus: 'PrintStatus',
     PrintNannyWebapp: 'PrintNannyWebapp',
     PrintProgress: 'PrintProgress',
@@ -785,11 +983,110 @@ export type EventTypeEnum = typeof EventTypeEnum[keyof typeof EventTypeEnum];
  */
 
 export const EventTypesEnum = {
-    PrintHealth: 'PrintHealth',
+    PrintQuality: 'PrintQuality',
     PrintStatus: 'PrintStatus'
 } as const;
 
 export type EventTypesEnum = typeof EventTypesEnum[keyof typeof EventTypesEnum];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const FailureCodeEnum = {
+    AccountAlreadyExists: 'account_already_exists',
+    AccountCountryInvalidAddress: 'account_country_invalid_address',
+    AccountInvalid: 'account_invalid',
+    AccountNumberInvalid: 'account_number_invalid',
+    AlipayUpgradeRequired: 'alipay_upgrade_required',
+    AmountTooLarge: 'amount_too_large',
+    AmountTooSmall: 'amount_too_small',
+    ApiKeyExpired: 'api_key_expired',
+    BalanceInsufficient: 'balance_insufficient',
+    BankAccountExists: 'bank_account_exists',
+    BankAccountUnusable: 'bank_account_unusable',
+    BankAccountUnverified: 'bank_account_unverified',
+    BitcoinUpgradeRequired: 'bitcoin_upgrade_required',
+    CardDeclined: 'card_declined',
+    ChargeAlreadyCaptured: 'charge_already_captured',
+    ChargeAlreadyRefunded: 'charge_already_refunded',
+    ChargeDisputed: 'charge_disputed',
+    ChargeExceedsSourceLimit: 'charge_exceeds_source_limit',
+    ChargeExpiredForCapture: 'charge_expired_for_capture',
+    CountryUnsupported: 'country_unsupported',
+    CouponExpired: 'coupon_expired',
+    CustomerMaxSubscriptions: 'customer_max_subscriptions',
+    EmailInvalid: 'email_invalid',
+    ExpiredCard: 'expired_card',
+    IdempotencyKeyInUse: 'idempotency_key_in_use',
+    IncorrectAddress: 'incorrect_address',
+    IncorrectCvc: 'incorrect_cvc',
+    IncorrectNumber: 'incorrect_number',
+    IncorrectZip: 'incorrect_zip',
+    InstantPayoutsUnsupported: 'instant_payouts_unsupported',
+    InvalidCardType: 'invalid_card_type',
+    InvalidChargeAmount: 'invalid_charge_amount',
+    InvalidCvc: 'invalid_cvc',
+    InvalidExpiryMonth: 'invalid_expiry_month',
+    InvalidExpiryYear: 'invalid_expiry_year',
+    InvalidNumber: 'invalid_number',
+    InvalidSourceUsage: 'invalid_source_usage',
+    InvalidSwipeData: 'invalid_swipe_data',
+    InvoiceNoCustomerLineItems: 'invoice_no_customer_line_items',
+    InvoiceNoSubscriptionLineItems: 'invoice_no_subscription_line_items',
+    InvoiceNotEditable: 'invoice_not_editable',
+    InvoiceUpcomingNone: 'invoice_upcoming_none',
+    LivemodeMismatch: 'livemode_mismatch',
+    Missing: 'missing',
+    NotAllowedOnStandardAccount: 'not_allowed_on_standard_account',
+    OrderCreationFailed: 'order_creation_failed',
+    OrderRequiredSettings: 'order_required_settings',
+    OrderStatusInvalid: 'order_status_invalid',
+    OrderUpstreamTimeout: 'order_upstream_timeout',
+    OutOfInventory: 'out_of_inventory',
+    ParameterInvalidEmpty: 'parameter_invalid_empty',
+    ParameterInvalidInteger: 'parameter_invalid_integer',
+    ParameterInvalidStringBlank: 'parameter_invalid_string_blank',
+    ParameterInvalidStringEmpty: 'parameter_invalid_string_empty',
+    ParameterMissing: 'parameter_missing',
+    ParameterUnknown: 'parameter_unknown',
+    ParametersExclusive: 'parameters_exclusive',
+    PaymentIntentAuthenticationFailure: 'payment_intent_authentication_failure',
+    PaymentIntentIncompatiblePaymentMethod: 'payment_intent_incompatible_payment_method',
+    PaymentIntentInvalidParameter: 'payment_intent_invalid_parameter',
+    PaymentIntentPaymentAttemptFailed: 'payment_intent_payment_attempt_failed',
+    PaymentIntentUnexpectedState: 'payment_intent_unexpected_state',
+    PaymentMethodUnactivated: 'payment_method_unactivated',
+    PaymentMethodUnexpectedState: 'payment_method_unexpected_state',
+    PayoutsNotAllowed: 'payouts_not_allowed',
+    PlatformApiKeyExpired: 'platform_api_key_expired',
+    PostalCodeInvalid: 'postal_code_invalid',
+    ProcessingError: 'processing_error',
+    ProductInactive: 'product_inactive',
+    RateLimit: 'rate_limit',
+    ResourceAlreadyExists: 'resource_already_exists',
+    ResourceMissing: 'resource_missing',
+    RoutingNumberInvalid: 'routing_number_invalid',
+    SecretKeyRequired: 'secret_key_required',
+    SepaUnsupportedAccount: 'sepa_unsupported_account',
+    ShippingCalculationFailed: 'shipping_calculation_failed',
+    SkuInactive: 'sku_inactive',
+    StateUnsupported: 'state_unsupported',
+    TaxIdInvalid: 'tax_id_invalid',
+    TaxesCalculationFailed: 'taxes_calculation_failed',
+    TestmodeChargesOnly: 'testmode_charges_only',
+    TlsVersionUnsupported: 'tls_version_unsupported',
+    TokenAlreadyUsed: 'token_already_used',
+    TokenInUse: 'token_in_use',
+    TransfersNotAllowed: 'transfers_not_allowed',
+    UpstreamOrderCreationFailed: 'upstream_order_creation_failed',
+    UrlInvalid: 'url_invalid'
+} as const;
+
+export type FailureCodeEnum = typeof FailureCodeEnum[keyof typeof FailureCodeEnum];
 
 
 /**
@@ -835,6 +1132,22 @@ export interface GcodeFile {
      */
     'user': number;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const IntervalEnum = {
+    Day: 'day',
+    Month: 'month',
+    Week: 'week',
+    Year: 'year'
+} as const;
+
+export type IntervalEnum = typeof IntervalEnum[keyof typeof IntervalEnum];
+
+
 /**
  * 
  * @export
@@ -1014,6 +1327,25 @@ export interface JanusStreamRequest {
     'rtp_port'?: number;
 }
 /**
+ * 
+ * @export
+ * @interface LoginRequest
+ */
+export interface LoginRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof LoginRequest
+     */
+    'email': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LoginRequest
+     */
+    'password': string;
+}
+/**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
  * @export
  * @interface MobileAuthRequest
@@ -1026,6 +1358,19 @@ export interface MobileAuthRequest {
      */
     'mobile': string;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const NullEnum = {
+    Null: 'null'
+} as const;
+
+export type NullEnum = typeof NullEnum[keyof typeof NullEnum];
+
+
 /**
  * 
  * @export
@@ -1748,6 +2093,43 @@ export interface OctoPrinterProfileRequest {
     'volume_width'?: number | null;
 }
 /**
+ * An `OptionsModelSerializer` documents the OPTIONS response for a model endpoint
+ * @export
+ * @interface OptionsMetadata
+ */
+export interface OptionsMetadata {
+    /**
+     * 
+     * @type {string}
+     * @memberof OptionsMetadata
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OptionsMetadata
+     */
+    'description': string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof OptionsMetadata
+     */
+    'renders': Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof OptionsMetadata
+     */
+    'parses': Array<string>;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OptionsMetadata
+     */
+    'fieldset': { [key: string]: any; };
+}
+/**
  * 
  * @export
  * @interface PaginatedAlertList
@@ -2292,6 +2674,69 @@ export interface Partner3DGeeksMetadata {
     'verified': string;
 }
 /**
+ * 
+ * @export
+ * @interface PasswordChangeRequest
+ */
+export interface PasswordChangeRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof PasswordChangeRequest
+     */
+    'new_password1': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PasswordChangeRequest
+     */
+    'new_password2': string;
+}
+/**
+ * Serializer for confirming a password reset attempt.
+ * @export
+ * @interface PasswordResetConfirmRequest
+ */
+export interface PasswordResetConfirmRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof PasswordResetConfirmRequest
+     */
+    'new_password1': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PasswordResetConfirmRequest
+     */
+    'new_password2': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PasswordResetConfirmRequest
+     */
+    'uid': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PasswordResetConfirmRequest
+     */
+    'token': string;
+}
+/**
+ * Serializer for requesting a password reset e-mail.
+ * @export
+ * @interface PasswordResetRequest
+ */
+export interface PasswordResetRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof PasswordResetRequest
+     */
+    'email': string;
+}
+/**
  * Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests
  * @export
  * @interface PatchedAlertBulkRequestRequest
@@ -2807,6 +3252,18 @@ export interface PatchedUserRequest {
      * @memberof PatchedUserRequest
      */
     'email'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedUserRequest
+     */
+    'first_name'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedUserRequest
+     */
+    'last_name'?: string | null;
 }
 /**
  * @type PolymorphicCommand
@@ -2955,6 +3412,1753 @@ export interface PublicKeyRequest {
      */
     'device': number;
 }
+/**
+ * 
+ * @export
+ * @interface RegisterRequest
+ */
+export interface RegisterRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof RegisterRequest
+     */
+    'email': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RegisterRequest
+     */
+    'password1': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RegisterRequest
+     */
+    'password2': string;
+}
+/**
+ * 
+ * @export
+ * @interface ResendEmailVerificationRequest
+ */
+export interface ResendEmailVerificationRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof ResendEmailVerificationRequest
+     */
+    'email': string;
+}
+/**
+ * 
+ * @export
+ * @interface RestAuthDetail
+ */
+export interface RestAuthDetail {
+    /**
+     * 
+     * @type {string}
+     * @memberof RestAuthDetail
+     */
+    'detail': string;
+}
+/**
+ * 
+ * @export
+ * @interface StripeCharge
+ */
+export interface StripeCharge {
+    /**
+     * 
+     * @type {number}
+     * @memberof StripeCharge
+     */
+    'djstripe_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'djstripe_created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'djstripe_updated': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'id': string;
+    /**
+     * Null here indicates that the livemode status is unknown or was previously unrecorded. Otherwise, this field indicates whether this record comes from Stripe test mode or live mode operation.
+     * @type {boolean}
+     * @memberof StripeCharge
+     */
+    'livemode'?: boolean | null;
+    /**
+     * The datetime this object was created in stripe.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'created'?: string | null;
+    /**
+     * A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeCharge
+     */
+    'metadata'?: { [key: string]: any; } | null;
+    /**
+     * A description of this object.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'description'?: string | null;
+    /**
+     * Amount charged (as decimal).
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'amount': string;
+    /**
+     * Amount (as decimal) captured (can be less than the amount attribute on the charge if a partial capture was issued).
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'amount_captured'?: string | null;
+    /**
+     * Amount (as decimal) refunded (can be less than the amount attribute on the charge if a partial refund was issued).
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'amount_refunded': string;
+    /**
+     * ID of the Connect application that created the charge.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'application'?: string;
+    /**
+     * The amount (as decimal) of the application fee (if any) requested for the charge.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'application_fee_amount'?: string | null;
+    /**
+     * Billing information associated with the PaymentMethod at the time of the transaction.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeCharge
+     */
+    'billing_details'?: { [key: string]: any; } | null;
+    /**
+     * The full statement descriptor that is passed to card networks, and that is displayed on your customers\' credit card and bank statements. Allows you to see what the statement descriptor looks like after the static and dynamic portions are combined.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'calculated_statement_descriptor'?: string;
+    /**
+     * If the charge was created without capturing, this boolean represents whether or not it is still uncaptured or has since been captured.
+     * @type {boolean}
+     * @memberof StripeCharge
+     */
+    'captured'?: boolean;
+    /**
+     * The currency in which the charge was made.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'currency': string;
+    /**
+     * Whether the charge has been disputed.
+     * @type {boolean}
+     * @memberof StripeCharge
+     */
+    'disputed'?: boolean;
+    /**
+     * Error code explaining reason for charge failure if available.
+     * @type {FailureCodeEnum | BlankEnum}
+     * @memberof StripeCharge
+     */
+    'failure_code'?: FailureCodeEnum | BlankEnum;
+    /**
+     * Message to user further explaining reason for charge failure if available.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'failure_message'?: string;
+    /**
+     * Hash with information on fraud assessments for the charge.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeCharge
+     */
+    'fraud_details'?: { [key: string]: any; } | null;
+    /**
+     * Details about whether or not the payment was accepted, and why.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeCharge
+     */
+    'outcome'?: { [key: string]: any; } | null;
+    /**
+     * True if the charge succeeded, or was successfully authorized for later capture, False otherwise.
+     * @type {boolean}
+     * @memberof StripeCharge
+     */
+    'paid'?: boolean;
+    /**
+     * Details about the payment method at the time of the transaction.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeCharge
+     */
+    'payment_method_details'?: { [key: string]: any; } | null;
+    /**
+     * The email address that the receipt for this charge was sent to.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'receipt_email'?: string;
+    /**
+     * The transaction number that appears on email receipts sent for this charge.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'receipt_number'?: string;
+    /**
+     * This is the URL to view the receipt for this charge. The receipt is kept up-to-date to the latest state of the charge, including any refunds. If the charge is for an Invoice, the receipt will be stylized as an Invoice receipt.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'receipt_url'?: string;
+    /**
+     * Whether or not the charge has been fully refunded. If the charge is only partially refunded, this attribute will still be false.
+     * @type {boolean}
+     * @memberof StripeCharge
+     */
+    'refunded'?: boolean;
+    /**
+     * Shipping information for the charge
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeCharge
+     */
+    'shipping'?: { [key: string]: any; } | null;
+    /**
+     * For card charges, use statement_descriptor_suffix instead. Otherwise, you can use this value as the complete description of a charge on your customers\' statements. Must contain at least one letter, maximum 22 characters.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'statement_descriptor'?: string | null;
+    /**
+     * Provides information about the charge that customers see on their statements. Concatenated with the prefix (shortened descriptor) or statement descriptor that\'s set on the account to form the complete statement descriptor. Maximum 22 characters for the concatenated descriptor.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'statement_descriptor_suffix'?: string | null;
+    /**
+     * The status of the payment.
+     * @type {StripeChargeStatusEnum}
+     * @memberof StripeCharge
+     */
+    'status': StripeChargeStatusEnum;
+    /**
+     * An optional dictionary including the account to automatically transfer to as part of a destination charge.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeCharge
+     */
+    'transfer_data'?: { [key: string]: any; } | null;
+    /**
+     * A string that identifies this transaction as part of a group.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'transfer_group'?: string | null;
+    /**
+     * The Stripe Account this object belongs to.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'djstripe_owner_account'?: string | null;
+    /**
+     * The application fee (if any) for the charge.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'application_fee'?: string | null;
+    /**
+     * The balance transaction that describes the impact of this charge on your account balance (not including refunds or disputes).
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'balance_transaction'?: string | null;
+    /**
+     * The customer associated with this charge.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'customer'?: string | null;
+    /**
+     * Details about the dispute if the charge has been disputed.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'dispute'?: string | null;
+    /**
+     * The invoice this charge is for if one exists.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'invoice'?: string | null;
+    /**
+     * The account (if any) the charge was made on behalf of without triggering an automatic transfer.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'on_behalf_of'?: string | null;
+    /**
+     * PaymentIntent associated with this charge, if one exists.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'payment_intent'?: string | null;
+    /**
+     * PaymentMethod used in this charge.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'payment_method'?: string | null;
+    /**
+     * The source used for this charge.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'source'?: string | null;
+    /**
+     * The transfer which created this charge. Only present if the charge came from another Stripe account.
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'source_transfer'?: string | null;
+    /**
+     * The transfer to the `destination` account (only applicable if the charge was created using the `destination` parameter).
+     * @type {string}
+     * @memberof StripeCharge
+     */
+    'transfer'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const StripeChargeStatusEnum = {
+    Failed: 'failed',
+    Pending: 'pending',
+    Succeeded: 'succeeded'
+} as const;
+
+export type StripeChargeStatusEnum = typeof StripeChargeStatusEnum[keyof typeof StripeChargeStatusEnum];
+
+
+/**
+ * 
+ * @export
+ * @interface StripeCustomer
+ */
+export interface StripeCustomer {
+    /**
+     * 
+     * @type {number}
+     * @memberof StripeCustomer
+     */
+    'djstripe_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'djstripe_created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'djstripe_updated': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'id': string;
+    /**
+     * Null here indicates that the livemode status is unknown or was previously unrecorded. Otherwise, this field indicates whether this record comes from Stripe test mode or live mode operation.
+     * @type {boolean}
+     * @memberof StripeCustomer
+     */
+    'livemode'?: boolean | null;
+    /**
+     * The datetime this object was created in stripe.
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'created'?: string | null;
+    /**
+     * A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeCustomer
+     */
+    'metadata'?: { [key: string]: any; } | null;
+    /**
+     * A description of this object.
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'description'?: string | null;
+    /**
+     * The customer\'s address.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeCustomer
+     */
+    'address'?: { [key: string]: any; } | null;
+    /**
+     * Current balance (in cents), if any, being stored on the customer\'s account. If negative, the customer has credit to apply to the next invoice. If positive, the customer has an amount owed that will be added to the next invoice. The balance does not refer to any unpaid invoices; it solely takes into account amounts that have yet to be successfully applied to any invoice. This balance is only taken into account for recurring billing purposes (i.e., subscriptions, invoices, invoice items).
+     * @type {number}
+     * @memberof StripeCustomer
+     */
+    'balance'?: number | null;
+    /**
+     * The currency the customer can be charged in for recurring billing purposes
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'currency'?: string;
+    /**
+     * Whether or not the latest charge for the customer\'s latest invoice has failed.
+     * @type {boolean}
+     * @memberof StripeCustomer
+     */
+    'delinquent'?: boolean | null;
+    /**
+     * Whether the Customer instance has been deleted upstream in Stripe or not.
+     * @type {boolean}
+     * @memberof StripeCustomer
+     */
+    'deleted'?: boolean | null;
+    /**
+     * If a coupon is present, the date at which it was applied.
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'coupon_start': string;
+    /**
+     * If a coupon is present and has a limited duration, the date that the discount will end.
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'coupon_end': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'email'?: string;
+    /**
+     * The prefix for the customer used to generate unique invoice numbers.
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'invoice_prefix'?: string;
+    /**
+     * The customer\'s default invoice settings.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeCustomer
+     */
+    'invoice_settings'?: { [key: string]: any; } | null;
+    /**
+     * The customer\'s full name or business name.
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'name'?: string;
+    /**
+     * The customer\'s phone number.
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'phone'?: string;
+    /**
+     * The customer\'s preferred locales (languages), ordered by preference.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeCustomer
+     */
+    'preferred_locales'?: { [key: string]: any; } | null;
+    /**
+     * Shipping information associated with the customer.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeCustomer
+     */
+    'shipping'?: { [key: string]: any; } | null;
+    /**
+     * Describes the customer\'s tax exemption status. When set to reverse, invoice and receipt PDFs include the text \"Reverse charge\".
+     * @type {TaxExemptEnum}
+     * @memberof StripeCustomer
+     */
+    'tax_exempt'?: TaxExemptEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'date_purged': string;
+    /**
+     * The Stripe Account this object belongs to.
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'djstripe_owner_account': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'default_source'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof StripeCustomer
+     */
+    'coupon'?: number | null;
+    /**
+     * default payment method used for subscriptions and invoices for the customer.
+     * @type {string}
+     * @memberof StripeCustomer
+     */
+    'default_payment_method'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof StripeCustomer
+     */
+    'subscriber': number | null;
+}
+/**
+ * 
+ * @export
+ * @interface StripeEvent
+ */
+export interface StripeEvent {
+    /**
+     * 
+     * @type {number}
+     * @memberof StripeEvent
+     */
+    'djstripe_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeEvent
+     */
+    'djstripe_created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeEvent
+     */
+    'djstripe_updated': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeEvent
+     */
+    'id': string;
+    /**
+     * Null here indicates that the livemode status is unknown or was previously unrecorded. Otherwise, this field indicates whether this record comes from Stripe test mode or live mode operation.
+     * @type {boolean}
+     * @memberof StripeEvent
+     */
+    'livemode'?: boolean | null;
+    /**
+     * The datetime this object was created in stripe.
+     * @type {string}
+     * @memberof StripeEvent
+     */
+    'created'?: string | null;
+    /**
+     * A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeEvent
+     */
+    'metadata'?: { [key: string]: any; } | null;
+    /**
+     * A description of this object.
+     * @type {string}
+     * @memberof StripeEvent
+     */
+    'description'?: string | null;
+    /**
+     * the API version at which the event data was rendered. Blank for old entries only, all new entries will have this value
+     * @type {string}
+     * @memberof StripeEvent
+     */
+    'api_version'?: string;
+    /**
+     * data received at webhook. data should be considered to be garbage until validity check is run and valid flag is set
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeEvent
+     */
+    'data': { [key: string]: any; };
+    /**
+     * Information about the request that triggered this event, for traceability purposes. If empty string then this is an old entry without that data. If Null then this is not an old entry, but a Stripe \'automated\' event with no associated request.
+     * @type {string}
+     * @memberof StripeEvent
+     */
+    'request_id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeEvent
+     */
+    'idempotency_key'?: string;
+    /**
+     * Stripe\'s event description code
+     * @type {string}
+     * @memberof StripeEvent
+     */
+    'type': string;
+    /**
+     * The Stripe Account this object belongs to.
+     * @type {string}
+     * @memberof StripeEvent
+     */
+    'djstripe_owner_account'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface StripeNextInvoice
+ */
+export interface StripeNextInvoice {
+    /**
+     * 
+     * @type {number}
+     * @memberof StripeNextInvoice
+     */
+    'djstripe_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'djstripe_created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'djstripe_updated': string;
+    /**
+     * Null here indicates that the livemode status is unknown or was previously unrecorded. Otherwise, this field indicates whether this record comes from Stripe test mode or live mode operation.
+     * @type {boolean}
+     * @memberof StripeNextInvoice
+     */
+    'livemode'?: boolean | null;
+    /**
+     * The datetime this object was created in stripe.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'created'?: string | null;
+    /**
+     * A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeNextInvoice
+     */
+    'metadata'?: { [key: string]: any; } | null;
+    /**
+     * A description of this object.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'description'?: string | null;
+    /**
+     * The country of the business associated with this invoice, most often the business creating the invoice.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'account_country'?: string;
+    /**
+     * The public name of the business associated with this invoice, most often the business creating the invoice.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'account_name'?: string;
+    /**
+     * Final amount due (as decimal) at this time for this invoice. If the invoice\'s total is smaller than the minimum charge amount, for example, or if there is account credit that can be applied to the invoice, the amount_due may be 0. If there is a positive starting_balance for the invoice (the customer owes money), the amount_due will also take that into account. The charge that gets generated for the invoice will be for the amount specified in amount_due.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'amount_due': string;
+    /**
+     * The amount, (as decimal), that was paid.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'amount_paid'?: string | null;
+    /**
+     * The amount remaining, (as decimal), that is due.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'amount_remaining'?: string | null;
+    /**
+     * The fee (as decimal) that will be applied to the invoice and transferred to the application owner\'s Stripe account when the invoice is paid.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'application_fee_amount'?: string | null;
+    /**
+     * Number of payment attempts made for this invoice, from the perspective of the payment retry schedule. Any payment attempt counts as the first attempt, and subsequently only automatic retries increment the attempt count. In other words, manual payment attempts after the first attempt do not affect the retry schedule.
+     * @type {number}
+     * @memberof StripeNextInvoice
+     */
+    'attempt_count': number;
+    /**
+     * Whether or not an attempt has been made to pay the invoice. An invoice is not attempted until 1 hour after the ``invoice.created`` webhook, for example, so you might not want to display that invoice as unpaid to your users.
+     * @type {boolean}
+     * @memberof StripeNextInvoice
+     */
+    'attempted'?: boolean;
+    /**
+     * Controls whether Stripe will perform automatic collection of the invoice. When false, the invoice\'s state will not automatically advance without an explicit action.
+     * @type {boolean}
+     * @memberof StripeNextInvoice
+     */
+    'auto_advance'?: boolean | null;
+    /**
+     * Indicates the reason why the invoice was created. subscription_cycle indicates an invoice created by a subscription advancing into a new period. subscription_create indicates an invoice created due to creating a subscription. subscription_update indicates an invoice created due to updating a subscription. subscription is set for all old invoices to indicate either a change to a subscription or a period advancement. manual is set for all invoices unrelated to a subscription (for example: created via the invoice editor). The upcoming value is reserved for simulated invoices per the upcoming invoice endpoint. subscription_threshold indicates an invoice created due to a billing threshold being reached.
+     * @type {BillingReasonEnum | BlankEnum}
+     * @memberof StripeNextInvoice
+     */
+    'billing_reason'?: BillingReasonEnum | BlankEnum;
+    /**
+     * When charging automatically, Stripe will attempt to pay this invoice using the default source attached to the customer. When sending an invoice, Stripe will email this invoice to the customer with payment instructions.
+     * @type {CollectionMethodEnum | NullEnum}
+     * @memberof StripeNextInvoice
+     */
+    'collection_method'?: CollectionMethodEnum | NullEnum | null;
+    /**
+     * Three-letter ISO currency code
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'currency': string;
+    /**
+     * The customer\'s address. Until the invoice is finalized, this field will equal customer.address. Once the invoice is finalized, this field will no longer be updated.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeNextInvoice
+     */
+    'customer_address'?: { [key: string]: any; } | null;
+    /**
+     * The customer\'s email. Until the invoice is finalized, this field will equal customer.email. Once the invoice is finalized, this field will no longer be updated.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'customer_email'?: string;
+    /**
+     * The customer\'s name. Until the invoice is finalized, this field will equal customer.name. Once the invoice is finalized, this field will no longer be updated.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'customer_name'?: string;
+    /**
+     * The customer\'s phone number. Until the invoice is finalized, this field will equal customer.phone. Once the invoice is finalized, this field will no longer be updated.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'customer_phone'?: string;
+    /**
+     * The customer\'s shipping information. Until the invoice is finalized, this field will equal customer.shipping. Once the invoice is finalized, this field will no longer be updated.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeNextInvoice
+     */
+    'customer_shipping'?: { [key: string]: any; } | null;
+    /**
+     * The customer\'s tax exempt status. Until the invoice is finalized, this field will equal customer.tax_exempt. Once the invoice is finalized, this field will no longer be updated.
+     * @type {CustomerTaxExemptEnum}
+     * @memberof StripeNextInvoice
+     */
+    'customer_tax_exempt'?: CustomerTaxExemptEnum;
+    /**
+     * Describes the current discount applied to this subscription, if there is one. When billing, a discount applied to a subscription overrides a discount applied on a customer-wide basis.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeNextInvoice
+     */
+    'discount'?: { [key: string]: any; } | null;
+    /**
+     * The date on which payment for this invoice is due. This value will be null for invoices where billing=charge_automatically.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'due_date'?: string | null;
+    /**
+     * Ending customer balance (in cents) after attempting to pay invoice. If the invoice has not been attempted yet, this will be null.
+     * @type {number}
+     * @memberof StripeNextInvoice
+     */
+    'ending_balance'?: number | null;
+    /**
+     * Footer displayed on the invoice.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'footer'?: string;
+    /**
+     * The URL for the hosted invoice page, which allows customers to view and pay an invoice. If the invoice has not been frozen yet, this will be null.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'hosted_invoice_url'?: string;
+    /**
+     * The link to download the PDF for the invoice. If the invoice has not been frozen yet, this will be null.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'invoice_pdf'?: string;
+    /**
+     * The time at which payment will next be attempted.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'next_payment_attempt'?: string | null;
+    /**
+     * A unique, identifying string that appears on emails sent to the customer for this invoice. This starts with the customer\'s unique invoice_prefix if it is specified.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'number'?: string;
+    /**
+     * Whether payment was successfully collected for this invoice. An invoice can be paid (most commonly) with a charge or with credit from the customer\'s account balance.
+     * @type {boolean}
+     * @memberof StripeNextInvoice
+     */
+    'paid'?: boolean;
+    /**
+     * End of the usage period during which invoice items were added to this invoice.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'period_end': string;
+    /**
+     * Start of the usage period during which invoice items were added to this invoice.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'period_start': string;
+    /**
+     * Total amount (in cents) of all post-payment credit notes issued for this invoice.
+     * @type {number}
+     * @memberof StripeNextInvoice
+     */
+    'post_payment_credit_notes_amount'?: number | null;
+    /**
+     * Total amount (in cents) of all pre-payment credit notes issued for this invoice.
+     * @type {number}
+     * @memberof StripeNextInvoice
+     */
+    'pre_payment_credit_notes_amount'?: number | null;
+    /**
+     * This is the transaction number that appears on email receipts sent for this invoice.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'receipt_number'?: string | null;
+    /**
+     * Starting customer balance (in cents) before attempting to pay invoice. If the invoice has not been attempted yet, this will be the current customer balance.
+     * @type {number}
+     * @memberof StripeNextInvoice
+     */
+    'starting_balance': number;
+    /**
+     * An arbitrary string to be displayed on your customer\'s credit card statement. The statement description may not include <>\"\' characters, and will appear on your customer\'s statement in capital letters. Non-ASCII characters are automatically stripped. While most banks display this information consistently, some may display it incorrectly or not at all.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'statement_descriptor'?: string;
+    /**
+     * The status of the invoice, one of draft, open, paid, uncollectible, or void.
+     * @type {StripeNextInvoiceStatusEnum | BlankEnum}
+     * @memberof StripeNextInvoice
+     */
+    'status'?: StripeNextInvoiceStatusEnum | BlankEnum;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeNextInvoice
+     */
+    'status_transitions'?: { [key: string]: any; } | null;
+    /**
+     * Only set for upcoming invoices that preview prorations. The time used to calculate prorations.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'subscription_proration_date'?: string | null;
+    /**
+     * Total (as decimal) of all subscriptions, invoice items, and prorations on the invoice before any discount or tax is applied.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'subtotal': string;
+    /**
+     * The amount (as decimal) of tax included in the total, calculated from ``tax_percent`` and the subtotal. If no ``tax_percent`` is defined, this value will be null.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'tax'?: string | null;
+    /**
+     * This percentage of the subtotal has been added to the total amount of the invoice, including invoice line items and discounts. This field is inherited from the subscription\'s ``tax_percent`` field, but can be changed before the invoice is paid. This field defaults to null.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'tax_percent'?: string | null;
+    /**
+     * If billing_reason is set to subscription_threshold this returns more information on which threshold rules triggered the invoice.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeNextInvoice
+     */
+    'threshold_reason'?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'total': string;
+    /**
+     * The time at which webhooks for this invoice were successfully delivered (if the invoice had no webhooks to deliver, this will match `date`). Invoice payment is delayed until webhooks are delivered, or until all webhook delivery attempts have been exhausted.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'webhooks_delivered_at'?: string | null;
+    /**
+     * The Stripe Account this object belongs to.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'djstripe_owner_account'?: string | null;
+    /**
+     * The latest charge generated for this invoice, if any.
+     * @type {number}
+     * @memberof StripeNextInvoice
+     */
+    'charge'?: number | null;
+    /**
+     * The customer associated with this invoice.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'customer': string;
+    /**
+     * Default payment method for the invoice. It must belong to the customer associated with the invoice. If not set, defaults to the subscription\'s default payment method, if any, or to the default payment method in the customer\'s invoice settings.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'default_payment_method'?: string | null;
+    /**
+     * The PaymentIntent associated with this invoice. The PaymentIntent is generated when the invoice is finalized, and can then be used to pay the invoice.Note that voiding an invoice will cancel the PaymentIntent
+     * @type {number}
+     * @memberof StripeNextInvoice
+     */
+    'payment_intent'?: number | null;
+    /**
+     * The subscription that this invoice was prepared for, if any.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'subscription'?: string | null;
+    /**
+     * The default payment source for the invoice. It must belong to the customer associated with the invoice and be in a chargeable state. If not set, defaults to the subscription\'s default source, if any, or to the customer\'s default source.
+     * @type {string}
+     * @memberof StripeNextInvoice
+     */
+    'default_source'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const StripeNextInvoiceStatusEnum = {
+    Draft: 'draft',
+    Open: 'open',
+    Paid: 'paid',
+    Uncollectible: 'uncollectible',
+    Void: 'void'
+} as const;
+
+export type StripeNextInvoiceStatusEnum = typeof StripeNextInvoiceStatusEnum[keyof typeof StripeNextInvoiceStatusEnum];
+
+
+/**
+ * 
+ * @export
+ * @interface StripePaymentMethod
+ */
+export interface StripePaymentMethod {
+    /**
+     * 
+     * @type {number}
+     * @memberof StripePaymentMethod
+     */
+    'djstripe_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripePaymentMethod
+     */
+    'djstripe_created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripePaymentMethod
+     */
+    'djstripe_updated': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripePaymentMethod
+     */
+    'id': string;
+    /**
+     * Null here indicates that the livemode status is unknown or was previously unrecorded. Otherwise, this field indicates whether this record comes from Stripe test mode or live mode operation.
+     * @type {boolean}
+     * @memberof StripePaymentMethod
+     */
+    'livemode'?: boolean | null;
+    /**
+     * The datetime this object was created in stripe.
+     * @type {string}
+     * @memberof StripePaymentMethod
+     */
+    'created'?: string | null;
+    /**
+     * A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'metadata'?: { [key: string]: any; } | null;
+    /**
+     * Billing information associated with the PaymentMethod that may be used or required by particular types of payment methods.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'billing_details': { [key: string]: any; };
+    /**
+     * The type of the PaymentMethod.
+     * @type {TypeEnum}
+     * @memberof StripePaymentMethod
+     */
+    'type': TypeEnum;
+    /**
+     * Additional information for payment methods of type `acss_debit`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'acss_debit'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `afterpay_clearpay`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'afterpay_clearpay'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `alipay`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'alipay'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `au_becs_debit`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'au_becs_debit'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `bacs_debit`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'bacs_debit'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `bancontact`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'bancontact'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `boleto`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'boleto'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `card`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'card'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `card_present`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'card_present'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `eps`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'eps'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `fpx`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'fpx'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `giropay`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'giropay'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `grabpay`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'grabpay'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `ideal`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'ideal'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `interac_present`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'interac_present'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `oxxo`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'oxxo'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `p24`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'p24'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `sepa_debit`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'sepa_debit'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `sofort`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'sofort'?: { [key: string]: any; } | null;
+    /**
+     * Additional information for payment methods of type `wechat_pay`
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePaymentMethod
+     */
+    'wechat_pay'?: { [key: string]: any; } | null;
+    /**
+     * The Stripe Account this object belongs to.
+     * @type {string}
+     * @memberof StripePaymentMethod
+     */
+    'djstripe_owner_account'?: string | null;
+    /**
+     * Customer to which this PaymentMethod is saved. This will not be set when the PaymentMethod has not been saved to a Customer.
+     * @type {string}
+     * @memberof StripePaymentMethod
+     */
+    'customer'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface StripePlan
+ */
+export interface StripePlan {
+    /**
+     * 
+     * @type {number}
+     * @memberof StripePlan
+     */
+    'djstripe_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripePlan
+     */
+    'djstripe_created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripePlan
+     */
+    'djstripe_updated': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripePlan
+     */
+    'id': string;
+    /**
+     * Null here indicates that the livemode status is unknown or was previously unrecorded. Otherwise, this field indicates whether this record comes from Stripe test mode or live mode operation.
+     * @type {boolean}
+     * @memberof StripePlan
+     */
+    'livemode'?: boolean | null;
+    /**
+     * The datetime this object was created in stripe.
+     * @type {string}
+     * @memberof StripePlan
+     */
+    'created'?: string | null;
+    /**
+     * A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePlan
+     */
+    'metadata'?: { [key: string]: any; } | null;
+    /**
+     * A description of this object.
+     * @type {string}
+     * @memberof StripePlan
+     */
+    'description'?: string | null;
+    /**
+     * Whether the plan can be used for new purchases.
+     * @type {boolean}
+     * @memberof StripePlan
+     */
+    'active': boolean;
+    /**
+     * Specifies a usage aggregation strategy for plans of usage_type=metered. Allowed values are `sum` for summing up all usage during a period, `last_during_period` for picking the last usage record reported within a period, `last_ever` for picking the last usage record ever (across period bounds) or max which picks the usage record with the maximum reported usage during a period. Defaults to `sum`.
+     * @type {AggregateUsageEnum | BlankEnum}
+     * @memberof StripePlan
+     */
+    'aggregate_usage'?: AggregateUsageEnum | BlankEnum;
+    /**
+     * Amount (as decimal) to be charged on the interval specified.
+     * @type {string}
+     * @memberof StripePlan
+     */
+    'amount'?: string | null;
+    /**
+     * The unit amount in cents to be charged, represented as a decimal string with at most 12 decimal places.
+     * @type {string}
+     * @memberof StripePlan
+     */
+    'amount_decimal'?: string | null;
+    /**
+     * Describes how to compute the price per period. Either `per_unit` or `tiered`. `per_unit` indicates that the fixed amount (specified in amount) will be charged per unit in quantity (for plans with `usage_type=licensed`), or per unit of total usage (for plans with `usage_type=metered`). `tiered` indicates that the unit pricing will be computed using a tiering strategy as defined using the tiers and tiers_mode attributes.
+     * @type {BillingSchemeEnum | BlankEnum}
+     * @memberof StripePlan
+     */
+    'billing_scheme'?: BillingSchemeEnum | BlankEnum;
+    /**
+     * Three-letter ISO currency code
+     * @type {string}
+     * @memberof StripePlan
+     */
+    'currency': string;
+    /**
+     * The frequency with which a subscription should be billed.
+     * @type {IntervalEnum}
+     * @memberof StripePlan
+     */
+    'interval': IntervalEnum;
+    /**
+     * The number of intervals (specified in the interval property) between each subscription billing.
+     * @type {number}
+     * @memberof StripePlan
+     */
+    'interval_count'?: number | null;
+    /**
+     * A brief description of the plan, hidden from customers.
+     * @type {string}
+     * @memberof StripePlan
+     */
+    'nickname'?: string;
+    /**
+     * Each element represents a pricing tier. This parameter requires `billing_scheme` to be set to `tiered`.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePlan
+     */
+    'tiers'?: { [key: string]: any; } | null;
+    /**
+     * Defines if the tiering price should be `graduated` or `volume` based. In `volume`-based tiering, the maximum quantity within a period determines the per unit price, in `graduated` tiering pricing can successively change as the quantity grows.
+     * @type {TiersModeEnum | BlankEnum | NullEnum}
+     * @memberof StripePlan
+     */
+    'tiers_mode'?: TiersModeEnum | BlankEnum | NullEnum | null;
+    /**
+     * Apply a transformation to the reported usage or set quantity before computing the billed price. Cannot be combined with `tiers`.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripePlan
+     */
+    'transform_usage'?: { [key: string]: any; } | null;
+    /**
+     * Number of trial period days granted when subscribing a customer to this plan. Null if the plan has no trial period.
+     * @type {number}
+     * @memberof StripePlan
+     */
+    'trial_period_days'?: number | null;
+    /**
+     * Configures how the quantity per period should be determined, can be either `metered` or `licensed`. `licensed` will automatically bill the `quantity` set for a plan when adding it to a subscription, `metered` will aggregate the total usage based on usage records. Defaults to `licensed`.
+     * @type {UsageTypeEnum}
+     * @memberof StripePlan
+     */
+    'usage_type'?: UsageTypeEnum;
+    /**
+     * The Stripe Account this object belongs to.
+     * @type {string}
+     * @memberof StripePlan
+     */
+    'djstripe_owner_account'?: string | null;
+    /**
+     * The product whose pricing this plan determines.
+     * @type {string}
+     * @memberof StripePlan
+     */
+    'product'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface StripeSubscription
+ */
+export interface StripeSubscription {
+    /**
+     * 
+     * @type {number}
+     * @memberof StripeSubscription
+     */
+    'djstripe_id': number;
+    /**
+     * 
+     * @type {StripePlan}
+     * @memberof StripeSubscription
+     */
+    'plan': StripePlan;
+    /**
+     * 
+     * @type {StripePaymentMethod}
+     * @memberof StripeSubscription
+     */
+    'default_payment_method': StripePaymentMethod;
+    /**
+     * 
+     * @type {StripeSubscriptionSchedule}
+     * @memberof StripeSubscription
+     */
+    'schedule': StripeSubscriptionSchedule;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof StripeSubscription
+     */
+    'is_period_current': boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof StripeSubscription
+     */
+    'is_status_current': boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof StripeSubscription
+     */
+    'is_status_temporarily_current': boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof StripeSubscription
+     */
+    'is_valid': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'djstripe_created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'djstripe_updated': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'id': string;
+    /**
+     * Null here indicates that the livemode status is unknown or was previously unrecorded. Otherwise, this field indicates whether this record comes from Stripe test mode or live mode operation.
+     * @type {boolean}
+     * @memberof StripeSubscription
+     */
+    'livemode'?: boolean | null;
+    /**
+     * The datetime this object was created in stripe.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'created'?: string | null;
+    /**
+     * A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeSubscription
+     */
+    'metadata'?: { [key: string]: any; } | null;
+    /**
+     * A description of this object.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'description'?: string | null;
+    /**
+     * A positive decimal that represents the fee percentage of the subscription invoice amount that will be transferred to the application owner\'s Stripe account each billing period.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'application_fee_percent'?: string | null;
+    /**
+     * Determines the date of the first full invoice, and, for plans with `month` or `year` intervals, the day of the month for subsequent invoices.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'billing_cycle_anchor'?: string | null;
+    /**
+     * Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeSubscription
+     */
+    'billing_thresholds'?: { [key: string]: any; } | null;
+    /**
+     * A date in the future at which the subscription will automatically get canceled.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'cancel_at'?: string | null;
+    /**
+     * If the subscription has been canceled with the ``at_period_end`` flag set to true, ``cancel_at_period_end`` on the subscription will be true. You can use this attribute to determine whether a subscription that has a status of active is scheduled to be canceled at the end of the current period.
+     * @type {boolean}
+     * @memberof StripeSubscription
+     */
+    'cancel_at_period_end'?: boolean;
+    /**
+     * If the subscription has been canceled, the date of that cancellation. If the subscription was canceled with ``cancel_at_period_end``, canceled_at will still reflect the date of the initial cancellation request, not the end of the subscription period when the subscription is automatically moved to a canceled state.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'canceled_at'?: string | null;
+    /**
+     * Either `charge_automatically`, or `send_invoice`. When charging automatically, Stripe will attempt to pay this subscription at the end of the cycle using the default source attached to the customer. When sending an invoice, Stripe will email your customer an invoice with payment instructions.
+     * @type {CollectionMethodEnum}
+     * @memberof StripeSubscription
+     */
+    'collection_method': CollectionMethodEnum;
+    /**
+     * End of the current period for which the subscription has been invoiced. At the end of this period, a new invoice will be created.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'current_period_end': string;
+    /**
+     * Start of the current period for which the subscription has been invoiced.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'current_period_start': string;
+    /**
+     * Number of days a customer has to pay invoices generated by this subscription. This value will be `null` for subscriptions where `billing=charge_automatically`.
+     * @type {number}
+     * @memberof StripeSubscription
+     */
+    'days_until_due'?: number | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeSubscription
+     */
+    'discount'?: { [key: string]: any; } | null;
+    /**
+     * If the subscription has ended (either because it was canceled or because the customer was switched to a subscription to a new plan), the date the subscription ended.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'ended_at'?: string | null;
+    /**
+     * Specifies the approximate timestamp on which any pending invoice items will be billed according to the schedule provided at pending_invoice_item_interval.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'next_pending_invoice_item_invoice'?: string | null;
+    /**
+     * Specifies an interval for how often to bill for any pending invoice items. It is analogous to calling Create an invoice for the given subscription at the specified interval.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeSubscription
+     */
+    'pending_invoice_item_interval'?: { [key: string]: any; } | null;
+    /**
+     * If specified, pending updates that will be applied to the subscription once the latest_invoice has been paid.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeSubscription
+     */
+    'pending_update'?: { [key: string]: any; } | null;
+    /**
+     * The quantity applied to this subscription. This value will be `null` for multi-plan subscriptions
+     * @type {number}
+     * @memberof StripeSubscription
+     */
+    'quantity'?: number | null;
+    /**
+     * Date when the subscription was first created. The date might differ from the created date due to backdating.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'start_date'?: string | null;
+    /**
+     * The status of this subscription.
+     * @type {StripeSubscriptionStatusEnum}
+     * @memberof StripeSubscription
+     */
+    'status': StripeSubscriptionStatusEnum;
+    /**
+     * If the subscription has a trial, the end of that trial.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'trial_end'?: string | null;
+    /**
+     * If the subscription has a trial, the beginning of that trial.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'trial_start'?: string | null;
+    /**
+     * The Stripe Account this object belongs to.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'djstripe_owner_account'?: string | null;
+    /**
+     * The customer associated with this subscription.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'customer': string;
+    /**
+     * The default payment source for the subscription. It must belong to the customer associated with the subscription and be in a chargeable state. If not set, defaults to the customer\'s default source.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'default_source'?: string | null;
+    /**
+     * The most recent invoice this subscription has generated.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'latest_invoice'?: string | null;
+    /**
+     * We can use this SetupIntent to collect user authentication when creating a subscription without immediate payment or updating a subscription\'s payment method, allowing you to optimize for off-session payments.
+     * @type {string}
+     * @memberof StripeSubscription
+     */
+    'pending_setup_intent'?: string | null;
+    /**
+     * The tax rates that will apply to any subscription item that does not have tax_rates set. Invoices created will have their default_tax_rates populated from the subscription.
+     * @type {Array<number>}
+     * @memberof StripeSubscription
+     */
+    'default_tax_rates'?: Array<number>;
+}
+/**
+ * 
+ * @export
+ * @interface StripeSubscriptionSchedule
+ */
+export interface StripeSubscriptionSchedule {
+    /**
+     * 
+     * @type {number}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'djstripe_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'djstripe_created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'djstripe_updated': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'id': string;
+    /**
+     * Null here indicates that the livemode status is unknown or was previously unrecorded. Otherwise, this field indicates whether this record comes from Stripe test mode or live mode operation.
+     * @type {boolean}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'livemode'?: boolean | null;
+    /**
+     * The datetime this object was created in stripe.
+     * @type {string}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'created'?: string | null;
+    /**
+     * A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'metadata'?: { [key: string]: any; } | null;
+    /**
+     * A description of this object.
+     * @type {string}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'description'?: string | null;
+    /**
+     * Define thresholds at which an invoice will be sent, and the related subscription advanced to a new billing period.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'billing_thresholds'?: { [key: string]: any; } | null;
+    /**
+     * Time at which the subscription schedule was canceled.
+     * @type {string}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'canceled_at'?: string | null;
+    /**
+     * Time at which the subscription schedule was completed.
+     * @type {string}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'completed_at'?: string | null;
+    /**
+     * Object representing the start and end dates for the current phase of the subscription schedule, if it is `active`.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'current_phase'?: { [key: string]: any; } | null;
+    /**
+     * Object representing the subscription schedule\'s default settings.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'default_settings'?: { [key: string]: any; } | null;
+    /**
+     * Behavior of the subscription schedule and underlying subscription when it ends.
+     * @type {EndBehaviorEnum}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'end_behavior': EndBehaviorEnum;
+    /**
+     * Configuration for the subscription schedule\'s phases.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'phases'?: { [key: string]: any; } | null;
+    /**
+     * Time at which the subscription schedule was released.
+     * @type {string}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'released_at'?: string | null;
+    /**
+     * The present status of the subscription schedule. Possible values are `not_started`, `active`, `completed`, `released`, and `canceled`.
+     * @type {StripeSubscriptionScheduleStatusEnum}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'status': StripeSubscriptionScheduleStatusEnum;
+    /**
+     * The Stripe Account this object belongs to.
+     * @type {string}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'djstripe_owner_account'?: string | null;
+    /**
+     * The customer who owns the subscription schedule.
+     * @type {number}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'customer': number;
+    /**
+     * The subscription once managed by this subscription schedule (if it is released).
+     * @type {number}
+     * @memberof StripeSubscriptionSchedule
+     */
+    'released_subscription'?: number | null;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const StripeSubscriptionScheduleStatusEnum = {
+    Active: 'active',
+    Canceled: 'canceled',
+    Completed: 'completed',
+    NotStarted: 'not_started',
+    Released: 'released'
+} as const;
+
+export type StripeSubscriptionScheduleStatusEnum = typeof StripeSubscriptionScheduleStatusEnum[keyof typeof StripeSubscriptionScheduleStatusEnum];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const StripeSubscriptionStatusEnum = {
+    Active: 'active',
+    Canceled: 'canceled',
+    Incomplete: 'incomplete',
+    IncompleteExpired: 'incomplete_expired',
+    PastDue: 'past_due',
+    Trialing: 'trialing',
+    Unpaid: 'unpaid'
+} as const;
+
+export type StripeSubscriptionStatusEnum = typeof StripeSubscriptionStatusEnum[keyof typeof StripeSubscriptionStatusEnum];
+
+
 /**
  * 
  * @export
@@ -3122,6 +5326,21 @@ export interface SystemInfoRequest {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export const TaxExemptEnum = {
+    Exempt: 'exempt',
+    None: 'none',
+    Reverse: 'reverse'
+} as const;
+
+export type TaxExemptEnum = typeof TaxExemptEnum[keyof typeof TaxExemptEnum];
+
+
+/**
+ * 
+ * @export
  * @interface TestEvent
  */
 export interface TestEvent {
@@ -3233,6 +5452,33 @@ export interface TestEventRequest {
     'device': number;
 }
 /**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const TiersModeEnum = {
+    Graduated: 'graduated',
+    Volume: 'volume'
+} as const;
+
+export type TiersModeEnum = typeof TiersModeEnum[keyof typeof TiersModeEnum];
+
+
+/**
+ * Serializer for Token model.
+ * @export
+ * @interface Token
+ */
+export interface Token {
+    /**
+     * 
+     * @type {string}
+     * @memberof Token
+     */
+    'key': string;
+}
+/**
  * Our default response serializer.
  * @export
  * @interface TokenResponse
@@ -3245,6 +5491,53 @@ export interface TokenResponse {
      */
     'token': string;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const TypeEnum = {
+    AcssDebit: 'acss_debit',
+    AfterpayClearpay: 'afterpay_clearpay',
+    Alipay: 'alipay',
+    AuBecsDebit: 'au_becs_debit',
+    BacsDebit: 'bacs_debit',
+    Bancontact: 'bancontact',
+    Boleto: 'boleto',
+    Card: 'card',
+    CardPresent: 'card_present',
+    Eps: 'eps',
+    Fpx: 'fpx',
+    Giropay: 'giropay',
+    Grabpay: 'grabpay',
+    Ideal: 'ideal',
+    InteracPresent: 'interac_present',
+    Klarna: 'klarna',
+    Oxxo: 'oxxo',
+    P24: 'p24',
+    SepaDebit: 'sepa_debit',
+    Sofort: 'sofort',
+    WechatPay: 'wechat_pay'
+} as const;
+
+export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const UsageTypeEnum = {
+    Licensed: 'licensed',
+    Metered: 'metered'
+} as const;
+
+export type UsageTypeEnum = typeof UsageTypeEnum[keyof typeof UsageTypeEnum];
+
+
 /**
  * 
  * @export
@@ -3263,6 +5556,24 @@ export interface User {
      * @memberof User
      */
     'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'first_name'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'last_name'?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof User
+     */
+    'is_beta_tester': boolean;
 }
 /**
  * 
@@ -3276,6 +5587,31 @@ export interface UserRequest {
      * @memberof UserRequest
      */
     'email': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserRequest
+     */
+    'first_name'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserRequest
+     */
+    'last_name'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface VerifyEmailRequest
+ */
+export interface VerifyEmailRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof VerifyEmailRequest
+     */
+    'key': string;
 }
 /**
  * 
@@ -3555,18 +5891,420 @@ export interface WebRTCEventRequest {
 }
 
 /**
- * AlertSettingsApi - axios parameter creator
+ * AccountsApi - axios parameter creator
  * @export
  */
-export const AlertSettingsApiAxiosParamCreator = function (configuration?: Configuration) {
+export const AccountsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * 
+         * A device (Raspberry Pi) running Print Nanny OS
+         * @param {EmailWaitlistRequest} emailWaitlistRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertSettingsGetOrCreateRetrieve: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/alert-settings/get-or-create/`;
+        accountsEmailWaitlistCreate: async (emailWaitlistRequest: EmailWaitlistRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'emailWaitlistRequest' is not null or undefined
+            assertParamExists('accountsEmailWaitlistCreate', 'emailWaitlistRequest', emailWaitlistRequest)
+            const localVarPath = `/api/accounts/email-waitlist/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(emailWaitlistRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Check the credentials and return the REST Token if the credentials are valid and authenticated. Calls Django Auth login method to register User ID in Django session framework  Accept the following POST parameters: username, password Return the REST Framework Token Object\'s key.
+         * @param {LoginRequest} loginRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsLoginCreate: async (loginRequest: LoginRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'loginRequest' is not null or undefined
+            assertParamExists('accountsLoginCreate', 'loginRequest', loginRequest)
+            const localVarPath = `/api/accounts/login/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(loginRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Calls Django logout method and delete the Token object assigned to the current User object.  Accepts/Returns nothing.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsLogoutCreate: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/accounts/logout/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Calls Django Auth SetPasswordForm save method.  Accepts the following POST parameters: new_password1, new_password2 Returns the success/fail message.
+         * @param {PasswordChangeRequest} passwordChangeRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsPasswordChangeCreate: async (passwordChangeRequest: PasswordChangeRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'passwordChangeRequest' is not null or undefined
+            assertParamExists('accountsPasswordChangeCreate', 'passwordChangeRequest', passwordChangeRequest)
+            const localVarPath = `/api/accounts/password/change/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(passwordChangeRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Password reset e-mail link is confirmed, therefore this resets the user\'s password.  Accepts the following POST parameters: token, uid,     new_password1, new_password2 Returns the success/fail message.
+         * @param {PasswordResetConfirmRequest} passwordResetConfirmRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsPasswordResetConfirmCreate: async (passwordResetConfirmRequest: PasswordResetConfirmRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'passwordResetConfirmRequest' is not null or undefined
+            assertParamExists('accountsPasswordResetConfirmCreate', 'passwordResetConfirmRequest', passwordResetConfirmRequest)
+            const localVarPath = `/api/accounts/password/reset/confirm/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(passwordResetConfirmRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Calls Django Auth PasswordResetForm save method.  Accepts the following POST parameters: email Returns the success/fail message.
+         * @param {PasswordResetRequest} passwordResetRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsPasswordResetCreate: async (passwordResetRequest: PasswordResetRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'passwordResetRequest' is not null or undefined
+            assertParamExists('accountsPasswordResetCreate', 'passwordResetRequest', passwordResetRequest)
+            const localVarPath = `/api/accounts/password/reset/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(passwordResetRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {RegisterRequest} registerRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsRegistrationCreate: async (registerRequest: RegisterRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'registerRequest' is not null or undefined
+            assertParamExists('accountsRegistrationCreate', 'registerRequest', registerRequest)
+            const localVarPath = `/api/accounts/registration/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(registerRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {ResendEmailVerificationRequest} resendEmailVerificationRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsRegistrationResendEmailCreate: async (resendEmailVerificationRequest: ResendEmailVerificationRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'resendEmailVerificationRequest' is not null or undefined
+            assertParamExists('accountsRegistrationResendEmailCreate', 'resendEmailVerificationRequest', resendEmailVerificationRequest)
+            const localVarPath = `/api/accounts/registration/resend-email/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(resendEmailVerificationRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {VerifyEmailRequest} verifyEmailRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsRegistrationVerifyEmailCreate: async (verifyEmailRequest: VerifyEmailRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'verifyEmailRequest' is not null or undefined
+            assertParamExists('accountsRegistrationVerifyEmailCreate', 'verifyEmailRequest', verifyEmailRequest)
+            const localVarPath = `/api/accounts/registration/verify-email/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(verifyEmailRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
+         * @param {PatchedUserRequest} [patchedUserRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsUserPartialUpdate: async (patchedUserRequest?: PatchedUserRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/accounts/user/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedUserRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsUserRetrieve: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/accounts/user/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3575,6 +6313,662 @@ export const AlertSettingsApiAxiosParamCreator = function (configuration?: Confi
             }
 
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
+         * @param {UserRequest} userRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsUserUpdate: async (userRequest: UserRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'userRequest' is not null or undefined
+            assertParamExists('accountsUserUpdate', 'userRequest', userRequest)
+            const localVarPath = `/api/accounts/user/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(userRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * AccountsApi - functional programming interface
+ * @export
+ */
+export const AccountsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = AccountsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * A device (Raspberry Pi) running Print Nanny OS
+         * @param {EmailWaitlistRequest} emailWaitlistRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsEmailWaitlistCreate(emailWaitlistRequest: EmailWaitlistRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EmailWaitlist>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsEmailWaitlistCreate(emailWaitlistRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Check the credentials and return the REST Token if the credentials are valid and authenticated. Calls Django Auth login method to register User ID in Django session framework  Accept the following POST parameters: username, password Return the REST Framework Token Object\'s key.
+         * @param {LoginRequest} loginRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsLoginCreate(loginRequest: LoginRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Token>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsLoginCreate(loginRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Calls Django logout method and delete the Token object assigned to the current User object.  Accepts/Returns nothing.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsLogoutCreate(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RestAuthDetail>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsLogoutCreate(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Calls Django Auth SetPasswordForm save method.  Accepts the following POST parameters: new_password1, new_password2 Returns the success/fail message.
+         * @param {PasswordChangeRequest} passwordChangeRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsPasswordChangeCreate(passwordChangeRequest: PasswordChangeRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RestAuthDetail>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsPasswordChangeCreate(passwordChangeRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Password reset e-mail link is confirmed, therefore this resets the user\'s password.  Accepts the following POST parameters: token, uid,     new_password1, new_password2 Returns the success/fail message.
+         * @param {PasswordResetConfirmRequest} passwordResetConfirmRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsPasswordResetConfirmCreate(passwordResetConfirmRequest: PasswordResetConfirmRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RestAuthDetail>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsPasswordResetConfirmCreate(passwordResetConfirmRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Calls Django Auth PasswordResetForm save method.  Accepts the following POST parameters: email Returns the success/fail message.
+         * @param {PasswordResetRequest} passwordResetRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsPasswordResetCreate(passwordResetRequest: PasswordResetRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RestAuthDetail>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsPasswordResetCreate(passwordResetRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {RegisterRequest} registerRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsRegistrationCreate(registerRequest: RegisterRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Token>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsRegistrationCreate(registerRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {ResendEmailVerificationRequest} resendEmailVerificationRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsRegistrationResendEmailCreate(resendEmailVerificationRequest: ResendEmailVerificationRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RestAuthDetail>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsRegistrationResendEmailCreate(resendEmailVerificationRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {VerifyEmailRequest} verifyEmailRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsRegistrationVerifyEmailCreate(verifyEmailRequest: VerifyEmailRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RestAuthDetail>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsRegistrationVerifyEmailCreate(verifyEmailRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
+         * @param {PatchedUserRequest} [patchedUserRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsUserPartialUpdate(patchedUserRequest?: PatchedUserRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsUserPartialUpdate(patchedUserRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsUserRetrieve(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsUserRetrieve(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
+         * @param {UserRequest} userRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsUserUpdate(userRequest: UserRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsUserUpdate(userRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * AccountsApi - factory interface
+ * @export
+ */
+export const AccountsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = AccountsApiFp(configuration)
+    return {
+        /**
+         * A device (Raspberry Pi) running Print Nanny OS
+         * @param {EmailWaitlistRequest} emailWaitlistRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsEmailWaitlistCreate(emailWaitlistRequest: EmailWaitlistRequest, options?: any): AxiosPromise<EmailWaitlist> {
+            return localVarFp.accountsEmailWaitlistCreate(emailWaitlistRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Check the credentials and return the REST Token if the credentials are valid and authenticated. Calls Django Auth login method to register User ID in Django session framework  Accept the following POST parameters: username, password Return the REST Framework Token Object\'s key.
+         * @param {LoginRequest} loginRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsLoginCreate(loginRequest: LoginRequest, options?: any): AxiosPromise<Token> {
+            return localVarFp.accountsLoginCreate(loginRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Calls Django logout method and delete the Token object assigned to the current User object.  Accepts/Returns nothing.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsLogoutCreate(options?: any): AxiosPromise<RestAuthDetail> {
+            return localVarFp.accountsLogoutCreate(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Calls Django Auth SetPasswordForm save method.  Accepts the following POST parameters: new_password1, new_password2 Returns the success/fail message.
+         * @param {PasswordChangeRequest} passwordChangeRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsPasswordChangeCreate(passwordChangeRequest: PasswordChangeRequest, options?: any): AxiosPromise<RestAuthDetail> {
+            return localVarFp.accountsPasswordChangeCreate(passwordChangeRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Password reset e-mail link is confirmed, therefore this resets the user\'s password.  Accepts the following POST parameters: token, uid,     new_password1, new_password2 Returns the success/fail message.
+         * @param {PasswordResetConfirmRequest} passwordResetConfirmRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsPasswordResetConfirmCreate(passwordResetConfirmRequest: PasswordResetConfirmRequest, options?: any): AxiosPromise<RestAuthDetail> {
+            return localVarFp.accountsPasswordResetConfirmCreate(passwordResetConfirmRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Calls Django Auth PasswordResetForm save method.  Accepts the following POST parameters: email Returns the success/fail message.
+         * @param {PasswordResetRequest} passwordResetRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsPasswordResetCreate(passwordResetRequest: PasswordResetRequest, options?: any): AxiosPromise<RestAuthDetail> {
+            return localVarFp.accountsPasswordResetCreate(passwordResetRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {RegisterRequest} registerRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsRegistrationCreate(registerRequest: RegisterRequest, options?: any): AxiosPromise<Token> {
+            return localVarFp.accountsRegistrationCreate(registerRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {ResendEmailVerificationRequest} resendEmailVerificationRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsRegistrationResendEmailCreate(resendEmailVerificationRequest: ResendEmailVerificationRequest, options?: any): AxiosPromise<RestAuthDetail> {
+            return localVarFp.accountsRegistrationResendEmailCreate(resendEmailVerificationRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {VerifyEmailRequest} verifyEmailRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsRegistrationVerifyEmailCreate(verifyEmailRequest: VerifyEmailRequest, options?: any): AxiosPromise<RestAuthDetail> {
+            return localVarFp.accountsRegistrationVerifyEmailCreate(verifyEmailRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
+         * @param {PatchedUserRequest} [patchedUserRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsUserPartialUpdate(patchedUserRequest?: PatchedUserRequest, options?: any): AxiosPromise<User> {
+            return localVarFp.accountsUserPartialUpdate(patchedUserRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsUserRetrieve(options?: any): AxiosPromise<User> {
+            return localVarFp.accountsUserRetrieve(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
+         * @param {UserRequest} userRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsUserUpdate(userRequest: UserRequest, options?: any): AxiosPromise<User> {
+            return localVarFp.accountsUserUpdate(userRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * AccountsApi - interface
+ * @export
+ * @interface AccountsApi
+ */
+export interface AccountsApiInterface {
+    /**
+     * A device (Raspberry Pi) running Print Nanny OS
+     * @param {EmailWaitlistRequest} emailWaitlistRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsEmailWaitlistCreate(emailWaitlistRequest: EmailWaitlistRequest, options?: AxiosRequestConfig): AxiosPromise<EmailWaitlist>;
+
+    /**
+     * Check the credentials and return the REST Token if the credentials are valid and authenticated. Calls Django Auth login method to register User ID in Django session framework  Accept the following POST parameters: username, password Return the REST Framework Token Object\'s key.
+     * @param {LoginRequest} loginRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsLoginCreate(loginRequest: LoginRequest, options?: AxiosRequestConfig): AxiosPromise<Token>;
+
+    /**
+     * Calls Django logout method and delete the Token object assigned to the current User object.  Accepts/Returns nothing.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsLogoutCreate(options?: AxiosRequestConfig): AxiosPromise<RestAuthDetail>;
+
+    /**
+     * Calls Django Auth SetPasswordForm save method.  Accepts the following POST parameters: new_password1, new_password2 Returns the success/fail message.
+     * @param {PasswordChangeRequest} passwordChangeRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsPasswordChangeCreate(passwordChangeRequest: PasswordChangeRequest, options?: AxiosRequestConfig): AxiosPromise<RestAuthDetail>;
+
+    /**
+     * Password reset e-mail link is confirmed, therefore this resets the user\'s password.  Accepts the following POST parameters: token, uid,     new_password1, new_password2 Returns the success/fail message.
+     * @param {PasswordResetConfirmRequest} passwordResetConfirmRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsPasswordResetConfirmCreate(passwordResetConfirmRequest: PasswordResetConfirmRequest, options?: AxiosRequestConfig): AxiosPromise<RestAuthDetail>;
+
+    /**
+     * Calls Django Auth PasswordResetForm save method.  Accepts the following POST parameters: email Returns the success/fail message.
+     * @param {PasswordResetRequest} passwordResetRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsPasswordResetCreate(passwordResetRequest: PasswordResetRequest, options?: AxiosRequestConfig): AxiosPromise<RestAuthDetail>;
+
+    /**
+     * 
+     * @param {RegisterRequest} registerRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsRegistrationCreate(registerRequest: RegisterRequest, options?: AxiosRequestConfig): AxiosPromise<Token>;
+
+    /**
+     * 
+     * @param {ResendEmailVerificationRequest} resendEmailVerificationRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsRegistrationResendEmailCreate(resendEmailVerificationRequest: ResendEmailVerificationRequest, options?: AxiosRequestConfig): AxiosPromise<RestAuthDetail>;
+
+    /**
+     * 
+     * @param {VerifyEmailRequest} verifyEmailRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsRegistrationVerifyEmailCreate(verifyEmailRequest: VerifyEmailRequest, options?: AxiosRequestConfig): AxiosPromise<RestAuthDetail>;
+
+    /**
+     * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
+     * @param {PatchedUserRequest} [patchedUserRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsUserPartialUpdate(patchedUserRequest?: PatchedUserRequest, options?: AxiosRequestConfig): AxiosPromise<User>;
+
+    /**
+     * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsUserRetrieve(options?: AxiosRequestConfig): AxiosPromise<User>;
+
+    /**
+     * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
+     * @param {UserRequest} userRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsUserUpdate(userRequest: UserRequest, options?: AxiosRequestConfig): AxiosPromise<User>;
+
+}
+
+/**
+ * AccountsApi - object-oriented interface
+ * @export
+ * @class AccountsApi
+ * @extends {BaseAPI}
+ */
+export class AccountsApi extends BaseAPI implements AccountsApiInterface {
+    /**
+     * A device (Raspberry Pi) running Print Nanny OS
+     * @param {EmailWaitlistRequest} emailWaitlistRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsEmailWaitlistCreate(emailWaitlistRequest: EmailWaitlistRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsEmailWaitlistCreate(emailWaitlistRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Check the credentials and return the REST Token if the credentials are valid and authenticated. Calls Django Auth login method to register User ID in Django session framework  Accept the following POST parameters: username, password Return the REST Framework Token Object\'s key.
+     * @param {LoginRequest} loginRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsLoginCreate(loginRequest: LoginRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsLoginCreate(loginRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Calls Django logout method and delete the Token object assigned to the current User object.  Accepts/Returns nothing.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsLogoutCreate(options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsLogoutCreate(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Calls Django Auth SetPasswordForm save method.  Accepts the following POST parameters: new_password1, new_password2 Returns the success/fail message.
+     * @param {PasswordChangeRequest} passwordChangeRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsPasswordChangeCreate(passwordChangeRequest: PasswordChangeRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsPasswordChangeCreate(passwordChangeRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Password reset e-mail link is confirmed, therefore this resets the user\'s password.  Accepts the following POST parameters: token, uid,     new_password1, new_password2 Returns the success/fail message.
+     * @param {PasswordResetConfirmRequest} passwordResetConfirmRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsPasswordResetConfirmCreate(passwordResetConfirmRequest: PasswordResetConfirmRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsPasswordResetConfirmCreate(passwordResetConfirmRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Calls Django Auth PasswordResetForm save method.  Accepts the following POST parameters: email Returns the success/fail message.
+     * @param {PasswordResetRequest} passwordResetRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsPasswordResetCreate(passwordResetRequest: PasswordResetRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsPasswordResetCreate(passwordResetRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {RegisterRequest} registerRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsRegistrationCreate(registerRequest: RegisterRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsRegistrationCreate(registerRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {ResendEmailVerificationRequest} resendEmailVerificationRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsRegistrationResendEmailCreate(resendEmailVerificationRequest: ResendEmailVerificationRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsRegistrationResendEmailCreate(resendEmailVerificationRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {VerifyEmailRequest} verifyEmailRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsRegistrationVerifyEmailCreate(verifyEmailRequest: VerifyEmailRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsRegistrationVerifyEmailCreate(verifyEmailRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
+     * @param {PatchedUserRequest} [patchedUserRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsUserPartialUpdate(patchedUserRequest?: PatchedUserRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsUserPartialUpdate(patchedUserRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsUserRetrieve(options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsUserRetrieve(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
+     * @param {UserRequest} userRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsUserUpdate(userRequest: UserRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsUserUpdate(userRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * AlertSettingsApi - axios parameter creator
+ * @export
+ */
+export const AlertSettingsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {AlertSettingsRequest} [alertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsCreate: async (alertSettingsRequest?: AlertSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/alert-settings/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(alertSettingsRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsList: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/alert-settings/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsMetadata: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/alert-settings/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'OPTIONS', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -3693,11 +7087,30 @@ export const AlertSettingsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {AlertSettingsRequest} [alertSettingsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async alertSettingsGetOrCreateRetrieve(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertSettings>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.alertSettingsGetOrCreateRetrieve(options);
+        async alertSettingsCreate(alertSettingsRequest?: AlertSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertSettingsCreate(alertSettingsRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertSettingsList(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertSettingsList(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertSettingsMetadata(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OptionsMetadata>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertSettingsMetadata(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -3734,11 +7147,28 @@ export const AlertSettingsApiFactory = function (configuration?: Configuration, 
     return {
         /**
          * 
+         * @param {AlertSettingsRequest} [alertSettingsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertSettingsGetOrCreateRetrieve(options?: any): AxiosPromise<AlertSettings> {
-            return localVarFp.alertSettingsGetOrCreateRetrieve(options).then((request) => request(axios, basePath));
+        alertSettingsCreate(alertSettingsRequest?: AlertSettingsRequest, options?: any): AxiosPromise<AlertSettings> {
+            return localVarFp.alertSettingsCreate(alertSettingsRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsList(options?: any): AxiosPromise<AlertSettings> {
+            return localVarFp.alertSettingsList(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsMetadata(options?: any): AxiosPromise<OptionsMetadata> {
+            return localVarFp.alertSettingsMetadata(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -3771,11 +7201,28 @@ export const AlertSettingsApiFactory = function (configuration?: Configuration, 
 export interface AlertSettingsApiInterface {
     /**
      * 
+     * @param {AlertSettingsRequest} [alertSettingsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertSettingsApiInterface
      */
-    alertSettingsGetOrCreateRetrieve(options?: AxiosRequestConfig): AxiosPromise<AlertSettings>;
+    alertSettingsCreate(alertSettingsRequest?: AlertSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<AlertSettings>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApiInterface
+     */
+    alertSettingsList(options?: AxiosRequestConfig): AxiosPromise<AlertSettings>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApiInterface
+     */
+    alertSettingsMetadata(options?: AxiosRequestConfig): AxiosPromise<OptionsMetadata>;
 
     /**
      * 
@@ -3808,12 +7255,33 @@ export interface AlertSettingsApiInterface {
 export class AlertSettingsApi extends BaseAPI implements AlertSettingsApiInterface {
     /**
      * 
+     * @param {AlertSettingsRequest} [alertSettingsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertSettingsApi
      */
-    public alertSettingsGetOrCreateRetrieve(options?: AxiosRequestConfig) {
-        return AlertSettingsApiFp(this.configuration).alertSettingsGetOrCreateRetrieve(options).then((request) => request(this.axios, this.basePath));
+    public alertSettingsCreate(alertSettingsRequest?: AlertSettingsRequest, options?: AxiosRequestConfig) {
+        return AlertSettingsApiFp(this.configuration).alertSettingsCreate(alertSettingsRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApi
+     */
+    public alertSettingsList(options?: AxiosRequestConfig) {
+        return AlertSettingsApiFp(this.configuration).alertSettingsList(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApi
+     */
+    public alertSettingsMetadata(options?: AxiosRequestConfig) {
+        return AlertSettingsApiFp(this.configuration).alertSettingsMetadata(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -3848,6 +7316,45 @@ export class AlertSettingsApi extends BaseAPI implements AlertSettingsApiInterfa
  */
 export const AlertsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * 
+         * @param {AlertRequest} [alertRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsCreate: async (alertRequest?: AlertRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/alerts/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(alertRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * 
          * @param {number} [page] A page number within the paginated result set.
@@ -4134,6 +7641,16 @@ export const AlertsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {AlertRequest} [alertRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertsCreate(alertRequest?: AlertRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Alert>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertsCreate(alertRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4214,6 +7731,15 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
     return {
         /**
          * 
+         * @param {AlertRequest} [alertRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsCreate(alertRequest?: AlertRequest, options?: any): AxiosPromise<Alert> {
+            return localVarFp.alertsCreate(alertRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4286,6 +7812,15 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
 export interface AlertsApiInterface {
     /**
      * 
+     * @param {AlertRequest} [alertRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    alertsCreate(alertRequest?: AlertRequest, options?: AxiosRequestConfig): AxiosPromise<Alert>;
+
+    /**
+     * 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -4356,6 +7891,17 @@ export interface AlertsApiInterface {
  * @extends {BaseAPI}
  */
 export class AlertsApi extends BaseAPI implements AlertsApiInterface {
+    /**
+     * 
+     * @param {AlertRequest} [alertRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public alertsCreate(alertRequest?: AlertRequest, options?: AxiosRequestConfig) {
+        return AlertsApiFp(this.configuration).alertsCreate(alertRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @param {number} [page] A page number within the paginated result set.
@@ -4937,6 +8483,278 @@ export class AuthApi extends BaseAPI implements AuthApiInterface {
      */
     public authVerifyMobileCreate(options?: AxiosRequestConfig) {
         return AuthApiFp(this.configuration).authVerifyMobileCreate(options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * BillingApi - axios parameter creator
+ * @export
+ */
+export const BillingApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {number} subscriptionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        billingCancelCreate: async (subscriptionId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'subscriptionId' is not null or undefined
+            assertParamExists('billingCancelCreate', 'subscriptionId', subscriptionId)
+            const localVarPath = `/api/billing/{subscription_id}/cancel/`
+                .replace(`{${"subscription_id"}}`, encodeURIComponent(String(subscriptionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} subscriptionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        billingReactivateCreate: async (subscriptionId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'subscriptionId' is not null or undefined
+            assertParamExists('billingReactivateCreate', 'subscriptionId', subscriptionId)
+            const localVarPath = `/api/billing/{subscription_id}/reactivate/`
+                .replace(`{${"subscription_id"}}`, encodeURIComponent(String(subscriptionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        billingSummaryRetrieve: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/billing/summary`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * BillingApi - functional programming interface
+ * @export
+ */
+export const BillingApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = BillingApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {number} subscriptionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async billingCancelCreate(subscriptionId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BillingSummary>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.billingCancelCreate(subscriptionId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} subscriptionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async billingReactivateCreate(subscriptionId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BillingSummary>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.billingReactivateCreate(subscriptionId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async billingSummaryRetrieve(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BillingSummary>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.billingSummaryRetrieve(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * BillingApi - factory interface
+ * @export
+ */
+export const BillingApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = BillingApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {number} subscriptionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        billingCancelCreate(subscriptionId: number, options?: any): AxiosPromise<BillingSummary> {
+            return localVarFp.billingCancelCreate(subscriptionId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} subscriptionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        billingReactivateCreate(subscriptionId: string, options?: any): AxiosPromise<BillingSummary> {
+            return localVarFp.billingReactivateCreate(subscriptionId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        billingSummaryRetrieve(options?: any): AxiosPromise<BillingSummary> {
+            return localVarFp.billingSummaryRetrieve(options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * BillingApi - interface
+ * @export
+ * @interface BillingApi
+ */
+export interface BillingApiInterface {
+    /**
+     * 
+     * @param {number} subscriptionId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BillingApiInterface
+     */
+    billingCancelCreate(subscriptionId: number, options?: AxiosRequestConfig): AxiosPromise<BillingSummary>;
+
+    /**
+     * 
+     * @param {string} subscriptionId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BillingApiInterface
+     */
+    billingReactivateCreate(subscriptionId: string, options?: AxiosRequestConfig): AxiosPromise<BillingSummary>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BillingApiInterface
+     */
+    billingSummaryRetrieve(options?: AxiosRequestConfig): AxiosPromise<BillingSummary>;
+
+}
+
+/**
+ * BillingApi - object-oriented interface
+ * @export
+ * @class BillingApi
+ * @extends {BaseAPI}
+ */
+export class BillingApi extends BaseAPI implements BillingApiInterface {
+    /**
+     * 
+     * @param {number} subscriptionId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BillingApi
+     */
+    public billingCancelCreate(subscriptionId: number, options?: AxiosRequestConfig) {
+        return BillingApiFp(this.configuration).billingCancelCreate(subscriptionId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} subscriptionId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BillingApi
+     */
+    public billingReactivateCreate(subscriptionId: string, options?: AxiosRequestConfig) {
+        return BillingApiFp(this.configuration).billingReactivateCreate(subscriptionId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BillingApi
+     */
+    public billingSummaryRetrieve(options?: AxiosRequestConfig) {
+        return BillingApiFp(this.configuration).billingSummaryRetrieve(options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -5816,6 +9634,49 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {number} deviceId 
+         * @param {JanusStreamRequest} [janusStreamRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusStreamsCreate: async (deviceId: number, janusStreamRequest?: JanusStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesJanusStreamsCreate', 'deviceId', deviceId)
+            const localVarPath = `/api/devices/{device_id}/janus-streams/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(janusStreamRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6421,6 +10282,51 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {DeviceSettingsRequest} deviceSettingsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesSettingsCreate: async (deviceId: number, deviceSettingsRequest: DeviceSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesSettingsCreate', 'deviceId', deviceId)
+            // verify required parameter 'deviceSettingsRequest' is not null or undefined
+            assertParamExists('devicesSettingsCreate', 'deviceSettingsRequest', deviceSettingsRequest)
+            const localVarPath = `/api/devices/{device_id}/settings/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(deviceSettingsRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -7072,6 +10978,17 @@ export const DevicesApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} deviceId 
+         * @param {JanusStreamRequest} [janusStreamRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusStreamsCreate(deviceId, janusStreamRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -7222,6 +11139,17 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          */
         async devicesRetrieveHostname(hostname: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesRetrieveHostname(hostname, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {DeviceSettingsRequest} deviceSettingsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesSettingsCreate(deviceId: number, deviceSettingsRequest: DeviceSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesSettingsCreate(deviceId, deviceSettingsRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -7453,6 +11381,16 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @param {number} deviceId 
+         * @param {JanusStreamRequest} [janusStreamRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: any): AxiosPromise<JanusStream> {
+            return localVarFp.devicesJanusStreamsCreate(deviceId, janusStreamRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -7590,6 +11528,16 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          */
         devicesRetrieveHostname(hostname: string, options?: any): AxiosPromise<Device> {
             return localVarFp.devicesRetrieveHostname(hostname, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {DeviceSettingsRequest} deviceSettingsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesSettingsCreate(deviceId: number, deviceSettingsRequest: DeviceSettingsRequest, options?: any): AxiosPromise<DeviceSettings> {
+            return localVarFp.devicesSettingsCreate(deviceId, deviceSettingsRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7807,6 +11755,16 @@ export interface DevicesApiInterface {
     /**
      * 
      * @param {number} deviceId 
+     * @param {JanusStreamRequest} [janusStreamRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig): AxiosPromise<JanusStream>;
+
+    /**
+     * 
+     * @param {number} deviceId 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -7944,6 +11902,16 @@ export interface DevicesApiInterface {
      * @memberof DevicesApiInterface
      */
     devicesRetrieveHostname(hostname: string, options?: AxiosRequestConfig): AxiosPromise<Device>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {DeviceSettingsRequest} deviceSettingsRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesSettingsCreate(deviceId: number, deviceSettingsRequest: DeviceSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<DeviceSettings>;
 
     /**
      * 
@@ -8177,6 +12145,18 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
     /**
      * 
      * @param {number} deviceId 
+     * @param {JanusStreamRequest} [janusStreamRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesJanusStreamsCreate(deviceId, janusStreamRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -8341,6 +12321,18 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      */
     public devicesRetrieveHostname(hostname: string, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesRetrieveHostname(hostname, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {DeviceSettingsRequest} deviceSettingsRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesSettingsCreate(deviceId: number, deviceSettingsRequest: DeviceSettingsRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesSettingsCreate(deviceId, deviceSettingsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -9018,6 +13010,49 @@ export const JanusApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * 
          * @param {number} deviceId 
+         * @param {JanusStreamRequest} [janusStreamRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusStreamsCreate: async (deviceId: number, janusStreamRequest?: JanusStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesJanusStreamsCreate', 'deviceId', deviceId)
+            const localVarPath = `/api/devices/{device_id}/janus-streams/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(janusStreamRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -9115,6 +13150,17 @@ export const JanusApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} deviceId 
+         * @param {JanusStreamRequest} [janusStreamRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JanusStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesJanusStreamsCreate(deviceId, janusStreamRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -9147,6 +13193,16 @@ export const JanusApiFactory = function (configuration?: Configuration, basePath
         /**
          * 
          * @param {number} deviceId 
+         * @param {JanusStreamRequest} [janusStreamRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: any): AxiosPromise<JanusStream> {
+            return localVarFp.devicesJanusStreamsCreate(deviceId, janusStreamRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -9176,6 +13232,16 @@ export interface JanusApiInterface {
     /**
      * 
      * @param {number} deviceId 
+     * @param {JanusStreamRequest} [janusStreamRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof JanusApiInterface
+     */
+    devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig): AxiosPromise<JanusStream>;
+
+    /**
+     * 
+     * @param {number} deviceId 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -9202,6 +13268,18 @@ export interface JanusApiInterface {
  * @extends {BaseAPI}
  */
 export class JanusApi extends BaseAPI implements JanusApiInterface {
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {JanusStreamRequest} [janusStreamRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof JanusApi
+     */
+    public devicesJanusStreamsCreate(deviceId: number, janusStreamRequest?: JanusStreamRequest, options?: AxiosRequestConfig) {
+        return JanusApiFp(this.configuration).devicesJanusStreamsCreate(deviceId, janusStreamRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @param {number} deviceId 
@@ -11417,374 +15495,6 @@ export class SchemaApi extends BaseAPI implements SchemaApiInterface {
      */
     public schemaRetrieve(lang?: 'af' | 'ar' | 'ar-dz' | 'ast' | 'az' | 'be' | 'bg' | 'bn' | 'br' | 'bs' | 'ca' | 'cs' | 'cy' | 'da' | 'de' | 'dsb' | 'el' | 'en' | 'en-au' | 'en-gb' | 'eo' | 'es' | 'es-ar' | 'es-co' | 'es-mx' | 'es-ni' | 'es-ve' | 'et' | 'eu' | 'fa' | 'fi' | 'fr' | 'fy' | 'ga' | 'gd' | 'gl' | 'he' | 'hi' | 'hr' | 'hsb' | 'hu' | 'hy' | 'ia' | 'id' | 'ig' | 'io' | 'is' | 'it' | 'ja' | 'ka' | 'kab' | 'kk' | 'km' | 'kn' | 'ko' | 'ky' | 'lb' | 'lt' | 'lv' | 'mk' | 'ml' | 'mn' | 'mr' | 'my' | 'nb' | 'ne' | 'nl' | 'nn' | 'os' | 'pa' | 'pl' | 'pt' | 'pt-br' | 'ro' | 'ru' | 'sk' | 'sl' | 'sq' | 'sr' | 'sr-latn' | 'sv' | 'sw' | 'ta' | 'te' | 'tg' | 'th' | 'tk' | 'tr' | 'tt' | 'udm' | 'uk' | 'ur' | 'uz' | 'vi' | 'zh-hans' | 'zh-hant', options?: AxiosRequestConfig) {
         return SchemaApiFp(this.configuration).schemaRetrieve(lang, options).then((request) => request(this.axios, this.basePath));
-    }
-}
-
-
-/**
- * UsersApi - axios parameter creator
- * @export
- */
-export const UsersApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        usersMeRetrieve: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/users/me/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this user.
-         * @param {PatchedUserRequest} [patchedUserRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        usersPartialUpdate: async (id: number, patchedUserRequest?: PatchedUserRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('usersPartialUpdate', 'id', id)
-            const localVarPath = `/api/users/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(patchedUserRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this user.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        usersRetrieve: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('usersRetrieve', 'id', id)
-            const localVarPath = `/api/users/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this user.
-         * @param {UserRequest} userRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        usersUpdate: async (id: number, userRequest: UserRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('usersUpdate', 'id', id)
-            // verify required parameter 'userRequest' is not null or undefined
-            assertParamExists('usersUpdate', 'userRequest', userRequest)
-            const localVarPath = `/api/users/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(userRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * UsersApi - functional programming interface
- * @export
- */
-export const UsersApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = UsersApiAxiosParamCreator(configuration)
-    return {
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async usersMeRetrieve(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.usersMeRetrieve(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this user.
-         * @param {PatchedUserRequest} [patchedUserRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async usersPartialUpdate(id: number, patchedUserRequest?: PatchedUserRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.usersPartialUpdate(id, patchedUserRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this user.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async usersRetrieve(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.usersRetrieve(id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this user.
-         * @param {UserRequest} userRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async usersUpdate(id: number, userRequest: UserRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.usersUpdate(id, userRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-    }
-};
-
-/**
- * UsersApi - factory interface
- * @export
- */
-export const UsersApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = UsersApiFp(configuration)
-    return {
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        usersMeRetrieve(options?: any): AxiosPromise<User> {
-            return localVarFp.usersMeRetrieve(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this user.
-         * @param {PatchedUserRequest} [patchedUserRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        usersPartialUpdate(id: number, patchedUserRequest?: PatchedUserRequest, options?: any): AxiosPromise<User> {
-            return localVarFp.usersPartialUpdate(id, patchedUserRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this user.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        usersRetrieve(id: number, options?: any): AxiosPromise<User> {
-            return localVarFp.usersRetrieve(id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this user.
-         * @param {UserRequest} userRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        usersUpdate(id: number, userRequest: UserRequest, options?: any): AxiosPromise<User> {
-            return localVarFp.usersUpdate(id, userRequest, options).then((request) => request(axios, basePath));
-        },
-    };
-};
-
-/**
- * UsersApi - interface
- * @export
- * @interface UsersApi
- */
-export interface UsersApiInterface {
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UsersApiInterface
-     */
-    usersMeRetrieve(options?: AxiosRequestConfig): AxiosPromise<User>;
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this user.
-     * @param {PatchedUserRequest} [patchedUserRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UsersApiInterface
-     */
-    usersPartialUpdate(id: number, patchedUserRequest?: PatchedUserRequest, options?: AxiosRequestConfig): AxiosPromise<User>;
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this user.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UsersApiInterface
-     */
-    usersRetrieve(id: number, options?: AxiosRequestConfig): AxiosPromise<User>;
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this user.
-     * @param {UserRequest} userRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UsersApiInterface
-     */
-    usersUpdate(id: number, userRequest: UserRequest, options?: AxiosRequestConfig): AxiosPromise<User>;
-
-}
-
-/**
- * UsersApi - object-oriented interface
- * @export
- * @class UsersApi
- * @extends {BaseAPI}
- */
-export class UsersApi extends BaseAPI implements UsersApiInterface {
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UsersApi
-     */
-    public usersMeRetrieve(options?: AxiosRequestConfig) {
-        return UsersApiFp(this.configuration).usersMeRetrieve(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this user.
-     * @param {PatchedUserRequest} [patchedUserRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UsersApi
-     */
-    public usersPartialUpdate(id: number, patchedUserRequest?: PatchedUserRequest, options?: AxiosRequestConfig) {
-        return UsersApiFp(this.configuration).usersPartialUpdate(id, patchedUserRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this user.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UsersApi
-     */
-    public usersRetrieve(id: number, options?: AxiosRequestConfig) {
-        return UsersApiFp(this.configuration).usersRetrieve(id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this user.
-     * @param {UserRequest} userRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UsersApi
-     */
-    public usersUpdate(id: number, userRequest: UserRequest, options?: AxiosRequestConfig) {
-        return UsersApiFp(this.configuration).usersUpdate(id, userRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

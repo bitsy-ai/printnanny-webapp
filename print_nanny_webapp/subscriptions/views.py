@@ -20,7 +20,7 @@ from djstripe.settings import djstripe_settings
 
 from print_nanny_webapp.subscriptions.forms import PromoCodeForm
 from print_nanny_webapp.subscriptions.services import (
-    get_stripe_active_subscription,
+    get_stripe_subscription,
     get_stripe_charges,
     get_stripe_customer,
     get_stripe_next_invoice,
@@ -145,7 +145,7 @@ class SubscriptionsListView(LoginRequiredMixin, FormView):
 
         try:
             stripe_customer = get_stripe_customer(user)
-            ctx["SUBSCRIPTION"] = get_stripe_active_subscription(stripe_customer)
+            ctx["SUBSCRIPTION"] = get_stripe_subscription(stripe_customer)
             ctx["STRIPE_CHARGES"] = get_stripe_charges(stripe_customer)
             ctx["STRIPE_EVENTS"] = get_stripe_subscription_events(stripe_customer)
             ctx["NEXT_INVOICE"] = get_stripe_next_invoice(

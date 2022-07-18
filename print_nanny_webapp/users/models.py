@@ -17,6 +17,11 @@ import json
 from .managers import CustomUserManager
 
 
+class EmailWaitlist(models.Model):
+    created_dt = models.DateTimeField(auto_now_add=True)
+    email = models.EmailField(unique=True)
+
+
 class InviteRequest(models.Model):
     class PrinterBrand(models.TextChoices):
         PRUSA = "PRUSA", "Prusa"
@@ -126,8 +131,7 @@ class InviteRequestSerializer(serializers.ModelSerializer):
 
 
 class User(AbstractUser):
-    username = None  # type: ignore
-
+    username = None
     is_serviceuser = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)

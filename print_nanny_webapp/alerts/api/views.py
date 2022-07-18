@@ -9,9 +9,12 @@ from rest_framework.mixins import (
     ListModelMixin,
     RetrieveModelMixin,
     UpdateModelMixin,
+    CreateModelMixin,
 )
 from rest_framework.decorators import action
 from django.apps import apps
+
+from print_nanny_webapp.utils.api.serializers import OptionsMetadataSerializer
 from .serializers import (
     AlertSerializer,
     AlertBulkRequestSerializer,
@@ -20,8 +23,9 @@ from .serializers import (
 )
 from print_nanny_webapp.utils.api.views import (
     generic_update_errors,
-    generic_get_errors,
 )
+
+
 from ..models import AlertMessage as Alert, AlertSettings
 
 logger = logging.getLogger(__name__)
@@ -47,6 +51,7 @@ class AlertViewSet(
     ListModelMixin,
     RetrieveModelMixin,
     UpdateModelMixin,
+    CreateModelMixin,
 ):
     serializer_class = AlertSerializer
     queryset = Alert.objects.all()
@@ -121,42 +126,35 @@ class AlertViewSet(
         return Response(serializer.data)
 
 
-##
-# Alert Settings
-##
 @extend_schema_view(
     tags=["alerts"],
-    retrieve=extend_schema(
-        responses={200: AlertSettingsSerializer(many=False)} | generic_get_errors
-    ),
+    list=extend_schema(responses=AlertSettingsSerializer),
     update=extend_schema(
         request=AlertSettingsSerializer,
         responses={202: AlertSettingsSerializer} | generic_update_errors,
     ),
+    options=extend_schema(
+        responses={
+            200: OptionsMetadataSerializer,
+        }
+    ),
 )
-class AlertSettingsViewSet(GenericViewSet, UpdateModelMixin):
+class AlertSettingsViewSet(
+    GenericViewSet,
+    CreateModelMixin,
+    ListModelMixin,
+    UpdateModelMixin,
+):
     serializer_class = AlertSettingsSerializer
     queryset = AlertSettings.objects.all()
     lookup_field = "id"
     pagination_class = None
+    openapi_options = True
 
-    def get_queryset(self):
-        user = self.request.user
-        return AlertSettings.objects.filter(user=user).first()
+    def list(self, request, **kwargs):
+        instance, _created = AlertSettings.objects.get_or_create(user=request.user)
+        serializer = AlertSettingsSerializer(instance, many=False)
 
-    @extend_schema(
-        responses={
-            200: AlertSettingsSerializer(many=False),
-            201: AlertSettingsSerializer(many=False),
-        }
-        | generic_get_errors
-    )
-    @action(methods=["get"], detail=False, url_path="get-or-create")
-    def get_or_create(self, _request, *args, **kwargs):
-        instance, created = AlertSettings.objects.get_or_create(user=self.request.user)
-        serializer = self.get_serializer(instance)
-        if created:
-            return Response(serializer.data, status.HTTP_201_CREATED)
         return Response(serializer.data, status.HTTP_200_OK)
 
     def perform_create(self, serializer):

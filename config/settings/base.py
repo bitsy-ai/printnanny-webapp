@@ -163,6 +163,9 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+# Vitejs loader
+# https://github.com/MrBin99/django-vite
+# ------------------------------------------------------------------------------
 # STATIC
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-root
@@ -173,14 +176,14 @@ STATIC_URL = env("DJANGO_STATIC_URL", default="static/")
 BASE_URL = env("DJANGO_BASE_URL", default="/")
 WS_BASE_URL = env("DJANGO_WS_URL", default="/ws")
 
-VUE_APP_DIR = os.path.join(ROOT_DIR, "print_nanny_vue")
 # @TODO rm these staticfiles dirs
 STATICFILES_DIRS = [
     ("css", str(APPS_DIR / "static/css")),
     ("fonts", str(APPS_DIR / "static/fonts")),
     ("images", str(APPS_DIR / "static/images")),
     ("js", str(APPS_DIR / "static/js")),
-    ("vue", str(APPS_DIR / "static/vue")),
+    # ("vue", str(APPS_DIR / "static/vue")),
+    # (DJANGO_VITE_STATIC_URL_PREFIX, DJANGO_VITE_ASSETS_PATH),
 ]
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [
@@ -190,19 +193,19 @@ STATICFILES_FINDERS = [
 
 # Webpack loader
 # ------------------------------------------------------------------------------
-INSTALLED_APPS += ["webpack_loader"]
+# INSTALLED_APPS += ["webpack_loader"]
 
-WEBPACK_LOADER = {
-    "DEFAULT": {
-        "CACHE": not DEBUG,
-        "BUNDLE_DIR_NAME": "vue/",  # must end with slash
-        "STATS_FILE": os.path.join(VUE_APP_DIR, "webpack-stats.json"),
-        "POLL_INTERVAL": 0.1,
-        "TIMEOUT": None,
-        "IGNORE": [r".+\.hot-update.js", r".+\.map"],
-        "LOADER_CLASS": "webpack_loader.loader.WebpackLoader",
-    }
-}
+# WEBPACK_LOADER = {
+#     "DEFAULT": {
+#         "CACHE": not DEBUG,
+#         "BUNDLE_DIR_NAME": "vue/",  # must end with slash
+#         "STATS_FILE": os.path.join(VUE_APP_DIR, "webpack-stats.json"),
+#         "POLL_INTERVAL": 0.1,
+#         "TIMEOUT": None,
+#         "IGNORE": [r".+\.hot-update.js", r".+\.map"],
+#         "LOADER_CLASS": "webpack_loader.loader.WebpackLoader",
+#     }
+# }
 
 
 # MEDIA
@@ -220,7 +223,7 @@ TEMPLATES = [
         # https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-TEMPLATES-BACKEND
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         # https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
-        "DIRS": [str(APPS_DIR / "templates")],
+        "DIRS": [str(APPS_DIR / "templates-v2")],
         "OPTIONS": {
             # https://docs.djangoproject.com/en/dev/ref/settings/#template-loaders
             # https://docs.djangoproject.com/en/dev/ref/templates/api/#loader-types
@@ -407,7 +410,8 @@ SOCIALACCOUNT_ADAPTER = "print_nanny_webapp.users.adapters.SocialAccountAdapter"
 INSTALLED_APPS += ["drf_spectacular"]
 PAGE_SIZE = 20
 REST_FRAMEWORK = {
-    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_METADATA_CLASS": "print_nanny_webapp.utils.api.metadata.FormMetadata",
+    "DEFAULT_SCHEMA_CLASS": "print_nanny_webapp.utils.api.openapi.CustomAutoSchema",
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.SessionAuthentication",
         "print_nanny_webapp.users.authentication.BearerTokenAuthentication",
@@ -430,6 +434,7 @@ SPECTACULAR_SETTINGS = {
     "COMPONENT_SPLIT_REQUEST": True,
     "ENUM_ADD_EXPLICIT_BLANK_NULL_CHOICE": True,
     "SCHEMA_COERCE_PATH_PK_SUFFIX": True,
+    "DEFAULT_GENERATOR_CLASS": "print_nanny_webapp.utils.api.generators.CustomSchemaGenerator",
     "ENUM_NAME_OVERRIDES": {
         # TODO refactor event apps+namespaces for clarity before adding mainsail
         # begin device app enums
@@ -461,13 +466,20 @@ SPECTACULAR_SETTINGS = {
         "EventSource": "print_nanny_webapp.events.enum.EventSource",
     },
     "TITLE": "printnanny-api-client",
-    "DESCRIPTION": "Official API client library forprintnanny.ai print-nanny.com",
+    "DESCRIPTION": "Official API client library for printnanny.ai",
     "LICENSE": {"name": "AGPLv3"},
     "CONTACT": {
         "name": "Leigh Johnson",
         "email": "leigh@printnanny.ai",
-        "url": "https://print-nanny.com",
+        "url": "https://printnanny.ai",
     },
+    "PREPROCESSING_HOOKS": [
+        "drf_spectacular.hooks.preprocess_exclude_path_format",
+        "print_nanny_webapp.utils.api.openapi.drf_spectacular_preprocessor",
+    ],
+    # "POSTPROCESSING_HOOKS": [
+    #     "print_nanny_webapp.utils.api.openapi.drf_spectacular_postprocessor"
+    # ],
 }
 
 # django-filters
@@ -657,6 +669,8 @@ POSTHOG_ENABLED = False
 INSTALLED_APPS += ["corsheaders"]
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://localhost:3001",
     "http://localhost:8000",
     "http://127.0.0.1:8000",
     f"http://{socket.gethostname()}:8000",
@@ -743,6 +757,19 @@ PRINTNANNY_OS_DEFAULT_BACKUP_SCHEDULE = "0 0 * * 2"
 # django-loginas
 # https://github.com/skorokithakis/django-loginas
 # ------------------------------------------------------------------------------
-
 INSTALLED_APPS += ["loginas"]
 LOGINAS_USERNAME_FIELD = "email"
+
+
+# dj_rest_auth
+# https://github.com/iMerica/dj-rest-auth
+# https://dj-rest-auth.readthedocs.io/en/latest/index.html
+# ------------------------------------------------------------------------------
+INSTALLED_APPS += ["dj_rest_auth", "dj_rest_auth.registration"]
+REST_AUTH_SERIALIZERS = {
+    "LOGIN_SERIALIZER": "print_nanny_webapp.dj_rest_auth.serializers.LoginSerializer",
+    "USER_DETAILS_SERIALIZER": "print_nanny_webapp.users.api.serializers.UserSerializer",
+}
+REST_AUTH_REGISTER_SERIALIZERS = {
+    "REGISTER_SERIALIZER": "print_nanny_webapp.dj_rest_auth.serializers.RegisterSerializer"
+}

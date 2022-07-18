@@ -13,8 +13,3 @@
         {% include "device-cloud-video.html" %}
     </div>
 </div>
-
-{% block extra_javascript %}
-{% load render_bundle from webpack_loader %}
-{% render_bundle 'janusStream' %}
-{% endblock %}

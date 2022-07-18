@@ -2,7 +2,10 @@ import logging
 import json
 from typing import TYPE_CHECKING
 from rest_framework.viewsets import GenericViewSet
-from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, UpdateModelMixin
+from rest_framework.mixins import (
+    ListModelMixin,
+    RetrieveModelMixin,
+)
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
@@ -10,6 +13,7 @@ from drf_spectacular.utils import extend_schema
 from django.core.files.base import ContentFile
 
 
+from print_nanny_webapp.utils.api.viewsets import UpdateModelMixin
 from print_nanny_webapp.ml_ops.models import (
     ModelArtifact,
     ExperimentDeviceConfig,

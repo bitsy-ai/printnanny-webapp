@@ -9,11 +9,7 @@ from rest_framework.exceptions import PermissionDenied
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
-from rest_framework.mixins import (
-    ListModelMixin,
-    RetrieveModelMixin,
-    CreateModelMixin,
-)
+from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, CreateModelMixin
 from rest_framework.permissions import IsAuthenticated
 from print_nanny_webapp.utils.api.views import (
     generic_create_errors,

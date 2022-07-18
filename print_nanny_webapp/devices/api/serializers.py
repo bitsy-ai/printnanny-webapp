@@ -143,6 +143,7 @@ class SystemInfoSerializer(serializers.ModelSerializer):
 
 
 class DeviceSerializer(serializers.ModelSerializer):
+    last_boot = serializers.CharField(read_only=True)
     alert_settings = AlertSettingsSerializer(read_only=True)
     settings = DeviceSettingsSerializer(read_only=True)
     cloudiot_device = CloudiotDeviceSerializer(read_only=True)

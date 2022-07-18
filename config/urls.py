@@ -23,7 +23,12 @@ urlpatterns = [
         "privacy-policy",
         TemplateView.as_view(template_name="legal/privacy-policy.html"),
     ),
-    path("", TemplateView.as_view(template_name="landing/landing.html"), name="home"),
+    # path("", TemplateView.as_view(template_name="landing/landing.html"), name="home"),
+    path(
+        "",
+        TemplateView.as_view(template_name="pages/landing/landing.html"),
+        name="home",
+    ),
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),
@@ -83,6 +88,8 @@ urlpatterns += [
     path("api/", include("config.api_router")),
     # OpenAPI Schema
     path("api/schema/", SpectacularJSONAPIView.as_view(), name="schema"),
+    path("api/accounts/", include("dj_rest_auth.urls")),
+    path("api/accounts/registration/", include("dj_rest_auth.registration.urls")),
     # OpenAPI UIs
     path(
         "api/schema/swagger-ui/",

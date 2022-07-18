@@ -1,4 +1,5 @@
 import logging
+from optparse import Option
 from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiParameter
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.decorators import action
@@ -6,8 +7,8 @@ from rest_framework import parsers
 from rest_framework.mixins import (
     ListModelMixin,
     RetrieveModelMixin,
-    CreateModelMixin,
     UpdateModelMixin,
+    CreateModelMixin,
 )
 from rest_framework import status
 from rest_framework.response import Response
@@ -135,7 +136,7 @@ class OctoPrintServerViewSet(
 @extend_schema_view(
     list=extend_schema(
         responses={
-            200: OctoPrintSettingsSerializer(),
+            200: OctoPrintSettingsSerializer,
         }
         | generic_list_errors,
     ),
@@ -205,10 +206,7 @@ class OctoPrintSettingsViewSet(
     tags=["octoprint"],
 )
 class OctoPrintBackupViewset(
-    GenericViewSet,
-    ListModelMixin,
-    RetrieveModelMixin,
-    CreateModelMixin,
+    GenericViewSet, ListModelMixin, RetrieveModelMixin, CreateModelMixin
 ):
     serializer_class = OctoPrintBackupSerializer
     queryset = OctoPrintBackup.objects.all()

@@ -77,12 +77,15 @@ defusedxml==0.7.1
     # via python3-openid
 deprecated==1.2.13
     # via redis
+dj-rest-auth==2.2.4
+    # via -r /requirements/local.in
 dj-stripe==2.6.1
     # via -r /requirements/local.in
 django==3.2.12
     # via
     #   -r /requirements/local.in
     #   channels
+    #   dj-rest-auth
     #   dj-stripe
     #   django-allauth
     #   django-anymail
@@ -167,6 +170,7 @@ django-webpack-loader==1.4.1
 djangorestframework==3.13.1
     # via
     #   -r /requirements/local.in
+    #   dj-rest-auth
     #   django-rest-polymorphic
     #   drf-nested-routers
     #   drf-spectacular
@@ -308,7 +312,7 @@ plotly==5.6.0
     # via -r /requirements/local.in
 posthog==1.4.5
     # via -r /requirements/local.in
-printnanny-api-client==0.78.3
+printnanny-api-client==0.93.4
     # via -r /requirements/local.in
 prometheus-client==0.13.1
     # via django-prometheus

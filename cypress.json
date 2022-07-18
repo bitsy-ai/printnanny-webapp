@@ -1,7 +1,0 @@
-{
-    "projectId": "y1ro11",
-    "testFiles": [
-       "setup/*.js",
-       "partners/*.js"
-    ]
-}

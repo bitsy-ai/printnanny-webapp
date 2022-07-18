@@ -4,7 +4,9 @@ from typing import Optional
 
 from django.apps import apps
 from django.urls import reverse
+import drf_spectacular
 from rest_framework import serializers
+from drf_spectacular.utils import extend_schema_serializer
 from django.contrib.humanize.templatetags.humanize import naturaltime
 
 
@@ -115,6 +117,7 @@ class AlertBulkResponseSerializer(serializers.Serializer):
     updated = serializers.IntegerField()
 
 
+@extend_schema_serializer(many=False)
 class AlertSettingsSerializer(serializers.ModelSerializer):
     class Meta:
         model = AlertSettings

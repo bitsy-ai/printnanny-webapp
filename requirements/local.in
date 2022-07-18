@@ -1,12 +1,12 @@
 argon2-cffi
 channels
 channels-redis
+dj-rest-auth
 dj-stripe
-django>3,<4
 django-allauth
 django-anymail[mailgun]
-django-cors-headers
 django-compressor
+django-cors-headers
 django-coturn
 django-coverage-plugin
 django-crispy-forms
@@ -22,16 +22,17 @@ django-model-utils
 django-polymorphic
 django-prometheus
 django-qr-code
+django-redis
 django-rest-polymorphic
 django-safedelete
 django-storages[google]
 django-stubs
-django-redis
 django-webpack-loader
+django>3,<4
 djangorestframework
+drf-nested-routers
 drf-spectacular
 drfpasswordless
-drf-nested-routers
 flatbuffers
 google-cloud-core
 google-cloud-iot
@@ -44,12 +45,12 @@ imageio-ffmpeg
 pandas
 plotly
 posthog
+printnanny-api-client>=0.93.4
 psycopg2
 pyarrow
 qrcode[pil]
 scikit-image
 twisted>=21.7 # https://github.com/django/channels/issues/1639
 uvicorn[standard]
-whitenoise
-printnanny-api-client>=0.93.4
 websockets==10.1 # https://github.com/aaugustin/websockets/issues/1138#issuecomment-1059138857
+whitenoise

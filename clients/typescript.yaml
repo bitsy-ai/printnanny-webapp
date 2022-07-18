@@ -1,5 +1,15 @@
 ---
 npmName: printnanny-api-client
 npmRepostiry: bitsyai
-npmVersion: '0.93.4'
+npmVersion: "0.93.4"
 withInterfaces: true
+supportsES6: true
+withNodeImports: false
+files:
+  package.mustache:
+    templateType: SupportingFiles
+    destinationFilename: package.json
+  tsconfig.mustache:
+    templateType: SupportingFiles
+    destinationFilename: tsconfig.json
+templateDir: clients/templates/typescript

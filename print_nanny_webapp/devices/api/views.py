@@ -8,7 +8,6 @@ from drf_spectacular.utils import (
     OpenApiParameter,
 )
 from django.db.utils import IntegrityError
-from print_nanny_webapp.devices.enum import JanusConfigType
 
 from django.contrib.auth import get_user_model
 from rest_framework import status
@@ -281,6 +280,7 @@ class DeviceSettingsViewSet(
     ListModelMixin,
     RetrieveModelMixin,
     UpdateModelMixin,
+    CreateModelMixin,
 ):
     serializer_class = DeviceSettingsSerializer
     queryset = DeviceSettings.objects.all()
@@ -329,6 +329,7 @@ class JanusStreamViewSet(
     ListModelMixin,
     RetrieveModelMixin,
     UpdateModelMixin,
+    CreateModelMixin,
 ):
     serializer_class = JanusStreamSerializer
     queryset = JanusStream.objects.all()
