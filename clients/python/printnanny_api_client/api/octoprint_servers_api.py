@@ -3,7 +3,7 @@
 """
     printnanny-api-client
 
-    Official API client library forprintnanny.ai print-nanny.com  # noqa: E501
+    Official API client library for printnanny.ai  # noqa: E501
 
     The version of the OpenAPI document: 0.0.0
     Contact: leigh@printnanny.ai
@@ -495,7 +495,7 @@ class OctoprintServersApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: OctoPrintServer
         """
         kwargs['_return_http_data_only'] = True
         return self.octoprint_servers_update_with_http_info(id, octo_print_server_request, **kwargs)  # noqa: E501
@@ -534,7 +534,7 @@ class OctoprintServersApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(OctoPrintServer, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -588,6 +588,10 @@ class OctoprintServersApi(object):
         body_params = None
         if 'octo_print_server_request' in local_var_params:
             body_params = local_var_params['octo_print_server_request']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
         # HTTP header `Content-Type`
         header_params['Content-Type'] = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
@@ -597,7 +601,14 @@ class OctoprintServersApi(object):
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
 
-        response_types_map = {}
+        response_types_map = {
+            202: "OctoPrintServer",
+            409: "ErrorDetail",
+            400: "ErrorDetail",
+            401: "ErrorDetail",
+            403: "ErrorDetail",
+            500: "ErrorDetail",
+        }
 
         return self.api_client.call_api(
             '/api/octoprint-servers/{id}/', 'PUT',

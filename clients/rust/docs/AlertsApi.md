@@ -4,6 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**alerts_create**](AlertsApi.md#alerts_create) | **POST** /api/alerts/ | 
 [**alerts_list**](AlertsApi.md#alerts_list) | **GET** /api/alerts/ | 
 [**alerts_partial_update**](AlertsApi.md#alerts_partial_update) | **PATCH** /api/alerts/{id}/ | 
 [**alerts_recent**](AlertsApi.md#alerts_recent) | **GET** /api/alerts/recent/ | 
@@ -12,6 +13,34 @@ Method | HTTP request | Description
 [**alerts_unread**](AlertsApi.md#alerts_unread) | **GET** /api/alerts/unread/ | 
 [**alerts_update**](AlertsApi.md#alerts_update) | **PUT** /api/alerts/{id}/ | 
 
+
+
+## alerts_create
+
+> crate::models::Alert alerts_create(alert_request)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**alert_request** | Option<[**AlertRequest**](AlertRequest.md)> |  |  |
+
+### Return type
+
+[**crate::models::Alert**](Alert.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## alerts_list

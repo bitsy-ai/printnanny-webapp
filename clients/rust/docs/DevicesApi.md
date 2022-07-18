@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**devices_cloudiot_update**](DevicesApi.md#devices_cloudiot_update) | **PUT** /api/devices/{device_id}/cloudiot/{id}/ | 
 [**devices_config_download_retrieve**](DevicesApi.md#devices_config_download_retrieve) | **GET** /api/devices/{device_id}/config/download/ | 
 [**devices_create**](DevicesApi.md#devices_create) | **POST** /api/devices/ | 
+[**devices_janus_streams_create**](DevicesApi.md#devices_janus_streams_create) | **POST** /api/devices/{device_id}/janus-streams/ | 
 [**devices_janus_streams_list**](DevicesApi.md#devices_janus_streams_list) | **GET** /api/devices/{device_id}/janus-streams/ | 
 [**devices_janus_streams_partial_update**](DevicesApi.md#devices_janus_streams_partial_update) | **PATCH** /api/devices/{device_id}/janus-streams/{id}/ | 
 [**devices_janus_streams_retrieve**](DevicesApi.md#devices_janus_streams_retrieve) | **GET** /api/devices/{device_id}/janus-streams/{id}/ | 
@@ -26,6 +27,7 @@ Method | HTTP request | Description
 [**devices_public_keys_update**](DevicesApi.md#devices_public_keys_update) | **PUT** /api/devices/{device_id}/public-keys/{id}/ | 
 [**devices_retrieve**](DevicesApi.md#devices_retrieve) | **GET** /api/devices/{id}/ | 
 [**devices_retrieve_hostname**](DevicesApi.md#devices_retrieve_hostname) | **GET** /api/devices/{hostname} | 
+[**devices_settings_create**](DevicesApi.md#devices_settings_create) | **POST** /api/devices/{device_id}/settings/ | 
 [**devices_settings_list**](DevicesApi.md#devices_settings_list) | **GET** /api/devices/{device_id}/settings/ | 
 [**devices_settings_partial_update**](DevicesApi.md#devices_settings_partial_update) | **PATCH** /api/devices/{device_id}/settings/{id}/ | 
 [**devices_settings_retrieve**](DevicesApi.md#devices_settings_retrieve) | **GET** /api/devices/{device_id}/settings/{id}/ | 
@@ -189,7 +191,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_cloudiot_update
 
-> devices_cloudiot_update(device_id, id, cloudiot_device_request)
+> crate::models::CloudiotDevice devices_cloudiot_update(device_id, id, cloudiot_device_request)
 
 
 ### Parameters
@@ -203,7 +205,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
- (empty response body)
+[**crate::models::CloudiotDevice**](CloudiotDevice.md)
 
 ### Authorization
 
@@ -212,7 +214,7 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -262,6 +264,35 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::Device**](Device.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## devices_janus_streams_create
+
+> crate::models::JanusStream devices_janus_streams_create(device_id, janus_stream_request)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_id** | **i32** |  | [required] |
+**janus_stream_request** | Option<[**JanusStreamRequest**](JanusStreamRequest.md)> |  |  |
+
+### Return type
+
+[**crate::models::JanusStream**](JanusStream.md)
 
 ### Authorization
 
@@ -688,6 +719,35 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## devices_settings_create
+
+> crate::models::DeviceSettings devices_settings_create(device_id, device_settings_request)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_id** | **i32** |  | [required] |
+**device_settings_request** | [**DeviceSettingsRequest**](DeviceSettingsRequest.md) |  | [required] |
+
+### Return type
+
+[**crate::models::DeviceSettings**](DeviceSettings.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## devices_settings_list
 
 > crate::models::PaginatedDeviceSettingsList devices_settings_list(device_id, page)
@@ -955,7 +1015,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_update
 
-> devices_update(id, device_request)
+> crate::models::Device devices_update(id, device_request)
 
 
 A device (Raspberry Pi) running Print Nanny OS
@@ -970,7 +1030,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
- (empty response body)
+[**crate::models::Device**](Device.md)
 
 ### Authorization
 
@@ -979,7 +1039,7 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

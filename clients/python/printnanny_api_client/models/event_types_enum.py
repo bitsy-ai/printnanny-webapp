@@ -3,7 +3,7 @@
 """
     printnanny-api-client
 
-    Official API client library forprintnanny.ai print-nanny.com  # noqa: E501
+    Official API client library for printnanny.ai  # noqa: E501
 
     The version of the OpenAPI document: 0.0.0
     Contact: leigh@printnanny.ai
@@ -32,10 +32,10 @@ class EventTypesEnum(object):
     """
     allowed enum values
     """
-    PRINTHEALTH = "PrintHealth"
+    PRINTQUALITY = "PrintQuality"
     PRINTSTATUS = "PrintStatus"
 
-    allowable_values = [PRINTHEALTH, PRINTSTATUS]  # noqa: E501
+    allowable_values = [PRINTQUALITY, PRINTSTATUS]  # noqa: E501
 
     """
     Attributes:

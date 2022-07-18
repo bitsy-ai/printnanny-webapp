@@ -3,7 +3,7 @@
 """
     printnanny-api-client
 
-    Official API client library forprintnanny.ai print-nanny.com  # noqa: E501
+    Official API client library for printnanny.ai  # noqa: E501
 
     The version of the OpenAPI document: 0.0.0
     Contact: leigh@printnanny.ai
@@ -38,15 +38,21 @@ class User(object):
     """
     openapi_types = {
         'email': 'str',
-        'id': 'int'
+        'id': 'int',
+        'first_name': 'str',
+        'last_name': 'str',
+        'is_beta_tester': 'bool'
     }
 
     attribute_map = {
         'email': 'email',
-        'id': 'id'
+        'id': 'id',
+        'first_name': 'first_name',
+        'last_name': 'last_name',
+        'is_beta_tester': 'is_beta_tester'
     }
 
-    def __init__(self, email=None, id=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, email=None, id=None, first_name=None, last_name=None, is_beta_tester=None, local_vars_configuration=None):  # noqa: E501
         """User - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -54,10 +60,16 @@ class User(object):
 
         self._email = None
         self._id = None
+        self._first_name = None
+        self._last_name = None
+        self._is_beta_tester = None
         self.discriminator = None
 
         self.email = email
         self.id = id
+        self.first_name = first_name
+        self.last_name = last_name
+        self.is_beta_tester = is_beta_tester
 
     @property
     def email(self):
@@ -107,6 +119,77 @@ class User(object):
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
+
+    @property
+    def first_name(self):
+        """Gets the first_name of this User.  # noqa: E501
+
+
+        :return: The first_name of this User.  # noqa: E501
+        :rtype: str
+        """
+        return self._first_name
+
+    @first_name.setter
+    def first_name(self, first_name):
+        """Sets the first_name of this User.
+
+
+        :param first_name: The first_name of this User.  # noqa: E501
+        :type first_name: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                first_name is not None and len(first_name) > 30):
+            raise ValueError("Invalid value for `first_name`, length must be less than or equal to `30`")  # noqa: E501
+
+        self._first_name = first_name
+
+    @property
+    def last_name(self):
+        """Gets the last_name of this User.  # noqa: E501
+
+
+        :return: The last_name of this User.  # noqa: E501
+        :rtype: str
+        """
+        return self._last_name
+
+    @last_name.setter
+    def last_name(self, last_name):
+        """Sets the last_name of this User.
+
+
+        :param last_name: The last_name of this User.  # noqa: E501
+        :type last_name: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                last_name is not None and len(last_name) > 30):
+            raise ValueError("Invalid value for `last_name`, length must be less than or equal to `30`")  # noqa: E501
+
+        self._last_name = last_name
+
+    @property
+    def is_beta_tester(self):
+        """Gets the is_beta_tester of this User.  # noqa: E501
+
+
+        :return: The is_beta_tester of this User.  # noqa: E501
+        :rtype: bool
+        """
+        return self._is_beta_tester
+
+    @is_beta_tester.setter
+    def is_beta_tester(self, is_beta_tester):
+        """Sets the is_beta_tester of this User.
+
+
+        :param is_beta_tester: The is_beta_tester of this User.  # noqa: E501
+        :type is_beta_tester: bool
+        """
+        if self.local_vars_configuration.client_side_validation and is_beta_tester is None:  # noqa: E501
+            raise ValueError("Invalid value for `is_beta_tester`, must not be `None`")  # noqa: E501
+
+        self._is_beta_tester = is_beta_tester
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

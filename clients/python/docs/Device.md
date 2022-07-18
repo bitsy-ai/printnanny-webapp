@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
+**last_boot** | **str** |  | [readonly] 
 **alert_settings** | [**AlertSettings**](AlertSettings.md) |  | [readonly] 
 **settings** | [**DeviceSettings**](DeviceSettings.md) |  | [readonly] 
 **cloudiot_device** | [**CloudiotDevice**](CloudiotDevice.md) |  | [readonly] 

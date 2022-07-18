@@ -3,7 +3,7 @@
 """
     printnanny-api-client
 
-    Official API client library forprintnanny.ai print-nanny.com  # noqa: E501
+    Official API client library for printnanny.ai  # noqa: E501
 
     The version of the OpenAPI document: 0.0.0
     Contact: leigh@printnanny.ai
@@ -14,7 +14,7 @@
 from setuptools import setup, find_namespace_packages  # noqa: H301
 
 NAME = "printnanny-api-client"
-VERSION = "0.93.4"
+VERSION = "0.94.1"
 # To install the library, run the following
 #
 # python setup.py install
@@ -37,6 +37,6 @@ setup(
     include_package_data=True,
     license="AGPLv3",
     long_description="""\
-    Official API client library forprintnanny.ai print-nanny.com  # noqa: E501
+    Official API client library for printnanny.ai  # noqa: E501
     """
 )

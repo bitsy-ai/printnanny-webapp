@@ -3,7 +3,7 @@
 """
     printnanny-api-client
 
-    Official API client library forprintnanny.ai print-nanny.com  # noqa: E501
+    Official API client library for printnanny.ai  # noqa: E501
 
     The version of the OpenAPI document: 0.0.0
     Contact: leigh@printnanny.ai
@@ -37,24 +37,32 @@ class PatchedUserRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'email': 'str'
+        'email': 'str',
+        'first_name': 'str',
+        'last_name': 'str'
     }
 
     attribute_map = {
-        'email': 'email'
+        'email': 'email',
+        'first_name': 'first_name',
+        'last_name': 'last_name'
     }
 
-    def __init__(self, email=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, email=None, first_name=None, last_name=None, local_vars_configuration=None):  # noqa: E501
         """PatchedUserRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._email = None
+        self._first_name = None
+        self._last_name = None
         self.discriminator = None
 
         if email is not None:
             self.email = email
+        self.first_name = first_name
+        self.last_name = last_name
 
     @property
     def email(self):
@@ -82,6 +90,54 @@ class PatchedUserRequest(object):
             raise ValueError("Invalid value for `email`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._email = email
+
+    @property
+    def first_name(self):
+        """Gets the first_name of this PatchedUserRequest.  # noqa: E501
+
+
+        :return: The first_name of this PatchedUserRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._first_name
+
+    @first_name.setter
+    def first_name(self, first_name):
+        """Sets the first_name of this PatchedUserRequest.
+
+
+        :param first_name: The first_name of this PatchedUserRequest.  # noqa: E501
+        :type first_name: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                first_name is not None and len(first_name) > 30):
+            raise ValueError("Invalid value for `first_name`, length must be less than or equal to `30`")  # noqa: E501
+
+        self._first_name = first_name
+
+    @property
+    def last_name(self):
+        """Gets the last_name of this PatchedUserRequest.  # noqa: E501
+
+
+        :return: The last_name of this PatchedUserRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._last_name
+
+    @last_name.setter
+    def last_name(self, last_name):
+        """Sets the last_name of this PatchedUserRequest.
+
+
+        :param last_name: The last_name of this PatchedUserRequest.  # noqa: E501
+        :type last_name: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                last_name is not None and len(last_name) > 30):
+            raise ValueError("Invalid value for `last_name`, length must be less than or equal to `30`")  # noqa: E501
+
+        self._last_name = last_name
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

@@ -1,7 +1,7 @@
 /*
  * printnanny-api-client
  *
- * Official API client library forprintnanny.ai print-nanny.com
+ * Official API client library for printnanny.ai
  *
  * The version of the OpenAPI document: 0.0.0
  * Contact: leigh@printnanny.ai
@@ -15,6 +15,8 @@
 pub struct Device {
     #[serde(rename = "id")]
     pub id: i32,
+    #[serde(rename = "last_boot")]
+    pub last_boot: String,
     #[serde(rename = "alert_settings")]
     pub alert_settings: Option<Box<crate::models::AlertSettings>>,
     #[serde(rename = "settings")]
@@ -45,9 +47,10 @@ pub struct Device {
 }
 
 impl Device {
-    pub fn new(id: i32, alert_settings: Option<crate::models::AlertSettings>, settings: Option<crate::models::DeviceSettings>, cloudiot_device: Option<crate::models::CloudiotDevice>, user: Option<crate::models::User>, system_info: Option<crate::models::SystemInfo>, public_key: Option<crate::models::PublicKey>, janus_edge: Option<crate::models::JanusStream>, janus_cloud: Option<crate::models::JanusStream>, octoprint_server: Option<crate::models::OctoPrintServer>, urls: crate::models::DeviceUrls, created_dt: String) -> Device {
+    pub fn new(id: i32, last_boot: String, alert_settings: Option<crate::models::AlertSettings>, settings: Option<crate::models::DeviceSettings>, cloudiot_device: Option<crate::models::CloudiotDevice>, user: Option<crate::models::User>, system_info: Option<crate::models::SystemInfo>, public_key: Option<crate::models::PublicKey>, janus_edge: Option<crate::models::JanusStream>, janus_cloud: Option<crate::models::JanusStream>, octoprint_server: Option<crate::models::OctoPrintServer>, urls: crate::models::DeviceUrls, created_dt: String) -> Device {
         Device {
             id,
+            last_boot,
             alert_settings: alert_settings.map(Box::new),
             settings: settings.map(Box::new),
             cloudiot_device: cloudiot_device.map(Box::new),

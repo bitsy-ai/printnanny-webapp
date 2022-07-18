@@ -61,9 +61,11 @@ pub fn urlencode<T: AsRef<str>>(s: T) -> String {
     ::url::form_urlencoded::byte_serialize(s.as_ref().as_bytes()).collect()
 }
 
+pub mod accounts_api;
 pub mod alert_settings_api;
 pub mod alerts_api;
 pub mod auth_api;
+pub mod billing_api;
 pub mod client_api;
 pub mod commands_api;
 pub mod config_api;
@@ -74,6 +76,5 @@ pub mod octoprint_api;
 pub mod octoprint_servers_api;
 pub mod partners_geeks3d_api;
 pub mod schema_api;
-pub mod users_api;
 
 pub mod configuration;

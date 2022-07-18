@@ -3,7 +3,7 @@
 """
     printnanny-api-client
 
-    Official API client library forprintnanny.ai print-nanny.com  # noqa: E501
+    Official API client library for printnanny.ai  # noqa: E501
 
     The version of the OpenAPI document: 0.0.0
     Contact: leigh@printnanny.ai
@@ -38,12 +38,16 @@ class TestUser(unittest.TestCase):
         if include_optional :
             return User(
                 email = '', 
-                id = 56
+                id = 56, 
+                first_name = '', 
+                last_name = '', 
+                is_beta_tester = True
             )
         else :
             return User(
                 email = '',
                 id = 56,
+                is_beta_tester = True,
         )
 
     def testUser(self):

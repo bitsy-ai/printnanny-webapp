@@ -1,7 +1,7 @@
 /*
  * printnanny-api-client
  *
- * Official API client library forprintnanny.ai print-nanny.com
+ * Official API client library for printnanny.ai
  *
  * The version of the OpenAPI document: 0.0.0
  * Contact: leigh@printnanny.ai
@@ -12,8 +12,8 @@
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum EventTypesEnum {
-    #[serde(rename = "PrintHealth")]
-    PrintHealth,
+    #[serde(rename = "PrintQuality")]
+    PrintQuality,
     #[serde(rename = "PrintStatus")]
     PrintStatus,
 
@@ -22,7 +22,7 @@ pub enum EventTypesEnum {
 impl ToString for EventTypesEnum {
     fn to_string(&self) -> String {
         match self {
-            Self::PrintHealth => String::from("PrintHealth"),
+            Self::PrintQuality => String::from("PrintQuality"),
             Self::PrintStatus => String::from("PrintStatus"),
         }
     }
@@ -30,7 +30,7 @@ impl ToString for EventTypesEnum {
 
 impl Default for EventTypesEnum {
     fn default() -> EventTypesEnum {
-        Self::PrintHealth
+        Self::PrintQuality
     }
 }
 

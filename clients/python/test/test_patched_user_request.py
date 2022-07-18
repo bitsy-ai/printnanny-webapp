@@ -3,7 +3,7 @@
 """
     printnanny-api-client
 
-    Official API client library forprintnanny.ai print-nanny.com  # noqa: E501
+    Official API client library for printnanny.ai  # noqa: E501
 
     The version of the OpenAPI document: 0.0.0
     Contact: leigh@printnanny.ai
@@ -37,7 +37,9 @@ class TestPatchedUserRequest(unittest.TestCase):
         # model = printnanny_api_client.models.patched_user_request.PatchedUserRequest()  # noqa: E501
         if include_optional :
             return PatchedUserRequest(
-                email = '0'
+                email = '0', 
+                first_name = '', 
+                last_name = ''
             )
         else :
             return PatchedUserRequest(

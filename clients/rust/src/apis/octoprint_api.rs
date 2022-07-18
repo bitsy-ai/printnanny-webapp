@@ -1,7 +1,7 @@
 /*
  * printnanny-api-client
  *
- * Official API client library forprintnanny.ai print-nanny.com
+ * Official API client library for printnanny.ai
  *
  * The version of the OpenAPI document: 0.0.0
  * Contact: leigh@printnanny.ai
@@ -120,6 +120,11 @@ pub enum OctoprintPrinterProfilesPartialUpdateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum OctoprintPrinterProfilesUpdateError {
+    Status409(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -171,6 +176,11 @@ pub enum OctoprintSettingsPartialUpdateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum OctoprintSettingsUpdateError {
+    Status409(crate::models::ErrorDetail),
+    Status400(crate::models::ErrorDetail),
+    Status401(crate::models::ErrorDetail),
+    Status403(crate::models::ErrorDetail),
+    Status500(crate::models::ErrorDetail),
     UnknownValue(serde_json::Value),
 }
 
@@ -474,7 +484,7 @@ pub async fn octoprint_printer_profiles_partial_update(configuration: &configura
     }
 }
 
-pub async fn octoprint_printer_profiles_update(configuration: &configuration::Configuration, id: i32, octo_printer_profile_request: crate::models::OctoPrinterProfileRequest) -> Result<(), Error<OctoprintPrinterProfilesUpdateError>> {
+pub async fn octoprint_printer_profiles_update(configuration: &configuration::Configuration, id: i32, octo_printer_profile_request: crate::models::OctoPrinterProfileRequest) -> Result<crate::models::OctoPrinterProfile, Error<OctoprintPrinterProfilesUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -497,7 +507,7 @@ pub async fn octoprint_printer_profiles_update(configuration: &configuration::Co
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<OctoprintPrinterProfilesUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -662,7 +672,7 @@ pub async fn octoprint_settings_partial_update(configuration: &configuration::Co
     }
 }
 
-pub async fn octoprint_settings_update(configuration: &configuration::Configuration, id: i32, octo_print_settings_request: crate::models::OctoPrintSettingsRequest) -> Result<(), Error<OctoprintSettingsUpdateError>> {
+pub async fn octoprint_settings_update(configuration: &configuration::Configuration, id: i32, octo_print_settings_request: crate::models::OctoPrintSettingsRequest) -> Result<crate::models::OctoPrintSettings, Error<OctoprintSettingsUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -685,7 +695,7 @@ pub async fn octoprint_settings_update(configuration: &configuration::Configurat
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<OctoprintSettingsUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };

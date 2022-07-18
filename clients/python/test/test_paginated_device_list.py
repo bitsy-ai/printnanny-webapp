@@ -3,7 +3,7 @@
 """
     printnanny-api-client
 
-    Official API client library forprintnanny.ai print-nanny.com  # noqa: E501
+    Official API client library for printnanny.ai  # noqa: E501
 
     The version of the OpenAPI document: 0.0.0
     Contact: leigh@printnanny.ai
@@ -43,6 +43,7 @@ class TestPaginatedDeviceList(unittest.TestCase):
                 results = [
                     printnanny_api_client.models.device.Device(
                         id = 56, 
+                        last_boot = '', 
                         alert_settings = null, 
                         settings = null, 
                         cloudiot_device = null, 

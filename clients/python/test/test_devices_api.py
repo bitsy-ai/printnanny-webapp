@@ -3,7 +3,7 @@
 """
     printnanny-api-client
 
-    Official API client library forprintnanny.ai print-nanny.com  # noqa: E501
+    Official API client library for printnanny.ai  # noqa: E501
 
     The version of the OpenAPI document: 0.0.0
     Contact: leigh@printnanny.ai
@@ -73,6 +73,12 @@ class TestDevicesApi(unittest.TestCase):
 
     def test_devices_create(self):
         """Test case for devices_create
+
+        """
+        pass
+
+    def test_devices_janus_streams_create(self):
+        """Test case for devices_janus_streams_create
 
         """
         pass
@@ -157,6 +163,12 @@ class TestDevicesApi(unittest.TestCase):
 
     def test_devices_retrieve_hostname(self):
         """Test case for devices_retrieve_hostname
+
+        """
+        pass
+
+    def test_devices_settings_create(self):
+        """Test case for devices_settings_create
 
         """
         pass

@@ -3,7 +3,7 @@
 """
     printnanny-api-client
 
-    Official API client library forprintnanny.ai print-nanny.com  # noqa: E501
+    Official API client library for printnanny.ai  # noqa: E501
 
     The version of the OpenAPI document: 0.0.0
     Contact: leigh@printnanny.ai
@@ -27,6 +27,12 @@ class TestJanusApi(unittest.TestCase):
         self.api = printnanny_api_client.api.janus_api.JanusApi()  # noqa: E501
 
     def tearDown(self):
+        pass
+
+    def test_devices_janus_streams_create(self):
+        """Test case for devices_janus_streams_create
+
+        """
         pass
 
     def test_devices_janus_streams_list(self):
