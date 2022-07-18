@@ -14,7 +14,8 @@ export interface UiError extends UiAlert {
   error: Error;
 }
 
-export type Alert = UiError | UiAlert | apiTypes.Alert;
+// TODO union of | apiTypes.Alert
+export type Alert = UiError | UiAlert;
 
 export interface AlertAction {
   color: string;

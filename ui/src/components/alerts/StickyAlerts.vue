@@ -8,8 +8,8 @@
     <div class="w-full flex flex-col items-center space-y-4 sm:items-end">
       <!-- Notification panel, dynamically insert this into the live region when it needs to be displayed -->
       <SimpleAlert
-        v-for="alert in alertStore.alerts"
-        :key="alert.id"
+        v-for="(alert, index) in alertStore.alerts"
+        :key="index"
         :header="alert.header"
         :message="alert.message"
         :actions="alert.actions"

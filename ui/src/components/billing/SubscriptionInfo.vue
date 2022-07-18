@@ -77,7 +77,7 @@
           <dt class="text-sm font-medium text-gray-500">Payment Method</dt>
           <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
             {{
-              billingStore.summary?.subscription.default_payment_method.card
+              billingStore.summary?.subscription?.default_payment_method.card
                 .brand
             }}
             ending in

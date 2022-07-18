@@ -14,12 +14,10 @@
 <script setup lang="ts">
 import { XIcon } from "@heroicons/vue/solid";
 import { ref } from "vue";
+import type { AlertAction } from "@/types"
 const props = defineProps({
   actions: {
-    /**
-     * [AlertAction]
-     */
-    type: Array,
+    type: Array<AlertAction>,
   },
 });
 function colorClassNames(color: string) {

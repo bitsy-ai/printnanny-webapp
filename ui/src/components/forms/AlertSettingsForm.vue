@@ -7,8 +7,10 @@ const alertStore = useAlertStore();
 alertStore.fetchSettingsMetadata();
 alertStore.fetchSettings();
 
-function isOptionChecked(value, fieldName) {
-  return alertStore.settings[fieldName].includes(value);
+function isOptionChecked(value: string, fieldName: string) {
+  if (alertStore.settings[fieldName] !== undefined){
+    return alertStore.settings[fieldName].includes(value);
+  }
 }
 </script>
 <template>

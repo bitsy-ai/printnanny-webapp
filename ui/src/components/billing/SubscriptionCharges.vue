@@ -4,7 +4,7 @@
     class="border border-gray-200 rounded-md divide-y divide-gray-200"
   >
     <li
-      v-for="charge in billingStore.summary.charges"
+      v-for="charge in billingStore.summary?.charges"
       :key="charge.id"
       class="pl-3 pr-4 py-3 flex items-center justify-between text-sm"
     >

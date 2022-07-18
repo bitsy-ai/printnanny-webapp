@@ -4,7 +4,9 @@ import { useForm, useField, Field, ErrorMessage, Form } from "vee-validate";
 import { ref, reactive } from "vue";
 import * as yup from "yup";
 import { useDeviceStore } from "@/stores/devices";
+import { useRouter } from "vue-rotuer";
 
+const router = useRouter();
 const deviceStore = useDeviceStore();
 const loading = ref(false);
 const state = reactive({
@@ -20,7 +22,7 @@ async function onSubmit(values: any) {
   state.loading = true;
   await deviceStore.create(values.hostname);
   state.loading = true;
-  await deviceStore.router.push({ name: "dashboard" });
+  await router.push({ name: "dashboard" });
 }
 </script>
 
