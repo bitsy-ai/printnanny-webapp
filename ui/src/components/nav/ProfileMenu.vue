@@ -8,7 +8,6 @@
       >
         <span class="flex w-full justify-between items-center">
           <span class="flex min-w-0 items-center justify-between space-x-3">
-            <!-- <img class="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0" src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" alt="" /> -->
             <span class="flex-1 flex flex-col min-w-0">
               <span class="text-gray-900 text-sm font-medium truncate"
                 >👋 Welcome, {{ account.user.first_name || "Maker" }}</span
