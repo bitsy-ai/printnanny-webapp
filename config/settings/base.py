@@ -92,7 +92,6 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "print_nanny_webapp.alerts.apps.AlertsConfig",
     "print_nanny_webapp.devices.apps.DevicesConfig",
-    "print_nanny_webapp.ml_ops.apps.MlOpsConfig",
     "print_nanny_webapp.partners.apps.PartnersConfig",
     "print_nanny_webapp.remote_control.apps.RemoteControlConfig",
     "print_nanny_webapp.telemetry.apps.TelemetryConfig",
@@ -387,8 +386,7 @@ SOCIALACCOUNT_ADAPTER = "print_nanny_webapp.users.adapters.SocialAccountAdapter"
 INSTALLED_APPS += ["drf_spectacular"]
 PAGE_SIZE = 20
 REST_FRAMEWORK = {
-    "DEFAULT_METADATA_CLASS": "print_nanny_webapp.utils.api.metadata.FormMetadata",
-    "DEFAULT_SCHEMA_CLASS": "print_nanny_webapp.utils.api.openapi.CustomAutoSchema",
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.SessionAuthentication",
         "print_nanny_webapp.users.authentication.BearerTokenAuthentication",
@@ -411,7 +409,6 @@ SPECTACULAR_SETTINGS = {
     "COMPONENT_SPLIT_REQUEST": True,
     "ENUM_ADD_EXPLICIT_BLANK_NULL_CHOICE": True,
     "SCHEMA_COERCE_PATH_PK_SUFFIX": True,
-    "DEFAULT_GENERATOR_CLASS": "print_nanny_webapp.utils.api.generators.CustomSchemaGenerator",
     "ENUM_NAME_OVERRIDES": {
         # TODO refactor event apps+namespaces for clarity before adding mainsail
         # begin device app enums

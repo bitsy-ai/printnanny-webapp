@@ -88,7 +88,8 @@ class OctoPrintServerByDeviceViewSet(
         request=OctoPrintServerSerializer,
         responses={
             202: OctoPrintServerSerializer,
-        }.update(generic_update_errors),
+        }
+        | generic_update_errors,
     ),
     tags=["octoprint"],
 )
@@ -151,7 +152,8 @@ class OctoPrintServerViewSet(
         request=OctoPrintSettingsSerializer,
         responses={
             202: OctoPrintSettingsSerializer,
-        }.update(generic_update_errors),
+        }
+        | generic_update_errors,
     ),
     tags=["octoprint"],
 )
@@ -276,7 +278,8 @@ class GcodeFileViewSet(
         request=OctoPrinterProfileSerializer,
         responses={
             202: OctoPrinterProfileSerializer,
-        }.update(generic_update_errors),
+        }
+        | generic_update_errors,
     ),
 )
 class OctoPrinterProfileViewSet(

@@ -38,10 +38,10 @@ class StripeSubscriptionSerializer(serializers.ModelSerializer):
     default_payment_method = StripePaymentMethodSerializer()
     schedule = StripeSubscriptionSchedule()
 
-    is_period_current = serializers.BooleanField()
-    is_status_current = serializers.BooleanField()
-    is_status_temporarily_current = serializers.BooleanField()
-    is_valid = serializers.BooleanField()
+    is_period_current = serializers.BooleanField
+    is_status_current = serializers.BooleanField
+    is_status_temporarily_current = serializers.BooleanField
+    is_valid = serializers.BooleanField  # type: ignore
 
     class Meta:
         model = Subscription
@@ -107,12 +107,12 @@ class InvoiceSlugRelatedField(serializers.RelatedField):
 
 class StripeNextInvoiceSerializer(serializers.ModelSerializer):
     serializer_field_mapping = serializers.ModelSerializer.serializer_field_mapping
-    serializer_field_mapping[StripeDateTimeField] = StripeDateTimeFieldSerializer
-    serializer_field_mapping[stripe.stripe_object.StripeObject] = serializers.JSONField
+    serializer_field_mapping[StripeDateTimeField] = StripeDateTimeFieldSerializer  # type: ignore
+    serializer_field_mapping[stripe.stripe_object.StripeObject] = serializers.JSONField  # type: ignore
     serializer_field_mapping[
         stripe.api_resources.list_object.ListObject
-    ] = serializers.JSONField
-    serializer_related_to_field = InvoiceSlugRelatedField
+    ] = serializers.JSONField  # type: ignore
+    serializer_related_to_field = InvoiceSlugRelatedField()
 
     class Meta:
         model = UpcomingInvoice

@@ -145,7 +145,8 @@ device_create_operation = {
         request=DeviceSerializer,
         responses={
             202: DeviceSerializer,
-        }.update(generic_update_errors),
+        }
+        | generic_update_errors,
     ),
     create=extend_schema(
         operation=device_create_operation,
@@ -485,7 +486,8 @@ class DeviceHostnameViewSet(
         request=CloudiotDeviceSerializer,
         responses={
             202: CloudiotDeviceSerializer,
-        }.update(generic_update_errors),
+        }
+        | generic_update_errors,
     ),
 )
 class CloudiotDeviceViewSet(
