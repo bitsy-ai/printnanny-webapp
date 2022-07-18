@@ -1,6 +1,0 @@
-{{ device.to_json_str|safe|json_script:device.html_id }}
-<span class="webcam-stream-app" data-device-html-id="{{ device.html_id }}">
-    <web-cam-stream device-id="{{ device.id }}" device-url="{% url 'devices:detail' pk=device.id %}"
-        survey-url="{% url 'surveys:remote-access' %}" />
-
-</span>

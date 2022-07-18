@@ -12,64 +12,20 @@ from drf_spectacular.views import (
     SpectacularSwaggerView,
 )
 
-from print_nanny_webapp.surveys.views import RemoteAccessSurvey1Create
-from print_nanny_webapp.users.views import ThanksView
-from print_nanny_webapp.subscriptions.views import FoundingMemberSignupView
-
-# Webapp urls
+# non-API urls
+# front-end routes should be registeredin ui/routes/index.ts, not here
+# this section is for backend urls that aren't part of the REST API, for example health pages and admin panel
 urlpatterns = [
     re_path(r"^health/", include("health_check.urls"), name="health"),
-    path(
-        "privacy-policy",
-        TemplateView.as_view(template_name="legal/privacy-policy.html"),
-    ),
-    # path("", TemplateView.as_view(template_name="landing/landing.html"), name="home"),
-    path(
-        "",
-        TemplateView.as_view(template_name="pages/landing/landing.html"),
-        name="home",
-    ),
-    path(
-        "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
-    ),
-    path("request-invite/", RemoteAccessSurvey1Create.as_view(), name="request-invite"),
-    path("invite/", RemoteAccessSurvey1Create.as_view(), name="invite"),
-    path("waitlist/", RemoteAccessSurvey1Create.as_view(), name="waitlist"),
-    path("thanks/", ThanksView.as_view(), name="thanks"),
     # Django Admin, use {% url 'admin:index' %}
     # django-loginas urls must be defined before admin.site.urls
     path(settings.ADMIN_URL, include("loginas.urls")),
     path(settings.ADMIN_URL, admin.site.urls),
-    # User management
-    path("users/", include("print_nanny_webapp.users.urls", namespace="users")),
-    # path("remote-control/", include("print_nanny_webapp.remote_control.urls", namespace="remote-control")),
     path("accounts/", include("allauth.urls")),
-    path("signin/", RedirectView.as_view(url="/accounts/login/", permanent=True)),
-    path(
-        "dashboard/",
-        include("print_nanny_webapp.dashboard.urls", namespace="dashboard"),
-    ),
-    path("alerts/", include("print_nanny_webapp.alerts.urls", "alerts")),
     re_path(r"^invitations/", include("invitations.urls", namespace="invitations")),
-    path(
-        "devices/",
-        include("print_nanny_webapp.devices.urls", namespace="devices"),
-    ),
-    path("surveys/", include("print_nanny_webapp.surveys.urls", namespace="urls")),
-    path(
-        "octoprint/",
-        include("print_nanny_webapp.octoprint.urls", namespace="octoprint"),
-    ),
     path("", include("qr_code.urls", namespace="qr_code")),
-    path("trial", FoundingMemberSignupView.as_view(), name="trial"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-urlpatterns += (
-    path(
-        "subscriptions/",
-        include("print_nanny_webapp.subscriptions.urls", "subscriptions"),
-    ),
-)
 urlpatterns += (path("stripe/", include("djstripe.urls", namespace="djstripe")),)
 
 
