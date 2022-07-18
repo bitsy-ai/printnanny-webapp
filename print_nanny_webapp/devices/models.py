@@ -144,7 +144,7 @@ class Device(SafeDeleteModel):
         return False
 
     @property
-    def last_seen(self) -> Optional[datetime]:
+    def last_boot(self) -> Optional[datetime]:
         if self.system_info is not None:
             return self.system_info.updated_dt
         return None
