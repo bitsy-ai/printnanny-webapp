@@ -41,6 +41,8 @@ OPENAPI_CUSTOM_RUST_GENERATOR_JAR ?= $(HOME)/.m2/repository/org/openapitools/rus
 
 PRINTNANNY_CONFIG_DEV ?= $(TMPDIR)/printnanny.toml
 
+UI_DEPLOY_PATH ?= gs://print-nanny/cdn/
+
 $(TMPDIR):
 	mkdir $(TMPDIR)
 
@@ -125,6 +127,9 @@ sandbox-logs:
 	kubectl logs --all-containers -l branch=$(GIT_BRANCH)
 ui:
 	cd ui && npm install && npm run build
+
+ui-deply:
+	cd ui/dist && gsutil rsync -R . $(UI_DEPLOY_PATH)
 
 docker-image:
 	DOCKER_BUILDKIT=1 docker build \
