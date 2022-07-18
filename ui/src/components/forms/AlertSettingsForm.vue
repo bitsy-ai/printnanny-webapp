@@ -1,8 +1,19 @@
 <script setup lang="ts">
 import { useAlertStore } from "@/stores/alerts";
+import * as api from "printnanny-api-client";
+
+const alertSettingsFieldset = {
+  event_types: [{
+      value: api.EventTypesEnum.PrintQuality,
+      display: "Quality control alerts"
+    }, {
+      value:  api.EventTypesEnum.PrintStatus,
+      display: "Print status updates (percent progress, paused, resumed, failed)"
+    }]
+
+}
 
 const alertStore = useAlertStore();
-alertStore.fetchSettingsMetadata();
 alertStore.fetchSettings();
 </script>
 <template>
@@ -39,14 +50,13 @@ alertStore.fetchSettings();
             </div>
             <div class="mt-4 space-y-4">
               <div
-                v-for="(option, index) in alertStore.alertSettingsFieldset
-                  .event_types.child.choices"
+                v-for="(option, index) in alertSettingsFieldset.event_types"
                 :key="index"
                 class="relative flex items-start"
               >
                 <div class="flex items-center h-5">
                   <input
-                    id="comments"
+                    id="event-types"
                     :checked="
                       alertStore.settings?.event_types?.includes(option.value)
                     "
@@ -60,7 +70,7 @@ alertStore.fetchSettings();
                   <label
                     for="{{option.value}}"
                     class="font-medium text-gray-700"
-                    >{{ option.display_name }}</label
+                    >{{ option.display }}</label
                   >
                 </div>
               </div>

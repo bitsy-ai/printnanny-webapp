@@ -2093,43 +2093,6 @@ export interface OctoPrinterProfileRequest {
     'volume_width'?: number | null;
 }
 /**
- * An `OptionsModelSerializer` documents the OPTIONS response for a model endpoint
- * @export
- * @interface OptionsMetadata
- */
-export interface OptionsMetadata {
-    /**
-     * 
-     * @type {string}
-     * @memberof OptionsMetadata
-     */
-    'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OptionsMetadata
-     */
-    'description': string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof OptionsMetadata
-     */
-    'renders': Array<string>;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof OptionsMetadata
-     */
-    'parses': Array<string>;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof OptionsMetadata
-     */
-    'fieldset': { [key: string]: any; };
-}
-/**
  * 
  * @export
  * @interface PaginatedAlertList
@@ -4775,30 +4738,6 @@ export interface StripeSubscription {
     'schedule': StripeSubscriptionSchedule;
     /**
      * 
-     * @type {boolean}
-     * @memberof StripeSubscription
-     */
-    'is_period_current': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof StripeSubscription
-     */
-    'is_status_current': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof StripeSubscription
-     */
-    'is_status_temporarily_current': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof StripeSubscription
-     */
-    'is_valid': boolean;
-    /**
-     * 
      * @type {string}
      * @memberof StripeSubscription
      */
@@ -6956,41 +6895,6 @@ export const AlertSettingsApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        alertSettingsMetadata: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/alert-settings/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'OPTIONS', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @param {number} id A unique integer value identifying this alert settings.
          * @param {PatchedAlertSettingsRequest} [patchedAlertSettingsRequest] 
          * @param {*} [options] Override http request option.
@@ -7106,15 +7010,6 @@ export const AlertSettingsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async alertSettingsMetadata(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OptionsMetadata>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.alertSettingsMetadata(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
          * @param {number} id A unique integer value identifying this alert settings.
          * @param {PatchedAlertSettingsRequest} [patchedAlertSettingsRequest] 
          * @param {*} [options] Override http request option.
@@ -7164,14 +7059,6 @@ export const AlertSettingsApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        alertSettingsMetadata(options?: any): AxiosPromise<OptionsMetadata> {
-            return localVarFp.alertSettingsMetadata(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
          * @param {number} id A unique integer value identifying this alert settings.
          * @param {PatchedAlertSettingsRequest} [patchedAlertSettingsRequest] 
          * @param {*} [options] Override http request option.
@@ -7215,14 +7102,6 @@ export interface AlertSettingsApiInterface {
      * @memberof AlertSettingsApiInterface
      */
     alertSettingsList(options?: AxiosRequestConfig): AxiosPromise<AlertSettings>;
-
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AlertSettingsApiInterface
-     */
-    alertSettingsMetadata(options?: AxiosRequestConfig): AxiosPromise<OptionsMetadata>;
 
     /**
      * 
@@ -7272,16 +7151,6 @@ export class AlertSettingsApi extends BaseAPI implements AlertSettingsApiInterfa
      */
     public alertSettingsList(options?: AxiosRequestConfig) {
         return AlertSettingsApiFp(this.configuration).alertSettingsList(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AlertSettingsApi
-     */
-    public alertSettingsMetadata(options?: AxiosRequestConfig) {
-        return AlertSettingsApiFp(this.configuration).alertSettingsMetadata(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -10951,7 +10820,7 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesCloudiotUpdate(deviceId: number, id: string, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async devicesCloudiotUpdate(deviceId: number, id: string, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CloudiotDevice>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCloudiotUpdate(deviceId, id, cloudiotDeviceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -11262,7 +11131,7 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesUpdate(id: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async devicesUpdate(id: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesUpdate(id, deviceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -11357,7 +11226,7 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCloudiotUpdate(deviceId: number, id: string, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: any): AxiosPromise<void> {
+        devicesCloudiotUpdate(deviceId: number, id: string, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: any): AxiosPromise<CloudiotDevice> {
             return localVarFp.devicesCloudiotUpdate(deviceId, id, cloudiotDeviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -11640,7 +11509,7 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesUpdate(id: number, deviceRequest?: DeviceRequest, options?: any): AxiosPromise<void> {
+        devicesUpdate(id: number, deviceRequest?: DeviceRequest, options?: any): AxiosPromise<Device> {
             return localVarFp.devicesUpdate(id, deviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -11732,7 +11601,7 @@ export interface DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesCloudiotUpdate(deviceId: number, id: string, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): AxiosPromise<void>;
+    devicesCloudiotUpdate(deviceId: number, id: string, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): AxiosPromise<CloudiotDevice>;
 
     /**
      * 
@@ -12015,7 +11884,7 @@ export interface DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesUpdate(id: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig): AxiosPromise<void>;
+    devicesUpdate(id: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig): AxiosPromise<Device>;
 
     /**
      * 
@@ -14171,7 +14040,7 @@ export const OctoprintApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async octoprintPrinterProfilesUpdate(id: number, octoPrinterProfileRequest: OctoPrinterProfileRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async octoprintPrinterProfilesUpdate(id: number, octoPrinterProfileRequest: OctoPrinterProfileRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrinterProfile>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintPrinterProfilesUpdate(id, octoPrinterProfileRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -14233,7 +14102,7 @@ export const OctoprintApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async octoprintSettingsUpdate(id: number, octoPrintSettingsRequest: OctoPrintSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async octoprintSettingsUpdate(id: number, octoPrintSettingsRequest: OctoPrintSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintSettings>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintSettingsUpdate(id, octoPrintSettingsRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -14351,7 +14220,7 @@ export const OctoprintApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintPrinterProfilesUpdate(id: number, octoPrinterProfileRequest: OctoPrinterProfileRequest, options?: any): AxiosPromise<void> {
+        octoprintPrinterProfilesUpdate(id: number, octoPrinterProfileRequest: OctoPrinterProfileRequest, options?: any): AxiosPromise<OctoPrinterProfile> {
             return localVarFp.octoprintPrinterProfilesUpdate(id, octoPrinterProfileRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -14407,7 +14276,7 @@ export const OctoprintApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintSettingsUpdate(id: number, octoPrintSettingsRequest: OctoPrintSettingsRequest, options?: any): AxiosPromise<void> {
+        octoprintSettingsUpdate(id: number, octoPrintSettingsRequest: OctoPrintSettingsRequest, options?: any): AxiosPromise<OctoPrintSettings> {
             return localVarFp.octoprintSettingsUpdate(id, octoPrintSettingsRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -14523,7 +14392,7 @@ export interface OctoprintApiInterface {
      * @throws {RequiredError}
      * @memberof OctoprintApiInterface
      */
-    octoprintPrinterProfilesUpdate(id: number, octoPrinterProfileRequest: OctoPrinterProfileRequest, options?: AxiosRequestConfig): AxiosPromise<void>;
+    octoprintPrinterProfilesUpdate(id: number, octoPrinterProfileRequest: OctoPrinterProfileRequest, options?: AxiosRequestConfig): AxiosPromise<OctoPrinterProfile>;
 
     /**
      * 
@@ -14579,7 +14448,7 @@ export interface OctoprintApiInterface {
      * @throws {RequiredError}
      * @memberof OctoprintApiInterface
      */
-    octoprintSettingsUpdate(id: number, octoPrintSettingsRequest: OctoPrintSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<void>;
+    octoprintSettingsUpdate(id: number, octoPrintSettingsRequest: OctoPrintSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<OctoPrintSettings>;
 
     /**
      * 
@@ -15020,7 +14889,7 @@ export const OctoprintServersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async octoprintServersUpdate(id: number, octoPrintServerRequest: OctoPrintServerRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async octoprintServersUpdate(id: number, octoPrintServerRequest: OctoPrintServerRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintServer>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintServersUpdate(id, octoPrintServerRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -15069,7 +14938,7 @@ export const OctoprintServersApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintServersUpdate(id: number, octoPrintServerRequest: OctoPrintServerRequest, options?: any): AxiosPromise<void> {
+        octoprintServersUpdate(id: number, octoPrintServerRequest: OctoPrintServerRequest, options?: any): AxiosPromise<OctoPrintServer> {
             return localVarFp.octoprintServersUpdate(id, octoPrintServerRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -15117,7 +14986,7 @@ export interface OctoprintServersApiInterface {
      * @throws {RequiredError}
      * @memberof OctoprintServersApiInterface
      */
-    octoprintServersUpdate(id: number, octoPrintServerRequest: OctoPrintServerRequest, options?: AxiosRequestConfig): AxiosPromise<void>;
+    octoprintServersUpdate(id: number, octoPrintServerRequest: OctoPrintServerRequest, options?: AxiosRequestConfig): AxiosPromise<OctoPrintServer>;
 
 }
 
