@@ -1,9 +1,8 @@
-import type { UiError } from "@/types";
+import type { UiError, UiAlert } from "@/types";
 import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
-import * as apiTypes from "printnanny-api-client";
 import { useAlertStore } from "./alerts";
-import { XIcon } from "@heroicons/vue/solid";
+import { useRouter } from "vue-router";
 
 const apiConfig = new api.Configuration({
   basePath: window.location.origin,
@@ -20,17 +19,16 @@ export const useAccountStore = defineStore({
   // persist option provided by: https://github.com/prazdevs/pinia-plugin-persistedstate
   persist: true,
   state: () => ({
-    user: null,
-    apiError: {},
+    user: undefined as api.User | undefined,
   }),
   getters: {
-    isAuthenticated: (state) => state.user !== null,
+    isAuthenticated: (state) => state.user !== undefined,
   },
   actions: {
     async submitEmailWaitlist(email: string) {
       const alerts = useAlertStore();
       try {
-        const req: apiTypes.EmailWaitlistRequest = { email };
+        const req: api.EmailWaitlistRequest = { email };
         const res = await accountsApi.accountsEmailWaitlistCreate(req);
         const alert: UiAlert = {
           header: "Thanks for signing up!",
@@ -66,15 +64,11 @@ export const useAccountStore = defineStore({
         console.log("Authenticated as user", user);
         return this.$patch({
           user: user,
-          apiError: {},
         });
       } catch (e: any) {
         console.warn("No authentication data is set", e);
         this.$patch({
-          /** @type { api.User } */
-          user: null,
-          /** @type { api.RequiredError } */
-          apiError: e,
+          user: undefined,
         });
       }
     },
@@ -87,9 +81,10 @@ export const useAccountStore = defineStore({
      */
     async login(request: api.LoginRequest) {
       try {
+        const router = useRouter();
         await accountsApi.accountsLoginCreate(request);
         await this.fetchUser();
-        await this.router.push({ name: "dashboard" });
+        await router.push({ name: "dashboard" });
       } catch (e: any) {
         if (e.isAxiosError) {
           const alerts = useAlertStore();
@@ -121,7 +116,7 @@ export const useAccountStore = defineStore({
      */
     async logout() {
       // nothing to do if user not set
-      if (this.user == null) {
+      if (this.user == undefined) {
         console.warn("logout action called without user set");
         return;
       }

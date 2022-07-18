@@ -79,7 +79,7 @@
             <!-- device list -->
             <tr
               v-for="device in deviceStore.devices"
-              v-if="!showEmpty"
+              v-if="!deviceStore.showEmpty"
               :key="device.id"
               class="flex-row"
             >
@@ -102,7 +102,7 @@
               <td
                 class="hidden md:table-cell px-6 py-3 whitespace-nowrap text-sm text-gray-500 text-right"
               >
-                {{ device.last_seen || "Waiting for first boot" }}
+                {{ device.last_boot || "Waiting for first boot" }}
               </td>
               <td class="px-6 py-3 whitespace-nowrap text-sm font-medium">
                 <a :href="device.urls.octoprint"

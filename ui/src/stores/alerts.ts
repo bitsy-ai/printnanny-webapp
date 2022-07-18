@@ -1,7 +1,7 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
 import type * as apiTypes from "printnanny-api-client";
-import type { Alert } from "@/types";
+import type { Alert, UiError } from "@/types";
 
 const apiConfig = new api.Configuration({
   basePath: window.location.origin,
@@ -18,29 +18,28 @@ const alertSettingsApi = api.AlertSettingsApiFactory(apiConfig);
 export const useAlertStore = defineStore({
   id: "alerts",
   state: () => ({
-    /** @type { Alert[] } */
-    alerts: [],
-    /** @type { apiTypes.AlertSettings } */
-    settings: null,
-    /** @type { apiTypes.OptionsMetadata } */
-    settingsMetadata: null,
+    alerts: [] as Array<Alert>,
+    settings: undefined as apiTypes.AlertSettings | undefined,
+    settingsMetadata: undefined as apiTypes.OptionsMetadata | undefined,
     loading: false,
   }),
   getters: {
     showEmpty: (state) => state.loading == false && state.alerts.length == 0,
     alertSettingsFieldset: (state) => {
       const exclude = ["id", "created_dt", "updated_dt"];
-      if (state.settingsMetadata !== null) {
-        return Object.keys(state.settingsMetadata.fieldset)
-          .filter((key) => !exclude.includes(key))
-          .reduce((obj, key) => {
-            obj[key] = state.settingsMetadata.fieldset[key];
+      if (state.settingsMetadata == undefined) { return }
+      return Object.keys(state.settingsMetadata.fieldset)
+        .filter((key) => !exclude.includes(key))
+        .reduce((obj: any, key: string) => {
+          if (state.settingsMetadata?.fieldset[key] == undefined) { return }
+          else {
+            obj[key] = state.settingsMetadata?.fieldset[key];
             return obj;
-          }, {});
-      }
+          }
+        }, {});
     },
     settingsFormReady: (state) =>
-      state.settings !== null && state.settingsMetadata !== null,
+      state.settings !== undefined && state.settingsMetadata !== undefined,
   },
   actions: {
     async fetchSettingsMetadata() {
@@ -82,6 +81,7 @@ export const useAlertStore = defineStore({
     },
     async fetchSettings() {
       this.$patch({ loading: true });
+
       try {
         const alertsSettingsData = await alertSettingsApi.alertSettingsList();
         console.log("Fetched AlertSettings data: ", alertsSettingsData.data);
@@ -116,7 +116,8 @@ export const useAlertStore = defineStore({
       this.alerts.push(alert);
     },
     dismiss(alert: Alert) {
-      this.$patch({ alerts: this.alerts.filter((a) => a !== alert) });
+      const alerts = this.alerts.filter((a) => a !== alert);
+      this.$patch({ alerts });
     },
   },
 });

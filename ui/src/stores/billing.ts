@@ -1,9 +1,8 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
-import type * as apiTypes from "printnanny-api-client";
-import type { BillingSummary } from "printnanny-api-client";
 import { useAlertStore } from "./alerts";
-import type { UiAlert } from "@/types";
+import type { UiAlert, UiError } from "@/types";
+import { useRouter } from "vue-router";
 
 const apiConfig = new api.Configuration({
   basePath: window.location.origin,
@@ -18,18 +17,19 @@ const billingApi = api.BillingApiFactory(apiConfig);
 export const useBillingStore = defineStore({
   id: "billing",
   state: () => ({
-    /** @type { BillingSummary } */
-    summary: null,
+    summary: undefined as api.BillingSummary | undefined
   }),
   getters: {
-    billingFormReady: (state) => state.summary !== null,
+    billingFormReady: (state) => state.summary !== undefined,
   },
   actions: {
     async cancel() {
       const alerts = useAlertStore();
+      const router = useRouter();
+      if (this.summary == undefined) { return }
       try {
         const res = await billingApi.billingCancelCreate(
-          this.summary.subscription.id
+          parseInt(this.summary.subscription.id)
         );
         console.log(
           "Cancelled subscription, updated billing summary: ",
@@ -42,7 +42,7 @@ export const useBillingStore = defineStore({
         };
         alerts.push(alert);
         this.$patch({ summary: res.data });
-        this.router.push({ name: "billing" });
+        router.push({ name: "billing" });
       } catch (e: any) {
         if (e.isAxiosError) {
           const alerts = useAlertStore();
@@ -73,47 +73,52 @@ export const useBillingStore = defineStore({
     },
     async reactivate() {
       const alerts = useAlertStore();
-      try {
-        const res = await billingApi.billingReactivateCreate(
-          this.summary.subscription.id
-        );
-        console.log(
-          "Reactivated subscription, updated billing summary: ",
-          res.data
-        );
-        const alert: UiAlert = {
-          header: "Subscription reactivated",
-          message:
-            "Welcome back! Email support@printnanny.ai if you need any further assistance.",
-        };
-        alerts.push(alert);
-        this.$patch({ summary: res.data });
-        this.router.push({ name: "billing" });
-      } catch (e: any) {
-        if (e.isAxiosError) {
-          const alerts = useAlertStore();
-          let msg;
-          if (
-            e.response.data.non_field_errors &&
-            e.response.data.non_field_errors.length > 0
-          ) {
-            msg = e.response.data.non_field_errors.join("\n");
-          } else if (e.response.data.detail) {
-            msg = e.response.data.detail;
-          } else if (e.response.data.error) {
-            msg = e.response.data.error;
-          } else {
-            msg = e.response.data;
-          }
-          const alert: UiError = {
-            header: e.response.statusText,
-            message: msg,
-            error: e,
+      const router = useRouter();
+      if (this.summary === undefined) {
+        return
+      } else {
+        try {
+          const res = await billingApi.billingReactivateCreate(
+            this.summary.subscription.id
+          );
+          console.log(
+            "Reactivated subscription, updated billing summary: ",
+            res.data
+          );
+          const alert: UiAlert = {
+            header: "Subscription reactivated",
+            message:
+              "Welcome back! Email support@printnanny.ai if you need any further assistance.",
           };
           alerts.push(alert);
-          console.error(e.response);
-        } else {
-          throw e;
+          this.$patch({ summary: res.data });
+          router.push({ name: "billing" });
+        } catch (e: any) {
+          if (e.isAxiosError) {
+            const alerts = useAlertStore();
+            let msg;
+            if (
+              e.response.data.non_field_errors &&
+              e.response.data.non_field_errors.length > 0
+            ) {
+              msg = e.response.data.non_field_errors.join("\n");
+            } else if (e.response.data.detail) {
+              msg = e.response.data.detail;
+            } else if (e.response.data.error) {
+              msg = e.response.data.error;
+            } else {
+              msg = e.response.data;
+            }
+            const alert: UiError = {
+              header: e.response.statusText,
+              message: msg,
+              error: e,
+            };
+            alerts.push(alert);
+            console.error(e.response);
+          } else {
+            throw e;
+          }
         }
       }
     },

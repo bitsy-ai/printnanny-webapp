@@ -152,6 +152,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 import {
   Dialog,
   DialogPanel,
@@ -186,10 +187,11 @@ import MobileSidebarNav from "@/components/nav/MobileSidebarNav.vue";
 import { useAccountStore } from "@/stores/account";
 
 const account = useAccountStore();
+const router = useRouter();
 
 async function refresh() {
   console.log("refreshing page");
-  await account.router.go();
+  await router.go(0);
 }
 const sidebarOpen = ref(false);
 </script>

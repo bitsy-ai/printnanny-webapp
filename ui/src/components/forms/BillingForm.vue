@@ -9,13 +9,13 @@
         <div>
           <h3 class="text-lg leading-6 font-medium text-gray-900">Billing</h3>
           <p
-            v-if="billingStore.summary.subscription.is_valid"
+            v-if="billingStore.summary?.subscription?.is_valid"
             class="mt-1 text-sm text-gray-500"
           >
-            Details about your current PrintNanny subscription.
+            Details about your current PrintNanny subscription?.
           </p>
           <p
-            v-if="!billingStore.summary.subscription.is_valid"
+            v-if="!billingStore.summary?.subscription?.is_valid"
             class="mt-1 text-sm text-red-500"
           >
             Your billing info needs correction.
@@ -29,7 +29,7 @@
           >
             <dt class="text-sm font-medium text-gray-500">Plan</dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              {{ billingStore.summary.subscription.plan.nickname }}
+              {{ billingStore.summary?.subscription?.plan.nickname }}
             </dd>
           </div>
           <div
@@ -37,7 +37,7 @@
           >
             <dt class="text-sm font-medium text-gray-500">Status</dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              {{ billingStore.summary.subscription.status }}
+              {{ billingStore.summary?.subscription?.status }}
               <SubscriptionAction />
             </dd>
           </div>
@@ -50,13 +50,13 @@
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
               {{
                 formattedDate(
-                  billingStore.summary.subscription.current_period_start
+                  billingStore.summary?.subscription?.current_period_start
                 )
               }}
               -
               {{
                 formattedDate(
-                  billingStore.summary.subscription.current_period_end
+                  billingStore.summary?.subscription?.current_period_end
                 )
               }}
             </dd>
@@ -66,7 +66,7 @@
           >
             <dt class="text-sm font-medium text-gray-500">Subscription ID</dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              {{ billingStore.summary.subscription.id }}
+              {{ billingStore.summary?.subscription?.id }}
             </dd>
           </div>
           <div
@@ -74,9 +74,9 @@
           >
             <dt class="text-sm font-medium text-gray-500">Amount</dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              {{ billingStore.summary.subscription.plan.amount }}
-              {{ billingStore.summary.subscription.plan.currency }} per
-              {{ billingStore.summary.subscription.plan.interval }}
+              {{ billingStore.summary?.subscription?.plan.amount }}
+              {{ billingStore.summary?.subscription?.plan.currency }} per
+              {{ billingStore.summary?.subscription?.plan.interval }}
             </dd>
           </div>
           <div
@@ -85,12 +85,12 @@
             <dt class="text-sm font-medium text-gray-500">Payment Method</dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
               {{
-                billingStore.summary.subscription.default_payment_method.card
+                billingStore.summary?.subscription?.default_payment_method.card
                   .brand
               }}
               ending in
               {{
-                billingStore.summary.subscription.default_payment_method.card
+                billingStore.summary?.subscription?.default_payment_method.card
                   .last4
               }}
             </dd>
@@ -119,7 +119,7 @@ import SubscriptionAction from "@/components/billing/SubscriptionAction.vue";
 const billingStore = useBillingStore();
 billingStore.fetch();
 
-function formattedDate(date) {
+function formattedDate(date: string) {
   return moment(date).format("YYYY-MM-DD");
 }
 </script>

@@ -2,7 +2,7 @@ import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
 import type * as apiTypes from "printnanny-api-client";
 import { useAlertStore } from "./alerts";
-import type { Device } from "@/types";
+import type { UiError } from "@/types";
 
 const apiConfig = new api.Configuration({
   basePath: window.location.origin,
@@ -17,15 +17,14 @@ const devicesApi = api.DevicesApiFactory(apiConfig);
 export const useDeviceStore = defineStore({
   id: "devices",
   state: () => ({
-    /** @type { Device[] } */
-    devices: [],
+    devices: [] as Array<apiTypes.Device>,
     loading: false,
   }),
   getters: {
     showEmpty: (state) => state.loading == false && state.devices.length == 0,
   },
   actions: {
-    async create(hostname) {
+    async create(hostname: string) {
       try {
         // Wireguard TODO: allow user to specify fqdn
         const req: apiTypes.DeviceRequest = {
