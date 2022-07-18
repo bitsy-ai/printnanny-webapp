@@ -3,16 +3,8 @@ import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
 import { useAlertStore } from "./alerts";
 import { useRouter } from "vue-router";
-
-const apiConfig = new api.Configuration({
-  basePath: window.location.origin,
-  baseOptions: {
-    xsrfCookieName: "csrftoken",
-    xsrfHeaderName: "X-CSRFTOKEN",
-    withCredentials: true,
-  },
-});
-const accountsApi = api.AccountsApiFactory(apiConfig);
+import { ApiConfig } from "@/utils/api";
+const accountsApi = api.AccountsApiFactory(ApiConfig);
 
 export const useAccountStore = defineStore({
   id: "accounts",

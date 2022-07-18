@@ -3,16 +3,8 @@ import * as api from "printnanny-api-client";
 import type * as apiTypes from "printnanny-api-client";
 import { useAlertStore } from "./alerts";
 import type { UiAlert } from "@/types";
-
-const apiConfig = new api.Configuration({
-  basePath: window.location.origin,
-  baseOptions: {
-    xsrfCookieName: "csrftoken",
-    xsrfHeaderName: "X-CSRFTOKEN",
-    withCredentials: true,
-  },
-});
-const devicesApi = api.DevicesApiFactory(apiConfig);
+import { ApiConfig } from "@/utils/api";
+const devicesApi = api.DevicesApiFactory(ApiConfig);
 
 export const useDeviceStore = defineStore({
   id: "devices",
