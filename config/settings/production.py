@@ -222,6 +222,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://www.live.printnanny.ai",
     "https://beta.printnanny.ai",
     "https://www.beta.printnanny.ai",
+    "https://cdn.printnanny.ai",
 ]
 
 # posthog

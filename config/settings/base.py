@@ -643,6 +643,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
     "http://127.0.0.1:8000",
     f"http://{socket.gethostname()}:8000",
+    f"http://{socket.gethostname()}:3000",
 ]
 
 # Janus Cloud defaults

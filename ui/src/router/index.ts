@@ -69,6 +69,11 @@ const router = createRouter({
       component: () => import("@/views/TermsOfServiceView.vue"),
     },
     {
+      path: "/swag/",
+      name: "swag",
+      component: () => import("@/views/SwagView.vue"),
+    },
+    {
       path: "/notifications/settings/",
       name: "alertSettings",
       component: () => import("@/views/SettingsView.vue"),
