@@ -8,6 +8,7 @@ from djstripe.models.billing import (
 )
 from djstripe.models.core import Event, Customer, Charge
 from djstripe.models.payment_methods import PaymentMethod
+from djstripe import settings as djstripe_settings
 from djstripe.fields import StripeDateTimeField
 from djstripe.utils import convert_tstamp
 import stripe
@@ -24,7 +25,12 @@ class StripeSubscriptionSchedule(serializers.ModelSerializer):
 class StripePlanSerializer(serializers.ModelSerializer):
     class Meta:
         model = Plan
-        fields = "__all__"
+        # exclude a few enums we don't use, which have problematic presentations in strongly-typed languages like rust
+        exclude = (
+            "aggregate_usage",
+            "billing_scheme",
+            "tiers_mode",
+        )
 
 
 class StripePaymentMethodSerializer(serializers.ModelSerializer):
@@ -71,54 +77,6 @@ class StripeDateTimeFieldSerializer(serializers.DateTimeField):
         return super().to_representation(value)
 
 
-from django.core.exceptions import ObjectDoesNotExist
-from django.utils.encoding import is_protected_type, smart_str
-
-
-class InvoiceSlugRelatedField(serializers.RelatedField):
-    """
-    UpcomingInvoice has no database rows to reverse on
-    """
-
-    default_error_messages = {
-        "does_not_exist": "Object with {slug_name}={value} does not exist.",
-        "invalid": "Invalid value.",
-    }
-
-    def __init__(self, slug_field=None, **kwargs):
-        assert slug_field is not None, "The `slug_field` argument is required."
-        self.slug_field = slug_field
-        super().__init__(**kwargs)
-
-    def to_internal_value(self, data):
-        queryset = self.get_queryset()
-        try:
-            return queryset.get(**{self.slug_field: data})
-        except ObjectDoesNotExist:
-            self.fail(
-                "does_not_exist", slug_name=self.slug_field, value=smart_str(data)
-            )
-        except (TypeError, ValueError):
-            self.fail("invalid")
-
-    def to_representation(self, obj):
-        return obj
-
-
-class StripeNextInvoiceSerializer(serializers.ModelSerializer):
-    serializer_field_mapping = serializers.ModelSerializer.serializer_field_mapping
-    serializer_field_mapping[StripeDateTimeField] = StripeDateTimeFieldSerializer  # type: ignore
-    serializer_field_mapping[stripe.stripe_object.StripeObject] = serializers.JSONField  # type: ignore
-    serializer_field_mapping[
-        stripe.api_resources.list_object.ListObject
-    ] = serializers.JSONField  # type: ignore
-    serializer_related_to_field = InvoiceSlugRelatedField  # type: ignore
-
-    class Meta:
-        model = UpcomingInvoice
-        fields = "__all__"
-
-
 class StripeCustomerSerializer(serializers.ModelSerializer):
     class Meta:
         fields = "__all__"
@@ -127,15 +85,13 @@ class StripeCustomerSerializer(serializers.ModelSerializer):
 
 class BillingSummarySerializer(serializers.Serializer):
     subscription = StripeSubscriptionSerializer()
-    charges = StripeChargeSerializer(many=True)
-    events = StripeEventSerializer(many=True)
-    next_invoice = StripeNextInvoiceSerializer(allow_null=True, required=False)
     customer = StripeCustomerSerializer()
     user = UserSerializer(allow_null=True, required=False)
 
     billing_portal_url = serializers.SerializerMethodField()
 
     def get_billing_portal_url(self, obj) -> str:
+        stripe.api_key = djstripe_settings.djstripe_settings.STRIPE_SECRET_KEY
         session = stripe.billing_portal.Session.create(
             customer=obj["customer"].id,
             return_url="https://printnanny.ai/billing",

@@ -36,18 +36,12 @@ pub struct StripePlan {
     /// Whether the plan can be used for new purchases.
     #[serde(rename = "active")]
     pub active: bool,
-    /// Specifies a usage aggregation strategy for plans of usage_type=metered. Allowed values are `sum` for summing up all usage during a period, `last_during_period` for picking the last usage record reported within a period, `last_ever` for picking the last usage record ever (across period bounds) or max which picks the usage record with the maximum reported usage during a period. Defaults to `sum`.
-    #[serde(rename = "aggregate_usage", skip_serializing_if = "Option::is_none")]
-    pub aggregate_usage: Option<Box<crate::models::OneOfAggregateUsageEnumBlankEnum>>,
     /// Amount (as decimal) to be charged on the interval specified.
     #[serde(rename = "amount", skip_serializing_if = "Option::is_none")]
     pub amount: Option<String>,
     /// The unit amount in cents to be charged, represented as a decimal string with at most 12 decimal places.
     #[serde(rename = "amount_decimal", skip_serializing_if = "Option::is_none")]
     pub amount_decimal: Option<String>,
-    /// Describes how to compute the price per period. Either `per_unit` or `tiered`. `per_unit` indicates that the fixed amount (specified in amount) will be charged per unit in quantity (for plans with `usage_type=licensed`), or per unit of total usage (for plans with `usage_type=metered`). `tiered` indicates that the unit pricing will be computed using a tiering strategy as defined using the tiers and tiers_mode attributes.
-    #[serde(rename = "billing_scheme", skip_serializing_if = "Option::is_none")]
-    pub billing_scheme: Option<Box<crate::models::OneOfBillingSchemeEnumBlankEnum>>,
     /// Three-letter ISO currency code
     #[serde(rename = "currency")]
     pub currency: String,
@@ -63,9 +57,6 @@ pub struct StripePlan {
     /// Each element represents a pricing tier. This parameter requires `billing_scheme` to be set to `tiered`.
     #[serde(rename = "tiers", skip_serializing_if = "Option::is_none")]
     pub tiers: Option<::std::collections::HashMap<String, serde_json::Value>>,
-    /// Defines if the tiering price should be `graduated` or `volume` based. In `volume`-based tiering, the maximum quantity within a period determines the per unit price, in `graduated` tiering pricing can successively change as the quantity grows.
-    #[serde(rename = "tiers_mode", skip_serializing_if = "Option::is_none")]
-    pub tiers_mode: Option<Box<crate::models::OneOfTiersModeEnumBlankEnumNullEnum>>,
     /// Apply a transformation to the reported usage or set quantity before computing the billed price. Cannot be combined with `tiers`.
     #[serde(rename = "transform_usage", skip_serializing_if = "Option::is_none")]
     pub transform_usage: Option<::std::collections::HashMap<String, serde_json::Value>>,
@@ -95,16 +86,13 @@ impl StripePlan {
             metadata: None,
             description: None,
             active,
-            aggregate_usage: None,
             amount: None,
             amount_decimal: None,
-            billing_scheme: None,
             currency,
             interval: interval.map(Box::new),
             interval_count: None,
             nickname: None,
             tiers: None,
-            tiers_mode: None,
             transform_usage: None,
             trial_period_days: None,
             usage_type: None,
