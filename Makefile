@@ -41,7 +41,10 @@ OPENAPI_CUSTOM_RUST_GENERATOR_JAR ?= $(HOME)/.m2/repository/org/openapitools/rus
 
 PRINTNANNY_CONFIG_DEV ?= $(TMPDIR)/printnanny.toml
 
-UI_DEPLOY_PATH ?= gs://print-nanny/cdn/
+CDN_BUCKET ?= print-nanny-cdn
+CDN_DEPLOY_PATH ?= ${CDN_BUCKET)/ui/
+CDN_CACHE_INVALIDATE_PATH ?= /ui/*
+
 
 $(TMPDIR):
 	mkdir $(TMPDIR)
@@ -126,11 +129,14 @@ cypress-ci: octoprint-wait
 sandbox-logs:
 	kubectl logs --all-containers -l branch=$(GIT_BRANCH)
 
+ui-invalidate-cache:
+	gcloud compute url-maps invalidate-cdn-cache $(CDN_BUCKET) --path $(CDN_CACHE_INVALIDATE_PATH)
+
 ui: ts-build
 	cd ui && npm install && npm run build
 
 ui-deploy:
-	cd ui/dist && gsutil rsync -R . $(UI_DEPLOY_PATH)
+	cd ui/dist && gsutil rsync -R . gs://$(UI_DEPLOY_PATH)
 
 ui-install:
 	cd ui/dist && npm run install
