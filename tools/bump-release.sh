@@ -15,9 +15,5 @@ make js-client-release
 make python-client-release
 make rust-client-release
 
-cd print_nanny_vue && npm update printnanny-api-client && cd -
-git add print_nanny_vue
-git commit -m "✨ $(cat version.txt) ui dependencies"
-
 git push
 git push --tags
