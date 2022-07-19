@@ -8,6 +8,8 @@ jobs:
     env:
       PRINTNANNY_API_URL: "https://api.printnanny.ai"
       UI_DEPLOY_PATH: "gs://print-nanny-cdn/ui/"
+      GCP_SERVICE_ACCOUNT: ${{ secrets.PROD_GCP_SERVICE_ACCOUNT }}
+      GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.PROD_GCP_SERVICE_ACCOUNT_KEY  }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-node@v2
