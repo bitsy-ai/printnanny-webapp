@@ -2,7 +2,6 @@ import type { UiAlert } from "@/types";
 import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
 import { useAlertStore } from "./alerts";
-import { useRouter } from "vue-router";
 import { ApiConfig } from "@/utils/api";
 const accountsApi = api.AccountsApiFactory(ApiConfig);
 
@@ -77,10 +76,9 @@ export const useAccountStore = defineStore({
      */
     async login(request: api.LoginRequest) {
       try {
-        const router = useRouter();
         await accountsApi.accountsLoginCreate(request);
         await this.fetchUser();
-        await router.push({ name: "dashboard" });
+        await this.$router.push({ name: "devices" });
       } catch (e: any) {
         if (e.isAxiosError) {
           const alerts = useAlertStore();

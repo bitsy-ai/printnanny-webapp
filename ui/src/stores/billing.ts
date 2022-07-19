@@ -2,7 +2,6 @@ import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
 import { useAlertStore } from "./alerts";
 import type { UiAlert } from "@/types";
-import { useRouter } from "vue-router";
 import { ApiConfig } from "@/utils/api";
 const billingApi = api.BillingApiFactory(ApiConfig);
 
@@ -17,7 +16,6 @@ export const useBillingStore = defineStore({
   actions: {
     async cancel() {
       const alerts = useAlertStore();
-      const router = useRouter();
       if (this.summary == undefined) {
         return;
       }
@@ -38,7 +36,7 @@ export const useBillingStore = defineStore({
         };
         alerts.push(alert);
         this.$patch({ summary: res.data });
-        router.push({ name: "billing" });
+        this.$router.push({ name: "billing" });
       } catch (e: any) {
         if (e.isAxiosError) {
           const alerts = useAlertStore();
@@ -70,7 +68,6 @@ export const useBillingStore = defineStore({
     },
     async reactivate() {
       const alerts = useAlertStore();
-      const router = useRouter();
       if (this.summary === undefined) {
         return;
       } else {
@@ -91,7 +88,7 @@ export const useBillingStore = defineStore({
           };
           alerts.push(alert);
           this.$patch({ summary: res.data });
-          router.push({ name: "billing" });
+          this.$router.push({ name: "billing" });
         } catch (e: any) {
           if (e.isAxiosError) {
             const alerts = useAlertStore();
