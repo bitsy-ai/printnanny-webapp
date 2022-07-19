@@ -42,6 +42,7 @@ logger = logging.getLogger(__name__)
 ##
 @extend_schema_view(
     list=extend_schema(
+        tags=["octoprint"],
         parameters=[
             OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
         ],
@@ -50,7 +51,6 @@ logger = logging.getLogger(__name__)
         }
         | generic_list_errors,
     ),
-    tags=["octoprint"],
 )
 class OctoPrintServerByDeviceViewSet(
     GenericViewSet,
@@ -72,12 +72,14 @@ class OctoPrintServerByDeviceViewSet(
 ##
 @extend_schema_view(
     list=extend_schema(
+        tags=["octoprint"],
         responses={
             200: OctoPrintServerSerializer(),
         }
         | generic_list_errors,
     ),
     create=extend_schema(
+        tags=["octoprint"],
         request=OctoPrintServerSerializer,
         responses={
             201: OctoPrintServerSerializer,
@@ -85,13 +87,13 @@ class OctoPrintServerByDeviceViewSet(
         | generic_create_errors,
     ),
     update=extend_schema(
+        tags=["octoprint"],
         request=OctoPrintServerSerializer,
         responses={
             202: OctoPrintServerSerializer,
         }
         | generic_update_errors,
     ),
-    tags=["octoprint"],
 )
 class OctoPrintServerViewSet(
     GenericViewSet,
@@ -136,12 +138,14 @@ class OctoPrintServerViewSet(
 ##
 @extend_schema_view(
     list=extend_schema(
+        tags=["octoprint"],
         responses={
             200: OctoPrintSettingsSerializer,
         }
         | generic_list_errors,
     ),
     create=extend_schema(
+        tags=["octoprint"],
         request=OctoPrintSettingsSerializer,
         responses={
             201: OctoPrintSettingsSerializer,
@@ -149,13 +153,13 @@ class OctoPrintServerViewSet(
         | generic_create_errors,
     ),
     update=extend_schema(
+        tags=["octoprint"],
         request=OctoPrintSettingsSerializer,
         responses={
             202: OctoPrintSettingsSerializer,
         }
         | generic_update_errors,
     ),
-    tags=["octoprint"],
 )
 class OctoPrintSettingsViewSet(
     GenericViewSet,
@@ -195,17 +199,19 @@ class OctoPrintSettingsViewSet(
 
 @extend_schema_view(
     list=extend_schema(
-        responses={200: OctoPrintBackupSerializer(many=True)} | generic_list_errors
+        tags=["octoprint"],
+        responses={200: OctoPrintBackupSerializer(many=True)} | generic_list_errors,
     ),
     create=extend_schema(
+        tags=["octoprint"],
         request=OctoPrintBackupSerializer,
         responses={201: OctoPrintBackupSerializer} | generic_create_errors,
     ),
     retrieve=extend_schema(
+        tags=["octoprint"],
         request=OctoPrintBackupSerializer,
         responses={200: OctoPrintBackupSerializer} | generic_get_errors,
     ),
-    tags=["octoprint"],
 )
 class OctoPrintBackupViewset(
     GenericViewSet, ListModelMixin, RetrieveModelMixin, CreateModelMixin
