@@ -136,7 +136,7 @@ ui: ts-build
 	cd ui && npm install && npm run build
 
 ui-deploy:
-	cd ui/dist && gsutil rsync -R . gs://$(UI_DEPLOY_PATH)
+	cd ui/dist && gsutil rsync -R . gs://$(CDN_DEPLOY_PATH)
 
 ui-install:
 	cd ui/dist && npm run install
