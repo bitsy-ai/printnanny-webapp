@@ -43,7 +43,7 @@ PRINTNANNY_CONFIG_DEV ?= $(TMPDIR)/printnanny.toml
 
 CDN_BUCKET ?= print-nanny-cdn
 CDN_DEPLOY_PATH ?= $(CDN_BUCKET)/ui/
-CDN_CACHE_INVALIDATE_PATH ?= /ui/*
+CDN_CACHE_INVALIDATE_PATH ?= /ui/index.html
 
 
 $(TMPDIR):
