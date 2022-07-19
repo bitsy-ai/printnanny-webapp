@@ -1,0 +1,15 @@
+// CORS policy applied to gs://print-nanny-cdn bucket
+[
+    {
+        "origin": [
+            "*"
+        ],
+        "method": [
+            "GET"
+        ],
+        "responseHeader": [
+            "Content-Type"
+        ],
+        "maxAgeSeconds": 3600
+    }
+]

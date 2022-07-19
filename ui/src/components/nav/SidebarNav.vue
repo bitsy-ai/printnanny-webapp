@@ -97,6 +97,7 @@ import {
   ChatIcon,
   MapIcon,
   CogIcon,
+  SparklesIcon,
 } from "@heroicons/vue/outline";
 
 const router = useRouter();
@@ -113,6 +114,12 @@ const app_nav = [
     link: { name: "alertSettings" },
     icon: CogIcon,
     current: router.currentRoute.value.path.includes("settings"),
+  },
+  {
+    name: "Swag",
+    link: { name: "swag" },
+    icon: SparklesIcon,
+    current: router.currentRoute.value.path.includes("swag"),
   },
   //   { name: 'My Cameras', link: {name: "cameras" }, icon: VideoCameraIcon, current: router.currentRoute.value.name == "cameras"},
   //   { name: 'My tasks', href: '#', icon: ViewListIcon, current: false },

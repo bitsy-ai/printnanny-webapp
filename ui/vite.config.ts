@@ -30,7 +30,7 @@ export default defineConfig(({ command, mode }) => {
         allow: ["../clients/typescript", "src"],
       },
       host: "0.0.0.0",
-      cors: false,
+      // cors: false,
       proxy: {
         "/api": {
           target: env.VITE_PRINTNANNY_API_URL,
