@@ -23,8 +23,8 @@ def is_database_synchronized(database):
 
 def get_available_rtp_port() -> int:
     if is_database_synchronized(DEFAULT_DB_ALIAS):
-        JanusStream = apps.get_model("devices", "JanusStream")
-        unavailable_ports = JanusStream.objects.filter(
+        WebrtcStream = apps.get_model("devices", "WebrtcStream")
+        unavailable_ports = WebrtcStream.objects.filter(
             config_type=JanusConfigType.CLOUD
         ).values("rtp_port")
         logger.info("get_available_port() reserved_ports %s", unavailable_ports)

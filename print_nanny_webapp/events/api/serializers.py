@@ -3,7 +3,7 @@ from django.apps import apps
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from rest_polymorphic.serializers import PolymorphicSerializer
-from print_nanny_webapp.devices.api.serializers import JanusStreamSerializer
+from print_nanny_webapp.devices.api.serializers import WebrtcStreamSerializer
 from print_nanny_webapp.events.models import (
     Event,
     WebRTCCommand,
@@ -68,7 +68,7 @@ class WebRTCCommandCreateSerializer(serializers.ModelSerializer):
 
 
 class WebRTCCommandSerializer(serializers.ModelSerializer):
-    stream = JanusStreamSerializer(read_only=True)
+    stream = WebrtcStreamSerializer(read_only=True)
     model = serializers.ChoiceField(choices=WebRTCCommandModel.choices)
 
     class Meta:

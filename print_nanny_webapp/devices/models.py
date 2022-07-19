@@ -113,7 +113,7 @@ class Device(SafeDeleteModel):
 
     @property
     def janus_edge(self):
-        obj, _ = JanusStream.objects.get_or_create(
+        obj, _ = WebrtcStream.objects.get_or_create(
             device=self,
             rtp_port=settings.JANUS_EDGE_VIDEO_RTP_PORT,
             config_type=JanusConfigType.EDGE,
@@ -124,7 +124,7 @@ class Device(SafeDeleteModel):
     def janus_cloud(self):
         # RTP port is automatically assigned from available open ports
         # admin_secret intentionally set to Null to avoid leaking cloud gateway secret via API responses
-        obj, _ = JanusStream.objects.get_or_create(
+        obj, _ = WebrtcStream.objects.get_or_create(
             device=self, config_type=JanusConfigType.CLOUD
         )
         return obj
@@ -416,7 +416,7 @@ class CloudiotDevice(SafeDeleteModel):
         return f"/devices/{self.num_id}/state"
 
 
-class JanusStream(SafeDeleteModel):
+class WebrtcStream(SafeDeleteModel):
     """
     Configuration model intended for use with Janus Gateway Streaming Plugin API
 

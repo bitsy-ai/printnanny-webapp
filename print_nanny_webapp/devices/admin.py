@@ -1,5 +1,5 @@
 from django.contrib import admin
-from print_nanny_webapp.devices.models import Device, JanusStream
+from print_nanny_webapp.devices.models import Device, WebrtcStream
 
 
 @admin.register(Device)
@@ -8,8 +8,8 @@ class DeviceAdmin(admin.ModelAdmin):
     model = Device
 
 
-@admin.register(JanusStream)
-class JanusStreamAdmin(admin.ModelAdmin):
+@admin.register(WebrtcStream)
+class WebrtcStreamAdmin(admin.ModelAdmin):
     list_display = (
         "device",
         "device_hostname",
@@ -17,7 +17,7 @@ class JanusStreamAdmin(admin.ModelAdmin):
         "config_type",
         "created_dt",
     )
-    model = JanusStream
+    model = WebrtcStream
 
     @admin.display(ordering="device__hostname", description="Device Hostname")
     def device_hostname(self, obj):

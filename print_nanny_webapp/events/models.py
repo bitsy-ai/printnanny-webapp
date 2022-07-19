@@ -74,7 +74,7 @@ class WebRTCCommand(Event):
     )
     event_name = models.CharField(max_length=32, choices=WebRTCCommandName.choices)
     stream = models.ForeignKey(
-        "devices.JanusStream", on_delete=models.CASCADE, related_name="webrtc_commands"
+        "devices.WebrtcStream", on_delete=models.CASCADE, related_name="webrtc_commands"
     )
     data = models.JSONField(default=dict)
 
@@ -94,6 +94,6 @@ class WebRTCEvent(Event):
     )
     event_name = models.CharField(max_length=32, choices=WebRTCEventName.choices)
     stream = models.ForeignKey(
-        "devices.JanusStream", on_delete=models.CASCADE, related_name="webrtc_events"
+        "devices.WebrtcStream", on_delete=models.CASCADE, related_name="webrtc_events"
     )
     data = models.JSONField(default=dict)
