@@ -340,10 +340,10 @@ clean-rust-client:
 
 ts-client: clean-ts-client
 	java -jar $(OPENAPI_GENERATOR_CLI_JAR) validate \
-		-i http://localhost:8000/api/schema --recommend
+		-i http://localhost:8000/api/schema/ --recommend
 
 	java -jar $(HOME)/projects/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar  generate \
-		-i http://localhost:8000/api/schema \
+		-i http://localhost:8000/api/schema/ \
 		-g typescript-axios \
 		-o $(PWD)/clients/typescript \
 		-c $(PWD)/clients/typescript.yaml
@@ -357,11 +357,11 @@ ts-build:
 rust-client: clean-rust-client openapi-custom-rust-codegen
 	java -cp "$(OPENAPI_CUSTOM_RUST_GENERATOR_JAR):$(OPENAPI_GENERATOR_CLI_JAR)" \
 		org.openapitools.codegen.OpenAPIGenerator validate \
-		-i http://localhost:8000/api/schema --recommend 
+		-i http://localhost:8000/api/schema/ --recommend 
 
 	java -cp "$(OPENAPI_CUSTOM_RUST_GENERATOR_JAR):$(OPENAPI_GENERATOR_CLI_JAR)" \
 		org.openapitools.codegen.OpenAPIGenerator generate \
-		-i http://localhost:8000/api/schema \
+		-i http://localhost:8000/api/schema/ \
 		-g custom-rust-client \
 		-o $(PWD)/clients/rust \
 		-c $(PWD)/clients/rust.yaml
@@ -395,10 +395,10 @@ python-protobuf:
 
 python-client: clean-python-client # python-flatbuffer python-protobuf
 	java -jar $(HOME)/projects/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar  validate \
-		-i http://localhost:8000/api/schema --recommend
+		-i http://localhost:8000/api/schema/ --recommend
 
 	java -jar $(HOME)/projects/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar  generate \
-		-i http://localhost:8000/api/schema \
+		-i http://localhost:8000/api/schema/ \
 		-g python-legacy \
 		-o $(PWD)/clients/python \
 		-c $(PWD)/clients/python.yaml \
