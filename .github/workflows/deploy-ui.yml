@@ -6,7 +6,9 @@ jobs:
   deploy:
     environment: live
     env:
-      PRINTNANNY_API_URL: "https://api.printnanny.ai"
+      # variables must be prefixed with VITE_ to be referenced in vite build
+      # https://vitejs.dev/guide/env-and-mode.html#env-files
+      VITE_PRINTNANNY_API_URL: "https://api.printnanny.ai"
       GCP_SERVICE_ACCOUNT: ${{ secrets.PROD_GCP_SERVICE_ACCOUNT }}
       GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.PROD_GCP_SERVICE_ACCOUNT_KEY  }}
       GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT }}
