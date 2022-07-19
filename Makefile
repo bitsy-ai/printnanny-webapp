@@ -126,7 +126,7 @@ cypress-ci: octoprint-wait
 sandbox-logs:
 	kubectl logs --all-containers -l branch=$(GIT_BRANCH)
 
-ui:
+ui: ts-build
 	cd ui && npm install && npm run build
 
 ui-deploy:
@@ -342,6 +342,9 @@ ts-client: clean-ts-client
 		-o $(PWD)/clients/typescript \
 		-c $(PWD)/clients/typescript.yaml
 
+	cd clients/typescript && npm install && npm run build
+
+ts-build: 
 	cd clients/typescript && npm install && npm run build
 
 # debugging info: https://openapi-generator.tech/docs/debugging#templates
