@@ -20,8 +20,6 @@ from print_nanny_webapp.alerts.api.views import (
 
 from print_nanny_webapp.partners.api.views import GeeksViewSet
 from print_nanny_webapp.subscriptions.api.views import (
-    BillingCancelView,
-    BillingReactivateView,
     BillingSummaryView,
 )
 from print_nanny_webapp.utils.api.views import PrintNannyApiConfigViewset
@@ -51,16 +49,6 @@ other_urls = [
     path("devices/<slug:hostname>", DeviceHostnameViewSet.as_view({"get": "retrieve"})),
     path("client", PrintNannyApiConfigViewset.as_view(), name="client"),
     path("billing/summary", BillingSummaryView.as_view(), name="billing-summary"),
-    path(
-        "billing/<slug:subscription_id>/cancel/",
-        BillingCancelView.as_view(),
-        name="billing-cancel",
-    ),
-    path(
-        "billing/<slug:subscription_id>/reactivate/",
-        BillingReactivateView.as_view(),
-        name="billing-reactivate",
-    ),
 ]
 
 devices_router = NestedSimpleRouter(router, r"devices", lookup="device")
@@ -103,7 +91,8 @@ router.register(
 
 router.register("events", EventViewSet, basename="events")
 router.register("commands", CommandViewSet, basename="commands")
-router.register(r"partners/3d-geeks", GeeksViewSet, basename="partner-3d-geeks")
+# TODO: re-enable if 3d geeks partnership is finalized
+# router.register(r"partners/3d-geeks", GeeksViewSet, basename="partner-3d-geeks")
 
 app_name = "api"
 

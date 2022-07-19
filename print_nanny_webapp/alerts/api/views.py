@@ -39,13 +39,6 @@ class AlreadyExists(APIException):
     default_code = "already_exists"
 
 
-@extend_schema_view(
-    tags=["alerts"],
-    request=AlertSerializer,
-    responses={
-        200: AlertSerializer,
-    },
-)
 class AlertViewSet(
     GenericViewSet,
     ListModelMixin,
@@ -127,7 +120,6 @@ class AlertViewSet(
 
 
 @extend_schema_view(
-    tags=["alerts"],
     list=extend_schema(responses=AlertSettingsSerializer),
     update=extend_schema(
         request=AlertSettingsSerializer,
