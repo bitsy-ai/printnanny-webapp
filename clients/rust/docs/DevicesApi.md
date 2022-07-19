@@ -18,7 +18,6 @@ Method | HTTP request | Description
 [**devices_janus_streams_retrieve**](DevicesApi.md#devices_janus_streams_retrieve) | **GET** /api/devices/{device_id}/janus-streams/{id}/ | 
 [**devices_janus_streams_update**](DevicesApi.md#devices_janus_streams_update) | **PUT** /api/devices/{device_id}/janus-streams/{id}/ | 
 [**devices_list**](DevicesApi.md#devices_list) | **GET** /api/devices/ | 
-[**devices_octoprint_servers_list**](DevicesApi.md#devices_octoprint_servers_list) | **GET** /api/devices/{device_id}/octoprint-servers/ | 
 [**devices_partial_update**](DevicesApi.md#devices_partial_update) | **PATCH** /api/devices/{id}/ | 
 [**devices_public_keys_create**](DevicesApi.md#devices_public_keys_create) | **POST** /api/devices/{device_id}/public-keys/ | 
 [**devices_public_keys_list**](DevicesApi.md#devices_public_keys_list) | **GET** /api/devices/{device_id}/public-keys/ | 
@@ -441,35 +440,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::PaginatedDeviceList**](PaginatedDeviceList.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## devices_octoprint_servers_list
-
-> crate::models::PaginatedOctoPrintServerList devices_octoprint_servers_list(device_id, page)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-**page** | Option<**i32**> | A page number within the paginated result set. |  |
-
-### Return type
-
-[**crate::models::PaginatedOctoPrintServerList**](PaginatedOctoPrintServerList.md)
 
 ### Authorization
 

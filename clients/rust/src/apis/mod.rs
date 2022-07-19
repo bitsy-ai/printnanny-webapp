@@ -74,7 +74,6 @@ pub mod events_api;
 pub mod janus_api;
 pub mod octoprint_api;
 pub mod octoprint_servers_api;
-pub mod partners_geeks3d_api;
 pub mod schema_api;
 
 pub mod configuration;
