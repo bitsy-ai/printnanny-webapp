@@ -97,7 +97,7 @@ import {
   ChatIcon,
   MapIcon,
   CogIcon,
-  SparklesIcon
+  SparklesIcon,
 } from "@heroicons/vue/outline";
 
 const router = useRouter();
