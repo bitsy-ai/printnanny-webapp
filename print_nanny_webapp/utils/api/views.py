@@ -24,23 +24,3 @@ generic_get_errors = {404: ErrorDetailSerializer} | generic_list_errors
 generic_create_errors = {409: ErrorDetailSerializer} | generic_list_errors
 
 generic_update_errors = generic_create_errors
-
-
-class PrintNannyApiConfigViewset(APIView):
-    # allow anonymous requests (omit token)
-    permission_classes: List[Any] = []
-
-    @extend_schema(
-        operation_id="api_config_retreive",
-        tags=["client", "config"],
-        responses={
-            200: PrintNannyApiConfigSerializer(many=False),
-        }
-        | generic_get_errors,
-    )
-    def get(self, request, *args, **kwargs):
-        data = get_api_config(request)
-        serializer = PrintNannyApiConfigSerializer(
-            instance=data, context=dict(request=request), many=False
-        )
-        return Response(serializer.data)
