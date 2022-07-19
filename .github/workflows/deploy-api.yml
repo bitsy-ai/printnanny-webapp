@@ -58,7 +58,6 @@ jobs:
       DJANGO_ADMIN_URL: ${{ secrets.DJANGO_ADMIN_URL }}
       DJANGO_ALLOWED_HOSTS: .live.printnanny.ai,.printnanny.ai,.print-nanny.com
       DJANGO_BASE_URL: ${{ secrets.DJANGO_BASE_URL }}
-      DJANGO_STATIC_URL: ${{ secrets.DJANGO_STATIC_URL }}
       DJANGO_DATABASE_URL: ${{ secrets.DJANGO_DATABASE_URL }}
       DJANGO_GCP_STORAGE_BUCKET_NAME: ${{ secrets.DJANGO_GCP_STORAGE_BUCKET_NAME }}
       DJANGO_POSTGRES_DB: ${{ secrets.DJANGO_POSTGRES_DB }}

@@ -7,7 +7,7 @@
   </div>
 </template>
 <script setup lang="ts">
-const commitDate = new Date(import.meta.env.VITE_GIT_COMMIT_DATE);
+// const commitDate = new Date(import.meta.env.VITE_GIT_COMMIT_DATE);
 const commitBranch = import.meta.env.VITE_GIT_BRANCH_NAME;
 const commitHash = import.meta.env.VITE_GIT_COMMIT_HASH;
 </script>

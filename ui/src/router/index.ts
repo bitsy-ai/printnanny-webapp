@@ -1,10 +1,13 @@
-import { createRouter, createWebHistory } from "vue-router";
+import {
+  createRouter,
+  createWebHistory,
+} from "vue-router";
 import HomeView from "@/views/HomeView.vue";
 import DashboardView from "@/views/DashboardView.vue";
 import { useAccountStore } from "@/stores/account";
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes: [
     {
       path: "/",
@@ -12,18 +15,18 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: "/devices",
+      path: "/devices/",
       name: "devices",
       component: DashboardView,
     },
     {
-      path: "/login",
+      path: "/login/",
       name: "login",
       component: () => import("@/views/LoginView.vue"),
     },
     // clear account store data and direct to home
     {
-      path: "/logout",
+      path: "/logout/",
       name: "logout",
       redirect: { name: "home" },
       beforeEnter: async (_to, _from) => {
@@ -32,7 +35,7 @@ const router = createRouter({
       },
     },
     {
-      path: "/about",
+      path: "/about/",
       name: "about",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
@@ -41,7 +44,7 @@ const router = createRouter({
     },
     // begin device routes
     {
-      path: "/device/connect",
+      path: "/device/connect/",
       name: "device-connect",
       component: () => import("@/views/DeviceCreateView.vue"),
     },
@@ -49,27 +52,27 @@ const router = createRouter({
 
     // begin profile/settings/billings routers
     {
-      path: "/settings",
+      path: "/settings/",
       name: "settings",
       component: () => import("@/views/SettingsView.vue"),
     },
     {
-      path: "/settings/billing",
+      path: "/settings/billing/",
       name: "billing",
       component: () => import("@/views/SettingsView.vue"),
     },
     {
-      path: "/privacy",
+      path: "/privacy/",
       name: "privacy",
       component: () => import("@/views/PrivacyView.vue"),
     },
     {
-      path: "/terms",
+      path: "/terms/",
       name: "terms",
       component: () => import("@/views/TermsOfServiceView.vue"),
     },
     {
-      path: "/notifications/settings",
+      path: "/notifications/settings/",
       name: "alertSettings",
       component: () => import("@/views/SettingsView.vue"),
     },

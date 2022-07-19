@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "vite",
+    "dev-build": "vite build --base=/ui/ --mode dev && cd .. && make collectstatic",
     "build": "run-p lint type-check build-only",
     "preview": "vite preview --port 4173",
     "test:unit": "vitest --environment jsdom",
