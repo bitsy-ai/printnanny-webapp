@@ -403,6 +403,8 @@ REST_FRAMEWORK = {
 # Your stuff...
 # ------------------------------------------------------------------------------
 
+API_VERSION = open("version.txt", "r").read()
+
 SPECTACULAR_SETTINGS = {
     "SCHEMA_PATH_PREFIX": "/api",
     # 'COMPONENT_NO_READ_ONLY_REQUIRED': True,
@@ -447,6 +449,7 @@ SPECTACULAR_SETTINGS = {
         "email": "leigh@printnanny.ai",
         "url": "https://printnanny.ai",
     },
+    "VERSION": API_VERSION,
     "PREPROCESSING_HOOKS": [
         "drf_spectacular.hooks.preprocess_exclude_path_format",
     ],
