@@ -30,4 +30,5 @@ jobs:
       - name: Invalidate Cache
         id: cache
         run: |
+          gcloud config set project $GCP_PROJECT
           make ui-invalidate-cache
