@@ -14,8 +14,7 @@ export const useAlertStore = defineStore({
   }),
   getters: {
     showEmpty: (state) => state.loading == false && state.alerts.length == 0,
-    settingsFormReady: (state) =>
-      state.settings !== undefined,
+    settingsFormReady: (state) => state.settings !== undefined,
   },
   actions: {
     async fetchSettings() {

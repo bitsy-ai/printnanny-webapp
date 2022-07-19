@@ -3,15 +3,18 @@ import { useAlertStore } from "@/stores/alerts";
 import * as api from "printnanny-api-client";
 
 const alertSettingsFieldset = {
-  event_types: [{
+  event_types: [
+    {
       value: api.EventTypesEnum.PrintQuality,
-      display: "Quality control alerts"
-    }, {
-      value:  api.EventTypesEnum.PrintStatus,
-      display: "Print status updates (percent progress, paused, resumed, failed)"
-    }]
-
-}
+      display: "Quality control alerts",
+    },
+    {
+      value: api.EventTypesEnum.PrintStatus,
+      display:
+        "Print status updates (percent progress, paused, resumed, failed)",
+    },
+  ],
+};
 
 const alertStore = useAlertStore();
 alertStore.fetchSettings();
