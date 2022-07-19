@@ -4,7 +4,6 @@
 Cargo.toml
 README.md
 docs/AccountsApi.md
-docs/AggregateUsageEnum.md
 docs/Alert.md
 docs/AlertBulkResponse.md
 docs/AlertMethodsEnum.md
@@ -15,10 +14,7 @@ docs/AlertSettingsRequest.md
 docs/AlertsApi.md
 docs/AuthApi.md
 docs/BillingApi.md
-docs/BillingReasonEnum.md
-docs/BillingSchemeEnum.md
 docs/BillingSummary.md
-docs/BlankEnum.md
 docs/CallbackTokenAuthRequest.md
 docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
@@ -29,7 +25,6 @@ docs/CollectionMethodEnum.md
 docs/CommandsApi.md
 docs/Config.md
 docs/ConfigApi.md
-docs/CustomerTaxExemptEnum.md
 docs/DetailResponse.md
 docs/Device.md
 docs/DeviceRequest.md
@@ -46,7 +41,6 @@ docs/EventSource.md
 docs/EventTypeEnum.md
 docs/EventTypesEnum.md
 docs/EventsApi.md
-docs/FailureCodeEnum.md
 docs/GcodeFile.md
 docs/IntervalEnum.md
 docs/JanusApi.md
@@ -55,7 +49,6 @@ docs/JanusStream.md
 docs/JanusStreamRequest.md
 docs/LoginRequest.md
 docs/MobileAuthRequest.md
-docs/NullEnum.md
 docs/OctoPrintBackup.md
 docs/OctoPrintEvent.md
 docs/OctoPrintEventModel.md
@@ -113,12 +106,7 @@ docs/RegisterRequest.md
 docs/ResendEmailVerificationRequest.md
 docs/RestAuthDetail.md
 docs/SchemaApi.md
-docs/StripeCharge.md
-docs/StripeChargeStatusEnum.md
 docs/StripeCustomer.md
-docs/StripeEvent.md
-docs/StripeNextInvoice.md
-docs/StripeNextInvoiceStatusEnum.md
 docs/StripePaymentMethod.md
 docs/StripePlan.md
 docs/StripeSubscription.md
@@ -132,7 +120,6 @@ docs/TestEvent.md
 docs/TestEventModel.md
 docs/TestEventName.md
 docs/TestEventRequest.md
-docs/TiersModeEnum.md
 docs/Token.md
 docs/TokenResponse.md
 docs/TypeEnum.md
@@ -167,17 +154,13 @@ src/apis/octoprint_servers_api.rs
 src/apis/partners_geeks3d_api.rs
 src/apis/schema_api.rs
 src/lib.rs
-src/models/aggregate_usage_enum.rs
 src/models/alert.rs
 src/models/alert_bulk_response.rs
 src/models/alert_methods_enum.rs
 src/models/alert_request.rs
 src/models/alert_settings.rs
 src/models/alert_settings_request.rs
-src/models/billing_reason_enum.rs
-src/models/billing_scheme_enum.rs
 src/models/billing_summary.rs
-src/models/blank_enum.rs
 src/models/callback_token_auth_request.rs
 src/models/callback_token_verification.rs
 src/models/callback_token_verification_request.rs
@@ -185,7 +168,6 @@ src/models/cloudiot_device.rs
 src/models/cloudiot_device_request.rs
 src/models/collection_method_enum.rs
 src/models/config.rs
-src/models/customer_tax_exempt_enum.rs
 src/models/detail_response.rs
 src/models/device.rs
 src/models/device_request.rs
@@ -200,7 +182,6 @@ src/models/error_detail.rs
 src/models/event_source.rs
 src/models/event_type_enum.rs
 src/models/event_types_enum.rs
-src/models/failure_code_enum.rs
 src/models/gcode_file.rs
 src/models/interval_enum.rs
 src/models/janus_config_type.rs
@@ -209,7 +190,6 @@ src/models/janus_stream_request.rs
 src/models/login_request.rs
 src/models/mobile_auth_request.rs
 src/models/mod.rs
-src/models/null_enum.rs
 src/models/octo_print_backup.rs
 src/models/octo_print_event.rs
 src/models/octo_print_event_model.rs
@@ -263,12 +243,7 @@ src/models/public_key_request.rs
 src/models/register_request.rs
 src/models/resend_email_verification_request.rs
 src/models/rest_auth_detail.rs
-src/models/stripe_charge.rs
-src/models/stripe_charge_status_enum.rs
 src/models/stripe_customer.rs
-src/models/stripe_event.rs
-src/models/stripe_next_invoice.rs
-src/models/stripe_next_invoice_status_enum.rs
 src/models/stripe_payment_method.rs
 src/models/stripe_plan.rs
 src/models/stripe_subscription.rs
@@ -282,7 +257,6 @@ src/models/test_event.rs
 src/models/test_event_model.rs
 src/models/test_event_name.rs
 src/models/test_event_request.rs
-src/models/tiers_mode_enum.rs
 src/models/token.rs
 src/models/token_response.rs
 src/models/type_enum.rs

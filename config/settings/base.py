@@ -450,9 +450,6 @@ SPECTACULAR_SETTINGS = {
     "PREPROCESSING_HOOKS": [
         "drf_spectacular.hooks.preprocess_exclude_path_format",
     ],
-    # "POSTPROCESSING_HOOKS": [
-    #     "print_nanny_webapp.utils.api.openapi.drf_spectacular_postprocessor"
-    # ],
 }
 
 # django-filters

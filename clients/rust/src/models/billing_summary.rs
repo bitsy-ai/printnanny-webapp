@@ -15,12 +15,6 @@
 pub struct BillingSummary {
     #[serde(rename = "subscription")]
     pub subscription: Box<crate::models::StripeSubscription>,
-    #[serde(rename = "charges")]
-    pub charges: Vec<crate::models::StripeCharge>,
-    #[serde(rename = "events")]
-    pub events: Vec<crate::models::StripeEvent>,
-    #[serde(rename = "next_invoice", skip_serializing_if = "Option::is_none")]
-    pub next_invoice: Option<Box<crate::models::StripeNextInvoice>>,
     #[serde(rename = "customer")]
     pub customer: Box<crate::models::StripeCustomer>,
     #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
@@ -30,12 +24,9 @@ pub struct BillingSummary {
 }
 
 impl BillingSummary {
-    pub fn new(subscription: crate::models::StripeSubscription, charges: Vec<crate::models::StripeCharge>, events: Vec<crate::models::StripeEvent>, customer: crate::models::StripeCustomer, billing_portal_url: String) -> BillingSummary {
+    pub fn new(subscription: crate::models::StripeSubscription, customer: crate::models::StripeCustomer, billing_portal_url: String) -> BillingSummary {
         BillingSummary {
             subscription: Box::new(subscription),
-            charges,
-            events,
-            next_invoice: None,
             customer: Box::new(customer),
             user: None,
             billing_portal_url,
