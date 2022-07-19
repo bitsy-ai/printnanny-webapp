@@ -8,7 +8,6 @@ jobs:
     env:
       PRINTNANNY_API_URL: "https://api.printnanny.ai"
       UI_DEPLOY_PATH: "gs://print-nanny-cdn/ui/"
-    needs: [lint, shellcheck, mypy]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-node@v2
