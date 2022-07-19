@@ -25,7 +25,7 @@ export const useAccountStore = defineStore({
         const alert: UiAlert = {
           header: "Thanks for signing up!",
           error: undefined,
-          message: `We'll send an email to ${email} when beta spots open. `,
+          message: `When beta spots open, we'll send an email to: ${email}`,
           actions: [],
         };
         alerts.push(alert);
