@@ -42,7 +42,7 @@ if "EMAIL" in api_settings.PASSWORDLESS_AUTH_TYPES:
         ),
     ]
 
-if "EMAIL" in api_settings.PASSWORDLESS_AUTH_TYPES:
+if "MOBILE" in api_settings.PASSWORDLESS_AUTH_TYPES:
     urlpatterns += [
         path(
             api_settings.PASSWORDLESS_AUTH_PREFIX + "mobile/",
