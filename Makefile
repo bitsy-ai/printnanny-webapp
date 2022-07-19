@@ -42,7 +42,7 @@ OPENAPI_CUSTOM_RUST_GENERATOR_JAR ?= $(HOME)/.m2/repository/org/openapitools/rus
 PRINTNANNY_CONFIG_DEV ?= $(TMPDIR)/printnanny.toml
 
 CDN_BUCKET ?= print-nanny-cdn
-CDN_DEPLOY_PATH ?= ${CDN_BUCKET)/ui/
+CDN_DEPLOY_PATH ?= $(CDN_BUCKET)/ui/
 CDN_CACHE_INVALIDATE_PATH ?= /ui/*
 
 

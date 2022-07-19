@@ -25,4 +25,7 @@ jobs:
         run: |
           make ui
           make ui-deploy
+      - name: Invalidate Cache
+        id: cache
+        run: |
           make ui-invalidate-cache
