@@ -12,7 +12,7 @@ const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate);
 // attach router to pinia store, so navigation/history may be accessed from store actions
 pinia.use(({ store }) => {
-  store.router = markRaw(router);
+  store.$router = markRaw(router);
 });
 app.use(pinia);
 

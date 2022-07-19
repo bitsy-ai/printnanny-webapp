@@ -147,6 +147,7 @@
         </slot>
       </main>
     </div>
+    <BuildInfoFooter />
   </div>
 </template>
 
@@ -166,6 +167,7 @@ import DeviceList from "@/components/devices/DeviceList.vue";
 import SidebarNav from "@/components/nav/SidebarNav.vue";
 import MobileProfileMenu from "@/components/nav/MobileProfileMenu.vue";
 import MobileSidebarNav from "@/components/nav/MobileSidebarNav.vue";
+import BuildInfoFooter from "@/components/footer/BuildInfoFooter.vue";
 
 const router = useRouter();
 
