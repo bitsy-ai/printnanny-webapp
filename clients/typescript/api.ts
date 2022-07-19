@@ -3758,6 +3758,30 @@ export interface StripeSubscription {
     'schedule': StripeSubscriptionSchedule;
     /**
      * 
+     * @type {boolean}
+     * @memberof StripeSubscription
+     */
+    'is_period_current': boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof StripeSubscription
+     */
+    'is_status_current': boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof StripeSubscription
+     */
+    'is_status_temporarily_current': boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof StripeSubscription
+     */
+    'is_valid': boolean;
+    /**
+     * 
      * @type {string}
      * @memberof StripeSubscription
      */
