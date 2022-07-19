@@ -608,6 +608,7 @@ PASSWORDLESS_AUTH = {
     "PASSWORDLESS_USER_MARK_EMAIL_VERIFIED": True,
     "PASSWORDLESS_EMAIL_NOREPLY_ADDRESS": "noreply@print-nanny.com",
     "PASSWORDLESS_EMAIL_PLAINTEXT_MESSAGE": "Enter this token to sign in: %s",
+    "PASSWORDLESS_AUTH_PREFIX": "accounts/2fa-auth/",
 }
 
 # django-coturn
