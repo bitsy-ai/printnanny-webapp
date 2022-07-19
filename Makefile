@@ -510,6 +510,9 @@ migrations:
 migrate:
 	docker-compose -f local.yml exec django python manage.py migrate
 
+collectstatic:
+	docker-compose -f local.yml exec django python manage.py collectstatic
+
 dev-config: $(TMPDIR)
 	docker-compose -f local.yml exec django python manage.py devconfig \
 		--email=$(DJANGO_SUPERUSER_EMAIL) \

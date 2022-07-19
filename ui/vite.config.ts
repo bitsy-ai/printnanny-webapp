@@ -1,5 +1,5 @@
 import { fileURLToPath, URL } from "url";
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import { execSync } from "child_process";
@@ -21,23 +21,31 @@ process.env.VITE_GIT_COMMIT_HASH = commitHash;
 process.env.VITE_GIT_LAST_COMMIT_MESSAGE = lastCommitMessage;
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  server: {
-    host: "0.0.0.0",
-    cors: false,
-    proxy: {
-      "/api": {
-        target: "http://localhost:8000",
-        changeOrigin: true,
-        secure: false,
-        ws: true,
+export default defineConfig(({ command, mode }) => {
+  const env = loadEnv(mode, process.cwd());
+  return {
+    server: {
+      fs: {
+        // Allow serving files from one level up to the project root
+        allow: ["../clients/typescript", "src"],
+      },
+      host: "0.0.0.0",
+      cors: false,
+      proxy: {
+        "/api": {
+          target: env.VITE_PRINTNANNY_API_URL,
+          changeOrigin: true,
+          secure: false,
+          ws: true,
+        },
       },
     },
-  },
-  plugins: [vue(), vueJsx()],
-  resolve: {
-    alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
+    envDir: ".env",
+    plugins: [vue(), vueJsx()],
+    resolve: {
+      alias: {
+        "@": fileURLToPath(new URL("./src", import.meta.url)),
+      },
     },
-  },
+  };
 });
