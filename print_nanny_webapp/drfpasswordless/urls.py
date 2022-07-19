@@ -6,9 +6,6 @@ from drfpasswordless.views import (
     ObtainEmailCallbackToken,
     ObtainMobileCallbackToken,
     ObtainAuthTokenFromCallbackToken,
-    VerifyAliasFromCallbackToken,
-    ObtainEmailVerificationCallbackToken,
-    ObtainMobileVerificationCallbackToken,
 )
 
 app_name = "drfpasswordless"

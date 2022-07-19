@@ -22,7 +22,6 @@ from print_nanny_webapp.partners.api.views import GeeksViewSet
 from print_nanny_webapp.subscriptions.api.views import (
     BillingSummaryView,
 )
-from print_nanny_webapp.utils.api.views import PrintNannyApiConfigViewset
 from print_nanny_webapp.octoprint.api.views import (
     GcodeFileViewSet,
     OctoPrintBackupViewset,
@@ -47,7 +46,6 @@ router.register("devices", DeviceViewSet)
 # enables /api/devices/:hostname lookup (no nested routing)
 other_urls = [
     path("devices/<slug:hostname>", DeviceHostnameViewSet.as_view({"get": "retrieve"})),
-    path("client", PrintNannyApiConfigViewset.as_view(), name="client"),
     path("billing/summary", BillingSummaryView.as_view(), name="billing-summary"),
 ]
 
