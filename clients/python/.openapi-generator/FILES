@@ -5,7 +5,6 @@
 MANIFEST.in
 README.md
 docs/AccountsApi.md
-docs/AggregateUsageEnum.md
 docs/Alert.md
 docs/AlertBulkResponse.md
 docs/AlertMethodsEnum.md
@@ -16,10 +15,7 @@ docs/AlertSettingsRequest.md
 docs/AlertsApi.md
 docs/AuthApi.md
 docs/BillingApi.md
-docs/BillingReasonEnum.md
-docs/BillingSchemeEnum.md
 docs/BillingSummary.md
-docs/BlankEnum.md
 docs/CallbackTokenAuthRequest.md
 docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
@@ -30,7 +26,6 @@ docs/CollectionMethodEnum.md
 docs/CommandsApi.md
 docs/Config.md
 docs/ConfigApi.md
-docs/CustomerTaxExemptEnum.md
 docs/DetailResponse.md
 docs/Device.md
 docs/DeviceRequest.md
@@ -47,7 +42,6 @@ docs/EventSource.md
 docs/EventTypeEnum.md
 docs/EventTypesEnum.md
 docs/EventsApi.md
-docs/FailureCodeEnum.md
 docs/GcodeFile.md
 docs/IntervalEnum.md
 docs/JanusApi.md
@@ -56,7 +50,6 @@ docs/JanusStream.md
 docs/JanusStreamRequest.md
 docs/LoginRequest.md
 docs/MobileAuthRequest.md
-docs/NullEnum.md
 docs/OctoPrintBackup.md
 docs/OctoPrintEvent.md
 docs/OctoPrintEventModel.md
@@ -84,9 +77,6 @@ docs/PaginatedPolymorphicCommandList.md
 docs/PaginatedPolymorphicEventList.md
 docs/PaginatedPublicKeyList.md
 docs/PaginatedSystemInfoList.md
-docs/Partner3DGeeksAlert.md
-docs/Partner3DGeeksMetadata.md
-docs/PartnersGeeks3dApi.md
 docs/PasswordChangeRequest.md
 docs/PasswordResetConfirmRequest.md
 docs/PasswordResetRequest.md
@@ -114,12 +104,7 @@ docs/RegisterRequest.md
 docs/ResendEmailVerificationRequest.md
 docs/RestAuthDetail.md
 docs/SchemaApi.md
-docs/StripeCharge.md
-docs/StripeChargeStatusEnum.md
 docs/StripeCustomer.md
-docs/StripeEvent.md
-docs/StripeNextInvoice.md
-docs/StripeNextInvoiceStatusEnum.md
 docs/StripePaymentMethod.md
 docs/StripePlan.md
 docs/StripeSubscription.md
@@ -133,7 +118,6 @@ docs/TestEvent.md
 docs/TestEventModel.md
 docs/TestEventName.md
 docs/TestEventRequest.md
-docs/TiersModeEnum.md
 docs/Token.md
 docs/TokenResponse.md
 docs/TypeEnum.md
@@ -165,23 +149,18 @@ printnanny_api_client/api/events_api.py
 printnanny_api_client/api/janus_api.py
 printnanny_api_client/api/octoprint_api.py
 printnanny_api_client/api/octoprint_servers_api.py
-printnanny_api_client/api/partners_geeks3d_api.py
 printnanny_api_client/api/schema_api.py
 printnanny_api_client/api_client.py
 printnanny_api_client/configuration.py
 printnanny_api_client/exceptions.py
 printnanny_api_client/models/__init__.py
-printnanny_api_client/models/aggregate_usage_enum.py
 printnanny_api_client/models/alert.py
 printnanny_api_client/models/alert_bulk_response.py
 printnanny_api_client/models/alert_methods_enum.py
 printnanny_api_client/models/alert_request.py
 printnanny_api_client/models/alert_settings.py
 printnanny_api_client/models/alert_settings_request.py
-printnanny_api_client/models/billing_reason_enum.py
-printnanny_api_client/models/billing_scheme_enum.py
 printnanny_api_client/models/billing_summary.py
-printnanny_api_client/models/blank_enum.py
 printnanny_api_client/models/callback_token_auth_request.py
 printnanny_api_client/models/callback_token_verification.py
 printnanny_api_client/models/callback_token_verification_request.py
@@ -189,7 +168,6 @@ printnanny_api_client/models/cloudiot_device.py
 printnanny_api_client/models/cloudiot_device_request.py
 printnanny_api_client/models/collection_method_enum.py
 printnanny_api_client/models/config.py
-printnanny_api_client/models/customer_tax_exempt_enum.py
 printnanny_api_client/models/detail_response.py
 printnanny_api_client/models/device.py
 printnanny_api_client/models/device_request.py
@@ -204,7 +182,6 @@ printnanny_api_client/models/error_detail.py
 printnanny_api_client/models/event_source.py
 printnanny_api_client/models/event_type_enum.py
 printnanny_api_client/models/event_types_enum.py
-printnanny_api_client/models/failure_code_enum.py
 printnanny_api_client/models/gcode_file.py
 printnanny_api_client/models/interval_enum.py
 printnanny_api_client/models/janus_config_type.py
@@ -212,7 +189,6 @@ printnanny_api_client/models/janus_stream.py
 printnanny_api_client/models/janus_stream_request.py
 printnanny_api_client/models/login_request.py
 printnanny_api_client/models/mobile_auth_request.py
-printnanny_api_client/models/null_enum.py
 printnanny_api_client/models/octo_print_backup.py
 printnanny_api_client/models/octo_print_event.py
 printnanny_api_client/models/octo_print_event_model.py
@@ -238,8 +214,6 @@ printnanny_api_client/models/paginated_polymorphic_command_list.py
 printnanny_api_client/models/paginated_polymorphic_event_list.py
 printnanny_api_client/models/paginated_public_key_list.py
 printnanny_api_client/models/paginated_system_info_list.py
-printnanny_api_client/models/partner3_d_geeks_alert.py
-printnanny_api_client/models/partner3_d_geeks_metadata.py
 printnanny_api_client/models/password_change_request.py
 printnanny_api_client/models/password_reset_confirm_request.py
 printnanny_api_client/models/password_reset_request.py
@@ -266,12 +240,7 @@ printnanny_api_client/models/public_key_request.py
 printnanny_api_client/models/register_request.py
 printnanny_api_client/models/resend_email_verification_request.py
 printnanny_api_client/models/rest_auth_detail.py
-printnanny_api_client/models/stripe_charge.py
-printnanny_api_client/models/stripe_charge_status_enum.py
 printnanny_api_client/models/stripe_customer.py
-printnanny_api_client/models/stripe_event.py
-printnanny_api_client/models/stripe_next_invoice.py
-printnanny_api_client/models/stripe_next_invoice_status_enum.py
 printnanny_api_client/models/stripe_payment_method.py
 printnanny_api_client/models/stripe_plan.py
 printnanny_api_client/models/stripe_subscription.py
@@ -285,7 +254,6 @@ printnanny_api_client/models/test_event.py
 printnanny_api_client/models/test_event_model.py
 printnanny_api_client/models/test_event_name.py
 printnanny_api_client/models/test_event_request.py
-printnanny_api_client/models/tiers_mode_enum.py
 printnanny_api_client/models/token.py
 printnanny_api_client/models/token_response.py
 printnanny_api_client/models/type_enum.py
@@ -309,7 +277,6 @@ setup.py
 test-requirements.txt
 test/__init__.py
 test/test_accounts_api.py
-test/test_aggregate_usage_enum.py
 test/test_alert.py
 test/test_alert_bulk_response.py
 test/test_alert_methods_enum.py
@@ -320,10 +287,7 @@ test/test_alert_settings_request.py
 test/test_alerts_api.py
 test/test_auth_api.py
 test/test_billing_api.py
-test/test_billing_reason_enum.py
-test/test_billing_scheme_enum.py
 test/test_billing_summary.py
-test/test_blank_enum.py
 test/test_callback_token_auth_request.py
 test/test_callback_token_verification.py
 test/test_callback_token_verification_request.py
@@ -334,7 +298,6 @@ test/test_collection_method_enum.py
 test/test_commands_api.py
 test/test_config.py
 test/test_config_api.py
-test/test_customer_tax_exempt_enum.py
 test/test_detail_response.py
 test/test_device.py
 test/test_device_request.py
@@ -351,7 +314,6 @@ test/test_event_source.py
 test/test_event_type_enum.py
 test/test_event_types_enum.py
 test/test_events_api.py
-test/test_failure_code_enum.py
 test/test_gcode_file.py
 test/test_interval_enum.py
 test/test_janus_api.py
@@ -360,7 +322,6 @@ test/test_janus_stream.py
 test/test_janus_stream_request.py
 test/test_login_request.py
 test/test_mobile_auth_request.py
-test/test_null_enum.py
 test/test_octo_print_backup.py
 test/test_octo_print_event.py
 test/test_octo_print_event_model.py
@@ -388,9 +349,6 @@ test/test_paginated_polymorphic_command_list.py
 test/test_paginated_polymorphic_event_list.py
 test/test_paginated_public_key_list.py
 test/test_paginated_system_info_list.py
-test/test_partner3_d_geeks_alert.py
-test/test_partner3_d_geeks_metadata.py
-test/test_partners_geeks3d_api.py
 test/test_password_change_request.py
 test/test_password_reset_confirm_request.py
 test/test_password_reset_request.py
@@ -418,12 +376,7 @@ test/test_register_request.py
 test/test_resend_email_verification_request.py
 test/test_rest_auth_detail.py
 test/test_schema_api.py
-test/test_stripe_charge.py
-test/test_stripe_charge_status_enum.py
 test/test_stripe_customer.py
-test/test_stripe_event.py
-test/test_stripe_next_invoice.py
-test/test_stripe_next_invoice_status_enum.py
 test/test_stripe_payment_method.py
 test/test_stripe_plan.py
 test/test_stripe_subscription.py
@@ -437,7 +390,6 @@ test/test_test_event.py
 test/test_test_event_model.py
 test/test_test_event_name.py
 test/test_test_event_request.py
-test/test_tiers_mode_enum.py
 test/test_token.py
 test/test_token_response.py
 test/test_type_enum.py

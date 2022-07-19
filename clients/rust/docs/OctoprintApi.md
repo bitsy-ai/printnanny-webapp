@@ -4,6 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**devices_octoprint_servers_list**](OctoprintApi.md#devices_octoprint_servers_list) | **GET** /api/devices/{device_id}/octoprint-servers/ | 
 [**octoprint_backups_create**](OctoprintApi.md#octoprint_backups_create) | **POST** /api/octoprint/backups/ | 
 [**octoprint_backups_list**](OctoprintApi.md#octoprint_backups_list) | **GET** /api/octoprint/backups/ | 
 [**octoprint_backups_retrieve**](OctoprintApi.md#octoprint_backups_retrieve) | **GET** /api/octoprint/backups/{id}/ | 
@@ -16,12 +17,44 @@ Method | HTTP request | Description
 [**octoprint_printer_profiles_update**](OctoprintApi.md#octoprint_printer_profiles_update) | **PUT** /api/octoprint/printer-profiles/{id}/ | 
 [**octoprint_profile_update_or_create**](OctoprintApi.md#octoprint_profile_update_or_create) | **POST** /api/octoprint/printer-profiles/update-or-create/ | 
 [**octoprint_server_update_or_create**](OctoprintApi.md#octoprint_server_update_or_create) | **POST** /api/octoprint-servers/update-or-create/ | 
+[**octoprint_servers_create**](OctoprintApi.md#octoprint_servers_create) | **POST** /api/octoprint-servers/ | 
+[**octoprint_servers_list**](OctoprintApi.md#octoprint_servers_list) | **GET** /api/octoprint-servers/ | 
+[**octoprint_servers_update**](OctoprintApi.md#octoprint_servers_update) | **PUT** /api/octoprint-servers/{id}/ | 
 [**octoprint_settings_create**](OctoprintApi.md#octoprint_settings_create) | **POST** /api/octoprint/settings/ | 
 [**octoprint_settings_list**](OctoprintApi.md#octoprint_settings_list) | **GET** /api/octoprint/settings/ | 
 [**octoprint_settings_partial_update**](OctoprintApi.md#octoprint_settings_partial_update) | **PATCH** /api/octoprint/settings/{id}/ | 
 [**octoprint_settings_update**](OctoprintApi.md#octoprint_settings_update) | **PUT** /api/octoprint/settings/{id}/ | 
 [**octoprint_settings_update_or_create**](OctoprintApi.md#octoprint_settings_update_or_create) | **POST** /api/octoprint/settings/update-or-create/ | 
 
+
+
+## devices_octoprint_servers_list
+
+> crate::models::PaginatedOctoPrintServerList devices_octoprint_servers_list(device_id, page)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_id** | **i32** |  | [required] |
+**page** | Option<**i32**> | A page number within the paginated result set. |  |
+
+### Return type
+
+[**crate::models::PaginatedOctoPrintServerList**](PaginatedOctoPrintServerList.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## octoprint_backups_create
@@ -349,6 +382,91 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
+**octo_print_server_request** | [**OctoPrintServerRequest**](OctoPrintServerRequest.md) |  | [required] |
+
+### Return type
+
+[**crate::models::OctoPrintServer**](OctoPrintServer.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## octoprint_servers_create
+
+> crate::models::OctoPrintServer octoprint_servers_create(octo_print_server_request)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**octo_print_server_request** | [**OctoPrintServerRequest**](OctoPrintServerRequest.md) |  | [required] |
+
+### Return type
+
+[**crate::models::OctoPrintServer**](OctoPrintServer.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## octoprint_servers_list
+
+> crate::models::PaginatedOctoPrintServerList octoprint_servers_list(page)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**page** | Option<**i32**> | A page number within the paginated result set. |  |
+
+### Return type
+
+[**crate::models::PaginatedOctoPrintServerList**](PaginatedOctoPrintServerList.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## octoprint_servers_update
+
+> crate::models::OctoPrintServer octoprint_servers_update(id, octo_print_server_request)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **i32** | A unique integer value identifying this octo print server. | [required] |
 **octo_print_server_request** | [**OctoPrintServerRequest**](OctoPrintServerRequest.md) |  | [required] |
 
 ### Return type

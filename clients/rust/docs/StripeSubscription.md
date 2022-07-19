@@ -8,6 +8,10 @@ Name | Type | Description | Notes
 **plan** | [**crate::models::StripePlan**](StripePlan.md) |  | 
 **default_payment_method** | [**crate::models::StripePaymentMethod**](StripePaymentMethod.md) |  | 
 **schedule** | [**crate::models::StripeSubscriptionSchedule**](StripeSubscriptionSchedule.md) |  | 
+**is_period_current** | **bool** |  | 
+**is_status_current** | **bool** |  | 
+**is_status_temporarily_current** | **bool** |  | 
+**is_valid** | **bool** |  | 
 **djstripe_created** | **String** |  | [readonly]
 **djstripe_updated** | **String** |  | [readonly]
 **id** | **String** |  | 

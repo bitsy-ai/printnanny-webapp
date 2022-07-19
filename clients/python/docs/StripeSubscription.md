@@ -8,6 +8,10 @@ Name | Type | Description | Notes
 **plan** | [**StripePlan**](StripePlan.md) |  | 
 **default_payment_method** | [**StripePaymentMethod**](StripePaymentMethod.md) |  | 
 **schedule** | [**StripeSubscriptionSchedule**](StripeSubscriptionSchedule.md) |  | 
+**is_period_current** | **bool** |  | 
+**is_status_current** | **bool** |  | 
+**is_status_temporarily_current** | **bool** |  | 
+**is_valid** | **bool** |  | 
 **djstripe_created** | **datetime** |  | [readonly] 
 **djstripe_updated** | **datetime** |  | [readonly] 
 **id** | **str** |  | 
