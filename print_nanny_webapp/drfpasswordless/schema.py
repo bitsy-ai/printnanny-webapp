@@ -2,11 +2,8 @@
 
 from drfpasswordless.serializers import (
     EmailAuthSerializer,
-    MobileAuthSerializer,
     CallbackTokenAuthSerializer,
     EmailVerificationSerializer,
-    MobileVerificationSerializer,
-    CallbackTokenVerificationSerializer,
 )
 from django.utils.module_loading import import_string
 from rest_framework import serializers
@@ -34,26 +31,7 @@ class FixObtainEmailCallbackToken(OpenApiViewExtension):
             @extend_schema(
                 request=EmailAuthSerializer,
                 responses=DetailResponseSerializer,
-                tags=[api_settings.PASSWORDLESS_AUTH_PREFIX.replace("/", "")],
-            )
-            def post(self, request, *args, **kwargs):
-                pass
-
-        return Fixed
-
-
-# /auth/mobile/
-class FixObtainMobileCallbackToken(OpenApiViewExtension):
-    target_class = "drfpasswordless.views.ObtainMobileCallbackToken"
-
-    def view_replacement(self):
-        class Fixed(self.target_class):
-            serializer_class = MobileAuthSerializer
-
-            @extend_schema(
-                request=MobileAuthSerializer,
-                responses=DetailResponseSerializer,
-                tags=[api_settings.PASSWORDLESS_AUTH_PREFIX.replace("/", "")],
+                tags=["accounts"],
             )
             def post(self, request, *args, **kwargs):
                 pass
@@ -73,7 +51,7 @@ class FixObtainAuthTokenFromCallbackToken(OpenApiViewExtension):
             @extend_schema(
                 request=CallbackTokenAuthSerializer,
                 responses=TokenResponseSerializer,
-                tags=[api_settings.PASSWORDLESS_AUTH_PREFIX.replace("/", "")],
+                tags=["accounts"],
             )
             def post(self, request, *args, **kwargs):
                 pass
@@ -94,28 +72,7 @@ class FixObtainEmailVerificationCallbackToken(OpenApiViewExtension):
             @extend_schema(
                 request=EmailVerificationSerializer,
                 responses=DetailResponseSerializer,
-                tags=[api_settings.PASSWORDLESS_AUTH_PREFIX.replace("/", "")],
-            )
-            def post(self, request, *args, **kwargs):
-                pass
-
-        return Fixed
-
-
-# /auth/verify/mobile
-# automatically sends a token attached to request.user email or mobile if available
-# (unused but wrapped for posterity)
-class FixObtainMobileVerificationCallbackToken(OpenApiViewExtension):
-    target_class = "drfpasswordless.views.ObtainMobileVerificationCallbackToken"
-
-    def view_replacement(self):
-        class Fixed(self.target_class):
-            serializer_class = MobileVerificationSerializer
-
-            @extend_schema(
-                request=MobileVerificationSerializer,
-                responses=DetailResponseSerializer,
-                tags=[api_settings.PASSWORDLESS_AUTH_PREFIX.replace("/", "")],
+                tags=["accounts"],
             )
             def post(self, request, *args, **kwargs):
                 pass
