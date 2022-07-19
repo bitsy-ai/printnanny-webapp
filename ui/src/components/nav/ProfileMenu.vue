@@ -116,11 +116,6 @@ const menuItems = [
     link: { name: "alertSettings" },
     icon: BellIcon,
   },
-  {
-    name: "UI Build Info",
-    link: { name: "buildInfo" },
-    icon: BellIcon,
-  },
 ];
 
 // external links or hrefs

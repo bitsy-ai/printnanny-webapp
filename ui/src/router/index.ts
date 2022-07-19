@@ -73,11 +73,6 @@ const router = createRouter({
       name: "alertSettings",
       component: () => import("@/views/SettingsView.vue"),
     },
-    {
-      path: "/build-info",
-      name: "buildInfo",
-      component: () => import("@/views/BuildInfoView.vue"),
-    },
   ],
 });
 
