@@ -49,9 +49,6 @@ jobs:
   deploy:
     environment: live
     env:
-      ARA_POSTGRES_HOST: ${{ secrets.ARA_POSTGRES_HOST }}
-      ARA_POSTGRES_PASSWORD: ${{ secrets.ARA_POSTGRES_PASSWORD }}
-      ARA_POSTGRES_USER: ${{ secrets.ARA_POSTGRES_USER }}
       COTURN_DATABASE_URL: ${{ secrets.COTURN_DATABASE_URL }}
       COTURN_SECRET_KEY: ${{ secrets.COTURN_SECRET_KEY }}
       COTURN_REALM: ${{ secrets.COTURN_REALM }}
