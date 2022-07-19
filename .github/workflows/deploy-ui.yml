@@ -26,13 +26,3 @@ jobs:
         run: |
           make ui
           make ui-deploy
-      - name: Deployed UI Build
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.PRINT_NANNY_DISCORD_DEPLOY_WEBHOOK }}
-        uses: Ilshidur/action-discord@master
-        with:
-          args: |
-            🚀 Deployed {{ EVENT_PAYLOAD.repository.full_name }}@{{ GITHUB_SHA }} 🚀
-            ```
-            API Client version: ${{ steps.deploy.outputs.printnanny_client_version }}
-            ```
