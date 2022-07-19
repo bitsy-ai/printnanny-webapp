@@ -58,15 +58,15 @@ devices_router.register(r"janus-streams", JanusStreamViewSet, basename="janus-st
 devices_router.register(r"system-info", SystemInfoViewSet, basename="system-info")
 devices_router.register(r"cloudiot", CloudiotDeviceViewSet, basename="cloudiot")
 devices_router.register(
-    r"octoprint-servers",
+    r"octoprint",
     OctoPrintServerByDeviceViewSet,
-    basename="octoprint-servers",
+    basename="octoprints",
 )
 
 router.register(
-    r"octoprint-servers",
+    r"octoprint",
     OctoPrintServerViewSet,
-    basename="octoprint-servers",
+    basename="octoprint",
 )
 router.register(
     r"octoprint/backups", OctoPrintBackupViewset, basename="octoprint-backups"

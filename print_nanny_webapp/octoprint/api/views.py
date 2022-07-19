@@ -172,6 +172,7 @@ class OctoPrintSettingsViewSet(
     lookup_field = "id"
 
     @extend_schema(
+        tags=["octoprint"],
         operation_id="octoprint_settings_update_or_create",
         responses={
             # 400: PrinterProfileSerializer,
@@ -232,12 +233,14 @@ class OctoPrintBackupViewset(
 ##
 @extend_schema_view(
     list=extend_schema(
+        tags=["octoprint"],
         responses={
             200: GcodeFileSerializer(),
         }
         | generic_list_errors,
     ),
     create=extend_schema(
+        tags=["octoprint"],
         request=GcodeFileSerializer,
         responses={
             201: GcodeFileSerializer,
@@ -245,6 +248,7 @@ class OctoPrintBackupViewset(
         | generic_create_errors,
     ),
     retrieve=extend_schema(
+        tags=["octoprint"],
         request=GcodeFileSerializer,
         responses={200: GcodeFileSerializer} | generic_get_errors,
     ),
@@ -268,12 +272,14 @@ class GcodeFileViewSet(
 ##
 @extend_schema_view(
     list=extend_schema(
+        tags=["octoprint"],
         responses={
             200: OctoPrinterProfileSerializer(),
         }
         | generic_list_errors,
     ),
     create=extend_schema(
+        tags=["octoprint"],
         request=OctoPrinterProfileSerializer,
         responses={
             201: OctoPrinterProfileSerializer,
@@ -281,6 +287,7 @@ class GcodeFileViewSet(
         | generic_create_errors,
     ),
     update=extend_schema(
+        tags=["octoprint"],
         request=OctoPrinterProfileSerializer,
         responses={
             202: OctoPrinterProfileSerializer,
