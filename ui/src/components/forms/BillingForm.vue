@@ -9,13 +9,13 @@
         <div>
           <h3 class="text-lg leading-6 font-medium text-gray-900">Billing</h3>
           <p
-            v-if="billingStore.summary?.subscription?.is_valid"
+            v-if="billingStore.summary?.subscription.is_valid"
             class="mt-1 text-sm text-gray-500"
           >
             Details about your current PrintNanny subscription?.
           </p>
           <p
-            v-if="!billingStore.summary?.subscription?.is_valid"
+            v-if="!billingStore.summary?.subscription.is_valid"
             class="mt-1 text-sm text-red-500"
           >
             Your billing info needs correction.
@@ -104,7 +104,6 @@
 <script setup lang="ts">
 import moment from "moment";
 import { useBillingStore } from "@/stores/billing";
-import SubscriptionCharges from "@/components/billing/SubscriptionCharges.vue";
 import SubscriptionAction from "@/components/billing/SubscriptionAction.vue";
 const billingStore = useBillingStore();
 billingStore.fetch();
