@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
-**stream** | [**JanusStream**](JanusStream.md) |  | [readonly] 
+**stream** | [**WebrtcStream**](WebrtcStream.md) |  | [readonly] 
 **model** | [**WebRTCCommandModel**](WebRTCCommandModel.md) |  | 
 **created_dt** | **datetime** |  | [readonly] 
 **source** | [**EventSource**](EventSource.md) |  | 

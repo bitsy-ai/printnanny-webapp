@@ -4,13 +4,13 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**devices_janus_streams_create**](JanusApi.md#devices_janus_streams_create) | **POST** /api/devices/{device_id}/janus-streams/ | 
-[**devices_janus_streams_list**](JanusApi.md#devices_janus_streams_list) | **GET** /api/devices/{device_id}/janus-streams/ | 
-[**devices_janus_streams_retrieve**](JanusApi.md#devices_janus_streams_retrieve) | **GET** /api/devices/{device_id}/janus-streams/{id}/ | 
+[**devices_webrtc_streams_create**](JanusApi.md#devices_webrtc_streams_create) | **POST** /api/devices/{device_id}/webrtc-streams/ | 
+[**devices_webrtc_streams_list**](JanusApi.md#devices_webrtc_streams_list) | **GET** /api/devices/{device_id}/webrtc-streams/ | 
+[**devices_webrtc_streams_retrieve**](JanusApi.md#devices_webrtc_streams_retrieve) | **GET** /api/devices/{device_id}/webrtc-streams/{id}/ | 
 
 
-# **devices_janus_streams_create**
-> JanusStream devices_janus_streams_create(device_id, janus_stream_request=janus_stream_request)
+# **devices_webrtc_streams_create**
+> WebrtcStream devices_webrtc_streams_create(device_id, webrtc_stream_request=webrtc_stream_request)
 
 
 
@@ -50,13 +50,13 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.JanusApi(api_client)
     device_id = 56 # int | 
-janus_stream_request = printnanny_api_client.JanusStreamRequest() # JanusStreamRequest |  (optional)
+webrtc_stream_request = printnanny_api_client.WebrtcStreamRequest() # WebrtcStreamRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_janus_streams_create(device_id, janus_stream_request=janus_stream_request)
+        api_response = api_instance.devices_webrtc_streams_create(device_id, webrtc_stream_request=webrtc_stream_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling JanusApi->devices_janus_streams_create: %s\n" % e)
+        print("Exception when calling JanusApi->devices_webrtc_streams_create: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -93,13 +93,13 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.JanusApi(api_client)
     device_id = 56 # int | 
-janus_stream_request = printnanny_api_client.JanusStreamRequest() # JanusStreamRequest |  (optional)
+webrtc_stream_request = printnanny_api_client.WebrtcStreamRequest() # WebrtcStreamRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_janus_streams_create(device_id, janus_stream_request=janus_stream_request)
+        api_response = api_instance.devices_webrtc_streams_create(device_id, webrtc_stream_request=webrtc_stream_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling JanusApi->devices_janus_streams_create: %s\n" % e)
+        print("Exception when calling JanusApi->devices_webrtc_streams_create: %s\n" % e)
 ```
 
 ### Parameters
@@ -107,11 +107,11 @@ janus_stream_request = printnanny_api_client.JanusStreamRequest() # JanusStreamR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **device_id** | **int**|  | 
- **janus_stream_request** | [**JanusStreamRequest**](JanusStreamRequest.md)|  | [optional] 
+ **webrtc_stream_request** | [**WebrtcStreamRequest**](WebrtcStreamRequest.md)|  | [optional] 
 
 ### Return type
 
-[**JanusStream**](JanusStream.md)
+[**WebrtcStream**](WebrtcStream.md)
 
 ### Authorization
 
@@ -134,8 +134,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_janus_streams_list**
-> PaginatedJanusStreamList devices_janus_streams_list(device_id, page=page)
+# **devices_webrtc_streams_list**
+> PaginatedWebrtcStreamList devices_webrtc_streams_list(device_id, page=page)
 
 
 
@@ -178,10 +178,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.devices_janus_streams_list(device_id, page=page)
+        api_response = api_instance.devices_webrtc_streams_list(device_id, page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling JanusApi->devices_janus_streams_list: %s\n" % e)
+        print("Exception when calling JanusApi->devices_webrtc_streams_list: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -221,10 +221,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.devices_janus_streams_list(device_id, page=page)
+        api_response = api_instance.devices_webrtc_streams_list(device_id, page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling JanusApi->devices_janus_streams_list: %s\n" % e)
+        print("Exception when calling JanusApi->devices_webrtc_streams_list: %s\n" % e)
 ```
 
 ### Parameters
@@ -236,7 +236,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedJanusStreamList**](PaginatedJanusStreamList.md)
+[**PaginatedWebrtcStreamList**](PaginatedWebrtcStreamList.md)
 
 ### Authorization
 
@@ -258,8 +258,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_janus_streams_retrieve**
-> JanusStream devices_janus_streams_retrieve(device_id, id)
+# **devices_webrtc_streams_retrieve**
+> WebrtcStream devices_webrtc_streams_retrieve(device_id, id)
 
 
 
@@ -299,13 +299,13 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.JanusApi(api_client)
     device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this janus stream.
+id = 56 # int | A unique integer value identifying this webrtc stream.
 
     try:
-        api_response = api_instance.devices_janus_streams_retrieve(device_id, id)
+        api_response = api_instance.devices_webrtc_streams_retrieve(device_id, id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling JanusApi->devices_janus_streams_retrieve: %s\n" % e)
+        print("Exception when calling JanusApi->devices_webrtc_streams_retrieve: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -342,13 +342,13 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.JanusApi(api_client)
     device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this janus stream.
+id = 56 # int | A unique integer value identifying this webrtc stream.
 
     try:
-        api_response = api_instance.devices_janus_streams_retrieve(device_id, id)
+        api_response = api_instance.devices_webrtc_streams_retrieve(device_id, id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling JanusApi->devices_janus_streams_retrieve: %s\n" % e)
+        print("Exception when calling JanusApi->devices_webrtc_streams_retrieve: %s\n" % e)
 ```
 
 ### Parameters
@@ -356,11 +356,11 @@ id = 56 # int | A unique integer value identifying this janus stream.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **device_id** | **int**|  | 
- **id** | **int**| A unique integer value identifying this janus stream. | 
+ **id** | **int**| A unique integer value identifying this webrtc stream. | 
 
 ### Return type
 
-[**JanusStream**](JanusStream.md)
+[**WebrtcStream**](WebrtcStream.md)
 
 ### Authorization
 

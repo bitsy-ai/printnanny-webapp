@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **octoprint_server** | **i32** |  | 
 **device** | **i32** |  | 
 **data** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
-**stream** | Option<[**crate::models::JanusStream**](JanusStream.md)> |  | [readonly]
+**stream** | Option<[**crate::models::WebrtcStream**](WebrtcStream.md)> |  | [readonly]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

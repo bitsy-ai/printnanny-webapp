@@ -4,6 +4,8 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**accounts2fa_auth_email_create**](AccountsApi.md#accounts2fa_auth_email_create) | **POST** /accounts/2fa-auth/email/ | 
+[**accounts2fa_auth_token_create**](AccountsApi.md#accounts2fa_auth_token_create) | **POST** /accounts/2fa-auth/token/ | 
 [**accounts_email_waitlist_create**](AccountsApi.md#accounts_email_waitlist_create) | **POST** /api/accounts/email-waitlist/ | 
 [**accounts_login_create**](AccountsApi.md#accounts_login_create) | **POST** /api/accounts/login/ | 
 [**accounts_logout_create**](AccountsApi.md#accounts_logout_create) | **POST** /api/accounts/logout/ | 
@@ -17,6 +19,66 @@ Method | HTTP request | Description
 [**accounts_user_retrieve**](AccountsApi.md#accounts_user_retrieve) | **GET** /api/accounts/user/ | 
 [**accounts_user_update**](AccountsApi.md#accounts_user_update) | **PUT** /api/accounts/user/ | 
 
+
+
+## accounts2fa_auth_email_create
+
+> crate::models::DetailResponse accounts2fa_auth_email_create(email_auth_request)
+
+
+This returns a 6-digit callback token we can trade for a user's Auth Token.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**email_auth_request** | [**EmailAuthRequest**](EmailAuthRequest.md) |  | [required] |
+
+### Return type
+
+[**crate::models::DetailResponse**](DetailResponse.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## accounts2fa_auth_token_create
+
+> crate::models::TokenResponse accounts2fa_auth_token_create(callback_token_auth_request)
+
+
+This is a duplicate of rest_framework's own ObtainAuthToken method. Instead, this returns an Auth Token based on our callback token and source.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**callback_token_auth_request** | [**CallbackTokenAuthRequest**](CallbackTokenAuthRequest.md) |  | [required] |
+
+### Return type
+
+[**crate::models::TokenResponse**](TokenResponse.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## accounts_email_waitlist_create

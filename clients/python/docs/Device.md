@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 **user** | [**User**](User.md) |  | [readonly] 
 **system_info** | [**SystemInfo**](SystemInfo.md) |  | [readonly] 
 **public_key** | [**PublicKey**](PublicKey.md) |  | [readonly] 
-**janus_edge** | [**JanusStream**](JanusStream.md) |  | [readonly] 
-**janus_cloud** | [**JanusStream**](JanusStream.md) |  | [readonly] 
+**janus_edge** | [**WebrtcStream**](WebrtcStream.md) |  | [readonly] 
+**janus_cloud** | [**WebrtcStream**](WebrtcStream.md) |  | [readonly] 
 **octoprint_server** | [**OctoPrintServer**](OctoPrintServer.md) |  | [readonly] 
 **urls** | [**DeviceUrls**](DeviceUrls.md) |  | 
 **created_dt** | **datetime** |  | [readonly] 

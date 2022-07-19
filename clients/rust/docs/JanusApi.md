@@ -4,15 +4,15 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**devices_janus_streams_create**](JanusApi.md#devices_janus_streams_create) | **POST** /api/devices/{device_id}/janus-streams/ | 
-[**devices_janus_streams_list**](JanusApi.md#devices_janus_streams_list) | **GET** /api/devices/{device_id}/janus-streams/ | 
-[**devices_janus_streams_retrieve**](JanusApi.md#devices_janus_streams_retrieve) | **GET** /api/devices/{device_id}/janus-streams/{id}/ | 
+[**devices_webrtc_streams_create**](JanusApi.md#devices_webrtc_streams_create) | **POST** /api/devices/{device_id}/webrtc-streams/ | 
+[**devices_webrtc_streams_list**](JanusApi.md#devices_webrtc_streams_list) | **GET** /api/devices/{device_id}/webrtc-streams/ | 
+[**devices_webrtc_streams_retrieve**](JanusApi.md#devices_webrtc_streams_retrieve) | **GET** /api/devices/{device_id}/webrtc-streams/{id}/ | 
 
 
 
-## devices_janus_streams_create
+## devices_webrtc_streams_create
 
-> crate::models::JanusStream devices_janus_streams_create(device_id, janus_stream_request)
+> crate::models::WebrtcStream devices_webrtc_streams_create(device_id, webrtc_stream_request)
 
 
 ### Parameters
@@ -21,11 +21,11 @@ Method | HTTP request | Description
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
-**janus_stream_request** | Option<[**JanusStreamRequest**](JanusStreamRequest.md)> |  |  |
+**webrtc_stream_request** | Option<[**WebrtcStreamRequest**](WebrtcStreamRequest.md)> |  |  |
 
 ### Return type
 
-[**crate::models::JanusStream**](JanusStream.md)
+[**crate::models::WebrtcStream**](WebrtcStream.md)
 
 ### Authorization
 
@@ -39,9 +39,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## devices_janus_streams_list
+## devices_webrtc_streams_list
 
-> crate::models::PaginatedJanusStreamList devices_janus_streams_list(device_id, page)
+> crate::models::PaginatedWebrtcStreamList devices_webrtc_streams_list(device_id, page)
 
 
 ### Parameters
@@ -54,7 +54,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::PaginatedJanusStreamList**](PaginatedJanusStreamList.md)
+[**crate::models::PaginatedWebrtcStreamList**](PaginatedWebrtcStreamList.md)
 
 ### Authorization
 
@@ -68,9 +68,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## devices_janus_streams_retrieve
+## devices_webrtc_streams_retrieve
 
-> crate::models::JanusStream devices_janus_streams_retrieve(device_id, id)
+> crate::models::WebrtcStream devices_webrtc_streams_retrieve(device_id, id)
 
 
 ### Parameters
@@ -79,11 +79,11 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **device_id** | **i32** |  | [required] |
-**id** | **i32** | A unique integer value identifying this janus stream. | [required] |
+**id** | **i32** | A unique integer value identifying this webrtc stream. | [required] |
 
 ### Return type
 
-[**crate::models::JanusStream**](JanusStream.md)
+[**crate::models::WebrtcStream**](WebrtcStream.md)
 
 ### Authorization
 

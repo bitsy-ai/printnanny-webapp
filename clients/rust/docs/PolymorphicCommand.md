@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
-**stream** | Option<[**crate::models::JanusStream**](JanusStream.md)> |  | [readonly]
+**stream** | Option<[**crate::models::WebrtcStream**](WebrtcStream.md)> |  | [readonly]
 **model** | [**crate::models::WebRtcCommandModel**](WebRTCCommandModel.md) |  | 
 **created_dt** | **String** |  | [readonly]
 **source** | [**crate::models::EventSource**](EventSource.md) |  | 

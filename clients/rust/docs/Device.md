@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 **user** | Option<[**crate::models::User**](User.md)> |  | [readonly]
 **system_info** | Option<[**crate::models::SystemInfo**](SystemInfo.md)> |  | [readonly]
 **public_key** | Option<[**crate::models::PublicKey**](PublicKey.md)> |  | [readonly]
-**janus_edge** | Option<[**crate::models::JanusStream**](JanusStream.md)> |  | [readonly]
-**janus_cloud** | Option<[**crate::models::JanusStream**](JanusStream.md)> |  | [readonly]
+**janus_edge** | Option<[**crate::models::WebrtcStream**](WebrtcStream.md)> |  | [readonly]
+**janus_cloud** | Option<[**crate::models::WebrtcStream**](WebrtcStream.md)> |  | [readonly]
 **octoprint_server** | Option<[**crate::models::OctoPrintServer**](OctoPrintServer.md)> |  | [readonly]
 **urls** | [**crate::models::DeviceUrls**](Device_urls.md) |  | 
 **created_dt** | **String** |  | [readonly]
