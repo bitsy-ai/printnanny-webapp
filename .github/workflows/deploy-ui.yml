@@ -23,7 +23,7 @@ jobs:
       - name: Deploy UI
         id: deploy
         run: |
-          make ui-build
+          make ui
           make ui-deploy
       - name: Deployed UI Build
         env:
