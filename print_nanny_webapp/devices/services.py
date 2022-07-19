@@ -10,12 +10,12 @@ from django.conf import settings
 from django.template.loader import render_to_string
 from print_nanny_webapp.devices.enum import JanusConfigType
 
-from .models import CloudiotDevice, Device, PublicKey, JanusStream
+from .models import CloudiotDevice, Device, PublicKey, WebrtcStream
 
 logger = logging.getLogger(__name__)
 
 
-def janus_admin_add_token(stream: JanusStream) -> Dict[str, Any]:
+def janus_admin_add_token(stream: WebrtcStream) -> Dict[str, Any]:
     if stream.config_type == JanusConfigType.CLOUD:
         req = dict(
             janus="add_token",
@@ -169,13 +169,13 @@ def update_or_create_cloudiot_device(
     return obj, created
 
 
-def janus_cloud_setup(device: Device) -> Tuple[JanusStream, bool]:
-    # 1) get or create JanusStream mountpoint
-    stream, created = JanusStream.objects.get_or_create(
+def janus_cloud_setup(device: Device) -> Tuple[WebrtcStream, bool]:
+    # 1) get or create WebrtcStream mountpoint
+    stream, created = WebrtcStream.objects.get_or_create(
         device=device, config_type=JanusConfigType.CLOUD
     )
     logger.info(
-        "Retrieved JanusStream id=%s user=%s created=%s",
+        "Retrieved WebrtcStream id=%s user=%s created=%s",
         stream.id,
         device.user.id,
         created,
@@ -184,5 +184,5 @@ def janus_cloud_setup(device: Device) -> Tuple[JanusStream, bool]:
     # 2) ensure token added to Janus Gateway
     # Janus stores tokens in memory, so added tokens are flushed on restart
     # janus_admin_add_token(janus_auth)
-    logger.info("Retrieved JanusStream %s created=%s", stream, created)
+    logger.info("Retrieved WebrtcStream %s created=%s", stream, created)
     return stream, created

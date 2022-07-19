@@ -8,7 +8,7 @@ from print_nanny_webapp.devices.models import (
     DeviceSettings,
     CloudiotDevice,
     DeviceUrls,
-    JanusStream,
+    WebrtcStream,
     PublicKey,
     SystemInfo,
 )
@@ -78,7 +78,7 @@ class PublicKeySerializer(serializers.ModelSerializer):
         )
 
 
-class JanusStreamSerializer(serializers.ModelSerializer):
+class WebrtcStreamSerializer(serializers.ModelSerializer):
     admin_secret = serializers.SerializerMethodField()
 
     def get_admin_secret(self, obj):
@@ -90,7 +90,7 @@ class JanusStreamSerializer(serializers.ModelSerializer):
         return obj.admin_secret
 
     class Meta:
-        model = JanusStream
+        model = WebrtcStream
         fields = (
             "created_dt",
             "updated_dt",
@@ -117,18 +117,20 @@ class JanusStreamSerializer(serializers.ModelSerializer):
         read_only_fields = ("device", "config_type", "updated_dt", "created_dt")
 
     def update_or_create(self, validated_data, device_id):
-        return JanusStream.objects.filter(device=device_id).update_or_create(
+        return WebrtcStream.objects.filter(device=device_id).update_or_create(
             device=device_id, defaults=validated_data
         )
 
     def get_or_create(self, validated_data, device_id):
         logger.info(
-            "Attempting JanusStream.objects.get_or_create with validated_data=%s",
+            "Attempting WebrtcStream.objects.get_or_create with validated_data=%s",
             validated_data,
         )
         # get_or_create method requires fkey relationship be 1) instance or 2) use __id field syntax
         device = Device.objects.get(id=device_id)
-        return JanusStream.objects.get_or_create(device=device, defaults=validated_data)
+        return WebrtcStream.objects.get_or_create(
+            device=device, defaults=validated_data
+        )
 
 
 class SystemInfoSerializer(serializers.ModelSerializer):
@@ -151,8 +153,8 @@ class DeviceSerializer(serializers.ModelSerializer):
     system_info = SystemInfoSerializer(read_only=True)
     public_key = PublicKeySerializer(read_only=True)
 
-    janus_edge = JanusStreamSerializer(read_only=True)
-    janus_cloud = JanusStreamSerializer(read_only=True)
+    janus_edge = WebrtcStreamSerializer(read_only=True)
+    janus_cloud = WebrtcStreamSerializer(read_only=True)
 
     octoprint_server = OctoPrintServerSerializer(read_only=True)
 

@@ -34,13 +34,13 @@ from .serializers import (
     CloudiotDeviceSerializer,
     SystemInfoSerializer,
     DeviceSerializer,
-    JanusStreamSerializer,
+    WebrtcStreamSerializer,
     DeviceSettingsSerializer,
 )
 from ..models import (
     CloudiotDevice,
     Device,
-    JanusStream,
+    WebrtcStream,
     PublicKey,
     SystemInfo,
     DeviceSettings,
@@ -289,7 +289,7 @@ class DeviceSettingsViewSet(
 
 
 ###
-# JanusStream Viewset
+# WebrtcStream Viewset
 ###
 @extend_schema_view(
     list=extend_schema(
@@ -298,7 +298,7 @@ class DeviceSettingsViewSet(
             OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
         ],
         responses={
-            200: JanusStreamSerializer(many=True),
+            200: WebrtcStreamSerializer(many=True),
         }
         | generic_list_errors,
     ),
@@ -307,9 +307,9 @@ class DeviceSettingsViewSet(
         parameters=[
             OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
         ],
-        request=JanusStreamSerializer,
+        request=WebrtcStreamSerializer,
         responses={
-            201: JanusStreamSerializer,
+            201: WebrtcStreamSerializer,
         }
         | generic_create_errors,
     ),
@@ -318,22 +318,22 @@ class DeviceSettingsViewSet(
         parameters=[
             OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
         ],
-        request=JanusStreamSerializer,
+        request=WebrtcStreamSerializer,
         responses={
-            200: JanusStreamSerializer,
+            200: WebrtcStreamSerializer,
         }
         | generic_get_errors,
     ),
 )
-class JanusStreamViewSet(
+class WebrtcStreamViewSet(
     GenericViewSet,
     ListModelMixin,
     RetrieveModelMixin,
     UpdateModelMixin,
     CreateModelMixin,
 ):
-    serializer_class = JanusStreamSerializer
-    queryset = JanusStream.objects.all()
+    serializer_class = WebrtcStreamSerializer
+    queryset = WebrtcStream.objects.all()
     lookup_field = "id"
 
 
