@@ -99,6 +99,8 @@ import {
   CogIcon,
   SparklesIcon,
   VideoCameraIcon,
+  CodeIcon,
+  TerminalIcon
 } from "@heroicons/vue/outline";
 
 const router = useRouter();
@@ -139,6 +141,16 @@ const help_nav = [
     name: "Quick Start",
     href: "https://docs.printnanny.ai/docs/category/quick-start/",
     icon: QuestionMarkCircleIcon,
+  },
+  {
+    name: "API Docs",
+    href: import.meta.env.VITE_PRINTNANNY_API_REDOCS_URL,
+    icon: CodeIcon,
+  },
+  {
+    name: "CLI Docs",
+    href: import.meta.env.VITE_PRINTNANNY_CLI_DOCS_URL,
+    icon: TerminalIcon,
   },
   {
     name: "Report Issue",
