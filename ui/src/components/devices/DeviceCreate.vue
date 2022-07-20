@@ -22,7 +22,7 @@ async function onSubmit(values: any) {
   state.loading = true;
   await deviceStore.create(values.hostname);
   state.loading = true;
-  await router.push({ name: "dashboard" });
+  await router.push({ name: "devices" });
 }
 </script>
 
@@ -32,12 +32,12 @@ async function onSubmit(values: any) {
   >
     <Form v-slot="{ meta }" :validation-schema="schema" @submit="onSubmit">
       <label for="hostname" class="sr-only">Hostname</label>
-      <error-message class-name="text-red-500" name="hostname"></error-message>
+      <error-message class="text-red-500" name="hostname"></error-message>
       <Field
         id="hostname"
         name="hostname"
         type="input"
-        class-name="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+        class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
         placeholder="Hostname"
         rules="required"
       />

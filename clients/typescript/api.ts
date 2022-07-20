@@ -596,6 +596,12 @@ export interface Device {
      * @memberof Device
      */
     'fqdn'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Device
+     */
+    'favorite'?: boolean;
 }
 /**
  * 
@@ -615,6 +621,12 @@ export interface DeviceRequest {
      * @memberof DeviceRequest
      */
     'fqdn'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DeviceRequest
+     */
+    'favorite'?: boolean;
 }
 /**
  * 
@@ -2261,6 +2273,12 @@ export interface PatchedDeviceRequest {
      * @memberof PatchedDeviceRequest
      */
     'fqdn'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedDeviceRequest
+     */
+    'favorite'?: boolean;
 }
 /**
  * 
@@ -7625,6 +7643,45 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * A device (Raspberry Pi) running Print Nanny OS
+         * @param {number} id A unique integer value identifying this device.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesDestroy: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesDestroy', 'id', id)
+            const localVarPath = `/api/devices/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * A device (Raspberry Pi) running Print Nanny OS
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -8925,6 +8982,16 @@ export const DevicesApiFp = function(configuration?: Configuration) {
         },
         /**
          * A device (Raspberry Pi) running Print Nanny OS
+         * @param {number} id A unique integer value identifying this device.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesDestroy(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesDestroy(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * A device (Raspberry Pi) running Print Nanny OS
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -9317,6 +9384,15 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * A device (Raspberry Pi) running Print Nanny OS
+         * @param {number} id A unique integer value identifying this device.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesDestroy(id: number, options?: any): AxiosPromise<void> {
+            return localVarFp.devicesDestroy(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * A device (Raspberry Pi) running Print Nanny OS
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -9678,6 +9754,15 @@ export interface DevicesApiInterface {
      * @memberof DevicesApiInterface
      */
     devicesCreate(deviceRequest: DeviceRequest, options?: AxiosRequestConfig): AxiosPromise<Device>;
+
+    /**
+     * A device (Raspberry Pi) running Print Nanny OS
+     * @param {number} id A unique integer value identifying this device.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesDestroy(id: number, options?: AxiosRequestConfig): AxiosPromise<void>;
 
     /**
      * A device (Raspberry Pi) running Print Nanny OS
@@ -10057,6 +10142,17 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      */
     public devicesCreate(deviceRequest: DeviceRequest, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).devicesCreate(deviceRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * A device (Raspberry Pi) running Print Nanny OS
+     * @param {number} id A unique integer value identifying this device.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesDestroy(id: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).devicesDestroy(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

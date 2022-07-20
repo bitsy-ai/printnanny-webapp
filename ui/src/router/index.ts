@@ -2,6 +2,13 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
 import DashboardLayout from "@/layouts/DashboardLayout.vue";
 import { useAccountStore } from "@/stores/account";
+import DeviceList from "@/components/devices/DeviceList.vue";
+import DeviceTopRight from "@/components/devices/DeviceTopRight.vue";
+import DeviceCreate from "@/components/devices/DeviceCreate.vue";
+import DeviceDelete from "@/components/devices/DeviceDelete.vue";
+import SettingsView from "@/views/SettingsView.vue";
+import SwagView from "@/views/SwagView.vue";
+import CameraListView from "@/components/camera/CameraList.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -15,6 +22,16 @@ const router = createRouter({
       path: "/login/",
       name: "login",
       component: () => import("@/views/LoginView.vue"),
+    },
+    {
+      path: "/privacy/",
+      name: "privacy",
+      component: () => import("@/views/PrivacyView.vue"),
+    },
+    {
+      path: "/terms/",
+      name: "terms",
+      component: () => import("@/views/TermsOfServiceView.vue"),
     },
     // clear account store data and direct to home
     {
@@ -47,8 +64,8 @@ const router = createRouter({
           path: "",
           name: "devices",
           components: {
-            default: import("@/components/devices/DeviceList.vue"),
-            TopRight: import("@/components/devices/DeviceActions.vue"),
+            default: DeviceList,
+            TopRight: DeviceTopRight,
           },
           meta: { title: "Manage Network" },
         },
@@ -56,10 +73,18 @@ const router = createRouter({
           path: "connect/",
           name: "device-connect",
           components: {
-            default: () => import("@/components/devices/DeviceCreate.vue"),
+            default: DeviceCreate,
           },
           meta: { title: "Connect New Device" },
-
+        },
+        {
+          path: "delete/:id/",
+          name: "device-delete",
+          components: {
+            default: DeviceDelete,
+          },
+          props: { default: true },
+          meta: { title: "Delete Connection" },
         },
       ],
     },
@@ -70,15 +95,14 @@ const router = createRouter({
         {
           path: "billing/",
           name: "billing",
-          component: () => import("@/views/SettingsView.vue"),
+          component: SettingsView,
           meta: { title: "Manage Subscription" },
         },
         {
           path: "notifications/",
           name: "alertSettings",
-          component: () => import("@/views/SettingsView.vue"),
+          component: SettingsView,
           meta: { title: "Configure Notifications" },
-
         },
       ],
     },
@@ -89,9 +113,20 @@ const router = createRouter({
         {
           path: "",
           name: "swag",
-          component: () => import("@/views/SwagView.vue"),
+          component: SwagView,
           meta: { title: "Founding Member Swag" },
-
+        },
+      ],
+    },
+    {
+      path: "/cameras/",
+      component: DashboardLayout,
+      children: [
+        {
+          path: "",
+          name: "cameras",
+          component: CameraListView,
+          meta: { title: "Cameras" },
         },
       ],
     },
