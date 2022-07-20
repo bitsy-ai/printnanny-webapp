@@ -6,10 +6,11 @@ const devicesApi = api.DevicesApiFactory(ApiConfig);
 export const useDeviceStore = defineStore({
   id: "devices",
   state: () => ({
-    devices: {} as Array<apiTypes.Device>,
+    devices: [] as Array<apiTypes.Device>,
     loading: false,
   }),
   getters: {
+    favorites: (state) => state.devices.filter(d => d.favorite),
     showEmpty: (state) =>
       state.loading == false && Object.keys(state.devices).length == 0,
   },

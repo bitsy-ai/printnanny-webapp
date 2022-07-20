@@ -1,10 +1,8 @@
 <template>
   <section>
     <!-- Devices list (only on smallest breakpoint) -->
-    <!-- Pinned devices (v-slot can be replaced with #pinned )-->
-    <slot name="pinned">
-      <!-- <PinnedDevices /> -->
-    </slot>
+    <!-- Pinned devices -->
+    <DeviceFavorites />
     <div class="mt-10 sm:hidden">
       <div class="px-4 sm:px-6">
         <h2 class="text-gray-500 text-xs font-medium uppercase tracking-wide">
@@ -104,6 +102,7 @@
 import { useDeviceStore } from "@/stores/devices";
 import DeviceEmpty from "./DeviceEmpty.vue";
 import DeviceActionMenu from "./DeviceActionMenu.vue";
+import DeviceFavorites from "./DeviceFavorites.vue";
 const deviceStore = useDeviceStore();
 deviceStore.fetch();
 

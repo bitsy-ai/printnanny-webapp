@@ -22,70 +22,26 @@
         class="z-50 origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none"
       >
         <div class="py-1">
-          <MenuItem v-slot="{ active }">
+          <MenuItem
+            v-for="link in externalLinks"
+            v-slot="{ active }"
+            :key="link.name"
+          >
             <a
-              href="#"
-              :class="[
-                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                'group flex items-center px-4 py-2 text-sm',
-              ]"
+              :href="link.href"
+              target="_blank"
+              class="text-gray-700 group flex items-center px-4 py-2 text-sm"
             >
-              <DuplicateIcon
+              <component
+                :is="link.icon"
                 class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
                 aria-hidden="true"
               />
-              Duplicate
+              {{ link.name }}
             </a>
           </MenuItem>
         </div>
         <div class="py-1">
-          <MenuItem v-slot="{ active }">
-            <a
-              href="#"
-              :class="[
-                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                'group flex items-center px-4 py-2 text-sm',
-              ]"
-            >
-              <ArchiveIcon
-                class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
-                aria-hidden="true"
-              />
-              Archive
-            </a>
-          </MenuItem>
-          <MenuItem v-slot="{ active }">
-            <a
-              href="#"
-              :class="[
-                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                'group flex items-center px-4 py-2 text-sm',
-              ]"
-            >
-              <ArrowCircleRightIcon
-                class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
-                aria-hidden="true"
-              />
-              Move
-            </a>
-          </MenuItem>
-        </div>
-        <div class="py-1">
-          <MenuItem v-slot="{ active }">
-            <a
-              href="#"
-              :class="[
-                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                'group flex items-center px-4 py-2 text-sm',
-              ]"
-            >
-              <UserAddIcon
-                class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
-                aria-hidden="true"
-              />
-              Share
-            </a>
-          </MenuItem>
           <MenuItem v-if="!device.favorite" v-slot="{ active }">
             <a
               :class="[
