@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devices', '0030_rename_janusstream_webrtcstream'),
+        ("devices", "0030_rename_janusstream_webrtcstream"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='device',
-            name='favorite',
+            model_name="device",
+            name="favorite",
             field=models.BooleanField(default=False),
         ),
     ]

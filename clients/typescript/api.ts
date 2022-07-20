@@ -596,6 +596,12 @@ export interface Device {
      * @memberof Device
      */
     'fqdn'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Device
+     */
+    'favorite'?: boolean;
 }
 /**
  * 
@@ -615,6 +621,12 @@ export interface DeviceRequest {
      * @memberof DeviceRequest
      */
     'fqdn'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DeviceRequest
+     */
+    'favorite'?: boolean;
 }
 /**
  * 
@@ -2261,6 +2273,12 @@ export interface PatchedDeviceRequest {
      * @memberof PatchedDeviceRequest
      */
     'fqdn'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedDeviceRequest
+     */
+    'favorite'?: boolean;
 }
 /**
  * 

@@ -15,7 +15,7 @@
         role="list"
         class="mt-3 border-t border-gray-200 divide-y divide-gray-100"
       >
-        <li v-for="device in deviceStore.devices" :key="device.id">
+        <li v-for="(device, index) in deviceStore.devices" :key="device.id">
           <a
             href="#"
             class="group flex items-center justify-between px-4 py-4 hover:bg-gray-50 sm:px-6"
@@ -53,7 +53,7 @@
                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 scope="col"
               >
-                Device Links
+                Actions & Quick Links
               </th>
             </tr>
           </thead>
@@ -62,7 +62,7 @@
             <DeviceEmpty v-if="deviceStore.showEmpty" />
             <!-- device list -->
             <tr
-              v-for="device in deviceStore.devices"
+              v-for="(device, index) in deviceStore.devices"
               v-show="!deviceStore.showEmpty"
               :key="device.id"
               class="flex-row"
@@ -88,21 +88,10 @@
               >
                 {{ device.last_boot || "Waiting for first boot" }}
               </td>
-              <td class="px-6 py-3 whitespace-nowrap text-sm font-medium">
-                <a :href="device.urls.octoprint"
-                  ><button
-                    class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:order-1 sm:ml-3"
-                  >
-                    OctoPrint
-                  </button></a
-                >
-                <a :href="device.urls.swupdate"
-                  ><button
-                    class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-1 sm:ml-3"
-                  >
-                    Software Update
-                  </button></a
-                >
+              <td
+                class="px-6 py-3 whitespace-nowrap text-sm font-medium text-right"
+              >
+                <DeviceActionMenu :device="device" :index="index" />
               </td>
             </tr>
           </tbody>
@@ -114,6 +103,9 @@
 <script setup lang="ts">
 import { useDeviceStore } from "@/stores/devices";
 import DeviceEmpty from "./DeviceEmpty.vue";
+import DeviceActionMenu from "./DeviceActionMenu.vue";
 const deviceStore = useDeviceStore();
 deviceStore.fetch();
+
+const actions = [{ to: "device-delete", text: "Delete" }];
 </script>

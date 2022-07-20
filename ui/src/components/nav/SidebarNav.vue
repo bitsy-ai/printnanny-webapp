@@ -9,7 +9,7 @@
         :key="item.name"
         :to="item.link"
         :class="[
-          item.current
+          item.current()
             ? 'bg-gray-200 text-gray-900'
             : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50',
           'group flex items-center px-2 py-2 text-sm font-medium rounded-md',
@@ -108,25 +108,25 @@ const app_nav = [
     name: "My Network",
     link: { name: "devices" },
     icon: HomeIcon,
-    current: router.currentRoute.value.name == "devices",
+    current: () => router.currentRoute.value.name == "devices",
   },
-  // {
-  //   name: "Cameras",
-  //   link: { name: "cameras" },
-  //   icon: VideoCameraIcon,
-  //   current: router.currentRoute.value.path.includes("cameras"),
-  // },
+  {
+    name: "Cameras",
+    link: { name: "cameras" },
+    icon: VideoCameraIcon,
+    current: () => router.currentRoute.value.path.includes("cameras"),
+  },
   {
     name: "Settings",
     link: { name: "alertSettings" },
     icon: CogIcon,
-    current: router.currentRoute.value.path.includes("settings"),
+    current: () => router.currentRoute.value.path.includes("settings"),
   },
   {
-    name: "Swag",
+    name: "Member Swag",
     link: { name: "swag" },
     icon: SparklesIcon,
-    current: router.currentRoute.value.path.includes("swag"),
+    current: () => router.currentRoute.value.path.includes("swag"),
   },
   //   { name: 'My Cameras', link: {name: "cameras" }, icon: VideoCameraIcon, current: router.currentRoute.value.name == "cameras"},
   //   { name: 'My tasks', href: '#', icon: ViewListIcon, current: false },
