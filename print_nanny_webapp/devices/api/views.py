@@ -17,6 +17,7 @@ from rest_framework.mixins import (
     RetrieveModelMixin,
     UpdateModelMixin,
     CreateModelMixin,
+    DestroyModelMixin,
 )
 from rest_framework.request import Request
 from rest_framework.response import Response
@@ -158,6 +159,7 @@ class DeviceViewSet(
     ListModelMixin,
     RetrieveModelMixin,
     UpdateModelMixin,
+    DestroyModelMixin,
 ):
     """
     A device (Raspberry Pi) running Print Nanny OS
