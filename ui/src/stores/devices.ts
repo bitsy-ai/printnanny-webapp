@@ -1,6 +1,6 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
-import type { Device } from "printnanny-api-client";
+import type { Device, WebrtcStream } from "printnanny-api-client";
 import { ApiConfig, handleApiError } from "@/utils/api";
 
 const devicesApi = api.DevicesApiFactory(ApiConfig);
@@ -47,7 +47,7 @@ export const useDeviceStore = defineStore({
       this.$patch({ loading: true });
       console.debug("devicesCreate response", res);
     },
-    async fetch() {
+    async fetchDevices() {
       this.$patch({ loading: true });
       const res = await devicesApi.devicesList().catch(handleApiError);
       console.debug("devicesList response ", res);

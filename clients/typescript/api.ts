@@ -559,13 +559,13 @@ export interface Device {
      * @type {WebrtcStream}
      * @memberof Device
      */
-    'janus_edge': WebrtcStream;
+    'webrtc_edge': WebrtcStream;
     /**
      * 
      * @type {WebrtcStream}
      * @memberof Device
      */
-    'janus_cloud': WebrtcStream;
+    'webrtc_cloud': WebrtcStream;
     /**
      * 
      * @type {OctoPrintServer}
@@ -602,6 +602,12 @@ export interface Device {
      * @memberof Device
      */
     'favorite'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Device
+     */
+    'ws_connected'?: boolean;
 }
 /**
  * 
@@ -627,6 +633,12 @@ export interface DeviceRequest {
      * @memberof DeviceRequest
      */
     'favorite'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DeviceRequest
+     */
+    'ws_connected'?: boolean;
 }
 /**
  * 
@@ -696,18 +708,6 @@ export interface DeviceSettingsRequest {
  * @interface DeviceUrls
  */
 export interface DeviceUrls {
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceUrls
-     */
-    'cloud_dash': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceUrls
-     */
-    'edge_dash': string;
     /**
      * 
      * @type {string}
@@ -2279,6 +2279,12 @@ export interface PatchedDeviceRequest {
      * @memberof PatchedDeviceRequest
      */
     'favorite'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedDeviceRequest
+     */
+    'ws_connected'?: boolean;
 }
 /**
  * 

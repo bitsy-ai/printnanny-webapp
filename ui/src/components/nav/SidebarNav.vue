@@ -113,12 +113,6 @@ const app_nav = [
     current: () => router.currentRoute.value.name == "devices",
   },
   {
-    name: "Cameras",
-    link: { name: "cameras" },
-    icon: VideoCameraIcon,
-    current: () => router.currentRoute.value.path.includes("cameras"),
-  },
-  {
     name: "Settings",
     link: { name: "alertSettings" },
     icon: CogIcon,
@@ -130,7 +124,6 @@ const app_nav = [
     icon: SparklesIcon,
     current: () => router.currentRoute.value.path.includes("swag"),
   },
-  //   { name: 'My Cameras', link: {name: "cameras" }, icon: VideoCameraIcon, current: router.currentRoute.value.name == "cameras"},
   //   { name: 'My tasks', href: '#', icon: ViewListIcon, current: false },
   //   { name: 'Recent', href: '#', icon: ClockIcon, current: false },
 ];

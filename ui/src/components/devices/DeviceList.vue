@@ -104,5 +104,5 @@ import DeviceEmpty from "./DeviceEmpty.vue";
 import DeviceActionMenu from "./DeviceActionMenu.vue";
 import DeviceFavorites from "./DeviceFavorites.vue";
 const deviceStore = useDeviceStore();
-deviceStore.fetch();
+deviceStore.fetchDevices();
 </script>

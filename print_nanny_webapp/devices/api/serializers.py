@@ -153,8 +153,8 @@ class DeviceSerializer(serializers.ModelSerializer):
     system_info = SystemInfoSerializer(read_only=True)
     public_key = PublicKeySerializer(read_only=True)
 
-    janus_edge = WebrtcStreamSerializer(read_only=True)
-    janus_cloud = WebrtcStreamSerializer(read_only=True)
+    webrtc_edge = WebrtcStreamSerializer(read_only=True)
+    webrtc_cloud = WebrtcStreamSerializer(read_only=True)
 
     octoprint_server = OctoPrintServerSerializer(read_only=True)
 
