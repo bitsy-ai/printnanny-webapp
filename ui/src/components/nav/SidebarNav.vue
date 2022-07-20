@@ -100,7 +100,7 @@ import {
   SparklesIcon,
   VideoCameraIcon,
   CodeIcon,
-  TerminalIcon
+  TerminalIcon,
 } from "@heroicons/vue/outline";
 
 const router = useRouter();
@@ -111,12 +111,6 @@ const app_nav = [
     link: { name: "devices" },
     icon: HomeIcon,
     current: () => router.currentRoute.value.name == "devices",
-  },
-  {
-    name: "Cameras",
-    link: { name: "cameras" },
-    icon: VideoCameraIcon,
-    current: () => router.currentRoute.value.path.includes("cameras"),
   },
   {
     name: "Settings",
@@ -130,7 +124,6 @@ const app_nav = [
     icon: SparklesIcon,
     current: () => router.currentRoute.value.path.includes("swag"),
   },
-  //   { name: 'My Cameras', link: {name: "cameras" }, icon: VideoCameraIcon, current: router.currentRoute.value.name == "cameras"},
   //   { name: 'My tasks', href: '#', icon: ViewListIcon, current: false },
   //   { name: 'Recent', href: '#', icon: ClockIcon, current: false },
 ];

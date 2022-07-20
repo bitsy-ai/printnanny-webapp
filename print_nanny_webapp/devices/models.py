@@ -73,6 +73,8 @@ class Device(SafeDeleteModel):
     fqdn = models.CharField(max_length=255, default="printnanny.local")
     favorite = models.BooleanField(default=False)
 
+    ws_connected = models.BooleanField(default=False)
+
     @property
     def urls(self) -> DeviceUrls:
         swupdate = f"http://{self.fqdn}/update/"

@@ -33,10 +33,9 @@
                   :href="item.href"
                   :target="item.external ? '_blank' : ''"
                   class="text-base font-medium text-white hover:text-gray-300"
-                  >
-                  {{ item.name }}
-                  </a
                 >
+                  {{ item.name }}
+                </a>
                 <DocsFlyout />
               </div>
             </div>
@@ -442,13 +441,21 @@ async function onSubmit(values: any) {
 const navigation = [
   { name: "Quality Control", href: "#quality-control" },
   { name: "PrintNanny OS", href: "#printnanny-os" },
-  { name: "Join Discord", href: "https://discord.gg/sf23bk2hPr", external: true },
+  {
+    name: "Join Discord",
+    href: "https://discord.gg/sf23bk2hPr",
+    external: true,
+  },
   {
     name: "Quick Start",
     href: "https://docs.printnanny.ai/docs/category/quick-start/",
-    external: true
+    external: true,
   },
-  { name: "API Docs", href: import.meta.env.VITE_PRINTNANNY_API_REDOCS_URL, external: true }
+  {
+    name: "API Docs",
+    href: import.meta.env.VITE_PRINTNANNY_API_REDOCS_URL,
+    external: true,
+  },
 ];
 const features = [
   {

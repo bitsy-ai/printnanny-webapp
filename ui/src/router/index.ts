@@ -8,7 +8,6 @@ import DeviceCreate from "@/components/devices/DeviceCreate.vue";
 import DeviceDelete from "@/components/devices/DeviceDelete.vue";
 import SettingsView from "@/views/SettingsView.vue";
 import SwagView from "@/views/SwagView.vue";
-import CameraListView from "@/components/camera/CameraList.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -115,18 +114,6 @@ const router = createRouter({
           name: "swag",
           component: SwagView,
           meta: { title: "Founding Member Swag" },
-        },
-      ],
-    },
-    {
-      path: "/cameras/",
-      component: DashboardLayout,
-      children: [
-        {
-          path: "",
-          name: "cameras",
-          component: CameraListView,
-          meta: { title: "Cameras" },
         },
       ],
     },

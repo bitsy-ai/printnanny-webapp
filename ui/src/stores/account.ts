@@ -19,7 +19,9 @@ export const useAccountStore = defineStore({
     async submitEmailWaitlist(email: string) {
       const alerts = useAlertStore();
       const req: api.EmailWaitlistRequest = { email };
-      const res = await accountsApi.accountsEmailWaitlistCreate(req).catch(handleApiError);
+      const res = await accountsApi
+        .accountsEmailWaitlistCreate(req)
+        .catch(handleApiError);
       console.debug("accountsEmailWaitlistCreate response", res);
       const alert: UiAlert = {
         header: "Thanks for signing up!",
@@ -28,10 +30,9 @@ export const useAccountStore = defineStore({
         actions: [],
       };
       alerts.push(alert);
-
     },
     async fetchUser() {
-      const userData = await accountsApi.accountsUserRetrieve().catch(e => {
+      const userData = await accountsApi.accountsUserRetrieve().catch((e) => {
         console.warn("No authentication data is set", e);
         this.$patch({
           user: undefined,

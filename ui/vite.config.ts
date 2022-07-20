@@ -17,8 +17,8 @@ const lastCommitMessage = execSync("git show -s --format=%s")
   .toString()
   .trimEnd();
 
-const verionPath = path.join(__dirname, '..', 'version.txt');
-const versionStr = fs.readFileSync(verionPath, 'utf8');
+const verionPath = path.join(__dirname, "..", "version.txt");
+const versionStr = fs.readFileSync(verionPath, "utf8");
 
 process.env.VITE_GIT_COMMIT_DATE = commitDate;
 process.env.VITE_GIT_BRANCH_NAME = branchName;

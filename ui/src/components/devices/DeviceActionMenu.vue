@@ -38,6 +38,7 @@
           </MenuItem>
         </div>
         <div class="py-1">
+          <!-- favorites actions -->
           <MenuItem v-if="!device.favorite" v-slot="{ active }">
             <a
               :class="[
