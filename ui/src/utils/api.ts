@@ -10,7 +10,8 @@ const ApiConfig = new api.Configuration({
   },
 });
 
-import axios, { AxiosError } from "axios";
+import axios from "axios";
+import type { AxiosError } from "axios";
 import { useAlertStore } from "@/stores/alerts";
 import type { UiAlert } from "@/types";
 
@@ -18,7 +19,8 @@ function handleApiError(e: Error | AxiosError) {
   console.error(e);
   // handle actione rror
   const alerts = useAlertStore();
-  let message, header;
+  let message = e.toString();
+  const header = "Oops, unexpected error";
 
   if (axios.isAxiosError(e)) {
     const header = e.response?.statusText;
@@ -34,9 +36,6 @@ function handleApiError(e: Error | AxiosError) {
     } else {
       message = e.response?.data;
     }
-  } else {
-    header = "Oops, unexpected error";
-    message = e.toString();
   }
   const alert: UiAlert = {
     header,

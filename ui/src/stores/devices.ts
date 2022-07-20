@@ -1,12 +1,13 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
+import type { Device } from "printnanny-api-client";
 import { ApiConfig, handleApiError } from "@/utils/api";
 
 const devicesApi = api.DevicesApiFactory(ApiConfig);
 export const useDeviceStore = defineStore({
   id: "devices",
   state: () => ({
-    devices: [] as Array<apiTypes.Device>,
+    devices: [] as Array<Device>,
     loading: false,
   }),
   getters: {
@@ -37,7 +38,7 @@ export const useDeviceStore = defineStore({
 
     async create(hostname: string) {
       // Wireguard TODO: allow user to specify fqdn
-      const req: apiTypes.DeviceRequest = {
+      const req: api.DeviceRequest = {
         hostname,
         fqdn: `${hostname}.local`,
       };

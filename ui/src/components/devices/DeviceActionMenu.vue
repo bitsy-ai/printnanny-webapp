@@ -90,6 +90,9 @@
 </template>
 
 <script setup lang="ts">
+import type { PropType } from "vue";
+import type { Device, PatchedDeviceRequest } from "printnanny-api-client";
+
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 import {
   ChevronDownIcon,
@@ -97,11 +100,13 @@ import {
   TrashIcon,
   ExternalLinkIcon,
 } from "@heroicons/vue/solid";
-import * as api from "printnanny-api-client";
 import { useDeviceStore } from "@/stores/devices";
 
 const props = defineProps({
-  device: api.Device,
+  device: {
+    type: Object as PropType<Device>,
+    required: true,
+  },
   index: {
     type: Number,
     required: true,
@@ -112,13 +117,13 @@ const deviceStore = useDeviceStore();
 async function addFavorite() {
   await deviceStore.partialUpdate(props.device.id, props.index, {
     favorite: true,
-  } as api.PatchedDeviceRequest);
+  } as PatchedDeviceRequest);
 }
 
 async function removeFavorite() {
   await deviceStore.partialUpdate(props.device.id, props.index, {
     favorite: false,
-  } as api.PatchedDeviceRequest);
+  } as PatchedDeviceRequest);
 }
 
 const externalLinks = [
