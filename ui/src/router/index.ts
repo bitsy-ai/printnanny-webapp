@@ -58,6 +58,8 @@ const router = createRouter({
           components: {
             default: () => import("@/components/devices/DeviceCreate.vue"),
           },
+          meta: { title: "Connect New Device" },
+
         },
       ],
     },
@@ -69,11 +71,14 @@ const router = createRouter({
           path: "billing/",
           name: "billing",
           component: () => import("@/views/SettingsView.vue"),
+          meta: { title: "Manage Subscription" },
         },
         {
           path: "notifications/",
           name: "alertSettings",
           component: () => import("@/views/SettingsView.vue"),
+          meta: { title: "Configure Notifications" },
+
         },
       ],
     },
@@ -82,9 +87,11 @@ const router = createRouter({
       component: DashboardLayout,
       children: [
         {
-          path: "swag/",
+          path: "",
           name: "swag",
           component: () => import("@/views/SwagView.vue"),
+          meta: { title: "Founding Member Swag" },
+
         },
       ],
     },
