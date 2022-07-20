@@ -98,6 +98,7 @@ import {
   MapIcon,
   CogIcon,
   SparklesIcon,
+  VideoCameraIcon
 } from "@heroicons/vue/outline";
 
 const router = useRouter();
@@ -109,6 +110,12 @@ const app_nav = [
     icon: HomeIcon,
     current: router.currentRoute.value.name == "devices",
   },
+  // {
+  //   name: "Cameras",
+  //   link: { name: "cameras" },
+  //   icon: VideoCameraIcon,
+  //   current: router.currentRoute.value.path.includes("cameras"),
+  // },
   {
     name: "Settings",
     link: { name: "alertSettings" },

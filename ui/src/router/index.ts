@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
-import DashboardView from "@/views/DashboardView.vue";
+import DashboardLayout from "@/layouts/DashboardLayout.vue";
+
+import DeviceActions from "@/components/devices/DeviceActions.vue";
+import DeviceList from "@/components/devices/DeviceList.vue";
 import { useAccountStore } from "@/stores/account";
 
 const router = createRouter({
@@ -13,8 +16,25 @@ const router = createRouter({
     },
     {
       path: "/devices/",
-      name: "devices",
-      component: DashboardView,
+      components: {
+        default: DashboardLayout,
+      },
+      children: [
+        {
+          path: '',
+          name: "devices",
+          components: {
+            default: import("@/components/devices/DeviceList.vue"),
+            TopRight: import("@/components/devices/DeviceActions.vue"),
+          },
+          meta: { title: "Manage Network" },
+        },
+        {
+          path: 'connect/', name: "device-connect", components: {
+            default: () => import("@/components/devices/DeviceCreate.vue")
+          }
+        }
+      ],
     },
     {
       path: "/login/",
@@ -39,15 +59,6 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import("@/views/AboutView.vue"),
     },
-    // begin device routes
-    {
-      path: "/device/connect/",
-      name: "device-connect",
-      component: () => import("@/views/DeviceCreateView.vue"),
-    },
-    // end device routes
-
-    // begin profile/settings/billings routers
     {
       path: "/settings/",
       name: "settings",
