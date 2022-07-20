@@ -16,11 +16,16 @@ const footerNavigation = {
       href: "https://github.com/bitsy-ai/printnanny-os/issues/new/choose",
     },
   ],
-  documentation: [
+  intro: [
     {
-      name: "Quick Start",
+      name: "Install Guide",
       href: "https://docs.printnanny.ai/docs/category/quick-start/",
     },
+    { name: "Required Hardware", href: "https://docs.printnanny.ai/docs/quick-start/hardware/"}
+  ],
+  documentation: [
+    { name: "API Docs", href: import.meta.env.VITE_PRINTNANNY_API_REDOCS_URL },
+    { name: "CLI Docs", href:  import.meta.env.VITE_PRINTNANNY_CLI_DOCS_URL},
     {
       name: "Release History",
       href: "https://docs.printnanny.ai/docs/release-history/",
@@ -122,11 +127,11 @@ const footerNavigation = {
               <h3
                 class="text-sm font-semibold text-gray-400 tracking-wider uppercase"
               >
-                Support
+                Quick Start
               </h3>
               <ul role="list" class="mt-4 space-y-4">
                 <li
-                  v-for="item in footerNavigation.documentation"
+                  v-for="item in footerNavigation.intro"
                   :key="item.name"
                 >
                   <a
@@ -138,21 +143,20 @@ const footerNavigation = {
                 </li>
               </ul>
             </div>
+
           </div>
           <div class="md:grid md:grid-cols-2 md:gap-8">
             <!-- About section -->
-            <!--
                 <div>
-                  <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Company</h3>
+                  <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Documentation</h3>
                   <ul role="list" class="mt-4 space-y-4">
-                    <li v-for="item in footerNavigation.company" :key="item.name">
-                      <a :href="item.href" class="text-base text-gray-500 hover:text-gray-900">
+                    <li v-for="item in footerNavigation.documentation" :key="item.name">
+                      <a :href="item.href" class="text-base text-gray-500 hover:text-white">
                         {{ item.name }}
                       </a>
                     </li>
                   </ul>
                 </div>
-              -->
             <!-- Legal section -->
             <div class="mt-12 md:mt-0">
               <h3
