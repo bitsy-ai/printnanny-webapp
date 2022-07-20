@@ -2,7 +2,7 @@ import type { UiAlert } from "@/types";
 import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
 import { useAlertStore } from "./alerts";
-import { ApiConfig } from "@/utils/api";
+import { ApiConfig, handleApiError } from "@/utils/api";
 const accountsApi = api.AccountsApiFactory(ApiConfig);
 
 export const useAccountStore = defineStore({
@@ -18,52 +18,29 @@ export const useAccountStore = defineStore({
   actions: {
     async submitEmailWaitlist(email: string) {
       const alerts = useAlertStore();
-      try {
-        const req: api.EmailWaitlistRequest = { email };
-        const res = await accountsApi.accountsEmailWaitlistCreate(req);
-        console.debug("accountsApi.accountsEmailWaitlistCreate rsponse", res);
-        const alert: UiAlert = {
-          header: "Thanks for signing up!",
-          error: undefined,
-          message: `When beta spots open, we'll send an email to: ${email}`,
-          actions: [],
-        };
-        alerts.push(alert);
-      } catch (e: any) {
-        if (e.isAxiosError) {
-          let msg;
-          if (e.response.data.email && e.response.data.email.length > 0) {
-            msg = e.response.data.email.join("\n");
-          } else if (e.response.data.detail) {
-            msg = e.response.data.detail;
-          } else {
-            msg = e.response.data;
-          }
-          const alert: UiAlert = {
-            header: e.response.statusText,
-            message: msg,
-            error: e,
-            actions: [],
-          };
-          alerts.push(alert);
-          console.error(e.response);
-        } else {
-          throw e;
-        }
-      }
+      const req: api.EmailWaitlistRequest = { email };
+      const res = await accountsApi.accountsEmailWaitlistCreate(req).catch(handleApiError);
+      console.debug("accountsEmailWaitlistCreate response", res);
+      const alert: UiAlert = {
+        header: "Thanks for signing up!",
+        error: undefined,
+        message: `When beta spots open, we'll send an email to: ${email}`,
+        actions: [],
+      };
+      alerts.push(alert);
+
     },
     async fetchUser() {
-      try {
-        const userData = await accountsApi.accountsUserRetrieve();
-        const user = userData.data;
-        console.log("Authenticated as user", user);
-        return this.$patch({
-          user: user,
-        });
-      } catch (e: any) {
+      const userData = await accountsApi.accountsUserRetrieve().catch(e => {
         console.warn("No authentication data is set", e);
         this.$patch({
           user: undefined,
+        });
+      });
+      if (userData && userData.data) {
+        console.log("Authenticated as user", userData.data);
+        return this.$patch({
+          user: userData.data,
         });
       }
     },
@@ -75,36 +52,9 @@ export const useAccountStore = defineStore({
      * @param {api.LoginRequest} request
      */
     async login(request: api.LoginRequest) {
-      try {
-        await accountsApi.accountsLoginCreate(request);
-        await this.fetchUser();
-        await this.$router.push({ name: "devices" });
-      } catch (e: any) {
-        if (e.isAxiosError) {
-          const alerts = useAlertStore();
-          let msg;
-          if (
-            e.response.data.non_field_errors &&
-            e.response.data.non_field_errors.length > 0
-          ) {
-            msg = e.response.data.non_field_errors.join("\n");
-          } else if (e.response.data.detail) {
-            msg = e.response.data.detail;
-          } else {
-            msg = e.response.data;
-          }
-          const alert: UiAlert = {
-            header: e.response.statusText,
-            message: msg,
-            error: e,
-            actions: [],
-          };
-          alerts.push(alert);
-          console.error(e.response);
-        } else {
-          throw e;
-        }
-      }
+      await accountsApi.accountsLoginCreate(request).catch(handleApiError);
+      await this.fetchUser();
+      await this.$router.push({ name: "devices" });
     },
     /**
      * Invalidate current session
@@ -115,7 +65,7 @@ export const useAccountStore = defineStore({
         console.warn("logout action called without user set");
         return;
       }
-      await accountsApi.accountsLogoutCreate();
+      await accountsApi.accountsLogoutCreate().catch(handleApiError);
       this.$reset();
       console.debug("Successfully logged out");
     },
