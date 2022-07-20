@@ -39,8 +39,6 @@ pre_softdelete.connect(pre_softdelete_cloudiot_device)
 
 
 class DeviceUrls(TypedDict):
-    cloud_dash: str
-    edge_dash: str
     swupdate: str
     octoprint: str
 
