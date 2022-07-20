@@ -4,8 +4,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**cloud_dash** | **str** |  | 
-**edge_dash** | **str** |  | 
 **swupdate** | **str** |  | 
 **octoprint** | **str** |  | 
 

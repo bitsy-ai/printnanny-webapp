@@ -4,8 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**cloud_dash** | **String** |  | 
-**edge_dash** | **String** |  | 
 **swupdate** | **String** |  | 
 **octoprint** | **String** |  | 
 

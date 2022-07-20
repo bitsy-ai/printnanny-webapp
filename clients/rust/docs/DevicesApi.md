@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**devices_cloudiot_update**](DevicesApi.md#devices_cloudiot_update) | **PUT** /api/devices/{device_id}/cloudiot/{id}/ | 
 [**devices_config_download_retrieve**](DevicesApi.md#devices_config_download_retrieve) | **GET** /api/devices/{device_id}/config/download/ | 
 [**devices_create**](DevicesApi.md#devices_create) | **POST** /api/devices/ | 
+[**devices_destroy**](DevicesApi.md#devices_destroy) | **DELETE** /api/devices/{id}/ | 
 [**devices_list**](DevicesApi.md#devices_list) | **GET** /api/devices/ | 
 [**devices_partial_update**](DevicesApi.md#devices_partial_update) | **PATCH** /api/devices/{id}/ | 
 [**devices_public_keys_create**](DevicesApi.md#devices_public_keys_create) | **POST** /api/devices/{device_id}/public-keys/ | 
@@ -272,6 +273,36 @@ Name | Type | Description  | Required | Notes
 
 - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## devices_destroy
+
+> devices_destroy(id)
+
+
+A device (Raspberry Pi) running Print Nanny OS
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **i32** | A unique integer value identifying this device. | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

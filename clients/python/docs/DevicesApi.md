@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**devices_cloudiot_update**](DevicesApi.md#devices_cloudiot_update) | **PUT** /api/devices/{device_id}/cloudiot/{id}/ | 
 [**devices_config_download_retrieve**](DevicesApi.md#devices_config_download_retrieve) | **GET** /api/devices/{device_id}/config/download/ | 
 [**devices_create**](DevicesApi.md#devices_create) | **POST** /api/devices/ | 
+[**devices_destroy**](DevicesApi.md#devices_destroy) | **DELETE** /api/devices/{id}/ | 
 [**devices_list**](DevicesApi.md#devices_list) | **GET** /api/devices/ | 
 [**devices_partial_update**](DevicesApi.md#devices_partial_update) | **PATCH** /api/devices/{id}/ | 
 [**devices_public_keys_create**](DevicesApi.md#devices_public_keys_create) | **POST** /api/devices/{device_id}/public-keys/ | 
@@ -1031,6 +1032,123 @@ Name | Type | Description  | Notes
 **409** |  |  -  |
 **500** |  |  -  |
 **201** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **devices_destroy**
+> devices_destroy(id)
+
+
+
+A device (Raspberry Pi) running Print Nanny OS
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.DevicesApi(api_client)
+    id = 56 # int | A unique integer value identifying this device.
+
+    try:
+        api_instance.devices_destroy(id)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->devices_destroy: %s\n" % e)
+```
+
+* Bearer Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.DevicesApi(api_client)
+    id = 56 # int | A unique integer value identifying this device.
+
+    try:
+        api_instance.devices_destroy(id)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->devices_destroy: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this device. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No response body |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
