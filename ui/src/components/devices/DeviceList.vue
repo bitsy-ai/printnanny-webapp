@@ -13,7 +13,7 @@
         role="list"
         class="mt-3 border-t border-gray-200 divide-y divide-gray-100"
       >
-        <li v-for="(device, index) in deviceStore.devices" :key="device.id">
+        <li v-for="device in deviceStore.devices" :key="device.id">
           <a
             href="#"
             class="group flex items-center justify-between px-4 py-4 hover:bg-gray-50 sm:px-6"
@@ -62,7 +62,7 @@
             <tr
               v-for="(device, index) in deviceStore.devices"
               v-show="!deviceStore.showEmpty"
-              :key="device.id"
+              :key="index"
               class="flex-row"
             >
               <td
@@ -105,6 +105,4 @@ import DeviceActionMenu from "./DeviceActionMenu.vue";
 import DeviceFavorites from "./DeviceFavorites.vue";
 const deviceStore = useDeviceStore();
 deviceStore.fetch();
-
-const actions = [{ to: "device-delete", text: "Delete" }];
 </script>

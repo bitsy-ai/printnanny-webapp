@@ -44,6 +44,7 @@ function handleApiError(e: Error | AxiosError) {
     error: e,
     actions: [],
   };
+  alerts.push(alert);
 }
 
 export { ApiConfig, handleApiError };

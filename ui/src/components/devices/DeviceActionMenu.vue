@@ -22,11 +22,7 @@
         class="z-50 origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none"
       >
         <div class="py-1">
-          <MenuItem
-            v-for="link in externalLinks"
-            v-slot="{ active }"
-            :key="link.name"
-          >
+          <MenuItem v-for="link in externalLinks" :key="link.name">
             <a
               :href="link.href"
               target="_blank"
@@ -74,11 +70,7 @@
           </MenuItem>
         </div>
         <div class="py-1">
-          <MenuItem
-            v-for="action in footerActions"
-            v-slot="{ active }"
-            :key="action.name"
-          >
+          <MenuItem v-for="action in footerActions" :key="action.name">
             <router-link
               :to="action.link"
               class="text-gray-700 group flex items-center px-4 py-2 text-sm"
@@ -100,14 +92,9 @@
 <script setup lang="ts">
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 import {
-  ArchiveIcon,
-  ArrowCircleRightIcon,
   ChevronDownIcon,
-  DuplicateIcon,
   HeartIcon,
-  PencilAltIcon,
   TrashIcon,
-  UserAddIcon,
   ExternalLinkIcon,
 } from "@heroicons/vue/solid";
 import * as api from "printnanny-api-client";
@@ -115,16 +102,23 @@ import { useDeviceStore } from "@/stores/devices";
 
 const props = defineProps({
   device: api.Device,
-  index: Number
+  index: {
+    type: Number,
+    required: true,
+  },
 });
 const deviceStore = useDeviceStore();
 
 async function addFavorite() {
-  await deviceStore.partialUpdate(props.device.id, props.index, { favorite: true } as api.PatchedDeviceRequest);
+  await deviceStore.partialUpdate(props.device.id, props.index, {
+    favorite: true,
+  } as api.PatchedDeviceRequest);
 }
 
 async function removeFavorite() {
-  await deviceStore.partialUpdate(props.device.id, props.index, { favorite: false } as api.PatchedDeviceRequest);
+  await deviceStore.partialUpdate(props.device.id, props.index, {
+    favorite: false,
+  } as api.PatchedDeviceRequest);
 }
 
 const externalLinks = [
@@ -147,7 +141,7 @@ const footerActions = [
     link: {
       name: "device-delete",
       params: { id: props.device.id },
-      query: { hostname: props.device.hostname }
+      query: { hostname: props.device.hostname },
     },
     icon: TrashIcon,
   },
