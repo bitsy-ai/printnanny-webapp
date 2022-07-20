@@ -1,3 +1,5 @@
+import * as fs from "fs";
+import * as path from "path";
 import { fileURLToPath, URL } from "url";
 import { defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
@@ -15,10 +17,14 @@ const lastCommitMessage = execSync("git show -s --format=%s")
   .toString()
   .trimEnd();
 
+const verionPath = path.join(__dirname, '..', 'version.txt');
+const versionStr = fs.readFileSync(verionPath, 'utf8');
+
 process.env.VITE_GIT_COMMIT_DATE = commitDate;
 process.env.VITE_GIT_BRANCH_NAME = branchName;
 process.env.VITE_GIT_COMMIT_HASH = commitHash;
 process.env.VITE_GIT_LAST_COMMIT_MESSAGE = lastCommitMessage;
+process.env.VITE_PRINTNANNY_API_VERSION = versionStr;
 
 // https://vitejs.dev/config/
 export default defineConfig(({ _command, mode }) => {
