@@ -39,13 +39,13 @@
                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 scope="col"
               >
-                <span class="lg:pl-2">Hostname</span>
+                <span class="lg:pl-2">Connection Status</span>
               </th>
               <th
                 class="hidden md:table-cell px-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
                 scope="col"
               >
-                Last reboot
+               Status
               </th>
               <th
                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -69,17 +69,27 @@
                 class="px-6 py-3 max-w-0 whitespace-nowrap text-sm font-medium text-gray-900"
               >
                 <div class="flex items-center space-x-3 lg:pl-2">
-                  <div
-                    class="bg-gray-500 flex-shrink-0 w-2.5 h-2.5 rounded-full"
+                  
+                  <div v-if="!device.ws_connected"
+                    class="bg-red-500 flex-shrink-0 w-2.5 h-2.5 rounded-full"
                     aria-hidden="true"
-                  />
+                  > </div>
+                  <div v-if="device.ws_connected"
+                    class="bg-green-500 flex-shrink-0 w-2.5 h-2.5 rounded-full"
+                    aria-hidden="true"
+                  > </div>
                   <a href="#" class="truncate hover:text-gray-600">
                     <span>
                       {{ device.fqdn }}
-                      {{ " " }}
+                      {{ " " }}                      
                     </span>
                   </a>
+                                      <span v-if="!device.ws_connected" class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-red-100 text-red-800" >
+                      <ExclamationIcon v-if="!device.ws_connected" class="bg-red-500"/>
+                      Connection Issue
+                    </span>
                 </div>
+                
               </td>
               <td
                 class="hidden md:table-cell px-6 py-3 whitespace-nowrap text-sm text-gray-500 text-right"

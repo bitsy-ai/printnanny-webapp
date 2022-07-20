@@ -15,7 +15,9 @@ export const useBillingStore = defineStore({
   },
   actions: {
     async fetch() {
-      const res = await billingApi.billingSummaryRetrieve().catch(handleApiError);
+      const res = await billingApi
+        .billingSummaryRetrieve()
+        .catch(handleApiError);
       console.log("billingSummaryRetrieve response", res);
       if (res && res.data) {
         this.$patch({ summary: res.data });

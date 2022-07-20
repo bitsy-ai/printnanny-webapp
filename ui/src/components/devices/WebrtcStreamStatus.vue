@@ -1,30 +1,29 @@
 <template>
-<span>
+  <span>
     <RefreshIcon
-        v-if="loading"
-        class="animate-spin h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-        aria-hidden="true"
+      v-if="loading"
+      class="animate-spin h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+      aria-hidden="true"
     />
-</span>
+  </span>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue";
 
 const loading = ref(false);
 
-async function load(){
-    loading.value = true;
+async function load() {
+  loading.value = true;
 }
 
-const props = defineProps({
-  device: {
-    type: Object as PropType<Device>,
-    required: true,
-  },
-  index: {
-    type: Number,
-    required: true,
-  },
-})
-
+// const props = defineProps({
+//   device: {
+//     type: Object as PropType<Device>,
+//     required: true,
+//   },
+//   index: {
+//     type: Number,
+//     required: true,
+//   },
+// });
 </script>

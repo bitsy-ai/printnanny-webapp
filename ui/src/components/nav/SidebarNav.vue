@@ -100,7 +100,7 @@ import {
   SparklesIcon,
   VideoCameraIcon,
   CodeIcon,
-  TerminalIcon
+  TerminalIcon,
 } from "@heroicons/vue/outline";
 
 const router = useRouter();
