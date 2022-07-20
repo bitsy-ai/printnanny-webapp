@@ -1,15 +1,5 @@
 <script setup lang="ts">
-import HomePage from "@/components/pages/HomePage.vue";
-import FooterNav from "@/components/nav/FooterNav.vue";
-import StickyAlerts from "../components/alerts/StickyAlerts.vue";
-import DashboardPage from "../components/pages/DashboardPage.vue";
 import { ModelStl } from "vue-3d-model";
-
-import { ref, reactive } from "vue";
-import { StarIcon } from "@heroicons/vue/solid";
-import { RadioGroup, RadioGroupLabel, RadioGroupOption } from "@headlessui/vue";
-import { CurrencyDollarIcon, GlobeIcon } from "@heroicons/vue/outline";
-
 const downloadUrl =
   "https://cdn.printnanny.ai/www/logostl/printnanny-logos.zip";
 const product = {
@@ -17,11 +7,6 @@ const product = {
   price: "FREE SWAG",
   rating: 3.9,
   reviewCount: 512,
-  href: "#",
-  breadcrumbs: [
-    { id: 1, name: "Women", href: "#" },
-    { id: 2, name: "Clothing", href: "#" },
-  ],
   stl: [
     {
       id: 1,
@@ -66,19 +51,6 @@ const product = {
     "No supports needed",
   ],
 };
-const policies = [
-  {
-    name: "International delivery",
-    icon: GlobeIcon,
-    description: "Get your order in 2 years",
-  },
-  {
-    name: "Loyalty rewards",
-    icon: CurrencyDollarIcon,
-    description: "Don't look at other tees",
-  },
-];
-
 const rotation = {
   x: 0,
   y: -0.1,
@@ -87,110 +59,98 @@ const rotation = {
 </script>
 
 <template>
-  <main>
-    <StickyAlerts />
-    <DashboardPage>
-      <template #content>
-        <div class="bg-white">
-          <div class="pt-6 pb-16 sm:pb-24">
+  <div class="bg-white">
+    <div class="pt-6 pb-16 sm:pb-24">
+      <div class="mt-8 max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+        <div class="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">
+          <div class="lg:col-start-8 lg:col-span-5">
+            <div class="flex justify-between">
+              <h1 class="text-xl font-medium text-gray-900">
+                {{ product.name }}
+              </h1>
+              <p class="text-xl font-medium text-gray-900">
+                {{ product.price }}
+              </p>
+            </div>
+          </div>
+
+          <!-- Image gallery -->
+          <div
+            class="mt-8 lg:mt-0 lg:col-start-1 lg:col-span-7 lg:row-start-1 lg:row-span-3"
+          >
+            <h2 class="sr-only">Images</h2>
+
             <div
-              class="mt-8 max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8"
+              class="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-3 lg:gap-8"
             >
-              <div class="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">
-                <div class="lg:col-start-8 lg:col-span-5">
-                  <div class="flex justify-between">
-                    <h1 class="text-xl font-medium text-gray-900">
-                      {{ product.name }}
-                    </h1>
-                    <p class="text-xl font-medium text-gray-900">
-                      {{ product.price }}
-                    </p>
-                  </div>
-                </div>
+              <model-stl
+                v-for="stl in product.stl.filter((v) => v.primary)"
+                :key="stl.id"
+                :rotation="rotation"
+                :background-color="0x1e1e1e"
+                cross-origin="anonymous"
+                :src="stl.src"
+                :class="[
+                  stl.primary
+                    ? 'lg:col-span-2 lg:row-span-2'
+                    : 'hidden lg:block',
+                  'rounded-lg',
+                ]"
+              >
+              </model-stl>
+              <model-stl
+                v-for="stl in product.stl.filter((v) => !v.primary)"
+                :key="stl.id"
+                :background-color="0x1e1e1e"
+                cross-origin="anonymous"
+                :src="stl.src"
+                :class="[
+                  stl.primary
+                    ? 'lg:col-span-2 lg:row-span-2'
+                    : 'hidden lg:block',
+                  'rounded-lg',
+                ]"
+              ></model-stl>
+            </div>
+          </div>
 
-                <!-- Image gallery -->
-                <div
-                  class="mt-8 lg:mt-0 lg:col-start-1 lg:col-span-7 lg:row-start-1 lg:row-span-3"
-                >
-                  <h2 class="sr-only">Images</h2>
+          <div class="mt-8 lg:col-span-5">
+            <a :href="downloadUrl">
+              <button
+                class="mt-8 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
+                Download .zip
+              </button>
+            </a>
 
-                  <div
-                    class="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-3 lg:gap-8"
-                  >
-                    <model-stl
-                      v-for="stl in product.stl.filter((v) => v.primary)"
-                      :key="stl.id"
-                      :rotation="rotation"
-                      :background-color="0x1e1e1e"
-                      cross-origin="anonymous"
-                      :src="stl.src"
-                      :class="[
-                        stl.primary
-                          ? 'lg:col-span-2 lg:row-span-2'
-                          : 'hidden lg:block',
-                        'rounded-lg',
-                      ]"
-                    >
-                    </model-stl>
-                    <model-stl
-                      v-for="stl in product.stl.filter((v) => !v.primary)"
-                      :key="stl.id"
-                      :background-color="0x1e1e1e"
-                      cross-origin="anonymous"
-                      :src="stl.src"
-                      :class="[
-                        stl.primary
-                          ? 'lg:col-span-2 lg:row-span-2'
-                          : 'hidden lg:block',
-                        'rounded-lg',
-                      ]"
-                    ></model-stl>
-                  </div>
-                </div>
+            <!-- Product details -->
+            <div class="mt-10">
+              <h2 class="text-sm font-medium text-gray-900">
+                Click to drag model preview
+              </h2>
 
-                <div class="mt-8 lg:col-span-5">
-                  <a :href="downloadUrl">
-                    <button
-                      class="mt-8 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                      Download .zip
-                    </button>
-                  </a>
+              <div
+                class="mt-4 prose prose-sm text-gray-500"
+                v-html="product.description"
+              />
+            </div>
 
-                  <!-- Product details -->
-                  <div class="mt-10">
-                    <h2 class="text-sm font-medium text-gray-900">
-                      Click to drag model preview
-                    </h2>
+            <div class="mt-8 border-t border-gray-200 pt-8">
+              <h2 class="text-sm font-medium text-gray-900">
+                Recommended Settings
+              </h2>
 
-                    <div
-                      class="mt-4 prose prose-sm text-gray-500"
-                      v-html="product.description"
-                    />
-                  </div>
-
-                  <div class="mt-8 border-t border-gray-200 pt-8">
-                    <h2 class="text-sm font-medium text-gray-900">
-                      Recommended Settings
-                    </h2>
-
-                    <div class="mt-4 prose prose-sm text-gray-500">
-                      <ul role="list">
-                        <li
-                          v-for="item in product.recommendedSettings"
-                          :key="item"
-                        >
-                          {{ item }}
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+              <div class="mt-4 prose prose-sm text-gray-500">
+                <ul role="list">
+                  <li v-for="item in product.recommendedSettings" :key="item">
+                    {{ item }}
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
         </div>
-      </template>
-    </DashboardPage>
-  </main>
+      </div>
+    </div>
+  </div>
 </template>

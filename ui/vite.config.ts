@@ -21,7 +21,7 @@ process.env.VITE_GIT_COMMIT_HASH = commitHash;
 process.env.VITE_GIT_LAST_COMMIT_MESSAGE = lastCommitMessage;
 
 // https://vitejs.dev/config/
-export default defineConfig(({ command, mode }) => {
+export default defineConfig(({ _command, mode }) => {
   const env = loadEnv(mode, process.cwd());
   return {
     server: {

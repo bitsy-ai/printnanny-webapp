@@ -1,9 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
 import DashboardLayout from "@/layouts/DashboardLayout.vue";
-
-import DeviceActions from "@/components/devices/DeviceActions.vue";
-import DeviceList from "@/components/devices/DeviceList.vue";
 import { useAccountStore } from "@/stores/account";
 
 const router = createRouter({
@@ -13,28 +10,6 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: HomeView,
-    },
-    {
-      path: "/devices/",
-      components: {
-        default: DashboardLayout,
-      },
-      children: [
-        {
-          path: '',
-          name: "devices",
-          components: {
-            default: import("@/components/devices/DeviceList.vue"),
-            TopRight: import("@/components/devices/DeviceActions.vue"),
-          },
-          meta: { title: "Manage Network" },
-        },
-        {
-          path: 'connect/', name: "device-connect", components: {
-            default: () => import("@/components/devices/DeviceCreate.vue")
-          }
-        }
-      ],
     },
     {
       path: "/login/",
@@ -59,35 +34,59 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import("@/views/AboutView.vue"),
     },
+    // DashboardLayout views
+    // default: main content area
+    // TopRight: action buttons in upper-right
+    {
+      path: "/devices/",
+      components: {
+        default: DashboardLayout,
+      },
+      children: [
+        {
+          path: "",
+          name: "devices",
+          components: {
+            default: import("@/components/devices/DeviceList.vue"),
+            TopRight: import("@/components/devices/DeviceActions.vue"),
+          },
+          meta: { title: "Manage Network" },
+        },
+        {
+          path: "connect/",
+          name: "device-connect",
+          components: {
+            default: () => import("@/components/devices/DeviceCreate.vue"),
+          },
+        },
+      ],
+    },
     {
       path: "/settings/",
-      name: "settings",
-      component: () => import("@/views/SettingsView.vue"),
-    },
-    {
-      path: "/settings/billing/",
-      name: "billing",
-      component: () => import("@/views/SettingsView.vue"),
-    },
-    {
-      path: "/privacy/",
-      name: "privacy",
-      component: () => import("@/views/PrivacyView.vue"),
-    },
-    {
-      path: "/terms/",
-      name: "terms",
-      component: () => import("@/views/TermsOfServiceView.vue"),
+      component: DashboardLayout,
+      children: [
+        {
+          path: "billing/",
+          name: "billing",
+          component: () => import("@/views/SettingsView.vue"),
+        },
+        {
+          path: "notifications/",
+          name: "alertSettings",
+          component: () => import("@/views/SettingsView.vue"),
+        },
+      ],
     },
     {
       path: "/swag/",
-      name: "swag",
-      component: () => import("@/views/SwagView.vue"),
-    },
-    {
-      path: "/notifications/settings/",
-      name: "alertSettings",
-      component: () => import("@/views/SettingsView.vue"),
+      component: DashboardLayout,
+      children: [
+        {
+          path: "swag/",
+          name: "swag",
+          component: () => import("@/views/SwagView.vue"),
+        },
+      ],
     },
   ],
 });

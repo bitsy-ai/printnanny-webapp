@@ -98,7 +98,7 @@ import {
   MapIcon,
   CogIcon,
   SparklesIcon,
-  VideoCameraIcon
+  VideoCameraIcon,
 } from "@heroicons/vue/outline";
 
 const router = useRouter();
