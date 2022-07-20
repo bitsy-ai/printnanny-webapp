@@ -4,5 +4,5 @@ import "@/utils/validators";
 </script>
 
 <template>
-  <RouterView />
+  <router-view> </router-view>
 </template>
