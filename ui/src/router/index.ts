@@ -83,6 +83,7 @@ const router = createRouter({
           components: {
             default: DeviceDelete,
           },
+          props: { default: true },
           meta: { title: "Delete Connection" },
         },
       ],

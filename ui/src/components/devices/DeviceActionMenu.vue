@@ -146,7 +146,8 @@ const footerActions = [
     name: "Delete",
     link: {
       name: "device-delete",
-      params: { id: props.device.id, hostname: props.device.hostname },
+      params: { id: props.device.id },
+      query: { hostname: props.device.hostname }
     },
     icon: TrashIcon,
   },

@@ -15,6 +15,10 @@ export const useDeviceStore = defineStore({
       state.loading == false && Object.keys(state.devices).length == 0,
   },
   actions: {
+    async delete(id: number) {
+      const res = await devicesApi.devicesDestroy(id).catch(handleApiError);
+      console.debug("devicesDestroy response: ", res);
+    },
     async partialUpdate(
       id: number,
       index: number,
