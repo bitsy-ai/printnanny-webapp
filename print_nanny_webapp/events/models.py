@@ -37,11 +37,11 @@ class TestEvent(Event):
     model = EventModel.TestEvent
 
     class Meta:
-        index_together = [["device", "event_name"]]
+        index_together = [["pi", "event_name"]]
 
     event_name = models.CharField(max_length=32, choices=TestEventName.choices)
-    device = models.ForeignKey(
-        "devices.Device", on_delete=models.CASCADE, related_name="test_events"
+    pi = models.ForeignKey(
+        "devices.Pi", on_delete=models.CASCADE, related_name="test_events"
     )
 
 
@@ -49,7 +49,7 @@ class OctoPrintEvent(Event):
     model = OctoPrintEventModel.OctoPrintEvent
 
     class Meta:
-        index_together = (("octoprint_server", "device", "event_name"),)
+        index_together = (("octoprint_server", "pi", "event_name"),)
 
     octoprint_server = models.ForeignKey(
         "octoprint.OctoPrintServer",
@@ -57,8 +57,8 @@ class OctoPrintEvent(Event):
         related_name="octoprint_events",
     )
     event_name = models.CharField(max_length=32, choices=OctoPrintEventName.choices)
-    device = models.ForeignKey(
-        "devices.Device", on_delete=models.CASCADE, related_name="octoprint_events"
+    pi = models.ForeignKey(
+        "devices.Pi", on_delete=models.CASCADE, related_name="octoprint_events"
     )
     payload = models.JSONField(default=dict)
 
@@ -67,10 +67,10 @@ class WebRTCCommand(Event):
     model = EventModel.WebRTCCommand
 
     class Meta:
-        index_together = [["device", "stream", "event_name"]]
+        index_together = [["pi", "stream", "event_name"]]
 
-    device = models.ForeignKey(
-        "devices.Device", on_delete=models.CASCADE, related_name="webrtc_commands"
+    pi = models.ForeignKey(
+        "devices.Pi", on_delete=models.CASCADE, related_name="webrtc_commands"
     )
     event_name = models.CharField(max_length=32, choices=WebRTCCommandName.choices)
     stream = models.ForeignKey(
@@ -87,10 +87,10 @@ class WebRTCEvent(Event):
     model = EventModel.WebRTCEvent
 
     class Meta:
-        index_together = [["device", "stream", "event_name"]]
+        index_together = [["pi", "stream", "event_name"]]
 
-    device = models.ForeignKey(
-        "devices.Device", on_delete=models.CASCADE, related_name="webrtc_events"
+    pi = models.ForeignKey(
+        "devices.Pi", on_delete=models.CASCADE, related_name="webrtc_events"
     )
     event_name = models.CharField(max_length=32, choices=WebRTCEventName.choices)
     stream = models.ForeignKey(

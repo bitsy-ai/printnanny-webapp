@@ -1,24 +1,24 @@
 from django.contrib import admin
-from print_nanny_webapp.devices.models import Device, WebrtcStream
+from print_nanny_webapp.devices.models import Pi, WebrtcStream
 
 
-@admin.register(Device)
-class DeviceAdmin(admin.ModelAdmin):
+@admin.register(Pi)
+class PiAdmin(admin.ModelAdmin):
     list_display = ("hostname", "user", "created_dt")
-    model = Device
+    model = Pi
 
 
 @admin.register(WebrtcStream)
 class WebrtcStreamAdmin(admin.ModelAdmin):
     list_display = (
-        "device",
-        "device_hostname",
+        "pi",
+        "pi_hostname",
         "active",
         "config_type",
         "created_dt",
     )
     model = WebrtcStream
 
-    @admin.display(ordering="device__hostname", description="Device Hostname")
-    def device_hostname(self, obj):
+    @admin.display(ordering="pi__hostname", description="Pi Hostname")
+    def pi_hostname(self, obj):
         return obj.device.hostname

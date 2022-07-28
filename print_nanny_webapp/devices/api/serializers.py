@@ -4,10 +4,10 @@ from drf_spectacular.utils import extend_schema_field
 from drf_spectacular.types import OpenApiTypes
 from django.contrib.auth import get_user_model
 from print_nanny_webapp.devices.models import (
-    Device,
-    DeviceSettings,
+    Pi,
+    PiSettings,
     CloudiotDevice,
-    DeviceUrls,
+    PiUrls,
     WebrtcStream,
     PublicKey,
     SystemInfo,
@@ -25,7 +25,7 @@ User = get_user_model()
 logger = logging.getLogger(__name__)
 
 ##
-# v1 Device Identity Provisioning (distributed via rpi-imager)
+# v1 Pi Identity Provisioning (distributed via rpi-imager)
 ##
 
 
@@ -35,9 +35,9 @@ class Int64Field(serializers.Field):
         return value
 
 
-class DeviceSettingsSerializer(serializers.ModelSerializer):
+class PiSettingsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = DeviceSettings
+        model = PiSettings
         exclude = ("deleted",)
 
 
@@ -50,7 +50,7 @@ class CloudiotDeviceSerializer(serializers.ModelSerializer):
     gcp_resource = serializers.CharField(read_only=True)
     gcp_project_id = serializers.CharField(read_only=True)
     gcp_region = serializers.CharField(read_only=True)
-    gcp_cloudiot_device_registry = serializers.CharField(read_only=True)
+    gcp_cloudiot_pi_registry = serializers.CharField(read_only=True)
     mqtt_bridge_hostname = serializers.CharField(read_only=True)
     mqtt_bridge_port = serializers.IntegerField(read_only=True)
     mqtt_client_id = serializers.CharField(read_only=True)
@@ -62,7 +62,7 @@ class CloudiotDeviceSerializer(serializers.ModelSerializer):
         read_only_fields = (
             "num_id",
             "name",
-            "device",
+            "pi",
             "id",
         )
 
@@ -72,9 +72,9 @@ class PublicKeySerializer(serializers.ModelSerializer):
         model = PublicKey
         exclude = ("deleted",)
 
-    def update_or_create(self, validated_data, device):
-        return PublicKey.objects.filter(device=device).update_or_create(
-            device=device, defaults=validated_data
+    def update_or_create(self, validated_data, pi):
+        return PublicKey.objects.filter(pi=pi).update_or_create(
+            pi=pi, defaults=validated_data
         )
 
 
@@ -96,7 +96,7 @@ class WebrtcStreamSerializer(serializers.ModelSerializer):
             "updated_dt",
             "config_type",
             "active",
-            "device",
+            "pi",
             "stream_secret",
             "stream_pin",
             "api_token",
@@ -114,23 +114,21 @@ class WebrtcStreamSerializer(serializers.ModelSerializer):
             "ws_port",
             "ws_url",
         )
-        read_only_fields = ("device", "config_type", "updated_dt", "created_dt")
+        read_only_fields = ("pi", "config_type", "updated_dt", "created_dt")
 
-    def update_or_create(self, validated_data, device_id):
-        return WebrtcStream.objects.filter(device=device_id).update_or_create(
-            device=device_id, defaults=validated_data
+    def update_or_create(self, validated_data, pi_id):
+        return WebrtcStream.objects.filter(pi=pi_id).update_or_create(
+            pi=pi_id, defaults=validated_data
         )
 
-    def get_or_create(self, validated_data, device_id):
+    def get_or_create(self, validated_data, pi_id):
         logger.info(
             "Attempting WebrtcStream.objects.get_or_create with validated_data=%s",
             validated_data,
         )
         # get_or_create method requires fkey relationship be 1) instance or 2) use __id field syntax
-        device = Device.objects.get(id=device_id)
-        return WebrtcStream.objects.get_or_create(
-            device=device, defaults=validated_data
-        )
+        pi = Pi.objects.get(id=pi_id)
+        return WebrtcStream.objects.get_or_create(pi=pi, defaults=validated_data)
 
 
 class SystemInfoSerializer(serializers.ModelSerializer):
@@ -138,16 +136,16 @@ class SystemInfoSerializer(serializers.ModelSerializer):
         model = SystemInfo
         exclude = ("deleted",)
 
-    def update_or_create(self, validated_data, device):
-        return SystemInfo.objects.filter(device=device).update_or_create(
-            device=device, defaults=validated_data
+    def update_or_create(self, validated_data, pi):
+        return SystemInfo.objects.filter(pi=pi).update_or_create(
+            pi=pi, defaults=validated_data
         )
 
 
-class DeviceSerializer(serializers.ModelSerializer):
+class PiSerializer(serializers.ModelSerializer):
     last_boot = serializers.CharField(read_only=True)
     alert_settings = AlertSettingsSerializer(read_only=True)
-    settings = DeviceSettingsSerializer(read_only=True)
+    settings = PiSettingsSerializer(read_only=True)
     cloudiot_device = CloudiotDeviceSerializer(read_only=True)
     user = UserSerializer(read_only=True)
     system_info = SystemInfoSerializer(read_only=True)
@@ -160,21 +158,21 @@ class DeviceSerializer(serializers.ModelSerializer):
 
     urls = serializers.SerializerMethodField()
 
-    def get_urls(self, obj) -> DeviceUrls:
+    def get_urls(self, obj) -> PiUrls:
         return obj.urls
 
     class Meta:
-        model = Device
+        model = Pi
         depth = 1
         exclude = ("deleted",)
 
 
 class ConfigSerializer(serializers.Serializer):
     api = PrintNannyApiConfigSerializer(read_only=True)
-    device = DeviceSerializer(read_only=True)
+    pi = PiSerializer(read_only=True)
 
     class Meta:
         fields = (
-            "device",
+            "pi",
             "api",
         )

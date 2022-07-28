@@ -17,7 +17,7 @@ class OctoPrintBackupAdmin(admin.ModelAdmin):
 @admin.register(OctoPrintServer)
 class OctoPrintServerAdmin(admin.ModelAdmin):
     list_display = (
-        "device",
+        "pi",
         "user",
         "octoprint_version",
         "printnanny_plugin_version",

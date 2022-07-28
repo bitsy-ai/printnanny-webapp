@@ -25,7 +25,7 @@ from .serializers import (
     PolymorphicCommandCreateSerializer,
 )
 
-Device = apps.get_model("devices", "Device")
+Pi = apps.get_model("devices", "Pi")
 
 logger = logging.getLogger(__name__)
 

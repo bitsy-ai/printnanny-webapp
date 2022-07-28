@@ -38,12 +38,12 @@ def pre_softdelete_cloudiot_device(instance=None, **kwargs) -> Callable:
 pre_softdelete.connect(pre_softdelete_cloudiot_device)
 
 
-class DeviceUrls(TypedDict):
+class PiUrls(TypedDict):
     swupdate: str
     octoprint: str
 
 
-class Device(SafeDeleteModel):
+class Pi(SafeDeleteModel):
     """
     Raspberry Pi running PrintNanny OS
     """
@@ -76,10 +76,10 @@ class Device(SafeDeleteModel):
     ws_connected = models.BooleanField(default=False)
 
     @property
-    def urls(self) -> DeviceUrls:
+    def urls(self) -> PiUrls:
         swupdate = f"http://{self.fqdn}/update/"
         octoprint = f"http://{self.fqdn}{settings.OCTOPRINT_URL}"
-        return DeviceUrls(
+        return PiUrls(
             swupdate=swupdate,
             octoprint=octoprint,
         )
@@ -105,7 +105,7 @@ class Device(SafeDeleteModel):
 
     @property
     def settings(self):
-        obj, _ = DeviceSettings.objects.get_or_create(device=self)
+        obj, _ = PiSettings.objects.get_or_create(device=self)
         return obj
 
     @property
@@ -167,22 +167,22 @@ class Device(SafeDeleteModel):
         return f"device-{self.id}"
 
 
-class DeviceSettings(SafeDeleteModel):
+class PiSettings(SafeDeleteModel):
     """
     User-facing settings, configurable per device
     """
 
     class Meta:
-        index_together = ("device", "updated_dt")
+        index_together = ("pi", "updated_dt")
         constraints = [
             UniqueConstraint(
-                fields=["device"],
+                fields=["pi"],
                 condition=models.Q(deleted=None),
-                name="unique_settings_per_device",
+                name="unique_settings_per_pi",
             )
         ]
 
-    device = models.ForeignKey(Device, on_delete=models.CASCADE)
+    pi = models.ForeignKey(Pi, on_delete=models.CASCADE)
     updated_dt = models.DateTimeField(auto_now=True)
     cloud_video_enabled = models.BooleanField(
         default=True, help_text="Send camera stream to PrintNanny Cloud"
@@ -194,19 +194,19 @@ class DeviceSettings(SafeDeleteModel):
 
     @property
     def user(self):
-        return self.device.user
+        return self.pi.user
 
 
 class PublicKey(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
 
     class Meta:
-        index_together = ("device", "created_dt", "updated_dt")
+        index_together = ("pi", "created_dt", "updated_dt")
         constraints = [
             UniqueConstraint(
-                fields=["device"],
+                fields=["pi"],
                 condition=models.Q(deleted=None),
-                name="unique_public_key_per_device",
+                name="unique_public_key_per_pi",
             )
         ]
 
@@ -214,34 +214,32 @@ class PublicKey(SafeDeleteModel):
     cipher = models.CharField(max_length=32)
     length = models.IntegerField()
     fingerprint = models.CharField(max_length=255)
-    device = models.ForeignKey(
-        Device, on_delete=models.CASCADE, related_name="public_keys"
-    )
+    pi = models.ForeignKey(Pi, on_delete=models.CASCADE, related_name="public_keys")
     created_dt = models.DateTimeField(auto_now_add=True)
     updated_dt = models.DateTimeField(auto_now=True)
 
     @property
     def user(self):
-        return self.device.user
+        return self.pi.user
 
 
 class SystemInfo(SafeDeleteModel):
     """
-    Immutable device info & metadata
+    Raspberry Pi device info & metadata
     """
 
     _safedelete_policy = SOFT_DELETE
 
     class Meta:
         index_together = (
-            ("device", "created_dt", "updated_dt"),
-            ("os_build_id", "os_variant_id", "os_version_id", "device"),
+            ("pi", "created_dt", "updated_dt"),
+            ("os_build_id", "os_variant_id", "os_version_id", "pi"),
         )
         constraints = [
             UniqueConstraint(
-                fields=["device"],
+                fields=["pi"],
                 condition=models.Q(deleted=None),
-                name="unique_device_info_per_device",
+                name="unique_system_info_per_pi",
             )
         ]
 
@@ -266,9 +264,7 @@ class SystemInfo(SafeDeleteModel):
     # /proc/cpuinfo MAX PROCESSOR
     cores = models.IntegerField()
     ram = models.BigIntegerField()
-    device = models.ForeignKey(
-        Device, on_delete=models.CASCADE, related_name="system_infos"
-    )
+    pi = models.ForeignKey(Pi, on_delete=models.CASCADE, related_name="system_infos")
 
     os_version_id = models.CharField(
         max_length=255,
@@ -298,12 +294,12 @@ class CloudiotDevice(SafeDeleteModel):
     class Meta:
         constraints = [
             UniqueConstraint(
-                fields=["device"],
+                fields=["pi"],
                 condition=models.Q(deleted=None),
-                name="unique_cloud_iot_device_per_device",
+                name="unique_cloud_iot_device_per_pi",
             )
         ]
-        index_together = [["device", "public_key", "created_dt", "updated_dt"]]
+        index_together = [["pi", "public_key", "created_dt", "updated_dt"]]
 
     def pre_softdelete(self):
         from print_nanny_webapp.devices.services import (
@@ -318,8 +314,8 @@ class CloudiotDevice(SafeDeleteModel):
     name = models.CharField(max_length=255)
     id = models.CharField(max_length=255)
 
-    device = models.ForeignKey(
-        Device,
+    pi = models.ForeignKey(
+        Pi,
         on_delete=models.CASCADE,
         related_name="cloudiot_devices",
     )
@@ -424,15 +420,15 @@ class WebrtcStream(SafeDeleteModel):
 
     class Meta:
         index_together = (
-            ("device", "created_dt", "updated_dt"),
-            ("device", "config_type"),
+            ("pi", "created_dt", "updated_dt"),
+            ("pi", "config_type"),
         )
 
         constraints = [
             UniqueConstraint(
-                fields=["device", "config_type"],
+                fields=["pi", "config_type"],
                 condition=models.Q(deleted=None),
-                name="unique_janus_stream_per_device",
+                name="unique_janus_stream_per_pi",
             ),
             UniqueConstraint(
                 fields=["rtp_port"],
@@ -447,9 +443,7 @@ class WebrtcStream(SafeDeleteModel):
         max_length=32, choices=JanusConfigType.choices, default=JanusConfigType.CLOUD
     )
     active = models.BooleanField(default=False)
-    device = models.ForeignKey(
-        Device, on_delete=models.CASCADE, related_name="janus_streams"
-    )
+    pi = models.ForeignKey(Pi, on_delete=models.CASCADE, related_name="janus_streams")
     stream_secret = models.CharField(max_length=255, default=get_random_string_32)
     stream_pin = models.CharField(max_length=255, default=get_random_string_32)
 
@@ -498,13 +492,13 @@ class WebrtcStream(SafeDeleteModel):
     def api_domain(self) -> str:
         if self.config_type == JanusConfigType.CLOUD:
             return settings.JANUS_CLOUD_DOMAIN
-        return self.device.fqdn
+        return self.pi.fqdn
 
     @property
     def rtp_domain(self) -> str:
         if self.config_type == JanusConfigType.CLOUD:
             return settings.JANUS_CLOUD_RTP_DOMAIN
-        return self.device.fqdn
+        return self.pi.fqdn
 
     @property
     def ws_port(self) -> int:
