@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **os_build_id** | **String** | PrintNanny OS BUILD_ID from /etc/os-release | 
 **os_variant_id** | **String** | PrintNanny OS VARIANT_ID from /etc/os-release | 
 **os_release_json** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> | Full contents of /etc/os-release in key:value format | [optional]
-**device** | **i32** |  | 
+**pi** | **i32** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

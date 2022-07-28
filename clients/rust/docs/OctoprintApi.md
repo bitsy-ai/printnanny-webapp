@@ -4,7 +4,6 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**devices_octoprint_list**](OctoprintApi.md#devices_octoprint_list) | **GET** /api/devices/{device_id}/octoprint/ | 
 [**octoprint_backups_create**](OctoprintApi.md#octoprint_backups_create) | **POST** /api/octoprint/backups/ | 
 [**octoprint_backups_list**](OctoprintApi.md#octoprint_backups_list) | **GET** /api/octoprint/backups/ | 
 [**octoprint_backups_retrieve**](OctoprintApi.md#octoprint_backups_retrieve) | **GET** /api/octoprint/backups/{id}/ | 
@@ -26,36 +25,8 @@ Method | HTTP request | Description
 [**octoprint_settings_update**](OctoprintApi.md#octoprint_settings_update) | **PUT** /api/octoprint/settings/{id}/ | 
 [**octoprint_settings_update_or_create**](OctoprintApi.md#octoprint_settings_update_or_create) | **POST** /api/octoprint/settings/update-or-create/ | 
 [**octoprint_update**](OctoprintApi.md#octoprint_update) | **PUT** /api/octoprint/{id}/ | 
+[**pis_octoprint_list**](OctoprintApi.md#pis_octoprint_list) | **GET** /api/pis/{pi_id}/octoprint/ | 
 
-
-
-## devices_octoprint_list
-
-> crate::models::PaginatedOctoPrintServerList devices_octoprint_list(device_id, page)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
-**page** | Option<**i32**> | A page number within the paginated result set. |  |
-
-### Return type
-
-[**crate::models::PaginatedOctoPrintServerList**](PaginatedOctoPrintServerList.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## octoprint_backups_create
@@ -652,6 +623,36 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## pis_octoprint_list
+
+> crate::models::PaginatedOctoPrintServerList pis_octoprint_list(device_id, pi_id, page)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_id** | **i32** |  | [required] |
+**pi_id** | **i32** |  | [required] |
+**page** | Option<**i32**> | A page number within the paginated result set. |  |
+
+### Return type
+
+[**crate::models::PaginatedOctoPrintServerList**](PaginatedOctoPrintServerList.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

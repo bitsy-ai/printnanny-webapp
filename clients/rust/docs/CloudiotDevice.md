@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **gcp_resource** | **String** |  | [readonly]
 **gcp_project_id** | **String** |  | [readonly]
 **gcp_region** | **String** |  | [readonly]
-**gcp_cloudiot_device_registry** | **String** |  | [readonly]
+**gcp_cloudiot_pi_registry** | **String** |  | [readonly]
 **mqtt_bridge_hostname** | **String** |  | [readonly]
 **mqtt_bridge_port** | **i32** |  | [readonly]
 **mqtt_client_id** | **String** |  | [readonly]
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 **updated_dt** | **String** |  | [readonly]
 **name** | **String** |  | [readonly]
 **id** | **String** |  | [readonly]
-**device** | **i32** |  | [readonly]
+**pi** | **i32** |  | [readonly]
 **public_key** | **i32** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

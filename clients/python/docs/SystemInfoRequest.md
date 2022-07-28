@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **os_build_id** | **datetime** | PrintNanny OS BUILD_ID from /etc/os-release | 
 **os_variant_id** | **str** | PrintNanny OS VARIANT_ID from /etc/os-release | 
 **os_release_json** | **dict(str, object)** | Full contents of /etc/os-release in key:value format | [optional] 
-**device** | **int** |  | 
+**pi** | **int** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

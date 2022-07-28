@@ -4,46 +4,45 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**cloudiot_device_update_or_create**](DevicesApi.md#cloudiot_device_update_or_create) | **POST** /api/devices/{device_id}/cloudiot/update-or-create/ | 
-[**devices_cloudiot_create**](DevicesApi.md#devices_cloudiot_create) | **POST** /api/devices/{device_id}/cloudiot/ | 
-[**devices_cloudiot_list**](DevicesApi.md#devices_cloudiot_list) | **GET** /api/devices/{device_id}/cloudiot/ | 
-[**devices_cloudiot_partial_update**](DevicesApi.md#devices_cloudiot_partial_update) | **PATCH** /api/devices/{device_id}/cloudiot/{id}/ | 
-[**devices_cloudiot_retrieve**](DevicesApi.md#devices_cloudiot_retrieve) | **GET** /api/devices/{device_id}/cloudiot/{id}/ | 
-[**devices_cloudiot_update**](DevicesApi.md#devices_cloudiot_update) | **PUT** /api/devices/{device_id}/cloudiot/{id}/ | 
-[**devices_config_download_retrieve**](DevicesApi.md#devices_config_download_retrieve) | **GET** /api/devices/{device_id}/config/download/ | 
-[**devices_create**](DevicesApi.md#devices_create) | **POST** /api/devices/ | 
-[**devices_destroy**](DevicesApi.md#devices_destroy) | **DELETE** /api/devices/{id}/ | 
-[**devices_list**](DevicesApi.md#devices_list) | **GET** /api/devices/ | 
-[**devices_partial_update**](DevicesApi.md#devices_partial_update) | **PATCH** /api/devices/{id}/ | 
-[**devices_public_keys_create**](DevicesApi.md#devices_public_keys_create) | **POST** /api/devices/{device_id}/public-keys/ | 
-[**devices_public_keys_list**](DevicesApi.md#devices_public_keys_list) | **GET** /api/devices/{device_id}/public-keys/ | 
-[**devices_public_keys_partial_update**](DevicesApi.md#devices_public_keys_partial_update) | **PATCH** /api/devices/{device_id}/public-keys/{id}/ | 
-[**devices_public_keys_retrieve**](DevicesApi.md#devices_public_keys_retrieve) | **GET** /api/devices/{device_id}/public-keys/{id}/ | 
-[**devices_public_keys_update**](DevicesApi.md#devices_public_keys_update) | **PUT** /api/devices/{device_id}/public-keys/{id}/ | 
-[**devices_retrieve**](DevicesApi.md#devices_retrieve) | **GET** /api/devices/{id}/ | 
-[**devices_retrieve_hostname**](DevicesApi.md#devices_retrieve_hostname) | **GET** /api/devices/{hostname} | 
-[**devices_settings_create**](DevicesApi.md#devices_settings_create) | **POST** /api/devices/{device_id}/settings/ | 
-[**devices_settings_list**](DevicesApi.md#devices_settings_list) | **GET** /api/devices/{device_id}/settings/ | 
-[**devices_settings_partial_update**](DevicesApi.md#devices_settings_partial_update) | **PATCH** /api/devices/{device_id}/settings/{id}/ | 
-[**devices_settings_retrieve**](DevicesApi.md#devices_settings_retrieve) | **GET** /api/devices/{device_id}/settings/{id}/ | 
-[**devices_settings_update**](DevicesApi.md#devices_settings_update) | **PUT** /api/devices/{device_id}/settings/{id}/ | 
-[**devices_system_info_create**](DevicesApi.md#devices_system_info_create) | **POST** /api/devices/{device_id}/system-info/ | 
-[**devices_system_info_list**](DevicesApi.md#devices_system_info_list) | **GET** /api/devices/{device_id}/system-info/ | 
-[**devices_system_info_partial_update**](DevicesApi.md#devices_system_info_partial_update) | **PATCH** /api/devices/{device_id}/system-info/{id}/ | 
-[**devices_system_info_retrieve**](DevicesApi.md#devices_system_info_retrieve) | **GET** /api/devices/{device_id}/system-info/{id}/ | 
-[**devices_system_info_update**](DevicesApi.md#devices_system_info_update) | **PUT** /api/devices/{device_id}/system-info/{id}/ | 
-[**devices_update**](DevicesApi.md#devices_update) | **PUT** /api/devices/{id}/ | 
-[**devices_webrtc_streams_create**](DevicesApi.md#devices_webrtc_streams_create) | **POST** /api/devices/{device_id}/webrtc-streams/ | 
-[**devices_webrtc_streams_list**](DevicesApi.md#devices_webrtc_streams_list) | **GET** /api/devices/{device_id}/webrtc-streams/ | 
-[**devices_webrtc_streams_partial_update**](DevicesApi.md#devices_webrtc_streams_partial_update) | **PATCH** /api/devices/{device_id}/webrtc-streams/{id}/ | 
-[**devices_webrtc_streams_retrieve**](DevicesApi.md#devices_webrtc_streams_retrieve) | **GET** /api/devices/{device_id}/webrtc-streams/{id}/ | 
-[**devices_webrtc_streams_update**](DevicesApi.md#devices_webrtc_streams_update) | **PUT** /api/devices/{device_id}/webrtc-streams/{id}/ | 
-[**public_key_update_or_create**](DevicesApi.md#public_key_update_or_create) | **POST** /api/devices/{device_id}/public-keys/update-or-create/ | 
-[**system_info_update_or_create**](DevicesApi.md#system_info_update_or_create) | **POST** /api/devices/{device_id}/system-info/update-or-create/ | 
+[**cloudiot_device_update_or_create**](DevicesApi.md#cloudiot_device_update_or_create) | **POST** /api/pis/{pi_id}/cloudiot/update-or-create/ | 
+[**pis_cloudiot_create**](DevicesApi.md#pis_cloudiot_create) | **POST** /api/pis/{pi_id}/cloudiot/ | 
+[**pis_cloudiot_list**](DevicesApi.md#pis_cloudiot_list) | **GET** /api/pis/{pi_id}/cloudiot/ | 
+[**pis_cloudiot_partial_update**](DevicesApi.md#pis_cloudiot_partial_update) | **PATCH** /api/pis/{pi_id}/cloudiot/{id}/ | 
+[**pis_cloudiot_retrieve**](DevicesApi.md#pis_cloudiot_retrieve) | **GET** /api/pis/{pi_id}/cloudiot/{id}/ | 
+[**pis_cloudiot_update**](DevicesApi.md#pis_cloudiot_update) | **PUT** /api/pis/{pi_id}/cloudiot/{id}/ | 
+[**pis_config_download_retrieve**](DevicesApi.md#pis_config_download_retrieve) | **GET** /api/pis/{pi_id}/config/download/ | 
+[**pis_create**](DevicesApi.md#pis_create) | **POST** /api/pis/ | 
+[**pis_destroy**](DevicesApi.md#pis_destroy) | **DELETE** /api/pis/{id}/ | 
+[**pis_list**](DevicesApi.md#pis_list) | **GET** /api/pis/ | 
+[**pis_partial_update**](DevicesApi.md#pis_partial_update) | **PATCH** /api/pis/{id}/ | 
+[**pis_public_keys_create**](DevicesApi.md#pis_public_keys_create) | **POST** /api/pis/{pi_id}/public-keys/ | 
+[**pis_public_keys_list**](DevicesApi.md#pis_public_keys_list) | **GET** /api/pis/{pi_id}/public-keys/ | 
+[**pis_public_keys_partial_update**](DevicesApi.md#pis_public_keys_partial_update) | **PATCH** /api/pis/{pi_id}/public-keys/{id}/ | 
+[**pis_public_keys_retrieve**](DevicesApi.md#pis_public_keys_retrieve) | **GET** /api/pis/{pi_id}/public-keys/{id}/ | 
+[**pis_public_keys_update**](DevicesApi.md#pis_public_keys_update) | **PUT** /api/pis/{pi_id}/public-keys/{id}/ | 
+[**pis_retrieve**](DevicesApi.md#pis_retrieve) | **GET** /api/pis/{id}/ | 
+[**pis_settings_create**](DevicesApi.md#pis_settings_create) | **POST** /api/pis/{pi_id}/settings/ | 
+[**pis_settings_list**](DevicesApi.md#pis_settings_list) | **GET** /api/pis/{pi_id}/settings/ | 
+[**pis_settings_partial_update**](DevicesApi.md#pis_settings_partial_update) | **PATCH** /api/pis/{pi_id}/settings/{id}/ | 
+[**pis_settings_retrieve**](DevicesApi.md#pis_settings_retrieve) | **GET** /api/pis/{pi_id}/settings/{id}/ | 
+[**pis_settings_update**](DevicesApi.md#pis_settings_update) | **PUT** /api/pis/{pi_id}/settings/{id}/ | 
+[**pis_system_info_create**](DevicesApi.md#pis_system_info_create) | **POST** /api/pis/{pi_id}/system-info/ | 
+[**pis_system_info_list**](DevicesApi.md#pis_system_info_list) | **GET** /api/pis/{pi_id}/system-info/ | 
+[**pis_system_info_partial_update**](DevicesApi.md#pis_system_info_partial_update) | **PATCH** /api/pis/{pi_id}/system-info/{id}/ | 
+[**pis_system_info_retrieve**](DevicesApi.md#pis_system_info_retrieve) | **GET** /api/pis/{pi_id}/system-info/{id}/ | 
+[**pis_system_info_update**](DevicesApi.md#pis_system_info_update) | **PUT** /api/pis/{pi_id}/system-info/{id}/ | 
+[**pis_update**](DevicesApi.md#pis_update) | **PUT** /api/pis/{id}/ | 
+[**pis_webrtc_streams_create**](DevicesApi.md#pis_webrtc_streams_create) | **POST** /api/pis/{pi_id}/webrtc-streams/ | 
+[**pis_webrtc_streams_list**](DevicesApi.md#pis_webrtc_streams_list) | **GET** /api/pis/{pi_id}/webrtc-streams/ | 
+[**pis_webrtc_streams_partial_update**](DevicesApi.md#pis_webrtc_streams_partial_update) | **PATCH** /api/pis/{pi_id}/webrtc-streams/{id}/ | 
+[**pis_webrtc_streams_retrieve**](DevicesApi.md#pis_webrtc_streams_retrieve) | **GET** /api/pis/{pi_id}/webrtc-streams/{id}/ | 
+[**pis_webrtc_streams_update**](DevicesApi.md#pis_webrtc_streams_update) | **PUT** /api/pis/{pi_id}/webrtc-streams/{id}/ | 
+[**public_key_update_or_create**](DevicesApi.md#public_key_update_or_create) | **POST** /api/pis/{pi_id}/public-keys/update-or-create/ | 
+[**system_info_update_or_create**](DevicesApi.md#system_info_update_or_create) | **POST** /api/pis/{pi_id}/system-info/update-or-create/ | 
 
 
 # **cloudiot_device_update_or_create**
-> CloudiotDevice cloudiot_device_update_or_create(device_id, cloudiot_device_request)
+> CloudiotDevice cloudiot_device_update_or_create(pi_id, cloudiot_device_request)
 
 
 
@@ -82,11 +81,11 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    pi_id = 56 # int | 
 cloudiot_device_request = printnanny_api_client.CloudiotDeviceRequest() # CloudiotDeviceRequest | 
 
     try:
-        api_response = api_instance.cloudiot_device_update_or_create(device_id, cloudiot_device_request)
+        api_response = api_instance.cloudiot_device_update_or_create(pi_id, cloudiot_device_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->cloudiot_device_update_or_create: %s\n" % e)
@@ -125,11 +124,11 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    pi_id = 56 # int | 
 cloudiot_device_request = printnanny_api_client.CloudiotDeviceRequest() # CloudiotDeviceRequest | 
 
     try:
-        api_response = api_instance.cloudiot_device_update_or_create(device_id, cloudiot_device_request)
+        api_response = api_instance.cloudiot_device_update_or_create(pi_id, cloudiot_device_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->cloudiot_device_update_or_create: %s\n" % e)
@@ -139,7 +138,7 @@ cloudiot_device_request = printnanny_api_client.CloudiotDeviceRequest() # Cloudi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
+ **pi_id** | **int**|  | 
  **cloudiot_device_request** | [**CloudiotDeviceRequest**](CloudiotDeviceRequest.md)|  | 
 
 ### Return type
@@ -163,8 +162,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_cloudiot_create**
-> CloudiotDevice devices_cloudiot_create(device_id, cloudiot_device_request)
+# **pis_cloudiot_create**
+> CloudiotDevice pis_cloudiot_create(pi_id, cloudiot_device_request)
 
 
 
@@ -203,14 +202,14 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    pi_id = 56 # int | 
 cloudiot_device_request = printnanny_api_client.CloudiotDeviceRequest() # CloudiotDeviceRequest | 
 
     try:
-        api_response = api_instance.devices_cloudiot_create(device_id, cloudiot_device_request)
+        api_response = api_instance.pis_cloudiot_create(pi_id, cloudiot_device_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_cloudiot_create: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_cloudiot_create: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -246,21 +245,21 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    pi_id = 56 # int | 
 cloudiot_device_request = printnanny_api_client.CloudiotDeviceRequest() # CloudiotDeviceRequest | 
 
     try:
-        api_response = api_instance.devices_cloudiot_create(device_id, cloudiot_device_request)
+        api_response = api_instance.pis_cloudiot_create(pi_id, cloudiot_device_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_cloudiot_create: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_cloudiot_create: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
+ **pi_id** | **int**|  | 
  **cloudiot_device_request** | [**CloudiotDeviceRequest**](CloudiotDeviceRequest.md)|  | 
 
 ### Return type
@@ -288,8 +287,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_cloudiot_list**
-> PaginatedCloudiotDeviceList devices_cloudiot_list(device_id, page=page)
+# **pis_cloudiot_list**
+> PaginatedCloudiotDeviceList pis_cloudiot_list(pi_id, page=page)
 
 
 
@@ -328,14 +327,14 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    pi_id = 56 # int | 
 page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.devices_cloudiot_list(device_id, page=page)
+        api_response = api_instance.pis_cloudiot_list(pi_id, page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_cloudiot_list: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_cloudiot_list: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -371,21 +370,21 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    pi_id = 56 # int | 
 page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.devices_cloudiot_list(device_id, page=page)
+        api_response = api_instance.pis_cloudiot_list(pi_id, page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_cloudiot_list: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_cloudiot_list: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
+ **pi_id** | **int**|  | 
  **page** | **int**| A page number within the paginated result set. | [optional] 
 
 ### Return type
@@ -412,8 +411,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_cloudiot_partial_update**
-> CloudiotDevice devices_cloudiot_partial_update(device_id, id, patched_cloudiot_device_request=patched_cloudiot_device_request)
+# **pis_cloudiot_partial_update**
+> CloudiotDevice pis_cloudiot_partial_update(id, pi_id, patched_cloudiot_device_request=patched_cloudiot_device_request)
 
 
 
@@ -452,15 +451,15 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 'id_example' # str | 
+    id = 'id_example' # str | 
+pi_id = 56 # int | 
 patched_cloudiot_device_request = printnanny_api_client.PatchedCloudiotDeviceRequest() # PatchedCloudiotDeviceRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_cloudiot_partial_update(device_id, id, patched_cloudiot_device_request=patched_cloudiot_device_request)
+        api_response = api_instance.pis_cloudiot_partial_update(id, pi_id, patched_cloudiot_device_request=patched_cloudiot_device_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_cloudiot_partial_update: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_cloudiot_partial_update: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -496,23 +495,23 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 'id_example' # str | 
+    id = 'id_example' # str | 
+pi_id = 56 # int | 
 patched_cloudiot_device_request = printnanny_api_client.PatchedCloudiotDeviceRequest() # PatchedCloudiotDeviceRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_cloudiot_partial_update(device_id, id, patched_cloudiot_device_request=patched_cloudiot_device_request)
+        api_response = api_instance.pis_cloudiot_partial_update(id, pi_id, patched_cloudiot_device_request=patched_cloudiot_device_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_cloudiot_partial_update: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_cloudiot_partial_update: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
  **id** | **str**|  | 
+ **pi_id** | **int**|  | 
  **patched_cloudiot_device_request** | [**PatchedCloudiotDeviceRequest**](PatchedCloudiotDeviceRequest.md)|  | [optional] 
 
 ### Return type
@@ -531,12 +530,17 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
+**202** |  |  -  |
+**409** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_cloudiot_retrieve**
-> CloudiotDevice devices_cloudiot_retrieve(device_id, id)
+# **pis_cloudiot_retrieve**
+> CloudiotDevice pis_cloudiot_retrieve(id, pi_id)
 
 
 
@@ -575,14 +579,14 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | 
+    id = 56 # int | 
+pi_id = 56 # int | 
 
     try:
-        api_response = api_instance.devices_cloudiot_retrieve(device_id, id)
+        api_response = api_instance.pis_cloudiot_retrieve(id, pi_id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_cloudiot_retrieve: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_cloudiot_retrieve: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -618,22 +622,22 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | 
+    id = 56 # int | 
+pi_id = 56 # int | 
 
     try:
-        api_response = api_instance.devices_cloudiot_retrieve(device_id, id)
+        api_response = api_instance.pis_cloudiot_retrieve(id, pi_id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_cloudiot_retrieve: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_cloudiot_retrieve: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
  **id** | **int**|  | 
+ **pi_id** | **int**|  | 
 
 ### Return type
 
@@ -660,8 +664,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_cloudiot_update**
-> CloudiotDevice devices_cloudiot_update(device_id, id, cloudiot_device_request)
+# **pis_cloudiot_update**
+> CloudiotDevice pis_cloudiot_update(id, pi_id, cloudiot_device_request)
 
 
 
@@ -700,15 +704,15 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 'id_example' # str | 
+    id = 'id_example' # str | 
+pi_id = 56 # int | 
 cloudiot_device_request = printnanny_api_client.CloudiotDeviceRequest() # CloudiotDeviceRequest | 
 
     try:
-        api_response = api_instance.devices_cloudiot_update(device_id, id, cloudiot_device_request)
+        api_response = api_instance.pis_cloudiot_update(id, pi_id, cloudiot_device_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_cloudiot_update: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_cloudiot_update: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -744,23 +748,23 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 'id_example' # str | 
+    id = 'id_example' # str | 
+pi_id = 56 # int | 
 cloudiot_device_request = printnanny_api_client.CloudiotDeviceRequest() # CloudiotDeviceRequest | 
 
     try:
-        api_response = api_instance.devices_cloudiot_update(device_id, id, cloudiot_device_request)
+        api_response = api_instance.pis_cloudiot_update(id, pi_id, cloudiot_device_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_cloudiot_update: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_cloudiot_update: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
  **id** | **str**|  | 
+ **pi_id** | **int**|  | 
  **cloudiot_device_request** | [**CloudiotDeviceRequest**](CloudiotDeviceRequest.md)|  | 
 
 ### Return type
@@ -788,8 +792,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_config_download_retrieve**
-> Config devices_config_download_retrieve(device_id)
+# **pis_config_download_retrieve**
+> Config pis_config_download_retrieve(pi_id)
 
 
 
@@ -828,13 +832,13 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    pi_id = 56 # int | 
 
     try:
-        api_response = api_instance.devices_config_download_retrieve(device_id)
+        api_response = api_instance.pis_config_download_retrieve(pi_id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_config_download_retrieve: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_config_download_retrieve: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -870,20 +874,20 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    pi_id = 56 # int | 
 
     try:
-        api_response = api_instance.devices_config_download_retrieve(device_id)
+        api_response = api_instance.pis_config_download_retrieve(pi_id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_config_download_retrieve: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_config_download_retrieve: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
+ **pi_id** | **int**|  | 
 
 ### Return type
 
@@ -910,8 +914,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_create**
-> Device devices_create(device_request)
+# **pis_create**
+> Pi pis_create(pi_request=pi_request)
 
 
 
@@ -952,13 +956,13 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_request = printnanny_api_client.DeviceRequest() # DeviceRequest | 
+    pi_request = printnanny_api_client.PiRequest() # PiRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_create(device_request)
+        api_response = api_instance.pis_create(pi_request=pi_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_create: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_create: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -994,24 +998,24 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_request = printnanny_api_client.DeviceRequest() # DeviceRequest | 
+    pi_request = printnanny_api_client.PiRequest() # PiRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_create(device_request)
+        api_response = api_instance.pis_create(pi_request=pi_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_create: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_create: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_request** | [**DeviceRequest**](DeviceRequest.md)|  | 
+ **pi_request** | [**PiRequest**](PiRequest.md)|  | [optional] 
 
 ### Return type
 
-[**Device**](Device.md)
+[**Pi**](Pi.md)
 
 ### Authorization
 
@@ -1025,18 +1029,17 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+**201** |  |  -  |
+**409** |  |  -  |
 **400** |  |  -  |
 **401** |  |  -  |
 **403** |  |  -  |
-**404** |  |  -  |
-**409** |  |  -  |
 **500** |  |  -  |
-**201** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_destroy**
-> devices_destroy(id)
+# **pis_destroy**
+> pis_destroy(id)
 
 
 
@@ -1077,12 +1080,12 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    id = 56 # int | A unique integer value identifying this device.
+    id = 56 # int | A unique integer value identifying this pi.
 
     try:
-        api_instance.devices_destroy(id)
+        api_instance.pis_destroy(id)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_destroy: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_destroy: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -1118,19 +1121,19 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    id = 56 # int | A unique integer value identifying this device.
+    id = 56 # int | A unique integer value identifying this pi.
 
     try:
-        api_instance.devices_destroy(id)
+        api_instance.pis_destroy(id)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_destroy: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_destroy: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this device. | 
+ **id** | **int**| A unique integer value identifying this pi. | 
 
 ### Return type
 
@@ -1152,8 +1155,8 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_list**
-> PaginatedDeviceList devices_list(page=page)
+# **pis_list**
+> PaginatedPiList pis_list(page=page)
 
 
 
@@ -1197,10 +1200,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.devices_list(page=page)
+        api_response = api_instance.pis_list(page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_list: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_list: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -1239,10 +1242,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.devices_list(page=page)
+        api_response = api_instance.pis_list(page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_list: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_list: %s\n" % e)
 ```
 
 ### Parameters
@@ -1253,7 +1256,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedDeviceList**](PaginatedDeviceList.md)
+[**PaginatedPiList**](PaginatedPiList.md)
 
 ### Authorization
 
@@ -1275,8 +1278,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_partial_update**
-> Device devices_partial_update(id, patched_device_request=patched_device_request)
+# **pis_partial_update**
+> Pi pis_partial_update(id, patched_pi_request=patched_pi_request)
 
 
 
@@ -1317,14 +1320,14 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    id = 56 # int | A unique integer value identifying this device.
-patched_device_request = printnanny_api_client.PatchedDeviceRequest() # PatchedDeviceRequest |  (optional)
+    id = 56 # int | A unique integer value identifying this pi.
+patched_pi_request = printnanny_api_client.PatchedPiRequest() # PatchedPiRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_partial_update(id, patched_device_request=patched_device_request)
+        api_response = api_instance.pis_partial_update(id, patched_pi_request=patched_pi_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_partial_update: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_partial_update: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -1360,26 +1363,26 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    id = 56 # int | A unique integer value identifying this device.
-patched_device_request = printnanny_api_client.PatchedDeviceRequest() # PatchedDeviceRequest |  (optional)
+    id = 56 # int | A unique integer value identifying this pi.
+patched_pi_request = printnanny_api_client.PatchedPiRequest() # PatchedPiRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_partial_update(id, patched_device_request=patched_device_request)
+        api_response = api_instance.pis_partial_update(id, patched_pi_request=patched_pi_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_partial_update: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_partial_update: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this device. | 
- **patched_device_request** | [**PatchedDeviceRequest**](PatchedDeviceRequest.md)|  | [optional] 
+ **id** | **int**| A unique integer value identifying this pi. | 
+ **patched_pi_request** | [**PatchedPiRequest**](PatchedPiRequest.md)|  | [optional] 
 
 ### Return type
 
-[**Device**](Device.md)
+[**Pi**](Pi.md)
 
 ### Authorization
 
@@ -1393,12 +1396,17 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
+**202** |  |  -  |
+**409** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_public_keys_create**
-> PublicKey devices_public_keys_create(device_id, public_key_request)
+# **pis_public_keys_create**
+> PublicKey pis_public_keys_create(pi_id, public_key_request)
 
 
 
@@ -1437,14 +1445,14 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    pi_id = 56 # int | 
 public_key_request = printnanny_api_client.PublicKeyRequest() # PublicKeyRequest | 
 
     try:
-        api_response = api_instance.devices_public_keys_create(device_id, public_key_request)
+        api_response = api_instance.pis_public_keys_create(pi_id, public_key_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_public_keys_create: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_public_keys_create: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -1480,21 +1488,21 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    pi_id = 56 # int | 
 public_key_request = printnanny_api_client.PublicKeyRequest() # PublicKeyRequest | 
 
     try:
-        api_response = api_instance.devices_public_keys_create(device_id, public_key_request)
+        api_response = api_instance.pis_public_keys_create(pi_id, public_key_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_public_keys_create: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_public_keys_create: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
+ **pi_id** | **int**|  | 
  **public_key_request** | [**PublicKeyRequest**](PublicKeyRequest.md)|  | 
 
 ### Return type
@@ -1522,8 +1530,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_public_keys_list**
-> PaginatedPublicKeyList devices_public_keys_list(device_id, page=page)
+# **pis_public_keys_list**
+> PaginatedPublicKeyList pis_public_keys_list(pi_id, page=page)
 
 
 
@@ -1562,14 +1570,14 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    pi_id = 56 # int | 
 page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.devices_public_keys_list(device_id, page=page)
+        api_response = api_instance.pis_public_keys_list(pi_id, page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_public_keys_list: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_public_keys_list: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -1605,21 +1613,21 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    pi_id = 56 # int | 
 page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.devices_public_keys_list(device_id, page=page)
+        api_response = api_instance.pis_public_keys_list(pi_id, page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_public_keys_list: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_public_keys_list: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
+ **pi_id** | **int**|  | 
  **page** | **int**| A page number within the paginated result set. | [optional] 
 
 ### Return type
@@ -1646,8 +1654,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_public_keys_partial_update**
-> PublicKey devices_public_keys_partial_update(device_id, id, patched_public_key_request=patched_public_key_request)
+# **pis_public_keys_partial_update**
+> PublicKey pis_public_keys_partial_update(id, pi_id, patched_public_key_request=patched_public_key_request)
 
 
 
@@ -1686,15 +1694,15 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this public key.
+    id = 56 # int | A unique integer value identifying this public key.
+pi_id = 56 # int | 
 patched_public_key_request = printnanny_api_client.PatchedPublicKeyRequest() # PatchedPublicKeyRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_public_keys_partial_update(device_id, id, patched_public_key_request=patched_public_key_request)
+        api_response = api_instance.pis_public_keys_partial_update(id, pi_id, patched_public_key_request=patched_public_key_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_public_keys_partial_update: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_public_keys_partial_update: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -1730,23 +1738,23 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this public key.
+    id = 56 # int | A unique integer value identifying this public key.
+pi_id = 56 # int | 
 patched_public_key_request = printnanny_api_client.PatchedPublicKeyRequest() # PatchedPublicKeyRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_public_keys_partial_update(device_id, id, patched_public_key_request=patched_public_key_request)
+        api_response = api_instance.pis_public_keys_partial_update(id, pi_id, patched_public_key_request=patched_public_key_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_public_keys_partial_update: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_public_keys_partial_update: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
  **id** | **int**| A unique integer value identifying this public key. | 
+ **pi_id** | **int**|  | 
  **patched_public_key_request** | [**PatchedPublicKeyRequest**](PatchedPublicKeyRequest.md)|  | [optional] 
 
 ### Return type
@@ -1765,12 +1773,17 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
+**202** |  |  -  |
+**409** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_public_keys_retrieve**
-> PublicKey devices_public_keys_retrieve(device_id, id)
+# **pis_public_keys_retrieve**
+> PublicKey pis_public_keys_retrieve(id, pi_id)
 
 
 
@@ -1809,14 +1822,14 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this public key.
+    id = 56 # int | A unique integer value identifying this public key.
+pi_id = 56 # int | 
 
     try:
-        api_response = api_instance.devices_public_keys_retrieve(device_id, id)
+        api_response = api_instance.pis_public_keys_retrieve(id, pi_id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_public_keys_retrieve: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_public_keys_retrieve: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -1852,22 +1865,22 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this public key.
+    id = 56 # int | A unique integer value identifying this public key.
+pi_id = 56 # int | 
 
     try:
-        api_response = api_instance.devices_public_keys_retrieve(device_id, id)
+        api_response = api_instance.pis_public_keys_retrieve(id, pi_id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_public_keys_retrieve: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_public_keys_retrieve: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
  **id** | **int**| A unique integer value identifying this public key. | 
+ **pi_id** | **int**|  | 
 
 ### Return type
 
@@ -1889,8 +1902,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_public_keys_update**
-> PublicKey devices_public_keys_update(device_id, id, public_key_request)
+# **pis_public_keys_update**
+> PublicKey pis_public_keys_update(id, pi_id, public_key_request)
 
 
 
@@ -1929,15 +1942,15 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this public key.
+    id = 56 # int | A unique integer value identifying this public key.
+pi_id = 56 # int | 
 public_key_request = printnanny_api_client.PublicKeyRequest() # PublicKeyRequest | 
 
     try:
-        api_response = api_instance.devices_public_keys_update(device_id, id, public_key_request)
+        api_response = api_instance.pis_public_keys_update(id, pi_id, public_key_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_public_keys_update: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_public_keys_update: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -1973,23 +1986,23 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this public key.
+    id = 56 # int | A unique integer value identifying this public key.
+pi_id = 56 # int | 
 public_key_request = printnanny_api_client.PublicKeyRequest() # PublicKeyRequest | 
 
     try:
-        api_response = api_instance.devices_public_keys_update(device_id, id, public_key_request)
+        api_response = api_instance.pis_public_keys_update(id, pi_id, public_key_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_public_keys_update: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_public_keys_update: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
  **id** | **int**| A unique integer value identifying this public key. | 
+ **pi_id** | **int**|  | 
  **public_key_request** | [**PublicKeyRequest**](PublicKeyRequest.md)|  | 
 
 ### Return type
@@ -2017,8 +2030,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_retrieve**
-> Device devices_retrieve(id)
+# **pis_retrieve**
+> Pi pis_retrieve(id)
 
 
 
@@ -2059,13 +2072,13 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    id = 56 # int | A unique integer value identifying this device.
+    id = 56 # int | A unique integer value identifying this pi.
 
     try:
-        api_response = api_instance.devices_retrieve(id)
+        api_response = api_instance.pis_retrieve(id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_retrieve: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_retrieve: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -2101,24 +2114,24 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    id = 56 # int | A unique integer value identifying this device.
+    id = 56 # int | A unique integer value identifying this pi.
 
     try:
-        api_response = api_instance.devices_retrieve(id)
+        api_response = api_instance.pis_retrieve(id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_retrieve: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_retrieve: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this device. | 
+ **id** | **int**| A unique integer value identifying this pi. | 
 
 ### Return type
 
-[**Device**](Device.md)
+[**Pi**](Pi.md)
 
 ### Authorization
 
@@ -2136,8 +2149,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_retrieve_hostname**
-> Device devices_retrieve_hostname(hostname)
+# **pis_settings_create**
+> PiSettings pis_settings_create(pi_id, pi_settings_request)
 
 
 
@@ -2176,13 +2189,14 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    hostname = 'hostname_example' # str | 
+    pi_id = 56 # int | 
+pi_settings_request = printnanny_api_client.PiSettingsRequest() # PiSettingsRequest | 
 
     try:
-        api_response = api_instance.devices_retrieve_hostname(hostname)
+        api_response = api_instance.pis_settings_create(pi_id, pi_settings_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_retrieve_hostname: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_settings_create: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -2218,149 +2232,26 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    hostname = 'hostname_example' # str | 
+    pi_id = 56 # int | 
+pi_settings_request = printnanny_api_client.PiSettingsRequest() # PiSettingsRequest | 
 
     try:
-        api_response = api_instance.devices_retrieve_hostname(hostname)
+        api_response = api_instance.pis_settings_create(pi_id, pi_settings_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_retrieve_hostname: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_settings_create: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **hostname** | **str**|  | 
+ **pi_id** | **int**|  | 
+ **pi_settings_request** | [**PiSettingsRequest**](PiSettingsRequest.md)|  | 
 
 ### Return type
 
-[**Device**](Device.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
-**404** |  |  -  |
-**400** |  |  -  |
-**401** |  |  -  |
-**403** |  |  -  |
-**500** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **devices_settings_create**
-> DeviceSettings devices_settings_create(device_id, device_settings_request)
-
-
-
-### Example
-
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-device_settings_request = printnanny_api_client.DeviceSettingsRequest() # DeviceSettingsRequest | 
-
-    try:
-        api_response = api_instance.devices_settings_create(device_id, device_settings_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->devices_settings_create: %s\n" % e)
-```
-
-* Bearer Authentication (tokenAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-device_settings_request = printnanny_api_client.DeviceSettingsRequest() # DeviceSettingsRequest | 
-
-    try:
-        api_response = api_instance.devices_settings_create(device_id, device_settings_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->devices_settings_create: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
- **device_settings_request** | [**DeviceSettingsRequest**](DeviceSettingsRequest.md)|  | 
-
-### Return type
-
-[**DeviceSettings**](DeviceSettings.md)
+[**PiSettings**](PiSettings.md)
 
 ### Authorization
 
@@ -2375,11 +2266,16 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** |  |  -  |
+**409** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_settings_list**
-> PaginatedDeviceSettingsList devices_settings_list(device_id, page=page)
+# **pis_settings_list**
+> PaginatedPiSettingsList pis_settings_list(pi_id, page=page)
 
 
 
@@ -2418,14 +2314,14 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    pi_id = 56 # int | 
 page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.devices_settings_list(device_id, page=page)
+        api_response = api_instance.pis_settings_list(pi_id, page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_settings_list: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_settings_list: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -2461,26 +2357,26 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    pi_id = 56 # int | 
 page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.devices_settings_list(device_id, page=page)
+        api_response = api_instance.pis_settings_list(pi_id, page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_settings_list: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_settings_list: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
+ **pi_id** | **int**|  | 
  **page** | **int**| A page number within the paginated result set. | [optional] 
 
 ### Return type
 
-[**PaginatedDeviceSettingsList**](PaginatedDeviceSettingsList.md)
+[**PaginatedPiSettingsList**](PaginatedPiSettingsList.md)
 
 ### Authorization
 
@@ -2502,8 +2398,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_settings_partial_update**
-> DeviceSettings devices_settings_partial_update(device_id, id, patched_device_settings_request=patched_device_settings_request)
+# **pis_settings_partial_update**
+> PiSettings pis_settings_partial_update(id, pi_id, patched_pi_settings_request=patched_pi_settings_request)
 
 
 
@@ -2542,15 +2438,15 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this device settings.
-patched_device_settings_request = printnanny_api_client.PatchedDeviceSettingsRequest() # PatchedDeviceSettingsRequest |  (optional)
+    id = 56 # int | A unique integer value identifying this pi settings.
+pi_id = 56 # int | 
+patched_pi_settings_request = printnanny_api_client.PatchedPiSettingsRequest() # PatchedPiSettingsRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_settings_partial_update(device_id, id, patched_device_settings_request=patched_device_settings_request)
+        api_response = api_instance.pis_settings_partial_update(id, pi_id, patched_pi_settings_request=patched_pi_settings_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_settings_partial_update: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_settings_partial_update: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -2586,271 +2482,28 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this device settings.
-patched_device_settings_request = printnanny_api_client.PatchedDeviceSettingsRequest() # PatchedDeviceSettingsRequest |  (optional)
+    id = 56 # int | A unique integer value identifying this pi settings.
+pi_id = 56 # int | 
+patched_pi_settings_request = printnanny_api_client.PatchedPiSettingsRequest() # PatchedPiSettingsRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_settings_partial_update(device_id, id, patched_device_settings_request=patched_device_settings_request)
+        api_response = api_instance.pis_settings_partial_update(id, pi_id, patched_pi_settings_request=patched_pi_settings_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_settings_partial_update: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_settings_partial_update: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
- **id** | **int**| A unique integer value identifying this device settings. | 
- **patched_device_settings_request** | [**PatchedDeviceSettingsRequest**](PatchedDeviceSettingsRequest.md)|  | [optional] 
+ **id** | **int**| A unique integer value identifying this pi settings. | 
+ **pi_id** | **int**|  | 
+ **patched_pi_settings_request** | [**PatchedPiSettingsRequest**](PatchedPiSettingsRequest.md)|  | [optional] 
 
 ### Return type
 
-[**DeviceSettings**](DeviceSettings.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **devices_settings_retrieve**
-> DeviceSettings devices_settings_retrieve(device_id, id)
-
-
-
-### Example
-
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this device settings.
-
-    try:
-        api_response = api_instance.devices_settings_retrieve(device_id, id)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->devices_settings_retrieve: %s\n" % e)
-```
-
-* Bearer Authentication (tokenAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this device settings.
-
-    try:
-        api_response = api_instance.devices_settings_retrieve(device_id, id)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->devices_settings_retrieve: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
- **id** | **int**| A unique integer value identifying this device settings. | 
-
-### Return type
-
-[**DeviceSettings**](DeviceSettings.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **devices_settings_update**
-> DeviceSettings devices_settings_update(device_id, id, device_settings_request)
-
-
-
-### Example
-
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this device settings.
-device_settings_request = printnanny_api_client.DeviceSettingsRequest() # DeviceSettingsRequest | 
-
-    try:
-        api_response = api_instance.devices_settings_update(device_id, id, device_settings_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->devices_settings_update: %s\n" % e)
-```
-
-* Bearer Authentication (tokenAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this device settings.
-device_settings_request = printnanny_api_client.DeviceSettingsRequest() # DeviceSettingsRequest | 
-
-    try:
-        api_response = api_instance.devices_settings_update(device_id, id, device_settings_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->devices_settings_update: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
- **id** | **int**| A unique integer value identifying this device settings. | 
- **device_settings_request** | [**DeviceSettingsRequest**](DeviceSettingsRequest.md)|  | 
-
-### Return type
-
-[**DeviceSettings**](DeviceSettings.md)
+[**PiSettings**](PiSettings.md)
 
 ### Authorization
 
@@ -2873,8 +2526,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_system_info_create**
-> SystemInfo devices_system_info_create(device_id, system_info_request)
+# **pis_settings_retrieve**
+> PiSettings pis_settings_retrieve(id, pi_id)
 
 
 
@@ -2913,14 +2566,14 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-system_info_request = printnanny_api_client.SystemInfoRequest() # SystemInfoRequest | 
+    id = 56 # int | A unique integer value identifying this pi settings.
+pi_id = 56 # int | 
 
     try:
-        api_response = api_instance.devices_system_info_create(device_id, system_info_request)
+        api_response = api_instance.pis_settings_retrieve(id, pi_id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_system_info_create: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_settings_retrieve: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -2956,21 +2609,269 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-system_info_request = printnanny_api_client.SystemInfoRequest() # SystemInfoRequest | 
+    id = 56 # int | A unique integer value identifying this pi settings.
+pi_id = 56 # int | 
 
     try:
-        api_response = api_instance.devices_system_info_create(device_id, system_info_request)
+        api_response = api_instance.pis_settings_retrieve(id, pi_id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_system_info_create: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_settings_retrieve: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
+ **id** | **int**| A unique integer value identifying this pi settings. | 
+ **pi_id** | **int**|  | 
+
+### Return type
+
+[**PiSettings**](PiSettings.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **pis_settings_update**
+> PiSettings pis_settings_update(id, pi_id, pi_settings_request)
+
+
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.DevicesApi(api_client)
+    id = 56 # int | A unique integer value identifying this pi settings.
+pi_id = 56 # int | 
+pi_settings_request = printnanny_api_client.PiSettingsRequest() # PiSettingsRequest | 
+
+    try:
+        api_response = api_instance.pis_settings_update(id, pi_id, pi_settings_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->pis_settings_update: %s\n" % e)
+```
+
+* Bearer Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.DevicesApi(api_client)
+    id = 56 # int | A unique integer value identifying this pi settings.
+pi_id = 56 # int | 
+pi_settings_request = printnanny_api_client.PiSettingsRequest() # PiSettingsRequest | 
+
+    try:
+        api_response = api_instance.pis_settings_update(id, pi_id, pi_settings_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->pis_settings_update: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this pi settings. | 
+ **pi_id** | **int**|  | 
+ **pi_settings_request** | [**PiSettingsRequest**](PiSettingsRequest.md)|  | 
+
+### Return type
+
+[**PiSettings**](PiSettings.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** |  |  -  |
+**409** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **pis_system_info_create**
+> SystemInfo pis_system_info_create(pi_id, system_info_request)
+
+
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.DevicesApi(api_client)
+    pi_id = 56 # int | 
+system_info_request = printnanny_api_client.SystemInfoRequest() # SystemInfoRequest | 
+
+    try:
+        api_response = api_instance.pis_system_info_create(pi_id, system_info_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->pis_system_info_create: %s\n" % e)
+```
+
+* Bearer Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.DevicesApi(api_client)
+    pi_id = 56 # int | 
+system_info_request = printnanny_api_client.SystemInfoRequest() # SystemInfoRequest | 
+
+    try:
+        api_response = api_instance.pis_system_info_create(pi_id, system_info_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->pis_system_info_create: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **pi_id** | **int**|  | 
  **system_info_request** | [**SystemInfoRequest**](SystemInfoRequest.md)|  | 
 
 ### Return type
@@ -2998,8 +2899,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_system_info_list**
-> PaginatedSystemInfoList devices_system_info_list(device_id, page=page)
+# **pis_system_info_list**
+> PaginatedSystemInfoList pis_system_info_list(pi_id, page=page)
 
 
 
@@ -3038,14 +2939,14 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    pi_id = 56 # int | 
 page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.devices_system_info_list(device_id, page=page)
+        api_response = api_instance.pis_system_info_list(pi_id, page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_system_info_list: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_system_info_list: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -3081,21 +2982,21 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    pi_id = 56 # int | 
 page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.devices_system_info_list(device_id, page=page)
+        api_response = api_instance.pis_system_info_list(pi_id, page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_system_info_list: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_system_info_list: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
+ **pi_id** | **int**|  | 
  **page** | **int**| A page number within the paginated result set. | [optional] 
 
 ### Return type
@@ -3122,8 +3023,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_system_info_partial_update**
-> SystemInfo devices_system_info_partial_update(device_id, id, patched_system_info_request=patched_system_info_request)
+# **pis_system_info_partial_update**
+> SystemInfo pis_system_info_partial_update(id, pi_id, patched_system_info_request=patched_system_info_request)
 
 
 
@@ -3162,15 +3063,15 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this system info.
+    id = 56 # int | A unique integer value identifying this system info.
+pi_id = 56 # int | 
 patched_system_info_request = printnanny_api_client.PatchedSystemInfoRequest() # PatchedSystemInfoRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_system_info_partial_update(device_id, id, patched_system_info_request=patched_system_info_request)
+        api_response = api_instance.pis_system_info_partial_update(id, pi_id, patched_system_info_request=patched_system_info_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_system_info_partial_update: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_system_info_partial_update: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -3206,23 +3107,23 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this system info.
+    id = 56 # int | A unique integer value identifying this system info.
+pi_id = 56 # int | 
 patched_system_info_request = printnanny_api_client.PatchedSystemInfoRequest() # PatchedSystemInfoRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_system_info_partial_update(device_id, id, patched_system_info_request=patched_system_info_request)
+        api_response = api_instance.pis_system_info_partial_update(id, pi_id, patched_system_info_request=patched_system_info_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_system_info_partial_update: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_system_info_partial_update: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
  **id** | **int**| A unique integer value identifying this system info. | 
+ **pi_id** | **int**|  | 
  **patched_system_info_request** | [**PatchedSystemInfoRequest**](PatchedSystemInfoRequest.md)|  | [optional] 
 
 ### Return type
@@ -3241,12 +3142,17 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
+**202** |  |  -  |
+**409** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_system_info_retrieve**
-> SystemInfo devices_system_info_retrieve(device_id, id)
+# **pis_system_info_retrieve**
+> SystemInfo pis_system_info_retrieve(id, pi_id)
 
 
 
@@ -3285,14 +3191,14 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this system info.
+    id = 56 # int | A unique integer value identifying this system info.
+pi_id = 56 # int | 
 
     try:
-        api_response = api_instance.devices_system_info_retrieve(device_id, id)
+        api_response = api_instance.pis_system_info_retrieve(id, pi_id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_system_info_retrieve: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_system_info_retrieve: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -3328,22 +3234,22 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this system info.
+    id = 56 # int | A unique integer value identifying this system info.
+pi_id = 56 # int | 
 
     try:
-        api_response = api_instance.devices_system_info_retrieve(device_id, id)
+        api_response = api_instance.pis_system_info_retrieve(id, pi_id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_system_info_retrieve: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_system_info_retrieve: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
  **id** | **int**| A unique integer value identifying this system info. | 
+ **pi_id** | **int**|  | 
 
 ### Return type
 
@@ -3365,8 +3271,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_system_info_update**
-> SystemInfo devices_system_info_update(device_id, id, system_info_request)
+# **pis_system_info_update**
+> SystemInfo pis_system_info_update(id, pi_id, system_info_request)
 
 
 
@@ -3405,15 +3311,15 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this system info.
+    id = 56 # int | A unique integer value identifying this system info.
+pi_id = 56 # int | 
 system_info_request = printnanny_api_client.SystemInfoRequest() # SystemInfoRequest | 
 
     try:
-        api_response = api_instance.devices_system_info_update(device_id, id, system_info_request)
+        api_response = api_instance.pis_system_info_update(id, pi_id, system_info_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_system_info_update: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_system_info_update: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -3449,23 +3355,23 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this system info.
+    id = 56 # int | A unique integer value identifying this system info.
+pi_id = 56 # int | 
 system_info_request = printnanny_api_client.SystemInfoRequest() # SystemInfoRequest | 
 
     try:
-        api_response = api_instance.devices_system_info_update(device_id, id, system_info_request)
+        api_response = api_instance.pis_system_info_update(id, pi_id, system_info_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_system_info_update: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_system_info_update: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
  **id** | **int**| A unique integer value identifying this system info. | 
+ **pi_id** | **int**|  | 
  **system_info_request** | [**SystemInfoRequest**](SystemInfoRequest.md)|  | 
 
 ### Return type
@@ -3493,8 +3399,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_update**
-> Device devices_update(id, device_request=device_request)
+# **pis_update**
+> Pi pis_update(id, pi_request=pi_request)
 
 
 
@@ -3535,14 +3441,14 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    id = 56 # int | A unique integer value identifying this device.
-device_request = printnanny_api_client.DeviceRequest() # DeviceRequest |  (optional)
+    id = 56 # int | A unique integer value identifying this pi.
+pi_request = printnanny_api_client.PiRequest() # PiRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_update(id, device_request=device_request)
+        api_response = api_instance.pis_update(id, pi_request=pi_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_update: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_update: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -3578,26 +3484,26 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    id = 56 # int | A unique integer value identifying this device.
-device_request = printnanny_api_client.DeviceRequest() # DeviceRequest |  (optional)
+    id = 56 # int | A unique integer value identifying this pi.
+pi_request = printnanny_api_client.PiRequest() # PiRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_update(id, device_request=device_request)
+        api_response = api_instance.pis_update(id, pi_request=pi_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_update: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_update: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this device. | 
- **device_request** | [**DeviceRequest**](DeviceRequest.md)|  | [optional] 
+ **id** | **int**| A unique integer value identifying this pi. | 
+ **pi_request** | [**PiRequest**](PiRequest.md)|  | [optional] 
 
 ### Return type
 
-[**Device**](Device.md)
+[**Pi**](Pi.md)
 
 ### Authorization
 
@@ -3620,8 +3526,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_webrtc_streams_create**
-> WebrtcStream devices_webrtc_streams_create(device_id, webrtc_stream_request=webrtc_stream_request)
+# **pis_webrtc_streams_create**
+> WebrtcStream pis_webrtc_streams_create(pi_id, webrtc_stream_request=webrtc_stream_request)
 
 
 
@@ -3660,14 +3566,14 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    pi_id = 56 # int | 
 webrtc_stream_request = printnanny_api_client.WebrtcStreamRequest() # WebrtcStreamRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_webrtc_streams_create(device_id, webrtc_stream_request=webrtc_stream_request)
+        api_response = api_instance.pis_webrtc_streams_create(pi_id, webrtc_stream_request=webrtc_stream_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_webrtc_streams_create: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_webrtc_streams_create: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -3703,21 +3609,21 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    pi_id = 56 # int | 
 webrtc_stream_request = printnanny_api_client.WebrtcStreamRequest() # WebrtcStreamRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_webrtc_streams_create(device_id, webrtc_stream_request=webrtc_stream_request)
+        api_response = api_instance.pis_webrtc_streams_create(pi_id, webrtc_stream_request=webrtc_stream_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_webrtc_streams_create: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_webrtc_streams_create: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
+ **pi_id** | **int**|  | 
  **webrtc_stream_request** | [**WebrtcStreamRequest**](WebrtcStreamRequest.md)|  | [optional] 
 
 ### Return type
@@ -3745,8 +3651,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_webrtc_streams_list**
-> PaginatedWebrtcStreamList devices_webrtc_streams_list(device_id, page=page)
+# **pis_webrtc_streams_list**
+> PaginatedWebrtcStreamList pis_webrtc_streams_list(pi_id, page=page)
 
 
 
@@ -3785,14 +3691,14 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    pi_id = 56 # int | 
 page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.devices_webrtc_streams_list(device_id, page=page)
+        api_response = api_instance.pis_webrtc_streams_list(pi_id, page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_webrtc_streams_list: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_webrtc_streams_list: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -3828,21 +3734,21 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    pi_id = 56 # int | 
 page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.devices_webrtc_streams_list(device_id, page=page)
+        api_response = api_instance.pis_webrtc_streams_list(pi_id, page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_webrtc_streams_list: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_webrtc_streams_list: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
+ **pi_id** | **int**|  | 
  **page** | **int**| A page number within the paginated result set. | [optional] 
 
 ### Return type
@@ -3869,8 +3775,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_webrtc_streams_partial_update**
-> WebrtcStream devices_webrtc_streams_partial_update(device_id, id, patched_webrtc_stream_request=patched_webrtc_stream_request)
+# **pis_webrtc_streams_partial_update**
+> WebrtcStream pis_webrtc_streams_partial_update(id, pi_id, patched_webrtc_stream_request=patched_webrtc_stream_request)
 
 
 
@@ -3909,15 +3815,15 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this webrtc stream.
+    id = 56 # int | A unique integer value identifying this webrtc stream.
+pi_id = 56 # int | 
 patched_webrtc_stream_request = printnanny_api_client.PatchedWebrtcStreamRequest() # PatchedWebrtcStreamRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_webrtc_streams_partial_update(device_id, id, patched_webrtc_stream_request=patched_webrtc_stream_request)
+        api_response = api_instance.pis_webrtc_streams_partial_update(id, pi_id, patched_webrtc_stream_request=patched_webrtc_stream_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_webrtc_streams_partial_update: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_webrtc_streams_partial_update: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -3953,23 +3859,23 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this webrtc stream.
+    id = 56 # int | A unique integer value identifying this webrtc stream.
+pi_id = 56 # int | 
 patched_webrtc_stream_request = printnanny_api_client.PatchedWebrtcStreamRequest() # PatchedWebrtcStreamRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_webrtc_streams_partial_update(device_id, id, patched_webrtc_stream_request=patched_webrtc_stream_request)
+        api_response = api_instance.pis_webrtc_streams_partial_update(id, pi_id, patched_webrtc_stream_request=patched_webrtc_stream_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_webrtc_streams_partial_update: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_webrtc_streams_partial_update: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
  **id** | **int**| A unique integer value identifying this webrtc stream. | 
+ **pi_id** | **int**|  | 
  **patched_webrtc_stream_request** | [**PatchedWebrtcStreamRequest**](PatchedWebrtcStreamRequest.md)|  | [optional] 
 
 ### Return type
@@ -3988,12 +3894,17 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
+**202** |  |  -  |
+**409** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_webrtc_streams_retrieve**
-> WebrtcStream devices_webrtc_streams_retrieve(device_id, id)
+# **pis_webrtc_streams_retrieve**
+> WebrtcStream pis_webrtc_streams_retrieve(id, pi_id)
 
 
 
@@ -4032,14 +3943,14 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this webrtc stream.
+    id = 56 # int | A unique integer value identifying this webrtc stream.
+pi_id = 56 # int | 
 
     try:
-        api_response = api_instance.devices_webrtc_streams_retrieve(device_id, id)
+        api_response = api_instance.pis_webrtc_streams_retrieve(id, pi_id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_webrtc_streams_retrieve: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_webrtc_streams_retrieve: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -4075,22 +3986,22 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this webrtc stream.
+    id = 56 # int | A unique integer value identifying this webrtc stream.
+pi_id = 56 # int | 
 
     try:
-        api_response = api_instance.devices_webrtc_streams_retrieve(device_id, id)
+        api_response = api_instance.pis_webrtc_streams_retrieve(id, pi_id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_webrtc_streams_retrieve: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_webrtc_streams_retrieve: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
  **id** | **int**| A unique integer value identifying this webrtc stream. | 
+ **pi_id** | **int**|  | 
 
 ### Return type
 
@@ -4117,8 +4028,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **devices_webrtc_streams_update**
-> WebrtcStream devices_webrtc_streams_update(device_id, id, webrtc_stream_request=webrtc_stream_request)
+# **pis_webrtc_streams_update**
+> WebrtcStream pis_webrtc_streams_update(id, pi_id, webrtc_stream_request=webrtc_stream_request)
 
 
 
@@ -4157,15 +4068,15 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this webrtc stream.
+    id = 56 # int | A unique integer value identifying this webrtc stream.
+pi_id = 56 # int | 
 webrtc_stream_request = printnanny_api_client.WebrtcStreamRequest() # WebrtcStreamRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_webrtc_streams_update(device_id, id, webrtc_stream_request=webrtc_stream_request)
+        api_response = api_instance.pis_webrtc_streams_update(id, pi_id, webrtc_stream_request=webrtc_stream_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_webrtc_streams_update: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_webrtc_streams_update: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -4201,23 +4112,23 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
-id = 56 # int | A unique integer value identifying this webrtc stream.
+    id = 56 # int | A unique integer value identifying this webrtc stream.
+pi_id = 56 # int | 
 webrtc_stream_request = printnanny_api_client.WebrtcStreamRequest() # WebrtcStreamRequest |  (optional)
 
     try:
-        api_response = api_instance.devices_webrtc_streams_update(device_id, id, webrtc_stream_request=webrtc_stream_request)
+        api_response = api_instance.pis_webrtc_streams_update(id, pi_id, webrtc_stream_request=webrtc_stream_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DevicesApi->devices_webrtc_streams_update: %s\n" % e)
+        print("Exception when calling DevicesApi->pis_webrtc_streams_update: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
  **id** | **int**| A unique integer value identifying this webrtc stream. | 
+ **pi_id** | **int**|  | 
  **webrtc_stream_request** | [**WebrtcStreamRequest**](WebrtcStreamRequest.md)|  | [optional] 
 
 ### Return type
@@ -4236,12 +4147,17 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
+**202** |  |  -  |
+**409** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **public_key_update_or_create**
-> PublicKey public_key_update_or_create(device_id, public_key_request)
+> PublicKey public_key_update_or_create(pi_id, public_key_request)
 
 
 
@@ -4280,11 +4196,11 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    pi_id = 56 # int | 
 public_key_request = printnanny_api_client.PublicKeyRequest() # PublicKeyRequest | 
 
     try:
-        api_response = api_instance.public_key_update_or_create(device_id, public_key_request)
+        api_response = api_instance.public_key_update_or_create(pi_id, public_key_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->public_key_update_or_create: %s\n" % e)
@@ -4323,11 +4239,11 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    pi_id = 56 # int | 
 public_key_request = printnanny_api_client.PublicKeyRequest() # PublicKeyRequest | 
 
     try:
-        api_response = api_instance.public_key_update_or_create(device_id, public_key_request)
+        api_response = api_instance.public_key_update_or_create(pi_id, public_key_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->public_key_update_or_create: %s\n" % e)
@@ -4337,7 +4253,7 @@ public_key_request = printnanny_api_client.PublicKeyRequest() # PublicKeyRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
+ **pi_id** | **int**|  | 
  **public_key_request** | [**PublicKeyRequest**](PublicKeyRequest.md)|  | 
 
 ### Return type
@@ -4367,7 +4283,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **system_info_update_or_create**
-> SystemInfo system_info_update_or_create(device_id, system_info_request)
+> SystemInfo system_info_update_or_create(pi_id, system_info_request)
 
 
 
@@ -4406,11 +4322,11 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    pi_id = 56 # int | 
 system_info_request = printnanny_api_client.SystemInfoRequest() # SystemInfoRequest | 
 
     try:
-        api_response = api_instance.system_info_update_or_create(device_id, system_info_request)
+        api_response = api_instance.system_info_update_or_create(pi_id, system_info_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->system_info_update_or_create: %s\n" % e)
@@ -4449,11 +4365,11 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    device_id = 56 # int | 
+    pi_id = 56 # int | 
 system_info_request = printnanny_api_client.SystemInfoRequest() # SystemInfoRequest | 
 
     try:
-        api_response = api_instance.system_info_update_or_create(device_id, system_info_request)
+        api_response = api_instance.system_info_update_or_create(pi_id, system_info_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->system_info_update_or_create: %s\n" % e)
@@ -4463,7 +4379,7 @@ system_info_request = printnanny_api_client.SystemInfoRequest() # SystemInfoRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
+ **pi_id** | **int**|  | 
  **system_info_request** | [**SystemInfoRequest**](SystemInfoRequest.md)|  | 
 
 ### Return type
@@ -4482,13 +4398,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+**200** |  |  -  |
 **201** |  |  -  |
 **202** |  |  -  |
-**409** |  |  -  |
-**400** |  |  -  |
-**401** |  |  -  |
-**403** |  |  -  |
-**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

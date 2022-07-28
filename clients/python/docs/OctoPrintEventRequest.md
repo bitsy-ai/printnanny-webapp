@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **event_name** | [**OctoPrintEventName**](OctoPrintEventName.md) |  | 
 **payload** | **dict(str, object)** |  | [optional] 
 **octoprint_server** | **int** |  | 
-**device** | **int** |  | 
+**pi** | **int** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

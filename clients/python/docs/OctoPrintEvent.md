@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **polymorphic_ctype** | **int** |  | [readonly] 
 **user** | **int** |  | [readonly] 
 **octoprint_server** | **int** |  | 
-**device** | **int** |  | 
+**pi** | **int** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

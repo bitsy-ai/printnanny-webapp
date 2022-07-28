@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **polymorphic_ctype** | **int** |  | [readonly] 
 **user** | **int** |  | [readonly] 
 **octoprint_server** | **int** |  | 
-**device** | **int** |  | 
+**pi** | **int** |  | 
 **data** | **dict(str, object)** |  | [optional] 
 **stream** | [**WebrtcStream**](WebrtcStream.md) |  | [readonly] 
 

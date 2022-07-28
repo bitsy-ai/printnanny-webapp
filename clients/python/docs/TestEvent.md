@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **event_name** | [**TestEventName**](TestEventName.md) |  | 
 **polymorphic_ctype** | **int** |  | [readonly] 
 **user** | **int** |  | [readonly] 
-**device** | **int** |  | 
+**pi** | **int** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

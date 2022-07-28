@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **cipher** | **str** |  | [optional] 
 **length** | **int** |  | [optional] 
 **fingerprint** | **str** |  | [optional] 
-**device** | **int** |  | [optional] 
+**pi** | **int** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

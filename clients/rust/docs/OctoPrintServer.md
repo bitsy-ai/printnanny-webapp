@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **created_dt** | **String** |  | [readonly]
 **updated_dt** | **String** |  | [readonly]
 **user** | **i32** |  | [readonly]
-**device** | **i32** |  | 
+**pi** | **i32** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

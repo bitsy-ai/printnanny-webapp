@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **updated_dt** | **String** |  | [readonly]
 **config_type** | Option<[**crate::models::JanusConfigType**](JanusConfigType.md)> |  | [readonly]
 **active** | Option<**bool**> |  | [optional]
-**device** | **i32** |  | [readonly]
+**pi** | **i32** |  | [readonly]
 **stream_secret** | Option<**String**> |  | [optional]
 **stream_pin** | Option<**String**> |  | [optional]
 **api_token** | Option<**String**> |  | [optional]

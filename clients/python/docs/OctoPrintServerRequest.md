@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **pip_version** | **str** |  | [optional] 
 **python_version** | **str** |  | [optional] 
 **printnanny_plugin_version** | **str** |  | [optional] 
-**device** | **int** |  | 
+**pi** | **int** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

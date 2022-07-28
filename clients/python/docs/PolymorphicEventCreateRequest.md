@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **event_name** | [**TestEventName**](TestEventName.md) |  | 
 **payload** | **dict(str, object)** |  | [optional] 
 **octoprint_server** | **int** |  | 
-**device** | **int** |  | 
+**pi** | **int** |  | 
 **data** | **dict(str, object)** |  | [optional] 
 **stream** | **int** |  | 
 

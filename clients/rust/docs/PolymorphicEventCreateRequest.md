@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **event_name** | [**crate::models::TestEventName**](TestEventName.md) |  | 
 **payload** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **octoprint_server** | **i32** |  | 
-**device** | **i32** |  | 
+**pi** | **i32** |  | 
 **data** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **stream** | **i32** |  | 
 

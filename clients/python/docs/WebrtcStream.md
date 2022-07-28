@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **updated_dt** | **datetime** |  | [readonly] 
 **config_type** | [**JanusConfigType**](JanusConfigType.md) |  | [readonly] 
 **active** | **bool** |  | [optional] 
-**device** | **int** |  | [readonly] 
+**pi** | **int** |  | [readonly] 
 **stream_secret** | **str** |  | [optional] 
 **stream_pin** | **str** |  | [optional] 
 **api_token** | **str** |  | [optional] 
