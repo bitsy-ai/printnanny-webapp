@@ -630,7 +630,7 @@ Name | Type | Description  | Required | Notes
 
 ## pis_octoprint_list
 
-> crate::models::PaginatedOctoPrintServerList pis_octoprint_list(device_id, pi_id, page)
+> crate::models::PaginatedOctoPrintServerList pis_octoprint_list(pi_id, page)
 
 
 ### Parameters
@@ -638,7 +638,6 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**device_id** | **i32** |  | [required] |
 **pi_id** | **i32** |  | [required] |
 **page** | Option<**i32**> | A page number within the paginated result set. |  |
 

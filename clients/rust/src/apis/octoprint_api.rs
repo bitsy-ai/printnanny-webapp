@@ -913,12 +913,12 @@ pub async fn octoprint_update(configuration: &configuration::Configuration, id: 
     }
 }
 
-pub async fn pis_octoprint_list(configuration: &configuration::Configuration, device_id: i32, pi_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedOctoPrintServerList, Error<PisOctoprintListError>> {
+pub async fn pis_octoprint_list(configuration: &configuration::Configuration, pi_id: i32, page: Option<i32>) -> Result<crate::models::PaginatedOctoPrintServerList, Error<PisOctoprintListError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/pis/{pi_id}/octoprint/", local_var_configuration.base_path, device_id=device_id, pi_id=pi_id);
+    let local_var_uri_str = format!("{}/api/pis/{pi_id}/octoprint/", local_var_configuration.base_path, pi_id=pi_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
