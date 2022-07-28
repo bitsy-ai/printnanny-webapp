@@ -44,7 +44,7 @@ logger = logging.getLogger(__name__)
     list=extend_schema(
         tags=["octoprint"],
         parameters=[
-            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
         ],
         responses={
             200: OctoPrintServerSerializer(),
