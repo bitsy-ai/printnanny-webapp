@@ -52,7 +52,7 @@ def render_honeycomb_env() -> str:
 
 def delete_cloudiot_device(device_id_int64: int):
 
-    client = cloudiot_v1.PiManagerClient()
+    client = cloudiot_v1.DeviceManagerClient()
     device_path = client.device_path(
         settings.GCP_PROJECT_ID,
         settings.GCP_CLOUDIOT_DEVICE_REGISTRY_REGION,
@@ -66,8 +66,8 @@ def delete_cloudiot_device(device_id_int64: int):
 
 
 def cloudiot_device_request(
-    cloudiot_device: cloudiot_v1.types.Pi, public_key: PublicKey
-) -> cloudiot_v1.types.Pi:
+    cloudiot_device: cloudiot_v1.types.Device, public_key: PublicKey
+) -> cloudiot_v1.types.Device:
     cloudiot_device.credentials = [
         {
             "public_key": {
@@ -88,14 +88,14 @@ def cloudiot_device_request(
 
 def create_cloudiot_device(public_key: PublicKey):
 
-    client = cloudiot_v1.PiManagerClient()
+    client = cloudiot_v1.DeviceManagerClient()
     parent = client.registry_path(
         settings.GCP_PROJECT_ID,
         settings.GCP_CLOUDIOT_DEVICE_REGISTRY_REGION,
         settings.GCP_CLOUDIOT_STANDALONE_DEVICE_REGISTRY,
     )
 
-    cloudiot_device = cloudiot_v1.types.Pi()
+    cloudiot_device = cloudiot_v1.types.Device()
     cloudiot_device.id = public_key.device.cloudiot_name
     cloudiot_device = cloudiot_device_request(cloudiot_device, public_key)
 
@@ -103,14 +103,14 @@ def create_cloudiot_device(public_key: PublicKey):
 
 
 def update_cloudiot_device(cloudiot_device: CloudiotDevice, public_key: PublicKey):
-    client = cloudiot_v1.PiManagerClient()
+    client = cloudiot_v1.DeviceManagerClient()
 
     cloudiot_device = cloudiot_device_request(cloudiot_device, public_key)
     # google.api_core.exceptions.InvalidArgument: 400 The fields 'device.id' and 'device.num_id' must be empty.
     del cloudiot_device.num_id
     del cloudiot_device.id
 
-    request = cloudiot_v1.types.UpdatePiRequest(
+    request = cloudiot_v1.types.UpdateDeviceRequest(
         device=cloudiot_device, update_mask={"paths": ["credentials", "metadata"]}
     )
     return client.update_device(request=request)
@@ -119,7 +119,7 @@ def update_cloudiot_device(cloudiot_device: CloudiotDevice, public_key: PublicKe
 def update_or_create_cloudiot_device(
     public_key: PublicKey,
 ) -> Tuple[CloudiotDevice, bool]:
-    client = cloudiot_v1.PiManagerClient()
+    client = cloudiot_v1.DeviceManagerClient()
 
     device_path = client.device_path(
         settings.GCP_PROJECT_ID,
@@ -129,7 +129,7 @@ def update_or_create_cloudiot_device(
     )
 
     try:
-        existing_cloudiot_device: cloudiot_v1.types.Pi = client.get_device(
+        existing_cloudiot_device: cloudiot_v1.types.Device = client.get_device(
             name=device_path
         )
         gcp_response = update_cloudiot_device(existing_cloudiot_device, public_key)
