@@ -3,7 +3,6 @@ from rest_framework.routers import DefaultRouter
 from rest_framework_nested.routers import NestedSimpleRouter
 from print_nanny_webapp.devices.api.views import (
     CloudiotDeviceViewSet,
-    PiHostnameViewSet,
     PublicKeyViewSet,
     SystemInfoViewSet,
     PiViewSet,
@@ -45,7 +44,6 @@ router.register("pis", PiViewSet)
 
 # enables /api/devices/:hostname lookup (no nested routing)
 other_urls = [
-    path("pis/<slug:hostname>", PiHostnameViewSet.as_view({"get": "retrieve"})),
     path("billing/summary", BillingSummaryView.as_view(), name="billing-summary"),
 ]
 
