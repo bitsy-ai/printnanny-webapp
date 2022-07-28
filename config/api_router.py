@@ -3,13 +3,13 @@ from rest_framework.routers import DefaultRouter
 from rest_framework_nested.routers import NestedSimpleRouter
 from print_nanny_webapp.devices.api.views import (
     CloudiotDeviceViewSet,
-    DeviceHostnameViewSet,
+    PiHostnameViewSet,
     PublicKeyViewSet,
     SystemInfoViewSet,
-    DeviceViewSet,
+    PiViewSet,
     WebrtcStreamViewSet,
     ConfigDownloadViewSet,
-    DeviceSettingsViewSet,
+    PiSettingsViewSet,
 )
 from print_nanny_webapp.events.api.views import CommandViewSet, EventViewSet
 
@@ -39,27 +39,25 @@ router.register("accounts/email-waitlist", EmailWaitlistViewSet, "email-waitlist
 router.register("alerts", AlertViewSet, basename="alerts")
 router.register(r"alert-settings", AlertSettingsViewSet, basename="alert-settings")
 
-router.register("devices", DeviceViewSet)
+router.register("pis", PiViewSet)
 
 # octoprint endpoints (PrintNanny os data model)
 
 # enables /api/devices/:hostname lookup (no nested routing)
 other_urls = [
-    path("devices/<slug:hostname>", DeviceHostnameViewSet.as_view({"get": "retrieve"})),
+    path("pis/<slug:hostname>", PiHostnameViewSet.as_view({"get": "retrieve"})),
     path("billing/summary", BillingSummaryView.as_view(), name="billing-summary"),
 ]
 
-devices_router = NestedSimpleRouter(router, r"devices", lookup="device")
-devices_router.register("config", ConfigDownloadViewSet, basename="config")
-devices_router.register("settings", DeviceSettingsViewSet, basename="settings")
-devices_router.register(r"public-keys", PublicKeyViewSet, basename="public-keys")
-devices_router.register(
-    r"webrtc-streams", WebrtcStreamViewSet, basename="janus-streams"
-)
+pi_router = NestedSimpleRouter(router, r"pis", lookup="pi")
+pi_router.register("config", ConfigDownloadViewSet, basename="config")
+pi_router.register("settings", PiSettingsViewSet, basename="settings")
+pi_router.register(r"public-keys", PublicKeyViewSet, basename="public-keys")
+pi_router.register(r"webrtc-streams", WebrtcStreamViewSet, basename="janus-streams")
 
-devices_router.register(r"system-info", SystemInfoViewSet, basename="system-info")
-devices_router.register(r"cloudiot", CloudiotDeviceViewSet, basename="cloudiot")
-devices_router.register(
+pi_router.register(r"system-info", SystemInfoViewSet, basename="system-info")
+pi_router.register(r"cloudiot", CloudiotDeviceViewSet, basename="cloudiot")
+pi_router.register(
     r"octoprint",
     OctoPrintServerByDeviceViewSet,
     basename="octoprints",
@@ -96,4 +94,4 @@ router.register("commands", CommandViewSet, basename="commands")
 
 app_name = "api"
 
-urlpatterns = router.urls + devices_router.urls + other_urls
+urlpatterns = router.urls + pi_router.urls + other_urls

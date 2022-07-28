@@ -34,17 +34,17 @@ from .serializers import (
     PublicKeySerializer,
     CloudiotDeviceSerializer,
     SystemInfoSerializer,
-    DeviceSerializer,
+    PiSerializer,
     WebrtcStreamSerializer,
-    DeviceSettingsSerializer,
+    PiSettingsSerializer,
 )
 from ..models import (
     CloudiotDevice,
-    Device,
+    Pi,
     WebrtcStream,
     PublicKey,
     SystemInfo,
-    DeviceSettings,
+    PiSettings,
 )
 from print_nanny_webapp.utils.api.service import get_api_config
 from ..services import janus_cloud_setup, update_or_create_cloudiot_device
@@ -57,19 +57,17 @@ logger = logging.getLogger(__name__)
 # for some reason (yet unknown) DRF AutoSchema is omitting required on the POST method for this endpoint
 # copied from /api/schema/
 device_create_operation = {
-    "operationId": "devices_create",
+    "operationId": "pi_create",
     "description": "A device (Raspberry Pi) running Print Nanny OS",
     "tags": ["devices"],
     "requestBody": {
         "content": {
-            "application/json": {
-                "schema": {"$ref": "#/components/schemas/DeviceRequest"}
-            },
+            "application/json": {"schema": {"$ref": "#/components/schemas/PiRequest"}},
             "application/x-www-form-urlencoded": {
-                "schema": {"$ref": "#/components/schemas/DeviceRequest"}
+                "schema": {"$ref": "#/components/schemas/PiRequest"}
             },
             "multipart/form-data": {
-                "schema": {"$ref": "#/components/schemas/DeviceRequest"}
+                "schema": {"$ref": "#/components/schemas/PiRequest"}
             },
         },
         # this is the only line added to AutoSchema generated @ /api/schema/
@@ -127,7 +125,7 @@ device_create_operation = {
         },
         "201": {
             "content": {
-                "application/json": {"schema": {"$ref": "#/components/schemas/Device"}}
+                "application/json": {"schema": {"$ref": "#/components/schemas/Pi"}}
             },
             "description": "",
         },
@@ -137,23 +135,26 @@ device_create_operation = {
 
 @extend_schema_view(
     list=extend_schema(
+        tags=["devices"],
         responses={
-            200: DeviceSerializer(many=True),
+            200: PiSerializer(many=True),
         }
-        | generic_list_errors
+        | generic_list_errors,
     ),
     update=extend_schema(
-        request=DeviceSerializer,
+        tags=["devices"],
+        request=PiSerializer,
         responses={
-            202: DeviceSerializer,
+            202: PiSerializer,
         }
         | generic_update_errors,
     ),
     create=extend_schema(
+        tags=["devices"],
         operation=device_create_operation,
     ),
 )
-class DeviceViewSet(
+class PiViewSet(
     GenericViewSet,
     CreateModelMixin,
     ListModelMixin,
@@ -165,8 +166,8 @@ class DeviceViewSet(
     A device (Raspberry Pi) running Print Nanny OS
     """
 
-    serializer_class = DeviceSerializer
-    queryset = Device.objects.all()
+    serializer_class = PiSerializer
+    queryset = Pi.objects.all()
     lookup_field = "id"
 
     def create(self, request: Request, *args: Any, **kwargs: Any) -> Response:
@@ -175,7 +176,7 @@ class DeviceViewSet(
             return super().create(request, *args, **kwargs)
         except IntegrityError as e:
             raise AlreadyExists(
-                detail=f"Device with hostname={hostname} already exists for user={self.request.user.id}."
+                detail=f"Pi with hostname={hostname} already exists for user={self.request.user.id}."
             ) from e
 
     def perform_create(self, serializer):
@@ -185,12 +186,11 @@ class DeviceViewSet(
 ##
 # PublicKey views
 ##
-
-
 @extend_schema_view(
     list=extend_schema(
+        tags=["devices"],
         parameters=[
-            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
         ],
         responses={
             200: PublicKeySerializer(many=True),
@@ -198,8 +198,9 @@ class DeviceViewSet(
         | generic_list_errors,
     ),
     create=extend_schema(
+        tags=["devices"],
         parameters=[
-            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
         ],
         request=PublicKeySerializer,
         responses={
@@ -208,8 +209,9 @@ class DeviceViewSet(
         | generic_create_errors,
     ),
     update=extend_schema(
+        tags=["devices"],
         parameters=[
-            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
         ],
         request=PublicKeySerializer,
         responses={
@@ -230,6 +232,7 @@ class PublicKeyViewSet(
     lookup_field = "id"
 
     @extend_schema(
+        tags=["devices"],
         operation_id="public_key_update_or_create",
         responses={
             # 400: PrinterProfileSerializer,
@@ -255,38 +258,40 @@ class PublicKeyViewSet(
 
 
 ###
-# DeviceSettings views
+# PiSettings views
 ###
 @extend_schema_view(
     list=extend_schema(
+        tags=["devices"],
         parameters=[
-            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
         ],
         responses={
-            200: DeviceSettingsSerializer(many=False),
+            200: PiSettingsSerializer(many=False),
         }
         | generic_list_errors,
     ),
     update=extend_schema(
+        tags=["devices"],
         parameters=[
-            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
         ],
-        request=DeviceSettingsSerializer,
+        request=PiSettingsSerializer,
         responses={
-            202: DeviceSettingsSerializer,
+            202: PiSettingsSerializer,
         }
         | generic_create_errors,
     ),
 )
-class DeviceSettingsViewSet(
+class PiSettingsViewSet(
     GenericViewSet,
     ListModelMixin,
     RetrieveModelMixin,
     UpdateModelMixin,
     CreateModelMixin,
 ):
-    serializer_class = DeviceSettingsSerializer
-    queryset = DeviceSettings.objects.all()
+    serializer_class = PiSettingsSerializer
+    queryset = PiSettings.objects.all()
     lookup_field = "id"
 
 
@@ -297,7 +302,7 @@ class DeviceSettingsViewSet(
     list=extend_schema(
         tags=["janus", "devices"],
         parameters=[
-            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
         ],
         responses={
             200: WebrtcStreamSerializer(many=True),
@@ -307,7 +312,7 @@ class DeviceSettingsViewSet(
     create=extend_schema(
         tags=["janus", "devices"],
         parameters=[
-            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
         ],
         request=WebrtcStreamSerializer,
         responses={
@@ -318,7 +323,7 @@ class DeviceSettingsViewSet(
     retrieve=extend_schema(
         tags=["janus", "devices"],
         parameters=[
-            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
         ],
         request=WebrtcStreamSerializer,
         responses={
@@ -346,8 +351,9 @@ class WebrtcStreamViewSet(
 
 @extend_schema_view(
     list=extend_schema(
+        tags=["devices"],
         parameters=[
-            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
         ],
         responses={
             200: SystemInfoSerializer(many=True),
@@ -355,8 +361,9 @@ class WebrtcStreamViewSet(
         | generic_list_errors,
     ),
     create=extend_schema(
+        tags=["devices"],
         parameters=[
-            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
         ],
         request=SystemInfoSerializer,
         responses={
@@ -366,7 +373,7 @@ class WebrtcStreamViewSet(
     ),
     update=extend_schema(
         parameters=[
-            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
         ],
         request=SystemInfoSerializer,
         responses={
@@ -376,7 +383,7 @@ class WebrtcStreamViewSet(
     ),
     update_or_create=extend_schema(
         parameters=[
-            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
         ],
         request=SystemInfoSerializer,
         responses={
@@ -399,6 +406,7 @@ class SystemInfoViewSet(
     lookup_field = "id"
 
     @extend_schema(
+        tags=["devices"],
         operation_id="system_info_update_or_create",
         responses={
             # 400: PrinterProfileSerializer,
@@ -422,35 +430,34 @@ class SystemInfoViewSet(
 
 
 ###
-# Devices (by hostname)
+# Pis (by hostname)
 ##
 @extend_schema_view(
     retrieve=extend_schema(
         operation_id="devices_retrieve_hostname",
         responses={
-            200: DeviceSerializer,
+            200: PiSerializer,
         }
         | generic_get_errors,
     )
 )
-class DeviceHostnameViewSet(
+class PiHostnameViewSet(
     GenericViewSet,
     RetrieveModelMixin,
 ):
-    serializer_class = DeviceSerializer
-    queryset = Device.objects.all()
+    serializer_class = PiSerializer
+    queryset = Pi.objects.all()
     lookup_field = "hostname"
 
 
 ##
-# Cloud IoT Device
+# Cloud IoT Pi
 ##
 @extend_schema_view(
     retrieve=extend_schema(
+        tags=["devices"],
         parameters=[
-            OpenApiParameter(
-                name="device_id", type=int, location=OpenApiParameter.PATH
-            ),
+            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH),
             OpenApiParameter(name="id", type=int, location=OpenApiParameter.PATH),
         ],
         responses={
@@ -459,8 +466,9 @@ class DeviceHostnameViewSet(
         | generic_get_errors,
     ),
     list=extend_schema(
+        tags=["devices"],
         parameters=[
-            OpenApiParameter(name="device_id", type=int, location=OpenApiParameter.PATH)
+            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
         ],
         responses={
             200: CloudiotDeviceSerializer(many=True),
@@ -468,10 +476,9 @@ class DeviceHostnameViewSet(
         | generic_list_errors,
     ),
     create=extend_schema(
+        tags=["devices"],
         parameters=[
-            OpenApiParameter(
-                name="device_id", type=int, location=OpenApiParameter.PATH
-            ),
+            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH),
         ],
         request=CloudiotDeviceSerializer,
         responses={
@@ -480,10 +487,9 @@ class DeviceHostnameViewSet(
         | generic_create_errors,
     ),
     update=extend_schema(
+        tags=["devices"],
         parameters=[
-            OpenApiParameter(
-                name="device_id", type=int, location=OpenApiParameter.PATH
-            ),
+            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH),
         ],
         request=CloudiotDeviceSerializer,
         responses={
@@ -504,9 +510,9 @@ class CloudiotDeviceViewSet(
     lookup_field = "id"
 
     @extend_schema(
+        tags=["devices"],
         operation_id="cloudiot_device_update_or_create",
         responses={
-            # 400: PrinterProfileSerializer,
             200: CloudiotDeviceSerializer,
             201: CloudiotDeviceSerializer,
         },
@@ -535,10 +541,9 @@ class ConfigDownloadViewSet(
     serializer_class = ConfigSerializer
 
     @extend_schema(
+        tags=["devices"],
         parameters=[
-            OpenApiParameter(
-                name="device_id", type=int, location=OpenApiParameter.PATH
-            ),
+            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH),
         ],
         responses={
             200: ConfigSerializer,
@@ -547,7 +552,7 @@ class ConfigDownloadViewSet(
     )
     @action(methods=["get"], detail=False, url_path="download")
     def download(self, request, device_id=None):
-        device = Device.objects.get(id=device_id)
+        device = Pi.objects.get(id=device_id)
         api = get_api_config(request, device.user)
         instance = dict(device=device, api=api)
         serializer = ConfigSerializer(instance=instance)

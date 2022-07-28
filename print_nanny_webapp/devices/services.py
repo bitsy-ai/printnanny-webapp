@@ -10,7 +10,7 @@ from django.conf import settings
 from django.template.loader import render_to_string
 from print_nanny_webapp.devices.enum import JanusConfigType
 
-from .models import CloudiotDevice, Device, PublicKey, WebrtcStream
+from .models import CloudiotDevice, Pi, PublicKey, WebrtcStream
 
 logger = logging.getLogger(__name__)
 
@@ -34,7 +34,7 @@ def janus_admin_add_token(stream: WebrtcStream) -> Dict[str, Any]:
         )
 
 
-def render_janus_env(device: Device) -> str:
+def render_janus_env(device: Pi) -> str:
     context = dict(
         janus_admin_secret=device.active_license.janus_admin_secret,
         janus_token=device.active_license.janus_token,
@@ -135,9 +135,7 @@ def update_or_create_cloudiot_device(
         gcp_response = update_cloudiot_device(existing_cloudiot_device, public_key)
         logger.info("Found cloudiot device, gcp_response=%s", gcp_response)
     except google.api_core.exceptions.NotFound:
-        logger.info(
-            "Device not found, attempting to create, gcp_response=%s", device_path
-        )
+        logger.info("Pi not found, attempting to create, gcp_response=%s", device_path)
         gcp_response = create_cloudiot_device(public_key)
         logger.info("Created cloudiot device, gcp_response=%s", gcp_response)
     try:
@@ -169,7 +167,7 @@ def update_or_create_cloudiot_device(
     return obj, created
 
 
-def janus_cloud_setup(device: Device) -> Tuple[WebrtcStream, bool]:
+def janus_cloud_setup(device: Pi) -> Tuple[WebrtcStream, bool]:
     # 1) get or create WebrtcStream mountpoint
     stream, created = WebrtcStream.objects.get_or_create(
         device=device, config_type=JanusConfigType.CLOUD

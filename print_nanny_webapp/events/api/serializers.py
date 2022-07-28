@@ -20,7 +20,7 @@ from print_nanny_webapp.events.enum import (
 
 logger = logging.getLogger(__name__)
 
-Device = apps.get_model("devices", "Device")
+Pi = apps.get_model("devices", "Pi")
 User = get_user_model()
 
 

@@ -8,36 +8,36 @@ from print_nanny_webapp.utils.fields import file_field_upload_to
 
 User = get_user_model()
 # A bit of data model history:
-# remote_control/models.py contains OctoPrintDevice, which is how an OctoPrint device is registered via "plugin alpha"
-# devices/models.py contains Device, whichi is a generic Raspberry Pi / single-board computer with Print Nanny OS installed
+# remote_control/models.py contains OctoPrintDevice, which is how an OctoPrint pi is registered via "plugin alpha"
+# pis/models.py contains Device, whichi is a generic Raspberry Pi / single-board computer with Print Nanny OS installed
 # the models contained in the octoprint app are intended to bridge these two implementations, and eventually contain all octoprint-related models/services
 
 
 class OctoPrintServer(SafeDeleteModel):
     class Meta:
         index_together = (
-            ("created_dt", "user", "device", "updated_dt"),
+            ("created_dt", "user", "pi", "updated_dt"),
             (
                 "printnanny_plugin_version",
                 "octoprint_version",
                 "pip_version",
                 "python_version",
-                "device",
+                "pi",
             ),
         )
         constraints = [
             UniqueConstraint(
-                fields=["device"],
+                fields=["pi"],
                 condition=models.Q(deleted=None),
-                name="unique_octoprint_server_per_device",
+                name="unique_octoprint_server_per_pi",
             )
         ]
 
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="octoprint_servers"
     )
-    device = models.ForeignKey(
-        "devices.Device", on_delete=models.CASCADE, related_name="octoprint_servers"
+    pi = models.ForeignKey(
+        "devices.Pi", on_delete=models.CASCADE, related_name="octoprint_servers"
     )
     octoprint_version = models.CharField(max_length=32, default="")
     pip_version = models.CharField(max_length=32, default="")

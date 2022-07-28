@@ -6,7 +6,7 @@ from django.contrib.auth import get_user_model
 from django.http import HttpRequest
 
 from print_nanny_webapp.devices.api.serializers import ConfigSerializer
-from print_nanny_webapp.devices.models import Device
+from print_nanny_webapp.devices.models import Pi
 from print_nanny_webapp.utils.api.service import get_api_config
 
 User = get_user_model()
@@ -28,7 +28,7 @@ class Command(BaseCommand):
             )
         user = User.objects.get(email=options["email"])  # type: ignore
         self.stdout.write(f"Generating license.json with credentials for user={user}")
-        device, created = Device.objects.get_or_create(
+        device, created = Pi.objects.get_or_create(
             user=user, hostname=options["hostname"]
         )
         self.stdout.write(
