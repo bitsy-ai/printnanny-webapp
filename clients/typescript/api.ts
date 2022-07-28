@@ -385,7 +385,7 @@ export interface CloudiotDevice {
      * @type {string}
      * @memberof CloudiotDevice
      */
-    'gcp_cloudiot_device_registry': string;
+    'gcp_cloudiot_pi_registry': string;
     /**
      * 
      * @type {string}
@@ -433,7 +433,7 @@ export interface CloudiotDevice {
      * @type {number}
      * @memberof CloudiotDevice
      */
-    'device': number;
+    'pi': number;
     /**
      * 
      * @type {number}
@@ -482,10 +482,10 @@ export interface Config {
     'api': PrintNannyApiConfig;
     /**
      * 
-     * @type {Device}
+     * @type {Pi}
      * @memberof Config
      */
-    'device': Device;
+    'pi': Pi;
 }
 /**
  * Generic auth response serializer
@@ -499,227 +499,6 @@ export interface DetailResponse {
      * @memberof DetailResponse
      */
     'detail': string;
-}
-/**
- * 
- * @export
- * @interface Device
- */
-export interface Device {
-    /**
-     * 
-     * @type {number}
-     * @memberof Device
-     */
-    'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof Device
-     */
-    'last_boot': string;
-    /**
-     * 
-     * @type {AlertSettings}
-     * @memberof Device
-     */
-    'alert_settings': AlertSettings;
-    /**
-     * 
-     * @type {DeviceSettings}
-     * @memberof Device
-     */
-    'settings': DeviceSettings;
-    /**
-     * 
-     * @type {CloudiotDevice}
-     * @memberof Device
-     */
-    'cloudiot_device': CloudiotDevice;
-    /**
-     * 
-     * @type {User}
-     * @memberof Device
-     */
-    'user': User;
-    /**
-     * 
-     * @type {SystemInfo}
-     * @memberof Device
-     */
-    'system_info': SystemInfo;
-    /**
-     * 
-     * @type {PublicKey}
-     * @memberof Device
-     */
-    'public_key': PublicKey;
-    /**
-     * 
-     * @type {WebrtcStream}
-     * @memberof Device
-     */
-    'webrtc_edge': WebrtcStream;
-    /**
-     * 
-     * @type {WebrtcStream}
-     * @memberof Device
-     */
-    'webrtc_cloud': WebrtcStream;
-    /**
-     * 
-     * @type {OctoPrintServer}
-     * @memberof Device
-     */
-    'octoprint_server': OctoPrintServer;
-    /**
-     * 
-     * @type {DeviceUrls}
-     * @memberof Device
-     */
-    'urls': DeviceUrls;
-    /**
-     * 
-     * @type {string}
-     * @memberof Device
-     */
-    'created_dt': string;
-    /**
-     * Please enter the hostname you set in the Raspberry Pi Imager\'s Advanced Options menu (without .local extension)
-     * @type {string}
-     * @memberof Device
-     */
-    'hostname'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Device
-     */
-    'fqdn'?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Device
-     */
-    'favorite'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Device
-     */
-    'ws_connected'?: boolean;
-}
-/**
- * 
- * @export
- * @interface DeviceRequest
- */
-export interface DeviceRequest {
-    /**
-     * Please enter the hostname you set in the Raspberry Pi Imager\'s Advanced Options menu (without .local extension)
-     * @type {string}
-     * @memberof DeviceRequest
-     */
-    'hostname'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceRequest
-     */
-    'fqdn'?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof DeviceRequest
-     */
-    'favorite'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof DeviceRequest
-     */
-    'ws_connected'?: boolean;
-}
-/**
- * 
- * @export
- * @interface DeviceSettings
- */
-export interface DeviceSettings {
-    /**
-     * 
-     * @type {number}
-     * @memberof DeviceSettings
-     */
-    'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceSettings
-     */
-    'updated_dt': string;
-    /**
-     * Send camera stream to PrintNanny Cloud
-     * @type {boolean}
-     * @memberof DeviceSettings
-     */
-    'cloud_video_enabled'?: boolean;
-    /**
-     * Send telemetry and performance profiling data to PrintNanny Cloud
-     * @type {boolean}
-     * @memberof DeviceSettings
-     */
-    'telemetry_enabled'?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof DeviceSettings
-     */
-    'device': number;
-}
-/**
- * 
- * @export
- * @interface DeviceSettingsRequest
- */
-export interface DeviceSettingsRequest {
-    /**
-     * Send camera stream to PrintNanny Cloud
-     * @type {boolean}
-     * @memberof DeviceSettingsRequest
-     */
-    'cloud_video_enabled'?: boolean;
-    /**
-     * Send telemetry and performance profiling data to PrintNanny Cloud
-     * @type {boolean}
-     * @memberof DeviceSettingsRequest
-     */
-    'telemetry_enabled'?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof DeviceSettingsRequest
-     */
-    'device': number;
-}
-/**
- * 
- * @export
- * @interface DeviceUrls
- */
-export interface DeviceUrls {
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceUrls
-     */
-    'swupdate': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceUrls
-     */
-    'octoprint': string;
 }
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
@@ -1069,7 +848,7 @@ export interface OctoPrintEvent {
      * @type {number}
      * @memberof OctoPrintEvent
      */
-    'device': number;
+    'pi': number;
 }
 /**
  * 
@@ -1152,7 +931,7 @@ export interface OctoPrintEventRequest {
      * @type {number}
      * @memberof OctoPrintEventRequest
      */
-    'device': number;
+    'pi': number;
 }
 /**
  * 
@@ -1219,7 +998,7 @@ export interface OctoPrintServer {
      * @type {number}
      * @memberof OctoPrintServer
      */
-    'device': number;
+    'pi': number;
 }
 /**
  * 
@@ -1256,7 +1035,7 @@ export interface OctoPrintServerRequest {
      * @type {number}
      * @memberof OctoPrintServerRequest
      */
-    'device': number;
+    'pi': number;
 }
 /**
  * 
@@ -1735,68 +1514,6 @@ export interface PaginatedCloudiotDeviceList {
 /**
  * 
  * @export
- * @interface PaginatedDeviceList
- */
-export interface PaginatedDeviceList {
-    /**
-     * 
-     * @type {number}
-     * @memberof PaginatedDeviceList
-     */
-    'count'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedDeviceList
-     */
-    'next'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedDeviceList
-     */
-    'previous'?: string | null;
-    /**
-     * 
-     * @type {Array<Device>}
-     * @memberof PaginatedDeviceList
-     */
-    'results'?: Array<Device>;
-}
-/**
- * 
- * @export
- * @interface PaginatedDeviceSettingsList
- */
-export interface PaginatedDeviceSettingsList {
-    /**
-     * 
-     * @type {number}
-     * @memberof PaginatedDeviceSettingsList
-     */
-    'count'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedDeviceSettingsList
-     */
-    'next'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedDeviceSettingsList
-     */
-    'previous'?: string | null;
-    /**
-     * 
-     * @type {Array<DeviceSettings>}
-     * @memberof PaginatedDeviceSettingsList
-     */
-    'results'?: Array<DeviceSettings>;
-}
-/**
- * 
- * @export
  * @interface PaginatedGcodeFileList
  */
 export interface PaginatedGcodeFileList {
@@ -1948,6 +1665,68 @@ export interface PaginatedOctoPrinterProfileList {
      * @memberof PaginatedOctoPrinterProfileList
      */
     'results'?: Array<OctoPrinterProfile>;
+}
+/**
+ * 
+ * @export
+ * @interface PaginatedPiList
+ */
+export interface PaginatedPiList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedPiList
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedPiList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedPiList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<Pi>}
+     * @memberof PaginatedPiList
+     */
+    'results'?: Array<Pi>;
+}
+/**
+ * 
+ * @export
+ * @interface PaginatedPiSettingsList
+ */
+export interface PaginatedPiSettingsList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedPiSettingsList
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedPiSettingsList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedPiSettingsList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<PiSettings>}
+     * @memberof PaginatedPiSettingsList
+     */
+    'results'?: Array<PiSettings>;
 }
 /**
  * 
@@ -2258,62 +2037,6 @@ export interface PatchedCloudiotDeviceRequest {
 /**
  * 
  * @export
- * @interface PatchedDeviceRequest
- */
-export interface PatchedDeviceRequest {
-    /**
-     * Please enter the hostname you set in the Raspberry Pi Imager\'s Advanced Options menu (without .local extension)
-     * @type {string}
-     * @memberof PatchedDeviceRequest
-     */
-    'hostname'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedDeviceRequest
-     */
-    'fqdn'?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedDeviceRequest
-     */
-    'favorite'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedDeviceRequest
-     */
-    'ws_connected'?: boolean;
-}
-/**
- * 
- * @export
- * @interface PatchedDeviceSettingsRequest
- */
-export interface PatchedDeviceSettingsRequest {
-    /**
-     * Send camera stream to PrintNanny Cloud
-     * @type {boolean}
-     * @memberof PatchedDeviceSettingsRequest
-     */
-    'cloud_video_enabled'?: boolean;
-    /**
-     * Send telemetry and performance profiling data to PrintNanny Cloud
-     * @type {boolean}
-     * @memberof PatchedDeviceSettingsRequest
-     */
-    'telemetry_enabled'?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedDeviceSettingsRequest
-     */
-    'device'?: number;
-}
-/**
- * 
- * @export
  * @interface PatchedOctoPrintServerRequest
  */
 export interface PatchedOctoPrintServerRequest {
@@ -2346,7 +2069,7 @@ export interface PatchedOctoPrintServerRequest {
      * @type {number}
      * @memberof PatchedOctoPrintServerRequest
      */
-    'device'?: number;
+    'pi'?: number;
 }
 /**
  * 
@@ -2539,6 +2262,62 @@ export interface PatchedOctoPrinterProfileRequest {
 /**
  * 
  * @export
+ * @interface PatchedPiRequest
+ */
+export interface PatchedPiRequest {
+    /**
+     * Please enter the hostname you set in the Raspberry Pi Imager\'s Advanced Options menu (without .local extension)
+     * @type {string}
+     * @memberof PatchedPiRequest
+     */
+    'hostname'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedPiRequest
+     */
+    'fqdn'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedPiRequest
+     */
+    'favorite'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedPiRequest
+     */
+    'ws_connected'?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface PatchedPiSettingsRequest
+ */
+export interface PatchedPiSettingsRequest {
+    /**
+     * Send camera stream to PrintNanny Cloud
+     * @type {boolean}
+     * @memberof PatchedPiSettingsRequest
+     */
+    'cloud_video_enabled'?: boolean;
+    /**
+     * Send telemetry and performance profiling data to PrintNanny Cloud
+     * @type {boolean}
+     * @memberof PatchedPiSettingsRequest
+     */
+    'telemetry_enabled'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedPiSettingsRequest
+     */
+    'pi'?: number;
+}
+/**
+ * 
+ * @export
  * @interface PatchedPublicKeyRequest
  */
 export interface PatchedPublicKeyRequest {
@@ -2571,7 +2350,7 @@ export interface PatchedPublicKeyRequest {
      * @type {number}
      * @memberof PatchedPublicKeyRequest
      */
-    'device'?: number;
+    'pi'?: number;
 }
 /**
  * 
@@ -2644,7 +2423,7 @@ export interface PatchedSystemInfoRequest {
      * @type {number}
      * @memberof PatchedSystemInfoRequest
      */
-    'device'?: number;
+    'pi'?: number;
 }
 /**
  * 
@@ -2707,6 +2486,227 @@ export interface PatchedWebrtcStreamRequest {
      * @memberof PatchedWebrtcStreamRequest
      */
     'rtp_port'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface Pi
+ */
+export interface Pi {
+    /**
+     * 
+     * @type {number}
+     * @memberof Pi
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Pi
+     */
+    'last_boot': string;
+    /**
+     * 
+     * @type {AlertSettings}
+     * @memberof Pi
+     */
+    'alert_settings': AlertSettings;
+    /**
+     * 
+     * @type {PiSettings}
+     * @memberof Pi
+     */
+    'settings': PiSettings;
+    /**
+     * 
+     * @type {CloudiotDevice}
+     * @memberof Pi
+     */
+    'cloudiot_device': CloudiotDevice;
+    /**
+     * 
+     * @type {User}
+     * @memberof Pi
+     */
+    'user': User;
+    /**
+     * 
+     * @type {SystemInfo}
+     * @memberof Pi
+     */
+    'system_info': SystemInfo;
+    /**
+     * 
+     * @type {PublicKey}
+     * @memberof Pi
+     */
+    'public_key': PublicKey;
+    /**
+     * 
+     * @type {WebrtcStream}
+     * @memberof Pi
+     */
+    'webrtc_edge': WebrtcStream;
+    /**
+     * 
+     * @type {WebrtcStream}
+     * @memberof Pi
+     */
+    'webrtc_cloud': WebrtcStream;
+    /**
+     * 
+     * @type {OctoPrintServer}
+     * @memberof Pi
+     */
+    'octoprint_server': OctoPrintServer;
+    /**
+     * 
+     * @type {PiUrls}
+     * @memberof Pi
+     */
+    'urls': PiUrls;
+    /**
+     * 
+     * @type {string}
+     * @memberof Pi
+     */
+    'created_dt': string;
+    /**
+     * Please enter the hostname you set in the Raspberry Pi Imager\'s Advanced Options menu (without .local extension)
+     * @type {string}
+     * @memberof Pi
+     */
+    'hostname'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Pi
+     */
+    'fqdn'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Pi
+     */
+    'favorite'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Pi
+     */
+    'ws_connected'?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface PiRequest
+ */
+export interface PiRequest {
+    /**
+     * Please enter the hostname you set in the Raspberry Pi Imager\'s Advanced Options menu (without .local extension)
+     * @type {string}
+     * @memberof PiRequest
+     */
+    'hostname'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PiRequest
+     */
+    'fqdn'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PiRequest
+     */
+    'favorite'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PiRequest
+     */
+    'ws_connected'?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface PiSettings
+ */
+export interface PiSettings {
+    /**
+     * 
+     * @type {number}
+     * @memberof PiSettings
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PiSettings
+     */
+    'updated_dt': string;
+    /**
+     * Send camera stream to PrintNanny Cloud
+     * @type {boolean}
+     * @memberof PiSettings
+     */
+    'cloud_video_enabled'?: boolean;
+    /**
+     * Send telemetry and performance profiling data to PrintNanny Cloud
+     * @type {boolean}
+     * @memberof PiSettings
+     */
+    'telemetry_enabled'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof PiSettings
+     */
+    'pi': number;
+}
+/**
+ * 
+ * @export
+ * @interface PiSettingsRequest
+ */
+export interface PiSettingsRequest {
+    /**
+     * Send camera stream to PrintNanny Cloud
+     * @type {boolean}
+     * @memberof PiSettingsRequest
+     */
+    'cloud_video_enabled'?: boolean;
+    /**
+     * Send telemetry and performance profiling data to PrintNanny Cloud
+     * @type {boolean}
+     * @memberof PiSettingsRequest
+     */
+    'telemetry_enabled'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof PiSettingsRequest
+     */
+    'pi': number;
+}
+/**
+ * 
+ * @export
+ * @interface PiUrls
+ */
+export interface PiUrls {
+    /**
+     * 
+     * @type {string}
+     * @memberof PiUrls
+     */
+    'swupdate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PiUrls
+     */
+    'octoprint': string;
 }
 /**
  * @type PolymorphicCommand
@@ -2816,7 +2816,7 @@ export interface PublicKey {
      * @type {number}
      * @memberof PublicKey
      */
-    'device': number;
+    'pi': number;
 }
 /**
  * 
@@ -2853,7 +2853,7 @@ export interface PublicKeyRequest {
      * @type {number}
      * @memberof PublicKeyRequest
      */
-    'device': number;
+    'pi': number;
 }
 /**
  * 
@@ -3918,7 +3918,7 @@ export interface SystemInfo {
      * @type {number}
      * @memberof SystemInfo
      */
-    'device': number;
+    'pi': number;
 }
 /**
  * 
@@ -3991,7 +3991,7 @@ export interface SystemInfoRequest {
      * @type {number}
      * @memberof SystemInfoRequest
      */
-    'device': number;
+    'pi': number;
 }
 /**
  * 
@@ -4061,7 +4061,7 @@ export interface TestEvent {
      * @type {number}
      * @memberof TestEvent
      */
-    'device': number;
+    'pi': number;
 }
 /**
  * 
@@ -4119,7 +4119,7 @@ export interface TestEventRequest {
      * @type {number}
      * @memberof TestEventRequest
      */
-    'device': number;
+    'pi': number;
 }
 /**
  * Serializer for Token model.
@@ -4334,7 +4334,7 @@ export interface WebRTCCommand {
      * @type {number}
      * @memberof WebRTCCommand
      */
-    'device': number;
+    'pi': number;
 }
 /**
  * 
@@ -4371,7 +4371,7 @@ export interface WebRTCCommandCreateRequest {
      * @type {number}
      * @memberof WebRTCCommandCreateRequest
      */
-    'device': number;
+    'pi': number;
     /**
      * 
      * @type {number}
@@ -4465,7 +4465,7 @@ export interface WebRTCEvent {
      * @type {number}
      * @memberof WebRTCEvent
      */
-    'device': number;
+    'pi': number;
     /**
      * 
      * @type {number}
@@ -4537,7 +4537,7 @@ export interface WebRTCEventRequest {
      * @type {number}
      * @memberof WebRTCEventRequest
      */
-    'device': number;
+    'pi': number;
     /**
      * 
      * @type {number}
@@ -4580,7 +4580,7 @@ export interface WebrtcStream {
      * @type {number}
      * @memberof WebrtcStream
      */
-    'device': number;
+    'pi': number;
     /**
      * 
      * @type {string}
@@ -7296,18 +7296,18 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
     return {
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cloudiotDeviceUpdateOrCreate: async (deviceId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('cloudiotDeviceUpdateOrCreate', 'deviceId', deviceId)
+        cloudiotDeviceUpdateOrCreate: async (piId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('cloudiotDeviceUpdateOrCreate', 'piId', piId)
             // verify required parameter 'cloudiotDeviceRequest' is not null or undefined
             assertParamExists('cloudiotDeviceUpdateOrCreate', 'cloudiotDeviceRequest', cloudiotDeviceRequest)
-            const localVarPath = `/api/devices/{device_id}/cloudiot/update-or-create/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            const localVarPath = `/api/pis/{pi_id}/cloudiot/update-or-create/`
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -7341,18 +7341,18 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCloudiotCreate: async (deviceId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesCloudiotCreate', 'deviceId', deviceId)
+        pisCloudiotCreate: async (piId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisCloudiotCreate', 'piId', piId)
             // verify required parameter 'cloudiotDeviceRequest' is not null or undefined
-            assertParamExists('devicesCloudiotCreate', 'cloudiotDeviceRequest', cloudiotDeviceRequest)
-            const localVarPath = `/api/devices/{device_id}/cloudiot/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            assertParamExists('pisCloudiotCreate', 'cloudiotDeviceRequest', cloudiotDeviceRequest)
+            const localVarPath = `/api/pis/{pi_id}/cloudiot/`
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -7386,16 +7386,16 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCloudiotList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesCloudiotList', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/cloudiot/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+        pisCloudiotList: async (piId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisCloudiotList', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/cloudiot/`
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -7430,20 +7430,20 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {string} id 
+         * @param {number} piId 
          * @param {PatchedCloudiotDeviceRequest} [patchedCloudiotDeviceRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCloudiotPartialUpdate: async (deviceId: number, id: string, patchedCloudiotDeviceRequest?: PatchedCloudiotDeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesCloudiotPartialUpdate', 'deviceId', deviceId)
+        pisCloudiotPartialUpdate: async (id: string, piId: number, patchedCloudiotDeviceRequest?: PatchedCloudiotDeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesCloudiotPartialUpdate', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/cloudiot/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            assertParamExists('pisCloudiotPartialUpdate', 'id', id)
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisCloudiotPartialUpdate', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/cloudiot/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -7477,19 +7477,19 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id 
+         * @param {number} piId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCloudiotRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesCloudiotRetrieve', 'deviceId', deviceId)
+        pisCloudiotRetrieve: async (id: number, piId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesCloudiotRetrieve', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/cloudiot/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            assertParamExists('pisCloudiotRetrieve', 'id', id)
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisCloudiotRetrieve', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/cloudiot/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -7520,22 +7520,22 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {string} id 
+         * @param {number} piId 
          * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCloudiotUpdate: async (deviceId: number, id: string, cloudiotDeviceRequest: CloudiotDeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesCloudiotUpdate', 'deviceId', deviceId)
+        pisCloudiotUpdate: async (id: string, piId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesCloudiotUpdate', 'id', id)
+            assertParamExists('pisCloudiotUpdate', 'id', id)
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisCloudiotUpdate', 'piId', piId)
             // verify required parameter 'cloudiotDeviceRequest' is not null or undefined
-            assertParamExists('devicesCloudiotUpdate', 'cloudiotDeviceRequest', cloudiotDeviceRequest)
-            const localVarPath = `/api/devices/{device_id}/cloudiot/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            assertParamExists('pisCloudiotUpdate', 'cloudiotDeviceRequest', cloudiotDeviceRequest)
+            const localVarPath = `/api/pis/{pi_id}/cloudiot/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -7569,15 +7569,15 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesConfigDownloadRetrieve: async (deviceId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesConfigDownloadRetrieve', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/config/download/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+        pisConfigDownloadRetrieve: async (piId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisConfigDownloadRetrieve', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/config/download/`
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -7608,14 +7608,12 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * A device (Raspberry Pi) running Print Nanny OS
-         * @param {DeviceRequest} deviceRequest 
+         * @param {PiRequest} [piRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCreate: async (deviceRequest: DeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceRequest' is not null or undefined
-            assertParamExists('devicesCreate', 'deviceRequest', deviceRequest)
-            const localVarPath = `/api/devices/`;
+        pisCreate: async (piRequest?: PiRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/pis/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -7640,7 +7638,7 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(deviceRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(piRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -7649,14 +7647,14 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * A device (Raspberry Pi) running Print Nanny OS
-         * @param {number} id A unique integer value identifying this device.
+         * @param {number} id A unique integer value identifying this pi.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesDestroy: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        pisDestroy: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesDestroy', 'id', id)
-            const localVarPath = `/api/devices/{id}/`
+            assertParamExists('pisDestroy', 'id', id)
+            const localVarPath = `/api/pis/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -7692,8 +7690,8 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesList: async (page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/devices/`;
+        pisList: async (page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/pis/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -7728,15 +7726,15 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * A device (Raspberry Pi) running Print Nanny OS
-         * @param {number} id A unique integer value identifying this device.
-         * @param {PatchedDeviceRequest} [patchedDeviceRequest] 
+         * @param {number} id A unique integer value identifying this pi.
+         * @param {PatchedPiRequest} [patchedPiRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesPartialUpdate: async (id: number, patchedDeviceRequest?: PatchedDeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        pisPartialUpdate: async (id: number, patchedPiRequest?: PatchedPiRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesPartialUpdate', 'id', id)
-            const localVarPath = `/api/devices/{id}/`
+            assertParamExists('pisPartialUpdate', 'id', id)
+            const localVarPath = `/api/pis/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -7762,7 +7760,7 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(patchedDeviceRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedPiRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -7771,18 +7769,18 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {PublicKeyRequest} publicKeyRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesPublicKeysCreate: async (deviceId: number, publicKeyRequest: PublicKeyRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesPublicKeysCreate', 'deviceId', deviceId)
+        pisPublicKeysCreate: async (piId: number, publicKeyRequest: PublicKeyRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisPublicKeysCreate', 'piId', piId)
             // verify required parameter 'publicKeyRequest' is not null or undefined
-            assertParamExists('devicesPublicKeysCreate', 'publicKeyRequest', publicKeyRequest)
-            const localVarPath = `/api/devices/{device_id}/public-keys/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            assertParamExists('pisPublicKeysCreate', 'publicKeyRequest', publicKeyRequest)
+            const localVarPath = `/api/pis/{pi_id}/public-keys/`
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -7816,16 +7814,16 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesPublicKeysList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesPublicKeysList', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/public-keys/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+        pisPublicKeysList: async (piId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisPublicKeysList', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/public-keys/`
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -7860,20 +7858,20 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this public key.
+         * @param {number} piId 
          * @param {PatchedPublicKeyRequest} [patchedPublicKeyRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesPublicKeysPartialUpdate: async (deviceId: number, id: number, patchedPublicKeyRequest?: PatchedPublicKeyRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesPublicKeysPartialUpdate', 'deviceId', deviceId)
+        pisPublicKeysPartialUpdate: async (id: number, piId: number, patchedPublicKeyRequest?: PatchedPublicKeyRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesPublicKeysPartialUpdate', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/public-keys/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            assertParamExists('pisPublicKeysPartialUpdate', 'id', id)
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisPublicKeysPartialUpdate', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/public-keys/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -7907,19 +7905,19 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this public key.
+         * @param {number} piId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesPublicKeysRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesPublicKeysRetrieve', 'deviceId', deviceId)
+        pisPublicKeysRetrieve: async (id: number, piId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesPublicKeysRetrieve', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/public-keys/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            assertParamExists('pisPublicKeysRetrieve', 'id', id)
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisPublicKeysRetrieve', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/public-keys/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -7950,22 +7948,22 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this public key.
+         * @param {number} piId 
          * @param {PublicKeyRequest} publicKeyRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesPublicKeysUpdate: async (deviceId: number, id: number, publicKeyRequest: PublicKeyRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesPublicKeysUpdate', 'deviceId', deviceId)
+        pisPublicKeysUpdate: async (id: number, piId: number, publicKeyRequest: PublicKeyRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesPublicKeysUpdate', 'id', id)
+            assertParamExists('pisPublicKeysUpdate', 'id', id)
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisPublicKeysUpdate', 'piId', piId)
             // verify required parameter 'publicKeyRequest' is not null or undefined
-            assertParamExists('devicesPublicKeysUpdate', 'publicKeyRequest', publicKeyRequest)
-            const localVarPath = `/api/devices/{device_id}/public-keys/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            assertParamExists('pisPublicKeysUpdate', 'publicKeyRequest', publicKeyRequest)
+            const localVarPath = `/api/pis/{pi_id}/public-keys/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -7999,14 +7997,14 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * A device (Raspberry Pi) running Print Nanny OS
-         * @param {number} id A unique integer value identifying this device.
+         * @param {number} id A unique integer value identifying this pi.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesRetrieve: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        pisRetrieve: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesRetrieve', 'id', id)
-            const localVarPath = `/api/devices/{id}/`
+            assertParamExists('pisRetrieve', 'id', id)
+            const localVarPath = `/api/pis/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -8038,57 +8036,18 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {string} hostname 
+         * @param {number} piId 
+         * @param {PiSettingsRequest} piSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesRetrieveHostname: async (hostname: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'hostname' is not null or undefined
-            assertParamExists('devicesRetrieveHostname', 'hostname', hostname)
-            const localVarPath = `/api/devices/{hostname}`
-                .replace(`{${"hostname"}}`, encodeURIComponent(String(hostname)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {DeviceSettingsRequest} deviceSettingsRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesSettingsCreate: async (deviceId: number, deviceSettingsRequest: DeviceSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesSettingsCreate', 'deviceId', deviceId)
-            // verify required parameter 'deviceSettingsRequest' is not null or undefined
-            assertParamExists('devicesSettingsCreate', 'deviceSettingsRequest', deviceSettingsRequest)
-            const localVarPath = `/api/devices/{device_id}/settings/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+        pisSettingsCreate: async (piId: number, piSettingsRequest: PiSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisSettingsCreate', 'piId', piId)
+            // verify required parameter 'piSettingsRequest' is not null or undefined
+            assertParamExists('pisSettingsCreate', 'piSettingsRequest', piSettingsRequest)
+            const localVarPath = `/api/pis/{pi_id}/settings/`
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -8113,7 +8072,7 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(deviceSettingsRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(piSettingsRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -8122,16 +8081,16 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesSettingsList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesSettingsList', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/settings/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+        pisSettingsList: async (piId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisSettingsList', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/settings/`
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -8166,20 +8125,20 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device settings.
-         * @param {PatchedDeviceSettingsRequest} [patchedDeviceSettingsRequest] 
+         * @param {number} id A unique integer value identifying this pi settings.
+         * @param {number} piId 
+         * @param {PatchedPiSettingsRequest} [patchedPiSettingsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesSettingsPartialUpdate: async (deviceId: number, id: number, patchedDeviceSettingsRequest?: PatchedDeviceSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesSettingsPartialUpdate', 'deviceId', deviceId)
+        pisSettingsPartialUpdate: async (id: number, piId: number, patchedPiSettingsRequest?: PatchedPiSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesSettingsPartialUpdate', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/settings/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            assertParamExists('pisSettingsPartialUpdate', 'id', id)
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisSettingsPartialUpdate', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/settings/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -8204,7 +8163,7 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(patchedDeviceSettingsRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedPiSettingsRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -8213,19 +8172,19 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device settings.
+         * @param {number} id A unique integer value identifying this pi settings.
+         * @param {number} piId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesSettingsRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesSettingsRetrieve', 'deviceId', deviceId)
+        pisSettingsRetrieve: async (id: number, piId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesSettingsRetrieve', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/settings/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            assertParamExists('pisSettingsRetrieve', 'id', id)
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisSettingsRetrieve', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/settings/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -8256,22 +8215,22 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device settings.
-         * @param {DeviceSettingsRequest} deviceSettingsRequest 
+         * @param {number} id A unique integer value identifying this pi settings.
+         * @param {number} piId 
+         * @param {PiSettingsRequest} piSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesSettingsUpdate: async (deviceId: number, id: number, deviceSettingsRequest: DeviceSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesSettingsUpdate', 'deviceId', deviceId)
+        pisSettingsUpdate: async (id: number, piId: number, piSettingsRequest: PiSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesSettingsUpdate', 'id', id)
-            // verify required parameter 'deviceSettingsRequest' is not null or undefined
-            assertParamExists('devicesSettingsUpdate', 'deviceSettingsRequest', deviceSettingsRequest)
-            const localVarPath = `/api/devices/{device_id}/settings/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            assertParamExists('pisSettingsUpdate', 'id', id)
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisSettingsUpdate', 'piId', piId)
+            // verify required parameter 'piSettingsRequest' is not null or undefined
+            assertParamExists('pisSettingsUpdate', 'piSettingsRequest', piSettingsRequest)
+            const localVarPath = `/api/pis/{pi_id}/settings/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -8296,7 +8255,7 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(deviceSettingsRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(piSettingsRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -8305,18 +8264,18 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {SystemInfoRequest} systemInfoRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesSystemInfoCreate: async (deviceId: number, systemInfoRequest: SystemInfoRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesSystemInfoCreate', 'deviceId', deviceId)
+        pisSystemInfoCreate: async (piId: number, systemInfoRequest: SystemInfoRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisSystemInfoCreate', 'piId', piId)
             // verify required parameter 'systemInfoRequest' is not null or undefined
-            assertParamExists('devicesSystemInfoCreate', 'systemInfoRequest', systemInfoRequest)
-            const localVarPath = `/api/devices/{device_id}/system-info/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            assertParamExists('pisSystemInfoCreate', 'systemInfoRequest', systemInfoRequest)
+            const localVarPath = `/api/pis/{pi_id}/system-info/`
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -8350,16 +8309,16 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesSystemInfoList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesSystemInfoList', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/system-info/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+        pisSystemInfoList: async (piId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisSystemInfoList', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/system-info/`
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -8394,20 +8353,20 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this system info.
+         * @param {number} piId 
          * @param {PatchedSystemInfoRequest} [patchedSystemInfoRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesSystemInfoPartialUpdate: async (deviceId: number, id: number, patchedSystemInfoRequest?: PatchedSystemInfoRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesSystemInfoPartialUpdate', 'deviceId', deviceId)
+        pisSystemInfoPartialUpdate: async (id: number, piId: number, patchedSystemInfoRequest?: PatchedSystemInfoRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesSystemInfoPartialUpdate', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/system-info/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            assertParamExists('pisSystemInfoPartialUpdate', 'id', id)
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisSystemInfoPartialUpdate', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/system-info/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -8441,19 +8400,19 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this system info.
+         * @param {number} piId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesSystemInfoRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesSystemInfoRetrieve', 'deviceId', deviceId)
+        pisSystemInfoRetrieve: async (id: number, piId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesSystemInfoRetrieve', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/system-info/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            assertParamExists('pisSystemInfoRetrieve', 'id', id)
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisSystemInfoRetrieve', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/system-info/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -8484,22 +8443,22 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this system info.
+         * @param {number} piId 
          * @param {SystemInfoRequest} systemInfoRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesSystemInfoUpdate: async (deviceId: number, id: number, systemInfoRequest: SystemInfoRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesSystemInfoUpdate', 'deviceId', deviceId)
+        pisSystemInfoUpdate: async (id: number, piId: number, systemInfoRequest: SystemInfoRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesSystemInfoUpdate', 'id', id)
+            assertParamExists('pisSystemInfoUpdate', 'id', id)
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisSystemInfoUpdate', 'piId', piId)
             // verify required parameter 'systemInfoRequest' is not null or undefined
-            assertParamExists('devicesSystemInfoUpdate', 'systemInfoRequest', systemInfoRequest)
-            const localVarPath = `/api/devices/{device_id}/system-info/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            assertParamExists('pisSystemInfoUpdate', 'systemInfoRequest', systemInfoRequest)
+            const localVarPath = `/api/pis/{pi_id}/system-info/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -8533,15 +8492,15 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * A device (Raspberry Pi) running Print Nanny OS
-         * @param {number} id A unique integer value identifying this device.
-         * @param {DeviceRequest} [deviceRequest] 
+         * @param {number} id A unique integer value identifying this pi.
+         * @param {PiRequest} [piRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesUpdate: async (id: number, deviceRequest?: DeviceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        pisUpdate: async (id: number, piRequest?: PiRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesUpdate', 'id', id)
-            const localVarPath = `/api/devices/{id}/`
+            assertParamExists('pisUpdate', 'id', id)
+            const localVarPath = `/api/pis/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -8567,7 +8526,7 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(deviceRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(piRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -8576,16 +8535,16 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {WebrtcStreamRequest} [webrtcStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesWebrtcStreamsCreate: async (deviceId: number, webrtcStreamRequest?: WebrtcStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesWebrtcStreamsCreate', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/webrtc-streams/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+        pisWebrtcStreamsCreate: async (piId: number, webrtcStreamRequest?: WebrtcStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisWebrtcStreamsCreate', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/webrtc-streams/`
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -8619,16 +8578,16 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesWebrtcStreamsList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesWebrtcStreamsList', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/webrtc-streams/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+        pisWebrtcStreamsList: async (piId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisWebrtcStreamsList', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/webrtc-streams/`
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -8663,20 +8622,20 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this webrtc stream.
+         * @param {number} piId 
          * @param {PatchedWebrtcStreamRequest} [patchedWebrtcStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesWebrtcStreamsPartialUpdate: async (deviceId: number, id: number, patchedWebrtcStreamRequest?: PatchedWebrtcStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesWebrtcStreamsPartialUpdate', 'deviceId', deviceId)
+        pisWebrtcStreamsPartialUpdate: async (id: number, piId: number, patchedWebrtcStreamRequest?: PatchedWebrtcStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesWebrtcStreamsPartialUpdate', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/webrtc-streams/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            assertParamExists('pisWebrtcStreamsPartialUpdate', 'id', id)
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisWebrtcStreamsPartialUpdate', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/webrtc-streams/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -8710,19 +8669,19 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this webrtc stream.
+         * @param {number} piId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesWebrtcStreamsRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesWebrtcStreamsRetrieve', 'deviceId', deviceId)
+        pisWebrtcStreamsRetrieve: async (id: number, piId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesWebrtcStreamsRetrieve', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/webrtc-streams/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            assertParamExists('pisWebrtcStreamsRetrieve', 'id', id)
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisWebrtcStreamsRetrieve', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/webrtc-streams/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -8753,20 +8712,20 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this webrtc stream.
+         * @param {number} piId 
          * @param {WebrtcStreamRequest} [webrtcStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesWebrtcStreamsUpdate: async (deviceId: number, id: number, webrtcStreamRequest?: WebrtcStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesWebrtcStreamsUpdate', 'deviceId', deviceId)
+        pisWebrtcStreamsUpdate: async (id: number, piId: number, webrtcStreamRequest?: WebrtcStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesWebrtcStreamsUpdate', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/webrtc-streams/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            assertParamExists('pisWebrtcStreamsUpdate', 'id', id)
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisWebrtcStreamsUpdate', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/webrtc-streams/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -8800,18 +8759,18 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {PublicKeyRequest} publicKeyRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        publicKeyUpdateOrCreate: async (deviceId: number, publicKeyRequest: PublicKeyRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('publicKeyUpdateOrCreate', 'deviceId', deviceId)
+        publicKeyUpdateOrCreate: async (piId: number, publicKeyRequest: PublicKeyRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('publicKeyUpdateOrCreate', 'piId', piId)
             // verify required parameter 'publicKeyRequest' is not null or undefined
             assertParamExists('publicKeyUpdateOrCreate', 'publicKeyRequest', publicKeyRequest)
-            const localVarPath = `/api/devices/{device_id}/public-keys/update-or-create/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            const localVarPath = `/api/pis/{pi_id}/public-keys/update-or-create/`
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -8845,18 +8804,18 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {SystemInfoRequest} systemInfoRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        systemInfoUpdateOrCreate: async (deviceId: number, systemInfoRequest: SystemInfoRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('systemInfoUpdateOrCreate', 'deviceId', deviceId)
+        systemInfoUpdateOrCreate: async (piId: number, systemInfoRequest: SystemInfoRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('systemInfoUpdateOrCreate', 'piId', piId)
             // verify required parameter 'systemInfoRequest' is not null or undefined
             assertParamExists('systemInfoUpdateOrCreate', 'systemInfoRequest', systemInfoRequest)
-            const localVarPath = `/api/devices/{device_id}/system-info/update-or-create/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            const localVarPath = `/api/pis/{pi_id}/system-info/update-or-create/`
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -8900,100 +8859,100 @@ export const DevicesApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async cloudiotDeviceUpdateOrCreate(deviceId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CloudiotDevice>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.cloudiotDeviceUpdateOrCreate(deviceId, cloudiotDeviceRequest, options);
+        async cloudiotDeviceUpdateOrCreate(piId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CloudiotDevice>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cloudiotDeviceUpdateOrCreate(piId, cloudiotDeviceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesCloudiotCreate(deviceId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CloudiotDevice>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCloudiotCreate(deviceId, cloudiotDeviceRequest, options);
+        async pisCloudiotCreate(piId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CloudiotDevice>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisCloudiotCreate(piId, cloudiotDeviceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesCloudiotList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedCloudiotDeviceList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCloudiotList(deviceId, page, options);
+        async pisCloudiotList(piId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedCloudiotDeviceList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisCloudiotList(piId, page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {string} id 
+         * @param {number} piId 
          * @param {PatchedCloudiotDeviceRequest} [patchedCloudiotDeviceRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesCloudiotPartialUpdate(deviceId: number, id: string, patchedCloudiotDeviceRequest?: PatchedCloudiotDeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CloudiotDevice>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCloudiotPartialUpdate(deviceId, id, patchedCloudiotDeviceRequest, options);
+        async pisCloudiotPartialUpdate(id: string, piId: number, patchedCloudiotDeviceRequest?: PatchedCloudiotDeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CloudiotDevice>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisCloudiotPartialUpdate(id, piId, patchedCloudiotDeviceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id 
+         * @param {number} piId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesCloudiotRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CloudiotDevice>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCloudiotRetrieve(deviceId, id, options);
+        async pisCloudiotRetrieve(id: number, piId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CloudiotDevice>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisCloudiotRetrieve(id, piId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {string} id 
+         * @param {number} piId 
          * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesCloudiotUpdate(deviceId: number, id: string, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CloudiotDevice>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCloudiotUpdate(deviceId, id, cloudiotDeviceRequest, options);
+        async pisCloudiotUpdate(id: string, piId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CloudiotDevice>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisCloudiotUpdate(id, piId, cloudiotDeviceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesConfigDownloadRetrieve(deviceId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Config>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesConfigDownloadRetrieve(deviceId, options);
+        async pisConfigDownloadRetrieve(piId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Config>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisConfigDownloadRetrieve(piId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * A device (Raspberry Pi) running Print Nanny OS
-         * @param {DeviceRequest} deviceRequest 
+         * @param {PiRequest} [piRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesCreate(deviceRequest: DeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCreate(deviceRequest, options);
+        async pisCreate(piRequest?: PiRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Pi>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisCreate(piRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * A device (Raspberry Pi) running Print Nanny OS
-         * @param {number} id A unique integer value identifying this device.
+         * @param {number} id A unique integer value identifying this pi.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesDestroy(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesDestroy(id, options);
+        async pisDestroy(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisDestroy(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -9002,300 +8961,290 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesList(page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedDeviceList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesList(page, options);
+        async pisList(page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPiList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisList(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * A device (Raspberry Pi) running Print Nanny OS
-         * @param {number} id A unique integer value identifying this device.
-         * @param {PatchedDeviceRequest} [patchedDeviceRequest] 
+         * @param {number} id A unique integer value identifying this pi.
+         * @param {PatchedPiRequest} [patchedPiRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPartialUpdate(id, patchedDeviceRequest, options);
+        async pisPartialUpdate(id: number, patchedPiRequest?: PatchedPiRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Pi>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisPartialUpdate(id, patchedPiRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {PublicKeyRequest} publicKeyRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesPublicKeysCreate(deviceId: number, publicKeyRequest: PublicKeyRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PublicKey>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPublicKeysCreate(deviceId, publicKeyRequest, options);
+        async pisPublicKeysCreate(piId: number, publicKeyRequest: PublicKeyRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PublicKey>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisPublicKeysCreate(piId, publicKeyRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesPublicKeysList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPublicKeyList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPublicKeysList(deviceId, page, options);
+        async pisPublicKeysList(piId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPublicKeyList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisPublicKeysList(piId, page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this public key.
+         * @param {number} piId 
          * @param {PatchedPublicKeyRequest} [patchedPublicKeyRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesPublicKeysPartialUpdate(deviceId: number, id: number, patchedPublicKeyRequest?: PatchedPublicKeyRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PublicKey>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPublicKeysPartialUpdate(deviceId, id, patchedPublicKeyRequest, options);
+        async pisPublicKeysPartialUpdate(id: number, piId: number, patchedPublicKeyRequest?: PatchedPublicKeyRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PublicKey>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisPublicKeysPartialUpdate(id, piId, patchedPublicKeyRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this public key.
+         * @param {number} piId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesPublicKeysRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PublicKey>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPublicKeysRetrieve(deviceId, id, options);
+        async pisPublicKeysRetrieve(id: number, piId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PublicKey>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisPublicKeysRetrieve(id, piId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this public key.
+         * @param {number} piId 
          * @param {PublicKeyRequest} publicKeyRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesPublicKeysUpdate(deviceId: number, id: number, publicKeyRequest: PublicKeyRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PublicKey>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPublicKeysUpdate(deviceId, id, publicKeyRequest, options);
+        async pisPublicKeysUpdate(id: number, piId: number, publicKeyRequest: PublicKeyRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PublicKey>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisPublicKeysUpdate(id, piId, publicKeyRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * A device (Raspberry Pi) running Print Nanny OS
-         * @param {number} id A unique integer value identifying this device.
+         * @param {number} id A unique integer value identifying this pi.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesRetrieve(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesRetrieve(id, options);
+        async pisRetrieve(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Pi>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisRetrieve(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {string} hostname 
+         * @param {number} piId 
+         * @param {PiSettingsRequest} piSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesRetrieveHostname(hostname: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesRetrieveHostname(hostname, options);
+        async pisSettingsCreate(piId: number, piSettingsRequest: PiSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PiSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisSettingsCreate(piId, piSettingsRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
-         * @param {DeviceSettingsRequest} deviceSettingsRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesSettingsCreate(deviceId: number, deviceSettingsRequest: DeviceSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceSettings>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesSettingsCreate(deviceId, deviceSettingsRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesSettingsList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedDeviceSettingsList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesSettingsList(deviceId, page, options);
+        async pisSettingsList(piId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPiSettingsList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisSettingsList(piId, page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device settings.
-         * @param {PatchedDeviceSettingsRequest} [patchedDeviceSettingsRequest] 
+         * @param {number} id A unique integer value identifying this pi settings.
+         * @param {number} piId 
+         * @param {PatchedPiSettingsRequest} [patchedPiSettingsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesSettingsPartialUpdate(deviceId: number, id: number, patchedDeviceSettingsRequest?: PatchedDeviceSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceSettings>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesSettingsPartialUpdate(deviceId, id, patchedDeviceSettingsRequest, options);
+        async pisSettingsPartialUpdate(id: number, piId: number, patchedPiSettingsRequest?: PatchedPiSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PiSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisSettingsPartialUpdate(id, piId, patchedPiSettingsRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device settings.
+         * @param {number} id A unique integer value identifying this pi settings.
+         * @param {number} piId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesSettingsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceSettings>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesSettingsRetrieve(deviceId, id, options);
+        async pisSettingsRetrieve(id: number, piId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PiSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisSettingsRetrieve(id, piId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device settings.
-         * @param {DeviceSettingsRequest} deviceSettingsRequest 
+         * @param {number} id A unique integer value identifying this pi settings.
+         * @param {number} piId 
+         * @param {PiSettingsRequest} piSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesSettingsUpdate(deviceId: number, id: number, deviceSettingsRequest: DeviceSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceSettings>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesSettingsUpdate(deviceId, id, deviceSettingsRequest, options);
+        async pisSettingsUpdate(id: number, piId: number, piSettingsRequest: PiSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PiSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisSettingsUpdate(id, piId, piSettingsRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {SystemInfoRequest} systemInfoRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesSystemInfoCreate(deviceId: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SystemInfo>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesSystemInfoCreate(deviceId, systemInfoRequest, options);
+        async pisSystemInfoCreate(piId: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SystemInfo>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisSystemInfoCreate(piId, systemInfoRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesSystemInfoList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedSystemInfoList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesSystemInfoList(deviceId, page, options);
+        async pisSystemInfoList(piId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedSystemInfoList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisSystemInfoList(piId, page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this system info.
+         * @param {number} piId 
          * @param {PatchedSystemInfoRequest} [patchedSystemInfoRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesSystemInfoPartialUpdate(deviceId: number, id: number, patchedSystemInfoRequest?: PatchedSystemInfoRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SystemInfo>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesSystemInfoPartialUpdate(deviceId, id, patchedSystemInfoRequest, options);
+        async pisSystemInfoPartialUpdate(id: number, piId: number, patchedSystemInfoRequest?: PatchedSystemInfoRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SystemInfo>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisSystemInfoPartialUpdate(id, piId, patchedSystemInfoRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this system info.
+         * @param {number} piId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesSystemInfoRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SystemInfo>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesSystemInfoRetrieve(deviceId, id, options);
+        async pisSystemInfoRetrieve(id: number, piId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SystemInfo>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisSystemInfoRetrieve(id, piId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this system info.
+         * @param {number} piId 
          * @param {SystemInfoRequest} systemInfoRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesSystemInfoUpdate(deviceId: number, id: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SystemInfo>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesSystemInfoUpdate(deviceId, id, systemInfoRequest, options);
+        async pisSystemInfoUpdate(id: number, piId: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SystemInfo>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisSystemInfoUpdate(id, piId, systemInfoRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * A device (Raspberry Pi) running Print Nanny OS
-         * @param {number} id A unique integer value identifying this device.
-         * @param {DeviceRequest} [deviceRequest] 
+         * @param {number} id A unique integer value identifying this pi.
+         * @param {PiRequest} [piRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesUpdate(id: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesUpdate(id, deviceRequest, options);
+        async pisUpdate(id: number, piRequest?: PiRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Pi>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisUpdate(id, piRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {WebrtcStreamRequest} [webrtcStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesWebrtcStreamsCreate(deviceId: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebrtcStream>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesWebrtcStreamsCreate(deviceId, webrtcStreamRequest, options);
+        async pisWebrtcStreamsCreate(piId: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebrtcStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisWebrtcStreamsCreate(piId, webrtcStreamRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesWebrtcStreamsList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedWebrtcStreamList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesWebrtcStreamsList(deviceId, page, options);
+        async pisWebrtcStreamsList(piId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedWebrtcStreamList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisWebrtcStreamsList(piId, page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this webrtc stream.
+         * @param {number} piId 
          * @param {PatchedWebrtcStreamRequest} [patchedWebrtcStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesWebrtcStreamsPartialUpdate(deviceId: number, id: number, patchedWebrtcStreamRequest?: PatchedWebrtcStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebrtcStream>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesWebrtcStreamsPartialUpdate(deviceId, id, patchedWebrtcStreamRequest, options);
+        async pisWebrtcStreamsPartialUpdate(id: number, piId: number, patchedWebrtcStreamRequest?: PatchedWebrtcStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebrtcStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisWebrtcStreamsPartialUpdate(id, piId, patchedWebrtcStreamRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this webrtc stream.
+         * @param {number} piId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesWebrtcStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebrtcStream>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesWebrtcStreamsRetrieve(deviceId, id, options);
+        async pisWebrtcStreamsRetrieve(id: number, piId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebrtcStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisWebrtcStreamsRetrieve(id, piId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this webrtc stream.
+         * @param {number} piId 
          * @param {WebrtcStreamRequest} [webrtcStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesWebrtcStreamsUpdate(deviceId: number, id: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebrtcStream>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesWebrtcStreamsUpdate(deviceId, id, webrtcStreamRequest, options);
+        async pisWebrtcStreamsUpdate(id: number, piId: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebrtcStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisWebrtcStreamsUpdate(id, piId, webrtcStreamRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {PublicKeyRequest} publicKeyRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async publicKeyUpdateOrCreate(deviceId: number, publicKeyRequest: PublicKeyRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PublicKey>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.publicKeyUpdateOrCreate(deviceId, publicKeyRequest, options);
+        async publicKeyUpdateOrCreate(piId: number, publicKeyRequest: PublicKeyRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PublicKey>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publicKeyUpdateOrCreate(piId, publicKeyRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {SystemInfoRequest} systemInfoRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async systemInfoUpdateOrCreate(deviceId: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SystemInfo>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.systemInfoUpdateOrCreate(deviceId, systemInfoRequest, options);
+        async systemInfoUpdateOrCreate(piId: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SystemInfo>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.systemInfoUpdateOrCreate(piId, systemInfoRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -9310,92 +9259,92 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
     return {
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cloudiotDeviceUpdateOrCreate(deviceId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: any): AxiosPromise<CloudiotDevice> {
-            return localVarFp.cloudiotDeviceUpdateOrCreate(deviceId, cloudiotDeviceRequest, options).then((request) => request(axios, basePath));
+        cloudiotDeviceUpdateOrCreate(piId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: any): AxiosPromise<CloudiotDevice> {
+            return localVarFp.cloudiotDeviceUpdateOrCreate(piId, cloudiotDeviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCloudiotCreate(deviceId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: any): AxiosPromise<CloudiotDevice> {
-            return localVarFp.devicesCloudiotCreate(deviceId, cloudiotDeviceRequest, options).then((request) => request(axios, basePath));
+        pisCloudiotCreate(piId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: any): AxiosPromise<CloudiotDevice> {
+            return localVarFp.pisCloudiotCreate(piId, cloudiotDeviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCloudiotList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedCloudiotDeviceList> {
-            return localVarFp.devicesCloudiotList(deviceId, page, options).then((request) => request(axios, basePath));
+        pisCloudiotList(piId: number, page?: number, options?: any): AxiosPromise<PaginatedCloudiotDeviceList> {
+            return localVarFp.pisCloudiotList(piId, page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {string} id 
+         * @param {number} piId 
          * @param {PatchedCloudiotDeviceRequest} [patchedCloudiotDeviceRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCloudiotPartialUpdate(deviceId: number, id: string, patchedCloudiotDeviceRequest?: PatchedCloudiotDeviceRequest, options?: any): AxiosPromise<CloudiotDevice> {
-            return localVarFp.devicesCloudiotPartialUpdate(deviceId, id, patchedCloudiotDeviceRequest, options).then((request) => request(axios, basePath));
+        pisCloudiotPartialUpdate(id: string, piId: number, patchedCloudiotDeviceRequest?: PatchedCloudiotDeviceRequest, options?: any): AxiosPromise<CloudiotDevice> {
+            return localVarFp.pisCloudiotPartialUpdate(id, piId, patchedCloudiotDeviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id 
+         * @param {number} piId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCloudiotRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<CloudiotDevice> {
-            return localVarFp.devicesCloudiotRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
+        pisCloudiotRetrieve(id: number, piId: number, options?: any): AxiosPromise<CloudiotDevice> {
+            return localVarFp.pisCloudiotRetrieve(id, piId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {string} id 
+         * @param {number} piId 
          * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCloudiotUpdate(deviceId: number, id: string, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: any): AxiosPromise<CloudiotDevice> {
-            return localVarFp.devicesCloudiotUpdate(deviceId, id, cloudiotDeviceRequest, options).then((request) => request(axios, basePath));
+        pisCloudiotUpdate(id: string, piId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: any): AxiosPromise<CloudiotDevice> {
+            return localVarFp.pisCloudiotUpdate(id, piId, cloudiotDeviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesConfigDownloadRetrieve(deviceId: number, options?: any): AxiosPromise<Config> {
-            return localVarFp.devicesConfigDownloadRetrieve(deviceId, options).then((request) => request(axios, basePath));
+        pisConfigDownloadRetrieve(piId: number, options?: any): AxiosPromise<Config> {
+            return localVarFp.pisConfigDownloadRetrieve(piId, options).then((request) => request(axios, basePath));
         },
         /**
          * A device (Raspberry Pi) running Print Nanny OS
-         * @param {DeviceRequest} deviceRequest 
+         * @param {PiRequest} [piRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesCreate(deviceRequest: DeviceRequest, options?: any): AxiosPromise<Device> {
-            return localVarFp.devicesCreate(deviceRequest, options).then((request) => request(axios, basePath));
+        pisCreate(piRequest?: PiRequest, options?: any): AxiosPromise<Pi> {
+            return localVarFp.pisCreate(piRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * A device (Raspberry Pi) running Print Nanny OS
-         * @param {number} id A unique integer value identifying this device.
+         * @param {number} id A unique integer value identifying this pi.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesDestroy(id: number, options?: any): AxiosPromise<void> {
-            return localVarFp.devicesDestroy(id, options).then((request) => request(axios, basePath));
+        pisDestroy(id: number, options?: any): AxiosPromise<void> {
+            return localVarFp.pisDestroy(id, options).then((request) => request(axios, basePath));
         },
         /**
          * A device (Raspberry Pi) running Print Nanny OS
@@ -9403,274 +9352,265 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesList(page?: number, options?: any): AxiosPromise<PaginatedDeviceList> {
-            return localVarFp.devicesList(page, options).then((request) => request(axios, basePath));
+        pisList(page?: number, options?: any): AxiosPromise<PaginatedPiList> {
+            return localVarFp.pisList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * A device (Raspberry Pi) running Print Nanny OS
-         * @param {number} id A unique integer value identifying this device.
-         * @param {PatchedDeviceRequest} [patchedDeviceRequest] 
+         * @param {number} id A unique integer value identifying this pi.
+         * @param {PatchedPiRequest} [patchedPiRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: any): AxiosPromise<Device> {
-            return localVarFp.devicesPartialUpdate(id, patchedDeviceRequest, options).then((request) => request(axios, basePath));
+        pisPartialUpdate(id: number, patchedPiRequest?: PatchedPiRequest, options?: any): AxiosPromise<Pi> {
+            return localVarFp.pisPartialUpdate(id, patchedPiRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {PublicKeyRequest} publicKeyRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesPublicKeysCreate(deviceId: number, publicKeyRequest: PublicKeyRequest, options?: any): AxiosPromise<PublicKey> {
-            return localVarFp.devicesPublicKeysCreate(deviceId, publicKeyRequest, options).then((request) => request(axios, basePath));
+        pisPublicKeysCreate(piId: number, publicKeyRequest: PublicKeyRequest, options?: any): AxiosPromise<PublicKey> {
+            return localVarFp.pisPublicKeysCreate(piId, publicKeyRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesPublicKeysList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedPublicKeyList> {
-            return localVarFp.devicesPublicKeysList(deviceId, page, options).then((request) => request(axios, basePath));
+        pisPublicKeysList(piId: number, page?: number, options?: any): AxiosPromise<PaginatedPublicKeyList> {
+            return localVarFp.pisPublicKeysList(piId, page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this public key.
+         * @param {number} piId 
          * @param {PatchedPublicKeyRequest} [patchedPublicKeyRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesPublicKeysPartialUpdate(deviceId: number, id: number, patchedPublicKeyRequest?: PatchedPublicKeyRequest, options?: any): AxiosPromise<PublicKey> {
-            return localVarFp.devicesPublicKeysPartialUpdate(deviceId, id, patchedPublicKeyRequest, options).then((request) => request(axios, basePath));
+        pisPublicKeysPartialUpdate(id: number, piId: number, patchedPublicKeyRequest?: PatchedPublicKeyRequest, options?: any): AxiosPromise<PublicKey> {
+            return localVarFp.pisPublicKeysPartialUpdate(id, piId, patchedPublicKeyRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this public key.
+         * @param {number} piId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesPublicKeysRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<PublicKey> {
-            return localVarFp.devicesPublicKeysRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
+        pisPublicKeysRetrieve(id: number, piId: number, options?: any): AxiosPromise<PublicKey> {
+            return localVarFp.pisPublicKeysRetrieve(id, piId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this public key.
+         * @param {number} piId 
          * @param {PublicKeyRequest} publicKeyRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesPublicKeysUpdate(deviceId: number, id: number, publicKeyRequest: PublicKeyRequest, options?: any): AxiosPromise<PublicKey> {
-            return localVarFp.devicesPublicKeysUpdate(deviceId, id, publicKeyRequest, options).then((request) => request(axios, basePath));
+        pisPublicKeysUpdate(id: number, piId: number, publicKeyRequest: PublicKeyRequest, options?: any): AxiosPromise<PublicKey> {
+            return localVarFp.pisPublicKeysUpdate(id, piId, publicKeyRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * A device (Raspberry Pi) running Print Nanny OS
-         * @param {number} id A unique integer value identifying this device.
+         * @param {number} id A unique integer value identifying this pi.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesRetrieve(id: number, options?: any): AxiosPromise<Device> {
-            return localVarFp.devicesRetrieve(id, options).then((request) => request(axios, basePath));
+        pisRetrieve(id: number, options?: any): AxiosPromise<Pi> {
+            return localVarFp.pisRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {string} hostname 
+         * @param {number} piId 
+         * @param {PiSettingsRequest} piSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesRetrieveHostname(hostname: string, options?: any): AxiosPromise<Device> {
-            return localVarFp.devicesRetrieveHostname(hostname, options).then((request) => request(axios, basePath));
+        pisSettingsCreate(piId: number, piSettingsRequest: PiSettingsRequest, options?: any): AxiosPromise<PiSettings> {
+            return localVarFp.pisSettingsCreate(piId, piSettingsRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
-         * @param {DeviceSettingsRequest} deviceSettingsRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesSettingsCreate(deviceId: number, deviceSettingsRequest: DeviceSettingsRequest, options?: any): AxiosPromise<DeviceSettings> {
-            return localVarFp.devicesSettingsCreate(deviceId, deviceSettingsRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesSettingsList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedDeviceSettingsList> {
-            return localVarFp.devicesSettingsList(deviceId, page, options).then((request) => request(axios, basePath));
+        pisSettingsList(piId: number, page?: number, options?: any): AxiosPromise<PaginatedPiSettingsList> {
+            return localVarFp.pisSettingsList(piId, page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device settings.
-         * @param {PatchedDeviceSettingsRequest} [patchedDeviceSettingsRequest] 
+         * @param {number} id A unique integer value identifying this pi settings.
+         * @param {number} piId 
+         * @param {PatchedPiSettingsRequest} [patchedPiSettingsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesSettingsPartialUpdate(deviceId: number, id: number, patchedDeviceSettingsRequest?: PatchedDeviceSettingsRequest, options?: any): AxiosPromise<DeviceSettings> {
-            return localVarFp.devicesSettingsPartialUpdate(deviceId, id, patchedDeviceSettingsRequest, options).then((request) => request(axios, basePath));
+        pisSettingsPartialUpdate(id: number, piId: number, patchedPiSettingsRequest?: PatchedPiSettingsRequest, options?: any): AxiosPromise<PiSettings> {
+            return localVarFp.pisSettingsPartialUpdate(id, piId, patchedPiSettingsRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device settings.
+         * @param {number} id A unique integer value identifying this pi settings.
+         * @param {number} piId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesSettingsRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<DeviceSettings> {
-            return localVarFp.devicesSettingsRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
+        pisSettingsRetrieve(id: number, piId: number, options?: any): AxiosPromise<PiSettings> {
+            return localVarFp.pisSettingsRetrieve(id, piId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this device settings.
-         * @param {DeviceSettingsRequest} deviceSettingsRequest 
+         * @param {number} id A unique integer value identifying this pi settings.
+         * @param {number} piId 
+         * @param {PiSettingsRequest} piSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesSettingsUpdate(deviceId: number, id: number, deviceSettingsRequest: DeviceSettingsRequest, options?: any): AxiosPromise<DeviceSettings> {
-            return localVarFp.devicesSettingsUpdate(deviceId, id, deviceSettingsRequest, options).then((request) => request(axios, basePath));
+        pisSettingsUpdate(id: number, piId: number, piSettingsRequest: PiSettingsRequest, options?: any): AxiosPromise<PiSettings> {
+            return localVarFp.pisSettingsUpdate(id, piId, piSettingsRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {SystemInfoRequest} systemInfoRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesSystemInfoCreate(deviceId: number, systemInfoRequest: SystemInfoRequest, options?: any): AxiosPromise<SystemInfo> {
-            return localVarFp.devicesSystemInfoCreate(deviceId, systemInfoRequest, options).then((request) => request(axios, basePath));
+        pisSystemInfoCreate(piId: number, systemInfoRequest: SystemInfoRequest, options?: any): AxiosPromise<SystemInfo> {
+            return localVarFp.pisSystemInfoCreate(piId, systemInfoRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesSystemInfoList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedSystemInfoList> {
-            return localVarFp.devicesSystemInfoList(deviceId, page, options).then((request) => request(axios, basePath));
+        pisSystemInfoList(piId: number, page?: number, options?: any): AxiosPromise<PaginatedSystemInfoList> {
+            return localVarFp.pisSystemInfoList(piId, page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this system info.
+         * @param {number} piId 
          * @param {PatchedSystemInfoRequest} [patchedSystemInfoRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesSystemInfoPartialUpdate(deviceId: number, id: number, patchedSystemInfoRequest?: PatchedSystemInfoRequest, options?: any): AxiosPromise<SystemInfo> {
-            return localVarFp.devicesSystemInfoPartialUpdate(deviceId, id, patchedSystemInfoRequest, options).then((request) => request(axios, basePath));
+        pisSystemInfoPartialUpdate(id: number, piId: number, patchedSystemInfoRequest?: PatchedSystemInfoRequest, options?: any): AxiosPromise<SystemInfo> {
+            return localVarFp.pisSystemInfoPartialUpdate(id, piId, patchedSystemInfoRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this system info.
+         * @param {number} piId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesSystemInfoRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<SystemInfo> {
-            return localVarFp.devicesSystemInfoRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
+        pisSystemInfoRetrieve(id: number, piId: number, options?: any): AxiosPromise<SystemInfo> {
+            return localVarFp.pisSystemInfoRetrieve(id, piId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this system info.
+         * @param {number} piId 
          * @param {SystemInfoRequest} systemInfoRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesSystemInfoUpdate(deviceId: number, id: number, systemInfoRequest: SystemInfoRequest, options?: any): AxiosPromise<SystemInfo> {
-            return localVarFp.devicesSystemInfoUpdate(deviceId, id, systemInfoRequest, options).then((request) => request(axios, basePath));
+        pisSystemInfoUpdate(id: number, piId: number, systemInfoRequest: SystemInfoRequest, options?: any): AxiosPromise<SystemInfo> {
+            return localVarFp.pisSystemInfoUpdate(id, piId, systemInfoRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * A device (Raspberry Pi) running Print Nanny OS
-         * @param {number} id A unique integer value identifying this device.
-         * @param {DeviceRequest} [deviceRequest] 
+         * @param {number} id A unique integer value identifying this pi.
+         * @param {PiRequest} [piRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesUpdate(id: number, deviceRequest?: DeviceRequest, options?: any): AxiosPromise<Device> {
-            return localVarFp.devicesUpdate(id, deviceRequest, options).then((request) => request(axios, basePath));
+        pisUpdate(id: number, piRequest?: PiRequest, options?: any): AxiosPromise<Pi> {
+            return localVarFp.pisUpdate(id, piRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {WebrtcStreamRequest} [webrtcStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesWebrtcStreamsCreate(deviceId: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: any): AxiosPromise<WebrtcStream> {
-            return localVarFp.devicesWebrtcStreamsCreate(deviceId, webrtcStreamRequest, options).then((request) => request(axios, basePath));
+        pisWebrtcStreamsCreate(piId: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: any): AxiosPromise<WebrtcStream> {
+            return localVarFp.pisWebrtcStreamsCreate(piId, webrtcStreamRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesWebrtcStreamsList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedWebrtcStreamList> {
-            return localVarFp.devicesWebrtcStreamsList(deviceId, page, options).then((request) => request(axios, basePath));
+        pisWebrtcStreamsList(piId: number, page?: number, options?: any): AxiosPromise<PaginatedWebrtcStreamList> {
+            return localVarFp.pisWebrtcStreamsList(piId, page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this webrtc stream.
+         * @param {number} piId 
          * @param {PatchedWebrtcStreamRequest} [patchedWebrtcStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesWebrtcStreamsPartialUpdate(deviceId: number, id: number, patchedWebrtcStreamRequest?: PatchedWebrtcStreamRequest, options?: any): AxiosPromise<WebrtcStream> {
-            return localVarFp.devicesWebrtcStreamsPartialUpdate(deviceId, id, patchedWebrtcStreamRequest, options).then((request) => request(axios, basePath));
+        pisWebrtcStreamsPartialUpdate(id: number, piId: number, patchedWebrtcStreamRequest?: PatchedWebrtcStreamRequest, options?: any): AxiosPromise<WebrtcStream> {
+            return localVarFp.pisWebrtcStreamsPartialUpdate(id, piId, patchedWebrtcStreamRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this webrtc stream.
+         * @param {number} piId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesWebrtcStreamsRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<WebrtcStream> {
-            return localVarFp.devicesWebrtcStreamsRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
+        pisWebrtcStreamsRetrieve(id: number, piId: number, options?: any): AxiosPromise<WebrtcStream> {
+            return localVarFp.pisWebrtcStreamsRetrieve(id, piId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this webrtc stream.
+         * @param {number} piId 
          * @param {WebrtcStreamRequest} [webrtcStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesWebrtcStreamsUpdate(deviceId: number, id: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: any): AxiosPromise<WebrtcStream> {
-            return localVarFp.devicesWebrtcStreamsUpdate(deviceId, id, webrtcStreamRequest, options).then((request) => request(axios, basePath));
+        pisWebrtcStreamsUpdate(id: number, piId: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: any): AxiosPromise<WebrtcStream> {
+            return localVarFp.pisWebrtcStreamsUpdate(id, piId, webrtcStreamRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {PublicKeyRequest} publicKeyRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        publicKeyUpdateOrCreate(deviceId: number, publicKeyRequest: PublicKeyRequest, options?: any): AxiosPromise<PublicKey> {
-            return localVarFp.publicKeyUpdateOrCreate(deviceId, publicKeyRequest, options).then((request) => request(axios, basePath));
+        publicKeyUpdateOrCreate(piId: number, publicKeyRequest: PublicKeyRequest, options?: any): AxiosPromise<PublicKey> {
+            return localVarFp.publicKeyUpdateOrCreate(piId, publicKeyRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {SystemInfoRequest} systemInfoRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        systemInfoUpdateOrCreate(deviceId: number, systemInfoRequest: SystemInfoRequest, options?: any): AxiosPromise<SystemInfo> {
-            return localVarFp.systemInfoUpdateOrCreate(deviceId, systemInfoRequest, options).then((request) => request(axios, basePath));
+        systemInfoUpdateOrCreate(piId: number, systemInfoRequest: SystemInfoRequest, options?: any): AxiosPromise<SystemInfo> {
+            return localVarFp.systemInfoUpdateOrCreate(piId, systemInfoRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -9683,92 +9623,92 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
 export interface DevicesApiInterface {
     /**
      * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    cloudiotDeviceUpdateOrCreate(deviceId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): AxiosPromise<CloudiotDevice>;
+    cloudiotDeviceUpdateOrCreate(piId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): AxiosPromise<CloudiotDevice>;
 
     /**
      * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesCloudiotCreate(deviceId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): AxiosPromise<CloudiotDevice>;
+    pisCloudiotCreate(piId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): AxiosPromise<CloudiotDevice>;
 
     /**
      * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesCloudiotList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedCloudiotDeviceList>;
+    pisCloudiotList(piId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedCloudiotDeviceList>;
 
     /**
      * 
-     * @param {number} deviceId 
      * @param {string} id 
+     * @param {number} piId 
      * @param {PatchedCloudiotDeviceRequest} [patchedCloudiotDeviceRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesCloudiotPartialUpdate(deviceId: number, id: string, patchedCloudiotDeviceRequest?: PatchedCloudiotDeviceRequest, options?: AxiosRequestConfig): AxiosPromise<CloudiotDevice>;
+    pisCloudiotPartialUpdate(id: string, piId: number, patchedCloudiotDeviceRequest?: PatchedCloudiotDeviceRequest, options?: AxiosRequestConfig): AxiosPromise<CloudiotDevice>;
 
     /**
      * 
-     * @param {number} deviceId 
      * @param {number} id 
+     * @param {number} piId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesCloudiotRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<CloudiotDevice>;
+    pisCloudiotRetrieve(id: number, piId: number, options?: AxiosRequestConfig): AxiosPromise<CloudiotDevice>;
 
     /**
      * 
-     * @param {number} deviceId 
      * @param {string} id 
+     * @param {number} piId 
      * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesCloudiotUpdate(deviceId: number, id: string, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): AxiosPromise<CloudiotDevice>;
+    pisCloudiotUpdate(id: string, piId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): AxiosPromise<CloudiotDevice>;
 
     /**
      * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesConfigDownloadRetrieve(deviceId: number, options?: AxiosRequestConfig): AxiosPromise<Config>;
+    pisConfigDownloadRetrieve(piId: number, options?: AxiosRequestConfig): AxiosPromise<Config>;
 
     /**
      * A device (Raspberry Pi) running Print Nanny OS
-     * @param {DeviceRequest} deviceRequest 
+     * @param {PiRequest} [piRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesCreate(deviceRequest: DeviceRequest, options?: AxiosRequestConfig): AxiosPromise<Device>;
+    pisCreate(piRequest?: PiRequest, options?: AxiosRequestConfig): AxiosPromise<Pi>;
 
     /**
      * A device (Raspberry Pi) running Print Nanny OS
-     * @param {number} id A unique integer value identifying this device.
+     * @param {number} id A unique integer value identifying this pi.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesDestroy(id: number, options?: AxiosRequestConfig): AxiosPromise<void>;
+    pisDestroy(id: number, options?: AxiosRequestConfig): AxiosPromise<void>;
 
     /**
      * A device (Raspberry Pi) running Print Nanny OS
@@ -9777,273 +9717,264 @@ export interface DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesList(page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedDeviceList>;
+    pisList(page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPiList>;
 
     /**
      * A device (Raspberry Pi) running Print Nanny OS
-     * @param {number} id A unique integer value identifying this device.
-     * @param {PatchedDeviceRequest} [patchedDeviceRequest] 
+     * @param {number} id A unique integer value identifying this pi.
+     * @param {PatchedPiRequest} [patchedPiRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: AxiosRequestConfig): AxiosPromise<Device>;
+    pisPartialUpdate(id: number, patchedPiRequest?: PatchedPiRequest, options?: AxiosRequestConfig): AxiosPromise<Pi>;
 
     /**
      * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {PublicKeyRequest} publicKeyRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesPublicKeysCreate(deviceId: number, publicKeyRequest: PublicKeyRequest, options?: AxiosRequestConfig): AxiosPromise<PublicKey>;
+    pisPublicKeysCreate(piId: number, publicKeyRequest: PublicKeyRequest, options?: AxiosRequestConfig): AxiosPromise<PublicKey>;
 
     /**
      * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesPublicKeysList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPublicKeyList>;
+    pisPublicKeysList(piId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPublicKeyList>;
 
     /**
      * 
-     * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this public key.
+     * @param {number} piId 
      * @param {PatchedPublicKeyRequest} [patchedPublicKeyRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesPublicKeysPartialUpdate(deviceId: number, id: number, patchedPublicKeyRequest?: PatchedPublicKeyRequest, options?: AxiosRequestConfig): AxiosPromise<PublicKey>;
+    pisPublicKeysPartialUpdate(id: number, piId: number, patchedPublicKeyRequest?: PatchedPublicKeyRequest, options?: AxiosRequestConfig): AxiosPromise<PublicKey>;
 
     /**
      * 
-     * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this public key.
+     * @param {number} piId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesPublicKeysRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<PublicKey>;
+    pisPublicKeysRetrieve(id: number, piId: number, options?: AxiosRequestConfig): AxiosPromise<PublicKey>;
 
     /**
      * 
-     * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this public key.
+     * @param {number} piId 
      * @param {PublicKeyRequest} publicKeyRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesPublicKeysUpdate(deviceId: number, id: number, publicKeyRequest: PublicKeyRequest, options?: AxiosRequestConfig): AxiosPromise<PublicKey>;
+    pisPublicKeysUpdate(id: number, piId: number, publicKeyRequest: PublicKeyRequest, options?: AxiosRequestConfig): AxiosPromise<PublicKey>;
 
     /**
      * A device (Raspberry Pi) running Print Nanny OS
-     * @param {number} id A unique integer value identifying this device.
+     * @param {number} id A unique integer value identifying this pi.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesRetrieve(id: number, options?: AxiosRequestConfig): AxiosPromise<Device>;
+    pisRetrieve(id: number, options?: AxiosRequestConfig): AxiosPromise<Pi>;
 
     /**
      * 
-     * @param {string} hostname 
+     * @param {number} piId 
+     * @param {PiSettingsRequest} piSettingsRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesRetrieveHostname(hostname: string, options?: AxiosRequestConfig): AxiosPromise<Device>;
+    pisSettingsCreate(piId: number, piSettingsRequest: PiSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<PiSettings>;
 
     /**
      * 
-     * @param {number} deviceId 
-     * @param {DeviceSettingsRequest} deviceSettingsRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesSettingsCreate(deviceId: number, deviceSettingsRequest: DeviceSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<DeviceSettings>;
-
-    /**
-     * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesSettingsList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedDeviceSettingsList>;
+    pisSettingsList(piId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPiSettingsList>;
 
     /**
      * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device settings.
-     * @param {PatchedDeviceSettingsRequest} [patchedDeviceSettingsRequest] 
+     * @param {number} id A unique integer value identifying this pi settings.
+     * @param {number} piId 
+     * @param {PatchedPiSettingsRequest} [patchedPiSettingsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesSettingsPartialUpdate(deviceId: number, id: number, patchedDeviceSettingsRequest?: PatchedDeviceSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<DeviceSettings>;
+    pisSettingsPartialUpdate(id: number, piId: number, patchedPiSettingsRequest?: PatchedPiSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<PiSettings>;
 
     /**
      * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device settings.
+     * @param {number} id A unique integer value identifying this pi settings.
+     * @param {number} piId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesSettingsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<DeviceSettings>;
+    pisSettingsRetrieve(id: number, piId: number, options?: AxiosRequestConfig): AxiosPromise<PiSettings>;
 
     /**
      * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device settings.
-     * @param {DeviceSettingsRequest} deviceSettingsRequest 
+     * @param {number} id A unique integer value identifying this pi settings.
+     * @param {number} piId 
+     * @param {PiSettingsRequest} piSettingsRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesSettingsUpdate(deviceId: number, id: number, deviceSettingsRequest: DeviceSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<DeviceSettings>;
+    pisSettingsUpdate(id: number, piId: number, piSettingsRequest: PiSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<PiSettings>;
 
     /**
      * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {SystemInfoRequest} systemInfoRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesSystemInfoCreate(deviceId: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig): AxiosPromise<SystemInfo>;
+    pisSystemInfoCreate(piId: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig): AxiosPromise<SystemInfo>;
 
     /**
      * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesSystemInfoList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedSystemInfoList>;
+    pisSystemInfoList(piId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedSystemInfoList>;
 
     /**
      * 
-     * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this system info.
+     * @param {number} piId 
      * @param {PatchedSystemInfoRequest} [patchedSystemInfoRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesSystemInfoPartialUpdate(deviceId: number, id: number, patchedSystemInfoRequest?: PatchedSystemInfoRequest, options?: AxiosRequestConfig): AxiosPromise<SystemInfo>;
+    pisSystemInfoPartialUpdate(id: number, piId: number, patchedSystemInfoRequest?: PatchedSystemInfoRequest, options?: AxiosRequestConfig): AxiosPromise<SystemInfo>;
 
     /**
      * 
-     * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this system info.
+     * @param {number} piId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesSystemInfoRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<SystemInfo>;
+    pisSystemInfoRetrieve(id: number, piId: number, options?: AxiosRequestConfig): AxiosPromise<SystemInfo>;
 
     /**
      * 
-     * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this system info.
+     * @param {number} piId 
      * @param {SystemInfoRequest} systemInfoRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesSystemInfoUpdate(deviceId: number, id: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig): AxiosPromise<SystemInfo>;
+    pisSystemInfoUpdate(id: number, piId: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig): AxiosPromise<SystemInfo>;
 
     /**
      * A device (Raspberry Pi) running Print Nanny OS
-     * @param {number} id A unique integer value identifying this device.
-     * @param {DeviceRequest} [deviceRequest] 
+     * @param {number} id A unique integer value identifying this pi.
+     * @param {PiRequest} [piRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesUpdate(id: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig): AxiosPromise<Device>;
+    pisUpdate(id: number, piRequest?: PiRequest, options?: AxiosRequestConfig): AxiosPromise<Pi>;
 
     /**
      * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {WebrtcStreamRequest} [webrtcStreamRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesWebrtcStreamsCreate(deviceId: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: AxiosRequestConfig): AxiosPromise<WebrtcStream>;
+    pisWebrtcStreamsCreate(piId: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: AxiosRequestConfig): AxiosPromise<WebrtcStream>;
 
     /**
      * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesWebrtcStreamsList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedWebrtcStreamList>;
+    pisWebrtcStreamsList(piId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedWebrtcStreamList>;
 
     /**
      * 
-     * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this webrtc stream.
+     * @param {number} piId 
      * @param {PatchedWebrtcStreamRequest} [patchedWebrtcStreamRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesWebrtcStreamsPartialUpdate(deviceId: number, id: number, patchedWebrtcStreamRequest?: PatchedWebrtcStreamRequest, options?: AxiosRequestConfig): AxiosPromise<WebrtcStream>;
+    pisWebrtcStreamsPartialUpdate(id: number, piId: number, patchedWebrtcStreamRequest?: PatchedWebrtcStreamRequest, options?: AxiosRequestConfig): AxiosPromise<WebrtcStream>;
 
     /**
      * 
-     * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this webrtc stream.
+     * @param {number} piId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesWebrtcStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<WebrtcStream>;
+    pisWebrtcStreamsRetrieve(id: number, piId: number, options?: AxiosRequestConfig): AxiosPromise<WebrtcStream>;
 
     /**
      * 
-     * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this webrtc stream.
+     * @param {number} piId 
      * @param {WebrtcStreamRequest} [webrtcStreamRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesWebrtcStreamsUpdate(deviceId: number, id: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: AxiosRequestConfig): AxiosPromise<WebrtcStream>;
+    pisWebrtcStreamsUpdate(id: number, piId: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: AxiosRequestConfig): AxiosPromise<WebrtcStream>;
 
     /**
      * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {PublicKeyRequest} publicKeyRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    publicKeyUpdateOrCreate(deviceId: number, publicKeyRequest: PublicKeyRequest, options?: AxiosRequestConfig): AxiosPromise<PublicKey>;
+    publicKeyUpdateOrCreate(piId: number, publicKeyRequest: PublicKeyRequest, options?: AxiosRequestConfig): AxiosPromise<PublicKey>;
 
     /**
      * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {SystemInfoRequest} systemInfoRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    systemInfoUpdateOrCreate(deviceId: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig): AxiosPromise<SystemInfo>;
+    systemInfoUpdateOrCreate(piId: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig): AxiosPromise<SystemInfo>;
 
 }
 
@@ -10056,109 +9987,109 @@ export interface DevicesApiInterface {
 export class DevicesApi extends BaseAPI implements DevicesApiInterface {
     /**
      * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public cloudiotDeviceUpdateOrCreate(deviceId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).cloudiotDeviceUpdateOrCreate(deviceId, cloudiotDeviceRequest, options).then((request) => request(this.axios, this.basePath));
+    public cloudiotDeviceUpdateOrCreate(piId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).cloudiotDeviceUpdateOrCreate(piId, cloudiotDeviceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesCloudiotCreate(deviceId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesCloudiotCreate(deviceId, cloudiotDeviceRequest, options).then((request) => request(this.axios, this.basePath));
+    public pisCloudiotCreate(piId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisCloudiotCreate(piId, cloudiotDeviceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesCloudiotList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesCloudiotList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
+    public pisCloudiotList(piId: number, page?: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisCloudiotList(piId, page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
      * @param {string} id 
+     * @param {number} piId 
      * @param {PatchedCloudiotDeviceRequest} [patchedCloudiotDeviceRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesCloudiotPartialUpdate(deviceId: number, id: string, patchedCloudiotDeviceRequest?: PatchedCloudiotDeviceRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesCloudiotPartialUpdate(deviceId, id, patchedCloudiotDeviceRequest, options).then((request) => request(this.axios, this.basePath));
+    public pisCloudiotPartialUpdate(id: string, piId: number, patchedCloudiotDeviceRequest?: PatchedCloudiotDeviceRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisCloudiotPartialUpdate(id, piId, patchedCloudiotDeviceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
      * @param {number} id 
+     * @param {number} piId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesCloudiotRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesCloudiotRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
+    public pisCloudiotRetrieve(id: number, piId: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisCloudiotRetrieve(id, piId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
      * @param {string} id 
+     * @param {number} piId 
      * @param {CloudiotDeviceRequest} cloudiotDeviceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesCloudiotUpdate(deviceId: number, id: string, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesCloudiotUpdate(deviceId, id, cloudiotDeviceRequest, options).then((request) => request(this.axios, this.basePath));
+    public pisCloudiotUpdate(id: string, piId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisCloudiotUpdate(id, piId, cloudiotDeviceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesConfigDownloadRetrieve(deviceId: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesConfigDownloadRetrieve(deviceId, options).then((request) => request(this.axios, this.basePath));
+    public pisConfigDownloadRetrieve(piId: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisConfigDownloadRetrieve(piId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * A device (Raspberry Pi) running Print Nanny OS
-     * @param {DeviceRequest} deviceRequest 
+     * @param {PiRequest} [piRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesCreate(deviceRequest: DeviceRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesCreate(deviceRequest, options).then((request) => request(this.axios, this.basePath));
+    public pisCreate(piRequest?: PiRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisCreate(piRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * A device (Raspberry Pi) running Print Nanny OS
-     * @param {number} id A unique integer value identifying this device.
+     * @param {number} id A unique integer value identifying this pi.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesDestroy(id: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesDestroy(id, options).then((request) => request(this.axios, this.basePath));
+    public pisDestroy(id: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisDestroy(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -10168,326 +10099,315 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesList(page?: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesList(page, options).then((request) => request(this.axios, this.basePath));
+    public pisList(page?: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * A device (Raspberry Pi) running Print Nanny OS
-     * @param {number} id A unique integer value identifying this device.
-     * @param {PatchedDeviceRequest} [patchedDeviceRequest] 
+     * @param {number} id A unique integer value identifying this pi.
+     * @param {PatchedPiRequest} [patchedPiRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesPartialUpdate(id, patchedDeviceRequest, options).then((request) => request(this.axios, this.basePath));
+    public pisPartialUpdate(id: number, patchedPiRequest?: PatchedPiRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisPartialUpdate(id, patchedPiRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {PublicKeyRequest} publicKeyRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesPublicKeysCreate(deviceId: number, publicKeyRequest: PublicKeyRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesPublicKeysCreate(deviceId, publicKeyRequest, options).then((request) => request(this.axios, this.basePath));
+    public pisPublicKeysCreate(piId: number, publicKeyRequest: PublicKeyRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisPublicKeysCreate(piId, publicKeyRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesPublicKeysList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesPublicKeysList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
+    public pisPublicKeysList(piId: number, page?: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisPublicKeysList(piId, page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this public key.
+     * @param {number} piId 
      * @param {PatchedPublicKeyRequest} [patchedPublicKeyRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesPublicKeysPartialUpdate(deviceId: number, id: number, patchedPublicKeyRequest?: PatchedPublicKeyRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesPublicKeysPartialUpdate(deviceId, id, patchedPublicKeyRequest, options).then((request) => request(this.axios, this.basePath));
+    public pisPublicKeysPartialUpdate(id: number, piId: number, patchedPublicKeyRequest?: PatchedPublicKeyRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisPublicKeysPartialUpdate(id, piId, patchedPublicKeyRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this public key.
+     * @param {number} piId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesPublicKeysRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesPublicKeysRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
+    public pisPublicKeysRetrieve(id: number, piId: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisPublicKeysRetrieve(id, piId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this public key.
+     * @param {number} piId 
      * @param {PublicKeyRequest} publicKeyRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesPublicKeysUpdate(deviceId: number, id: number, publicKeyRequest: PublicKeyRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesPublicKeysUpdate(deviceId, id, publicKeyRequest, options).then((request) => request(this.axios, this.basePath));
+    public pisPublicKeysUpdate(id: number, piId: number, publicKeyRequest: PublicKeyRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisPublicKeysUpdate(id, piId, publicKeyRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * A device (Raspberry Pi) running Print Nanny OS
-     * @param {number} id A unique integer value identifying this device.
+     * @param {number} id A unique integer value identifying this pi.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesRetrieve(id: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    public pisRetrieve(id: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {string} hostname 
+     * @param {number} piId 
+     * @param {PiSettingsRequest} piSettingsRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesRetrieveHostname(hostname: string, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesRetrieveHostname(hostname, options).then((request) => request(this.axios, this.basePath));
+    public pisSettingsCreate(piId: number, piSettingsRequest: PiSettingsRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisSettingsCreate(piId, piSettingsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
-     * @param {DeviceSettingsRequest} deviceSettingsRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesSettingsCreate(deviceId: number, deviceSettingsRequest: DeviceSettingsRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesSettingsCreate(deviceId, deviceSettingsRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesSettingsList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesSettingsList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
+    public pisSettingsList(piId: number, page?: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisSettingsList(piId, page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device settings.
-     * @param {PatchedDeviceSettingsRequest} [patchedDeviceSettingsRequest] 
+     * @param {number} id A unique integer value identifying this pi settings.
+     * @param {number} piId 
+     * @param {PatchedPiSettingsRequest} [patchedPiSettingsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesSettingsPartialUpdate(deviceId: number, id: number, patchedDeviceSettingsRequest?: PatchedDeviceSettingsRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesSettingsPartialUpdate(deviceId, id, patchedDeviceSettingsRequest, options).then((request) => request(this.axios, this.basePath));
+    public pisSettingsPartialUpdate(id: number, piId: number, patchedPiSettingsRequest?: PatchedPiSettingsRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisSettingsPartialUpdate(id, piId, patchedPiSettingsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device settings.
+     * @param {number} id A unique integer value identifying this pi settings.
+     * @param {number} piId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesSettingsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesSettingsRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
+    public pisSettingsRetrieve(id: number, piId: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisSettingsRetrieve(id, piId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this device settings.
-     * @param {DeviceSettingsRequest} deviceSettingsRequest 
+     * @param {number} id A unique integer value identifying this pi settings.
+     * @param {number} piId 
+     * @param {PiSettingsRequest} piSettingsRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesSettingsUpdate(deviceId: number, id: number, deviceSettingsRequest: DeviceSettingsRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesSettingsUpdate(deviceId, id, deviceSettingsRequest, options).then((request) => request(this.axios, this.basePath));
+    public pisSettingsUpdate(id: number, piId: number, piSettingsRequest: PiSettingsRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisSettingsUpdate(id, piId, piSettingsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {SystemInfoRequest} systemInfoRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesSystemInfoCreate(deviceId: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesSystemInfoCreate(deviceId, systemInfoRequest, options).then((request) => request(this.axios, this.basePath));
+    public pisSystemInfoCreate(piId: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisSystemInfoCreate(piId, systemInfoRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesSystemInfoList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesSystemInfoList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
+    public pisSystemInfoList(piId: number, page?: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisSystemInfoList(piId, page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this system info.
+     * @param {number} piId 
      * @param {PatchedSystemInfoRequest} [patchedSystemInfoRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesSystemInfoPartialUpdate(deviceId: number, id: number, patchedSystemInfoRequest?: PatchedSystemInfoRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesSystemInfoPartialUpdate(deviceId, id, patchedSystemInfoRequest, options).then((request) => request(this.axios, this.basePath));
+    public pisSystemInfoPartialUpdate(id: number, piId: number, patchedSystemInfoRequest?: PatchedSystemInfoRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisSystemInfoPartialUpdate(id, piId, patchedSystemInfoRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this system info.
+     * @param {number} piId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesSystemInfoRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesSystemInfoRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
+    public pisSystemInfoRetrieve(id: number, piId: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisSystemInfoRetrieve(id, piId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this system info.
+     * @param {number} piId 
      * @param {SystemInfoRequest} systemInfoRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesSystemInfoUpdate(deviceId: number, id: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesSystemInfoUpdate(deviceId, id, systemInfoRequest, options).then((request) => request(this.axios, this.basePath));
+    public pisSystemInfoUpdate(id: number, piId: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisSystemInfoUpdate(id, piId, systemInfoRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * A device (Raspberry Pi) running Print Nanny OS
-     * @param {number} id A unique integer value identifying this device.
-     * @param {DeviceRequest} [deviceRequest] 
+     * @param {number} id A unique integer value identifying this pi.
+     * @param {PiRequest} [piRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesUpdate(id: number, deviceRequest?: DeviceRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesUpdate(id, deviceRequest, options).then((request) => request(this.axios, this.basePath));
+    public pisUpdate(id: number, piRequest?: PiRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisUpdate(id, piRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {WebrtcStreamRequest} [webrtcStreamRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesWebrtcStreamsCreate(deviceId: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesWebrtcStreamsCreate(deviceId, webrtcStreamRequest, options).then((request) => request(this.axios, this.basePath));
+    public pisWebrtcStreamsCreate(piId: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisWebrtcStreamsCreate(piId, webrtcStreamRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesWebrtcStreamsList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesWebrtcStreamsList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
+    public pisWebrtcStreamsList(piId: number, page?: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisWebrtcStreamsList(piId, page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this webrtc stream.
+     * @param {number} piId 
      * @param {PatchedWebrtcStreamRequest} [patchedWebrtcStreamRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesWebrtcStreamsPartialUpdate(deviceId: number, id: number, patchedWebrtcStreamRequest?: PatchedWebrtcStreamRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesWebrtcStreamsPartialUpdate(deviceId, id, patchedWebrtcStreamRequest, options).then((request) => request(this.axios, this.basePath));
+    public pisWebrtcStreamsPartialUpdate(id: number, piId: number, patchedWebrtcStreamRequest?: PatchedWebrtcStreamRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisWebrtcStreamsPartialUpdate(id, piId, patchedWebrtcStreamRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this webrtc stream.
+     * @param {number} piId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesWebrtcStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesWebrtcStreamsRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
+    public pisWebrtcStreamsRetrieve(id: number, piId: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisWebrtcStreamsRetrieve(id, piId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this webrtc stream.
+     * @param {number} piId 
      * @param {WebrtcStreamRequest} [webrtcStreamRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public devicesWebrtcStreamsUpdate(deviceId: number, id: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).devicesWebrtcStreamsUpdate(deviceId, id, webrtcStreamRequest, options).then((request) => request(this.axios, this.basePath));
+    public pisWebrtcStreamsUpdate(id: number, piId: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisWebrtcStreamsUpdate(id, piId, webrtcStreamRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {PublicKeyRequest} publicKeyRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public publicKeyUpdateOrCreate(deviceId: number, publicKeyRequest: PublicKeyRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).publicKeyUpdateOrCreate(deviceId, publicKeyRequest, options).then((request) => request(this.axios, this.basePath));
+    public publicKeyUpdateOrCreate(piId: number, publicKeyRequest: PublicKeyRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).publicKeyUpdateOrCreate(piId, publicKeyRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {SystemInfoRequest} systemInfoRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public systemInfoUpdateOrCreate(deviceId: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).systemInfoUpdateOrCreate(deviceId, systemInfoRequest, options).then((request) => request(this.axios, this.basePath));
+    public systemInfoUpdateOrCreate(piId: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).systemInfoUpdateOrCreate(piId, systemInfoRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -11016,16 +10936,16 @@ export const JanusApiAxiosParamCreator = function (configuration?: Configuration
     return {
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {WebrtcStreamRequest} [webrtcStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesWebrtcStreamsCreate: async (deviceId: number, webrtcStreamRequest?: WebrtcStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesWebrtcStreamsCreate', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/webrtc-streams/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+        pisWebrtcStreamsCreate: async (piId: number, webrtcStreamRequest?: WebrtcStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisWebrtcStreamsCreate', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/webrtc-streams/`
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -11059,16 +10979,16 @@ export const JanusApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesWebrtcStreamsList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesWebrtcStreamsList', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/webrtc-streams/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+        pisWebrtcStreamsList: async (piId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisWebrtcStreamsList', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/webrtc-streams/`
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -11103,19 +11023,66 @@ export const JanusApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this webrtc stream.
+         * @param {number} piId 
+         * @param {PatchedWebrtcStreamRequest} [patchedWebrtcStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesWebrtcStreamsRetrieve: async (deviceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesWebrtcStreamsRetrieve', 'deviceId', deviceId)
+        pisWebrtcStreamsPartialUpdate: async (id: number, piId: number, patchedWebrtcStreamRequest?: PatchedWebrtcStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesWebrtcStreamsRetrieve', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/webrtc-streams/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            assertParamExists('pisWebrtcStreamsPartialUpdate', 'id', id)
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisWebrtcStreamsPartialUpdate', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/webrtc-streams/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedWebrtcStreamRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this webrtc stream.
+         * @param {number} piId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisWebrtcStreamsRetrieve: async (id: number, piId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('pisWebrtcStreamsRetrieve', 'id', id)
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisWebrtcStreamsRetrieve', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/webrtc-streams/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -11138,6 +11105,53 @@ export const JanusApiAxiosParamCreator = function (configuration?: Configuration
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this webrtc stream.
+         * @param {number} piId 
+         * @param {WebrtcStreamRequest} [webrtcStreamRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisWebrtcStreamsUpdate: async (id: number, piId: number, webrtcStreamRequest?: WebrtcStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('pisWebrtcStreamsUpdate', 'id', id)
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisWebrtcStreamsUpdate', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/webrtc-streams/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(webrtcStreamRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -11156,35 +11170,59 @@ export const JanusApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {WebrtcStreamRequest} [webrtcStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesWebrtcStreamsCreate(deviceId: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebrtcStream>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesWebrtcStreamsCreate(deviceId, webrtcStreamRequest, options);
+        async pisWebrtcStreamsCreate(piId: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebrtcStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisWebrtcStreamsCreate(piId, webrtcStreamRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesWebrtcStreamsList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedWebrtcStreamList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesWebrtcStreamsList(deviceId, page, options);
+        async pisWebrtcStreamsList(piId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedWebrtcStreamList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisWebrtcStreamsList(piId, page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this webrtc stream.
+         * @param {number} piId 
+         * @param {PatchedWebrtcStreamRequest} [patchedWebrtcStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesWebrtcStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebrtcStream>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesWebrtcStreamsRetrieve(deviceId, id, options);
+        async pisWebrtcStreamsPartialUpdate(id: number, piId: number, patchedWebrtcStreamRequest?: PatchedWebrtcStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebrtcStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisWebrtcStreamsPartialUpdate(id, piId, patchedWebrtcStreamRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this webrtc stream.
+         * @param {number} piId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async pisWebrtcStreamsRetrieve(id: number, piId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebrtcStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisWebrtcStreamsRetrieve(id, piId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this webrtc stream.
+         * @param {number} piId 
+         * @param {WebrtcStreamRequest} [webrtcStreamRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async pisWebrtcStreamsUpdate(id: number, piId: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebrtcStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisWebrtcStreamsUpdate(id, piId, webrtcStreamRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -11199,33 +11237,55 @@ export const JanusApiFactory = function (configuration?: Configuration, basePath
     return {
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {WebrtcStreamRequest} [webrtcStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesWebrtcStreamsCreate(deviceId: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: any): AxiosPromise<WebrtcStream> {
-            return localVarFp.devicesWebrtcStreamsCreate(deviceId, webrtcStreamRequest, options).then((request) => request(axios, basePath));
+        pisWebrtcStreamsCreate(piId: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: any): AxiosPromise<WebrtcStream> {
+            return localVarFp.pisWebrtcStreamsCreate(piId, webrtcStreamRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
+         * @param {number} piId 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesWebrtcStreamsList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedWebrtcStreamList> {
-            return localVarFp.devicesWebrtcStreamsList(deviceId, page, options).then((request) => request(axios, basePath));
+        pisWebrtcStreamsList(piId: number, page?: number, options?: any): AxiosPromise<PaginatedWebrtcStreamList> {
+            return localVarFp.pisWebrtcStreamsList(piId, page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} deviceId 
          * @param {number} id A unique integer value identifying this webrtc stream.
+         * @param {number} piId 
+         * @param {PatchedWebrtcStreamRequest} [patchedWebrtcStreamRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesWebrtcStreamsRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<WebrtcStream> {
-            return localVarFp.devicesWebrtcStreamsRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
+        pisWebrtcStreamsPartialUpdate(id: number, piId: number, patchedWebrtcStreamRequest?: PatchedWebrtcStreamRequest, options?: any): AxiosPromise<WebrtcStream> {
+            return localVarFp.pisWebrtcStreamsPartialUpdate(id, piId, patchedWebrtcStreamRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this webrtc stream.
+         * @param {number} piId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisWebrtcStreamsRetrieve(id: number, piId: number, options?: any): AxiosPromise<WebrtcStream> {
+            return localVarFp.pisWebrtcStreamsRetrieve(id, piId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this webrtc stream.
+         * @param {number} piId 
+         * @param {WebrtcStreamRequest} [webrtcStreamRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisWebrtcStreamsUpdate(id: number, piId: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: any): AxiosPromise<WebrtcStream> {
+            return localVarFp.pisWebrtcStreamsUpdate(id, piId, webrtcStreamRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -11238,33 +11298,55 @@ export const JanusApiFactory = function (configuration?: Configuration, basePath
 export interface JanusApiInterface {
     /**
      * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {WebrtcStreamRequest} [webrtcStreamRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof JanusApiInterface
      */
-    devicesWebrtcStreamsCreate(deviceId: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: AxiosRequestConfig): AxiosPromise<WebrtcStream>;
+    pisWebrtcStreamsCreate(piId: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: AxiosRequestConfig): AxiosPromise<WebrtcStream>;
 
     /**
      * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof JanusApiInterface
      */
-    devicesWebrtcStreamsList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedWebrtcStreamList>;
+    pisWebrtcStreamsList(piId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedWebrtcStreamList>;
 
     /**
      * 
-     * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this webrtc stream.
+     * @param {number} piId 
+     * @param {PatchedWebrtcStreamRequest} [patchedWebrtcStreamRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof JanusApiInterface
      */
-    devicesWebrtcStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<WebrtcStream>;
+    pisWebrtcStreamsPartialUpdate(id: number, piId: number, patchedWebrtcStreamRequest?: PatchedWebrtcStreamRequest, options?: AxiosRequestConfig): AxiosPromise<WebrtcStream>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this webrtc stream.
+     * @param {number} piId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof JanusApiInterface
+     */
+    pisWebrtcStreamsRetrieve(id: number, piId: number, options?: AxiosRequestConfig): AxiosPromise<WebrtcStream>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this webrtc stream.
+     * @param {number} piId 
+     * @param {WebrtcStreamRequest} [webrtcStreamRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof JanusApiInterface
+     */
+    pisWebrtcStreamsUpdate(id: number, piId: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: AxiosRequestConfig): AxiosPromise<WebrtcStream>;
 
 }
 
@@ -11277,38 +11359,64 @@ export interface JanusApiInterface {
 export class JanusApi extends BaseAPI implements JanusApiInterface {
     /**
      * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {WebrtcStreamRequest} [webrtcStreamRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof JanusApi
      */
-    public devicesWebrtcStreamsCreate(deviceId: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: AxiosRequestConfig) {
-        return JanusApiFp(this.configuration).devicesWebrtcStreamsCreate(deviceId, webrtcStreamRequest, options).then((request) => request(this.axios, this.basePath));
+    public pisWebrtcStreamsCreate(piId: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: AxiosRequestConfig) {
+        return JanusApiFp(this.configuration).pisWebrtcStreamsCreate(piId, webrtcStreamRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
+     * @param {number} piId 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof JanusApi
      */
-    public devicesWebrtcStreamsList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
-        return JanusApiFp(this.configuration).devicesWebrtcStreamsList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
+    public pisWebrtcStreamsList(piId: number, page?: number, options?: AxiosRequestConfig) {
+        return JanusApiFp(this.configuration).pisWebrtcStreamsList(piId, page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} deviceId 
      * @param {number} id A unique integer value identifying this webrtc stream.
+     * @param {number} piId 
+     * @param {PatchedWebrtcStreamRequest} [patchedWebrtcStreamRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof JanusApi
      */
-    public devicesWebrtcStreamsRetrieve(deviceId: number, id: number, options?: AxiosRequestConfig) {
-        return JanusApiFp(this.configuration).devicesWebrtcStreamsRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
+    public pisWebrtcStreamsPartialUpdate(id: number, piId: number, patchedWebrtcStreamRequest?: PatchedWebrtcStreamRequest, options?: AxiosRequestConfig) {
+        return JanusApiFp(this.configuration).pisWebrtcStreamsPartialUpdate(id, piId, patchedWebrtcStreamRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this webrtc stream.
+     * @param {number} piId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof JanusApi
+     */
+    public pisWebrtcStreamsRetrieve(id: number, piId: number, options?: AxiosRequestConfig) {
+        return JanusApiFp(this.configuration).pisWebrtcStreamsRetrieve(id, piId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this webrtc stream.
+     * @param {number} piId 
+     * @param {WebrtcStreamRequest} [webrtcStreamRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof JanusApi
+     */
+    public pisWebrtcStreamsUpdate(id: number, piId: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: AxiosRequestConfig) {
+        return JanusApiFp(this.configuration).pisWebrtcStreamsUpdate(id, piId, webrtcStreamRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -11319,50 +11427,6 @@ export class JanusApi extends BaseAPI implements JanusApiInterface {
  */
 export const OctoprintApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesOctoprintList: async (deviceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesOctoprintList', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/octoprint/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
         /**
          * 
          * @param {string} hostname 
@@ -12278,6 +12342,54 @@ export const OctoprintApiAxiosParamCreator = function (configuration?: Configura
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} piId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisOctoprintList: async (deviceId: number, piId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('pisOctoprintList', 'deviceId', deviceId)
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisOctoprintList', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/octoprint/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -12288,17 +12400,6 @@ export const OctoprintApiAxiosParamCreator = function (configuration?: Configura
 export const OctoprintApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = OctoprintApiAxiosParamCreator(configuration)
     return {
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesOctoprintList(deviceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedOctoPrintServerList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesOctoprintList(deviceId, page, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
         /**
          * 
          * @param {string} hostname 
@@ -12520,6 +12621,18 @@ export const OctoprintApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintUpdate(id, octoPrintServerRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} piId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async pisOctoprintList(deviceId: number, piId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedOctoPrintServerList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisOctoprintList(deviceId, piId, page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
     }
 };
 
@@ -12530,16 +12643,6 @@ export const OctoprintApiFp = function(configuration?: Configuration) {
 export const OctoprintApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = OctoprintApiFp(configuration)
     return {
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesOctoprintList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedOctoPrintServerList> {
-            return localVarFp.devicesOctoprintList(deviceId, page, options).then((request) => request(axios, basePath));
-        },
         /**
          * 
          * @param {string} hostname 
@@ -12740,6 +12843,17 @@ export const OctoprintApiFactory = function (configuration?: Configuration, base
         octoprintUpdate(id: number, octoPrintServerRequest: OctoPrintServerRequest, options?: any): AxiosPromise<OctoPrintServer> {
             return localVarFp.octoprintUpdate(id, octoPrintServerRequest, options).then((request) => request(axios, basePath));
         },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} piId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisOctoprintList(deviceId: number, piId: number, page?: number, options?: any): AxiosPromise<PaginatedOctoPrintServerList> {
+            return localVarFp.pisOctoprintList(deviceId, piId, page, options).then((request) => request(axios, basePath));
+        },
     };
 };
 
@@ -12749,16 +12863,6 @@ export const OctoprintApiFactory = function (configuration?: Configuration, base
  * @interface OctoprintApi
  */
 export interface OctoprintApiInterface {
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OctoprintApiInterface
-     */
-    devicesOctoprintList(deviceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedOctoPrintServerList>;
-
     /**
      * 
      * @param {string} hostname 
@@ -12959,6 +13063,17 @@ export interface OctoprintApiInterface {
      */
     octoprintUpdate(id: number, octoPrintServerRequest: OctoPrintServerRequest, options?: AxiosRequestConfig): AxiosPromise<OctoPrintServer>;
 
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} piId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OctoprintApiInterface
+     */
+    pisOctoprintList(deviceId: number, piId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedOctoPrintServerList>;
+
 }
 
 /**
@@ -12968,18 +13083,6 @@ export interface OctoprintApiInterface {
  * @extends {BaseAPI}
  */
 export class OctoprintApi extends BaseAPI implements OctoprintApiInterface {
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OctoprintApi
-     */
-    public devicesOctoprintList(deviceId: number, page?: number, options?: AxiosRequestConfig) {
-        return OctoprintApiFp(this.configuration).devicesOctoprintList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
-    }
-
     /**
      * 
      * @param {string} hostname 
@@ -13220,6 +13323,19 @@ export class OctoprintApi extends BaseAPI implements OctoprintApiInterface {
      */
     public octoprintUpdate(id: number, octoPrintServerRequest: OctoPrintServerRequest, options?: AxiosRequestConfig) {
         return OctoprintApiFp(this.configuration).octoprintUpdate(id, octoPrintServerRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} piId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OctoprintApi
+     */
+    public pisOctoprintList(deviceId: number, piId: number, page?: number, options?: AxiosRequestConfig) {
+        return OctoprintApiFp(this.configuration).pisOctoprintList(deviceId, piId, page, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

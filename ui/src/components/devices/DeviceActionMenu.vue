@@ -39,7 +39,7 @@
         </div>
         <div class="py-1">
           <!-- favorites actions -->
-          <MenuItem v-if="!device.favorite" v-slot="{ active }">
+          <MenuItem v-if="!pi.favorite" v-slot="{ active }">
             <a
               :class="[
                 active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
@@ -54,7 +54,7 @@
               Add to favorites
             </a>
           </MenuItem>
-          <MenuItem v-if="device.favorite" v-slot="{ active }">
+          <MenuItem v-if="pi.favorite" v-slot="{ active }">
             <a
               :class="[
                 active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
@@ -92,7 +92,7 @@
 
 <script setup lang="ts">
 import type { PropType } from "vue";
-import type { Device, PatchedDeviceRequest } from "printnanny-api-client";
+import type { Pi, PatchedPiRequest } from "printnanny-api-client";
 
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 import {
@@ -104,8 +104,8 @@ import {
 import { useDeviceStore } from "@/stores/devices";
 
 const props = defineProps({
-  device: {
-    type: Object as PropType<Device>,
+  pi: {
+    type: Object as PropType<Pi>,
     required: true,
   },
   index: {
@@ -116,25 +116,25 @@ const props = defineProps({
 const deviceStore = useDeviceStore();
 
 async function addFavorite() {
-  await deviceStore.partialUpdate(props.device.id, props.index, {
+  await deviceStore.partialUpdate(props.pi.id, props.index, {
     favorite: true,
-  } as PatchedDeviceRequest);
+  } as PatchedPiRequest);
 }
 
 async function removeFavorite() {
-  await deviceStore.partialUpdate(props.device.id, props.index, {
+  await deviceStore.partialUpdate(props.pi.id, props.index, {
     favorite: false,
-  } as PatchedDeviceRequest);
+  } as PatchedPiRequest);
 }
 
 const externalLinks = [
   {
-    href: props.device.urls.octoprint,
+    href: props.pi.urls.octoprint,
     name: "OctoPrint",
     icon: ExternalLinkIcon,
   },
   {
-    href: props.device.urls.swupdate,
+    href: props.pi.urls.swupdate,
     name: "Software Update",
     icon: ExternalLinkIcon,
   },
@@ -145,9 +145,9 @@ const footerActions = [
   {
     name: "Delete",
     link: {
-      name: "device-delete",
-      params: { id: props.device.id },
-      query: { hostname: props.device.hostname },
+      name: "pi-delete",
+      params: { id: props.pi.id },
+      query: { hostname: props.pi.hostname },
     },
     icon: TrashIcon,
   },
