@@ -23,34 +23,34 @@ export const useDeviceStore = defineStore({
     async partialUpdate(
       id: number,
       index: number,
-      request: api.PatchedDeviceRequest
+      request: api.PatchedPiRequest
     ) {
       this.$patch({ loading: true });
       const res = await devicesApi
-        .devicesPartialUpdate(id, request)
+        .pisPartialUpdate(id, request)
         .catch(handleApiError);
       this.$patch({ loading: false });
       if (res?.data) {
-        this.devices.splice(index, 1, res.data);
+        this.pis.splice(index, 1, res.data);
       }
-      console.debug("devicesPartialUpdate response", res);
+      console.debug("piPartialUpdate response", res);
     },
 
     async create(hostname: string) {
       // Wireguard TODO: allow user to specify fqdn
-      const req: api.DeviceRequest = {
+      const req: api.PiRequest = {
         hostname,
         fqdn: `${hostname}.local`,
       };
       this.$patch({ loading: true });
       const res = await devicesApi.pisCreate(req).catch(handleApiError);
       this.$patch({ loading: true });
-      console.debug("devicesCreate response", res);
+      console.debug("pisCreate response", res);
     },
     async fetchDevices() {
       this.$patch({ loading: true });
       const res = await devicesApi.pisList().catch(handleApiError);
-      console.debug("devicesList response ", res);
+      console.debug("pisList response ", res);
       if (res?.data?.results) {
         this.$patch({
           loading: false,
