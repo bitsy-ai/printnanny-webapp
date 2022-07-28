@@ -2592,7 +2592,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **pis_octoprint_list**
-> PaginatedOctoPrintServerList pis_octoprint_list(device_id, pi_id, page=page)
+> PaginatedOctoPrintServerList pis_octoprint_list(pi_id, page=page)
 
 
 
@@ -2631,12 +2631,11 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.OctoprintApi(api_client)
-    device_id = 56 # int | 
-pi_id = 56 # int | 
+    pi_id = 56 # int | 
 page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.pis_octoprint_list(device_id, pi_id, page=page)
+        api_response = api_instance.pis_octoprint_list(pi_id, page=page)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling OctoprintApi->pis_octoprint_list: %s\n" % e)
@@ -2675,12 +2674,11 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.OctoprintApi(api_client)
-    device_id = 56 # int | 
-pi_id = 56 # int | 
+    pi_id = 56 # int | 
 page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.pis_octoprint_list(device_id, pi_id, page=page)
+        api_response = api_instance.pis_octoprint_list(pi_id, page=page)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling OctoprintApi->pis_octoprint_list: %s\n" % e)
@@ -2690,7 +2688,6 @@ page = 56 # int | A page number within the paginated result set. (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **device_id** | **int**|  | 
  **pi_id** | **int**|  | 
  **page** | **int**| A page number within the paginated result set. | [optional] 
 
