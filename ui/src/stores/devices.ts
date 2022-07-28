@@ -1,19 +1,19 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
-import type { Device, WebrtcStream } from "printnanny-api-client";
+import type { Pi, WebrtcStream } from "printnanny-api-client";
 import { ApiConfig, handleApiError } from "@/utils/api";
 
 const devicesApi = api.DevicesApiFactory(ApiConfig);
 export const useDeviceStore = defineStore({
   id: "devices",
   state: () => ({
-    devices: [] as Array<Device>,
+    pis: [] as Array<Pi>,
     loading: false,
   }),
   getters: {
-    favorites: (state) => state.devices.filter((d) => d.favorite),
+    favorites: (state) => state.pis.filter((d) => d.favorite),
     showEmpty: (state) =>
-      state.loading == false && Object.keys(state.devices).length == 0,
+      state.loading == false && Object.keys(state.pis).length == 0,
   },
   actions: {
     async delete(id: number) {
@@ -54,7 +54,7 @@ export const useDeviceStore = defineStore({
       if (res?.data?.results) {
         this.$patch({
           loading: false,
-          devices: res.data.results,
+          pis: res.data.results,
         });
       } else {
         this.$patch({ loading: false });

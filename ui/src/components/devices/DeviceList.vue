@@ -1,7 +1,7 @@
 <template>
   <section>
     <!-- Devices list (only on smallest breakpoint) -->
-    <!-- Pinned devices -->
+    <!-- Pinned pis -->
     <DeviceFavorites />
     <div class="mt-10 sm:hidden">
       <div class="px-4 sm:px-6">
@@ -13,7 +13,7 @@
         role="list"
         class="mt-3 border-t border-gray-200 divide-y divide-gray-100"
       >
-        <li v-for="device in deviceStore.devices" :key="device.id">
+        <li v-for="pi in deviceStore.pis" :key="pi.id">
           <a
             href="#"
             class="group flex items-center justify-between px-4 py-4 hover:bg-gray-50 sm:px-6"
@@ -56,11 +56,11 @@
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-100">
-            <!-- No devices found -->
+            <!-- No pis found -->
             <DeviceEmpty v-if="deviceStore.showEmpty" />
-            <!-- device list -->
+            <!-- pi list -->
             <tr
-              v-for="(device, index) in deviceStore.devices"
+              v-for="(pi, index) in deviceStore.pis"
               v-show="!deviceStore.showEmpty"
               :key="index"
               class="flex-row"
@@ -70,27 +70,27 @@
               >
                 <div class="flex items-center space-x-3 lg:pl-2">
                   <div
-                    v-if="!device.ws_connected"
+                    v-if="!pi.ws_connected"
                     class="bg-red-500 flex-shrink-0 w-2.5 h-2.5 rounded-full"
                     aria-hidden="true"
                   ></div>
                   <div
-                    v-if="device.ws_connected"
+                    v-if="pi.ws_connected"
                     class="bg-green-500 flex-shrink-0 w-2.5 h-2.5 rounded-full"
                     aria-hidden="true"
                   ></div>
                   <a href="#" class="truncate hover:text-gray-600">
                     <span>
-                      {{ device.fqdn }}
+                      {{ pi.fqdn }}
                       {{ " " }}
                     </span>
                   </a>
                   <span
-                    v-if="!device.ws_connected"
+                    v-if="!pi.ws_connected"
                     class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-red-100 text-red-800"
                   >
                     <ExclamationIcon
-                      v-if="!device.ws_connected"
+                      v-if="!pi.ws_connected"
                       class="bg-red-500"
                     />
                     Connection Issue
@@ -100,12 +100,12 @@
               <td
                 class="hidden md:table-cell px-6 py-3 whitespace-nowrap text-sm text-gray-500 text-right"
               >
-                {{ device.last_boot || "Waiting for first boot" }}
+                {{ pi.last_boot || "Waiting for first boot" }}
               </td>
               <td
                 class="px-6 py-3 whitespace-nowrap text-sm font-medium text-right"
               >
-                <DeviceActionMenu :device="device" :index="index" />
+                <DeviceActionMenu :pi="pi" :index="index" />
               </td>
             </tr>
           </tbody>
