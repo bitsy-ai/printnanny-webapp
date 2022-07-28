@@ -17,7 +17,7 @@ export const useDeviceStore = defineStore({
   },
   actions: {
     async delete(id: number) {
-      const res = await devicesApi.devicesDestroy(id).catch(handleApiError);
+      const res = await devicesApi.pisDestroy(id).catch(handleApiError);
       console.debug("devicesDestroy response: ", res);
     },
     async partialUpdate(
@@ -43,13 +43,13 @@ export const useDeviceStore = defineStore({
         fqdn: `${hostname}.local`,
       };
       this.$patch({ loading: true });
-      const res = await devicesApi.devicesCreate(req).catch(handleApiError);
+      const res = await devicesApi.pisCreate(req).catch(handleApiError);
       this.$patch({ loading: true });
       console.debug("devicesCreate response", res);
     },
     async fetchDevices() {
       this.$patch({ loading: true });
-      const res = await devicesApi.devicesList().catch(handleApiError);
+      const res = await devicesApi.pisList().catch(handleApiError);
       console.debug("devicesList response ", res);
       if (res?.data?.results) {
         this.$patch({

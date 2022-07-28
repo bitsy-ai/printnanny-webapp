@@ -87,7 +87,7 @@ class Pi(SafeDeleteModel):
     @property
     def octoprint_server(self):
         OctoPrintServer = apps.get_model("octoprint", "OctoPrintServer")
-        obj, _ = OctoPrintServer.objects.get_or_create(user=self.user, device=self)
+        obj, _ = OctoPrintServer.objects.get_or_create(user=self.user, pi=self)
         return obj
 
     @property
@@ -105,13 +105,13 @@ class Pi(SafeDeleteModel):
 
     @property
     def settings(self):
-        obj, _ = PiSettings.objects.get_or_create(device=self)
+        obj, _ = PiSettings.objects.get_or_create(pi=self)
         return obj
 
     @property
     def janus_edge(self):
         obj, _ = WebrtcStream.objects.get_or_create(
-            device=self,
+            pi=self,
             rtp_port=settings.JANUS_EDGE_VIDEO_RTP_PORT,
             config_type=JanusConfigType.EDGE,
         )
@@ -122,7 +122,7 @@ class Pi(SafeDeleteModel):
         # RTP port is automatically assigned from available open ports
         # admin_secret intentionally set to Null to avoid leaking cloud gateway secret via API responses
         obj, _ = WebrtcStream.objects.get_or_create(
-            device=self, config_type=JanusConfigType.CLOUD
+            pi=self, config_type=JanusConfigType.CLOUD
         )
         return obj
 
@@ -152,7 +152,7 @@ class Pi(SafeDeleteModel):
 
     @property
     def cloudiot_name(self):
-        return f"device-id-{self.id}"
+        return f"pi-id-{self.id}"
 
     @property
     def cloudiot_device(self):
@@ -161,10 +161,6 @@ class Pi(SafeDeleteModel):
     @property
     def cloudiot(self):
         return self.cloudiot_device
-
-    @property
-    def html_id(self) -> str:
-        return f"device-{self.id}"
 
 
 class PiSettings(SafeDeleteModel):
