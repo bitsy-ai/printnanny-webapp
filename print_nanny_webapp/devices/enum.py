@@ -33,9 +33,9 @@ class PrinterSoftwareType(models.TextChoices):
 
 
 class OsEdition(models.TextChoices):
-    OCTOPRINT_DESKTOP = "octoprint_desktop", "PrintNanny OS OctoPrint Desktop"
-    OCTOPRINT_LITE = "octoprint_lite", "PrintNanny OS OctoPrint Lite/Headless"
-    REPETIER_DESKTOP = "repetier_desktop", "PrintNanny OS Repetier Desktop"
-    REPETIER_LITE = "repetier_lite", "PrintNanny OS Repetier Lite/Headless"
-    MAINSAIL_DESKTOP = "mainsail_desktop", "PrintNanny OS Mainsail Desktop"
-    MAINSAIL_LITE = "mainsail_lite", "PrintNanny OS Mainsail Lite/Headless"
+    OCTOPRINT_LITE = "octoprint_lite", "OctoPrint Lite"
+    # OCTOPRINT_LITE = "octoprint_lite", "PrintNanny OS OctoPrint Lite/Headless"
+    # REPETIER_DESKTOP = "repetier_desktop", "PrintNanny OS Repetier Desktop"
+    # REPETIER_LITE = "repetier_lite", "PrintNanny OS Repetier Lite/Headless"
+    # MAINSAIL_DESKTOP = "mainsail_desktop", "PrintNanny OS Mainsail Desktop"
+    # MAINSAIL_LITE = "mainsail_lite", "PrintNanny OS Mainsail Lite/Headless"

@@ -15,6 +15,7 @@ from safedelete.signals import pre_softdelete
 from .utils import get_available_rtp_port
 from .enum import (
     JanusConfigType,
+    OsEdition,
 )
 
 UserModel = get_user_model()
@@ -60,6 +61,10 @@ class Pi(SafeDeleteModel):
             )
         ]
 
+    edition = models.CharField(
+        max_length=32, choices=OsEdition.choices, default=OsEdition.OCTOPRINT_LITE
+    )
+
     created_dt = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(
         UserModel, on_delete=models.CASCADE, related_name="devices"
@@ -72,8 +77,6 @@ class Pi(SafeDeleteModel):
 
     fqdn = models.CharField(max_length=255, default="printnanny.local")
     favorite = models.BooleanField(default=False)
-
-    ws_connected = models.BooleanField(default=False)
 
     @property
     def urls(self) -> PiUrls:
