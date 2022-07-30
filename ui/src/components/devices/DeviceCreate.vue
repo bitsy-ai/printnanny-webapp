@@ -12,7 +12,6 @@ const loading = ref(false);
 const state = reactive({
   loading,
 });
-
 // define a validation schema
 const schema = yup.object({
   hostname: yup.string().required(),
@@ -55,7 +54,7 @@ async function onSubmit(values: any) {
           <RefreshIcon
             v-if="state.loading"
             class="animate-spin h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-            aria-hidden="true"
+            :aria-hidden="true"
           />
         </span>
         Save

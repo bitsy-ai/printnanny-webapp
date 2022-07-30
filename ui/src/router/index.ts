@@ -6,6 +6,9 @@ import DeviceList from "@/components/devices/DeviceList.vue";
 import DeviceTopRight from "@/components/devices/DeviceTopRight.vue";
 import DeviceCreate from "@/components/devices/DeviceCreate.vue";
 import DeviceDelete from "@/components/devices/DeviceDelete.vue";
+import PiCreateWizard from "@/components/devices/PiCreateWizard.vue";
+import PiCreateWizardV2 from "@/components/devices/PiCreateWizardV2.vue";
+
 import SettingsView from "@/views/SettingsView.vue";
 import SwagView from "@/views/SwagView.vue";
 
@@ -72,7 +75,7 @@ const router = createRouter({
           path: "connect/",
           name: "device-connect",
           components: {
-            default: DeviceCreate,
+            default: PiCreateWizardV2,
           },
           meta: { title: "Connect New Device" },
         },
@@ -80,7 +83,7 @@ const router = createRouter({
           path: "delete/:id/",
           name: "device-delete",
           components: {
-            default: DeviceDelete,
+            default: DeviceDelete
           },
           props: { default: true },
           meta: { title: "Delete Connection" },

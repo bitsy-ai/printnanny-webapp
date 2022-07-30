@@ -145,7 +145,7 @@ const footerActions = [
   {
     name: "Delete",
     link: {
-      name: "pi-delete",
+      name: "device-delete",
       params: { id: props.pi.id },
       query: { hostname: props.pi.hostname },
     },

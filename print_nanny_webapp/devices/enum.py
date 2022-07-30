@@ -39,3 +39,7 @@ class OsEdition(models.TextChoices):
     # REPETIER_LITE = "repetier_lite", "PrintNanny OS Repetier Lite/Headless"
     # MAINSAIL_DESKTOP = "mainsail_desktop", "PrintNanny OS Mainsail Desktop"
     # MAINSAIL_LITE = "mainsail_lite", "PrintNanny OS Mainsail Lite/Headless"
+
+
+class SingleBoardComputerType(models.TextChoices):
+    RPI_4 = "rpi_4", "Raspberry Pi 4"

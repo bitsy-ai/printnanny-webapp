@@ -16,6 +16,7 @@ from .utils import get_available_rtp_port
 from .enum import (
     JanusConfigType,
     OsEdition,
+    SingleBoardComputerType,
 )
 
 UserModel = get_user_model()
@@ -61,6 +62,11 @@ class Pi(SafeDeleteModel):
             )
         ]
 
+    sbc = models.CharField(
+        max_length=32,
+        choices=SingleBoardComputerType.choices,
+        default=SingleBoardComputerType.RPI_4,
+    )
     edition = models.CharField(
         max_length=32, choices=OsEdition.choices, default=OsEdition.OCTOPRINT_LITE
     )
