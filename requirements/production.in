@@ -21,9 +21,11 @@ django-environ
 django-extensions
 django-filter
 django-flags
+django-nats-nkeys
 django-health-check
 django-invitations
 django-model-utils
+django-nats-nkeys
 django-loginas
 django-polymorphic
 django-prometheus
