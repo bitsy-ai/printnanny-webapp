@@ -745,3 +745,8 @@ REST_AUTH_SERIALIZERS = {
 REST_AUTH_REGISTER_SERIALIZERS = {
     "REGISTER_SERIALIZER": "print_nanny_webapp.dj_rest_auth.serializers.RegisterSerializer"
 }
+
+# django-nats-nkeys
+# https://github.com/bitsy-ai/django-nats-nkeys
+# ------------------------------------------------------------------------------
+INSTALLED_APPS += ["organizations", "django_extensions", "django_nats_nkeys"]
