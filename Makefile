@@ -519,3 +519,6 @@ dev-config: $(TMPDIR)
 		--hostname=$(shell hostname) \
 		--out=$(PRINTNANNY_CONFIG_DEV) \
 		--port=8000
+
+schema:
+	docker-compose -f local.yml exec django python manage.py spectacular --file asyncapi/openapi.yaml
