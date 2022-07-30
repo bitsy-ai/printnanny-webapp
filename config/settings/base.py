@@ -749,4 +749,4 @@ REST_AUTH_REGISTER_SERIALIZERS = {
 # django-nats-nkeys
 # https://github.com/bitsy-ai/django-nats-nkeys
 # ------------------------------------------------------------------------------
-INSTALLED_APPS += ["organizations", "django_extensions", "django_nats_nkeys"]
+INSTALLED_APPS += ["organizations", "django_nats_nkeys"]
