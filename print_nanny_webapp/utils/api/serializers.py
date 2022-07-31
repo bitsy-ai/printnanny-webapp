@@ -15,8 +15,6 @@ class PrintNannyApiConfigSerializer(serializers.Serializer):
         read_only=True, required=False, allow_null=True
     )
     base_path = serializers.CharField(read_only=True)
-    static_url = serializers.CharField(read_only=True)
-    dashboard_url = serializers.CharField(read_only=True)
 
 
 class OptionsMetadataSerializer(serializers.Serializer):

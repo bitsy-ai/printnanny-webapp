@@ -528,10 +528,10 @@ class CloudiotDeviceViewSet(
 ##
 # License download
 ##
-class ConfigDownloadViewSet(
+class PiLicenseViewset(
     GenericViewSet,
 ):
-    serializer_class = ConfigSerializer
+    # serializer_class = ConfigSerializer
 
     # @extend_schema(
     #     tags=["devices"],
@@ -565,9 +565,9 @@ class ConfigDownloadViewSet(
     def download_zip(
         self, request: Request, pi_id=None, *args: Any, **kwargs: Any
     ) -> Response:
-        pi = get_object_or_404(Pi.objects.filter(id=pk, user=request.user))
+        pi = get_object_or_404(Pi.objects.filter(id=pi_id, user=request.user))
 
-        zip_content = build_license_zip(pi)
+        zip_content = build_license_zip(pi, request)
 
         response = HttpResponse(zip_content, content_type="application/zip")
         response["Content-Disposition"] = "attachment; filename=printnanny.zip"
