@@ -3,6 +3,7 @@ aiohttp
 argon2-cffi
 channels
 channels-redis
+coolname
 discord.py
 dj-stripe
 dj-rest-auth
@@ -21,7 +22,7 @@ django-environ
 django-extensions
 django-filter
 django-flags
-django-nats-nkeys>=0.4.2
+django-nats-nkeys>=0.4.3
 django-health-check
 django-invitations
 django-model-utils
