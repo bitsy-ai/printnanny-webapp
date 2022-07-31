@@ -66,6 +66,7 @@ services:
       # idea from: https://stackoverflow.com/questions/29181032/add-a-volume-to-docker-but-exclude-a-sub-folder
       - /app/node_modules
       - /app/.venv
+      - local_nsc_data:/var/lib/nats/nsc:z
     environment:
       DJANGO_SUPERUSER_PASSWORD: ${DJANGO_SUPERUSER_PASSWORD}
       DJANGO_SUPERUSER_EMAIL: ${DJANGO_SUPERUSER_EMAIL}
@@ -121,9 +122,9 @@ services:
   nats:
     hostname: nats
     image: nats:2.8-alpine
-    container_name: django_nats_nkeys_nats
+    container_name: printnanny_webapp_nats
     volumes:
-      - ../.nats/:/etc/nats
+      - .nats/:/etc/nats
     command:
       - -c
       - /etc/nats/nats-server.conf

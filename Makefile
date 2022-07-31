@@ -177,7 +177,10 @@ local-build: local-image-build local-vue-build
 down:
 	docker-compose -f local.yml down
 
-local-up: local-image-build local-creds
+nsc-init:
+	docker-compose -f local.yml exec django python manage.py nsc_init || echo "DjangoOperator already created" && docker-compose -f local.yml restart nats
+
+local-up: local-image-build local-creds nsc-init
 	. .envs/.sandbox/.env && PROJECT=$(GCP_PROJECT) \
 	PRINT_NANNY_IOT_DEVICE_REGISTRY=$(PRINT_NANNY_IOT_DEVICE_REGISTRY) \
 	PRINT_NANNY_HONEYCOMB_DATASET=$(PRINT_NANNY_HONEYCOMB_DATASET) \
@@ -522,3 +525,4 @@ dev-config: $(TMPDIR)
 
 schema:
 	docker-compose -f local.yml exec django python manage.py spectacular --file asyncapi/openapi.yaml
+
