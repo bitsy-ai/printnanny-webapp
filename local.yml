@@ -124,8 +124,6 @@ services:
     container_name: django_nats_nkeys_nats
     volumes:
       - ../.nats/:/etc/nats
-    env_file:
-      - test.env
     command:
       - -c
       - /etc/nats/nats-server.conf
