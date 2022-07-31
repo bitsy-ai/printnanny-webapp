@@ -23,6 +23,8 @@ from rest_framework.mixins import (
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
+from rest_framework.renderers import BaseRenderer
+
 from print_nanny_webapp.utils.api.exceptions import AlreadyExists
 from print_nanny_webapp.utils.api.views import (
     generic_create_errors,
@@ -30,8 +32,8 @@ from print_nanny_webapp.utils.api.views import (
     generic_get_errors,
     generic_update_errors,
 )
+
 from .serializers import (
-    ConfigSerializer,
     PublicKeySerializer,
     CloudiotDeviceSerializer,
     SystemInfoSerializer,
@@ -528,11 +530,19 @@ class CloudiotDeviceViewSet(
 ##
 # License download
 ##
+
+
+class ZipRenderer(BaseRenderer):
+    media_type = "application/zip"
+    format = "bin"
+
+
 class PiLicenseViewset(
     GenericViewSet,
 ):
     # serializer_class = ConfigSerializer
 
+    renderer_classes = [ZipRenderer]
     # @extend_schema(
     #     tags=["devices"],
     #     parameters=[
@@ -556,10 +566,7 @@ class PiLicenseViewset(
         parameters=[
             OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH),
         ],
-        # responses={
-        #     200: ConfigSerializer,
-        # }
-        # | generic_get_errors,
+        responses=bytes,
     )
     @action(detail=False, methods=["get"], url_path="zip")
     def download_zip(
@@ -569,6 +576,7 @@ class PiLicenseViewset(
 
         zip_content = build_license_zip(pi, request)
 
-        response = HttpResponse(zip_content, content_type="application/zip")
-        response["Content-Disposition"] = "attachment; filename=printnanny.zip"
+        response = HttpResponse(zip_content, content_type=ZipRenderer.media_type)
+        filename = f"printnanny-{pi.hostname}.zip"
+        response["Content-Disposition"] = f"attachment; filename={filename}"
         return response

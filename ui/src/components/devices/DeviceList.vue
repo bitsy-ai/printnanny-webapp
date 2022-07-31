@@ -86,7 +86,7 @@
                     </span>
                   </a>
                   <!-- setup incomplete badge / link -->
-                  <router-link :to="{name: 'device-connect', params: { step:'download-printnanny-zip', piId: pi.id }}">
+                  <router-link :to="{name: 'device-connect', params: { activeStep:'download-printnanny-zip', piId: pi.id }}">
                     <span
                       v-if="!pi.setup_finished"
                       class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-yellow-100 text-yellow-800 hover:bg-yellow-200"

@@ -72,7 +72,7 @@ const router = createRouter({
           meta: { title: "Manage Network" },
         },
         {
-          path: "connect/:step?/:piId?",
+          path: "connect/:activeStep?/:piId?",
           name: "device-connect",
           components: {
             default: PiCreateWizardV2,

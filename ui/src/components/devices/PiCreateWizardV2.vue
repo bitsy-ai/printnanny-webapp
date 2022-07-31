@@ -4,12 +4,8 @@
   >
     <div class="w-full md:w-2/3 m-auto">
       <FormWizard
-        :validation-schema="steps.map(i => i.validationSchema)"
-        :loading="loading"
-        :button-text="steps.map(i => i.buttonText)"
+        :steps="steps"
         :current-step-idx="currentStepIdx"
-        @submit="onSubmit"
-    @next="onNext"
       >
         <FormStep>
           <div
@@ -140,12 +136,42 @@
               Download PrintNanny.zip to SD Card
             </h2>
             <p class="text-base font-medium text-red-500 mt-5 w-full">
-              Do not share the contents of PrintNanny.zip with anyone!
+              Do not share the contents with anyone!
             </p>
             <p class="text-base font-medium text-gray-900 mt-5 w-full">
-              The contents of PrintNanny.zip let your Pi connect to the
-              PrintNanny Network.
+              PrintNanny.zip contains unique credentials for your Raspberry Pi.
             </p>
+
+            <div class="w-full">
+              <button
+                :disabled="true"
+                v-show="!store.downloadUrl"
+                class="group mt-5 relative w-1/2 justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-amber-600 disabled:opacity-75 cursor-wait"
+              >
+                <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                  <RefreshIcon
+                    v-show=!store.downloadUrl
+                    class="animate-spin h-5 w-5 text-white"
+                    :aria-hidden="true"
+                  />
+                </span>
+                <span>Preparing download...</span>
+              </button>
+              <a :href="store.downloadUrl" v-show="store.downloadUrl">
+                <button
+                  v-show="store.downloadUrl"
+                  class="group mt-5 relative w-1/2 justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-lime-600 hover:bg-lime-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:lime-500 disabled:opacity-75"
+                >
+                  <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                    <FolderDownloadIcon
+                      class="h-5 w-5 text-white group-hover:text-gray-400"
+                      :aria-hidden="true"
+                    />
+                  </span>
+                  <span>Click here if download does not start automatically</span>
+                </button>
+              </a> 
+            </div>
             <hr class="m-5" />
 
             <fieldset class="mt-6">
@@ -154,10 +180,10 @@
                   <div class="h-5 flex items-center">
                     <Field
                       id="tos"
-                      v-slot="tosMeta"
                       name="tos"
                       type="checkbox"
-                      value="tos"
+                      v-model="tosChecked"
+                      :unchecked-value="false"
                       required
                       class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                     />
@@ -184,7 +210,20 @@
                 </div>
               </div>
             </fieldset>
-            <hr class="m-5" />
+            <hr class="m-5" /> 
+          </div>
+        </FormStep>
+          <FormStep  :idx=3>
+          <div
+            class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap text-center"
+          >
+            <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl flex-1 w-full">
+              Test Raspberry Pi Connections
+            </h2>
+            <p class="text-base font-medium text-red-500 mt-5 w-full">
+              Do not share the contents of PrintNanny.zip with anyone!
+            </p>
+
           </div>
         </FormStep>
       </FormWizard>
@@ -198,49 +237,60 @@ import { Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
 import * as api from "printnanny-api-client";
 import { RouterLink } from "vue-router";
-
+import { RefreshIcon } from "@heroicons/vue/solid";
+import { FolderDownloadIcon } from "@heroicons/vue/outline"
 import FormWizard from "@/components/forms/FormWizard.vue";
 import FormStep from "@/components/forms/FormStep.vue";
-import { useDeviceStore } from "@/stores/devices";
+import { useWizardStore } from "@/stores/wizard";
 
-const tosMeta = ref({ valid: false });
-const device = ref();
-const deviceStore = useDeviceStore();
-const loading = ref(false);
+const store = useWizardStore();
+
+const tosChecked = ref(false);
+const zipDownloaded = ref(false);
 
 const props = defineProps({
   piId: {
     type: String,
     required: false,
   },
-  step: {
+  activeStep: {
     type: String,
     default: "create-sd-card",
   },
 });
 
+async function downloadLicense(){
+  if (props.piId !== undefined && props.activeStep === "download-printnanny-zip"){
+      await store.downloadLicenseZip(parseInt(props.piId))
+  }
+}
+
+downloadLicense()
+
 const steps = [
   {
-    step: "create-sd-card",
+    key: "create-sd-card",
     validationSchema: yup.object(),
-    buttonText: ["Hidden", "Next: Connect New Device"],
-        onNext: (_idx, _formData) => {},
-
+    prevButton: undefined,
+    nextButton: { text: "Next: Connect New Pi", link: undefined },
+    buttonText: ["Hidden", "Next: Connect New Pi"],
+    onSubmit: (_formData: any) => {
+      console.debug("create-sd-card onSubmit")
+    },
   },
   {
-    step: "create-new-device",
+    key: "create-new-device",
     validationSchema: yup.object({
       hostname: yup.string().required(),
       edition: yup.string().required(),
       sbc: yup.string().required(),
     }),
-    buttonText: [
-      "Previous: Burn PrintNanny OS Image",
-      "Next: Download PrintNanny.zip",
-    ],
-    onNext:   async (idx, { hostname, edition, sbc }) => {
-    loading.value = true;
+    nextButton: { text: "Next: Download PrintNanny.zip", disabled: store.loading },
+    prevButton: { text: "Previous: Burn PrintNanny OS Image"},
+    onSubmit:  async (formData: any) => {
+    console.log("create-new-device onSubmit", formData)
     // WIREGUARD TODO: allow user to specify fqdn
+    const { hostname, edition, sbc} = formData
     const req: api.PiRequest = {
       fqdn: `${hostname}.local`,
       favorite: false,
@@ -248,35 +298,38 @@ const steps = [
       edition,
       sbc,
     };
-    device.value = await deviceStore.create(req);
-    loading.value = false;
-  },  },
-  {
-    step: "download-printnanny-zip",
-    validationSchema: yup.object({
-      tos: yup
-        .boolean()
-        .oneOf(
-          [true],
-          "I agree to the Terms of Service and acknowledge the Privacy Policy"
-        ),
-    }),
-    buttonText: [
-      "Previous: Connect New Device",
-      "Next: Download PrintNanny.zip",
-    ],
+    store.createPi(req);
+    }
   },
   {
-    step: "test-connection",
+    key: "download-printnanny-zip",
+    validationSchema: yup.object({
+      tos: yup
+        .boolean(),
+    }),
+    nextButton: { text: "Next: Test Connection", disabled: computed(() => {
+      console.log(tosChecked.value)
+      return tosChecked.value === false || zipDownloaded.value === false 
+  })},
+    prevButton: { text: "Previous: Connect New Device"},
+    onSubmit: async(_formData: any) => {
+      // tosChecked.value = true
+    }
+  },
+  {
+    key: "test-connection",
     validationSchema: yup.object(),
-    buttonText: ["Next: Download PrintNanny.zip", "Finish"],
-    onNext:   async (_idx, _formData) => {},
+    nextButton: { text: "Next: Download PrintNanny.zip"},
+    prevButton: { text: "Finish"},
+    onSubmit:   async (formData) => {
+      // await deviceStore.
+    },
 
   },
 ];
 
 const currentStepIdx = computed(() => {
-    const idx = steps.findIndex(step => step.step === props.step);
+    const idx = steps.findIndex(step => step.key === props.activeStep);
     if (idx === -1){ return 0;}
     return idx
 })
@@ -316,15 +369,14 @@ const validationSchema = [
 //   async (_idx, _formData) => {},
 // ];
 
-async function onNext(idx, formData) {
-    console.log(idx, formData)
-  await steps[idx].onNext(idx, formData);
-}
+// async function onNext(idx, formData) {
+//     console.log(idx, formData)
+//   await steps[idx].onNext(idx, formData);
+// }
 
-/**
- * Only Called when the last step is submitted
- */
-function onSubmit(formData) {
-  console.log(JSON.stringify(formData, null, 2));
-}
+// function onSubmit(formData) {
+//   await steps[idx].onSubmit(formData);
+
+//   console.log(JSON.stringify(formData, null, 2));
+// }
 </script>
