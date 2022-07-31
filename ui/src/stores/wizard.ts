@@ -20,7 +20,7 @@ export const useWizardStore = defineStore({
                 this.$patch({ pi: res.data });
                 return res.data
             }
-            return pi
+            return this.pi
         },
         async downloadLicenseZip(piId: number) {
             this.$patch({ loading: true });

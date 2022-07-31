@@ -5,7 +5,7 @@
     <div class="w-full md:w-2/3 m-auto">
       <FormWizard
         :steps="steps"
-        :current-step-idx="currentStepIdx"
+        :activeStep="activeStep"
       >
         <FormStep>
           <div
@@ -272,8 +272,7 @@ const steps = [
     key: "create-sd-card",
     validationSchema: yup.object(),
     prevButton: undefined,
-    nextButton: { text: "Next: Connect New Pi", link: undefined },
-    buttonText: ["Hidden", "Next: Connect New Pi"],
+    nextButton: { text: "Next: Connect New Pi", link: { name: "device-connect", params: {activeStep: "create-new-device" }} },
     onSubmit: (_formData: any) => {
       console.debug("create-sd-card onSubmit")
     },
@@ -285,8 +284,8 @@ const steps = [
       edition: yup.string().required(),
       sbc: yup.string().required(),
     }),
-    nextButton: { text: "Next: Download PrintNanny.zip", disabled: store.loading },
-    prevButton: { text: "Previous: Burn PrintNanny OS Image"},
+    nextButton: { text: "Next: Download PrintNanny.zip", link: { name: "device-connect", params: {activeStep: "download-printnanny-zip" }} },
+    prevButton: { text: "Previous: Burn PrintNanny OS Image", link: { name: "device-connect", activeStep: "create-new-device"}},
     onSubmit:  async (formData: any) => {
     console.log("create-new-device onSubmit", formData)
     // WIREGUARD TODO: allow user to specify fqdn
@@ -307,10 +306,7 @@ const steps = [
       tos: yup
         .boolean(),
     }),
-    nextButton: { text: "Next: Test Connection", disabled: computed(() => {
-      console.log(tosChecked.value)
-      return tosChecked.value === false || zipDownloaded.value === false 
-  })},
+    nextButton: { text: "Next: Test Connection", link: { name: "device-connect", piId: props.piId, activeStep: "test-connection"}},
     prevButton: { text: "Previous: Connect New Device"},
     onSubmit: async(_formData: any) => {
       // tosChecked.value = true
@@ -319,7 +315,7 @@ const steps = [
   {
     key: "test-connection",
     validationSchema: yup.object(),
-    nextButton: { text: "Next: Download PrintNanny.zip"},
+    nextButton: { text: "Test Raspberry Pi Connections"},
     prevButton: { text: "Finish"},
     onSubmit:   async (formData) => {
       // await deviceStore.
@@ -328,55 +324,4 @@ const steps = [
   },
 ];
 
-const currentStepIdx = computed(() => {
-    const idx = steps.findIndex(step => step.key === props.activeStep);
-    if (idx === -1){ return 0;}
-    return idx
-})
-
-// break down the validation steps into multiple schemas
-const validationSchema = [
-  // step 0: burn os image
-  yup.object(),
-  // step 1: create new device
-  yup.object({
-    hostname: yup.string().required(),
-    edition: yup.string().required(),
-    sbc: yup.string().required(),
-  }),
-  // step 2: download PrintNanny.zip
-  yup.object({
-    tos: yup
-      .boolean()
-      .oneOf(
-        [true],
-        "I agree to the Terms of Service and acknowledge the Privacy Policy"
-      ),
-  }),
-  // step 3: test connection
-];
-
-// const buttonText = [
-//   ["Hidden", "Next: Connect New Device"],
-//   ["Previous: Burn PrintNanny OS Image", "Next: Download PrintNanny.zip"],
-//   ["Previous: Connect New Device", "Next: Download PrintNanny.zip"],
-//   ["Next: Download PrintNanny.zip", "Finish"],
-// ];
-
-// const onNextCallbacks = [
-//   async (_idx, _formData) => {},
-
-//   async (_idx, _formData) => {},
-// ];
-
-// async function onNext(idx, formData) {
-//     console.log(idx, formData)
-//   await steps[idx].onNext(idx, formData);
-// }
-
-// function onSubmit(formData) {
-//   await steps[idx].onSubmit(formData);
-
-//   console.log(JSON.stringify(formData, null, 2));
-// }
 </script>

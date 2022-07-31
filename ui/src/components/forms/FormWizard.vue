@@ -7,7 +7,9 @@ import { RefreshIcon } from "@heroicons/vue/solid";
 import { useWizardStore } from "@/stores/wizard";
 import type { WizardButton, WizardStep } from "@/types";
 import { AnyObjectSchema } from "yup";
+import { useRouter } from "vue-router";
 
+const router = useRouter()
 const store = useWizardStore();
 
 const props = defineProps({
@@ -15,16 +17,17 @@ const props = defineProps({
     type: Object as PropType<Array<WizardStep>>,
     required: true
   },
-  currentStepIdx: {
-    type: Number,
-    default: 0
+    activeStep: {
+    type: String,
   }
 });
 
-const emit = defineEmits(["next", "submit"]);
-
 const formData = ref({});
-const currentStepIdx = ref(props.currentStepIdx);
+const currentStepIdx = computed(() => {
+    const idx = props.steps.findIndex(step => step.key === props.activeStep);
+    if (idx === -1){ return 0;}
+    return idx
+})
 
 // // Injects the starting step, child <form-steps> will use this to generate their ids
 const stepCounter = ref(0);
@@ -74,52 +77,41 @@ const onSubmit = handleSubmit(async (values) => {
       ...formData.value,
     },
   });
-  await currentStep.value.onSubmit(formData.value)
-
-  currentStepIdx.value++;
+  await currentStep.value.onSubmit(formData.value);
+  await router.push(currentStep.value.nextButton.link);
 });
 
-function goToPrev() {
-  if (currentStepIdx.value === 0) {
-    return;
-  }
 
-  currentStepIdx.value--;
-  resetForm({
-    values: {
-      ...formData.value,
-    },
-  });
-}
 </script>
 <template>
   <form @submit="onSubmit">
     <slot />
 
     <div class="text-center">
+        <button
+          class="group m-2 relative w-1/2 justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-25"
+          type="submit"
+        >
+          <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+            <RefreshIcon
+              v-if="store.loading"
+              class="animate-spin h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+              :aria-hidden="true"
+            />
+          </span>
+          {{ currentStep?.nextButton.text }}
+        </button>
+      <router-link :to="currentStep?.prevButton.link" v-if="currentStep?.prevButton">
       <button
-        :disabled="currentStep?.nextButton.disabled.value"
-        class="group m-2 relative w-1/2 justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-25"
-        type="submit"
-      >
-        <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-          <RefreshIcon
-            v-if="store.loading"
-            class="animate-spin h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-            :aria-hidden="true"
-          />
-        </span>
-        {{ currentStep?.nextButton.text }}
-      </button>
-      <button
-        v-if="hasPrevious"
         :disabled="store.loading"
         type="button"
         class="group m-2 relative w-1/2 justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-25"
-        @click="goToPrev"
       >
         {{ currentStep?.prevButton.text }}
       </button>
+
+      </router-link>
+
     </div>
   </form>
 </template>
