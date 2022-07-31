@@ -12,6 +12,6 @@ const formStepIdx = inject("CURRENT_STEP_INDEX");
 
 // If this step should be shown
 const shouldShow = computed(() => {
-    return currentIdx === formStepIdx.value;
+  return currentIdx === formStepIdx.value;
 });
 </script>

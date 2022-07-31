@@ -1,5 +1,6 @@
 from __future__ import annotations
 import logging
+from urllib.request import Request
 from uuid import uuid4
 from typing import Tuple, Dict, Any
 import requests
@@ -8,7 +9,13 @@ import google.api_core.exceptions
 from django.db import IntegrityError
 from django.conf import settings
 from django.template.loader import render_to_string
+from print_nanny_webapp.devices.api.serializers import PiSerializer
 from print_nanny_webapp.devices.enum import JanusConfigType
+from print_nanny_webapp.utils.api.service import PrintNannyApiConfig
+from print_nanny_webapp.utils.api.service import get_api_config
+
+from django_nats_nkeys.models import NatsAccountOwner
+from django_nats_nkeys.services import create_nats_account_org
 
 from .models import CloudiotDevice, Pi, PublicKey, WebrtcStream
 
@@ -184,3 +191,18 @@ def janus_cloud_setup(device: Pi) -> Tuple[WebrtcStream, bool]:
     # janus_admin_add_token(janus_auth)
     logger.info("Retrieved WebrtcStream %s created=%s", stream, created)
     return stream, created
+
+
+def build_license_zip(pi: Pi, request: Request) -> bytes:
+    # serialize pi.json
+    # serialize api.json
+    # serialize nats creds
+    pi_json = PiSerializer(instance=pi)
+    api = get_api_config(request, user=pi.user)
+    api_json = PrintNannyApiConfig(instance=api)
+
+    # is user already the owner of NatsOrganization?
+    try:
+        org_owner = NatsAccountOwner.objects.get(organization_user__user=pi.user)
+    except NatsAccountOwner.DoesNotExist:
+        org = create_nats_account_org(pi.user)

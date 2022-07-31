@@ -72,18 +72,19 @@ const router = createRouter({
           meta: { title: "Manage Network" },
         },
         {
-          path: "connect/",
+          path: "connect/:step?/:piId?",
           name: "device-connect",
           components: {
             default: PiCreateWizardV2,
           },
+          props: { default: true },
           meta: { title: "Connect New Device" },
         },
         {
           path: "delete/:id/",
           name: "device-delete",
           components: {
-            default: DeviceDelete
+            default: DeviceDelete,
           },
           props: { default: true },
           meta: { title: "Delete Connection" },

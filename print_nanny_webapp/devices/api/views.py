@@ -7,8 +7,9 @@ from drf_spectacular.utils import (
     extend_schema_view,
     OpenApiParameter,
 )
+from django.http import HttpResponse
 from django.db.utils import IntegrityError
-
+from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
 from rest_framework import status
 from rest_framework.decorators import action
@@ -47,7 +48,11 @@ from ..models import (
     PiSettings,
 )
 from print_nanny_webapp.utils.api.service import get_api_config
-from ..services import janus_cloud_setup, update_or_create_cloudiot_device
+from ..services import (
+    build_license_zip,
+    janus_cloud_setup,
+    update_or_create_cloudiot_device,
+)
 
 User = get_user_model()
 
@@ -528,20 +533,42 @@ class ConfigDownloadViewSet(
 ):
     serializer_class = ConfigSerializer
 
+    # @extend_schema(
+    #     tags=["devices"],
+    #     parameters=[
+    #         OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH),
+    #     ],
+    #     responses={
+    #         200: ConfigSerializer,
+    #     }
+    #     | generic_get_errors,
+    # )
+    # @action(methods=["get"], detail=False, url_path="download")
+    # def download(self, request, device_id=None):
+    #     device = Pi.objects.get(id=device_id)
+    #     api = get_api_config(request, device.user)
+    #     instance = dict(device=device, api=api)
+    #     serializer = ConfigSerializer(instance=instance)
+    #     return Response(serializer.data, status=status.HTTP_200_OK)
+
     @extend_schema(
         tags=["devices"],
         parameters=[
             OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH),
         ],
-        responses={
-            200: ConfigSerializer,
-        }
-        | generic_get_errors,
+        # responses={
+        #     200: ConfigSerializer,
+        # }
+        # | generic_get_errors,
     )
-    @action(methods=["get"], detail=False, url_path="download")
-    def download(self, request, device_id=None):
-        device = Pi.objects.get(id=device_id)
-        api = get_api_config(request, device.user)
-        instance = dict(device=device, api=api)
-        serializer = ConfigSerializer(instance=instance)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+    @action(detail=False, methods=["get"], url_path="zip")
+    def download_zip(
+        self, request: Request, pi_id=None, *args: Any, **kwargs: Any
+    ) -> Response:
+        pi = get_object_or_404(Pi.objects.filter(id=pk, user=request.user))
+
+        zip_content = build_license_zip(pi)
+
+        response = HttpResponse(zip_content, content_type="application/zip")
+        response["Content-Disposition"] = "attachment; filename=printnanny.zip"
+        return response
