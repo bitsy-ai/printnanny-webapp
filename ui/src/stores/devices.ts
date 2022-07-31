@@ -36,12 +36,8 @@ export const useDeviceStore = defineStore({
       console.debug("piPartialUpdate response", res);
     },
 
-    async create(hostname: string) {
+    async create(req: api.PiRequest) {
       // Wireguard TODO: allow user to specify fqdn
-      const req: api.PiRequest = {
-        hostname,
-        fqdn: `${hostname}.local`,
-      };
       this.$patch({ loading: true });
       const res = await devicesApi.pisCreate(req).catch(handleApiError);
       this.$patch({ loading: true });

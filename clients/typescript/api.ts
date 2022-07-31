@@ -1452,6 +1452,19 @@ export interface OctoPrinterProfileRequest {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export const OsEdition = {
+    OctoprintLite: 'octoprint_lite'
+} as const;
+
+export type OsEdition = typeof OsEdition[keyof typeof OsEdition];
+
+
+/**
+ * 
+ * @export
  * @interface PaginatedAlertList
  */
 export interface PaginatedAlertList {
@@ -2266,6 +2279,18 @@ export interface PatchedOctoPrinterProfileRequest {
  */
 export interface PatchedPiRequest {
     /**
+     * 
+     * @type {SbcEnum}
+     * @memberof PatchedPiRequest
+     */
+    'sbc'?: SbcEnum;
+    /**
+     * 
+     * @type {OsEdition}
+     * @memberof PatchedPiRequest
+     */
+    'edition'?: OsEdition;
+    /**
      * Please enter the hostname you set in the Raspberry Pi Imager\'s Advanced Options menu (without .local extension)
      * @type {string}
      * @memberof PatchedPiRequest
@@ -2283,12 +2308,6 @@ export interface PatchedPiRequest {
      * @memberof PatchedPiRequest
      */
     'favorite'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedPiRequest
-     */
-    'ws_connected'?: boolean;
 }
 /**
  * 
@@ -2567,6 +2586,18 @@ export interface Pi {
     'urls': PiUrls;
     /**
      * 
+     * @type {SbcEnum}
+     * @memberof Pi
+     */
+    'sbc'?: SbcEnum;
+    /**
+     * 
+     * @type {OsEdition}
+     * @memberof Pi
+     */
+    'edition'?: OsEdition;
+    /**
+     * 
      * @type {string}
      * @memberof Pi
      */
@@ -2589,12 +2620,6 @@ export interface Pi {
      * @memberof Pi
      */
     'favorite'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Pi
-     */
-    'ws_connected'?: boolean;
 }
 /**
  * 
@@ -2602,6 +2627,18 @@ export interface Pi {
  * @interface PiRequest
  */
 export interface PiRequest {
+    /**
+     * 
+     * @type {SbcEnum}
+     * @memberof PiRequest
+     */
+    'sbc'?: SbcEnum;
+    /**
+     * 
+     * @type {OsEdition}
+     * @memberof PiRequest
+     */
+    'edition'?: OsEdition;
     /**
      * Please enter the hostname you set in the Raspberry Pi Imager\'s Advanced Options menu (without .local extension)
      * @type {string}
@@ -2620,12 +2657,6 @@ export interface PiRequest {
      * @memberof PiRequest
      */
     'favorite'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PiRequest
-     */
-    'ws_connected'?: boolean;
 }
 /**
  * 
@@ -2906,6 +2937,19 @@ export interface RestAuthDetail {
      */
     'detail': string;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const SbcEnum = {
+    Rpi4: 'rpi_4'
+} as const;
+
+export type SbcEnum = typeof SbcEnum[keyof typeof SbcEnum];
+
+
 /**
  * 
  * @export
