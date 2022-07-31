@@ -6,6 +6,7 @@ volumes:
   local_prometheus_data: {}
   local_file_data: {}
   local_octoprint_data: {}
+  local_nsc_data: {}
 services:
   # janus:
   #   hostname: janus
@@ -26,24 +27,24 @@ services:
   #   volumes:
   #     - ./compose/local/janus/etc:/etc/janus
 
-  octoprint:
-    hostname: octoprint
-    image: octoprint/octoprint
-    container_name: printnanny_webapp_octoprint
-    # network_mode: "host"
-    ports:
-      - "5005:5000"
-    environment:
-      OCTOPRINT_NANNY_GCP_PROJECT_ID: ${PROJECT}
-      OCTOPRINT_NANNY_API_URL: "http://django:8000/api/"
-      OCTOPRINT_NANNY_WS_URL: "ws://django:8000/ws/"
-      OCTOPRINT_NANNY_IOT_DEVICE_REGISTRY: "octoprint-devices"
-      OCTOPRINT_NANNY_HONEYCOMB_DATASET: ${PRINT_NANNY_HONEYCOMB_DATASET}
-      OCTOPRINT_NANNY_HONEYCOMB_API_KEY: ${PRINT_NANNY_HONEYCOMB_API_KEY}
-      OCTOPRINT_NANNY_HONEYCOMB_DEBUG: 1
-      PYTHONASYNCDEBUG: 1
-    volumes:
-      - local_octoprint_data:/octoprint
+  # octoprint:
+  #   hostname: octoprint
+  #   image: octoprint/octoprint
+  #   container_name: printnanny_webapp_octoprint
+  #   # network_mode: "host"
+  #   ports:
+  #     - "5005:5000"
+  #   environment:
+  #     OCTOPRINT_NANNY_GCP_PROJECT_ID: ${PROJECT}
+  #     OCTOPRINT_NANNY_API_URL: "http://django:8000/api/"
+  #     OCTOPRINT_NANNY_WS_URL: "ws://django:8000/ws/"
+  #     OCTOPRINT_NANNY_IOT_DEVICE_REGISTRY: "octoprint-devices"
+  #     OCTOPRINT_NANNY_HONEYCOMB_DATASET: ${PRINT_NANNY_HONEYCOMB_DATASET}
+  #     OCTOPRINT_NANNY_HONEYCOMB_API_KEY: ${PRINT_NANNY_HONEYCOMB_API_KEY}
+  #     OCTOPRINT_NANNY_HONEYCOMB_DEBUG: 1
+  #     PYTHONASYNCDEBUG: 1
+  #   volumes:
+  #     - local_octoprint_data:/octoprint
   django: &django # enables use of pdb
     hostname: django
     stdin_open: true
@@ -68,6 +69,9 @@ services:
     environment:
       DJANGO_SUPERUSER_PASSWORD: ${DJANGO_SUPERUSER_PASSWORD}
       DJANGO_SUPERUSER_EMAIL: ${DJANGO_SUPERUSER_EMAIL}
+      NKEYS_PATH: /var/lib/nats/nsc/keys
+      NSC_HOME: /var/lib/nats/nsc
+      NSC_STORE: /var/lib/nats/nsc/stores
     env_file:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres
@@ -114,7 +118,21 @@ services:
       - ./prometheus:/etc/prometheus
       - local_prometheus_data:/prometheus
     command: --web.enable-lifecycle  --config.file=/etc/prometheus/prometheus.yml
-
+  nats:
+    hostname: nats
+    image: nats:2.8-alpine
+    container_name: django_nats_nkeys_nats
+    volumes:
+      - ../.nats/:/etc/nats
+    env_file:
+      - test.env
+    command:
+      - -c
+      - /etc/nats/nats-server.conf
+      - --name
+      - localnats
+    ports:
+      - "4222:4222"
   # events:
   #   container_name: printnanny_webapp_octoprint_events
   #   <<: *django
