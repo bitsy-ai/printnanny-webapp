@@ -83,6 +83,7 @@ class Pi(SafeDeleteModel):
 
     fqdn = models.CharField(max_length=255, default="printnanny.local")
     favorite = models.BooleanField(default=False)
+    setup_finished = models.BooleanField(default=False)
 
     @property
     def urls(self) -> PiUrls:

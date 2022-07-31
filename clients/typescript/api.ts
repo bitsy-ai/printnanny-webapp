@@ -2308,6 +2308,12 @@ export interface PatchedPiRequest {
      * @memberof PatchedPiRequest
      */
     'favorite'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedPiRequest
+     */
+    'setup_finished'?: boolean;
 }
 /**
  * 
@@ -2620,6 +2626,12 @@ export interface Pi {
      * @memberof Pi
      */
     'favorite'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Pi
+     */
+    'setup_finished'?: boolean;
 }
 /**
  * 
@@ -2657,6 +2669,12 @@ export interface PiRequest {
      * @memberof PiRequest
      */
     'favorite'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PiRequest
+     */
+    'setup_finished'?: boolean;
 }
 /**
  * 
