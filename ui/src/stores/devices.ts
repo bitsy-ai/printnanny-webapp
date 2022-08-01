@@ -1,8 +1,7 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
-import type { Pi, WebrtcStream } from "printnanny-api-client";
+import type { Pi } from "printnanny-api-client";
 import { ApiConfig, handleApiError } from "@/utils/api";
-import type { number } from "yup";
 
 const devicesApi = api.DevicesApiFactory(ApiConfig);
 export const useDeviceStore = defineStore({

@@ -123,7 +123,23 @@
             </div>
           </div>
           <!-- Main content area -->
-          <router-view></router-view>
+          <RouterView v-slot="{ Component }">
+              <template v-if="Component">
+                <Transition mode="out-in" name="fade">
+                  <KeepAlive>
+                    <Suspense>
+                      <!-- main content -->
+                      <component :is="Component"></component>
+
+                      <!-- loading state -->
+                      <template #fallback>
+                        <p>Loading ...</p>
+                      </template>
+                    </Suspense>
+                  </KeepAlive>
+                </Transition>
+              </template>
+          </RouterView>
         </main>
       </div>
       <BuildInfoFooter />

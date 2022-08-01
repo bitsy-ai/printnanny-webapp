@@ -79,6 +79,9 @@ class EmailAlertSettingsViewSet(
             EmailAlertSettings.objects.create(user=self.request.user)
         return self.queryset.filter(user_id=self.request.user.id)
 
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
 
 @extend_schema_view(
     list=extend_schema(
@@ -124,6 +127,9 @@ class AllPiEventsViewSet(
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user_id=self.request.user.id)
 
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
 
 @extend_schema_view(
     list=extend_schema(
@@ -155,3 +161,6 @@ class SinglePiEventsViewSet(
         if pi_id is None:
             raise ValueError("pi_id is required")
         return self.queryset.filter(user_id=self.request.user.id, pi_id=pi_id)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)

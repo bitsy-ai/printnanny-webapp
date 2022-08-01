@@ -305,12 +305,6 @@ export interface EmailAlertSettingsRequest {
      * @memberof EmailAlertSettingsRequest
      */
     'event_types'?: Array<EventTypesEnum>;
-    /**
-     * 
-     * @type {number}
-     * @memberof EmailAlertSettingsRequest
-     */
-    'user': number;
 }
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
@@ -1593,12 +1587,6 @@ export interface PatchedEmailAlertSettingsRequest {
      * @memberof PatchedEmailAlertSettingsRequest
      */
     'event_types'?: Array<EventTypesEnum>;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedEmailAlertSettingsRequest
-     */
-    'user'?: number;
 }
 /**
  * 
@@ -5493,13 +5481,11 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
     return {
         /**
          * 
-         * @param {EmailAlertSettingsRequest} emailAlertSettingsRequest 
+         * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertSettingsEmailCreate: async (emailAlertSettingsRequest: EmailAlertSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'emailAlertSettingsRequest' is not null or undefined
-            assertParamExists('alertSettingsEmailCreate', 'emailAlertSettingsRequest', emailAlertSettingsRequest)
+        alertSettingsEmailCreate: async (emailAlertSettingsRequest?: EmailAlertSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/alert-settings/email/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -5657,15 +5643,13 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * 
          * @param {number} id A unique integer value identifying this email alert settings.
-         * @param {EmailAlertSettingsRequest} emailAlertSettingsRequest 
+         * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertSettingsEmailUpdate: async (id: number, emailAlertSettingsRequest: EmailAlertSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        alertSettingsEmailUpdate: async (id: number, emailAlertSettingsRequest?: EmailAlertSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('alertSettingsEmailUpdate', 'id', id)
-            // verify required parameter 'emailAlertSettingsRequest' is not null or undefined
-            assertParamExists('alertSettingsEmailUpdate', 'emailAlertSettingsRequest', emailAlertSettingsRequest)
             const localVarPath = `/api/alert-settings/email/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -5711,11 +5695,11 @@ export const AlertsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {EmailAlertSettingsRequest} emailAlertSettingsRequest 
+         * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async alertSettingsEmailCreate(emailAlertSettingsRequest: EmailAlertSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EmailAlertSettings>> {
+        async alertSettingsEmailCreate(emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EmailAlertSettings>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.alertSettingsEmailCreate(emailAlertSettingsRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5753,11 +5737,11 @@ export const AlertsApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} id A unique integer value identifying this email alert settings.
-         * @param {EmailAlertSettingsRequest} emailAlertSettingsRequest 
+         * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async alertSettingsEmailUpdate(id: number, emailAlertSettingsRequest: EmailAlertSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EmailAlertSettings>> {
+        async alertSettingsEmailUpdate(id: number, emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EmailAlertSettings>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.alertSettingsEmailUpdate(id, emailAlertSettingsRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5773,11 +5757,11 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
     return {
         /**
          * 
-         * @param {EmailAlertSettingsRequest} emailAlertSettingsRequest 
+         * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertSettingsEmailCreate(emailAlertSettingsRequest: EmailAlertSettingsRequest, options?: any): AxiosPromise<EmailAlertSettings> {
+        alertSettingsEmailCreate(emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: any): AxiosPromise<EmailAlertSettings> {
             return localVarFp.alertSettingsEmailCreate(emailAlertSettingsRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -5811,11 +5795,11 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
         /**
          * 
          * @param {number} id A unique integer value identifying this email alert settings.
-         * @param {EmailAlertSettingsRequest} emailAlertSettingsRequest 
+         * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertSettingsEmailUpdate(id: number, emailAlertSettingsRequest: EmailAlertSettingsRequest, options?: any): AxiosPromise<EmailAlertSettings> {
+        alertSettingsEmailUpdate(id: number, emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: any): AxiosPromise<EmailAlertSettings> {
             return localVarFp.alertSettingsEmailUpdate(id, emailAlertSettingsRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -5829,12 +5813,12 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
 export interface AlertsApiInterface {
     /**
      * 
-     * @param {EmailAlertSettingsRequest} emailAlertSettingsRequest 
+     * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApiInterface
      */
-    alertSettingsEmailCreate(emailAlertSettingsRequest: EmailAlertSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<EmailAlertSettings>;
+    alertSettingsEmailCreate(emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<EmailAlertSettings>;
 
     /**
      * 
@@ -5867,12 +5851,12 @@ export interface AlertsApiInterface {
     /**
      * 
      * @param {number} id A unique integer value identifying this email alert settings.
-     * @param {EmailAlertSettingsRequest} emailAlertSettingsRequest 
+     * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApiInterface
      */
-    alertSettingsEmailUpdate(id: number, emailAlertSettingsRequest: EmailAlertSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<EmailAlertSettings>;
+    alertSettingsEmailUpdate(id: number, emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<EmailAlertSettings>;
 
 }
 
@@ -5885,12 +5869,12 @@ export interface AlertsApiInterface {
 export class AlertsApi extends BaseAPI implements AlertsApiInterface {
     /**
      * 
-     * @param {EmailAlertSettingsRequest} emailAlertSettingsRequest 
+     * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApi
      */
-    public alertSettingsEmailCreate(emailAlertSettingsRequest: EmailAlertSettingsRequest, options?: AxiosRequestConfig) {
+    public alertSettingsEmailCreate(emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: AxiosRequestConfig) {
         return AlertsApiFp(this.configuration).alertSettingsEmailCreate(emailAlertSettingsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -5931,12 +5915,12 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
     /**
      * 
      * @param {number} id A unique integer value identifying this email alert settings.
-     * @param {EmailAlertSettingsRequest} emailAlertSettingsRequest 
+     * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApi
      */
-    public alertSettingsEmailUpdate(id: number, emailAlertSettingsRequest: EmailAlertSettingsRequest, options?: AxiosRequestConfig) {
+    public alertSettingsEmailUpdate(id: number, emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: AxiosRequestConfig) {
         return AlertsApiFp(this.configuration).alertSettingsEmailUpdate(id, emailAlertSettingsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -12455,13 +12439,11 @@ export const SettingsApiAxiosParamCreator = function (configuration?: Configurat
     return {
         /**
          * 
-         * @param {EmailAlertSettingsRequest} emailAlertSettingsRequest 
+         * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertSettingsEmailCreate: async (emailAlertSettingsRequest: EmailAlertSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'emailAlertSettingsRequest' is not null or undefined
-            assertParamExists('alertSettingsEmailCreate', 'emailAlertSettingsRequest', emailAlertSettingsRequest)
+        alertSettingsEmailCreate: async (emailAlertSettingsRequest?: EmailAlertSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/alert-settings/email/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -12619,15 +12601,13 @@ export const SettingsApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @param {number} id A unique integer value identifying this email alert settings.
-         * @param {EmailAlertSettingsRequest} emailAlertSettingsRequest 
+         * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertSettingsEmailUpdate: async (id: number, emailAlertSettingsRequest: EmailAlertSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        alertSettingsEmailUpdate: async (id: number, emailAlertSettingsRequest?: EmailAlertSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('alertSettingsEmailUpdate', 'id', id)
-            // verify required parameter 'emailAlertSettingsRequest' is not null or undefined
-            assertParamExists('alertSettingsEmailUpdate', 'emailAlertSettingsRequest', emailAlertSettingsRequest)
             const localVarPath = `/api/alert-settings/email/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -12673,11 +12653,11 @@ export const SettingsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {EmailAlertSettingsRequest} emailAlertSettingsRequest 
+         * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async alertSettingsEmailCreate(emailAlertSettingsRequest: EmailAlertSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EmailAlertSettings>> {
+        async alertSettingsEmailCreate(emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EmailAlertSettings>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.alertSettingsEmailCreate(emailAlertSettingsRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -12715,11 +12695,11 @@ export const SettingsApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} id A unique integer value identifying this email alert settings.
-         * @param {EmailAlertSettingsRequest} emailAlertSettingsRequest 
+         * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async alertSettingsEmailUpdate(id: number, emailAlertSettingsRequest: EmailAlertSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EmailAlertSettings>> {
+        async alertSettingsEmailUpdate(id: number, emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EmailAlertSettings>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.alertSettingsEmailUpdate(id, emailAlertSettingsRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -12735,11 +12715,11 @@ export const SettingsApiFactory = function (configuration?: Configuration, baseP
     return {
         /**
          * 
-         * @param {EmailAlertSettingsRequest} emailAlertSettingsRequest 
+         * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertSettingsEmailCreate(emailAlertSettingsRequest: EmailAlertSettingsRequest, options?: any): AxiosPromise<EmailAlertSettings> {
+        alertSettingsEmailCreate(emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: any): AxiosPromise<EmailAlertSettings> {
             return localVarFp.alertSettingsEmailCreate(emailAlertSettingsRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -12773,11 +12753,11 @@ export const SettingsApiFactory = function (configuration?: Configuration, baseP
         /**
          * 
          * @param {number} id A unique integer value identifying this email alert settings.
-         * @param {EmailAlertSettingsRequest} emailAlertSettingsRequest 
+         * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertSettingsEmailUpdate(id: number, emailAlertSettingsRequest: EmailAlertSettingsRequest, options?: any): AxiosPromise<EmailAlertSettings> {
+        alertSettingsEmailUpdate(id: number, emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: any): AxiosPromise<EmailAlertSettings> {
             return localVarFp.alertSettingsEmailUpdate(id, emailAlertSettingsRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -12791,12 +12771,12 @@ export const SettingsApiFactory = function (configuration?: Configuration, baseP
 export interface SettingsApiInterface {
     /**
      * 
-     * @param {EmailAlertSettingsRequest} emailAlertSettingsRequest 
+     * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SettingsApiInterface
      */
-    alertSettingsEmailCreate(emailAlertSettingsRequest: EmailAlertSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<EmailAlertSettings>;
+    alertSettingsEmailCreate(emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<EmailAlertSettings>;
 
     /**
      * 
@@ -12829,12 +12809,12 @@ export interface SettingsApiInterface {
     /**
      * 
      * @param {number} id A unique integer value identifying this email alert settings.
-     * @param {EmailAlertSettingsRequest} emailAlertSettingsRequest 
+     * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SettingsApiInterface
      */
-    alertSettingsEmailUpdate(id: number, emailAlertSettingsRequest: EmailAlertSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<EmailAlertSettings>;
+    alertSettingsEmailUpdate(id: number, emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<EmailAlertSettings>;
 
 }
 
@@ -12847,12 +12827,12 @@ export interface SettingsApiInterface {
 export class SettingsApi extends BaseAPI implements SettingsApiInterface {
     /**
      * 
-     * @param {EmailAlertSettingsRequest} emailAlertSettingsRequest 
+     * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SettingsApi
      */
-    public alertSettingsEmailCreate(emailAlertSettingsRequest: EmailAlertSettingsRequest, options?: AxiosRequestConfig) {
+    public alertSettingsEmailCreate(emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: AxiosRequestConfig) {
         return SettingsApiFp(this.configuration).alertSettingsEmailCreate(emailAlertSettingsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -12893,12 +12873,12 @@ export class SettingsApi extends BaseAPI implements SettingsApiInterface {
     /**
      * 
      * @param {number} id A unique integer value identifying this email alert settings.
-     * @param {EmailAlertSettingsRequest} emailAlertSettingsRequest 
+     * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SettingsApi
      */
-    public alertSettingsEmailUpdate(id: number, emailAlertSettingsRequest: EmailAlertSettingsRequest, options?: AxiosRequestConfig) {
+    public alertSettingsEmailUpdate(id: number, emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: AxiosRequestConfig) {
         return SettingsApiFp(this.configuration).alertSettingsEmailUpdate(id, emailAlertSettingsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }

@@ -13,7 +13,7 @@
         role="list"
         class="mt-3 border-t border-gray-200 divide-y divide-gray-100"
       >
-        <li v-for="pi in deviceStore.pis" :key="pi.id">
+        <li v-for="pi in pis" :key="pi.id">
           <a
             href="#"
             class="group flex items-center justify-between px-4 py-4 hover:bg-gray-50 sm:px-6"
@@ -60,7 +60,7 @@
             <DeviceEmpty v-if="deviceStore.showEmpty" />
             <!-- pi list -->
             <tr
-              v-for="(pi, index) in deviceStore.pis"
+              v-for="(pi, index) in pis"
               v-show="!deviceStore.showEmpty"
               :key="index"
               class="flex-row"
@@ -132,5 +132,5 @@ import DeviceFavorites from "./DeviceFavorites.vue";
 import { ExclamationIcon } from "@heroicons/vue/outline";
 
 const deviceStore = useDeviceStore();
-deviceStore.fetchDevices();
+const pis = await deviceStore.fetchDevices();
 </script>

@@ -22,7 +22,7 @@ class EmailAlertSettingsSerializer(serializers.ModelSerializer):
     class Meta:
         model = EmailAlertSettings
         fields = "__all__"
-        read_only_fields = ("created_dt", "updated_dt")
+        read_only_fields = ("created_dt", "updated_dt", "user")
 
 
 class PiBootEventSerializer(serializers.ModelSerializer):
