@@ -124,21 +124,21 @@
           </div>
           <!-- Main content area -->
           <RouterView v-slot="{ Component }">
-              <template v-if="Component">
-                <Transition mode="out-in" name="fade">
-                  <KeepAlive>
-                    <Suspense>
-                      <!-- main content -->
-                      <component :is="Component"></component>
+            <template v-if="Component">
+              <Transition mode="out-in" name="fade">
+                <KeepAlive>
+                  <Suspense>
+                    <!-- main content -->
+                    <component :is="Component"></component>
 
-                      <!-- loading state -->
-                      <template #fallback>
-                        <p>Loading ...</p>
-                      </template>
-                    </Suspense>
-                  </KeepAlive>
-                </Transition>
-              </template>
+                    <!-- loading state -->
+                    <template #fallback>
+                      <p>Loading ...</p>
+                    </template>
+                  </Suspense>
+                </KeepAlive>
+              </Transition>
+            </template>
           </RouterView>
         </main>
       </div>

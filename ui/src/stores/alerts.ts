@@ -23,11 +23,9 @@ export const useAlertStore = defineStore({
       console.log("updateEmailAlertSetting called", req);
       this.$patch({ loading: true });
       if (this.emailAlertSettings) {
-        const alertsSettingsData =
-          await alertSettingsApi.alertSettingsEmailUpdate(
-            this.emailAlertSettings.id,
-            req
-          ).catch(handleApiError);
+        const alertsSettingsData = await alertSettingsApi
+          .alertSettingsEmailUpdate(this.emailAlertSettings.id, req)
+          .catch(handleApiError);
         if (alertsSettingsData) {
           this.$patch({
             emailAlertSettings: alertsSettingsData.data,
@@ -40,15 +38,17 @@ export const useAlertStore = defineStore({
       const alertSettingsApi = api.SettingsApiFactory(ApiConfig);
 
       this.$patch({ loading: true });
-      const alertsSettingsData = await alertSettingsApi.alertSettingsEmailList().catch(handleApiError);
+      const alertsSettingsData = await alertSettingsApi
+        .alertSettingsEmailList()
+        .catch(handleApiError);
       if (alertsSettingsData && alertsSettingsData.data.results) {
-        const emailAlertSettings = alertsSettingsData.data.results[0]
-        console.log("Setting emailAlertSettings", emailAlertSettings)
+        const emailAlertSettings = alertsSettingsData.data.results[0];
+        console.log("Setting emailAlertSettings", emailAlertSettings);
         this.$patch({
           emailAlertSettings: emailAlertSettings,
           loading: false,
         });
-        return emailAlertSettings
+        return emailAlertSettings;
       }
     },
     push(alert: UiAlert | UiAlert) {
