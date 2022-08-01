@@ -571,7 +571,7 @@ class PiLicenseViewset(
     @action(detail=False, methods=["get"], url_path="zip")
     def download_zip(
         self, request: Request, pi_id=None, *args: Any, **kwargs: Any
-    ) -> Response:
+    ) -> HttpResponse:
         pi = get_object_or_404(Pi.objects.filter(id=pi_id, user=request.user))
 
         zip_content = build_license_zip(pi, request)

@@ -1,30 +1,25 @@
 from __future__ import annotations
 import io
-import subprocess
 import logging
-from urllib.request import Request
 from uuid import uuid4
 from typing import Tuple, Dict, Any
 import requests
-import json
 import zipfile
-from coolname import generate_slug
 from google.cloud import iot_v1 as cloudiot_v1
 import google.api_core.exceptions
 from django.db import IntegrityError
 from django.conf import settings
 from django.template.loader import render_to_string
+from django.http import HttpRequest
 from rest_framework.renderers import JSONRenderer
 from print_nanny_webapp.devices.api.serializers import PiSerializer
 from print_nanny_webapp.devices.enum import JanusConfigType
 from print_nanny_webapp.utils.api.serializers import PrintNannyApiConfigSerializer
-from print_nanny_webapp.utils.api.service import PrintNannyApiConfig
 from print_nanny_webapp.utils.api.service import get_api_config
 
 from django_nats_nkeys.models import NatsOrganizationOwner
 from django_nats_nkeys.services import (
     create_nats_account_org,
-    nsc_push_org,
     nsc_generate_creds,
     create_nats_app,
 )
@@ -218,7 +213,7 @@ def create_pi_nats_app(pi: Pi) -> PiNatsApp:
     return app
 
 
-def build_license_zip(pi: Pi, request: Request) -> bytes:
+def build_license_zip(pi: Pi, request: HttpRequest) -> bytes:
     # serialize pi.json
     # serialize api.json
     # serialize nats creds
