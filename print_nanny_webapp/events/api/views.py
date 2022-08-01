@@ -1,7 +1,6 @@
 import logging
 from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiParameter
 from django.apps import apps
-
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import (
     ListModelMixin,
@@ -19,7 +18,6 @@ from print_nanny_webapp.utils.api.views import (
     generic_update_errors,
 )
 from print_nanny_webapp.utils.permissions import IsObjectOwner
-from print_nanny_webapp.utils.views import AuthenticatedHttpRequest
 from .serializers import PolymorphicPiEventSerializer, EmailAlertSettingsSerializer
 
 Pi = apps.get_model("devices", "Pi")
@@ -74,12 +72,11 @@ class EmailAlertSettingsViewSet(
 
     # get email alert settings for user
     def get_queryset(self, *args, **kwargs):
-        request: AuthenticatedHttpRequest = self.request
-        result = self.queryset.filter(user_id=request.user.id).first()
+        result = self.queryset.filter(user_id=self.request.user.id).first()
         # if result is empty, initialize model
-        if result is None:
-            EmailAlertSettings.objects.create(user=request.user)
-        return self.queryset.filter(user_id=request.user.id)
+        if result is None and self.request.user.is_authenticated:
+            EmailAlertSettings.objects.create(user=self.request.user)
+        return self.queryset.filter(user_id=self.request.user.id)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
