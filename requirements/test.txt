@@ -73,7 +73,7 @@ keyring==23.5.0
     # via twine
 markupsafe==2.1.0
     # via jinja2
-mypy==0.931
+mypy==0.971
     # via
     #   -r /requirements/test.in
     #   django-stubs
