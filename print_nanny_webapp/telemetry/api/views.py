@@ -16,7 +16,6 @@ from .serializers import (
 )
 from print_nanny_webapp.telemetry.models import OctoPrintEvent
 
-PrintSession = apps.get_model("remote_control", "PrintSession")
 TelemetryEvent = apps.get_model("telemetry", "TelemetryEvent")
 PrintNannyPluginEvent = apps.get_model("telemetry", "PrintNannyPluginEvent")
 PrintJobEvent = apps.get_model("telemetry", "PrintJobEvent")
@@ -83,18 +82,6 @@ class OctoPrintEventViewSet(
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user_id=self.request.user.id)
 
-    def perform_create(self, serializer):
-
-        event_data = self.request.data["event_data"]
-
-        print_session = event_data.get("print_session")
-        if print_session is not None:
-            print_session = PrintSession.objects.get(id=print_session)
-        if self.request.user:
-            serializer.save(user=self.request.user, print_session=print_session)
-        else:
-            serializer.save(print_session=print_session)
-
 
 @extend_schema(tags=["telemetry"])
 @extend_schema_view(
@@ -112,18 +99,6 @@ class PrintNannyPluginEventViewSet(GenericViewSet, ListModelMixin, RetrieveModel
 
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user_id=self.request.user.id)
-
-    def perform_create(self, serializer):
-
-        event_data = self.request.data["event_data"]
-
-        print_session = event_data.get("print_session")
-        if print_session is not None:
-            print_session = PrintSession.objects.get(id=print_session)
-        if self.request.user:
-            serializer.save(user=self.request.user, print_session=print_session)
-        else:
-            serializer.save(print_session=print_session)
 
 
 @extend_schema(tags=["telemetry"])
@@ -143,18 +118,6 @@ class PrintJobEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user_id=self.request.user.id)
 
-    def perform_create(self, serializer):
-
-        event_data = self.request.data["event_data"]
-
-        print_session = event_data.get("print_session")
-        if print_session is not None:
-            print_session = PrintSession.objects.get(id=print_session)
-        if self.request.user:
-            serializer.save(user=self.request.user, print_session=print_session)
-        else:
-            serializer.save(print_session=print_session)
-
 
 @extend_schema(tags=["telemetry"])
 @extend_schema_view(
@@ -172,13 +135,3 @@ class PrinterEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
 
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user_id=self.request.user.id)
-
-    def perform_create(self, serializer):
-        event_data = self.request.data["event_data"]
-        print_session = event_data.get("print_session")
-        if print_session is not None:
-            print_session = PrintSession.objects.get(id=print_session)
-        if self.request.user:
-            serializer.save(user=self.request.user, print_session=print_session)
-        else:
-            serializer.save(print_session=print_session)

@@ -9,7 +9,6 @@ from print_nanny_webapp.utils.permissions import HasActiveSubscription
 from print_nanny_webapp.users.models import User
 
 Alert = apps.get_model("alerts", "AlertMessage")
-OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
 
 
 class AuthenticatedHttpRequest(HttpRequest):
@@ -40,8 +39,4 @@ class DashboardView(SubscriptionRequiredMixin, TemplateView):
             .order_by("-created_dt")
             .all()
         )
-
-        context["octoprint_devices"] = OctoPrintDevice.objects.filter(
-            user=self.request.user
-        ).all()
         return context

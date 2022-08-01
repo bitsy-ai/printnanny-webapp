@@ -66,10 +66,6 @@ class AlertSettings(models.Model):
         UI = "UI", "Print Nanny UI"
         EMAIL = "EMAIL", "Email notifications"
         DISCORD = "DISCORD", "Discord channel (webhook)"
-        PARTNER_3DGEEKS = (
-            "PARTNER_3DGEEKS",
-            "3D Geeks mobile app",
-        )
 
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_dt = models.DateTimeField(auto_now=True, db_index=True)
@@ -77,14 +73,18 @@ class AlertSettings(models.Model):
     alert_methods = ChoiceArrayField(
         models.CharField(choices=AlertMethod.choices, max_length=255),
         blank=True,
-        default=(AlertMethod.EMAIL,),
+        default=tuple(
+            AlertMethod.EMAIL,
+        ),
     )
     event_types = ChoiceArrayField(
         models.CharField(choices=AlertSettingsEventType.choices, max_length=255),
         blank=True,
-        default=(
-            AlertSettingsEventType.PRINT_QUALITY,
-            AlertSettingsEventType.PRINT_STATUS,
+        default=list(
+            [
+                AlertSettingsEventType.PRINT_QUALITY,
+                AlertSettingsEventType.PRINT_STATUS,
+            ]
         ),
     )
     discord_webhook = models.CharField(
@@ -142,7 +142,7 @@ class PrintProgressAlert(Alert):
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=["print_session", "alert_method", "print_progress"],
+                fields=["alert_method", "print_progress"],
                 name="unique_print_progress_alert",
             )
         ]
@@ -160,14 +160,8 @@ class PrintProgressAlert(Alert):
         choices=AlertSettings.AlertMethod.choices,
         max_length=36,
     )
-    print_session = models.ForeignKey(
-        "remote_control.PrintSession", on_delete=models.CASCADE
-    )
     print_progress = models.IntegerField()
     needs_review = models.BooleanField(default=False)
-    octoprint_device = models.ForeignKey(
-        "remote_control.OctoPrintDevice", on_delete=models.CASCADE
-    )
     event = models.ForeignKey("telemetry.TelemetryEvent", on_delete=models.CASCADE)
 
     @property
@@ -177,14 +171,6 @@ class PrintProgressAlert(Alert):
             "FIRST_NAME": self.user.first_name,  # type: ignore
             "EMAIL": self.user.email,
         }
-        merge_data.update({"DEVICE_NAME": self.octoprint_device.name})
-
-        merge_data.update(
-            {
-                "PRINT_SESSION": self.print_session.session,
-                "GCODE_FILE": self.print_session.gcode_file,
-            }
-        )
         ctx = Context(merge_data)
         return template.render(ctx)
 
@@ -193,7 +179,7 @@ class PrintStatusAlert(Alert):
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=["print_session", "alert_method", "event_type"],
+                fields=["alert_method", "event_type"],
                 name="unique_print_status_alert",
             )
         ]
@@ -213,12 +199,6 @@ class PrintStatusAlert(Alert):
         choices=AlertSettings.AlertMethod.choices,
         max_length=36,
     )
-    print_session = models.ForeignKey(
-        "remote_control.PrintSession", on_delete=models.CASCADE
-    )
-    octoprint_device = models.ForeignKey(
-        "remote_control.OctoPrintDevice", on_delete=models.CASCADE
-    )
     event = models.ForeignKey("telemetry.TelemetryEvent", on_delete=models.CASCADE)
 
     @property
@@ -228,13 +208,6 @@ class PrintStatusAlert(Alert):
             "FIRST_NAME": self.user.first_name,  # type: ignore
             "EMAIL": self.user.email,
         }
-        merge_data.update({"DEVICE_NAME": self.octoprint_device.name})
-        merge_data.update(
-            {
-                "PRINT_SESSION": self.print_session.session,
-                "GCODE_FILE": self.print_session.gcode_file,
-            }
-        )
         ctx = Context(merge_data)
         return template.render(ctx)
 
@@ -243,7 +216,7 @@ class VideoStatusAlert(Alert):
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=["print_session", "alert_method", "event_type"],
+                fields=["alert_method", "event_type"],
                 name="unique_video_status_alert",
             )
         ]
@@ -258,13 +231,7 @@ class VideoStatusAlert(Alert):
         choices=AlertSettings.AlertMethod.choices,
         max_length=36,
     )
-    print_session = models.ForeignKey(
-        "remote_control.PrintSession", on_delete=models.CASCADE
-    )
     annotated_video = models.FileField(upload_to=file_field_upload_to)
-    octoprint_device = models.ForeignKey(
-        "remote_control.OctoPrintDevice", on_delete=models.CASCADE
-    )
     needs_review = models.BooleanField(default=False)
 
     @property
@@ -274,13 +241,6 @@ class VideoStatusAlert(Alert):
             "FIRST_NAME": self.user.first_name,  # type: ignore
             "EMAIL": self.user.email,
         }
-        merge_data.update({"DEVICE_NAME": self.octoprint_device.name})
-        merge_data.update(
-            {
-                "PRINT_SESSION": self.print_session.session,
-                "GCODE_FILE": self.print_session.gcode_file,
-            }
-        )
         ctx = Context(merge_data)
         return template.render(ctx)
 
@@ -319,16 +279,6 @@ class AlertMessage(models.Model):
             "FIRST_NAME": self.user.first_name,  # type: ignore
             "EMAIL": self.user.email,
         }
-        if self.octoprint_device:
-            merge_data.update({"DEVICE_NAME": self.octoprint_device.name})
-
-        if self.print_session:
-            merge_data.update(
-                {
-                    "PRINT_SESSION": self.print_session.session,
-                    "GCODE_FILE": self.print_session.gcode_file,
-                }
-            )
         ctx = Context(merge_data)
         return template.render(ctx)
 
@@ -342,9 +292,6 @@ class AlertMessage(models.Model):
     event = models.ForeignKey(
         "telemetry.TelemetryEvent", on_delete=models.CASCADE, null=True
     )
-    print_session = models.ForeignKey(
-        "remote_control.PrintSession", on_delete=models.CASCADE, null=True
-    )
     annotated_video = models.FileField(upload_to=file_field_upload_to, null=True)
 
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
@@ -352,7 +299,4 @@ class AlertMessage(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
     seen = models.BooleanField(default=False)
     sent = models.BooleanField(default=False)
-    octoprint_device = models.ForeignKey(
-        "remote_control.OctoPrintDevice", null=True, on_delete=models.CASCADE
-    )
     needs_review = models.BooleanField(default=False)

@@ -2736,9 +2736,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/CloudiotDevice'
           description: ''
-  /api/pis/{pi_id}/config/download/:
+  /api/pis/{pi_id}/license/zip/:
     get:
-      operationId: pis_config_download_retrieve
+      operationId: pis_license_zip_retrieve
       parameters:
       - in: path
         name: pi_id
@@ -2753,39 +2753,10 @@ paths:
       responses:
         '200':
           content:
-            application/json:
+            application/zip:
               schema:
-                $ref: '#/components/schemas/Config'
-          description: ''
-        '404':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-        '400':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-        '401':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-        '403':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-        '500':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
+                type: string
+                format: binary
           description: ''
   /api/pis/{pi_id}/octoprint/:
     get:
@@ -4331,7 +4302,7 @@ components:
         event_types:
           type: array
           items:
-            $ref: '#/components/schemas/EventTypesEnum'
+            $ref: '#/components/schemas/AlertSettingsEventType'
         discord_webhook:
           type: string
           nullable: true
@@ -4353,6 +4324,11 @@ components:
       - id
       - updated_dt
       - user
+    AlertSettingsEventType:
+      enum:
+      - PrintQuality
+      - PrintStatus
+      type: string
     AlertSettingsRequest:
       type: object
       properties:
@@ -4363,7 +4339,7 @@ components:
         event_types:
           type: array
           items:
-            $ref: '#/components/schemas/EventTypesEnum'
+            $ref: '#/components/schemas/AlertSettingsEventType'
         discord_webhook:
           type: string
           nullable: true
@@ -4506,20 +4482,6 @@ components:
       - charge_automatically
       - send_invoice
       type: string
-    Config:
-      type: object
-      properties:
-        api:
-          allOf:
-          - $ref: '#/components/schemas/PrintNannyApiConfig'
-          readOnly: true
-        pi:
-          allOf:
-          - $ref: '#/components/schemas/Pi'
-          readOnly: true
-      required:
-      - api
-      - pi
     DetailResponse:
       type: object
       description: Generic auth response serializer
@@ -4602,11 +4564,6 @@ components:
       - PrintResumed
       - PrintStarted
       - PrintCancelled
-      type: string
-    EventTypesEnum:
-      enum:
-      - PrintQuality
-      - PrintStatus
       type: string
     GcodeFile:
       type: object
@@ -5151,6 +5108,10 @@ components:
       required:
       - name
       - octoprint_key
+    OsEdition:
+      enum:
+      - octoprint_lite
+      type: string
     PaginatedAlertList:
       type: object
       properties:
@@ -5511,7 +5472,7 @@ components:
         event_types:
           type: array
           items:
-            $ref: '#/components/schemas/EventTypesEnum'
+            $ref: '#/components/schemas/AlertSettingsEventType'
         discord_webhook:
           type: string
           nullable: true
@@ -5669,6 +5630,10 @@ components:
     PatchedPiRequest:
       type: object
       properties:
+        sbc:
+          $ref: '#/components/schemas/SbcEnum'
+        edition:
+          $ref: '#/components/schemas/OsEdition'
         hostname:
           type: string
           minLength: 1
@@ -5681,7 +5646,7 @@ components:
           maxLength: 255
         favorite:
           type: boolean
-        ws_connected:
+        setup_finished:
           type: boolean
     PatchedPiSettingsRequest:
       type: object
@@ -5861,6 +5826,10 @@ components:
           - octoprint
           - swupdate
           readOnly: true
+        sbc:
+          $ref: '#/components/schemas/SbcEnum'
+        edition:
+          $ref: '#/components/schemas/OsEdition'
         created_dt:
           type: string
           format: date-time
@@ -5875,7 +5844,7 @@ components:
           maxLength: 255
         favorite:
           type: boolean
-        ws_connected:
+        setup_finished:
           type: boolean
       required:
       - alert_settings
@@ -5894,6 +5863,10 @@ components:
     PiRequest:
       type: object
       properties:
+        sbc:
+          $ref: '#/components/schemas/SbcEnum'
+        edition:
+          $ref: '#/components/schemas/OsEdition'
         hostname:
           type: string
           minLength: 1
@@ -5906,7 +5879,7 @@ components:
           maxLength: 255
         favorite:
           type: boolean
-        ws_connected:
+        setup_finished:
           type: boolean
     PiSettings:
       type: object
@@ -5985,27 +5958,6 @@ components:
           WebRTCEvent: '#/components/schemas/WebRTCEventRequest'
           WebRTCCommand: '#/components/schemas/WebRTCCommandCreateRequest'
           TestEvent: '#/components/schemas/TestEventRequest'
-    PrintNannyApiConfig:
-      type: object
-      properties:
-        bearer_access_token:
-          type: string
-          readOnly: true
-          nullable: true
-        base_path:
-          type: string
-          readOnly: true
-        static_url:
-          type: string
-          readOnly: true
-        dashboard_url:
-          type: string
-          readOnly: true
-      required:
-      - base_path
-      - bearer_access_token
-      - dashboard_url
-      - static_url
     PublicKey:
       type: object
       properties:
@@ -6105,6 +6057,10 @@ components:
           readOnly: true
       required:
       - detail
+    SbcEnum:
+      enum:
+      - rpi_4
+      type: string
     StripeCustomer:
       type: object
       properties:

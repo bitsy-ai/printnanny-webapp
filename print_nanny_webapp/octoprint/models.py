@@ -161,7 +161,7 @@ class OctoPrinterProfile(SafeDeleteModel):
     name = models.CharField(max_length=255)
     octoprint_key = models.CharField(max_length=255, db_index=True)
 
-    volume_custom_box = models.JSONField(default={})
+    volume_custom_box = models.JSONField(default=dict)
     volume_depth = models.FloatField(null=True)
     volume_formfactor = models.CharField(null=True, max_length=255)
     volume_height = models.FloatField(null=True)
