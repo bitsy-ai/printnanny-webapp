@@ -40,21 +40,27 @@
         <div class="py-1">
           <!-- finish setup -->
           <MenuItem v-if="!pi.setup_finished" v-slot="{ active }">
-            <a
+            <router-link
               :class="[
                 active
                   ? 'bg-yellow-200 text-yellow-800'
                   : 'bg-yellow-100 text-yellow-800',
                 'group flex items-center px-4 py-2 text-sm',
               ]"
-              @click="finishSetup"
+              :to="{
+                name: 'device-connect',
+                params: {
+                  activeStep: 'download-printnanny-zip',
+                  piId: pi.id,
+                },
+              }"
             >
               <ExclamationIcon
                 class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500 group-hover:bg-yellow-200 bg-yellow-100 text-yellow-800"
                 aria-hidden="true"
               />
               Finish Setup
-            </a>
+            </router-link>
           </MenuItem>
           <!-- favorites actions -->
           <MenuItem v-if="!pi.favorite" v-slot="{ active }">
@@ -134,8 +140,6 @@ const props = defineProps({
   },
 });
 const deviceStore = useDeviceStore();
-
-async function finishSetup() {}
 
 async function addFavorite() {
   await deviceStore.partialUpdate(props.pi.id, props.index, {

@@ -1,6 +1,6 @@
 import * as api from "printnanny-api-client";
 import { defineStore, acceptHMRUpdate } from "pinia";
-import { ApiConfig, handleApiError } from "@/utils/api";
+import { ApiConfig } from "@/utils/api";
 
 const devicesApi = api.DevicesApiFactory(ApiConfig);
 

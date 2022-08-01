@@ -1,7 +1,5 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
-import { useAlertStore } from "./alerts";
-import type { UiAlert } from "@/types";
 import { ApiConfig, handleApiError } from "@/utils/api";
 const billingApi = api.BillingApiFactory(ApiConfig);
 

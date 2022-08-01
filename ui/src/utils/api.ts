@@ -23,7 +23,6 @@ function handleApiError(e: Error | AxiosError) {
   const header = "Oops, unexpected error";
 
   if (axios.isAxiosError(e)) {
-    const header = e.response?.statusText;
     if (
       e.response?.data.non_field_errors &&
       e.response?.data.non_field_errors.length > 0
