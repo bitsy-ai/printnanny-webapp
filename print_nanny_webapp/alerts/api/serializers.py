@@ -60,16 +60,6 @@ class AlertSerializer(serializers.ModelSerializer):
                     "%H:%M:%S", time.gmtime(obj.print_session.time_remaining)
                 )
 
-    manage_device_url = serializers.SerializerMethodField()
-
-    def get_manage_device_url(self, obj) -> Optional[str]:
-        if getattr(obj, "octoprint_device", None):
-            device_url = reverse(
-                "dashboard:octoprint-devices:detail",
-                kwargs={"pk": obj.octoprint_device.id},
-            )
-            return device_url
-
     message = serializers.SerializerMethodField()
 
     def get_message(self, obj) -> str:
@@ -84,9 +74,7 @@ class AlertSerializer(serializers.ModelSerializer):
             "print_progress",
             "time_elapsed",
             "time_remaining",
-            "manage_device_url",
             "user",
-            "octoprint_device",
             "event_type",
             "seen",
             "sent",
