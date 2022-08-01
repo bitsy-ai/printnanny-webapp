@@ -1,6 +1,9 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
-import type { EmailAlertSettings } from "printnanny-api-client";
+import type {
+  EmailAlertSettings,
+  EmailAlertSettingsRequest,
+} from "printnanny-api-client";
 import { ApiConfig, handleApiError } from "@/utils/api";
 import type { UiAlert } from "@/types";
 
@@ -34,7 +37,7 @@ export const useAlertStore = defineStore({
         }
       }
     },
-    async fetchEmailAlertSettings(): Promise<EmailAlertSettings> | undefined {
+    async fetchEmailAlertSettings(): Promise<EmailAlertSettings | undefined> {
       const alertSettingsApi = api.SettingsApiFactory(ApiConfig);
 
       this.$patch({ loading: true });

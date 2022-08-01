@@ -59,6 +59,8 @@ const onSubmit = handleSubmit(async (values) => {
     color: "green",
     message: "Saved email notification settings",
     header: "Success!",
+    actions: [],
+    error: undefined,
   } as UiAlert;
   alertStore.push(success);
 });

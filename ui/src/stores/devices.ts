@@ -35,7 +35,7 @@ export const useDeviceStore = defineStore({
       }
       console.debug("piPartialUpdate response", res);
     },
-    async fetchDevices() {
+    async fetchDevices(): Promise<Array<Pi> | undefined> {
       this.$patch({ loading: true });
       const res = await devicesApi.pisList().catch(handleApiError);
       console.debug("pisList response ", res);
@@ -44,6 +44,7 @@ export const useDeviceStore = defineStore({
           loading: false,
           pis: res.data.results,
         });
+        return res.data.results;
       } else {
         this.$patch({ loading: false });
       }
