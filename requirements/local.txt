@@ -173,9 +173,9 @@ django-safedelete==1.1.2
     # via -r /requirements/local.in
 django-storages[google]==1.12.3
     # via -r /requirements/local.in
-django-stubs==1.9.0
+django-stubs[compatible-mypy]==1.12.0
     # via -r /requirements/local.in
-django-stubs-ext==0.3.1
+django-stubs-ext==0.5.0
     # via django-stubs
 djangorestframework==3.13.1
     # via
@@ -443,10 +443,10 @@ tenacity==8.0.1
     # via plotly
 tifffile==2022.3.16
     # via scikit-image
-toml==0.10.2
-    # via django-stubs
 tomli==2.0.1
-    # via mypy
+    # via
+    #   django-stubs
+    #   mypy
 twisted[tls]==22.2.0
     # via
     #   -r /requirements/local.in

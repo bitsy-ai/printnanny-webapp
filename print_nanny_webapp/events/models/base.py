@@ -5,7 +5,7 @@ from django.db import models
 from .enum import EventSource
 
 
-UserModel = get_user_model()
+User = get_user_model()
 
 
 class AbstractEvent(PolymorphicModel, SafeDeleteModel):
@@ -31,7 +31,7 @@ class AbstractUserEvent(AbstractEvent):
         ordering = ["-created_dt"]
         index_together = [["user", "source", "subject", "created_dt"]]
 
-    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  # type: ignore[var-annotated]
 
 
 class AbstractPiEvent(AbstractEvent):
