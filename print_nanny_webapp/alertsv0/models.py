@@ -1,0 +1,302 @@
+from typing import Any, Dict, TYPE_CHECKING
+import logging
+
+from django.contrib.auth import get_user_model
+from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
+from django.template import Context, Template
+from polymorphic.models import PolymorphicModel
+
+
+from print_nanny_webapp.utils.fields import ChoiceArrayField
+
+from print_nanny_webapp.utils.fields import file_field_upload_to
+
+# https://github.com/typeddjango/django-stubs/issues/599
+if TYPE_CHECKING:
+    from print_nanny_webapp.users.models import User as UserType
+User = get_user_model()
+logger = logging.getLogger(__name__)
+
+
+##
+# Base Polymorphic models
+##
+
+
+class GenericAlertEventType(models.TextChoices):
+    """
+    Required for rust client generator
+    """
+
+    PRINT_QUALITY = "PrintQuality", "Quality control alerts"
+    PRINT_STATUS = (
+        "PrintStatus",
+        "Print status updates (percent progress, paused, resumed, failed)",
+    )
+    PRINT_NANNY_WEBAPP = (
+        "PrintNannyWebapp",
+        "Test triggered via Print Nanny UI or webapp",
+    )
+    PRINT_PROGRESS = (
+        "PrintProgress",
+        "{{ GCODE_FILE }} - {{ PRINT_PROGRESS }}% complete ⏳",
+    )
+    PRINT_DONE = "PrintDone", "{{ GCODE_FILE }} - job finished ✅"
+    PRINT_FAILED = "PrintFailed", "{{ GCODE_FILE }} - job failed ❌"
+    PRINT_PAUSED = "PrintPaused", "{{ GCODE_FILE }} - job paused ⏸️"
+    PRINT_RESUMED = "PrintResumed", "{{ GCODE_FILE }} - job resumed ⏯️"
+    PRINT_STARTED = "PrintStarted", "{{ GCODE_FILE }} - job started 🏁"
+    PRINT_CANCELLED = "PrintCancelled", "{{ GCODE_FILE }} - job cancelled ❌"
+
+
+class AlertSettings(models.Model):
+    class AlertSettingsEventType(models.TextChoices):
+        PRINT_QUALITY = "PrintQuality", "Quality control alerts"
+        PRINT_STATUS = (
+            "PrintStatus",
+            "Print status updates (percent progress, paused, resumed, failed)",
+        )
+
+    class AlertMethod(models.TextChoices):
+        """
+        The channels to which an alert is sent
+        """
+
+        UI = "UI", "Print Nanny UI"
+        EMAIL = "EMAIL", "Email notifications"
+        DISCORD = "DISCORD", "Discord channel (webhook)"
+
+    created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
+    updated_dt = models.DateTimeField(auto_now=True, db_index=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    alert_methods = ChoiceArrayField(
+        models.CharField(choices=AlertMethod.choices, max_length=255),
+        blank=True,
+        default=tuple(
+            AlertMethod.EMAIL,
+        ),
+    )
+    event_types = ChoiceArrayField(
+        models.CharField(choices=AlertSettingsEventType.choices, max_length=255),
+        blank=True,
+        default=list(
+            [
+                AlertSettingsEventType.PRINT_QUALITY,
+                AlertSettingsEventType.PRINT_STATUS,
+            ]
+        ),
+    )
+    discord_webhook = models.CharField(
+        null=True,
+        max_length=255,
+        blank=True,
+        help_text="Send notifications to a Discord channel. Please check out this guide to <a href='https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks'>generate a webhook</a> url and paste it here.",
+    )
+    print_progress_percent = models.IntegerField(
+        default=25,
+        validators=[MinValueValidator(1), MaxValueValidator(100)],
+        help_text="Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress",
+    )
+
+
+##
+# Base Alert
+###
+
+
+class Alert(PolymorphicModel):
+
+    created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
+    updated_dt = models.DateTimeField(auto_now=True, db_index=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
+
+
+class TestAlert(Alert):
+    alert_method = models.CharField(
+        choices=AlertSettings.AlertMethod.choices,
+        max_length=36,
+    )
+
+    class TestAlertEventType(models.TextChoices):
+        PRINT_NANNY_WEBAPP = (
+            "PrintNannyWebapp",
+            "Test triggered via Print Nanny UI or webapp",
+        )
+
+    event_type = models.CharField(max_length=36, choices=TestAlertEventType.choices)
+
+    @property
+    def message(self) -> str:
+        template = Template(self.get_event_type_display())
+        merge_data: Dict[str, Any] = {
+            "FIRST_NAME": self.user.first_name,  # type: ignore
+            "EMAIL": self.user.email,
+        }
+
+        ctx = Context(merge_data)
+        return template.render(ctx)
+
+
+class PrintProgressAlert(Alert):
+    # class Meta:
+    #     constraints = [
+    #         models.UniqueConstraint(
+    #             fields=["alert_method", "print_progress"],
+    #             name="unique_print_progress_alert",
+    #         )
+    #     ]
+
+    class PrintProgressAlertEventType(models.TextChoices):
+        PRINT_PROGRESS = (
+            "PrintProgress",
+            "{{ GCODE_FILE }} - {{ PRINT_PROGRESS }}% complete ⏳",
+        )
+
+    event_type = models.CharField(
+        max_length=36, choices=PrintProgressAlertEventType.choices
+    )
+    alert_method = models.CharField(
+        choices=AlertSettings.AlertMethod.choices,
+        max_length=36,
+    )
+    print_progress = models.IntegerField()
+    needs_review = models.BooleanField(default=False)
+    event = models.ForeignKey("telemetry.TelemetryEvent", on_delete=models.CASCADE)
+
+    @property
+    def message(self) -> str:
+        template = Template(self.get_event_type_display())
+        merge_data: Dict[str, Any] = {
+            "FIRST_NAME": self.user.first_name,  # type: ignore
+            "EMAIL": self.user.email,
+        }
+        ctx = Context(merge_data)
+        return template.render(ctx)
+
+
+class PrintStatusAlert(Alert):
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["alert_method", "event_type"],
+                name="unique_print_status_alert",
+            )
+        ]
+
+    class PrintStatusAlertEventType(models.TextChoices):
+        PRINT_DONE = "PrintDone", "{{ GCODE_FILE }} - job finished ✅"
+        PRINT_FAILED = "PrintFailed", "{{ GCODE_FILE }} - job failed ❌"
+        PRINT_PAUSED = "PrintPaused", "{{ GCODE_FILE }} - job paused ⏸️"
+        PRINT_RESUMED = "PrintResumed", "{{ GCODE_FILE }} - job resumed ⏯️"
+        PRINT_STARTED = "PrintStarted", "{{ GCODE_FILE }} - job started 🏁"
+        PRINT_CANCELLED = "PrintCancelled", "{{ GCODE_FILE }} - job cancelled ❌"
+
+    event_type = models.CharField(
+        max_length=36, choices=PrintStatusAlertEventType.choices
+    )
+    alert_method = models.CharField(
+        choices=AlertSettings.AlertMethod.choices,
+        max_length=36,
+    )
+    event = models.ForeignKey("telemetry.TelemetryEvent", on_delete=models.CASCADE)
+
+    @property
+    def message(self) -> str:
+        template = Template(self.get_event_type_display())
+        merge_data: Dict[str, Any] = {
+            "FIRST_NAME": self.user.first_name,  # type: ignore
+            "EMAIL": self.user.email,
+        }
+        ctx = Context(merge_data)
+        return template.render(ctx)
+
+
+class VideoStatusAlert(Alert):
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["alert_method", "event_type"],
+                name="unique_video_status_alert",
+            )
+        ]
+
+    class VideoStatusAlertEventType(models.TextChoices):
+        VIDEO_DONE = "VideoDone", "{{ GCODE_FILE }} - timelapse done 🎥"
+
+    event_type = models.CharField(
+        max_length=36, choices=VideoStatusAlertEventType.choices
+    )
+    alert_method = models.CharField(
+        choices=AlertSettings.AlertMethod.choices,
+        max_length=36,
+    )
+    annotated_video = models.FileField(upload_to=file_field_upload_to)
+    needs_review = models.BooleanField(default=False)
+
+    @property
+    def message(self) -> str:
+        template = Template(self.get_event_type_display())
+        merge_data: Dict[str, Any] = {
+            "FIRST_NAME": self.user.first_name,  # type: ignore
+            "EMAIL": self.user.email,
+        }
+        ctx = Context(merge_data)
+        return template.render(ctx)
+
+
+class AlertMessage(models.Model):
+    """
+    Base class for alert events
+    """
+
+    class AlertMessageType(models.TextChoices):
+        TEST = "Test", "Hello {{ FIRST_NAME }} 👋"
+        VIDEO_DONE = "VideoDone", "{{ GCODE_FILE }} - timelapse done 🎥"
+        PRINT_QUALITY = "PrintQuality", "{{ GCODE_FILE }} - failing quality control ❌"
+        PRINT_PROGRESS = (
+            "PrintProgress",
+            "{{ GCODE_FILE }} - {{ PRINT_PROGRESS }}% complete ⏳",
+        )
+        PRINT_DONE = "PrintDone", "{{ GCODE_FILE }} - job finished ✅"
+        PRINT_FAILED = "PrintFailed", "{{ GCODE_FILE }} - job failed ❌"
+        PRINT_PAUSED = "PrintPaused", "{{ GCODE_FILE }} - job paused ⏸️"
+        PRINT_RESUMED = "PrintResumed", "{{ GCODE_FILE }} - job resumed ⏯️"
+        PRINT_STARTED = "PrintStarted", "{{ GCODE_FILE }} - job started 🏁"
+        PRINT_CANCELLED = "PrintCancelled", "{{ GCODE_FILE }} - job cancelled ❌"
+        SHUTDOWN = "Shutdown", "{{ DEVICE_NAME }} - OctoPrint server shutdown 😴"
+        STARTUP = "Startup", "{{ DEVICE_NAME }} - OctoPrint server startup ✨"
+        CONNECTED = "Connected", "{{ DEVICE_NAME }} - OctoPrint connected to printer 🔗"
+        DISCONNECTED = (
+            "Disconnected",
+            "{{ DEVICE_NAME }} - OctoPrint disconnected from printer 💥",
+        )
+
+    @property
+    def message(self) -> str:
+        template = Template(self.get_event_type_display())
+        merge_data: Dict[str, Any] = {
+            "FIRST_NAME": self.user.first_name,  # type: ignore
+            "EMAIL": self.user.email,
+        }
+        ctx = Context(merge_data)
+        return template.render(ctx)
+
+    alert_method = models.CharField(
+        choices=AlertSettings.AlertMethod.choices,
+        max_length=255,
+    )
+    event_type = models.CharField(
+        choices=AlertMessageType.choices, max_length=255, null=True
+    )
+    event = models.ForeignKey(
+        "telemetry.TelemetryEvent", on_delete=models.CASCADE, null=True
+    )
+    annotated_video = models.FileField(upload_to=file_field_upload_to, null=True)
+
+    created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
+    updated_dt = models.DateTimeField(auto_now=True, db_index=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
+    seen = models.BooleanField(default=False)
+    sent = models.BooleanField(default=False)
+    needs_review = models.BooleanField(default=False)
