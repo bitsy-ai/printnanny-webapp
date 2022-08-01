@@ -9,7 +9,7 @@ from .services import (
     webrtc_stream_start,
     webrtc_stream_stop,
 )
-from .enum import WebRTCEventName, WebRTCCommandName
+from .models.enum import WebRTCEventName, WebRTCCommandName
 
 logger = logging.getLogger(__name__)
 

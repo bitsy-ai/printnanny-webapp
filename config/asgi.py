@@ -30,7 +30,6 @@ django_application = get_asgi_application()
 # Import websocket application here, so apps from django_application are loaded first
 from channels.auth import AuthMiddlewareStack
 from channels.routing import ChannelNameRouter, ProtocolTypeRouter, URLRouter
-import print_nanny_webapp.telemetry.routing
 import print_nanny_webapp.events.routing
 import print_nanny_webapp.alerts.routing
 
@@ -71,8 +70,7 @@ class TokenAuthMiddleware:
 TokenAuthMiddlewareStack = lambda inner: TokenAuthMiddleware(AuthMiddlewareStack(inner))
 
 websocket_urlpatterns = (
-    print_nanny_webapp.telemetry.routing.websocket_urlpatterns
-    + print_nanny_webapp.events.routing.websocket_urlpatterns
+    print_nanny_webapp.events.routing.websocket_urlpatterns
     + print_nanny_webapp.alerts.routing.websocket_urlpatterns
 )
 logging.info(f"Registering websocket urlpatterns {websocket_urlpatterns}")

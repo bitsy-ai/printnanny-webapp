@@ -1,6 +1,37 @@
 from django.db import models
 
 
+class PiGstreamerCommandType(models.TextChoices):
+    Start = ("Start", "Start gstreamer pipelines")
+    Stop = ("Stop", "Stop gstreamer pipelines")
+
+
+class PiSoftwareUpdateEventType(models.TextChoices):
+    Started = ("Started", "Started PrintNanny OS update")
+    Success = ("Success", "PrintNanny OS update succeeded")
+    Error = ("Error", "Error updating Raspberry Pi")
+
+
+class PiBootCommandType(models.TextChoices):
+    Reboot = ("Reboot", "Reboot Raspberry Pi")
+    Shutdown = ("Shutdown", "Shutdown Raspberry Pi")
+
+
+class PiBootEventType(models.TextChoices):
+    BootStart = (
+        "BootStart",
+        "Emitted during boot process, typically after systemd network-online.target",
+    )
+    BootSuccess = (
+        "BootSuccess",
+        "Boot reached default.target with no errors or degraded services",
+    )
+    BootDegraded = (
+        "BootDegraded",
+        "At least one systemd service reports degraded state",
+    )
+
+
 class EventModel(models.TextChoices):
     """
     Reference enum for Polymorphic Event models
@@ -39,7 +70,7 @@ class OctoPrintEventModel(models.TextChoices):
     OctoPrintEvent = "OctoPrintEvent"
 
 
-class OctoPrintEventName(models.TextChoices):
+class OctoPrintEventType(models.TextChoices):
     """
     EVENT_NAME : (OctoPrintEventString, Human-readable description)
     """
@@ -100,11 +131,11 @@ class EventSource(models.TextChoices):
     OCTOPRINT = ("octoprint", "Events originating from OctoPrint")
     PRINTNANNY_OS = (
         "printnanny_os",
-        "Events originating from PrintNanny OS",
+        "Event originating from PrintNanny OS",
     )
-    PRINTNANNY_WEB = (
-        "printnanny_webapp",
-        "Events originating from PrintNanny Webapp",
+    PRINTNANNY_CLOUD = (
+        "printnanny_cloud",
+        "Events originating from PrintNanny Cloud services",
     )
     MOONRAKER = (
         "mainsail",

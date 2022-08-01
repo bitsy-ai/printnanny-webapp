@@ -4,19 +4,20 @@ from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from rest_polymorphic.serializers import PolymorphicSerializer
 from print_nanny_webapp.devices.api.serializers import WebrtcStreamSerializer
-from print_nanny_webapp.events.models import (
-    Event,
-    WebRTCCommand,
-    WebRTCEvent,
-    TestEvent,
-    OctoPrintEvent,
-)
-from print_nanny_webapp.events.enum import (
-    OctoPrintEventModel,
+
+from print_nanny_webapp.events.models.enum import (
+    # OctoPrintEventModel,
     TestEventModel,
     WebRTCEventModel,
     WebRTCCommandModel,
 )
+from print_nanny_webapp.events.models.pi import (
+    PiBootCommand,
+    PiGstreamerCommand,
+    PiSoftwareUpdateEvent,
+)
+
+from ..models import PiBootEvent
 
 logger = logging.getLogger(__name__)
 
@@ -24,60 +25,35 @@ Pi = apps.get_model("devices", "Pi")
 User = get_user_model()
 
 
-class EventSerializer(serializers.ModelSerializer):
+class PiBootEventSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Event
+        model = PiBootEvent
         exclude = ("deleted",)
-        read_only_fields = ("user", "created_dt")
+        read_only_fields = ("created_dt",)
 
 
-class OctoPrintEventSerializer(serializers.ModelSerializer):
-    model = serializers.ChoiceField(choices=OctoPrintEventModel.choices)
-
+class PiBootCommandSerializer(serializers.ModelSerializer):
     class Meta:
-        model = OctoPrintEvent
+        model = PiBootCommand
         exclude = ("deleted",)
-        read_only_fields = ("user", "created_dt")
+        read_only_fields = ("created_dt",)
 
 
-class TestEventSerializer(serializers.ModelSerializer):
-    model = serializers.ChoiceField(choices=TestEventModel.choices)
-
+class PiSoftwareUpdateEventSerializer(serializers.ModelSerializer):
     class Meta:
-        model = TestEvent
+        model = PiSoftwareUpdateEvent
         exclude = ("deleted",)
-        read_only_fields = ("user", "created_dt")
+        read_only_fields = ("created_dt",)
 
 
-class WebRTCEventSerializer(serializers.ModelSerializer):
-    model = serializers.ChoiceField(choices=WebRTCEventModel.choices)
-
+class PiGstreamerCommandSerializer(serializers.ModelSerializer):
     class Meta:
-        model = WebRTCEvent
+        model = PiGstreamerCommand
         exclude = ("deleted",)
-        read_only_fields = ("user", "created_dt")
+        read_only_fields = ("created_dt",)
 
 
-class WebRTCCommandCreateSerializer(serializers.ModelSerializer):
-    model = serializers.ChoiceField(choices=WebRTCCommandModel.choices)
-
-    class Meta:
-        model = WebRTCCommand
-        exclude = ("deleted",)
-        read_only_fields = ("user", "created_dt")
-
-
-class WebRTCCommandSerializer(serializers.ModelSerializer):
-    stream = WebrtcStreamSerializer(read_only=True)
-    model = serializers.ChoiceField(choices=WebRTCCommandModel.choices)
-
-    class Meta:
-        model = WebRTCCommand
-        exclude = ("deleted",)
-        read_only_fields = ("user", "created_dt")
-
-
-class PolymorphicEventCreateSerializer(PolymorphicSerializer):
+class PolymorphicPiEventSerializer(PolymorphicSerializer):
     """
     Generic polymorphic serializer for all Events
 
@@ -88,68 +64,11 @@ class PolymorphicEventCreateSerializer(PolymorphicSerializer):
     The event_name field equivalent to a "sub type"
     """
 
-    resource_type_field_name = "model"
+    resource_type_field_name = "__class__"
     # Model -> Serializer mapping
     model_serializer_mapping = {
-        OctoPrintEvent: OctoPrintEventSerializer,
-        WebRTCEvent: WebRTCEventSerializer,
-        WebRTCCommand: WebRTCCommandCreateSerializer,
-        TestEvent: TestEventSerializer,
-    }
-
-
-class PolymorphicEventSerializer(PolymorphicSerializer):
-    """
-    Generic polymorphic serializer for all Events
-
-    The model field is used to distinguish Polymorphic serializers/models from each other
-    Each model has a 1-1 relationship with models derived from Event in print_nanny_webapp.events.models
-    The model field is equivalent to a Type
-
-    The event_name field equivalent to a "sub type"
-    """
-
-    resource_type_field_name = "model"
-    # Model -> Serializer mapping
-    model_serializer_mapping = {
-        OctoPrintEvent: OctoPrintEventSerializer,
-        WebRTCEvent: WebRTCEventSerializer,
-        WebRTCCommand: WebRTCCommandSerializer,
-        TestEvent: TestEventSerializer,
-    }
-
-
-class PolymorphicCommandCreateSerializer(PolymorphicSerializer):
-    """
-    Generic polymorphic serializer for all Commands (Event subtype)
-
-    The model field is used to distinguish Polymorphic serializers/models from each other
-    Each model has a 1-1 relationship with models derived from Event in print_nanny_webapp.events.models
-    The model field is equivalent to a Type
-
-    The event_name field equivalent to a "sub type"
-    """
-
-    resource_type_field_name = "model"
-    # Model -> Serializer mapping
-    model_serializer_mapping = {
-        WebRTCCommand: WebRTCCommandCreateSerializer,
-    }
-
-
-class PolymorphicCommandSerializer(PolymorphicSerializer):
-    """
-    Generic polymorphic serializer for all Commands (Event subtype)
-
-    The model field is used to distinguish Polymorphic serializers/models from each other
-    Each model has a 1-1 relationship with models derived from Event in print_nanny_webapp.events.models
-    The model field is equivalent to a Type
-
-    The event_name field equivalent to a "sub type"
-    """
-
-    resource_type_field_name = "model"
-    # Model -> Serializer mapping
-    model_serializer_mapping = {
-        WebRTCCommand: WebRTCCommandSerializer,
+        PiGstreamerCommand: PiGstreamerCommandSerializer,
+        PiSoftwareUpdateEvent: PiSoftwareUpdateEvent,
+        PiBootCommand: PiBootCommandSerializer,
+        PiBootEvent: PiBootEventSerializer,
     }

@@ -10,7 +10,7 @@ from print_nanny_webapp.devices.api.views import (
     PiLicenseViewset,
     PiSettingsViewSet,
 )
-from print_nanny_webapp.events.api.views import CommandViewSet, EventViewSet
+from print_nanny_webapp.events.api.views import PiEventViewSet
 
 from print_nanny_webapp.alerts.api.views import (
     AlertSettingsViewSet,
@@ -84,8 +84,8 @@ router.register(
     basename="octoprint-settings",
 )
 
-router.register("events", EventViewSet, basename="events")
-router.register("commands", CommandViewSet, basename="commands")
+router.register("events", PiEventViewSet, basename="events")
+# router.register("commands", CommandViewSet, basename="commands")
 app_name = "api"
 
 urlpatterns = router.urls + pi_router.urls + other_urls

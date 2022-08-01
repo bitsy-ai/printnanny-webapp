@@ -9,7 +9,7 @@ from print_nanny_webapp.devices.models import (
 )
 from print_nanny_webapp.events.api.serializers import PolymorphicEventSerializer
 from .models import WebRTCCommand, WebRTCEvent, Event
-from .enum import WebRTCEventName, WebRTCCommandModel
+from .models.enum import WebRTCEventName, WebRTCCommandModel
 
 logger = logging.getLogger(__name__)
 
