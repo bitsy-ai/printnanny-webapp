@@ -12,10 +12,10 @@ from print_nanny_webapp.devices.api.views import (
 )
 from print_nanny_webapp.events.api.views import PiEventViewSet
 
-from print_nanny_webapp.alerts.api.views import (
-    AlertSettingsViewSet,
-    AlertViewSet,  # , PrintSessionAlertViewSet
-)
+# from print_nanny_webapp.alerts.api.views import (
+#     AlertSettingsViewSet,
+#     AlertViewSet,  # , PrintSessionAlertViewSet
+# )
 
 from print_nanny_webapp.subscriptions.api.views import (
     BillingSummaryView,
@@ -34,8 +34,8 @@ from print_nanny_webapp.users.api.views import EmailWaitlistViewSet
 router = DefaultRouter()
 
 router.register("accounts/email-waitlist", EmailWaitlistViewSet, "email-waitlist")
-router.register("alerts", AlertViewSet, basename="alerts")
-router.register(r"alert-settings", AlertSettingsViewSet, basename="alert-settings")
+# router.register("alerts", AlertViewSet, basename="alerts")
+# router.register(r"alert-settings", AlertSettingsViewSet, basename="alert-settings")
 
 router.register("pis", PiViewSet)
 

@@ -90,11 +90,11 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "print_nanny_webapp.alerts.apps.AlertsConfig",
+    # "print_nanny_webapp.alerts.apps.AlertsConfig",
     "print_nanny_webapp.devices.apps.DevicesConfig",
-    "print_nanny_webapp.partners.apps.PartnersConfig",
-    "print_nanny_webapp.remote_control.apps.RemoteControlConfig",
-    "print_nanny_webapp.telemetry.apps.TelemetryConfig",
+    # "print_nanny_webapp.partners.apps.PartnersConfig",
+    # "print_nanny_webapp.remote_control.apps.RemoteControlConfig",
+    # "print_nanny_webapp.telemetry.apps.TelemetryConfig",
     "print_nanny_webapp.users.apps.UsersConfig",
     "print_nanny_webapp.surveys.apps.SurveysConfig",
     "print_nanny_webapp.octoprint.apps.OctoprintConfig",

@@ -17,7 +17,8 @@ from ..enum import (
 )
 from print_nanny_webapp.users.api.serializers import UserSerializer
 from print_nanny_webapp.utils.api.serializers import PrintNannyApiConfigSerializer
-from print_nanny_webapp.alerts.api.serializers import AlertSettingsSerializer
+
+# from print_nanny_webapp.alerts.api.serializers import AlertSettingsSerializer
 from print_nanny_webapp.octoprint.api.serializers import OctoPrintServerSerializer
 
 User = get_user_model()
@@ -144,7 +145,7 @@ class SystemInfoSerializer(serializers.ModelSerializer):
 
 class PiSerializer(serializers.ModelSerializer):
     last_boot = serializers.CharField(read_only=True)
-    alert_settings = AlertSettingsSerializer(read_only=True)
+    # alert_settings = AlertSettingsSerializer(read_only=True)
     settings = PiSettingsSerializer(read_only=True)
     cloudiot_device = CloudiotDeviceSerializer(read_only=True)
     user = UserSerializer(read_only=True)
