@@ -12,10 +12,6 @@ import { ref } from "vue";
 
 const loading = ref(false);
 
-async function load() {
-  loading.value = true;
-}
-
 // const props = defineProps({
 //   device: {
 //     type: Object as PropType<Device>,

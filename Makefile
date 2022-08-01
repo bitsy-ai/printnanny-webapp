@@ -177,6 +177,9 @@ local-build: local-image-build local-vue-build
 down:
 	docker-compose -f local.yml down
 
+nsc-init:
+	docker-compose -f local.yml exec django python manage.py nsc_init || echo "DjangoOperator already created" && docker-compose -f local.yml restart nats
+
 local-up: local-image-build local-creds
 	. .envs/.sandbox/.env && PROJECT=$(GCP_PROJECT) \
 	PRINT_NANNY_IOT_DEVICE_REGISTRY=$(PRINT_NANNY_IOT_DEVICE_REGISTRY) \
@@ -505,13 +508,13 @@ cert-manager-dns:
     "iam.gke.io/gcp-service-account=dns01-solver@$(GCP_PROJECT).iam.gserviceaccount.com"
 
 migrations:
-	docker-compose -f local.yml exec django python manage.py makemigrations
+	docker-compose -f local.yml run --rm django python manage.py makemigrations
 
 migrate:
-	docker-compose -f local.yml exec django python manage.py migrate
+	docker-compose -f local.yml run --rm django python manage.py migrate
 
 collectstatic:
-	docker-compose -f local.yml exec django python manage.py collectstatic
+	docker-compose -f local.yml run --rm django python manage.py collectstatic
 
 dev-config: $(TMPDIR)
 	docker-compose -f local.yml exec django python manage.py devconfig \
@@ -522,3 +525,4 @@ dev-config: $(TMPDIR)
 
 schema:
 	docker-compose -f local.yml exec django python manage.py spectacular --file asyncapi/openapi.yaml
+

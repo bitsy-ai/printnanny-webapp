@@ -8,7 +8,7 @@ ENV JUPYTER_CONFIG_DIR /data
 
 RUN apt-get update \
   # dependencies for building Python packages
-  && apt-get install -y build-essential \
+  && apt-get install -y build-essential unzip \
   # psycopg2 dependencies
   && apt-get install -y libpq-dev \
   # Translations dependencies
@@ -21,6 +21,11 @@ RUN apt-get update \
   # cleaning up unused files
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*
+
+# install nsc command-line tool
+RUN wget https://github.com/nats-io/nsc/releases/download/2.7.1/nsc-linux-amd64.zip -O nsc-linux-amd64.zip
+RUN unzip nsc-linux-amd64.zip -d /usr/local/bin
+
 
 # Requirements are installed here to ensure they will be cached.
 COPY ./requirements /requirements

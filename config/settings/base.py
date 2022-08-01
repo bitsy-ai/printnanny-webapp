@@ -750,3 +750,4 @@ REST_AUTH_REGISTER_SERIALIZERS = {
 # https://github.com/bitsy-ai/django-nats-nkeys
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += ["organizations", "django_nats_nkeys"]
+NATS_APP_MODEL = "devices.PiNatsApp"

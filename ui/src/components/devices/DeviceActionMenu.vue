@@ -38,6 +38,30 @@
           </MenuItem>
         </div>
         <div class="py-1">
+          <!-- finish setup -->
+          <MenuItem v-if="!pi.setup_finished" v-slot="{ active }">
+            <router-link
+              :class="[
+                active
+                  ? 'bg-yellow-200 text-yellow-800'
+                  : 'bg-yellow-100 text-yellow-800',
+                'group flex items-center px-4 py-2 text-sm',
+              ]"
+              :to="{
+                name: 'device-connect',
+                params: {
+                  activeStep: 'download-printnanny-zip',
+                  piId: pi.id,
+                },
+              }"
+            >
+              <ExclamationIcon
+                class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500 group-hover:bg-yellow-200 bg-yellow-100 text-yellow-800"
+                aria-hidden="true"
+              />
+              Finish Setup
+            </router-link>
+          </MenuItem>
           <!-- favorites actions -->
           <MenuItem v-if="!pi.favorite" v-slot="{ active }">
             <a
@@ -101,6 +125,8 @@ import {
   TrashIcon,
   ExternalLinkIcon,
 } from "@heroicons/vue/solid";
+import { ExclamationIcon } from "@heroicons/vue/outline";
+
 import { useDeviceStore } from "@/stores/devices";
 
 const props = defineProps({
@@ -145,7 +171,7 @@ const footerActions = [
   {
     name: "Delete",
     link: {
-      name: "pi-delete",
+      name: "device-delete",
       params: { id: props.pi.id },
       query: { hostname: props.pi.hostname },
     },

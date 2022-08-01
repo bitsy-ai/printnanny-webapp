@@ -70,12 +70,12 @@
               >
                 <div class="flex items-center space-x-3 lg:pl-2">
                   <div
-                    v-if="!pi.ws_connected"
-                    class="bg-red-500 flex-shrink-0 w-2.5 h-2.5 rounded-full"
+                    v-if="!pi.setup_finished"
+                    class="bg-yellow-500 flex-shrink-0 w-2.5 h-2.5 rounded-full"
                     aria-hidden="true"
                   ></div>
                   <div
-                    v-if="pi.ws_connected"
+                    v-if="pi.setup_finished"
                     class="bg-green-500 flex-shrink-0 w-2.5 h-2.5 rounded-full"
                     aria-hidden="true"
                   ></div>
@@ -85,16 +85,26 @@
                       {{ " " }}
                     </span>
                   </a>
-                  <span
-                    v-if="!pi.ws_connected"
-                    class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-red-100 text-red-800"
+                  <!-- setup incomplete badge / link -->
+                  <router-link
+                    :to="{
+                      name: 'device-connect',
+                      params: {
+                        activeStep: 'download-printnanny-zip',
+                        piId: pi.id,
+                      },
+                    }"
                   >
-                    <ExclamationIcon
-                      v-if="!pi.ws_connected"
-                      class="bg-red-500"
-                    />
-                    Connection Issue
-                  </span>
+                    <span
+                      v-if="!pi.setup_finished"
+                      class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-yellow-100 text-yellow-800 hover:bg-yellow-200"
+                    >
+                      <ExclamationIcon
+                        class="w-5 h-5 text-yellow-800 text-yellow-800"
+                      />
+                      Setup Incomplete
+                    </span>
+                  </router-link>
                 </div>
               </td>
               <td
@@ -119,6 +129,8 @@ import { useDeviceStore } from "@/stores/devices";
 import DeviceEmpty from "./DeviceEmpty.vue";
 import DeviceActionMenu from "./DeviceActionMenu.vue";
 import DeviceFavorites from "./DeviceFavorites.vue";
+import { ExclamationIcon } from "@heroicons/vue/outline";
+
 const deviceStore = useDeviceStore();
 deviceStore.fetchDevices();
 </script>

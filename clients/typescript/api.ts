@@ -469,25 +469,6 @@ export type CollectionMethodEnum = typeof CollectionMethodEnum[keyof typeof Coll
 
 
 /**
- * 
- * @export
- * @interface Config
- */
-export interface Config {
-    /**
-     * 
-     * @type {PrintNannyApiConfig}
-     * @memberof Config
-     */
-    'api': PrintNannyApiConfig;
-    /**
-     * 
-     * @type {Pi}
-     * @memberof Config
-     */
-    'pi': Pi;
-}
-/**
  * Generic auth response serializer
  * @export
  * @interface DetailResponse
@@ -1452,6 +1433,19 @@ export interface OctoPrinterProfileRequest {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export const OsEdition = {
+    OctoprintLite: 'octoprint_lite'
+} as const;
+
+export type OsEdition = typeof OsEdition[keyof typeof OsEdition];
+
+
+/**
+ * 
+ * @export
  * @interface PaginatedAlertList
  */
 export interface PaginatedAlertList {
@@ -2266,6 +2260,18 @@ export interface PatchedOctoPrinterProfileRequest {
  */
 export interface PatchedPiRequest {
     /**
+     * 
+     * @type {SbcEnum}
+     * @memberof PatchedPiRequest
+     */
+    'sbc'?: SbcEnum;
+    /**
+     * 
+     * @type {OsEdition}
+     * @memberof PatchedPiRequest
+     */
+    'edition'?: OsEdition;
+    /**
      * Please enter the hostname you set in the Raspberry Pi Imager\'s Advanced Options menu (without .local extension)
      * @type {string}
      * @memberof PatchedPiRequest
@@ -2288,7 +2294,7 @@ export interface PatchedPiRequest {
      * @type {boolean}
      * @memberof PatchedPiRequest
      */
-    'ws_connected'?: boolean;
+    'setup_finished'?: boolean;
 }
 /**
  * 
@@ -2567,6 +2573,18 @@ export interface Pi {
     'urls': PiUrls;
     /**
      * 
+     * @type {SbcEnum}
+     * @memberof Pi
+     */
+    'sbc'?: SbcEnum;
+    /**
+     * 
+     * @type {OsEdition}
+     * @memberof Pi
+     */
+    'edition'?: OsEdition;
+    /**
+     * 
      * @type {string}
      * @memberof Pi
      */
@@ -2594,7 +2612,7 @@ export interface Pi {
      * @type {boolean}
      * @memberof Pi
      */
-    'ws_connected'?: boolean;
+    'setup_finished'?: boolean;
 }
 /**
  * 
@@ -2602,6 +2620,18 @@ export interface Pi {
  * @interface PiRequest
  */
 export interface PiRequest {
+    /**
+     * 
+     * @type {SbcEnum}
+     * @memberof PiRequest
+     */
+    'sbc'?: SbcEnum;
+    /**
+     * 
+     * @type {OsEdition}
+     * @memberof PiRequest
+     */
+    'edition'?: OsEdition;
     /**
      * Please enter the hostname you set in the Raspberry Pi Imager\'s Advanced Options menu (without .local extension)
      * @type {string}
@@ -2625,7 +2655,7 @@ export interface PiRequest {
      * @type {boolean}
      * @memberof PiRequest
      */
-    'ws_connected'?: boolean;
+    'setup_finished'?: boolean;
 }
 /**
  * 
@@ -2732,37 +2762,6 @@ export type PolymorphicEvent = OctoPrintEvent | TestEvent | WebRTCCommand | WebR
  */
 export type PolymorphicEventCreateRequest = OctoPrintEventRequest | TestEventRequest | WebRTCCommandCreateRequest | WebRTCEventRequest;
 
-/**
- * 
- * @export
- * @interface PrintNannyApiConfig
- */
-export interface PrintNannyApiConfig {
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintNannyApiConfig
-     */
-    'bearer_access_token': string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintNannyApiConfig
-     */
-    'base_path': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintNannyApiConfig
-     */
-    'static_url': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintNannyApiConfig
-     */
-    'dashboard_url': string;
-}
 /**
  * 
  * @export
@@ -2906,6 +2905,19 @@ export interface RestAuthDetail {
      */
     'detail': string;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const SbcEnum = {
+    Rpi4: 'rpi_4'
+} as const;
+
+export type SbcEnum = typeof SbcEnum[keyof typeof SbcEnum];
+
+
 /**
  * 
  * @export
@@ -7568,45 +7580,6 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * 
-         * @param {number} piId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        pisConfigDownloadRetrieve: async (piId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'piId' is not null or undefined
-            assertParamExists('pisConfigDownloadRetrieve', 'piId', piId)
-            const localVarPath = `/api/pis/{pi_id}/config/download/`
-                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * A device (Raspberry Pi) running Print Nanny OS
          * @param {PiRequest} [piRequest] 
          * @param {*} [options] Override http request option.
@@ -7664,6 +7637,45 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             }
 
             const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} piId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisLicenseZipRetrieve: async (piId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisLicenseZipRetrieve', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/license/zip/`
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -8926,16 +8938,6 @@ export const DevicesApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * 
-         * @param {number} piId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async pisConfigDownloadRetrieve(piId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Config>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.pisConfigDownloadRetrieve(piId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
          * A device (Raspberry Pi) running Print Nanny OS
          * @param {PiRequest} [piRequest] 
          * @param {*} [options] Override http request option.
@@ -8953,6 +8955,16 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          */
         async pisDestroy(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.pisDestroy(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} piId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async pisLicenseZipRetrieve(piId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisLicenseZipRetrieve(piId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -9320,15 +9332,6 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.pisCloudiotUpdate(id, piId, cloudiotDeviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
-         * @param {number} piId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        pisConfigDownloadRetrieve(piId: number, options?: any): AxiosPromise<Config> {
-            return localVarFp.pisConfigDownloadRetrieve(piId, options).then((request) => request(axios, basePath));
-        },
-        /**
          * A device (Raspberry Pi) running Print Nanny OS
          * @param {PiRequest} [piRequest] 
          * @param {*} [options] Override http request option.
@@ -9345,6 +9348,15 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          */
         pisDestroy(id: number, options?: any): AxiosPromise<void> {
             return localVarFp.pisDestroy(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} piId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisLicenseZipRetrieve(piId: number, options?: any): AxiosPromise<any> {
+            return localVarFp.pisLicenseZipRetrieve(piId, options).then((request) => request(axios, basePath));
         },
         /**
          * A device (Raspberry Pi) running Print Nanny OS
@@ -9684,15 +9696,6 @@ export interface DevicesApiInterface {
     pisCloudiotUpdate(id: string, piId: number, cloudiotDeviceRequest: CloudiotDeviceRequest, options?: AxiosRequestConfig): AxiosPromise<CloudiotDevice>;
 
     /**
-     * 
-     * @param {number} piId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    pisConfigDownloadRetrieve(piId: number, options?: AxiosRequestConfig): AxiosPromise<Config>;
-
-    /**
      * A device (Raspberry Pi) running Print Nanny OS
      * @param {PiRequest} [piRequest] 
      * @param {*} [options] Override http request option.
@@ -9709,6 +9712,15 @@ export interface DevicesApiInterface {
      * @memberof DevicesApiInterface
      */
     pisDestroy(id: number, options?: AxiosRequestConfig): AxiosPromise<void>;
+
+    /**
+     * 
+     * @param {number} piId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    pisLicenseZipRetrieve(piId: number, options?: AxiosRequestConfig): AxiosPromise<any>;
 
     /**
      * A device (Raspberry Pi) running Print Nanny OS
@@ -10060,17 +10072,6 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
     }
 
     /**
-     * 
-     * @param {number} piId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public pisConfigDownloadRetrieve(piId: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).pisConfigDownloadRetrieve(piId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
      * A device (Raspberry Pi) running Print Nanny OS
      * @param {PiRequest} [piRequest] 
      * @param {*} [options] Override http request option.
@@ -10090,6 +10091,17 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      */
     public pisDestroy(id: number, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).pisDestroy(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} piId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public pisLicenseZipRetrieve(piId: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisLicenseZipRetrieve(piId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

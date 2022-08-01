@@ -2,6 +2,7 @@ import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
 import type { Pi, WebrtcStream } from "printnanny-api-client";
 import { ApiConfig, handleApiError } from "@/utils/api";
+import type { number } from "yup";
 
 const devicesApi = api.DevicesApiFactory(ApiConfig);
 export const useDeviceStore = defineStore({
@@ -34,18 +35,6 @@ export const useDeviceStore = defineStore({
         this.pis.splice(index, 1, res.data);
       }
       console.debug("piPartialUpdate response", res);
-    },
-
-    async create(hostname: string) {
-      // Wireguard TODO: allow user to specify fqdn
-      const req: api.PiRequest = {
-        hostname,
-        fqdn: `${hostname}.local`,
-      };
-      this.$patch({ loading: true });
-      const res = await devicesApi.pisCreate(req).catch(handleApiError);
-      this.$patch({ loading: true });
-      console.debug("pisCreate response", res);
     },
     async fetchDevices() {
       this.$patch({ loading: true });

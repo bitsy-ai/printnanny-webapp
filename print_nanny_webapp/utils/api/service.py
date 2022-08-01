@@ -16,8 +16,6 @@ logger = logging.getLogger(__name__)
 class PrintNannyApiConfig(TypedDict):
     bearer_access_token: Optional[str]
     base_path: str
-    static_url: str
-    dashboard_url: str
 
 
 def get_api_config(request, user=None) -> PrintNannyApiConfig:
@@ -33,13 +31,9 @@ def get_api_config(request, user=None) -> PrintNannyApiConfig:
     base_path = request.build_absolute_uri("/")[
         :-1
     ]  # remove trailing slash for use in API client base_url
-    static_url = urllib.parse.urljoin(base_path, settings.STATIC_URL)
-    dashboard_url = urllib.parse.urljoin(base_path, reverse("dashboard:home"))
     config = PrintNannyApiConfig(
         bearer_access_token=token,
         base_path=base_path,
-        static_url=static_url,
-        dashboard_url=dashboard_url,
     )
     logger.debug(
         "Created request.user.is_anonymous=%s config=%s",

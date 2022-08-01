@@ -12,10 +12,17 @@ from google.cloud import iot_v1 as cloudiot_v1
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.signals import pre_softdelete
 
+from django_nats_nkeys.models import (
+    AbstractNatsApp,
+    NatsOrganization,
+    NatsOrganizationUser,
+)
+
 from .utils import get_available_rtp_port
 from .enum import (
     JanusConfigType,
     OsEdition,
+    SingleBoardComputerType,
 )
 
 UserModel = get_user_model()
@@ -61,6 +68,11 @@ class Pi(SafeDeleteModel):
             )
         ]
 
+    sbc = models.CharField(
+        max_length=32,
+        choices=SingleBoardComputerType.choices,
+        default=SingleBoardComputerType.RPI_4,
+    )
     edition = models.CharField(
         max_length=32, choices=OsEdition.choices, default=OsEdition.OCTOPRINT_LITE
     )
@@ -77,6 +89,7 @@ class Pi(SafeDeleteModel):
 
     fqdn = models.CharField(max_length=255, default="printnanny.local")
     favorite = models.BooleanField(default=False)
+    setup_finished = models.BooleanField(default=False)
 
     @property
     def urls(self) -> PiUrls:
@@ -164,6 +177,31 @@ class Pi(SafeDeleteModel):
     @property
     def cloudiot(self):
         return self.cloudiot_device
+
+
+# add Pi foreign key reference to NatsApp
+class PiNatsApp(AbstractNatsApp, SafeDeleteModel):
+    pi = models.ForeignKey(Pi, on_delete=models.CASCADE)
+    organization_user = models.ForeignKey(
+        NatsOrganizationUser, on_delete=models.CASCADE, related_name="nats_pi_apps"
+    )
+    organization = models.ForeignKey(
+        NatsOrganization,
+        on_delete=models.CASCADE,
+        related_name="nats_pi_apps",
+    )
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["name", "organization"], name="unique_app_name_per_org"
+            ),
+            UniqueConstraint(
+                fields=["pi"],
+                condition=models.Q(deleted=None),
+                name="unique_nats_app_per_pi",
+            ),
+        ]
 
 
 class PiSettings(SafeDeleteModel):

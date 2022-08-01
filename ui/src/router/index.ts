@@ -4,8 +4,11 @@ import DashboardLayout from "@/layouts/DashboardLayout.vue";
 import { useAccountStore } from "@/stores/account";
 import DeviceList from "@/components/devices/DeviceList.vue";
 import DeviceTopRight from "@/components/devices/DeviceTopRight.vue";
-import DeviceCreate from "@/components/devices/DeviceCreate.vue";
 import DeviceDelete from "@/components/devices/DeviceDelete.vue";
+import PiCreateWizard from "@/components/wizard/PiCreateWizard.vue";
+import PiCreateWizardProgress from "@/components/wizard/PiCreateWizardProgress.vue";
+import PageTitle from "@/components/nav/PageTitle.vue";
+
 import SettingsView from "@/views/SettingsView.vue";
 import SwagView from "@/views/SwagView.vue";
 
@@ -57,6 +60,7 @@ const router = createRouter({
       path: "/devices/",
       components: {
         default: DashboardLayout,
+        TopBar: PageTitle,
       },
       children: [
         {
@@ -65,15 +69,18 @@ const router = createRouter({
           components: {
             default: DeviceList,
             TopRight: DeviceTopRight,
+            TopBar: PageTitle,
           },
           meta: { title: "Manage Network" },
         },
         {
-          path: "connect/",
+          path: "connect/:activeStep?/:piId?",
           name: "device-connect",
           components: {
-            default: DeviceCreate,
+            default: PiCreateWizard,
+            TopBar: PiCreateWizardProgress,
           },
+          props: { default: true, TopBar: true },
           meta: { title: "Connect New Device" },
         },
         {

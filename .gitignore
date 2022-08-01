@@ -10,6 +10,7 @@ __pycache__/
 *$py.class
 
 # Webpack crap
+.nats/DjangoOperator.conf
 
 *.hot-update*
 

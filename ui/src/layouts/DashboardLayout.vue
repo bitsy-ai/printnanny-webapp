@@ -115,11 +115,7 @@
             class="border-b border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8"
           >
             <div class="flex-1 min-w-0">
-              <h1
-                class="text-lg font-medium leading-6 text-gray-900 sm:truncate"
-              >
-                {{ $route.meta.title }}
-              </h1>
+              <router-view name="TopBar"> </router-view>
             </div>
             <div class="mt-4 flex sm:mt-0 sm:ml-4">
               <!-- top right section (content-specific action buttons) -->
@@ -145,7 +141,6 @@ import {
 } from "@headlessui/vue";
 import { MenuAlt1Icon, XIcon } from "@heroicons/vue/outline";
 import ProfileMenu from "@/components/nav/ProfileMenu.vue";
-// import PinnedDevices from "@/components/devices/PinnedDevices.vue";
 import SidebarNav from "@/components/nav/SidebarNav.vue";
 import MobileProfileMenu from "@/components/nav/MobileProfileMenu.vue";
 import MobileSidebarNav from "@/components/nav/MobileSidebarNav.vue";

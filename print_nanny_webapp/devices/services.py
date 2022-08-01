@@ -1,16 +1,30 @@
 from __future__ import annotations
+import io
 import logging
 from uuid import uuid4
 from typing import Tuple, Dict, Any
 import requests
+import zipfile
 from google.cloud import iot_v1 as cloudiot_v1
 import google.api_core.exceptions
 from django.db import IntegrityError
 from django.conf import settings
 from django.template.loader import render_to_string
+from django.http import HttpRequest
+from rest_framework.renderers import JSONRenderer
+from print_nanny_webapp.devices.api.serializers import PiSerializer
 from print_nanny_webapp.devices.enum import JanusConfigType
+from print_nanny_webapp.utils.api.serializers import PrintNannyApiConfigSerializer
+from print_nanny_webapp.utils.api.service import get_api_config
 
-from .models import CloudiotDevice, Pi, PublicKey, WebrtcStream
+from django_nats_nkeys.models import NatsOrganizationOwner
+from django_nats_nkeys.services import (
+    create_nats_account_org,
+    nsc_generate_creds,
+    create_nats_app,
+)
+
+from .models import CloudiotDevice, Pi, PiNatsApp, PublicKey, WebrtcStream
 
 logger = logging.getLogger(__name__)
 
@@ -184,3 +198,48 @@ def janus_cloud_setup(device: Pi) -> Tuple[WebrtcStream, bool]:
     # janus_admin_add_token(janus_auth)
     logger.info("Retrieved WebrtcStream %s created=%s", stream, created)
     return stream, created
+
+
+def create_pi_nats_app(pi: Pi) -> PiNatsApp:
+    # is user already the owner of NatsOrganization?
+    try:
+        org_owner = NatsOrganizationOwner.objects.get(organization_user__user=pi.user)
+        org = org_owner.organization
+    except NatsOrganizationOwner.DoesNotExist:
+        org = create_nats_account_org(pi.user)
+
+    # create nats app associated with org user
+    app = create_nats_app(pi.user, org, pi=pi)
+    return app
+
+
+def build_license_zip(pi: Pi, request: HttpRequest) -> bytes:
+    # serialize pi.json
+    # serialize api.json
+    # serialize nats creds
+    pi_json = PiSerializer(instance=pi)
+    api = get_api_config(request, user=pi.user)
+    api_json = PrintNannyApiConfigSerializer(instance=api)
+
+    # is there already a NatsApp associated with Pi?
+    try:
+        app = PiNatsApp.objects.get(pi=pi)
+    # no app, step through NATS account + app creation process
+    except PiNatsApp.DoesNotExist:
+        app = create_pi_nats_app(pi)
+
+    nats_creds = nsc_generate_creds(app.organization, app)
+
+    creds_bundle = [
+        ("pi.json", JSONRenderer().render(pi_json.data)),
+        ("api.json", JSONRenderer().render(api_json.data)),
+        ("nats.creds", nats_creds),
+    ]
+
+    # do not write sensitive credentials to disk
+    # instead, write to memory buffer
+    zip_buffer = io.BytesIO()
+    with zipfile.ZipFile(zip_buffer, "a", zipfile.ZIP_DEFLATED, False) as zip_obj:
+        for file_name, data in creds_bundle:
+            zip_obj.writestr(file_name, data)
+    return zip_buffer.getvalue()

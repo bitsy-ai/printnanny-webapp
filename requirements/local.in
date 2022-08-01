@@ -1,6 +1,7 @@
 argon2-cffi
 channels
 channels-redis
+coolname
 dj-rest-auth
 dj-stripe
 django-allauth
@@ -19,7 +20,7 @@ django-health-check
 django-invitations
 django-loginas
 django-model-utils
-django-nats-nkeys
+django-nats-nkeys>=0.4.5
 django-polymorphic
 django-prometheus
 django-qr-code
