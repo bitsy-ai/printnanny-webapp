@@ -15,7 +15,7 @@ const props = defineProps({
   piId: {
     type: String,
     required: false,
-    default: undefined,
+    default: "",
   },
   activeStep: {
     type: String,
@@ -27,7 +27,7 @@ const store = useWizardStore();
 
 async function downloadLicense() {
   if (props.piId !== "" && props.activeStep === "download-printnanny-zip") {
-    await store.downloadLicenseZip(parseInt(props?.piId));
+    await store.downloadLicenseZip(parseInt(props.piId));
   }
 }
 downloadLicense();
@@ -39,7 +39,7 @@ downloadLicense();
   >
     <div class="w-full md:w-2/3 m-auto">
       <FormWizard :steps="steps" :active-step="activeStep">
-        <FormStep>
+        <FormStep :name="steps[0].key" :active-step="activeStep">
           <div
             class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap text-center"
           >
@@ -63,7 +63,7 @@ downloadLicense();
             </p>
           </div>
         </FormStep>
-        <FormStep>
+        <FormStep :name="steps[1].key" :active-step="activeStep">
           <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl">
             Connect New Device
           </h2>
@@ -162,7 +162,7 @@ downloadLicense();
           </fieldset>
           <hr class="m-5" />
         </FormStep>
-        <FormStep>
+        <FormStep :name="steps[2].key" :active-step="activeStep">
           <div
             class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap text-center"
           >
@@ -250,7 +250,7 @@ downloadLicense();
             <hr class="m-5" />
           </div>
         </FormStep>
-        <FormStep :idx="3">
+        <FormStep :name="steps[3].key" :active-step="activeStep">
           <div
             class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap text-center"
           >

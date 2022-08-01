@@ -48,9 +48,10 @@ export const useWizardStore = defineStore({
       this.$patch({ loading: true });
       const res = await devicesApi.pisCreate(req).catch(handleApiError);
       console.debug("pisCreate response", res);
-
-      this.$patch({ loading: false, pi: res.data });
-      return res.data;
+      if (res) {
+        this.$patch({ loading: false, pi: res.data });
+        return res.data;
+      }
     },
   },
 });

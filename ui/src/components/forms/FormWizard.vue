@@ -64,9 +64,8 @@ const onSubmit = handleSubmit(async (values) => {
   });
   await currentStep.value.onSubmit(formData.value);
 
-  if (currentStep.value.nextButton.link) {
-    const link = currentStep.value.nextButton.link();
-    console.log("pushing link", link);
+  const link = currentStep?.value.nextButton?.link();
+  if (link) {
     await router.push(link);
   }
 });
@@ -87,18 +86,18 @@ const onSubmit = handleSubmit(async (values) => {
             :aria-hidden="true"
           />
         </span>
-        {{ currentStep?.nextButton.text }}
+        {{ currentStep?.nextButton?.text }}
       </button>
       <router-link
         v-if="currentStep?.prevButton"
-        :to="currentStep?.prevButton.link()"
+        :to="currentStep?.prevButton?.link()"
       >
         <button
           :disabled="store.loading"
           type="button"
           class="group m-2 relative w-1/2 justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-25"
         >
-          {{ currentStep?.prevButton.text }}
+          {{ currentStep?.prevButton?.text }}
         </button>
       </router-link>
     </div>

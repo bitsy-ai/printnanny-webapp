@@ -1,5 +1,6 @@
 import * as yup from "yup";
 import { useWizardStore } from "@/stores/wizard";
+import type * as api from "printnanny-api-client";
 
 export function PiCreateWizardSteps() {
   const store = useWizardStore();
@@ -59,7 +60,9 @@ export function PiCreateWizardSteps() {
           sbc,
         };
         const pi = await store.createPi(req);
-        store.downloadLicenseZip(parseInt(pi.id));
+        if (pi) {
+          store.downloadLicenseZip(pi.id);
+        }
       },
     },
     {

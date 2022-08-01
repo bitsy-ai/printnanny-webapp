@@ -24,13 +24,12 @@ export interface UiAlert {
 
 export type WizardButton = {
   text: string;
-  link: RouteLocationRaw | undefined;
-  disabled: boolean;
+  link: () => RouteLocationRaw;
 };
 
 export type WizardStep = {
   key: string;
-  validationSchema: Array<AnyObjectSchema>;
+  validationSchema: AnyObjectSchema;
   nextButton: WizardButton | undefined;
   prevButton: WizardButton | undefined;
   onSubmit: (formData: any) => void;
