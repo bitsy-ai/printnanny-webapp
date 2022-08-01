@@ -6,11 +6,13 @@ import DeviceList from "@/components/devices/DeviceList.vue";
 import DeviceTopRight from "@/components/devices/DeviceTopRight.vue";
 import DeviceCreate from "@/components/devices/DeviceCreate.vue";
 import DeviceDelete from "@/components/devices/DeviceDelete.vue";
-import PiCreateWizard from "@/components/devices/PiCreateWizard.vue";
-import PiCreateWizardV2 from "@/components/devices/PiCreateWizardV2.vue";
+import PiCreateWizard from "@/components/wizard/PiCreateWizard.vue";
+import PiCreateWizardProgress from "@/components/wizard/PiCreateWizardProgress.vue";
+import PageTitle from "@/components/nav/PageTitle.vue";
 
 import SettingsView from "@/views/SettingsView.vue";
 import SwagView from "@/views/SwagView.vue";
+import { useWizardStore } from "@/stores/wizard";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -60,6 +62,7 @@ const router = createRouter({
       path: "/devices/",
       components: {
         default: DashboardLayout,
+        TopBar: PageTitle
       },
       children: [
         {
@@ -68,6 +71,8 @@ const router = createRouter({
           components: {
             default: DeviceList,
             TopRight: DeviceTopRight,
+            TopBar: PageTitle
+
           },
           meta: { title: "Manage Network" },
         },
@@ -75,9 +80,11 @@ const router = createRouter({
           path: "connect/:activeStep?/:piId?",
           name: "device-connect",
           components: {
-            default: PiCreateWizardV2,
+            default: PiCreateWizard,
+            TopBar: PiCreateWizardProgress,
+
           },
-          props: { default: true },
+          props: { default: true, TopBar: true },
           meta: { title: "Connect New Device" },
         },
         {

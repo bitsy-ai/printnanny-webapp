@@ -12,7 +12,7 @@
             class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap text-center"
           >
             <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl w-full">
-              Burn PrintNanny OS Image
+              1) Burn PrintNanny OS Image
             </h2>
             <p class="text-base font-medium text-gray-900 mt-5 w-full">
               To prepare your SD card, follow the steps in
@@ -44,7 +44,7 @@
               id="hostname"
               name="hostname"
               type="input"
-              class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              class="md:w-2/3 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
               placeholder="Hostname"
               rules="required"
             />
@@ -53,7 +53,7 @@
               Advanced Options menu (without .local extension)</small
             >
             <img
-              class="w-full"
+              class="w-full md:w-2/3"
               src="@/assets/images/onboarding/raspberry-pi-imager-hostname.png"
               alt="Screenshot of Raspberry Pi Imager showing hostname field highlighted"
             />
@@ -135,8 +135,22 @@
             <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl flex-1 w-full">
               Download PrintNanny.zip to SD Card
             </h2>
+              <a :href="store.downloadUrl" v-show="store.downloadUrl" class="w-full">
+                <button
+                  v-show="store.downloadUrl"
+                  class="group mt-5 relative w-1/2 justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:red-500 disabled:opacity-75"
+                >
+                  <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                    <FolderDownloadIcon
+                      class="h-5 w-5 text-white group-hover:text-gray-400"
+                      :aria-hidden="true"
+                    />
+                  </span>
+                  <span>Click here if download does not start automatically</span>
+                </button>
+              </a> 
             <p class="text-base font-medium text-red-500 mt-5 w-full">
-              Do not share the contents with anyone!
+              Do not share contents with anyone!
             </p>
             <p class="text-base font-medium text-gray-900 mt-5 w-full">
               PrintNanny.zip contains unique credentials for your Raspberry Pi.
@@ -157,20 +171,7 @@
                 </span>
                 <span>Preparing download...</span>
               </button>
-              <a :href="store.downloadUrl" v-show="store.downloadUrl">
-                <button
-                  v-show="store.downloadUrl"
-                  class="group mt-5 relative w-1/2 justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-lime-600 hover:bg-lime-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:lime-500 disabled:opacity-75"
-                >
-                  <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-                    <FolderDownloadIcon
-                      class="h-5 w-5 text-white group-hover:text-gray-400"
-                      :aria-hidden="true"
-                    />
-                  </span>
-                  <span>Click here if download does not start automatically</span>
-                </button>
-              </a> 
+
             </div>
             <hr class="m-5" />
 
@@ -182,16 +183,14 @@
                       id="tos"
                       name="tos"
                       type="checkbox"
-                      v-model="tosChecked"
+                      :value="false"
                       :unchecked-value="false"
                       required
                       class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                     />
                   </div>
                   <div class="ml-3 text-sm">
-                    <label for="tos" class="font-medium text-gray-700"
-                      >Terms of Service & Privacy Policy</label
-                    >
+       
                     <p class="text-gray-500">
                       I agree to the
                       <router-link
@@ -234,8 +233,6 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { Field, ErrorMessage } from "vee-validate";
-import * as yup from "yup";
-import * as api from "printnanny-api-client";
 import { RouterLink } from "vue-router";
 import { RefreshIcon } from "@heroicons/vue/solid";
 import { FolderDownloadIcon } from "@heroicons/vue/outline"
@@ -243,10 +240,9 @@ import FormWizard from "@/components/forms/FormWizard.vue";
 import FormStep from "@/components/forms/FormStep.vue";
 import { useWizardStore } from "@/stores/wizard";
 
-const store = useWizardStore();
+import { PiCreateWizardSteps } from './piCreateWizard'
 
-const tosChecked = ref(false);
-const zipDownloaded = ref(false);
+const steps = PiCreateWizardSteps()
 
 const props = defineProps({
   piId: {
@@ -259,69 +255,13 @@ const props = defineProps({
   },
 });
 
+const store = useWizardStore();
+
 async function downloadLicense(){
-  if (props.piId !== undefined && props.activeStep === "download-printnanny-zip"){
+  if ((props.piId !== '') && props.activeStep === "download-printnanny-zip"){
       await store.downloadLicenseZip(parseInt(props.piId))
   }
 }
-
-downloadLicense()
-
-const steps = [
-  {
-    key: "create-sd-card",
-    validationSchema: yup.object(),
-    prevButton: undefined,
-    nextButton: { text: "Next: Connect New Pi", link: { name: "device-connect", params: {activeStep: "create-new-device" }} },
-    onSubmit: (_formData: any) => {
-      console.debug("create-sd-card onSubmit")
-    },
-  },
-  {
-    key: "create-new-device",
-    validationSchema: yup.object({
-      hostname: yup.string().required(),
-      edition: yup.string().required(),
-      sbc: yup.string().required(),
-    }),
-    nextButton: { text: "Next: Download PrintNanny.zip", link: { name: "device-connect", params: {activeStep: "download-printnanny-zip" }} },
-    prevButton: { text: "Previous: Burn PrintNanny OS Image", link: { name: "device-connect", activeStep: "create-new-device"}},
-    onSubmit:  async (formData: any) => {
-    console.log("create-new-device onSubmit", formData)
-    // WIREGUARD TODO: allow user to specify fqdn
-    const { hostname, edition, sbc} = formData
-    const req: api.PiRequest = {
-      fqdn: `${hostname}.local`,
-      favorite: false,
-      hostname,
-      edition,
-      sbc,
-    };
-    store.createPi(req);
-    }
-  },
-  {
-    key: "download-printnanny-zip",
-    validationSchema: yup.object({
-      tos: yup
-        .boolean(),
-    }),
-    nextButton: { text: "Next: Test Connection", link: { name: "device-connect", piId: props.piId, activeStep: "test-connection"}},
-    prevButton: { text: "Previous: Connect New Device"},
-    onSubmit: async(_formData: any) => {
-      // tosChecked.value = true
-    }
-  },
-  {
-    key: "test-connection",
-    validationSchema: yup.object(),
-    nextButton: { text: "Test Raspberry Pi Connections"},
-    prevButton: { text: "Finish"},
-    onSubmit:   async (formData) => {
-      // await deviceStore.
-    },
-
-  },
-];
+downloadLicense();
 
 </script>
