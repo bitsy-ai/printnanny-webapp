@@ -4207,16 +4207,9 @@ components:
         time_remaining:
           type: string
           readOnly: true
-        manage_device_url:
-          type: string
-          nullable: true
-          readOnly: true
         user:
           type: integer
           readOnly: true
-        octoprint_device:
-          type: integer
-          nullable: true
         event_type:
           allOf:
           - $ref: '#/components/schemas/EventTypeEnum'
@@ -4240,7 +4233,6 @@ components:
       - created_dt
       - gcode_file
       - id
-      - manage_device_url
       - message
       - print_progress
       - time
@@ -4265,14 +4257,10 @@ components:
       - UI
       - EMAIL
       - DISCORD
-      - PARTNER_3DGEEKS
       type: string
     AlertRequest:
       type: object
       properties:
-        octoprint_device:
-          type: integer
-          nullable: true
         event_type:
           allOf:
           - $ref: '#/components/schemas/EventTypeEnum'
@@ -5451,9 +5439,6 @@ components:
     PatchedAlertRequest:
       type: object
       properties:
-        octoprint_device:
-          type: integer
-          nullable: true
         event_type:
           allOf:
           - $ref: '#/components/schemas/EventTypeEnum'
