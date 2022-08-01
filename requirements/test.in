@@ -13,8 +13,8 @@ factory_boy
 
 # mypy
 mypy
-django-stubs[compatible-mypy]>=1.12.0
-djangorestframework-stubs[compatible-mypy]
+django-stubs
+djangorestframework-stubs
 mypy-protobuf
 types-requests
 types-protobuf
