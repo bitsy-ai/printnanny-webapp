@@ -139,13 +139,13 @@ class TestAlert(Alert):
 
 
 class PrintProgressAlert(Alert):
-    class Meta:
-        constraints = [
-            models.UniqueConstraint(
-                fields=["alert_method", "print_progress"],
-                name="unique_print_progress_alert",
-            )
-        ]
+    # class Meta:
+    #     constraints = [
+    #         models.UniqueConstraint(
+    #             fields=["alert_method", "print_progress"],
+    #             name="unique_print_progress_alert",
+    #         )
+    #     ]
 
     class PrintProgressAlertEventType(models.TextChoices):
         PRINT_PROGRESS = (
