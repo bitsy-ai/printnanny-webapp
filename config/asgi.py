@@ -31,7 +31,6 @@ django_application = get_asgi_application()
 from channels.auth import AuthMiddlewareStack
 from channels.routing import ChannelNameRouter, ProtocolTypeRouter, URLRouter
 import print_nanny_webapp.events.routing
-import print_nanny_webapp.alerts.routing
 
 # from print_nanny_webapp.alerts.consumers import DiscordConsumer
 
@@ -69,20 +68,11 @@ class TokenAuthMiddleware:
 
 TokenAuthMiddlewareStack = lambda inner: TokenAuthMiddleware(AuthMiddlewareStack(inner))
 
-websocket_urlpatterns = (
-    print_nanny_webapp.events.routing.websocket_urlpatterns
-    + print_nanny_webapp.alerts.routing.websocket_urlpatterns
-)
+websocket_urlpatterns = print_nanny_webapp.events.routing.websocket_urlpatterns
 logging.info(f"Registering websocket urlpatterns {websocket_urlpatterns}")
 application = ProtocolTypeRouter(
     {
         "http": django_application,
         "websocket": TokenAuthMiddlewareStack(URLRouter(websocket_urlpatterns)),
-        # "metrics":
-        # "channel": ChannelNameRouter(
-        #     {
-        #         "discord": DiscordConsumer.as_asgi(),
-        #     }
-        # ),
     }
 )
