@@ -11,10 +11,6 @@ class AlertEventType(models.TextChoices):
     )
     PRINT_PAUSED = "PrintPaused", "Triggered when print job is paused"
     PRINT_CANCELLED = "PrintCancelled", "Triggered when print job is cancelled"
-    PRINT_STATUS = (
-        "PrintStatus",
-        "Print status updates (percent progress, paused, resumed, failed)",
-    )
 
 
 class PiGstreamerCommandType(models.TextChoices):

@@ -8,7 +8,7 @@ const router = useRouter();
 
 const navigation = [
   {
-    name: "Notifications",
+    name: "Email Notifications",
     link: { name: "alertSettings" },
     icon: BellIcon,
     key: "alertSettings",

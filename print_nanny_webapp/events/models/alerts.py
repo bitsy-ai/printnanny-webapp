@@ -3,7 +3,7 @@ from django.db import models
 from print_nanny_webapp.utils.fields import ChoiceArrayField
 
 from .enum import AlertEventType
-from .base import AbstractPiEvent, AbstractUserEvent
+from .base import AbstractPiEvent
 
 User = get_user_model()
 
@@ -14,6 +14,8 @@ class BaseAlertSettings(models.Model):
 
     class Meta:
         abstract = True
+
+    progress_percent = models.IntegerField(default=25)
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     enabled = models.BooleanField(default=True)

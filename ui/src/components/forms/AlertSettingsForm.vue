@@ -9,9 +9,31 @@ const alertSettingsFieldset = {
       display: "Quality control alerts",
     },
     {
-      value: api.EventTypesEnum.PrintStatus,
+      value: api.EventTypesEnum.PrintStarted,
       display:
-        "Print status updates (percent progress, paused, resumed, failed)",
+        "Triggered on print job start",
+    },
+    {
+      value: api.EventTypesEnum.PrintDone,
+      display:
+        "Triggered when print job is done",
+    },
+    {
+      value: api.EventTypesEnum.PrintProgress,
+      display:
+        "Triggered when print job progress reaches %percent",
+    },
+
+    {
+      value: api.EventTypesEnum.PrintPaused,
+      display:
+        "Triggered when print job is paused",
+    },
+
+    {
+      value: api.EventTypesEnum.PrintCancelled,
+      display:
+        "Triggered when print job is cancelled",
     },
   ],
 };
@@ -21,8 +43,9 @@ alertStore.fetchSettings();
 </script>
 <template>
   <form
-    v-if="alertStore.settingsFormReady"
+    v-if="alertStore.emailAlertSettingsFormReady"
     class="space-y-8 divide-y divide-gray-200"
+    @submit="alertStore.updateEmailAlertSettings"
   >
     <div class="space-y-8 divide-y divide-gray-200">
       <div>
@@ -61,7 +84,7 @@ alertStore.fetchSettings();
                   <input
                     id="event-types"
                     :checked="
-                      alertStore.settings?.event_types?.includes(option.value)
+                      alertStore.emailAlertSettings?.event_types?.includes(option.value)
                     "
                     value="{{ option.value}}"
                     name="{{option.value}}"
@@ -73,8 +96,10 @@ alertStore.fetchSettings();
                   <label
                     for="{{option.value}}"
                     class="font-medium text-gray-700"
-                    >{{ option.display }}</label
-                  >
+                    >{{ option.value }}
+                    <br><span class="text-sm text-gray-500">{{ option.display }}</span>
+                    
+                  </label>
                 </div>
               </div>
             </div>
@@ -89,7 +114,7 @@ alertStore.fetchSettings();
                 <div class="mt-1">
                   <input
                     type="number"
-                    :value="alertStore.settings?.print_progress_percent"
+                    :value="alertStore.emailAlertSettings?.progress_percent"
                     name="print-progress"
                     class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
                   />
