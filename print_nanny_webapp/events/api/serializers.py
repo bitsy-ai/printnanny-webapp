@@ -68,7 +68,7 @@ class PolymorphicPiEventSerializer(PolymorphicSerializer):
     # Model -> Serializer mapping
     model_serializer_mapping = {
         PiGstreamerCommand: PiGstreamerCommandSerializer,
-        PiSoftwareUpdateEvent: PiSoftwareUpdateEvent,
+        PiSoftwareUpdateEvent: PiSoftwareUpdateEventSerializer,
         PiBootCommand: PiBootCommandSerializer,
         PiBootEvent: PiBootEventSerializer,
     }

@@ -10,7 +10,10 @@ from print_nanny_webapp.devices.api.views import (
     PiLicenseViewset,
     PiSettingsViewSet,
 )
-from print_nanny_webapp.events.api.views import PiEventViewSet
+from print_nanny_webapp.events.api.views import (
+    AllPiEventsViewSet,
+    SinglePiEventsViewSet,
+)
 
 # from print_nanny_webapp.alerts.api.views import (
 #     AlertSettingsViewSet,
@@ -46,7 +49,10 @@ other_urls = [
     path("billing/summary", BillingSummaryView.as_view(), name="billing-summary"),
 ]
 
+router.register("pis/events", AllPiEventsViewSet, basename="all-pi-events")
 pi_router = NestedSimpleRouter(router, r"pis", lookup="pi")
+
+pi_router.register("events", SinglePiEventsViewSet, basename="events")
 pi_router.register("license", PiLicenseViewset, basename="license")
 pi_router.register("settings", PiSettingsViewSet, basename="settings")
 pi_router.register(r"public-keys", PublicKeyViewSet, basename="public-keys")
@@ -84,7 +90,7 @@ router.register(
     basename="octoprint-settings",
 )
 
-router.register("events", PiEventViewSet, basename="events")
+# router.register("events", PiEventViewSet, basename="events")
 # router.register("commands", CommandViewSet, basename="commands")
 app_name = "api"
 
