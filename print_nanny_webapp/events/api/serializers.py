@@ -8,6 +8,7 @@ from print_nanny_webapp.events.models.pi import (
     PiGstreamerCommand,
     PiSoftwareUpdateEvent,
 )
+from print_nanny_webapp.events.models.alerts import EmailAlertSettings
 
 from ..models import PiBootEvent
 
@@ -15,6 +16,13 @@ logger = logging.getLogger(__name__)
 
 Pi = apps.get_model("devices", "Pi")
 User = get_user_model()
+
+
+class EmailAlertSettingsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EmailAlertSettings
+        fields = "__all__"
+        read_only_fields = ("created_dt", "updated_dt")
 
 
 class PiBootEventSerializer(serializers.ModelSerializer):
