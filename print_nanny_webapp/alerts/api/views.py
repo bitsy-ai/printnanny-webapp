@@ -30,8 +30,6 @@ from ..models import AlertMessage as Alert, AlertSettings
 
 logger = logging.getLogger(__name__)
 
-PrintSession = apps.get_model("remote_control", "PrintSession")
-
 
 class AlreadyExists(APIException):
     status_code = 409

@@ -22,27 +22,10 @@ User = get_user_model()
 logger = logging.getLogger(__name__)
 
 
-class TelemetryEventManager(PolymorphicManager):
-    def create(self, user=None, **kwargs):
-        from print_nanny_webapp.remote_control.models import OctoPrintDevice
-
-        if user is None:
-            octoprint_device = kwargs.get("octoprint_device")
-            if octoprint_device is None:
-                octoprint_device_id = kwargs.get("octoprint_device_id")
-                if octoprint_device_id is None:
-                    raise ValueError("octoprint_device is required")
-                octoprint_device = OctoPrintDevice.objects.get(id=octoprint_device_id)
-            user = octoprint_device.user
-        return super().create(user=user, **kwargs)
-
-
 class TelemetryEvent(PolymorphicModel):
     """
     Base class for client-side events
     """
-
-    objects = TelemetryEventManager()
 
     event_type = models.CharField(
         max_length=255,
@@ -61,22 +44,11 @@ class TelemetryEvent(PolymorphicModel):
     octoprint_environment = models.JSONField(default=dict)
     octoprint_printer_data = models.JSONField(default=dict)
     temperature = models.JSONField(default=dict)
-    octoprint_device = models.ForeignKey(
-        "remote_control.OctoPrintDevice",
-        db_index=True,
-        on_delete=models.CASCADE,
-    )
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
     print_nanny_plugin_version = models.CharField(max_length=60)
     print_nanny_client_version = models.CharField(max_length=60)
     print_nanny_beta_client_version = models.CharField(max_length=60, null=True)
     octoprint_version = models.CharField(max_length=36)
-    print_session = models.ForeignKey(
-        "remote_control.PrintSession",
-        null=True,
-        on_delete=models.CASCADE,
-        db_index=True,
-    )
 
 
 class RemoteCommandEvent(TelemetryEvent):

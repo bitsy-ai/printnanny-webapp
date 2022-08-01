@@ -415,9 +415,9 @@ SPECTACULAR_SETTINGS = {
         "DeviceReleaseChannel": "print_nanny_webapp.devices.enum.DeviceReleaseChannel",
         "OsEdition": "print_nanny_webapp.devices.enum.OsEdition",
         # begin alerts app enums
-        "PrintProgressAlertEventType": "print_nanny_webapp.alerts.models.PrintProgressAlert.PrintProgressAlertEventType.choices",
-        "AlertMessageType": "print_nanny_webapp.alerts.models.AlertMessage.AlertMessageType.choices",
-        "AlertSettingsEventType": "print_nanny_webapp.alerts.models.AlertSettings.AlertSettingsEventType.choices",
+        "PrintProgressAlertEventType": "print_nanny_webapp.alerts.models.PrintProgressAlert.PrintProgressAlertEventType",
+        "AlertMessageType": "print_nanny_webapp.alerts.models.AlertMessage.AlertMessageType",
+        "AlertSettingsEventType": "print_nanny_webapp.alerts.models.AlertSettings.AlertSettingsEventType",
         # begin octoprint event types
         "OctoTelemetryEvent": "print_nanny_webapp.telemetry.enum.TelemetryEventType",
         "OctoPrintNannyEvent": "print_nanny_webapp.telemetry.enum.PrintNannyPluginEventType",

@@ -17,7 +17,6 @@ from print_nanny_webapp.alerts.api.views import (
     AlertViewSet,  # , PrintSessionAlertViewSet
 )
 
-from print_nanny_webapp.partners.api.views import GeeksViewSet
 from print_nanny_webapp.subscriptions.api.views import (
     BillingSummaryView,
 )
@@ -87,9 +86,6 @@ router.register(
 
 router.register("events", EventViewSet, basename="events")
 router.register("commands", CommandViewSet, basename="commands")
-# TODO: re-enable if 3d geeks partnership is finalized
-# router.register(r"partners/3d-geeks", GeeksViewSet, basename="partner-3d-geeks")
-
 app_name = "api"
 
 urlpatterns = router.urls + pi_router.urls + other_urls
