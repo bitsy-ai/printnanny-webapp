@@ -28,7 +28,7 @@ django-redis
 django-rest-polymorphic
 django-safedelete
 django-storages[google]
-django-stubs
+django-stubs[compatible-mypy]
 django>3,<4
 djangorestframework
 drf-nested-routers
