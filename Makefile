@@ -78,6 +78,10 @@ requirements-prod:
 requirements-local:
 	docker run -it --rm -v $(WORKDIR)/requirements:/requirements bitsyai/python:3.9 /bin/bash -c "pip-compile --verbose /requirements/local.in --output-file /requirements/local.txt"
 
+requirements-test:
+	docker run -it --rm -v $(WORKDIR)/requirements:/requirements bitsyai/python:3.9 /bin/bash -c "pip-compile --verbose /requirements/test.in --output-file /requirements/test.txt"
+
+
 install-git-hooks:
 	cp -a hooks/. .git/hooks/
 # TODO:
