@@ -53,7 +53,9 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 # https://docs.djangoproject.com/en/3.2/ref/settings/#csrf-cookie-domain
 CSRF_COOKIE_DOMAIN = env("DJANGO_CSRF_COOKIE_DOMAIN", default=".printnanny.ai")
-CSRF_TRUSTED_ORIGINS = [".printnanny.ai"]
+CSRF_TRUSTED_ORIGINS = ["api.printnanny.ai", "printnanny.ai"]
+CSRF_USE_SESSIONS = True
+
 # https://docs.djangoproject.com/en/dev/topics/security/#ssl-https
 # https://docs.djangoproject.com/en/dev/ref/settings/#secure-hsts-seconds
 # TODO: set this to 60 seconds first and then to 518400 once you prove the former works
@@ -224,6 +226,8 @@ CORS_ALLOWED_ORIGINS = [
     "https://beta.printnanny.ai",
     "https://www.beta.printnanny.ai",
     "https://cdn.printnanny.ai",
+    "https://api.printnanny.ai",
+    "https://api.live.printnanny.ai",
 ]
 
 # posthog
