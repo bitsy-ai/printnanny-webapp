@@ -39,8 +39,4 @@ class DashboardView(SubscriptionRequiredMixin, TemplateView):
             .order_by("-created_dt")
             .all()
         )
-
-        context["octoprint_devices"] = OctoPrintDevice.objects.filter(
-            user=self.request.user
-        ).all()
         return context
