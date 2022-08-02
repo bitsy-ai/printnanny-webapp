@@ -11,6 +11,7 @@ from django.http import HttpResponse
 from django.db.utils import IntegrityError
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
+from rest_framework.renderers import JSONRenderer
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.mixins import (
@@ -24,7 +25,7 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.renderers import BaseRenderer
-
+from print_nanny_webapp.utils.api.serializers import PrintNannyApiConfigSerializer
 from print_nanny_webapp.utils.api.exceptions import AlreadyExists
 from print_nanny_webapp.utils.api.views import (
     generic_create_errors,
@@ -536,30 +537,14 @@ class ZipRenderer(BaseRenderer):
     media_type = "application/zip"
     format = "bin"
 
+    def render(self, data, accepted_media_type=None, renderer_context=None):
+        return data
 
-class PiLicenseViewset(
+
+class PiLicenseZipViewset(
     GenericViewSet,
 ):
-    # serializer_class = ConfigSerializer
-
     renderer_classes = [ZipRenderer]
-    # @extend_schema(
-    #     tags=["devices"],
-    #     parameters=[
-    #         OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH),
-    #     ],
-    #     responses={
-    #         200: ConfigSerializer,
-    #     }
-    #     | generic_get_errors,
-    # )
-    # @action(methods=["get"], detail=False, url_path="download")
-    # def download(self, request, device_id=None):
-    #     device = Pi.objects.get(id=device_id)
-    #     api = get_api_config(request, device.user)
-    #     instance = dict(device=device, api=api)
-    #     serializer = ConfigSerializer(instance=instance)
-    #     return Response(serializer.data, status=status.HTTP_200_OK)
 
     @extend_schema(
         tags=["devices"],
@@ -580,3 +565,24 @@ class PiLicenseViewset(
         filename = f"printnanny-{pi.hostname}.zip"
         response["Content-Disposition"] = f"attachment; filename={filename}"
         return response
+
+
+class PiApiCredsJsonViewset(
+    GenericViewSet,
+):
+    @extend_schema(
+        tags=["devices"],
+        parameters=[
+            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH),
+        ],
+        responses={200: PrintNannyApiConfigSerializer} | generic_get_errors,
+    )
+    @action(detail=False, methods=["get"], url_path="cloud-api")
+    def cloud_api(
+        self, request: Request, pi_id=None, *args: Any, **kwargs: Any
+    ) -> HttpResponse:
+        pi = get_object_or_404(Pi.objects.filter(id=pi_id, user=request.user))
+        api = get_api_config(request, user=pi.user)
+        serializer = PrintNannyApiConfigSerializer(instance=api)
+
+        return Response(serializer.data)
