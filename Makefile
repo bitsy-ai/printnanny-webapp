@@ -46,14 +46,15 @@ CDN_DEPLOY_PATH ?= $(CDN_BUCKET)/ui/
 CDN_CACHE_INVALIDATE_PATH ?= /ui/index.html
 
 DEV_MACHINE ?= pn-dev
-
+DEV_CONFIG ?= $(TMPDIR)/PrintNanny-$(DEV_MACHINE).zip
 HOSTNAME ?= $(shell cat /etc/hostname)
+
 
 $(TMPDIR):
 	mkdir $(TMPDIR)
 
-$(TMPDIR)/PrintNanny-$(DEV_MACHINE):
-	docker-compose -f local.yml run --rm django python manage.py devconfig --out $(TMPDIR)/PrintNanny-$(DEV_MACHINE) --email $(DJANGO_SUPERUSER_EMAIL) --hostname $(HOSTNAME)
+$(DEV_CONFIG):
+	docker-compose -f local.yml run --rm django python manage.py devconfig --out $(DEV_CONFIG) --email $(DJANGO_SUPERUSER_EMAIL) --hostname $(HOSTNAME)
 
 
 openapi-custom-rust-codegen:
