@@ -142,6 +142,8 @@ pub mod polymorphic_pi_event;
 pub use self::polymorphic_pi_event::PolymorphicPiEvent;
 pub mod polymorphic_pi_event_request;
 pub use self::polymorphic_pi_event_request::PolymorphicPiEventRequest;
+pub mod print_nanny_api_config;
+pub use self::print_nanny_api_config::PrintNannyApiConfig;
 pub mod public_key;
 pub use self::public_key::PublicKey;
 pub mod public_key_request;

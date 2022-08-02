@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**pis_cloudiot_update**](DevicesApi.md#pis_cloudiot_update) | **PUT** /api/pis/{pi_id}/cloudiot/{id}/ | 
 [**pis_create**](DevicesApi.md#pis_create) | **POST** /api/pis/ | 
 [**pis_destroy**](DevicesApi.md#pis_destroy) | **DELETE** /api/pis/{id}/ | 
+[**pis_license_cloud_api_retrieve**](DevicesApi.md#pis_license_cloud_api_retrieve) | **GET** /api/pis/{pi_id}/license/cloud-api/ | 
 [**pis_license_zip_retrieve**](DevicesApi.md#pis_license_zip_retrieve) | **GET** /api/pis/{pi_id}/license/zip/ | 
 [**pis_list**](DevicesApi.md#pis_list) | **GET** /api/pis/ | 
 [**pis_partial_update**](DevicesApi.md#pis_partial_update) | **PATCH** /api/pis/{id}/ | 
@@ -274,6 +275,34 @@ Name | Type | Description  | Required | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## pis_license_cloud_api_retrieve
+
+> crate::models::PrintNannyApiConfig pis_license_cloud_api_retrieve(pi_id)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**pi_id** | **i32** |  | [required] |
+
+### Return type
+
+[**crate::models::PrintNannyApiConfig**](PrintNannyApiConfig.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

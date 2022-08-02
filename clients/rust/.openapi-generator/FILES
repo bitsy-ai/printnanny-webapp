@@ -83,6 +83,7 @@ docs/PiUrls.md
 docs/PisApi.md
 docs/PolymorphicPiEvent.md
 docs/PolymorphicPiEventRequest.md
+docs/PrintNannyApiConfig.md
 docs/PublicKey.md
 docs/PublicKeyRequest.md
 docs/RegisterRequest.md
@@ -198,6 +199,7 @@ src/models/pi_software_update_event_type.rs
 src/models/pi_urls.rs
 src/models/polymorphic_pi_event.rs
 src/models/polymorphic_pi_event_request.rs
+src/models/print_nanny_api_config.rs
 src/models/public_key.rs
 src/models/public_key_request.rs
 src/models/register_request.rs
