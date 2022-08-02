@@ -239,7 +239,7 @@ def build_license_zip(pi: Pi, request: HttpRequest) -> bytes:
     # do not write sensitive credentials to disk
     # instead, write to memory buffer
     zip_buffer = io.BytesIO()
-    with zipfile.ZipFile(zip_buffer, "a", zipfile.ZIP_DEFLATED, False) as zip_obj:
+    with zipfile.ZipFile(zip_buffer, "a") as zip_obj:
         for file_name, data in creds_bundle:
             zip_obj.writestr(file_name, data)
     return zip_buffer.getvalue()
