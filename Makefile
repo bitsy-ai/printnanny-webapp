@@ -45,9 +45,16 @@ CDN_BUCKET ?= print-nanny-cdn
 CDN_DEPLOY_PATH ?= $(CDN_BUCKET)/ui/
 CDN_CACHE_INVALIDATE_PATH ?= /ui/index.html
 
+DEV_MACHINE ?= pn-dev
+
+HOSTNAME ?= $(shell cat /etc/hostname)
 
 $(TMPDIR):
 	mkdir $(TMPDIR)
+
+$(TMPDIR)/PrintNanny-$(DEV_MACHINE):
+	docker-compose -f local.yml run --rm django python manage.py devconfig --out $(TMPDIR)/PrintNanny-$(DEV_MACHINE) --email $(DJANGO_SUPERUSER_EMAIL) --hostname $(HOSTNAME)
+
 
 openapi-custom-rust-codegen:
 	cd $(OPENAPI_GENERATOR_WORKDIR) && ./mvnw clean install -f ~/projects/octoprint-nanny-webapp/client-templates/rust-client-codegen
