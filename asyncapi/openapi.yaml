@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: printnanny-api-client
-  version: 0.98.0
+  version: 0.99.1
   description: Official API client library for printnanny.ai
   contact:
     name: Leigh Johnson
@@ -434,11 +434,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/User'
           description: ''
-  /api/alert-settings/:
+  /api/alert-settings/email/:
     get:
-      operationId: alert_settings_list
+      operationId: alert_settings_email_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
       tags:
-      - alert-settings
+      - settings
+      - alerts
       security:
       - cookieAuth: []
       - tokenAuth: []
@@ -447,23 +455,48 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AlertSettings'
+                $ref: '#/components/schemas/PaginatedEmailAlertSettingsList'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
           description: ''
     post:
-      operationId: alert_settings_create
+      operationId: alert_settings_email_create
       tags:
-      - alert-settings
+      - settings
+      - alerts
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AlertSettingsRequest'
+              $ref: '#/components/schemas/EmailAlertSettingsRequest'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/AlertSettingsRequest'
+              $ref: '#/components/schemas/EmailAlertSettingsRequest'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/AlertSettingsRequest'
+              $ref: '#/components/schemas/EmailAlertSettingsRequest'
       security:
       - cookieAuth: []
       - tokenAuth: []
@@ -472,31 +505,84 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AlertSettings'
+                $ref: '#/components/schemas/EmailAlertSettings'
           description: ''
-  /api/alert-settings/{id}/:
-    put:
-      operationId: alert_settings_update
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+  /api/alert-settings/email/{id}/:
+    get:
+      operationId: alert_settings_email_retrieve
       parameters:
       - in: path
         name: id
         schema:
           type: integer
-        description: A unique integer value identifying this alert settings.
+        description: A unique integer value identifying this email alert settings.
         required: true
       tags:
-      - alert-settings
+      - settings
+      - alerts
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailAlertSettings'
+          description: ''
+    put:
+      operationId: alert_settings_email_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this email alert settings.
+        required: true
+      tags:
+      - settings
+      - alerts
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AlertSettingsRequest'
+              $ref: '#/components/schemas/EmailAlertSettingsRequest'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/AlertSettingsRequest'
+              $ref: '#/components/schemas/EmailAlertSettingsRequest'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/AlertSettingsRequest'
+              $ref: '#/components/schemas/EmailAlertSettingsRequest'
       security:
       - cookieAuth: []
       - tokenAuth: []
@@ -505,7 +591,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AlertSettings'
+                $ref: '#/components/schemas/EmailAlertSettings'
           description: ''
         '409':
           content:
@@ -538,243 +624,67 @@ paths:
                 $ref: '#/components/schemas/ErrorDetail'
           description: ''
     patch:
-      operationId: alert_settings_partial_update
+      operationId: alert_settings_email_partial_update
       parameters:
       - in: path
         name: id
         schema:
           type: integer
-        description: A unique integer value identifying this alert settings.
+        description: A unique integer value identifying this email alert settings.
         required: true
       tags:
-      - alert-settings
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedAlertSettingsRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedAlertSettingsRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PatchedAlertSettingsRequest'
-      security:
-      - cookieAuth: []
-      - tokenAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AlertSettings'
-          description: ''
-  /api/alerts/:
-    get:
-      operationId: alerts_list
-      parameters:
-      - name: page
-        required: false
-        in: query
-        description: A page number within the paginated result set.
-        schema:
-          type: integer
-      tags:
-      - alerts
-      security:
-      - cookieAuth: []
-      - tokenAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PaginatedAlertList'
-          description: ''
-    post:
-      operationId: alerts_create
-      tags:
+      - settings
       - alerts
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AlertRequest'
+              $ref: '#/components/schemas/PatchedEmailAlertSettingsRequest'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/AlertRequest'
+              $ref: '#/components/schemas/PatchedEmailAlertSettingsRequest'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/AlertRequest'
+              $ref: '#/components/schemas/PatchedEmailAlertSettingsRequest'
       security:
       - cookieAuth: []
       - tokenAuth: []
       responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Alert'
-          description: ''
-  /api/alerts/{id}/:
-    get:
-      operationId: alerts_retrieve
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this alert message.
-        required: true
-      tags:
-      - alerts
-      security:
-      - cookieAuth: []
-      - tokenAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Alert'
-          description: ''
-    put:
-      operationId: alerts_update
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this alert message.
-        required: true
-      tags:
-      - alerts
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AlertRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/AlertRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/AlertRequest'
-      security:
-      - cookieAuth: []
-      - tokenAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Alert'
-          description: ''
-    patch:
-      operationId: alerts_partial_update
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this alert message.
-        required: true
-      tags:
-      - alerts
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedAlertRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedAlertRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PatchedAlertRequest'
-      security:
-      - cookieAuth: []
-      - tokenAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Alert'
-          description: ''
-  /api/alerts/recent/:
-    get:
-      operationId: alerts_recent
-      tags:
-      - alerts
-      security:
-      - cookieAuth: []
-      - tokenAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AlertBulkResponse'
-          description: ''
         '202':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AlertBulkResponse'
+                $ref: '#/components/schemas/EmailAlertSettings'
           description: ''
-  /api/alerts/seen/:
-    patch:
-      operationId: alerts_seen
-      tags:
-      - alerts
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedAlertBulkRequestRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedAlertBulkRequestRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PatchedAlertBulkRequestRequest'
-      security:
-      - cookieAuth: []
-      - tokenAuth: []
-      responses:
-        '200':
+        '409':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AlertBulkResponse'
+                $ref: '#/components/schemas/ErrorDetail'
           description: ''
-        '202':
+        '400':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AlertBulkResponse'
+                $ref: '#/components/schemas/ErrorDetail'
           description: ''
-  /api/alerts/unread/:
-    get:
-      operationId: alerts_unread
-      tags:
-      - alerts
-      security:
-      - cookieAuth: []
-      - tokenAuth: []
-      responses:
-        '200':
+        '401':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AlertBulkResponse'
+                $ref: '#/components/schemas/ErrorDetail'
           description: ''
-        '202':
+        '403':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AlertBulkResponse'
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
           description: ''
   /api/billing/summary:
     get:
@@ -790,321 +700,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BillingSummary'
-          description: ''
-        '404':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-        '400':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-        '401':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-        '403':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-        '500':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-  /api/commands/:
-    get:
-      operationId: commands_list
-      description: Generic events viewset
-      parameters:
-      - name: page
-        required: false
-        in: query
-        description: A page number within the paginated result set.
-        schema:
-          type: integer
-      tags:
-      - events
-      - commands
-      security:
-      - cookieAuth: []
-      - tokenAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PaginatedPolymorphicCommandList'
-          description: ''
-        '400':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-        '401':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-        '403':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-        '500':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-    post:
-      operationId: commands_create
-      description: Generic events viewset
-      tags:
-      - events
-      - commands
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PolymorphicCommandCreateRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PolymorphicCommandCreateRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PolymorphicCommandCreateRequest'
-      security:
-      - cookieAuth: []
-      - tokenAuth: []
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PolymorphicCommand'
-          description: ''
-        '409':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-        '400':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-        '401':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-        '403':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-        '500':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-  /api/commands/{id}/:
-    get:
-      operationId: commands_retrieve
-      description: Generic events viewset
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this event.
-        required: true
-      tags:
-      - events
-      - commands
-      security:
-      - cookieAuth: []
-      - tokenAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PolymorphicCommand'
-          description: ''
-        '404':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-        '400':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-        '401':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-        '403':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-        '500':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-  /api/events/:
-    get:
-      operationId: events_list
-      description: Generic events viewset
-      parameters:
-      - name: page
-        required: false
-        in: query
-        description: A page number within the paginated result set.
-        schema:
-          type: integer
-      tags:
-      - events
-      security:
-      - cookieAuth: []
-      - tokenAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PaginatedPolymorphicEventList'
-          description: ''
-        '400':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-        '401':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-        '403':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-        '500':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-    post:
-      operationId: events_create
-      description: Generic events viewset
-      tags:
-      - events
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PolymorphicEventCreateRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PolymorphicEventCreateRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PolymorphicEventCreateRequest'
-      security:
-      - cookieAuth: []
-      - tokenAuth: []
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PolymorphicEvent'
-          description: ''
-        '409':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-        '400':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-        '401':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-        '403':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-        '500':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorDetail'
-          description: ''
-  /api/events/{id}/:
-    get:
-      operationId: events_retrieve
-      description: Generic events viewset
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this event.
-        required: true
-      tags:
-      - events
-      security:
-      - cookieAuth: []
-      - tokenAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PolymorphicEvent'
           description: ''
         '404':
           content:
@@ -2736,6 +2331,59 @@ paths:
               schema:
                 $ref: '#/components/schemas/CloudiotDevice'
           description: ''
+  /api/pis/{pi_id}/events/:
+    get:
+      operationId: pis_events_list_2
+      description: Interact with all events inheriting from BasePiEvent
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - in: path
+        name: pi_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - pis
+      - events
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedPolymorphicPiEventList'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
   /api/pis/{pi_id}/license/zip/:
     get:
       operationId: pis_license_zip_retrieve
@@ -4056,6 +3704,165 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorDetail'
           description: ''
+  /api/pis/events/:
+    get:
+      operationId: pis_events_list
+      description: Interact with all events inheriting from BasePiEvent
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - pis
+      - events
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedPolymorphicPiEventList'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+    post:
+      operationId: pis_events_create
+      description: Interact with all events inheriting from BasePiEvent
+      tags:
+      - pis
+      - events
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolymorphicPiEventRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PolymorphicPiEventRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PolymorphicPiEventRequest'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolymorphicPiEvent'
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+  /api/pis/events/{id}/:
+    get:
+      operationId: pis_events_retrieve
+      description: Interact with all events inheriting from BasePiEvent
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this base pi event.
+        required: true
+      tags:
+      - pis
+      - events
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolymorphicPiEvent'
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
   /api/schema/:
     get:
       operationId: schema_retrieve
@@ -4186,161 +3993,6 @@ paths:
           description: ''
 components:
   schemas:
-    Alert:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        time:
-          type: string
-          readOnly: true
-        gcode_file:
-          type: string
-          readOnly: true
-        print_progress:
-          type: string
-          readOnly: true
-        time_elapsed:
-          type: string
-          readOnly: true
-        time_remaining:
-          type: string
-          readOnly: true
-        user:
-          type: integer
-          readOnly: true
-        event_type:
-          allOf:
-          - $ref: '#/components/schemas/EventTypeEnum'
-          default: PrintNannyWebapp
-        seen:
-          type: boolean
-        sent:
-          type: boolean
-        created_dt:
-          type: string
-          format: date-time
-          readOnly: true
-        updated_dt:
-          type: string
-          format: date-time
-          readOnly: true
-        message:
-          type: string
-          readOnly: true
-      required:
-      - created_dt
-      - gcode_file
-      - id
-      - message
-      - print_progress
-      - time
-      - time_elapsed
-      - time_remaining
-      - updated_dt
-      - user
-    AlertBulkResponse:
-      type: object
-      description: Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss
-        requests
-      properties:
-        received:
-          type: integer
-        updated:
-          type: integer
-      required:
-      - received
-      - updated
-    AlertMethodsEnum:
-      enum:
-      - UI
-      - EMAIL
-      - DISCORD
-      type: string
-    AlertRequest:
-      type: object
-      properties:
-        event_type:
-          allOf:
-          - $ref: '#/components/schemas/EventTypeEnum'
-          default: PrintNannyWebapp
-        seen:
-          type: boolean
-        sent:
-          type: boolean
-    AlertSettings:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        created_dt:
-          type: string
-          format: date-time
-          readOnly: true
-        updated_dt:
-          type: string
-          format: date-time
-          readOnly: true
-        alert_methods:
-          type: array
-          items:
-            $ref: '#/components/schemas/AlertMethodsEnum'
-        event_types:
-          type: array
-          items:
-            $ref: '#/components/schemas/AlertSettingsEventType'
-        discord_webhook:
-          type: string
-          nullable: true
-          description: Send notifications to a Discord channel. Please check out this
-            guide to <a href='https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks'>generate
-            a webhook</a> url and paste it here.
-          maxLength: 255
-        print_progress_percent:
-          type: integer
-          maximum: 100
-          minimum: 1
-          description: 'Progress notification interval. Example: 25 will notify you
-            at 25%, 50%, 75%, and 100% progress'
-        user:
-          type: integer
-          readOnly: true
-      required:
-      - created_dt
-      - id
-      - updated_dt
-      - user
-    AlertSettingsEventType:
-      enum:
-      - PrintQuality
-      - PrintStatus
-      type: string
-    AlertSettingsRequest:
-      type: object
-      properties:
-        alert_methods:
-          type: array
-          items:
-            $ref: '#/components/schemas/AlertMethodsEnum'
-        event_types:
-          type: array
-          items:
-            $ref: '#/components/schemas/AlertSettingsEventType'
-        discord_webhook:
-          type: string
-          nullable: true
-          description: Send notifications to a Discord channel. Please check out this
-            guide to <a href='https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks'>generate
-            a webhook</a> url and paste it here.
-          maxLength: 255
-        print_progress_percent:
-          type: integer
-          maximum: 100
-          minimum: 1
-          description: 'Progress notification interval. Example: 25 will notify you
-            at 25%, 50%, 75%, and 100% progress'
     BillingSummary:
       type: object
       properties:
@@ -4478,6 +4130,51 @@ components:
           type: string
       required:
       - detail
+    EmailAlertSettings:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        created_dt:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_dt:
+          type: string
+          format: date-time
+          readOnly: true
+        progress_percent:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        enabled:
+          type: boolean
+        event_types:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventTypesEnum'
+        user:
+          type: integer
+          readOnly: true
+      required:
+      - created_dt
+      - id
+      - updated_dt
+      - user
+    EmailAlertSettingsRequest:
+      type: object
+      properties:
+        progress_percent:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        enabled:
+          type: boolean
+        event_types:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventTypesEnum'
     EmailAuthRequest:
       type: object
       description: |-
@@ -4533,24 +4230,13 @@ components:
       required:
       - code
       - detail
-    EventSource:
-      enum:
-      - octoprint
-      - printnanny_os
-      - printnanny_webapp
-      - mainsail
-      type: string
-    EventTypeEnum:
+    EventTypesEnum:
       enum:
       - PrintQuality
-      - PrintStatus
-      - PrintNannyWebapp
-      - PrintProgress
-      - PrintDone
-      - PrintFailed
-      - PrintPaused
-      - PrintResumed
       - PrintStarted
+      - PrintDone
+      - PrintProgress
+      - PrintPaused
       - PrintCancelled
       type: string
     GcodeFile:
@@ -4686,89 +4372,6 @@ components:
       - hostname
       - name
       - octoprint_version
-    OctoPrintEvent:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        model:
-          $ref: '#/components/schemas/OctoPrintEventModel'
-        created_dt:
-          type: string
-          format: date-time
-          readOnly: true
-        source:
-          $ref: '#/components/schemas/EventSource'
-        event_name:
-          $ref: '#/components/schemas/OctoPrintEventName'
-        payload:
-          type: object
-          additionalProperties: {}
-        polymorphic_ctype:
-          type: integer
-          readOnly: true
-        user:
-          type: integer
-          readOnly: true
-        octoprint_server:
-          type: integer
-        pi:
-          type: integer
-      required:
-      - created_dt
-      - event_name
-      - id
-      - model
-      - octoprint_server
-      - pi
-      - polymorphic_ctype
-      - source
-      - user
-    OctoPrintEventModel:
-      enum:
-      - OctoPrintEvent
-      type: string
-    OctoPrintEventName:
-      enum:
-      - Startup
-      - Shutdown
-      - PrintProgress
-      - Connecting
-      - Connected
-      - Disconnecting
-      - Disconnected
-      - Error
-      - PrintStarted
-      - PrintFailed
-      - PrintDone
-      - PrintCancelling
-      - PrintCancelled
-      - PrintPaused
-      - PrintResumed
-      type: string
-    OctoPrintEventRequest:
-      type: object
-      properties:
-        model:
-          $ref: '#/components/schemas/OctoPrintEventModel'
-        source:
-          $ref: '#/components/schemas/EventSource'
-        event_name:
-          $ref: '#/components/schemas/OctoPrintEventName'
-        payload:
-          type: object
-          additionalProperties: {}
-        octoprint_server:
-          type: integer
-        pi:
-          type: integer
-      required:
-      - event_name
-      - model
-      - octoprint_server
-      - pi
-      - source
     OctoPrintServer:
       type: object
       properties:
@@ -5100,26 +4703,6 @@ components:
       enum:
       - octoprint_lite
       type: string
-    PaginatedAlertList:
-      type: object
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Alert'
     PaginatedCloudiotDeviceList:
       type: object
       properties:
@@ -5140,6 +4723,26 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CloudiotDevice'
+    PaginatedEmailAlertSettingsList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmailAlertSettings'
     PaginatedGcodeFileList:
       type: object
       properties:
@@ -5280,7 +4883,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PiSettings'
-    PaginatedPolymorphicCommandList:
+    PaginatedPolymorphicPiEventList:
       type: object
       properties:
         count:
@@ -5299,27 +4902,7 @@ components:
         results:
           type: array
           items:
-            $ref: '#/components/schemas/PolymorphicCommand'
-    PaginatedPolymorphicEventList:
-      type: object
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/PolymorphicEvent'
+            $ref: '#/components/schemas/PolymorphicPiEvent'
     PaginatedPublicKeyList:
       type: object
       properties:
@@ -5427,55 +5010,24 @@ components:
           minLength: 1
       required:
       - email
-    PatchedAlertBulkRequestRequest:
-      type: object
-      description: Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss
-        requests
-      properties:
-        ids:
-          type: array
-          items:
-            type: integer
-    PatchedAlertRequest:
-      type: object
-      properties:
-        event_type:
-          allOf:
-          - $ref: '#/components/schemas/EventTypeEnum'
-          default: PrintNannyWebapp
-        seen:
-          type: boolean
-        sent:
-          type: boolean
-    PatchedAlertSettingsRequest:
-      type: object
-      properties:
-        alert_methods:
-          type: array
-          items:
-            $ref: '#/components/schemas/AlertMethodsEnum'
-        event_types:
-          type: array
-          items:
-            $ref: '#/components/schemas/AlertSettingsEventType'
-        discord_webhook:
-          type: string
-          nullable: true
-          description: Send notifications to a Discord channel. Please check out this
-            guide to <a href='https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks'>generate
-            a webhook</a> url and paste it here.
-          maxLength: 255
-        print_progress_percent:
-          type: integer
-          maximum: 100
-          minimum: 1
-          description: 'Progress notification interval. Example: 25 will notify you
-            at 25%, 50%, 75%, and 100% progress'
     PatchedCloudiotDeviceRequest:
       type: object
       properties:
         public_key:
           type: integer
+    PatchedEmailAlertSettingsRequest:
+      type: object
+      properties:
+        progress_percent:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        enabled:
+          type: boolean
+        event_types:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventTypesEnum'
     PatchedOctoPrintServerRequest:
       type: object
       properties:
@@ -5764,10 +5316,6 @@ components:
         last_boot:
           type: string
           readOnly: true
-        alert_settings:
-          allOf:
-          - $ref: '#/components/schemas/AlertSettings'
-          readOnly: true
         settings:
           allOf:
           - $ref: '#/components/schemas/PiSettings'
@@ -5832,7 +5380,6 @@ components:
         setup_finished:
           type: boolean
       required:
-      - alert_settings
       - cloudiot_device
       - created_dt
       - id
@@ -5845,6 +5392,184 @@ components:
       - user
       - webrtc_cloud
       - webrtc_edge
+    PiBootCommand:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        created_dt:
+          type: string
+          format: date-time
+          readOnly: true
+        source:
+          $ref: '#/components/schemas/SourceEnum'
+        subject:
+          type: string
+          maxLength: 255
+        payload:
+          type: object
+          additionalProperties: {}
+        event_type:
+          $ref: '#/components/schemas/PiBootCommandType'
+        polymorphic_ctype:
+          type: integer
+          readOnly: true
+        pi:
+          type: integer
+      required:
+      - created_dt
+      - event_type
+      - id
+      - pi
+      - polymorphic_ctype
+      - source
+      - subject
+    PiBootCommandRequest:
+      type: object
+      properties:
+        source:
+          $ref: '#/components/schemas/SourceEnum'
+        subject:
+          type: string
+          minLength: 1
+          maxLength: 255
+        payload:
+          type: object
+          additionalProperties: {}
+        event_type:
+          $ref: '#/components/schemas/PiBootCommandType'
+        pi:
+          type: integer
+      required:
+      - event_type
+      - pi
+      - source
+      - subject
+    PiBootCommandType:
+      enum:
+      - Reboot
+      - Shutdown
+      type: string
+    PiBootEvent:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        created_dt:
+          type: string
+          format: date-time
+          readOnly: true
+        source:
+          $ref: '#/components/schemas/SourceEnum'
+        subject:
+          type: string
+          maxLength: 255
+        payload:
+          type: object
+          additionalProperties: {}
+        event_type:
+          $ref: '#/components/schemas/PiBootEventType'
+        polymorphic_ctype:
+          type: integer
+          readOnly: true
+        pi:
+          type: integer
+      required:
+      - created_dt
+      - event_type
+      - id
+      - pi
+      - polymorphic_ctype
+      - source
+      - subject
+    PiBootEventRequest:
+      type: object
+      properties:
+        source:
+          $ref: '#/components/schemas/SourceEnum'
+        subject:
+          type: string
+          minLength: 1
+          maxLength: 255
+        payload:
+          type: object
+          additionalProperties: {}
+        event_type:
+          $ref: '#/components/schemas/PiBootEventType'
+        pi:
+          type: integer
+      required:
+      - event_type
+      - pi
+      - source
+      - subject
+    PiBootEventType:
+      enum:
+      - BootStart
+      - BootSuccess
+      - BootDegraded
+      type: string
+    PiGstreamerCommand:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        created_dt:
+          type: string
+          format: date-time
+          readOnly: true
+        source:
+          $ref: '#/components/schemas/SourceEnum'
+        subject:
+          type: string
+          maxLength: 255
+        payload:
+          type: object
+          additionalProperties: {}
+        event_type:
+          $ref: '#/components/schemas/PiGstreamerCommandType'
+        polymorphic_ctype:
+          type: integer
+          readOnly: true
+        pi:
+          type: integer
+      required:
+      - created_dt
+      - event_type
+      - id
+      - pi
+      - polymorphic_ctype
+      - source
+      - subject
+    PiGstreamerCommandRequest:
+      type: object
+      properties:
+        source:
+          $ref: '#/components/schemas/SourceEnum'
+        subject:
+          type: string
+          minLength: 1
+          maxLength: 255
+        payload:
+          type: object
+          additionalProperties: {}
+        event_type:
+          $ref: '#/components/schemas/PiGstreamerCommandType'
+        pi:
+          type: integer
+      required:
+      - event_type
+      - pi
+      - source
+      - subject
+    PiGstreamerCommandType:
+      enum:
+      - Start
+      - Stop
+      type: string
     PiRequest:
       type: object
       properties:
@@ -5903,46 +5628,101 @@ components:
           type: integer
       required:
       - pi
-    PolymorphicCommand:
+    PiSoftwareUpdateEvent:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        created_dt:
+          type: string
+          format: date-time
+          readOnly: true
+        source:
+          $ref: '#/components/schemas/SourceEnum'
+        subject:
+          type: string
+          maxLength: 255
+        payload:
+          type: object
+          additionalProperties: {}
+        version:
+          type: string
+          maxLength: 32
+        event_type:
+          $ref: '#/components/schemas/PiSoftwareUpdateEventType'
+        polymorphic_ctype:
+          type: integer
+          readOnly: true
+        pi:
+          type: integer
+      required:
+      - created_dt
+      - event_type
+      - id
+      - pi
+      - polymorphic_ctype
+      - source
+      - subject
+      - version
+    PiSoftwareUpdateEventRequest:
+      type: object
+      properties:
+        source:
+          $ref: '#/components/schemas/SourceEnum'
+        subject:
+          type: string
+          minLength: 1
+          maxLength: 255
+        payload:
+          type: object
+          additionalProperties: {}
+        version:
+          type: string
+          minLength: 1
+          maxLength: 32
+        event_type:
+          $ref: '#/components/schemas/PiSoftwareUpdateEventType'
+        pi:
+          type: integer
+      required:
+      - event_type
+      - pi
+      - source
+      - subject
+      - version
+    PiSoftwareUpdateEventType:
+      enum:
+      - Started
+      - Success
+      - Error
+      type: string
+    PolymorphicPiEvent:
       oneOf:
-      - $ref: '#/components/schemas/WebRTCCommand'
+      - $ref: '#/components/schemas/PiGstreamerCommand'
+      - $ref: '#/components/schemas/PiSoftwareUpdateEvent'
+      - $ref: '#/components/schemas/PiBootCommand'
+      - $ref: '#/components/schemas/PiBootEvent'
       discriminator:
-        propertyName: model
+        propertyName: __class__
         mapping:
-          WebRTCCommand: '#/components/schemas/WebRTCCommand'
-    PolymorphicCommandCreateRequest:
+          PiGstreamerCommand: '#/components/schemas/PiGstreamerCommand'
+          PiSoftwareUpdateEvent: '#/components/schemas/PiSoftwareUpdateEvent'
+          PiBootCommand: '#/components/schemas/PiBootCommand'
+          PiBootEvent: '#/components/schemas/PiBootEvent'
+    PolymorphicPiEventRequest:
       oneOf:
-      - $ref: '#/components/schemas/WebRTCCommandCreateRequest'
+      - $ref: '#/components/schemas/PiGstreamerCommandRequest'
+      - $ref: '#/components/schemas/PiSoftwareUpdateEventRequest'
+      - $ref: '#/components/schemas/PiBootCommandRequest'
+      - $ref: '#/components/schemas/PiBootEventRequest'
       discriminator:
-        propertyName: model
+        propertyName: __class__
         mapping:
-          WebRTCCommand: '#/components/schemas/WebRTCCommandCreateRequest'
-    PolymorphicEvent:
-      oneOf:
-      - $ref: '#/components/schemas/OctoPrintEvent'
-      - $ref: '#/components/schemas/WebRTCEvent'
-      - $ref: '#/components/schemas/WebRTCCommand'
-      - $ref: '#/components/schemas/TestEvent'
-      discriminator:
-        propertyName: model
-        mapping:
-          OctoPrintEvent: '#/components/schemas/OctoPrintEvent'
-          WebRTCEvent: '#/components/schemas/WebRTCEvent'
-          WebRTCCommand: '#/components/schemas/WebRTCCommand'
-          TestEvent: '#/components/schemas/TestEvent'
-    PolymorphicEventCreateRequest:
-      oneOf:
-      - $ref: '#/components/schemas/OctoPrintEventRequest'
-      - $ref: '#/components/schemas/WebRTCEventRequest'
-      - $ref: '#/components/schemas/WebRTCCommandCreateRequest'
-      - $ref: '#/components/schemas/TestEventRequest'
-      discriminator:
-        propertyName: model
-        mapping:
-          OctoPrintEvent: '#/components/schemas/OctoPrintEventRequest'
-          WebRTCEvent: '#/components/schemas/WebRTCEventRequest'
-          WebRTCCommand: '#/components/schemas/WebRTCCommandCreateRequest'
-          TestEvent: '#/components/schemas/TestEventRequest'
+          PiGstreamerCommand: '#/components/schemas/PiGstreamerCommandRequest'
+          PiSoftwareUpdateEvent: '#/components/schemas/PiSoftwareUpdateEventRequest'
+          PiBootCommand: '#/components/schemas/PiBootCommandRequest'
+          PiBootEvent: '#/components/schemas/PiBootEventRequest'
     PublicKey:
       type: object
       properties:
@@ -6045,6 +5825,13 @@ components:
     SbcEnum:
       enum:
       - rpi_4
+      type: string
+    SourceEnum:
+      enum:
+      - octoprint
+      - printnanny_os
+      - printnanny_cloud
+      - mainsail
       type: string
     StripeCustomer:
       type: object
@@ -6970,64 +6757,6 @@ components:
       - none
       - reverse
       type: string
-    TestEvent:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        model:
-          $ref: '#/components/schemas/TestEventModel'
-        created_dt:
-          type: string
-          format: date-time
-          readOnly: true
-        source:
-          $ref: '#/components/schemas/EventSource'
-        event_name:
-          $ref: '#/components/schemas/TestEventName'
-        polymorphic_ctype:
-          type: integer
-          readOnly: true
-        user:
-          type: integer
-          readOnly: true
-        pi:
-          type: integer
-      required:
-      - created_dt
-      - event_name
-      - id
-      - model
-      - pi
-      - polymorphic_ctype
-      - source
-      - user
-    TestEventModel:
-      enum:
-      - TestEvent
-      type: string
-    TestEventName:
-      enum:
-      - mqtt_ping
-      - mqtt_pong
-      type: string
-    TestEventRequest:
-      type: object
-      properties:
-        model:
-          $ref: '#/components/schemas/TestEventModel'
-        source:
-          $ref: '#/components/schemas/EventSource'
-        event_name:
-          $ref: '#/components/schemas/TestEventName'
-        pi:
-          type: integer
-      required:
-      - event_name
-      - model
-      - pi
-      - source
     Token:
       type: object
       description: Serializer for Token model.
@@ -7127,150 +6856,6 @@ components:
           minLength: 1
       required:
       - key
-    WebRTCCommand:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        stream:
-          allOf:
-          - $ref: '#/components/schemas/WebrtcStream'
-          readOnly: true
-        model:
-          $ref: '#/components/schemas/WebRTCCommandModel'
-        created_dt:
-          type: string
-          format: date-time
-          readOnly: true
-        source:
-          $ref: '#/components/schemas/EventSource'
-        event_name:
-          $ref: '#/components/schemas/WebRTCCommandName'
-        data:
-          type: object
-          additionalProperties: {}
-        polymorphic_ctype:
-          type: integer
-          readOnly: true
-        user:
-          type: integer
-          readOnly: true
-        pi:
-          type: integer
-      required:
-      - created_dt
-      - event_name
-      - id
-      - model
-      - pi
-      - polymorphic_ctype
-      - source
-      - stream
-      - user
-    WebRTCCommandCreateRequest:
-      type: object
-      properties:
-        model:
-          $ref: '#/components/schemas/WebRTCCommandModel'
-        source:
-          $ref: '#/components/schemas/EventSource'
-        event_name:
-          $ref: '#/components/schemas/WebRTCCommandName'
-        data:
-          type: object
-          additionalProperties: {}
-        pi:
-          type: integer
-        stream:
-          type: integer
-      required:
-      - event_name
-      - model
-      - pi
-      - source
-      - stream
-    WebRTCCommandModel:
-      enum:
-      - WebRTCCommand
-      type: string
-    WebRTCCommandName:
-      enum:
-      - stream_start
-      - stream_stop
-      type: string
-    WebRTCEvent:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        model:
-          $ref: '#/components/schemas/WebRTCEventModel'
-        created_dt:
-          type: string
-          format: date-time
-          readOnly: true
-        source:
-          $ref: '#/components/schemas/EventSource'
-        event_name:
-          $ref: '#/components/schemas/WebRTCEventName'
-        data:
-          type: object
-          additionalProperties: {}
-        polymorphic_ctype:
-          type: integer
-          readOnly: true
-        user:
-          type: integer
-          readOnly: true
-        pi:
-          type: integer
-        stream:
-          type: integer
-      required:
-      - created_dt
-      - event_name
-      - id
-      - model
-      - pi
-      - polymorphic_ctype
-      - source
-      - stream
-      - user
-    WebRTCEventModel:
-      enum:
-      - WebRTCEvent
-      type: string
-    WebRTCEventName:
-      enum:
-      - stream_start_success
-      - stream_start_error
-      - stream_stop_success
-      - stream_stop_error
-      type: string
-    WebRTCEventRequest:
-      type: object
-      properties:
-        model:
-          $ref: '#/components/schemas/WebRTCEventModel'
-        source:
-          $ref: '#/components/schemas/EventSource'
-        event_name:
-          $ref: '#/components/schemas/WebRTCEventName'
-        data:
-          type: object
-          additionalProperties: {}
-        pi:
-          type: integer
-        stream:
-          type: integer
-      required:
-      - event_name
-      - model
-      - pi
-      - source
-      - stream
     WebrtcStream:
       type: object
       properties:

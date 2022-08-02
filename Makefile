@@ -434,7 +434,12 @@ rust-client-release: rust-client
 js-client-release: ts-client
 	cd clients/typescript && npm publish
 
-clients-release: js-client-release python-client-release rust-client-release 
+
+openapi-schema:
+	docker-compose -f local.yml exec django python manage.py spectacular --file asyncapi/openapi.yaml
+
+
+clients-release: js-client-release python-client-release rust-client-release openapi-schema
 
 cloudsql:
 	cloud_sql_proxy -dir=$(HOME)/cloudsql -instances=print-nanny:us-central1:print-nanny=tcp:5433
@@ -526,7 +531,3 @@ dev-config: $(TMPDIR)
 		--hostname=$(shell hostname) \
 		--out=$(PRINTNANNY_CONFIG_DEV) \
 		--port=8000
-
-openapi-schema:
-	docker-compose -f local.yml exec django python manage.py spectacular --file asyncapi/openapi.yaml
-
