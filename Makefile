@@ -78,13 +78,17 @@ requirements-prod:
 requirements-local:
 	docker run -it --rm -v $(WORKDIR)/requirements:/requirements bitsyai/python:3.9 /bin/bash -c "pip-compile --verbose /requirements/local.in --output-file /requirements/local.txt"
 
+requirements-test:
+	docker run -it --rm -v $(WORKDIR)/requirements:/requirements bitsyai/python:3.9 /bin/bash -c "pip-compile --verbose /requirements/test.in --output-file /requirements/test.txt"
+
+
 install-git-hooks:
 	cp -a hooks/. .git/hooks/
 # TODO:
 # https://django-environ.readthedocs.io/en/latest/
 # base.py requires certain env vars to be present ; move these or create an env harness for CI tests
 mypy:
-	docker-compose -f local.yml run --rm django mypy
+	docker-compose -f local.yml run -e DJANGO_SETTINGS_MODULE=config.settings.test --rm django mypy
 
 token:
 	@echo $(PRINT_NANNY_TOKEN)

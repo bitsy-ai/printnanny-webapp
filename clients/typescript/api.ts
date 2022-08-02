@@ -233,6 +233,80 @@ export interface DetailResponse {
     'detail': string;
 }
 /**
+ * 
+ * @export
+ * @interface EmailAlertSettings
+ */
+export interface EmailAlertSettings {
+    /**
+     * 
+     * @type {number}
+     * @memberof EmailAlertSettings
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailAlertSettings
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailAlertSettings
+     */
+    'updated_dt': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof EmailAlertSettings
+     */
+    'progress_percent'?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailAlertSettings
+     */
+    'enabled'?: boolean;
+    /**
+     * 
+     * @type {Array<EventTypesEnum>}
+     * @memberof EmailAlertSettings
+     */
+    'event_types'?: Array<EventTypesEnum>;
+    /**
+     * 
+     * @type {number}
+     * @memberof EmailAlertSettings
+     */
+    'user': number;
+}
+/**
+ * 
+ * @export
+ * @interface EmailAlertSettingsRequest
+ */
+export interface EmailAlertSettingsRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof EmailAlertSettingsRequest
+     */
+    'progress_percent'?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailAlertSettingsRequest
+     */
+    'enabled'?: boolean;
+    /**
+     * 
+     * @type {Array<EventTypesEnum>}
+     * @memberof EmailAlertSettingsRequest
+     */
+    'event_types'?: Array<EventTypesEnum>;
+}
+/**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
  * @export
  * @interface EmailAuthRequest
@@ -316,6 +390,24 @@ export interface ErrorDetail {
      */
     'code': string;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const EventTypesEnum = {
+    PrintQuality: 'PrintQuality',
+    PrintStarted: 'PrintStarted',
+    PrintDone: 'PrintDone',
+    PrintProgress: 'PrintProgress',
+    PrintPaused: 'PrintPaused',
+    PrintCancelled: 'PrintCancelled'
+} as const;
+
+export type EventTypesEnum = typeof EventTypesEnum[keyof typeof EventTypesEnum];
+
+
 /**
  * 
  * @export
@@ -1026,6 +1118,37 @@ export interface PaginatedCloudiotDeviceList {
 /**
  * 
  * @export
+ * @interface PaginatedEmailAlertSettingsList
+ */
+export interface PaginatedEmailAlertSettingsList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedEmailAlertSettingsList
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedEmailAlertSettingsList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedEmailAlertSettingsList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<EmailAlertSettings>}
+     * @memberof PaginatedEmailAlertSettingsList
+     */
+    'results'?: Array<EmailAlertSettings>;
+}
+/**
+ * 
+ * @export
  * @interface PaginatedGcodeFileList
  */
 export interface PaginatedGcodeFileList {
@@ -1439,6 +1562,31 @@ export interface PatchedCloudiotDeviceRequest {
      * @memberof PatchedCloudiotDeviceRequest
      */
     'public_key'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface PatchedEmailAlertSettingsRequest
+ */
+export interface PatchedEmailAlertSettingsRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedEmailAlertSettingsRequest
+     */
+    'progress_percent'?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedEmailAlertSettingsRequest
+     */
+    'enabled'?: boolean;
+    /**
+     * 
+     * @type {Array<EventTypesEnum>}
+     * @memberof PatchedEmailAlertSettingsRequest
+     */
+    'event_types'?: Array<EventTypesEnum>;
 }
 /**
  * 
@@ -5321,6 +5469,459 @@ export class AccountsApi extends BaseAPI implements AccountsApiInterface {
      */
     public accountsUserUpdate(userRequest: UserRequest, options?: AxiosRequestConfig) {
         return AccountsApiFp(this.configuration).accountsUserUpdate(userRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * AlertsApi - axios parameter creator
+ * @export
+ */
+export const AlertsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsEmailCreate: async (emailAlertSettingsRequest?: EmailAlertSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/alert-settings/email/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(emailAlertSettingsRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsEmailList: async (page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/alert-settings/email/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this email alert settings.
+         * @param {PatchedEmailAlertSettingsRequest} [patchedEmailAlertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsEmailPartialUpdate: async (id: number, patchedEmailAlertSettingsRequest?: PatchedEmailAlertSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('alertSettingsEmailPartialUpdate', 'id', id)
+            const localVarPath = `/api/alert-settings/email/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedEmailAlertSettingsRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this email alert settings.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsEmailRetrieve: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('alertSettingsEmailRetrieve', 'id', id)
+            const localVarPath = `/api/alert-settings/email/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this email alert settings.
+         * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsEmailUpdate: async (id: number, emailAlertSettingsRequest?: EmailAlertSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('alertSettingsEmailUpdate', 'id', id)
+            const localVarPath = `/api/alert-settings/email/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(emailAlertSettingsRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * AlertsApi - functional programming interface
+ * @export
+ */
+export const AlertsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = AlertsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertSettingsEmailCreate(emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EmailAlertSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertSettingsEmailCreate(emailAlertSettingsRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertSettingsEmailList(page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedEmailAlertSettingsList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertSettingsEmailList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this email alert settings.
+         * @param {PatchedEmailAlertSettingsRequest} [patchedEmailAlertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertSettingsEmailPartialUpdate(id: number, patchedEmailAlertSettingsRequest?: PatchedEmailAlertSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EmailAlertSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertSettingsEmailPartialUpdate(id, patchedEmailAlertSettingsRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this email alert settings.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertSettingsEmailRetrieve(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EmailAlertSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertSettingsEmailRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this email alert settings.
+         * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertSettingsEmailUpdate(id: number, emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EmailAlertSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertSettingsEmailUpdate(id, emailAlertSettingsRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * AlertsApi - factory interface
+ * @export
+ */
+export const AlertsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = AlertsApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsEmailCreate(emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: any): AxiosPromise<EmailAlertSettings> {
+            return localVarFp.alertSettingsEmailCreate(emailAlertSettingsRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsEmailList(page?: number, options?: any): AxiosPromise<PaginatedEmailAlertSettingsList> {
+            return localVarFp.alertSettingsEmailList(page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this email alert settings.
+         * @param {PatchedEmailAlertSettingsRequest} [patchedEmailAlertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsEmailPartialUpdate(id: number, patchedEmailAlertSettingsRequest?: PatchedEmailAlertSettingsRequest, options?: any): AxiosPromise<EmailAlertSettings> {
+            return localVarFp.alertSettingsEmailPartialUpdate(id, patchedEmailAlertSettingsRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this email alert settings.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsEmailRetrieve(id: number, options?: any): AxiosPromise<EmailAlertSettings> {
+            return localVarFp.alertSettingsEmailRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this email alert settings.
+         * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsEmailUpdate(id: number, emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: any): AxiosPromise<EmailAlertSettings> {
+            return localVarFp.alertSettingsEmailUpdate(id, emailAlertSettingsRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * AlertsApi - interface
+ * @export
+ * @interface AlertsApi
+ */
+export interface AlertsApiInterface {
+    /**
+     * 
+     * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    alertSettingsEmailCreate(emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<EmailAlertSettings>;
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    alertSettingsEmailList(page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedEmailAlertSettingsList>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this email alert settings.
+     * @param {PatchedEmailAlertSettingsRequest} [patchedEmailAlertSettingsRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    alertSettingsEmailPartialUpdate(id: number, patchedEmailAlertSettingsRequest?: PatchedEmailAlertSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<EmailAlertSettings>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this email alert settings.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    alertSettingsEmailRetrieve(id: number, options?: AxiosRequestConfig): AxiosPromise<EmailAlertSettings>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this email alert settings.
+     * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    alertSettingsEmailUpdate(id: number, emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<EmailAlertSettings>;
+
+}
+
+/**
+ * AlertsApi - object-oriented interface
+ * @export
+ * @class AlertsApi
+ * @extends {BaseAPI}
+ */
+export class AlertsApi extends BaseAPI implements AlertsApiInterface {
+    /**
+     * 
+     * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public alertSettingsEmailCreate(emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: AxiosRequestConfig) {
+        return AlertsApiFp(this.configuration).alertSettingsEmailCreate(emailAlertSettingsRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public alertSettingsEmailList(page?: number, options?: AxiosRequestConfig) {
+        return AlertsApiFp(this.configuration).alertSettingsEmailList(page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this email alert settings.
+     * @param {PatchedEmailAlertSettingsRequest} [patchedEmailAlertSettingsRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public alertSettingsEmailPartialUpdate(id: number, patchedEmailAlertSettingsRequest?: PatchedEmailAlertSettingsRequest, options?: AxiosRequestConfig) {
+        return AlertsApiFp(this.configuration).alertSettingsEmailPartialUpdate(id, patchedEmailAlertSettingsRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this email alert settings.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public alertSettingsEmailRetrieve(id: number, options?: AxiosRequestConfig) {
+        return AlertsApiFp(this.configuration).alertSettingsEmailRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this email alert settings.
+     * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public alertSettingsEmailUpdate(id: number, emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: AxiosRequestConfig) {
+        return AlertsApiFp(this.configuration).alertSettingsEmailUpdate(id, emailAlertSettingsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -11826,6 +12427,459 @@ export class SchemaApi extends BaseAPI implements SchemaApiInterface {
      */
     public schemaRetrieve(lang?: 'af' | 'ar' | 'ar-dz' | 'ast' | 'az' | 'be' | 'bg' | 'bn' | 'br' | 'bs' | 'ca' | 'cs' | 'cy' | 'da' | 'de' | 'dsb' | 'el' | 'en' | 'en-au' | 'en-gb' | 'eo' | 'es' | 'es-ar' | 'es-co' | 'es-mx' | 'es-ni' | 'es-ve' | 'et' | 'eu' | 'fa' | 'fi' | 'fr' | 'fy' | 'ga' | 'gd' | 'gl' | 'he' | 'hi' | 'hr' | 'hsb' | 'hu' | 'hy' | 'ia' | 'id' | 'ig' | 'io' | 'is' | 'it' | 'ja' | 'ka' | 'kab' | 'kk' | 'km' | 'kn' | 'ko' | 'ky' | 'lb' | 'lt' | 'lv' | 'mk' | 'ml' | 'mn' | 'mr' | 'my' | 'nb' | 'ne' | 'nl' | 'nn' | 'os' | 'pa' | 'pl' | 'pt' | 'pt-br' | 'ro' | 'ru' | 'sk' | 'sl' | 'sq' | 'sr' | 'sr-latn' | 'sv' | 'sw' | 'ta' | 'te' | 'tg' | 'th' | 'tk' | 'tr' | 'tt' | 'udm' | 'uk' | 'ur' | 'uz' | 'vi' | 'zh-hans' | 'zh-hant', options?: AxiosRequestConfig) {
         return SchemaApiFp(this.configuration).schemaRetrieve(lang, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * SettingsApi - axios parameter creator
+ * @export
+ */
+export const SettingsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsEmailCreate: async (emailAlertSettingsRequest?: EmailAlertSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/alert-settings/email/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(emailAlertSettingsRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsEmailList: async (page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/alert-settings/email/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this email alert settings.
+         * @param {PatchedEmailAlertSettingsRequest} [patchedEmailAlertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsEmailPartialUpdate: async (id: number, patchedEmailAlertSettingsRequest?: PatchedEmailAlertSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('alertSettingsEmailPartialUpdate', 'id', id)
+            const localVarPath = `/api/alert-settings/email/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedEmailAlertSettingsRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this email alert settings.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsEmailRetrieve: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('alertSettingsEmailRetrieve', 'id', id)
+            const localVarPath = `/api/alert-settings/email/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this email alert settings.
+         * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsEmailUpdate: async (id: number, emailAlertSettingsRequest?: EmailAlertSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('alertSettingsEmailUpdate', 'id', id)
+            const localVarPath = `/api/alert-settings/email/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(emailAlertSettingsRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * SettingsApi - functional programming interface
+ * @export
+ */
+export const SettingsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = SettingsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertSettingsEmailCreate(emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EmailAlertSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertSettingsEmailCreate(emailAlertSettingsRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertSettingsEmailList(page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedEmailAlertSettingsList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertSettingsEmailList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this email alert settings.
+         * @param {PatchedEmailAlertSettingsRequest} [patchedEmailAlertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertSettingsEmailPartialUpdate(id: number, patchedEmailAlertSettingsRequest?: PatchedEmailAlertSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EmailAlertSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertSettingsEmailPartialUpdate(id, patchedEmailAlertSettingsRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this email alert settings.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertSettingsEmailRetrieve(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EmailAlertSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertSettingsEmailRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this email alert settings.
+         * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertSettingsEmailUpdate(id: number, emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EmailAlertSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertSettingsEmailUpdate(id, emailAlertSettingsRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * SettingsApi - factory interface
+ * @export
+ */
+export const SettingsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = SettingsApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsEmailCreate(emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: any): AxiosPromise<EmailAlertSettings> {
+            return localVarFp.alertSettingsEmailCreate(emailAlertSettingsRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsEmailList(page?: number, options?: any): AxiosPromise<PaginatedEmailAlertSettingsList> {
+            return localVarFp.alertSettingsEmailList(page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this email alert settings.
+         * @param {PatchedEmailAlertSettingsRequest} [patchedEmailAlertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsEmailPartialUpdate(id: number, patchedEmailAlertSettingsRequest?: PatchedEmailAlertSettingsRequest, options?: any): AxiosPromise<EmailAlertSettings> {
+            return localVarFp.alertSettingsEmailPartialUpdate(id, patchedEmailAlertSettingsRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this email alert settings.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsEmailRetrieve(id: number, options?: any): AxiosPromise<EmailAlertSettings> {
+            return localVarFp.alertSettingsEmailRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this email alert settings.
+         * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsEmailUpdate(id: number, emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: any): AxiosPromise<EmailAlertSettings> {
+            return localVarFp.alertSettingsEmailUpdate(id, emailAlertSettingsRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * SettingsApi - interface
+ * @export
+ * @interface SettingsApi
+ */
+export interface SettingsApiInterface {
+    /**
+     * 
+     * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SettingsApiInterface
+     */
+    alertSettingsEmailCreate(emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<EmailAlertSettings>;
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SettingsApiInterface
+     */
+    alertSettingsEmailList(page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedEmailAlertSettingsList>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this email alert settings.
+     * @param {PatchedEmailAlertSettingsRequest} [patchedEmailAlertSettingsRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SettingsApiInterface
+     */
+    alertSettingsEmailPartialUpdate(id: number, patchedEmailAlertSettingsRequest?: PatchedEmailAlertSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<EmailAlertSettings>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this email alert settings.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SettingsApiInterface
+     */
+    alertSettingsEmailRetrieve(id: number, options?: AxiosRequestConfig): AxiosPromise<EmailAlertSettings>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this email alert settings.
+     * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SettingsApiInterface
+     */
+    alertSettingsEmailUpdate(id: number, emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<EmailAlertSettings>;
+
+}
+
+/**
+ * SettingsApi - object-oriented interface
+ * @export
+ * @class SettingsApi
+ * @extends {BaseAPI}
+ */
+export class SettingsApi extends BaseAPI implements SettingsApiInterface {
+    /**
+     * 
+     * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SettingsApi
+     */
+    public alertSettingsEmailCreate(emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: AxiosRequestConfig) {
+        return SettingsApiFp(this.configuration).alertSettingsEmailCreate(emailAlertSettingsRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SettingsApi
+     */
+    public alertSettingsEmailList(page?: number, options?: AxiosRequestConfig) {
+        return SettingsApiFp(this.configuration).alertSettingsEmailList(page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this email alert settings.
+     * @param {PatchedEmailAlertSettingsRequest} [patchedEmailAlertSettingsRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SettingsApi
+     */
+    public alertSettingsEmailPartialUpdate(id: number, patchedEmailAlertSettingsRequest?: PatchedEmailAlertSettingsRequest, options?: AxiosRequestConfig) {
+        return SettingsApiFp(this.configuration).alertSettingsEmailPartialUpdate(id, patchedEmailAlertSettingsRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this email alert settings.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SettingsApi
+     */
+    public alertSettingsEmailRetrieve(id: number, options?: AxiosRequestConfig) {
+        return SettingsApiFp(this.configuration).alertSettingsEmailRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this email alert settings.
+     * @param {EmailAlertSettingsRequest} [emailAlertSettingsRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SettingsApi
+     */
+    public alertSettingsEmailUpdate(id: number, emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: AxiosRequestConfig) {
+        return SettingsApiFp(this.configuration).alertSettingsEmailUpdate(id, emailAlertSettingsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

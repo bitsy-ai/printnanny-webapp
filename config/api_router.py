@@ -13,6 +13,7 @@ from print_nanny_webapp.devices.api.views import (
 from print_nanny_webapp.events.api.views import (
     AllPiEventsViewSet,
     SinglePiEventsViewSet,
+    EmailAlertSettingsViewSet,
 )
 
 # from print_nanny_webapp.alerts.api.views import (
@@ -88,6 +89,12 @@ router.register(
     r"octoprint/settings",
     OctoPrintSettingsViewSet,
     basename="octoprint-settings",
+)
+
+router.register(
+    r"alert-settings/email",
+    EmailAlertSettingsViewSet,
+    basename="email-alert-settings",
 )
 
 # router.register("events", PiEventViewSet, basename="events")

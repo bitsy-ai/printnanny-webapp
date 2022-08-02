@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, inject } from "vue";
+import { computed } from "vue";
 
 const props = defineProps({
   name: String,

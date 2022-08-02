@@ -1,6 +1,18 @@
 from django.db import models
 
 
+class AlertEventType(models.TextChoices):
+    PRINT_QUALITY = "PrintQuality", "Quality control alerts"
+    PRINT_STARTED = "PrintStarted", "Triggered on print job start"
+    PRINT_DONE = "PrintDone", "Triggered when print job is finished"
+    PRINT_PROGRESS = (
+        "PrintProgress",
+        "Triggered when print job progress reaches %percent",
+    )
+    PRINT_PAUSED = "PrintPaused", "Triggered when print job is paused"
+    PRINT_CANCELLED = "PrintCancelled", "Triggered when print job is cancelled"
+
+
 class PiGstreamerCommandType(models.TextChoices):
     Start = ("Start", "Start gstreamer pipelines")
     Stop = ("Stop", "Stop gstreamer pipelines")

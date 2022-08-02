@@ -414,17 +414,9 @@ SPECTACULAR_SETTINGS = {
         "JanusConfigType": "print_nanny_webapp.devices.enum.JanusConfigType",
         "DeviceReleaseChannel": "print_nanny_webapp.devices.enum.DeviceReleaseChannel",
         "OsEdition": "print_nanny_webapp.devices.enum.OsEdition",
+        # end device app enums
         # begin alerts app enums
-        # "PrintProgressAlertEventType": "print_nanny_webapp.alerts.models.PrintProgressAlert.PrintProgressAlertEventType",
-        # "AlertMessageType": "print_nanny_webapp.alerts.models.AlertMessage.AlertMessageType",
-        # "AlertSettingsEventType": "print_nanny_webapp.alerts.models.AlertSettings.AlertSettingsEventType",
-        # begin octoprint event types
-        # "OctoTelemetryEvent": "print_nanny_webapp.telemetry.enum.TelemetryEventType",
-        # "OctoPrintNannyEvent": "print_nanny_webapp.telemetry.enum.PrintNannyPluginEventType",
-        # "OctoGenericEvent": "print_nanny_webapp.telemetry.enum.OctoprintEventType",
-        # "OctoJobEvent": "print_nanny_webapp.telemetry.enum.PrintJobEventType",
-        # "OctoPrinterEvent": "print_nanny_webapp.telemetry.enum.PrinterEventType",
-        # "AlphaEventSource": "print_nanny_webapp.telemetry.enum.EventSource",
+        # end alerts app enums
         # begin polymorphic event types
         "OctoPrintEventType": "print_nanny_webapp.events.models.enum.OctoPrintEventType",
         "PiGstreamerCommandType": "print_nanny_webapp.events.models.enum.PiGstreamerCommandType",

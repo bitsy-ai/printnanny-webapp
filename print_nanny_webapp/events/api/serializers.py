@@ -3,19 +3,12 @@ from django.apps import apps
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from rest_polymorphic.serializers import PolymorphicSerializer
-from print_nanny_webapp.devices.api.serializers import WebrtcStreamSerializer
-
-from print_nanny_webapp.events.models.enum import (
-    # OctoPrintEventModel,
-    TestEventModel,
-    WebRTCEventModel,
-    WebRTCCommandModel,
-)
 from print_nanny_webapp.events.models.pi import (
     PiBootCommand,
     PiGstreamerCommand,
     PiSoftwareUpdateEvent,
 )
+from print_nanny_webapp.events.models.alerts import EmailAlertSettings
 
 from ..models import PiBootEvent
 
@@ -23,6 +16,13 @@ logger = logging.getLogger(__name__)
 
 Pi = apps.get_model("devices", "Pi")
 User = get_user_model()
+
+
+class EmailAlertSettingsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EmailAlertSettings
+        fields = "__all__"
+        read_only_fields = ("created_dt", "updated_dt", "user")
 
 
 class PiBootEventSerializer(serializers.ModelSerializer):
