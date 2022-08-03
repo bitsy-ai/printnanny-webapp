@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
 **created_dt** | **String** |  | [readonly]
-**source** | [**crate::models::SourceEnum**](SourceEnum.md) |  | 
 **subject** | **String** |  | 
 **payload** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **version** | **String** |  | 

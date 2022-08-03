@@ -92,7 +92,6 @@ docs/RestAuthDetail.md
 docs/SbcEnum.md
 docs/SchemaApi.md
 docs/SettingsApi.md
-docs/SourceEnum.md
 docs/StripeCustomer.md
 docs/StripePaymentMethod.md
 docs/StripePlan.md
@@ -206,7 +205,6 @@ src/models/register_request.rs
 src/models/resend_email_verification_request.rs
 src/models/rest_auth_detail.rs
 src/models/sbc_enum.rs
-src/models/source_enum.rs
 src/models/stripe_customer.rs
 src/models/stripe_payment_method.rs
 src/models/stripe_plan.rs

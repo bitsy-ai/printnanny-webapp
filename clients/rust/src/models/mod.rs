@@ -156,8 +156,6 @@ pub mod rest_auth_detail;
 pub use self::rest_auth_detail::RestAuthDetail;
 pub mod sbc_enum;
 pub use self::sbc_enum::SbcEnum;
-pub mod source_enum;
-pub use self::source_enum::SourceEnum;
 pub mod stripe_customer;
 pub use self::stripe_customer::StripeCustomer;
 pub mod stripe_payment_method;

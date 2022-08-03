@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
-**source** | [**SourceEnum**](SourceEnum.md) |  | 
 **subject** | **str** |  | 
 **payload** | **dict(str, object)** |  | [optional] 
 **version** | **str** |  | 

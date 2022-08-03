@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**source** | [**crate::models::SourceEnum**](SourceEnum.md) |  | 
 **subject** | **String** |  | 
 **payload** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **event_type** | [**crate::models::PiBootEventType**](PiBootEventType.md) |  | 

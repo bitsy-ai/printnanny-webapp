@@ -4,7 +4,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**source** | [**SourceEnum**](SourceEnum.md) |  | 
 **subject** | **str** |  | 
 **payload** | **dict(str, object)** |  | [optional] 
 **event_type** | [**PiBootEventType**](PiBootEventType.md) |  | 
