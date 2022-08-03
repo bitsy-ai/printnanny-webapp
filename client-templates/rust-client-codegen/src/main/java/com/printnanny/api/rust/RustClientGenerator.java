@@ -39,6 +39,7 @@ public class RustClientGenerator extends DefaultCodegen implements CodegenConfig
   private boolean useSingleRequestParameter = false;
   private boolean supportAsync = true;
   private boolean supportMultipleResponses = false;
+  private boolean deriveClapValueEnum = false;
 
   public static final String PACKAGE_NAME = "packageName";
   public static final String PACKAGE_VERSION = "packageVersion";
@@ -46,6 +47,7 @@ public class RustClientGenerator extends DefaultCodegen implements CodegenConfig
   public static final String REQWEST_LIBRARY = "reqwest";
   public static final String SUPPORT_ASYNC = "supportAsync";
   public static final String SUPPORT_MULTIPLE_RESPONSES = "supportMultipleResponses";
+  public static final String DERIVE_CLAP_VALUE_ENUM = "deriveClapValueEnum";
 
   protected String packageName = "openapi";
   protected String packageVersion = "1.0.0";
@@ -170,18 +172,21 @@ public class RustClientGenerator extends DefaultCodegen implements CodegenConfig
             .defaultValue(Boolean.TRUE.toString()));
     cliOptions.add(new CliOption(CodegenConstants.USE_SINGLE_REQUEST_PARAMETER,
         CodegenConstants.USE_SINGLE_REQUEST_PARAMETER_DESC, SchemaTypeUtil.BOOLEAN_TYPE)
-            .defaultValue(Boolean.FALSE.toString()));
+        .defaultValue(Boolean.FALSE.toString()));
     cliOptions.add(new CliOption(SUPPORT_ASYNC,
         "If set, generate async function call instead. This option is for 'reqwest' library only",
         SchemaTypeUtil.BOOLEAN_TYPE)
-            .defaultValue(Boolean.TRUE.toString()));
+        .defaultValue(Boolean.TRUE.toString()));
     cliOptions.add(new CliOption(SUPPORT_MULTIPLE_RESPONSES,
         "If set, return type wraps an enum of all possible 2xx schemas. This option is for 'reqwest' library only",
         SchemaTypeUtil.BOOLEAN_TYPE)
-            .defaultValue(Boolean.FALSE.toString()));
+        .defaultValue(Boolean.FALSE.toString()));
     cliOptions.add(new CliOption(CodegenConstants.ENUM_NAME_SUFFIX, CodegenConstants.ENUM_NAME_SUFFIX_DESC)
         .defaultValue(this.enumSuffix));
-
+    cliOptions.add(new CliOption(DERIVE_CLAP_VALUE_ENUM,
+        "If set, an additional sized enum will be generated deriving clap::ValueEnum. This option is useful for building a CLI wrapper for your OpenAPI schema.",
+        SchemaTypeUtil.BOOLEAN_TYPE)
+        .defaultValue(Boolean.FALSE.toString()));
     supportedLibraries.put(HYPER_LIBRARY, "HTTP client: Hyper.");
     supportedLibraries.put(REQWEST_LIBRARY, "HTTP client: Reqwest.");
 
@@ -281,6 +286,11 @@ public class RustClientGenerator extends DefaultCodegen implements CodegenConfig
     }
     writePropertyBack(SUPPORT_ASYNC, getSupportAsync());
 
+    if (additionalProperties.containsKey(DERIVE_CLAP_VALUE_ENUM)) {
+      this.setDeriveClapValueEnum(convertPropertyToBoolean(DERIVE_CLAP_VALUE_ENUM));
+    }
+    writePropertyBack(DERIVE_CLAP_VALUE_ENUM, getDeriveClapValueEnum());
+
     if (additionalProperties.containsKey(SUPPORT_MULTIPLE_RESPONSES)) {
       this.setSupportMultipleReturns(convertPropertyToBoolean(SUPPORT_MULTIPLE_RESPONSES));
     }
@@ -319,6 +329,14 @@ public class RustClientGenerator extends DefaultCodegen implements CodegenConfig
       supportingFiles.add(new SupportingFile("request.rs", apiFolder, "request.rs"));
       supportingFiles.add(new SupportingFile(getLibrary() + "/client.mustache", apiFolder, "client.rs"));
     }
+  }
+
+  private boolean getDeriveClapValueEnum() {
+    return deriveClapValueEnum;
+  }
+
+  private void setDeriveClapValueEnum(boolean deriveClapValueEnum) {
+    this.deriveClapValueEnum = deriveClapValueEnum;
   }
 
   private boolean getSupportAsync() {
