@@ -2,8 +2,6 @@ from polymorphic.models import PolymorphicModel
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from django.contrib.auth import get_user_model
 from django.db import models
-from .enum import EventSource
-
 
 User = get_user_model()
 
