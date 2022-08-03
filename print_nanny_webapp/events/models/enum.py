@@ -30,8 +30,12 @@ class PiBootCommandType(models.TextChoices):
 
 
 class PiBootEventType(models.TextChoices):
-    BootStart = (
-        "BootStart",
+    RebootStarted = ("RebootStarted", "Raspberry Pi will reboot soon")
+    RebootError = ("RebootError", "Unexpected error during reboot")
+    ShutdownStarted = ("ShutdownStarted", "Raspberry Pi will shutdown soon")
+    ShutdownError = ("ShutdownError", "Unexpected error during shutdown")
+    BootStarted = (
+        "BootStarted",
         "Emitted during boot process, typically after systemd network-online.target",
     )
     BootSuccess = (

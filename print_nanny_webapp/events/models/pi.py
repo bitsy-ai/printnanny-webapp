@@ -25,6 +25,10 @@ class PiBootEvent(BasePiEvent):
         max_length=32, choices=PiBootEventType.choices, db_index=True
     )
 
+    @property
+    def subject(self):
+        return f"pi.{self.pi.id}.boot"
+
 
 class PiBootCommand(BasePiEvent):
     """
@@ -38,6 +42,10 @@ class PiBootCommand(BasePiEvent):
     event_type = models.CharField(
         max_length=32, choices=PiBootCommandType.choices, db_index=True
     )
+
+    @property
+    def subject(self):
+        return f"pi.{self.pi.id}.boot.command"
 
 
 class PiSoftwareUpdateEvent(BasePiEvent):
@@ -54,6 +62,10 @@ class PiSoftwareUpdateEvent(BasePiEvent):
         choices=PiSoftwareUpdateEventType.choices,
     )
 
+    @property
+    def subject(self):
+        return f"pi.{self.pi.id}.swupdate"
+
 
 class PiGstreamerCommand(BasePiEvent):
     class Meta:
@@ -62,3 +74,7 @@ class PiGstreamerCommand(BasePiEvent):
     event_type = models.CharField(
         max_length=32, choices=PiGstreamerCommandType.choices, db_index=True
     )
+
+    @property
+    def subject(self):
+        return f"pi.{self.pi.id}.gst.command"
