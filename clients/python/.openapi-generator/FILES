@@ -85,6 +85,7 @@ docs/PisApi.md
 docs/PolymorphicPiEvent.md
 docs/PolymorphicPiEventRequest.md
 docs/PrintNannyApiConfig.md
+docs/PrintNannyLicense.md
 docs/PublicKey.md
 docs/PublicKeyRequest.md
 docs/RegisterRequest.md
@@ -202,6 +203,7 @@ printnanny_api_client/models/pi_urls.py
 printnanny_api_client/models/polymorphic_pi_event.py
 printnanny_api_client/models/polymorphic_pi_event_request.py
 printnanny_api_client/models/print_nanny_api_config.py
+printnanny_api_client/models/print_nanny_license.py
 printnanny_api_client/models/public_key.py
 printnanny_api_client/models/public_key_request.py
 printnanny_api_client/models/register_request.py
@@ -315,6 +317,7 @@ test/test_pis_api.py
 test/test_polymorphic_pi_event.py
 test/test_polymorphic_pi_event_request.py
 test/test_print_nanny_api_config.py
+test/test_print_nanny_license.py
 test/test_public_key.py
 test/test_public_key_request.py
 test/test_register_request.py

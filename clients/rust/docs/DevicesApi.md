@@ -281,7 +281,7 @@ Name | Type | Description  | Required | Notes
 
 ## pis_license_cloud_api_retrieve
 
-> crate::models::PrintNannyApiConfig pis_license_cloud_api_retrieve(pi_id)
+> crate::models::PrintNannyLicense pis_license_cloud_api_retrieve(pi_id)
 
 
 ### Parameters
@@ -293,7 +293,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::PrintNannyApiConfig**](PrintNannyApiConfig.md)
+[**crate::models::PrintNannyLicense**](PrintNannyLicense.md)
 
 ### Authorization
 

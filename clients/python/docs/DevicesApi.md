@@ -1035,7 +1035,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **pis_license_cloud_api_retrieve**
-> PrintNannyApiConfig pis_license_cloud_api_retrieve(pi_id)
+> PrintNannyLicense pis_license_cloud_api_retrieve(pi_id)
 
 
 
@@ -1133,7 +1133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PrintNannyApiConfig**](PrintNannyApiConfig.md)
+[**PrintNannyLicense**](PrintNannyLicense.md)
 
 ### Authorization
 
