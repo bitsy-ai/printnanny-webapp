@@ -53,6 +53,7 @@ from ..models import (
 from print_nanny_webapp.utils.api.service import get_api_config
 from ..services import (
     build_license_zip,
+    get_license_serializer,
     janus_cloud_setup,
     update_or_create_cloudiot_device,
 )
@@ -579,8 +580,7 @@ class PiLicenseJsonViewSet(GenericViewSet):
     def cloud_api(
         self, request: Request, pi_id=None, *args: Any, **kwargs: Any
     ) -> HttpResponse:
-        pi = get_object_or_404(Pi.objects.filter(id=pi_id, user=request.user))
-        api = get_api_config(request, user=pi.user)
-        serializer = PrintNannyLicenseSerializer(instance=dict(api=api, pi=pi))
+        pi = Pi.objects.get(id=pi_id, user=request.user)
+        serializer = get_license_serializer(pi, request)
 
         return Response(serializer.data)
