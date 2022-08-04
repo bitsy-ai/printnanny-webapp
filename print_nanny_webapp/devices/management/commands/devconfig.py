@@ -4,8 +4,6 @@ from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.http import HttpRequest
-
-from print_nanny_webapp.devices.api.serializers import ConfigSerializer
 from print_nanny_webapp.devices.models import Pi
 from print_nanny_webapp.utils.api.service import get_api_config
 from print_nanny_webapp.devices.services import build_license_zip

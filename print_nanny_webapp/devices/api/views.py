@@ -581,6 +581,6 @@ class PiLicenseJsonViewSet(GenericViewSet):
     ) -> HttpResponse:
         pi = get_object_or_404(Pi.objects.filter(id=pi_id, user=request.user))
         api = get_api_config(request, user=pi.user)
-        serializer = LicenseSerializer(api=api, pi=pi)
+        serializer = PrintNannyLicenseSerializer(instance=dict(api=api, pi=pi))
 
         return Response(serializer.data)

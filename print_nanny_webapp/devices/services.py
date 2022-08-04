@@ -217,7 +217,7 @@ def create_pi_nats_app(pi: Pi) -> PiNatsApp:
 
 def build_license_zip(pi: Pi, request: HttpRequest) -> bytes:
     api = get_api_config(request, user=pi.user)
-    license_json = PritnNannyLicenseSerializer(api=api, pi=pi)
+    license_json = PrintNannyLicenseSerializer(instance=dict(api=api, pi=pi))
 
     # is there already a NatsApp associated with Pi?
     try:
