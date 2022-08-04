@@ -27,6 +27,7 @@ docs/IntervalEnum.md
 docs/JanusApi.md
 docs/JanusConfigType.md
 docs/LoginRequest.md
+docs/NatsApp.md
 docs/OctoPrintBackup.md
 docs/OctoPrintServer.md
 docs/OctoPrintServerRequest.md
@@ -145,6 +146,7 @@ src/models/interval_enum.rs
 src/models/janus_config_type.rs
 src/models/login_request.rs
 src/models/mod.rs
+src/models/nats_app.rs
 src/models/octo_print_backup.rs
 src/models/octo_print_server.rs
 src/models/octo_print_server_request.rs

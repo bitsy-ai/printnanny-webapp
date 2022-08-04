@@ -28,6 +28,7 @@ docs/IntervalEnum.md
 docs/JanusApi.md
 docs/JanusConfigType.md
 docs/LoginRequest.md
+docs/NatsApp.md
 docs/OctoPrintBackup.md
 docs/OctoPrintServer.md
 docs/OctoPrintServerRequest.md
@@ -148,6 +149,7 @@ printnanny_api_client/models/gcode_file.py
 printnanny_api_client/models/interval_enum.py
 printnanny_api_client/models/janus_config_type.py
 printnanny_api_client/models/login_request.py
+printnanny_api_client/models/nats_app.py
 printnanny_api_client/models/octo_print_backup.py
 printnanny_api_client/models/octo_print_server.py
 printnanny_api_client/models/octo_print_server_request.py
@@ -260,6 +262,7 @@ test/test_interval_enum.py
 test/test_janus_api.py
 test/test_janus_config_type.py
 test/test_login_request.py
+test/test_nats_app.py
 test/test_octo_print_backup.py
 test/test_octo_print_server.py
 test/test_octo_print_server_request.py

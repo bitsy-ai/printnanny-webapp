@@ -34,6 +34,8 @@ pub mod janus_config_type;
 pub use self::janus_config_type::JanusConfigType;
 pub mod login_request;
 pub use self::login_request::LoginRequest;
+pub mod nats_app;
+pub use self::nats_app::NatsApp;
 pub mod octo_print_backup;
 pub use self::octo_print_backup::OctoPrintBackup;
 pub mod octo_print_server;
