@@ -144,7 +144,7 @@ class SystemInfoSerializer(serializers.ModelSerializer):
 
 
 class PiSerializer(serializers.ModelSerializer):
-    last_boot = serializers.CharField(read_only=True)
+    last_boot = serializers.CharField(read_only=True, allow_null=True)
     # alert_settings = AlertSettingsSerializer(read_only=True)
     settings = PiSettingsSerializer(read_only=True)
     cloudiot_device = CloudiotDeviceSerializer(read_only=True)
