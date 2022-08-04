@@ -217,7 +217,7 @@ def create_pi_nats_app(pi: Pi) -> PiNatsApp:
 
 def get_license_serializer(pi: Pi, request: HttpRequest) -> PrintNannyLicenseSerializer:
     api = get_api_config(request, user=pi.user)
-    nats_app = PiNatsApp.objects.get(pi=pi).first()
+    nats_app = PiNatsApp.objects.get(pi=pi)
 
     return PrintNannyLicenseSerializer(dict(api=api, nats_app=nats_app, pi=pi))
 
