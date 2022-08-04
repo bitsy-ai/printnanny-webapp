@@ -25,7 +25,6 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.renderers import BaseRenderer
-from print_nanny_webapp.utils.api.serializers import PrintNannyApiConfigSerializer
 from print_nanny_webapp.utils.api.exceptions import AlreadyExists
 from print_nanny_webapp.utils.api.views import (
     generic_create_errors,
@@ -41,6 +40,7 @@ from .serializers import (
     PiSerializer,
     WebrtcStreamSerializer,
     PiSettingsSerializer,
+    PrintNannyLicenseSerializer,
 )
 from ..models import (
     CloudiotDevice,
@@ -567,15 +567,13 @@ class PiLicenseZipViewset(
         return response
 
 
-class PiApiCredsJsonViewset(
-    GenericViewSet,
-):
+class PiLicenseJsonViewSet(GenericViewSet):
     @extend_schema(
         tags=["devices"],
         parameters=[
             OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH),
         ],
-        responses={200: PrintNannyApiConfigSerializer} | generic_get_errors,
+        responses={200: PrintNannyLicenseSerializer} | generic_get_errors,
     )
     @action(detail=False, methods=["get"], url_path="cloud-api")
     def cloud_api(
@@ -583,6 +581,6 @@ class PiApiCredsJsonViewset(
     ) -> HttpResponse:
         pi = get_object_or_404(Pi.objects.filter(id=pi_id, user=request.user))
         api = get_api_config(request, user=pi.user)
-        serializer = PrintNannyApiConfigSerializer(instance=api)
+        serializer = LicenseSerializer(api=api, pi=pi)
 
         return Response(serializer.data)

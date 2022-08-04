@@ -8,7 +8,7 @@ from print_nanny_webapp.devices.api.views import (
     PiViewSet,
     WebrtcStreamViewSet,
     PiLicenseZipViewset,
-    PiApiCredsJsonViewset,
+    PiLicenseJsonViewSet,
     PiSettingsViewSet,
 )
 from print_nanny_webapp.events.api.views import (
@@ -56,7 +56,7 @@ pi_router = NestedSimpleRouter(router, r"pis", lookup="pi")
 
 pi_router.register("events", SinglePiEventsViewSet, basename="events")
 pi_router.register("license", PiLicenseZipViewset, basename="license-zip")
-pi_router.register("license", PiApiCredsJsonViewset, basename="license-api-json")
+pi_router.register("license", PiLicenseJsonViewSet, basename="license-api-json")
 
 pi_router.register("settings", PiSettingsViewSet, basename="settings")
 pi_router.register(r"public-keys", PublicKeyViewSet, basename="public-keys")

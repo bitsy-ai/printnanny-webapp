@@ -12,7 +12,9 @@ from django.conf import settings
 from django.template.loader import render_to_string
 from django.http import HttpRequest
 from rest_framework.renderers import JSONRenderer
-from print_nanny_webapp.devices.api.serializers import PiSerializer
+from print_nanny_webapp.devices.api.serializers import (
+    PrintNannyLicenseSerializer,
+)
 from print_nanny_webapp.devices.enum import JanusConfigType
 from print_nanny_webapp.utils.api.serializers import PrintNannyApiConfigSerializer
 from print_nanny_webapp.utils.api.service import get_api_config
@@ -214,12 +216,8 @@ def create_pi_nats_app(pi: Pi) -> PiNatsApp:
 
 
 def build_license_zip(pi: Pi, request: HttpRequest) -> bytes:
-    # serialize pi.json
-    # serialize api.json
-    # serialize nats creds
-    pi_json = PiSerializer(instance=pi)
     api = get_api_config(request, user=pi.user)
-    api_json = PrintNannyApiConfigSerializer(instance=api)
+    license_json = PritnNannyLicenseSerializer(api=api, pi=pi)
 
     # is there already a NatsApp associated with Pi?
     try:
@@ -231,8 +229,7 @@ def build_license_zip(pi: Pi, request: HttpRequest) -> bytes:
     nats_creds = nsc_generate_creds(app.organization, app)
 
     creds_bundle = [
-        ("pi.json", JSONRenderer().render(pi_json.data)),
-        ("api.json", JSONRenderer().render(api_json.data)),
+        ("license.json", JSONRenderer().render(license_json.data)),
         ("nats.creds", nats_creds),
     ]
 

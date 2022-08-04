@@ -168,7 +168,7 @@ class PiSerializer(serializers.ModelSerializer):
         exclude = ("deleted",)
 
 
-class ConfigSerializer(serializers.Serializer):
+class PrintNannyLicenseSerializer(serializers.Serializer):
     api = PrintNannyApiConfigSerializer(read_only=True)
     pi = PiSerializer(read_only=True)
 
