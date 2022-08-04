@@ -172,7 +172,7 @@ class NatsAppSerializer(serializers.ModelSerializer):
     nats_uri = serializers.SerializerMethodField()
 
     def get_nats_uri(self, _obj) -> str:
-        return settings.NATS_SERVER_URL
+        return settings.NATS_SERVER_URI
 
     class Meta:
         model = PiNatsApp
