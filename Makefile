@@ -53,9 +53,8 @@ HOSTNAME ?= $(shell cat /etc/hostname)
 $(TMPDIR):
 	mkdir $(TMPDIR)
 
-$(DEV_CONFIG):
+$(DEV_CONFIG): $(TMPDIR)
 	docker-compose -f local.yml run --rm django python manage.py devconfig --out $(DEV_CONFIG) --email $(DJANGO_SUPERUSER_EMAIL) --hostname $(HOSTNAME)
-
 
 openapi-custom-rust-codegen:
 	cd $(OPENAPI_GENERATOR_WORKDIR) && ./mvnw clean install -f ~/projects/octoprint-nanny-webapp/client-templates/rust-client-codegen
@@ -163,12 +162,14 @@ docker-image:
 	.
 build: vue docker-image
 
-local-clean: 
+local-clean:
+	rm -f $(TMPDIR)
 	rm .token || echo "Skipping .token cleanup"
 	rm .password || echo "Skipping .password cleanup"
 	docker-compose -f local.yml stop
 	yes | docker-compose -f local.yml rm
 	yes | docker volume rm \
+		octoprint-nanny-webapp_local_nsc_data \
 		octoprint-nanny-webapp_local_file_data \
 		octoprint-nanny-webapp_local_octoprint_data \
 		octoprint-nanny-webapp_local_postgres_data \
