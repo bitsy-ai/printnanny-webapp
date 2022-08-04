@@ -1,7 +1,7 @@
 ---
 npmName: printnanny-api-client
 npmRepostiry: bitsyai
-npmVersion: "0.99.7"
+npmVersion: "0.99.8"
 withInterfaces: true
 supportsES6: true
 withNodeImports: false
