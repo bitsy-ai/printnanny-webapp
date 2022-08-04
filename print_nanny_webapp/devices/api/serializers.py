@@ -3,8 +3,10 @@ from rest_framework import serializers
 from drf_spectacular.utils import extend_schema_field
 from drf_spectacular.types import OpenApiTypes
 from django.contrib.auth import get_user_model
+from django.conf import settings
 from print_nanny_webapp.devices.models import (
     Pi,
+    PiNatsApp,
     PiSettings,
     CloudiotDevice,
     PiUrls,
@@ -17,8 +19,6 @@ from ..enum import (
 )
 from print_nanny_webapp.users.api.serializers import UserSerializer
 from print_nanny_webapp.utils.api.serializers import PrintNannyApiConfigSerializer
-
-# from print_nanny_webapp.alerts.api.serializers import AlertSettingsSerializer
 from print_nanny_webapp.octoprint.api.serializers import OctoPrintServerSerializer
 
 User = get_user_model()
@@ -168,12 +168,35 @@ class PiSerializer(serializers.ModelSerializer):
         exclude = ("deleted",)
 
 
+class NatsAppSerializer(serializers.ModelSerializer):
+    nats_uri = serializers.SerializerMethodField()
+
+    def get_nats_uri(self, _obj) -> str:
+        return settings.NATS_SERVER_URI
+
+    class Meta:
+        model = PiNatsApp
+        fields = (
+            "id",
+            "name",
+            "json",
+            "pi",
+            "organization",
+            "organization_user",
+            "nats_uri",
+        )
+
+
 class PrintNannyLicenseSerializer(serializers.Serializer):
+    nats_app = NatsAppSerializer(read_only=True)
     api = PrintNannyApiConfigSerializer(read_only=True)
     pi = PiSerializer(read_only=True)
 
     class Meta:
-        fields = (
-            "pi",
-            "api",
-        )
+        fields = ("pi", "api", "nats_app")
+
+    def update(self, _instance, _validated_data):
+        pass
+
+    def create(self, _validated_data):
+        pass

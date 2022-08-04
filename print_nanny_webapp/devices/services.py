@@ -215,9 +215,15 @@ def create_pi_nats_app(pi: Pi) -> PiNatsApp:
     return app
 
 
-def build_license_zip(pi: Pi, request: HttpRequest) -> bytes:
+def get_license_serializer(pi: Pi, request: HttpRequest) -> PrintNannyLicenseSerializer:
     api = get_api_config(request, user=pi.user)
-    license_json = PrintNannyLicenseSerializer(instance=dict(api=api, pi=pi))
+    nats_app = PiNatsApp.objects.get(pi=pi).first()
+
+    return PrintNannyLicenseSerializer(dict(api=api, nats_app=nats_app, pi=pi))
+
+
+def build_license_zip(pi: Pi, request: HttpRequest) -> bytes:
+    license_serializer = get_license_serializer(pi, request)
 
     # is there already a NatsApp associated with Pi?
     try:
@@ -229,7 +235,7 @@ def build_license_zip(pi: Pi, request: HttpRequest) -> bytes:
     nats_creds = nsc_generate_creds(app.organization, app)
 
     creds_bundle = [
-        ("license.json", JSONRenderer().render(license_json.data)),
+        ("license.json", JSONRenderer().render(license_serializer.data)),
         ("nats.creds", nats_creds),
     ]
 

@@ -739,3 +739,4 @@ REST_AUTH_REGISTER_SERIALIZERS = {
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += ["organizations", "django_nats_nkeys"]
 NATS_APP_MODEL = "devices.PiNatsApp"
+NATS_SERVER_URI = "nats://nats:4222"
