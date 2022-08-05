@@ -1,4 +1,4 @@
-# PiGstreamerCommand
+# PiGstreamerEvent
 
 
 ## Properties
@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **created_dt** | **datetime** |  | [readonly] 
 **subject** | **str** |  | 
 **payload** | **dict(str, object)** |  | [optional] 
-**event_type** | [**PiGstreamerCommandType**](PiGstreamerCommandType.md) |  | 
+**event_type** | [**PiGstreamerEventEventTypeEnum**](PiGstreamerEventEventTypeEnum.md) |  | 
 **polymorphic_ctype** | **int** |  | [readonly] 
 **pi** | **int** |  | 
 

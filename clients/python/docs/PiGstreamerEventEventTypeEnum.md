@@ -1,4 +1,4 @@
-# PiGstreamerCommandType
+# PiGstreamerEventEventTypeEnum
 
 
 ## Properties
