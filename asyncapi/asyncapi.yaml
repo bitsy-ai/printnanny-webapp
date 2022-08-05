@@ -1,0 +1,26 @@
+---
+asyncapi: "2.4.0"
+id: "urn:ai:printnanny:streaming:api"
+info:
+  title: PrintNanny Streaming API
+  version: "1.0.0"
+
+servers:
+  local:
+    url: "nats://localhost:4222"
+    protocol: tcp
+    description: "Local server used for development/testing"
+
+  production:
+    url: "nats://streaming.api.printnanny.ai"
+    protocol: tcp
+    description: "Production NATS server"
+
+channels:
+  pi/{pi_id}/boot/reboot/command:
+    parameters:
+      pi_id:
+        description: Raspberry Pi unique id
+        schema:
+          type: number
+        location: $message.payload#/pi

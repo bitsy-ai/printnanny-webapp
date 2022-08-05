@@ -16,7 +16,6 @@ from print_nanny_webapp.devices.api.serializers import (
     PrintNannyLicenseSerializer,
 )
 from print_nanny_webapp.devices.enum import JanusConfigType
-from print_nanny_webapp.utils.api.serializers import PrintNannyApiConfigSerializer
 from print_nanny_webapp.utils.api.service import get_api_config
 
 from django_nats_nkeys.models import NatsOrganizationOwner
@@ -26,7 +25,13 @@ from django_nats_nkeys.services import (
     create_nats_app,
 )
 
-from .models import CloudiotDevice, Pi, PiNatsApp, PublicKey, WebrtcStream
+from print_nanny_webapp.devices.models import (
+    CloudiotDevice,
+    Pi,
+    PiNatsApp,
+    PublicKey,
+    WebrtcStream,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -215,24 +220,25 @@ def create_pi_nats_app(pi: Pi) -> PiNatsApp:
     return app
 
 
-def get_license_serializer(pi: Pi, request: HttpRequest) -> PrintNannyLicenseSerializer:
+def get_license_serializer(
+    pi: Pi, nats_app: PiNatsApp, request: HttpRequest
+) -> PrintNannyLicenseSerializer:
     api = get_api_config(request, user=pi.user)
-    nats_app = PiNatsApp.objects.get(pi=pi)
-
     return PrintNannyLicenseSerializer(dict(api=api, nats_app=nats_app, pi=pi))
 
 
 def build_license_zip(pi: Pi, request: HttpRequest) -> bytes:
-    license_serializer = get_license_serializer(pi, request)
 
     # is there already a NatsApp associated with Pi?
     try:
-        app = PiNatsApp.objects.get(pi=pi)
+        nats_app = PiNatsApp.objects.get(pi=pi)
     # no app, step through NATS account + app creation process
     except PiNatsApp.DoesNotExist:
-        app = create_pi_nats_app(pi)
+        nats_app = create_pi_nats_app(pi)
 
-    nats_creds = nsc_generate_creds(app.organization, app)
+    license_serializer = get_license_serializer(pi, nats_app, request)
+
+    nats_creds = nsc_generate_creds(nats_app.organization, nats_app)
 
     creds_bundle = [
         ("license.json", JSONRenderer().render(license_serializer.data)),
