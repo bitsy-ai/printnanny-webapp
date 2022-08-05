@@ -3,8 +3,7 @@ from django.db import models
 from .base import AbstractPiEvent
 from .enum import (
     PiBootEventType,
-    PiBootCommandType,
-    PiGstreamerCommandType,
+    PiGstreamerEventType,
     PiSoftwareUpdateEventType,
 )
 
@@ -30,24 +29,6 @@ class PiBootEvent(BasePiEvent):
         return f"pi.{self.pi.id}.boot"
 
 
-class PiBootCommand(BasePiEvent):
-    """
-    Events emitted by PrintNanny Cloud or other user-facing services
-    Raspberry Pi subscribes to command subjects
-    """
-
-    class Meta:
-        index_together = ()
-
-    event_type = models.CharField(
-        max_length=32, choices=PiBootCommandType.choices, db_index=True
-    )
-
-    @property
-    def subject(self):
-        return f"pi.{self.pi.id}.boot.command"
-
-
 class PiSoftwareUpdateEvent(BasePiEvent):
     """
     Events related to Raspberry Pi upgrade process
@@ -67,12 +48,12 @@ class PiSoftwareUpdateEvent(BasePiEvent):
         return f"pi.{self.pi.id}.swupdate"
 
 
-class PiGstreamerCommand(BasePiEvent):
+class PiGstreamerEvent(BasePiEvent):
     class Meta:
         index_together = ()
 
     event_type = models.CharField(
-        max_length=32, choices=PiGstreamerCommandType.choices, db_index=True
+        max_length=32, choices=PiGstreamerEventType.choices, db_index=True
     )
 
     @property

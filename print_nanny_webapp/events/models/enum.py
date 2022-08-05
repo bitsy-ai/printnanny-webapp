@@ -13,9 +13,13 @@ class AlertEventType(models.TextChoices):
     PRINT_CANCELLED = "PrintCancelled", "Triggered when print job is cancelled"
 
 
-class PiGstreamerCommandType(models.TextChoices):
-    Start = ("Start", "Start gstreamer pipelines")
-    Stop = ("Stop", "Stop gstreamer pipelines")
+class PiGstreamerEventType(models.TextChoices):
+    StartCommand = ("StartCommand", "Start gstreamer pipelines")
+    StartSuccess = ("StartSuccess", "gstreamer pipeline started successfully")
+    StartError = ("StartError", "error starting gstreamer pipeline")
+    StopCommand = ("StopCommand", "Stop gstreamer pipelines")
+    StopSuccess = ("StopSuccess", "gstreamer pipeline stopped")
+    StopError = ("StopError", "error attempting to stop gstreamer pipeline")
 
 
 class PiSoftwareUpdateEventType(models.TextChoices):
@@ -24,14 +28,11 @@ class PiSoftwareUpdateEventType(models.TextChoices):
     Error = ("Error", "Error updating Raspberry Pi")
 
 
-class PiBootCommandType(models.TextChoices):
-    Reboot = ("Reboot", "Reboot Raspberry Pi")
-    Shutdown = ("Shutdown", "Shutdown Raspberry Pi")
-
-
 class PiBootEventType(models.TextChoices):
+    RebootCommand = ("RebootCommand", "Reboot Raspberry Pi")
     RebootStarted = ("RebootStarted", "Raspberry Pi will reboot soon")
     RebootError = ("RebootError", "Unexpected error during reboot")
+    ShutdownCommand = ("ShutdownCommand", "Shutdown Raspberry Pi")
     ShutdownStarted = ("ShutdownStarted", "Raspberry Pi will shutdown soon")
     ShutdownError = ("ShutdownError", "Unexpected error during shutdown")
     BootStarted = (
