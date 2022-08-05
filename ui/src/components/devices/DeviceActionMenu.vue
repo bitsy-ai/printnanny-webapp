@@ -48,7 +48,7 @@
                 'group flex items-center px-4 py-2 text-sm',
               ]"
               :to="{
-                name: 'device-connect',
+                name: 'pi-wizard',
                 params: {
                   activeStep: 'download-printnanny-zip',
                   piId: pi.id,
