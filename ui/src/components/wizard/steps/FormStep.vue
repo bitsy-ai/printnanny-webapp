@@ -10,7 +10,10 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 const props = defineProps({
-  name: String,
+  name: {
+    type: String,
+    required: true,
+  },
 });
 
 // If this step should be shown

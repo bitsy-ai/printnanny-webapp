@@ -1,16 +1,21 @@
 <script setup lang="ts">
 import FormStep from "./FormStep.vue";
+import { PropType } from "vue";
 import { useWizardStore } from "@/stores/wizard";
+import type { WizardStep } from "@/types";
+
 defineProps({
-  name: String,
-  activeStep: String,
+  step: {
+    type: Object as PropType<WizardStep>,
+    required: true,
+  },
 });
 
 const store = useWizardStore();
 </script>
 
 <template>
-  <FormStep :name="name" :active-step="activeStep">
+  <FormStep :name="step.key">
     <div
       class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap text-center"
     >

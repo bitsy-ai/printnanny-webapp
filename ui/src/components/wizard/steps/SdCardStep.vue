@@ -1,11 +1,17 @@
 <script setup lang="ts">
+import { PropType } from "vue";
+import type { WizardStep } from "@/types";
 import FormStep from "./FormStep.vue";
+
 defineProps({
-  name: String,
+  step: {
+    type: Object as PropType<WizardStep>,
+    required: true,
+  },
 });
 </script>
 <template>
-  <FormStep :name="name">
+  <FormStep :name="step.key">
     <div
       class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap text-left"
     >

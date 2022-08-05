@@ -27,7 +27,10 @@ import { computed } from "vue";
 import { PiCreateWizardSteps } from "./piCreateWizard";
 
 const props = defineProps({
-  activeStep: String,
+  activeStep: {
+    type: String,
+    required: true,
+  },
 });
 
 const steps = PiCreateWizardSteps();

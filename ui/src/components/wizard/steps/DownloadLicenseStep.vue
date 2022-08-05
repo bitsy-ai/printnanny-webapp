@@ -1,16 +1,21 @@
 <script setup lang="ts">
+import { PropType } from "vue";
 import FormStep from "./FormStep.vue";
 import { useWizardStore } from "@/stores/wizard";
-import { Field, ErrorMessage } from "vee-validate";
+import { Field } from "vee-validate";
+import type { WizardStep } from "@/types";
 
 defineProps({
-  name: String,
+  step: {
+    type: Object as PropType<WizardStep>,
+    required: true,
+  },
 });
 
 const store = useWizardStore();
 </script>
 <template>
-  <FormStep :name="name">
+  <FormStep :name="step.key">
     <div
       class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap text-center"
     >

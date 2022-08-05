@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import FormStep from "./FormStep.vue";
+import { PropType } from "vue";
 import { Field, ErrorMessage } from "vee-validate";
+import type { WizardStep } from "@/types";
+
 defineProps({
-  name: String,
+  step: {
+    type: Object as PropType<WizardStep>,
+    required: true,
+  },
 });
 </script>
 <template>
-  <FormStep :name="name">
+  <FormStep :name="step.key">
     <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl">
       Add Raspberry Pi
     </h2>

@@ -2,7 +2,6 @@
 import { useForm } from "vee-validate";
 import type { PropType, ComputedRef } from "vue";
 import { ref, computed, provide } from "vue";
-import { RefreshIcon } from "@heroicons/vue/solid";
 
 import { useWizardStore } from "@/stores/wizard";
 import type { WizardStep } from "@/types";
@@ -74,7 +73,12 @@ const onSubmit = handleSubmit(async (values) => {
 </script>
 <template>
   <form @submit="onSubmit">
-    <slot />
+    <component
+      :is="step.component"
+      v-for="step in steps"
+      :key="step.key"
+      :step="step"
+    />
 
     <div class="text-center">
       <button

@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import { Field, ErrorMessage } from "vee-validate";
-import { RouterLink } from "vue-router";
-import { RefreshIcon } from "@heroicons/vue/solid";
-import { FolderDownloadIcon } from "@heroicons/vue/outline";
-import FormWizard from "@/components/forms/FormWizard.vue";
+import FormWizard from "@/components/wizard/FormWizard.vue";
 import { useWizardStore } from "@/stores/wizard";
 
 import { PiCreateWizardSteps } from "./piCreateWizard";
@@ -16,7 +12,10 @@ const props = defineProps({
     required: false,
     default: "",
   },
-  activeStep: String,
+  activeStep: {
+    type: String,
+    default: PiCreateWizardSteps()[0].key,
+  },
 });
 
 const store = useWizardStore();
@@ -34,14 +33,7 @@ downloadLicense();
     class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap"
   >
     <div class="w-full md:w-2/3 m-auto">
-      <FormWizard :steps="steps" :active-step="activeStep">
-        <component
-          :is="step.component"
-          v-for="step in steps"
-          :key="step.key"
-          :name="step.key"
-        />
-      </FormWizard>
+      <FormWizard :steps="steps" :active-step="activeStep"> </FormWizard>
     </div>
   </div>
 </template>

@@ -11,7 +11,6 @@ from django.http import HttpResponse
 from django.db.utils import IntegrityError
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
-from rest_framework.renderers import JSONRenderer
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.mixins import (
@@ -33,7 +32,7 @@ from print_nanny_webapp.utils.api.views import (
     generic_update_errors,
 )
 
-from .serializers import (
+from print_nanny_webapp.devices.api.serializers import (
     PublicKeySerializer,
     CloudiotDeviceSerializer,
     SystemInfoSerializer,
@@ -42,20 +41,20 @@ from .serializers import (
     PiSettingsSerializer,
     PrintNannyLicenseSerializer,
 )
-from ..models import (
+from print_nanny_webapp.devices.models import (
     CloudiotDevice,
     Pi,
     WebrtcStream,
     PublicKey,
     SystemInfo,
     PiSettings,
+    PiNatsApp,
 )
-from print_nanny_webapp.utils.api.service import get_api_config
-from ..services import (
+from print_nanny_webapp.devices.services import (
     build_license_zip,
     get_license_serializer,
-    janus_cloud_setup,
     update_or_create_cloudiot_device,
+    create_pi_nats_app,
 )
 
 User = get_user_model()
@@ -581,6 +580,12 @@ class PiLicenseJsonViewSet(GenericViewSet):
         self, request: Request, pi_id=None, *args: Any, **kwargs: Any
     ) -> HttpResponse:
         pi = Pi.objects.get(id=pi_id, user=request.user)
-        serializer = get_license_serializer(pi, request)
+        # is there already a NatsApp associated with Pi?
+        try:
+            nats_app = PiNatsApp.objects.get(pi=pi)
+        # no app, step through NATS account + app creation process
+        except PiNatsApp.DoesNotExist:
+            nats_app = create_pi_nats_app(pi)
+        serializer = get_license_serializer(pi, nats_app, request)
 
         return Response(serializer.data)
