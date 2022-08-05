@@ -7,7 +7,7 @@ import { RefreshIcon } from "@heroicons/vue/solid";
 import { useWizardStore } from "@/stores/wizard";
 import type { WizardStep } from "@/types";
 import { useRouter } from "vue-router";
-import Spinner from "@/components/util/Spinner.vue";
+import CustomSpinner from "@/components/util/CustomSpinner.vue";
 
 const router = useRouter();
 const store = useWizardStore();
@@ -84,7 +84,11 @@ const onSubmit = handleSubmit(async (values) => {
         class="inline-flex items-center group m-2 relative w-1/2 justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:cursor-not-allowed disabled: disabled:opacity-75"
         type="submit"
       >
-        <Spinner color="indigo" text="Processing..." v-if="store.loading"></Spinner>
+        <CustomSpinner
+          v-if="store.loading"
+          color="indigo"
+          text="Processing..."
+        ></CustomSpinner>
         <span v-else>{{ currentStep?.nextButton?.text }}</span>
       </button>
       <router-link

@@ -16,7 +16,7 @@ const props = defineProps({
     required: false,
     default: "",
   },
-  activeStep: String
+  activeStep: String,
 });
 
 const store = useWizardStore();
@@ -35,7 +35,12 @@ downloadLicense();
   >
     <div class="w-full md:w-2/3 m-auto">
       <FormWizard :steps="steps" :active-step="activeStep">
-        <component v-for="step in steps" :key="step.key" :name="step.key" :is="step.component" />        
+        <component
+          :is="step.component"
+          v-for="step in steps"
+          :key="step.key"
+          :name="step.key"
+        />
       </FormWizard>
     </div>
   </div>

@@ -1,34 +1,32 @@
 <script setup lang="ts">
-import FormStep from './FormStep.vue';
+import FormStep from "./FormStep.vue";
 defineProps({
   name: String,
 });
 </script>
 <template>
-    <FormStep :name="name">
-        <div
-        class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap text-left"
+  <FormStep :name="name">
+    <div
+      class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap text-left"
+    >
+      <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl w-full">
+        Customize SD Card
+      </h2>
+      <p class="text-base font-medium text-gray-900 mt-5 w-full text-left">
+        To prepare your SD card, follow the steps in:
+        <br />
+        <a
+          class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+          href="https://docs.printnanny.ai/docs/quick-start/create-printnanny-os-image/"
         >
-        <h2
-            class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl w-full"
+          docs.printnanny.ai/docs/quick-start/create-printnanny-os-image/</a
         >
-            Customize SD Card
-        </h2>
-        <p class="text-base font-medium text-gray-900 mt-5 w-full text-left">
-            To prepare your SD card, follow the steps in:
-            <br>
-            <a
-            class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-            href="https://docs.printnanny.ai/docs/quick-start/create-printnanny-os-image/"
-            >
-            docs.printnanny.ai/docs/quick-start/create-printnanny-os-image/</a
-            >
-        </p>
-        <p class="text-base font-medium text-gray-900 mt-5 w-full text-left">
-            When the Raspberry Pi Imager finishes, continue to the next step.
-            <br>
-            <span class="text-red-500">Do not eject your SD card yet! </span>
-        </p>
-        </div>
-    </FormStep>
+      </p>
+      <p class="text-base font-medium text-gray-900 mt-5 w-full text-left">
+        When the Raspberry Pi Imager finishes, continue to the next step.
+        <br />
+        <span class="text-red-500">Do not eject your SD card yet! </span>
+      </p>
+    </div>
+  </FormStep>
 </template>

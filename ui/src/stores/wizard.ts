@@ -24,7 +24,9 @@ export const useWizardStore = defineStore({
     async downloadLicenseZip(piId: number) {
       this.$patch({ loading: true });
       // responseType: "arraybuffer" is needed to correctly serialize application/zip data
-      const res = await devicesApi.pisLicenseZipRetrieve(piId, { responseType: "arraybuffer" });
+      const res = await devicesApi.pisLicenseZipRetrieve(piId, {
+        responseType: "arraybuffer",
+      });
 
       if (res.data) {
         const blob = new Blob([res.data], {

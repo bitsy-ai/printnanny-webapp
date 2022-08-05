@@ -1,28 +1,30 @@
 <script setup lang="ts">
-import FormStep from './FormStep.vue'
-import { useWizardStore } from '@/stores/wizard'
+import FormStep from "./FormStep.vue";
+import { useWizardStore } from "@/stores/wizard";
 defineProps({
   name: String,
   activeStep: String,
 });
 
 const store = useWizardStore();
-
 </script>
 
 <template>
-<FormStep :name="name" :active-step="activeStep">
-          <div
-            class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap text-center"
-          >
-            <h2
-              class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl flex-1 w-full"
-            >
-              Test Raspberry Pi Connection
-            </h2>
-            <p class="text-base font-medium text-grey-500 mt-5 w-full" v-if="!store.pi?.setup_finished">
-              Waiting for Raspberry Pi to boot
-            </p>
-          </div>
-        </FormStep>
+  <FormStep :name="name" :active-step="activeStep">
+    <div
+      class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap text-center"
+    >
+      <h2
+        class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl flex-1 w-full"
+      >
+        Test Raspberry Pi Connection
+      </h2>
+      <p
+        v-if="!store.pi?.setup_finished"
+        class="text-base font-medium text-grey-500 mt-5 w-full"
+      >
+        Waiting for Raspberry Pi to boot
+      </p>
+    </div>
+  </FormStep>
 </template>

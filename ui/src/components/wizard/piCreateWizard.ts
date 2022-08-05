@@ -1,22 +1,21 @@
 import * as yup from "yup";
 import { useWizardStore } from "@/stores/wizard";
 import type * as api from "printnanny-api-client";
-import SdCardStep from './steps/SdCardStep.vue';
-import PiCreateStep from './steps/PiCreateStep.vue';
-import DownloadLicenseStep from './steps/DownloadLicenseStep.vue';
-import TestConnectionStep from './steps/TestConnectionStep.vue';
-
+import SdCardStep from "./steps/SdCardStep.vue";
+import PiCreateStep from "./steps/PiCreateStep.vue";
+import DownloadLicenseStep from "./steps/DownloadLicenseStep.vue";
+import TestConnectionStep from "./steps/TestConnectionStep.vue";
 
 const stepKeys = [
   {
     key: "customize-sd-card",
-    title: "Customize SD Card"
+    title: "Customize SD Card",
   },
   { key: "raspberry-pi", title: "Connect Raspberry Pi" },
   { key: "download-zip", title: "Download PrintNanny.zip" },
   { key: "test-connection", title: "Test PrintNanny Connection" },
-  { key: "done", title: "Finish Setup" }
-]
+  { key: "done", title: "Finish Setup" },
+];
 
 export function PiCreateWizardSteps() {
   const store = useWizardStore();
