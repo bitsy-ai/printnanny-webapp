@@ -29,7 +29,10 @@ export type WizardButton = {
 
 export type WizardStep = {
   key: string;
-  component: FunctionalComponent<HTMLAttributes & VNodeProps>;
+  title: string;
+  progress: string;
+  style: string;
+  component: any;
   validationSchema: AnyObjectSchema;
   nextButton: WizardButton | undefined;
   prevButton: WizardButton | undefined;

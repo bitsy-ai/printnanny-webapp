@@ -5,6 +5,8 @@ import SdCardStep from "./steps/SdCardStep.vue";
 import PiCreateStep from "./steps/PiCreateStep.vue";
 import DownloadLicenseStep from "./steps/DownloadLicenseStep.vue";
 import TestConnectionStep from "./steps/TestConnectionStep.vue";
+import DoneStep from "./steps/DoneStep.vue";
+import type { WizardStep } from "@/types";
 
 const stepKeys = [
   {
@@ -17,7 +19,7 @@ const stepKeys = [
   { key: "done", title: "Finish Setup" },
 ];
 
-export function PiCreateWizardSteps() {
+export function PiCreateWizardSteps(): WizardStep[] {
   const store = useWizardStore();
   return [
     {
@@ -141,6 +143,7 @@ export function PiCreateWizardSteps() {
       title: "Setup is Complete - Nice Work!",
       validationSchema: yup.object(),
       nextButton: undefined,
+      component: DoneStep,
       prevButton: {
         text: `Previous: ${stepKeys[3].title}`,
         link: () => ({

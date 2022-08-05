@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import FormStep from "./FormStep.vue";
-import { PropType } from "vue";
+import type { PropType } from "vue";
 import { useWizardStore } from "@/stores/wizard";
 import type { WizardStep } from "@/types";
 
