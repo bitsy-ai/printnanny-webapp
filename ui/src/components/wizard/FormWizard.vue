@@ -32,8 +32,6 @@ const currentStepIdx = computed(() => {
   return idx;
 });
 
-store.loading = true;
-
 // // Injects the starting step, child <form-steps> will use this to generate their ids
 const stepCounter = ref(0);
 provide("STEP_COUNTER", stepCounter);
