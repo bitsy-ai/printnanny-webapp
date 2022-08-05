@@ -46,7 +46,7 @@ imageio-ffmpeg
 pandas
 plotly
 posthog
-printnanny-api-client>=0.99.9
+printnanny-api-client>=0.100.0
 psycopg2
 pyarrow
 qrcode[pil]
