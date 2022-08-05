@@ -75,7 +75,7 @@ const router = createRouter({
         },
         {
           path: "connect/:activeStep?/:piId?",
-          name: "device-connect",
+          name: "pi-wizard",
           components: {
             default: PiCreateWizard,
             TopBar: PiCreateWizardProgress,

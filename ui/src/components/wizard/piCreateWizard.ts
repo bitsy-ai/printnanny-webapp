@@ -1,22 +1,39 @@
 import * as yup from "yup";
 import { useWizardStore } from "@/stores/wizard";
 import type * as api from "printnanny-api-client";
+import SdCardStep from './steps/SdCardStep.vue';
+import PiCreateStep from './steps/PiCreateStep.vue';
+import DownloadLicenseStep from './steps/DownloadLicenseStep.vue';
+import TestConnectionStep from './steps/TestConnectionStep.vue';
+
+
+const stepKeys = [
+  {
+    key: "customize-sd-card",
+    title: "Customize SD Card"
+  },
+  { key: "raspberry-pi", title: "Connect Raspberry Pi" },
+  { key: "download-zip", title: "Download PrintNanny.zip" },
+  { key: "test-connection", title: "Test PrintNanny Connection" },
+  { key: "done", title: "Finish Setup" }
+]
 
 export function PiCreateWizardSteps() {
   const store = useWizardStore();
   return [
     {
-      key: "create-sd-card",
-      title: "Burn PrintNanny OS Image",
+      key: stepKeys[0].key,
+      component: SdCardStep,
+      title: stepKeys[0].title,
       progress: "0%",
       style: "width: 0",
       validationSchema: yup.object(),
       prevButton: undefined,
       nextButton: {
-        text: "Next: Connect New Pi",
+        text: `Next: ${stepKeys[1].title}`,
         link: () => ({
-          name: "device-connect",
-          params: { activeStep: "create-new-device" },
+          name: "pi-wizard",
+          params: { activeStep: stepKeys[1].key },
         }),
       },
       onSubmit: (_formData: any) => {
@@ -24,8 +41,9 @@ export function PiCreateWizardSteps() {
       },
     },
     {
-      key: "create-new-device",
-      title: "Connect New Device",
+      key: stepKeys[1].key,
+      component: PiCreateStep,
+      title: "Add Raspberry Pi",
       progress: "25%",
       style: "width: 25%",
       validationSchema: yup.object({
@@ -34,22 +52,22 @@ export function PiCreateWizardSteps() {
         sbc: yup.string().required(),
       }),
       nextButton: {
-        text: "Next: Download PrintNanny.zip",
+        text: `Next: ${stepKeys[2].title}`,
         link: () => ({
-          name: "device-connect",
-          params: { activeStep: "download-printnanny-zip", piId: store.pi?.id },
+          name: "pi-wizard",
+          params: { activeStep: stepKeys[2].key, piId: store.pi?.id },
         }),
       },
       prevButton: {
-        text: "Previous: Burn PrintNanny OS Image",
+        text: `Previous: ${stepKeys[0].title}`,
         link: () => ({
-          name: "device-connect",
-          params: { activeStep: "create-new-device" },
+          name: "pi-wizard",
+          params: { activeStep: stepKeys[0].key },
         }),
       },
       onSubmit: async (formData: any) => {
         const store = useWizardStore();
-        console.log("create-new-device onSubmit", formData);
+        console.log("add-pi onSubmit", formData);
         // WIREGUARD TODO: allow user to specify fqdn
         const { hostname, edition, sbc } = formData;
         const req: api.PiRequest = {
@@ -66,25 +84,26 @@ export function PiCreateWizardSteps() {
       },
     },
     {
-      key: "download-printnanny-zip",
-      title: "Download PrintNanny.zip",
+      key: stepKeys[2].key,
+      component: DownloadLicenseStep,
+      title: stepKeys[2].title,
       progress: "50%",
       style: "width: 50%",
       validationSchema: yup.object({
         tos: yup.boolean(),
       }),
       nextButton: {
-        text: "Next: Test Connection",
+        text: `Next: ${stepKeys[3].title}`,
         link: () => ({
-          name: "device-connect",
-          params: { activeStep: "test-connection", piId: store.pi?.id },
+          name: "pi-wizard",
+          params: { activeStep: stepKeys[3].key, piId: store.pi?.id },
         }),
       },
       prevButton: {
-        text: "Previous: Connect New Device",
+        text: `Previous: ${stepKeys[1].title}`,
         link: () => ({
-          name: "device-connect",
-          params: { activeStep: "create-new-device" },
+          name: "pi-wizard",
+          params: { activeStep: stepKeys[1].key },
         }),
       },
       onSubmit: (_formData: any) => {
@@ -92,23 +111,24 @@ export function PiCreateWizardSteps() {
       },
     },
     {
-      key: "test-connection",
+      key: stepKeys[3].key,
+      component: TestConnectionStep,
       progress: "75%",
       style: "width: 75%",
-      title: "Test Raspberry Pi Connection",
+      title: stepKeys[3].title,
       validationSchema: yup.object(),
       nextButton: {
-        text: "Finish Setup",
+        text: `Next: ${stepKeys[4].title}`,
         link: () => ({
-          name: "device-connect",
-          params: { activeStep: "done", piId: store.pi?.id },
+          name: "pi-wizard",
+          params: { activeStep: stepKeys[4].key, piId: store.pi?.id },
         }),
       },
       prevButton: {
-        text: "Previous: Download PrintNanny.zip",
+        text: `Previous: ${stepKeys[2].title}`,
         link: () => ({
-          name: "device-connect",
-          params: { activeStep: "download-printnanny-zip", piId: store.pi?.id },
+          name: "pi-wizard",
+          params: { activeStep: stepKeys[2].key, piId: store.pi?.id },
         }),
       },
       onSubmit: (_formData: any) => {
@@ -116,17 +136,17 @@ export function PiCreateWizardSteps() {
       },
     },
     {
-      key: "done",
+      key: stepKeys[4].key,
       progress: "100%",
       style: "width: 100%",
       title: "Setup is Complete - Nice Work!",
       validationSchema: yup.object(),
       nextButton: undefined,
       prevButton: {
-        text: "Test Connection",
+        text: `Previous: ${stepKeys[3].title}`,
         link: () => ({
-          name: "device-connect",
-          params: { activeStep: "test-connection", piId: store.pi?.id },
+          name: "pi-wizard",
+          params: { activeStep: stepKeys[3].key, piId: store.pi?.id },
         }),
       },
       onSubmit: (_formData: any) => {

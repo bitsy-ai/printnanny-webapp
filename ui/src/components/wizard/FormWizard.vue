@@ -2,10 +2,12 @@
 import { useForm } from "vee-validate";
 import type { PropType, ComputedRef } from "vue";
 import { ref, computed, provide } from "vue";
+import { RefreshIcon } from "@heroicons/vue/solid";
 
 import { useWizardStore } from "@/stores/wizard";
 import type { WizardStep } from "@/types";
 import { useRouter } from "vue-router";
+import Spinner from "@/components/util/Spinner.vue";
 
 const router = useRouter();
 const store = useWizardStore();
@@ -29,6 +31,8 @@ const currentStepIdx = computed(() => {
   }
   return idx;
 });
+
+store.loading = true;
 
 // // Injects the starting step, child <form-steps> will use this to generate their ids
 const stepCounter = ref(0);
@@ -76,24 +80,18 @@ const onSubmit = handleSubmit(async (values) => {
 
     <div class="text-center">
       <button
-        class="group m-2 relative w-1/2 justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-25"
+        :disabled="store.loading"
+        class="inline-flex items-center group m-2 relative w-1/2 justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:cursor-not-allowed disabled: disabled:opacity-75"
         type="submit"
       >
-        <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-          <RefreshIcon
-            v-if="store.loading"
-            class="animate-spin h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-            :aria-hidden="true"
-          />
-        </span>
-        {{ currentStep?.nextButton?.text }}
+        <Spinner color="indigo" text="Processing..." v-if="store.loading"></Spinner>
+        <span v-else>{{ currentStep?.nextButton?.text }}</span>
       </button>
       <router-link
         v-if="currentStep?.prevButton"
         :to="currentStep?.prevButton?.link()"
       >
         <button
-          :disabled="store.loading"
           type="button"
           class="group m-2 relative w-1/2 justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-25"
         >
