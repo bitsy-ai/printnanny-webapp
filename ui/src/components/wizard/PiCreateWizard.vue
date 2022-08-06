@@ -2,7 +2,7 @@
 import FormWizard from "@/components/wizard/FormWizard.vue";
 import { useWizardStore } from "@/stores/wizard";
 
-import { PiCreateWizardSteps } from "./piCreateWizard";
+import { PiCreateWizardSteps, stepKeys } from "./piCreateWizard";
 
 const steps = PiCreateWizardSteps();
 
@@ -14,7 +14,7 @@ const props = defineProps({
   },
   activeStep: {
     type: String,
-    default: PiCreateWizardSteps()[0].key,
+    default: stepKeys[0].key,
   },
 });
 

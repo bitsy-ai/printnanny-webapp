@@ -8,7 +8,7 @@ import TestConnectionStep from "./steps/TestConnectionStep.vue";
 import DoneStep from "./steps/DoneStep.vue";
 import type { WizardStep } from "@/types";
 
-const stepKeys = [
+export const stepKeys = [
   {
     key: "customize-sd-card",
     title: "Customize SD Card",
