@@ -10,7 +10,8 @@ from print_nanny_webapp.events.models.pi import (
 )
 from print_nanny_webapp.events.models.alerts import EmailAlertSettings
 
-from ..models import PiBootEvent
+from print_nanny_webapp.events.models import PiBootEvent
+from print_nanny_webapp.events.models.enum import PiEventModel
 
 logger = logging.getLogger(__name__)
 
@@ -22,10 +23,22 @@ class EmailAlertSettingsSerializer(serializers.ModelSerializer):
     class Meta:
         model = EmailAlertSettings
         fields = "__all__"
-        read_only_fields = ("created_dt", "updated_dt", "user")
+        read_only_fields = (
+            "created_dt",
+            "updated_dt",
+            "user",
+        )
+
+
+# class PiBootEventSerializer(serializers.Serializer):
+#     resourcetype = serializers.ChoiceField(choices=["PiGstreamerEvent", "PiSoftwareUpdateEvent"])
+#     class Meta:
+#         abstract = True
 
 
 class PiBootEventSerializer(serializers.ModelSerializer):
+    model = serializers.ChoiceField(choices=[PiEventModel.PiBootEvent])
+
     class Meta:
         model = PiBootEvent
         exclude = ("deleted",)
@@ -33,6 +46,8 @@ class PiBootEventSerializer(serializers.ModelSerializer):
 
 
 class PiSoftwareUpdateEventSerializer(serializers.ModelSerializer):
+    model = serializers.ChoiceField(choices=[PiEventModel.PiSoftwareUpdateEvent])
+
     class Meta:
         model = PiSoftwareUpdateEvent
         exclude = ("deleted",)
@@ -40,6 +55,8 @@ class PiSoftwareUpdateEventSerializer(serializers.ModelSerializer):
 
 
 class PiGstreamerEventSerializer(serializers.ModelSerializer):
+    model = serializers.ChoiceField(choices=[PiEventModel.PiGstreamerEvent])
+
     class Meta:
         model = PiGstreamerEvent
         exclude = ("deleted",)
@@ -47,18 +64,8 @@ class PiGstreamerEventSerializer(serializers.ModelSerializer):
 
 
 class PolymorphicPiEventSerializer(PolymorphicSerializer):
-    """
-    Generic polymorphic serializer for all Events
+    resource_type_field_name = "model"
 
-    The model field is used to distinguish Polymorphic serializers/models from each other
-    Each model has a 1-1 relationship with models derived from Event in print_nanny_webapp.events.models
-    The model field is equivalent to a Type
-
-    The event_name field equivalent to a "sub type"
-    """
-
-    resource_type_field_name = "__class__"
-    # Model -> Serializer mapping
     model_serializer_mapping = {
         PiGstreamerEvent: PiGstreamerEventSerializer,
         PiSoftwareUpdateEvent: PiSoftwareUpdateEventSerializer,

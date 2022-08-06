@@ -1,6 +1,7 @@
 import logging
 from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiParameter
 from django.apps import apps
+
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import (
     ListModelMixin,
@@ -18,7 +19,10 @@ from print_nanny_webapp.utils.api.views import (
     generic_update_errors,
 )
 from print_nanny_webapp.utils.permissions import IsObjectOwner
-from .serializers import PolymorphicPiEventSerializer, EmailAlertSettingsSerializer
+from print_nanny_webapp.events.api.serializers import (
+    PolymorphicPiEventSerializer,
+    EmailAlertSettingsSerializer,
+)
 
 Pi = apps.get_model("devices", "Pi")
 
@@ -117,17 +121,17 @@ class AllPiEventsViewSet(
     Interact with all events inheriting from BasePiEvent
     """
 
-    permission_classes = [IsObjectOwner, IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     serializer_class = PolymorphicPiEventSerializer
     queryset = BasePiEvent.objects.all()
     lookup_field = "id"
 
     # get events related to all pis owned by authenticated user
     def get_queryset(self, *args, **kwargs):
-        return self.queryset.filter(user_id=self.request.user.id)
+        return self.queryset.filter(pi__user_id=self.request.user.id)
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+    # def perform_create(self, serializer):
+    #     serializer.save(user=self.request.user)
 
 
 @extend_schema_view(
@@ -159,7 +163,7 @@ class SinglePiEventsViewSet(
     def get_queryset(self, pi_id=None, *args, **kwargs):
         if pi_id is None:
             raise ValueError("pi_id is required")
-        return self.queryset.filter(user_id=self.request.user.id, pi_id=pi_id)
+        return self.queryset.filter(pi__user_id=self.request.user.id, pi_id=pi_id)
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+    # def perform_create(self, serializer):
+    #     serializer.save(user=self.request.user)

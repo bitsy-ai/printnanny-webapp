@@ -1,6 +1,12 @@
 from django.db import models
 
 
+class PiEventModel(models.TextChoices):
+    PiBootEvent = "PiBootEvent"
+    PiGstreamerEvent = "PiGstreamerEvent"
+    PiSoftwareUpdateEvent = "PiSoftwareUpdateEvent"
+
+
 class AlertEventType(models.TextChoices):
     PRINT_QUALITY = "PrintQuality", "Quality control alerts"
     PRINT_STARTED = "PrintStarted", "Triggered on print job start"
@@ -23,9 +29,10 @@ class PiGstreamerEventType(models.TextChoices):
 
 
 class PiSoftwareUpdateEventType(models.TextChoices):
-    Started = ("Started", "Started PrintNanny OS update")
-    Success = ("Success", "PrintNanny OS update succeeded")
-    Error = ("Error", "Error updating Raspberry Pi")
+    UpdateCommand = ("UpdateCommand", "Update PrintNanny OS to target version")
+    UpdateStarted = ("UpdateStarted", "Started PrintNanny OS update")
+    UpdateSuccess = ("UpdateSuccess", "PrintNanny OS update succeeded")
+    UpdateError = ("UpdateError", "Error updating Raspberry Pi")
 
 
 class PiBootEventType(models.TextChoices):

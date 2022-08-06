@@ -8,7 +8,6 @@ import socket
 import environ
 from django.contrib.messages import constants as messages
 
-from print_nanny_webapp import __version__ as API_VERSION
 
 ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 # print_nanny_webapp/
@@ -419,9 +418,9 @@ SPECTACULAR_SETTINGS = {
         # end alerts app enums
         # begin polymorphic event types
         "OctoPrintEventType": "print_nanny_webapp.events.models.enum.OctoPrintEventType",
-        "PiGstreamerCommandType": "print_nanny_webapp.events.models.enum.PiGstreamerCommandType",
+        "PiEventModel": "print_nanny_webapp.events.models.enum.PiEventModel",
+        "PiGstreamerEventType": "print_nanny_webapp.events.models.enum.PiGstreamerEventType",
         "PiSoftwareUpdateEventType": "print_nanny_webapp.events.models.enum.PiSoftwareUpdateEventType",
-        "PiBootCommandType": "print_nanny_webapp.events.models.enum.PiBootCommandType",
         "PiBootEventType": "print_nanny_webapp.events.models.enum.PiBootEventType",
         # end polymorphic event types
     },
