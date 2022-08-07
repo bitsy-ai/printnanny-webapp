@@ -419,9 +419,12 @@ SPECTACULAR_SETTINGS = {
         # begin polymorphic event types
         "OctoPrintEventType": "print_nanny_webapp.events.models.enum.OctoPrintEventType",
         "PiEventModel": "print_nanny_webapp.events.models.enum.PiEventModel",
-        "PiGstreamerEventType": "print_nanny_webapp.events.models.enum.PiGstreamerEventType",
-        "PiSoftwareUpdateEventType": "print_nanny_webapp.events.models.enum.PiSoftwareUpdateEventType",
-        "PiBootEventType": "print_nanny_webapp.events.models.enum.PiBootEventType",
+        "PiCamStatusType": "print_nanny_webapp.events.models.enum.PiCamStatusType",
+        "PiCamCommandType": "print_nanny_webapp.events.models.enum.PiCamCommandType",
+        "PiSoftwareUpdateStatusType": "print_nanny_webapp.events.models.enum.PiSoftwareUpdateStatusType",
+        "PiSoftwareUpdateCommandType": "print_nanny_webapp.events.models.enum.PiSoftwareUpdateCommandType",
+        "PiBootStatusType": "print_nanny_webapp.events.models.enum.PiBootStatusType",
+        "PiBootCommandType": "print_nanny_webapp.events.models.enum.PiBootCommandType",
         # end polymorphic event types
     },
     "TITLE": "printnanny-api-client",

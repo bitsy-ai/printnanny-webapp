@@ -1,12 +1,6 @@
 from django.db import models
 
 
-class PiEventModel(models.TextChoices):
-    PiBootEvent = "PiBootEvent"
-    PiGstreamerEvent = "PiGstreamerEvent"
-    PiSoftwareUpdateEvent = "PiSoftwareUpdateEvent"
-
-
 class AlertEventType(models.TextChoices):
     PRINT_QUALITY = "PrintQuality", "Quality control alerts"
     PRINT_STARTED = "PrintStarted", "Triggered on print job start"
@@ -19,27 +13,36 @@ class AlertEventType(models.TextChoices):
     PRINT_CANCELLED = "PrintCancelled", "Triggered when print job is cancelled"
 
 
-class PiGstreamerEventType(models.TextChoices):
-    StartCommand = ("StartCommand", "Start gstreamer pipelines")
-    StartSuccess = ("StartSuccess", "gstreamer pipeline started successfully")
-    StartError = ("StartError", "error starting gstreamer pipeline")
-    StopCommand = ("StopCommand", "Stop gstreamer pipelines")
-    StopSuccess = ("StopSuccess", "gstreamer pipeline stopped")
-    StopError = ("StopError", "error attempting to stop gstreamer pipeline")
+class PiCamCommandType(models.TextChoices):
+    Start = ("Start", "Start gstreamer pipelines")
+    Stop = ("Stop", "Stop gstreamer pipelines")
 
 
-class PiSoftwareUpdateEventType(models.TextChoices):
-    UpdateCommand = ("UpdateCommand", "Update PrintNanny OS to target version")
-    UpdateStarted = ("UpdateStarted", "Started PrintNanny OS update")
-    UpdateSuccess = ("UpdateSuccess", "PrintNanny OS update succeeded")
-    UpdateError = ("UpdateError", "Error updating Raspberry Pi")
+class PiCamStatusType(models.TextChoices):
+    Started = ("Started", "gstreamer pipeline started successfully")
+    Error = ("Error", "gstreamer pipeline error")
+    Stopped = ("Stopped", "gstreamer pipeline stopped")
 
 
-class PiBootEventType(models.TextChoices):
-    RebootCommand = ("RebootCommand", "Reboot Raspberry Pi")
+class PiSoftwareUpdateCommandType(models.TextChoices):
+    Update = ("Update", "Update PrintNanny OS to target version")
+    Rollback = ("Rollback", "Rollback PrintNanny OS to target version")
+
+
+class PiSoftwareUpdateStatusType(models.TextChoices):
+    Started = ("Started", "Started PrintNanny OS update")
+    Success = ("Success", "PrintNanny OS update succeeded")
+    Error = ("Error", "Error updating Raspberry Pi")
+
+
+class PiBootCommandType(models.TextChoices):
+    Reboot = ("Rebooot", "Reboot Raspberry Pi")
+    Shutdown = ("Shutdown", "Shutdown Raspberry Pi")
+
+
+class PiBootStatusType(models.TextChoices):
     RebootStarted = ("RebootStarted", "Raspberry Pi will reboot soon")
     RebootError = ("RebootError", "Unexpected error during reboot")
-    ShutdownCommand = ("ShutdownCommand", "Shutdown Raspberry Pi")
     ShutdownStarted = ("ShutdownStarted", "Raspberry Pi will shutdown soon")
     ShutdownError = ("ShutdownError", "Unexpected error during shutdown")
     BootStarted = (
@@ -54,6 +57,15 @@ class PiBootEventType(models.TextChoices):
         "BootDegraded",
         "At least one systemd service reports degraded state",
     )
+
+
+class PiEventModel(models.TextChoices):
+    PiBootStatus = "PiBootStatus"
+    PiBootCommand = "PiBootCommand"
+    PiCamCommand = "PiGstreamerCommand"
+    PiCamStatus = "PiGstreamerStatus"
+    PiSoftwareUpdateStatus = "PiSoftwareUpdateStatus"
+    PiSoftwareUpdateCommand = "PiSoftwareUpdateCommand"
 
 
 class EventModel(models.TextChoices):

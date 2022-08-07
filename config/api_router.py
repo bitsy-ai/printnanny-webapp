@@ -13,8 +13,12 @@ from print_nanny_webapp.devices.api.views import (
 )
 from print_nanny_webapp.events.api.views import (
     AllPiEventsViewSet,
+    AllPiCommandsViewSet,
+    AllPiStatusViewSet,
     EmailAlertSettingsViewSet,
     SinglePiEventsViewSet,
+    SinglePiStatusViewSet,
+    SinglePiCommandsViewSet,
 )
 
 
@@ -44,12 +48,21 @@ router.register("pis", PiViewSet)
 other_urls = [
     path("billing/summary", BillingSummaryView.as_view(), name="billing-summary"),
     path("pis/events", AllPiEventsViewSet.as_view({"get": "list", "post": "create"})),
+    path("pis/events/<int:id>", AllPiEventsViewSet.as_view({"get": "retrieve"})),
+    path("pis/status", AllPiStatusViewSet.as_view({"get": "list", "post": "create"})),
+    path(
+        "pis/commands", AllPiCommandsViewSet.as_view({"get": "list", "post": "create"})
+    ),
 ]
 
 # router.register("pis/events", AllPiEventsViewSet, basename="all-pi-events")
 pi_router = NestedSimpleRouter(router, r"pis", lookup="pi")
 
-pi_router.register("events", SinglePiEventsViewSet, basename="one-pi-events")
+pi_router.register("events", SinglePiEventsViewSet, basename="pi-events")
+pi_router.register("events/status", SinglePiStatusViewSet, basename="pi-status")
+pi_router.register("events/commands", SinglePiCommandsViewSet, basename="pi-commands")
+
+
 pi_router.register("license", PiLicenseZipViewset, basename="license-zip")
 pi_router.register("license", PiLicenseJsonViewSet, basename="license-api-json")
 
