@@ -17,10 +17,9 @@ from print_nanny_webapp.devices.api.serializers import (
 )
 from print_nanny_webapp.devices.enum import JanusConfigType
 from print_nanny_webapp.utils.api.service import get_api_config
+from print_nanny_webapp.nkeys.services import get_or_create_nats_organization_user
 
-from django_nats_nkeys.models import NatsOrganizationOwner
 from django_nats_nkeys.services import (
-    create_nats_account_org,
     nsc_generate_creds,
     create_nats_app,
 )
@@ -208,15 +207,11 @@ def janus_cloud_setup(device: Pi) -> Tuple[WebrtcStream, bool]:
 
 
 def create_pi_nats_app(pi: Pi) -> PiNatsApp:
-    # is user already the owner of NatsOrganization?
-    try:
-        org_owner = NatsOrganizationOwner.objects.get(organization_user__user=pi.user)
-        org = org_owner.organization
-    except NatsOrganizationOwner.DoesNotExist:
-        org = create_nats_account_org(pi.user)
+    # get or create organization associated with Pi.user
+    org_user = get_or_create_nats_organization_user(pi.user)
 
     # create nats app associated with org user
-    app = create_nats_app(pi.user, org, pi=pi)
+    app = create_nats_app(pi.user, org_user.organization, pi=pi)
     return app
 
 

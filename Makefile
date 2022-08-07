@@ -163,7 +163,7 @@ docker-image:
 build: vue docker-image
 
 local-clean:
-	rm -f $(TMPDIR)
+	rm -rf $(TMPDIR)
 	rm .token || echo "Skipping .token cleanup"
 	rm .password || echo "Skipping .password cleanup"
 	docker-compose -f local.yml stop

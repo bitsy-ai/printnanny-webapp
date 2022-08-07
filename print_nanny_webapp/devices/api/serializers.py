@@ -14,7 +14,7 @@ from print_nanny_webapp.devices.models import (
     PublicKey,
     SystemInfo,
 )
-from ..enum import (
+from print_nanny_webapp.devices.enum import (
     JanusConfigType,
 )
 from print_nanny_webapp.users.api.serializers import UserSerializer
@@ -178,7 +178,7 @@ class NatsAppSerializer(serializers.ModelSerializer):
         model = PiNatsApp
         fields = (
             "id",
-            "name",
+            "app_name",
             "json",
             "pi",
             "organization",

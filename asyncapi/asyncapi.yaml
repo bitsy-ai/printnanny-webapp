@@ -1,8 +1,8 @@
 ---
 asyncapi: "2.4.0"
-id: "urn:ai:printnanny:dispatch:api"
+id: "urn:ai:printnanny:command:api"
 info:
-  title: PrintNanny Raspberry Pi Command Dispatch API
+  title: PrintNanny Raspberry Pi Command/Status API
   version: "1.0.0"
 
 servers:
@@ -19,36 +19,55 @@ servers:
 tags:
   - name: pi
 
+defaultContentType: json
 channels:
   pi/{pi_id}/command:
     parameters:
       pi_id:
         $ref: "#/components/parameters/pi_id"
     publish:
+      operationId: dispatchPiCommand
       tags:
         - name: pi
       message:
-        $ref: "#/components/messages/PiCommand"
+        messageId: dispatchPiCommand
+        schemaFormat: "application/vnd.oai.openapi;version=3.0.0"
+
+        payload:
+          $ref: "./openapi.yaml#/components/schemas/PolymorphicPiCommandRequest"
     subscribe:
+      operationId: onPiCommand
       tags:
         - name: pi
       message:
-        $ref: "#/components/messages/PiCommand"
+        schemaFormat: "application/vnd.oai.openapi;version=3.0.0"
+
+        messageId: onPiCommand
+        payload:
+          $ref: "./openapi.yaml#/components/schemas/PolymorphicPiCommandRequest"
 
   pi/{pi_id}/status:
     parameters:
       pi_id:
         $ref: "#/components/parameters/pi_id"
     publish:
+      operationId: dispatchPiStatus
       tags:
         - name: pi
       message:
-        $ref: "#/components/messages/PiStatus"
+        schemaFormat: "application/vnd.oai.openapi;version=3.0.0"
+        messageId: dispatchPiStatus
+        payload:
+          $ref: "./openapi.yaml#/components/schemas/PolymorphicPiStatusRequest"
     subscribe:
+      operationId: onPiStatus
       tags:
         - name: pi
       message:
-        $ref: "#/components/messages/PiStatus"
+        messageId: onPiStatus
+        schemaFormat: "application/vnd.oai.openapi;version=3.0.0"
+        payload:
+          $ref: "./openapi.yaml#/components/schemas/PolymorphicPiStatusRequest"
 
 components:
   parameters:
@@ -57,15 +76,12 @@ components:
       schema:
         type: number
       location: $message.payload#/pi
-  messages:
-    PiStatus:
-      name: PiStatus
-
-      schemaFormat: "application/vnd.oai.openapi+json;version=3.0.0"
-      payload:
-        $ref: "./openapi.yaml#/components/schemas/PolymorphicPiStatusRequest"
-    PiCommand:
-      name: PiCommand
-      schemaFormat: "application/vnd.oai.openapi+json;version=3.0.0"
-      payload:
-        $ref: "./openapi.yaml#/components/schemas/PolymorphicPiCommandRequest"
+  # schemas:
+  #   PiStatus:
+  #     name: PiStatus
+  #     payload:
+  #       $ref: "./openapi.yaml#/components/schemas/PolymorphicPiStatusRequest"
+  #   PiCommand:
+  #     name: PiCommand
+  #     payload:
+  #       $ref: "./openapi.yaml#/components/schemas/PolymorphicPiCommandRequest"

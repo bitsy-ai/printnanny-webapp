@@ -6,7 +6,6 @@ from django.conf import settings
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.db.models import UniqueConstraint
-from django.urls import reverse
 from django.utils.crypto import get_random_string
 from google.cloud import iot_v1 as cloudiot_v1
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
@@ -18,8 +17,8 @@ from django_nats_nkeys.models import (
     NatsOrganizationUser,
 )
 
-from .utils import get_available_rtp_port
-from .enum import (
+from print_nanny_webapp.devices.utils import get_available_rtp_port
+from print_nanny_webapp.devices.enum import (
     JanusConfigType,
     OsEdition,
     SingleBoardComputerType,
@@ -194,7 +193,7 @@ class PiNatsApp(AbstractNatsApp, SafeDeleteModel):
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=["name", "organization"], name="unique_app_name_per_org"
+                fields=["app_name", "organization"], name="unique_nats_app_name_per_org"
             ),
             UniqueConstraint(
                 fields=["pi"],

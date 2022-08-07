@@ -33,13 +33,12 @@ from print_nanny_webapp.octoprint.api.views import (
     OctoPrinterProfileViewSet,
     OctoPrintServerByDeviceViewSet,
 )
-from print_nanny_webapp.users.api.views import EmailWaitlistViewSet
+from print_nanny_webapp.users.api.views import EmailWaitlistViewSet, UserNkeyView
 
 
 router = DefaultRouter()
 
 router.register("accounts/email-waitlist", EmailWaitlistViewSet, "email-waitlist")
-
 router.register("pis", PiViewSet)
 
 # octoprint endpoints (PrintNanny os data model)
@@ -53,6 +52,7 @@ other_urls = [
     path(
         "pis/commands", AllPiCommandsViewSet.as_view({"get": "list", "post": "create"})
     ),
+    path("accounts/user/nkey", UserNkeyView.as_view()),
 ]
 
 # router.register("pis/events", AllPiEventsViewSet, basename="all-pi-events")
