@@ -1,8 +1,8 @@
 ---
 asyncapi: "2.4.0"
-id: "urn:ai:printnanny:remote-control:dispatch:api"
+id: "urn:ai:printnanny:dispatch:api"
 info:
-  title: PrintNanny Remote Pi Command Dispatch API
+  title: PrintNanny Raspberry Pi Command Dispatch API
   version: "1.0.0"
 
 servers:
