@@ -1,6 +1,5 @@
-from print_nanny_webapp.subscriptions.models import MemberBadge
 from typing import Dict, Union, List
-from django.apps import apps
+
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
@@ -9,12 +8,13 @@ from django.db import models
 from rest_framework import serializers
 from anymail.message import AnymailMessage
 
+
 from print_nanny_webapp.utils.fields import ChoiceArrayField
 from print_nanny_webapp.subscriptions.models import MemberBadge
 
 import json
 
-from .managers import CustomUserManager
+from print_nanny_webapp.users.managers import CustomUserManager
 
 
 class EmailWaitlist(models.Model):

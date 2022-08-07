@@ -7,25 +7,29 @@ import django_nats_nkeys.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devices', '0037_auto_20220731_1857'),
+        ("devices", "0037_auto_20220731_1857"),
     ]
 
     operations = [
         migrations.RemoveConstraint(
-            model_name='pinatsapp',
-            name='unique_app_name_per_org',
+            model_name="pinatsapp",
+            name="unique_app_name_per_org",
         ),
         migrations.RemoveField(
-            model_name='pinatsapp',
-            name='name',
+            model_name="pinatsapp",
+            name="name",
         ),
         migrations.AddField(
-            model_name='pinatsapp',
-            name='app_name',
-            field=models.CharField(default=django_nats_nkeys.models._default_name, max_length=255),
+            model_name="pinatsapp",
+            name="app_name",
+            field=models.CharField(
+                default=django_nats_nkeys.models._default_name, max_length=255
+            ),
         ),
         migrations.AddConstraint(
-            model_name='pinatsapp',
-            constraint=models.UniqueConstraint(fields=('app_name', 'organization'), name='unique_nats_app_name_per_org'),
+            model_name="pinatsapp",
+            constraint=models.UniqueConstraint(
+                fields=("app_name", "organization"), name="unique_nats_app_name_per_org"
+            ),
         ),
     ]
