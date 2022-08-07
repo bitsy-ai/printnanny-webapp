@@ -1,8 +1,8 @@
 ---
 asyncapi: "2.4.0"
-id: "urn:ai:printnanny:streaming:api"
+id: "urn:ai:printnanny:remote-control:dispatch:api"
 info:
-  title: PrintNanny Streaming API
+  title: PrintNanny Remote Pi Command Dispatch API
   version: "1.0.0"
 
 servers:
@@ -12,15 +12,60 @@ servers:
     description: "Local server used for development/testing"
 
   production:
-    url: "nats://streaming.api.printnanny.ai"
+    url: "nats://nats.printnanny.ai"
     protocol: tcp
     description: "Production NATS server"
 
+tags:
+  - name: pi
+
 channels:
-  pi/{pi_id}/boot/reboot/command:
+  pi/{pi_id}/command:
     parameters:
       pi_id:
-        description: Raspberry Pi unique id
-        schema:
-          type: number
-        location: $message.payload#/pi
+        $ref: "#/components/parameters/pi_id"
+    publish:
+      tags:
+        - name: pi
+      message:
+        $ref: "#/components/messages/PiCommand"
+    subscribe:
+      tags:
+        - name: pi
+      message:
+        $ref: "#/components/messages/PiCommand"
+
+  pi/{pi_id}/status:
+    parameters:
+      pi_id:
+        $ref: "#/components/parameters/pi_id"
+    publish:
+      tags:
+        - name: pi
+      message:
+        $ref: "#/components/messages/PiStatus"
+    subscribe:
+      tags:
+        - name: pi
+      message:
+        $ref: "#/components/messages/PiStatus"
+
+components:
+  parameters:
+    pi_id:
+      description: Raspberry Pi id
+      schema:
+        type: number
+      location: $message.payload#/pi
+  messages:
+    PiStatus:
+      name: PiStatus
+
+      schemaFormat: "application/vnd.oai.openapi+json;version=3.0.0"
+      payload:
+        $ref: "./openapi.yaml#/components/schemas/PolymorphicPiStatusRequest"
+    PiCommand:
+      name: PiCommand
+      schemaFormat: "application/vnd.oai.openapi+json;version=3.0.0"
+      payload:
+        $ref: "./openapi.yaml#/components/schemas/PolymorphicPiCommandRequest"

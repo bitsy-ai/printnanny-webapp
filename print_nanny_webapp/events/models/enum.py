@@ -62,8 +62,8 @@ class PiBootStatusType(models.TextChoices):
 class PiEventModel(models.TextChoices):
     PiBootStatus = "PiBootStatus"
     PiBootCommand = "PiBootCommand"
-    PiCamCommand = "PiGstreamerCommand"
-    PiCamStatus = "PiGstreamerStatus"
+    PiCamCommand = "PiCamCommand"
+    PiCamStatus = "PiCamStatus"
     PiSoftwareUpdateStatus = "PiSoftwareUpdateStatus"
     PiSoftwareUpdateCommand = "PiSoftwareUpdateCommand"
 
