@@ -13,7 +13,7 @@ from django_nats_nkeys.models import NatsOrganizationUser
 from print_nanny_webapp.nkeys.services import get_or_create_nats_organization_user
 
 from print_nanny_webapp.utils.permissions import IsObjectOwner
-
+from print_nanny_webapp.utils.views import AuthenticatedHttpRequest
 from print_nanny_webapp.users.api.serializers import (
     EmailWaitlistSerializer,
     NatsOrganizationUserSerializer,
@@ -41,7 +41,7 @@ class UserNkeyView(APIView):
     queryset = NatsOrganizationUser.objects.all()
     serializer_class = NatsOrganizationUserSerializer
 
-    def get(self, request):
-        org_user = get_or_create_nats_organization_user(self.request.user)
+    def get(self, request: AuthenticatedHttpRequest):
+        org_user = get_or_create_nats_organization_user(request.user)
         serializer = NatsOrganizationUserSerializer(instance=org_user)
         return Response(serializer.data, status.HTTP_200_OK)

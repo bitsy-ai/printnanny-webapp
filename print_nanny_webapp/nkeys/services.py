@@ -1,8 +1,6 @@
-from django.contrib.auth import get_user_model
 from django_nats_nkeys.models import NatsOrganizationUser
 from django_nats_nkeys.services import create_nats_account_org
-
-User = get_user_model()
+from print_nanny_webapp.users.models import User
 
 
 def get_or_create_nats_organization_user(user: User) -> NatsOrganizationUser:
