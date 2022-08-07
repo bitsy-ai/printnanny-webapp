@@ -170,16 +170,22 @@ class AllPiCommandsViewSet(
 
     permission_classes = [IsAuthenticated]
     serializer_class = PolymorphicPiCommandSerializer
-    queryset = (
-        BasePiEvent.objects.instance_of(PiBootCommand)
-        | BasePiEvent.objects.instance_of(PiSoftwareUpdateCommand)
-        | BasePiEvent.objects.instance_of(PiCamCommand)
-    )
+    queryset = BasePiEvent.objects.all()
     lookup_field = "id"
 
     # get events related to all pis owned by authenticated user
     def get_queryset(self, *args, **kwargs):
-        return self.queryset.filter(pi__user_id=self.request.user.id)
+        return (
+            self.queryset.filter(pi__user_id=self.request.user.id).instance_of(
+                PiBootCommand
+            )
+            | self.queryset.filter(pi__user_id=self.request.user.id).instance_of(
+                PiSoftwareUpdateCommand
+            )
+            | self.queryset.filter(pi__user_id=self.request.user.id).instance_of(
+                PiCamCommand
+            )
+        )
 
 
 @extend_schema_view(
@@ -210,16 +216,22 @@ class AllPiStatusViewSet(
 
     permission_classes = [IsAuthenticated]
     serializer_class = PolymorphicPiStatusSerializer
-    queryset = (
-        BasePiEvent.objects.instance_of(PiBootStatus)
-        | BasePiEvent.objects.instance_of(PiSoftwareUpdateStatus)
-        | BasePiEvent.objects.instance_of(PiCamStatus)
-    )
+    queryset = BasePiEvent.objects.all()
     lookup_field = "id"
 
     # get events related to all pis owned by authenticated user
     def get_queryset(self, *args, **kwargs):
-        return self.queryset.filter(pi__user_id=self.request.user.id)
+        return (
+            self.queryset.filter(pi__user_id=self.request.user.id).instance_of(
+                PiBootStatus
+            )
+            | self.queryset.filter(pi__user_id=self.request.user.id).instance_of(
+                PiSoftwareUpdateStatus
+            )
+            | self.queryset.filter(pi__user_id=self.request.user.id).instance_of(
+                PiCamStatus
+            )
+        )
 
 
 @extend_schema_view(
@@ -276,18 +288,25 @@ class SinglePiStatusViewSet(
 
     permission_classes = [IsObjectOwner, IsAuthenticated]
     serializer_class = PolymorphicPiStatusSerializer
-    queryset = (
-        BasePiEvent.objects.instance_of(PiBootStatus)
-        | BasePiEvent.objects.instance_of(PiSoftwareUpdateStatus)
-        | BasePiEvent.objects.instance_of(PiCamStatus)
-    )
+    queryset = BasePiEvent.objects.all()
+
     lookup_field = "id"
 
     # get events related to path parameter: pi_id
     def get_queryset(self, pi_id=None, **kwargs):
         if pi_id is None:
             raise ValueError("pi_id is required")
-        return self.queryset.filter(pi__user_id=self.request.user.id, pi_id=pi_id)
+        return (
+            self.queryset.filter(
+                pi__user_id=self.request.user.id, pi_id=pi_id
+            ).instance_of(PiBootStatus)
+            | self.queryset.filter(
+                pi__user_id=self.request.user.id, pi_id=pi_id
+            ).instance_of(PiSoftwareUpdateStatus)
+            | self.queryset.filter(
+                pi__user_id=self.request.user.id, pi_id=pi_id
+            ).instance_of(PiCamStatus)
+        )
 
 
 @extend_schema_view(
@@ -312,15 +331,22 @@ class SinglePiCommandsViewSet(
 
     permission_classes = [IsObjectOwner, IsAuthenticated]
     serializer_class = PolymorphicPiCommandSerializer
-    queryset = (
-        BasePiEvent.objects.instance_of(PiBootCommand)
-        | BasePiEvent.objects.instance_of(PiSoftwareUpdateCommand)
-        | BasePiEvent.objects.instance_of(PiCamCommand)
-    )
+    queryset = BasePiEvent.objects.all()
+
     lookup_field = "id"
 
     # get events related to path parameter: pi_id
     def get_queryset(self, pi_id=None, **kwargs):
         if pi_id is None:
             raise ValueError("pi_id is required")
-        return self.queryset.filter(pi__user_id=self.request.user.id, pi_id=pi_id)
+        return (
+            self.queryset.filter(
+                pi__user_id=self.request.user.id, pi_id=pi_id
+            ).instance_of(PiBootCommand)
+            | self.queryset.filter(
+                pi__user_id=self.request.user.id, pi_id=pi_id
+            ).instance_of(PiSoftwareUpdateCommand)
+            | self.queryset.filter(
+                pi__user_id=self.request.user.id, pi_id=pi_id
+            ).instance_of(PiCamCommand)
+        )
