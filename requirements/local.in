@@ -20,7 +20,7 @@ django-health-check
 django-invitations
 django-loginas
 django-model-utils
-django-nats-nkeys>=0.4.5
+django-nats-nkeys>=0.5.0
 django-polymorphic
 django-prometheus
 django-qr-code
