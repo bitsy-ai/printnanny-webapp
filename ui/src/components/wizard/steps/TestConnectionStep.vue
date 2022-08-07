@@ -3,7 +3,7 @@ import FormStep from "./FormStep.vue";
 import type { PropType } from "vue";
 import { useWizardStore } from "@/stores/wizard";
 import type { WizardStep } from "@/types";
-import { ThumbUpIcon, UserIcon, CheckIcon } from "heroicons/vue/outline";
+import { ThumbUpIcon, UserIcon, CheckIcon } from "@heroicons/vue/outline";
 defineProps({
   step: {
     type: Object as PropType<WizardStep>,
