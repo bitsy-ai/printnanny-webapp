@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: printnanny-api-client
-  version: 0.99.1
+  version: 0.100.0
   description: Official API client library for printnanny.ai
   contact:
     name: Leigh Johnson
@@ -2333,8 +2333,9 @@ paths:
           description: ''
   /api/pis/{pi_id}/events/:
     get:
-      operationId: pis_events_list_2
-      description: Interact with all events inheriting from BasePiEvent
+      operationId: pis_events_list
+      description: Interact with all events inheriting from BasePiEvent, filtered
+        by a single Pi
       parameters:
       - name: page
         required: false
@@ -2359,6 +2360,164 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaginatedPolymorphicPiEventList'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+  /api/pis/{pi_id}/events/commands/:
+    get:
+      operationId: pis_events_commands_list
+      description: Interact with all events inheriting from BasePiEvent
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - in: path
+        name: pi_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - pis
+      - events
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedPolymorphicPiCommandList'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+  /api/pis/{pi_id}/events/status/:
+    get:
+      operationId: pis_events_status_list
+      description: Interact with all status events for Raspberry Pi, filtered by a
+        single Pi
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - in: path
+        name: pi_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - pis
+      - events
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedPolymorphicPiStatusList'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+  /api/pis/{pi_id}/license/cloud-api/:
+    get:
+      operationId: pis_license_cloud_api_retrieve
+      parameters:
+      - in: path
+        name: pi_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - devices
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrintNannyLicense'
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
           description: ''
         '400':
           content:
@@ -3704,9 +3863,114 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorDetail'
           description: ''
-  /api/pis/events/:
+  /api/pis/commands:
     get:
-      operationId: pis_events_list
+      operationId: pis_commands_list
+      description: Interact with all Raspberry Pi remote commands
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - pis
+      - events
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedPolymorphicPiCommandList'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+    post:
+      operationId: pis_commands_create
+      description: Interact with all Raspberry Pi remote commands
+      tags:
+      - pis
+      - events
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolymorphicPiCommandRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PolymorphicPiCommandRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PolymorphicPiCommandRequest'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolymorphicPiCommand'
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+  /api/pis/events:
+    get:
+      operationId: pis_all_events_list
       description: Interact with all events inheriting from BasePiEvent
       parameters:
       - name: page
@@ -3809,7 +4073,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorDetail'
           description: ''
-  /api/pis/events/{id}/:
+  /api/pis/events/{id}:
     get:
       operationId: pis_events_retrieve
       description: Interact with all events inheriting from BasePiEvent
@@ -3818,7 +4082,6 @@ paths:
         name: id
         schema:
           type: integer
-        description: A unique integer value identifying this base pi event.
         required: true
       tags:
       - pis
@@ -3834,6 +4097,111 @@ paths:
                 $ref: '#/components/schemas/PolymorphicPiEvent'
           description: ''
         '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+  /api/pis/status:
+    get:
+      operationId: pis_status_list
+      description: Interact with all status events for Raspberry Pi
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - pis
+      - events
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedPolymorphicPiStatusList'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+          description: ''
+    post:
+      operationId: pis_status_create
+      description: Interact with all status events for Raspberry Pi
+      tags:
+      - pis
+      - events
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolymorphicPiStatusRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PolymorphicPiStatusRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PolymorphicPiStatusRequest'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolymorphicPiStatus'
+          description: ''
+        '409':
           content:
             application/json:
               schema:
@@ -4311,6 +4679,36 @@ components:
       required:
       - email
       - password
+    NatsApp:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        json:
+          type: object
+          additionalProperties: {}
+          description: Output of `nsc describe account`
+        pi:
+          type: integer
+        organization:
+          type: integer
+        organization_user:
+          type: integer
+        nats_uri:
+          type: string
+          readOnly: true
+      required:
+      - id
+      - json
+      - name
+      - nats_uri
+      - organization
+      - organization_user
+      - pi
     OctoPrintBackup:
       type: object
       properties:
@@ -4883,6 +5281,26 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PiSettings'
+    PaginatedPolymorphicPiCommandList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/PolymorphicPiCommand'
     PaginatedPolymorphicPiEventList:
       type: object
       properties:
@@ -4903,6 +5321,26 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PolymorphicPiEvent'
+    PaginatedPolymorphicPiStatusList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/PolymorphicPiStatus'
     PaginatedPublicKeyList:
       type: object
       properties:
@@ -5316,6 +5754,7 @@ components:
         last_boot:
           type: string
           readOnly: true
+          nullable: true
         settings:
           allOf:
           - $ref: '#/components/schemas/PiSettings'
@@ -5398,12 +5837,12 @@ components:
         id:
           type: integer
           readOnly: true
+        model:
+          $ref: '#/components/schemas/PiBootCommandModelEnum'
         created_dt:
           type: string
           format: date-time
           readOnly: true
-        source:
-          $ref: '#/components/schemas/SourceEnum'
         subject:
           type: string
           maxLength: 255
@@ -5421,15 +5860,19 @@ components:
       - created_dt
       - event_type
       - id
+      - model
       - pi
       - polymorphic_ctype
-      - source
       - subject
+    PiBootCommandModelEnum:
+      enum:
+      - PiBootCommand
+      type: string
     PiBootCommandRequest:
       type: object
       properties:
-        source:
-          $ref: '#/components/schemas/SourceEnum'
+        model:
+          $ref: '#/components/schemas/PiBootCommandModelEnum'
         subject:
           type: string
           minLength: 1
@@ -5443,26 +5886,26 @@ components:
           type: integer
       required:
       - event_type
+      - model
       - pi
-      - source
       - subject
     PiBootCommandType:
       enum:
-      - Reboot
+      - Rebooot
       - Shutdown
       type: string
-    PiBootEvent:
+    PiBootStatus:
       type: object
       properties:
         id:
           type: integer
           readOnly: true
+        model:
+          $ref: '#/components/schemas/PiBootStatusModelEnum'
         created_dt:
           type: string
           format: date-time
           readOnly: true
-        source:
-          $ref: '#/components/schemas/SourceEnum'
         subject:
           type: string
           maxLength: 255
@@ -5470,7 +5913,7 @@ components:
           type: object
           additionalProperties: {}
         event_type:
-          $ref: '#/components/schemas/PiBootEventType'
+          $ref: '#/components/schemas/PiBootStatusType'
         polymorphic_ctype:
           type: integer
           readOnly: true
@@ -5480,15 +5923,19 @@ components:
       - created_dt
       - event_type
       - id
+      - model
       - pi
       - polymorphic_ctype
-      - source
       - subject
-    PiBootEventRequest:
+    PiBootStatusModelEnum:
+      enum:
+      - PiBootStatus
+      type: string
+    PiBootStatusRequest:
       type: object
       properties:
-        source:
-          $ref: '#/components/schemas/SourceEnum'
+        model:
+          $ref: '#/components/schemas/PiBootStatusModelEnum'
         subject:
           type: string
           minLength: 1
@@ -5497,32 +5944,36 @@ components:
           type: object
           additionalProperties: {}
         event_type:
-          $ref: '#/components/schemas/PiBootEventType'
+          $ref: '#/components/schemas/PiBootStatusType'
         pi:
           type: integer
       required:
       - event_type
+      - model
       - pi
-      - source
       - subject
-    PiBootEventType:
+    PiBootStatusType:
       enum:
-      - BootStart
+      - RebootStarted
+      - RebootError
+      - ShutdownStarted
+      - ShutdownError
+      - BootStarted
       - BootSuccess
       - BootDegraded
       type: string
-    PiGstreamerCommand:
+    PiCamCommand:
       type: object
       properties:
         id:
           type: integer
           readOnly: true
+        model:
+          $ref: '#/components/schemas/PiCamCommandModelEnum'
         created_dt:
           type: string
           format: date-time
           readOnly: true
-        source:
-          $ref: '#/components/schemas/SourceEnum'
         subject:
           type: string
           maxLength: 255
@@ -5530,7 +5981,7 @@ components:
           type: object
           additionalProperties: {}
         event_type:
-          $ref: '#/components/schemas/PiGstreamerCommandType'
+          $ref: '#/components/schemas/PiCamCommandType'
         polymorphic_ctype:
           type: integer
           readOnly: true
@@ -5540,15 +5991,19 @@ components:
       - created_dt
       - event_type
       - id
+      - model
       - pi
       - polymorphic_ctype
-      - source
       - subject
-    PiGstreamerCommandRequest:
+    PiCamCommandModelEnum:
+      enum:
+      - PiCamCommand
+      type: string
+    PiCamCommandRequest:
       type: object
       properties:
-        source:
-          $ref: '#/components/schemas/SourceEnum'
+        model:
+          $ref: '#/components/schemas/PiCamCommandModelEnum'
         subject:
           type: string
           minLength: 1
@@ -5557,18 +6012,82 @@ components:
           type: object
           additionalProperties: {}
         event_type:
-          $ref: '#/components/schemas/PiGstreamerCommandType'
+          $ref: '#/components/schemas/PiCamCommandType'
         pi:
           type: integer
       required:
       - event_type
+      - model
       - pi
-      - source
       - subject
-    PiGstreamerCommandType:
+    PiCamCommandType:
       enum:
       - Start
       - Stop
+      type: string
+    PiCamStatus:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        model:
+          $ref: '#/components/schemas/PiCamStatusModelEnum'
+        created_dt:
+          type: string
+          format: date-time
+          readOnly: true
+        subject:
+          type: string
+          maxLength: 255
+        payload:
+          type: object
+          additionalProperties: {}
+        event_type:
+          $ref: '#/components/schemas/PiCamStatusType'
+        polymorphic_ctype:
+          type: integer
+          readOnly: true
+        pi:
+          type: integer
+      required:
+      - created_dt
+      - event_type
+      - id
+      - model
+      - pi
+      - polymorphic_ctype
+      - subject
+    PiCamStatusModelEnum:
+      enum:
+      - PiCamStatus
+      type: string
+    PiCamStatusRequest:
+      type: object
+      properties:
+        model:
+          $ref: '#/components/schemas/PiCamStatusModelEnum'
+        subject:
+          type: string
+          minLength: 1
+          maxLength: 255
+        payload:
+          type: object
+          additionalProperties: {}
+        event_type:
+          $ref: '#/components/schemas/PiCamStatusType'
+        pi:
+          type: integer
+      required:
+      - event_type
+      - model
+      - pi
+      - subject
+    PiCamStatusType:
+      enum:
+      - Started
+      - Error
+      - Stopped
       type: string
     PiRequest:
       type: object
@@ -5628,18 +6147,18 @@ components:
           type: integer
       required:
       - pi
-    PiSoftwareUpdateEvent:
+    PiSoftwareUpdateCommand:
       type: object
       properties:
         id:
           type: integer
           readOnly: true
+        model:
+          $ref: '#/components/schemas/PiSoftwareUpdateCommandModelEnum'
         created_dt:
           type: string
           format: date-time
           readOnly: true
-        source:
-          $ref: '#/components/schemas/SourceEnum'
         subject:
           type: string
           maxLength: 255
@@ -5650,7 +6169,7 @@ components:
           type: string
           maxLength: 32
         event_type:
-          $ref: '#/components/schemas/PiSoftwareUpdateEventType'
+          $ref: '#/components/schemas/PiSoftwareUpdateCommandType'
         polymorphic_ctype:
           type: integer
           readOnly: true
@@ -5660,16 +6179,20 @@ components:
       - created_dt
       - event_type
       - id
+      - model
       - pi
       - polymorphic_ctype
-      - source
       - subject
       - version
-    PiSoftwareUpdateEventRequest:
+    PiSoftwareUpdateCommandModelEnum:
+      enum:
+      - PiSoftwareUpdateCommand
+      type: string
+    PiSoftwareUpdateCommandRequest:
       type: object
       properties:
-        source:
-          $ref: '#/components/schemas/SourceEnum'
+        model:
+          $ref: '#/components/schemas/PiSoftwareUpdateCommandModelEnum'
         subject:
           type: string
           minLength: 1
@@ -5682,47 +6205,203 @@ components:
           minLength: 1
           maxLength: 32
         event_type:
-          $ref: '#/components/schemas/PiSoftwareUpdateEventType'
+          $ref: '#/components/schemas/PiSoftwareUpdateCommandType'
         pi:
           type: integer
       required:
       - event_type
+      - model
       - pi
-      - source
       - subject
       - version
-    PiSoftwareUpdateEventType:
+    PiSoftwareUpdateCommandType:
+      enum:
+      - Update
+      - Rollback
+      type: string
+    PiSoftwareUpdateStatus:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        model:
+          $ref: '#/components/schemas/PiSoftwareUpdateStatusModelEnum'
+        created_dt:
+          type: string
+          format: date-time
+          readOnly: true
+        subject:
+          type: string
+          maxLength: 255
+        payload:
+          type: object
+          additionalProperties: {}
+        version:
+          type: string
+          maxLength: 32
+        event_type:
+          $ref: '#/components/schemas/PiSoftwareUpdateStatusType'
+        polymorphic_ctype:
+          type: integer
+          readOnly: true
+        pi:
+          type: integer
+      required:
+      - created_dt
+      - event_type
+      - id
+      - model
+      - pi
+      - polymorphic_ctype
+      - subject
+      - version
+    PiSoftwareUpdateStatusModelEnum:
+      enum:
+      - PiSoftwareUpdateStatus
+      type: string
+    PiSoftwareUpdateStatusRequest:
+      type: object
+      properties:
+        model:
+          $ref: '#/components/schemas/PiSoftwareUpdateStatusModelEnum'
+        subject:
+          type: string
+          minLength: 1
+          maxLength: 255
+        payload:
+          type: object
+          additionalProperties: {}
+        version:
+          type: string
+          minLength: 1
+          maxLength: 32
+        event_type:
+          $ref: '#/components/schemas/PiSoftwareUpdateStatusType'
+        pi:
+          type: integer
+      required:
+      - event_type
+      - model
+      - pi
+      - subject
+      - version
+    PiSoftwareUpdateStatusType:
       enum:
       - Started
       - Success
       - Error
       type: string
+    PolymorphicPiCommand:
+      oneOf:
+      - $ref: '#/components/schemas/PiCamCommand'
+      - $ref: '#/components/schemas/PiSoftwareUpdateCommand'
+      - $ref: '#/components/schemas/PiBootCommand'
+      discriminator:
+        propertyName: model
+        mapping:
+          PiCamCommand: '#/components/schemas/PiCamCommand'
+          PiSoftwareUpdateCommand: '#/components/schemas/PiSoftwareUpdateCommand'
+          PiBootCommand: '#/components/schemas/PiBootCommand'
+    PolymorphicPiCommandRequest:
+      oneOf:
+      - $ref: '#/components/schemas/PiCamCommandRequest'
+      - $ref: '#/components/schemas/PiSoftwareUpdateCommandRequest'
+      - $ref: '#/components/schemas/PiBootCommandRequest'
+      discriminator:
+        propertyName: model
+        mapping:
+          PiCamCommand: '#/components/schemas/PiCamCommandRequest'
+          PiSoftwareUpdateCommand: '#/components/schemas/PiSoftwareUpdateCommandRequest'
+          PiBootCommand: '#/components/schemas/PiBootCommandRequest'
     PolymorphicPiEvent:
       oneOf:
-      - $ref: '#/components/schemas/PiGstreamerCommand'
-      - $ref: '#/components/schemas/PiSoftwareUpdateEvent'
+      - $ref: '#/components/schemas/PiCamStatus'
+      - $ref: '#/components/schemas/PiSoftwareUpdateStatus'
+      - $ref: '#/components/schemas/PiBootStatus'
+      - $ref: '#/components/schemas/PiCamCommand'
+      - $ref: '#/components/schemas/PiSoftwareUpdateCommand'
       - $ref: '#/components/schemas/PiBootCommand'
-      - $ref: '#/components/schemas/PiBootEvent'
       discriminator:
-        propertyName: __class__
+        propertyName: resourcetype
         mapping:
-          PiGstreamerCommand: '#/components/schemas/PiGstreamerCommand'
-          PiSoftwareUpdateEvent: '#/components/schemas/PiSoftwareUpdateEvent'
+          PiCamStatus: '#/components/schemas/PiCamStatus'
+          PiSoftwareUpdateStatus: '#/components/schemas/PiSoftwareUpdateStatus'
+          PiBootStatus: '#/components/schemas/PiBootStatus'
+          PiCamCommand: '#/components/schemas/PiCamCommand'
+          PiSoftwareUpdateCommand: '#/components/schemas/PiSoftwareUpdateCommand'
           PiBootCommand: '#/components/schemas/PiBootCommand'
-          PiBootEvent: '#/components/schemas/PiBootEvent'
     PolymorphicPiEventRequest:
       oneOf:
-      - $ref: '#/components/schemas/PiGstreamerCommandRequest'
-      - $ref: '#/components/schemas/PiSoftwareUpdateEventRequest'
+      - $ref: '#/components/schemas/PiCamStatusRequest'
+      - $ref: '#/components/schemas/PiSoftwareUpdateStatusRequest'
+      - $ref: '#/components/schemas/PiBootStatusRequest'
+      - $ref: '#/components/schemas/PiCamCommandRequest'
+      - $ref: '#/components/schemas/PiSoftwareUpdateCommandRequest'
       - $ref: '#/components/schemas/PiBootCommandRequest'
-      - $ref: '#/components/schemas/PiBootEventRequest'
       discriminator:
-        propertyName: __class__
+        propertyName: resourcetype
         mapping:
-          PiGstreamerCommand: '#/components/schemas/PiGstreamerCommandRequest'
-          PiSoftwareUpdateEvent: '#/components/schemas/PiSoftwareUpdateEventRequest'
+          PiCamStatus: '#/components/schemas/PiCamStatusRequest'
+          PiSoftwareUpdateStatus: '#/components/schemas/PiSoftwareUpdateStatusRequest'
+          PiBootStatus: '#/components/schemas/PiBootStatusRequest'
+          PiCamCommand: '#/components/schemas/PiCamCommandRequest'
+          PiSoftwareUpdateCommand: '#/components/schemas/PiSoftwareUpdateCommandRequest'
           PiBootCommand: '#/components/schemas/PiBootCommandRequest'
-          PiBootEvent: '#/components/schemas/PiBootEventRequest'
+    PolymorphicPiStatus:
+      oneOf:
+      - $ref: '#/components/schemas/PiCamStatus'
+      - $ref: '#/components/schemas/PiSoftwareUpdateStatus'
+      - $ref: '#/components/schemas/PiBootStatus'
+      discriminator:
+        propertyName: model
+        mapping:
+          PiCamStatus: '#/components/schemas/PiCamStatus'
+          PiSoftwareUpdateStatus: '#/components/schemas/PiSoftwareUpdateStatus'
+          PiBootStatus: '#/components/schemas/PiBootStatus'
+    PolymorphicPiStatusRequest:
+      oneOf:
+      - $ref: '#/components/schemas/PiCamStatusRequest'
+      - $ref: '#/components/schemas/PiSoftwareUpdateStatusRequest'
+      - $ref: '#/components/schemas/PiBootStatusRequest'
+      discriminator:
+        propertyName: model
+        mapping:
+          PiCamStatus: '#/components/schemas/PiCamStatusRequest'
+          PiSoftwareUpdateStatus: '#/components/schemas/PiSoftwareUpdateStatusRequest'
+          PiBootStatus: '#/components/schemas/PiBootStatusRequest'
+    PrintNannyApiConfig:
+      type: object
+      properties:
+        bearer_access_token:
+          type: string
+          readOnly: true
+          nullable: true
+        base_path:
+          type: string
+          readOnly: true
+      required:
+      - base_path
+      - bearer_access_token
+    PrintNannyLicense:
+      type: object
+      properties:
+        nats_app:
+          allOf:
+          - $ref: '#/components/schemas/NatsApp'
+          readOnly: true
+        api:
+          allOf:
+          - $ref: '#/components/schemas/PrintNannyApiConfig'
+          readOnly: true
+        pi:
+          allOf:
+          - $ref: '#/components/schemas/Pi'
+          readOnly: true
+      required:
+      - api
+      - nats_app
+      - pi
     PublicKey:
       type: object
       properties:
@@ -5825,13 +6504,6 @@ components:
     SbcEnum:
       enum:
       - rpi_4
-      type: string
-    SourceEnum:
-      enum:
-      - octoprint
-      - printnanny_os
-      - printnanny_cloud
-      - mainsail
       type: string
     StripeCustomer:
       type: object
