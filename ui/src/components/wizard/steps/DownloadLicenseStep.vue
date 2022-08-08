@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { PropType } from "vue";
-import FormStep from "./FormStep.vue";
-import { useWizardStore } from "@/stores/wizard";
 import { Field } from "vee-validate";
+import { RefreshIcon, FolderDownloadIcon } from "@heroicons/vue/solid";
+import { useWizardStore } from "@/stores/wizard";
 import type { WizardStep } from "@/types";
+import FormStep from "./FormStep.vue";
 
 defineProps({
   step: {

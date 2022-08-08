@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
+import { PlusIcon } from "@heroicons/vue/solid";
 
 const router = useRouter();
 
