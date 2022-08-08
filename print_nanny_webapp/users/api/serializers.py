@@ -20,7 +20,7 @@ class EmailWaitlistSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class NatsOrganizationUserSerializer(serializers.ModelSerializer):
+class NatsOrganizationUserNkeySerializer(serializers.ModelSerializer):
 
     creds = serializers.SerializerMethodField()
 

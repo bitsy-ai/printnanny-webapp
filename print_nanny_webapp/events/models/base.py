@@ -1,3 +1,4 @@
+import uuid
 from polymorphic.models import PolymorphicModel
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from django.contrib.auth import get_user_model
@@ -15,6 +16,8 @@ class AbstractEvent(PolymorphicModel, SafeDeleteModel):
         abstract = True
         ordering = ["-created_dt"]
         index_together = [["subject", "created_dt"]]
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
     _safedelete_policy = SOFT_DELETE
     created_dt = models.DateTimeField(auto_now_add=True)
