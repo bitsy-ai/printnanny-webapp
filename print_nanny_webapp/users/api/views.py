@@ -16,7 +16,7 @@ from print_nanny_webapp.utils.permissions import IsObjectOwner
 from print_nanny_webapp.utils.views import AuthenticatedHttpRequest
 from print_nanny_webapp.users.api.serializers import (
     EmailWaitlistSerializer,
-    NatsOrganizationUserSerializer,
+    NatsOrganizationUserNkeySerializer,
 )
 from print_nanny_webapp.users.models import EmailWaitlist
 
@@ -39,9 +39,9 @@ class UserNkeyView(APIView):
     permission_classes = (IsObjectOwner, IsAuthenticated)
     lookup_field = "id"
     queryset = NatsOrganizationUser.objects.all()
-    serializer_class = NatsOrganizationUserSerializer
+    serializer_class = NatsOrganizationUserNkeySerializer
 
     def get(self, request: AuthenticatedHttpRequest):
         org_user = get_or_create_nats_organization_user(request.user)
-        serializer = NatsOrganizationUserSerializer(instance=org_user)
+        serializer = NatsOrganizationUserNkeySerializer(instance=org_user)
         return Response(serializer.data, status.HTTP_200_OK)

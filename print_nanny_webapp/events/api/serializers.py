@@ -39,7 +39,6 @@ class PiBootCommandSerializer(serializers.ModelSerializer):
     class Meta:
         model = PiBootCommand
         exclude = ("deleted",)
-        read_only_fields = ("created_dt",)
 
 
 class PiBootStatusSerializer(serializers.ModelSerializer):
@@ -48,7 +47,6 @@ class PiBootStatusSerializer(serializers.ModelSerializer):
     class Meta:
         model = PiBootStatus
         exclude = ("deleted",)
-        read_only_fields = ("created_dt",)
 
 
 class PiSoftwareUpdateCommandSerializer(serializers.ModelSerializer):
@@ -57,7 +55,6 @@ class PiSoftwareUpdateCommandSerializer(serializers.ModelSerializer):
     class Meta:
         model = PiSoftwareUpdateCommand
         exclude = ("deleted",)
-        read_only_fields = ("created_dt",)
 
 
 class PiSoftwareUpdateStatusSerializer(serializers.ModelSerializer):
@@ -66,7 +63,6 @@ class PiSoftwareUpdateStatusSerializer(serializers.ModelSerializer):
     class Meta:
         model = PiSoftwareUpdateStatus
         exclude = ("deleted",)
-        read_only_fields = ("created_dt",)
 
 
 class PiCamCommandSerializer(serializers.ModelSerializer):
@@ -75,7 +71,6 @@ class PiCamCommandSerializer(serializers.ModelSerializer):
     class Meta:
         model = PiCamCommand
         exclude = ("deleted",)
-        read_only_fields = ("created_dt",)
 
 
 class PiCamStatusSerializer(serializers.ModelSerializer):
@@ -84,7 +79,6 @@ class PiCamStatusSerializer(serializers.ModelSerializer):
     class Meta:
         model = PiCamStatus
         exclude = ("deleted",)
-        read_only_fields = ("created_dt",)
 
 
 class PolymorphicPiStatusSerializer(PolymorphicSerializer):
