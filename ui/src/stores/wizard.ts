@@ -1,6 +1,7 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
 import { ApiConfig, handleApiError } from "@/utils/api";
+import type { ConnectTestStep } from "@/types";
 
 const devicesApi = api.DevicesApiFactory(ApiConfig);
 
@@ -10,6 +11,7 @@ export const useWizardStore = defineStore({
     pi: undefined as api.Pi | undefined,
     loading: false,
     downloadUrl: undefined as string | undefined,
+    connectTestSteps: [] as Array<ConnectTestStep>
   }),
   actions: {
     async loadPi(piId: number) {

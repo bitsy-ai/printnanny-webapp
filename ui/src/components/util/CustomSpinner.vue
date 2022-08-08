@@ -26,7 +26,7 @@ const classes = `${color} ${props.width} ${props.height}`;
 <template>
   <div role="status" class="inline-flex items-center">
     <svg
-      class="animate-spin -ml-1 mr-3 text-white"
+      class="animate-spin text-white"
       :class="classes"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"

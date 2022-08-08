@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
 import { PlusIcon } from "@heroicons/vue/solid";
+import { stepKeys } from "@/components/wizard/piCreateWizard";
 
 const router = useRouter();
 
@@ -21,7 +22,7 @@ async function refresh() {
     </button>
     <router-link
       v-slot="{ navigate }"
-      :to="{ name: 'pi-wizard', params: { activeStep: 'customize-sd-card' } }"
+      :to="{ name: 'pi-wizard', params: { activeStep: stepKeys[0].key } }"
       custom
     >
       <button

@@ -8,12 +8,16 @@ const accountsApi = api.AccountsApiFactory(ApiConfig);
 export const useAccountStore = defineStore({
   id: "accounts",
   // persist option provided by: https://github.com/prazdevs/pinia-plugin-persistedstate
-  persist: true,
+  persist: {
+    storage: sessionStorage,
+  },
   state: () => ({
     user: undefined as api.User | undefined,
+    nkey: undefined as api.NatsOrganizationUserNkey | undefined
   }),
   getters: {
     isAuthenticated: (state) => state.user !== undefined,
+
   },
   actions: {
     async submitEmailWaitlist(email: string) {
@@ -30,6 +34,19 @@ export const useAccountStore = defineStore({
         actions: [],
       };
       alerts.push(alert);
+    },
+    async fetchUserNkey(): Promise<api.NatsOrganizationUserNkey | undefined> {
+      if (this.nkey === undefined) {
+        const nkeyData = await accountsApi.accountsUserNkeyRetrieve().catch(handleApiError);
+        if (nkeyData && nkeyData.data) {
+          this.$patch({
+            nkey: nkeyData.data
+          });
+          return nkeyData.data
+        }
+      }
+      return this.nkey
+
     },
     async fetchUser() {
       const userData = await accountsApi.accountsUserRetrieve().catch((e) => {

@@ -80,7 +80,12 @@ const router = createRouter({
             default: PiCreateWizard,
             TopBar: PiCreateWizardProgress,
           },
-          props: { default: true, TopBar: true },
+          props: route => {
+            if (route.params.piId === undefined) {
+              return { activeStep: route.params.activeStep }
+            }
+            return { activeStep: route.params.activeStep, piId: parseInt(route.params.piId) }
+          },
           meta: { title: "Connect New Device" },
         },
         {

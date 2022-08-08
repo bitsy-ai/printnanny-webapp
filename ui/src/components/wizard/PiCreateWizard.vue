@@ -32,7 +32,7 @@ downloadLicense();
   <div
     class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap"
   >
-    <div class="w-full md:w-2/3 m-auto">
+    <div class="w-full m-auto  justify-center flex">
       <FormWizard :steps="steps" :active-step="activeStep"> </FormWizard>
     </div>
   </div>

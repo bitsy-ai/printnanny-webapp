@@ -5,15 +5,25 @@ import { RefreshIcon, FolderDownloadIcon } from "@heroicons/vue/solid";
 import { useWizardStore } from "@/stores/wizard";
 import type { WizardStep } from "@/types";
 import FormStep from "./FormStep.vue";
+import { useRouter } from "vue-router";
+import { stepKeys } from "@/components/wizard/piCreateSteps";
 
-defineProps({
+const props = defineProps({
   step: {
     type: Object as PropType<WizardStep>,
     required: true,
-  },
+  }
 });
 
 const store = useWizardStore();
+const router = useRouter();
+
+if (router.currentRoute.value.params.piId !== undefined && router.currentRoute.value.params.activeStep === props.step.key){
+  const piId = parseInt(router.currentRoute.value.params.piId as string)
+  store.loadPi(piId);
+  store.downloadLicenseZip(piId);
+}
+
 </script>
 <template>
   <FormStep :name="step.key">
@@ -36,7 +46,7 @@ const store = useWizardStore();
               :aria-hidden="true"
             />
           </span>
-          <span>Click here if download does not start automatically</span>
+          <span>Download PrintNanny.zip</span>
         </button>
       </a>
       <p class="text-base font-medium text-red-500 mt-5 w-full">
