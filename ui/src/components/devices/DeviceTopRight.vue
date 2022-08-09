@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
-import { PlusIcon } from "@heroicons/vue/solid";
 import { stepKeys } from "@/components/wizard/piCreateWizard";
 
 const router = useRouter();

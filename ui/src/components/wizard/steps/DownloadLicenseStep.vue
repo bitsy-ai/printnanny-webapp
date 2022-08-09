@@ -1,14 +1,9 @@
 <script setup lang="ts">
 import type { PropType } from "vue";
 import { ref } from "vue";
-import { Field } from "vee-validate";
-import { RefreshIcon, FolderDownloadIcon } from "@heroicons/vue/solid";
+import { FolderDownloadIcon } from "@heroicons/vue/solid";
 import {
-  ThumbUpIcon,
-  UserIcon,
   CheckIcon,
-  MoonIcon,
-  InformationCircleIcon,
   ClipboardCopyIcon,
   QuestionMarkCircleIcon,
   ChipIcon,
@@ -17,8 +12,7 @@ import { useWizardStore } from "@/stores/wizard";
 import type { WizardStep } from "@/types";
 import FormStep from "./FormStep.vue";
 import { useRouter } from "vue-router";
-import { stepKeys } from "@/components/wizard/piCreateSteps";
-import type { ActionButton} from "@/types";
+import type { ActionButton } from "@/types";
 import { ManualTestStep } from "@/types";
 
 const props = defineProps({
@@ -125,10 +119,9 @@ const manualSteps = ref([
 
 // start first step
 manualSteps.value[0].start();
-
 </script>
 <template>
-<FormStep :name="step.key">
+  <FormStep :name="step.key">
     <h2
       class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl flex-1 w-full text-center"
     >
@@ -140,10 +133,9 @@ manualSteps.value[0].start();
     <div
       class="min-h-full min-w-full w-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap text-center"
     >
-
-    <!-- setup steps container -->
+      <!-- setup steps container -->
       <div class="flow-root w-3/4">
-          <ul role="list" class="-mb-8">
+        <ul role="list" class="-mb-8">
           <li v-for="(item, itemIdx) in manualSteps" :key="itemIdx">
             <div class="relative pb-8">
               <span
@@ -183,12 +175,13 @@ manualSteps.value[0].start();
                     </p>
                   </div>
                   <div
-                    class="text-right text-sm whitespace-nowrap text-gray-500"
                     v-if="item.active == true"
-
+                    class="text-right text-sm whitespace-nowrap text-gray-500"
                   >
                     <span
-                      v-for="(action, actionIdx) in item.actions" :key="actionIdx">
+                      v-for="(action, actionIdx) in item.actions"
+                      :key="actionIdx"
+                    >
                       <!-- href used for external documentation and other links -->
                       <a
                         v-if="action.href !== undefined"
@@ -240,10 +233,8 @@ manualSteps.value[0].start();
               </div>
             </div>
           </li>
-          </ul>
+        </ul>
       </div>
-
     </div>
-
-</FormStep>
+  </FormStep>
 </template>

@@ -1,28 +1,9 @@
 <script setup lang="ts">
-import moment from "moment";
 import FormStep from "./FormStep.vue";
 import { useRouter } from "vue-router";
-import { ref, computed } from "vue";
 import type { PropType } from "vue";
 import { useWizardStore } from "@/stores/wizard";
 import type { WizardStep } from "@/types";
-import {
-  ThumbUpIcon,
-  UserIcon,
-  CheckIcon,
-  MoonIcon,
-  InformationCircleIcon,
-  ClipboardCopyIcon,
-  QuestionMarkCircleIcon,
-  ChipIcon,
-} from "@heroicons/vue/outline";
-import CustomSpinner from "@/components/util/CustomSpinner.vue";
-import {
-  ExclamationCircleIcon,
-  FolderDownloadIcon,
-} from "@heroicons/vue/solid";
-import { ConnectTestStep, ConnectTestStatus, ManualTestStep } from "@/types";
-import * as api from "printnanny-api-client";
 
 const props = defineProps({
   step: {
@@ -42,7 +23,6 @@ if (
   await store.loadPi(piId);
   store.connectNats(piId);
 }
-
 </script>
 
 <template>
@@ -56,7 +36,9 @@ if (
       {{ step.detail }}
     </p>
     <p class="text-base text-center text-gray-900 mt-5 w-full">
-      To begin the test, <strong class="text-amber-500">insert SD card into Raspberry Pi</strong> and <strong class="text-amber-500">connect Pi to power source.</strong>
+      To begin the test,
+      <strong class="text-amber-500">insert SD card into Raspberry Pi</strong>
+      and <strong class="text-amber-500">connect Pi to power source.</strong>
     </p>
     <div
       class="min-h-full min-w-full w-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap text-center"
@@ -64,12 +46,11 @@ if (
       <!-- test steps container -->
       <div class="flow-root w-3/4">
         <ul role="list" class="-mb-8">
-
           <!-- event-based connection tests -->
-          <li v-for="(step, stepIdx) in store.connectTestSteps" :key="stepIdx">
+          <li v-for="(item, itemIdx) in store.connectTestSteps" :key="itemIdx">
             <div class="relative pb-8">
               <span
-                v-if="stepIdx !== store.connectTestSteps.length - 1"
+                v-if="itemIdx !== store.connectTestSteps.length - 1"
                 class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200"
                 aria-hidden="true"
               />
@@ -77,19 +58,19 @@ if (
                 <div>
                   <span
                     :class="[
-                      step.statusComponent().iconBackground,
+                      item.statusComponent().iconBackground,
                       'h-8 w-8 rounded-full flex items-center justify-center ring-8 ring-white',
                     ]"
                   >
                     <component
-                      :is="step.statusComponent().icon"
+                      :is="item.statusComponent().icon"
                       v-if="!step.active()"
                       class="h-5 w-5 text-white"
                       aria-hidden="true"
                     />
                     <component
-                      :is="step.statusComponent().icon"
-                      v-if="step.active()"
+                      :is="item.statusComponent().icon"
+                      v-if="item.active()"
                       text=""
                       width="w-8"
                       height="w-8"
@@ -102,25 +83,25 @@ if (
                 >
                   <div>
                     <p class="text-sm text-gray-500 text-left">
-                      <strong>{{ step.content }}</strong>
+                      <strong>{{ item.content }}</strong>
                       <br />
-                      <i>{{ step.statusText() }}</i>
+                      <i>{{ item.statusText() }}</i>
                     </p>
                   </div>
                   <div
                     class="text-right text-sm whitespace-nowrap text-gray-500"
                   >
-                    {{ step.statusComponent().text }}
+                    {{ item.statusComponent().text }}
                     <br />
                     <time
-                      v-if="step.status == ConnectTestStatus.Pending"
-                      :datetime="step.start_dt.format()"
-                      ><i>Started {{ step.start_dt.fromNow() }}</i></time
+                      v-if="item.status == ConnectTestStatus.Pending"
+                      :datetime="item.start_dt.format()"
+                      ><i>Started {{ item.start_dt.fromNow() }}</i></time
                     >
-                                        <time
-                      v-if="step.status == ConnectTestStatus.Success"
-                      :datetime="step.end_dt.format()"
-                      ><i>Finished {{ step.end_dt.fromNow() }}</i></time
+                    <time
+                      v-if="item.status == ConnectTestStatus.Success"
+                      :datetime="item.end_dt.format()"
+                      ><i>Finished {{ item.end_dt.fromNow() }}</i></time
                     >
                   </div>
                 </div>

@@ -19,7 +19,8 @@ export const useWizardStore = defineStore({
     loading: false,
     downloadUrl: undefined as string | undefined,
     connectTestSteps: [
-      new ConnectTestStep("Turn on Raspberry Pi",
+      new ConnectTestStep(
+        "Turn on Raspberry Pi",
         api.PiBootStatusType.BootStarted,
         "Connect Raspberry Pi to power source. Test will begin automatically.",
         api.PiBootStatusType.BootSuccess,
@@ -31,7 +32,6 @@ export const useWizardStore = defineStore({
         "Waiting for Raspberry Pi to finish powering up.",
         api.PiBootStatusType.SyncSettingsSuccess,
         api.PiBootStatusType.SyncSettingsError
-
       ),
       // new ConnectTestStep(
       //   "Test Remote Command"
@@ -44,13 +44,13 @@ export const useWizardStore = defineStore({
 
         api.PiCamStatusType.CamStartSuccess,
         api.PiCamStatusType.CamError
-      )
+      ),
     ] as Array<ConnectTestStep>,
   }),
   actions: {
     async connectNats(piId: number) {
       const eventStore = useEventStore();
-      const pi = await this.loadPi(piId);
+      await this.loadPi(piId);
       const natsClient = await eventStore.connect();
       if (natsClient === undefined) {
         return;
@@ -71,22 +71,20 @@ export const useWizardStore = defineStore({
       })(sub);
     },
     handlePiEvent(event: api.PolymorphicPiEventRequest) {
-      const connectTestSteps = this.connectTestSteps.map((step, idx) => {
-        const currentStep = step;
-        const nextStep = idx < this.connectTestSteps.length - 1 ? this.connectTestSteps[idx + 1] : undefined;
+      const connectTestSteps = this.connectTestSteps.map((step) => {
         if (step.pendingEventType == event.event_type) {
           step.start();
         }
         if (step.successEventType == event.event_type) {
-          step.success()
+          step.success();
         }
         if (step.errrorEventType == event.event_type) {
-          step.error()
+          step.error();
         }
-        console.log("Returning step: ", step)
-        return step
+        console.log("Returning step: ", step);
+        return step;
       });
-      this.$patch({ connectTestSteps })
+      this.$patch({ connectTestSteps });
     },
     async loadPi(piId: number) {
       if (this.pi === undefined) {
@@ -127,10 +125,6 @@ export const useWizardStore = defineStore({
         this.$patch({ loading: false, pi: res.data });
         return res.data;
       }
-    },
-
-    startTest() {
-      this.connectTestSteps[0].start(undefined);
     },
   },
 });

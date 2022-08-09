@@ -40,7 +40,7 @@ export const useDeviceStore = defineStore({
       const res = await devicesApi.pisList().catch(handleApiError);
       console.debug("pisList response ", res);
       if (res?.data?.results) {
-        const piIndexMap = this.$patch({
+        this.$patch({
           loading: false,
           pis: res.data.results,
         });

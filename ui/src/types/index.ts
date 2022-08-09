@@ -9,7 +9,6 @@ import type { Moment } from "moment";
 import { CheckIcon, MoonIcon } from "@heroicons/vue/outline";
 import { ExclamationCircleIcon } from "@heroicons/vue/solid";
 import CustomSpinner from "@/components/util/CustomSpinner.vue";
-import type * as api from "printnanny-api-client";
 import moment from "moment";
 
 export interface AlertAction {
@@ -149,8 +148,7 @@ export class ConnectTestStep {
     pendingEventType: string,
     pendingMessage: string,
     successEventType: string,
-    errorEventType: string,
-
+    errorEventType: string
   ) {
     this.content = content;
     this.notStartedMessage = pendingMessage;
@@ -197,5 +195,4 @@ export class ConnectTestStep {
     this.start_dt = moment();
     this.status = ConnectTestStatus.Pending;
   }
-
 }
