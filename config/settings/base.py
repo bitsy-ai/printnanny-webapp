@@ -741,3 +741,5 @@ REST_AUTH_REGISTER_SERIALIZERS = {
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += ["organizations", "django_nats_nkeys"]
 NATS_APP_MODEL = "devices.PiNatsApp"
+NATS_SERVER_URI = env("NATS_SERVER_URI", default="nats://nats:4222")
+NATS_WS_URI = env("NATS_WS_URI", default="ws://localhost:8422")
