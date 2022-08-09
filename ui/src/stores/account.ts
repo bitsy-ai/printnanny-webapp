@@ -36,17 +36,25 @@ export const useAccountStore = defineStore({
       alerts.push(alert);
     },
     async fetchUserNkey(): Promise<api.NatsOrganizationUserNkey | undefined> {
-      if (this.nkey === undefined) {
-        const nkeyData = await accountsApi.accountsUserNkeyRetrieve().catch(handleApiError);
-        if (nkeyData && nkeyData.data) {
-          this.$patch({
-            nkey: nkeyData.data
-          });
-          return nkeyData.data
-        }
+      // if (this.nkey === undefined) {
+      //   const nkeyData = await accountsApi.accountsUserNkeyRetrieve().catch(handleApiError);
+      //   console.log("Loaded NATS identity", nkeyData);
+      //   if (nkeyData && nkeyData.data) {
+      //     this.$patch({
+      //       nkey: nkeyData.data
+      //     });
+      //     return nkeyData.data
+      //   }
+      // }
+      // return this.nkey
+      const nkeyData = await accountsApi.accountsUserNkeyRetrieve().catch(handleApiError);
+      console.log("Loaded NATS identity", nkeyData);
+      if (nkeyData && nkeyData.data) {
+        this.$patch({
+          nkey: nkeyData.data
+        });
+        return nkeyData.data
       }
-      return this.nkey
-
     },
     async fetchUser() {
       const userData = await accountsApi.accountsUserRetrieve().catch((e) => {

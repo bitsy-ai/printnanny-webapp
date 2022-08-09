@@ -2,10 +2,9 @@ import { defineStore, acceptHMRUpdate } from "pinia";
 import {
   connect,
   JSONCodec,
-  Subscription,
-  NatsConnection,
   credsAuthenticator,
-} from "nats";
+} from "nats.ws";
+import type { NatsConnection } from "nats.ws";
 import { useAccountStore } from "./account";
 import * as api from "printnanny-api-client";
 
@@ -27,15 +26,22 @@ export const useEventStore = defineStore({
           );
           return;
         }
-
         const servers = import.meta.env.VITE_PRINTNANNY_NATS_URI;
-        const natsClient = await connect({
+
+        const connectOptions = {
           servers,
           authenticator: credsAuthenticator(
             new TextEncoder().encode(nkey.creds)
           ),
-        });
-        console.debug(`Initialized NATs connection to ${servers}`);
+          debug: false
+        };
+
+        if (import.meta.env.VITE_PRINTNANNY_DEBUG == true) {
+          connectOptions.debug = true
+        }
+        const natsClient = await connect(connectOptions);
+
+        console.log(`Initialized NATs connection to ${servers}`);
         this.$patch({ natsClient });
         return natsClient;
       } else {

@@ -1,5 +1,5 @@
-from .base import *  # noqa
-from .base import env
+from config.settings.base import *  # noqa
+from config.settings.base import env
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -132,3 +132,10 @@ LOGGING = {
 # see also: corsheaders.middleware.CorsMiddleware
 # ------------------------------------------------------------------------------
 CORS_ALLOW_ALL_ORIGINS = True
+
+
+# django-nats-nkeys
+# https://github.com/bitsy-ai/django-nats-nkeys
+# ------------------------------------------------------------------------------
+NATS_SERVER_URI = "nats://nats:4222"
+NATS_WS_URI = "ws://localhost:8422"

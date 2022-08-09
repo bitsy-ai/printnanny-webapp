@@ -1,7 +1,9 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
-import { ApiConfig, handleApiError } from "@/utils/api";
+import { ApiConfig, handleApiError } from "@/utils/api"
+import { useEventStore } from "./nats";
 import type { ConnectTestStep } from "@/types";
+import { JSONCodec } from "nats.ws";
 
 const devicesApi = api.DevicesApiFactory(ApiConfig);
 
@@ -14,6 +16,30 @@ export const useWizardStore = defineStore({
     connectTestSteps: [] as Array<ConnectTestStep>
   }),
   actions: {
+
+    async connectNats(piId: number) {
+      const eventStore = useEventStore();
+      const pi = await this.loadPi(piId);
+      const natsClient = await eventStore.connect();
+      if (natsClient === undefined) { return }
+      // create a JSON codec/decoder
+      const jsonCodec = JSONCodec<api.PolymorphicPiEventRequest>();
+      // subscribe to Pi events
+      const sub = natsClient.subscribe(`pi.${piId}`);
+      (async (sub: Subscription) => {
+        console.log(`Subscribed to ${sub.getSubject()} events...`);
+        for await (const msg of sub) {
+          const event: api.PolymorphicPiEventRequest = jsonCodec.decode(
+            msg.data
+          );
+          console.log("Deserialized event", event);
+          this.handlePiEvent(event);
+        }
+      })(sub)
+    },
+    handlePiEvent(event: api.PolymorphicPiEventRequest) {
+
+    },
     async loadPi(piId: number) {
       if (this.pi === undefined) {
         const res = await devicesApi.pisRetrieve(piId);
@@ -54,6 +80,10 @@ export const useWizardStore = defineStore({
         return res.data;
       }
     },
+
+    startTest() {
+      this.connectTestSteps[0].start(undefined);
+    }
   },
 });
 

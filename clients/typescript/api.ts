@@ -2318,10 +2318,10 @@ export interface Pi {
 export interface PiBootCommand {
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof PiBootCommand
      */
-    'id': number;
+    'id': string;
     /**
      * 
      * @type {PiBootCommandModelEnum}
@@ -2437,10 +2437,10 @@ export type PiBootCommandType = typeof PiBootCommandType[keyof typeof PiBootComm
 export interface PiBootStatus {
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof PiBootStatus
      */
-    'id': number;
+    'id': string;
     /**
      * 
      * @type {PiBootStatusModelEnum}
@@ -2561,10 +2561,10 @@ export type PiBootStatusType = typeof PiBootStatusType[keyof typeof PiBootStatus
 export interface PiCamCommand {
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof PiCamCommand
      */
-    'id': number;
+    'id': string;
     /**
      * 
      * @type {PiCamCommandModelEnum}
@@ -2680,10 +2680,10 @@ export type PiCamCommandType = typeof PiCamCommandType[keyof typeof PiCamCommand
 export interface PiCamStatus {
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof PiCamStatus
      */
-    'id': number;
+    'id': string;
     /**
      * 
      * @type {PiCamStatusModelEnum}
@@ -2905,10 +2905,10 @@ export interface PiSettingsRequest {
 export interface PiSoftwareUpdateCommand {
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof PiSoftwareUpdateCommand
      */
-    'id': number;
+    'id': string;
     /**
      * 
      * @type {PiSoftwareUpdateCommandModelEnum}
@@ -3036,10 +3036,10 @@ export type PiSoftwareUpdateCommandType = typeof PiSoftwareUpdateCommandType[key
 export interface PiSoftwareUpdateStatus {
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof PiSoftwareUpdateStatus
      */
-    'id': number;
+    'id': string;
     /**
      * 
      * @type {PiSoftwareUpdateStatusModelEnum}

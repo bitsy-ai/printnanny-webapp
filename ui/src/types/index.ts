@@ -36,6 +36,7 @@ export type WizardButton = {
 export type WizardStep = {
   key: string;
   title: string;
+  detail: string;
   progress: string;
   style: string;
   component: any;
@@ -57,6 +58,48 @@ export enum ConnectTestStatus {
   Success = "Success",
   Error = "Error"
 };
+
+export class ManualTestStep {
+  text: string;
+  detail: string;
+  icon: FunctionalComponent<HTMLAttributes & VNodeProps>;
+  active: boolean;
+  done: boolean;
+  extraButtonhHref?: string;
+  extraButtonText?: string;
+
+  constructor(text: string, detail: string, icon: FunctionalComponent<HTMLAttributes & VNodeProps>) {
+    this.detail = detail;
+    this.text = text;
+    this.icon = icon;
+    this.done = false;
+    this.active = false;
+  }
+
+  public iconBackground(): string {
+    if (this.active == false) {
+      return 'bg-gray-400'
+    } else if (this.done == true) {
+      return 'bg-green-500'
+    } else {
+      return 'bg-amber-500'
+    }
+
+  }
+
+  public extraButtonBackground(): string {
+    return 'bg-amber-500 hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500'
+  }
+
+  public start() {
+    this.active = true;
+  }
+
+  public finished() {
+    this.active = false;
+    this.done = true;
+  }
+}
 
 export class ConnectTestStep {
   content: String;
@@ -105,7 +148,7 @@ export class ConnectTestStep {
     return this.icons[this.status]
   }
 
-  public start(event: api.PolymorphicPiEvent): void {
+  public start(event: undefined | api.PolymorphicPiEvent): void {
     this.start_dt = moment();
     this.command_event = event;
     this.status = ConnectTestStatus.Pending;

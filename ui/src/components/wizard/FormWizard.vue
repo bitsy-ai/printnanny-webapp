@@ -72,7 +72,7 @@ const onSubmit = handleSubmit(async (values) => {
 });
 </script>
 <template>
-  <form @submit="onSubmit">
+  <form @submit.prevent="onSubmit">
     <component
       :is="step.component"
       v-for="step in steps"
