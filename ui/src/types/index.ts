@@ -48,15 +48,25 @@ export type WizardStep = {
 
 export type ConnectTestStatusItem = {
   icon: any;
-  iconBackground: String;
-  text: String;
+  iconBackground: string;
+  text: string;
 };
 
 export enum ConnectTestStatus {
   NotStarted = "Not Started",
   Pending = "Pending",
   Success = "Success",
-  Error = "Error"
+  Error = "Error",
+}
+
+export type ActionButton = {
+  bgColor: string;
+  bgColorHover: string;
+  bgColorFocus: string;
+  text: string;
+  href?: string;
+  icon?: FunctionalComponent<HTMLAttributes & VNodeProps>;
+  onClick?: (step: ManualTestStep, stepIdx: number) => void;
 };
 
 export class ManualTestStep {
@@ -65,10 +75,15 @@ export class ManualTestStep {
   icon: FunctionalComponent<HTMLAttributes & VNodeProps>;
   active: boolean;
   done: boolean;
-  extraButtonhHref?: string;
-  extraButtonText?: string;
+  actions: Array<ActionButton>;
 
-  constructor(text: string, detail: string, icon: FunctionalComponent<HTMLAttributes & VNodeProps>) {
+  constructor(
+    text: string,
+    detail: string,
+    icon: FunctionalComponent<HTMLAttributes & VNodeProps>,
+    actions: Array<ActionButton>
+  ) {
+    this.actions = actions;
     this.detail = detail;
     this.text = text;
     this.icon = icon;
@@ -77,46 +92,60 @@ export class ManualTestStep {
   }
 
   public iconBackground(): string {
-    if (this.active == false) {
-      return 'bg-gray-400'
-    } else if (this.done == true) {
-      return 'bg-green-500'
+    if (this.done == true) {
+      return "bg-emerald-500";
+    } else if (this.active == false) {
+      return "bg-gray-400";
     } else {
-      return 'bg-amber-500'
+      return "bg-amber-500";
     }
-
-  }
-
-  public extraButtonBackground(): string {
-    return 'bg-amber-500 hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500'
   }
 
   public start() {
     this.active = true;
   }
 
-  public finished() {
+  public finish() {
     this.active = false;
     this.done = true;
   }
 }
 
 export class ConnectTestStep {
-  content: String;
+  content: string;
   status: ConnectTestStatus;
   start_dt?: undefined | Moment;
   end_dt?: undefined | Moment;
-  command_event?: undefined | api.PolymorphicPiEventRequest
-  status_event?: undefined | api.PolymorphicPiEventRequest
-  onPiEvent?: (undefined | ((event: api.PolymorphicPiEventRequest) => void));
+  command_event?: undefined | api.PolymorphicPiEventRequest;
+  status_event?: undefined | api.PolymorphicPiEventRequest;
+  onPiEvent?: undefined | ((event: api.PolymorphicPiEventRequest) => void);
 
   icons = {
-    [ConnectTestStatus.NotStarted]: { icon: MoonIcon, iconBackground: "bg-gray-400", text: ConnectTestStatus.NotStarted.valueOf() } as ConnectTestStatusItem,
-    [ConnectTestStatus.Pending]: { icon: CustomSpinner, iconBackground: "bg-amber-400", text: ConnectTestStatus.Pending.valueOf() } as ConnectTestStatusItem,
-    [ConnectTestStatus.Success]: { icon: CheckIcon, iconBackground: "bg-green-500", text: ConnectTestStatus.Success.valueOf() } as ConnectTestStatusItem,
-    [ConnectTestStatus.Error]: { icon: ExclamationCircleIcon, iconBackground: "bg-red-500", text: ConnectTestStatus.Error.valueOf() } as ConnectTestStatusItem
-  }
-  constructor(content: String, onPiEvent: (undefined | ((event: api.PolymorphicPiEventRequest) => void))) {
+    [ConnectTestStatus.NotStarted]: {
+      icon: MoonIcon,
+      iconBackground: "bg-gray-400",
+      text: ConnectTestStatus.NotStarted.valueOf(),
+    } as ConnectTestStatusItem,
+    [ConnectTestStatus.Pending]: {
+      icon: CustomSpinner,
+      iconBackground: "bg-amber-400",
+      text: ConnectTestStatus.Pending.valueOf(),
+    } as ConnectTestStatusItem,
+    [ConnectTestStatus.Success]: {
+      icon: CheckIcon,
+      iconBackground: "bg-green-500",
+      text: ConnectTestStatus.Success.valueOf(),
+    } as ConnectTestStatusItem,
+    [ConnectTestStatus.Error]: {
+      icon: ExclamationCircleIcon,
+      iconBackground: "bg-red-500",
+      text: ConnectTestStatus.Error.valueOf(),
+    } as ConnectTestStatusItem,
+  };
+  constructor(
+    content: string,
+    onPiEvent: undefined | ((event: api.PolymorphicPiEventRequest) => void)
+  ) {
     this.content = content;
     this.status = ConnectTestStatus.NotStarted;
     this.command_event = undefined;
@@ -129,35 +158,33 @@ export class ConnectTestStep {
   public statusText(): string {
     switch (this.status) {
       case ConnectTestStatus.Pending:
-        return 'Waiting for Raspberry Pi'
+        return "Waiting for Raspberry Pi";
       case ConnectTestStatus.Success:
-        return 'Success'
+        return "Success";
       case ConnectTestStatus.Error:
-        return 'Error'
+        return "Error";
       case ConnectTestStatus.NotStarted:
-        return 'Waiting to begin test'
+        return "Waiting to begin test";
     }
   }
 
   public active(): boolean {
-    return this.status === ConnectTestStatus.Pending
+    return this.status === ConnectTestStatus.Pending;
   }
 
-
   public statusComponent(): ConnectTestStatusItem {
-    return this.icons[this.status]
+    return this.icons[this.status];
   }
 
   public start(event: undefined | api.PolymorphicPiEvent): void {
     this.start_dt = moment();
     this.command_event = event;
     this.status = ConnectTestStatus.Pending;
-
   }
 
   public handlePiEvent(event: api.PolymorphicPiEventRequest): void {
     if (this.onPiEvent !== undefined) {
-      return this.onPiEvent(event)
+      return this.onPiEvent(event);
     }
   }
 }

@@ -12,11 +12,16 @@ export const stepKeys = [
   {
     key: "customize-sd-card",
     title: "Customize SD Card",
-    detail: "Configure your Pi's hostname and wifi with the Raspberry Pi imager."
+    detail:
+      "Configure your Pi's hostname and wifi with the Raspberry Pi imager.",
   },
   { key: "raspberry-pi", title: "Register My Raspberry Pi", detail: "" },
-  { key: "download-zip", title: "Download PrintNanny.zip", detail: "" },
-  { key: "test-connection", title: "Test My Setup", detail: "Verify that PrintNanny is working by following the steps below." },
+  {
+    key: "test-connection",
+    title: "Finish PrintNanny Setup",
+    detail:
+      "Almost done! This section will double-check your PrintNanny setup.",
+  },
   { key: "done", title: "Finish Setup", detail: "" },
 ];
 
@@ -48,8 +53,8 @@ export function PiCreateWizardSteps(): WizardStep[] {
       detail: stepKeys[1].detail,
       component: PiCreateStep,
       title: stepKeys[1].title,
-      progress: "25%",
-      style: "width: 25%",
+      progress: "33%",
+      style: "width: 33%",
       validationSchema: yup.object({
         hostname: yup.string().required(),
         edition: yup.string().required(),
@@ -90,13 +95,11 @@ export function PiCreateWizardSteps(): WizardStep[] {
     {
       key: stepKeys[2].key,
       detail: stepKeys[2].detail,
-      component: DownloadLicenseStep,
+      component: TestConnectionStep,
+      progress: "66%",
+      style: "width: 66%",
       title: stepKeys[2].title,
-      progress: "50%",
-      style: "width: 50%",
-      validationSchema: yup.object({
-        tos: yup.boolean(),
-      }),
+      validationSchema: yup.object(),
       nextButton: {
         text: `Next: ${stepKeys[3].title}`,
         link: () => ({
@@ -108,7 +111,7 @@ export function PiCreateWizardSteps(): WizardStep[] {
         text: `Previous: ${stepKeys[1].title}`,
         link: () => ({
           name: "pi-wizard",
-          params: { activeStep: stepKeys[1].key },
+          params: { activeStep: stepKeys[1].key, piId: store.pi?.id },
         }),
       },
       onSubmit: (_formData: any) => {
@@ -118,32 +121,6 @@ export function PiCreateWizardSteps(): WizardStep[] {
     {
       key: stepKeys[3].key,
       detail: stepKeys[3].detail,
-      component: TestConnectionStep,
-      progress: "75%",
-      style: "width: 75%",
-      title: stepKeys[3].title,
-      validationSchema: yup.object(),
-      nextButton: {
-        text: `Next: ${stepKeys[4].title}`,
-        link: () => ({
-          name: "pi-wizard",
-          params: { activeStep: stepKeys[4].key, piId: store.pi?.id },
-        }),
-      },
-      prevButton: {
-        text: `Previous: ${stepKeys[2].title}`,
-        link: () => ({
-          name: "pi-wizard",
-          params: { activeStep: stepKeys[2].key, piId: store.pi?.id },
-        }),
-      },
-      onSubmit: (_formData: any) => {
-        // handle form data
-      },
-    },
-    {
-      key: stepKeys[4].key,
-      detail: stepKeys[4].detail,
       progress: "100%",
       style: "width: 100%",
       title: "Setup is Complete - Nice Work!",
@@ -151,10 +128,10 @@ export function PiCreateWizardSteps(): WizardStep[] {
       nextButton: undefined,
       component: DoneStep,
       prevButton: {
-        text: `Previous: ${stepKeys[3].title}`,
+        text: `Previous: ${stepKeys[2].title}`,
         link: () => ({
           name: "pi-wizard",
-          params: { activeStep: stepKeys[3].key, piId: store.pi?.id },
+          params: { activeStep: stepKeys[2].key, piId: store.pi?.id },
         }),
       },
       onSubmit: (_formData: any) => {

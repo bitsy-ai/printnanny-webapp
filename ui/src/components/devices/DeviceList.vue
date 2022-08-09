@@ -114,7 +114,7 @@ const pis = await deviceStore.fetchDevices();
                       <ExclamationIcon
                         class="mr-1 w-5 h-5 text-yellow-800 text-yellow-800"
                       />
-                       Finish Setup
+                      Finish Setup
                     </span>
                   </router-link>
                 </div>

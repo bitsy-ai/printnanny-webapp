@@ -12,18 +12,20 @@ const props = defineProps({
   step: {
     type: Object as PropType<WizardStep>,
     required: true,
-  }
+  },
 });
 
 const store = useWizardStore();
 const router = useRouter();
 
-if (router.currentRoute.value.params.piId !== undefined && router.currentRoute.value.params.activeStep === props.step.key){
-  const piId = parseInt(router.currentRoute.value.params.piId as string)
+if (
+  router.currentRoute.value.params.piId !== undefined &&
+  router.currentRoute.value.params.activeStep === props.step.key
+) {
+  const piId = parseInt(router.currentRoute.value.params.piId as string);
   store.loadPi(piId);
   store.downloadLicenseZip(piId);
 }
-
 </script>
 <template>
   <FormStep :name="step.key">

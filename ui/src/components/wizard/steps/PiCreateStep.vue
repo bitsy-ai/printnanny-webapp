@@ -14,9 +14,11 @@ defineProps({
 <template>
   <FormStep :name="step.key">
     <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl">
-      Add Raspberry Pi
+      {{ step.title }}
     </h2>
-
+    <p class="text-base font-medium text-gray-900 mt-5 w-full">
+      {{ step.detail }}
+    </p>
     <!-- hostname fieldset -->
     <fieldset class="mt-6">
       <legend class="text-base font-medium text-gray-900">

@@ -1,9 +1,5 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
-import {
-  connect,
-  JSONCodec,
-  credsAuthenticator,
-} from "nats.ws";
+import { connect, JSONCodec, credsAuthenticator } from "nats.ws";
 import type { NatsConnection } from "nats.ws";
 import { useAccountStore } from "./account";
 import * as api from "printnanny-api-client";
@@ -33,11 +29,11 @@ export const useEventStore = defineStore({
           authenticator: credsAuthenticator(
             new TextEncoder().encode(nkey.creds)
           ),
-          debug: false
+          debug: false,
         };
 
         if (import.meta.env.VITE_PRINTNANNY_DEBUG == true) {
-          connectOptions.debug = true
+          connectOptions.debug = true;
         }
         const natsClient = await connect(connectOptions);
 
