@@ -7,26 +7,30 @@ import uuid
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('events', '0020_auto_20220807_0209'),
+        ("events", "0020_auto_20220807_0209"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='basepievent',
-            name='id',
+            model_name="basepievent",
+            name="id",
         ),
         migrations.RemoveField(
-            model_name='printjobalert',
-            name='id',
+            model_name="printjobalert",
+            name="id",
         ),
         migrations.AddField(
-            model_name='basepievent',
-            name='uuid',
-            field=models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False),
+            model_name="basepievent",
+            name="uuid",
+            field=models.UUIDField(
+                default=uuid.uuid4, editable=False, primary_key=True, serialize=False
+            ),
         ),
         migrations.AddField(
-            model_name='printjobalert',
-            name='uuid',
-            field=models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False),
+            model_name="printjobalert",
+            name="uuid",
+            field=models.UUIDField(
+                default=uuid.uuid4, editable=False, primary_key=True, serialize=False
+            ),
         ),
     ]
