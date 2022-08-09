@@ -102,6 +102,7 @@ class PolymorphicPiCommandSerializer(PolymorphicSerializer):
 
 
 class PolymorphicPiEventSerializer(PolymorphicSerializer):
+    resource_type_field_name = "model"
     model_serializer_mapping = {
         PiCamStatus: PiCamStatusSerializer,
         PiSoftwareUpdateStatus: PiSoftwareUpdateStatusSerializer,
