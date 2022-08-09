@@ -4,6 +4,7 @@ import { ApiConfig, handleApiError } from "@/utils/api";
 import { useEventStore } from "./nats";
 import type { ConnectTestStep } from "@/types";
 import { JSONCodec } from "nats.ws";
+import type { Subscription } from "nats.ws";
 
 const devicesApi = api.DevicesApiFactory(ApiConfig);
 
@@ -18,6 +19,7 @@ export const useWizardStore = defineStore({
     loading: false,
     downloadUrl: undefined as string | undefined,
     connectTestSteps: [] as Array<ConnectTestStep>,
+    status: [] as Array<api.PolymorphicPiEventRequest>
   }),
   actions: {
     async connectNats(piId: number) {
@@ -30,19 +32,25 @@ export const useWizardStore = defineStore({
       // create a JSON codec/decoder
       const jsonCodec = JSONCodec<api.PolymorphicPiEventRequest>();
       // subscribe to Pi events
-      const sub = natsClient.subscribe(`pi.${piId}`);
+      const sub = natsClient.subscribe(`pi.${piId}.>`);
       (async (sub: Subscription) => {
         console.log(`Subscribed to ${sub.getSubject()} events...`);
         for await (const msg of sub) {
           const event: api.PolymorphicPiEventRequest = jsonCodec.decode(
             msg.data
           );
-          console.log("Deserialized event", event);
+          console.debug("PolymorphicPiEventRequest", event);
           this.handlePiEvent(event);
         }
       })(sub);
     },
-    handlePiEvent(event: api.PolymorphicPiEventRequest) {},
+    handlePiEvent(event: api.PolymorphicPiEventRequest) {
+      this.connectTestSteps.map((step, idx) => {
+        const currentStep = step;
+        const nextStep = idx < this.connectTestSteps.length - 1 ? this.connectTestSteps[idx + 1] : undefined;
+        step.handlePiEvent(event, currentStep, nextStep);
+      })
+    },
     async loadPi(piId: number) {
       if (this.pi === undefined) {
         const res = await devicesApi.pisRetrieve(piId);

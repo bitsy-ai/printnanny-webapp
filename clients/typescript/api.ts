@@ -552,33 +552,39 @@ export interface NatsApp {
 /**
  * 
  * @export
- * @interface NatsOrganizationUserNkey
+ * @interface NatsOrganizationUser
  */
-export interface NatsOrganizationUserNkey {
+export interface NatsOrganizationUser {
     /**
      * 
      * @type {number}
-     * @memberof NatsOrganizationUserNkey
+     * @memberof NatsOrganizationUser
      */
     'id': number;
     /**
      * 
      * @type {string}
-     * @memberof NatsOrganizationUserNkey
+     * @memberof NatsOrganizationUser
      */
     'app_name'?: string;
     /**
      * 
      * @type {number}
-     * @memberof NatsOrganizationUserNkey
+     * @memberof NatsOrganizationUser
      */
     'organization': number;
     /**
      * 
      * @type {string}
-     * @memberof NatsOrganizationUserNkey
+     * @memberof NatsOrganizationUser
      */
     'creds': string;
+    /**
+     * Output of `nsc describe account`
+     * @type {{ [key: string]: any; }}
+     * @memberof NatsOrganizationUser
+     */
+    'json'?: { [key: string]: any; };
 }
 /**
  * 
@@ -5282,7 +5288,7 @@ export const AccountsApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * 
+         * Providers user nkey credentials
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5551,11 +5557,11 @@ export const AccountsApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * 
+         * Providers user nkey credentials
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsUserNkeyRetrieve(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NatsOrganizationUserNkey>> {
+        async accountsUserNkeyRetrieve(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NatsOrganizationUser>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsUserNkeyRetrieve(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5697,11 +5703,11 @@ export const AccountsApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.accountsRegistrationVerifyEmailCreate(verifyEmailRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
+         * Providers user nkey credentials
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsUserNkeyRetrieve(options?: any): AxiosPromise<NatsOrganizationUserNkey> {
+        accountsUserNkeyRetrieve(options?: any): AxiosPromise<NatsOrganizationUser> {
             return localVarFp.accountsUserNkeyRetrieve(options).then((request) => request(axios, basePath));
         },
         /**
@@ -5838,12 +5844,12 @@ export interface AccountsApiInterface {
     accountsRegistrationVerifyEmailCreate(verifyEmailRequest: VerifyEmailRequest, options?: AxiosRequestConfig): AxiosPromise<RestAuthDetail>;
 
     /**
-     * 
+     * Providers user nkey credentials
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountsApiInterface
      */
-    accountsUserNkeyRetrieve(options?: AxiosRequestConfig): AxiosPromise<NatsOrganizationUserNkey>;
+    accountsUserNkeyRetrieve(options?: AxiosRequestConfig): AxiosPromise<NatsOrganizationUser>;
 
     /**
      * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
@@ -6001,7 +6007,7 @@ export class AccountsApi extends BaseAPI implements AccountsApiInterface {
     }
 
     /**
-     * 
+     * Providers user nkey credentials
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountsApi

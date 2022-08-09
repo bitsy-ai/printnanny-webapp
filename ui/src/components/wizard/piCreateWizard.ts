@@ -17,8 +17,14 @@ export const stepKeys = [
   },
   { key: "raspberry-pi", title: "Register My Raspberry Pi", detail: "" },
   {
+    key: "download-license",
+    title: "Download PrintNanny.zip",
+    detail:
+      "This section will help you copy your PrintNanny license to your SD card.",
+  },
+  {
     key: "test-connection",
-    title: "Finish PrintNanny Setup",
+    title: "Test PrintNanny Setup",
     detail:
       "Almost done! This section will double-check your PrintNanny setup.",
   },
@@ -95,7 +101,7 @@ export function PiCreateWizardSteps(): WizardStep[] {
     {
       key: stepKeys[2].key,
       detail: stepKeys[2].detail,
-      component: TestConnectionStep,
+      component: DownloadLicenseStep,
       progress: "66%",
       style: "width: 66%",
       title: stepKeys[2].title,
@@ -121,6 +127,32 @@ export function PiCreateWizardSteps(): WizardStep[] {
     {
       key: stepKeys[3].key,
       detail: stepKeys[3].detail,
+      component: TestConnectionStep,
+      progress: "66%",
+      style: "width: 66%",
+      title: stepKeys[3].title,
+      validationSchema: yup.object(),
+      nextButton: {
+        text: `Next: ${stepKeys[4].title}`,
+        link: () => ({
+          name: "pi-wizard",
+          params: { activeStep: stepKeys[4].key, piId: store.pi?.id },
+        }),
+      },
+      prevButton: {
+        text: `Previous: ${stepKeys[2].title}`,
+        link: () => ({
+          name: "pi-wizard",
+          params: { activeStep: stepKeys[2].key, piId: store.pi?.id },
+        }),
+      },
+      onSubmit: (_formData: any) => {
+        // handle form data
+      },
+    },
+    {
+      key: stepKeys[4].key,
+      detail: stepKeys[4].detail,
       progress: "100%",
       style: "width: 100%",
       title: "Setup is Complete - Nice Work!",
@@ -128,10 +160,10 @@ export function PiCreateWizardSteps(): WizardStep[] {
       nextButton: undefined,
       component: DoneStep,
       prevButton: {
-        text: `Previous: ${stepKeys[2].title}`,
+        text: `Previous: ${stepKeys[3].title}`,
         link: () => ({
           name: "pi-wizard",
-          params: { activeStep: stepKeys[2].key, piId: store.pi?.id },
+          params: { activeStep: stepKeys[3].key, piId: store.pi?.id },
         }),
       },
       onSubmit: (_formData: any) => {

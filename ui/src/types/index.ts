@@ -168,6 +168,11 @@ export class ConnectTestStep {
     }
   }
 
+  public success(): void {
+    this.status = ConnectTestStatus.Success;
+    this.end_dt = moment();
+  }
+
   public active(): boolean {
     return this.status === ConnectTestStatus.Pending;
   }
@@ -182,9 +187,9 @@ export class ConnectTestStep {
     this.status = ConnectTestStatus.Pending;
   }
 
-  public handlePiEvent(event: api.PolymorphicPiEventRequest): void {
+  public handlePiEvent(event: api.PolymorphicPiEventRequest, currentStep: ConnectTestStep, nextStep: undefined | ConnectTestStep): void {
     if (this.onPiEvent !== undefined) {
-      return this.onPiEvent(event);
+      return this.onPiEvent(event, currentStep, nextStep);
     }
   }
 }
