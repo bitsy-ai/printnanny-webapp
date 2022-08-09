@@ -114,11 +114,13 @@ export class ManualTestStep {
 export class ConnectTestStep {
   content: string;
   status: ConnectTestStatus;
+  successEventType: string;
+  errrorEventType: string;
+  pendingEventType: string;
+  notStartedMessage: string;
+
   start_dt?: undefined | Moment;
   end_dt?: undefined | Moment;
-  command_event?: undefined | api.PolymorphicPiEventRequest;
-  status_event?: undefined | api.PolymorphicPiEventRequest;
-  onPiEvent?: undefined | ((event: api.PolymorphicPiEventRequest) => void);
 
   icons = {
     [ConnectTestStatus.NotStarted]: {
@@ -144,28 +146,38 @@ export class ConnectTestStep {
   };
   constructor(
     content: string,
-    onPiEvent: undefined | ((event: api.PolymorphicPiEventRequest) => void)
+    pendingEventType: string,
+    pendingMessage: string,
+    successEventType: string,
+    errorEventType: string,
+
   ) {
     this.content = content;
+    this.notStartedMessage = pendingMessage;
+    this.pendingEventType = pendingEventType;
+    this.successEventType = successEventType;
+    this.errrorEventType = errorEventType;
     this.status = ConnectTestStatus.NotStarted;
-    this.command_event = undefined;
-    this.status_event = undefined;
     this.start_dt = undefined;
     this.end_dt = undefined;
-    this.onPiEvent = onPiEvent;
   }
 
   public statusText(): string {
     switch (this.status) {
       case ConnectTestStatus.Pending:
-        return "Waiting for Raspberry Pi";
+        return `Waiting for Raspberry Pi`;
       case ConnectTestStatus.Success:
-        return "Success";
+        return this.successEventType;
       case ConnectTestStatus.Error:
-        return "Error";
+        return this.errrorEventType;
       case ConnectTestStatus.NotStarted:
-        return "Waiting to begin test";
+        return this.notStartedMessage || "Waiting to begin test";
     }
+  }
+
+  public error(): void {
+    this.status = ConnectTestStatus.Error;
+    this.end_dt = moment();
   }
 
   public success(): void {
@@ -181,15 +193,9 @@ export class ConnectTestStep {
     return this.icons[this.status];
   }
 
-  public start(event: undefined | api.PolymorphicPiEvent): void {
+  public start(): void {
     this.start_dt = moment();
-    this.command_event = event;
     this.status = ConnectTestStatus.Pending;
   }
 
-  public handlePiEvent(event: api.PolymorphicPiEventRequest, currentStep: ConnectTestStep, nextStep: undefined | ConnectTestStep): void {
-    if (this.onPiEvent !== undefined) {
-      return this.onPiEvent(event, currentStep, nextStep);
-    }
-  }
 }

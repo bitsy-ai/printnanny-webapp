@@ -49,12 +49,6 @@ function nextManualStep(currentStep: ManualTestStep, currentitemIdx: number) {
   }
 }
 
-function finishManualSteps(currentStep: ManualTestStep, currentitemIdx: number) {
-  // mark current step done
-  currentStep.finish();
-  store.connectTestSteps[0].start();
-}
-
 const manualSteps = ref([
   new ManualTestStep(
     "Download PrintNanny.zip (your license key)",
@@ -123,7 +117,7 @@ const manualSteps = ref([
         bgColor: "bg-emerald-500",
         bgColorHover: "hover:bg-emerald-600",
         bgColorFocus: "focus:ring-emerald-500",
-        onClick: finishManualSteps,
+        onClick: nextManualStep,
       } as ActionButton,
     ]
   ),

@@ -43,32 +43,6 @@ if (
   store.connectNats(piId);
 }
 
-const connectTestSteps = [
-  new ConnectTestStep("Power On", (event: api.PolymorphicPiEventRequest, currentStep: ConnectTestStep, nextStep: undefined | ConnectTestStep) => {
-    console.log("callback event", event);
-    console.log("callback currentStep", currentStep);
-    console.log("callback nextStep", nextStep)
-    if (event.event_type == api.PiBootStatusType.BootStarted){
-      console.log("Marking step successful")
-      currentStep.success();
-      nextStep?.start()
-    }
-  }),
-  new ConnectTestStep(
-    "Sync Settings",
-    (event: api.PolymorphicPiEventRequest) => {}
-  ),
-  new ConnectTestStep(
-    "Run Remote Command",
-    (event: api.PolymorphicPiEventRequest) => {}
-  ),
-  new ConnectTestStep(
-    "Turn on Camera",
-    (event: api.PolymorphicPiEventRequest) => {}
-  ),
-];
-store.$patch({ connectTestSteps });
-
 </script>
 
 <template>
@@ -81,6 +55,9 @@ store.$patch({ connectTestSteps });
     <p class="text-base text-center font-medium text-gray-900 mt-5 w-full">
       {{ step.detail }}
     </p>
+    <p class="text-base text-center text-gray-900 mt-5 w-full">
+      To begin the test, <strong class="text-amber-500">insert SD card into Raspberry Pi</strong> and <strong class="text-amber-500">connect Pi to power source.</strong>
+    </p>
     <div
       class="min-h-full min-w-full w-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap text-center"
     >
@@ -89,10 +66,10 @@ store.$patch({ connectTestSteps });
         <ul role="list" class="-mb-8">
 
           <!-- event-based connection tests -->
-          <li v-for="(step, stepIdx) in connectTestSteps" :key="stepIdx">
+          <li v-for="(step, stepIdx) in store.connectTestSteps" :key="stepIdx">
             <div class="relative pb-8">
               <span
-                v-if="stepIdx !== connectTestSteps.length - 1"
+                v-if="stepIdx !== store.connectTestSteps.length - 1"
                 class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200"
                 aria-hidden="true"
               />
@@ -138,7 +115,12 @@ store.$patch({ connectTestSteps });
                     <time
                       v-if="step.status == ConnectTestStatus.Pending"
                       :datetime="step.start_dt.format()"
-                      ><i>{{ step.start_dt.fromNow() }}</i></time
+                      ><i>Started {{ step.start_dt.fromNow() }}</i></time
+                    >
+                                        <time
+                      v-if="step.status == ConnectTestStatus.Success"
+                      :datetime="step.end_dt.format()"
+                      ><i>Finished {{ step.end_dt.fromNow() }}</i></time
                     >
                   </div>
                 </div>

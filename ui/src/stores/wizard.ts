@@ -2,9 +2,9 @@ import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
 import { ApiConfig, handleApiError } from "@/utils/api";
 import { useEventStore } from "./nats";
-import type { ConnectTestStep } from "@/types";
 import { JSONCodec } from "nats.ws";
 import type { Subscription } from "nats.ws";
+import { ConnectTestStep } from "@/types";
 
 const devicesApi = api.DevicesApiFactory(ApiConfig);
 
@@ -18,8 +18,34 @@ export const useWizardStore = defineStore({
     pi: undefined as api.Pi | undefined,
     loading: false,
     downloadUrl: undefined as string | undefined,
-    connectTestSteps: [] as Array<ConnectTestStep>,
-    status: [] as Array<api.PolymorphicPiEventRequest>
+    connectTestSteps: [
+      new ConnectTestStep("Turn on Raspberry Pi",
+        api.PiBootStatusType.BootStarted,
+        "Connect Raspberry Pi to power source. Test will begin automatically.",
+        api.PiBootStatusType.BootSuccess,
+        api.PiBootStatusType.BootDegraded
+      ),
+      new ConnectTestStep(
+        "Sync Settings",
+        api.PiBootStatusType.SyncSettingsStarted,
+        "Waiting for Raspberry Pi to finish powering up.",
+        api.PiBootStatusType.SyncSettingsSuccess,
+        api.PiBootStatusType.SyncSettingsError
+
+      ),
+      // new ConnectTestStep(
+      //   "Test Remote Command"
+      //   api.PiBootCommandType
+      // ),
+      new ConnectTestStep(
+        "Test Camera",
+        api.PiCamStatusType.CamStarted,
+        "Waiting for Raspberry Pi settings sync to finish",
+
+        api.PiCamStatusType.CamStartSuccess,
+        api.PiCamStatusType.CamError
+      )
+    ] as Array<ConnectTestStep>,
   }),
   actions: {
     async connectNats(piId: number) {
@@ -45,11 +71,22 @@ export const useWizardStore = defineStore({
       })(sub);
     },
     handlePiEvent(event: api.PolymorphicPiEventRequest) {
-      this.connectTestSteps.map((step, idx) => {
+      const connectTestSteps = this.connectTestSteps.map((step, idx) => {
         const currentStep = step;
         const nextStep = idx < this.connectTestSteps.length - 1 ? this.connectTestSteps[idx + 1] : undefined;
-        step.handlePiEvent(event, currentStep, nextStep);
-      })
+        if (step.pendingEventType == event.event_type) {
+          step.start();
+        }
+        if (step.successEventType == event.event_type) {
+          step.success()
+        }
+        if (step.errrorEventType == event.event_type) {
+          step.error()
+        }
+        console.log("Returning step: ", step)
+        return step
+      });
+      this.$patch({ connectTestSteps })
     },
     async loadPi(piId: number) {
       if (this.pi === undefined) {

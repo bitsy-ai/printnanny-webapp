@@ -2429,7 +2429,8 @@ export interface PiBootCommandRequest {
 
 export const PiBootCommandType = {
     Rebooot: 'Rebooot',
-    Shutdown: 'Shutdown'
+    Shutdown: 'Shutdown',
+    SyncSettings: 'SyncSettings'
 } as const;
 
 export type PiBootCommandType = typeof PiBootCommandType[keyof typeof PiBootCommandType];
@@ -2553,7 +2554,10 @@ export const PiBootStatusType = {
     ShutdownError: 'ShutdownError',
     BootStarted: 'BootStarted',
     BootSuccess: 'BootSuccess',
-    BootDegraded: 'BootDegraded'
+    BootDegraded: 'BootDegraded',
+    SyncSettingsStarted: 'SyncSettingsStarted',
+    SyncSettingsSuccess: 'SyncSettingsSuccess',
+    SyncSettingsError: 'SyncSettingsError'
 } as const;
 
 export type PiBootStatusType = typeof PiBootStatusType[keyof typeof PiBootStatusType];
@@ -2671,8 +2675,8 @@ export interface PiCamCommandRequest {
  */
 
 export const PiCamCommandType = {
-    Start: 'Start',
-    Stop: 'Stop'
+    CamStart: 'CamStart',
+    CamStop: 'CamStop'
 } as const;
 
 export type PiCamCommandType = typeof PiCamCommandType[keyof typeof PiCamCommandType];
@@ -2790,9 +2794,10 @@ export interface PiCamStatusRequest {
  */
 
 export const PiCamStatusType = {
-    Started: 'Started',
-    Error: 'Error',
-    Stopped: 'Stopped'
+    CamStarted: 'CamStarted',
+    CamStartSuccess: 'CamStartSuccess',
+    CamError: 'CamError',
+    CamStopped: 'CamStopped'
 } as const;
 
 export type PiCamStatusType = typeof PiCamStatusType[keyof typeof PiCamStatusType];
@@ -3027,8 +3032,8 @@ export interface PiSoftwareUpdateCommandRequest {
  */
 
 export const PiSoftwareUpdateCommandType = {
-    Update: 'Update',
-    Rollback: 'Rollback'
+    Swupdate: 'Swupdate',
+    SwupdateRollback: 'SwupdateRollback'
 } as const;
 
 export type PiSoftwareUpdateCommandType = typeof PiSoftwareUpdateCommandType[keyof typeof PiSoftwareUpdateCommandType];
@@ -3158,9 +3163,9 @@ export interface PiSoftwareUpdateStatusRequest {
  */
 
 export const PiSoftwareUpdateStatusType = {
-    Started: 'Started',
-    Success: 'Success',
-    Error: 'Error'
+    SwupdateStarted: 'SwupdateStarted',
+    SwupdateSuccess: 'SwupdateSuccess',
+    SwupdateError: 'SwupdateError'
 } as const;
 
 export type PiSoftwareUpdateStatusType = typeof PiSoftwareUpdateStatusType[keyof typeof PiSoftwareUpdateStatusType];
