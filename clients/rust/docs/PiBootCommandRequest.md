@@ -4,8 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**model** | [**crate::models::PiBootCommandModelEnum**](PiBootCommandModelEnum.md) |  | 
-**subject** | **String** |  | 
+**subject_pattern** | [**crate::models::PiBootCommandSubjectPatternEnum**](PiBootCommandSubjectPatternEnum.md) |  | 
 **payload** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **event_type** | [**crate::models::PiBootCommandType**](PiBootCommandType.md) |  | 
 **pi** | **i32** |  | 

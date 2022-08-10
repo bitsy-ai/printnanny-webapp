@@ -4,8 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**model** | [**crate::models::PiBootStatusModelEnum**](PiBootStatusModelEnum.md) |  | 
-**subject** | **String** |  | 
+**subject_pattern** | [**crate::models::PiBootStatusSubjectPatternEnum**](PiBootStatusSubjectPatternEnum.md) |  | 
 **payload** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **event_type** | [**crate::models::PiBootStatusType**](PiBootStatusType.md) |  | 
 **pi** | **i32** |  | 

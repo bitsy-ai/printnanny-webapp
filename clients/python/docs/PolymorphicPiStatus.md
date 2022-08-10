@@ -5,12 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | [readonly] 
-**model** | [**PiBootStatusModelEnum**](PiBootStatusModelEnum.md) |  | 
+**subject_pattern** | [**PiBootStatusSubjectPatternEnum**](PiBootStatusSubjectPatternEnum.md) |  | 
 **created_dt** | **datetime** |  | [readonly] 
-**subject** | **str** |  | 
 **payload** | **dict(str, object)** |  | [optional] 
 **event_type** | [**PiBootStatusType**](PiBootStatusType.md) |  | 
-**polymorphic_ctype** | **int** |  | [readonly] 
 **pi** | **int** |  | 
 **version** | **str** |  | 
 

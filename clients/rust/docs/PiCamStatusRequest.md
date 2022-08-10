@@ -4,8 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**model** | [**crate::models::PiCamStatusModelEnum**](PiCamStatusModelEnum.md) |  | 
-**subject** | **String** |  | 
+**subject_pattern** | [**crate::models::PiCamStatusSubjectPatternEnum**](PiCamStatusSubjectPatternEnum.md) |  | 
 **payload** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **event_type** | [**crate::models::PiCamStatusType**](PiCamStatusType.md) |  | 
 **pi** | **i32** |  | 

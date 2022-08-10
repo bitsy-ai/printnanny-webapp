@@ -4,8 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**model** | [**crate::models::PiSoftwareUpdateStatusModelEnum**](PiSoftwareUpdateStatusModelEnum.md) |  | 
-**subject** | **String** |  | 
+**subject_pattern** | [**crate::models::PiSoftwareUpdateStatusSubjectPatternEnum**](PiSoftwareUpdateStatusSubjectPatternEnum.md) |  | 
 **payload** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **version** | **String** |  | 
 **event_type** | [**crate::models::PiSoftwareUpdateStatusType**](PiSoftwareUpdateStatusType.md) |  | 

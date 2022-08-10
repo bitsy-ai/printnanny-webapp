@@ -4,8 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**model** | [**PiCamCommandModelEnum**](PiCamCommandModelEnum.md) |  | 
-**subject** | **str** |  | 
+**subject_pattern** | [**PiCamCommandSubjectPatternEnum**](PiCamCommandSubjectPatternEnum.md) |  | 
 **payload** | **dict(str, object)** |  | [optional] 
 **event_type** | [**PiCamCommandType**](PiCamCommandType.md) |  | 
 **pi** | **int** |  | 

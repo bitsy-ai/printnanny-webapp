@@ -5,12 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [readonly]
-**model** | [**crate::models::PiCamCommandModelEnum**](PiCamCommandModelEnum.md) |  | 
+**subject_pattern** | [**crate::models::PiCamCommandSubjectPatternEnum**](PiCamCommandSubjectPatternEnum.md) |  | 
 **created_dt** | **String** |  | [readonly]
-**subject** | **String** |  | 
 **payload** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **event_type** | [**crate::models::PiCamCommandType**](PiCamCommandType.md) |  | 
-**polymorphic_ctype** | **i32** |  | [readonly]
 **pi** | **i32** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,7 +1,7 @@
-# PiBootStatusModelEnum
+# PiSoftwareUpdateStatusSubjectPatternEnum
+
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

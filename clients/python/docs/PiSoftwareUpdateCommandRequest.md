@@ -4,8 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**model** | [**PiSoftwareUpdateCommandModelEnum**](PiSoftwareUpdateCommandModelEnum.md) |  | 
-**subject** | **str** |  | 
+**subject_pattern** | [**PiSoftwareUpdateCommandSubjectPatternEnum**](PiSoftwareUpdateCommandSubjectPatternEnum.md) |  | 
 **payload** | **dict(str, object)** |  | [optional] 
 **version** | **str** |  | 
 **event_type** | [**PiSoftwareUpdateCommandType**](PiSoftwareUpdateCommandType.md) |  | 

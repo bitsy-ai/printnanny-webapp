@@ -1,7 +1,7 @@
-# PiSoftwareUpdateCommandModelEnum
-
+# PiBootCommandSubjectPatternEnum
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

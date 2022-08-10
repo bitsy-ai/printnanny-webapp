@@ -1,7 +1,7 @@
-# PiCamStatusModelEnum
-
+# PiBootStatusSubjectPatternEnum
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

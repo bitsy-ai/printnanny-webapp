@@ -1,7 +1,7 @@
-# PiCamCommandModelEnum
+# PiCamStatusSubjectPatternEnum
+
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

@@ -1,4 +1,4 @@
-# PiCamCommandModelEnum
+# PiBootCommandSubjectPatternEnum
 
 
 ## Properties

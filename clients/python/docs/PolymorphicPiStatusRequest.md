@@ -4,8 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**model** | [**PiBootStatusModelEnum**](PiBootStatusModelEnum.md) |  | 
-**subject** | **str** |  | 
+**subject_pattern** | [**PiBootStatusSubjectPatternEnum**](PiBootStatusSubjectPatternEnum.md) |  | 
 **payload** | **dict(str, object)** |  | [optional] 
 **event_type** | [**PiBootStatusType**](PiBootStatusType.md) |  | 
 **pi** | **int** |  | 

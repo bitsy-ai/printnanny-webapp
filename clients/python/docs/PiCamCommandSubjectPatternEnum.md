@@ -1,4 +1,4 @@
-# PiSoftwareUpdateStatusModelEnum
+# PiCamCommandSubjectPatternEnum
 
 
 ## Properties
