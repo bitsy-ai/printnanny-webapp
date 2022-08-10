@@ -1,11 +1,16 @@
-# sign a namespaced Issuer certificate with LetsEncrypt ClusterIssuer
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: selfsigning
+spec:
+  selfSigned: {}
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: nats-ca
   namespace: nats
-
 spec:
   secretName: nats-ca
   duration: 8736h # 1 year
@@ -13,13 +18,13 @@ spec:
   isCA: true
 
   issuerRef:
-    name: letsencrypt-dns-issuer
+    name: selfsigning
     kind: ClusterIssuer
-
-  # indicate nats-ca should only be used for signing
-  # https://cert-manager.io/docs/reference/api-docs/#cert-manager.io/v1.KeyUsage
   usages:
     - cert sign
+  subject:
+    organizations:
+      - PrintNanny Bitsy AI Labs
   dnsNames:
     - nats.live.printnanny.ai
     - nats.printnanny.ai
@@ -32,7 +37,6 @@ metadata:
 spec:
   ca:
     secretName: nats-ca
-
 # client-facing NATS server tls
 ---
 apiVersion: cert-manager.io/v1
