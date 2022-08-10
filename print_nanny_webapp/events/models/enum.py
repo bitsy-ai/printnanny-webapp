@@ -37,7 +37,7 @@ class PiSoftwareUpdateStatusType(models.TextChoices):
 
 
 class PiBootCommandType(models.TextChoices):
-    Reboot = ("Rebooot", "Reboot Raspberry Pi")
+    Reboot = ("Reboot", "Reboot Raspberry Pi")
     Shutdown = ("Shutdown", "Shutdown Raspberry Pi")
     SyncSettings = ("SyncSettings", "Sync Raspberry Pi settings")
 
