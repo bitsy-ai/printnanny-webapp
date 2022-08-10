@@ -107,15 +107,15 @@
 import tempfile
 import logging
 from asgiref.sync import async_to_sync
+from django_nats_nkeys.services import nsc_generate_creds
+from django.conf import settings
+from rest_framework.renderers import JSONRenderer
+import nats
+
 from print_nanny_webapp.devices.models import PiNatsApp
 from print_nanny_webapp.events.api.serializers import PolymorphicPiEventSerializer
 from print_nanny_webapp.events.models.pi import BasePiEvent
 
-from django_nats_nkeys.services import nsc_generate_creds
-from django.conf import settings
-from rest_framework.renderers import JSONRenderer
-
-import nats
 
 logger = logging.getLogger(__name__)
 
@@ -135,4 +135,4 @@ def nats_publish(serializer: PolymorphicPiEventSerializer, obj: BasePiEvent):
         )
         sync_publish = async_to_sync(nc_client.publish)
         sync_publish(obj.subject, JSONRenderer().render(serializer.data))
-        logger.info(f"NATS published {obj.event_type} {obj.subject}")
+        logger.info("NATS published %s %s", obj.event_type, obj.subject)
