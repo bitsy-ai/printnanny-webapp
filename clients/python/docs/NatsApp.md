@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
-**name** | **str** |  | 
+**app_name** | **str** |  | [optional] 
 **json** | **dict(str, object)** | Output of &#x60;nsc describe account&#x60; | 
 **pi** | **int** |  | 
 **organization** | **int** |  | 

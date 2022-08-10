@@ -4,9 +4,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**model** | [**PiBootCommandModelEnum**](PiBootCommandModelEnum.md) |  | 
 **subject** | **str** |  | 
 **payload** | **dict(str, object)** |  | [optional] 
-**event_type** | [**PiBootEventType**](PiBootEventType.md) |  | 
+**event_type** | [**PiBootCommandType**](PiBootCommandType.md) |  | 
 **pi** | **int** |  | 
 **version** | **str** |  | 
 

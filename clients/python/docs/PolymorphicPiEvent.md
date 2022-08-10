@@ -4,11 +4,12 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [readonly] 
+**id** | **str** |  | [readonly] 
+**model** | [**PiBootCommandModelEnum**](PiBootCommandModelEnum.md) |  | 
 **created_dt** | **datetime** |  | [readonly] 
 **subject** | **str** |  | 
 **payload** | **dict(str, object)** |  | [optional] 
-**event_type** | [**PiBootEventType**](PiBootEventType.md) |  | 
+**event_type** | [**PiBootCommandType**](PiBootCommandType.md) |  | 
 **polymorphic_ctype** | **int** |  | [readonly] 
 **pi** | **int** |  | 
 **version** | **str** |  | 

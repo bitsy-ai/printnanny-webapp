@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
-**name** | **String** |  | 
+**app_name** | Option<**String**> |  | [optional]
 **json** | [**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md) | Output of `nsc describe account` | 
 **pi** | **i32** |  | 
 **organization** | **i32** |  | 

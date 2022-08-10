@@ -15,6 +15,7 @@ Method | HTTP request | Description
 [**accounts_registration_create**](AccountsApi.md#accounts_registration_create) | **POST** /api/accounts/registration/ | 
 [**accounts_registration_resend_email_create**](AccountsApi.md#accounts_registration_resend_email_create) | **POST** /api/accounts/registration/resend-email/ | 
 [**accounts_registration_verify_email_create**](AccountsApi.md#accounts_registration_verify_email_create) | **POST** /api/accounts/registration/verify-email/ | 
+[**accounts_user_nkey_retrieve**](AccountsApi.md#accounts_user_nkey_retrieve) | **GET** /api/accounts/user/nkey | 
 [**accounts_user_partial_update**](AccountsApi.md#accounts_user_partial_update) | **PATCH** /api/accounts/user/ | 
 [**accounts_user_retrieve**](AccountsApi.md#accounts_user_retrieve) | **GET** /api/accounts/user/ | 
 [**accounts_user_update**](AccountsApi.md#accounts_user_update) | **PUT** /api/accounts/user/ | 
@@ -337,6 +338,33 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## accounts_user_nkey_retrieve
+
+> crate::models::NatsOrganizationUser accounts_user_nkey_retrieve()
+
+
+Providers user nkey credentials
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**crate::models::NatsOrganizationUser**](NatsOrganizationUser.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
