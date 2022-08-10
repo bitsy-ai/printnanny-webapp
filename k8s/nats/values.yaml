@@ -565,21 +565,7 @@ auth:
   ##########################################
   resolver:
     type: full
-
-    # DUMMY is used for sensitive values, in order to check configuration into source control.
-    # all DUMMY values MUST be replaced using `helm install <name> nats/nats --set`
-
-    # trusted operator JWT
-    # operator: DUMMY
-
-    # System Account named SYS
-    # systemAccount: DUMMY
-
-    # preload operator nkey
-    # resolverPreload:
-
-    # end DUMMY
-
+    resolverPreload: {}
     allowDelete: false
     # Interval at which a nats-server with a nats based account resolver will compare
     # it's state with one random nats based account resolver in the cluster and if needed,
