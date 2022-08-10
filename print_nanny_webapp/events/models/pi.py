@@ -21,7 +21,7 @@ class PiBootCommand(BasePiEvent):
     Commands related to Raspberry Pi boot process
     """
 
-    subject_pattern = PiEventSubjectPattern.PiBootStatus
+    subject_pattern = PiEventSubjectPattern.PiBootCommand
 
     class Meta:
         index_together = ()
