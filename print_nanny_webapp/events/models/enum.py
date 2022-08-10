@@ -73,13 +73,13 @@ class PiBootStatusType(models.TextChoices):
     )
 
 
-class PiEventModel(models.TextChoices):
-    PiBootStatus = "PiBootStatus"
-    PiBootCommand = "PiBootCommand"
-    PiCamCommand = "PiCamCommand"
-    PiCamStatus = "PiCamStatus"
-    PiSoftwareUpdateStatus = "PiSoftwareUpdateStatus"
-    PiSoftwareUpdateCommand = "PiSoftwareUpdateCommand"
+class PiEventSubjectPattern(models.TextChoices):
+    PiBootStatus = "pi.{pi_id}.status.boot"
+    PiBootCommand = "pi.{pi_id}.command.boot"
+    PiCamStatus = "pi.{pi_id}.status.cam"
+    PiCamCommand = "pi.{pi_id}.command.cam"
+    PiSoftwareUpdateStatus = "pi.{pi_id}.status.swupdate"
+    PiSoftwareUpdateCommand = "pi.{pi_id}.command.swupdate"
 
 
 class EventModel(models.TextChoices):

@@ -14,7 +14,7 @@ from print_nanny_webapp.events.models.pi import (
 )
 from print_nanny_webapp.events.models.alerts import EmailAlertSettings
 
-from print_nanny_webapp.events.models.enum import PiEventModel
+from print_nanny_webapp.events.models.enum import PiEventSubjectPattern
 
 logger = logging.getLogger(__name__)
 
@@ -34,55 +34,67 @@ class EmailAlertSettingsSerializer(serializers.ModelSerializer):
 
 
 class PiBootCommandSerializer(serializers.ModelSerializer):
-    model = serializers.ChoiceField(choices=[PiEventModel.PiBootCommand])
+    subject_pattern = serializers.ChoiceField(
+        choices=[PiEventSubjectPattern.PiBootCommand]
+    )
 
     class Meta:
         model = PiBootCommand
-        exclude = ("deleted",)
+        exclude = ("deleted", "polymorphic_ctype")
 
 
 class PiBootStatusSerializer(serializers.ModelSerializer):
-    model = serializers.ChoiceField(choices=[PiEventModel.PiBootStatus])
+    subject_pattern = serializers.ChoiceField(
+        choices=[PiEventSubjectPattern.PiBootStatus]
+    )
 
     class Meta:
         model = PiBootStatus
-        exclude = ("deleted",)
+        exclude = ("deleted", "polymorphic_ctype")
 
 
 class PiSoftwareUpdateCommandSerializer(serializers.ModelSerializer):
-    model = serializers.ChoiceField(choices=[PiEventModel.PiSoftwareUpdateCommand])
+    subject_pattern = serializers.ChoiceField(
+        choices=[PiEventSubjectPattern.PiSoftwareUpdateCommand]
+    )
 
     class Meta:
         model = PiSoftwareUpdateCommand
-        exclude = ("deleted",)
+        exclude = ("deleted", "polymorphic_ctype")
 
 
 class PiSoftwareUpdateStatusSerializer(serializers.ModelSerializer):
-    model = serializers.ChoiceField(choices=[PiEventModel.PiSoftwareUpdateStatus])
+    subject_pattern = serializers.ChoiceField(
+        choices=[PiEventSubjectPattern.PiSoftwareUpdateStatus]
+    )
 
     class Meta:
         model = PiSoftwareUpdateStatus
-        exclude = ("deleted",)
+        exclude = ("deleted", "polymorphic_ctype")
 
 
 class PiCamCommandSerializer(serializers.ModelSerializer):
-    model = serializers.ChoiceField(choices=[PiEventModel.PiCamCommand])
+    subject_pattern = serializers.ChoiceField(
+        choices=[PiEventSubjectPattern.PiCamCommand]
+    )
 
     class Meta:
         model = PiCamCommand
-        exclude = ("deleted",)
+        exclude = ("deleted", "polymorphic_ctype")
 
 
 class PiCamStatusSerializer(serializers.ModelSerializer):
-    model = serializers.ChoiceField(choices=[PiEventModel.PiCamStatus])
+    subject_pattern = serializers.ChoiceField(
+        choices=[PiEventSubjectPattern.PiCamStatus]
+    )
 
     class Meta:
         model = PiCamStatus
-        exclude = ("deleted",)
+        exclude = ("deleted", "polymorphic_ctype")
 
 
 class PolymorphicPiStatusSerializer(PolymorphicSerializer):
-    resource_type_field_name = "model"
+    resource_type_field_name = "subject_pattern"
 
     model_serializer_mapping = {
         PiCamStatus: PiCamStatusSerializer,
@@ -92,7 +104,7 @@ class PolymorphicPiStatusSerializer(PolymorphicSerializer):
 
 
 class PolymorphicPiCommandSerializer(PolymorphicSerializer):
-    resource_type_field_name = "model"
+    resource_type_field_name = "subject_pattern"
 
     model_serializer_mapping = {
         PiCamCommand: PiCamCommandSerializer,
@@ -102,7 +114,7 @@ class PolymorphicPiCommandSerializer(PolymorphicSerializer):
 
 
 class PolymorphicPiEventSerializer(PolymorphicSerializer):
-    resource_type_field_name = "model"
+    resource_type_field_name = "subject_pattern"
     model_serializer_mapping = {
         PiCamStatus: PiCamStatusSerializer,
         PiSoftwareUpdateStatus: PiSoftwareUpdateStatusSerializer,
@@ -111,3 +123,6 @@ class PolymorphicPiEventSerializer(PolymorphicSerializer):
         PiSoftwareUpdateCommand: PiSoftwareUpdateCommandSerializer,
         PiBootCommand: PiBootCommandSerializer,
     }
+
+    def to_resource_type(self, model_or_instance):
+        return model_or_instance.subject_pattern
