@@ -4,6 +4,7 @@ import { useRouter } from "vue-router";
 import type { PropType } from "vue";
 import { useWizardStore } from "@/stores/wizard";
 import type { WizardStep } from "@/types";
+import { ConnectTestStatus } from "@/types";
 
 const props = defineProps({
   step: {
@@ -64,7 +65,7 @@ if (
                   >
                     <component
                       :is="item.statusComponent().icon"
-                      v-if="!step.active()"
+                      v-if="!item.active()"
                       class="h-5 w-5 text-white"
                       aria-hidden="true"
                     />
@@ -95,13 +96,13 @@ if (
                     <br />
                     <time
                       v-if="item.status == ConnectTestStatus.Pending"
-                      :datetime="item.start_dt.format()"
-                      ><i>Started {{ item.start_dt.fromNow() }}</i></time
+                      :datetime="item?.dtStart?.format()"
+                      ><i>Started {{ item?.dtStart?.fromNow() }}</i></time
                     >
                     <time
                       v-if="item.status == ConnectTestStatus.Success"
-                      :datetime="item.end_dt.format()"
-                      ><i>Finished {{ item.end_dt.fromNow() }}</i></time
+                      :datetime="item?.dtEnd?.format()"
+                      ><i>Finished {{ item?.dtEnd?.fromNow() }}</i></time
                     >
                   </div>
                 </div>

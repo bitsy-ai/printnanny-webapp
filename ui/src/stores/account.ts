@@ -13,7 +13,7 @@ export const useAccountStore = defineStore({
   },
   state: () => ({
     user: undefined as api.User | undefined,
-    nkey: undefined as api.NatsOrganizationUserNkey | undefined,
+    nkey: undefined as api.NatsOrganizationUser | undefined,
   }),
   getters: {
     isAuthenticated: (state) => state.user !== undefined,
@@ -34,18 +34,7 @@ export const useAccountStore = defineStore({
       };
       alerts.push(alert);
     },
-    async fetchUserNkey(): Promise<api.NatsOrganizationUserNkey | undefined> {
-      // if (this.nkey === undefined) {
-      //   const nkeyData = await accountsApi.accountsUserNkeyRetrieve().catch(handleApiError);
-      //   console.log("Loaded NATS identity", nkeyData);
-      //   if (nkeyData && nkeyData.data) {
-      //     this.$patch({
-      //       nkey: nkeyData.data
-      //     });
-      //     return nkeyData.data
-      //   }
-      // }
-      // return this.nkey
+    async fetchUserNkey(): Promise<api.NatsOrganizationUser | undefined> {
       const nkeyData = await accountsApi
         .accountsUserNkeyRetrieve()
         .catch(handleApiError);

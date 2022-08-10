@@ -1,8 +1,8 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
 import { connect, JSONCodec, credsAuthenticator } from "nats.ws";
-import type { NatsConnection } from "nats.ws";
+import type { NatsConnection, Subscription } from "nats.ws";
 import { useAccountStore } from "./account";
-import * as api from "printnanny-api-client";
+import type * as api from "printnanny-api-client";
 
 export const useEventStore = defineStore({
   id: "nats",

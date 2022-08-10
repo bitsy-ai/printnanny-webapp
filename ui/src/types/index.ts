@@ -63,9 +63,9 @@ export type ActionButton = {
   bgColorHover: string;
   bgColorFocus: string;
   text: string;
+  onClick: (step: ManualTestStep, stepIdx: number) => void;
   href?: string;
   icon?: FunctionalComponent<HTMLAttributes & VNodeProps>;
-  onClick?: (step: ManualTestStep, stepIdx: number) => void;
 };
 
 export class ManualTestStep {
@@ -118,8 +118,8 @@ export class ConnectTestStep {
   pendingEventType: string;
   notStartedMessage: string;
 
-  start_dt?: undefined | Moment;
-  end_dt?: undefined | Moment;
+  dtStart?: undefined | Moment;
+  dtEnd?: undefined | Moment;
 
   icons = {
     [ConnectTestStatus.NotStarted]: {
@@ -156,8 +156,8 @@ export class ConnectTestStep {
     this.successEventType = successEventType;
     this.errrorEventType = errorEventType;
     this.status = ConnectTestStatus.NotStarted;
-    this.start_dt = undefined;
-    this.end_dt = undefined;
+    this.dtStart = undefined;
+    this.dtEnd = undefined;
   }
 
   public statusText(): string {
@@ -175,12 +175,12 @@ export class ConnectTestStep {
 
   public error(): void {
     this.status = ConnectTestStatus.Error;
-    this.end_dt = moment();
+    this.dtEnd = moment();
   }
 
   public success(): void {
     this.status = ConnectTestStatus.Success;
-    this.end_dt = moment();
+    this.dtEnd = moment();
   }
 
   public active(): boolean {
@@ -192,7 +192,7 @@ export class ConnectTestStep {
   }
 
   public start(): void {
-    this.start_dt = moment();
+    this.dtStart = moment();
     this.status = ConnectTestStatus.Pending;
   }
 }
