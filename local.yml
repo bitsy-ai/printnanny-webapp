@@ -132,7 +132,7 @@ services:
       - localnats
     ports:
       - "4222:4222"
-      - "8422:8422"
+      - "8443:8443"
   # events:
   #   container_name: printnanny_webapp_octoprint_events
   #   <<: *django
